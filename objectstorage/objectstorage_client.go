@@ -58,8 +58,8 @@ func (client *ObjectStorageClient) setConfigurationProvider(configProvider commo
 
 	// Error has been checked already
 	region, _ := configProvider.Region()
-	client.config = &configProvider
 	client.SetRegion(region)
+	client.config = &configProvider
 	return nil
 }
 
