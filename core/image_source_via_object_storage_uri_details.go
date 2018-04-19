@@ -15,18 +15,22 @@ import (
 
 // ImageSourceViaObjectStorageUriDetails The representation of ImageSourceViaObjectStorageUriDetails
 type ImageSourceViaObjectStorageUriDetails struct {
+	OperatingSystem *string `mandatory:"true" json:"operatingSystem"`
 
-	// The Object Storage URL for the image.
+	OperatingSystemVersion *string `mandatory:"true" json:"operatingSystemVersion"`
+
+	// Object store URI to export the image to
 	SourceUri *string `mandatory:"true" json:"sourceUri"`
-
-	// The format of the image to be imported.  Exported Oracle images are QCOW2.  Only monolithic
-	// images are supported.
-	SourceImageType ImageSourceDetailsSourceImageTypeEnum `mandatory:"false" json:"sourceImageType,omitempty"`
 }
 
-//GetSourceImageType returns SourceImageType
-func (m ImageSourceViaObjectStorageUriDetails) GetSourceImageType() ImageSourceDetailsSourceImageTypeEnum {
-	return m.SourceImageType
+//GetOperatingSystem returns OperatingSystem
+func (m ImageSourceViaObjectStorageUriDetails) GetOperatingSystem() *string {
+	return m.OperatingSystem
+}
+
+//GetOperatingSystemVersion returns OperatingSystemVersion
+func (m ImageSourceViaObjectStorageUriDetails) GetOperatingSystemVersion() *string {
+	return m.OperatingSystemVersion
 }
 
 func (m ImageSourceViaObjectStorageUriDetails) String() string {

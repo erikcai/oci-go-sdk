@@ -14,7 +14,7 @@ type UpdateConsoleHistoryRequest struct {
 	// The OCID of the console history.
 	InstanceConsoleHistoryId *string `mandatory:"true" contributesTo:"path" name:"instanceConsoleHistoryId"`
 
-	// Update instance fields
+	// Details object for updating a `ConsoleHistory`.
 	UpdateConsoleHistoryDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

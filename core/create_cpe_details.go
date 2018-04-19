@@ -18,11 +18,11 @@ type CreateCpeDetails struct {
 	// The OCID of the compartment to contain the CPE.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The public IP address of the on-premises router.
+	// The public IP address of the on-premise router.
 	// Example: `143.19.23.16`
 	IpAddress *string `mandatory:"true" json:"ipAddress"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique, and it's changeable.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 

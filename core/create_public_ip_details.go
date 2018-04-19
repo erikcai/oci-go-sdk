@@ -15,13 +15,11 @@ import (
 // CreatePublicIpDetails The representation of CreatePublicIpDetails
 type CreatePublicIpDetails struct {
 
-	// The OCID of the compartment to contain the public IP. For ephemeral public IPs,
-	// you must set this to the private IP's compartment OCID.
+	// The OCID of the compartment to contain the public IP. For `EPHEMERAL` public IP addresses, the compartmentId has to
+	// be the same as for the private IP.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Defines when the public IP is deleted and released back to the Oracle Cloud
-	// Infrastructure public IP pool. For more information, see
-	// Public IP Addresses (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingpublicIPs.htm).
+	// Defines when the public IP is deleted and released back to Oracle's public IP pool.
 	Lifetime CreatePublicIpDetailsLifetimeEnum `mandatory:"true" json:"lifetime"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid
@@ -29,11 +27,9 @@ type CreatePublicIpDetails struct {
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The OCID of the private IP to assign the public IP to.
-	// Required for an ephemeral public IP because it must always be assigned to a private IP
-	// (specifically a *primary* private IP).
-	// Optional for a reserved public IP. If you don't provide it, the public IP is created but not
-	// assigned to a private IP. You can later assign the public IP with
-	// UpdatePublicIp.
+	// For `EPHEMERAL` public IP addresses this parameter is required since `EPHEMERAL` public IP addresses are always assigned to a private IP.
+	// For `RESERVED` public IP this is an optional parameter. If not provided, the public IP will be created
+	// and can later be assigned to a private IP via UpdatePublicIp.
 	PrivateIpId *string `mandatory:"false" json:"privateIpId"`
 }
 

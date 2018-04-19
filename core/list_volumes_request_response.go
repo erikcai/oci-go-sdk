@@ -25,25 +25,6 @@ type ListVolumesRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// A filter to return only resources that match the given display name exactly.
-	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
-
-	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
-	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
-	// sort order is case sensitive.
-	// **Note:** In general, some "List" operations (for example, `ListInstances`) let you
-	// optionally filter by Availability Domain if the scope of the resource type is within a
-	// single Availability Domain. If you call one of these "List" operations without specifying
-	// an Availability Domain, the resources are grouped by Availability Domain, then sorted.
-	SortBy ListVolumesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
-
-	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
-	// is case sensitive.
-	SortOrder ListVolumesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-
-	// A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
-	LifecycleState VolumeLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -69,7 +50,7 @@ type ListVolumesResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The []Volume instance
+	// A list of []Volume instances
 	Items []Volume `presentIn:"body"`
 
 	// For pagination of a list of items. When paging through a list, if this header appears in the response,
@@ -89,50 +70,4 @@ func (response ListVolumesResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListVolumesResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// ListVolumesSortByEnum Enum with underlying type: string
-type ListVolumesSortByEnum string
-
-// Set of constants representing the allowable values for ListVolumesSortBy
-const (
-	ListVolumesSortByTimecreated ListVolumesSortByEnum = "TIMECREATED"
-	ListVolumesSortByDisplayname ListVolumesSortByEnum = "DISPLAYNAME"
-)
-
-var mappingListVolumesSortBy = map[string]ListVolumesSortByEnum{
-	"TIMECREATED": ListVolumesSortByTimecreated,
-	"DISPLAYNAME": ListVolumesSortByDisplayname,
-}
-
-// GetListVolumesSortByEnumValues Enumerates the set of values for ListVolumesSortBy
-func GetListVolumesSortByEnumValues() []ListVolumesSortByEnum {
-	values := make([]ListVolumesSortByEnum, 0)
-	for _, v := range mappingListVolumesSortBy {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListVolumesSortOrderEnum Enum with underlying type: string
-type ListVolumesSortOrderEnum string
-
-// Set of constants representing the allowable values for ListVolumesSortOrder
-const (
-	ListVolumesSortOrderAsc  ListVolumesSortOrderEnum = "ASC"
-	ListVolumesSortOrderDesc ListVolumesSortOrderEnum = "DESC"
-)
-
-var mappingListVolumesSortOrder = map[string]ListVolumesSortOrderEnum{
-	"ASC":  ListVolumesSortOrderAsc,
-	"DESC": ListVolumesSortOrderDesc,
-}
-
-// GetListVolumesSortOrderEnumValues Enumerates the set of values for ListVolumesSortOrder
-func GetListVolumesSortOrderEnumValues() []ListVolumesSortOrderEnum {
-	values := make([]ListVolumesSortOrderEnum, 0)
-	for _, v := range mappingListVolumesSortOrder {
-		values = append(values, v)
-	}
-	return values
 }

@@ -100,12 +100,12 @@ func (client IdentityClient) addUserToGroup(ctx context.Context, request common.
 }
 
 // CreateCompartment Creates a new compartment in your tenancy.
-// **Important:** Compartments cannot be deleted.
+// **Important:** Compartments cannot be renamed or deleted.
 // You must specify your tenancy's OCID as the compartment ID in the request object. Remember that the tenancy
 // is simply the root compartment. For information about OCIDs, see
 // Resource Identifiers (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 // You must also specify a *name* for the compartment, which must be unique across all compartments in
-// your tenancy. You can use this name or the OCID when writing policies that apply
+// your tenancy and cannot be changed. You can use this name or the OCID when writing policies that apply
 // to the compartment. For more information about policies, see
 // How Policies Work (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policies.htm).
 // You must also specify a *description* for the compartment (although it can be an empty string). It does
@@ -139,53 +139,6 @@ func (client IdentityClient) createCompartment(ctx context.Context, request comm
 	}
 
 	var response CreateCompartmentResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// CreateCustomerSecretKey Creates a new secret key for the specified user. Secret keys are used for authentication with the Object Storage Service's Amazon S3
-// compatible API. For information, see
-// Managing User Credentials (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Tasks/managingcredentials.htm).
-// You must specify a *description* for the secret key (although it can be an empty string). It does not
-// have to be unique, and you can change it anytime with
-// UpdateCustomerSecretKey.
-// Every user has permission to create a secret key for *their own user ID*. An administrator in your organization
-// does not need to write a policy to give users this ability. To compare, administrators who have permission to the
-// tenancy can use this operation to create a secret key for any user, including themselves.
-func (client IdentityClient) CreateCustomerSecretKey(ctx context.Context, request CreateCustomerSecretKeyRequest) (response CreateCustomerSecretKeyResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.createCustomerSecretKey, policy)
-	if err != nil {
-		return
-	}
-	if convertedResponse, ok := ociResponse.(CreateCustomerSecretKeyResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into CreateCustomerSecretKeyResponse")
-	}
-	return
-}
-
-// createCustomerSecretKey implements the OCIOperation interface (enables retrying operations)
-func (client IdentityClient) createCustomerSecretKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/customerSecretKeys/")
-	if err != nil {
-		return nil, err
-	}
-
-	var response CreateCustomerSecretKeyResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -396,6 +349,50 @@ func (client IdentityClient) createIdpGroupMapping(ctx context.Context, request 
 	return response, err
 }
 
+// CreateManagedCompartment Creates a new managed compartment in your tenancy.
+// **Important:** Managed Compartments can only be created by whitelisted service callers.
+// You must specify tenancy's OCID as the value for the compartment ID (remember that the tenancy is simply the root compartment).
+// You also must specify compartment name, description, service name and service entitlement id in the request object.
+// After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
+// object, first make sure its `lifecycleState` has changed to ACTIVE.
+func (client IdentityClient) CreateManagedCompartment(ctx context.Context, request CreateManagedCompartmentRequest) (response CreateManagedCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.createManagedCompartment, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateManagedCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateManagedCompartmentResponse")
+	}
+	return
+}
+
+// createManagedCompartment implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) createManagedCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managedCompartments/")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateManagedCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateOrResetUIPassword Creates a new Console one-time password for the specified user. For more information about user
 // credentials, see User Credentials (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/usercredentials.htm).
 // Use this operation after creating a new user, or if a user forgets their password. The new one-time
@@ -493,7 +490,7 @@ func (client IdentityClient) createPolicy(ctx context.Context, request common.OC
 	return response, err
 }
 
-// CreateRegionSubscription Creates a subscription to a region for a tenancy.
+// CreateRegionSubscription Create a new regionSubscription for tenancy
 func (client IdentityClient) CreateRegionSubscription(ctx context.Context, request CreateRegionSubscriptionRequest) (response CreateRegionSubscriptionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -532,7 +529,7 @@ func (client IdentityClient) createRegionSubscription(ctx context.Context, reque
 	return response, err
 }
 
-// CreateSmtpCredential Creates a new SMTP credential for the specified user. An SMTP credential has an SMTP user name and an SMTP password.
+// CreateSmtpCredential Creates a new SMTP credential for the specified user. A SMTP credential has a SMTP user name and a SMTP password.
 // You must specify a *description* for the SMTP credential (although it can be an empty string). It does not
 // have to be unique, and you can change it anytime with
 // UpdateSmtpCredential.
@@ -620,14 +617,15 @@ func (client IdentityClient) createSwiftPassword(ctx context.Context, request co
 	return response, err
 }
 
-// CreateTag Creates a new tag in the specified tag namespace.
-// You must specify either the OCID or the name of the tag namespace that will contain this tag definition.
-// You must also specify a *name* for the tag, which must be unique across all tags in the tag namespace
-// and cannot be changed. The name can contain any ASCII character except the space (_) or period (.) characters.
-// Names are case insensitive. That means, for example, "myTag" and "mytag" are not allowed in the same namespace.
-// If you specify a name that's already in use in the tag namespace, a 409 error is returned.
+// CreateTag Creates a new tag in a given tagNamespace.
+// You have to specify either the id or the name of the tagNamespace that will contain this tag definition.
+// You must also specify a *name* for the tag, which must be unique across all tags in the tagNamespace
+// and cannot be changed. Allowed characters: No spaces. Only letters, numerals, hyphens and underscores. Note
+// that names are case insenstive, that means you can not have two different tags with same name but with
+// different casing in one tagNamespace.
+// If you specify a name that's already in use in the tagNamespace, you'll get a 409 error.
 // You must also specify a *description* for the tag.
-// It does not have to be unique, and you can change it with
+// It does not have to be unique, and you can change it anytime with
 // UpdateTag.
 func (client IdentityClient) CreateTag(ctx context.Context, request CreateTagRequest) (response CreateTagResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -667,19 +665,18 @@ func (client IdentityClient) createTag(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// CreateTagNamespace Creates a new tag namespace in the specified compartment.
+// CreateTagNamespace Creates a new tagNamespace in a given compartment.
 // You must specify the compartment ID in the request object (remember that the tenancy is simply the root
 // compartment).
 // You must also specify a *name* for the namespace, which must be unique across all namespaces in your tenancy
-// and cannot be changed. The name can contain any ASCII character except the space (_) or period (.).
-// Names are case insensitive. That means, for example, "myNamespace" and "mynamespace" are not allowed
-// in the same tenancy. Once you created a namespace, you cannot change the name.
-// If you specify a name that's already in use in the tenancy, a 409 error is returned.
+// and cannot be changed. Allowed characters: No spaces. Only letters, numerals, hyphens and underscores. Note
+// that names are case insenstive, that means you can not have two different namespaces with same name but with
+// different casing in one tenancy.
+// Once you created a namespace, you can not change the name
+// If you specify a name that's already in use in the tennacy, you'll get a 409 error.
 // You must also specify a *description* for the namespace.
-// It does not have to be unique, and you can change it with
+// It does not have to be unique, and you can change it anytime with
 // UpdateTagNamespace.
-// Tag namespaces cannot be deleted, but they can be retired.
-// See Retiring Key Definitions and Namespace Definitions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#Retiring) for more information.
 func (client IdentityClient) CreateTagNamespace(ctx context.Context, request CreateTagNamespaceRequest) (response CreateTagNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -718,6 +715,53 @@ func (client IdentityClient) createTagNamespace(ctx context.Context, request com
 	return response, err
 }
 
+// CreateTagRule Creates a new tag rule in the specified compartment (either the tenancy or another of your compartments).
+// You must specify a *name* for the tag rule, which must be unique across all tag rules in your tenancy
+// and cannot be changed.
+// You must also specify a *description* for the tag rule (although it can be an empty string). It does not
+// have to be unique, and you can change it anytime with UpdateTagRule.
+// You must specify *ruleText* for the tag rule which must follow the tag rule language syntax.
+// After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
+// object, first make sure its `lifecycleState` has changed to ACTIVE.
+// New tag rules take effect typically within 10 seconds.
+func (client IdentityClient) CreateTagRule(ctx context.Context, request CreateTagRuleRequest) (response CreateTagRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.createTagRule, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateTagRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateTagRuleResponse")
+	}
+	return
+}
+
+// createTagRule implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) createTagRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tagRules/")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateTagRuleResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateUser Creates a new user in your tenancy. For conceptual information about users, your tenancy, and other
 // IAM Service components, see Overview of the IAM Service (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/overview.htm).
 // You must specify your tenancy's OCID as the compartment ID in the request object (remember that the
@@ -742,7 +786,7 @@ func (client IdentityClient) createTagNamespace(ctx context.Context, request com
 // AddUserToGroup). If the user needs to
 // access the Console, you need to provide the user a password (see
 // CreateOrResetUIPassword).
-// If the user needs to access the Oracle Cloud Infrastructure REST API, you need to upload a
+// If the user needs to access the Oracle Bare Metal Cloud Services REST API, you need to upload a
 // public API signing key for that user (see
 // Required Keys and OCIDs (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm) and also
 // UploadApiKey).
@@ -816,45 +860,6 @@ func (client IdentityClient) deleteApiKey(ctx context.Context, request common.OC
 	}
 
 	var response DeleteApiKeyResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// DeleteCustomerSecretKey Deletes the specified secret key for the specified user.
-func (client IdentityClient) DeleteCustomerSecretKey(ctx context.Context, request DeleteCustomerSecretKeyRequest) (response DeleteCustomerSecretKeyResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.deleteCustomerSecretKey, policy)
-	if err != nil {
-		return
-	}
-	if convertedResponse, ok := ociResponse.(DeleteCustomerSecretKeyResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DeleteCustomerSecretKeyResponse")
-	}
-	return
-}
-
-// deleteCustomerSecretKey implements the OCIOperation interface (enables retrying operations)
-func (client IdentityClient) deleteCustomerSecretKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/users/{userId}/customerSecretKeys/{customerSecretKeyId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response DeleteCustomerSecretKeyResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1141,6 +1146,45 @@ func (client IdentityClient) deleteSwiftPassword(ctx context.Context, request co
 	return response, err
 }
 
+// DeleteTagRule Deletes the specified tag rule.
+func (client IdentityClient) DeleteTagRule(ctx context.Context, request DeleteTagRuleRequest) (response DeleteTagRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteTagRule, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteTagRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteTagRuleResponse")
+	}
+	return
+}
+
+// deleteTagRule implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) deleteTagRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/tagRules/{tagRuleId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteTagRuleResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteUser Deletes the specified user. The user must not be in any groups.
 func (client IdentityClient) DeleteUser(ctx context.Context, request DeleteUserRequest) (response DeleteUserResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1168,6 +1212,45 @@ func (client IdentityClient) deleteUser(ctx context.Context, request common.OCIR
 	}
 
 	var response DeleteUserResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetAccountByEntitlementId Get account information for a service entitlement ID
+func (client IdentityClient) GetAccountByEntitlementId(ctx context.Context, request GetAccountByEntitlementIdRequest) (response GetAccountByEntitlementIdResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAccountByEntitlementId, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAccountByEntitlementIdResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAccountByEntitlementIdResponse")
+	}
+	return
+}
+
+// getAccountByEntitlementId implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) getAccountByEntitlementId(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/entitlements/{entitlementId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAccountByEntitlementIdResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1462,7 +1545,7 @@ func (client IdentityClient) getTag(ctx context.Context, request common.OCIReque
 	return response, err
 }
 
-// GetTagNamespace Gets the specified tag namespace's information.
+// GetTagNamespace Gets the specified tagNamespace's information.
 func (client IdentityClient) GetTagNamespace(ctx context.Context, request GetTagNamespaceRequest) (response GetTagNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1489,6 +1572,45 @@ func (client IdentityClient) getTagNamespace(ctx context.Context, request common
 	}
 
 	var response GetTagNamespaceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetTagRule Gets the information of the specified tag rule.
+func (client IdentityClient) GetTagRule(ctx context.Context, request GetTagRuleRequest) (response GetTagRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getTagRule, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetTagRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetTagRuleResponse")
+	}
+	return
+}
+
+// getTagRule implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) getTagRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tagRules/{tagRuleId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetTagRuleResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1741,46 +1863,6 @@ func (client IdentityClient) listCompartments(ctx context.Context, request commo
 	return response, err
 }
 
-// ListCustomerSecretKeys Lists the secret keys for the specified user. The returned object contains the secret key's OCID, but not
-// the secret key itself. The actual secret key is returned only upon creation.
-func (client IdentityClient) ListCustomerSecretKeys(ctx context.Context, request ListCustomerSecretKeysRequest) (response ListCustomerSecretKeysResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listCustomerSecretKeys, policy)
-	if err != nil {
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListCustomerSecretKeysResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListCustomerSecretKeysResponse")
-	}
-	return
-}
-
-// listCustomerSecretKeys implements the OCIOperation interface (enables retrying operations)
-func (client IdentityClient) listCustomerSecretKeys(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/customerSecretKeys/")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListCustomerSecretKeysResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // ListDynamicGroups Lists the dynamic groups in your tenancy. You must specify your tenancy's OCID as the value for
 // the compartment ID (remember that the tenancy is simply the root compartment).
 // See Where to Get the Tenancy's OCID and User's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm#five).
@@ -1810,6 +1892,47 @@ func (client IdentityClient) listDynamicGroups(ctx context.Context, request comm
 	}
 
 	var response ListDynamicGroupsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListFaultDomains Lists the Fault Domains in your tenancy. Specify the OCID of either the tenancy or another
+// of your compartments as the value for the compartment ID (remember that the tenancy is simply the root compartment).
+// See Where to Get the Tenancy's OCID and User's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm#five).
+func (client IdentityClient) ListFaultDomains(ctx context.Context, request ListFaultDomainsRequest) (response ListFaultDomainsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listFaultDomains, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListFaultDomainsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListFaultDomainsResponse")
+	}
+	return
+}
+
+// listFaultDomains implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listFaultDomains(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/faultDomains/")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListFaultDomainsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1960,10 +2083,53 @@ func (client IdentityClient) listIdpGroupMappings(ctx context.Context, request c
 	return response, err
 }
 
+// ListManagedCompartments List the managed compartments under the specific tenancy and specific service name. You must specify tenancy's OCID
+// and service name as the value
+func (client IdentityClient) ListManagedCompartments(ctx context.Context, request ListManagedCompartmentsRequest) (response ListManagedCompartmentsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listManagedCompartments, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListManagedCompartmentsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListManagedCompartmentsResponse")
+	}
+	return
+}
+
+// listManagedCompartments implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listManagedCompartments(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managedCompartments/")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListManagedCompartmentsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListPolicies Lists the policies in the specified compartment (either the tenancy or another of your compartments).
 // See Where to Get the Tenancy's OCID and User's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm#five).
 // To determine which policies apply to a particular group or compartment, you must view the individual
 // statements inside all your policies. There isn't a way to automatically obtain that information via the API.
+// To use this and other API operations, you must be authorized in an IAM policy. If you're not authorized,
+// talk to an administrator. If you're an administrator who needs to write policies to give users access, see
+// Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 func (client IdentityClient) ListPolicies(ctx context.Context, request ListPoliciesRequest) (response ListPoliciesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2002,7 +2168,7 @@ func (client IdentityClient) listPolicies(ctx context.Context, request common.OC
 	return response, err
 }
 
-// ListRegionSubscriptions Lists the region subscriptions for the specified tenancy.
+// ListRegionSubscriptions Retrive the region subscriptions for the specific tenancy
 func (client IdentityClient) ListRegionSubscriptions(ctx context.Context, request ListRegionSubscriptionsRequest) (response ListRegionSubscriptionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2041,7 +2207,7 @@ func (client IdentityClient) listRegionSubscriptions(ctx context.Context, reques
 	return response, err
 }
 
-// ListRegions Lists all the regions offered by Oracle Cloud Infrastructure.
+// ListRegions List all the regions
 func (client IdentityClient) ListRegions(ctx context.Context) (response ListRegionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	ociResponse, err = client.listRegions(ctx)
@@ -2154,7 +2320,7 @@ func (client IdentityClient) listSwiftPasswords(ctx context.Context, request com
 	return response, err
 }
 
-// ListTagNamespaces Lists the tag namespaces in the specified compartment.
+// ListTagNamespaces List the tagNamespaces in a given compartment.
 func (client IdentityClient) ListTagNamespaces(ctx context.Context, request ListTagNamespacesRequest) (response ListTagNamespacesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2193,7 +2359,50 @@ func (client IdentityClient) listTagNamespaces(ctx context.Context, request comm
 	return response, err
 }
 
-// ListTags Lists the tag definitions in the specified tag namespace.
+// ListTagRules Lists the tag rules in the specified compartment (either the tenancy or another of your compartments).
+// See Where to Get the Tenancy's OCID and User's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm#five).
+// To use this and other API operations, you must be authorized in an IAM policy. If you're not authorized,
+// talk to an administrator. If you're an administrator who needs to write policies to give users access, see
+// Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
+func (client IdentityClient) ListTagRules(ctx context.Context, request ListTagRulesRequest) (response ListTagRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listTagRules, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListTagRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListTagRulesResponse")
+	}
+	return
+}
+
+// listTagRules implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listTagRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tagRules/")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListTagRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListTags List the tags that are defined in a given tagNamespace.
 func (client IdentityClient) ListTags(ctx context.Context, request ListTagsRequest) (response ListTagsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2232,6 +2441,45 @@ func (client IdentityClient) listTags(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
+// ListTenancies Get the specified tenancy's information with BareMetal service entitlement.
+func (client IdentityClient) ListTenancies(ctx context.Context, request ListTenanciesRequest) (response ListTenanciesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listTenancies, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListTenanciesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListTenanciesResponse")
+	}
+	return
+}
+
+// listTenancies implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listTenancies(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tenancies/")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListTenanciesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListUserGroupMemberships Lists the `UserGroupMembership` objects in your tenancy. You must specify your tenancy's OCID
 // as the value for the compartment ID
 // (see Where to Get the Tenancy's OCID and User's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm#five)).
@@ -2240,7 +2488,6 @@ func (client IdentityClient) listTags(ctx context.Context, request common.OCIReq
 // - Similarly, you can limit the results to just the memberships for a given group by specifying a `groupId`.
 // - You can set both the `userId` and `groupId` to determine if the specified user is in the specified group.
 // If the answer is no, the response is an empty list.
-// - Although`userId` and `groupId` are not indvidually required, you must set one of them.
 func (client IdentityClient) ListUserGroupMemberships(ctx context.Context, request ListUserGroupMembershipsRequest) (response ListUserGroupMembershipsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2359,7 +2606,8 @@ func (client IdentityClient) removeUserFromGroup(ctx context.Context, request co
 	return response, err
 }
 
-// UpdateCompartment Updates the specified compartment's description or name. You can't update the root compartment.
+// UpdateCompartment Updates the specified compartment's details. As tenancy is a root compartment, it can also be be updadated
+// using this API.
 func (client IdentityClient) UpdateCompartment(ctx context.Context, request UpdateCompartmentRequest) (response UpdateCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2386,45 +2634,6 @@ func (client IdentityClient) updateCompartment(ctx context.Context, request comm
 	}
 
 	var response UpdateCompartmentResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// UpdateCustomerSecretKey Updates the specified secret key's description.
-func (client IdentityClient) UpdateCustomerSecretKey(ctx context.Context, request UpdateCustomerSecretKeyRequest) (response UpdateCustomerSecretKeyResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.updateCustomerSecretKey, policy)
-	if err != nil {
-		return
-	}
-	if convertedResponse, ok := ociResponse.(UpdateCustomerSecretKeyResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into UpdateCustomerSecretKeyResponse")
-	}
-	return
-}
-
-// updateCustomerSecretKey implements the OCIOperation interface (enables retrying operations)
-func (client IdentityClient) updateCustomerSecretKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/users/{userId}/customerSecretKeys/{customerSecretKeyId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response UpdateCustomerSecretKeyResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2711,7 +2920,8 @@ func (client IdentityClient) updateSwiftPassword(ctx context.Context, request co
 	return response, err
 }
 
-// UpdateTag Updates the the specified tag definition. You can update `description`, and `isRetired`.
+// UpdateTag Updates the the specified tag. Only description and isRetired can be updated. Retiring a tag will also retire
+// the related rules. You can not a tag with the same name as a retired tag.
 func (client IdentityClient) UpdateTag(ctx context.Context, request UpdateTagRequest) (response UpdateTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2750,13 +2960,11 @@ func (client IdentityClient) updateTag(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// UpdateTagNamespace Updates the the specified tag namespace. You can't update the namespace name.
-// Updating `isRetired` to 'true' retires the namespace and all the tag definitions in the namespace. Reactivating a
-// namespace (changing `isRetired` from 'true' to 'false') does not reactivate tag definitions.
-// To reactivate the tag definitions, you must reactivate each one indvidually *after* you reactivate the namespace,
-// using UpdateTag. For more information about retiring tag namespaces, see
-// Retiring Key Definitions and Namespace Definitions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
-// You can't add a namespace with the same name as a retired namespace in the same tenancy.
+// UpdateTagNamespace Updates the the specified tagNamespace. Only description, isRetired and assigned tags can be updated. Updating
+// isRetired to be true will retire the namespace, all the contained tags and the related rules. Reactivating a
+// namespace  will not reactivate any tag definition that is retired when the namespace was retired. They will have
+// to be individually reactivated *after* the namespace is reactivated. You can't add a namespace with the same
+// name as a retired namespace in the same tenant.
 func (client IdentityClient) UpdateTagNamespace(ctx context.Context, request UpdateTagNamespaceRequest) (response UpdateTagNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2783,6 +2991,46 @@ func (client IdentityClient) updateTagNamespace(ctx context.Context, request com
 	}
 
 	var response UpdateTagNamespaceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateTagRule Updates the specified tag rule. You can update the description, activity state or the ruleText itself.
+// tag rule changes take effect typically within 10 seconds.
+func (client IdentityClient) UpdateTagRule(ctx context.Context, request UpdateTagRuleRequest) (response UpdateTagRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateTagRule, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateTagRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateTagRuleResponse")
+	}
+	return
+}
+
+// updateTagRule implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) updateTagRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/tagRules/{tagRuleId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateTagRuleResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

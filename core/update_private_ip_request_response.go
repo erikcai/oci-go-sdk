@@ -11,7 +11,7 @@ import (
 // UpdatePrivateIpRequest wrapper for the UpdatePrivateIp operation
 type UpdatePrivateIpRequest struct {
 
-	// The OCID of the private IP.
+	// The private IP's OCID.
 	PrivateIpId *string `mandatory:"true" contributesTo:"path" name:"privateIpId"`
 
 	// Private IP details.

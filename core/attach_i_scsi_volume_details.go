@@ -22,11 +22,17 @@ type AttachIScsiVolumeDetails struct {
 	// The OCID of the volume.
 	VolumeId *string `mandatory:"true" json:"volumeId"`
 
-	// A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique, and it cannot be changed.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Whether the attachment was created in read-only mode.
+	// Whether the attachment should be created in read-only mode. Defaults to false.
 	IsReadOnly *bool `mandatory:"false" json:"isReadOnly"`
+
+	// Whether the attachment should be created in shareable mode. If an attachment
+	// is created in shareable mode, then other instances can attach the same volume, provided
+	// that they also create their attachments in shareable mode. Only certain volume types can
+	// be attached in shareable mode. Defaults to false if not specified.
+	IsShareable *bool `mandatory:"false" json:"isShareable"`
 
 	// Whether to use CHAP authentication for the volume attachment. Defaults to false.
 	UseChap *bool `mandatory:"false" json:"useChap"`
@@ -45,6 +51,11 @@ func (m AttachIScsiVolumeDetails) GetInstanceId() *string {
 //GetIsReadOnly returns IsReadOnly
 func (m AttachIScsiVolumeDetails) GetIsReadOnly() *bool {
 	return m.IsReadOnly
+}
+
+//GetIsShareable returns IsShareable
+func (m AttachIScsiVolumeDetails) GetIsShareable() *bool {
+	return m.IsShareable
 }
 
 //GetVolumeId returns VolumeId

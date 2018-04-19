@@ -11,7 +11,7 @@ import (
 // DeletePublicIpRequest wrapper for the DeletePublicIp operation
 type DeletePublicIpRequest struct {
 
-	// The OCID of the public IP.
+	// The public IP's OCID. This feature is currently in preview and may change before public release. Do not use it for production workloads.
 	PublicIpId *string `mandatory:"true" contributesTo:"path" name:"publicIpId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

@@ -11,11 +11,15 @@ import (
 // ConnectLocalPeeringGatewaysRequest wrapper for the ConnectLocalPeeringGateways operation
 type ConnectLocalPeeringGatewaysRequest struct {
 
-	// The OCID of the local peering gateway.
+	// The OCID of the local peering gateway. This feature is currently in preview and may change before public release. Do not use it for production workloads.
 	LocalPeeringGatewayId *string `mandatory:"true" contributesTo:"path" name:"localPeeringGatewayId"`
 
 	// Details regarding the local peering gateway to connect.
 	ConnectLocalPeeringGatewaysDetails `contributesTo:"body"`
+
+	// A comma separated list of tenancy OCIDs that might be accessed by this request. Only required
+	// for cross tenancy requests. May be `null` for requests that do not cross tenancy boundaries.
+	XCrossTenancyRequest *string `mandatory:"false" contributesTo:"header" name:"x-cross-tenancy-request"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.

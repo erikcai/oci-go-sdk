@@ -11,10 +11,10 @@ import (
 // GetTagRequest wrapper for the GetTag operation
 type GetTagRequest struct {
 
-	// The OCID of the tag namespace.
+	// The OCID of the tagNamespace
 	TagNamespaceId *string `mandatory:"true" contributesTo:"path" name:"tagNamespaceId"`
 
-	// The name of the tag.
+	// The name of the tag
 	TagName *string `mandatory:"true" contributesTo:"path" name:"tagName"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

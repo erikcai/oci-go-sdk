@@ -736,6 +736,45 @@ func (client FileStorageClient) listFileSystems(ctx context.Context, request com
 	return response, err
 }
 
+// ListLockOwners List the lock owners in a given file system.
+func (client FileStorageClient) ListLockOwners(ctx context.Context, request ListLockOwnersRequest) (response ListLockOwnersResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listLockOwners, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListLockOwnersResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListLockOwnersResponse")
+	}
+	return
+}
+
+// listLockOwners implements the OCIOperation interface (enables retrying operations)
+func (client FileStorageClient) listLockOwners(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/fileSystems/{fileSystemId}/lockOwners")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListLockOwnersResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListMountTargets Lists the mount target resources in the specified compartment.
 func (client FileStorageClient) ListMountTargets(ctx context.Context, request ListMountTargetsRequest) (response ListMountTargetsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -920,6 +959,45 @@ func (client FileStorageClient) updateMountTarget(ctx context.Context, request c
 	}
 
 	var response UpdateMountTargetResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateSnapshot Updates the specified snapshot's information.
+func (client FileStorageClient) UpdateSnapshot(ctx context.Context, request UpdateSnapshotRequest) (response UpdateSnapshotResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateSnapshot, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateSnapshotResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateSnapshotResponse")
+	}
+	return
+}
+
+// updateSnapshot implements the OCIOperation interface (enables retrying operations)
+func (client FileStorageClient) updateSnapshot(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/snapshots/{snapshotId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateSnapshotResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

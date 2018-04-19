@@ -2,34 +2,27 @@
 // Code generated. DO NOT EDIT.
 
 // Key Management Service API
-// 
- // APIs for managing and performing operations with keys and vaults.
+//
+// APIs for managing and performing operations with keys and vaults.
 //
 
 package kms
 
 import (
-    "github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common"
 )
 
-
-    
- // DecryptDataDetails The representation of DecryptDataDetails
+// DecryptDataDetails The representation of DecryptDataDetails
 type DecryptDataDetails struct {
-    
- // The encrypted data to decrypt.
-    Ciphertext *string `mandatory:"true" json:"ciphertext"`
-    
- // Any associated data.  The string representation of the associatedData
- // must be less than 4096 characters.  Description TODO
-    AssociatedData map[string]string `mandatory:"false" json:"associatedData"`
+
+	// The encrypted data to decrypt.
+	Ciphertext *string `mandatory:"true" json:"ciphertext"`
+
+	// Any associated data.  The string representation of the associatedData
+	// must be less than 4096 characters.  Description TODO
+	AssociatedData map[string]string `mandatory:"false" json:"associatedData"`
 }
 
 func (m DecryptDataDetails) String() string {
-    return common.PointerString(m)
+	return common.PointerString(m)
 }
-
-
-
-
-

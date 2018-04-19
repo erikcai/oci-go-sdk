@@ -28,22 +28,6 @@ type ListConsoleHistoriesRequest struct {
 	// The OCID of the instance.
 	InstanceId *string `mandatory:"false" contributesTo:"query" name:"instanceId"`
 
-	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
-	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
-	// sort order is case sensitive.
-	// **Note:** In general, some "List" operations (for example, `ListInstances`) let you
-	// optionally filter by Availability Domain if the scope of the resource type is within a
-	// single Availability Domain. If you call one of these "List" operations without specifying
-	// an Availability Domain, the resources are grouped by Availability Domain, then sorted.
-	SortBy ListConsoleHistoriesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
-
-	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
-	// is case sensitive.
-	SortOrder ListConsoleHistoriesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-
-	// A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
-	LifecycleState ConsoleHistoryLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -69,7 +53,7 @@ type ListConsoleHistoriesResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The []ConsoleHistory instance
+	// A list of []ConsoleHistory instances
 	Items []ConsoleHistory `presentIn:"body"`
 
 	// For pagination of a list of items. When paging through a list, if this header appears in the response,
@@ -89,50 +73,4 @@ func (response ListConsoleHistoriesResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListConsoleHistoriesResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// ListConsoleHistoriesSortByEnum Enum with underlying type: string
-type ListConsoleHistoriesSortByEnum string
-
-// Set of constants representing the allowable values for ListConsoleHistoriesSortBy
-const (
-	ListConsoleHistoriesSortByTimecreated ListConsoleHistoriesSortByEnum = "TIMECREATED"
-	ListConsoleHistoriesSortByDisplayname ListConsoleHistoriesSortByEnum = "DISPLAYNAME"
-)
-
-var mappingListConsoleHistoriesSortBy = map[string]ListConsoleHistoriesSortByEnum{
-	"TIMECREATED": ListConsoleHistoriesSortByTimecreated,
-	"DISPLAYNAME": ListConsoleHistoriesSortByDisplayname,
-}
-
-// GetListConsoleHistoriesSortByEnumValues Enumerates the set of values for ListConsoleHistoriesSortBy
-func GetListConsoleHistoriesSortByEnumValues() []ListConsoleHistoriesSortByEnum {
-	values := make([]ListConsoleHistoriesSortByEnum, 0)
-	for _, v := range mappingListConsoleHistoriesSortBy {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListConsoleHistoriesSortOrderEnum Enum with underlying type: string
-type ListConsoleHistoriesSortOrderEnum string
-
-// Set of constants representing the allowable values for ListConsoleHistoriesSortOrder
-const (
-	ListConsoleHistoriesSortOrderAsc  ListConsoleHistoriesSortOrderEnum = "ASC"
-	ListConsoleHistoriesSortOrderDesc ListConsoleHistoriesSortOrderEnum = "DESC"
-)
-
-var mappingListConsoleHistoriesSortOrder = map[string]ListConsoleHistoriesSortOrderEnum{
-	"ASC":  ListConsoleHistoriesSortOrderAsc,
-	"DESC": ListConsoleHistoriesSortOrderDesc,
-}
-
-// GetListConsoleHistoriesSortOrderEnumValues Enumerates the set of values for ListConsoleHistoriesSortOrder
-func GetListConsoleHistoriesSortOrderEnumValues() []ListConsoleHistoriesSortOrderEnum {
-	values := make([]ListConsoleHistoriesSortOrderEnum, 0)
-	for _, v := range mappingListConsoleHistoriesSortOrder {
-		values = append(values, v)
-	}
-	return values
 }

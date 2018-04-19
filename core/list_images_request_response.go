@@ -14,7 +14,8 @@ type ListImagesRequest struct {
 	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// A filter to return only resources that match the given display name exactly.
+	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Example: `My new resource`
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
 	// The image's operating system.
@@ -25,31 +26,12 @@ type ListImagesRequest struct {
 	// Example: `7.2`
 	OperatingSystemVersion *string `mandatory:"false" contributesTo:"query" name:"operatingSystemVersion"`
 
-	// Shape name.
-	Shape *string `mandatory:"false" contributesTo:"query" name:"shape"`
-
 	// The maximum number of items to return in a paginated "List" call.
 	// Example: `500`
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
-
-	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
-	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
-	// sort order is case sensitive.
-	// **Note:** In general, some "List" operations (for example, `ListInstances`) let you
-	// optionally filter by Availability Domain if the scope of the resource type is within a
-	// single Availability Domain. If you call one of these "List" operations without specifying
-	// an Availability Domain, the resources are grouped by Availability Domain, then sorted.
-	SortBy ListImagesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
-
-	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
-	// is case sensitive.
-	SortOrder ListImagesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-
-	// A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
-	LifecycleState ImageLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
@@ -76,7 +58,7 @@ type ListImagesResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The []Image instance
+	// A list of []Image instances
 	Items []Image `presentIn:"body"`
 
 	// For pagination of a list of items. When paging through a list, if this header appears in the response,
@@ -96,50 +78,4 @@ func (response ListImagesResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListImagesResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// ListImagesSortByEnum Enum with underlying type: string
-type ListImagesSortByEnum string
-
-// Set of constants representing the allowable values for ListImagesSortBy
-const (
-	ListImagesSortByTimecreated ListImagesSortByEnum = "TIMECREATED"
-	ListImagesSortByDisplayname ListImagesSortByEnum = "DISPLAYNAME"
-)
-
-var mappingListImagesSortBy = map[string]ListImagesSortByEnum{
-	"TIMECREATED": ListImagesSortByTimecreated,
-	"DISPLAYNAME": ListImagesSortByDisplayname,
-}
-
-// GetListImagesSortByEnumValues Enumerates the set of values for ListImagesSortBy
-func GetListImagesSortByEnumValues() []ListImagesSortByEnum {
-	values := make([]ListImagesSortByEnum, 0)
-	for _, v := range mappingListImagesSortBy {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListImagesSortOrderEnum Enum with underlying type: string
-type ListImagesSortOrderEnum string
-
-// Set of constants representing the allowable values for ListImagesSortOrder
-const (
-	ListImagesSortOrderAsc  ListImagesSortOrderEnum = "ASC"
-	ListImagesSortOrderDesc ListImagesSortOrderEnum = "DESC"
-)
-
-var mappingListImagesSortOrder = map[string]ListImagesSortOrderEnum{
-	"ASC":  ListImagesSortOrderAsc,
-	"DESC": ListImagesSortOrderDesc,
-}
-
-// GetListImagesSortOrderEnumValues Enumerates the set of values for ListImagesSortOrder
-func GetListImagesSortOrderEnumValues() []ListImagesSortOrderEnum {
-	values := make([]ListImagesSortOrderEnum, 0)
-	for _, v := range mappingListImagesSortOrder {
-		values = append(values, v)
-	}
-	return values
 }

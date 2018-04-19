@@ -2,53 +2,47 @@
 // Code generated. DO NOT EDIT.
 
 // Key Management Service API
-// 
- // APIs for managing and performing operations with keys and vaults.
+//
+// APIs for managing and performing operations with keys and vaults.
 //
 
 package kms
 
 import (
-    "github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common"
 )
 
-
-    
- // KeyShape TODO
+// KeyShape TODO
 type KeyShape struct {
-    
- // The algorithm used by a Key's KeyVersions.  TODO description
-    Algorithm KeyShapeAlgorithmEnum `mandatory:"true" json:"algorithm"`
-    
- // The length of the Key.  TODO description
-    Length *int `mandatory:"true" json:"length"`
+
+	// The algorithm used by a Key's KeyVersions.  TODO description
+	Algorithm KeyShapeAlgorithmEnum `mandatory:"true" json:"algorithm"`
+
+	// The length of the Key.  TODO description
+	Length *int `mandatory:"true" json:"length"`
 }
 
 func (m KeyShape) String() string {
-    return common.PointerString(m)
+	return common.PointerString(m)
 }
-
 
 // KeyShapeAlgorithmEnum Enum with underlying type: string
 type KeyShapeAlgorithmEnum string
 
 // Set of constants representing the allowable values for KeyShapeAlgorithm
 const (
-    KeyShapeAlgorithmAes KeyShapeAlgorithmEnum = "AES"
+	KeyShapeAlgorithmAes KeyShapeAlgorithmEnum = "AES"
 )
 
-var mappingKeyShapeAlgorithm = map[string]KeyShapeAlgorithmEnum { 
-    "AES": KeyShapeAlgorithmAes,
+var mappingKeyShapeAlgorithm = map[string]KeyShapeAlgorithmEnum{
+	"AES": KeyShapeAlgorithmAes,
 }
 
 // GetKeyShapeAlgorithmEnumValues Enumerates the set of values for KeyShapeAlgorithm
 func GetKeyShapeAlgorithmEnumValues() []KeyShapeAlgorithmEnum {
-   values := make([]KeyShapeAlgorithmEnum, 0)
-   for _, v := range mappingKeyShapeAlgorithm {
-       values = append(values, v)
-   }
-   return values
+	values := make([]KeyShapeAlgorithmEnum, 0)
+	for _, v := range mappingKeyShapeAlgorithm {
+		values = append(values, v)
+	}
+	return values
 }
-
-
-

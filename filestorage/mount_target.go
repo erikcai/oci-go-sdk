@@ -54,6 +54,17 @@ type MountTarget struct {
 	// systems will be exported through Network File System (NFS) protocol on this
 	// mount target.
 	ExportSetId *string `mandatory:"false" json:"exportSetId"`
+
+	// Simple key-value pair that is applied without any predefined name,
+	// type, or scope.
+	// Exists for cross-compatibility only.
+	// Example: `{"bar-key": "value"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Usage of predefined tag keys.
+	// These predefined keys are scoped to a namespace.
+	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
 func (m MountTarget) String() string {

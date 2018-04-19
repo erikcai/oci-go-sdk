@@ -17,7 +17,7 @@ import (
 // The two options available to use are DhcpDnsOption
 // and DhcpSearchDomainOption. For more
 // information, see DNS in Your Virtual Cloud Network (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm)
-// and DHCP Options (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingDHCP.htm).
+// and Managing DHCP Options (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingDHCP.htm).
 type DhcpOption interface {
 }
 

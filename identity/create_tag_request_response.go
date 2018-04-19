@@ -11,10 +11,10 @@ import (
 // CreateTagRequest wrapper for the CreateTag operation
 type CreateTagRequest struct {
 
-	// The OCID of the tag namespace.
+	// The OCID of the tagNamespace
 	TagNamespaceId *string `mandatory:"true" contributesTo:"path" name:"tagNamespaceId"`
 
-	// Request object for creating a new tag in the specified tag namespace.
+	// Request object for creating a new tag in a given tagNamespace.
 	CreateTagDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

@@ -11,10 +11,10 @@ import (
 // UpdateTagRequest wrapper for the UpdateTag operation
 type UpdateTagRequest struct {
 
-	// The OCID of the tag namespace.
+	// The OCID of the tagNamespace
 	TagNamespaceId *string `mandatory:"true" contributesTo:"path" name:"tagNamespaceId"`
 
-	// The name of the tag.
+	// The name of the tag
 	TagName *string `mandatory:"true" contributesTo:"path" name:"tagName"`
 
 	// Request object for updating a tag.

@@ -11,7 +11,7 @@ import (
 // UpdateLocalPeeringGatewayRequest wrapper for the UpdateLocalPeeringGateway operation
 type UpdateLocalPeeringGatewayRequest struct {
 
-	// The OCID of the local peering gateway.
+	// The OCID of the local peering gateway. This feature is currently in preview and may change before public release. Do not use it for production workloads.
 	LocalPeeringGatewayId *string `mandatory:"true" contributesTo:"path" name:"localPeeringGatewayId"`
 
 	// Details object for updating a local peering gateway.

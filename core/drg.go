@@ -15,7 +15,7 @@ import (
 // Drg A Dynamic Routing Gateway (DRG), which is a virtual router that provides a path for private
 // network traffic between your VCN and your existing network. You use it with other Networking
 // Service components to create an IPSec VPN or a connection that uses
-// Oracle Cloud Infrastructure FastConnect. For more information, see
+// Oracle Bare Metal Cloud Services FastConnect. For more information, see
 // Overview of the Networking Service (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/overview.htm).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
@@ -32,7 +32,6 @@ type Drg struct {
 	LifecycleState DrgLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The date and time the DRG was created, in the format defined by RFC3339.

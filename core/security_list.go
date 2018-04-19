@@ -16,7 +16,7 @@ import (
 // level, but the rules are applied to the ingress and egress traffic for the individual instances
 // in the subnet. The rules can be stateful or stateless. For more information, see
 // Security Lists (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/securitylists.htm).
-// **Important:** Oracle Cloud Infrastructure Compute service images automatically include firewall rules (for example,
+// **Important:** Oracle Bare Metal Cloud Services images automatically include firewall rules (e.g.,
 // Linux iptables, Windows firewall). If there are issues with some type of access to an instance,
 // make sure both the security lists associated with the instance's subnet and the instance's
 // firewall rules are set correctly.
@@ -29,7 +29,6 @@ type SecurityList struct {
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// Rules for allowing egress IP packets.
@@ -51,15 +50,12 @@ type SecurityList struct {
 	// The OCID of the VCN the security list belongs to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Operations": {"CostCenter": "42"}}`
+	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no
-	// predefined name, type, or namespace. For more information, see
-	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Department": "Finance"}`
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 }
 

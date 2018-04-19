@@ -11,7 +11,7 @@ import (
 // GetPublicIpRequest wrapper for the GetPublicIp operation
 type GetPublicIpRequest struct {
 
-	// The OCID of the public IP.
+	// The public IP's OCID. This feature is currently in preview and may change before public release. Do not use it for production workloads.
 	PublicIpId *string `mandatory:"true" contributesTo:"path" name:"publicIpId"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

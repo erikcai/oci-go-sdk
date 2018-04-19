@@ -11,7 +11,7 @@ import (
 // ListTagsRequest wrapper for the ListTags operation
 type ListTagsRequest struct {
 
-	// The OCID of the tag namespace.
+	// The OCID of the tagNamespace
 	TagNamespaceId *string `mandatory:"true" contributesTo:"path" name:"tagNamespaceId"`
 
 	// The value of the `opc-next-page` response header from the previous "List" call.
@@ -45,7 +45,7 @@ type ListTagsResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The []TagSummary instance
+	// A list of []TagSummary instances
 	Items []TagSummary `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a

@@ -16,10 +16,13 @@ type LaunchInstanceRequest struct {
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
 	// server error without risk of executing that same action again. Retry tokens expire after 24
-	// hours, but can be invalidated before then due to conflicting operations (for example, if a resource
+	// hours, but can be invalidated before then due to conflicting operations (e.g., if a resource
 	// has been deleted and purged from the system, then a retry of the original creation request
 	// may be rejected).
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
+
+	// Name of the pool in which to launch an instance. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	OpcPoolName *string `mandatory:"false" contributesTo:"query" name:"opc-pool-name"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.

@@ -21,25 +21,6 @@ type ListVirtualCircuitsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// A filter to return only resources that match the given display name exactly.
-	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
-
-	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
-	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
-	// sort order is case sensitive.
-	// **Note:** In general, some "List" operations (for example, `ListInstances`) let you
-	// optionally filter by Availability Domain if the scope of the resource type is within a
-	// single Availability Domain. If you call one of these "List" operations without specifying
-	// an Availability Domain, the resources are grouped by Availability Domain, then sorted.
-	SortBy ListVirtualCircuitsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
-
-	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
-	// is case sensitive.
-	SortOrder ListVirtualCircuitsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-
-	// A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
-	LifecycleState VirtualCircuitLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -65,7 +46,7 @@ type ListVirtualCircuitsResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The []VirtualCircuit instance
+	// A list of []VirtualCircuit instances
 	Items []VirtualCircuit `presentIn:"body"`
 
 	// For pagination of a list of items. When paging through a list, if this header appears in the response,
@@ -85,50 +66,4 @@ func (response ListVirtualCircuitsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListVirtualCircuitsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// ListVirtualCircuitsSortByEnum Enum with underlying type: string
-type ListVirtualCircuitsSortByEnum string
-
-// Set of constants representing the allowable values for ListVirtualCircuitsSortBy
-const (
-	ListVirtualCircuitsSortByTimecreated ListVirtualCircuitsSortByEnum = "TIMECREATED"
-	ListVirtualCircuitsSortByDisplayname ListVirtualCircuitsSortByEnum = "DISPLAYNAME"
-)
-
-var mappingListVirtualCircuitsSortBy = map[string]ListVirtualCircuitsSortByEnum{
-	"TIMECREATED": ListVirtualCircuitsSortByTimecreated,
-	"DISPLAYNAME": ListVirtualCircuitsSortByDisplayname,
-}
-
-// GetListVirtualCircuitsSortByEnumValues Enumerates the set of values for ListVirtualCircuitsSortBy
-func GetListVirtualCircuitsSortByEnumValues() []ListVirtualCircuitsSortByEnum {
-	values := make([]ListVirtualCircuitsSortByEnum, 0)
-	for _, v := range mappingListVirtualCircuitsSortBy {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListVirtualCircuitsSortOrderEnum Enum with underlying type: string
-type ListVirtualCircuitsSortOrderEnum string
-
-// Set of constants representing the allowable values for ListVirtualCircuitsSortOrder
-const (
-	ListVirtualCircuitsSortOrderAsc  ListVirtualCircuitsSortOrderEnum = "ASC"
-	ListVirtualCircuitsSortOrderDesc ListVirtualCircuitsSortOrderEnum = "DESC"
-)
-
-var mappingListVirtualCircuitsSortOrder = map[string]ListVirtualCircuitsSortOrderEnum{
-	"ASC":  ListVirtualCircuitsSortOrderAsc,
-	"DESC": ListVirtualCircuitsSortOrderDesc,
-}
-
-// GetListVirtualCircuitsSortOrderEnumValues Enumerates the set of values for ListVirtualCircuitsSortOrder
-func GetListVirtualCircuitsSortOrderEnumValues() []ListVirtualCircuitsSortOrderEnum {
-	values := make([]ListVirtualCircuitsSortOrderEnum, 0)
-	for _, v := range mappingListVirtualCircuitsSortOrder {
-		values = append(values, v)
-	}
-	return values
 }

@@ -23,6 +23,9 @@ type CreateDatabaseFromBackupDetails struct {
 
 	// The password to open the TDE wallet.
 	BackupTDEPassword *string `mandatory:"true" json:"backupTDEPassword"`
+
+	// New database name. It must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.
+	DbName *string `mandatory:"false" json:"dbName"`
 }
 
 func (m CreateDatabaseFromBackupDetails) String() string {

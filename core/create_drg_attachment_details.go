@@ -21,7 +21,7 @@ type CreateDrgAttachmentDetails struct {
 	// The OCID of the VCN.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// A user-friendly name. Does not have to be unique. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 

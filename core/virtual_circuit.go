@@ -12,12 +12,12 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// VirtualCircuit For use with Oracle Cloud Infrastructure FastConnect.
+// VirtualCircuit For use with Oracle Bare Metal Cloud Services FastConnect.
 // A virtual circuit is an isolated network path that runs over one or more physical
 // network connections to provide a single, logical connection between the edge router
-// on the customer's existing network and Oracle Cloud Infrastructure. *Private*
-// virtual circuits support private peering, and *public* virtual circuits support
-// public peering. For more information, see FastConnect Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/fastconnect.htm).
+// on the customer's existing network and a DRG. A customer could have multiple virtual
+// circuits, for example, to isolate traffic from different parts of their organization
+// (one virtual circuit for 10.0.1.0/24; another for 172.16.0.0/16), or to provide redundancy.
 // Each virtual circuit is made up of information shared between a customer, Oracle,
 // and a provider (if the customer is using FastConnect via a provider). Who fills in
 // a given property of a virtual circuit depends on whether the BGP session related to
@@ -25,6 +25,7 @@ import (
 // edge router to Oracle. Also, in the case where the customer is using a provider, values
 // for some of the properties may not be present immediately, but may get filled in as the
 // provider and Oracle each do their part to provision the virtual circuit.
+// For more information, see FastConnect Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/fastconnect.htm).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -55,11 +56,10 @@ type VirtualCircuit struct {
 	CustomerBgpAsn *int `mandatory:"false" json:"customerBgpAsn"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The OCID of the customer's Drg
-	// that this virtual circuit uses. Applicable only to private virtual circuits.
+	// that this virtual circuit uses.
 	GatewayId *string `mandatory:"false" json:"gatewayId"`
 
 	// The virtual circuit's Oracle ID (OCID).
@@ -73,13 +73,13 @@ type VirtualCircuit struct {
 	// The Oracle BGP ASN.
 	OracleBgpAsn *int `mandatory:"false" json:"oracleBgpAsn"`
 
-	// Deprecated. Instead use `providerServiceId`.
+	// The name of the provider (if the customer is connecting via a provider).
 	ProviderName *string `mandatory:"false" json:"providerName"`
 
 	// The OCID of the service offered by the provider (if the customer is connecting via a provider).
 	ProviderServiceId *string `mandatory:"false" json:"providerServiceId"`
 
-	// Deprecated. Instead use `providerServiceId`.
+	// The name of the service offered by the provider (if the customer is connecting via a provider).
 	ProviderServiceName *string `mandatory:"false" json:"providerServiceName"`
 
 	// The provider's state in relation to this virtual circuit (if the
@@ -89,15 +89,11 @@ type VirtualCircuit struct {
 	// circuit, or has de-provisioned it.
 	ProviderState VirtualCircuitProviderStateEnum `mandatory:"false" json:"providerState,omitempty"`
 
-	// For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to
-	// advertise across the connection. Each prefix must be /24 or less specific.
-	PublicPrefixes []string `mandatory:"false" json:"publicPrefixes"`
-
 	// Provider-supplied reference information about this virtual circuit
 	// (if the customer is connecting via a provider).
 	ReferenceComment *string `mandatory:"false" json:"referenceComment"`
 
-	// The Oracle Cloud Infrastructure region where this virtual
+	// The Oracle Bare Metal Cloud Services region where this virtual
 	// circuit is located.
 	Region *string `mandatory:"false" json:"region"`
 
@@ -109,8 +105,9 @@ type VirtualCircuit struct {
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// Whether the virtual circuit supports private or public peering. For more information,
-	// see FastConnect Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/fastconnect.htm).
+	// The type of IP addresses used in this virtual circuit. PRIVATE means
+	// RFC 1918 (https://tools.ietf.org/html/rfc1918) addresses
+	// (10.0.0.0/8, 172.16/12, and 192.168/16). Only PRIVATE is supported.
 	Type VirtualCircuitTypeEnum `mandatory:"false" json:"type,omitempty"`
 }
 

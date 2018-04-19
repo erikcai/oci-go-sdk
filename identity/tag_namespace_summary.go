@@ -12,19 +12,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TagNamespaceSummary A container for defined tags.
+// TagNamespaceSummary A bag of tags that is attached to a compartment and has unique existence in tenancy.
 type TagNamespaceSummary struct {
 
-	// The OCID of the tag namespace.
+	// The OCID of the tagNamespace.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The OCID of the compartment that contains the tag namespace.
+	// The OCID of the compartment which the namespace is attached to.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The name of the tag namespace. It must be unique across all tag namespaces in the tenancy and cannot be changed.
+	// The name of the tagNamespace. It must be unique across all tagNamespaces in the tenancy and cannot be changed.
 	Name *string `mandatory:"false" json:"name"`
 
-	// The description you assign to the tag namespace.
+	// The description you assign to the tagNamespace.
 	Description *string `mandatory:"false" json:"description"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -37,8 +37,7 @@ type TagNamespaceSummary struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Whether the tag namespace is retired.
-	// For more information, see Retiring Key Definitions and Namespace Definitions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+	// Indicated whether or not the tagNamespace is retired
 	IsRetired *bool `mandatory:"false" json:"isRetired"`
 
 	// Date and time the tagNamespace was created, in the format defined by RFC3339.

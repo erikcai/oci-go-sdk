@@ -21,9 +21,7 @@ type RouteRule struct {
 	// Example: `0.0.0.0/0`
 	CidrBlock *string `mandatory:"true" json:"cidrBlock"`
 
-	// The OCID for the route rule's target. For information about the type of
-	// targets you can specify, see
-	// Route Tables (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingroutetables.htm).
+	// The OCID for the route rule's target.
 	NetworkEntityId *string `mandatory:"true" json:"networkEntityId"`
 }
 

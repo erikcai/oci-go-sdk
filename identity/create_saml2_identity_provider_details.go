@@ -45,9 +45,7 @@ type CreateSaml2IdentityProviderDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// The identity provider service or product.
-	// Supported identity providers are Oracle Identity Cloud Service (IDCS) and Microsoft
-	// Active Directory Federation Services (ADFS).
+	// The identity provider service or product (e.g., Oracle Identity Cloud Service).
 	// Example: `IDCS`
 	ProductType CreateIdentityProviderDetailsProductTypeEnum `mandatory:"true" json:"productType"`
 }

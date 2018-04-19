@@ -2,31 +2,24 @@
 // Code generated. DO NOT EDIT.
 
 // Key Management Service API
-// 
- // APIs for managing and performing operations with keys and vaults.
+//
+// APIs for managing and performing operations with keys and vaults.
 //
 
 package kms
 
 import (
-    "github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common"
 )
 
-
-    
- // UpdateKeyDetails The representation of UpdateKeyDetails
+// UpdateKeyDetails The representation of UpdateKeyDetails
 type UpdateKeyDetails struct {
-    
- // A user-friendly name. Does not have to be unique, and it's changeable.
- // Avoid entering confidential information.
-    DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
+	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 
 func (m UpdateKeyDetails) String() string {
-    return common.PointerString(m)
+	return common.PointerString(m)
 }
-
-
-
-
-

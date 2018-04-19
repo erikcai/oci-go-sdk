@@ -18,7 +18,7 @@ type CreateDrgDetails struct {
 	// The OCID of the compartment to contain the DRG.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique, and it's changeable.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 

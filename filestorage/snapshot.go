@@ -34,6 +34,17 @@ type Snapshot struct {
 	// in RFC 3339 (https://tools.ietf.org/rfc/rfc3339) timestamp format.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// Simple key-value pair that is applied without any predefined name,
+	// type, or scope.
+	// Exists for cross-compatibility only.
+	// Example: `{"bar-key": "value"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Usage of predefined tag keys.
+	// These predefined keys are scoped to a namespace.
+	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
 func (m Snapshot) String() string {

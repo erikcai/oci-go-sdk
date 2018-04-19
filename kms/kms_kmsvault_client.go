@@ -11,9 +11,8 @@ package kms
 import (
 	"context"
 	"fmt"
-	"net/http"
-
 	"github.com/oracle/oci-go-sdk/common"
+	"net/http"
 )
 
 //KmsVaultClient a client for KmsVault
@@ -24,7 +23,7 @@ type KmsVaultClient struct {
 
 // NewKmsVaultClientWithConfigurationProvider Creates a new default KmsVault client with the given configuration provider.
 // the configuration provider will be used for the default signer
-func NewKmsVaultClientWithConfigurationProvider(configProvider common.ConfigurationProvider, managementEndpoint string) (client KmsVaultClient, err error) {
+func NewKmsVaultClientWithConfigurationProvider(configProvider common.ConfigurationProvider, endpoint string) (client KmsVaultClient, err error) {
 	baseClient, err := common.NewClientWithConfig(configProvider)
 	if err != nil {
 		return
@@ -32,7 +31,7 @@ func NewKmsVaultClientWithConfigurationProvider(configProvider common.Configurat
 
 	client = KmsVaultClient{BaseClient: baseClient}
 	client.BasePath = "20180201"
-	client.Host = managementEndpoint
+	client.Host = endpoint
 	err = client.setConfigurationProvider(configProvider)
 	return
 }

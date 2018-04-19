@@ -12,12 +12,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SmtpCredential Simple Mail Transfer Protocol (SMTP) credentials are needed to send email through Email Delivery.
-// The SMTP credentials are used for SMTP authentication with the service. The credentials never expire.
+// SmtpCredential SMTP credential is used for SMTP authentication with Email Delivery Service. It never expires.
 // A user can have up to 2 SMTP credentials at a time.
-// **Note:** The credential set is always an Oracle-generated SMTP user name and password pair;
+// **Note:** The credential is always an Oracle-generated SMTP user name and password pair;
 // you cannot designate the SMTP user name or the SMTP password.
-// For more information, see Managing User Credentials (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Tasks/managingcredentials.htm#SMTP).
+// For more information, see Managing User Credentials (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Tasks/managingcredentials.htm).
 type SmtpCredential struct {
 
 	// The SMTP user name.

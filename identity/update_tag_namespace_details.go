@@ -15,11 +15,10 @@ import (
 // UpdateTagNamespaceDetails The representation of UpdateTagNamespaceDetails
 type UpdateTagNamespaceDetails struct {
 
-	// The description you assign to the tag namespace.
+	// The description of the tagNamespace.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Whether the tag namespace is retired.
-	// See Retiring Key Definitions and Namespace Definitions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+	// whether or not the tagNamespace is retired
 	IsRetired *bool `mandatory:"false" json:"isRetired"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

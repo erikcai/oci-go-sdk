@@ -15,14 +15,13 @@ import (
 // CreateLocalPeeringGatewayDetails The representation of CreateLocalPeeringGatewayDetails
 type CreateLocalPeeringGatewayDetails struct {
 
-	// The OCID of the compartment containing the local peering gateway (LPG).
+	// The OCID of the compartment containing the local peering gateway.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID of the VCN the LPG belongs to.
+	// The OCID of the VCN the local peering gateway belongs to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid
-	// entering confidential information.
+	// A user-friendly name. Does not have to be unique, and it's changeable.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 

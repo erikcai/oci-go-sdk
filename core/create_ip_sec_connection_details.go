@@ -29,7 +29,7 @@ type CreateIpSecConnectionDetails struct {
 	// Example: `10.0.1.0/24`
 	StaticRoutes []string `mandatory:"true" json:"staticRoutes"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique, and it's changeable.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 

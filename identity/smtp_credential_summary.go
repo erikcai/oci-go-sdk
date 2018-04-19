@@ -12,9 +12,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SmtpCredentialSummary As the name suggests, an `SmtpCredentialSummary` object contains information about an `SmtpCredential`.
-// The SMTP credential is used for SMTP authentication with
-// the Email Delivery Service (https://docs.us-phoenix-1.oraclecloud.com/Content/Email/Concepts/overview.htm).
+// SmtpCredentialSummary As the name suggests, a `SmtpCredentialSummary` object contains information about a `SmtpCredential`.
+// SMTP credential is used for SMTP authentication with Email Delivery Service.
 type SmtpCredentialSummary struct {
 
 	// The SMTP user name.

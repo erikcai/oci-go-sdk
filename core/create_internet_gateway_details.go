@@ -24,7 +24,7 @@ type CreateInternetGatewayDetails struct {
 	// The OCID of the VCN the Internet Gateway is attached to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique, and it's changeable.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 

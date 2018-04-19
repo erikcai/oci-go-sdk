@@ -13,14 +13,14 @@ import (
 )
 
 // IdpGroupMapping A mapping between a single group defined by the identity provider (IdP) you're federating with
-// and a single IAM Service Group in Oracle Cloud Infrastructure.
-// For more information about group mappings and what they're for, see
+// and a single IAM Service Group in Oracle Bare Metal Cloud
+// Services. For more information about group mappings and what they're for, see
 // Identity Providers and Federation (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/federation.htm).
 // A given IdP group can be mapped to zero, one, or multiple IAM Service groups, and vice versa.
 // But each `IdPGroupMapping` object is between only a single IdP group and IAM Service group.
 // Each `IdPGroupMapping` object has its own OCID.
 // **Note:** Any users who are in more than 50 IdP groups cannot be authenticated to use the Oracle
-// Cloud Infrastructure Console.
+// Bare Metal Cloud Services Console.
 type IdpGroupMapping struct {
 
 	// The OCID of the `IdpGroupMapping`.

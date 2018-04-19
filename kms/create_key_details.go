@@ -2,36 +2,29 @@
 // Code generated. DO NOT EDIT.
 
 // Key Management Service API
-// 
- // APIs for managing and performing operations with keys and vaults.
+//
+// APIs for managing and performing operations with keys and vaults.
 //
 
 package kms
 
 import (
-    "github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common"
 )
 
-
-    
- // CreateKeyDetails The representation of CreateKeyDetails
+// CreateKeyDetails The representation of CreateKeyDetails
 type CreateKeyDetails struct {
-    
- // The OCID of the Compartment containing this resource.
-    CompartmentId *string `mandatory:"true" json:"compartmentId"`
-    
- // A user-friendly name. Does not have to be unique, and it's changeable.
- // Avoid entering confidential information.
-    DisplayName *string `mandatory:"true" json:"displayName"`
-    
-    KeyShape *KeyShape `mandatory:"true" json:"keyShape"`
+
+	// The OCID of the Compartment containing this resource.
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
+	DisplayName *string `mandatory:"true" json:"displayName"`
+
+	KeyShape *KeyShape `mandatory:"true" json:"keyShape"`
 }
 
 func (m CreateKeyDetails) String() string {
-    return common.PointerString(m)
+	return common.PointerString(m)
 }
-
-
-
-
-

@@ -15,13 +15,7 @@ import (
 // CreateRegionSubscriptionDetails The representation of CreateRegionSubscriptionDetails
 type CreateRegionSubscriptionDetails struct {
 
-	// The regions's key.
-	// Allowed values are:
-	// - `PHX`
-	// - `IAD`
-	// - `FRA`
-	// - `LHR`
-	// Example: `PHX`
+	// The key of the region such as PHX, IAD.
 	RegionKey *string `mandatory:"true" json:"regionKey"`
 }
 

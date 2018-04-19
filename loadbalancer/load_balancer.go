@@ -49,6 +49,8 @@ type LoadBalancer struct {
 
 	Certificates map[string]Certificate `mandatory:"false" json:"certificates"`
 
+	Hostnames map[string]Hostname `mandatory:"false" json:"hostnames"`
+
 	// An array of IP addresses.
 	IpAddresses []IpAddress `mandatory:"false" json:"ipAddresses"`
 

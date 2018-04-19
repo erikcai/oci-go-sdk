@@ -21,6 +21,10 @@ type ListSnapshotsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
+	// The name you assigned to the snapshot.
+	// Example: `Sunday` This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
+
 	// Filter results by the specified lifecycle state. Must be a valid
 	// state for the resource type.
 	LifecycleState ListSnapshotsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
@@ -28,6 +32,12 @@ type ListSnapshotsRequest struct {
 	// Filter results by OCID. Must be an OCID of the correct type for
 	// the resouce type.
 	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
+
+	// The field to sort by. You can provide either value, but not both.
+	// By default, when you sort by time created, results are shown
+	// in descending order. When you sort by name, results are
+	// shown in alphabetical order. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	SortBy ListSnapshotsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// The sort order to use, either 'asc' or 'desc', where 'asc' is
 	// ascending and 'desc' is descending.
@@ -58,7 +68,7 @@ type ListSnapshotsResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The []SnapshotSummary instance
+	// A list of []SnapshotSummary instances
 	Items []SnapshotSummary `presentIn:"body"`
 
 	// For pagination of a list of items. When paging through
@@ -107,6 +117,29 @@ var mappingListSnapshotsLifecycleState = map[string]ListSnapshotsLifecycleStateE
 func GetListSnapshotsLifecycleStateEnumValues() []ListSnapshotsLifecycleStateEnum {
 	values := make([]ListSnapshotsLifecycleStateEnum, 0)
 	for _, v := range mappingListSnapshotsLifecycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListSnapshotsSortByEnum Enum with underlying type: string
+type ListSnapshotsSortByEnum string
+
+// Set of constants representing the allowable values for ListSnapshotsSortBy
+const (
+	ListSnapshotsSortByTimecreated ListSnapshotsSortByEnum = "TIMECREATED"
+	ListSnapshotsSortByName        ListSnapshotsSortByEnum = "NAME"
+)
+
+var mappingListSnapshotsSortBy = map[string]ListSnapshotsSortByEnum{
+	"TIMECREATED": ListSnapshotsSortByTimecreated,
+	"NAME":        ListSnapshotsSortByName,
+}
+
+// GetListSnapshotsSortByEnumValues Enumerates the set of values for ListSnapshotsSortBy
+func GetListSnapshotsSortByEnumValues() []ListSnapshotsSortByEnum {
+	values := make([]ListSnapshotsSortByEnum, 0)
+	for _, v := range mappingListSnapshotsSortBy {
 		values = append(values, v)
 	}
 	return values

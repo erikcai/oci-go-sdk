@@ -2,33 +2,26 @@
 // Code generated. DO NOT EDIT.
 
 // Key Management Service API
-// 
- // APIs for managing and performing operations with keys and vaults.
+//
+// APIs for managing and performing operations with keys and vaults.
 //
 
 package kms
 
 import (
-    "github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common"
 )
 
-
-    
- // DecryptedData The representation of DecryptedData
+// DecryptedData The representation of DecryptedData
 type DecryptedData struct {
-    
- // The decrypted data.
-    Plaintext *string `mandatory:"true" json:"plaintext"`
-    
- // Checksum of the decrypted data.
-    PlaintextChecksum *string `mandatory:"true" json:"plaintextChecksum"`
+
+	// The decrypted data.
+	Plaintext *string `mandatory:"true" json:"plaintext"`
+
+	// Checksum of the decrypted data.
+	PlaintextChecksum *string `mandatory:"true" json:"plaintextChecksum"`
 }
 
 func (m DecryptedData) String() string {
-    return common.PointerString(m)
+	return common.PointerString(m)
 }
-
-
-
-
-

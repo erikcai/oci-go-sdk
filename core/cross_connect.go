@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CrossConnect For use with Oracle Cloud Infrastructure FastConnect. A cross-connect represents a
+// CrossConnect For use with Oracle Bare Metal Cloud Services FastConnect. A cross-connect represents a
 // physical connection between an existing network and Oracle. Customers who are colocated
 // with Oracle in a FastConnect location create and use cross-connects. For more
 // information, see FastConnect Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/fastconnect.htm).
@@ -21,7 +21,7 @@ import (
 // with the connection.
 // **Note:** If you're a provider who is setting up a physical connection to Oracle so customers
 // can use FastConnect over the connection, be aware that your connection is modeled the
-// same way as a colocated customer's (with `CrossConnect` and `CrossConnectGroup` objects, and so on).
+// same way as a colocated customer's (with `CrossConnect` and `CrossConnectGroup` objects, etc.).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -34,7 +34,6 @@ type CrossConnect struct {
 	CrossConnectGroupId *string `mandatory:"false" json:"crossConnectGroupId"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The cross-connect's Oracle ID (OCID).

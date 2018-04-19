@@ -24,7 +24,7 @@ type CreateVirtualCircuitDetails struct {
 	Type CreateVirtualCircuitDetailsTypeEnum `mandatory:"true" json:"type"`
 
 	// The provisioned data rate of the connection.  To get a list of the
-	// available bandwidth levels (that is, shapes), see
+	// available bandwidth levels (i.e., shapes), see
 	// ListFastConnectProviderVirtualCircuitBandwidthShapes.
 	// Example: `10 Gbps`
 	BandwidthShapeName *string `mandatory:"false" json:"bandwidthShapeName"`
@@ -38,15 +38,15 @@ type CreateVirtualCircuitDetails struct {
 	// Otherwise, leave this empty or null.
 	CustomerBgpAsn *int `mandatory:"false" json:"customerBgpAsn"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique, and it's changeable.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// For private virtual circuits only. The OCID of the Drg
+	// The OCID of the Drg
 	// that this virtual circuit uses.
 	GatewayId *string `mandatory:"false" json:"gatewayId"`
 
 	// Deprecated. Instead use `providerServiceId`.
-	// To get a list of the provider names, see
+	// To get a list of the provider OCID, see
 	// ListFastConnectProviderServices.
 	ProviderName *string `mandatory:"false" json:"providerName"`
 
@@ -56,15 +56,11 @@ type CreateVirtualCircuitDetails struct {
 	ProviderServiceId *string `mandatory:"false" json:"providerServiceId"`
 
 	// Deprecated. Instead use `providerServiceId`.
-	// To get a list of the provider names, see
+	// To get a list of the provider OCID, see
 	// ListFastConnectProviderServices.
 	ProviderServiceName *string `mandatory:"false" json:"providerServiceName"`
 
-	// For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to
-	// advertise across the connection.
-	PublicPrefixes []CreateVirtualCircuitPublicPrefixDetails `mandatory:"false" json:"publicPrefixes"`
-
-	// The Oracle Cloud Infrastructure region where this virtual
+	// The Oracle Bare Metal Cloud Services region where this virtual
 	// circuit is located.
 	// Example: `phx`
 	Region *string `mandatory:"false" json:"region"`

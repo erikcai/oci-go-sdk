@@ -12,8 +12,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UiPassword A text password that enables a user to sign in to the Console, the user interface for interacting with Oracle
-// Cloud Infrastructure.
+// UiPassword A text password that enables a user to sign in to the Console, the user interface for interacting with Oracle Bare
+// Metal Cloud Services.
 // For more information about user credentials, see User Credentials (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/usercredentials.htm).
 type UiPassword struct {
 

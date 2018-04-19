@@ -36,9 +36,6 @@ type FastConnectProviderService struct {
 
 	// A description of the service offered by the provider.
 	Description *string `mandatory:"false" json:"description"`
-
-	// An array of virtual circuit types supported by this service.
-	SupportedVirtualCircuitTypes []FastConnectProviderServiceSupportedVirtualCircuitTypesEnum `mandatory:"false" json:"supportedVirtualCircuitTypes,omitempty"`
 }
 
 func (m FastConnectProviderService) String() string {
@@ -90,29 +87,6 @@ var mappingFastConnectProviderServicePublicPeeringBgpManagement = map[string]Fas
 func GetFastConnectProviderServicePublicPeeringBgpManagementEnumValues() []FastConnectProviderServicePublicPeeringBgpManagementEnum {
 	values := make([]FastConnectProviderServicePublicPeeringBgpManagementEnum, 0)
 	for _, v := range mappingFastConnectProviderServicePublicPeeringBgpManagement {
-		values = append(values, v)
-	}
-	return values
-}
-
-// FastConnectProviderServiceSupportedVirtualCircuitTypesEnum Enum with underlying type: string
-type FastConnectProviderServiceSupportedVirtualCircuitTypesEnum string
-
-// Set of constants representing the allowable values for FastConnectProviderServiceSupportedVirtualCircuitTypes
-const (
-	FastConnectProviderServiceSupportedVirtualCircuitTypesPublic  FastConnectProviderServiceSupportedVirtualCircuitTypesEnum = "PUBLIC"
-	FastConnectProviderServiceSupportedVirtualCircuitTypesPrivate FastConnectProviderServiceSupportedVirtualCircuitTypesEnum = "PRIVATE"
-)
-
-var mappingFastConnectProviderServiceSupportedVirtualCircuitTypes = map[string]FastConnectProviderServiceSupportedVirtualCircuitTypesEnum{
-	"PUBLIC":  FastConnectProviderServiceSupportedVirtualCircuitTypesPublic,
-	"PRIVATE": FastConnectProviderServiceSupportedVirtualCircuitTypesPrivate,
-}
-
-// GetFastConnectProviderServiceSupportedVirtualCircuitTypesEnumValues Enumerates the set of values for FastConnectProviderServiceSupportedVirtualCircuitTypes
-func GetFastConnectProviderServiceSupportedVirtualCircuitTypesEnumValues() []FastConnectProviderServiceSupportedVirtualCircuitTypesEnum {
-	values := make([]FastConnectProviderServiceSupportedVirtualCircuitTypesEnum, 0)
-	for _, v := range mappingFastConnectProviderServiceSupportedVirtualCircuitTypes {
 		values = append(values, v)
 	}
 	return values

@@ -11,9 +11,8 @@ package kms
 import (
 	"context"
 	"fmt"
-	"net/http"
-
 	"github.com/oracle/oci-go-sdk/common"
+	"net/http"
 )
 
 //KmsCryptoClient a client for KmsCrypto
@@ -24,7 +23,7 @@ type KmsCryptoClient struct {
 
 // NewKmsCryptoClientWithConfigurationProvider Creates a new default KmsCrypto client with the given configuration provider.
 // the configuration provider will be used for the default signer
-func NewKmsCryptoClientWithConfigurationProvider(configProvider common.ConfigurationProvider, managementEndpoint string) (client KmsCryptoClient, err error) {
+func NewKmsCryptoClientWithConfigurationProvider(configProvider common.ConfigurationProvider, endpoint string) (client KmsCryptoClient, err error) {
 	baseClient, err := common.NewClientWithConfig(configProvider)
 	if err != nil {
 		return
@@ -32,7 +31,7 @@ func NewKmsCryptoClientWithConfigurationProvider(configProvider common.Configura
 
 	client = KmsCryptoClient{BaseClient: baseClient}
 	client.BasePath = "20180201"
-	client.Host = managementEndpoint
+	client.Host = endpoint
 	err = client.setConfigurationProvider(configProvider)
 	return
 }

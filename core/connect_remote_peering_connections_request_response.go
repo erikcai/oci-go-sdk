@@ -11,7 +11,7 @@ import (
 // ConnectRemotePeeringConnectionsRequest wrapper for the ConnectRemotePeeringConnections operation
 type ConnectRemotePeeringConnectionsRequest struct {
 
-	// The OCID of the remote peering connection (RPC).
+	// The OCID of the remote peering connection (RPC). This feature is currently in preview and may change before public release. Do not use it for production workloads.
 	RemotePeeringConnectionId *string `mandatory:"true" contributesTo:"path" name:"remotePeeringConnectionId"`
 
 	// Details to connect peering connection with peering connection from remote region

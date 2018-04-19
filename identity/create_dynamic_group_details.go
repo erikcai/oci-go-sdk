@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateDynamicGroupDetails Properties for creating a dynamic group.
+// CreateDynamicGroupDetails Properties for creating a dynamic group
 type CreateDynamicGroupDetails struct {
 
 	// The OCID of the tenancy containing the group.
@@ -22,8 +22,7 @@ type CreateDynamicGroupDetails struct {
 	// in the tenancy and cannot be changed.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The matching rule to dynamically match an instance certificate to this dynamic group.
-	// For rule syntax, see Managing Dynamic Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Tasks/managingdynamicgroups.htm).
+	// The matching rule to dynamically match an instance certificate to this dynamic group
 	MatchingRule *string `mandatory:"true" json:"matchingRule"`
 
 	// The description you assign to the group during creation. Does not have to be unique, and it's changeable.

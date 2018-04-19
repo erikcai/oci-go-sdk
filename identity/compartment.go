@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Compartment A collection of related resources. Compartments are a fundamental component of Oracle Cloud Infrastructure
+// Compartment A collection of related resources. Compartments are a fundamental component of Oracle Bare Metal Cloud Services
 // for organizing and isolating your cloud resources. You use them to clearly separate resources for the purposes
 // of measuring usage and billing, access (through the use of IAM Service policies), and isolation (separating the
 // resources for one project or business unit from another). A common approach is to create a compartment for each
@@ -35,7 +35,7 @@ type Compartment struct {
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The name you assign to the compartment during creation. The name must be unique across all
-	// compartments in the tenancy. Avoid entering confidential information.
+	// compartments in the tenancy and cannot be changed.
 	Name *string `mandatory:"true" json:"name"`
 
 	// The description you assign to the compartment. Does not have to be unique, and it's changeable.

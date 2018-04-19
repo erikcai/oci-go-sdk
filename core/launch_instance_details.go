@@ -14,7 +14,7 @@ import (
 )
 
 // LaunchInstanceDetails Instance launch details.
-// Use the `sourceDetails` parameter to specify whether a boot volume or an image should be used to launch a new instance.
+// Use the sourceDetails parameter to specify whether a boot volume or an image should be used for a new instance launch.
 type LaunchInstanceDetails struct {
 
 	// The Availability Domain of the instance.
@@ -29,17 +29,14 @@ type LaunchInstanceDetails struct {
 	// You can enumerate all available shapes by calling ListShapes.
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// Details for the primary VNIC, which is automatically created and attached when
-	// the instance is launched.
+	// Details for the VNIC that is automatically created when an instance is launched.
 	CreateVnicDetails *CreateVnicDetails `mandatory:"false" json:"createVnicDetails"`
 
-	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Operations": {"CostCenter": "42"}}`
+	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Avoid entering confidential information.
 	// Example: `My bare metal instance`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
@@ -48,10 +45,14 @@ type LaunchInstanceDetails struct {
 	// If you don't need nested metadata values, it is strongly advised to avoid using this object and use the Metadata object instead.
 	ExtendedMetadata map[string]interface{} `mandatory:"false" json:"extendedMetadata"`
 
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no
-	// predefined name, type, or namespace. For more information, see
-	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Department": "Finance"}`
+	// The name of the Fault Domain in which to launch an instance.
+	// To get a list of Fault Domains, use the ListFaultDomains
+	// operation in the Identity and Access Management Service API.
+	// Example: `FAULT-DOMAIN-1`
+	FaultDomain *string `mandatory:"false" json:"faultDomain"`
+
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Deprecated. Instead use `hostnameLabel` in
@@ -59,12 +60,12 @@ type LaunchInstanceDetails struct {
 	// If you provide both, the values must match.
 	HostnameLabel *string `mandatory:"false" json:"hostnameLabel"`
 
-	// Deprecated. Use `sourceDetails` with InstanceSourceViaImageDetails
-	// source type instead. If you specify values for both, the values must match.
+	// Deprecated. Instead use `sourceDetails` with InstanceSourceViaImageDetails
+	// source type. If you provide both, the values must match.
 	ImageId *string `mandatory:"false" json:"imageId"`
 
 	// This is an advanced option.
-	// When a bare metal or virtual machine
+	// When an Oracle Bare Metal Cloud Services or virtual machine
 	// instance boots, the iPXE firmware that runs on the instance is
 	// configured to run an iPXE script to continue the boot process.
 	// If you want more control over the boot process, you can provide
@@ -79,7 +80,7 @@ type LaunchInstanceDetails struct {
 	// following iSCSI IP address: 169.254.0.2, and boot volume IQN:
 	// iqn.2015-02.oracle.boot.
 	// For more information about the Bring Your Own Image feature of
-	// Oracle Cloud Infrastructure, see
+	// Oracle Bare Metal Cloud Services, see
 	// Bring Your Own Image (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/References/bringyourownimage.htm).
 	// For more information about iPXE, see http://ipxe.org.
 	IpxeScript *string `mandatory:"false" json:"ipxeScript"`
@@ -130,13 +131,16 @@ type LaunchInstanceDetails struct {
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 
 	// Details for creating an instance.
-	// Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.
+	// Use this parameter to specify whether a boot volume or an image should be used for a new instance launch.
 	SourceDetails InstanceSourceDetails `mandatory:"false" json:"sourceDetails"`
 
 	// Deprecated. Instead use `subnetId` in
 	// CreateVnicDetails.
 	// At least one of them is required; if you provide both, the values must match.
 	SubnetId *string `mandatory:"false" json:"subnetId"`
+
+	// Volume attachments to create as part of the launch instance operation.
+	VolumeAttachments []CreateVolumeAttachmentDetails `mandatory:"false" json:"volumeAttachments"`
 }
 
 func (m LaunchInstanceDetails) String() string {
@@ -150,6 +154,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		DefinedTags        map[string]map[string]interface{} `json:"definedTags"`
 		DisplayName        *string                           `json:"displayName"`
 		ExtendedMetadata   map[string]interface{}            `json:"extendedMetadata"`
+		FaultDomain        *string                           `json:"faultDomain"`
 		FreeformTags       map[string]string                 `json:"freeformTags"`
 		HostnameLabel      *string                           `json:"hostnameLabel"`
 		ImageId            *string                           `json:"imageId"`
@@ -157,6 +162,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		Metadata           map[string]string                 `json:"metadata"`
 		SourceDetails      instancesourcedetails             `json:"sourceDetails"`
 		SubnetId           *string                           `json:"subnetId"`
+		VolumeAttachments  []createvolumeattachmentdetails   `json:"volumeAttachments"`
 		AvailabilityDomain *string                           `json:"availabilityDomain"`
 		CompartmentId      *string                           `json:"compartmentId"`
 		Shape              *string                           `json:"shape"`
@@ -170,6 +176,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.DefinedTags = model.DefinedTags
 	m.DisplayName = model.DisplayName
 	m.ExtendedMetadata = model.ExtendedMetadata
+	m.FaultDomain = model.FaultDomain
 	m.FreeformTags = model.FreeformTags
 	m.HostnameLabel = model.HostnameLabel
 	m.ImageId = model.ImageId
@@ -181,6 +188,14 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	}
 	m.SourceDetails = nn.(InstanceSourceDetails)
 	m.SubnetId = model.SubnetId
+	m.VolumeAttachments = make([]CreateVolumeAttachmentDetails, len(model.VolumeAttachments))
+	for i, n := range model.VolumeAttachments {
+		nn, err := n.UnmarshalPolymorphicJSON(n.JsonData)
+		if err != nil {
+			return err
+		}
+		m.VolumeAttachments[i] = nn.(CreateVolumeAttachmentDetails)
+	}
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId
 	m.Shape = model.Shape

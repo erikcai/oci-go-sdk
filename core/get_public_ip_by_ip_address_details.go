@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// GetPublicIpByIpAddressDetails IP address of the public IP.
+// GetPublicIpByIpAddressDetails IP address to fetch the public IP.
 type GetPublicIpByIpAddressDetails struct {
 
-	// The public IP address.
+	// A public IP address.
 	// Example: 129.146.2.1
 	IpAddress *string `mandatory:"true" json:"ipAddress"`
 }

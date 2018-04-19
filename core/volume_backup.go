@@ -24,7 +24,6 @@ type VolumeBackup struct {
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// A user-friendly name for the volume backup. Does not have to be unique and it's changeable.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// The OCID of the volume backup.
@@ -40,9 +39,8 @@ type VolumeBackup struct {
 	// The type of a volume backup.
 	Type VolumeBackupTypeEnum `mandatory:"true" json:"type"`
 
-	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Operations": {"CostCenter": "42"}}`
+	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// The date and time the volume backup will expire and be automatically deleted.
@@ -52,10 +50,8 @@ type VolumeBackup struct {
 	// last forever until manually deleted.
 	ExpirationTime *common.SDKTime `mandatory:"false" json:"expirationTime"`
 
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no
-	// predefined name, type, or namespace. For more information, see
-	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Department": "Finance"}`
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The size of the volume, in GBs.

@@ -19,8 +19,7 @@ type TerminateInstanceRequest struct {
 	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
-	// Specifies whether to delete or preserve the boot volume when terminating an instance.
-	// The default value is false.
+	// Specify whether to delete the boot volume as part of instance termination or preserve it.
 	PreserveBootVolume *bool `mandatory:"false" contributesTo:"query" name:"preserveBootVolume"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

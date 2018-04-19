@@ -20,10 +20,9 @@ type UpdatePublicIpDetails struct {
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The OCID of the private IP to assign the public IP to.
-	// * If the public IP is already assigned to a different private IP, it will be unassigned
-	// and then reassigned to the specified private IP.
-	// * If you set this field to an empty string, the public IP will be unassigned from the
-	// private IP it is currently assigned to.
+	// - If the public IP was assigned to a different private IP, it will be unsassigned and the reassigned to
+	//  the given private IP.
+	// - If this field is set to an empty string then the public IP will be unassigned from the private IP it was assigned to.
 	PrivateIpId *string `mandatory:"false" json:"privateIpId"`
 }
 

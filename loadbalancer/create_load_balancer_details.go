@@ -36,6 +36,8 @@ type CreateLoadBalancerDetails struct {
 
 	Certificates map[string]CertificateDetails `mandatory:"false" json:"certificates"`
 
+	Hostnames map[string]HostnameDetails `mandatory:"false" json:"hostnames"`
+
 	// Whether the load balancer has a VCN-local (private) IP address.
 	// If "true", the service assigns a private IP address to the load balancer. The load balancer requires only one subnet
 	// to host both the primary and secondary load balancers. The private IP address is local to the subnet. The load balancer

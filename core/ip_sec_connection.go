@@ -42,7 +42,6 @@ type IpSecConnection struct {
 	StaticRoutes []string `mandatory:"true" json:"staticRoutes"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The date and time the IPSec connection was created, in the format defined by RFC3339.

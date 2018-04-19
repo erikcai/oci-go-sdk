@@ -44,7 +44,6 @@ type VolumeAttachment interface {
 	GetVolumeId() *string
 
 	// A user-friendly name. Does not have to be unique, and it cannot be changed.
-	// Avoid entering confidential information.
 	// Example: `My volume attachment`
 	GetDisplayName() *string
 
@@ -97,6 +96,10 @@ func (m *volumeattachment) UnmarshalPolymorphicJSON(data []byte) (interface{}, e
 	switch m.AttachmentType {
 	case "iscsi":
 		mm := IScsiVolumeAttachment{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "emulated":
+		mm := EmulatedVolumeAttachment{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	case "paravirtualized":

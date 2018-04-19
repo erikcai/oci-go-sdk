@@ -194,9 +194,7 @@ func TestIdentityClient_UpdateCompartment(t *testing.T) {
 	//Update
 	request := identity.UpdateCompartmentRequest{
 		UpdateCompartmentDetails: identity.UpdateCompartmentDetails{
-			// cannot use same name to update compartment, generate a random one via this function
-			Name:        common.String(GoSDK2_Test_Prefix + "UpdComp" + getRandomString(10)),
-			Description: common.String("GOSDK2 description2"),
+			Description: common.String("GOSDK2 description2" + getRandomString(10)),
 		},
 		CompartmentId:   common.String(getCompartmentID()),
 		RequestMetadata: getRequestMetadataWithDefaultRetryPolicy(),
@@ -647,58 +645,6 @@ func TestIdentityClient_ListPolicies(t *testing.T) {
 	return
 }
 
-//SecretKey operations
-func TestIdentityClient_SecretKeyCRUD(t *testing.T) {
-	c, clerr := identity.NewIdentityClientWithConfigurationProvider(configurationProvider())
-	failIfError(t, clerr)
-	request := identity.CreateCustomerSecretKeyRequest{}
-	request.UserId = common.String(getUserID())
-	request.DisplayName = common.String("GolangSDK2TestSecretKey")
-	request.RequestMetadata = getRequestMetadataWithDefaultRetryPolicy()
-	resCreate, err := c.CreateCustomerSecretKey(context.Background(), request)
-	verifyResponseIsValid(t, resCreate, err)
-	failIfError(t, err)
-
-	defer func() {
-		//remove
-		rDelete := identity.DeleteCustomerSecretKeyRequest{}
-		rDelete.CustomerSecretKeyId = resCreate.Id
-		rDelete.UserId = common.String(getUserID())
-		rDelete.RequestMetadata = getRequestMetadataWithDefaultRetryPolicy()
-		delRes, err := c.DeleteCustomerSecretKey(context.Background(), rDelete)
-		verifyResponseIsValid(t, delRes, err)
-		failIfError(t, err)
-		assert.NotEmpty(t, delRes.OpcRequestId)
-	}()
-
-	// validate user membership lifecycle state enum value after create
-	assert.Equal(t, identity.CustomerSecretKeyLifecycleStateActive, resCreate.LifecycleState)
-
-	//Update
-	rUpdate := identity.UpdateCustomerSecretKeyRequest{}
-	rUpdate.CustomerSecretKeyId = resCreate.Id
-	rUpdate.UserId = common.String(getUserID())
-	rUpdate.DisplayName = common.String("This is a new description")
-	rUpdate.RequestMetadata = getRequestMetadataWithDefaultRetryPolicy()
-	resUpdate, err := c.UpdateCustomerSecretKey(context.Background(), rUpdate)
-	verifyResponseIsValid(t, resUpdate, err)
-	failIfError(t, err)
-
-	return
-}
-
-func TestIdentityClient_ListCustomerSecretKeys(t *testing.T) {
-	c, clerr := identity.NewIdentityClientWithConfigurationProvider(configurationProvider())
-	failIfError(t, clerr)
-	request := identity.ListCustomerSecretKeysRequest{}
-	request.UserId = common.String(getUserID())
-	request.RequestMetadata = getRequestMetadataWithDefaultRetryPolicy()
-	r, err := c.ListCustomerSecretKeys(context.Background(), request)
-	verifyResponseIsValid(t, r, err)
-	failIfError(t, err)
-	return
-}
-
 //Apikeys
 func TestIdentityClient_ApiKeyCRUD(t *testing.T) {
 	userId := ""
@@ -748,7 +694,7 @@ func TestIdentityClient_IdentityProviderCRUD(t *testing.T) {
 	details.CompartmentId = common.String(getTenancyID())
 	details.Name = common.String(getUniqueName("Ident_Provider_"))
 	details.Description = common.String("CRUD Test Identity Provider")
-	details.ProductType = identity.CreateIdentityProviderDetailsProductTypeAdfs
+	details.ProductType = identity.CreateIdentityProviderDetailsProductTypeIdcs
 	details.Metadata = common.String(readSampleFederationMetadata(t))
 	rCreate.CreateIdentityProviderDetails = details
 	rCreate.RequestMetadata = getRequestMetadataWithDefaultRetryPolicy()

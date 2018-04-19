@@ -1,7 +1,7 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Public DNS Service
+// DNS Service API
 //
 // API for managing DNS zones, records, and policies.
 //
@@ -24,13 +24,18 @@ type ZoneSummary struct {
 	// The OCID of the compartment containing the zone.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"bar-key": "value"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
 	// The canonical absolute URL of the resource.
 	Self *string `mandatory:"false" json:"self"`
 
 	// The OCID of the zone.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The date and time the image was created in "YYYY-MM-ddThh:mmZ" format
+	// The date and time the resource was created in "YYYY-MM-ddThh:mmZ" format
 	// with a Z offset, as defined by RFC 3339.
 	// **Example:** `2016-07-22T17:23:59:60Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`

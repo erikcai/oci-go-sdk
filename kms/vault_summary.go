@@ -2,108 +2,103 @@
 // Code generated. DO NOT EDIT.
 
 // Key Management Service API
-// 
- // APIs for managing and performing operations with keys and vaults.
+//
+// APIs for managing and performing operations with keys and vaults.
 //
 
 package kms
 
 import (
-    "github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common"
 )
 
-
-    
- // VaultSummary The representation of VaultSummary
+// VaultSummary The representation of VaultSummary
 type VaultSummary struct {
-    
- // The OCID of the Compartment containing this resource.
-    CompartmentId *string `mandatory:"true" json:"compartmentId"`
-    
- // The endpoint to perform cryptographic operations against.  TODO description.
-    CryptoEndpoint *string `mandatory:"true" json:"cryptoEndpoint"`
-    
- // A user-friendly name. Does not have to be unique, and it's changeable.
- // Avoid entering confidential information.
-    DisplayName *string `mandatory:"true" json:"displayName"`
-    
- // The OCID of the resource.
-    Id *string `mandatory:"true" json:"id"`
-    
- // The Vault's current state.
-    LifecycleState VaultSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
-    
- // The endpoint to perform management operations against.  TODO description.
-    ManagementEndpoint *string `mandatory:"true" json:"managementEndpoint"`
-    
- // The date and time this was created, in the format defined by RFC3339.
- // Example: `2016-08-25T21:10:29.600Z`
-    TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
-    
- // TODO
-    VaultType VaultSummaryVaultTypeEnum `mandatory:"true" json:"vaultType"`
-    
- // Usage of predefined tag keys. These predefined keys are scoped to namespaces.
- // Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
-    DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
-    
- // Simple key-value pair that is applied without any predefined name, type or scope.
- // Exists for cross-compatibility only.
- // Example: `{"bar-key": "value"}`
-    FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// The OCID of the Compartment containing this resource.
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// The endpoint to perform cryptographic operations against.  TODO description.
+	CryptoEndpoint *string `mandatory:"true" json:"cryptoEndpoint"`
+
+	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
+	DisplayName *string `mandatory:"true" json:"displayName"`
+
+	// The OCID of the resource.
+	Id *string `mandatory:"true" json:"id"`
+
+	// The Vault's current state.
+	LifecycleState VaultSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+
+	// The endpoint to perform management operations against.  TODO description.
+	ManagementEndpoint *string `mandatory:"true" json:"managementEndpoint"`
+
+	// The date and time this was created, in the format defined by RFC3339.
+	// Example: `2016-08-25T21:10:29.600Z`
+	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// TODO
+	VaultType VaultSummaryVaultTypeEnum `mandatory:"true" json:"vaultType"`
+
+	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// Simple key-value pair that is applied without any predefined name, type or scope.
+	// Exists for cross-compatibility only.
+	// Example: `{"bar-key": "value"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 }
 
 func (m VaultSummary) String() string {
-    return common.PointerString(m)
+	return common.PointerString(m)
 }
-
 
 // VaultSummaryLifecycleStateEnum Enum with underlying type: string
 type VaultSummaryLifecycleStateEnum string
 
 // Set of constants representing the allowable values for VaultSummaryLifecycleState
 const (
-    VaultSummaryLifecycleStateCreating VaultSummaryLifecycleStateEnum = "CREATING"
-    VaultSummaryLifecycleStateActive VaultSummaryLifecycleStateEnum = "ACTIVE"
-    VaultSummaryLifecycleStateDeleting VaultSummaryLifecycleStateEnum = "DELETING"
-    VaultSummaryLifecycleStateDeleted VaultSummaryLifecycleStateEnum = "DELETED"
+	VaultSummaryLifecycleStateCreating VaultSummaryLifecycleStateEnum = "CREATING"
+	VaultSummaryLifecycleStateActive   VaultSummaryLifecycleStateEnum = "ACTIVE"
+	VaultSummaryLifecycleStateDeleting VaultSummaryLifecycleStateEnum = "DELETING"
+	VaultSummaryLifecycleStateDeleted  VaultSummaryLifecycleStateEnum = "DELETED"
 )
 
-var mappingVaultSummaryLifecycleState = map[string]VaultSummaryLifecycleStateEnum { 
-    "CREATING": VaultSummaryLifecycleStateCreating,
-    "ACTIVE": VaultSummaryLifecycleStateActive,
-    "DELETING": VaultSummaryLifecycleStateDeleting,
-    "DELETED": VaultSummaryLifecycleStateDeleted,
+var mappingVaultSummaryLifecycleState = map[string]VaultSummaryLifecycleStateEnum{
+	"CREATING": VaultSummaryLifecycleStateCreating,
+	"ACTIVE":   VaultSummaryLifecycleStateActive,
+	"DELETING": VaultSummaryLifecycleStateDeleting,
+	"DELETED":  VaultSummaryLifecycleStateDeleted,
 }
 
 // GetVaultSummaryLifecycleStateEnumValues Enumerates the set of values for VaultSummaryLifecycleState
 func GetVaultSummaryLifecycleStateEnumValues() []VaultSummaryLifecycleStateEnum {
-   values := make([]VaultSummaryLifecycleStateEnum, 0)
-   for _, v := range mappingVaultSummaryLifecycleState {
-       values = append(values, v)
-   }
-   return values
+	values := make([]VaultSummaryLifecycleStateEnum, 0)
+	for _, v := range mappingVaultSummaryLifecycleState {
+		values = append(values, v)
+	}
+	return values
 }
+
 // VaultSummaryVaultTypeEnum Enum with underlying type: string
 type VaultSummaryVaultTypeEnum string
 
 // Set of constants representing the allowable values for VaultSummaryVaultType
 const (
-    VaultSummaryVaultTypePrivate VaultSummaryVaultTypeEnum = "VIRTUAL_PRIVATE"
+	VaultSummaryVaultTypePrivate VaultSummaryVaultTypeEnum = "VIRTUAL_PRIVATE"
 )
 
-var mappingVaultSummaryVaultType = map[string]VaultSummaryVaultTypeEnum { 
-    "VIRTUAL_PRIVATE": VaultSummaryVaultTypePrivate,
+var mappingVaultSummaryVaultType = map[string]VaultSummaryVaultTypeEnum{
+	"VIRTUAL_PRIVATE": VaultSummaryVaultTypePrivate,
 }
 
 // GetVaultSummaryVaultTypeEnumValues Enumerates the set of values for VaultSummaryVaultType
 func GetVaultSummaryVaultTypeEnumValues() []VaultSummaryVaultTypeEnum {
-   values := make([]VaultSummaryVaultTypeEnum, 0)
-   for _, v := range mappingVaultSummaryVaultType {
-       values = append(values, v)
-   }
-   return values
+	values := make([]VaultSummaryVaultTypeEnum, 0)
+	for _, v := range mappingVaultSummaryVaultType {
+		values = append(values, v)
+	}
+	return values
 }
-
-
-

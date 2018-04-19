@@ -68,9 +68,6 @@ type AuditEvent struct {
 
 	// The time of the response to the audited request, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
 	ResponseTime *common.SDKTime `mandatory:"false" json:"responseTime"`
-
-	// Metadata of interest from the response payload. For example, the OCID of a resource.
-	ResponsePayload map[string]interface{} `mandatory:"false" json:"responsePayload"`
 }
 
 func (m AuditEvent) String() string {
