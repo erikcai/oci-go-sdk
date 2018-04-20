@@ -9,6 +9,7 @@
 package core
 
 import (
+	"encoding/json"
 	"github.com/oracle/oci-go-sdk/common"
 )
 
@@ -54,12 +55,66 @@ type BootVolume struct {
 	// The image OCID used to create the boot volume.
 	ImageId *string `mandatory:"false" json:"imageId"`
 
+	// Specifies whether the boot volume's data has finished copying from the source boot volume or boot volume backup.
+	IsHydrated *bool `mandatory:"false" json:"isHydrated"`
+
 	// The size of the boot volume in GBs.
 	SizeInGBs *int `mandatory:"false" json:"sizeInGBs"`
+
+	// The boot volume source, either an existing boot volume in the same Availability Domain or a boot volume backup.
+	// If null, this means that the boot volume was created from an image.
+	SourceDetails BootVolumeSourceDetails `mandatory:"false" json:"sourceDetails"`
+
+	// The OCID of the source volume group.
+	VolumeGroupId *string `mandatory:"false" json:"volumeGroupId"`
 }
 
 func (m BootVolume) String() string {
 	return common.PointerString(m)
+}
+
+// UnmarshalJSON unmarshals from json
+func (m *BootVolume) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		DefinedTags        map[string]map[string]interface{} `json:"definedTags"`
+		DisplayName        *string                           `json:"displayName"`
+		FreeformTags       map[string]string                 `json:"freeformTags"`
+		ImageId            *string                           `json:"imageId"`
+		IsHydrated         *bool                             `json:"isHydrated"`
+		SizeInGBs          *int                              `json:"sizeInGBs"`
+		SourceDetails      bootvolumesourcedetails           `json:"sourceDetails"`
+		VolumeGroupId      *string                           `json:"volumeGroupId"`
+		AvailabilityDomain *string                           `json:"availabilityDomain"`
+		CompartmentId      *string                           `json:"compartmentId"`
+		Id                 *string                           `json:"id"`
+		LifecycleState     BootVolumeLifecycleStateEnum      `json:"lifecycleState"`
+		SizeInMBs          *int                              `json:"sizeInMBs"`
+		TimeCreated        *common.SDKTime                   `json:"timeCreated"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	m.DefinedTags = model.DefinedTags
+	m.DisplayName = model.DisplayName
+	m.FreeformTags = model.FreeformTags
+	m.ImageId = model.ImageId
+	m.IsHydrated = model.IsHydrated
+	m.SizeInGBs = model.SizeInGBs
+	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
+	if e != nil {
+		return
+	}
+	m.SourceDetails = nn.(BootVolumeSourceDetails)
+	m.VolumeGroupId = model.VolumeGroupId
+	m.AvailabilityDomain = model.AvailabilityDomain
+	m.CompartmentId = model.CompartmentId
+	m.Id = model.Id
+	m.LifecycleState = model.LifecycleState
+	m.SizeInMBs = model.SizeInMBs
+	m.TimeCreated = model.TimeCreated
+	return
 }
 
 // BootVolumeLifecycleStateEnum Enum with underlying type: string

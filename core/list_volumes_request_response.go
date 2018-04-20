@@ -18,6 +18,9 @@ type ListVolumesRequest struct {
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" contributesTo:"query" name:"availabilityDomain"`
 
+	// The OCID of the volume group.
+	VolumeGroupId *string `mandatory:"false" contributesTo:"query" name:"volumeGroupId"`
+
 	// The maximum number of items to return in a paginated "List" call.
 	// Example: `500`
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`

@@ -8,18 +8,8 @@ import (
 	"net/http"
 )
 
-// ListBootVolumesRequest wrapper for the ListBootVolumes operation
-type ListBootVolumesRequest struct {
-
-	// The name of the Availability Domain.
-	// Example: `Uocm:PHX-AD-1`
-	AvailabilityDomain *string `mandatory:"true" contributesTo:"query" name:"availabilityDomain"`
-
-	// The OCID of the compartment.
-	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
-
-	// The OCID of the volume group.
-	VolumeGroupId *string `mandatory:"false" contributesTo:"query" name:"volumeGroupId"`
+// ListServicesRequest wrapper for the ListServices operation
+type ListServicesRequest struct {
 
 	// The maximum number of items to return in a paginated "List" call.
 	// Example: `500`
@@ -33,28 +23,28 @@ type ListBootVolumesRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ListBootVolumesRequest) String() string {
+func (request ListServicesRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ListBootVolumesRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ListServicesRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ListBootVolumesRequest) RetryPolicy() *common.RetryPolicy {
+func (request ListServicesRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ListBootVolumesResponse wrapper for the ListBootVolumes operation
-type ListBootVolumesResponse struct {
+// ListServicesResponse wrapper for the ListServices operation
+type ListServicesResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []BootVolume instances
-	Items []BootVolume `presentIn:"body"`
+	// A list of []Service instances
+	Items []Service `presentIn:"body"`
 
 	// For pagination of a list of items. When paging through a list, if this header appears in the response,
 	// then a partial list might have been returned. Include this value as the `page` parameter for the
@@ -66,11 +56,11 @@ type ListBootVolumesResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response ListBootVolumesResponse) String() string {
+func (response ListServicesResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ListBootVolumesResponse) HTTPResponse() *http.Response {
+func (response ListServicesResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }
