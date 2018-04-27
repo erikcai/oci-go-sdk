@@ -20,7 +20,7 @@ type CreateLoadBalancerDetails struct {
 
 	// A user-friendly name. It does not have to be unique, and it is changeable.
 	// Avoid entering confidential information.
-	// Example: `My load balancer`
+	// Example: `example_load_balancer`
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// A template that determines the total pre-provisioned bandwidth (ingress plus egress).
@@ -48,12 +48,14 @@ type CreateLoadBalancerDetails struct {
 	// requires two subnets, each in a different Availability Domain. One subnet hosts the primary load balancer and the other
 	// hosts the secondary (standby) load balancer. A public load balancer is accessible from the internet, depending on your
 	// VCN's security list rules (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/securitylists.htm).
-	// Example: `false`
+	// Example: `true`
 	IsPrivate *bool `mandatory:"false" json:"isPrivate"`
 
 	Listeners map[string]ListenerDetails `mandatory:"false" json:"listeners"`
 
 	PathRouteSets map[string]PathRouteSetDetails `mandatory:"false" json:"pathRouteSets"`
+
+	RuleSets map[string]RuleSetDetails `mandatory:"false" json:"ruleSets"`
 }
 
 func (m CreateLoadBalancerDetails) String() string {

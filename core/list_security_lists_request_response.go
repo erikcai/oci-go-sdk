@@ -24,6 +24,25 @@ type ListSecurityListsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
+	// A filter to only return resources that match the given display name exactly.
+	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
+
+	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
+	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
+	// sort order is case sensitive.
+	// **Note:** In general, some "List" operations (for example, `ListInstances`) let you
+	// optionally filter by Availability Domain if the scope of the resource type is within a
+	// single Availability Domain. If you call one of these "List" operations without specifying
+	// an Availability Domain, the resources are grouped by Availability Domain, then sorted.
+	SortBy ListSecurityListsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
+
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
+	// is case sensitive.
+	SortOrder ListSecurityListsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+
+	// A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+	LifecycleState SecurityListLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -69,4 +88,50 @@ func (response ListSecurityListsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListSecurityListsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ListSecurityListsSortByEnum Enum with underlying type: string
+type ListSecurityListsSortByEnum string
+
+// Set of constants representing the allowable values for ListSecurityListsSortBy
+const (
+	ListSecurityListsSortByTimecreated ListSecurityListsSortByEnum = "TIMECREATED"
+	ListSecurityListsSortByDisplayname ListSecurityListsSortByEnum = "DISPLAYNAME"
+)
+
+var mappingListSecurityListsSortBy = map[string]ListSecurityListsSortByEnum{
+	"TIMECREATED": ListSecurityListsSortByTimecreated,
+	"DISPLAYNAME": ListSecurityListsSortByDisplayname,
+}
+
+// GetListSecurityListsSortByEnumValues Enumerates the set of values for ListSecurityListsSortBy
+func GetListSecurityListsSortByEnumValues() []ListSecurityListsSortByEnum {
+	values := make([]ListSecurityListsSortByEnum, 0)
+	for _, v := range mappingListSecurityListsSortBy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListSecurityListsSortOrderEnum Enum with underlying type: string
+type ListSecurityListsSortOrderEnum string
+
+// Set of constants representing the allowable values for ListSecurityListsSortOrder
+const (
+	ListSecurityListsSortOrderAsc  ListSecurityListsSortOrderEnum = "ASC"
+	ListSecurityListsSortOrderDesc ListSecurityListsSortOrderEnum = "DESC"
+)
+
+var mappingListSecurityListsSortOrder = map[string]ListSecurityListsSortOrderEnum{
+	"ASC":  ListSecurityListsSortOrderAsc,
+	"DESC": ListSecurityListsSortOrderDesc,
+}
+
+// GetListSecurityListsSortOrderEnumValues Enumerates the set of values for ListSecurityListsSortOrder
+func GetListSecurityListsSortOrderEnumValues() []ListSecurityListsSortOrderEnum {
+	values := make([]ListSecurityListsSortOrderEnum, 0)
+	for _, v := range mappingListSecurityListsSortOrder {
+		values = append(values, v)
+	}
+	return values
 }

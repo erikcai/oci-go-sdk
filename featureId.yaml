@@ -55,3 +55,11 @@ whitelisted:
   - udx-117
   # https://jira.aka.lgl.grungy.us/browse/DEX-3133 (Service Gateway)
   - udx-677
+  # https://jira.aka.lgl.grungy.us/browse/UDX-788 (NATaaS)
+  - udx-788
+  # https://jira.aka.lgl.grungy.us/browse/UDX-919 (Tagging: VCN Public IP)
+  - udx-919
+  # https://jira.aka.lgl.grungy.us/browse/UDX-920 (VCN Tagging: DRG, IG, LPG, IPSec Connections, CPEs, VNICs)
+  - udx-920
+  # https://jira.aka.lgl.grungy.us/browse/UDX-977 (LBaaS: LB-Custom header insertion)
+  - udx-977

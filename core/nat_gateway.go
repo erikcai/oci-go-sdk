@@ -22,17 +22,16 @@ import (
 // Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 type NatGateway struct {
 
+	// Whether the NAT gateway blocks traffic through it. The default is `false`.
+	// Example: `false`
+	BlockTraffic *bool `mandatory:"true" json:"blockTraffic"`
+
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment that contains
 	// the NAT gateway.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the NAT gateway.
 	Id *string `mandatory:"true" json:"id"`
-
-	// Whether the NAT gateway is enabled. When the gateway is disabled, traffic is not routed to
-	// the internet, regardless of route rules.
-	// Example: `false`
-	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
 	// The NAT gateway's current state.
 	LifecycleState NatGatewayLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`

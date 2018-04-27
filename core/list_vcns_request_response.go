@@ -21,6 +21,25 @@ type ListVcnsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
+	// A filter to only return resources that match the given display name exactly.
+	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
+
+	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
+	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
+	// sort order is case sensitive.
+	// **Note:** In general, some "List" operations (for example, `ListInstances`) let you
+	// optionally filter by Availability Domain if the scope of the resource type is within a
+	// single Availability Domain. If you call one of these "List" operations without specifying
+	// an Availability Domain, the resources are grouped by Availability Domain, then sorted.
+	SortBy ListVcnsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
+
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
+	// is case sensitive.
+	SortOrder ListVcnsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+
+	// A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+	LifecycleState VcnLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -66,4 +85,50 @@ func (response ListVcnsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListVcnsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ListVcnsSortByEnum Enum with underlying type: string
+type ListVcnsSortByEnum string
+
+// Set of constants representing the allowable values for ListVcnsSortBy
+const (
+	ListVcnsSortByTimecreated ListVcnsSortByEnum = "TIMECREATED"
+	ListVcnsSortByDisplayname ListVcnsSortByEnum = "DISPLAYNAME"
+)
+
+var mappingListVcnsSortBy = map[string]ListVcnsSortByEnum{
+	"TIMECREATED": ListVcnsSortByTimecreated,
+	"DISPLAYNAME": ListVcnsSortByDisplayname,
+}
+
+// GetListVcnsSortByEnumValues Enumerates the set of values for ListVcnsSortBy
+func GetListVcnsSortByEnumValues() []ListVcnsSortByEnum {
+	values := make([]ListVcnsSortByEnum, 0)
+	for _, v := range mappingListVcnsSortBy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListVcnsSortOrderEnum Enum with underlying type: string
+type ListVcnsSortOrderEnum string
+
+// Set of constants representing the allowable values for ListVcnsSortOrder
+const (
+	ListVcnsSortOrderAsc  ListVcnsSortOrderEnum = "ASC"
+	ListVcnsSortOrderDesc ListVcnsSortOrderEnum = "DESC"
+)
+
+var mappingListVcnsSortOrder = map[string]ListVcnsSortOrderEnum{
+	"ASC":  ListVcnsSortOrderAsc,
+	"DESC": ListVcnsSortOrderDesc,
+}
+
+// GetListVcnsSortOrderEnumValues Enumerates the set of values for ListVcnsSortOrder
+func GetListVcnsSortOrderEnumValues() []ListVcnsSortOrderEnum {
+	values := make([]ListVcnsSortOrderEnum, 0)
+	for _, v := range mappingListVcnsSortOrder {
+		values = append(values, v)
+	}
+	return values
 }

@@ -4389,7 +4389,7 @@ func (client VirtualNetworkClient) listVirtualCircuits(ctx context.Context, requ
 	return response, err
 }
 
-// UpdateCpe Updates the specified CPE's display name.
+// UpdateCpe Updates the specified CPE's display name or tags.
 func (client VirtualNetworkClient) UpdateCpe(ctx context.Context, request UpdateCpeRequest) (response UpdateCpeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4546,7 +4546,7 @@ func (client VirtualNetworkClient) updateDhcpOptions(ctx context.Context, reques
 	return response, err
 }
 
-// UpdateDrg Updates the specified DRG's display name.
+// UpdateDrg Updates the specified DRG's display name or tags. Avoid entering confidential information.
 func (client VirtualNetworkClient) UpdateDrg(ctx context.Context, request UpdateDrgRequest) (response UpdateDrgResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4624,7 +4624,7 @@ func (client VirtualNetworkClient) updateDrgAttachment(ctx context.Context, requ
 	return response, err
 }
 
-// UpdateIPSecConnection Updates the display name for the specified IPSec connection.
+// UpdateIPSecConnection Updates the display name or tags for the specified IPSec connection.
 func (client VirtualNetworkClient) UpdateIPSecConnection(ctx context.Context, request UpdateIPSecConnectionRequest) (response UpdateIPSecConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4663,7 +4663,8 @@ func (client VirtualNetworkClient) updateIPSecConnection(ctx context.Context, re
 	return response, err
 }
 
-// UpdateInternetGateway Updates the specified Internet Gateway. You can disable/enable it, or change its display name.
+// UpdateInternetGateway Updates the specified Internet Gateway. You can disable/enable it, or change its display name
+// or tags. Avoid entering confidential information.
 // If the gateway is disabled, that means no traffic will flow to/from the internet even if there's
 // a route rule that enables that traffic.
 func (client VirtualNetworkClient) UpdateInternetGateway(ctx context.Context, request UpdateInternetGatewayRequest) (response UpdateInternetGatewayResponse, err error) {
@@ -4861,10 +4862,37 @@ func (client VirtualNetworkClient) updatePrivateIp(ctx context.Context, request 
 }
 
 // UpdatePublicIp Updates the specified public IP. You must specify the object's OCID. Use this operation if you want to:
-// - Change the display name for a public IP.
-// - Assign a public IP to a private IP. Only supported for public IP addresses with lifetime as `RESERVED`.
-// - Reassign a public IP to a different private IP. Only supported for public IP addresses with lifetime as `RESERVED`.
-// - Unassign a public IP from a private IP. Only supported for public IP addresses with lifetime as `RESERVED`.
+// * Assign a reserved public IP in your pool to a private IP.
+// * Move a reserved public IP to a different private IP.
+// * Unassign a reserved public IP from a private IP (which returns it to your pool
+// of reserved public IPs).
+// * Change the display name or tags for a public IP.
+// Assigning, moving, and unassigning a reserved public IP are asynchronous
+// operations. Poll the public IP's `lifecycleState` to determine if the operation
+// succeeded.
+// **Note:** When moving a reserved public IP, the target private IP
+// must not already have a public IP with `lifecycleState` = ASSIGNING or ASSIGNED. If it
+// does, an error is returned. Also, the initial unassignment from the original
+// private IP always succeeds, but the assignment to the target private IP is asynchronous and
+// could fail silently (for example, if the target private IP is deleted or has a different public IP
+// assigned to it in the interim). If that occurs, the public IP remains unassigned and its
+// `lifecycleState` switches to AVAILABLE (it is not reassigned to its original private IP).
+// You must poll the public IP's `lifecycleState` to determine if the move succeeded.
+// Regarding ephemeral public IPs:
+// * If you want to assign an ephemeral public IP to a primary private IP, use
+// CreatePublicIp.
+// * You can't move an ephemeral public IP to a different private IP.
+// * If you want to unassign an ephemeral public IP from its private IP, use
+// DeletePublicIp, which
+// unassigns and deletes the ephemeral public IP.
+// **Note:** If a public IP (either ephemeral or reserved) is assigned to a secondary private
+// IP (see PrivateIp), and you move that secondary
+// private IP to another VNIC, the public IP moves with it.
+// **Note:** There's a limit to the number of PublicIp
+// a VNIC or instance can have. If you try to move a reserved public IP
+// to a VNIC or instance that has already reached its public IP limit, an error is
+// returned. For information about the public IP limits, see
+// Public IP Addresses (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingpublicIPs.htm).
 func (client VirtualNetworkClient) UpdatePublicIp(ctx context.Context, request UpdatePublicIpRequest) (response UpdatePublicIpResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

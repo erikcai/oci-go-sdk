@@ -31,8 +31,16 @@ type Cpe struct {
 	// The public IP address of the on-premise router.
 	IpAddress *string `mandatory:"true" json:"ipAddress"`
 
+	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
 	// A user-friendly name. Does not have to be unique, and it's changeable.
 	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Example: `{"bar-key": "value"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The date and time the CPE was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`

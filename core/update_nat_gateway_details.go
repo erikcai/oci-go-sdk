@@ -15,6 +15,10 @@ import (
 // UpdateNatGatewayDetails The representation of UpdateNatGatewayDetails
 type UpdateNatGatewayDetails struct {
 
+	// Whether the NAT gateway blocks traffic through it. The default is `false`.
+	// Example: `false`
+	BlockTraffic *bool `mandatory:"false" json:"blockTraffic"`
+
 	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
 	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
@@ -26,11 +30,6 @@ type UpdateNatGatewayDetails struct {
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
-
-	// Whether the gateway is enabled. When the gateway is disabled, traffic is not routed to
-	// the internet, regardless of route rules.
-	// Example: `false`
-	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
 }
 
 func (m UpdateNatGatewayDetails) String() string {

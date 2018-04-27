@@ -20,13 +20,13 @@ type ImageSourceViaObjectStorageTupleDetails struct {
 	OperatingSystemVersion *string `mandatory:"true" json:"operatingSystemVersion"`
 
 	// Object store bucket to export the image to
-	BucketName *string `mandatory:"false" json:"bucketName"`
+	BucketName *string `mandatory:"true" json:"bucketName"`
 
 	// Object store namespace to export the image to
-	NamespaceName *string `mandatory:"false" json:"namespaceName"`
+	NamespaceName *string `mandatory:"true" json:"namespaceName"`
 
 	// Object store object name for the exported image
-	ObjectName *string `mandatory:"false" json:"objectName"`
+	ObjectName *string `mandatory:"true" json:"objectName"`
 }
 
 //GetOperatingSystem returns OperatingSystem

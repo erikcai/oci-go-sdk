@@ -18,11 +18,11 @@ import (
 type Listener struct {
 
 	// The name of the associated backend set.
-	// Example: `My_backend_set`
+	// Example: `example_backend_set`
 	DefaultBackendSetName *string `mandatory:"true" json:"defaultBackendSetName"`
 
 	// A friendly name for the listener. It must be unique and it cannot be changed.
-	// Example: `My listener`
+	// Example: `example_listener`
 	Name *string `mandatory:"true" json:"name"`
 
 	// The communication port for the listener.
@@ -42,8 +42,12 @@ type Listener struct {
 
 	// The name of the set of path-based routing rules, PathRouteSet,
 	// applied to this listener's traffic.
-	// Example: `path-route-set-001`
+	// Example: `example_path_route_set`
 	PathRouteSetName *string `mandatory:"false" json:"pathRouteSetName"`
+
+	// The name of the rule sets to apply to the listener.
+	// Example: ["example_http_rule_list"]
+	RuleSetNames []string `mandatory:"false" json:"ruleSetNames"`
 
 	// Deprecated. Use `hostnames` instead.
 	// Specifies a virtual host name for this listener.

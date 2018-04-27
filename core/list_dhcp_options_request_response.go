@@ -24,6 +24,25 @@ type ListDhcpOptionsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
+	// A filter to only return resources that match the given display name exactly.
+	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
+
+	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
+	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
+	// sort order is case sensitive.
+	// **Note:** In general, some "List" operations (for example, `ListInstances`) let you
+	// optionally filter by Availability Domain if the scope of the resource type is within a
+	// single Availability Domain. If you call one of these "List" operations without specifying
+	// an Availability Domain, the resources are grouped by Availability Domain, then sorted.
+	SortBy ListDhcpOptionsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
+
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
+	// is case sensitive.
+	SortOrder ListDhcpOptionsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+
+	// A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+	LifecycleState DhcpOptionsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -69,4 +88,50 @@ func (response ListDhcpOptionsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListDhcpOptionsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ListDhcpOptionsSortByEnum Enum with underlying type: string
+type ListDhcpOptionsSortByEnum string
+
+// Set of constants representing the allowable values for ListDhcpOptionsSortBy
+const (
+	ListDhcpOptionsSortByTimecreated ListDhcpOptionsSortByEnum = "TIMECREATED"
+	ListDhcpOptionsSortByDisplayname ListDhcpOptionsSortByEnum = "DISPLAYNAME"
+)
+
+var mappingListDhcpOptionsSortBy = map[string]ListDhcpOptionsSortByEnum{
+	"TIMECREATED": ListDhcpOptionsSortByTimecreated,
+	"DISPLAYNAME": ListDhcpOptionsSortByDisplayname,
+}
+
+// GetListDhcpOptionsSortByEnumValues Enumerates the set of values for ListDhcpOptionsSortBy
+func GetListDhcpOptionsSortByEnumValues() []ListDhcpOptionsSortByEnum {
+	values := make([]ListDhcpOptionsSortByEnum, 0)
+	for _, v := range mappingListDhcpOptionsSortBy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListDhcpOptionsSortOrderEnum Enum with underlying type: string
+type ListDhcpOptionsSortOrderEnum string
+
+// Set of constants representing the allowable values for ListDhcpOptionsSortOrder
+const (
+	ListDhcpOptionsSortOrderAsc  ListDhcpOptionsSortOrderEnum = "ASC"
+	ListDhcpOptionsSortOrderDesc ListDhcpOptionsSortOrderEnum = "DESC"
+)
+
+var mappingListDhcpOptionsSortOrder = map[string]ListDhcpOptionsSortOrderEnum{
+	"ASC":  ListDhcpOptionsSortOrderAsc,
+	"DESC": ListDhcpOptionsSortOrderDesc,
+}
+
+// GetListDhcpOptionsSortOrderEnumValues Enumerates the set of values for ListDhcpOptionsSortOrder
+func GetListDhcpOptionsSortOrderEnumValues() []ListDhcpOptionsSortOrderEnum {
+	values := make([]ListDhcpOptionsSortOrderEnum, 0)
+	for _, v := range mappingListDhcpOptionsSortOrder {
+		values = append(values, v)
+	}
+	return values
 }
