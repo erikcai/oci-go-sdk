@@ -4,9 +4,8 @@
 package core
 
 import (
-	"net/http"
-
 	"github.com/oracle/oci-go-sdk/common"
+	"net/http"
 )
 
 // ListSubnetsRequest wrapper for the ListSubnets operation

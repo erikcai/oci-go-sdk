@@ -4,9 +4,8 @@
 package core
 
 import (
-	"net/http"
-
 	"github.com/oracle/oci-go-sdk/common"
+	"net/http"
 )
 
 // ListDhcpOptionsRequest wrapper for the ListDhcpOptions operation

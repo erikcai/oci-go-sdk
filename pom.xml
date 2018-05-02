@@ -680,7 +680,7 @@
       <plugin>
         <groupId>com.oracle.bmc.sdk</groupId>
         <artifactId>bmc-sdk-swagger-maven-plugin</artifactId>
-        <version>1.23-SNAPSHOT</version>
+        <version>1.25-SNAPSHOT</version>
         <executions>
           <execution>
             <id>go-public-sdk-core</id>
@@ -735,6 +735,7 @@
               <additionalProperties>
                 <specName>core</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <serviceHostName>iaas</serviceHostName>
               </additionalProperties>
               <featureIdConfigFile>${project.basedir}/featureId.yaml</featureIdConfigFile>
             </configuration>
@@ -754,6 +755,7 @@
               <additionalProperties>
                 <specName>loadbalancer</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <serviceHostName>iaas</serviceHostName>
               </additionalProperties>
               <featureIdConfigFile>${project.basedir}/featureId.yaml</featureIdConfigFile>
             </configuration>
@@ -926,6 +928,7 @@
               <additionalProperties>
                 <specName>resourcequery</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <serviceHostName>query</serviceHostName>
               </additionalProperties>
             </configuration>
           </execution>

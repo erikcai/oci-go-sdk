@@ -4,9 +4,8 @@
 package core
 
 import (
-	"net/http"
-
 	"github.com/oracle/oci-go-sdk/common"
+	"net/http"
 )
 
 // ListSecurityListsRequest wrapper for the ListSecurityLists operation
