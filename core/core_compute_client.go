@@ -58,7 +58,7 @@ func (client *ComputeClient) ConfigurationProvider() *common.ConfigurationProvid
 	return client.config
 }
 
-// AddImageShapeCompatibilityEntry Adds a shape to the image compatibility list
+// AddImageShapeCompatibilityEntry Adds a shape to the compatible shapes list for the image.
 func (client ComputeClient) AddImageShapeCompatibilityEntry(ctx context.Context, request AddImageShapeCompatibilityEntryRequest) (response AddImageShapeCompatibilityEntryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -136,12 +136,9 @@ func (client ComputeClient) attachBootVolume(ctx context.Context, request common
 	return response, err
 }
 
-// AttachVnic Create a Virtual Network Interface Card (VNIC) and attach it to the given instance.
-// A VNIC provides a network connection for an instance.
-// A `primary` VNIC is automatically created and attached to a compute instance
-// when the instance is launched. This operation is used to create `secondary` VNICs.
-// Secondary VNICs can provide a compute instance with a connection on a subnet
-// that is different than the primary VNIC's subnet.
+// AttachVnic Creates a secondary VNIC and attaches it to the specified instance.
+// For more information about secondary VNICs, see
+// Virtual Network Interface Cards (VNICs) (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingVNICs.htm).
 func (client ComputeClient) AttachVnic(ctx context.Context, request AttachVnicRequest) (response AttachVnicResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -272,12 +269,23 @@ func (client ComputeClient) captureConsoleHistory(ctx context.Context, request c
 	return response, err
 }
 
-// CreateImage Creates a boot disk image for the specified instance. For more information about images, see
-// Managing Custom Images (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/managingcustomimages.htm).
-// You must provide the OCID of the instance you want to use as the basis for the image, and
-// the OCID of the compartment containing that instance.
+// CreateImage Creates a boot disk image for the specified instance or imports an exported image from the Oracle Cloud Infrastructure Object Storage service.
+// When creating a new image, you must provide the OCID of the instance you want to use as the basis for the image, and
+// the OCID of the compartment containing that instance. For more information about images,
+// see Managing Custom Images (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/managingcustomimages.htm).
+// When importing an exported image from Object Storage, you specify the source information
+// in ImageSourceDetails.
+// When importing an image based on the namespace, bucket name, and object name,
+// use ImageSourceViaObjectStorageTupleDetails.
+// When importing an image based on the Object Storage URL, use
+// ImageSourceViaObjectStorageUriDetails.
+// See Object Storage URLs (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/imageimportexport.htm#URLs) and pre-authenticated requests (https://docs.us-phoenix-1.oraclecloud.com/Content/Object/Tasks/managingaccess.htm#pre-auth)
+// for constructing URLs for image import/export.
+// For more information about importing exported images, see
+// Image Import/Export (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/imageimportexport.htm).
 // You may optionally specify a *display name* for the image, which is simply a friendly name or description.
 // It does not have to be unique, and you can change it. See UpdateImage.
+// Avoid entering confidential information.
 func (client ComputeClient) CreateImage(ctx context.Context, request CreateImageRequest) (response CreateImageResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -298,7 +306,7 @@ func (client ComputeClient) CreateImage(ctx context.Context, request CreateImage
 
 // createImage implements the OCIOperation interface (enables retrying operations)
 func (client ComputeClient) createImage(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/images/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/images")
 	if err != nil {
 		return nil, err
 	}
@@ -516,9 +524,15 @@ func (client ComputeClient) detachBootVolume(ctx context.Context, request common
 	return response, err
 }
 
-// DetachVnic Detaches the VNIC from the instance and deletes it. Note that only `secondary` VNICs
-// can be detached with this operation. `Primary` VNICs are detached and deleted
-// automatically when the instance terminates.
+// DetachVnic Detaches and deletes the specified secondary VNIC.
+// This operation cannot be used on the instance's primary VNIC.
+// When you terminate an instance, all attached VNICs (primary
+// and secondary) are automatically detached and deleted.
+// **Important:** If the VNIC has a
+// PrivateIp that is the
+// target of a route rule (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingroutetables.htm#privateip),
+// deleting the VNIC causes that route rule to blackhole and the traffic
+// will be dropped.
 func (client ComputeClient) DetachVnic(ctx context.Context, request DetachVnicRequest) (response DetachVnicResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -558,7 +572,7 @@ func (client ComputeClient) detachVnic(ctx context.Context, request common.OCIRe
 }
 
 // DetachVolume Detaches a storage volume from an instance. You must specify the OCID of the volume attachment.
-// This is an asynchronous operation; the attachment's `lifecycleState` will change to DETACHING temporarily
+// This is an asynchronous operation. The attachment's `lifecycleState` will change to DETACHING temporarily
 // until the attachment is completely removed.
 func (client ComputeClient) DetachVolume(ctx context.Context, request DetachVolumeRequest) (response DetachVolumeResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -598,7 +612,13 @@ func (client ComputeClient) detachVolume(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// ExportImage Exports an image to object storage.
+// ExportImage Exports the specified image to the Oracle Cloud Infrastructure Object Storage service. You can use the Object Storage URL,
+// or the namespace, bucket name, and object name when specifying the location to export to.
+// For more information about exporting images, see Image Import/Export (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/imageimportexport.htm).
+// To perform an image export, you need write access to the Object Storage bucket for the image,
+// see Let Users Write Objects to Object Storage Buckets (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/commonpolicies.htm#Let4).
+// See Object Storage URLs (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/imageimportexport.htm#URLs) and pre-authenticated requests (https://docs.us-phoenix-1.oraclecloud.com/Content/Object/Tasks/managingaccess.htm#pre-auth)
+// for constructing URLs for image import/export.
 func (client ComputeClient) ExportImage(ctx context.Context, request ExportImageRequest) (response ExportImageResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -953,8 +973,8 @@ func (client ComputeClient) getVolumeAttachment(ctx context.Context, request com
 	return response, err
 }
 
-// GetWindowsInstanceInitialCredentials Gets the generated credentials for the instance. Only works for Windows instances. The returned credentials
-// are only valid for the initial login.
+// GetWindowsInstanceInitialCredentials Gets the generated credentials for the instance. Only works for instances that require password to log in (E.g. Windows).
+// For certain OS'es, users will be forced to change the initial credentials.
 func (client ComputeClient) GetWindowsInstanceInitialCredentials(ctx context.Context, request GetWindowsInstanceInitialCredentialsRequest) (response GetWindowsInstanceInitialCredentialsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -993,17 +1013,14 @@ func (client ComputeClient) getWindowsInstanceInitialCredentials(ctx context.Con
 	return response, err
 }
 
-// InstanceAction Performs one of the power actions (start, stop, softreset, or reset)
+// InstanceAction Performs one of the power actions (start, stop, softreset, softstop, or reset)
 // on the specified instance.
 // **start** - power on
 // **stop** - power off
 // **softreset** - ACPI shutdown and power on
+// **softstop** - signal the instance operating system to shutdown gracefully
 // **reset** - power off and power on
-// Note that the **stop** state has no effect on the resources you consume.
-// Billing continues for instances that you stop, and related resources continue
-// to apply against any relevant quotas. You must terminate an instance
-// (TerminateInstance)
-// to remove its resources from billing and quotas.
+// For more information see Stopping and Starting an Instance (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/restartinginstance.htm).
 func (client ComputeClient) InstanceAction(ctx context.Context, request InstanceActionRequest) (response InstanceActionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1051,19 +1068,22 @@ func (client ComputeClient) instanceAction(ctx context.Context, request common.O
 // Regions and Availability Domains (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm).
 // To get a list of Availability Domains, use the `ListAvailabilityDomains` operation
 // in the Identity and Access Management Service API.
-// All Oracle Bare Metal Cloud Services resources, including instances, get an Oracle-assigned,
+// All Oracle Cloud Infrastructure resources, including instances, get an Oracle-assigned,
 // unique ID called an Oracle Cloud Identifier (OCID).
 // When you create a resource, you can find its OCID in the response. You can
 // also retrieve a resource's OCID by using a List API operation
 // on that resource type, or by viewing the resource in the Console.
-// To launch an instance using an image or a boot volume use sourceDetails parameter in the LaunchInstanceDetails
-//
-// When you launch an instance, it is automatically attached to a Virtual
-// Network Interface Card (VNIC). The VNIC has a private IP address from
-// the subnet's CIDR, and optionally a public IP address.
-// To get the addresses, use the ListVnicAttachments
+// To launch an instance using an image or a boot volume use the `sourceDetails` parameter in LaunchInstanceDetails.
+// When you launch an instance, it is automatically attached to a virtual
+// network interface card (VNIC), called the *primary VNIC*. The VNIC
+// has a private IP address from the subnet's CIDR. You can either assign a
+// private IP address of your choice or let Oracle automatically assign one.
+// You can choose whether the instance has a public IP address. To retrieve the
+// addresses, use the ListVnicAttachments
 // operation to get the VNIC ID for the instance, and then call
 // GetVnic with the VNIC ID.
+// You can later add secondary VNICs to an instance. For more information, see
+// Virtual Network Interface Cards (VNICs) (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingVNICs.htm).
 func (client ComputeClient) LaunchInstance(ctx context.Context, request LaunchInstanceRequest) (response LaunchInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1181,7 +1201,9 @@ func (client ComputeClient) listConsoleHistories(ctx context.Context, request co
 	return response, err
 }
 
-// ListImages Lists the available images in the specified compartment. For more
+// ListImages Lists the available images in the specified compartment.
+// If you specify a value for the `sortBy` parameter, Oracle-provided images appear first in the list, followed by custom images.
+// For more
 // information about images, see
 // Managing Custom Images (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/managingcustomimages.htm).
 func (client ComputeClient) ListImages(ctx context.Context, request ListImagesRequest) (response ListImagesResponse, err error) {
@@ -1204,7 +1226,7 @@ func (client ComputeClient) ListImages(ctx context.Context, request ListImagesRe
 
 // listImages implements the OCIOperation interface (enables retrying operations)
 func (client ComputeClient) listImages(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/images/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/images")
 	if err != nil {
 		return nil, err
 	}
@@ -1223,7 +1245,7 @@ func (client ComputeClient) listImages(ctx context.Context, request common.OCIRe
 }
 
 // ListInstanceConsoleConnections Lists the console connections for the specified compartment or instance.
-// For more information about console access, see Accessing the Instance Console (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/References/serialconsole.htm).
+// For more information about console access, see Accessing the Console (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/References/serialconsole.htm).
 func (client ComputeClient) ListInstanceConsoleConnections(ctx context.Context, request ListInstanceConsoleConnectionsRequest) (response ListInstanceConsoleConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1343,8 +1365,9 @@ func (client ComputeClient) listShapes(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// ListVnicAttachments Lists the VNIC attachments for the specified compartment. The list can be filtered by
-// instance and by VNIC.
+// ListVnicAttachments Lists the VNIC attachments in the specified compartment. A VNIC attachment
+// resides in the same compartment as the attached instance. The list can be
+// filtered by instance, VNIC, or Availability Domain.
 func (client ComputeClient) ListVnicAttachments(ctx context.Context, request ListVnicAttachmentsRequest) (response ListVnicAttachmentsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1401,7 +1424,8 @@ func (m *listvolumeattachment) UnmarshalPolymorphicJSON(data []byte) (interface{
 
 // ListVolumeAttachments Lists the volume attachments in the specified compartment. You can filter the
 // list by specifying an instance OCID, volume OCID, or both.
-// Currently, the only supported volume attachment type is IScsiVolumeAttachment.
+// Currently, the only supported volume attachment type are IScsiVolumeAttachment and
+// ParavirtualizedVolumeAttachment.
 func (client ComputeClient) ListVolumeAttachments(ctx context.Context, request ListVolumeAttachmentsRequest) (response ListVolumeAttachmentsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1440,7 +1464,7 @@ func (client ComputeClient) listVolumeAttachments(ctx context.Context, request c
 	return response, err
 }
 
-// RemoveImageShapeCompatibilityEntry Removes a shape from the image compatibility list
+// RemoveImageShapeCompatibilityEntry Removes a shape from the compatible shapes list for the image.
 func (client ComputeClient) RemoveImageShapeCompatibilityEntry(ctx context.Context, request RemoveImageShapeCompatibilityEntryRequest) (response RemoveImageShapeCompatibilityEntryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1481,7 +1505,9 @@ func (client ComputeClient) removeImageShapeCompatibilityEntry(ctx context.Conte
 
 // TerminateInstance Terminates the specified instance. Any attached VNICs and volumes are automatically detached
 // when the instance terminates.
-// This is an asynchronous operation; the instance's `lifecycleState` will change to TERMINATING temporarily
+// To preserve the boot volume associated with the instance, specify `true` for `PreserveBootVolumeQueryParam`.
+// To delete the boot volume when the instance is deleted, specify `false` or do not specify a value for `PreserveBootVolumeQueryParam`.
+// This is an asynchronous operation. The instance's `lifecycleState` will change to TERMINATING temporarily
 // until the instance is completely removed.
 func (client ComputeClient) TerminateInstance(ctx context.Context, request TerminateInstanceRequest) (response TerminateInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1560,7 +1586,7 @@ func (client ComputeClient) updateConsoleHistory(ctx context.Context, request co
 	return response, err
 }
 
-// UpdateImage Updates the display name of the image.
+// UpdateImage Updates the display name of the image. Avoid entering confidential information.
 func (client ComputeClient) UpdateImage(ctx context.Context, request UpdateImageRequest) (response UpdateImageResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1599,8 +1625,8 @@ func (client ComputeClient) updateImage(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// UpdateInstance Updates the display name of the specified instance. The OCID of the instance
-// remains the same.
+// UpdateInstance Updates the display name of the specified instance. Avoid entering confidential information.
+// The OCID of the instance remains the same.
 func (client ComputeClient) UpdateInstance(ctx context.Context, request UpdateInstanceRequest) (response UpdateInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

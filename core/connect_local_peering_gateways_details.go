@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ConnectLocalPeeringGatewaysDetails Contains details indicating the local peering gateway with which you wish to establish a peering relationship.
+// ConnectLocalPeeringGatewaysDetails Information about the other local peering gateway (LPG).
 type ConnectLocalPeeringGatewaysDetails struct {
 
-	// The OCID of the other local peering gateway.
+	// The OCID of the LPG you want to peer with.
 	PeerId *string `mandatory:"true" json:"peerId"`
 }
 

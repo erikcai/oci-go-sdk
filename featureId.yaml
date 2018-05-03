@@ -63,3 +63,7 @@ whitelisted:
   - udx-920
   # https://jira.aka.lgl.grungy.us/browse/UDX-977 (LBaaS: LB-Custom header insertion)
   - udx-977
+  # UDX-709 is for image shape compatibility. At the time of writing (3 May 2018) this was in the preview Core
+  # Services spec. Now that we are moving to the merged spec it is tagged with a feature ID so to keep the
+  # feature in preview we add an entry for it here
+  - udx-709

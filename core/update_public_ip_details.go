@@ -15,22 +15,26 @@ import (
 // UpdatePublicIpDetails The representation of UpdatePublicIpDetails
 type UpdatePublicIpDetails struct {
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid
 	// entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The OCID of the private IP to assign the public IP to.
-	// - If the public IP was assigned to a different private IP, it will be unsassigned and the reassigned to
-	//  the given private IP.
-	// - If this field is set to an empty string then the public IP will be unassigned from the private IP it was assigned to.
+	// * If the public IP is already assigned to a different private IP, it will be unassigned
+	// and then reassigned to the specified private IP.
+	// * If you set this field to an empty string, the public IP will be unassigned from the
+	// private IP it is currently assigned to.
 	PrivateIpId *string `mandatory:"false" json:"privateIpId"`
 }
 

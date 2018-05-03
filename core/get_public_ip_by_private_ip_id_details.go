@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// GetPublicIpByPrivateIpIdDetails Private IP details to fetch the public IP which is assigned to it.
+// GetPublicIpByPrivateIpIdDetails Details of the private IP that the public IP is assigned to.
 type GetPublicIpByPrivateIpIdDetails struct {
 
 	// OCID of the private IP.

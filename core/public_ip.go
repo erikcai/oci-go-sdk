@@ -14,38 +14,37 @@ import (
 
 // PublicIp A *public IP* is a conceptual term that refers to a public IP address and related properties.
 // The `publicIp` object is the API representation of a public IP.
-// A public IP has a scope and a lifetime associated with it. Both scope and lifetime cannot be changed after a public IP has been created.
-// *scope* defines whether a public IP can be assigned to private IPs within or across availability domains.
-// *lifetime* defines when a public IP is deleted and released to Oracle's public IP pool. Valid values are `EPHEMERAL` or `RESERVED`.
-// `RESERVED` public IP addresses are only deleted when the customer explicitly issues a delete. These public IP addresses need not be assigned to a private IP.
-// `EPHEMERAL` public IP addresses are always assigned to a private IP and will be deleted and released when:
-// 1. The private IP is deleted.
-// 2. A VNIC is detached or deleted. In this case all `EPHEMERAL` public IP addresses assigned to private IPs in the VNIC are deleted.
-// 3. Instance is stopped.
-// `EPHEMERAL` public IP addresses belong to the same compartment and availability domain as the private IP it is assigned to.
-// Currently the following types of public IP addresses are supported:
-// 1. (scope: `REGION` and lifetime: `RESERVED`) and
-// 2. (scope: `AVAILABILITY_DOMAIN` and lifetime: `EPHEMERAL`).
+// There are two types of public IPs:
+// 1. Ephemeral
+// 2. Reserved
+// For more information and comparison of the two types,
+// see Public IP Addresses (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingpublicIPs.htm).
 type PublicIp struct {
 
-	// The public IP's Availability Domain. This property is set only when the scope of the public IP is set to
-	// AVAILABILITY_DOMAIN.
+	// The public IP's Availability Domain. This property is set only for ephemeral public IPs
+	// (that is, when the `scope` of the public IP is set to AVAILABILITY_DOMAIN). The value
+	// is the Availability Domain of the assigned private IP.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
-	// The OCID of the compartment containing the public IP.
+	// The OCID of the compartment containing the public IP. For an ephemeral public IP, this is
+	// the same compartment as the private IP's. For a reserved public IP that is currently assigned,
+	// this can be a different compartment than the assigned private IP's.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid
 	// entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The public IP's Oracle ID (OCID).
@@ -59,16 +58,26 @@ type PublicIp struct {
 	LifecycleState PublicIpLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// Defines when the public IP is deleted and released back to Oracle's public IP pool.
+	// * `EPHEMERAL`: The lifetime is tied to the lifetime of its assigned private IP. The
+	// ephemeral public IP is automatically deleted when its private IP is deleted, when
+	// the VNIC is terminated, or when the instance is terminated. An ephemeral
+	// public IP must always be assigned to a private IP.
+	// * `RESERVED`: You control the public IP's lifetime. You can delete a reserved public IP
+	// whenever you like. It does not need to be assigned to a private IP at all times.
+	// For more information and comparison of the two types,
+	// see Public IP Addresses (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingpublicIPs.htm).
 	Lifetime PublicIpLifetimeEnum `mandatory:"false" json:"lifetime,omitempty"`
 
-	// The OCID of the private IP that the public IP can be optionally assigned to. The private IP and public IP
-	// can be in different compartments.
+	// The OCID of the private IP that the public IP is currently assigned to, or in the
+	// process of being assigned to.
 	PrivateIpId *string `mandatory:"false" json:"privateIpId"`
 
-	// The scope in which the public IP can be assigned to a private IP.
-	// `REGION`: The public IP can be assigned to private IP in any availability domain of the region.
-	// `AVAILABILITY_DOMAIN`: The public IP can be assigned to private IP belonging to the availability domain as
-	// defined in the `availabilityDomain` property of the public IP object.
+	// Whether the public IP is regional or specific to a particular Availability Domain.
+	// * `REGION`: The public IP exists within a region and can be assigned to a private IP
+	// in any Availability Domain in the region. Reserved public IPs have `scope` = `REGION`.
+	// * `AVAILABILITY_DOMAIN`: The public IP exists within the Availability Domain of the private IP
+	// it's assigned to, which is specified by the `availabilityDomain` property of the public IP object.
+	// Ephemeral public IPs have `scope` = `AVAILABILITY_DOMAIN`.
 	Scope PublicIpScopeEnum `mandatory:"false" json:"scope,omitempty"`
 
 	// The date and time the public IP was created, in the format defined by RFC3339.

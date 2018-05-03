@@ -12,21 +12,20 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Service Information about a service that is accessible through a service gateway.
+// Service Information of a particular Service that can be exposed through Service
+// Gateway.
 type Service struct {
 
-	// A string that represents the public endpoints for the service. When you set up a route rule
-	// to route traffic to the service gateway, use this value as the destination CIDR block for
-	// the rule. See RouteTable.
+	// This value will be used as Destination CidrBlock while creating a route rule with service gateway as target.
 	CidrBlock *string `mandatory:"true" json:"cidrBlock"`
 
-	// Description of the service.
+	// Description of this particular Service, provided by the Service owner.
 	Description *string `mandatory:"true" json:"description"`
 
-	// The service's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	// The Service's Oracle ID ([OCID])(/Content/General/Concepts/identifiers.htm).
 	Id *string `mandatory:"true" json:"id"`
 
-	// Name of the service.
+	// Name of the Service.
 	Name *string `mandatory:"true" json:"name"`
 }
 

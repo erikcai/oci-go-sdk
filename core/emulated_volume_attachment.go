@@ -37,6 +37,7 @@ type EmulatedVolumeAttachment struct {
 	VolumeId *string `mandatory:"true" json:"volumeId"`
 
 	// A user-friendly name. Does not have to be unique, and it cannot be changed.
+	// Avoid entering confidential information.
 	// Example: `My volume attachment`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 

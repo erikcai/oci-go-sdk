@@ -29,29 +29,33 @@ type Volume struct {
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The volume's Oracle ID (OCID).
+	// The OCID of the volume.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The current state of a volume.
 	LifecycleState VolumeLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The size of the volume in MBs. This field is deprecated. Please use sizeInGBs.
+	// The size of the volume in MBs. This field is deprecated. Use sizeInGBs instead.
 	SizeInMBs *int `mandatory:"true" json:"sizeInMBs"`
 
 	// The date and time the volume was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Boolean flag that tells if the volume's data is hydrated completely from the source.
+	// Specifies whether the cloned volume's data has finished copying from the source volume or backup.
 	IsHydrated *bool `mandatory:"false" json:"isHydrated"`
 
 	// The OCID of the KMS key which is the master encryption key for the volume.
@@ -60,8 +64,8 @@ type Volume struct {
 	// The size of the volume in GBs.
 	SizeInGBs *int `mandatory:"false" json:"sizeInGBs"`
 
-	// Describes the source of this volume. This could be either another volume in the same AD or a volume backup.
-	// If it is null, no source is used to create this volume
+	// The volume source, either an existing volume in the same Availability Domain or a volume backup.
+	// If null, an empty volume is created.
 	SourceDetails VolumeSourceDetails `mandatory:"false" json:"sourceDetails"`
 
 	// The OCID of the source volume group.

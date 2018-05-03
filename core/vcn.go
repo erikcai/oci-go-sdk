@@ -41,16 +41,18 @@ type Vcn struct {
 	// The OCID for the VCN's default security list.
 	DefaultSecurityListId *string `mandatory:"false" json:"defaultSecurityListId"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// A DNS label for the VCN, used in conjunction with the VNIC's hostname and
 	// subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC
-	// within this subnet (e.g., `bminstance-1.subnet123.vcn1.oraclevcn.com`).
+	// within this subnet (for example, `bminstance-1.subnet123.vcn1.oraclevcn.com`).
 	// Must be an alphanumeric string that begins with a letter.
 	// The value cannot be changed.
 	// The absence of this parameter means the Internet and VCN Resolver will
@@ -60,8 +62,10 @@ type Vcn struct {
 	// Example: `vcn1`
 	DnsLabel *string `mandatory:"false" json:"dnsLabel"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The date and time the VCN was created, in the format defined by RFC3339.

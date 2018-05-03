@@ -22,13 +22,9 @@
     <preferred.temp.dir>${project.build.directory}/preferred</preferred.temp.dir>
     <preprocessed.temp.dir>${project.build.directory}/preprocessed</preprocessed.temp.dir>
 
-    <core.artifact.version>0.1.64</core.artifact.version>
-    <core.artifact.id>coreservices-api-spec-preview</core.artifact.id>
-    <core.spec.name>coreservices-api-spec-20160918-external.yaml</core.spec.name>
-    <base.proto.name>base.proto.yaml</base.proto.name>
-    <blockstorage.proto.name>blockstorage.proto.yaml</blockstorage.proto.name>
-    <compute.proto.name>compute.proto.yaml</compute.proto.name>
-    <vcn.proto.name>vcn.proto.yaml</vcn.proto.name>
+    <core.artifact.version>0.2.41</core.artifact.version>
+    <core.artifact.id>coreservices-api-spec</core.artifact.id>
+    <core.spec.name>coreservices-api-spec-20160918.cond.yaml</core.spec.name>
 
     <identity.artifact.version>0.2.9-PREVIEW</identity.artifact.version>
     <identity.artifact.id>identity-control-plane-api-spec-preview</identity.artifact.id>
@@ -76,7 +72,7 @@
     <!-- remove when upgrading to pic-pom:0.4.4 -->
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <enabled.groups.file>${project.basedir}/release-sdk.txt</enabled.groups.file>
+    <enabled.groups.file>${project.basedir}/preview-sdk.txt</enabled.groups.file>
   </properties>
 
   <build>
@@ -314,7 +310,7 @@
       <plugin>
         <groupId>com.oracle.oci.sdk.utilities</groupId>
         <artifactId>spec-conditionals-preprocessor-plugin</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
         <executions>
           <!-- Core, four separate proto specs to ${preprocessed.temp.dir}/core -->
           <execution>
@@ -325,7 +321,7 @@
             </goals>
             <configuration>
               <inputFiles>
-                <inputFile>${spec.temp.dir}/core/${core.spec.name}</inputFile>
+                <inputFile>${spec.temp.dir}/core/source/${core.spec.name}</inputFile>
               </inputFiles>
               <outputFile>${preferred.temp.dir}/${core.spec.name}</outputFile>
             </configuration>

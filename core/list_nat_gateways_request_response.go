@@ -24,7 +24,7 @@ type ListNatGatewaysRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// A filter to only return resources that match the given display name exactly.
+	// A filter to return only resources that match the given display name exactly.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
 	// Filter results by the specified lifecycle state. Must be a valid

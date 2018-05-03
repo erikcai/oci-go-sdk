@@ -12,13 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ImageShapeCompatibilityEntry An image and shape that are compatible
+// ImageShapeCompatibilityEntry An image and shape that are compatible.
 type ImageShapeCompatibilityEntry struct {
 
-	// The image OCID
+	// The image OCID.
 	ImageId *string `mandatory:"true" json:"imageId"`
 
-	// The shape name
+	// The shape name.
 	Shape *string `mandatory:"true" json:"shape"`
 }
 

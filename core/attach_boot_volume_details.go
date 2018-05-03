@@ -15,7 +15,7 @@ import (
 // AttachBootVolumeDetails The representation of AttachBootVolumeDetails
 type AttachBootVolumeDetails struct {
 
-	// The OCID of the  bootvolume.
+	// The OCID of the  boot volume.
 	BootVolumeId *string `mandatory:"true" json:"bootVolumeId"`
 
 	// The OCID of the instance.

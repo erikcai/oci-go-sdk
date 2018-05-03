@@ -24,6 +24,25 @@ type ListCrossConnectsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
+	// A filter to return only resources that match the given display name exactly.
+	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
+
+	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
+	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
+	// sort order is case sensitive.
+	// **Note:** In general, some "List" operations (for example, `ListInstances`) let you
+	// optionally filter by Availability Domain if the scope of the resource type is within a
+	// single Availability Domain. If you call one of these "List" operations without specifying
+	// an Availability Domain, the resources are grouped by Availability Domain, then sorted.
+	SortBy ListCrossConnectsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
+
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
+	// is case sensitive.
+	SortOrder ListCrossConnectsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+
+	// A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
+	LifecycleState CrossConnectLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -73,4 +92,50 @@ func (response ListCrossConnectsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListCrossConnectsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ListCrossConnectsSortByEnum Enum with underlying type: string
+type ListCrossConnectsSortByEnum string
+
+// Set of constants representing the allowable values for ListCrossConnectsSortBy
+const (
+	ListCrossConnectsSortByTimecreated ListCrossConnectsSortByEnum = "TIMECREATED"
+	ListCrossConnectsSortByDisplayname ListCrossConnectsSortByEnum = "DISPLAYNAME"
+)
+
+var mappingListCrossConnectsSortBy = map[string]ListCrossConnectsSortByEnum{
+	"TIMECREATED": ListCrossConnectsSortByTimecreated,
+	"DISPLAYNAME": ListCrossConnectsSortByDisplayname,
+}
+
+// GetListCrossConnectsSortByEnumValues Enumerates the set of values for ListCrossConnectsSortBy
+func GetListCrossConnectsSortByEnumValues() []ListCrossConnectsSortByEnum {
+	values := make([]ListCrossConnectsSortByEnum, 0)
+	for _, v := range mappingListCrossConnectsSortBy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListCrossConnectsSortOrderEnum Enum with underlying type: string
+type ListCrossConnectsSortOrderEnum string
+
+// Set of constants representing the allowable values for ListCrossConnectsSortOrder
+const (
+	ListCrossConnectsSortOrderAsc  ListCrossConnectsSortOrderEnum = "ASC"
+	ListCrossConnectsSortOrderDesc ListCrossConnectsSortOrderEnum = "DESC"
+)
+
+var mappingListCrossConnectsSortOrder = map[string]ListCrossConnectsSortOrderEnum{
+	"ASC":  ListCrossConnectsSortOrderAsc,
+	"DESC": ListCrossConnectsSortOrderDesc,
+}
+
+// GetListCrossConnectsSortOrderEnumValues Enumerates the set of values for ListCrossConnectsSortOrder
+func GetListCrossConnectsSortOrderEnumValues() []ListCrossConnectsSortOrderEnum {
+	values := make([]ListCrossConnectsSortOrderEnum, 0)
+	for _, v := range mappingListCrossConnectsSortOrder {
+		values = append(values, v)
+	}
+	return values
 }

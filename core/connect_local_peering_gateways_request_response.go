@@ -11,7 +11,7 @@ import (
 // ConnectLocalPeeringGatewaysRequest wrapper for the ConnectLocalPeeringGateways operation
 type ConnectLocalPeeringGatewaysRequest struct {
 
-	// The OCID of the local peering gateway. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	// The OCID of the local peering gateway.
 	LocalPeeringGatewayId *string `mandatory:"true" contributesTo:"path" name:"localPeeringGatewayId"`
 
 	// Details regarding the local peering gateway to connect.

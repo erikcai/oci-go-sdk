@@ -48,11 +48,13 @@ type Instance struct {
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
 	// Example: `My bare metal instance`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
@@ -68,14 +70,16 @@ type Instance struct {
 	// Example: `FAULT-DOMAIN-1`
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Deprecated. Instead use `sourceDetails`.
+	// Deprecated. Use `sourceDetails` instead.
 	ImageId *string `mandatory:"false" json:"imageId"`
 
-	// When an Oracle Bare Metal Cloud Services or virtual machine
+	// When a bare metal or virtual machine
 	// instance boots, the iPXE firmware that runs on the instance is
 	// configured to run an iPXE script to continue the boot process.
 	// If you want more control over the boot process, you can provide
@@ -90,10 +94,19 @@ type Instance struct {
 	// following iSCSI IP address: 169.254.0.2, and boot volume IQN:
 	// iqn.2015-02.oracle.boot.
 	// For more information about the Bring Your Own Image feature of
-	// Oracle Bare Metal Cloud Services, see
+	// Oracle Cloud Infrastructure, see
 	// Bring Your Own Image (https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/References/bringyourownimage.htm).
 	// For more information about iPXE, see http://ipxe.org.
 	IpxeScript *string `mandatory:"false" json:"ipxeScript"`
+
+	// Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
+	// * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
+	// * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
+	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
+	// * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter.
+	LaunchMode InstanceLaunchModeEnum `mandatory:"false" json:"launchMode,omitempty"`
+
+	LaunchOptions *LaunchOptions `mandatory:"false" json:"launchOptions"`
 
 	// Custom metadata that you provide.
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
@@ -116,6 +129,8 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 		FreeformTags       map[string]string                 `json:"freeformTags"`
 		ImageId            *string                           `json:"imageId"`
 		IpxeScript         *string                           `json:"ipxeScript"`
+		LaunchMode         InstanceLaunchModeEnum            `json:"launchMode"`
+		LaunchOptions      *LaunchOptions                    `json:"launchOptions"`
 		Metadata           map[string]string                 `json:"metadata"`
 		SourceDetails      instancesourcedetails             `json:"sourceDetails"`
 		AvailabilityDomain *string                           `json:"availabilityDomain"`
@@ -138,6 +153,8 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	m.FreeformTags = model.FreeformTags
 	m.ImageId = model.ImageId
 	m.IpxeScript = model.IpxeScript
+	m.LaunchMode = model.LaunchMode
+	m.LaunchOptions = model.LaunchOptions
 	m.Metadata = model.Metadata
 	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
 	if e != nil {
@@ -152,6 +169,33 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	m.Shape = model.Shape
 	m.TimeCreated = model.TimeCreated
 	return
+}
+
+// InstanceLaunchModeEnum Enum with underlying type: string
+type InstanceLaunchModeEnum string
+
+// Set of constants representing the allowable values for InstanceLaunchMode
+const (
+	InstanceLaunchModeNative          InstanceLaunchModeEnum = "NATIVE"
+	InstanceLaunchModeEmulated        InstanceLaunchModeEnum = "EMULATED"
+	InstanceLaunchModeParavirtualized InstanceLaunchModeEnum = "PARAVIRTUALIZED"
+	InstanceLaunchModeCustom          InstanceLaunchModeEnum = "CUSTOM"
+)
+
+var mappingInstanceLaunchMode = map[string]InstanceLaunchModeEnum{
+	"NATIVE":          InstanceLaunchModeNative,
+	"EMULATED":        InstanceLaunchModeEmulated,
+	"PARAVIRTUALIZED": InstanceLaunchModeParavirtualized,
+	"CUSTOM":          InstanceLaunchModeCustom,
+}
+
+// GetInstanceLaunchModeEnumValues Enumerates the set of values for InstanceLaunchMode
+func GetInstanceLaunchModeEnumValues() []InstanceLaunchModeEnum {
+	values := make([]InstanceLaunchModeEnum, 0)
+	for _, v := range mappingInstanceLaunchMode {
+		values = append(values, v)
+	}
+	return values
 }
 
 // InstanceLifecycleStateEnum Enum with underlying type: string

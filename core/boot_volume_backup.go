@@ -12,7 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// BootVolumeBackup A point-in-time copy of a boot volume that can then be used to create a new boot volume or recover a boot volume. For more information, see Overview of Block Volume Service Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/blockvolumebackups.htm#boot) To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized, talk to an administrator. If you're an administrator who needs to write policies to give users access, see Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
+// BootVolumeBackup A point-in-time copy of a boot volume that can then be used to create
+// a new boot volume or recover a boot volume. For more information, see Overview
+// of Block Volume Service Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/blockvolumebackups.htm#boot)
+// To use any of the API operations, you must be authorized in an IAM policy.
+// If you're not authorized, talk to an administrator. If you're an administrator
+// who needs to write policies to give users access, see Getting Started with
+// Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 type BootVolumeBackup struct {
 
 	// The OCID of the compartment that contains the boot volume backup.
@@ -35,8 +41,9 @@ type BootVolumeBackup struct {
 	// The OCID of the boot volume.
 	BootVolumeId *string `mandatory:"false" json:"bootVolumeId"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// The date and time the volume backup will expire and be automatically deleted.
@@ -46,8 +53,10 @@ type BootVolumeBackup struct {
 	// last forever until manually deleted.
 	ExpirationTime *common.SDKTime `mandatory:"false" json:"expirationTime"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The image OCID used to create the boot volume the backup is taken from.
@@ -55,6 +64,9 @@ type BootVolumeBackup struct {
 
 	// The size of the boot volume, in GBs.
 	SizeInGBs *int `mandatory:"false" json:"sizeInGBs"`
+
+	// The OCID of the source boot volume backup.
+	SourceBootVolumeBackupId *string `mandatory:"false" json:"sourceBootVolumeBackupId"`
 
 	// Specifies whether the backup was created manually, or via scheduled backup policy.
 	SourceType BootVolumeBackupSourceTypeEnum `mandatory:"false" json:"sourceType,omitempty"`

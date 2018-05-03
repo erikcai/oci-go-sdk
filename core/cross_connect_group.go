@@ -12,14 +12,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CrossConnectGroup For use with Oracle Bare Metal Cloud Services FastConnect. A cross-connect group
+// CrossConnectGroup For use with Oracle Cloud Infrastructure FastConnect. A cross-connect group
 // is a link aggregation group (LAG), which can contain one or more
 // CrossConnect. Customers who are colocated with
 // Oracle in a FastConnect location create and use cross-connect groups. For more
 // information, see FastConnect Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/fastconnect.htm).
 // **Note:** If you're a provider who is setting up a physical connection to Oracle so customers
 // can use FastConnect over the connection, be aware that your connection is modeled the
-// same way as a colocated customer's (with `CrossConnect` and `CrossConnectGroup` objects, etc.).
+// same way as a colocated customer's (with `CrossConnect` and `CrossConnectGroup` objects, and so on).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -29,6 +29,7 @@ type CrossConnectGroup struct {
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// The display name of A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The cross-connect group's Oracle ID (OCID).

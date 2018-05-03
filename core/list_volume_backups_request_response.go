@@ -24,6 +24,25 @@ type ListVolumeBackupsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
+	// A filter to return only resources that match the given display name exactly.
+	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
+
+	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
+	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
+	// sort order is case sensitive.
+	// **Note:** In general, some "List" operations (for example, `ListInstances`) let you
+	// optionally filter by Availability Domain if the scope of the resource type is within a
+	// single Availability Domain. If you call one of these "List" operations without specifying
+	// an Availability Domain, the resources are grouped by Availability Domain, then sorted.
+	SortBy ListVolumeBackupsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
+
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
+	// is case sensitive.
+	SortOrder ListVolumeBackupsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+
+	// A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+	LifecycleState VolumeBackupLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -73,4 +92,50 @@ func (response ListVolumeBackupsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListVolumeBackupsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ListVolumeBackupsSortByEnum Enum with underlying type: string
+type ListVolumeBackupsSortByEnum string
+
+// Set of constants representing the allowable values for ListVolumeBackupsSortBy
+const (
+	ListVolumeBackupsSortByTimecreated ListVolumeBackupsSortByEnum = "TIMECREATED"
+	ListVolumeBackupsSortByDisplayname ListVolumeBackupsSortByEnum = "DISPLAYNAME"
+)
+
+var mappingListVolumeBackupsSortBy = map[string]ListVolumeBackupsSortByEnum{
+	"TIMECREATED": ListVolumeBackupsSortByTimecreated,
+	"DISPLAYNAME": ListVolumeBackupsSortByDisplayname,
+}
+
+// GetListVolumeBackupsSortByEnumValues Enumerates the set of values for ListVolumeBackupsSortBy
+func GetListVolumeBackupsSortByEnumValues() []ListVolumeBackupsSortByEnum {
+	values := make([]ListVolumeBackupsSortByEnum, 0)
+	for _, v := range mappingListVolumeBackupsSortBy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListVolumeBackupsSortOrderEnum Enum with underlying type: string
+type ListVolumeBackupsSortOrderEnum string
+
+// Set of constants representing the allowable values for ListVolumeBackupsSortOrder
+const (
+	ListVolumeBackupsSortOrderAsc  ListVolumeBackupsSortOrderEnum = "ASC"
+	ListVolumeBackupsSortOrderDesc ListVolumeBackupsSortOrderEnum = "DESC"
+)
+
+var mappingListVolumeBackupsSortOrder = map[string]ListVolumeBackupsSortOrderEnum{
+	"ASC":  ListVolumeBackupsSortOrderAsc,
+	"DESC": ListVolumeBackupsSortOrderDesc,
+}
+
+// GetListVolumeBackupsSortOrderEnumValues Enumerates the set of values for ListVolumeBackupsSortOrder
+func GetListVolumeBackupsSortOrderEnumValues() []ListVolumeBackupsSortOrderEnum {
+	values := make([]ListVolumeBackupsSortOrderEnum, 0)
+	for _, v := range mappingListVolumeBackupsSortOrder {
+		values = append(values, v)
+	}
+	return values
 }

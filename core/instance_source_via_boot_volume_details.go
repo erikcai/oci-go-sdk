@@ -16,7 +16,7 @@ import (
 // InstanceSourceViaBootVolumeDetails The representation of InstanceSourceViaBootVolumeDetails
 type InstanceSourceViaBootVolumeDetails struct {
 
-	// The OCID of the boot volume you want to use as the basis for the instance.
+	// The OCID of the boot volume used to boot the instance.
 	BootVolumeId *string `mandatory:"true" json:"bootVolumeId"`
 }
 

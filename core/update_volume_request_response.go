@@ -14,7 +14,7 @@ type UpdateVolumeRequest struct {
 	// The OCID of the volume.
 	VolumeId *string `mandatory:"true" contributesTo:"path" name:"volumeId"`
 
-	// Update volume's display name.
+	// Update volume's display name. Avoid entering confidential information.
 	UpdateVolumeDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

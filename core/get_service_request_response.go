@@ -11,7 +11,7 @@ import (
 // GetServiceRequest wrapper for the GetService operation
 type GetServiceRequest struct {
 
-	// The service's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm). This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	// The Service's OCID.
 	ServiceId *string `mandatory:"true" contributesTo:"path" name:"serviceId"`
 
 	// Unique Oracle-assigned identifier for the request.

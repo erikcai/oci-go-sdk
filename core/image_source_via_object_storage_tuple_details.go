@@ -15,18 +15,23 @@ import (
 
 // ImageSourceViaObjectStorageTupleDetails The representation of ImageSourceViaObjectStorageTupleDetails
 type ImageSourceViaObjectStorageTupleDetails struct {
-	OperatingSystem *string `mandatory:"true" json:"operatingSystem"`
 
-	OperatingSystemVersion *string `mandatory:"true" json:"operatingSystemVersion"`
-
-	// Object store bucket to export the image to
+	// The Object Storage bucket for the image.
 	BucketName *string `mandatory:"true" json:"bucketName"`
 
-	// Object store namespace to export the image to
+	// The Object Storage namespace for the image.
 	NamespaceName *string `mandatory:"true" json:"namespaceName"`
 
-	// Object store object name for the exported image
+	// The Object Storage name for the image.
 	ObjectName *string `mandatory:"true" json:"objectName"`
+
+	OperatingSystem *string `mandatory:"false" json:"operatingSystem"`
+
+	OperatingSystemVersion *string `mandatory:"false" json:"operatingSystemVersion"`
+
+	// The format of the image to be imported.  Exported Oracle images are QCOW2.  Only monolithic
+	// images are supported.
+	SourceImageType ImageSourceDetailsSourceImageTypeEnum `mandatory:"false" json:"sourceImageType,omitempty"`
 }
 
 //GetOperatingSystem returns OperatingSystem
@@ -37,6 +42,11 @@ func (m ImageSourceViaObjectStorageTupleDetails) GetOperatingSystem() *string {
 //GetOperatingSystemVersion returns OperatingSystemVersion
 func (m ImageSourceViaObjectStorageTupleDetails) GetOperatingSystemVersion() *string {
 	return m.OperatingSystemVersion
+}
+
+//GetSourceImageType returns SourceImageType
+func (m ImageSourceViaObjectStorageTupleDetails) GetSourceImageType() ImageSourceDetailsSourceImageTypeEnum {
+	return m.SourceImageType
 }
 
 func (m ImageSourceViaObjectStorageTupleDetails) String() string {

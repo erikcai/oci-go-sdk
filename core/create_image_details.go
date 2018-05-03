@@ -19,17 +19,21 @@ type CreateImageDetails struct {
 	// The OCID of the compartment containing the instance you want to use as the basis for the image.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// A user-friendly name for the image. It does not have to be unique, and it's changeable. You cannot use an
-	// Oracle-provided image name as a custom image name.
+	// A user-friendly name for the image. It does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
+	// You cannot use an Oracle-provided image name as a custom image name.
 	// Example: `My Oracle Linux image`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Details for creating an image through import
@@ -37,6 +41,13 @@ type CreateImageDetails struct {
 
 	// The OCID of the instance you want to use as the basis for the image.
 	InstanceId *string `mandatory:"false" json:"instanceId"`
+
+	// Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
+	// * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
+	// * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
+	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
+	// * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter.
+	LaunchMode CreateImageDetailsLaunchModeEnum `mandatory:"false" json:"launchMode,omitempty"`
 }
 
 func (m CreateImageDetails) String() string {
@@ -51,6 +62,7 @@ func (m *CreateImageDetails) UnmarshalJSON(data []byte) (e error) {
 		FreeformTags       map[string]string                 `json:"freeformTags"`
 		ImageSourceDetails imagesourcedetails                `json:"imageSourceDetails"`
 		InstanceId         *string                           `json:"instanceId"`
+		LaunchMode         CreateImageDetailsLaunchModeEnum  `json:"launchMode"`
 		CompartmentId      *string                           `json:"compartmentId"`
 	}{}
 
@@ -67,6 +79,34 @@ func (m *CreateImageDetails) UnmarshalJSON(data []byte) (e error) {
 	}
 	m.ImageSourceDetails = nn.(ImageSourceDetails)
 	m.InstanceId = model.InstanceId
+	m.LaunchMode = model.LaunchMode
 	m.CompartmentId = model.CompartmentId
 	return
+}
+
+// CreateImageDetailsLaunchModeEnum Enum with underlying type: string
+type CreateImageDetailsLaunchModeEnum string
+
+// Set of constants representing the allowable values for CreateImageDetailsLaunchMode
+const (
+	CreateImageDetailsLaunchModeNative          CreateImageDetailsLaunchModeEnum = "NATIVE"
+	CreateImageDetailsLaunchModeEmulated        CreateImageDetailsLaunchModeEnum = "EMULATED"
+	CreateImageDetailsLaunchModeParavirtualized CreateImageDetailsLaunchModeEnum = "PARAVIRTUALIZED"
+	CreateImageDetailsLaunchModeCustom          CreateImageDetailsLaunchModeEnum = "CUSTOM"
+)
+
+var mappingCreateImageDetailsLaunchMode = map[string]CreateImageDetailsLaunchModeEnum{
+	"NATIVE":          CreateImageDetailsLaunchModeNative,
+	"EMULATED":        CreateImageDetailsLaunchModeEmulated,
+	"PARAVIRTUALIZED": CreateImageDetailsLaunchModeParavirtualized,
+	"CUSTOM":          CreateImageDetailsLaunchModeCustom,
+}
+
+// GetCreateImageDetailsLaunchModeEnumValues Enumerates the set of values for CreateImageDetailsLaunchMode
+func GetCreateImageDetailsLaunchModeEnumValues() []CreateImageDetailsLaunchModeEnum {
+	values := make([]CreateImageDetailsLaunchModeEnum, 0)
+	for _, v := range mappingCreateImageDetailsLaunchMode {
+		values = append(values, v)
+	}
+	return values
 }

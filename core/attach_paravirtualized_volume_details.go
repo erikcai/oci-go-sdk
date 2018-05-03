@@ -22,10 +22,10 @@ type AttachParavirtualizedVolumeDetails struct {
 	// The OCID of the volume.
 	VolumeId *string `mandatory:"true" json:"volumeId"`
 
-	// A user-friendly name. Does not have to be unique, and it cannot be changed.
+	// A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Whether the attachment should be created in read-only mode. Defaults to false.
+	// Whether the attachment was created in read-only mode.
 	IsReadOnly *bool `mandatory:"false" json:"isReadOnly"`
 
 	// Whether the attachment should be created in shareable mode. If an attachment

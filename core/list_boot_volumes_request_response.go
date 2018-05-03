@@ -18,15 +18,15 @@ type ListBootVolumesRequest struct {
 	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The OCID of the volume group.
-	VolumeGroupId *string `mandatory:"false" contributesTo:"query" name:"volumeGroupId"`
-
 	// The maximum number of items to return in a paginated "List" call.
 	// Example: `500`
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
+
+	// The OCID of the volume group.
+	VolumeGroupId *string `mandatory:"false" contributesTo:"query" name:"volumeGroupId"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.

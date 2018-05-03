@@ -143,7 +143,8 @@ func (client BlockstorageClient) createBootVolumeBackup(ctx context.Context, req
 	return response, err
 }
 
-// CreateVolume Creates a new volume in the specified compartment. The size of a volume can be either 256 GB or 2 TB.
+// CreateVolume Creates a new volume in the specified compartment. Volumes can be created in sizes ranging from
+// 50 GB (51200 MB) to 16 TB (16777216 MB), in 1 GB (1024 MB) increments. By default, volumes are 1 TB (1048576 MB).
 // For general information about block volumes, see
 // Overview of Block Volume Service (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/overview.htm).
 // A volume and instance can be in separate compartments but must be in the same Availability Domain.
@@ -153,7 +154,7 @@ func (client BlockstorageClient) createBootVolumeBackup(ctx context.Context, req
 // To get a list of Availability Domains, use the `ListAvailabilityDomains` operation
 // in the Identity and Access Management Service API.
 // You may optionally specify a *display name* for the volume, which is simply a friendly name or
-// description. It does not have to be unique, and you can change it.
+// description. It does not have to be unique, and you can change it. Avoid entering confidential information.
 func (client BlockstorageClient) CreateVolume(ctx context.Context, request CreateVolumeRequest) (response CreateVolumeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1343,6 +1344,7 @@ func (client BlockstorageClient) updateBootVolumeBackup(ctx context.Context, req
 }
 
 // UpdateVolume Updates the specified volume's display name.
+// Avoid entering confidential information.
 func (client BlockstorageClient) UpdateVolume(ctx context.Context, request UpdateVolumeRequest) (response UpdateVolumeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1382,6 +1384,7 @@ func (client BlockstorageClient) updateVolume(ctx context.Context, request commo
 }
 
 // UpdateVolumeBackup Updates the display name for the specified volume backup.
+// Avoid entering confidential information.
 func (client BlockstorageClient) UpdateVolumeBackup(ctx context.Context, request UpdateVolumeBackupRequest) (response UpdateVolumeBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

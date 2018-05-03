@@ -16,7 +16,7 @@ import (
 // consists of a contiguous range of IP addresses that do not overlap with
 // other subnets in the VCN. Example: 172.16.1.0/24. For more information, see
 // Overview of the Networking Service (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/overview.htm) and
-// Managing Subnets (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingsubnets.htm).
+// VCNs and Subnets (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingVCNs.htm).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -53,19 +53,21 @@ type Subnet struct {
 	// Example: `00:00:17:B6:4D:DD`
 	VirtualRouterMac *string `mandatory:"true" json:"virtualRouterMac"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// The OCID of the set of DHCP options associated with the subnet.
 	DhcpOptionsId *string `mandatory:"false" json:"dhcpOptionsId"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// A DNS label for the subnet, used in conjunction with the VNIC's hostname and
 	// VCN's DNS label to form a fully qualified domain name (FQDN) for each VNIC
-	// within this subnet (e.g., `bminstance-1.subnet123.vcn1.oraclevcn.com`).
+	// within this subnet (for example, `bminstance-1.subnet123.vcn1.oraclevcn.com`).
 	// Must be an alphanumeric string that begins with a letter and is unique within the VCN.
 	// The value cannot be changed.
 	// The absence of this parameter means the Internet and VCN Resolver
@@ -75,8 +77,10 @@ type Subnet struct {
 	// Example: `subnet123`
 	DnsLabel *string `mandatory:"false" json:"dnsLabel"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Whether learning mode is enabled for this subnet. The default is `false`.
@@ -88,10 +92,11 @@ type Subnet struct {
 	// Whether VNICs within this subnet can have public IP addresses.
 	// Defaults to false, which means VNICs created in this subnet will
 	// automatically be assigned public IP addresses unless specified
-	// otherwise during instance launch (with the `assignPublicIp` flag in
+	// otherwise during instance launch or VNIC creation (with the
+	// `assignPublicIp` flag in
 	// CreateVnicDetails).
 	// If `prohibitPublicIpOnVnic` is set to true, VNICs created in this
-	// subnet cannot have public IP addresses (i.e., it's a private
+	// subnet cannot have public IP addresses (that is, it's a private
 	// subnet).
 	// Example: `true`
 	ProhibitPublicIpOnVnic *bool `mandatory:"false" json:"prohibitPublicIpOnVnic"`

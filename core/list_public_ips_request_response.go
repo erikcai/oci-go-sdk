@@ -11,10 +11,12 @@ import (
 // ListPublicIpsRequest wrapper for the ListPublicIps operation
 type ListPublicIpsRequest struct {
 
-	// The scope in which the public IP can be assigned to a private IP.
-	// `REGION`: The public IP can be assigned to private IP in any availability domain of the region.
-	// `AVAILABILITY_DOMAIN`: The public IP can be assigned to private IP belonging to the availability domain as
-	// defined in the `availabilityDomain` property of the public IP object. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	// Whether the public IP is regional or specific to a particular Availability Domain.
+	// * `REGION`: The public IP exists within a region and can be assigned to a private IP
+	// in any Availability Domain in the region. Reserved public IPs have `scope` = `REGION`.
+	// * `AVAILABILITY_DOMAIN`: The public IP exists within the Availability Domain of the private IP
+	// it's assigned to, which is specified by the `availabilityDomain` property of the public IP object.
+	// Ephemeral public IPs have `scope` = `AVAILABILITY_DOMAIN`.
 	Scope ListPublicIpsScopeEnum `mandatory:"true" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
 	// The OCID of the compartment.

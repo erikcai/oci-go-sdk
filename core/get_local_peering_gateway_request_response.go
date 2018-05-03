@@ -11,7 +11,7 @@ import (
 // GetLocalPeeringGatewayRequest wrapper for the GetLocalPeeringGateway operation
 type GetLocalPeeringGatewayRequest struct {
 
-	// The OCID of the local peering gateway. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	// The OCID of the local peering gateway.
 	LocalPeeringGatewayId *string `mandatory:"true" contributesTo:"path" name:"localPeeringGatewayId"`
 
 	// Unique Oracle-assigned identifier for the request.

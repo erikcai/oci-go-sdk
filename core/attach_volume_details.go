@@ -22,10 +22,10 @@ type AttachVolumeDetails interface {
 	// The OCID of the volume.
 	GetVolumeId() *string
 
-	// A user-friendly name. Does not have to be unique, and it cannot be changed.
+	// A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
 	GetDisplayName() *string
 
-	// Whether the attachment should be created in read-only mode. Defaults to false.
+	// Whether the attachment was created in read-only mode.
 	GetIsReadOnly() *bool
 
 	// Whether the attachment should be created in shareable mode. If an attachment

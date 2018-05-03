@@ -11,7 +11,7 @@ import (
 // DeleteRemotePeeringConnectionRequest wrapper for the DeleteRemotePeeringConnection operation
 type DeleteRemotePeeringConnectionRequest struct {
 
-	// The OCID of the remote peering connection (RPC). This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	// The OCID of the remote peering connection (RPC).
 	RemotePeeringConnectionId *string `mandatory:"true" contributesTo:"path" name:"remotePeeringConnectionId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

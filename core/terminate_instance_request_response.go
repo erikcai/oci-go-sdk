@@ -19,7 +19,8 @@ type TerminateInstanceRequest struct {
 	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
-	// Specify whether to delete the boot volume as part of instance termination or preserve it.
+	// Specifies whether to delete or preserve the boot volume when terminating an instance.
+	// The default value is false.
 	PreserveBootVolume *bool `mandatory:"false" contributesTo:"query" name:"preserveBootVolume"`
 
 	// Unique Oracle-assigned identifier for the request.

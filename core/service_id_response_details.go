@@ -15,10 +15,10 @@ import (
 // ServiceIdResponseDetails The representation of ServiceIdResponseDetails
 type ServiceIdResponseDetails struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the service.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the Service.
 	ServiceId *string `mandatory:"true" json:"serviceId"`
 
-	// The name of the service.
+	// Name of the Service
 	ServiceName *string `mandatory:"true" json:"serviceName"`
 }
 

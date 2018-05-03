@@ -11,7 +11,7 @@ import (
 // DeleteLocalPeeringGatewayRequest wrapper for the DeleteLocalPeeringGateway operation
 type DeleteLocalPeeringGatewayRequest struct {
 
-	// The OCID of the local peering gateway. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	// The OCID of the local peering gateway.
 	LocalPeeringGatewayId *string `mandatory:"true" contributesTo:"path" name:"localPeeringGatewayId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

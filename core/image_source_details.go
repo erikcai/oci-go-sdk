@@ -18,13 +18,18 @@ type ImageSourceDetails interface {
 	GetOperatingSystem() *string
 
 	GetOperatingSystemVersion() *string
+
+	// The format of the image to be imported.  Exported Oracle images are QCOW2.  Only monolithic
+	// images are supported.
+	GetSourceImageType() ImageSourceDetailsSourceImageTypeEnum
 }
 
 type imagesourcedetails struct {
 	JsonData               []byte
-	OperatingSystem        *string `mandatory:"true" json:"operatingSystem"`
-	OperatingSystemVersion *string `mandatory:"true" json:"operatingSystemVersion"`
-	SourceType             string  `json:"sourceType"`
+	OperatingSystem        *string                               `mandatory:"false" json:"operatingSystem"`
+	OperatingSystemVersion *string                               `mandatory:"false" json:"operatingSystemVersion"`
+	SourceImageType        ImageSourceDetailsSourceImageTypeEnum `mandatory:"false" json:"sourceImageType,omitempty"`
+	SourceType             string                                `json:"sourceType"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -40,6 +45,7 @@ func (m *imagesourcedetails) UnmarshalJSON(data []byte) error {
 	}
 	m.OperatingSystem = s.Model.OperatingSystem
 	m.OperatingSystemVersion = s.Model.OperatingSystemVersion
+	m.SourceImageType = s.Model.SourceImageType
 	m.SourceType = s.Model.SourceType
 
 	return err
@@ -72,6 +78,34 @@ func (m imagesourcedetails) GetOperatingSystemVersion() *string {
 	return m.OperatingSystemVersion
 }
 
+//GetSourceImageType returns SourceImageType
+func (m imagesourcedetails) GetSourceImageType() ImageSourceDetailsSourceImageTypeEnum {
+	return m.SourceImageType
+}
+
 func (m imagesourcedetails) String() string {
 	return common.PointerString(m)
+}
+
+// ImageSourceDetailsSourceImageTypeEnum Enum with underlying type: string
+type ImageSourceDetailsSourceImageTypeEnum string
+
+// Set of constants representing the allowable values for ImageSourceDetailsSourceImageType
+const (
+	ImageSourceDetailsSourceImageTypeQcow2 ImageSourceDetailsSourceImageTypeEnum = "QCOW2"
+	ImageSourceDetailsSourceImageTypeVmdk  ImageSourceDetailsSourceImageTypeEnum = "VMDK"
+)
+
+var mappingImageSourceDetailsSourceImageType = map[string]ImageSourceDetailsSourceImageTypeEnum{
+	"QCOW2": ImageSourceDetailsSourceImageTypeQcow2,
+	"VMDK":  ImageSourceDetailsSourceImageTypeVmdk,
+}
+
+// GetImageSourceDetailsSourceImageTypeEnumValues Enumerates the set of values for ImageSourceDetailsSourceImageType
+func GetImageSourceDetailsSourceImageTypeEnumValues() []ImageSourceDetailsSourceImageTypeEnum {
+	values := make([]ImageSourceDetailsSourceImageTypeEnum, 0)
+	for _, v := range mappingImageSourceDetailsSourceImageType {
+		values = append(values, v)
+	}
+	return values
 }
