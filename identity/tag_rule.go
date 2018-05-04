@@ -28,6 +28,9 @@ type TagRule struct {
 	// in the tenancy and cannot be changed.
 	Name *string `mandatory:"true" json:"name"`
 
+	// A statement that is written in the tag rule language.
+	RuleText *string `mandatory:"true" json:"ruleText"`
+
 	// Date and time the tag rule was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`

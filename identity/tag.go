@@ -12,28 +12,31 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Tag A tag definition that belongs to a specific tagNamespace.
+// Tag A tag definition that belongs to a specific tag namespace.  "Defined tags" must be set up in your tenancy before
+// you can apply them to resources.
+// For more information, see Managing Tags and Tag Namespaces (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm).
 type Tag struct {
 
-	// The OCID of the compartment which the tag belongs to.
+	// The OCID of the compartment that contains the tagRule belongs to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID of the containing tagNamespace.
+	// The OCID of the namespace that contains the tag definition.
 	TagNamespaceId *string `mandatory:"true" json:"tagNamespaceId"`
 
-	// The name of the tag namespace which this tag belongs to.
+	// The name of the tag namespace that contains the tag definition.
 	TagNamespaceName *string `mandatory:"true" json:"tagNamespaceName"`
 
 	// The OCID of the tag definition.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The name of the tag which must be unique across all tags in the tagNamespace and cannot be changed.
+	// The name of the tag. The name must be unique across all tags in the namespace and can't be changed.
 	Name *string `mandatory:"true" json:"name"`
 
 	// The description you assign to the tag.
 	Description *string `mandatory:"true" json:"description"`
 
-	// Indicated whether the tagNamespace is retired or not
+	// Indicates whether the tag is retired.
+	// See Retiring Key Definitions and Namespace Definitions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
 	IsRetired *bool `mandatory:"true" json:"isRetired"`
 
 	// Date and time the tag was created, in the format defined by RFC3339.
@@ -47,8 +50,11 @@ type Tag struct {
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Operations": {"CostCenter": "42"}}`
+	// Example: `{"Operations": {"CostCenter": "42"}}``
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// Whether the tag is a cost tracking tag.
+	IsCostTracking *bool `mandatory:"false" json:"isCostTracking"`
 }
 
 func (m Tag) String() string {

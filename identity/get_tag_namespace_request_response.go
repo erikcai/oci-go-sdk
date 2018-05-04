@@ -11,7 +11,7 @@ import (
 // GetTagNamespaceRequest wrapper for the GetTagNamespace operation
 type GetTagNamespaceRequest struct {
 
-	// The OCID of the tagNamespace
+	// The OCID of the tag namespace.
 	TagNamespaceId *string `mandatory:"true" contributesTo:"path" name:"tagNamespaceId"`
 
 	// Unique Oracle-assigned identifier for the request.

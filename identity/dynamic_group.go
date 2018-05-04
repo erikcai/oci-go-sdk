@@ -12,13 +12,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DynamicGroup An dynamic group defines a matching rule. Every bare metal/vm instance is deployed with an instance certificate.
-// The certificate contains metadata about the instance. It contains the instance OCID and the compartment OCID, along
+// DynamicGroup A dynamic group defines a matching rule. Every bare metal or virtual machine instance is deployed with an instance certificate.
+// The certificate contains metadata about the instance. This includes the instance OCID and the compartment OCID, along
 // with a few other optional properties. When an API call is made using this instance certificate as the authenticator,
-// the certificate may be matched to one or multiple dynamic groups. Depending on policies written against these
-// dynamic groups, the instance will get access to that API.
-// This works like regular user/group memebership. But in that case the membership is a static relationship, whereas
-// in dynamic group, the membership of an instance certificate to dynamic groups are determined during runtime.
+// the certificate can be matched to one or multiple dynamic groups. The instance can then get access to the API
+// based on the permissions granted in policies written for the dynamic groups.
+// This works like regular user/group membership. But in that case, the membership is a static relationship, whereas
+// in a dynamic group, the membership of an instance certificate to a dynamic group is determined during runtime.
+// For more information, see Managing Dynamic Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Tasks/managingdynamicgroups.htm).
 type DynamicGroup struct {
 
 	// The OCID of the group.
@@ -35,6 +36,7 @@ type DynamicGroup struct {
 	Description *string `mandatory:"true" json:"description"`
 
 	// A rule string that defines which instance certificates will be matched.
+	// For syntax, see Managing Dynamic Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Tasks/managingdynamicgroups.htm).
 	MatchingRule *string `mandatory:"true" json:"matchingRule"`
 
 	// Date and time the group was created, in the format defined by RFC3339.

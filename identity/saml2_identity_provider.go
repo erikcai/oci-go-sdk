@@ -36,7 +36,11 @@ type Saml2IdentityProvider struct {
 	Description *string `mandatory:"true" json:"description"`
 
 	// The identity provider service or product (e.g., Oracle Identity Cloud Service).
-	// Allowed value: `IDCS`.
+	// Supported identity providers are Oracle Identity Cloud Service (IDCS) and Microsoft
+	// Active Directory Federation Services (ADFS).
+	// Allowed values are:
+	// - `ADFS`
+	// - `IDCS`
 	// Example: `IDCS`
 	ProductType *string `mandatory:"true" json:"productType"`
 

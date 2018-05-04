@@ -12,13 +12,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateDynamicGroupDetails Properties for updating a dynamic group
+// UpdateDynamicGroupDetails Properties for updating a dynamic group.
 type UpdateDynamicGroupDetails struct {
 
 	// The description you assign to the dynamic group. Does not have to be unique, and it's changeable.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The matching rule to dynamically match an instance certificate to this dynamic group
+	// The matching rule to dynamically match an instance certificate to this dynamic group.
+	// For rule syntax, see Managing Dynamic Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Tasks/managingdynamicgroups.htm).
 	MatchingRule *string `mandatory:"false" json:"matchingRule"`
 }
 

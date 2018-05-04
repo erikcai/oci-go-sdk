@@ -12,16 +12,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TagSummary A tag definition that belongs to a specific tagNamespace.
+// TagSummary A tag definition that belongs to a specific tag namespace.
 type TagSummary struct {
 
-	// The OCID of the compartment which the tag definition is attached to.
+	// The OCID of the compartment that contains the tag definition.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// The OCID of the tag definition.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The name of the tag which must be unique across all tags in the tagNamespace and cannot be changed.
+	// The name of the tag. The name must be unique across all tags in the tag namespace and can't be changed.
 	Name *string `mandatory:"false" json:"name"`
 
 	// The description you assign to the tag.
@@ -37,12 +37,16 @@ type TagSummary struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Indicated whether or not the tag is retired
+	// Whether the tag is retired.
+	// See Retiring Key Definitions and Namespace Definitions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
 	IsRetired *bool `mandatory:"false" json:"isRetired"`
 
 	// Date and time the tag was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
+
+	// Whether the tag is a cost tracking tag.
+	IsCostTracking *bool `mandatory:"false" json:"isCostTracking"`
 }
 
 func (m TagSummary) String() string {

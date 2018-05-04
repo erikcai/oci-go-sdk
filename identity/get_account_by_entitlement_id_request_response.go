@@ -14,7 +14,7 @@ type GetAccountByEntitlementIdRequest struct {
 	// The name of the whitelisted service caller. Such as 'PSM'
 	ServiceName *string `mandatory:"true" contributesTo:"query" name:"serviceName"`
 
-	// The service entitlement Id for OIC resources.
+	// The service entitlement Id for OCI resources.
 	EntitlementId *string `mandatory:"true" contributesTo:"path" name:"entitlementId"`
 
 	// Unique Oracle-assigned identifier for the request.

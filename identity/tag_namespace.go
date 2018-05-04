@@ -12,22 +12,24 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TagNamespace A bag of tags that is attached to a compartment and has unique existence in tenancy.
+// TagNamespace A managed container for defined tags. A tag namespace is unique in a tenancy. A tag namespace can't be deleted.
+// For more information, see Managing Tags and Tag Namespaces (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm).
 type TagNamespace struct {
 
-	// The OCID of the tagNamespace.
+	// The OCID of the tag namespace.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID of the compartment which the namespace is attached to.
+	// The OCID of the compartment that contains the tag namespace.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The name of the tagNamespace. It must be unique across all tagNamespaces in the tenancy and cannot be changed.
+	// The name of the tag namespace. It must be unique across all tag namespaces in the tenancy and cannot be changed.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The description you assign to the tagNamespace.
+	// The description you assign to the tag namespace.
 	Description *string `mandatory:"true" json:"description"`
 
-	// Indicated whether or not the tagNamespace is retired
+	// Whether the tag namespace is retired.
+	// See Retiring Key Definitions and Namespace Definitions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
 	IsRetired *bool `mandatory:"true" json:"isRetired"`
 
 	// Date and time the tagNamespace was created, in the format defined by RFC3339.

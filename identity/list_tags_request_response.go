@@ -11,7 +11,7 @@ import (
 // ListTagsRequest wrapper for the ListTags operation
 type ListTagsRequest struct {
 
-	// The OCID of the tagNamespace
+	// The OCID of the tag namespace.
 	TagNamespaceId *string `mandatory:"true" contributesTo:"path" name:"tagNamespaceId"`
 
 	// The value of the `opc-next-page` response header from the previous "List" call.

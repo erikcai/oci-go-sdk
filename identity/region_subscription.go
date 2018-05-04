@@ -12,19 +12,33 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RegionSubscription The representation of RegionSubscription
+// RegionSubscription An object that represents your tenancy's access to a particular region (i.e., a subscription), the status of that
+// access, and whether that region is the home region. For more information, see Managing Regions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Tasks/managingregions.htm).
+// To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
+// talk to an administrator. If you're an administrator who needs to write policies to give users access,
+// see Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 type RegionSubscription struct {
 
-	// The key of the region such as PHX, IAD.
+	// The region's key.
+	// Allowed values are:
+	// - `PHX`
+	// - `IAD`
+	// - `FRA`
+	// - `LHR`
 	RegionKey *string `mandatory:"true" json:"regionKey"`
 
-	// The name of the region such as us-phoenix-1.
+	// The region's name.
+	// Allowed values are:
+	// - `us-phoenix-1`
+	// - `us-ashburn-1`
+	// - `eu-frankurt-1`
+	// - `uk-london-1`
 	RegionName *string `mandatory:"true" json:"regionName"`
 
-	// The region subscription status such as Ready, InProgress
+	// The region subscription status.
 	Status RegionSubscriptionStatusEnum `mandatory:"true" json:"status"`
 
-	// Indicates the region is home region or not.
+	// Indicates if the region is the home region or not.
 	IsHomeRegion *bool `mandatory:"true" json:"isHomeRegion"`
 }
 

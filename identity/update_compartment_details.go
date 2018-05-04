@@ -18,6 +18,10 @@ type UpdateCompartmentDetails struct {
 	// The description you assign to the compartment. Does not have to be unique, and it's changeable.
 	Description *string `mandatory:"false" json:"description"`
 
+	// The new name you assign to the compartment. The name must be unique across all compartments in the tenancy.
+	// Avoid entering confidential information.
+	Name *string `mandatory:"false" json:"name"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`

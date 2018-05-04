@@ -20,7 +20,10 @@ type FaultDomain struct {
 	// The name of the Fault Domain.
 	Name *string `mandatory:"false" json:"name"`
 
-	// The OCID of the of the compartment. Currently only tenancy (root) compartment can be provided.
+	// The OCID of the Fault Domain.
+	Id *string `mandatory:"false" json:"id"`
+
+	// The OCID of the compartment. Currently only tenancy (root) compartment can be provided.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// The name of the availabilityDomain where the Fault Domain belongs.

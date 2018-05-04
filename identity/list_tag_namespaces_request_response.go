@@ -20,8 +20,8 @@ type ListTagNamespacesRequest struct {
 	// The maximum number of items to return in a paginated "List" call.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// An optional parameter for whether or not to retrieve all tagNamespaces in sub compartments. In case of abcense
-	// of this parameter, only tagNamespaces that exist directly in this compartment will be retrieved.
+	// An optional boolean parameter indicating whether to retrieve all tag namespaces in subcompartments. If this
+	// parameter is not specified, only the tag namespaces defined in the specified compartment are retrieved.
 	IncludeSubcompartments *bool `mandatory:"false" contributesTo:"query" name:"includeSubcompartments"`
 
 	// Unique Oracle-assigned identifier for the request.
