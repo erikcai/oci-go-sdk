@@ -23,7 +23,7 @@ func newServicePrincipalKeyProvider(tenancyID, region, cert, key string, interme
 	}
 
 	federationClient := newX509FederationClient(
-		common.Region(region), tenancyID, leafCertificateRetriever, intermediateCertificateRetrievers, false)
+		common.Region(region), tenancyID, leafCertificateRetriever, intermediateCertificateRetrievers, true)
 
 	provider = &servicePrincipalKeyProvider{federationClient: federationClient}
 	return
