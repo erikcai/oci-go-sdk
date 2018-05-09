@@ -1,71 +1,69 @@
 package auth
 
 import (
-	"testing"
 	"crypto/rsa"
-	"github.com/stretchr/testify/assert"
-	"github.com/oracle/oci-go-sdk/common"
 	"fmt"
+	"github.com/oracle/oci-go-sdk/common"
+	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestServicePrincipalKeyProvider(t *testing.T) {
 	key, _ := common.PrivateKeyFromBytes([]byte(leafCertPrivateKeyPem), nil)
 	testIO := []struct {
-		name string
-		tenancy,region string
-		cert,key []byte
-		intermediates [][]byte
-		passphrase []byte
-		expectErrorKey error
-		expectErrorToken error
+		name               string
+		tenancy, region    string
+		cert, key          []byte
+		intermediates      [][]byte
+		passphrase         []byte
+		expectErrorKey     error
+		expectErrorToken   error
 		expectedPrivateKey *rsa.PrivateKey
-		expectSecToken string
-	} {
+		expectSecToken     string
+	}{
 		{
-			name: "Should crate a service principal with no failure",
-			tenancy:tenancyID,
-			region: "anyRegion",
-			cert: []byte(leafCertPem),
-			key: []byte(leafCertPrivateKeyPem),
-			intermediates: [][]byte{[]byte(intermediateCertPem)},
-			passphrase: nil,
+			name:               "Should crate a service principal with no failure",
+			tenancy:            tenancyID,
+			region:             "anyRegion",
+			cert:               []byte(leafCertPem),
+			key:                []byte(leafCertPrivateKeyPem),
+			intermediates:      [][]byte{[]byte(intermediateCertPem)},
+			passphrase:         nil,
 			expectedPrivateKey: key,
-			expectSecToken:"token",
-
+			expectSecToken:     "token",
 		},
 		{
-			name: "Should create a service principal even if, skipping tenancy verification",
-			tenancy:"random ocid",
-			region: "anyRegion",
-			cert: []byte(leafCertPem),
-			key: []byte(leafCertPrivateKeyPem),
-			intermediates: [][]byte{[]byte(intermediateCertPem)},
-			passphrase: nil,
+			name:               "Should create a service principal even if, skipping tenancy verification",
+			tenancy:            "random ocid",
+			region:             "anyRegion",
+			cert:               []byte(leafCertPem),
+			key:                []byte(leafCertPrivateKeyPem),
+			intermediates:      [][]byte{[]byte(intermediateCertPem)},
+			passphrase:         nil,
 			expectedPrivateKey: key,
-			expectSecToken:"token",
+			expectSecToken:     "token",
 		},
 		{
-			name: "Should create fail if there is an error returning the sec token",
-			tenancy:"random ocid",
-			region: "anyRegion",
-			cert: []byte(leafCertPem),
-			key: []byte(leafCertPrivateKeyPem),
-			intermediates: [][]byte{[]byte(intermediateCertPem)},
-			passphrase: nil,
+			name:               "Should create fail if there is an error returning the sec token",
+			tenancy:            "random ocid",
+			region:             "anyRegion",
+			cert:               []byte(leafCertPem),
+			key:                []byte(leafCertPrivateKeyPem),
+			intermediates:      [][]byte{[]byte(intermediateCertPem)},
+			passphrase:         nil,
 			expectedPrivateKey: key,
-			expectErrorToken: assert.AnError,
+			expectErrorToken:   assert.AnError,
 		},
 		{
-			name: "Should create fail if there is an error returning private key",
-			tenancy:"random ocid",
-			region: "anyRegion",
-			cert: []byte(leafCertPem),
-			key: []byte(leafCertPrivateKeyPem),
-			intermediates: [][]byte{[]byte(intermediateCertPem)},
-			passphrase: nil,
+			name:           "Should create fail if there is an error returning private key",
+			tenancy:        "random ocid",
+			region:         "anyRegion",
+			cert:           []byte(leafCertPem),
+			key:            []byte(leafCertPrivateKeyPem),
+			intermediates:  [][]byte{[]byte(intermediateCertPem)},
+			passphrase:     nil,
 			expectErrorKey: assert.AnError,
 		},
-
 	}
 	for _, test := range testIO {
 		t.Run(test.name, func(t *testing.T) {

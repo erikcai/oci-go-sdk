@@ -47,10 +47,9 @@ func (p *servicePrincipalKeyProvider) KeyID() (string, error) {
 	return fmt.Sprintf("ST$%s", securityToken), nil
 }
 
-
 type servicePrincipalConfigurationProvider struct {
-	keyProvider *servicePrincipalKeyProvider
-	tenancyID, region      string
+	keyProvider       *servicePrincipalKeyProvider
+	tenancyID, region string
 }
 
 // NewServicePrincipalConfigurationProvider will create a new service principal configuration provider
@@ -60,7 +59,7 @@ func NewServicePrincipalConfigurationProvider(tenancyID, region string, cert, ke
 	if keyProvider, err = newServicePrincipalKeyProvider(tenancyID, region, cert, key, intermediates, passphrase); err != nil {
 		return nil, fmt.Errorf("failed to create a new key provider: %s", err.Error())
 	}
-	return servicePrincipalConfigurationProvider{keyProvider: keyProvider, region: region, tenancyID:tenancyID}, nil
+	return servicePrincipalConfigurationProvider{keyProvider: keyProvider, region: region, tenancyID: tenancyID}, nil
 }
 
 func (p servicePrincipalConfigurationProvider) PrivateRSAKey() (*rsa.PrivateKey, error) {
@@ -72,7 +71,7 @@ func (p servicePrincipalConfigurationProvider) KeyID() (string, error) {
 }
 
 func (p servicePrincipalConfigurationProvider) TenancyOCID() (string, error) {
-	return p.tenancyID , nil
+	return p.tenancyID, nil
 }
 
 func (p servicePrincipalConfigurationProvider) UserOCID() (string, error) {

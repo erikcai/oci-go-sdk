@@ -33,7 +33,7 @@ type x509FederationClient struct {
 	securityToken                     securityToken
 	authClient                        *common.BaseClient
 	mux                               sync.Mutex
-	skipTenancyValidation            bool
+	skipTenancyValidation             bool
 }
 
 func newX509FederationClient(region common.Region, tenancyID string, leafCertificateRetriever x509CertificateRetriever, intermediateCertificateRetrievers []x509CertificateRetriever, skipTenancyValidation bool) federationClient {
