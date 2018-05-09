@@ -161,11 +161,11 @@ func (r *urlBasedX509CertificateRetriever) PrivateKey() *rsa.PrivateKey {
 type staticCertificateRetriever struct {
 	certificatePemRaw []byte
 	privateKeyPemRaw  []byte
-	passphrase        *string
+	passphrase        []byte
 }
 
 // newStaticX509CertificateRetriever creates a static memory based retriever.
-func newStaticX509CertificateRetriever(certificatePemRaw, privateKeyPemRaw []byte, passphrase *string) x509CertificateRetriever {
+func newStaticX509CertificateRetriever(certificatePemRaw, privateKeyPemRaw []byte, passphrase []byte) x509CertificateRetriever {
 	return &staticCertificateRetriever{
 		certificatePemRaw: certificatePemRaw,
 		privateKeyPemRaw:  privateKeyPemRaw,
@@ -188,7 +188,8 @@ func (r *staticCertificateRetriever) PrivateKeyPemRaw() []byte {
 }
 
 func (r *staticCertificateRetriever) PrivateKey() *rsa.PrivateKey {
-	privateKey, _ := common.PrivateKeyFromBytes(r.privateKeyPemRaw, r.passphrase)
+	passAsString := string(r.passphrase)
+	privateKey, _ := common.PrivateKeyFromBytes(r.privateKeyPemRaw, &passAsString)
 	return privateKey
 }
 
