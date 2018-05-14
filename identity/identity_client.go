@@ -1279,7 +1279,8 @@ func (client IdentityClient) deleteSmtpCredential(ctx context.Context, request c
 	return response, err
 }
 
-// DeleteSwiftPassword Deletes the specified Swift password for the specified user.
+// DeleteSwiftPassword **Deprecated. Use DeleteAuthToken instead.**
+// Deletes the specified Swift password for the specified user.
 func (client IdentityClient) DeleteSwiftPassword(ctx context.Context, request DeleteSwiftPasswordRequest) (response DeleteSwiftPasswordResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

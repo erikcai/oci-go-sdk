@@ -11,7 +11,7 @@ import (
 // DetachServiceIdRequest wrapper for the DetachServiceId operation
 type DetachServiceIdRequest struct {
 
-	// The Service Gateway's OCID.
+	// The service gateway's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm). This feature is currently in preview and may change before public release. Do not use it for production workloads.
 	ServiceGatewayId *string `mandatory:"true" contributesTo:"path" name:"serviceGatewayId"`
 
 	// ServiceId of Service to be detached from a Service Gateway.

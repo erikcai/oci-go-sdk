@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Container Engine for Kubernetes API
-//
 // Clusters API Specification
+//
+// Container Engine for Kubernetes API
 //
 
 package containerengine

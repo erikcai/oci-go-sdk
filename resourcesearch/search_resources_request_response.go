@@ -1,7 +1,7 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package resourcequery
+package resourcesearch
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
@@ -11,7 +11,7 @@ import (
 // SearchResourcesRequest wrapper for the SearchResources operation
 type SearchResourcesRequest struct {
 
-	// Request parameters describing query criteria.
+	// Request parameters describing the search criteria.
 	SearchDetails `contributesTo:"body"`
 
 	// The maximum number of items to return.

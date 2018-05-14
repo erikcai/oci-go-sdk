@@ -1,22 +1,24 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Resource Query Service
+// Resource Search Service
 //
-// Query for resources across your cloud infrastructure
+// Search for resources across your cloud infrastructure
 //
 
-package resourcequery
+package resourcesearch
 
 import (
 	"encoding/json"
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SearchDetails A base request type containing criteria for required resources.
+// SearchDetails A base request type containing common criteria for searching for resources.
 type SearchDetails interface {
 
-	// Defines the type of matching context returned in response. If HIGHLIGHTS then there will be highlighting fragments returned from the service (see ResourceSummary.searchContext and SearchContext). Default is NONE.
+	// Defines the type of matching context returned in response, default is NONE. If HIGHLIGHTS is set, then there will be highlighting
+	// fragments returned from the service (see ResourceSummary.searchContext and SearchContext).  If NONE is set, then no search
+	// context will be returned.
 	GetMatchingContextType() SearchDetailsMatchingContextTypeEnum
 }
 

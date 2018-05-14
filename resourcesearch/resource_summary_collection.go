@@ -1,21 +1,21 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Resource Query Service
+// Resource Search Service
 //
-// Query for resources across your cloud infrastructure
+// Search for resources across your cloud infrastructure
 //
 
-package resourcequery
+package resourcesearch
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ResourceSummaryCollection Found resources summaries.
+// ResourceSummaryCollection A collection of resources that matched the search criteria.
 type ResourceSummaryCollection struct {
 
-	// Resources that exist within the user's cloud infrastructure.
+	// A list of resources.
 	Items []ResourceSummary `mandatory:"false" json:"items"`
 }
 

@@ -1,7 +1,7 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package resourcequery
+package resourcesearch
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
@@ -11,7 +11,7 @@ import (
 // GetResourceTypeRequest wrapper for the GetResourceType operation
 type GetResourceTypeRequest struct {
 
-	// The name of the resource type
+	// The name of the resource type.
 	Name *string `mandatory:"true" contributesTo:"path" name:"name"`
 
 	// Customer part of the request identifier token. If you need to contact Oracle about a particular

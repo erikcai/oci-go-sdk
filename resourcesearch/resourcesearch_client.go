@@ -1,12 +1,12 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Resource Query Service
+// Resource Search Service
 //
-// Query for resources across your cloud infrastructure
+// Search for resources across your cloud infrastructure
 //
 
-package resourcequery
+package resourcesearch
 
 import (
 	"context"
@@ -15,33 +15,33 @@ import (
 	"net/http"
 )
 
-//ResourceQueryClient a client for ResourceQuery
-type ResourceQueryClient struct {
+//ResourceSearchClient a client for ResourceSearch
+type ResourceSearchClient struct {
 	common.BaseClient
 	config *common.ConfigurationProvider
 }
 
-// NewResourceQueryClientWithConfigurationProvider Creates a new default ResourceQuery client with the given configuration provider.
+// NewResourceSearchClientWithConfigurationProvider Creates a new default ResourceSearch client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
-func NewResourceQueryClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ResourceQueryClient, err error) {
+func NewResourceSearchClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ResourceSearchClient, err error) {
 	baseClient, err := common.NewClientWithConfig(configProvider)
 	if err != nil {
 		return
 	}
 
-	client = ResourceQueryClient{BaseClient: baseClient}
+	client = ResourceSearchClient{BaseClient: baseClient}
 	client.BasePath = "20180409"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
 
 // SetRegion overrides the region of this client.
-func (client *ResourceQueryClient) SetRegion(region string) {
+func (client *ResourceSearchClient) SetRegion(region string) {
 	client.Host = fmt.Sprintf(common.DefaultHostURLTemplate, "query", region)
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
-func (client *ResourceQueryClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
+func (client *ResourceSearchClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
 	if ok, err := common.IsConfigurationProviderValid(configProvider); !ok {
 		return err
 	}
@@ -54,12 +54,12 @@ func (client *ResourceQueryClient) setConfigurationProvider(configProvider commo
 }
 
 // ConfigurationProvider the ConfigurationProvider used in this client, or null if none set
-func (client *ResourceQueryClient) ConfigurationProvider() *common.ConfigurationProvider {
+func (client *ResourceSearchClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
 }
 
-// GetResourceType The GetResourceType API provides a way to get all of the resource type information using either the type name or its OCID.
-func (client ResourceQueryClient) GetResourceType(ctx context.Context, request GetResourceTypeRequest) (response GetResourceTypeResponse, err error) {
+// GetResourceType The GetResourceType API provides a way to get the resource type information using the type name.
+func (client ResourceSearchClient) GetResourceType(ctx context.Context, request GetResourceTypeRequest) (response GetResourceTypeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -78,7 +78,7 @@ func (client ResourceQueryClient) GetResourceType(ctx context.Context, request G
 }
 
 // getResourceType implements the OCIOperation interface (enables retrying operations)
-func (client ResourceQueryClient) getResourceType(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ResourceSearchClient) getResourceType(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/resourceTypes/{name}")
 	if err != nil {
 		return nil, err
@@ -97,8 +97,8 @@ func (client ResourceQueryClient) getResourceType(ctx context.Context, request c
 	return response, err
 }
 
-// ListResourceTypes The ListResourceTypes API provides a way to discover all resource types that are available for querying.
-func (client ResourceQueryClient) ListResourceTypes(ctx context.Context, request ListResourceTypesRequest) (response ListResourceTypesResponse, err error) {
+// ListResourceTypes The ListResourceTypes API provides a way to discover all resource types that are available for searching.
+func (client ResourceSearchClient) ListResourceTypes(ctx context.Context, request ListResourceTypesRequest) (response ListResourceTypesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -117,7 +117,7 @@ func (client ResourceQueryClient) ListResourceTypes(ctx context.Context, request
 }
 
 // listResourceTypes implements the OCIOperation interface (enables retrying operations)
-func (client ResourceQueryClient) listResourceTypes(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ResourceSearchClient) listResourceTypes(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/resourceTypes")
 	if err != nil {
 		return nil, err
@@ -136,8 +136,9 @@ func (client ResourceQueryClient) listResourceTypes(ctx context.Context, request
 	return response, err
 }
 
-// SearchResources The query API allows you to search across all of your cloud infrastructure to find resources matching different criteria that you have permissions to access.  Results may be across different types, and across compartments.
-func (client ResourceQueryClient) SearchResources(ctx context.Context, request SearchResourcesRequest) (response SearchResourcesResponse, err error) {
+// SearchResources The SearchResources API allows you to search across all of your cloud infrastructure to find resources matching different criteria that you have permissions to access.
+// Results may be across different types, and across compartments.
+func (client ResourceSearchClient) SearchResources(ctx context.Context, request SearchResourcesRequest) (response SearchResourcesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -156,7 +157,7 @@ func (client ResourceQueryClient) SearchResources(ctx context.Context, request S
 }
 
 // searchResources implements the OCIOperation interface (enables retrying operations)
-func (client ResourceQueryClient) searchResources(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ResourceSearchClient) searchResources(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/resources")
 	if err != nil {
 		return nil, err

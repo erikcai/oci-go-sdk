@@ -1,12 +1,12 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Resource Query Service
+// Resource Search Service
 //
-// Query for resources across your cloud infrastructure
+// Search for resources across your cloud infrastructure
 //
 
-package resourcequery
+package resourcesearch
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
@@ -18,7 +18,7 @@ type ResourceSummary struct {
 	// The resource type name.
 	ResourceType *string `mandatory:"true" json:"resourceType"`
 
-	// The unique identifier for this particular resource.
+	// The unique identifier for this particular resource, usually an OCID.
 	Identifier *string `mandatory:"true" json:"identifier"`
 
 	// The compartment OCID in which this resource belongs.
@@ -42,7 +42,7 @@ type ResourceSummary struct {
 	// The defined tags associated with this resource, if any.
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Contains search context like highlights for found resource.
+	// The search context, such as highlights, for the resource.
 	SearchContext *SearchContext `mandatory:"false" json:"searchContext"`
 }
 

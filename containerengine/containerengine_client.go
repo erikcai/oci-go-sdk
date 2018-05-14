@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Container Engine for Kubernetes API
-//
 // Clusters API Specification
+//
+// Container Engine for Kubernetes API
 //
 
 package containerengine
@@ -15,33 +15,33 @@ import (
 	"net/http"
 )
 
-//CeClient a client for Ce
-type CeClient struct {
+//ContainerEngineClient a client for ContainerEngine
+type ContainerEngineClient struct {
 	common.BaseClient
 	config *common.ConfigurationProvider
 }
 
-// NewCeClientWithConfigurationProvider Creates a new default Ce client with the given configuration provider.
+// NewContainerEngineClientWithConfigurationProvider Creates a new default ContainerEngine client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
-func NewCeClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client CeClient, err error) {
+func NewContainerEngineClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ContainerEngineClient, err error) {
 	baseClient, err := common.NewClientWithConfig(configProvider)
 	if err != nil {
 		return
 	}
 
-	client = CeClient{BaseClient: baseClient}
+	client = ContainerEngineClient{BaseClient: baseClient}
 	client.BasePath = "20180222"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
 
 // SetRegion overrides the region of this client.
-func (client *CeClient) SetRegion(region string) {
+func (client *ContainerEngineClient) SetRegion(region string) {
 	client.Host = fmt.Sprintf(common.DefaultHostURLTemplate, "containerengine", region)
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
-func (client *CeClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
+func (client *ContainerEngineClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
 	if ok, err := common.IsConfigurationProviderValid(configProvider); !ok {
 		return err
 	}
@@ -54,12 +54,12 @@ func (client *CeClient) setConfigurationProvider(configProvider common.Configura
 }
 
 // ConfigurationProvider the ConfigurationProvider used in this client, or null if none set
-func (client *CeClient) ConfigurationProvider() *common.ConfigurationProvider {
+func (client *ContainerEngineClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
 }
 
 // CreateCluster Create a new cluster.
-func (client CeClient) CreateCluster(ctx context.Context, request CreateClusterRequest) (response CreateClusterResponse, err error) {
+func (client ContainerEngineClient) CreateCluster(ctx context.Context, request CreateClusterRequest) (response CreateClusterResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -78,7 +78,7 @@ func (client CeClient) CreateCluster(ctx context.Context, request CreateClusterR
 }
 
 // createCluster implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) createCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) createCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/clusters")
 	if err != nil {
 		return nil, err
@@ -98,7 +98,7 @@ func (client CeClient) createCluster(ctx context.Context, request common.OCIRequ
 }
 
 // CreateKubeconfig Create the Kubeconfig YAML for a cluster.
-func (client CeClient) CreateKubeconfig(ctx context.Context, request CreateKubeconfigRequest) (response CreateKubeconfigResponse, err error) {
+func (client ContainerEngineClient) CreateKubeconfig(ctx context.Context, request CreateKubeconfigRequest) (response CreateKubeconfigResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -117,7 +117,7 @@ func (client CeClient) CreateKubeconfig(ctx context.Context, request CreateKubec
 }
 
 // createKubeconfig implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) createKubeconfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) createKubeconfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/clusters/{clusterId}/kubeconfig/content")
 	if err != nil {
 		return nil, err
@@ -137,7 +137,7 @@ func (client CeClient) createKubeconfig(ctx context.Context, request common.OCIR
 }
 
 // CreateNodePool Create a new node pool.
-func (client CeClient) CreateNodePool(ctx context.Context, request CreateNodePoolRequest) (response CreateNodePoolResponse, err error) {
+func (client ContainerEngineClient) CreateNodePool(ctx context.Context, request CreateNodePoolRequest) (response CreateNodePoolResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -156,7 +156,7 @@ func (client CeClient) CreateNodePool(ctx context.Context, request CreateNodePoo
 }
 
 // createNodePool implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) createNodePool(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) createNodePool(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/nodePools")
 	if err != nil {
 		return nil, err
@@ -176,7 +176,7 @@ func (client CeClient) createNodePool(ctx context.Context, request common.OCIReq
 }
 
 // DeleteCluster Delete a cluster.
-func (client CeClient) DeleteCluster(ctx context.Context, request DeleteClusterRequest) (response DeleteClusterResponse, err error) {
+func (client ContainerEngineClient) DeleteCluster(ctx context.Context, request DeleteClusterRequest) (response DeleteClusterResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -195,7 +195,7 @@ func (client CeClient) DeleteCluster(ctx context.Context, request DeleteClusterR
 }
 
 // deleteCluster implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) deleteCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) deleteCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/clusters/{clusterId}")
 	if err != nil {
 		return nil, err
@@ -215,7 +215,7 @@ func (client CeClient) deleteCluster(ctx context.Context, request common.OCIRequ
 }
 
 // DeleteNodePool Delete a node pool.
-func (client CeClient) DeleteNodePool(ctx context.Context, request DeleteNodePoolRequest) (response DeleteNodePoolResponse, err error) {
+func (client ContainerEngineClient) DeleteNodePool(ctx context.Context, request DeleteNodePoolRequest) (response DeleteNodePoolResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -234,7 +234,7 @@ func (client CeClient) DeleteNodePool(ctx context.Context, request DeleteNodePoo
 }
 
 // deleteNodePool implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) deleteNodePool(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) deleteNodePool(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/nodePools/{nodePoolId}")
 	if err != nil {
 		return nil, err
@@ -254,7 +254,7 @@ func (client CeClient) deleteNodePool(ctx context.Context, request common.OCIReq
 }
 
 // DeleteWorkRequest Cancel a work request that has not started.
-func (client CeClient) DeleteWorkRequest(ctx context.Context, request DeleteWorkRequestRequest) (response DeleteWorkRequestResponse, err error) {
+func (client ContainerEngineClient) DeleteWorkRequest(ctx context.Context, request DeleteWorkRequestRequest) (response DeleteWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -273,7 +273,7 @@ func (client CeClient) DeleteWorkRequest(ctx context.Context, request DeleteWork
 }
 
 // deleteWorkRequest implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) deleteWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) deleteWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/workRequests/{workRequestId}")
 	if err != nil {
 		return nil, err
@@ -293,7 +293,7 @@ func (client CeClient) deleteWorkRequest(ctx context.Context, request common.OCI
 }
 
 // GetCluster Get the details of a cluster.
-func (client CeClient) GetCluster(ctx context.Context, request GetClusterRequest) (response GetClusterResponse, err error) {
+func (client ContainerEngineClient) GetCluster(ctx context.Context, request GetClusterRequest) (response GetClusterResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -312,7 +312,7 @@ func (client CeClient) GetCluster(ctx context.Context, request GetClusterRequest
 }
 
 // getCluster implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) getCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) getCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clusters/{clusterId}")
 	if err != nil {
 		return nil, err
@@ -332,7 +332,7 @@ func (client CeClient) getCluster(ctx context.Context, request common.OCIRequest
 }
 
 // GetClusterOptions Get options available for clusters.
-func (client CeClient) GetClusterOptions(ctx context.Context, request GetClusterOptionsRequest) (response GetClusterOptionsResponse, err error) {
+func (client ContainerEngineClient) GetClusterOptions(ctx context.Context, request GetClusterOptionsRequest) (response GetClusterOptionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -351,7 +351,7 @@ func (client CeClient) GetClusterOptions(ctx context.Context, request GetCluster
 }
 
 // getClusterOptions implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) getClusterOptions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) getClusterOptions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clusterOptions/{clusterOptionId}")
 	if err != nil {
 		return nil, err
@@ -371,7 +371,7 @@ func (client CeClient) getClusterOptions(ctx context.Context, request common.OCI
 }
 
 // GetNodePool Get the details of a node pool.
-func (client CeClient) GetNodePool(ctx context.Context, request GetNodePoolRequest) (response GetNodePoolResponse, err error) {
+func (client ContainerEngineClient) GetNodePool(ctx context.Context, request GetNodePoolRequest) (response GetNodePoolResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -390,7 +390,7 @@ func (client CeClient) GetNodePool(ctx context.Context, request GetNodePoolReque
 }
 
 // getNodePool implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) getNodePool(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) getNodePool(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/nodePools/{nodePoolId}")
 	if err != nil {
 		return nil, err
@@ -410,7 +410,7 @@ func (client CeClient) getNodePool(ctx context.Context, request common.OCIReques
 }
 
 // GetNodePoolOptions Get options available for node pools.
-func (client CeClient) GetNodePoolOptions(ctx context.Context, request GetNodePoolOptionsRequest) (response GetNodePoolOptionsResponse, err error) {
+func (client ContainerEngineClient) GetNodePoolOptions(ctx context.Context, request GetNodePoolOptionsRequest) (response GetNodePoolOptionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -429,7 +429,7 @@ func (client CeClient) GetNodePoolOptions(ctx context.Context, request GetNodePo
 }
 
 // getNodePoolOptions implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) getNodePoolOptions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) getNodePoolOptions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/nodePoolOptions/{nodePoolOptionId}")
 	if err != nil {
 		return nil, err
@@ -449,7 +449,7 @@ func (client CeClient) getNodePoolOptions(ctx context.Context, request common.OC
 }
 
 // GetWorkRequest Get the details of a work request.
-func (client CeClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
+func (client ContainerEngineClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -468,7 +468,7 @@ func (client CeClient) GetWorkRequest(ctx context.Context, request GetWorkReques
 }
 
 // getWorkRequest implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) getWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) getWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}")
 	if err != nil {
 		return nil, err
@@ -488,7 +488,7 @@ func (client CeClient) getWorkRequest(ctx context.Context, request common.OCIReq
 }
 
 // ListClusters List all the cluster objects in a compartment.
-func (client CeClient) ListClusters(ctx context.Context, request ListClustersRequest) (response ListClustersResponse, err error) {
+func (client ContainerEngineClient) ListClusters(ctx context.Context, request ListClustersRequest) (response ListClustersResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -507,7 +507,7 @@ func (client CeClient) ListClusters(ctx context.Context, request ListClustersReq
 }
 
 // listClusters implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) listClusters(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) listClusters(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clusters")
 	if err != nil {
 		return nil, err
@@ -527,7 +527,7 @@ func (client CeClient) listClusters(ctx context.Context, request common.OCIReque
 }
 
 // ListNodePools List all the node pools in a compartment, and optionally filter by cluster.
-func (client CeClient) ListNodePools(ctx context.Context, request ListNodePoolsRequest) (response ListNodePoolsResponse, err error) {
+func (client ContainerEngineClient) ListNodePools(ctx context.Context, request ListNodePoolsRequest) (response ListNodePoolsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -546,7 +546,7 @@ func (client CeClient) ListNodePools(ctx context.Context, request ListNodePoolsR
 }
 
 // listNodePools implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) listNodePools(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) listNodePools(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/nodePools")
 	if err != nil {
 		return nil, err
@@ -566,7 +566,7 @@ func (client CeClient) listNodePools(ctx context.Context, request common.OCIRequ
 }
 
 // ListWorkRequestErrors Get the errors of a work request.
-func (client CeClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
+func (client ContainerEngineClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -585,7 +585,7 @@ func (client CeClient) ListWorkRequestErrors(ctx context.Context, request ListWo
 }
 
 // listWorkRequestErrors implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) listWorkRequestErrors(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) listWorkRequestErrors(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}/errors")
 	if err != nil {
 		return nil, err
@@ -605,7 +605,7 @@ func (client CeClient) listWorkRequestErrors(ctx context.Context, request common
 }
 
 // ListWorkRequestLogs Get the logs of a work request.
-func (client CeClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
+func (client ContainerEngineClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -624,7 +624,7 @@ func (client CeClient) ListWorkRequestLogs(ctx context.Context, request ListWork
 }
 
 // listWorkRequestLogs implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) listWorkRequestLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) listWorkRequestLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}/logs")
 	if err != nil {
 		return nil, err
@@ -644,7 +644,7 @@ func (client CeClient) listWorkRequestLogs(ctx context.Context, request common.O
 }
 
 // ListWorkRequests List all work requests in a compartment.
-func (client CeClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
+func (client ContainerEngineClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -663,7 +663,7 @@ func (client CeClient) ListWorkRequests(ctx context.Context, request ListWorkReq
 }
 
 // listWorkRequests implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) listWorkRequests(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) listWorkRequests(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests")
 	if err != nil {
 		return nil, err
@@ -683,7 +683,7 @@ func (client CeClient) listWorkRequests(ctx context.Context, request common.OCIR
 }
 
 // UpdateCluster Update the details of a cluster.
-func (client CeClient) UpdateCluster(ctx context.Context, request UpdateClusterRequest) (response UpdateClusterResponse, err error) {
+func (client ContainerEngineClient) UpdateCluster(ctx context.Context, request UpdateClusterRequest) (response UpdateClusterResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -702,7 +702,7 @@ func (client CeClient) UpdateCluster(ctx context.Context, request UpdateClusterR
 }
 
 // updateCluster implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) updateCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) updateCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/clusters/{clusterId}")
 	if err != nil {
 		return nil, err
@@ -722,7 +722,7 @@ func (client CeClient) updateCluster(ctx context.Context, request common.OCIRequ
 }
 
 // UpdateNodePool Update the details of a node pool.
-func (client CeClient) UpdateNodePool(ctx context.Context, request UpdateNodePoolRequest) (response UpdateNodePoolResponse, err error) {
+func (client ContainerEngineClient) UpdateNodePool(ctx context.Context, request UpdateNodePoolRequest) (response UpdateNodePoolResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -741,7 +741,7 @@ func (client CeClient) UpdateNodePool(ctx context.Context, request UpdateNodePoo
 }
 
 // updateNodePool implements the OCIOperation interface (enables retrying operations)
-func (client CeClient) updateNodePool(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client ContainerEngineClient) updateNodePool(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/nodePools/{nodePoolId}")
 	if err != nil {
 		return nil, err
