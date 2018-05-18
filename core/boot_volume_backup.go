@@ -65,6 +65,9 @@ type BootVolumeBackup struct {
 	// The size of the boot volume, in GBs.
 	SizeInGBs *int `mandatory:"false" json:"sizeInGBs"`
 
+	// The OCID of the source boot volume backup.
+	SourceBootVolumeBackupId *string `mandatory:"false" json:"sourceBootVolumeBackupId"`
+
 	// Specifies whether the backup was created manually, or via scheduled backup policy.
 	SourceType BootVolumeBackupSourceTypeEnum `mandatory:"false" json:"sourceType,omitempty"`
 

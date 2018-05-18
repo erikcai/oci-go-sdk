@@ -85,3 +85,12 @@ sdk_team_hide_CreateImageDetails_launchOptions
 
 # Requested by @rcohenma <ramy.cohen.masri@oracle.com>
 no_cidrBlock_internal_only
+
+# Address breaking change from 5/11
+udx-753
+# Fixes case issues found in https://jira.aka.lgl.grungy.us/browse/DEX-3416
+udx-958
+# Implements Cross-region Backup Copy
+udx-497
+# DEX-3304 - GA31
+udx-190

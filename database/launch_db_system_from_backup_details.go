@@ -93,15 +93,15 @@ type LaunchDbSystemFromBackupDetails struct {
 
 	// The Oracle Database Edition that applies to all the databases on the DB System.
 	// Exadata DB Systems and 2-node RAC DB Systems require ENTERPRISE_EDITION_EXTREME_PERFORMANCE.
-	DatabaseEdition LaunchDbSystemBaseDatabaseEditionEnum `mandatory:"true" json:"databaseEdition"`
+	DatabaseEdition LaunchDbSystemFromBackupDetailsDatabaseEditionEnum `mandatory:"true" json:"databaseEdition"`
 
 	// The type of redundancy configured for the DB System.
 	// Normal is 2-way redundancy, recommended for test and development systems.
 	// High is 3-way redundancy, recommended for production systems.
-	DiskRedundancy LaunchDbSystemBaseDiskRedundancyEnum `mandatory:"false" json:"diskRedundancy,omitempty"`
+	DiskRedundancy LaunchDbSystemFromBackupDetailsDiskRedundancyEnum `mandatory:"false" json:"diskRedundancy,omitempty"`
 
 	// The Oracle license model that applies to all the databases on the DB System. The default is LICENSE_INCLUDED.
-	LicenseModel LaunchDbSystemBaseLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
+	LicenseModel LaunchDbSystemFromBackupDetailsLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 }
 
 //GetAvailabilityDomain returns AvailabilityDomain
@@ -134,19 +134,9 @@ func (m LaunchDbSystemFromBackupDetails) GetDataStoragePercentage() *int {
 	return m.DataStoragePercentage
 }
 
-//GetDatabaseEdition returns DatabaseEdition
-func (m LaunchDbSystemFromBackupDetails) GetDatabaseEdition() LaunchDbSystemBaseDatabaseEditionEnum {
-	return m.DatabaseEdition
-}
-
 //GetDefinedTags returns DefinedTags
 func (m LaunchDbSystemFromBackupDetails) GetDefinedTags() map[string]map[string]interface{} {
 	return m.DefinedTags
-}
-
-//GetDiskRedundancy returns DiskRedundancy
-func (m LaunchDbSystemFromBackupDetails) GetDiskRedundancy() LaunchDbSystemBaseDiskRedundancyEnum {
-	return m.DiskRedundancy
 }
 
 //GetDisplayName returns DisplayName
@@ -172,11 +162,6 @@ func (m LaunchDbSystemFromBackupDetails) GetHostname() *string {
 //GetInitialDataStorageSizeInGB returns InitialDataStorageSizeInGB
 func (m LaunchDbSystemFromBackupDetails) GetInitialDataStorageSizeInGB() *int {
 	return m.InitialDataStorageSizeInGB
-}
-
-//GetLicenseModel returns LicenseModel
-func (m LaunchDbSystemFromBackupDetails) GetLicenseModel() LaunchDbSystemBaseLicenseModelEnum {
-	return m.LicenseModel
 }
 
 //GetNodeCount returns NodeCount
@@ -215,4 +200,77 @@ func (m LaunchDbSystemFromBackupDetails) MarshalJSON() (buff []byte, e error) {
 	}
 
 	return json.Marshal(&s)
+}
+
+// LaunchDbSystemFromBackupDetailsDatabaseEditionEnum Enum with underlying type: string
+type LaunchDbSystemFromBackupDetailsDatabaseEditionEnum string
+
+// Set of constants representing the allowable values for LaunchDbSystemFromBackupDetailsDatabaseEdition
+const (
+	LaunchDbSystemFromBackupDetailsDatabaseEditionStandardEdition                     LaunchDbSystemFromBackupDetailsDatabaseEditionEnum = "STANDARD_EDITION"
+	LaunchDbSystemFromBackupDetailsDatabaseEditionEnterpriseEdition                   LaunchDbSystemFromBackupDetailsDatabaseEditionEnum = "ENTERPRISE_EDITION"
+	LaunchDbSystemFromBackupDetailsDatabaseEditionEnterpriseEditionExtremePerformance LaunchDbSystemFromBackupDetailsDatabaseEditionEnum = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
+	LaunchDbSystemFromBackupDetailsDatabaseEditionEnterpriseEditionHighPerformance    LaunchDbSystemFromBackupDetailsDatabaseEditionEnum = "ENTERPRISE_EDITION_HIGH_PERFORMANCE"
+)
+
+var mappingLaunchDbSystemFromBackupDetailsDatabaseEdition = map[string]LaunchDbSystemFromBackupDetailsDatabaseEditionEnum{
+	"STANDARD_EDITION":                       LaunchDbSystemFromBackupDetailsDatabaseEditionStandardEdition,
+	"ENTERPRISE_EDITION":                     LaunchDbSystemFromBackupDetailsDatabaseEditionEnterpriseEdition,
+	"ENTERPRISE_EDITION_EXTREME_PERFORMANCE": LaunchDbSystemFromBackupDetailsDatabaseEditionEnterpriseEditionExtremePerformance,
+	"ENTERPRISE_EDITION_HIGH_PERFORMANCE":    LaunchDbSystemFromBackupDetailsDatabaseEditionEnterpriseEditionHighPerformance,
+}
+
+// GetLaunchDbSystemFromBackupDetailsDatabaseEditionEnumValues Enumerates the set of values for LaunchDbSystemFromBackupDetailsDatabaseEdition
+func GetLaunchDbSystemFromBackupDetailsDatabaseEditionEnumValues() []LaunchDbSystemFromBackupDetailsDatabaseEditionEnum {
+	values := make([]LaunchDbSystemFromBackupDetailsDatabaseEditionEnum, 0)
+	for _, v := range mappingLaunchDbSystemFromBackupDetailsDatabaseEdition {
+		values = append(values, v)
+	}
+	return values
+}
+
+// LaunchDbSystemFromBackupDetailsDiskRedundancyEnum Enum with underlying type: string
+type LaunchDbSystemFromBackupDetailsDiskRedundancyEnum string
+
+// Set of constants representing the allowable values for LaunchDbSystemFromBackupDetailsDiskRedundancy
+const (
+	LaunchDbSystemFromBackupDetailsDiskRedundancyHigh   LaunchDbSystemFromBackupDetailsDiskRedundancyEnum = "HIGH"
+	LaunchDbSystemFromBackupDetailsDiskRedundancyNormal LaunchDbSystemFromBackupDetailsDiskRedundancyEnum = "NORMAL"
+)
+
+var mappingLaunchDbSystemFromBackupDetailsDiskRedundancy = map[string]LaunchDbSystemFromBackupDetailsDiskRedundancyEnum{
+	"HIGH":   LaunchDbSystemFromBackupDetailsDiskRedundancyHigh,
+	"NORMAL": LaunchDbSystemFromBackupDetailsDiskRedundancyNormal,
+}
+
+// GetLaunchDbSystemFromBackupDetailsDiskRedundancyEnumValues Enumerates the set of values for LaunchDbSystemFromBackupDetailsDiskRedundancy
+func GetLaunchDbSystemFromBackupDetailsDiskRedundancyEnumValues() []LaunchDbSystemFromBackupDetailsDiskRedundancyEnum {
+	values := make([]LaunchDbSystemFromBackupDetailsDiskRedundancyEnum, 0)
+	for _, v := range mappingLaunchDbSystemFromBackupDetailsDiskRedundancy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// LaunchDbSystemFromBackupDetailsLicenseModelEnum Enum with underlying type: string
+type LaunchDbSystemFromBackupDetailsLicenseModelEnum string
+
+// Set of constants representing the allowable values for LaunchDbSystemFromBackupDetailsLicenseModel
+const (
+	LaunchDbSystemFromBackupDetailsLicenseModelLicenseIncluded     LaunchDbSystemFromBackupDetailsLicenseModelEnum = "LICENSE_INCLUDED"
+	LaunchDbSystemFromBackupDetailsLicenseModelBringYourOwnLicense LaunchDbSystemFromBackupDetailsLicenseModelEnum = "BRING_YOUR_OWN_LICENSE"
+)
+
+var mappingLaunchDbSystemFromBackupDetailsLicenseModel = map[string]LaunchDbSystemFromBackupDetailsLicenseModelEnum{
+	"LICENSE_INCLUDED":       LaunchDbSystemFromBackupDetailsLicenseModelLicenseIncluded,
+	"BRING_YOUR_OWN_LICENSE": LaunchDbSystemFromBackupDetailsLicenseModelBringYourOwnLicense,
+}
+
+// GetLaunchDbSystemFromBackupDetailsLicenseModelEnumValues Enumerates the set of values for LaunchDbSystemFromBackupDetailsLicenseModel
+func GetLaunchDbSystemFromBackupDetailsLicenseModelEnumValues() []LaunchDbSystemFromBackupDetailsLicenseModelEnum {
+	values := make([]LaunchDbSystemFromBackupDetailsLicenseModelEnum, 0)
+	for _, v := range mappingLaunchDbSystemFromBackupDetailsLicenseModel {
+		values = append(values, v)
+	}
+	return values
 }

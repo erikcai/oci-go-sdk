@@ -58,6 +58,86 @@ func (client *BlockstorageClient) ConfigurationProvider() *common.ConfigurationP
 	return client.config
 }
 
+// CopyBootVolumeBackup Creates a boot volume backup copy in specified region. For general information about volume backups,
+// see Overview of Block Volume Service Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/blockvolumebackups.htm#boot)
+func (client BlockstorageClient) CopyBootVolumeBackup(ctx context.Context, request CopyBootVolumeBackupRequest) (response CopyBootVolumeBackupResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.copyBootVolumeBackup, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CopyBootVolumeBackupResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CopyBootVolumeBackupResponse")
+	}
+	return
+}
+
+// copyBootVolumeBackup implements the OCIOperation interface (enables retrying operations)
+func (client BlockstorageClient) copyBootVolumeBackup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/bootVolumeBackups/{bootVolumeBackupId}/actions/copy")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CopyBootVolumeBackupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CopyVolumeBackup Creates a volume backup copy in specified region. For general information about volume backups,
+// see Overview of Block Volume Service Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/blockvolumebackups.htm#boot)
+func (client BlockstorageClient) CopyVolumeBackup(ctx context.Context, request CopyVolumeBackupRequest) (response CopyVolumeBackupResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.copyVolumeBackup, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CopyVolumeBackupResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CopyVolumeBackupResponse")
+	}
+	return
+}
+
+// copyVolumeBackup implements the OCIOperation interface (enables retrying operations)
+func (client BlockstorageClient) copyVolumeBackup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/volumeBackups/{volumeBackupId}/actions/copy")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CopyVolumeBackupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateBootVolume Creates a new boot volume in the specified compartment from an existing boot volume or a boot volume backup.
 // For general information about boot volumes, see Boot Volumes (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/bootvolumes.htm).
 // You may optionally specify a *display name* for the volume, which is simply a friendly name or

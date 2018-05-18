@@ -16,10 +16,10 @@
         <spec.temp.dir>${project.build.directory}</spec.temp.dir>
         <preferred.temp.dir>${project.build.directory}/preferred</preferred.temp.dir>
         <preprocessed.temp.dir>${project.build.directory}/preprocessed</preprocessed.temp.dir>
-        <core.artifact.version>0.2.57</core.artifact.version>
+        <core.artifact.version>0.2.65</core.artifact.version>
         <core.artifact.id>coreservices-api-spec</core.artifact.id>
         <core.spec.name>coreservices-api-spec-20160918.cond.yaml</core.spec.name>
-        <identity.artifact.version>0.2.16-PREVIEW</identity.artifact.version>
+        <identity.artifact.version>0.2.17-PREVIEW</identity.artifact.version>
         <identity.artifact.id>identity-control-plane-api-spec-preview</identity.artifact.id>
         <identity.spec.name>identity-control-plane-api-spec-20160918.yaml</identity.spec.name>
         <lb.artifact.version>1.0.16</lb.artifact.version>
@@ -28,7 +28,7 @@
         <objectstorage.artifact.version>1.1.21-PREVIEW</objectstorage.artifact.version>
         <objectstorage.artifact.id>casper-api-spec</objectstorage.artifact.id>
         <objectstorage.spec.name>casper-api.yaml</objectstorage.spec.name>
-        <database.artifact.version>0.0.11-releasePreview</database.artifact.version>
+        <database.artifact.version>0.0.12-releasePreview</database.artifact.version>
         <database.artifact.id>dbaas-api-spec</database.artifact.id>
         <database.spec.name>dbaas-api-spec-20160918.yaml</database.spec.name>
         <audit.artifact.version>0.1.8</audit.artifact.version>

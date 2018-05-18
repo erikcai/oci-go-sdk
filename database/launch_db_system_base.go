@@ -31,10 +31,6 @@ type LaunchDbSystemBase interface {
 	// For VM DB systems, the core count is inferred from the specific VM shape chosen, so this parameter is not used.
 	GetCpuCoreCount() *int
 
-	// The Oracle Database Edition that applies to all the databases on the DB System.
-	// Exadata DB Systems and 2-node RAC DB Systems require ENTERPRISE_EDITION_EXTREME_PERFORMANCE.
-	GetDatabaseEdition() LaunchDbSystemBaseDatabaseEditionEnum
-
 	// The host name for the DB System. The host name must begin with an alphabetic character and
 	// can contain a maximum of 30 alphanumeric characters, including hyphens (-).
 	// The maximum length of the combined hostname and domain is 63 characters.
@@ -74,11 +70,6 @@ type LaunchDbSystemBase interface {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	GetDefinedTags() map[string]map[string]interface{}
 
-	// The type of redundancy configured for the DB System.
-	// Normal is 2-way redundancy, recommended for test and development systems.
-	// High is 3-way redundancy, recommended for production systems.
-	GetDiskRedundancy() LaunchDbSystemBaseDiskRedundancyEnum
-
 	// The user-friendly name for the DB System. It does not have to be unique.
 	GetDisplayName() *string
 
@@ -95,35 +86,29 @@ type LaunchDbSystemBase interface {
 	// Size, in GBs, of the initial data volume that will be created and attached to VM-shape based DB system. This storage can later be scaled up if needed. Note that the total storage size attached will be more than what is requested, to account for REDO/RECO space and software volume.
 	GetInitialDataStorageSizeInGB() *int
 
-	// The Oracle license model that applies to all the databases on the DB System. The default is LICENSE_INCLUDED.
-	GetLicenseModel() LaunchDbSystemBaseLicenseModelEnum
-
 	// Number of nodes to launch for a VM-shape based RAC DB system.
 	GetNodeCount() *int
 }
 
 type launchdbsystembase struct {
 	JsonData                   []byte
-	AvailabilityDomain         *string                               `mandatory:"true" json:"availabilityDomain"`
-	CompartmentId              *string                               `mandatory:"true" json:"compartmentId"`
-	CpuCoreCount               *int                                  `mandatory:"true" json:"cpuCoreCount"`
-	DatabaseEdition            LaunchDbSystemBaseDatabaseEditionEnum `mandatory:"true" json:"databaseEdition"`
-	Hostname                   *string                               `mandatory:"true" json:"hostname"`
-	Shape                      *string                               `mandatory:"true" json:"shape"`
-	SshPublicKeys              []string                              `mandatory:"true" json:"sshPublicKeys"`
-	SubnetId                   *string                               `mandatory:"true" json:"subnetId"`
-	BackupSubnetId             *string                               `mandatory:"false" json:"backupSubnetId"`
-	ClusterName                *string                               `mandatory:"false" json:"clusterName"`
-	DataStoragePercentage      *int                                  `mandatory:"false" json:"dataStoragePercentage"`
-	DefinedTags                map[string]map[string]interface{}     `mandatory:"false" json:"definedTags"`
-	DiskRedundancy             LaunchDbSystemBaseDiskRedundancyEnum  `mandatory:"false" json:"diskRedundancy,omitempty"`
-	DisplayName                *string                               `mandatory:"false" json:"displayName"`
-	Domain                     *string                               `mandatory:"false" json:"domain"`
-	FreeformTags               map[string]string                     `mandatory:"false" json:"freeformTags"`
-	InitialDataStorageSizeInGB *int                                  `mandatory:"false" json:"initialDataStorageSizeInGB"`
-	LicenseModel               LaunchDbSystemBaseLicenseModelEnum    `mandatory:"false" json:"licenseModel,omitempty"`
-	NodeCount                  *int                                  `mandatory:"false" json:"nodeCount"`
-	Source                     string                                `json:"source"`
+	AvailabilityDomain         *string                           `mandatory:"true" json:"availabilityDomain"`
+	CompartmentId              *string                           `mandatory:"true" json:"compartmentId"`
+	CpuCoreCount               *int                              `mandatory:"true" json:"cpuCoreCount"`
+	Hostname                   *string                           `mandatory:"true" json:"hostname"`
+	Shape                      *string                           `mandatory:"true" json:"shape"`
+	SshPublicKeys              []string                          `mandatory:"true" json:"sshPublicKeys"`
+	SubnetId                   *string                           `mandatory:"true" json:"subnetId"`
+	BackupSubnetId             *string                           `mandatory:"false" json:"backupSubnetId"`
+	ClusterName                *string                           `mandatory:"false" json:"clusterName"`
+	DataStoragePercentage      *int                              `mandatory:"false" json:"dataStoragePercentage"`
+	DefinedTags                map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+	DisplayName                *string                           `mandatory:"false" json:"displayName"`
+	Domain                     *string                           `mandatory:"false" json:"domain"`
+	FreeformTags               map[string]string                 `mandatory:"false" json:"freeformTags"`
+	InitialDataStorageSizeInGB *int                              `mandatory:"false" json:"initialDataStorageSizeInGB"`
+	NodeCount                  *int                              `mandatory:"false" json:"nodeCount"`
+	Source                     string                            `json:"source"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -140,7 +125,6 @@ func (m *launchdbsystembase) UnmarshalJSON(data []byte) error {
 	m.AvailabilityDomain = s.Model.AvailabilityDomain
 	m.CompartmentId = s.Model.CompartmentId
 	m.CpuCoreCount = s.Model.CpuCoreCount
-	m.DatabaseEdition = s.Model.DatabaseEdition
 	m.Hostname = s.Model.Hostname
 	m.Shape = s.Model.Shape
 	m.SshPublicKeys = s.Model.SshPublicKeys
@@ -149,12 +133,10 @@ func (m *launchdbsystembase) UnmarshalJSON(data []byte) error {
 	m.ClusterName = s.Model.ClusterName
 	m.DataStoragePercentage = s.Model.DataStoragePercentage
 	m.DefinedTags = s.Model.DefinedTags
-	m.DiskRedundancy = s.Model.DiskRedundancy
 	m.DisplayName = s.Model.DisplayName
 	m.Domain = s.Model.Domain
 	m.FreeformTags = s.Model.FreeformTags
 	m.InitialDataStorageSizeInGB = s.Model.InitialDataStorageSizeInGB
-	m.LicenseModel = s.Model.LicenseModel
 	m.NodeCount = s.Model.NodeCount
 	m.Source = s.Model.Source
 
@@ -191,11 +173,6 @@ func (m launchdbsystembase) GetCompartmentId() *string {
 //GetCpuCoreCount returns CpuCoreCount
 func (m launchdbsystembase) GetCpuCoreCount() *int {
 	return m.CpuCoreCount
-}
-
-//GetDatabaseEdition returns DatabaseEdition
-func (m launchdbsystembase) GetDatabaseEdition() LaunchDbSystemBaseDatabaseEditionEnum {
-	return m.DatabaseEdition
 }
 
 //GetHostname returns Hostname
@@ -238,11 +215,6 @@ func (m launchdbsystembase) GetDefinedTags() map[string]map[string]interface{} {
 	return m.DefinedTags
 }
 
-//GetDiskRedundancy returns DiskRedundancy
-func (m launchdbsystembase) GetDiskRedundancy() LaunchDbSystemBaseDiskRedundancyEnum {
-	return m.DiskRedundancy
-}
-
 //GetDisplayName returns DisplayName
 func (m launchdbsystembase) GetDisplayName() *string {
 	return m.DisplayName
@@ -263,11 +235,6 @@ func (m launchdbsystembase) GetInitialDataStorageSizeInGB() *int {
 	return m.InitialDataStorageSizeInGB
 }
 
-//GetLicenseModel returns LicenseModel
-func (m launchdbsystembase) GetLicenseModel() LaunchDbSystemBaseLicenseModelEnum {
-	return m.LicenseModel
-}
-
 //GetNodeCount returns NodeCount
 func (m launchdbsystembase) GetNodeCount() *int {
 	return m.NodeCount
@@ -275,77 +242,4 @@ func (m launchdbsystembase) GetNodeCount() *int {
 
 func (m launchdbsystembase) String() string {
 	return common.PointerString(m)
-}
-
-// LaunchDbSystemBaseDatabaseEditionEnum Enum with underlying type: string
-type LaunchDbSystemBaseDatabaseEditionEnum string
-
-// Set of constants representing the allowable values for LaunchDbSystemBaseDatabaseEdition
-const (
-	LaunchDbSystemBaseDatabaseEditionStandardEdition                     LaunchDbSystemBaseDatabaseEditionEnum = "STANDARD_EDITION"
-	LaunchDbSystemBaseDatabaseEditionEnterpriseEdition                   LaunchDbSystemBaseDatabaseEditionEnum = "ENTERPRISE_EDITION"
-	LaunchDbSystemBaseDatabaseEditionEnterpriseEditionExtremePerformance LaunchDbSystemBaseDatabaseEditionEnum = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
-	LaunchDbSystemBaseDatabaseEditionEnterpriseEditionHighPerformance    LaunchDbSystemBaseDatabaseEditionEnum = "ENTERPRISE_EDITION_HIGH_PERFORMANCE"
-)
-
-var mappingLaunchDbSystemBaseDatabaseEdition = map[string]LaunchDbSystemBaseDatabaseEditionEnum{
-	"STANDARD_EDITION":                       LaunchDbSystemBaseDatabaseEditionStandardEdition,
-	"ENTERPRISE_EDITION":                     LaunchDbSystemBaseDatabaseEditionEnterpriseEdition,
-	"ENTERPRISE_EDITION_EXTREME_PERFORMANCE": LaunchDbSystemBaseDatabaseEditionEnterpriseEditionExtremePerformance,
-	"ENTERPRISE_EDITION_HIGH_PERFORMANCE":    LaunchDbSystemBaseDatabaseEditionEnterpriseEditionHighPerformance,
-}
-
-// GetLaunchDbSystemBaseDatabaseEditionEnumValues Enumerates the set of values for LaunchDbSystemBaseDatabaseEdition
-func GetLaunchDbSystemBaseDatabaseEditionEnumValues() []LaunchDbSystemBaseDatabaseEditionEnum {
-	values := make([]LaunchDbSystemBaseDatabaseEditionEnum, 0)
-	for _, v := range mappingLaunchDbSystemBaseDatabaseEdition {
-		values = append(values, v)
-	}
-	return values
-}
-
-// LaunchDbSystemBaseDiskRedundancyEnum Enum with underlying type: string
-type LaunchDbSystemBaseDiskRedundancyEnum string
-
-// Set of constants representing the allowable values for LaunchDbSystemBaseDiskRedundancy
-const (
-	LaunchDbSystemBaseDiskRedundancyHigh   LaunchDbSystemBaseDiskRedundancyEnum = "HIGH"
-	LaunchDbSystemBaseDiskRedundancyNormal LaunchDbSystemBaseDiskRedundancyEnum = "NORMAL"
-)
-
-var mappingLaunchDbSystemBaseDiskRedundancy = map[string]LaunchDbSystemBaseDiskRedundancyEnum{
-	"HIGH":   LaunchDbSystemBaseDiskRedundancyHigh,
-	"NORMAL": LaunchDbSystemBaseDiskRedundancyNormal,
-}
-
-// GetLaunchDbSystemBaseDiskRedundancyEnumValues Enumerates the set of values for LaunchDbSystemBaseDiskRedundancy
-func GetLaunchDbSystemBaseDiskRedundancyEnumValues() []LaunchDbSystemBaseDiskRedundancyEnum {
-	values := make([]LaunchDbSystemBaseDiskRedundancyEnum, 0)
-	for _, v := range mappingLaunchDbSystemBaseDiskRedundancy {
-		values = append(values, v)
-	}
-	return values
-}
-
-// LaunchDbSystemBaseLicenseModelEnum Enum with underlying type: string
-type LaunchDbSystemBaseLicenseModelEnum string
-
-// Set of constants representing the allowable values for LaunchDbSystemBaseLicenseModel
-const (
-	LaunchDbSystemBaseLicenseModelLicenseIncluded     LaunchDbSystemBaseLicenseModelEnum = "LICENSE_INCLUDED"
-	LaunchDbSystemBaseLicenseModelBringYourOwnLicense LaunchDbSystemBaseLicenseModelEnum = "BRING_YOUR_OWN_LICENSE"
-)
-
-var mappingLaunchDbSystemBaseLicenseModel = map[string]LaunchDbSystemBaseLicenseModelEnum{
-	"LICENSE_INCLUDED":       LaunchDbSystemBaseLicenseModelLicenseIncluded,
-	"BRING_YOUR_OWN_LICENSE": LaunchDbSystemBaseLicenseModelBringYourOwnLicense,
-}
-
-// GetLaunchDbSystemBaseLicenseModelEnumValues Enumerates the set of values for LaunchDbSystemBaseLicenseModel
-func GetLaunchDbSystemBaseLicenseModelEnumValues() []LaunchDbSystemBaseLicenseModelEnum {
-	values := make([]LaunchDbSystemBaseLicenseModelEnum, 0)
-	for _, v := range mappingLaunchDbSystemBaseLicenseModel {
-		values = append(values, v)
-	}
-	return values
 }

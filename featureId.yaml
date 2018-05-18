@@ -67,3 +67,11 @@ whitelisted:
   # Services spec. Now that we are moving to the merged spec it is tagged with a feature ID so to keep the
   # feature in preview we add an entry for it here
   - udx-709
+  # Address breaking change from 5/11
+  - udx-753
+  # Fixes case issues found in https://jira.aka.lgl.grungy.us/browse/DEX-3416
+  - udx-958
+  # Implements Cross-region Backup Copy
+  - udx-497
+  # DEX-3304 - GA31
+  - udx-190

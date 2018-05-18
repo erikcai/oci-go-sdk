@@ -987,7 +987,7 @@ func (client IdentityClient) DeleteAuthToken(ctx context.Context, request Delete
 
 // deleteAuthToken implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) deleteAuthToken(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/users/{userId}/authTokens/{AuthTokenId}")
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/users/{userId}/authTokens/{authTokenId}")
 	if err != nil {
 		return nil, err
 	}
@@ -2919,7 +2919,7 @@ func (client IdentityClient) UpdateAuthToken(ctx context.Context, request Update
 
 // updateAuthToken implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) updateAuthToken(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/users/{userId}/authTokens/{AuthTokenId}")
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/users/{userId}/authTokens/{authTokenId}")
 	if err != nil {
 		return nil, err
 	}
