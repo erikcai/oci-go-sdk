@@ -28,6 +28,9 @@ type AutonomousDataWarehouseBackup struct {
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the Autonomous Data Warehouse backup.
 	Id *string `mandatory:"true" json:"id"`
 
+	// Indicates whether the backup is user-initiated or automatic.
+	IsAutomatic *bool `mandatory:"true" json:"isAutomatic"`
+
 	// The current state of the backup.
 	LifecycleState AutonomousDataWarehouseBackupLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
