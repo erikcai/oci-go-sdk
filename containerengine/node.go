@@ -34,7 +34,7 @@ type Node struct {
 	PublicIp *string `mandatory:"false" json:"publicIp"`
 
 	// An error that may be associated with the node.
-	NodeError *NodeError `mandatory:"false" json:"error"`
+	NodeError *NodeError `mandatory:"false" json:"nodeError"`
 
 	// The state of the node.
 	LifecycleState NodeLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`

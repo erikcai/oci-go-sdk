@@ -25,6 +25,9 @@ type JobSummary struct {
 	// The type of job executing
 	Operation JobSummaryOperationEnum `mandatory:"false" json:"operation,omitempty"`
 
+	// The job to use as input plan for this apply. Only valid on apply. Must be the id of the most recent PLAN job. May be sentinel value LATEST, to use latest job without specifying id. May be sentinel AUTO_APPROVE to use the configuration directly without reference to any execution plan.
+	PlanJob *string `mandatory:"false" json:"planJob"`
+
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// The time the job succeeded or failed

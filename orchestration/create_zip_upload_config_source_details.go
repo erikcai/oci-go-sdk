@@ -16,6 +16,14 @@ import (
 // CreateZipUploadConfigSourceDetails The representation of CreateZipUploadConfigSourceDetails
 type CreateZipUploadConfigSourceDetails struct {
 	ZipFileBase64Encoded *string `mandatory:"true" json:"zipFileBase64Encoded"`
+
+	// The path of the directory from which to run terraform. If not specified the the root will be used.
+	WorkingDirectory *string `mandatory:"false" json:"workingDirectory"`
+}
+
+//GetWorkingDirectory returns WorkingDirectory
+func (m CreateZipUploadConfigSourceDetails) GetWorkingDirectory() *string {
+	return m.WorkingDirectory
 }
 
 func (m CreateZipUploadConfigSourceDetails) String() string {
@@ -26,10 +34,10 @@ func (m CreateZipUploadConfigSourceDetails) String() string {
 func (m CreateZipUploadConfigSourceDetails) MarshalJSON() (buff []byte, e error) {
 	type MarshalTypeCreateZipUploadConfigSourceDetails CreateZipUploadConfigSourceDetails
 	s := struct {
-		DiscriminatorParam string `json:"type"`
+		DiscriminatorParam string `json:"configSourceType"`
 		MarshalTypeCreateZipUploadConfigSourceDetails
 	}{
-		"ZIPUPLOAD",
+		"ZIP_UPLOAD",
 		(MarshalTypeCreateZipUploadConfigSourceDetails)(m),
 	}
 

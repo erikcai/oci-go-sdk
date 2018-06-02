@@ -54,7 +54,7 @@
         <resourcesearch.spec.name>rqs.yaml</resourcesearch.spec.name>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <enabled.groups.file>${project.basedir}/preview-sdk.txt</enabled.groups.file>
-        <containerengine.artifact.version>1.0.9</containerengine.artifact.version>
+        <containerengine.artifact.version>1.0.10</containerengine.artifact.version>
         <containerengine.artifact.id>clusters-api-spec</containerengine.artifact.id>
         <containerengine.spec.name>clusters-api-spec.yaml</containerengine.spec.name>
     </properties>

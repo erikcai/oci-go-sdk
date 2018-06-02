@@ -15,7 +15,14 @@ import (
 
 // ZipUploadConfigSource The representation of ZipUploadConfigSource
 type ZipUploadConfigSource struct {
-	Dummy *string `mandatory:"false" json:"dummy"`
+
+	// The path of the directory from which to run terraform. If not specified the the root will be used.
+	WorkingDirectory *string `mandatory:"false" json:"workingDirectory"`
+}
+
+//GetWorkingDirectory returns WorkingDirectory
+func (m ZipUploadConfigSource) GetWorkingDirectory() *string {
+	return m.WorkingDirectory
 }
 
 func (m ZipUploadConfigSource) String() string {
@@ -26,10 +33,10 @@ func (m ZipUploadConfigSource) String() string {
 func (m ZipUploadConfigSource) MarshalJSON() (buff []byte, e error) {
 	type MarshalTypeZipUploadConfigSource ZipUploadConfigSource
 	s := struct {
-		DiscriminatorParam string `json:"type"`
+		DiscriminatorParam string `json:"configSourceType"`
 		MarshalTypeZipUploadConfigSource
 	}{
-		"ZIPUPLOAD",
+		"ZIP_UPLOAD",
 		(MarshalTypeZipUploadConfigSource)(m),
 	}
 

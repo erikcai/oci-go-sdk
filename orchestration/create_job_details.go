@@ -21,7 +21,8 @@ type CreateJobDetails struct {
 
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	Variables map[string]string `mandatory:"false" json:"variables"`
+	// The job to use an input plan for this apply. Only valid on apply. Must be the id of the most recent PLAN job. May be sentinel value LATEST, to use latest job without specifying id. May be sentinel AUTO_APPROVE to use the configuration directly without reference to any execution plan.
+	PlanJob *string `mandatory:"false" json:"planJob"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).

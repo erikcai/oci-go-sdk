@@ -94,3 +94,14 @@ udx-958
 udx-497
 # DEX-3304 - GA31
 udx-190
+# DEX-3523
+udx-788 
+udx-677
+udx-1043
+udx-74
+udx-80
+udx-188
+udx-552
+udx-588
+udx-810
+udx-181

@@ -15,11 +15,15 @@ import (
 
 // CreateConfigSourceDetails The representation of CreateConfigSourceDetails
 type CreateConfigSourceDetails interface {
+
+	// The path of the directory from which to run terraform. If not specified the the root will be used.
+	GetWorkingDirectory() *string
 }
 
 type createconfigsourcedetails struct {
-	JsonData []byte
-	Type     string `json:"type"`
+	JsonData         []byte
+	WorkingDirectory *string `mandatory:"false" json:"workingDirectory"`
+	ConfigSourceType string  `json:"configSourceType"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -33,7 +37,8 @@ func (m *createconfigsourcedetails) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
-	m.Type = s.Model.Type
+	m.WorkingDirectory = s.Model.WorkingDirectory
+	m.ConfigSourceType = s.Model.ConfigSourceType
 
 	return err
 }
@@ -41,14 +46,19 @@ func (m *createconfigsourcedetails) UnmarshalJSON(data []byte) error {
 // UnmarshalPolymorphicJSON unmarshals polymorphic json
 func (m *createconfigsourcedetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 	var err error
-	switch m.Type {
-	case "ZIPUPLOAD":
+	switch m.ConfigSourceType {
+	case "ZIP_UPLOAD":
 		mm := CreateZipUploadConfigSourceDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:
 		return m, nil
 	}
+}
+
+//GetWorkingDirectory returns WorkingDirectory
+func (m createconfigsourcedetails) GetWorkingDirectory() *string {
+	return m.WorkingDirectory
 }
 
 func (m createconfigsourcedetails) String() string {
