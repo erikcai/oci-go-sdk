@@ -120,7 +120,7 @@ func GetRequestMetadataWithDefaultRetryPolicy() common.RequestMetadata {
 // input function (retry until the function return false)
 func GetRequestMetadataWithCustomizedRetryPolicy(fn func(r common.OCIOperationResponse) bool) common.RequestMetadata {
 	return common.RequestMetadata{
-		RetryPolicy: getExponentialBackoffRetryPolicy(uint(10), fn),
+		RetryPolicy: getExponentialBackoffRetryPolicy(uint(20), fn),
 	}
 }
 
