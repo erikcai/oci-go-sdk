@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -12,13 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// KeyShape TODO
+// KeyShape The cryptographic properties of a key.
 type KeyShape struct {
 
-	// The algorithm used by a Key's KeyVersions.  TODO description
+	// The algorithm used by a key's KeyVersions to encrypt or decrypt.
 	Algorithm KeyShapeAlgorithmEnum `mandatory:"true" json:"algorithm"`
 
-	// The length of the Key.  TODO description
+	// The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported.
 	Length *int `mandatory:"true" json:"length"`
 }
 

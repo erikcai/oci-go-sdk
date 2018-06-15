@@ -9,6 +9,7 @@
 package core
 
 import (
+	"encoding/json"
 	"github.com/oracle/oci-go-sdk/common"
 )
 
@@ -20,8 +21,6 @@ type InstanceConfiguration struct {
 
 	// The OCID of the instance configuration
 	Id *string `mandatory:"true" json:"id"`
-
-	MissingRequiredFields []string `mandatory:"true" json:"missingRequiredFields"`
 
 	// The date and time the instance configuration was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
@@ -41,9 +40,46 @@ type InstanceConfiguration struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	InstanceConfigurationInstanceDetails *InstanceConfigurationInstanceDetails `mandatory:"false" json:"instanceConfigurationInstanceDetails"`
+	InstanceDetails InstanceConfigurationInstanceDetails `mandatory:"false" json:"instanceDetails"`
+
+	DeferredFields []string `mandatory:"false" json:"deferredFields"`
 }
 
 func (m InstanceConfiguration) String() string {
 	return common.PointerString(m)
+}
+
+// UnmarshalJSON unmarshals from json
+func (m *InstanceConfiguration) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		DefinedTags     map[string]map[string]interface{}    `json:"definedTags"`
+		DisplayName     *string                              `json:"displayName"`
+		FreeformTags    map[string]string                    `json:"freeformTags"`
+		InstanceDetails instanceconfigurationinstancedetails `json:"instanceDetails"`
+		DeferredFields  []string                             `json:"deferredFields"`
+		CompartmentId   *string                              `json:"compartmentId"`
+		Id              *string                              `json:"id"`
+		TimeCreated     *common.SDKTime                      `json:"timeCreated"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	m.DefinedTags = model.DefinedTags
+	m.DisplayName = model.DisplayName
+	m.FreeformTags = model.FreeformTags
+	nn, e := model.InstanceDetails.UnmarshalPolymorphicJSON(model.InstanceDetails.JsonData)
+	if e != nil {
+		return
+	}
+	m.InstanceDetails = nn.(InstanceConfigurationInstanceDetails)
+	m.DeferredFields = make([]string, len(model.DeferredFields))
+	for i, n := range model.DeferredFields {
+		m.DeferredFields[i] = n
+	}
+	m.CompartmentId = model.CompartmentId
+	m.Id = model.Id
+	m.TimeCreated = model.TimeCreated
+	return
 }

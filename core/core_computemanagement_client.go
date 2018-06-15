@@ -252,3 +252,42 @@ func (client ComputeManagementClient) listInstanceConfigurations(ctx context.Con
 	err = common.UnmarshalResponse(httpResponse, &response)
 	return response, err
 }
+
+// UpdateInstanceConfiguration Updates the freeFormTags, definedTags, and display name of an instance configuration.
+func (client ComputeManagementClient) UpdateInstanceConfiguration(ctx context.Context, request UpdateInstanceConfigurationRequest) (response UpdateInstanceConfigurationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateInstanceConfiguration, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateInstanceConfigurationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateInstanceConfigurationResponse")
+	}
+	return
+}
+
+// updateInstanceConfiguration implements the OCIOperation interface (enables retrying operations)
+func (client ComputeManagementClient) updateInstanceConfiguration(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/instanceConfigurations/{instanceConfigurationId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateInstanceConfigurationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}

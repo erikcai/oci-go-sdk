@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -15,7 +15,7 @@ import (
 // UpdateKeyDetails The representation of UpdateKeyDetails
 type UpdateKeyDetails struct {
 
-	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly name for the key. It does not have to be unique, and it is changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }

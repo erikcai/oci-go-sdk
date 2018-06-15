@@ -17,7 +17,8 @@ import (
 // service (see ListServices) is routed through the
 // service gateway and does not traverse the internet. The instances in the VCN do not need to
 // have public IP addresses nor be in a public subnet. The VCN does not need an internet gateway
-// for this traffic.
+// for this traffic. For more information, see
+// Access to Object Storage: Service Gateway (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/servicegateway.htm).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).

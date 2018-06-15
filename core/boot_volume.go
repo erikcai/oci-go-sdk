@@ -70,6 +70,9 @@ type BootVolume struct {
 
 	// The OCID of the source volume group.
 	VolumeGroupId *string `mandatory:"false" json:"volumeGroupId"`
+
+	// The OCID of the KMS key which is the master encryption key for the boot volume.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
 func (m BootVolume) String() string {
@@ -87,6 +90,7 @@ func (m *BootVolume) UnmarshalJSON(data []byte) (e error) {
 		SizeInGBs          *int                              `json:"sizeInGBs"`
 		SourceDetails      bootvolumesourcedetails           `json:"sourceDetails"`
 		VolumeGroupId      *string                           `json:"volumeGroupId"`
+		KmsKeyId           *string                           `json:"kmsKeyId"`
 		AvailabilityDomain *string                           `json:"availabilityDomain"`
 		CompartmentId      *string                           `json:"compartmentId"`
 		Id                 *string                           `json:"id"`
@@ -111,6 +115,7 @@ func (m *BootVolume) UnmarshalJSON(data []byte) (e error) {
 	}
 	m.SourceDetails = nn.(BootVolumeSourceDetails)
 	m.VolumeGroupId = model.VolumeGroupId
+	m.KmsKeyId = model.KmsKeyId
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId
 	m.Id = model.Id

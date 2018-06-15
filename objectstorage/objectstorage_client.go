@@ -762,6 +762,84 @@ func (client ObjectStorageClient) getWorkRequest(ctx context.Context, request co
 	return response, err
 }
 
+// GetWorkRequestErrors Gets the errors of the work request with the given ID.
+func (client ObjectStorageClient) GetWorkRequestErrors(ctx context.Context, request GetWorkRequestErrorsRequest) (response GetWorkRequestErrorsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getWorkRequestErrors, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetWorkRequestErrorsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetWorkRequestErrorsResponse")
+	}
+	return
+}
+
+// getWorkRequestErrors implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) getWorkRequestErrors(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}/errors")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetWorkRequestErrorsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetWorkRequestLogs Gets the logs of the work request with the given ID.
+func (client ObjectStorageClient) GetWorkRequestLogs(ctx context.Context, request GetWorkRequestLogsRequest) (response GetWorkRequestLogsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getWorkRequestLogs, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetWorkRequestLogsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetWorkRequestLogsResponse")
+	}
+	return
+}
+
+// getWorkRequestLogs implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) getWorkRequestLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}/logs")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetWorkRequestLogsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // HeadBucket Efficiently checks to see if a bucket exists and gets the current ETag for the bucket.
 func (client ObjectStorageClient) HeadBucket(ctx context.Context, request HeadBucketRequest) (response HeadBucketResponse, err error) {
 	var ociResponse common.OCIResponse

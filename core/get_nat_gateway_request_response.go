@@ -11,7 +11,7 @@ import (
 // GetNatGatewayRequest wrapper for the GetNatGateway operation
 type GetNatGatewayRequest struct {
 
-	// The NAT gateway's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm). This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	// The NAT gateway's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 	NatGatewayId *string `mandatory:"true" contributesTo:"path" name:"natGatewayId"`
 
 	// Unique Oracle-assigned identifier for the request.

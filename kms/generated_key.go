@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -15,13 +15,18 @@ import (
 // GeneratedKey The representation of GeneratedKey
 type GeneratedKey struct {
 
-	// The encrypted generated key.
+	// The encrypted generated data encryption key.
 	Ciphertext *string `mandatory:"true" json:"ciphertext"`
 
-	// The plaintext generated key.
+	// The plaintext generated data encryption key, a base64-encoded
+	// sequence of random bytes, which is included if the
+	// GenerateDataEncryptionKey request includes the "includePlaintextKey"
+	// parameter and sets its value to 'true'.
 	Plaintext *string `mandatory:"false" json:"plaintext"`
 
-	// Checksum of the plaintext generated key.
+	// The checksum of the plaintext generated data encryption key, which
+	// is included if the GenerateDataEncryptionKey request includes the
+	// "includePlaintextKey parameter and sets its value to 'true'.
 	PlaintextChecksum *string `mandatory:"false" json:"plaintextChecksum"`
 }
 

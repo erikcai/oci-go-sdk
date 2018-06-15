@@ -9,16 +9,48 @@
 package core
 
 import (
+	"encoding/json"
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// InstanceConfigurationInstanceDetails Instance Configuration instance details.
-type InstanceConfigurationInstanceDetails struct {
-	BlockVolumes []InstanceConfigurationBlockVolumeDetails `mandatory:"false" json:"blockVolumes"`
-
-	LaunchDetails *InstanceConfigurationLaunchInstanceDetails `mandatory:"false" json:"launchDetails"`
+// InstanceConfigurationInstanceDetails The representation of InstanceConfigurationInstanceDetails
+type InstanceConfigurationInstanceDetails interface {
 }
 
-func (m InstanceConfigurationInstanceDetails) String() string {
+type instanceconfigurationinstancedetails struct {
+	JsonData     []byte
+	InstanceType string `json:"instanceType"`
+}
+
+// UnmarshalJSON unmarshals json
+func (m *instanceconfigurationinstancedetails) UnmarshalJSON(data []byte) error {
+	m.JsonData = data
+	type Unmarshalerinstanceconfigurationinstancedetails instanceconfigurationinstancedetails
+	s := struct {
+		Model Unmarshalerinstanceconfigurationinstancedetails
+	}{}
+	err := json.Unmarshal(data, &s.Model)
+	if err != nil {
+		return err
+	}
+	m.InstanceType = s.Model.InstanceType
+
+	return err
+}
+
+// UnmarshalPolymorphicJSON unmarshals polymorphic json
+func (m *instanceconfigurationinstancedetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
+	var err error
+	switch m.InstanceType {
+	case "compute":
+		mm := ComputeInstanceDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	default:
+		return m, nil
+	}
+}
+
+func (m instanceconfigurationinstancedetails) String() string {
 	return common.PointerString(m)
 }

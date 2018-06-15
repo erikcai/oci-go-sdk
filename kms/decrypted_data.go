@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -15,7 +15,7 @@ import (
 // DecryptedData The representation of DecryptedData
 type DecryptedData struct {
 
-	// The decrypted data.
+	// The decrypted data, in the form of a base64-encoded value.
 	Plaintext *string `mandatory:"true" json:"plaintext"`
 
 	// Checksum of the decrypted data.

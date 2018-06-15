@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -15,10 +15,10 @@ import (
 // CreateKeyDetails The representation of CreateKeyDetails
 type CreateKeyDetails struct {
 
-	// The OCID of the Compartment containing this resource.
+	// The OCID of the compartment that contains this key.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly name for the key. It does not have to be unique, and it is changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 

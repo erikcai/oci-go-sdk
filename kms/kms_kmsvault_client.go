@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -51,33 +51,36 @@ func (client *KmsVaultClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
-// CreateKey Creates a new Key.  TODO description
-func (client KmsVaultClient) CreateKey(ctx context.Context, request CreateKeyRequest) (response CreateKeyResponse, err error) {
+// CreateVault Creates a new vault. The type of vault you create determines key
+// placement, pricing, and available options. Options include storage
+// isolation, a dedicated service endpoint instead of a shared service
+// endpoint for API calls, and a dedicated HSM or a multitenant HSM.
+func (client KmsVaultClient) CreateVault(ctx context.Context, request CreateVaultRequest) (response CreateVaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.createKey, policy)
+	ociResponse, err = common.Retry(ctx, request, client.createVault, policy)
 	if err != nil {
 		return
 	}
-	if convertedResponse, ok := ociResponse.(CreateKeyResponse); ok {
+	if convertedResponse, ok := ociResponse.(CreateVaultResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into CreateKeyResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into CreateVaultResponse")
 	}
 	return
 }
 
-// createKey implements the OCIOperation interface (enables retrying operations)
-func (client KmsVaultClient) createKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/keys")
+// createVault implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) createVault(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/vaults")
 	if err != nil {
 		return nil, err
 	}
 
-	var response CreateKeyResponse
+	var response CreateVaultResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -90,33 +93,33 @@ func (client KmsVaultClient) createKey(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// DisableKey null
-func (client KmsVaultClient) DisableKey(ctx context.Context, request DisableKeyRequest) (response DisableKeyResponse, err error) {
+// GetVault Gets the specified vault's configuration information.
+func (client KmsVaultClient) GetVault(ctx context.Context, request GetVaultRequest) (response GetVaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.disableKey, policy)
+	ociResponse, err = common.Retry(ctx, request, client.getVault, policy)
 	if err != nil {
 		return
 	}
-	if convertedResponse, ok := ociResponse.(DisableKeyResponse); ok {
+	if convertedResponse, ok := ociResponse.(GetVaultResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DisableKeyResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into GetVaultResponse")
 	}
 	return
 }
 
-// disableKey implements the OCIOperation interface (enables retrying operations)
-func (client KmsVaultClient) disableKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/keys/{keyId}/actions/disable")
+// getVault implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) getVault(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/vaults/{vaultId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response DisableKeyResponse
+	var response GetVaultResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -129,33 +132,33 @@ func (client KmsVaultClient) disableKey(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// EnableKey null
-func (client KmsVaultClient) EnableKey(ctx context.Context, request EnableKeyRequest) (response EnableKeyResponse, err error) {
+// ListVaults Lists vaults in the specified compartment.
+func (client KmsVaultClient) ListVaults(ctx context.Context, request ListVaultsRequest) (response ListVaultsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.enableKey, policy)
+	ociResponse, err = common.Retry(ctx, request, client.listVaults, policy)
 	if err != nil {
 		return
 	}
-	if convertedResponse, ok := ociResponse.(EnableKeyResponse); ok {
+	if convertedResponse, ok := ociResponse.(ListVaultsResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into EnableKeyResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ListVaultsResponse")
 	}
 	return
 }
 
-// enableKey implements the OCIOperation interface (enables retrying operations)
-func (client KmsVaultClient) enableKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/keys/{keyId}/actions/enable")
+// listVaults implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) listVaults(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/vaults")
 	if err != nil {
 		return nil, err
 	}
 
-	var response EnableKeyResponse
+	var response ListVaultsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -168,189 +171,35 @@ func (client KmsVaultClient) enableKey(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// GetKey Get information about the specified Key.  TODO description
-func (client KmsVaultClient) GetKey(ctx context.Context, request GetKeyRequest) (response GetKeyResponse, err error) {
+// UpdateVault Updates the properties of a vault. Specifically, you can
+// only update the `displayName` property. Furthermore, the vault
+// must be in an `ACTIVE` or `CREATING` state.
+func (client KmsVaultClient) UpdateVault(ctx context.Context, request UpdateVaultRequest) (response UpdateVaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.getKey, policy)
+	ociResponse, err = common.Retry(ctx, request, client.updateVault, policy)
 	if err != nil {
 		return
 	}
-	if convertedResponse, ok := ociResponse.(GetKeyResponse); ok {
+	if convertedResponse, ok := ociResponse.(UpdateVaultResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetKeyResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateVaultResponse")
 	}
 	return
 }
 
-// getKey implements the OCIOperation interface (enables retrying operations)
-func (client KmsVaultClient) getKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/keys/{keyId}")
+// updateVault implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) updateVault(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/vaults/{vaultId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response GetKeyResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListKeyVersions null
-func (client KmsVaultClient) ListKeyVersions(ctx context.Context, request ListKeyVersionsRequest) (response ListKeyVersionsResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listKeyVersions, policy)
-	if err != nil {
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListKeyVersionsResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListKeyVersionsResponse")
-	}
-	return
-}
-
-// listKeyVersions implements the OCIOperation interface (enables retrying operations)
-func (client KmsVaultClient) listKeyVersions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/keys/{keyId}/keyVersions")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListKeyVersionsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListKeys Lists the Keys in this vault in this compartment.
-func (client KmsVaultClient) ListKeys(ctx context.Context, request ListKeysRequest) (response ListKeysResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listKeys, policy)
-	if err != nil {
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListKeysResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListKeysResponse")
-	}
-	return
-}
-
-// listKeys implements the OCIOperation interface (enables retrying operations)
-func (client KmsVaultClient) listKeys(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/keys")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListKeysResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// RotateKey null
-func (client KmsVaultClient) RotateKey(ctx context.Context, request RotateKeyRequest) (response RotateKeyResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.rotateKey, policy)
-	if err != nil {
-		return
-	}
-	if convertedResponse, ok := ociResponse.(RotateKeyResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into RotateKeyResponse")
-	}
-	return
-}
-
-// rotateKey implements the OCIOperation interface (enables retrying operations)
-func (client KmsVaultClient) rotateKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/keys/{keyId}/actions/rotate")
-	if err != nil {
-		return nil, err
-	}
-
-	var response RotateKeyResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// UpdateKey Updates the properties of a Key, such as the displayName.
-func (client KmsVaultClient) UpdateKey(ctx context.Context, request UpdateKeyRequest) (response UpdateKeyResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.updateKey, policy)
-	if err != nil {
-		return
-	}
-	if convertedResponse, ok := ociResponse.(UpdateKeyResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into UpdateKeyResponse")
-	}
-	return
-}
-
-// updateKey implements the OCIOperation interface (enables retrying operations)
-func (client KmsVaultClient) updateKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/keys/{keyId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response UpdateKeyResponse
+	var response UpdateVaultResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

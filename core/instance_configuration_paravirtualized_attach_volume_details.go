@@ -13,42 +13,39 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// InstanceConfigurationIscsiAttachVolumeDetails The representation of InstanceConfigurationIscsiAttachVolumeDetails
-type InstanceConfigurationIscsiAttachVolumeDetails struct {
+// InstanceConfigurationParavirtualizedAttachVolumeDetails The representation of InstanceConfigurationParavirtualizedAttachVolumeDetails
+type InstanceConfigurationParavirtualizedAttachVolumeDetails struct {
 
 	// A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Whether the attachment should be created in read-only mode.
 	IsReadOnly *bool `mandatory:"false" json:"isReadOnly"`
-
-	// Whether to use CHAP authentication for the volume attachment. Defaults to false.
-	UseChap *bool `mandatory:"false" json:"useChap"`
 }
 
 //GetDisplayName returns DisplayName
-func (m InstanceConfigurationIscsiAttachVolumeDetails) GetDisplayName() *string {
+func (m InstanceConfigurationParavirtualizedAttachVolumeDetails) GetDisplayName() *string {
 	return m.DisplayName
 }
 
 //GetIsReadOnly returns IsReadOnly
-func (m InstanceConfigurationIscsiAttachVolumeDetails) GetIsReadOnly() *bool {
+func (m InstanceConfigurationParavirtualizedAttachVolumeDetails) GetIsReadOnly() *bool {
 	return m.IsReadOnly
 }
 
-func (m InstanceConfigurationIscsiAttachVolumeDetails) String() string {
+func (m InstanceConfigurationParavirtualizedAttachVolumeDetails) String() string {
 	return common.PointerString(m)
 }
 
 // MarshalJSON marshals to json representation
-func (m InstanceConfigurationIscsiAttachVolumeDetails) MarshalJSON() (buff []byte, e error) {
-	type MarshalTypeInstanceConfigurationIscsiAttachVolumeDetails InstanceConfigurationIscsiAttachVolumeDetails
+func (m InstanceConfigurationParavirtualizedAttachVolumeDetails) MarshalJSON() (buff []byte, e error) {
+	type MarshalTypeInstanceConfigurationParavirtualizedAttachVolumeDetails InstanceConfigurationParavirtualizedAttachVolumeDetails
 	s := struct {
 		DiscriminatorParam string `json:"type"`
-		MarshalTypeInstanceConfigurationIscsiAttachVolumeDetails
+		MarshalTypeInstanceConfigurationParavirtualizedAttachVolumeDetails
 	}{
-		"iscsi",
-		(MarshalTypeInstanceConfigurationIscsiAttachVolumeDetails)(m),
+		"paravirtualized",
+		(MarshalTypeInstanceConfigurationParavirtualizedAttachVolumeDetails)(m),
 	}
 
 	return json.Marshal(&s)

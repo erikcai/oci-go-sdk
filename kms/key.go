@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -15,36 +15,37 @@ import (
 // Key The representation of Key
 type Key struct {
 
-	// The OCID of the Compartment containing this resource.
+	// The OCID of the compartment that contains this key.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID of the KeyVersion that is used in Encrypt operations.
+	// The OCID of the KeyVersion resource used in cryptographic operations.
 	CurrentKeyVersion *string `mandatory:"true" json:"currentKeyVersion"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly name for the key. It does not have to be unique, and it is changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The OCID of the resource.
+	// The OCID of the key.
 	Id *string `mandatory:"true" json:"id"`
 
 	KeyShape *KeyShape `mandatory:"true" json:"keyShape"`
 
-	// The Key's current state.
+	// The key's current state.
+	// Example: `ENABLED`
 	LifecycleState KeyLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The date and time this was created, in the format defined by RFC3339.
-	// Example: `2016-08-25T21:10:29.600Z`
+	// The date and time the key was created, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
+	// Example: `2018-04-03T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The OCID of the Vault containing this resource.
+	// The OCID of the vault that contains this key.
 	VaultId *string `mandatory:"true" json:"vaultId"`
 
 	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
 	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope.
+	// Simple key-value pair that is applied without any predefined name, type, or scope.
 	// Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`

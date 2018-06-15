@@ -22,7 +22,7 @@ type GetJobLogsRequest struct {
 	Type []string `contributesTo:"query" name:"type" collectionFormat:"multi"`
 
 	// A filter to return logs only of the given level or of greater severity.
-	Level LogEntryLevelEnum `mandatory:"false" contributesTo:"query" name:"level" omitEmpty:"true"`
+	LevelGreaterThanOrEqualTo LogEntryLevelEnum `mandatory:"false" contributesTo:"query" name:"levelGreaterThanOrEqualTo" omitEmpty:"true"`
 
 	// The sort order to use, either 'asc' or 'desc'
 	SortOrder GetJobLogsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
@@ -31,8 +31,15 @@ type GetJobLogsRequest struct {
 	// List Pagination (https://docs.us-phoenix-1.oraclecloud.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The timestamp before which logs will not be returned. If logs are ordered descending, then start is chronologically after the logs returned.
-	StartTime *common.SDKTime `mandatory:"false" contributesTo:"query" name:"startTime"`
+	// The value of the `opc-next-page` response header from the previous "List" call. For information about
+	// pagination, see List Pagination (https://docs.us-phoenix-1.oraclecloud.comAPI/Concepts/usingapi.htm#List_Pagination).
+	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
+
+	// The timestamp before which logs will not be returned.
+	TimestampGreaterThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timestampGreaterThanOrEqualTo"`
+
+	// The timestamp after which logs will not be returned.
+	TimestampLessThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timestampLessThanOrEqualTo"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
@@ -59,11 +66,14 @@ type GetJobLogsResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The []LogEntry instance
+	// A list of []LogEntry instances
 	Items []LogEntry `presentIn:"body"`
 
 	// Unique identifier for the request
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// For pagination token for the next page of items
+	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 
 func (response GetJobLogsResponse) String() string {

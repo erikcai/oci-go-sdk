@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -15,14 +15,14 @@ import (
 // CreateVaultDetails The representation of CreateVaultDetails
 type CreateVaultDetails struct {
 
-	// The OCID of the Compartment containing this resource.
+	// The OCID of the compartment where you want to create this vault.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly name for the vault. It does not have to be unique, and it is changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// TODO
+	// The type of vault to create. Each type of vault stores the key with different degrees of isolation and has different options and pricing.
 	VaultType CreateVaultDetailsVaultTypeEnum `mandatory:"true" json:"vaultType"`
 }
 

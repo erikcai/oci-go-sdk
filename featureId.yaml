@@ -75,3 +75,16 @@ whitelisted:
   - udx-497
   # DEX-3304 - GA31
   - udx-190
+  # DEX-3673
+  - udx-810
+  # DEX-3672
+  - udx-1176
+  - udx-775
+  # DEX-3669
+  - udx-672
+  # DEX-3665
+  - udx-181
+  # DEX-3656
+  - udx-834
+  # DEX-3593
+  - udx-921

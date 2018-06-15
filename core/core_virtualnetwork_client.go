@@ -697,7 +697,7 @@ func (client VirtualNetworkClient) createIPSecConnection(ctx context.Context, re
 }
 
 // CreateInternetGateway Creates a new Internet Gateway for the specified VCN. For more information, see
-// Connectivity to the Internet (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingIGs.htm).
+// Access to the Internet (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingIGs.htm).
 // For the purposes of access control, you must provide the OCID of the compartment where you want the Internet
 // Gateway to reside. Notice that the Internet Gateway doesn't have to be in the same compartment as the VCN or
 // other Networking Service components. If you're not sure which compartment to use, put the Internet

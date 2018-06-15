@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -15,37 +15,38 @@ import (
 // Vault The representation of Vault
 type Vault struct {
 
-	// The OCID of the Compartment containing this resource.
+	// The OCID of the compartment that contains this vault.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The endpoint to perform cryptographic operations against.  TODO description.
+	// The service endpoint to perform cryptographic operations against. Cryptographic operations include 'Encrypt,' 'Decrypt,' and 'GenerateDataEncryptionKey' operations.
 	CryptoEndpoint *string `mandatory:"true" json:"cryptoEndpoint"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly name for the vault. It does not have to be unique, and it is changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The OCID of the resource.
+	// The OCID of the vault.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The Vault's current state.
+	// The vault's current state.
+	// Example: `DELETED`
 	LifecycleState VaultLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The endpoint to perform management operations against.  TODO description.
+	// The service endpoint to perform management operations against. Management operations include 'Create,' 'Update,' 'List,' 'Get,' and 'Delete' operations.
 	ManagementEndpoint *string `mandatory:"true" json:"managementEndpoint"`
 
-	// The date and time this was created, in the format defined by RFC3339.
-	// Example: `2016-08-25T21:10:29.600Z`
+	// The date and time this vault was created, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
+	// Example: `2018-04-03T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// TODO
+	// The type of vault. Each type of vault stores the key with different degrees of isolation and has different options and pricing.
 	VaultType VaultVaultTypeEnum `mandatory:"true" json:"vaultType"`
 
 	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
 	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope.
+	// Simple key-value pair that is applied without any predefined name, type, or scope.
 	// Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`

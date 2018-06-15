@@ -18,6 +18,9 @@ type InstanceSourceViaImageDetails struct {
 
 	// The OCID of the image used to boot the instance.
 	ImageId *string `mandatory:"true" json:"imageId"`
+
+	// The OCID of the KMS key to be used as the master encryption key for the boot volume.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
 func (m InstanceSourceViaImageDetails) String() string {

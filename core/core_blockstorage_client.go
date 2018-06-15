@@ -59,7 +59,7 @@ func (client *BlockstorageClient) ConfigurationProvider() *common.ConfigurationP
 }
 
 // CopyBootVolumeBackup Creates a boot volume backup copy in specified region. For general information about volume backups,
-// see Overview of Block Volume Service Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/blockvolumebackups.htm#boot)
+// see Overview of Boot Volume Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/bootvolumebackups.htm)
 func (client BlockstorageClient) CopyBootVolumeBackup(ctx context.Context, request CopyBootVolumeBackupRequest) (response CopyBootVolumeBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -99,7 +99,7 @@ func (client BlockstorageClient) copyBootVolumeBackup(ctx context.Context, reque
 }
 
 // CopyVolumeBackup Creates a volume backup copy in specified region. For general information about volume backups,
-// see Overview of Block Volume Service Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/blockvolumebackups.htm#boot)
+// see Overview of Block Volume Service Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/blockvolumebackups.htm)
 func (client BlockstorageClient) CopyVolumeBackup(ctx context.Context, request CopyVolumeBackupRequest) (response CopyVolumeBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -181,7 +181,7 @@ func (client BlockstorageClient) createBootVolume(ctx context.Context, request c
 }
 
 // CreateBootVolumeBackup Creates a new boot volume backup of the specified boot volume. For general information about boot volume backups,
-// see Overview of Block Volume Service Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/blockvolumebackups.htm#boot)
+// see Overview of Boot Volume Backups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/bootvolumebackups.htm)
 // When the request is received, the backup object is in a REQUEST_RECEIVED state.
 // When the data is imaged, it goes into a CREATING state.
 // After the backup is fully uploaded to the cloud, it goes into an AVAILABLE state.
@@ -224,7 +224,7 @@ func (client BlockstorageClient) createBootVolumeBackup(ctx context.Context, req
 }
 
 // CreateVolume Creates a new volume in the specified compartment. Volumes can be created in sizes ranging from
-// 50 GB (51200 MB) to 16 TB (16777216 MB), in 1 GB (1024 MB) increments. By default, volumes are 1 TB (1048576 MB).
+// 50 GB (51200 MB) to 32 TB (33554432 MB), in 1 GB (1024 MB) increments. By default, volumes are 1 TB (1048576 MB).
 // For general information about block volumes, see
 // Overview of Block Volume Service (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/overview.htm).
 // A volume and instance can be in separate compartments but must be in the same Availability Domain.
@@ -357,11 +357,12 @@ func (client BlockstorageClient) createVolumeBackupPolicyAssignment(ctx context.
 	return response, err
 }
 
-// CreateVolumeGroup Creates a new volume group in the specified compartment. A volume group can have at most 20 block volumes.
+// CreateVolumeGroup Creates a new volume group in the specified compartment.
 // A volume group is a collection of volumes and may be created from a list of volumes, cloning an existing
-// volume group or by restoring a volume group backup.
+// volume group, or by restoring a volume group backup. A volume group can contain up to 64 volumes.
 // You may optionally specify a *display name* for the volume group, which is simply a friendly name or
 // description. It does not have to be unique, and you can change it. Avoid entering confidential information.
+// For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) CreateVolumeGroup(ctx context.Context, request CreateVolumeGroupRequest) (response CreateVolumeGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -400,7 +401,8 @@ func (client BlockstorageClient) createVolumeGroup(ctx context.Context, request 
 	return response, err
 }
 
-// CreateVolumeGroupBackup Creates a new group backup of the specified volume group.
+// CreateVolumeGroupBackup Creates a new backup volume group of the specified volume group.
+// For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) CreateVolumeGroupBackup(ctx context.Context, request CreateVolumeGroupBackupRequest) (response CreateVolumeGroupBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -640,7 +642,8 @@ func (client BlockstorageClient) deleteVolumeBackupPolicyAssignment(ctx context.
 	return response, err
 }
 
-// DeleteVolumeGroup Deletes the specified volume group. This will NOT delete data volumes.
+// DeleteVolumeGroup Deletes the specified volume group. Individual volumes are not deleted, only the volume group is deleted.
+// For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) DeleteVolumeGroup(ctx context.Context, request DeleteVolumeGroupRequest) (response DeleteVolumeGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -679,7 +682,7 @@ func (client BlockstorageClient) deleteVolumeGroup(ctx context.Context, request 
 	return response, err
 }
 
-// DeleteVolumeGroupBackup Deletes a volume group backup. This will NOT delete backups within the volume group backup.
+// DeleteVolumeGroupBackup Deletes a volume group backup. This operation deletes all the backups in the volume group. For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) DeleteVolumeGroupBackup(ctx context.Context, request DeleteVolumeGroupBackupRequest) (response DeleteVolumeGroupBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -993,7 +996,7 @@ func (client BlockstorageClient) getVolumeBackupPolicyAssignment(ctx context.Con
 	return response, err
 }
 
-// GetVolumeGroup Gets information for the specified volume group.
+// GetVolumeGroup Gets information for the specified volume group. For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) GetVolumeGroup(ctx context.Context, request GetVolumeGroupRequest) (response GetVolumeGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1032,7 +1035,7 @@ func (client BlockstorageClient) getVolumeGroup(ctx context.Context, request com
 	return response, err
 }
 
-// GetVolumeGroupBackup Gets information for the specified volume group backup.
+// GetVolumeGroupBackup Gets information for the specified volume group backup. For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) GetVolumeGroupBackup(ctx context.Context, request GetVolumeGroupBackupRequest) (response GetVolumeGroupBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1227,7 +1230,8 @@ func (client BlockstorageClient) listVolumeBackups(ctx context.Context, request 
 	return response, err
 }
 
-// ListVolumeGroupBackups Lists the backups for volume groups in the specified compartment. You can filter the results by volume group.
+// ListVolumeGroupBackups Lists the volume group backups in the specified compartment. You can filter the results by volume group.
+// For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) ListVolumeGroupBackups(ctx context.Context, request ListVolumeGroupBackupsRequest) (response ListVolumeGroupBackupsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1266,7 +1270,8 @@ func (client BlockstorageClient) listVolumeGroupBackups(ctx context.Context, req
 	return response, err
 }
 
-// ListVolumeGroups Lists the volume groups in the specified compartment and Availability Domain.
+// ListVolumeGroups Lists the volume groups in the specified compartment and availability domain.
+// For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) ListVolumeGroups(ctx context.Context, request ListVolumeGroupsRequest) (response ListVolumeGroupsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1503,9 +1508,11 @@ func (client BlockstorageClient) updateVolumeBackup(ctx context.Context, request
 	return response, err
 }
 
-// UpdateVolumeGroup Updates the set of volumes in a volume group along with (optionally) it's display name. This call can be used
-// to add or remove volumes in a volume group. The entire list of volume ids must be specified.
+// UpdateVolumeGroup Updates the set of volumes in a volume group along with the display name. Use this operation
+// to add or remove volumes in a volume group. Specify the full list of volume IDs to include in the
+// volume group. If the volume ID is not specified in the call, it will be removed from the volume group.
 // Avoid entering confidential information.
+// For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) UpdateVolumeGroup(ctx context.Context, request UpdateVolumeGroupRequest) (response UpdateVolumeGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1544,7 +1551,7 @@ func (client BlockstorageClient) updateVolumeGroup(ctx context.Context, request 
 	return response, err
 }
 
-// UpdateVolumeGroupBackup Updates the display name for the specified volume group backup.
+// UpdateVolumeGroupBackup Updates the display name for the specified volume group backup. For more information, see Volume Groups (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) UpdateVolumeGroupBackup(ctx context.Context, request UpdateVolumeGroupBackupRequest) (response UpdateVolumeGroupBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

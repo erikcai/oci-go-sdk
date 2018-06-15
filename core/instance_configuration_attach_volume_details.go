@@ -21,19 +21,12 @@ type InstanceConfigurationAttachVolumeDetails interface {
 
 	// Whether the attachment should be created in read-only mode.
 	GetIsReadOnly() *bool
-
-	// Whether the attachment should be created in shareable mode. If an attachment
-	// is created in shareable mode, then other instances can attach the same volume, provided
-	// that they also create their attachments in shareable mode. Only certain volume types can
-	// be attached in shareable mode. Defaults to false if not specified.
-	GetIsShareable() *bool
 }
 
 type instanceconfigurationattachvolumedetails struct {
 	JsonData    []byte
 	DisplayName *string `mandatory:"false" json:"displayName"`
 	IsReadOnly  *bool   `mandatory:"false" json:"isReadOnly"`
-	IsShareable *bool   `mandatory:"false" json:"isShareable"`
 	Type        string  `json:"type"`
 }
 
@@ -50,7 +43,6 @@ func (m *instanceconfigurationattachvolumedetails) UnmarshalJSON(data []byte) er
 	}
 	m.DisplayName = s.Model.DisplayName
 	m.IsReadOnly = s.Model.IsReadOnly
-	m.IsShareable = s.Model.IsShareable
 	m.Type = s.Model.Type
 
 	return err
@@ -62,6 +54,10 @@ func (m *instanceconfigurationattachvolumedetails) UnmarshalPolymorphicJSON(data
 	switch m.Type {
 	case "iscsi":
 		mm := InstanceConfigurationIscsiAttachVolumeDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "paravirtualized":
+		mm := InstanceConfigurationParavirtualizedAttachVolumeDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:
@@ -77,11 +73,6 @@ func (m instanceconfigurationattachvolumedetails) GetDisplayName() *string {
 //GetIsReadOnly returns IsReadOnly
 func (m instanceconfigurationattachvolumedetails) GetIsReadOnly() *bool {
 	return m.IsReadOnly
-}
-
-//GetIsShareable returns IsShareable
-func (m instanceconfigurationattachvolumedetails) GetIsShareable() *bool {
-	return m.IsShareable
 }
 
 func (m instanceconfigurationattachvolumedetails) String() string {

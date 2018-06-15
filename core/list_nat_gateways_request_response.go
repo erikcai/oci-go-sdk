@@ -28,7 +28,7 @@ type ListNatGatewaysRequest struct {
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
 	// Filter results by the specified lifecycle state. Must be a valid
-	// state for the resource type. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	// state for the resource type.
 	LifecycleState ListNatGatewaysLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for

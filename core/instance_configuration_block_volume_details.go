@@ -19,9 +19,6 @@ type InstanceConfigurationBlockVolumeDetails struct {
 
 	CreateDetails *InstanceConfigurationCreateVolumeDetails `mandatory:"false" json:"createDetails"`
 
-	// Used during the merge process to find a match
-	Id *string `mandatory:"false" json:"id"`
-
 	// The OCID of the volume.
 	VolumeId *string `mandatory:"false" json:"volumeId"`
 }
@@ -35,7 +32,6 @@ func (m *InstanceConfigurationBlockVolumeDetails) UnmarshalJSON(data []byte) (e 
 	model := struct {
 		AttachDetails instanceconfigurationattachvolumedetails  `json:"attachDetails"`
 		CreateDetails *InstanceConfigurationCreateVolumeDetails `json:"createDetails"`
-		Id            *string                                   `json:"id"`
 		VolumeId      *string                                   `json:"volumeId"`
 	}{}
 
@@ -49,7 +45,6 @@ func (m *InstanceConfigurationBlockVolumeDetails) UnmarshalJSON(data []byte) (e 
 	}
 	m.AttachDetails = nn.(InstanceConfigurationAttachVolumeDetails)
 	m.CreateDetails = model.CreateDetails
-	m.Id = model.Id
 	m.VolumeId = model.VolumeId
 	return
 }

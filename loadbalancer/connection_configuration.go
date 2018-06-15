@@ -18,7 +18,7 @@ type ConnectionConfiguration struct {
 	// The maximum idle time, in seconds, allowed between two successive receive or two successive send operations
 	// between the client and backend servers. A send operation does not reset the timer for receive operations. A
 	// receive operation does not reset the timer for send operations.
-	//  For more information, see Connection Configuration (https://docs.us-phoenix-1.oraclecloud.com/Content/Balance/Reference/connectionreuse.htm#ConnectionConfiguration).
+	// For more information, see Connection Configuration (https://docs.us-phoenix-1.oraclecloud.com/Content/Balance/Reference/connectionreuse.htm#ConnectionConfiguration).
 	// Example: `1200`
 	IdleTimeout *int `mandatory:"true" json:"idleTimeout"`
 }

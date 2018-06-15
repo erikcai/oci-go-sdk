@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -15,14 +15,15 @@ import (
 // EncryptDataDetails The representation of EncryptDataDetails
 type EncryptDataDetails struct {
 
-	// The OCID of the Key to encrypt with.
+	// The OCID of the key to encrypt with.
 	KeyId *string `mandatory:"true" json:"keyId"`
 
 	// The plaintext data to encrypt.
 	Plaintext *string `mandatory:"true" json:"plaintext"`
 
-	// Any associated data.  The string representation of the associatedData
-	// must be less than 4096 characters.  Description TODO
+	// Information that can be used to provide an encryption context for the
+	// encrypted data. The length of the string representation of the associatedData
+	// must be fewer than 4096 characters.
 	AssociatedData map[string]string `mandatory:"false" json:"associatedData"`
 }
 

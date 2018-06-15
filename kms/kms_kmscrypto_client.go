@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -51,7 +51,7 @@ func (client *KmsCryptoClient) ConfigurationProvider() *common.ConfigurationProv
 	return client.config
 }
 
-// Decrypt Decrypt data using the given DecryptDataDetails
+// Decrypt Decrypts data using the given DecryptDataDetails resource.
 func (client KmsCryptoClient) Decrypt(ctx context.Context, request DecryptRequest) (response DecryptResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -90,7 +90,9 @@ func (client KmsCryptoClient) decrypt(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
-// Encrypt Encrypt data using the given EncryptDataDetails
+// Encrypt Encrypts data using the given EncryptDataDetails resource.
+// Plaintext included in the example request is a base64-encoded value
+// of a UTF-8 string.
 func (client KmsCryptoClient) Encrypt(ctx context.Context, request EncryptRequest) (response EncryptResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -129,7 +131,7 @@ func (client KmsCryptoClient) encrypt(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
-// GenerateDataEncryptionKey Generate a key that can be used to perform cryptogaphic operations.
+// GenerateDataEncryptionKey Generates a key that you can use to encrypt or decrypt data.
 func (client KmsCryptoClient) GenerateDataEncryptionKey(ctx context.Context, request GenerateDataEncryptionKeyRequest) (response GenerateDataEncryptionKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

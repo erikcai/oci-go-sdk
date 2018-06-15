@@ -9,6 +9,7 @@
 package core
 
 import (
+	"encoding/json"
 	"github.com/oracle/oci-go-sdk/common"
 )
 
@@ -32,9 +33,35 @@ type CreateInstanceConfigurationDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	InstanceConfigurationInstanceDetails *InstanceConfigurationInstanceDetails `mandatory:"false" json:"instanceConfigurationInstanceDetails"`
+	InstanceDetails InstanceConfigurationInstanceDetails `mandatory:"false" json:"instanceDetails"`
 }
 
 func (m CreateInstanceConfigurationDetails) String() string {
 	return common.PointerString(m)
+}
+
+// UnmarshalJSON unmarshals from json
+func (m *CreateInstanceConfigurationDetails) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		DefinedTags     map[string]map[string]interface{}    `json:"definedTags"`
+		DisplayName     *string                              `json:"displayName"`
+		FreeformTags    map[string]string                    `json:"freeformTags"`
+		InstanceDetails instanceconfigurationinstancedetails `json:"instanceDetails"`
+		CompartmentId   *string                              `json:"compartmentId"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	m.DefinedTags = model.DefinedTags
+	m.DisplayName = model.DisplayName
+	m.FreeformTags = model.FreeformTags
+	nn, e := model.InstanceDetails.UnmarshalPolymorphicJSON(model.InstanceDetails.JsonData)
+	if e != nil {
+		return
+	}
+	m.InstanceDetails = nn.(InstanceConfigurationInstanceDetails)
+	m.CompartmentId = model.CompartmentId
+	return
 }

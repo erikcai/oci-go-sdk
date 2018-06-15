@@ -35,12 +35,6 @@ type WorkRequest struct {
 	// Percentage of the request completed.
 	PercentComplete *float32 `mandatory:"false" json:"percentComplete"`
 
-	// log messages describing what the work request is doing
-	Logs []WorkRequestLogEntry `mandatory:"false" json:"logs"`
-
-	// Errors for the work request, sorted with oldest error objects first.
-	Errors []WorkRequestsError `mandatory:"false" json:"errors"`
-
 	// The date and time the request was created, as described in
 	// RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeAccepted *common.SDKTime `mandatory:"false" json:"timeAccepted"`

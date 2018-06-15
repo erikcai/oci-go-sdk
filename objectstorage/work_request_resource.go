@@ -42,6 +42,8 @@ const (
 	WorkRequestResourceActionTypeDeleted    WorkRequestResourceActionTypeEnum = "DELETED"
 	WorkRequestResourceActionTypeRelated    WorkRequestResourceActionTypeEnum = "RELATED"
 	WorkRequestResourceActionTypeInProgress WorkRequestResourceActionTypeEnum = "IN_PROGRESS"
+	WorkRequestResourceActionTypeRead       WorkRequestResourceActionTypeEnum = "READ"
+	WorkRequestResourceActionTypeWritten    WorkRequestResourceActionTypeEnum = "WRITTEN"
 )
 
 var mappingWorkRequestResourceActionType = map[string]WorkRequestResourceActionTypeEnum{
@@ -50,6 +52,8 @@ var mappingWorkRequestResourceActionType = map[string]WorkRequestResourceActionT
 	"DELETED":     WorkRequestResourceActionTypeDeleted,
 	"RELATED":     WorkRequestResourceActionTypeRelated,
 	"IN_PROGRESS": WorkRequestResourceActionTypeInProgress,
+	"READ":        WorkRequestResourceActionTypeRead,
+	"WRITTEN":     WorkRequestResourceActionTypeWritten,
 }
 
 // GetWorkRequestResourceActionTypeEnumValues Enumerates the set of values for WorkRequestResourceActionType

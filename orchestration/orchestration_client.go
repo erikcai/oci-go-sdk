@@ -292,6 +292,45 @@ func (client OrchestrationClient) getJobLogs(ctx context.Context, request common
 	return response, err
 }
 
+// GetJobLogsContent Returns a Job's raw logs. If the logs contain more than 100000 entries, only 100000 are returned.
+func (client OrchestrationClient) GetJobLogsContent(ctx context.Context, request GetJobLogsContentRequest) (response GetJobLogsContentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getJobLogsContent, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetJobLogsContentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetJobLogsContentResponse")
+	}
+	return
+}
+
+// getJobLogsContent implements the OCIOperation interface (enables retrying operations)
+func (client OrchestrationClient) getJobLogsContent(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/jobs/{jobId}/logs/content")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetJobLogsContentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetJobTfConfig Returns a job's Terraform configuration in a zip file
 func (client OrchestrationClient) GetJobTfConfig(ctx context.Context, request GetJobTfConfigRequest) (response GetJobTfConfigResponse, err error) {
 	var ociResponse common.OCIResponse

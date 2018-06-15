@@ -12,8 +12,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestsError The representation of WorkRequestsError
-type WorkRequestsError struct {
+// WorkRequestError The representation of WorkRequestError
+type WorkRequestError struct {
 
 	// A machine-usable code for the error that occured. Error codes are listed on
 	// (https://docs.us-phoenix-1.oraclecloud.com/Content/API/References/apierrors.htm)
@@ -26,6 +26,6 @@ type WorkRequestsError struct {
 	Timestamp *common.SDKTime `mandatory:"false" json:"timestamp"`
 }
 
-func (m WorkRequestsError) String() string {
+func (m WorkRequestError) String() string {
 	return common.PointerString(m)
 }

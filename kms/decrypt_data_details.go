@@ -3,7 +3,7 @@
 
 // Key Management Service API
 //
-// APIs for managing and performing operations with keys and vaults.
+// API for managing and performing operations with keys and vaults.
 //
 
 package kms
@@ -18,8 +18,12 @@ type DecryptDataDetails struct {
 	// The encrypted data to decrypt.
 	Ciphertext *string `mandatory:"true" json:"ciphertext"`
 
-	// Any associated data.  The string representation of the associatedData
-	// must be less than 4096 characters.  Description TODO
+	// The OCID of the key used to encrypt the ciphertext.
+	KeyId *string `mandatory:"true" json:"keyId"`
+
+	// Information that can be used to provide an encryption context for the
+	// encrypted data. The length of the string representation of the associatedData
+	// must be fewer than 4096 characters.
 	AssociatedData map[string]string `mandatory:"false" json:"associatedData"`
 }
 
