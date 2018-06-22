@@ -22,12 +22,17 @@ type ObjectLifecycleRule struct {
 
 	// The action of the object lifecycle policy rule. Rules using the action 'ARCHIVE' move objects into the
 	// Archival Storage tier (https://docs.us-phoenix-1.oraclecloud.com/Content/Archive/Concepts/archivestorageoverview.htm). Rules using the action
-	// 'DELETE' permanently delete objects from buckets.
-	Action ObjectLifecycleRuleActionEnum `mandatory:"true" json:"action"`
+	// 'DELETE' permanently delete objects from buckets. 'ARCHIVE' and 'DELETE' are the only two supported
+	// actions at this time.
+	Action *string `mandatory:"true" json:"action"`
 
-	// Specifies the age (in days) of objects to apply the rule to. An object's daysSinceLastModified value is based on
-	// its Last-Modified time. Days are defined as starting and ending at midnight UTC.
-	TimeSinceLastModificationInDays *int `mandatory:"true" json:"timeSinceLastModificationInDays"`
+	// Specifies the age of objects to apply the rule to. The timeAmount is interpreted in units defined by the
+	// timeUnit parameter, and evaluates against each object's Last-Modified time.
+	TimeAmount *int `mandatory:"true" json:"timeAmount"`
+
+	// The unit that should be used to interpret timeAmount.  Days are defined as starting and ending at midnight UTC.
+	// Years are defined as 365.2425 days long and likewise round up to the next midnight UTC.
+	TimeUnit ObjectLifecycleRuleTimeUnitEnum `mandatory:"true" json:"timeUnit"`
 
 	// A boolean that determines whether this rule is currently enabled.
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
@@ -40,24 +45,24 @@ func (m ObjectLifecycleRule) String() string {
 	return common.PointerString(m)
 }
 
-// ObjectLifecycleRuleActionEnum Enum with underlying type: string
-type ObjectLifecycleRuleActionEnum string
+// ObjectLifecycleRuleTimeUnitEnum Enum with underlying type: string
+type ObjectLifecycleRuleTimeUnitEnum string
 
-// Set of constants representing the allowable values for ObjectLifecycleRuleAction
+// Set of constants representing the allowable values for ObjectLifecycleRuleTimeUnit
 const (
-	ObjectLifecycleRuleActionArchive ObjectLifecycleRuleActionEnum = "ARCHIVE"
-	ObjectLifecycleRuleActionDelete  ObjectLifecycleRuleActionEnum = "DELETE"
+	ObjectLifecycleRuleTimeUnitDays  ObjectLifecycleRuleTimeUnitEnum = "DAYS"
+	ObjectLifecycleRuleTimeUnitYears ObjectLifecycleRuleTimeUnitEnum = "YEARS"
 )
 
-var mappingObjectLifecycleRuleAction = map[string]ObjectLifecycleRuleActionEnum{
-	"ARCHIVE": ObjectLifecycleRuleActionArchive,
-	"DELETE":  ObjectLifecycleRuleActionDelete,
+var mappingObjectLifecycleRuleTimeUnit = map[string]ObjectLifecycleRuleTimeUnitEnum{
+	"DAYS":  ObjectLifecycleRuleTimeUnitDays,
+	"YEARS": ObjectLifecycleRuleTimeUnitYears,
 }
 
-// GetObjectLifecycleRuleActionEnumValues Enumerates the set of values for ObjectLifecycleRuleAction
-func GetObjectLifecycleRuleActionEnumValues() []ObjectLifecycleRuleActionEnum {
-	values := make([]ObjectLifecycleRuleActionEnum, 0)
-	for _, v := range mappingObjectLifecycleRuleAction {
+// GetObjectLifecycleRuleTimeUnitEnumValues Enumerates the set of values for ObjectLifecycleRuleTimeUnit
+func GetObjectLifecycleRuleTimeUnitEnumValues() []ObjectLifecycleRuleTimeUnitEnum {
+	values := make([]ObjectLifecycleRuleTimeUnitEnum, 0)
+	for _, v := range mappingObjectLifecycleRuleTimeUnit {
 		values = append(values, v)
 	}
 	return values

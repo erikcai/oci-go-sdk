@@ -22,14 +22,15 @@ import (
 type PublicIp struct {
 
 	// The public IP's Availability Domain. This property is set only for ephemeral public IPs
-	// (that is, when the `scope` of the public IP is set to AVAILABILITY_DOMAIN). The value
-	// is the Availability Domain of the assigned private IP.
+	// that are assigned to a private IP (that is, when the `scope` of the public IP is set to
+	// AVAILABILITY_DOMAIN). The value is the Availability Domain of the assigned private IP.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
 	// The OCID of the compartment containing the public IP. For an ephemeral public IP, this is
-	// the same compartment as the private IP's. For a reserved public IP that is currently assigned,
-	// this can be a different compartment than the assigned private IP's.
+	// the compartment of its assigned entity (which can be a private IP or a regional entity such
+	// as a NAT gateway). For a reserved public IP that is currently assigned,
+	// its compartment can be different from the assigned private IP's.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -58,10 +59,12 @@ type PublicIp struct {
 	LifecycleState PublicIpLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// Defines when the public IP is deleted and released back to Oracle's public IP pool.
-	// * `EPHEMERAL`: The lifetime is tied to the lifetime of its assigned private IP. The
-	// ephemeral public IP is automatically deleted when its private IP is deleted, when
-	// the VNIC is terminated, or when the instance is terminated. An ephemeral
-	// public IP must always be assigned to a private IP.
+	// * `EPHEMERAL`: The lifetime is tied to the lifetime of its assigned entity. An ephemeral
+	// public IP must always be assigned to an entity. If the assigned entity is a private IP,
+	// the ephemeral public IP is automatically deleted when the private IP is deleted, when
+	// the VNIC is terminated, or when the instance is terminated. If the assigned entity is a
+	// NatGateway, the ephemeral public IP is automatically
+	// deleted when the NAT gateway is terminated.
 	// * `RESERVED`: You control the public IP's lifetime. You can delete a reserved public IP
 	// whenever you like. It does not need to be assigned to a private IP at all times.
 	// For more information and comparison of the two types,
@@ -73,11 +76,13 @@ type PublicIp struct {
 	PrivateIpId *string `mandatory:"false" json:"privateIpId"`
 
 	// Whether the public IP is regional or specific to a particular Availability Domain.
-	// * `REGION`: The public IP exists within a region and can be assigned to a private IP
-	// in any Availability Domain in the region. Reserved public IPs have `scope` = `REGION`.
-	// * `AVAILABILITY_DOMAIN`: The public IP exists within the Availability Domain of the private IP
+	// * `REGION`: The public IP exists within a region and is assigned to a regional entity
+	// (such as a NatGateway), or can be assigned to a private
+	// IP in any Availability Domain in the region. Reserved public IPs and ephemeral public IPs
+	// assigned to a regional entity have `scope` = `REGION`.
+	// * `AVAILABILITY_DOMAIN`: The public IP exists within the Availability Domain of the entity
 	// it's assigned to, which is specified by the `availabilityDomain` property of the public IP object.
-	// Ephemeral public IPs have `scope` = `AVAILABILITY_DOMAIN`.
+	// Ephemeral public IPs that are assigned to private IPs have `scope` = `AVAILABILITY_DOMAIN`.
 	Scope PublicIpScopeEnum `mandatory:"false" json:"scope,omitempty"`
 
 	// The date and time the public IP was created, in the format defined by RFC3339.

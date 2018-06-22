@@ -12,11 +12,13 @@ import (
 type ListPublicIpsRequest struct {
 
 	// Whether the public IP is regional or specific to a particular Availability Domain.
-	// * `REGION`: The public IP exists within a region and can be assigned to a private IP
-	// in any Availability Domain in the region. Reserved public IPs have `scope` = `REGION`.
-	// * `AVAILABILITY_DOMAIN`: The public IP exists within the Availability Domain of the private IP
+	// * `REGION`: The public IP exists within a region and is assigned to a regional entity
+	// (such as a NatGateway), or can be assigned to a private IP
+	// in any Availability Domain in the region. Reserved public IPs have `scope` = `REGION`, as do
+	// ephemeral public IPs assigned to a regional entity.
+	// * `AVAILABILITY_DOMAIN`: The public IP exists within the Availability Domain of the entity
 	// it's assigned to, which is specified by the `availabilityDomain` property of the public IP object.
-	// Ephemeral public IPs have `scope` = `AVAILABILITY_DOMAIN`.
+	// Ephemeral public IPs that are assigned to private IPs have `scope` = `AVAILABILITY_DOMAIN`.
 	Scope ListPublicIpsScopeEnum `mandatory:"true" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
 	// The OCID of the compartment.

@@ -19,6 +19,8 @@ type CreateInstanceConfigurationDetails struct {
 	// The OCID of the compartment containing the instance configuration.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
+	InstanceDetails InstanceConfigurationInstanceDetails `mandatory:"true" json:"instanceDetails"`
+
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
@@ -32,8 +34,6 @@ type CreateInstanceConfigurationDetails struct {
 	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
-
-	InstanceDetails InstanceConfigurationInstanceDetails `mandatory:"false" json:"instanceDetails"`
 }
 
 func (m CreateInstanceConfigurationDetails) String() string {
@@ -46,8 +46,8 @@ func (m *CreateInstanceConfigurationDetails) UnmarshalJSON(data []byte) (e error
 		DefinedTags     map[string]map[string]interface{}    `json:"definedTags"`
 		DisplayName     *string                              `json:"displayName"`
 		FreeformTags    map[string]string                    `json:"freeformTags"`
-		InstanceDetails instanceconfigurationinstancedetails `json:"instanceDetails"`
 		CompartmentId   *string                              `json:"compartmentId"`
+		InstanceDetails instanceconfigurationinstancedetails `json:"instanceDetails"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -57,11 +57,11 @@ func (m *CreateInstanceConfigurationDetails) UnmarshalJSON(data []byte) (e error
 	m.DefinedTags = model.DefinedTags
 	m.DisplayName = model.DisplayName
 	m.FreeformTags = model.FreeformTags
+	m.CompartmentId = model.CompartmentId
 	nn, e := model.InstanceDetails.UnmarshalPolymorphicJSON(model.InstanceDetails.JsonData)
 	if e != nil {
 		return
 	}
 	m.InstanceDetails = nn.(InstanceConfigurationInstanceDetails)
-	m.CompartmentId = model.CompartmentId
 	return
 }

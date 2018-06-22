@@ -82,6 +82,7 @@ udx-1044
 UDX-1071
 sdk_team_hide_GetInstanceDefaultCredentials
 sdk_team_hide_CreateImageDetails_launchOptions
+GET_OBJECT_RANGE #udx-847
 
 # Requested by @rcohenma <ramy.cohen.masri@oracle.com>
 no_cidrBlock_internal_only
@@ -110,3 +111,8 @@ udx-1176
 udx-672
 udx-834
 udx-921
+udx-1128
+udx-1012
+udx-847
+udx-1181
+udx-1017

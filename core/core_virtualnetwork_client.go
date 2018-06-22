@@ -637,6 +637,87 @@ func (client VirtualNetworkClient) createDrgAttachment(ctx context.Context, requ
 	return response, err
 }
 
+// CreateFlowLogConfig Creates a new flow log configuration in the specified compartment.
+func (client VirtualNetworkClient) CreateFlowLogConfig(ctx context.Context, request CreateFlowLogConfigRequest) (response CreateFlowLogConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.createFlowLogConfig, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateFlowLogConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateFlowLogConfigResponse")
+	}
+	return
+}
+
+// createFlowLogConfig implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createFlowLogConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/flowLogConfigs")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateFlowLogConfigResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateFlowLogConfigAttachment Attaches a flow log configuration to a resource such as a subnet. The result is a
+// FlowLogConfigAttachment. The process of
+// attaching enables flow logs for the resource. A resource can have only a single
+// flow log configuration attached to it.
+func (client VirtualNetworkClient) CreateFlowLogConfigAttachment(ctx context.Context, request CreateFlowLogConfigAttachmentRequest) (response CreateFlowLogConfigAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.createFlowLogConfigAttachment, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateFlowLogConfigAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateFlowLogConfigAttachmentResponse")
+	}
+	return
+}
+
+// createFlowLogConfigAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createFlowLogConfigAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/flowLogConfigAttachments")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateFlowLogConfigAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateIPSecConnection Creates a new IPSec connection between the specified DRG and CPE. For more information, see
 // IPSec VPNs (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingIPsec.htm).
 // In the request, you must include at least one static route to the CPE object (you're allowed a maximum
@@ -913,11 +994,12 @@ func (client VirtualNetworkClient) createPrivateIp(ctx context.Context, request 
 // CreatePublicIp Creates a public IP. Use the `lifetime` property to specify whether it's an ephemeral or
 // reserved public IP. For information about limits on how many you can create, see
 // Public IP Addresses (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingpublicIPs.htm).
-// * **For an ephemeral public IP:** You must also specify a `privateIpId` with the OCID of
-// the primary private IP you want to assign the public IP to. The public IP is created in
-// the same Availability Domain as the private IP. An ephemeral public IP must always be
+// * **For an ephemeral public IP assigned to a private IP:** You must also specify a `privateIpId`
+// with the OCID of the primary private IP you want to assign the public IP to. The public IP is
+// created in the same Availability Domain as the private IP. An ephemeral public IP must always be
 // assigned to a private IP, and only to the *primary* private IP on a VNIC, not a secondary
-// private IP.
+// private IP. Exception: If you create a NatGateway, Oracle
+// automatically assigns the NAT gateway a regional ephemeral public IP that you cannot remove.
 // * **For a reserved public IP:** You may also optionally assign the public IP to a private
 // IP by specifying `privateIpId`. Or you can later assign the public IP with
 // UpdatePublicIp.
@@ -1576,6 +1658,85 @@ func (client VirtualNetworkClient) deleteDrgAttachment(ctx context.Context, requ
 	return response, err
 }
 
+// DeleteFlowLogConfig Deletes the specified flow log configuration. It must not be attached to a resource.
+func (client VirtualNetworkClient) DeleteFlowLogConfig(ctx context.Context, request DeleteFlowLogConfigRequest) (response DeleteFlowLogConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteFlowLogConfig, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteFlowLogConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteFlowLogConfigResponse")
+	}
+	return
+}
+
+// deleteFlowLogConfig implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteFlowLogConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/flowLogConfigs/{flowLogConfigId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteFlowLogConfigResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteFlowLogConfigAttachment Deletes the specified flow log configuration attachment. This effectively disables flow logs
+// for the attached resource.
+func (client VirtualNetworkClient) DeleteFlowLogConfigAttachment(ctx context.Context, request DeleteFlowLogConfigAttachmentRequest) (response DeleteFlowLogConfigAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteFlowLogConfigAttachment, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteFlowLogConfigAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteFlowLogConfigAttachmentResponse")
+	}
+	return
+}
+
+// deleteFlowLogConfigAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteFlowLogConfigAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/flowLogConfigAttachments/{flowLogConfigAttachmentId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteFlowLogConfigAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteIPSecConnection Deletes the specified IPSec connection. If your goal is to disable the IPSec VPN between your VCN and
 // on-premises network, it's easiest to simply detach the DRG but keep all the IPSec VPN components intact.
 // If you were to delete all the components and then later need to create an IPSec VPN again, you would
@@ -1837,6 +1998,9 @@ func (client VirtualNetworkClient) deletePrivateIp(ctx context.Context, request 
 // DeletePublicIp Unassigns and deletes the specified public IP (either ephemeral or reserved).
 // You must specify the object's OCID. The public IP address is returned to the
 // Oracle Cloud Infrastructure public IP pool.
+// **Note:** You cannot update, unassign, or delete the public IP that Oracle automatically
+// assigned to an entity for you (such as a load balancer or NAT gateway). The public IP is
+// automatically deleted if the assigned entity is terminated.
 // For an assigned reserved public IP, the initial unassignment portion of this operation
 // is asynchronous. Poll the public IP's `lifecycleState` to determine
 // if the operation succeeded.
@@ -2602,6 +2766,84 @@ func (client VirtualNetworkClient) getFastConnectProviderService(ctx context.Con
 	}
 
 	var response GetFastConnectProviderServiceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetFlowLogConfig Gets the specified flow log configuration.
+func (client VirtualNetworkClient) GetFlowLogConfig(ctx context.Context, request GetFlowLogConfigRequest) (response GetFlowLogConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getFlowLogConfig, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetFlowLogConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetFlowLogConfigResponse")
+	}
+	return
+}
+
+// getFlowLogConfig implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getFlowLogConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/flowLogConfigs/{flowLogConfigId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetFlowLogConfigResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetFlowLogConfigAttachment Gets the specified flow log configuration attachment.
+func (client VirtualNetworkClient) GetFlowLogConfigAttachment(ctx context.Context, request GetFlowLogConfigAttachmentRequest) (response GetFlowLogConfigAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getFlowLogConfigAttachment, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetFlowLogConfigAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetFlowLogConfigAttachmentResponse")
+	}
+	return
+}
+
+// getFlowLogConfigAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getFlowLogConfigAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/flowLogConfigAttachments/{flowLogConfigAttachmentId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetFlowLogConfigAttachmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -3865,6 +4107,85 @@ func (client VirtualNetworkClient) listFastConnectProviderVirtualCircuitBandwidt
 	return response, err
 }
 
+// ListFlowLogConfigAttachments Lists the flow log configuration attachments for the specified compartment. You can filter the
+// results by a particular subnet by specifying both `targetEntityId` and `targetEntityType`.
+func (client VirtualNetworkClient) ListFlowLogConfigAttachments(ctx context.Context, request ListFlowLogConfigAttachmentsRequest) (response ListFlowLogConfigAttachmentsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listFlowLogConfigAttachments, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListFlowLogConfigAttachmentsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListFlowLogConfigAttachmentsResponse")
+	}
+	return
+}
+
+// listFlowLogConfigAttachments implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listFlowLogConfigAttachments(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/flowLogConfigAttachments")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListFlowLogConfigAttachmentsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListFlowLogConfigs Lists the flow log configurations for the specified compartment.
+func (client VirtualNetworkClient) ListFlowLogConfigs(ctx context.Context, request ListFlowLogConfigsRequest) (response ListFlowLogConfigsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listFlowLogConfigs, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListFlowLogConfigsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListFlowLogConfigsResponse")
+	}
+	return
+}
+
+// listFlowLogConfigs implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listFlowLogConfigs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/flowLogConfigs")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListFlowLogConfigsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListIPSecConnections Lists the IPSec connections for the specified compartment. You can filter the
 // results by DRG or CPE.
 func (client VirtualNetworkClient) ListIPSecConnections(ctx context.Context, request ListIPSecConnectionsRequest) (response ListIPSecConnectionsResponse, err error) {
@@ -4112,13 +4433,22 @@ func (client VirtualNetworkClient) listPrivateIps(ctx context.Context, request c
 	return response, err
 }
 
-// ListPublicIps Lists either the ephemeral or reserved PublicIp objects
-// in the specified compartment.
-// To list your reserved public IPs, set `scope` = `REGION`, and leave the
-// `availabilityDomain` parameter empty.
-// To list your ephemeral public IPs, set `scope` = `AVAILABILITY_DOMAIN`, and set the
-// `availabilityDomain` parameter to the desired Availability Domain. An ephemeral public IP
-// is always in the same Availability Domain and compartment as the private IP it's assigned to.
+// ListPublicIps Lists the PublicIp objects
+// in the specified compartment. You can filter the list by using query parameters.
+// To list your reserved public IPs:
+//   * Set `scope` = `REGION`  (required)
+//   * Leave the `availabilityDomain` parameter empty
+//   * Set `lifetime` = `RESERVED`
+// To list the ephemeral public IPs assigned to a regional entity such as a NAT gateway:
+//   * Set `scope` = `REGION`  (required)
+//   * Leave the `availabilityDomain` parameter empty
+//   * Set `lifetime` = `EPHEMERAL`
+// To list the ephemeral public IPs assigned to private IPs:
+//   * Set `scope` = `AVAILABILITY_DOMAIN` (required)
+//   * Set the `availabilityDomain` parameter to the desired Availability Domain (required)
+//   * Set `lifetime` = `EPHEMERAL`
+// **Note:** An ephemeral public IP assigned to a private IP
+// is always in the same Availability Domain and compartment as the private IP.
 func (client VirtualNetworkClient) ListPublicIps(ctx context.Context, request ListPublicIpsRequest) (response ListPublicIpsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4779,6 +5109,84 @@ func (client VirtualNetworkClient) updateDrgAttachment(ctx context.Context, requ
 	}
 
 	var response UpdateDrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateFlowLogConfig Updates a flow log configuration.
+func (client VirtualNetworkClient) UpdateFlowLogConfig(ctx context.Context, request UpdateFlowLogConfigRequest) (response UpdateFlowLogConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateFlowLogConfig, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateFlowLogConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateFlowLogConfigResponse")
+	}
+	return
+}
+
+// updateFlowLogConfig implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateFlowLogConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/flowLogConfigs/{flowLogConfigId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateFlowLogConfigResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateFlowLogConfigAttachment Updates the specified flow log configuration attachment.
+func (client VirtualNetworkClient) UpdateFlowLogConfigAttachment(ctx context.Context, request UpdateFlowLogConfigAttachmentRequest) (response UpdateFlowLogConfigAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateFlowLogConfigAttachment, policy)
+	if err != nil {
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateFlowLogConfigAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateFlowLogConfigAttachmentResponse")
+	}
+	return
+}
+
+// updateFlowLogConfigAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateFlowLogConfigAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/flowLogConfigAttachments/{flowLogConfigAttachmentId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateFlowLogConfigAttachmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

@@ -88,3 +88,14 @@ whitelisted:
   - udx-834
   # DEX-3593
   - udx-921
+  # DEX-3696
+  - udx-1128
+  # DEX-3670
+  - udx-1012
+  # DEX-3713
+  - udx-847
+  - GET_OBJECT_RANGE
+  # DEX-3593
+  - udx-3724
+  # DEX-3718
+  - udx-1017

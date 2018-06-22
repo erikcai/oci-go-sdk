@@ -12,14 +12,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateLocalPeeringGatewayDetails The representation of CreateLocalPeeringGatewayDetails
-type CreateLocalPeeringGatewayDetails struct {
-
-	// The OCID of the compartment containing the local peering gateway (LPG).
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
-
-	// The OCID of the VCN the LPG belongs to.
-	VcnId *string `mandatory:"true" json:"vcnId"`
+// UpdateFlowLogConfigDetails The representation of UpdateFlowLogConfigDetails
+type UpdateFlowLogConfigDetails struct {
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
@@ -35,14 +29,8 @@ type CreateLocalPeeringGatewayDetails struct {
 	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
-
-	// The OCID of the route table the LPG will use.
-	// If you don't specify a route table here, the LPG is created without an associated route
-	// table. The Networking service does NOT automatically associate the attached VCN's default route table
-	// with the LPG.
-	RouteTableId *string `mandatory:"false" json:"routeTableId"`
 }
 
-func (m CreateLocalPeeringGatewayDetails) String() string {
+func (m UpdateFlowLogConfigDetails) String() string {
 	return common.PointerString(m)
 }
