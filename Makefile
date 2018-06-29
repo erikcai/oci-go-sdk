@@ -1,6 +1,6 @@
 DOC_SERVER_URL=https:\/\/docs.us-phoenix-1.oraclecloud.com
 
-GEN_TARGETS = identity core objectstorage loadbalancer database audit dns filestorage email orchestration kms resourcesearch containerengine
+GEN_TARGETS = identity core objectstorage loadbalancer database audit dns filestorage email resourcemanager kms resourcesearch containerengine
 NON_GEN_TARGETS = common common/auth objectstorage/transfer
 TARGETS = $(NON_GEN_TARGETS) $(GEN_TARGETS)
 

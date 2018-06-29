@@ -88,6 +88,9 @@ type LaunchDbSystemBase interface {
 
 	// Number of nodes to launch for a VM-shape based RAC DB system.
 	GetNodeCount() *int
+
+	// If true, Sparse Diskgroup is configured for Exadata dbsystem. If False, Sparse diskgroup is not configured.
+	GetSparseDiskgroup() *bool
 }
 
 type launchdbsystembase struct {
@@ -108,6 +111,7 @@ type launchdbsystembase struct {
 	FreeformTags               map[string]string                 `mandatory:"false" json:"freeformTags"`
 	InitialDataStorageSizeInGB *int                              `mandatory:"false" json:"initialDataStorageSizeInGB"`
 	NodeCount                  *int                              `mandatory:"false" json:"nodeCount"`
+	SparseDiskgroup            *bool                             `mandatory:"false" json:"sparseDiskgroup"`
 	Source                     string                            `json:"source"`
 }
 
@@ -138,6 +142,7 @@ func (m *launchdbsystembase) UnmarshalJSON(data []byte) error {
 	m.FreeformTags = s.Model.FreeformTags
 	m.InitialDataStorageSizeInGB = s.Model.InitialDataStorageSizeInGB
 	m.NodeCount = s.Model.NodeCount
+	m.SparseDiskgroup = s.Model.SparseDiskgroup
 	m.Source = s.Model.Source
 
 	return err
@@ -238,6 +243,11 @@ func (m launchdbsystembase) GetInitialDataStorageSizeInGB() *int {
 //GetNodeCount returns NodeCount
 func (m launchdbsystembase) GetNodeCount() *int {
 	return m.NodeCount
+}
+
+//GetSparseDiskgroup returns SparseDiskgroup
+func (m launchdbsystembase) GetSparseDiskgroup() *bool {
+	return m.SparseDiskgroup
 }
 
 func (m launchdbsystembase) String() string {

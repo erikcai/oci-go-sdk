@@ -124,6 +124,9 @@ type DbSystemSummary struct {
 	// - For a single-node DB System, this list is empty.
 	ScanIpIds []string `mandatory:"false" json:"scanIpIds"`
 
+	// True, if Sparse Diskgroup is configured for Exadata dbsystem, False, if Sparse diskgroup was not configured.
+	SparseDiskgroup *bool `mandatory:"false" json:"sparseDiskgroup"`
+
 	// The date and time the DB System was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 

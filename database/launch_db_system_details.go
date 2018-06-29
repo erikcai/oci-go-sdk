@@ -91,6 +91,9 @@ type LaunchDbSystemDetails struct {
 	// Number of nodes to launch for a VM-shape based RAC DB system.
 	NodeCount *int `mandatory:"false" json:"nodeCount"`
 
+	// If true, Sparse Diskgroup is configured for Exadata dbsystem. If False, Sparse diskgroup is not configured.
+	SparseDiskgroup *bool `mandatory:"false" json:"sparseDiskgroup"`
+
 	// The Oracle Database Edition that applies to all the databases on the DB System.
 	// Exadata DB Systems and 2-node RAC DB Systems require ENTERPRISE_EDITION_EXTREME_PERFORMANCE.
 	DatabaseEdition LaunchDbSystemDetailsDatabaseEditionEnum `mandatory:"true" json:"databaseEdition"`
@@ -172,6 +175,11 @@ func (m LaunchDbSystemDetails) GetNodeCount() *int {
 //GetShape returns Shape
 func (m LaunchDbSystemDetails) GetShape() *string {
 	return m.Shape
+}
+
+//GetSparseDiskgroup returns SparseDiskgroup
+func (m LaunchDbSystemDetails) GetSparseDiskgroup() *bool {
+	return m.SparseDiskgroup
 }
 
 //GetSshPublicKeys returns SshPublicKeys

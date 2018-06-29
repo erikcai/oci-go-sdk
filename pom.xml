@@ -28,7 +28,7 @@
         <objectstorage.artifact.version>1.1.23-PREVIEW</objectstorage.artifact.version>
         <objectstorage.artifact.id>casper-api-spec</objectstorage.artifact.id>
         <objectstorage.spec.name>casper-api.yaml</objectstorage.spec.name>
-        <database.artifact.version>0.0.13-releasePreview</database.artifact.version>
+        <database.artifact.version>0.0.14-releasePreview</database.artifact.version>
         <database.artifact.id>dbaas-api-spec</database.artifact.id>
         <database.spec.name>dbaas-api-spec-20160918.yaml</database.spec.name>
         <audit.artifact.version>0.1.9</audit.artifact.version>
@@ -43,9 +43,9 @@
         <email.artifact.version>1.0.0</email.artifact.version>
         <email.artifact.id>email-api-spec</email.artifact.id>
         <email.spec.name>email-api-spec.yaml</email.spec.name>
-        <orchestration.artifact.version>0.0.1-SNAPSHOT</orchestration.artifact.version>
-        <orchestration.artifact.id>maestro-spec</orchestration.artifact.id>
-        <orchestration.spec.name>api.yaml</orchestration.spec.name>
+        <resourcemanager.artifact.version>0.0.2</resourcemanager.artifact.version>
+        <resourcemanager.artifact.id>maestro-spec</resourcemanager.artifact.id>
+        <resourcemanager.spec.name>api.yaml</resourcemanager.spec.name>
         <kms.artifact.version>0.1.63</kms.artifact.version>
         <kms.artifact.id>kms-api-spec</kms.artifact.id>
         <kms.spec.name>kms-api-spec-20180201.yaml</kms.spec.name>
@@ -246,7 +246,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>unpack-orchestration</id>
+                        <id>unpack-resourcemanager</id>
                         <phase>initialize</phase>
                         <goals>
                             <goal>unpack</goal>
@@ -254,11 +254,11 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>com.oracle.pic.orchestration</groupId>
-                                    <artifactId>${orchestration.artifact.id}</artifactId>
+                                    <groupId>com.oracle.pic.orchestration.orm</groupId>
+                                    <artifactId>${resourcemanager.artifact.id}</artifactId>
                                     <type>jar</type>
                                     <includes>**/*</includes>
-                                    <outputDirectory>${spec.temp.dir}/orchestration</outputDirectory>
+                                    <outputDirectory>${spec.temp.dir}/resourcemanager</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -566,28 +566,28 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>spec-conditionals-prefer-orchestration</id>
+                        <id>spec-conditionals-prefer-resourcemanager</id>
                         <phase>initialize</phase>
                         <goals>
                             <goal>prefer</goal>
                         </goals>
                         <configuration>
                             <inputFiles>
-                                <inputFile>${spec.temp.dir}/orchestration/source/${orchestration.spec.name}</inputFile>
-                                <inputFile>${spec.temp.dir}/orchestration/${orchestration.spec.name}</inputFile>
+                                <inputFile>${spec.temp.dir}/resourcemanager/source/${resourcemanager.spec.name}</inputFile>
+                                <inputFile>${spec.temp.dir}/resourcemanager/${resourcemanager.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${orchestration.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/${resourcemanager.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>spec-conditionals-preprocess-orchestration</id>
+                        <id>spec-conditionals-preprocess-resourcemanager</id>
                         <phase>initialize</phase>
                         <goals>
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${orchestration.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${orchestration.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/${resourcemanager.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/${resourcemanager.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -843,19 +843,19 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>go-public-sdk-orchestration</id>
+                        <id>go-public-sdk-resourcemanager</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${orchestration.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/${resourcemanager.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
-                            <basePackage>orchestration</basePackage>
+                            <basePackage>resourcemanager</basePackage>
                             <additionalProperties>
-                                <specName>orchestration</specName>
+                                <specName>resourcemanager</specName>
                                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                             </additionalProperties>
                             <featureIdConfigFile>${project.basedir}/featureId.yaml</featureIdConfigFile>
@@ -1010,7 +1010,7 @@
                             </includes>
                         </fileset>
                         <fileset>
-                            <directory>lib/oci/orchestration</directory>
+                            <directory>lib/oci/resourcemanager</directory>
                             <excludes>
                                 <exclude>util.rb</exclude>
                             </excludes>
@@ -1109,9 +1109,9 @@
                 <version>${lb.artifact.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.oracle.pic.orchestration</groupId>
-                <artifactId>${orchestration.artifact.id}</artifactId>
-                <version>${orchestration.artifact.version}</version>
+                <groupId>com.oracle.pic.orchestration.orm</groupId>
+                <artifactId>${resourcemanager.artifact.id}</artifactId>
+                <version>${resourcemanager.artifact.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle.pic.query</groupId>
