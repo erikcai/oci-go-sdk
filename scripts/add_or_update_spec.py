@@ -9,7 +9,8 @@ import re
 import click
 from click.exceptions import UsageError
 
-DEFAULT_POM_LOCATION = "pom.xml"
+DEFAULT_POM_LOCATION = "../pom.xml"
+DEFAULT_GITHUB_WHITELIST_LOCATION = "../github.whitelist"
 
 PROPERTIES_ELEMENT_ARTIFACT_VERSION = """<{spec_name}.artifact.version>{version}</{spec_name}.artifact.version>"""
 PROPERTIES_ELEMENT_ARTIFACT_ID = """<{spec_name}.artifact.id>{artifact_id}</{spec_name}.artifact.id>"""
@@ -268,12 +269,15 @@ def add_spec_module_to_github_whitelist(spec_name, github_whitelist_location):
         f.write('\n^{}/'.format(spec_name))
 
 
-def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative_spec_path=None, subdomain=None, version=None, regional_sub_service_overrides=None, non_regional_sub_service_overrides=None, pom_location=None):
+def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative_spec_path=None, subdomain=None, version=None, spec_generation_type=None, regional_sub_service_overrides=None, non_regional_sub_service_overrides=None, pom_location=None, github_whitelist_location=None):
     if not version:
         raise click.exceptions.MissingParameter(message='Version parameter is required')
 
     if not spec_name:
         raise click.exceptions.MissingParameter(message='Spec name parameter is required')
+
+    if spec_generation_type:
+        print('Note: --spec-generation-type is ignored for the GO SDK, since it is set in the ../pom.xml file for all modules')
 
     pom = parse_pom(pom_location)
 
@@ -307,6 +311,7 @@ def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative
         generate_and_add_generate_section(pom, spec_name, relative_spec_path, subdomain, regional_sub_service_overrides, non_regional_sub_service_overrides)
         generate_and_add_clean_section(pom, spec_name)
         generate_and_add_dependency_management_section(pom, spec_name, group_id, artifact_id, version)
+        add_spec_module_to_github_whitelist(spec_name, github_whitelist_location)
 
     # pretty print pom
     indent(pom.getroot())
@@ -322,6 +327,7 @@ def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative
 @click.option('--relative-spec-path', help='The relative path of the spec within the artifact (e.g. coreservices-api-spec-20160918-external.yaml)')
 @click.option('--subdomain', help='The subdomain for the service (e.g. if the endpoint is https://iaas.{domain}/20160918), the subdomain is "iaas"')
 @click.option('--version', help='The version of the spec artifact (e.g. 0.0.1-SNAPSHOT')
+@click.option('--spec-generation-type', help='The generation type: PUBLIC or PREVIEW')
 @click.option('--regional-sub-service-overrides', multiple=True, help="""For specs that contain multiple services
 (because there are operations with different tags in the spec), which of those services should be considered regional.
 Services are considered as regional by default.
@@ -336,8 +342,9 @@ This should be the snake_cased name of the tag/service. For example kms_provisio
 
 This parameter can be provided multiple times""")
 @click.option('--pom-location', type=click.Path(exists=True), default=DEFAULT_POM_LOCATION, help='Location of the pom.xml file to update')
-def add_or_update_spec_command(artifact_id, group_id, spec_name, relative_spec_path, subdomain, version, regional_sub_service_overrides, non_regional_sub_service_overrides, pom_location):
-    add_or_update_spec(artifact_id, group_id, spec_name, relative_spec_path, subdomain, version, regional_sub_service_overrides, non_regional_sub_service_overrides, pom_location)
+@click.option('--github-whitelist-location', type=click.Path(exists=True), default=DEFAULT_GITHUB_WHITELIST_LOCATION, help='Location of the github.whitelist file to update')
+def add_or_update_spec_command(artifact_id, group_id, spec_name, relative_spec_path, subdomain, version, spec_generation_type, regional_sub_service_overrides, non_regional_sub_service_overrides, pom_location, github_whitelist_location):
+    add_or_update_spec(artifact_id, group_id, spec_name, relative_spec_path, subdomain, version, spec_generation_type, regional_sub_service_overrides, non_regional_sub_service_overrides, pom_location, github_whitelist_location)
 
 
 if __name__ == '__main__':
