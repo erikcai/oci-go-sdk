@@ -11,6 +11,7 @@ import (
 	"encoding/pem"
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 	"sync"
 
@@ -57,8 +58,8 @@ var (
 func newAuthClient(region common.Region, provider common.KeyProvider) *common.BaseClient {
 	signer := common.RequestSigner(provider, genericHeaders, bodyHeaders)
 	client := common.DefaultBaseClientWithSigner(signer)
-	if region == common.RegionSEA {
-		client.Host = "https://auth.r1.oracleiaas.com"
+	if regionURL, ok := os.LookupEnv("OCI_SDK_AUTH_CLIENT_REGION_URL"); ok {
+		client.Host = regionURL
 	} else {
 		client.Host = fmt.Sprintf(common.DefaultHostURLTemplate, "auth", string(region))
 	}
