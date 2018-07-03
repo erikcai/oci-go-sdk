@@ -22,9 +22,9 @@
         <identity.artifact.version>0.2.17-PREVIEW</identity.artifact.version>
         <identity.artifact.id>identity-control-plane-api-spec-preview</identity.artifact.id>
         <identity.spec.name>identity-control-plane-api-spec-20160918.yaml</identity.spec.name>
-        <lb.artifact.version>1.0.17</lb.artifact.version>
-        <lb.artifact.id>oralb-api-spec-preview</lb.artifact.id>
-        <lb.spec.name>spec-20170115.yaml</lb.spec.name>
+        <loadbalancer.artifact.version>1.0.17</loadbalancer.artifact.version>
+        <loadbalancer.artifact.id>oralb-api-spec-preview</loadbalancer.artifact.id>
+        <loadbalancer.spec.name>spec-20170115.yaml</loadbalancer.spec.name>
         <objectstorage.artifact.version>1.1.23-PREVIEW</objectstorage.artifact.version>
         <objectstorage.artifact.id>casper-api-spec</objectstorage.artifact.id>
         <objectstorage.spec.name>casper-api.yaml</objectstorage.spec.name>

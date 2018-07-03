@@ -268,6 +268,8 @@ def add_spec_module_to_github_whitelist(spec_name, github_whitelist_location):
     with open(github_whitelist_location, 'a') as f:
         f.write('\n^{}/'.format(spec_name))
 
+def goify_specname(name):
+    return name.replace('_', '').lower()
 
 def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative_spec_path=None, subdomain=None, version=None, spec_generation_type=None, regional_sub_service_overrides=None, non_regional_sub_service_overrides=None, pom_location=None, github_whitelist_location=None):
     if not version:
@@ -280,6 +282,9 @@ def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative
         print('Note: --spec-generation-type is ignored for the GO SDK, since it is set in the ../pom.xml file for all modules')
 
     pom = parse_pom(pom_location)
+
+    # force format of spec_name by removing underscore and lower case
+    spec_name = goify_specname(spec_name)
 
     # determine if this artifact is already in the spec
     target_artifact_id = '${{{spec_name}.artifact.id}}'.format(spec_name=spec_name)
