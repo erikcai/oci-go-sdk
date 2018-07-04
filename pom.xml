@@ -111,10 +111,10 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>com.oracle.pic.lb</groupId>
-                                    <artifactId>${lb.artifact.id}</artifactId>
+                                    <artifactId>${loadbalancer.artifact.id}</artifactId>
                                     <type>jar</type>
                                     <includes>**/*</includes>
-                                    <outputDirectory>${spec.temp.dir}/lb</outputDirectory>
+                                    <outputDirectory>${spec.temp.dir}/loadbalancer</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -391,10 +391,10 @@
                         </goals>
                         <configuration>
                             <inputFiles>
-                                <inputFile>${spec.temp.dir}/lb/source/${lb.spec.name}</inputFile>
-                                <inputFile>${spec.temp.dir}/lb/${lb.spec.name}</inputFile>
+                                <inputFile>${spec.temp.dir}/loadbalancer/source/${loadbalancer.spec.name}</inputFile>
+                                <inputFile>${spec.temp.dir}/loadbalancer/${loadbalancer.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${lb.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/${loadbalancer.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -404,8 +404,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${lb.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${lb.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/${loadbalancer.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/${loadbalancer.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -716,7 +716,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${lb.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/${loadbalancer.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>loadbalancer</basePackage>
@@ -1105,8 +1105,8 @@
             </dependency>
             <dependency>
                 <groupId>com.oracle.pic.lb</groupId>
-                <artifactId>${lb.artifact.id}</artifactId>
-                <version>${lb.artifact.version}</version>
+                <artifactId>${loadbalancer.artifact.id}</artifactId>
+                <version>${loadbalancer.artifact.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle.pic.orchestration.orm</groupId>
