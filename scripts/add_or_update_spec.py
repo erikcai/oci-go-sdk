@@ -16,6 +16,11 @@ PROPERTIES_ELEMENT_ARTIFACT_VERSION = """<{spec_name}.artifact.version>{version}
 PROPERTIES_ELEMENT_ARTIFACT_ID = """<{spec_name}.artifact.id>{artifact_id}</{spec_name}.artifact.id>"""
 PROPERTIES_ELEMENT_SPEC_NAME = """<{spec_name}.spec.name>{spec_path_relative_to_jar}</{spec_name}.spec.name>"""
 
+# an mapping between the jira service friendly name to the service name in pom file
+SPEC_NAME_MAPPINGS = {
+    "coreservicesapi": "core",
+}
+
 UNPACK_EXECUTION_TEMPLATE = """
 <execution>
     <id>unpack-{spec_name}</id>
@@ -269,7 +274,11 @@ def add_spec_module_to_github_whitelist(spec_name, github_whitelist_location):
         f.write('\n^{}/'.format(spec_name))
 
 def goify_specname(name):
-    return name.replace('_', '').lower()
+    newName = name.replace('_', '').lower()
+    if SPEC_NAME_MAPPINGS.has_key(newName):
+        return SPEC_NAME_MAPPINGS.get(newName)
+    else:
+        return newName
 
 def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative_spec_path=None, subdomain=None, version=None, spec_generation_type=None, regional_sub_service_overrides=None, non_regional_sub_service_overrides=None, pom_location=None, github_whitelist_location=None):
     if not version:
