@@ -27,10 +27,6 @@ type ListNatGatewaysRequest struct {
 	// A filter to return only resources that match the given display name exactly.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// Filter results by the specified lifecycle state. Must be a valid
-	// state for the resource type.
-	LifecycleState ListNatGatewaysLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
-
 	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
 	// TIMECREATED is descending. Default order for DISPLAYNAME is ascending. The DISPLAYNAME
 	// sort order is case sensitive.
@@ -43,6 +39,9 @@ type ListNatGatewaysRequest struct {
 	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
 	// is case sensitive.
 	SortOrder ListNatGatewaysSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+
+	// A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
+	LifecycleState NatGatewayLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
@@ -93,33 +92,6 @@ func (response ListNatGatewaysResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListNatGatewaysResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// ListNatGatewaysLifecycleStateEnum Enum with underlying type: string
-type ListNatGatewaysLifecycleStateEnum string
-
-// Set of constants representing the allowable values for ListNatGatewaysLifecycleState
-const (
-	ListNatGatewaysLifecycleStateProvisioning ListNatGatewaysLifecycleStateEnum = "PROVISIONING"
-	ListNatGatewaysLifecycleStateAvailable    ListNatGatewaysLifecycleStateEnum = "AVAILABLE"
-	ListNatGatewaysLifecycleStateTerminating  ListNatGatewaysLifecycleStateEnum = "TERMINATING"
-	ListNatGatewaysLifecycleStateTerminated   ListNatGatewaysLifecycleStateEnum = "TERMINATED"
-)
-
-var mappingListNatGatewaysLifecycleState = map[string]ListNatGatewaysLifecycleStateEnum{
-	"PROVISIONING": ListNatGatewaysLifecycleStateProvisioning,
-	"AVAILABLE":    ListNatGatewaysLifecycleStateAvailable,
-	"TERMINATING":  ListNatGatewaysLifecycleStateTerminating,
-	"TERMINATED":   ListNatGatewaysLifecycleStateTerminated,
-}
-
-// GetListNatGatewaysLifecycleStateEnumValues Enumerates the set of values for ListNatGatewaysLifecycleState
-func GetListNatGatewaysLifecycleStateEnumValues() []ListNatGatewaysLifecycleStateEnum {
-	values := make([]ListNatGatewaysLifecycleStateEnum, 0)
-	for _, v := range mappingListNatGatewaysLifecycleState {
-		values = append(values, v)
-	}
-	return values
 }
 
 // ListNatGatewaysSortByEnum Enum with underlying type: string

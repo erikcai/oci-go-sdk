@@ -21,21 +21,27 @@ type RouteRule struct {
 	// Route Tables (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingroutetables.htm).
 	NetworkEntityId *string `mandatory:"true" json:"networkEntityId"`
 
-	// Deprecated, Destination and DestinationType should be used instead; request including both fields will be rejected.
+	// Deprecated. Instead use `destination` and `destinationType`. Requests that include both
+	// `cidrBlock` and `destination` will be rejected.
 	// A destination IP address range in CIDR notation. Matching packets will
 	// be routed to the indicated network entity (the target).
 	// Example: `0.0.0.0/0`
 	CidrBlock *string `mandatory:"false" json:"cidrBlock"`
 
-	// The destination service cidrBlock or destination IP address range in CIDR notation. Matching packets will
-	// be routed to the indicated network entity (the target).
-	// Examples: `10.12.0.0/16`
-	//           `oci-phx-objectstorage`
+	// Conceptually, this is the range of IP addresses used for matching when routing
+	// traffic. Required if you provide a `destinationType`.
+	// Allowed values:
+	//   * IP address range in CIDR notation. For example: `192.168.1.0/24`
+	//   * The `cidrBlock` value for a Service, if you're
+	//     setting up a route rule for traffic destined for a particular service through
+	//     a service gateway. For example: `oci-phx-objectstorage`
 	Destination *string `mandatory:"false" json:"destination"`
 
-	// Type of destination for the route rule. SERVICE_CIDR_BLOCK should be used if destination is a service
-	// cidrBlock. CIDR_BLOCK should be used if destination is IP address range in CIDR notation. It must be provided
-	// along with `destination`.
+	// Type of destination for the rule. Required if you provide a `destination`.
+	//   * `CIDR_BLOCK`: If the rule's `destination` is an IP address range in CIDR notation.
+	//   * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
+	//     Service (the rule is for traffic destined for a
+	//     particular service through a service gateway).
 	DestinationType RouteRuleDestinationTypeEnum `mandatory:"false" json:"destinationType,omitempty"`
 }
 

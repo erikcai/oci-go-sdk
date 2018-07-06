@@ -16,7 +16,7 @@
         <spec.temp.dir>${project.build.directory}</spec.temp.dir>
         <preferred.temp.dir>${project.build.directory}/preferred</preferred.temp.dir>
         <preprocessed.temp.dir>${project.build.directory}/preprocessed</preprocessed.temp.dir>
-        <core.artifact.version>0.2.180</core.artifact.version>
+        <core.artifact.version>0.2.202</core.artifact.version>
         <core.artifact.id>coreservices-api-spec</core.artifact.id>
         <core.spec.name>coreservices-api-spec-20160918.cond.yaml</core.spec.name>
         <identity.artifact.version>0.2.17-PREVIEW</identity.artifact.version>
@@ -57,6 +57,9 @@
         <containerengine.artifact.version>1.0.10</containerengine.artifact.version>
         <containerengine.artifact.id>clusters-api-spec</containerengine.artifact.id>
         <containerengine.spec.name>clusters-api-spec.yaml</containerengine.spec.name>
+        <telemetry.artifact.version>0.2.9</telemetry.artifact.version>
+        <telemetry.artifact.id>telemetry-public-api-spec</telemetry.artifact.id>
+        <telemetry.spec.name>source/telemetry-api.cond.yaml</telemetry.spec.name>
     </properties>
     <build>
         <plugins>
@@ -295,6 +298,24 @@
                                     <type>jar</type>
                                     <includes>**/*</includes>
                                     <outputDirectory>${spec.temp.dir}/containerengine</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-telemetry</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.oracle.pic.telemetry.api</groupId>
+                                    <artifactId>${telemetry.artifact.id}</artifactId>
+                                    <type>jar</type>
+                                    <includes>**/*</includes>
+                                    <outputDirectory>${spec.temp.dir}/telemetry</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -643,6 +664,32 @@
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>spec-conditionals-prefer-telemetry</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>prefer</goal>
+                        </goals>
+                        <configuration>
+                            <inputFiles>
+                                <inputFile>${spec.temp.dir}/telemetry/source/${telemetry.spec.name}</inputFile>
+                                <inputFile>${spec.temp.dir}/telemetry/${telemetry.spec.name}</inputFile>
+                            </inputFiles>
+                            <outputFile>${preferred.temp.dir}/${telemetry.spec.name}</outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>spec-conditionals-preprocess-telemetry</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>preprocess</goal>
+                        </goals>
+                        <configuration>
+                            <inputFile>${preferred.temp.dir}/${telemetry.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/${telemetry.spec.name}</outputFile>
+                            <groupFile>${enabled.groups.file}</groupFile>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -921,6 +968,26 @@
                             <featureIdConfigFile>${project.basedir}/featureId.yaml</featureIdConfigFile>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>go-public-sdk-telemetry</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <language>oracle-go-sdk</language>
+                            <specPath>${preprocessed.temp.dir}/${telemetry.spec.name}</specPath>
+                            <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+                            <basePackage>telemetry</basePackage>
+                            <specGenerationType>${generationType}</specGenerationType>
+                            <additionalProperties>
+                                <specName>telemetry</specName>
+                                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                                <serviceHostName>iaas</serviceHostName>
+                            </additionalProperties>
+                            <featureIdConfigFile>${project.basedir}/featureId.yaml</featureIdConfigFile>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -1050,6 +1117,15 @@
                             <includes>
                                 <include>**/*</include>
                             </includes>
+                        </fileset>
+                        <fileset>
+                            <directory>lib/oci/telemetry</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <excludes>
+                                <exclude>util.rb</exclude>
+                            </excludes>
                         </fileset>
                     </filesets>
                 </configuration>
@@ -1262,6 +1338,11 @@
                 <groupId>com.oracle.pic.clusters</groupId>
                 <artifactId>${containerengine.artifact.id}</artifactId>
                 <version>${containerengine.artifact.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oracle.pic.telemetry.api</groupId>
+                <artifactId>${telemetry.artifact.id}</artifactId>
+                <version>${telemetry.artifact.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
