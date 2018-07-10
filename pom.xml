@@ -983,7 +983,7 @@
                             <additionalProperties>
                                 <specName>telemetry</specName>
                                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-                                <serviceHostName>iaas</serviceHostName>
+                                <serviceHostName>telemetry</serviceHostName>
                             </additionalProperties>
                             <featureIdConfigFile>${project.basedir}/featureId.yaml</featureIdConfigFile>
                         </configuration>

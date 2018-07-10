@@ -38,7 +38,7 @@ func NewTelemetryClientWithConfigurationProvider(configProvider common.Configura
 
 // SetRegion overrides the region of this client.
 func (client *TelemetryClient) SetRegion(region string)  {
-    client.Host = fmt.Sprintf(common.DefaultHostURLTemplate, "iaas", region)
+    client.Host = fmt.Sprintf(common.DefaultHostURLTemplate, "telemetry", region)
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
