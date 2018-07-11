@@ -85,13 +85,13 @@ func (fileUpload *fileUpload) UploadFilePutObject(ctx context.Context, request U
 		return response, err
 	}
 
-	fileSize := int(fi.Size())
+	fileSize := int64(fi.Size())
 
 	req := objectstorage.PutObjectRequest{
 		NamespaceName:      request.NamespaceName,
 		BucketName:         request.BucketName,
 		ObjectName:         request.ObjectName,
-		ContentLength:      common.Int(fileSize),
+		ContentLength:      common.Int64(fileSize),
 		PutObjectBody:      file,
 		OpcMeta:            request.Metadata,
 		IfMatch:            request.IfMatch,

@@ -37,7 +37,7 @@ func (request UploadStreamRequest) validate() error {
 
 func (request *UploadStreamRequest) initDefaultValues() error {
 	if request.PartSize == nil {
-		request.PartSize = common.Int(defaultStreamPartSize)
+		request.PartSize = common.Int64(defaultStreamPartSize)
 	}
 
 	return request.UploadRequest.initDefaultValues()

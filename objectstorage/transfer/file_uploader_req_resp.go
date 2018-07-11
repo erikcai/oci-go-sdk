@@ -36,7 +36,7 @@ func (request UploadFileRequest) validate() error {
 
 func (request *UploadFileRequest) initDefaultValues() error {
 	if request.PartSize == nil {
-		request.PartSize = common.Int(defaultFilePartSize)
+		request.PartSize = common.Int64(defaultFilePartSize)
 	}
 
 	return request.UploadRequest.initDefaultValues()

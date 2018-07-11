@@ -43,7 +43,7 @@ type InstanceConfigurationCreateVolumeDetails struct {
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The size of the volume in GBs.
-	SizeInGBs *int `mandatory:"false" json:"sizeInGBs"`
+	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
 
 	// Specifies the volume source details for a new Block volume. The volume source is either another Block volume in the same Availability Domain or a Block volume backup.
 	// This is an optional field. If not specified or set to null, the new Block volume will be empty.
@@ -64,7 +64,7 @@ func (m *InstanceConfigurationCreateVolumeDetails) UnmarshalJSON(data []byte) (e
 		DefinedTags        map[string]map[string]interface{}        `json:"definedTags"`
 		DisplayName        *string                                  `json:"displayName"`
 		FreeformTags       map[string]string                        `json:"freeformTags"`
-		SizeInGBs          *int                                     `json:"sizeInGBs"`
+		SizeInGBs          *int64                                   `json:"sizeInGBs"`
 		SourceDetails      instanceconfigurationvolumesourcedetails `json:"sourceDetails"`
 	}{}
 

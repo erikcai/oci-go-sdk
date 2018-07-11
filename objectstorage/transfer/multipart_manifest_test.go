@@ -14,11 +14,11 @@ import (
 func TestSplitFileParts(t *testing.T) {
 	type splitFilePartsTest struct {
 		contentLen           int
-		partSize             int
+		partSize             int64
 		expectedPartNum      int
 		expectedInitOffset   int64
 		expectedLastOffset   int64
-		expectedLastPartSize int
+		expectedLastPartSize int64
 	}
 
 	testDataSet := []splitFilePartsTest{

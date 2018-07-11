@@ -15,7 +15,7 @@ type AttachServiceIdRequest struct {
 	ServiceGatewayId *string `mandatory:"true" contributesTo:"path" name:"serviceGatewayId"`
 
 	// ServiceId of Service to be attached to a Service Gateway.
-	ServiceIdRequestDetails `contributesTo:"body"`
+	AttachServiceDetails ServiceIdRequestDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource

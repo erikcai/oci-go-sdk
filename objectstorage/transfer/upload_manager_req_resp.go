@@ -33,7 +33,7 @@ type UploadRequest struct {
 	ObjectName *string `mandatory:"true"`
 
 	// [Optional] Override the default part size of 128 MiB, value is in bytes.
-	PartSize *int `mandatory:"false"`
+	PartSize *int64 `mandatory:"false"`
 
 	// [Optional] Whether or not this UploadManager supports performing mulitpart uploads. Defaults to True.
 	AllowMultipartUploads *bool `mandatory:"false"`

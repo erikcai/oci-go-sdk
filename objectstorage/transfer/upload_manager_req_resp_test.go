@@ -62,7 +62,7 @@ func TestUploadFileReqest_initDefaultValues(t *testing.T) {
 	req := UploadFileRequest{}
 	err := req.initDefaultValues()
 	assert.NoError(t, err)
-	assert.Equal(t, defaultFilePartSize, *req.PartSize)
+	assert.Equal(t, int64(defaultFilePartSize), *req.PartSize)
 }
 
 func TestUploadFileReqest_validate(t *testing.T) {

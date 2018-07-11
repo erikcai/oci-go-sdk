@@ -98,8 +98,9 @@ func TestUploadFileMultiparts(t *testing.T) {
 	}
 
 	fileUpload := fileUpload{}
-	fileSize := 100
-	partSize := 10
+	var partSize, fileSize int64
+	fileSize = 100
+	partSize = 10
 
 	ctx := context.Background()
 	for _, testData := range testDataSet {
@@ -107,7 +108,7 @@ func TestUploadFileMultiparts(t *testing.T) {
 		fileUpload.multipartUploader = &fake
 		filePath, _ := helpers.WriteTempFileOfSize(int64(fileSize))
 		request := UploadFileRequest{
-			UploadRequest: UploadRequest{PartSize: common.Int(partSize)},
+			UploadRequest: UploadRequest{PartSize: common.Int64(partSize)},
 			FilePath:      filePath,
 		}
 
@@ -119,7 +120,7 @@ func TestUploadFileMultiparts(t *testing.T) {
 		assert.NotEmpty(t, fileUpload.manifest.parts)
 
 		// all parts have been committed
-		totalParts := fileSize / partSize
+		totalParts := int(fileSize / partSize)
 		failedParts := len(fake.failedPartNumbers)
 		assert.Equal(t, testData.expectedNumOfUploadParts, totalParts-failedParts)
 		assert.NoError(t, err)

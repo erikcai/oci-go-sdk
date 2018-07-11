@@ -39,7 +39,7 @@ func (fake fakeFileUpload) ResumeUploadFile(ctx context.Context, uploadID string
 func TestUploadManager_UploadFile(t *testing.T) {
 	type testData struct {
 		FileSize            int
-		PartSize            *int
+		PartSize            *int64
 		FileUploader        FileUploader
 		ExpectedResponsType UploadResponseType
 		ExpectedError       error
@@ -48,17 +48,17 @@ func TestUploadManager_UploadFile(t *testing.T) {
 	testDataSet := []testData{
 		{
 			FileSize:            100,
-			PartSize:            common.Int(1000),
+			PartSize:            common.Int64(1000),
 			FileUploader:        fakeFileUpload{},
 			ExpectedResponsType: SinglepartUpload,
 		}, {
 			FileSize:            60,
-			PartSize:            common.Int(50),
+			PartSize:            common.Int64(50),
 			FileUploader:        fakeFileUpload{},
 			ExpectedResponsType: MultipartUpload,
 		}, {
 			FileSize:      60,
-			PartSize:      common.Int(50),
+			PartSize:      common.Int64(50),
 			FileUploader:  nil,
 			ExpectedError: errorInvalidFileUploader,
 		},

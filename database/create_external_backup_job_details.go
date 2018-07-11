@@ -41,7 +41,7 @@ type CreateExternalBackupJobDetails struct {
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// The dbid of the Oracle database being backed up.
-	ExternalDatabaseIdentifier *int `mandatory:"true" json:"externalDatabaseIdentifier"`
+	ExternalDatabaseIdentifier *int64 `mandatory:"true" json:"externalDatabaseIdentifier"`
 
 	// The national character set for the database.
 	NcharacterSet *string `mandatory:"true" json:"ncharacterSet"`

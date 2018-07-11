@@ -15,7 +15,7 @@ type LaunchInstanceConfigurationRequest struct {
 	InstanceConfigurationId *string `mandatory:"true" contributesTo:"path" name:"instanceConfigurationId"`
 
 	// Instance configuration Instance Details
-	InstanceConfigurationInstanceDetails `contributesTo:"body"`
+	InstanceConfiguration InstanceConfigurationInstanceDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
 	// server error without risk of executing that same action again. Retry tokens expire after 24

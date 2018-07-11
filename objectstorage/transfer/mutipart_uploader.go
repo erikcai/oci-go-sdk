@@ -76,7 +76,7 @@ func (uploader *multipartUpload) uploadPart(ctx context.Context, request UploadR
 		UploadId:           common.String(uploadID),
 		UploadPartNum:      common.Int(part.partNum),
 		UploadPartBody:     ioutil.NopCloser(bytes.NewReader(part.partBody)),
-		ContentLength:      common.Int(part.size),
+		ContentLength:      common.Int64(part.size),
 		IfMatch:            request.IfMatch,
 		IfNoneMatch:        request.IfNoneMatch,
 		OpcClientRequestId: request.OpcClientRequestID,

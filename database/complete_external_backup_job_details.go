@@ -19,10 +19,10 @@ type CompleteExternalBackupJobDetails struct {
 	CfBackupHandle *string `mandatory:"false" json:"cfBackupHandle"`
 
 	// The size of the data in the database, in megabytes.
-	DataSize *int `mandatory:"false" json:"dataSize"`
+	DataSize *int64 `mandatory:"false" json:"dataSize"`
 
 	// The size of the redo in the database, in megabytes.
-	RedoSize *int `mandatory:"false" json:"redoSize"`
+	RedoSize *int64 `mandatory:"false" json:"redoSize"`
 
 	// The handle of the spfile backup.
 	SpfBackupHandle *string `mandatory:"false" json:"spfBackupHandle"`

@@ -1099,7 +1099,7 @@ func createDBSystem(t *testing.T, dbSystemName string, databaseName string) *str
 		},
 	}
 
-	request.LaunchDbSystemBase = details
+	request.LaunchDbSystemDetails = details
 	resp, err := c.LaunchDbSystem(context.Background(), request)
 	failIfError(t, err)
 

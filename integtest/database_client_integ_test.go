@@ -247,7 +247,7 @@ func TestDatabaseClient_LaunchDbSystem(t *testing.T) {
 		},
 	}
 
-	request.LaunchDbSystemBase = details
+	request.LaunchDbSystemDetails = details
 	r, err := c.LaunchDbSystem(context.Background(), request)
 	failIfError(t, err)
 

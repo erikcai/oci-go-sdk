@@ -37,8 +37,9 @@ func TestUploadStreamMultiparts(t *testing.T) {
 	}
 
 	streamUpload := streamUpload{}
-	fileSize := 100
-	partSize := 10
+	var fileSize, partSize int64
+	fileSize = 100
+	partSize = 10
 
 	ctx := context.Background()
 	for _, testData := range testDataSet {
@@ -51,7 +52,7 @@ func TestUploadStreamMultiparts(t *testing.T) {
 		assert.NoError(t, err)
 
 		request := UploadStreamRequest{
-			UploadRequest: UploadRequest{PartSize: common.Int(partSize)},
+			UploadRequest: UploadRequest{PartSize: common.Int64(partSize)},
 			StreamReader:  file,
 		}
 
@@ -60,7 +61,7 @@ func TestUploadStreamMultiparts(t *testing.T) {
 		assert.NotEmpty(t, streamUpload.manifest.parts)
 
 		// all parts have been committed
-		totalParts := fileSize / partSize
+		totalParts := int(fileSize / partSize)
 		failedParts := len(fake.failedPartNumbers)
 		assert.Equal(t, testData.expectedNumOfUploadParts, totalParts-failedParts)
 		assert.NoError(t, err)
