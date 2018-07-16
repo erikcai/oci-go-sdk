@@ -27,10 +27,6 @@ type CreateBootVolumeDetails struct {
 	// This is a mandatory field for a boot volume.
 	SourceDetails BootVolumeSourceDetails `mandatory:"true" json:"sourceDetails"`
 
-	// If provided, specifies the ID of the boot volume backup policy to assign to the newly
-	// created boot volume. If omitted, no policy will be assigned.
-	BackupPolicyId *string `mandatory:"false" json:"backupPolicyId"`
-
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
@@ -57,7 +53,6 @@ func (m CreateBootVolumeDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *CreateBootVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		BackupPolicyId     *string                           `json:"backupPolicyId"`
 		DefinedTags        map[string]map[string]interface{} `json:"definedTags"`
 		DisplayName        *string                           `json:"displayName"`
 		FreeformTags       map[string]string                 `json:"freeformTags"`
@@ -71,7 +66,6 @@ func (m *CreateBootVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
-	m.BackupPolicyId = model.BackupPolicyId
 	m.DefinedTags = model.DefinedTags
 	m.DisplayName = model.DisplayName
 	m.FreeformTags = model.FreeformTags

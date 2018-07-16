@@ -36,9 +36,6 @@ type EmulatedVolumeAttachment struct {
 	// The OCID of the volume.
 	VolumeId *string `mandatory:"true" json:"volumeId"`
 
-	// The device name (for example, /dev/vdb).
-	Device *string `mandatory:"false" json:"device"`
-
 	// A user-friendly name. Does not have to be unique, and it cannot be changed.
 	// Avoid entering confidential information.
 	// Example: `My volume attachment`
@@ -59,11 +56,6 @@ func (m EmulatedVolumeAttachment) GetAvailabilityDomain() *string {
 //GetCompartmentId returns CompartmentId
 func (m EmulatedVolumeAttachment) GetCompartmentId() *string {
 	return m.CompartmentId
-}
-
-//GetDevice returns Device
-func (m EmulatedVolumeAttachment) GetDevice() *string {
-	return m.Device
 }
 
 //GetDisplayName returns DisplayName
