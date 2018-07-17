@@ -43,6 +43,9 @@ type VolumeAttachment interface {
 	// The OCID of the volume.
 	GetVolumeId() *string
 
+	// The device name (for example, /dev/vdb).
+	GetDevice() *string
+
 	// A user-friendly name. Does not have to be unique, and it cannot be changed.
 	// Avoid entering confidential information.
 	// Example: `My volume attachment`
@@ -61,6 +64,7 @@ type volumeattachment struct {
 	LifecycleState     VolumeAttachmentLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 	TimeCreated        *common.SDKTime                    `mandatory:"true" json:"timeCreated"`
 	VolumeId           *string                            `mandatory:"true" json:"volumeId"`
+	Device             *string                            `mandatory:"false" json:"device"`
 	DisplayName        *string                            `mandatory:"false" json:"displayName"`
 	IsReadOnly         *bool                              `mandatory:"false" json:"isReadOnly"`
 	AttachmentType     string                             `json:"attachmentType"`
@@ -84,6 +88,7 @@ func (m *volumeattachment) UnmarshalJSON(data []byte) error {
 	m.LifecycleState = s.Model.LifecycleState
 	m.TimeCreated = s.Model.TimeCreated
 	m.VolumeId = s.Model.VolumeId
+	m.Device = s.Model.Device
 	m.DisplayName = s.Model.DisplayName
 	m.IsReadOnly = s.Model.IsReadOnly
 	m.AttachmentType = s.Model.AttachmentType
@@ -145,6 +150,11 @@ func (m volumeattachment) GetTimeCreated() *common.SDKTime {
 //GetVolumeId returns VolumeId
 func (m volumeattachment) GetVolumeId() *string {
 	return m.VolumeId
+}
+
+//GetDevice returns Device
+func (m volumeattachment) GetDevice() *string {
+	return m.Device
 }
 
 //GetDisplayName returns DisplayName
