@@ -12,14 +12,9 @@ from click.exceptions import UsageError
 DEFAULT_POM_LOCATION = "../pom.xml"
 DEFAULT_GITHUB_WHITELIST_LOCATION = "../github.whitelist"
 
-PROPERTIES_ELEMENT_ARTIFACT_VERSION = """<{spec_name}.artifact.version>{version}</{spec_name}.artifact.version>"""
-PROPERTIES_ELEMENT_ARTIFACT_ID = """<{spec_name}.artifact.id>{artifact_id}</{spec_name}.artifact.id>"""
-PROPERTIES_ELEMENT_SPEC_NAME = """<{spec_name}.spec.name>{spec_path_relative_to_jar}</{spec_name}.spec.name>"""
-
-# an mapping between the jira service friendly name to the service name in pom file
-SPEC_NAME_MAPPINGS = {
-    "coreservicesapi": "core",
-}
+PROPERTIES_ELEMENT_ARTIFACT_VERSION = """<{artifact_id}.artifact.version>{version}</{artifact_id}.artifact.version>"""
+PROPERTIES_ELEMENT_ARTIFACT_ID = """<{artifact_id}.artifact.id>{artifact_id}</{artifact_id}.artifact.id>"""
+PROPERTIES_ELEMENT_SPEC_NAME = """<{artifact_id}.spec.name>{spec_path_relative_to_jar}</{artifact_id}.spec.name>"""
 
 UNPACK_EXECUTION_TEMPLATE = """
 <execution>
@@ -32,7 +27,7 @@ UNPACK_EXECUTION_TEMPLATE = """
         <artifactItems>
             <artifactItem>
                 <groupId>{group_id}</groupId>
-                <artifactId>${{{spec_name}.artifact.id}}</artifactId>
+                <artifactId>${{{artifact_id}.artifact.id}}</artifactId>
                 <type>jar</type>
                 <includes>**/*</includes>
                 <outputDirectory>${{spec.temp.dir}}/{spec_name}</outputDirectory>
@@ -52,11 +47,11 @@ PREFER_EXECUTION_TEMPLATE = """
     <configuration>
         <inputFiles>
             <!-- New layout: source/<spec.proto.yaml> -->
-            <inputFile>${{spec.temp.dir}}/{spec_name}/source/${{{spec_name}.spec.name}}</inputFile>
+            <inputFile>${{spec.temp.dir}}/{spec_name}/source/${{{artifact_id}.spec.name}}</inputFile>
             <!-- Old layout: ./<spec.proto.yaml> -->
-            <inputFile>${{spec.temp.dir}}/{spec_name}/${{{spec_name}.spec.name}}</inputFile>
+            <inputFile>${{spec.temp.dir}}/{spec_name}/${{{artifact_id}.spec.name}}</inputFile>
         </inputFiles>
-        <outputFile>${{preferred.temp.dir}}/${{{spec_name}.spec.name}}</outputFile>
+        <outputFile>${{preferred.temp.dir}}/${{{artifact_id}.spec.name}}</outputFile>
     </configuration>
 </execution>
 """
@@ -69,8 +64,8 @@ PREPROCESS_EXECUTION_TEMPLATE = """
         <goal>preprocess</goal>
     </goals>
     <configuration>
-        <inputFile>${{preferred.temp.dir}}/${{{spec_name}.spec.name}}</inputFile>
-        <outputFile>${{preprocessed.temp.dir}}/${{{spec_name}.spec.name}}</outputFile>
+        <inputFile>${{preferred.temp.dir}}/${{{artifact_id}.spec.name}}</inputFile>
+        <outputFile>${{preprocessed.temp.dir}}/${{{artifact_id}.spec.name}}</outputFile>
         <groupFile>${{enabled.groups.file}}</groupFile>
     </configuration>
 </execution>
@@ -85,7 +80,7 @@ GENERATE_EXECUTION_TEMPLATE = """
     </goals>
     <configuration>
         <language>oracle-go-sdk</language>
-        <specPath>${{preprocessed.temp.dir}}/${{{spec_name}.spec.name}}</specPath>
+        <specPath>${{preprocessed.temp.dir}}/${{{artifact_id}.spec.name}}</specPath>
         <outputDir>${{env.GOPATH}}/src/${{fullyQualifiedProjectName}}</outputDir>
         <basePackage>{spec_name}</basePackage>
         <specGenerationType>${{generationType}}</specGenerationType>
@@ -115,8 +110,8 @@ CLEAN_ELEMENT_TEMPLATE = """
 DEPENDENCY_MANAGEMENT_TEMPLATE = """
     <dependency>
         <groupId>{group_id}</groupId>
-        <artifactId>${{{spec_name}.artifact.id}}</artifactId>
-        <version>${{{spec_name}.artifact.version}}</version>
+        <artifactId>${{{artifact_id}.artifact.id}}</artifactId>
+        <version>${{{artifact_id}.artifact.version}}</version>
     </dependency>
 """
 
@@ -129,21 +124,20 @@ def parse_pom(pom_location):
     return ET.parse(pom_location)
 
 
-def generate_and_add_property_element(pom, spec_name, artifact_id, version, spec_path_relative_to_jar):
+def generate_and_add_property_element(pom, artifact_id, version, spec_path_relative_to_jar):
     artifact_version_content = PROPERTIES_ELEMENT_ARTIFACT_VERSION.format(
-        spec_name=spec_name,
+        artifact_id=artifact_id,
         version=version
     )
     artifact_version_element = ET.fromstring(artifact_version_content)
 
     artifact_id_content = PROPERTIES_ELEMENT_ARTIFACT_ID.format(
-        spec_name=spec_name,
         artifact_id=artifact_id
     )
     artifact_id_element = ET.fromstring(artifact_id_content)
 
     spec_name_content = PROPERTIES_ELEMENT_SPEC_NAME.format(
-        spec_name=spec_name,
+        artifact_id=artifact_id,
         spec_path_relative_to_jar=spec_path_relative_to_jar
     )
     spec_name_element = ET.fromstring(spec_name_content)
@@ -153,6 +147,12 @@ def generate_and_add_property_element(pom, spec_name, artifact_id, version, spec
     properties.append(artifact_version_element)
     properties.append(artifact_id_element)
     properties.append(spec_name_element)
+
+
+def update_relative_spec_path(pom, artifact_id, spec_path_relative_to_jar):
+    xpath = ".//ns:properties/ns:{artifact_id}.spec.name".format(artifact_id=artifact_id)
+    spec_file_node = pom.findall(xpath, ns)[0]
+    spec_file_node.text = spec_path_relative_to_jar
 
 
 def generate_and_add_unpack_element(pom, spec_name, group_id, artifact_id, spec_path_relative_to_jar):
@@ -197,7 +197,7 @@ def generate_and_add_preprocess_element(pom, spec_name, group_id, artifact_id, s
     unpack_plugin_executions.append(unpack_element)
 
 
-def generate_and_add_generate_section(pom, spec_name, spec_path_relative_to_jar, subdomain, regional_sub_service_overrides, non_regional_sub_service_overrides):
+def generate_and_add_generate_section(pom, spec_name, artifact_id, spec_path_relative_to_jar, subdomain, regional_sub_service_overrides, non_regional_sub_service_overrides):
     regional_non_regional_service_overrides_content = ''
     if regional_sub_service_overrides or non_regional_sub_service_overrides:
         if regional_sub_service_overrides:
@@ -209,6 +209,7 @@ def generate_and_add_generate_section(pom, spec_name, spec_path_relative_to_jar,
                 regional_non_regional_service_overrides_content += '<isRegionalClient.{service_name}>false</isRegionalClient.{service_name}>\n'.format(service_name=override)
 
     content = GENERATE_EXECUTION_TEMPLATE.format(
+        artifact_id=artifact_id,
         spec_name=spec_name,
         spec_path_relative_to_jar=spec_path_relative_to_jar,
         subdomain=subdomain,
@@ -246,8 +247,8 @@ def generate_and_add_dependency_management_section(pom, spec_name, group_id, art
     dependencies.append(dep_mgt_element)
 
 
-def update_version_of_existing_spec(pom, spec_name, version):
-    xpath = ".//ns:properties//ns:{spec_name}.artifact.version".format(spec_name=spec_name)
+def update_version_of_existing_spec(pom, artifact_id, version):
+    xpath = ".//ns:properties//ns:{artifact_id}.artifact.version".format(artifact_id=artifact_id)
     dependency = pom.findall(xpath, ns)[0]
     dependency.text = version
 
@@ -274,18 +275,20 @@ def add_spec_module_to_github_whitelist(spec_name, github_whitelist_location):
         f.write('\n^{}/'.format(spec_name))
 
 def goify_specname(name):
-    newName = name.replace('_', '').lower()
-    if SPEC_NAME_MAPPINGS.has_key(newName):
-        return SPEC_NAME_MAPPINGS.get(newName)
-    else:
-        return newName
+    return name.replace('_', '').lower()
+
+def isNewService(pom, artifact_id):
+    propertyXPath = ".//ns:properties"
+    properties = pom.findall(propertyXPath, ns)[0]
+
+    for child in properties.getiterator():
+        if (child.text.lower() == artifact_id.lower()):
+            return True
+    return False
 
 def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative_spec_path=None, subdomain=None, version=None, spec_generation_type=None, regional_sub_service_overrides=None, non_regional_sub_service_overrides=None, pom_location=None, github_whitelist_location=None):
     if not version:
         raise click.exceptions.MissingParameter(message='Version parameter is required')
-
-    if not spec_name:
-        raise click.exceptions.MissingParameter(message='Spec name parameter is required')
 
     if spec_generation_type:
         print('Note: --spec-generation-type is ignored for the GO SDK, since it is set in the ../pom.xml file for all modules')
@@ -293,14 +296,16 @@ def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative
     pom = parse_pom(pom_location)
 
     # force format of spec_name by removing underscore and lower case
-    spec_name = goify_specname(spec_name)
+    if spec_name:
+        spec_name = goify_specname(spec_name)
 
     # determine if this artifact is already in the spec
-    target_artifact_id = '${{{spec_name}.artifact.id}}'.format(spec_name=spec_name)
-    xpath_for_spec_dependency_declaration = ".//ns:dependency[ns:artifactId='{artifact_id}']".format(artifact_id=target_artifact_id)
-    if (pom.findall(xpath_for_spec_dependency_declaration, ns)):
-        print('Artifact {} already exists in pom.xml. Updating version...'.format(artifact_id))
-        update_version_of_existing_spec(pom, spec_name, version)
+    if isNewService(pom, artifact_id):
+        print('Artifact {} already exists in pom.xml. Updating specified fields...'.format(artifact_id))
+        update_version_of_existing_spec(pom, artifact_id, version)
+
+        if relative_spec_path:
+            update_relative_spec_path(pom, artifact_id, relative_spec_path)
     else:
         if not artifact_id:
             raise UsageError('Must specify --artifact-id for a new spec')
@@ -318,11 +323,11 @@ def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative
             raise UsageError('Must specify --relative-spec-path for new spec')
 
         print('Artifact {} does not exist in pom.xml. Adding it...'.format(spec_name))
-        generate_and_add_property_element(pom, spec_name, artifact_id, version, relative_spec_path)
+        generate_and_add_property_element(pom, artifact_id, version, relative_spec_path)
         generate_and_add_unpack_element(pom, spec_name, group_id, artifact_id, relative_spec_path)
         generate_and_add_prefer_element(pom, spec_name, group_id, artifact_id, relative_spec_path)
         generate_and_add_preprocess_element(pom, spec_name, group_id, artifact_id, relative_spec_path)
-        generate_and_add_generate_section(pom, spec_name, relative_spec_path, subdomain, regional_sub_service_overrides, non_regional_sub_service_overrides)
+        generate_and_add_generate_section(pom, spec_name, artifact_id, relative_spec_path, subdomain, regional_sub_service_overrides, non_regional_sub_service_overrides)
         generate_and_add_clean_section(pom, spec_name)
         generate_and_add_dependency_management_section(pom, spec_name, group_id, artifact_id, version)
         add_spec_module_to_github_whitelist(spec_name, github_whitelist_location)
