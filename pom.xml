@@ -357,6 +357,7 @@
                         <configuration>
                             <inputFiles>
                                 <inputFile>${spec.temp.dir}/core/source/${coreservices-api-spec.spec.name}</inputFile>
+                                <inputFile>${spec.temp.dir}/core/${coreservices-api-spec.spec.name}</inputFile>
                             </inputFiles>
                             <outputFile>${preferred.temp.dir}/${coreservices-api-spec.spec.name}</outputFile>
                         </configuration>
