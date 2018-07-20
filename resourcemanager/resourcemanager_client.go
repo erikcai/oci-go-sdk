@@ -67,6 +67,9 @@ func (client ResourceManagerClient) CancelJob(ctx context.Context, request Cance
 	}
 	ociResponse, err = common.Retry(ctx, request, client.cancelJob, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = CancelJobResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(CancelJobResponse); ok {
@@ -106,6 +109,9 @@ func (client ResourceManagerClient) CreateJob(ctx context.Context, request Creat
 	}
 	ociResponse, err = common.Retry(ctx, request, client.createJob, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = CreateJobResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(CreateJobResponse); ok {
@@ -145,6 +151,9 @@ func (client ResourceManagerClient) CreateStack(ctx context.Context, request Cre
 	}
 	ociResponse, err = common.Retry(ctx, request, client.createStack, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = CreateStackResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(CreateStackResponse); ok {
@@ -184,6 +193,9 @@ func (client ResourceManagerClient) DeleteStack(ctx context.Context, request Del
 	}
 	ociResponse, err = common.Retry(ctx, request, client.deleteStack, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = DeleteStackResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(DeleteStackResponse); ok {
@@ -223,6 +235,9 @@ func (client ResourceManagerClient) GetJob(ctx context.Context, request GetJobRe
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getJob, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetJobResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetJobResponse); ok {
@@ -262,6 +277,9 @@ func (client ResourceManagerClient) GetJobLogs(ctx context.Context, request GetJ
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getJobLogs, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetJobLogsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetJobLogsResponse); ok {
@@ -301,6 +319,9 @@ func (client ResourceManagerClient) GetJobLogsContent(ctx context.Context, reque
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getJobLogsContent, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetJobLogsContentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetJobLogsContentResponse); ok {
@@ -340,6 +361,9 @@ func (client ResourceManagerClient) GetJobTfConfig(ctx context.Context, request 
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getJobTfConfig, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetJobTfConfigResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetJobTfConfigResponse); ok {
@@ -378,6 +402,9 @@ func (client ResourceManagerClient) GetJobTfExecutionPlan(ctx context.Context, r
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getJobTfExecutionPlan, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetJobTfExecutionPlanResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetJobTfExecutionPlanResponse); ok {
@@ -416,6 +443,9 @@ func (client ResourceManagerClient) GetJobTfState(ctx context.Context, request G
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getJobTfState, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetJobTfStateResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetJobTfStateResponse); ok {
@@ -455,6 +485,9 @@ func (client ResourceManagerClient) GetStack(ctx context.Context, request GetSta
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getStack, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetStackResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetStackResponse); ok {
@@ -494,6 +527,9 @@ func (client ResourceManagerClient) GetStackTfConfig(ctx context.Context, reques
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getStackTfConfig, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetStackTfConfigResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetStackTfConfigResponse); ok {
@@ -532,6 +568,9 @@ func (client ResourceManagerClient) ListJobs(ctx context.Context, request ListJo
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listJobs, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListJobsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListJobsResponse); ok {
@@ -571,6 +610,9 @@ func (client ResourceManagerClient) ListStacks(ctx context.Context, request List
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listStacks, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListStacksResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListStacksResponse); ok {
@@ -610,6 +652,9 @@ func (client ResourceManagerClient) UpdateJob(ctx context.Context, request Updat
 	}
 	ociResponse, err = common.Retry(ctx, request, client.updateJob, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = UpdateJobResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(UpdateJobResponse); ok {
@@ -649,6 +694,9 @@ func (client ResourceManagerClient) UpdateStack(ctx context.Context, request Upd
 	}
 	ociResponse, err = common.Retry(ctx, request, client.updateStack, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = UpdateStackResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(UpdateStackResponse); ok {

@@ -68,6 +68,9 @@ func (client TelemetryClient) CreateAlarm(ctx context.Context, request CreateAla
 	}
 	ociResponse, err = common.Retry(ctx, request, client.createAlarm, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = CreateAlarmResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(CreateAlarmResponse); ok {
@@ -107,6 +110,9 @@ func (client TelemetryClient) DeleteAlarm(ctx context.Context, request DeleteAla
 	}
 	ociResponse, err = common.Retry(ctx, request, client.deleteAlarm, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = DeleteAlarmResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(DeleteAlarmResponse); ok {
@@ -146,6 +152,9 @@ func (client TelemetryClient) GetAlarm(ctx context.Context, request GetAlarmRequ
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getAlarm, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetAlarmResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetAlarmResponse); ok {
@@ -185,6 +194,9 @@ func (client TelemetryClient) ListAlarms(ctx context.Context, request ListAlarms
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listAlarms, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListAlarmsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListAlarmsResponse); ok {
@@ -225,6 +237,9 @@ func (client TelemetryClient) ListMetrics(ctx context.Context, request ListMetri
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listMetrics, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListMetricsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListMetricsResponse); ok {
@@ -265,6 +280,9 @@ func (client TelemetryClient) SummarizeMetricsData(ctx context.Context, request 
 	}
 	ociResponse, err = common.Retry(ctx, request, client.summarizeMetricsData, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = SummarizeMetricsDataResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(SummarizeMetricsDataResponse); ok {
@@ -304,6 +322,9 @@ func (client TelemetryClient) UpdateAlarm(ctx context.Context, request UpdateAla
 	}
 	ociResponse, err = common.Retry(ctx, request, client.updateAlarm, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = UpdateAlarmResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(UpdateAlarmResponse); ok {

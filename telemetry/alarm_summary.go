@@ -40,6 +40,9 @@ type AlarmSummary struct {
 	// could contain the OCID of an ONS topic, for delivering the notification.
 	Destinations []string `mandatory:"true" json:"destinations"`
 
+	// Whether the alarm is enabled.
+	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
+
 	Suppression *Suppression `mandatory:"false" json:"suppression"`
 }
 

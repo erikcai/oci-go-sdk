@@ -67,6 +67,9 @@ func (client WorkRequestClient) GetWorkRequest(ctx context.Context, request GetW
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getWorkRequest, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetWorkRequestResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetWorkRequestResponse); ok {
@@ -106,6 +109,9 @@ func (client WorkRequestClient) ListWorkRequestErrors(ctx context.Context, reque
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequestErrors, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListWorkRequestErrorsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListWorkRequestErrorsResponse); ok {
@@ -145,6 +151,9 @@ func (client WorkRequestClient) ListWorkRequestLogs(ctx context.Context, request
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequestLogs, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListWorkRequestLogsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListWorkRequestLogsResponse); ok {
@@ -184,6 +193,9 @@ func (client WorkRequestClient) ListWorkRequests(ctx context.Context, request Li
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequests, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListWorkRequestsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListWorkRequestsResponse); ok {

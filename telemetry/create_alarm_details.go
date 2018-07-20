@@ -38,6 +38,9 @@ type CreateAlarmDetails struct {
 	// The severity of the alarm.
 	Severity CreateAlarmDetailsSeverityEnum `mandatory:"true" json:"severity"`
 
+	// Whether the alarm is enabled.
+	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
+
 	// Desired resolution between datapoints in query response. This determines the
 	// time window which will be used to query for data. For example, if cpu[5m].sum() is
 	// provided as the query with a resolution of 1m, then the sum of cpu metric for 5m intervals
@@ -51,7 +54,7 @@ type CreateAlarmDetails struct {
 	// This also determines the duration in which the query must be not breaching, prior to transitioning the
 	// alarm from FIRING into OK.
 	// The duration is specified as a string in ISO 8601 format, e.g. PT10M, ten minutes, or one hour, PT1H.
-	// The minimum duration is PT1M, and the maximum duration is PT24H.
+	// The minimum duration is PT1M, and the maximum duration is PT1H.
 	// The default value is PT1M, so the first evaluation breaching will be FIRING the alarm, and the first
 	// evaluation not breaching will set to OK the alarm.
 	PendingDuration *string `mandatory:"false" json:"pendingDuration"`

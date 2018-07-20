@@ -60,6 +60,9 @@ func (client KmsCryptoClient) Decrypt(ctx context.Context, request DecryptReques
 	}
 	ociResponse, err = common.Retry(ctx, request, client.decrypt, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = DecryptResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(DecryptResponse); ok {
@@ -101,6 +104,9 @@ func (client KmsCryptoClient) Encrypt(ctx context.Context, request EncryptReques
 	}
 	ociResponse, err = common.Retry(ctx, request, client.encrypt, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = EncryptResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(EncryptResponse); ok {
@@ -140,6 +146,9 @@ func (client KmsCryptoClient) GenerateDataEncryptionKey(ctx context.Context, req
 	}
 	ociResponse, err = common.Retry(ctx, request, client.generateDataEncryptionKey, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GenerateDataEncryptionKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GenerateDataEncryptionKeyResponse); ok {

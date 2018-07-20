@@ -67,6 +67,9 @@ func (client ComputeManagementClient) CreateInstanceConfiguration(ctx context.Co
 	}
 	ociResponse, err = common.Retry(ctx, request, client.createInstanceConfiguration, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = CreateInstanceConfigurationResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(CreateInstanceConfigurationResponse); ok {
@@ -106,6 +109,9 @@ func (client ComputeManagementClient) DeleteInstanceConfiguration(ctx context.Co
 	}
 	ociResponse, err = common.Retry(ctx, request, client.deleteInstanceConfiguration, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = DeleteInstanceConfigurationResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(DeleteInstanceConfigurationResponse); ok {
@@ -145,6 +151,9 @@ func (client ComputeManagementClient) GetInstanceConfiguration(ctx context.Conte
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getInstanceConfiguration, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetInstanceConfigurationResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetInstanceConfigurationResponse); ok {
@@ -184,6 +193,9 @@ func (client ComputeManagementClient) LaunchInstanceConfiguration(ctx context.Co
 	}
 	ociResponse, err = common.Retry(ctx, request, client.launchInstanceConfiguration, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = LaunchInstanceConfigurationResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(LaunchInstanceConfigurationResponse); ok {
@@ -223,6 +235,9 @@ func (client ComputeManagementClient) ListInstanceConfigurations(ctx context.Con
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listInstanceConfigurations, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListInstanceConfigurationsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListInstanceConfigurationsResponse); ok {
@@ -262,6 +277,9 @@ func (client ComputeManagementClient) UpdateInstanceConfiguration(ctx context.Co
 	}
 	ociResponse, err = common.Retry(ctx, request, client.updateInstanceConfiguration, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = UpdateInstanceConfigurationResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(UpdateInstanceConfigurationResponse); ok {

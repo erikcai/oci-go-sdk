@@ -16,9 +16,9 @@
         <spec.temp.dir>${project.build.directory}</spec.temp.dir>
         <preferred.temp.dir>${project.build.directory}/preferred</preferred.temp.dir>
         <preprocessed.temp.dir>${project.build.directory}/preprocessed</preprocessed.temp.dir>
-        <coreservices-api-spec.artifact.version>0.2.212</coreservices-api-spec.artifact.version>
+        <coreservices-api-spec.artifact.version>0.2.234</coreservices-api-spec.artifact.version>
         <coreservices-api-spec.artifact.id>coreservices-api-spec</coreservices-api-spec.artifact.id>
-        <coreservices-api-spec.spec.name>coreservices-api-spec-20160918.cond.yaml</coreservices-api-spec.spec.name>
+        <coreservices-api-spec.spec.name>source/coreservices-api-spec-20160918.cond.yaml</coreservices-api-spec.spec.name>
         <identity-control-plane-api-spec-preview.artifact.version>0.2.17-PREVIEW</identity-control-plane-api-spec-preview.artifact.version>
         <identity-control-plane-api-spec-preview.artifact.id>identity-control-plane-api-spec-preview</identity-control-plane-api-spec-preview.artifact.id>
         <identity-control-plane-api-spec-preview.spec.name>identity-control-plane-api-spec-20160918.yaml</identity-control-plane-api-spec-preview.spec.name>
@@ -28,7 +28,7 @@
         <casper-api-spec.artifact.version>1.1.23-PREVIEW</casper-api-spec.artifact.version>
         <casper-api-spec.artifact.id>casper-api-spec</casper-api-spec.artifact.id>
         <casper-api-spec.spec.name>casper-api.yaml</casper-api-spec.spec.name>
-        <dbaas-api-spec.artifact.version>0.0.14-releasePreview</dbaas-api-spec.artifact.version>
+        <dbaas-api-spec.artifact.version>0.0.15-releasePreview</dbaas-api-spec.artifact.version>
         <dbaas-api-spec.artifact.id>dbaas-api-spec</dbaas-api-spec.artifact.id>
         <dbaas-api-spec.spec.name>dbaas-api-spec-20160918.yaml</dbaas-api-spec.spec.name>
         <hemlock-spec.artifact.version>0.1.9</hemlock-spec.artifact.version>
@@ -57,7 +57,7 @@
         <clusters-api-spec.artifact.version>1.0.10</clusters-api-spec.artifact.version>
         <clusters-api-spec.artifact.id>clusters-api-spec</clusters-api-spec.artifact.id>
         <clusters-api-spec.spec.name>clusters-api-spec.yaml</clusters-api-spec.spec.name>
-        <telemetry-public-api-spec.artifact.version>0.2.9</telemetry-public-api-spec.artifact.version>
+        <telemetry-public-api-spec.artifact.version>0.2.43</telemetry-public-api-spec.artifact.version>
         <telemetry-public-api-spec.artifact.id>telemetry-public-api-spec</telemetry-public-api-spec.artifact.id>
         <telemetry-public-api-spec.spec.name>source/telemetry-api.cond.yaml</telemetry-public-api-spec.spec.name>
         <workrequests-api-spec.artifact.version>0.0.5</workrequests-api-spec.artifact.version>

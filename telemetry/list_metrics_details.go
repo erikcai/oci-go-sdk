@@ -32,6 +32,19 @@ type ListMetricsDetails struct {
 	// Example: "resourceId": "<instance_OCID>"
 	DimensionFilters map[string]string `mandatory:"false" json:"dimensionFilters"`
 
+	// Group metrics by these fields in the response. For example, to list all metric namespaces available
+	// in a compartment, groupBy the "namespace" field.
+	// Example 1 - group by namespace and resource:
+	// [
+	//   "namespace",
+	//   "resourceId"
+	// ]
+	// Example 2 - group by a specific resource ID:
+	// [
+	//   "resourceId": "<var>&lt;instance_OCID&gt;</var>"
+	// ]
+	GroupBy []string `mandatory:"false" json:"groupBy"`
+
 	// The field to use when sorting returned metric definitions. Only one sorting level is provided.
 	// Example: `NAMESPACE`
 	SortBy ListMetricsDetailsSortByEnum `mandatory:"false" json:"sortBy,omitempty"`

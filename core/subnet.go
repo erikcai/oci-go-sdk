@@ -89,6 +89,11 @@ type Subnet struct {
 	// Example: `true`
 	IsLearningEnabled *bool `mandatory:"false" json:"isLearningEnabled"`
 
+	// The VLAN tag assigned to VNIC Attachments within this Subnet if the Subnet has learning enabled.
+	// **Note:** When a subnet does not have learning enabled, this field will be null.
+	// Example: `100`
+	VlanTag *int `mandatory:"false" json:"vlanTag"`
+
 	// Whether VNICs within this subnet can have public IP addresses.
 	// Defaults to false, which means VNICs created in this subnet will
 	// automatically be assigned public IP addresses unless specified

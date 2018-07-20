@@ -67,6 +67,9 @@ func (client KmsManagementClient) CreateKey(ctx context.Context, request CreateK
 	}
 	ociResponse, err = common.Retry(ctx, request, client.createKey, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = CreateKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(CreateKeyResponse); ok {
@@ -107,6 +110,9 @@ func (client KmsManagementClient) DisableKey(ctx context.Context, request Disabl
 	}
 	ociResponse, err = common.Retry(ctx, request, client.disableKey, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = DisableKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(DisableKeyResponse); ok {
@@ -147,6 +153,9 @@ func (client KmsManagementClient) EnableKey(ctx context.Context, request EnableK
 	}
 	ociResponse, err = common.Retry(ctx, request, client.enableKey, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = EnableKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(EnableKeyResponse); ok {
@@ -186,6 +195,9 @@ func (client KmsManagementClient) GetKey(ctx context.Context, request GetKeyRequ
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getKey, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetKeyResponse); ok {
@@ -225,6 +237,9 @@ func (client KmsManagementClient) ListKeyVersions(ctx context.Context, request L
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listKeyVersions, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListKeyVersionsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListKeyVersionsResponse); ok {
@@ -264,6 +279,9 @@ func (client KmsManagementClient) ListKeys(ctx context.Context, request ListKeys
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listKeys, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListKeysResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListKeysResponse); ok {
@@ -304,6 +322,9 @@ func (client KmsManagementClient) RotateKey(ctx context.Context, request RotateK
 	}
 	ociResponse, err = common.Retry(ctx, request, client.rotateKey, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = RotateKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(RotateKeyResponse); ok {
@@ -345,6 +366,9 @@ func (client KmsManagementClient) UpdateKey(ctx context.Context, request UpdateK
 	}
 	ociResponse, err = common.Retry(ctx, request, client.updateKey, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = UpdateKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(UpdateKeyResponse); ok {

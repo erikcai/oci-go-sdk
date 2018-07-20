@@ -40,6 +40,9 @@ type Alarm struct {
 	// The severity of the alarm.
 	Severity AlarmSeverityEnum `mandatory:"true" json:"severity"`
 
+	// Whether the alarm is enabled.
+	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
+
 	// The date and time the alarm was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
@@ -59,7 +62,7 @@ type Alarm struct {
 	// This also determines the duration in which the query must be not breaching, prior to transitioning the
 	// alarm from FIRING into OK.
 	// The duration is specified as a string in ISO 8601 format, e.g. PT10M, ten minutes, or one hour, PT1H.
-	// The minimum duration is PT1M, and the maximum duration is PT24H.
+	// The minimum duration is PT1M, and the maximum duration is PT1H.
 	// The default value is PT1M, so the first evaluation breaching will be FIRING the alarm, and the first
 	// evaluation not breaching will set to OK the alarm.
 	PendingDuration *string `mandatory:"false" json:"pendingDuration"`

@@ -63,6 +63,9 @@ func (client KmsVaultClient) CreateVault(ctx context.Context, request CreateVaul
 	}
 	ociResponse, err = common.Retry(ctx, request, client.createVault, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = CreateVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(CreateVaultResponse); ok {
@@ -102,6 +105,9 @@ func (client KmsVaultClient) GetVault(ctx context.Context, request GetVaultReque
 	}
 	ociResponse, err = common.Retry(ctx, request, client.getVault, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = GetVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(GetVaultResponse); ok {
@@ -141,6 +147,9 @@ func (client KmsVaultClient) ListVaults(ctx context.Context, request ListVaultsR
 	}
 	ociResponse, err = common.Retry(ctx, request, client.listVaults, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = ListVaultsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(ListVaultsResponse); ok {
@@ -182,6 +191,9 @@ func (client KmsVaultClient) UpdateVault(ctx context.Context, request UpdateVaul
 	}
 	ociResponse, err = common.Retry(ctx, request, client.updateVault, policy)
 	if err != nil {
+		if ociResponse != nil {
+			response = UpdateVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
 		return
 	}
 	if convertedResponse, ok := ociResponse.(UpdateVaultResponse); ok {
