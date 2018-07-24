@@ -11,6 +11,7 @@ from click.exceptions import UsageError
 
 DEFAULT_POM_LOCATION = "../pom.xml"
 DEFAULT_GITHUB_WHITELIST_LOCATION = "../github.whitelist"
+DEFAULT_MAKE_FILE_LOCATION = "../Makefile"
 
 PROPERTIES_ELEMENT_ARTIFACT_VERSION = """<{artifact_id}.artifact.version>{version}</{artifact_id}.artifact.version>"""
 PROPERTIES_ELEMENT_ARTIFACT_ID = """<{artifact_id}.artifact.id>{artifact_id}</{artifact_id}.artifact.id>"""
@@ -274,6 +275,14 @@ def add_spec_module_to_github_whitelist(spec_name, github_whitelist_location):
     with open(github_whitelist_location, 'a') as f:
         f.write('\n^{}/'.format(spec_name))
 
+def add_spec_name_to_make_file(spec_name, make_file_location):
+    specNameToken = '##SPECNAME##'
+    with open(make_file_location) as f:
+        newText=f.read().replace(specNameToken, "{} {}".format(spec_name, specNameToken))
+
+    with open(make_file_location, "w") as f:
+        f.write(newText)
+
 def goify_specname(name):
     return name.replace('_', '').lower()
 
@@ -331,6 +340,7 @@ def add_or_update_spec(artifact_id=None, group_id=None, spec_name=None, relative
         generate_and_add_clean_section(pom, spec_name)
         generate_and_add_dependency_management_section(pom, spec_name, group_id, artifact_id, version)
         add_spec_module_to_github_whitelist(spec_name, github_whitelist_location)
+        add_spec_name_to_make_file(spec_name, DEFAULT_MAKE_FILE_LOCATION)
 
     # pretty print pom
     indent(pom.getroot())
