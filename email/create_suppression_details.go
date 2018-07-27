@@ -3,7 +3,7 @@
 
 // Email Delivery Service API
 //
-// API spec for managing OCI Email Delivery services.
+// API for managing OCI Email Delivery services.
 //
 
 package email
@@ -18,10 +18,10 @@ type CreateSuppressionDetails struct {
 	// The OCID of the compartment to contain the suppression. Since
 	// suppressions are at the customer level, this must be the tenancy
 	// OCID.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The recipient email address of the suppression.
-	EmailAddress *string `mandatory:"false" json:"emailAddress"`
+	EmailAddress *string `mandatory:"true" json:"emailAddress"`
 }
 
 func (m CreateSuppressionDetails) String() string {

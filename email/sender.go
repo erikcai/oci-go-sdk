@@ -3,7 +3,7 @@
 
 // Email Delivery Service API
 //
-// API spec for managing OCI Email Delivery services.
+// API for managing OCI Email Delivery services.
 //
 
 package email
@@ -22,7 +22,7 @@ type Sender struct {
 	Id *string `mandatory:"false" json:"id"`
 
 	// Value of the SPF field. For more information about SPF, please see
-	// SPF Authentication (https://docs.us-phoenix-1.oraclecloud.com/Content/Email/Concepts/emaildeliveryoverview.htm#spf).
+	// SPF Authentication (https://docs.us-phoenix-1.oraclecloud.com/Content/Email/Concepts/overview.htm#components).
 	IsSpf *bool `mandatory:"false" json:"isSpf"`
 
 	// The sender's current lifecycle state.

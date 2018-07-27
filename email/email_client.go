@@ -3,7 +3,7 @@
 
 // Email Delivery Service API
 //
-// API spec for managing OCI Email Delivery services.
+// API for managing OCI Email Delivery services.
 //
 
 package email
@@ -101,6 +101,9 @@ func (client EmailClient) createSender(ctx context.Context, request common.OCIRe
 }
 
 // CreateSuppression Adds recipient email addresses to the suppression list for a tenancy.
+// Addresses added to the suppression list via the API are denoted as
+// "MANUAL" in the `reason` field. *Note:* All email addresses added to the
+// suppression list are normalized to include only lowercase letters.
 func (client EmailClient) CreateSuppression(ctx context.Context, request CreateSuppressionRequest) (response CreateSuppressionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

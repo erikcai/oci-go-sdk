@@ -20,8 +20,8 @@ type ListSendersRequest struct {
 	// The email address of the approved sender.
 	EmailAddress *string `mandatory:"false" contributesTo:"query" name:"emailAddress"`
 
-	// The value of the `opc-next-page` response header from the previous
-	// GET request.
+	// The value of the `opc-next-page` or `opc-prev-page` response header from the previous
+	// GET request
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
 	// The maximum number of items to return in a paginated GET request.
@@ -77,8 +77,14 @@ type ListSendersResponse struct {
 	// response, then a partial list might have been returned. Include
 	// this value for the `page` parameter in subsequent GET
 	// requests to return the next batch of items.
-	// of items.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
+
+	// For pagination of a list of items. If this header appears in the
+	// response, then a partial list might have been returned. Include
+	// this value for the `page` parameter in subsequent GET
+	// requests to return the previous batch of items.
+	// of items.
+	OpcPrevPage *string `presentIn:"header" name:"opc-prev-page"`
 
 	// The total number of items returned from the request.
 	OpcTotalItems *int `presentIn:"header" name:"opc-total-items"`

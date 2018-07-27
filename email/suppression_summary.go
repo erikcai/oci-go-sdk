@@ -3,7 +3,7 @@
 
 // Email Delivery Service API
 //
-// API spec for managing OCI Email Delivery services.
+// API for managing OCI Email Delivery services.
 //
 
 package email

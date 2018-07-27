@@ -3,7 +3,7 @@
 
 // Email Delivery Service API
 //
-// API spec for managing OCI Email Delivery services.
+// API for managing OCI Email Delivery services.
 //
 
 package email
@@ -16,10 +16,10 @@ import (
 type CreateSenderDetails struct {
 
 	// The OCID of the compartment that contains the sender.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The email address of the sender.
-	EmailAddress *string `mandatory:"false" json:"emailAddress"`
+	EmailAddress *string `mandatory:"true" json:"emailAddress"`
 }
 
 func (m CreateSenderDetails) String() string {

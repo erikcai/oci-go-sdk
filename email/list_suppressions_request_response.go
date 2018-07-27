@@ -35,8 +35,8 @@ type ListSuppressionsRequest struct {
 	// **Example:** 2016-12-19T16:39:57.600Z
 	TimeCreatedLessThan *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeCreatedLessThan"`
 
-	// The value of the `opc-next-page` response header from the previous
-	// GET request.
+	// The value of the `opc-next-page` or `opc-prev-page` response header from the previous
+	// GET request
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
 	// The maximum number of items to return in a paginated GET request.
@@ -93,6 +93,12 @@ type ListSuppressionsResponse struct {
 	// this value for the `page` parameter in subsequent GET
 	// requests to return the next batch of items.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
+
+	// For pagination of a list of items. If this header appears in the
+	// response, then a partial list might have been returned. Include
+	// this value for the `page` parameter in subsequent GET
+	// requests to return the previous batch of items.
+	OpcPrevPage *string `presentIn:"header" name:"opc-prev-page"`
 }
 
 func (response ListSuppressionsResponse) String() string {

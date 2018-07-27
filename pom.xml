@@ -40,9 +40,9 @@
         <public-dns-api-spec.artifact.version>1.0.0-1-PREVIEW</public-dns-api-spec.artifact.version>
         <public-dns-api-spec.artifact.id>public-dns-api-spec</public-dns-api-spec.artifact.id>
         <public-dns-api-spec.spec.name>public-dns-api-spec.yaml</public-dns-api-spec.spec.name>
-        <email-api-spec.artifact.version>1.0.0</email-api-spec.artifact.version>
+        <email-api-spec.artifact.version>1.0.2</email-api-spec.artifact.version>
         <email-api-spec.artifact.id>email-api-spec</email-api-spec.artifact.id>
-        <email-api-spec.spec.name>email-api-spec.yaml</email-api-spec.spec.name>
+        <email-api-spec.spec.name>source/email-api-spec.cond.yaml</email-api-spec.spec.name>
         <maestro-spec.artifact.version>0.0.2</maestro-spec.artifact.version>
         <maestro-spec.artifact.id>maestro-spec</maestro-spec.artifact.id>
         <maestro-spec.spec.name>api.yaml</maestro-spec.spec.name>
