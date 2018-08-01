@@ -8,8 +8,11 @@ import (
 	"net/http"
 )
 
-// GetPrivateDnsRecordSetRequest wrapper for the GetPrivateDnsRecordSet operation
-type GetPrivateDnsRecordSetRequest struct {
+// GetLocalPeeringConnectionRequest wrapper for the GetLocalPeeringConnection operation
+type GetLocalPeeringConnectionRequest struct {
+
+	// The OCID of the local peering connection. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	LocalPeeringConnectionId *string `mandatory:"true" contributesTo:"path" name:"localPeeringConnectionId"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
@@ -20,28 +23,28 @@ type GetPrivateDnsRecordSetRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GetPrivateDnsRecordSetRequest) String() string {
+func (request GetLocalPeeringConnectionRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GetPrivateDnsRecordSetRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetLocalPeeringConnectionRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GetPrivateDnsRecordSetRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetLocalPeeringConnectionRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GetPrivateDnsRecordSetResponse wrapper for the GetPrivateDnsRecordSet operation
-type GetPrivateDnsRecordSetResponse struct {
+// GetLocalPeeringConnectionResponse wrapper for the GetLocalPeeringConnection operation
+type GetLocalPeeringConnectionResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The PrivateDnsRecordSet instance
-	PrivateDnsRecordSet `presentIn:"body"`
+	// The LocalPeeringConnection instance
+	LocalPeeringConnection `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -51,11 +54,11 @@ type GetPrivateDnsRecordSetResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response GetPrivateDnsRecordSetResponse) String() string {
+func (response GetLocalPeeringConnectionResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GetPrivateDnsRecordSetResponse) HTTPResponse() *http.Response {
+func (response GetLocalPeeringConnectionResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

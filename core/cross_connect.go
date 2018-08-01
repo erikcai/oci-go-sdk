@@ -33,20 +33,9 @@ type CrossConnect struct {
 	// The OCID of the cross-connect group this cross-connect belongs to (if any).
 	CrossConnectGroupId *string `mandatory:"false" json:"crossConnectGroupId"`
 
-	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Operations": {"CostCenter": "42"}}`
-	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
-
 	// A user-friendly name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no
-	// predefined name, type, or namespace. For more information, see
-	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Department": "Finance"}`
-	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The cross-connect's Oracle ID (OCID).
 	Id *string `mandatory:"false" json:"id"`
@@ -63,10 +52,6 @@ type CrossConnect struct {
 	// The port speed for this cross-connect.
 	// Example: `10 Gbps`
 	PortSpeedShapeName *string `mandatory:"false" json:"portSpeedShapeName"`
-
-	// A reference name or identifier for the physical fiber connection that this cross-connect
-	// uses.
-	CustomerReferenceName *string `mandatory:"false" json:"customerReferenceName"`
 
 	// The date and time the cross-connect was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`

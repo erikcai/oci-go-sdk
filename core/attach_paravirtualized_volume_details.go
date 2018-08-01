@@ -36,9 +36,6 @@ type AttachParavirtualizedVolumeDetails struct {
 	// that they also create their attachments in shareable mode. Only certain volume types can
 	// be attached in shareable mode. Defaults to false if not specified.
 	IsShareable *bool `mandatory:"false" json:"isShareable"`
-
-	// Whether to enable encryption in transit for the PV data volume attachment. Defaults to false.
-	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 }
 
 //GetDevice returns Device

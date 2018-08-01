@@ -48,9 +48,6 @@ type CreateImageDetails struct {
 	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
 	// * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter.
 	LaunchMode CreateImageDetailsLaunchModeEnum `mandatory:"false" json:"launchMode,omitempty"`
-
-	// When launchMode is `CUSTOM`, this parameter is required, otherwise it is disallowed.
-	LaunchOptions *LaunchOptions `mandatory:"false" json:"launchOptions"`
 }
 
 func (m CreateImageDetails) String() string {
@@ -66,7 +63,6 @@ func (m *CreateImageDetails) UnmarshalJSON(data []byte) (e error) {
 		ImageSourceDetails imagesourcedetails                `json:"imageSourceDetails"`
 		InstanceId         *string                           `json:"instanceId"`
 		LaunchMode         CreateImageDetailsLaunchModeEnum  `json:"launchMode"`
-		LaunchOptions      *LaunchOptions                    `json:"launchOptions"`
 		CompartmentId      *string                           `json:"compartmentId"`
 	}{}
 
@@ -84,7 +80,6 @@ func (m *CreateImageDetails) UnmarshalJSON(data []byte) (e error) {
 	m.ImageSourceDetails = nn.(ImageSourceDetails)
 	m.InstanceId = model.InstanceId
 	m.LaunchMode = model.LaunchMode
-	m.LaunchOptions = model.LaunchOptions
 	m.CompartmentId = model.CompartmentId
 	return
 }

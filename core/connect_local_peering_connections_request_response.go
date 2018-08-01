@@ -8,14 +8,14 @@ import (
 	"net/http"
 )
 
-// ConnectLocalPeeringGatewaysRequest wrapper for the ConnectLocalPeeringGateways operation
-type ConnectLocalPeeringGatewaysRequest struct {
+// ConnectLocalPeeringConnectionsRequest wrapper for the ConnectLocalPeeringConnections operation
+type ConnectLocalPeeringConnectionsRequest struct {
 
-	// The OCID of the local peering gateway.
-	LocalPeeringGatewayId *string `mandatory:"true" contributesTo:"path" name:"localPeeringGatewayId"`
+	// The OCID of the local peering connection. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	LocalPeeringConnectionId *string `mandatory:"true" contributesTo:"path" name:"localPeeringConnectionId"`
 
-	// Details regarding the local peering gateway to connect.
-	ConnectLocalPeeringGatewaysDetails `contributesTo:"body"`
+	// Details regarding the local peering connection to connect.
+	ConnectLocalPeeringConnectionsDetails `contributesTo:"body"`
 
 	// A comma separated list of tenancy OCIDs that might be accessed by this request. Only required
 	// for cross tenancy requests. May be `null` for requests that do not cross tenancy boundaries.
@@ -30,22 +30,22 @@ type ConnectLocalPeeringGatewaysRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ConnectLocalPeeringGatewaysRequest) String() string {
+func (request ConnectLocalPeeringConnectionsRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ConnectLocalPeeringGatewaysRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ConnectLocalPeeringConnectionsRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ConnectLocalPeeringGatewaysRequest) RetryPolicy() *common.RetryPolicy {
+func (request ConnectLocalPeeringConnectionsRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ConnectLocalPeeringGatewaysResponse wrapper for the ConnectLocalPeeringGateways operation
-type ConnectLocalPeeringGatewaysResponse struct {
+// ConnectLocalPeeringConnectionsResponse wrapper for the ConnectLocalPeeringConnections operation
+type ConnectLocalPeeringConnectionsResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
@@ -55,11 +55,11 @@ type ConnectLocalPeeringGatewaysResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response ConnectLocalPeeringGatewaysResponse) String() string {
+func (response ConnectLocalPeeringConnectionsResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ConnectLocalPeeringGatewaysResponse) HTTPResponse() *http.Response {
+func (response ConnectLocalPeeringConnectionsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

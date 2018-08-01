@@ -12,17 +12,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateCrossConnectGroupDetails The representation of CreateCrossConnectGroupDetails
-type CreateCrossConnectGroupDetails struct {
+// CreateLocalPeeringConnectionDetails The representation of CreateLocalPeeringConnectionDetails
+type CreateLocalPeeringConnectionDetails struct {
 
-	// The OCID of the compartment to contain the cross-connect group.
+	// The OCID of the compartment containing the local peering connection.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
+	// The OCID of the VCN the local peering connection belongs to.
+	VcnId *string `mandatory:"true" json:"vcnId"`
+
 	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 
-func (m CreateCrossConnectGroupDetails) String() string {
+func (m CreateLocalPeeringConnectionDetails) String() string {
 	return common.PointerString(m)
 }

@@ -8,14 +8,14 @@ import (
 	"net/http"
 )
 
-// ListSubnetPrivateIPAddressesRequest wrapper for the ListSubnetPrivateIPAddresses operation
-type ListSubnetPrivateIPAddressesRequest struct {
+// ListLocalPeeringConnectionsRequest wrapper for the ListLocalPeeringConnections operation
+type ListLocalPeeringConnectionsRequest struct {
 
-	// The OCID of the subnet.
-	SubnetId *string `mandatory:"true" contributesTo:"path" name:"subnetId"`
+	// The OCID of the compartment.
+	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The OCID of the VNIC.
-	VnicId *string `mandatory:"true" contributesTo:"query" name:"vnicId"`
+	// The OCID of the VCN.
+	VcnId *string `mandatory:"true" contributesTo:"query" name:"vcnId"`
 
 	// The maximum number of items to return in a paginated "List" call.
 	// Example: `500`
@@ -33,28 +33,28 @@ type ListSubnetPrivateIPAddressesRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ListSubnetPrivateIPAddressesRequest) String() string {
+func (request ListLocalPeeringConnectionsRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ListSubnetPrivateIPAddressesRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ListLocalPeeringConnectionsRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ListSubnetPrivateIPAddressesRequest) RetryPolicy() *common.RetryPolicy {
+func (request ListLocalPeeringConnectionsRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ListSubnetPrivateIPAddressesResponse wrapper for the ListSubnetPrivateIPAddresses operation
-type ListSubnetPrivateIPAddressesResponse struct {
+// ListLocalPeeringConnectionsResponse wrapper for the ListLocalPeeringConnections operation
+type ListLocalPeeringConnectionsResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []PrivateIpAddress instances
-	Items []PrivateIpAddress `presentIn:"body"`
+	// A list of []LocalPeeringConnection instances
+	Items []LocalPeeringConnection `presentIn:"body"`
 
 	// For pagination of a list of items. When paging through a list, if this header appears in the response,
 	// then a partial list might have been returned. Include this value as the `page` parameter for the
@@ -66,11 +66,11 @@ type ListSubnetPrivateIPAddressesResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response ListSubnetPrivateIPAddressesResponse) String() string {
+func (response ListLocalPeeringConnectionsResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ListSubnetPrivateIPAddressesResponse) HTTPResponse() *http.Response {
+func (response ListLocalPeeringConnectionsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

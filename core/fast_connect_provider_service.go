@@ -31,19 +31,6 @@ type FastConnectProviderService struct {
 	// Who is responsible for managing the public peering BGP information.
 	PublicPeeringBgpManagement FastConnectProviderServicePublicPeeringBgpManagementEnum `mandatory:"true" json:"publicPeeringBgpManagement"`
 
-	// Who is responsible for managing the ASN information for the network at the other end
-	// of the connection from Oracle.
-	CustomerAsnManagement FastConnectProviderServiceCustomerAsnManagementEnum `mandatory:"true" json:"customerAsnManagement"`
-
-	// Who is responsible for managing the provider service key.
-	ProviderServiceKeyManagement FastConnectProviderServiceProviderServiceKeyManagementEnum `mandatory:"true" json:"providerServiceKeyManagement"`
-
-	// Who is responsible for managing the virtual circuit bandwidth.
-	BandwithShapeManagement FastConnectProviderServiceBandwithShapeManagementEnum `mandatory:"true" json:"bandwithShapeManagement"`
-
-	// Total number of cross-connect or cross-connect groups required for the virtual circuit.
-	RequiredTotalCrossConnects *int `mandatory:"true" json:"requiredTotalCrossConnects"`
-
 	// Provider service type.
 	Type FastConnectProviderServiceTypeEnum `mandatory:"true" json:"type"`
 
@@ -126,81 +113,6 @@ var mappingFastConnectProviderServiceSupportedVirtualCircuitTypes = map[string]F
 func GetFastConnectProviderServiceSupportedVirtualCircuitTypesEnumValues() []FastConnectProviderServiceSupportedVirtualCircuitTypesEnum {
 	values := make([]FastConnectProviderServiceSupportedVirtualCircuitTypesEnum, 0)
 	for _, v := range mappingFastConnectProviderServiceSupportedVirtualCircuitTypes {
-		values = append(values, v)
-	}
-	return values
-}
-
-// FastConnectProviderServiceCustomerAsnManagementEnum Enum with underlying type: string
-type FastConnectProviderServiceCustomerAsnManagementEnum string
-
-// Set of constants representing the allowable values for FastConnectProviderServiceCustomerAsnManagement
-const (
-	FastConnectProviderServiceCustomerAsnManagementCustomerManaged FastConnectProviderServiceCustomerAsnManagementEnum = "CUSTOMER_MANAGED"
-	FastConnectProviderServiceCustomerAsnManagementProviderManaged FastConnectProviderServiceCustomerAsnManagementEnum = "PROVIDER_MANAGED"
-	FastConnectProviderServiceCustomerAsnManagementOracleManaged   FastConnectProviderServiceCustomerAsnManagementEnum = "ORACLE_MANAGED"
-)
-
-var mappingFastConnectProviderServiceCustomerAsnManagement = map[string]FastConnectProviderServiceCustomerAsnManagementEnum{
-	"CUSTOMER_MANAGED": FastConnectProviderServiceCustomerAsnManagementCustomerManaged,
-	"PROVIDER_MANAGED": FastConnectProviderServiceCustomerAsnManagementProviderManaged,
-	"ORACLE_MANAGED":   FastConnectProviderServiceCustomerAsnManagementOracleManaged,
-}
-
-// GetFastConnectProviderServiceCustomerAsnManagementEnumValues Enumerates the set of values for FastConnectProviderServiceCustomerAsnManagement
-func GetFastConnectProviderServiceCustomerAsnManagementEnumValues() []FastConnectProviderServiceCustomerAsnManagementEnum {
-	values := make([]FastConnectProviderServiceCustomerAsnManagementEnum, 0)
-	for _, v := range mappingFastConnectProviderServiceCustomerAsnManagement {
-		values = append(values, v)
-	}
-	return values
-}
-
-// FastConnectProviderServiceProviderServiceKeyManagementEnum Enum with underlying type: string
-type FastConnectProviderServiceProviderServiceKeyManagementEnum string
-
-// Set of constants representing the allowable values for FastConnectProviderServiceProviderServiceKeyManagement
-const (
-	FastConnectProviderServiceProviderServiceKeyManagementCustomerManaged FastConnectProviderServiceProviderServiceKeyManagementEnum = "CUSTOMER_MANAGED"
-	FastConnectProviderServiceProviderServiceKeyManagementProviderManaged FastConnectProviderServiceProviderServiceKeyManagementEnum = "PROVIDER_MANAGED"
-	FastConnectProviderServiceProviderServiceKeyManagementOracleManaged   FastConnectProviderServiceProviderServiceKeyManagementEnum = "ORACLE_MANAGED"
-)
-
-var mappingFastConnectProviderServiceProviderServiceKeyManagement = map[string]FastConnectProviderServiceProviderServiceKeyManagementEnum{
-	"CUSTOMER_MANAGED": FastConnectProviderServiceProviderServiceKeyManagementCustomerManaged,
-	"PROVIDER_MANAGED": FastConnectProviderServiceProviderServiceKeyManagementProviderManaged,
-	"ORACLE_MANAGED":   FastConnectProviderServiceProviderServiceKeyManagementOracleManaged,
-}
-
-// GetFastConnectProviderServiceProviderServiceKeyManagementEnumValues Enumerates the set of values for FastConnectProviderServiceProviderServiceKeyManagement
-func GetFastConnectProviderServiceProviderServiceKeyManagementEnumValues() []FastConnectProviderServiceProviderServiceKeyManagementEnum {
-	values := make([]FastConnectProviderServiceProviderServiceKeyManagementEnum, 0)
-	for _, v := range mappingFastConnectProviderServiceProviderServiceKeyManagement {
-		values = append(values, v)
-	}
-	return values
-}
-
-// FastConnectProviderServiceBandwithShapeManagementEnum Enum with underlying type: string
-type FastConnectProviderServiceBandwithShapeManagementEnum string
-
-// Set of constants representing the allowable values for FastConnectProviderServiceBandwithShapeManagement
-const (
-	FastConnectProviderServiceBandwithShapeManagementCustomerManaged FastConnectProviderServiceBandwithShapeManagementEnum = "CUSTOMER_MANAGED"
-	FastConnectProviderServiceBandwithShapeManagementProviderManaged FastConnectProviderServiceBandwithShapeManagementEnum = "PROVIDER_MANAGED"
-	FastConnectProviderServiceBandwithShapeManagementOracleManaged   FastConnectProviderServiceBandwithShapeManagementEnum = "ORACLE_MANAGED"
-)
-
-var mappingFastConnectProviderServiceBandwithShapeManagement = map[string]FastConnectProviderServiceBandwithShapeManagementEnum{
-	"CUSTOMER_MANAGED": FastConnectProviderServiceBandwithShapeManagementCustomerManaged,
-	"PROVIDER_MANAGED": FastConnectProviderServiceBandwithShapeManagementProviderManaged,
-	"ORACLE_MANAGED":   FastConnectProviderServiceBandwithShapeManagementOracleManaged,
-}
-
-// GetFastConnectProviderServiceBandwithShapeManagementEnumValues Enumerates the set of values for FastConnectProviderServiceBandwithShapeManagement
-func GetFastConnectProviderServiceBandwithShapeManagementEnumValues() []FastConnectProviderServiceBandwithShapeManagementEnum {
-	values := make([]FastConnectProviderServiceBandwithShapeManagementEnum, 0)
-	for _, v := range mappingFastConnectProviderServiceBandwithShapeManagement {
 		values = append(values, v)
 	}
 	return values

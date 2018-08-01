@@ -38,21 +38,10 @@ type UpdateVirtualCircuitDetails struct {
 	// by the provider.
 	CustomerBgpAsn *int `mandatory:"false" json:"customerBgpAsn"`
 
-	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Operations": {"CostCenter": "42"}}`
-	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
-
 	// A user-friendly name. Does not have to be unique.
 	// Avoid entering confidential information.
 	// To be updated only by the customer who owns the virtual circuit.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no
-	// predefined name, type, or namespace. For more information, see
-	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Department": "Finance"}`
-	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The OCID of the Drg
 	// that this private virtual circuit uses.
@@ -66,9 +55,6 @@ type UpdateVirtualCircuitDetails struct {
 	// circuit, or has de-provisioned it.
 	// To be updated only by the provider.
 	ProviderState UpdateVirtualCircuitDetailsProviderStateEnum `mandatory:"false" json:"providerState,omitempty"`
-
-	// The service key name offered by the provider (if the customer is connecting via a provider).
-	ProviderServiceKeyName *string `mandatory:"false" json:"providerServiceKeyName"`
 
 	// Provider-supplied reference information about this virtual circuit.
 	// Relevant only if the customer is using FastConnect via a provider.

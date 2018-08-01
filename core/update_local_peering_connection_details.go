@@ -12,14 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateRemotePeeringConnectionDetails The representation of UpdateRemotePeeringConnectionDetails
-type UpdateRemotePeeringConnectionDetails struct {
+// UpdateLocalPeeringConnectionDetails The representation of UpdateLocalPeeringConnectionDetails
+type UpdateLocalPeeringConnectionDetails struct {
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 
-func (m UpdateRemotePeeringConnectionDetails) String() string {
+func (m UpdateLocalPeeringConnectionDetails) String() string {
 	return common.PointerString(m)
 }

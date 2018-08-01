@@ -89,16 +89,6 @@ type LaunchInstanceDetails struct {
 	// For more information about iPXE, see http://ipxe.org.
 	IpxeScript *string `mandatory:"false" json:"ipxeScript"`
 
-	// Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-	// * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
-	// * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
-	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
-	// * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter.
-	LaunchMode LaunchInstanceDetailsLaunchModeEnum `mandatory:"false" json:"launchMode,omitempty"`
-
-	// When launchMode is `CUSTOM`, this parameter is required, otherwise it is disallowed.
-	LaunchOptions *LaunchOptions `mandatory:"false" json:"launchOptions"`
-
 	// Custom metadata key/value pairs that you provide, such as the SSH public key
 	// required to connect to the instance.
 	// A metadata service runs on every launched instance. The service is an HTTP
@@ -144,8 +134,6 @@ type LaunchInstanceDetails struct {
 	//  the metadata information for the specified key name, respectively.
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 
-	MetricsConfig *InstanceMetricsConfig `mandatory:"false" json:"metricsConfig"`
-
 	// Details for creating an instance.
 	// Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.
 	SourceDetails InstanceSourceDetails `mandatory:"false" json:"sourceDetails"`
@@ -157,9 +145,6 @@ type LaunchInstanceDetails struct {
 
 	// Volume attachments to create as part of the launch instance operation.
 	VolumeAttachments []CreateVolumeAttachmentDetails `mandatory:"false" json:"volumeAttachments"`
-
-	// Whether to enable encryption in transit for the PV boot volume attachment. Defaults to false.
-	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 }
 
 func (m LaunchInstanceDetails) String() string {
@@ -169,26 +154,22 @@ func (m LaunchInstanceDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		CreateVnicDetails              *CreateVnicDetails                  `json:"createVnicDetails"`
-		DefinedTags                    map[string]map[string]interface{}   `json:"definedTags"`
-		DisplayName                    *string                             `json:"displayName"`
-		ExtendedMetadata               map[string]interface{}              `json:"extendedMetadata"`
-		FaultDomain                    *string                             `json:"faultDomain"`
-		FreeformTags                   map[string]string                   `json:"freeformTags"`
-		HostnameLabel                  *string                             `json:"hostnameLabel"`
-		ImageId                        *string                             `json:"imageId"`
-		IpxeScript                     *string                             `json:"ipxeScript"`
-		LaunchMode                     LaunchInstanceDetailsLaunchModeEnum `json:"launchMode"`
-		LaunchOptions                  *LaunchOptions                      `json:"launchOptions"`
-		Metadata                       map[string]string                   `json:"metadata"`
-		MetricsConfig                  *InstanceMetricsConfig              `json:"metricsConfig"`
-		SourceDetails                  instancesourcedetails               `json:"sourceDetails"`
-		SubnetId                       *string                             `json:"subnetId"`
-		VolumeAttachments              []createvolumeattachmentdetails     `json:"volumeAttachments"`
-		IsPvEncryptionInTransitEnabled *bool                               `json:"isPvEncryptionInTransitEnabled"`
-		AvailabilityDomain             *string                             `json:"availabilityDomain"`
-		CompartmentId                  *string                             `json:"compartmentId"`
-		Shape                          *string                             `json:"shape"`
+		CreateVnicDetails  *CreateVnicDetails                `json:"createVnicDetails"`
+		DefinedTags        map[string]map[string]interface{} `json:"definedTags"`
+		DisplayName        *string                           `json:"displayName"`
+		ExtendedMetadata   map[string]interface{}            `json:"extendedMetadata"`
+		FaultDomain        *string                           `json:"faultDomain"`
+		FreeformTags       map[string]string                 `json:"freeformTags"`
+		HostnameLabel      *string                           `json:"hostnameLabel"`
+		ImageId            *string                           `json:"imageId"`
+		IpxeScript         *string                           `json:"ipxeScript"`
+		Metadata           map[string]string                 `json:"metadata"`
+		SourceDetails      instancesourcedetails             `json:"sourceDetails"`
+		SubnetId           *string                           `json:"subnetId"`
+		VolumeAttachments  []createvolumeattachmentdetails   `json:"volumeAttachments"`
+		AvailabilityDomain *string                           `json:"availabilityDomain"`
+		CompartmentId      *string                           `json:"compartmentId"`
+		Shape              *string                           `json:"shape"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -204,10 +185,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.HostnameLabel = model.HostnameLabel
 	m.ImageId = model.ImageId
 	m.IpxeScript = model.IpxeScript
-	m.LaunchMode = model.LaunchMode
-	m.LaunchOptions = model.LaunchOptions
 	m.Metadata = model.Metadata
-	m.MetricsConfig = model.MetricsConfig
 	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
 	if e != nil {
 		return
@@ -222,36 +200,8 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		}
 		m.VolumeAttachments[i] = nn.(CreateVolumeAttachmentDetails)
 	}
-	m.IsPvEncryptionInTransitEnabled = model.IsPvEncryptionInTransitEnabled
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId
 	m.Shape = model.Shape
 	return
-}
-
-// LaunchInstanceDetailsLaunchModeEnum Enum with underlying type: string
-type LaunchInstanceDetailsLaunchModeEnum string
-
-// Set of constants representing the allowable values for LaunchInstanceDetailsLaunchMode
-const (
-	LaunchInstanceDetailsLaunchModeNative          LaunchInstanceDetailsLaunchModeEnum = "NATIVE"
-	LaunchInstanceDetailsLaunchModeEmulated        LaunchInstanceDetailsLaunchModeEnum = "EMULATED"
-	LaunchInstanceDetailsLaunchModeParavirtualized LaunchInstanceDetailsLaunchModeEnum = "PARAVIRTUALIZED"
-	LaunchInstanceDetailsLaunchModeCustom          LaunchInstanceDetailsLaunchModeEnum = "CUSTOM"
-)
-
-var mappingLaunchInstanceDetailsLaunchMode = map[string]LaunchInstanceDetailsLaunchModeEnum{
-	"NATIVE":          LaunchInstanceDetailsLaunchModeNative,
-	"EMULATED":        LaunchInstanceDetailsLaunchModeEmulated,
-	"PARAVIRTUALIZED": LaunchInstanceDetailsLaunchModeParavirtualized,
-	"CUSTOM":          LaunchInstanceDetailsLaunchModeCustom,
-}
-
-// GetLaunchInstanceDetailsLaunchModeEnumValues Enumerates the set of values for LaunchInstanceDetailsLaunchMode
-func GetLaunchInstanceDetailsLaunchModeEnumValues() []LaunchInstanceDetailsLaunchModeEnum {
-	values := make([]LaunchInstanceDetailsLaunchModeEnum, 0)
-	for _, v := range mappingLaunchInstanceDetailsLaunchMode {
-		values = append(values, v)
-	}
-	return values
 }

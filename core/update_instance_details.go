@@ -30,13 +30,6 @@ type UpdateInstanceDetails struct {
 	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
-
-	// Custom metadata that you provide.
-	Metadata map[string]string `mandatory:"false" json:"metadata"`
-
-	// Additional metadata key/value pairs that you provide.  They serve a similar purpose and functionality from fields in the 'metadata' object.
-	// They are distinguished from 'metadata' fields in that these can be nested JSON objects (whereas 'metadata' fields are string/string maps only).
-	ExtendedMetadata map[string]interface{} `mandatory:"false" json:"extendedMetadata"`
 }
 
 func (m UpdateInstanceDetails) String() string {
