@@ -32,6 +32,9 @@ type UpdateVolumeDetails struct {
 
 	// The size to resize the volume to in GBs. Has to be larger than the current size.
 	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
+
+	// The OCID of the KMS key which is the master encryption key for the volume.  This key will be used to generate new volume data encryption key to protect this volume and the old key will be replaced. If it is empty string, then we will remove kms encryption for this volume.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
 func (m UpdateVolumeDetails) String() string {

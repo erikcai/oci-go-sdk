@@ -8,14 +8,18 @@ import (
 	"net/http"
 )
 
-// UpdateLocalPeeringConnectionRequest wrapper for the UpdateLocalPeeringConnection operation
-type UpdateLocalPeeringConnectionRequest struct {
+// StartInstancePoolRequest wrapper for the StartInstancePool operation
+type StartInstancePoolRequest struct {
 
-	// The OCID of the local peering connection. This feature is currently in preview and may change before public release. Do not use it for production workloads.
-	LocalPeeringConnectionId *string `mandatory:"true" contributesTo:"path" name:"localPeeringConnectionId"`
+	// The OCID of the instance pool.
+	InstancePoolId *string `mandatory:"true" contributesTo:"path" name:"instancePoolId"`
 
-	// Details object for updating a local peering connection.
-	UpdateLocalPeeringConnectionDetails `contributesTo:"body"`
+	// A token that uniquely identifies a request so it can be retried in case of a timeout or
+	// server error without risk of executing that same action again. Retry tokens expire after 24
+	// hours, but can be invalidated before then due to conflicting operations (for example, if a resource
+	// has been deleted and purged from the system, then a retry of the original creation request
+	// may be rejected).
+	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
@@ -31,28 +35,28 @@ type UpdateLocalPeeringConnectionRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request UpdateLocalPeeringConnectionRequest) String() string {
+func (request StartInstancePoolRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request UpdateLocalPeeringConnectionRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request StartInstancePoolRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request UpdateLocalPeeringConnectionRequest) RetryPolicy() *common.RetryPolicy {
+func (request StartInstancePoolRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// UpdateLocalPeeringConnectionResponse wrapper for the UpdateLocalPeeringConnection operation
-type UpdateLocalPeeringConnectionResponse struct {
+// StartInstancePoolResponse wrapper for the StartInstancePool operation
+type StartInstancePoolResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The LocalPeeringConnection instance
-	LocalPeeringConnection `presentIn:"body"`
+	// The InstancePool instance
+	InstancePool `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -62,11 +66,11 @@ type UpdateLocalPeeringConnectionResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response UpdateLocalPeeringConnectionResponse) String() string {
+func (response StartInstancePoolResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response UpdateLocalPeeringConnectionResponse) HTTPResponse() *http.Response {
+func (response StartInstancePoolResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

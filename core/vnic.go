@@ -83,6 +83,7 @@ type Vnic struct {
 
 	// The private IP address of the primary `privateIp` object on the VNIC.
 	// The address is within the CIDR of the VNIC's subnet.
+	// **Note: ** This is null if the VNIC is in a subnet that has `isLearningEnabled` = `true`.
 	// Example: `10.0.3.3`
 	PrivateIp *string `mandatory:"false" json:"privateIp"`
 

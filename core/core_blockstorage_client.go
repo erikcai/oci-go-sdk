@@ -235,6 +235,49 @@ func (client BlockstorageClient) createBootVolumeBackup(ctx context.Context, req
 	return response, err
 }
 
+// CreateCrossRegionBackup Internally used API to create a copy of a cross region backup metadata in the specified region. Note that if there is already a backup
+// in the destination region copied from the same source backup (in creating, copying, available state), a new backup will not be created.
+func (client BlockstorageClient) CreateCrossRegionBackup(ctx context.Context, request CreateCrossRegionBackupRequest) (response CreateCrossRegionBackupResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.createCrossRegionBackup, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateCrossRegionBackupResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateCrossRegionBackupResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateCrossRegionBackupResponse")
+	}
+	return
+}
+
+// createCrossRegionBackup implements the OCIOperation interface (enables retrying operations)
+func (client BlockstorageClient) createCrossRegionBackup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/crossRegionBackups")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateCrossRegionBackupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateVolume Creates a new volume in the specified compartment. Volumes can be created in sizes ranging from
 // 50 GB (51200 MB) to 32 TB (33554432 MB), in 1 GB (1024 MB) increments. By default, volumes are 1 TB (1048576 MB).
 // For general information about block volumes, see
@@ -853,6 +896,48 @@ func (client BlockstorageClient) getBootVolumeBackup(ctx context.Context, reques
 	return response, err
 }
 
+// GetCrossRegionBackup Gets information on a CrossRegionBackup
+func (client BlockstorageClient) GetCrossRegionBackup(ctx context.Context, request GetCrossRegionBackupRequest) (response GetCrossRegionBackupResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getCrossRegionBackup, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetCrossRegionBackupResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetCrossRegionBackupResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetCrossRegionBackupResponse")
+	}
+	return
+}
+
+// getCrossRegionBackup implements the OCIOperation interface (enables retrying operations)
+func (client BlockstorageClient) getCrossRegionBackup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/crossRegionBackups/{crossRegionBackupId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetCrossRegionBackupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetVolume Gets information for the specified volume.
 func (client BlockstorageClient) GetVolume(ctx context.Context, request GetVolumeRequest) (response GetVolumeResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1149,6 +1234,48 @@ func (client BlockstorageClient) getVolumeGroupBackup(ctx context.Context, reque
 	return response, err
 }
 
+// GetVolumeHealth Gets health information for the specified volume.
+func (client BlockstorageClient) GetVolumeHealth(ctx context.Context, request GetVolumeHealthRequest) (response GetVolumeHealthResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getVolumeHealth, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetVolumeHealthResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetVolumeHealthResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetVolumeHealthResponse")
+	}
+	return
+}
+
+// getVolumeHealth implements the OCIOperation interface (enables retrying operations)
+func (client BlockstorageClient) getVolumeHealth(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/volumeHealths/{volumeId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetVolumeHealthResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListBootVolumeBackups Lists the boot volume backups in the specified compartment. You can filter the results by boot volume.
 func (client BlockstorageClient) ListBootVolumeBackups(ctx context.Context, request ListBootVolumeBackupsRequest) (response ListBootVolumeBackupsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1403,6 +1530,48 @@ func (client BlockstorageClient) listVolumeGroups(ctx context.Context, request c
 	return response, err
 }
 
+// ListVolumeHealths Lists the health of the volumes in the specified compartment and Availability Domain.
+func (client BlockstorageClient) ListVolumeHealths(ctx context.Context, request ListVolumeHealthsRequest) (response ListVolumeHealthsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listVolumeHealths, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListVolumeHealthsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListVolumeHealthsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListVolumeHealthsResponse")
+	}
+	return
+}
+
+// listVolumeHealths implements the OCIOperation interface (enables retrying operations)
+func (client BlockstorageClient) listVolumeHealths(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/volumeHealths")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListVolumeHealthsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListVolumes Lists the volumes in the specified compartment and Availability Domain.
 func (client BlockstorageClient) ListVolumes(ctx context.Context, request ListVolumesRequest) (response ListVolumesResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1518,6 +1687,48 @@ func (client BlockstorageClient) updateBootVolumeBackup(ctx context.Context, req
 	}
 
 	var response UpdateBootVolumeBackupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateCrossRegionBackup Updates a CrossRegionBackup
+func (client BlockstorageClient) UpdateCrossRegionBackup(ctx context.Context, request UpdateCrossRegionBackupRequest) (response UpdateCrossRegionBackupResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateCrossRegionBackup, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateCrossRegionBackupResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateCrossRegionBackupResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateCrossRegionBackupResponse")
+	}
+	return
+}
+
+// updateCrossRegionBackup implements the OCIOperation interface (enables retrying operations)
+func (client BlockstorageClient) updateCrossRegionBackup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/crossRegionBackups/{crossRegionBackupId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateCrossRegionBackupResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

@@ -8,16 +8,14 @@ import (
 	"net/http"
 )
 
-// DeleteLocalPeeringConnectionRequest wrapper for the DeleteLocalPeeringConnection operation
-type DeleteLocalPeeringConnectionRequest struct {
+// GetFastConnectProviderServiceKeyRequest wrapper for the GetFastConnectProviderServiceKey operation
+type GetFastConnectProviderServiceKeyRequest struct {
 
-	// The OCID of the local peering connection. This feature is currently in preview and may change before public release. Do not use it for production workloads.
-	LocalPeeringConnectionId *string `mandatory:"true" contributesTo:"path" name:"localPeeringConnectionId"`
+	// The OCID of the provider service.
+	ProviderServiceId *string `mandatory:"true" contributesTo:"path" name:"providerServiceId"`
 
-	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
-	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
-	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
+	// The provider service key name.
+	ProviderServiceKeyName *string `mandatory:"true" contributesTo:"path" name:"providerServiceKeyName"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
@@ -28,36 +26,39 @@ type DeleteLocalPeeringConnectionRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request DeleteLocalPeeringConnectionRequest) String() string {
+func (request GetFastConnectProviderServiceKeyRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request DeleteLocalPeeringConnectionRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetFastConnectProviderServiceKeyRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request DeleteLocalPeeringConnectionRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetFastConnectProviderServiceKeyRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// DeleteLocalPeeringConnectionResponse wrapper for the DeleteLocalPeeringConnection operation
-type DeleteLocalPeeringConnectionResponse struct {
+// GetFastConnectProviderServiceKeyResponse wrapper for the GetFastConnectProviderServiceKey operation
+type GetFastConnectProviderServiceKeyResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
+
+	// The FastConnectProviderServiceKey instance
+	FastConnectProviderServiceKey `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response DeleteLocalPeeringConnectionResponse) String() string {
+func (response GetFastConnectProviderServiceKeyResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response DeleteLocalPeeringConnectionResponse) HTTPResponse() *http.Response {
+func (response GetFastConnectProviderServiceKeyResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

@@ -36,7 +36,8 @@ type VirtualCircuit struct {
 	// Example: `10 Gbps`
 	BandwidthShapeName *string `mandatory:"false" json:"bandwidthShapeName"`
 
-	// BGP management option.
+	// Deprecated. Instead use the information in
+	// FastConnectProviderService.
 	BgpManagement VirtualCircuitBgpManagementEnum `mandatory:"false" json:"bgpManagement,omitempty"`
 
 	// The state of the BGP session associated with the virtual circuit.
@@ -57,9 +58,20 @@ type VirtualCircuit struct {
 	// is the provider's ASN.
 	CustomerBgpAsn *int `mandatory:"false" json:"customerBgpAsn"`
 
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
 	// A user-friendly name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The OCID of the customer's Drg
 	// that this virtual circuit uses. Applicable only to private virtual circuits.
@@ -81,6 +93,9 @@ type VirtualCircuit struct {
 
 	// The OCID of the service offered by the provider (if the customer is connecting via a provider).
 	ProviderServiceId *string `mandatory:"false" json:"providerServiceId"`
+
+	// The service key name offered by the provider (if the customer is connecting via a provider).
+	ProviderServiceKeyName *string `mandatory:"false" json:"providerServiceKeyName"`
 
 	// Deprecated. Instead use `providerServiceId`.
 	ProviderServiceName *string `mandatory:"false" json:"providerServiceName"`

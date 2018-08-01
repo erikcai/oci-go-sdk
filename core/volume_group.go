@@ -57,9 +57,6 @@ type VolumeGroup struct {
 	// The volume group source. The source is either another a list of
 	// volume IDs in the same availability domain, another volume group, or a volume group backup.
 	SourceDetails VolumeGroupSourceDetails `mandatory:"false" json:"sourceDetails"`
-
-	// Specifies whether the newly created cloned volume group's data has finished copying from the source volume group or backup.
-	IsHydrated *bool `mandatory:"false" json:"isHydrated"`
 }
 
 func (m VolumeGroup) String() string {
@@ -74,7 +71,6 @@ func (m *VolumeGroup) UnmarshalJSON(data []byte) (e error) {
 		LifecycleState     VolumeGroupLifecycleStateEnum     `json:"lifecycleState"`
 		SizeInGBs          *int64                            `json:"sizeInGBs"`
 		SourceDetails      volumegroupsourcedetails          `json:"sourceDetails"`
-		IsHydrated         *bool                             `json:"isHydrated"`
 		AvailabilityDomain *string                           `json:"availabilityDomain"`
 		CompartmentId      *string                           `json:"compartmentId"`
 		DisplayName        *string                           `json:"displayName"`
@@ -97,7 +93,6 @@ func (m *VolumeGroup) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	m.SourceDetails = nn.(VolumeGroupSourceDetails)
-	m.IsHydrated = model.IsHydrated
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId
 	m.DisplayName = model.DisplayName

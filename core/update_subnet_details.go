@@ -20,6 +20,9 @@ type UpdateSubnetDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
+	// The OCID of the set of DHCP options the subnet will use.
+	DhcpOptionsId *string `mandatory:"false" json:"dhcpOptionsId"`
+
 	// A user-friendly name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
@@ -29,6 +32,15 @@ type UpdateSubnetDetails struct {
 	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// The OCID of the route table the subnet will use.
+	RouteTableId *string `mandatory:"false" json:"routeTableId"`
+
+	// OCIDs for the security lists to associate with the subnet. This
+	// replaces the current set of associated security lists. Remember that
+	// security lists are associated at the subnet level, but the rules are
+	// applied to the individual VNICs in the subnet.
+	SecurityListIds []string `mandatory:"false" json:"securityListIds"`
 }
 
 func (m UpdateSubnetDetails) String() string {

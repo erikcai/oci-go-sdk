@@ -8,18 +8,14 @@ import (
 	"net/http"
 )
 
-// CreateLocalPeeringConnectionRequest wrapper for the CreateLocalPeeringConnection operation
-type CreateLocalPeeringConnectionRequest struct {
+// GetAppCatalogListingAgreementsRequest wrapper for the GetAppCatalogListingAgreements operation
+type GetAppCatalogListingAgreementsRequest struct {
 
-	// Details for creating a new local peering connection.
-	CreateLocalPeeringConnectionDetails `contributesTo:"body"`
+	// The OCID of the listing.
+	ListingId *string `mandatory:"true" contributesTo:"path" name:"listingId"`
 
-	// A token that uniquely identifies a request so it can be retried in case of a timeout or
-	// server error without risk of executing that same action again. Retry tokens expire after 24
-	// hours, but can be invalidated before then due to conflicting operations (for example, if a resource
-	// has been deleted and purged from the system, then a retry of the original creation request
-	// may be rejected).
-	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
+	// Listing Resource Version.
+	ResourceVersion *string `mandatory:"true" contributesTo:"path" name:"resourceVersion"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
@@ -30,28 +26,28 @@ type CreateLocalPeeringConnectionRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request CreateLocalPeeringConnectionRequest) String() string {
+func (request GetAppCatalogListingAgreementsRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request CreateLocalPeeringConnectionRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetAppCatalogListingAgreementsRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request CreateLocalPeeringConnectionRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetAppCatalogListingAgreementsRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// CreateLocalPeeringConnectionResponse wrapper for the CreateLocalPeeringConnection operation
-type CreateLocalPeeringConnectionResponse struct {
+// GetAppCatalogListingAgreementsResponse wrapper for the GetAppCatalogListingAgreements operation
+type GetAppCatalogListingAgreementsResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The LocalPeeringConnection instance
-	LocalPeeringConnection `presentIn:"body"`
+	// The AppCatalogListingResourceVersionAgreements instance
+	AppCatalogListingResourceVersionAgreements `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -61,11 +57,11 @@ type CreateLocalPeeringConnectionResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response CreateLocalPeeringConnectionResponse) String() string {
+func (response GetAppCatalogListingAgreementsResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response CreateLocalPeeringConnectionResponse) HTTPResponse() *http.Response {
+func (response GetAppCatalogListingAgreementsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

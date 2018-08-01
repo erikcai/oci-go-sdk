@@ -699,6 +699,132 @@ func (client ComputeClient) exportImage(ctx context.Context, request common.OCIR
 	return response, err
 }
 
+// GetAppCatalogListing Gets the specified listing.
+func (client ComputeClient) GetAppCatalogListing(ctx context.Context, request GetAppCatalogListingRequest) (response GetAppCatalogListingResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAppCatalogListing, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetAppCatalogListingResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAppCatalogListingResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAppCatalogListingResponse")
+	}
+	return
+}
+
+// getAppCatalogListing implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) getAppCatalogListing(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/appCatalogListings/{listingId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAppCatalogListingResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetAppCatalogListingAgreements Retrieves the agreements for a particular version of a listing.
+func (client ComputeClient) GetAppCatalogListingAgreements(ctx context.Context, request GetAppCatalogListingAgreementsRequest) (response GetAppCatalogListingAgreementsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAppCatalogListingAgreements, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetAppCatalogListingAgreementsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAppCatalogListingAgreementsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAppCatalogListingAgreementsResponse")
+	}
+	return
+}
+
+// getAppCatalogListingAgreements implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) getAppCatalogListingAgreements(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/appCatalogListings/{listingId}/resourceVersions/{resourceVersion}/agreements")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAppCatalogListingAgreementsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetAppCatalogListingResourceVersion Gets the specified listing resource version.
+func (client ComputeClient) GetAppCatalogListingResourceVersion(ctx context.Context, request GetAppCatalogListingResourceVersionRequest) (response GetAppCatalogListingResourceVersionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAppCatalogListingResourceVersion, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetAppCatalogListingResourceVersionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAppCatalogListingResourceVersionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAppCatalogListingResourceVersionResponse")
+	}
+	return
+}
+
+// getAppCatalogListingResourceVersion implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) getAppCatalogListingResourceVersion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/appCatalogListings/{listingId}/resourceVersions/{resourceVersion}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAppCatalogListingResourceVersionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetBootVolumeAttachment Gets information about the specified boot volume attachment.
 func (client ComputeClient) GetBootVolumeAttachment(ctx context.Context, request GetBootVolumeAttachmentRequest) (response GetBootVolumeAttachmentResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -955,6 +1081,49 @@ func (client ComputeClient) getInstanceConsoleConnection(ctx context.Context, re
 	return response, err
 }
 
+// GetInstanceDefaultCredentials Gets the generated credentials for the instance. Only works for instances that require password to log in (E.g. Windows).
+// For certain OS'es, users will be forced to change the initial credentials.
+func (client ComputeClient) GetInstanceDefaultCredentials(ctx context.Context, request GetInstanceDefaultCredentialsRequest) (response GetInstanceDefaultCredentialsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInstanceDefaultCredentials, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetInstanceDefaultCredentialsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInstanceDefaultCredentialsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInstanceDefaultCredentialsResponse")
+	}
+	return
+}
+
+// getInstanceDefaultCredentials implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) getInstanceDefaultCredentials(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/instances/{instanceId}/defaultCredentials")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInstanceDefaultCredentialsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetVnicAttachment Gets the information for the specified VNIC attachment.
 func (client ComputeClient) GetVnicAttachment(ctx context.Context, request GetVnicAttachmentRequest) (response GetVnicAttachmentResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1039,7 +1208,8 @@ func (client ComputeClient) getVolumeAttachment(ctx context.Context, request com
 	return response, err
 }
 
-// GetWindowsInstanceInitialCredentials Gets the generated credentials for the instance. Only works for instances that require password to log in (E.g. Windows).
+// GetWindowsInstanceInitialCredentials Deprecated. Use /instances/{instanceId}/defaultCredentials instead.
+// Gets the generated credentials for the instance. Only works for instances that require password to log in (E.g. Windows).
 // For certain OS'es, users will be forced to change the initial credentials.
 func (client ComputeClient) GetWindowsInstanceInitialCredentials(ctx context.Context, request GetWindowsInstanceInitialCredentialsRequest) (response GetWindowsInstanceInitialCredentialsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1196,6 +1366,132 @@ func (client ComputeClient) launchInstance(ctx context.Context, request common.O
 	return response, err
 }
 
+// ListAppCatalogListingResourceVersions Gets all resource versions for a particular listing.
+func (client ComputeClient) ListAppCatalogListingResourceVersions(ctx context.Context, request ListAppCatalogListingResourceVersionsRequest) (response ListAppCatalogListingResourceVersionsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listAppCatalogListingResourceVersions, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListAppCatalogListingResourceVersionsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListAppCatalogListingResourceVersionsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListAppCatalogListingResourceVersionsResponse")
+	}
+	return
+}
+
+// listAppCatalogListingResourceVersions implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) listAppCatalogListingResourceVersions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/appCatalogListings/{listingId}/resourceVersions")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListAppCatalogListingResourceVersionsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListAppCatalogListings Lists the published listings.
+func (client ComputeClient) ListAppCatalogListings(ctx context.Context, request ListAppCatalogListingsRequest) (response ListAppCatalogListingsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listAppCatalogListings, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListAppCatalogListingsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListAppCatalogListingsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListAppCatalogListingsResponse")
+	}
+	return
+}
+
+// listAppCatalogListings implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) listAppCatalogListings(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/appCatalogListings")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListAppCatalogListingsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListAppCatalogPublishers List all app catalog publishers.
+func (client ComputeClient) ListAppCatalogPublishers(ctx context.Context, request ListAppCatalogPublishersRequest) (response ListAppCatalogPublishersResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listAppCatalogPublishers, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListAppCatalogPublishersResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListAppCatalogPublishersResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListAppCatalogPublishersResponse")
+	}
+	return
+}
+
+// listAppCatalogPublishers implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) listAppCatalogPublishers(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/appCatalogPublishers")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListAppCatalogPublishersResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListBootVolumeAttachments Lists the boot volume attachments in the specified compartment. You can filter the
 // list by specifying an instance OCID, boot volume OCID, or both.
 func (client ComputeClient) ListBootVolumeAttachments(ctx context.Context, request ListBootVolumeAttachmentsRequest) (response ListBootVolumeAttachmentsResponse, err error) {
@@ -1269,6 +1565,48 @@ func (client ComputeClient) listConsoleHistories(ctx context.Context, request co
 	}
 
 	var response ListConsoleHistoriesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListConsumption Lists the corresponding usage for the compute limit group in the specified tenancy and Availability Domain.
+func (client ComputeClient) ListConsumption(ctx context.Context, request ListConsumptionRequest) (response ListConsumptionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listConsumption, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListConsumptionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListConsumptionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListConsumptionResponse")
+	}
+	return
+}
+
+// listConsumption implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) listConsumption(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/computeConsumption")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListConsumptionResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1458,6 +1796,48 @@ func (client ComputeClient) listShapes(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
+// ListSubscribedAppCatalogListings Lists the subscribed listings.
+func (client ComputeClient) ListSubscribedAppCatalogListings(ctx context.Context, request ListSubscribedAppCatalogListingsRequest) (response ListSubscribedAppCatalogListingsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listSubscribedAppCatalogListings, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListSubscribedAppCatalogListingsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListSubscribedAppCatalogListingsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListSubscribedAppCatalogListingsResponse")
+	}
+	return
+}
+
+// listSubscribedAppCatalogListings implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) listSubscribedAppCatalogListings(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/subscribedAppCatalogListings")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListSubscribedAppCatalogListingsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListVnicAttachments Lists the VNIC attachments in the specified compartment. A VNIC attachment
 // resides in the same compartment as the attached instance. The list can be
 // filtered by instance, VNIC, or Availability Domain.
@@ -1605,6 +1985,48 @@ func (client ComputeClient) removeImageShapeCompatibilityEntry(ctx context.Conte
 	return response, err
 }
 
+// SubscribeAppCatalogListing Subscribes to a particular version of a listing.
+func (client ComputeClient) SubscribeAppCatalogListing(ctx context.Context, request SubscribeAppCatalogListingRequest) (response SubscribeAppCatalogListingResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.subscribeAppCatalogListing, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = SubscribeAppCatalogListingResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(SubscribeAppCatalogListingResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into SubscribeAppCatalogListingResponse")
+	}
+	return
+}
+
+// subscribeAppCatalogListing implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) subscribeAppCatalogListing(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/appCatalogListings/{listingId}/resourceVersions/{resourceVersion}/actions/subscribe")
+	if err != nil {
+		return nil, err
+	}
+
+	var response SubscribeAppCatalogListingResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // TerminateInstance Terminates the specified instance. Any attached VNICs and volumes are automatically detached
 // when the instance terminates.
 // To preserve the boot volume associated with the instance, specify `true` for `PreserveBootVolumeQueryParam`.
@@ -1640,6 +2062,48 @@ func (client ComputeClient) terminateInstance(ctx context.Context, request commo
 	}
 
 	var response TerminateInstanceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UnsubscribeAppCatalogListing Unsubscribes to a particular version of a listing.
+func (client ComputeClient) UnsubscribeAppCatalogListing(ctx context.Context, request UnsubscribeAppCatalogListingRequest) (response UnsubscribeAppCatalogListingResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.unsubscribeAppCatalogListing, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UnsubscribeAppCatalogListingResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UnsubscribeAppCatalogListingResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UnsubscribeAppCatalogListingResponse")
+	}
+	return
+}
+
+// unsubscribeAppCatalogListing implements the OCIOperation interface (enables retrying operations)
+func (client ComputeClient) unsubscribeAppCatalogListing(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/subscribedAppCatalogListings/{listingId}/resourceVersions/{resourceVersion}/actions/unsubscribe")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UnsubscribeAppCatalogListingResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

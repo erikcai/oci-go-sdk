@@ -22,10 +22,6 @@ import (
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 type Subnet struct {
 
-	// The subnet's Availability Domain.
-	// Example: `Uocm:PHX-AD-1`
-	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
-
 	// The subnet's CIDR block.
 	// Example: `172.16.1.0/24`
 	CidrBlock *string `mandatory:"true" json:"cidrBlock"`
@@ -52,6 +48,10 @@ type Subnet struct {
 	// The MAC address of the virtual router.
 	// Example: `00:00:17:B6:4D:DD`
 	VirtualRouterMac *string `mandatory:"true" json:"virtualRouterMac"`
+
+	// The subnet's Availability Domain.
+	// Example: `Uocm:PHX-AD-1`
+	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).

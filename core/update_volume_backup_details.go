@@ -29,6 +29,9 @@ type UpdateVolumeBackupDetails struct {
 	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// The OCID of the KMS key which is the master encryption key for the volume.  This key will be used to generate new volume data encryption key to protect this volume and the old key will be replaced. If it is empty string, then we will remove kms encryption for this volume.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
 func (m UpdateVolumeBackupDetails) String() string {

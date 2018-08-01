@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-// GenerateLocalPeeringTokenRequest wrapper for the GenerateLocalPeeringToken operation
-type GenerateLocalPeeringTokenRequest struct {
+// GetAppCatalogListingRequest wrapper for the GetAppCatalogListing operation
+type GetAppCatalogListingRequest struct {
 
-	// The OCID of the local peering connection. This feature is currently in preview and may change before public release. Do not use it for production workloads.
-	LocalPeeringConnectionId *string `mandatory:"true" contributesTo:"path" name:"localPeeringConnectionId"`
+	// The OCID of the listing.
+	ListingId *string `mandatory:"true" contributesTo:"path" name:"listingId"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
@@ -23,39 +23,42 @@ type GenerateLocalPeeringTokenRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GenerateLocalPeeringTokenRequest) String() string {
+func (request GetAppCatalogListingRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GenerateLocalPeeringTokenRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetAppCatalogListingRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GenerateLocalPeeringTokenRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetAppCatalogListingRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GenerateLocalPeeringTokenResponse wrapper for the GenerateLocalPeeringToken operation
-type GenerateLocalPeeringTokenResponse struct {
+// GetAppCatalogListingResponse wrapper for the GetAppCatalogListing operation
+type GetAppCatalogListingResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The LocalPeeringTokenDetails instance
-	LocalPeeringTokenDetails `presentIn:"body"`
+	// The AppCatalogListing instance
+	AppCatalogListing `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response GenerateLocalPeeringTokenResponse) String() string {
+func (response GetAppCatalogListingResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GenerateLocalPeeringTokenResponse) HTTPResponse() *http.Response {
+func (response GetAppCatalogListingResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

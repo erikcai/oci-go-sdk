@@ -18,6 +18,14 @@ type ListShapesRequest struct {
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" contributesTo:"query" name:"availabilityDomain"`
 
+	// The image's operating system.
+	// Example: `Oracle Linux`
+	OperatingSystem *string `mandatory:"false" contributesTo:"query" name:"operatingSystem"`
+
+	// The image's operating system version.
+	// Example: `7.2`
+	OperatingSystemVersion *string `mandatory:"false" contributesTo:"query" name:"operatingSystemVersion"`
+
 	// The maximum number of items to return in a paginated "List" call.
 	// Example: `500`
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`

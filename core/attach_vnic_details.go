@@ -30,6 +30,9 @@ type AttachVnicDetails struct {
 	// the VNIC will use. For more information, see
 	// Virtual Network Interface Cards (VNICs) (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingVNICs.htm).
 	NicIndex *int `mandatory:"false" json:"nicIndex"`
+
+	// The optional tag used to identify attaching VNIC, available only on a BareMetal instance
+	VlanTag *int `mandatory:"false" json:"vlanTag"`
 }
 
 func (m AttachVnicDetails) String() string {

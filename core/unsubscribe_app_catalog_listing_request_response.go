@@ -8,14 +8,17 @@ import (
 	"net/http"
 )
 
-// AcceptLocalPeeringTokenRequest wrapper for the AcceptLocalPeeringToken operation
-type AcceptLocalPeeringTokenRequest struct {
+// UnsubscribeAppCatalogListingRequest wrapper for the UnsubscribeAppCatalogListing operation
+type UnsubscribeAppCatalogListingRequest struct {
 
-	// The OCID of the local peering connection. This feature is currently in preview and may change before public release. Do not use it for production workloads.
-	LocalPeeringConnectionId *string `mandatory:"true" contributesTo:"path" name:"localPeeringConnectionId"`
+	// The OCID of the listing.
+	ListingId *string `mandatory:"true" contributesTo:"path" name:"listingId"`
 
-	// Details regarding the token to accept.
-	AcceptLocalPeeringTokenDetails `contributesTo:"body"`
+	// The OCID of the compartment.
+	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
+
+	// Listing Resource Version.
+	ResourceVersion *string `mandatory:"true" contributesTo:"path" name:"resourceVersion"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
@@ -26,22 +29,22 @@ type AcceptLocalPeeringTokenRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request AcceptLocalPeeringTokenRequest) String() string {
+func (request UnsubscribeAppCatalogListingRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request AcceptLocalPeeringTokenRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request UnsubscribeAppCatalogListingRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request AcceptLocalPeeringTokenRequest) RetryPolicy() *common.RetryPolicy {
+func (request UnsubscribeAppCatalogListingRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// AcceptLocalPeeringTokenResponse wrapper for the AcceptLocalPeeringToken operation
-type AcceptLocalPeeringTokenResponse struct {
+// UnsubscribeAppCatalogListingResponse wrapper for the UnsubscribeAppCatalogListing operation
+type UnsubscribeAppCatalogListingResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
@@ -51,11 +54,11 @@ type AcceptLocalPeeringTokenResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response AcceptLocalPeeringTokenResponse) String() string {
+func (response UnsubscribeAppCatalogListingResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response AcceptLocalPeeringTokenResponse) HTTPResponse() *http.Response {
+func (response UnsubscribeAppCatalogListingResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }
