@@ -1736,7 +1736,10 @@ func (client ComputeClient) updateImage(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// UpdateInstance Updates the display name of the specified instance. Avoid entering confidential information.
+// UpdateInstance Updates certain fields on the specified instance. Fields that are not provided in the
+// request will not be updated. Avoid entering confidential information.
+// Changes to metadata fields will be reflected in the instance metadata service (this may take
+// up to a minute).
 // The OCID of the instance remains the same.
 func (client ComputeClient) UpdateInstance(ctx context.Context, request UpdateInstanceRequest) (response UpdateInstanceResponse, err error) {
 	var ociResponse common.OCIResponse

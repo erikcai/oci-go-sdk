@@ -16,7 +16,7 @@
         <spec.temp.dir>${project.build.directory}</spec.temp.dir>
         <preferred.temp.dir>${project.build.directory}/preferred</preferred.temp.dir>
         <preprocessed.temp.dir>${project.build.directory}/preprocessed</preprocessed.temp.dir>
-        <coreservices-api-spec.artifact.version>0.2.234</coreservices-api-spec.artifact.version>
+        <coreservices-api-spec.artifact.version>0.2.256</coreservices-api-spec.artifact.version>
         <coreservices-api-spec.artifact.id>coreservices-api-spec</coreservices-api-spec.artifact.id>
         <coreservices-api-spec.spec.name>source/coreservices-api-spec-20160918.cond.yaml</coreservices-api-spec.spec.name>
         <identity-control-plane-api-spec-preview.artifact.version>0.2.17-PREVIEW</identity-control-plane-api-spec-preview.artifact.version>
