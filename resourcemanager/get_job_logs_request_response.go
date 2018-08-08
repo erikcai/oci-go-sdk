@@ -19,7 +19,7 @@ type GetJobLogsRequest struct {
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// A filter to return logs only of the given type.
-	Type []string `contributesTo:"query" name:"type" collectionFormat:"multi"`
+	Type []LogEntryTypeEnum `contributesTo:"query" name:"type" omitEmpty:"true" collectionFormat:"multi"`
 
 	// A filter to return logs only of the given level or of greater severity.
 	LevelGreaterThanOrEqualTo LogEntryLevelEnum `mandatory:"false" contributesTo:"query" name:"levelGreaterThanOrEqualTo" omitEmpty:"true"`
