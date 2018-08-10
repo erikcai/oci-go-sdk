@@ -1243,6 +1243,48 @@ func (client ObjectStorageClient) listWorkRequests(ctx context.Context, request 
 	return response, err
 }
 
+// MergeObjectMetadata Performs a merge of a Object's user-defined metadata with existing metadata.
+func (client ObjectStorageClient) MergeObjectMetadata(ctx context.Context, request MergeObjectMetadataRequest) (response MergeObjectMetadataResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.mergeObjectMetadata, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = MergeObjectMetadataResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(MergeObjectMetadataResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into MergeObjectMetadataResponse")
+	}
+	return
+}
+
+// mergeObjectMetadata implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) mergeObjectMetadata(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/n/{namespaceName}/b/{bucketName}/actions/mergeObjectMetadata/{objectName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response MergeObjectMetadataResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // PutObject Creates a new object or overwrites an existing one.
 func (client ObjectStorageClient) PutObject(ctx context.Context, request PutObjectRequest) (response PutObjectResponse, err error) {
 	client.Signer = common.RequestSignerExcludeBody(*client.config)
@@ -1358,6 +1400,48 @@ func (client ObjectStorageClient) renameObject(ctx context.Context, request comm
 	}
 
 	var response RenameObjectResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ReplaceObjectMetadata Performs a overwrite of a Object's user-defined metadata.
+func (client ObjectStorageClient) ReplaceObjectMetadata(ctx context.Context, request ReplaceObjectMetadataRequest) (response ReplaceObjectMetadataResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.replaceObjectMetadata, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ReplaceObjectMetadataResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ReplaceObjectMetadataResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ReplaceObjectMetadataResponse")
+	}
+	return
+}
+
+// replaceObjectMetadata implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) replaceObjectMetadata(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/n/{namespaceName}/b/{bucketName}/actions/replaceObjectMetadata/{objectName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ReplaceObjectMetadataResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

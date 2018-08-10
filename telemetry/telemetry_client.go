@@ -185,6 +185,48 @@ func (client TelemetryClient) getAlarm(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
+// GetAlarmHistory Get the history of the specified alarm.
+func (client TelemetryClient) GetAlarmHistory(ctx context.Context, request GetAlarmHistoryRequest) (response GetAlarmHistoryResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAlarmHistory, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetAlarmHistoryResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAlarmHistoryResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAlarmHistoryResponse")
+	}
+	return
+}
+
+// getAlarmHistory implements the OCIOperation interface (enables retrying operations)
+func (client TelemetryClient) getAlarmHistory(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/alarms/{alarmId}/history")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAlarmHistoryResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListAlarms List the alarms for the specified compartment
 func (client TelemetryClient) ListAlarms(ctx context.Context, request ListAlarmsRequest) (response ListAlarmsResponse, err error) {
 	var ociResponse common.OCIResponse

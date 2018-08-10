@@ -40,6 +40,10 @@ type Alarm struct {
 	// The severity of the alarm.
 	Severity AlarmSeverityEnum `mandatory:"true" json:"severity"`
 
+	// A list of OCID that identify the destinations for the notification. For example, the destinations
+	// could contain the OCID of an ONS topic, for delivering the notification.
+	Destinations []string `mandatory:"true" json:"destinations"`
+
 	// Whether the alarm is enabled.
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
@@ -69,10 +73,6 @@ type Alarm struct {
 
 	// The body of the notification delivered.
 	Body *string `mandatory:"false" json:"body"`
-
-	// A list of OCID that identify the destinations for the notification. For example, the destinations
-	// could contain the OCID of an ONS topic, for delivering the notification.
-	Destinations []string `mandatory:"false" json:"destinations"`
 
 	// The frequency in which notifications are re-submitted, if the alarm keeps firing. The frequency
 	// is specified as string in ISO 8601 format, e.g. PT4H, for four hours.

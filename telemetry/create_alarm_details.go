@@ -36,7 +36,11 @@ type CreateAlarmDetails struct {
 	Query *string `mandatory:"true" json:"query"`
 
 	// The severity of the alarm.
-	Severity CreateAlarmDetailsSeverityEnum `mandatory:"true" json:"severity"`
+	Severity AlarmSeverityEnum `mandatory:"true" json:"severity"`
+
+	// A list of OCID that identify the destinations for the notification. For example, the destinations
+	// could contain the OCID of an ONS topic, for delivering the notification.
+	Destinations []string `mandatory:"true" json:"destinations"`
 
 	// Whether the alarm is enabled.
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
@@ -62,10 +66,6 @@ type CreateAlarmDetails struct {
 	// The body of the notification delivered.
 	Body *string `mandatory:"false" json:"body"`
 
-	// A list of OCID that identify the destinations for the notification. For example, the destinations
-	// could contain the OCID of an ONS topic, for delivering the notification.
-	Destinations []string `mandatory:"false" json:"destinations"`
-
 	// The frequency in which notifications are re-submitted, if the alarm keeps firing. The frequency
 	// is specified as string in ISO 8601 format, e.g. PT4H, for four hours.
 	// Default does not repeat notifications.
@@ -76,31 +76,4 @@ type CreateAlarmDetails struct {
 
 func (m CreateAlarmDetails) String() string {
 	return common.PointerString(m)
-}
-
-// CreateAlarmDetailsSeverityEnum Enum with underlying type: string
-type CreateAlarmDetailsSeverityEnum string
-
-// Set of constants representing the allowable values for CreateAlarmDetailsSeverity
-const (
-	CreateAlarmDetailsSeverityCritical CreateAlarmDetailsSeverityEnum = "CRITICAL"
-	CreateAlarmDetailsSeverityError    CreateAlarmDetailsSeverityEnum = "ERROR"
-	CreateAlarmDetailsSeverityWarning  CreateAlarmDetailsSeverityEnum = "WARNING"
-	CreateAlarmDetailsSeverityInfo     CreateAlarmDetailsSeverityEnum = "INFO"
-)
-
-var mappingCreateAlarmDetailsSeverity = map[string]CreateAlarmDetailsSeverityEnum{
-	"CRITICAL": CreateAlarmDetailsSeverityCritical,
-	"ERROR":    CreateAlarmDetailsSeverityError,
-	"WARNING":  CreateAlarmDetailsSeverityWarning,
-	"INFO":     CreateAlarmDetailsSeverityInfo,
-}
-
-// GetCreateAlarmDetailsSeverityEnumValues Enumerates the set of values for CreateAlarmDetailsSeverity
-func GetCreateAlarmDetailsSeverityEnumValues() []CreateAlarmDetailsSeverityEnum {
-	values := make([]CreateAlarmDetailsSeverityEnum, 0)
-	for _, v := range mappingCreateAlarmDetailsSeverity {
-		values = append(values, v)
-	}
-	return values
 }

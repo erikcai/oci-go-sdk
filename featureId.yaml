@@ -111,3 +111,7 @@ whitelisted:
   - UDX-859
   - udx-1215
   - udx-574
+  - UDX-1036-RebootMigration
+  - udx-198
+  - UDX-1137
+  - UDX-847

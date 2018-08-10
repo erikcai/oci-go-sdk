@@ -62,10 +62,14 @@ type Instance struct {
 	// They are distinguished from 'metadata' fields in that these can be nested JSON objects (whereas 'metadata' fields are string/string maps only).
 	ExtendedMetadata map[string]interface{} `mandatory:"false" json:"extendedMetadata"`
 
-	// The name of the Fault Domain the instance is running in.
-	// A Fault Domain is a logical grouping of hardware and infrastructure within an Availability Domain that can become
-	// unavailable in its entirety either due to hardware failure such as Top-of-rack (TOR) switch failure or due to
-	// planned software maintenance such as security updates that reboot your instances.
+	// The name of the fault domain the instance is running in.
+	// A fault domain is a grouping of hardware and infrastructure within an availability domain.
+	// Each availability domain contains three fault domains. Fault domains let you distribute your
+	// instances so that they are not on the same physical hardware within a single availability domain.
+	// A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
+	// instances in other fault domains.
+	// If you do not specify the fault domain, the system selects one for you. To change the fault
+	// domain for an instance, terminate it and launch a new instance in the preferred fault domain.
 	// Example: `FAULT-DOMAIN-1`
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`
 
@@ -112,6 +116,12 @@ type Instance struct {
 
 	// Details for creating an instance
 	SourceDetails InstanceSourceDetails `mandatory:"false" json:"sourceDetails"`
+
+	// The date and time the instance is expected to be stopped / started,  in the format defined by RFC3339.
+	// After that time if instance hasn't been rebooted, Oracle will reboot the instance within 24 hours of the due time.
+	// Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state.
+	// Example: `2018-05-25T21:10:29.600Z`
+	TimeMaintenanceRebootDue *common.SDKTime `mandatory:"false" json:"timeMaintenanceRebootDue"`
 }
 
 func (m Instance) String() string {
@@ -121,24 +131,25 @@ func (m Instance) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		DefinedTags        map[string]map[string]interface{} `json:"definedTags"`
-		DisplayName        *string                           `json:"displayName"`
-		ExtendedMetadata   map[string]interface{}            `json:"extendedMetadata"`
-		FaultDomain        *string                           `json:"faultDomain"`
-		FreeformTags       map[string]string                 `json:"freeformTags"`
-		ImageId            *string                           `json:"imageId"`
-		IpxeScript         *string                           `json:"ipxeScript"`
-		LaunchMode         InstanceLaunchModeEnum            `json:"launchMode"`
-		LaunchOptions      *LaunchOptions                    `json:"launchOptions"`
-		Metadata           map[string]string                 `json:"metadata"`
-		SourceDetails      instancesourcedetails             `json:"sourceDetails"`
-		AvailabilityDomain *string                           `json:"availabilityDomain"`
-		CompartmentId      *string                           `json:"compartmentId"`
-		Id                 *string                           `json:"id"`
-		LifecycleState     InstanceLifecycleStateEnum        `json:"lifecycleState"`
-		Region             *string                           `json:"region"`
-		Shape              *string                           `json:"shape"`
-		TimeCreated        *common.SDKTime                   `json:"timeCreated"`
+		DefinedTags              map[string]map[string]interface{} `json:"definedTags"`
+		DisplayName              *string                           `json:"displayName"`
+		ExtendedMetadata         map[string]interface{}            `json:"extendedMetadata"`
+		FaultDomain              *string                           `json:"faultDomain"`
+		FreeformTags             map[string]string                 `json:"freeformTags"`
+		ImageId                  *string                           `json:"imageId"`
+		IpxeScript               *string                           `json:"ipxeScript"`
+		LaunchMode               InstanceLaunchModeEnum            `json:"launchMode"`
+		LaunchOptions            *LaunchOptions                    `json:"launchOptions"`
+		Metadata                 map[string]string                 `json:"metadata"`
+		SourceDetails            instancesourcedetails             `json:"sourceDetails"`
+		TimeMaintenanceRebootDue *common.SDKTime                   `json:"timeMaintenanceRebootDue"`
+		AvailabilityDomain       *string                           `json:"availabilityDomain"`
+		CompartmentId            *string                           `json:"compartmentId"`
+		Id                       *string                           `json:"id"`
+		LifecycleState           InstanceLifecycleStateEnum        `json:"lifecycleState"`
+		Region                   *string                           `json:"region"`
+		Shape                    *string                           `json:"shape"`
+		TimeCreated              *common.SDKTime                   `json:"timeCreated"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -160,6 +171,7 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	m.SourceDetails = nn.(InstanceSourceDetails)
+	m.TimeMaintenanceRebootDue = model.TimeMaintenanceRebootDue
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId
 	m.Id = model.Id

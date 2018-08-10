@@ -47,8 +47,14 @@ type LaunchInstanceDetails struct {
 	// They are distinguished from 'metadata' fields in that these can be nested JSON objects (whereas 'metadata' fields are string/string maps only).
 	ExtendedMetadata map[string]interface{} `mandatory:"false" json:"extendedMetadata"`
 
-	// The name of the Fault Domain in which to launch an instance.
-	// To get a list of Fault Domains, use the ListFaultDomains
+	// A fault domain is a grouping of hardware and infrastructure within an availability domain.
+	// Each availability domain contains three fault domains. Fault domains let you distribute your
+	// instances so that they are not on the same physical hardware within a single availability domain.
+	// A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
+	// instances in other fault domains.
+	// If you do not specify the fault domain, the system selects one for you. To change the fault
+	// domain for an instance, terminate it and launch a new instance in the preferred fault domain.
+	// To get a list of fault domains, use the ListFaultDomains
 	// operation in the Identity and Access Management Service API.
 	// Example: `FAULT-DOMAIN-1`
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`

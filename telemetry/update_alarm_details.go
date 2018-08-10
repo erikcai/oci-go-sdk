@@ -54,7 +54,7 @@ type UpdateAlarmDetails struct {
 	PendingDuration *string `mandatory:"false" json:"pendingDuration"`
 
 	// The severity of the alarm.
-	Severity UpdateAlarmDetailsSeverityEnum `mandatory:"false" json:"severity,omitempty"`
+	Severity AlarmSeverityEnum `mandatory:"false" json:"severity,omitempty"`
 
 	// The body of the notification delivered.
 	Body *string `mandatory:"false" json:"body"`
@@ -76,31 +76,4 @@ type UpdateAlarmDetails struct {
 
 func (m UpdateAlarmDetails) String() string {
 	return common.PointerString(m)
-}
-
-// UpdateAlarmDetailsSeverityEnum Enum with underlying type: string
-type UpdateAlarmDetailsSeverityEnum string
-
-// Set of constants representing the allowable values for UpdateAlarmDetailsSeverity
-const (
-	UpdateAlarmDetailsSeverityCritical UpdateAlarmDetailsSeverityEnum = "CRITICAL"
-	UpdateAlarmDetailsSeverityError    UpdateAlarmDetailsSeverityEnum = "ERROR"
-	UpdateAlarmDetailsSeverityWarning  UpdateAlarmDetailsSeverityEnum = "WARNING"
-	UpdateAlarmDetailsSeverityInfo     UpdateAlarmDetailsSeverityEnum = "INFO"
-)
-
-var mappingUpdateAlarmDetailsSeverity = map[string]UpdateAlarmDetailsSeverityEnum{
-	"CRITICAL": UpdateAlarmDetailsSeverityCritical,
-	"ERROR":    UpdateAlarmDetailsSeverityError,
-	"WARNING":  UpdateAlarmDetailsSeverityWarning,
-	"INFO":     UpdateAlarmDetailsSeverityInfo,
-}
-
-// GetUpdateAlarmDetailsSeverityEnumValues Enumerates the set of values for UpdateAlarmDetailsSeverity
-func GetUpdateAlarmDetailsSeverityEnumValues() []UpdateAlarmDetailsSeverityEnum {
-	values := make([]UpdateAlarmDetailsSeverityEnum, 0)
-	for _, v := range mappingUpdateAlarmDetailsSeverity {
-		values = append(values, v)
-	}
-	return values
 }
