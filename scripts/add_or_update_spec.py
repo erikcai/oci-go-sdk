@@ -59,7 +59,7 @@ PREFER_EXECUTION_TEMPLATE = """
             <!-- Old layout: ./<spec.proto.yaml> -->
             <inputFile>${{spec.temp.dir}}/{spec_name}/${{{artifact_id}.spec.name}}</inputFile>
         </inputFiles>
-        <outputFile>${{preferred.temp.dir}}/${{{artifact_id}.spec.name}}</outputFile>
+        <outputFile>${{preferred.temp.dir}}/{spec_name}/${{{artifact_id}.spec.name}}</outputFile>
     </configuration>
 </execution>
 """
@@ -72,8 +72,8 @@ PREPROCESS_EXECUTION_TEMPLATE = """
         <goal>preprocess</goal>
     </goals>
     <configuration>
-        <inputFile>${{preferred.temp.dir}}/${{{artifact_id}.spec.name}}</inputFile>
-        <outputFile>${{preprocessed.temp.dir}}/${{{artifact_id}.spec.name}}</outputFile>
+        <inputFile>${{preferred.temp.dir}}/{spec_name}/${{{artifact_id}.spec.name}}</inputFile>
+        <outputFile>${{preprocessed.temp.dir}}/{spec_name}/${{{artifact_id}.spec.name}}</outputFile>
         <groupFile>${{enabled.groups.file}}</groupFile>
     </configuration>
 </execution>
@@ -88,7 +88,7 @@ GENERATE_EXECUTION_TEMPLATE = """
     </goals>
     <configuration>
         <language>oracle-go-sdk</language>
-        <specPath>${{preprocessed.temp.dir}}/${{{artifact_id}.spec.name}}</specPath>
+        <specPath>${{preprocessed.temp.dir}}/{spec_name}/${{{artifact_id}.spec.name}}</specPath>
         <outputDir>${{env.GOPATH}}/src/${{fullyQualifiedProjectName}}</outputDir>
         <basePackage>{spec_name}</basePackage>
         <specGenerationType>${{generationType}}</specGenerationType>

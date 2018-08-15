@@ -359,7 +359,7 @@
                                 <inputFile>${spec.temp.dir}/core/source/${coreservices-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/core/${coreservices-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${coreservices-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/core/${coreservices-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -369,8 +369,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${coreservices-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${coreservices-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/core/${coreservices-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/core/${coreservices-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -385,7 +385,7 @@
                                 <inputFile>${spec.temp.dir}/identity/source/${identity-control-plane-api-spec-preview.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/identity/${identity-control-plane-api-spec-preview.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${identity-control-plane-api-spec-preview.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/identity/${identity-control-plane-api-spec-preview.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -395,8 +395,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${identity-control-plane-api-spec-preview.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${identity-control-plane-api-spec-preview.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/identity/${identity-control-plane-api-spec-preview.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/identity/${identity-control-plane-api-spec-preview.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -411,7 +411,7 @@
                                 <inputFile>${spec.temp.dir}/objectstorage/source/${casper-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/objectstorage/${casper-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${casper-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/objectstorage/${casper-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -421,8 +421,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${casper-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${casper-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/objectstorage/${casper-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/objectstorage/${casper-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -437,7 +437,7 @@
                                 <inputFile>${spec.temp.dir}/loadbalancer/source/${oralb-api-spec-preview.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/loadbalancer/${oralb-api-spec-preview.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${oralb-api-spec-preview.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/loadbalancer/${oralb-api-spec-preview.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -447,8 +447,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${oralb-api-spec-preview.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${oralb-api-spec-preview.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/loadbalancer/${oralb-api-spec-preview.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/loadbalancer/${oralb-api-spec-preview.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -463,7 +463,7 @@
                                 <inputFile>${spec.temp.dir}/database/source/${dbaas-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/database/${dbaas-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${dbaas-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/database/${dbaas-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -473,8 +473,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${dbaas-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${dbaas-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/database/${dbaas-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/database/${dbaas-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -489,7 +489,7 @@
                                 <inputFile>${spec.temp.dir}/audit/source/${hemlock-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/audit/${hemlock-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${hemlock-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/audit/${hemlock-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -499,8 +499,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${hemlock-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${hemlock-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/audit/${hemlock-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/audit/${hemlock-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -515,7 +515,7 @@
                                 <inputFile>${spec.temp.dir}/filestorage/source/${fss-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/filestorage/${fss-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${fss-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/filestorage/${fss-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -525,8 +525,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${fss-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${fss-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/filestorage/${fss-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/filestorage/${fss-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -541,7 +541,7 @@
                                 <inputFile>${spec.temp.dir}/dns/source/${public-dns-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/dns/${public-dns-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${public-dns-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/dns/${public-dns-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -551,8 +551,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${public-dns-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${public-dns-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/dns/${public-dns-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/dns/${public-dns-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -567,7 +567,7 @@
                                 <inputFile>${spec.temp.dir}/email/source/${email-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/email/${email-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${email-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/email/${email-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -577,8 +577,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${email-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${email-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/email/${email-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/email/${email-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -593,7 +593,7 @@
                                 <inputFile>${spec.temp.dir}/kms/source/${kms-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/kms/${kms-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${kms-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/kms/${kms-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -603,8 +603,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${kms-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${kms-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/kms/${kms-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/kms/${kms-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -619,7 +619,7 @@
                                 <inputFile>${spec.temp.dir}/resourcemanager/source/${maestro-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/resourcemanager/${maestro-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${maestro-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/resourcemanager/${maestro-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -629,8 +629,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${maestro-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${maestro-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/resourcemanager/${maestro-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/resourcemanager/${maestro-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -645,7 +645,7 @@
                                 <inputFile>${spec.temp.dir}/resourcesearch/source/${resource-query-service-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/resourcesearch/${resource-query-service-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${resource-query-service-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/resourcesearch/${resource-query-service-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -655,8 +655,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${resource-query-service-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${resource-query-service-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/resourcesearch/${resource-query-service-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/resourcesearch/${resource-query-service-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -671,7 +671,7 @@
                                 <inputFile>${spec.temp.dir}/containerengine/source/${clusters-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/containerengine/${clusters-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${clusters-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/containerengine/${clusters-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -681,8 +681,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${clusters-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${clusters-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/containerengine/${clusters-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/containerengine/${clusters-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -697,7 +697,7 @@
                                 <inputFile>${spec.temp.dir}/telemetry/source/${telemetry-public-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/telemetry/${telemetry-public-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${telemetry-public-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/telemetry/${telemetry-public-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -707,8 +707,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${telemetry-public-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${telemetry-public-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/telemetry/${telemetry-public-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/telemetry/${telemetry-public-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -723,7 +723,7 @@
                                 <inputFile>${spec.temp.dir}/workrequests/source/${workrequests-api-spec.spec.name}</inputFile>
                                 <inputFile>${spec.temp.dir}/workrequests/${workrequests-api-spec.spec.name}</inputFile>
                             </inputFiles>
-                            <outputFile>${preferred.temp.dir}/${workrequests-api-spec.spec.name}</outputFile>
+                            <outputFile>${preferred.temp.dir}/workrequests/${workrequests-api-spec.spec.name}</outputFile>
                         </configuration>
                     </execution>
                     <execution>
@@ -733,8 +733,8 @@
                             <goal>preprocess</goal>
                         </goals>
                         <configuration>
-                            <inputFile>${preferred.temp.dir}/${workrequests-api-spec.spec.name}</inputFile>
-                            <outputFile>${preprocessed.temp.dir}/${workrequests-api-spec.spec.name}</outputFile>
+                            <inputFile>${preferred.temp.dir}/workrequests/${workrequests-api-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/workrequests/${workrequests-api-spec.spec.name}</outputFile>
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
@@ -753,7 +753,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${coreservices-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/core/${coreservices-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>core</basePackage>
@@ -772,7 +772,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${identity-control-plane-api-spec-preview.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/identity/${identity-control-plane-api-spec-preview.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>identity</basePackage>
@@ -791,7 +791,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${coreservices-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/core/${coreservices-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>core</basePackage>
@@ -811,7 +811,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${oralb-api-spec-preview.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/loadbalancer/${oralb-api-spec-preview.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>loadbalancer</basePackage>
@@ -831,7 +831,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${casper-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/objectstorage/${casper-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>objectstorage</basePackage>
@@ -850,7 +850,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${dbaas-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/database/${dbaas-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>database</basePackage>
@@ -869,7 +869,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${hemlock-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/audit/${hemlock-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>audit</basePackage>
@@ -888,7 +888,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${fss-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/filestorage/${fss-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>filestorage</basePackage>
@@ -907,7 +907,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${public-dns-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/dns/${public-dns-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>dns</basePackage>
@@ -926,7 +926,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${email-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/email/${email-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>email</basePackage>
@@ -945,7 +945,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${maestro-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/resourcemanager/${maestro-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>resourcemanager</basePackage>
@@ -964,7 +964,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${kms-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/kms/${kms-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>kms</basePackage>
@@ -984,7 +984,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${resource-query-service-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/resourcesearch/${resource-query-service-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <specGenerationType>${generationType}</specGenerationType>
                             <basePackage>resourcesearch</basePackage>
@@ -1003,7 +1003,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${clusters-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/containerengine/${clusters-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <basePackage>containerengine</basePackage>
                             <specGenerationType>${generationType}</specGenerationType>
@@ -1024,7 +1024,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${telemetry-public-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/telemetry/${telemetry-public-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <basePackage>telemetry</basePackage>
                             <specGenerationType>${generationType}</specGenerationType>
@@ -1044,7 +1044,7 @@
                         </goals>
                         <configuration>
                             <language>oracle-go-sdk</language>
-                            <specPath>${preprocessed.temp.dir}/${workrequests-api-spec.spec.name}</specPath>
+                            <specPath>${preprocessed.temp.dir}/workrequests/${workrequests-api-spec.spec.name}</specPath>
                             <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
                             <basePackage>workrequests</basePackage>
                             <specGenerationType>${generationType}</specGenerationType>
