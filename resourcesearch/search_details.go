@@ -47,6 +47,11 @@ func (m *searchdetails) UnmarshalJSON(data []byte) error {
 
 // UnmarshalPolymorphicJSON unmarshals polymorphic json
 func (m *searchdetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
+
+	if data == nil || string(data) == "null" {
+		return nil, nil
+	}
+
 	var err error
 	switch m.Type {
 	case "Structured":
@@ -58,7 +63,7 @@ func (m *searchdetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:
-		return m, nil
+		return *m, nil
 	}
 }
 

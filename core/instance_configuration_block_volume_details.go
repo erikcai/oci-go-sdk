@@ -43,7 +43,11 @@ func (m *InstanceConfigurationBlockVolumeDetails) UnmarshalJSON(data []byte) (e 
 	if e != nil {
 		return
 	}
-	m.AttachDetails = nn.(InstanceConfigurationAttachVolumeDetails)
+	if nn != nil {
+		m.AttachDetails = nn.(InstanceConfigurationAttachVolumeDetails)
+	} else {
+		m.AttachDetails = nil
+	}
 	m.CreateDetails = model.CreateDetails
 	m.VolumeId = model.VolumeId
 	return

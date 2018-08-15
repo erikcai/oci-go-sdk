@@ -196,7 +196,11 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
-	m.SourceDetails = nn.(InstanceSourceDetails)
+	if nn != nil {
+		m.SourceDetails = nn.(InstanceSourceDetails)
+	} else {
+		m.SourceDetails = nil
+	}
 	m.SubnetId = model.SubnetId
 	m.VolumeAttachments = make([]CreateVolumeAttachmentDetails, len(model.VolumeAttachments))
 	for i, n := range model.VolumeAttachments {
@@ -204,7 +208,11 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		if err != nil {
 			return err
 		}
-		m.VolumeAttachments[i] = nn.(CreateVolumeAttachmentDetails)
+		if nn != nil {
+			m.VolumeAttachments[i] = nn.(CreateVolumeAttachmentDetails)
+		} else {
+			m.VolumeAttachments[i] = nil
+		}
 	}
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId

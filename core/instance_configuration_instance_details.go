@@ -40,6 +40,11 @@ func (m *instanceconfigurationinstancedetails) UnmarshalJSON(data []byte) error 
 
 // UnmarshalPolymorphicJSON unmarshals polymorphic json
 func (m *instanceconfigurationinstancedetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
+
+	if data == nil || string(data) == "null" {
+		return nil, nil
+	}
+
 	var err error
 	switch m.InstanceType {
 	case "compute":
@@ -47,7 +52,7 @@ func (m *instanceconfigurationinstancedetails) UnmarshalPolymorphicJSON(data []b
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:
-		return m, nil
+		return *m, nil
 	}
 }
 

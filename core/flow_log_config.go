@@ -101,7 +101,11 @@ func (m *FlowLogConfig) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
-	m.Destination = nn.(FlowLogDestination)
+	if nn != nil {
+		m.Destination = nn.(FlowLogDestination)
+	} else {
+		m.Destination = nil
+	}
 	m.TimeCreated = model.TimeCreated
 	return
 }

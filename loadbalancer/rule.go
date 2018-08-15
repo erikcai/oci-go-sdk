@@ -40,6 +40,11 @@ func (m *rule) UnmarshalJSON(data []byte) error {
 
 // UnmarshalPolymorphicJSON unmarshals polymorphic json
 func (m *rule) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
+
+	if data == nil || string(data) == "null" {
+		return nil, nil
+	}
+
 	var err error
 	switch m.Action {
 	case "ADD_HTTP_REQUEST_HEADER":
@@ -67,7 +72,7 @@ func (m *rule) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:
-		return m, nil
+		return *m, nil
 	}
 }
 

@@ -44,7 +44,11 @@ func (m *CreateRuleSetDetails) UnmarshalJSON(data []byte) (e error) {
 		if err != nil {
 			return err
 		}
-		m.Items[i] = nn.(Rule)
+		if nn != nil {
+			m.Items[i] = nn.(Rule)
+		} else {
+			m.Items[i] = nil
+		}
 	}
 	m.Name = model.Name
 	return

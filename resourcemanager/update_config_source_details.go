@@ -45,6 +45,11 @@ func (m *updateconfigsourcedetails) UnmarshalJSON(data []byte) error {
 
 // UnmarshalPolymorphicJSON unmarshals polymorphic json
 func (m *updateconfigsourcedetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
+
+	if data == nil || string(data) == "null" {
+		return nil, nil
+	}
+
 	var err error
 	switch m.ConfigSourceType {
 	case "ZIP_UPLOAD":
@@ -52,7 +57,7 @@ func (m *updateconfigsourcedetails) UnmarshalPolymorphicJSON(data []byte) (inter
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:
-		return m, nil
+		return *m, nil
 	}
 }
 

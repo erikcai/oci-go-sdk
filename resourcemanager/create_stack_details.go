@@ -66,6 +66,10 @@ func (m *CreateStackDetails) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
-	m.ConfigSource = nn.(CreateConfigSourceDetails)
+	if nn != nil {
+		m.ConfigSource = nn.(CreateConfigSourceDetails)
+	} else {
+		m.ConfigSource = nil
+	}
 	return
 }

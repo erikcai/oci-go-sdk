@@ -40,6 +40,11 @@ func (m *instanceconfigurationvolumesourcedetails) UnmarshalJSON(data []byte) er
 
 // UnmarshalPolymorphicJSON unmarshals polymorphic json
 func (m *instanceconfigurationvolumesourcedetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
+
+	if data == nil || string(data) == "null" {
+		return nil, nil
+	}
+
 	var err error
 	switch m.Type {
 	case "volumeBackup":
@@ -51,7 +56,7 @@ func (m *instanceconfigurationvolumesourcedetails) UnmarshalPolymorphicJSON(data
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:
-		return m, nil
+		return *m, nil
 	}
 }
 

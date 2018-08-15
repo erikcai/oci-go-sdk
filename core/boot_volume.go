@@ -113,7 +113,11 @@ func (m *BootVolume) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
-	m.SourceDetails = nn.(BootVolumeSourceDetails)
+	if nn != nil {
+		m.SourceDetails = nn.(BootVolumeSourceDetails)
+	} else {
+		m.SourceDetails = nil
+	}
 	m.VolumeGroupId = model.VolumeGroupId
 	m.KmsKeyId = model.KmsKeyId
 	m.AvailabilityDomain = model.AvailabilityDomain

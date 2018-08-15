@@ -59,7 +59,11 @@ func (m *UpdateStackDetails) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
-	m.ConfigSource = nn.(UpdateConfigSourceDetails)
+	if nn != nil {
+		m.ConfigSource = nn.(UpdateConfigSourceDetails)
+	} else {
+		m.ConfigSource = nil
+	}
 	m.Variables = model.Variables
 	m.FreeformTags = model.FreeformTags
 	m.DefinedTags = model.DefinedTags

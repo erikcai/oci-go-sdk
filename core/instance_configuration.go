@@ -73,7 +73,11 @@ func (m *InstanceConfiguration) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
-	m.InstanceDetails = nn.(InstanceConfigurationInstanceDetails)
+	if nn != nil {
+		m.InstanceDetails = nn.(InstanceConfigurationInstanceDetails)
+	} else {
+		m.InstanceDetails = nil
+	}
 	m.DeferredFields = make([]string, len(model.DeferredFields))
 	for i, n := range model.DeferredFields {
 		m.DeferredFields[i] = n
