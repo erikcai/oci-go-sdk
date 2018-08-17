@@ -30,10 +30,6 @@ type KeyVersion struct {
 
 	// The OCID of the vault that contains this key version.
 	VaultId *string `mandatory:"true" json:"vaultId"`
-
-	// A user-friendly name. It does not have to be unique, and it is changeable.
-	// Avoid entering confidential information.
-	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 
 func (m KeyVersion) String() string {

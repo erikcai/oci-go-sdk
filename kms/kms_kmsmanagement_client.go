@@ -30,7 +30,7 @@ func NewKmsManagementClientWithConfigurationProvider(configProvider common.Confi
 	}
 
 	client = KmsManagementClient{BaseClient: baseClient}
-	client.BasePath = "20180201"
+	client.BasePath = "20180608"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -88,6 +88,49 @@ func (client KmsManagementClient) createKey(ctx context.Context, request common.
 	}
 
 	var response CreateKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateKeyVersion Generates new cryptographic material for a key. Key must be in an `ENABLED` state to be
+// rotated.
+func (client KmsManagementClient) CreateKeyVersion(ctx context.Context, request CreateKeyVersionRequest) (response CreateKeyVersionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.createKeyVersion, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateKeyVersionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateKeyVersionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateKeyVersionResponse")
+	}
+	return
+}
+
+// createKeyVersion implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) createKeyVersion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/keys/{keyId}/keyVersions")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateKeyVersionResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -228,6 +271,48 @@ func (client KmsManagementClient) getKey(ctx context.Context, request common.OCI
 	return response, err
 }
 
+// GetKeyVersion Gets information about the specified key version.
+func (client KmsManagementClient) GetKeyVersion(ctx context.Context, request GetKeyVersionRequest) (response GetKeyVersionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getKeyVersion, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetKeyVersionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetKeyVersionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetKeyVersionResponse")
+	}
+	return
+}
+
+// getKeyVersion implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) getKeyVersion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/keys/{keyId}/keyVersions/{keyVersionId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetKeyVersionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListKeyVersions Lists all key versions for the specified key.
 func (client KmsManagementClient) ListKeyVersions(ctx context.Context, request ListKeyVersionsRequest) (response ListKeyVersionsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -300,49 +385,6 @@ func (client KmsManagementClient) listKeys(ctx context.Context, request common.O
 	}
 
 	var response ListKeysResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// RotateKey Generates new cryptographic material for a key. Keys must
-// be in an `ENABLED` state to be rotated.
-func (client KmsManagementClient) RotateKey(ctx context.Context, request RotateKeyRequest) (response RotateKeyResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.rotateKey, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = RotateKeyResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(RotateKeyResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into RotateKeyResponse")
-	}
-	return
-}
-
-// rotateKey implements the OCIOperation interface (enables retrying operations)
-func (client KmsManagementClient) rotateKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/keys/{keyId}/actions/rotate")
-	if err != nil {
-		return nil, err
-	}
-
-	var response RotateKeyResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

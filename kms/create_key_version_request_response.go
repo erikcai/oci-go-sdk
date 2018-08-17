@@ -8,18 +8,11 @@ import (
 	"net/http"
 )
 
-// RotateKeyRequest wrapper for the RotateKey operation
-type RotateKeyRequest struct {
+// CreateKeyVersionRequest wrapper for the CreateKeyVersion operation
+type CreateKeyVersionRequest struct {
 
 	// The OCID of the key.
 	KeyId *string `mandatory:"true" contributesTo:"path" name:"keyId"`
-
-	// For optimistic concurrency control. In the PUT or DELETE call for a
-	// resource, set the `if-match` parameter to the value of the etag from a
-	// previous GET or POST response for that resource. The resource will be
-	// updated or deleted only if the etag you provide matches the resource's
-	// current etag value.
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// Unique identifier for the request. If provided, the returned request ID
 	// will include this value. Otherwise, a random request ID will be
@@ -39,28 +32,28 @@ type RotateKeyRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request RotateKeyRequest) String() string {
+func (request CreateKeyVersionRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request RotateKeyRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request CreateKeyVersionRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request RotateKeyRequest) RetryPolicy() *common.RetryPolicy {
+func (request CreateKeyVersionRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// RotateKeyResponse wrapper for the RotateKey operation
-type RotateKeyResponse struct {
+// CreateKeyVersionResponse wrapper for the CreateKeyVersion operation
+type CreateKeyVersionResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The Key instance
-	Key `presentIn:"body"`
+	// The KeyVersion instance
+	KeyVersion `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -70,11 +63,11 @@ type RotateKeyResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response RotateKeyResponse) String() string {
+func (response CreateKeyVersionResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response RotateKeyResponse) HTTPResponse() *http.Response {
+func (response CreateKeyVersionResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

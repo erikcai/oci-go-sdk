@@ -30,7 +30,7 @@ func NewKmsVaultClientWithConfigurationProvider(configProvider common.Configurat
 	}
 
 	client = KmsVaultClient{BaseClient: baseClient}
-	client.BasePath = "20180201"
+	client.BasePath = "20180608"
 	client.Host = endpoint
 	err = client.setConfigurationProvider(configProvider)
 	return
@@ -49,6 +49,50 @@ func (client *KmsVaultClient) setConfigurationProvider(configProvider common.Con
 // ConfigurationProvider the ConfigurationProvider used in this client, or null if none set
 func (client *KmsVaultClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
+}
+
+// CancelVaultDeletion Cancels the scheduled deletion of the specified Vault, which must be in PendingDeletion
+// state. The Vault and all Keys in it will be moved back to their previous states before
+// the deletion was scheduled.
+func (client KmsVaultClient) CancelVaultDeletion(ctx context.Context, request CancelVaultDeletionRequest) (response CancelVaultDeletionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.cancelVaultDeletion, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CancelVaultDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CancelVaultDeletionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CancelVaultDeletionResponse")
+	}
+	return
+}
+
+// cancelVaultDeletion implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) cancelVaultDeletion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/vaults/{vaultId}/actions/cancelDeletion")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CancelVaultDeletionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
 }
 
 // CreateVault Creates a new vault. The type of vault you create determines key
@@ -168,6 +212,49 @@ func (client KmsVaultClient) listVaults(ctx context.Context, request common.OCIR
 	}
 
 	var response ListVaultsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ScheduleVaultDeletion Schedules the deletion of the specified Vault. The Vault and all Keys in it
+// will be moved to PendingDeletion state and deleted after the retention period.
+func (client KmsVaultClient) ScheduleVaultDeletion(ctx context.Context, request ScheduleVaultDeletionRequest) (response ScheduleVaultDeletionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.scheduleVaultDeletion, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ScheduleVaultDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ScheduleVaultDeletionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ScheduleVaultDeletionResponse")
+	}
+	return
+}
+
+// scheduleVaultDeletion implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) scheduleVaultDeletion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/vaults/{vaultId}/actions/scheduleDeletion")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ScheduleVaultDeletionResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

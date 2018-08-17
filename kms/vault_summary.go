@@ -61,17 +61,23 @@ type VaultSummaryLifecycleStateEnum string
 
 // Set of constants representing the allowable values for VaultSummaryLifecycleState
 const (
-	VaultSummaryLifecycleStateCreating VaultSummaryLifecycleStateEnum = "CREATING"
-	VaultSummaryLifecycleStateActive   VaultSummaryLifecycleStateEnum = "ACTIVE"
-	VaultSummaryLifecycleStateDeleting VaultSummaryLifecycleStateEnum = "DELETING"
-	VaultSummaryLifecycleStateDeleted  VaultSummaryLifecycleStateEnum = "DELETED"
+	VaultSummaryLifecycleStateCreating           VaultSummaryLifecycleStateEnum = "CREATING"
+	VaultSummaryLifecycleStateActive             VaultSummaryLifecycleStateEnum = "ACTIVE"
+	VaultSummaryLifecycleStateDeleting           VaultSummaryLifecycleStateEnum = "DELETING"
+	VaultSummaryLifecycleStateDeleted            VaultSummaryLifecycleStateEnum = "DELETED"
+	VaultSummaryLifecycleStatePendingDeletion    VaultSummaryLifecycleStateEnum = "PENDING_DELETION"
+	VaultSummaryLifecycleStateSchedulingDeletion VaultSummaryLifecycleStateEnum = "SCHEDULING_DELETION"
+	VaultSummaryLifecycleStateCancellingDeletion VaultSummaryLifecycleStateEnum = "CANCELLING_DELETION"
 )
 
 var mappingVaultSummaryLifecycleState = map[string]VaultSummaryLifecycleStateEnum{
-	"CREATING": VaultSummaryLifecycleStateCreating,
-	"ACTIVE":   VaultSummaryLifecycleStateActive,
-	"DELETING": VaultSummaryLifecycleStateDeleting,
-	"DELETED":  VaultSummaryLifecycleStateDeleted,
+	"CREATING":            VaultSummaryLifecycleStateCreating,
+	"ACTIVE":              VaultSummaryLifecycleStateActive,
+	"DELETING":            VaultSummaryLifecycleStateDeleting,
+	"DELETED":             VaultSummaryLifecycleStateDeleted,
+	"PENDING_DELETION":    VaultSummaryLifecycleStatePendingDeletion,
+	"SCHEDULING_DELETION": VaultSummaryLifecycleStateSchedulingDeletion,
+	"CANCELLING_DELETION": VaultSummaryLifecycleStateCancellingDeletion,
 }
 
 // GetVaultSummaryLifecycleStateEnumValues Enumerates the set of values for VaultSummaryLifecycleState

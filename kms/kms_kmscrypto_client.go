@@ -30,7 +30,7 @@ func NewKmsCryptoClientWithConfigurationProvider(configProvider common.Configura
 	}
 
 	client = KmsCryptoClient{BaseClient: baseClient}
-	client.BasePath = "20180201"
+	client.BasePath = "20180608"
 	client.Host = endpoint
 	err = client.setConfigurationProvider(configProvider)
 	return

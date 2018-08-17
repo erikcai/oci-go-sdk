@@ -50,6 +50,10 @@ type Vault struct {
 	// Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// An optional property for the deletion time of the Vault expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
+	// Example: `2018-04-03T21:10:29.600Z`
+	TimeOfDeletion *common.SDKTime `mandatory:"false" json:"timeOfDeletion"`
 }
 
 func (m Vault) String() string {
@@ -61,17 +65,23 @@ type VaultLifecycleStateEnum string
 
 // Set of constants representing the allowable values for VaultLifecycleState
 const (
-	VaultLifecycleStateCreating VaultLifecycleStateEnum = "CREATING"
-	VaultLifecycleStateActive   VaultLifecycleStateEnum = "ACTIVE"
-	VaultLifecycleStateDeleting VaultLifecycleStateEnum = "DELETING"
-	VaultLifecycleStateDeleted  VaultLifecycleStateEnum = "DELETED"
+	VaultLifecycleStateCreating           VaultLifecycleStateEnum = "CREATING"
+	VaultLifecycleStateActive             VaultLifecycleStateEnum = "ACTIVE"
+	VaultLifecycleStateDeleting           VaultLifecycleStateEnum = "DELETING"
+	VaultLifecycleStateDeleted            VaultLifecycleStateEnum = "DELETED"
+	VaultLifecycleStatePendingDeletion    VaultLifecycleStateEnum = "PENDING_DELETION"
+	VaultLifecycleStateSchedulingDeletion VaultLifecycleStateEnum = "SCHEDULING_DELETION"
+	VaultLifecycleStateCancellingDeletion VaultLifecycleStateEnum = "CANCELLING_DELETION"
 )
 
 var mappingVaultLifecycleState = map[string]VaultLifecycleStateEnum{
-	"CREATING": VaultLifecycleStateCreating,
-	"ACTIVE":   VaultLifecycleStateActive,
-	"DELETING": VaultLifecycleStateDeleting,
-	"DELETED":  VaultLifecycleStateDeleted,
+	"CREATING":            VaultLifecycleStateCreating,
+	"ACTIVE":              VaultLifecycleStateActive,
+	"DELETING":            VaultLifecycleStateDeleting,
+	"DELETED":             VaultLifecycleStateDeleted,
+	"PENDING_DELETION":    VaultLifecycleStatePendingDeletion,
+	"SCHEDULING_DELETION": VaultLifecycleStateSchedulingDeletion,
+	"CANCELLING_DELETION": VaultLifecycleStateCancellingDeletion,
 }
 
 // GetVaultLifecycleStateEnumValues Enumerates the set of values for VaultLifecycleState
