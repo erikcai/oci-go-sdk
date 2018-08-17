@@ -25,7 +25,7 @@
         <oralb-api-spec-preview.artifact.version>1.0.17</oralb-api-spec-preview.artifact.version>
         <oralb-api-spec-preview.artifact.id>oralb-api-spec-preview</oralb-api-spec-preview.artifact.id>
         <oralb-api-spec-preview.spec.name>spec-20170115.yaml</oralb-api-spec-preview.spec.name>
-        <casper-api-spec.artifact.version>1.1.25-PREVIEW</casper-api-spec.artifact.version>
+        <casper-api-spec.artifact.version>1.1.26-PREVIEW</casper-api-spec.artifact.version>
         <casper-api-spec.artifact.id>casper-api-spec</casper-api-spec.artifact.id>
         <casper-api-spec.spec.name>casper-api.yaml</casper-api-spec.spec.name>
         <dbaas-api-spec.artifact.version>0.0.15-releasePreview</dbaas-api-spec.artifact.version>
@@ -46,9 +46,9 @@
         <maestro-spec.artifact.version>0.0.2</maestro-spec.artifact.version>
         <maestro-spec.artifact.id>maestro-spec</maestro-spec.artifact.id>
         <maestro-spec.spec.name>api.yaml</maestro-spec.spec.name>
-        <kms-api-spec.artifact.version>0.1.63</kms-api-spec.artifact.version>
+        <kms-api-spec.artifact.version>0.1.67</kms-api-spec.artifact.version>
         <kms-api-spec.artifact.id>kms-api-spec</kms-api-spec.artifact.id>
-        <kms-api-spec.spec.name>kms-api-spec-20180201.yaml</kms-api-spec.spec.name>
+        <kms-api-spec.spec.name>kms-api-spec-20180608.yaml</kms-api-spec.spec.name>
         <resource-query-service-spec.artifact.version>0.0.6</resource-query-service-spec.artifact.version>
         <resource-query-service-spec.artifact.id>resource-query-service-spec</resource-query-service-spec.artifact.id>
         <resource-query-service-spec.spec.name>rqs.yaml</resource-query-service-spec.spec.name>
@@ -63,6 +63,9 @@
         <workrequests-api-spec.artifact.version>0.0.5</workrequests-api-spec.artifact.version>
         <workrequests-api-spec.artifact.id>workrequests-api-spec</workrequests-api-spec.artifact.id>
         <workrequests-api-spec.spec.name>workrequests-api-spec.yaml</workrequests-api-spec.spec.name>
+        <ons-gateway-spec.artifact.version>1.0.575</ons-gateway-spec.artifact.version>
+        <ons-gateway-spec.artifact.id>ons-gateway-spec</ons-gateway-spec.artifact.id>
+        <ons-gateway-spec.spec.name>api.yaml</ons-gateway-spec.spec.name>
     </properties>
     <build>
         <plugins>
@@ -337,6 +340,24 @@
                                     <type>jar</type>
                                     <includes>**/*</includes>
                                     <outputDirectory>${spec.temp.dir}/workrequests</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-ons</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.oracle.pic.ons</groupId>
+                                    <artifactId>${ons-gateway-spec.artifact.id}</artifactId>
+                                    <type>jar</type>
+                                    <includes>**/*</includes>
+                                    <outputDirectory>${spec.temp.dir}/ons</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -738,6 +759,32 @@
                             <groupFile>${enabled.groups.file}</groupFile>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>spec-conditionals-prefer-ons</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>prefer</goal>
+                        </goals>
+                        <configuration>
+                            <inputFiles>
+                                <inputFile>${spec.temp.dir}/ons/source/${ons-gateway-spec.spec.name}</inputFile>
+                                <inputFile>${spec.temp.dir}/ons/${ons-gateway-spec.spec.name}</inputFile>
+                            </inputFiles>
+                            <outputFile>${preferred.temp.dir}/ons/${ons-gateway-spec.spec.name}</outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>spec-conditionals-preprocess-ons</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>preprocess</goal>
+                        </goals>
+                        <configuration>
+                            <inputFile>${preferred.temp.dir}/ons/${ons-gateway-spec.spec.name}</inputFile>
+                            <outputFile>${preprocessed.temp.dir}/ons/${ons-gateway-spec.spec.name}</outputFile>
+                            <groupFile>${enabled.groups.file}</groupFile>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -1056,6 +1103,26 @@
                             <featureIdConfigFile>${project.basedir}/featureId.yaml</featureIdConfigFile>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>go-public-sdk-ons</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <language>oracle-go-sdk</language>
+                            <specPath>${preprocessed.temp.dir}/ons/${ons-gateway-spec.spec.name}</specPath>
+                            <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+                            <basePackage>ons</basePackage>
+                            <specGenerationType>${generationType}</specGenerationType>
+                            <additionalProperties>
+                                <specName>ons</specName>
+                                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                                <serviceHostName>notification-dev</serviceHostName>
+                            </additionalProperties>
+                            <featureIdConfigFile>${project.basedir}/featureId.yaml</featureIdConfigFile>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -1197,6 +1264,15 @@
                         </fileset>
                         <fileset>
                             <directory>lib/oci/workrequests</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <excludes>
+                                <exclude>util.rb</exclude>
+                            </excludes>
+                        </fileset>
+                        <fileset>
+                            <directory>lib/oci/ons</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
@@ -1425,6 +1501,11 @@
                 <groupId>com.oracle.pic.commons.workrequests</groupId>
                 <artifactId>${workrequests-api-spec.artifact.id}</artifactId>
                 <version>${workrequests-api-spec.artifact.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oracle.pic.ons</groupId>
+                <artifactId>${ons-gateway-spec.artifact.id}</artifactId>
+                <version>${ons-gateway-spec.artifact.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
