@@ -16,7 +16,7 @@ import (
 // EmulatedVolumeAttachment An Emulated volume attachment.
 type EmulatedVolumeAttachment struct {
 
-	// The Availability Domain of an instance.
+	// The availability domain of an instance.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
@@ -46,6 +46,9 @@ type EmulatedVolumeAttachment struct {
 
 	// Whether the attachment was created in read-only mode.
 	IsReadOnly *bool `mandatory:"false" json:"isReadOnly"`
+
+	// Whether the enable encryption in transit for the PV volume attachment is on or not.
+	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 
 	// The current state of the volume attachment.
 	LifecycleState VolumeAttachmentLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
@@ -99,6 +102,11 @@ func (m EmulatedVolumeAttachment) GetTimeCreated() *common.SDKTime {
 //GetVolumeId returns VolumeId
 func (m EmulatedVolumeAttachment) GetVolumeId() *string {
 	return m.VolumeId
+}
+
+//GetIsPvEncryptionInTransitEnabled returns IsPvEncryptionInTransitEnabled
+func (m EmulatedVolumeAttachment) GetIsPvEncryptionInTransitEnabled() *bool {
+	return m.IsPvEncryptionInTransitEnabled
 }
 
 func (m EmulatedVolumeAttachment) String() string {

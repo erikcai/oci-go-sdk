@@ -20,7 +20,7 @@ import (
 // Overview of Block Volume Storage (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/overview.htm).
 type VolumeAttachment interface {
 
-	// The Availability Domain of an instance.
+	// The availability domain of an instance.
 	// Example: `Uocm:PHX-AD-1`
 	GetAvailabilityDomain() *string
 
@@ -53,21 +53,25 @@ type VolumeAttachment interface {
 
 	// Whether the attachment was created in read-only mode.
 	GetIsReadOnly() *bool
+
+	// Whether the enable encryption in transit for the PV volume attachment is on or not.
+	GetIsPvEncryptionInTransitEnabled() *bool
 }
 
 type volumeattachment struct {
-	JsonData           []byte
-	AvailabilityDomain *string                            `mandatory:"true" json:"availabilityDomain"`
-	CompartmentId      *string                            `mandatory:"true" json:"compartmentId"`
-	Id                 *string                            `mandatory:"true" json:"id"`
-	InstanceId         *string                            `mandatory:"true" json:"instanceId"`
-	LifecycleState     VolumeAttachmentLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
-	TimeCreated        *common.SDKTime                    `mandatory:"true" json:"timeCreated"`
-	VolumeId           *string                            `mandatory:"true" json:"volumeId"`
-	Device             *string                            `mandatory:"false" json:"device"`
-	DisplayName        *string                            `mandatory:"false" json:"displayName"`
-	IsReadOnly         *bool                              `mandatory:"false" json:"isReadOnly"`
-	AttachmentType     string                             `json:"attachmentType"`
+	JsonData                       []byte
+	AvailabilityDomain             *string                            `mandatory:"true" json:"availabilityDomain"`
+	CompartmentId                  *string                            `mandatory:"true" json:"compartmentId"`
+	Id                             *string                            `mandatory:"true" json:"id"`
+	InstanceId                     *string                            `mandatory:"true" json:"instanceId"`
+	LifecycleState                 VolumeAttachmentLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+	TimeCreated                    *common.SDKTime                    `mandatory:"true" json:"timeCreated"`
+	VolumeId                       *string                            `mandatory:"true" json:"volumeId"`
+	Device                         *string                            `mandatory:"false" json:"device"`
+	DisplayName                    *string                            `mandatory:"false" json:"displayName"`
+	IsReadOnly                     *bool                              `mandatory:"false" json:"isReadOnly"`
+	IsPvEncryptionInTransitEnabled *bool                              `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
+	AttachmentType                 string                             `json:"attachmentType"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -91,6 +95,7 @@ func (m *volumeattachment) UnmarshalJSON(data []byte) error {
 	m.Device = s.Model.Device
 	m.DisplayName = s.Model.DisplayName
 	m.IsReadOnly = s.Model.IsReadOnly
+	m.IsPvEncryptionInTransitEnabled = s.Model.IsPvEncryptionInTransitEnabled
 	m.AttachmentType = s.Model.AttachmentType
 
 	return err
@@ -170,6 +175,11 @@ func (m volumeattachment) GetDisplayName() *string {
 //GetIsReadOnly returns IsReadOnly
 func (m volumeattachment) GetIsReadOnly() *bool {
 	return m.IsReadOnly
+}
+
+//GetIsPvEncryptionInTransitEnabled returns IsPvEncryptionInTransitEnabled
+func (m volumeattachment) GetIsPvEncryptionInTransitEnabled() *bool {
+	return m.IsPvEncryptionInTransitEnabled
 }
 
 func (m volumeattachment) String() string {

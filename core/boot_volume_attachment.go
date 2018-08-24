@@ -15,7 +15,7 @@ import (
 // BootVolumeAttachment Represents an attachment between a boot volume and an instance.
 type BootVolumeAttachment struct {
 
-	// The Availability Domain of an instance.
+	// The availability domain of an instance.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
@@ -42,6 +42,9 @@ type BootVolumeAttachment struct {
 	// Avoid entering confidential information.
 	// Example: `My boot volume`
 	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// Whether the enable encryption in transit for the PV volume attachment is on or not.
+	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 }
 
 func (m BootVolumeAttachment) String() string {

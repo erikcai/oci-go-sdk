@@ -16,7 +16,7 @@ import (
 // InstanceConfigurationLaunchInstanceDetails See Instance launch details - LaunchInstanceDetails
 type InstanceConfigurationLaunchInstanceDetails struct {
 
-	// The Availability Domain of the instance.
+	// The availability domain of the instance.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 

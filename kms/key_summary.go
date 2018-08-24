@@ -55,23 +55,29 @@ type KeySummaryLifecycleStateEnum string
 
 // Set of constants representing the allowable values for KeySummaryLifecycleState
 const (
-	KeySummaryLifecycleStateCreating  KeySummaryLifecycleStateEnum = "CREATING"
-	KeySummaryLifecycleStateEnabling  KeySummaryLifecycleStateEnum = "ENABLING"
-	KeySummaryLifecycleStateEnabled   KeySummaryLifecycleStateEnum = "ENABLED"
-	KeySummaryLifecycleStateDisabling KeySummaryLifecycleStateEnum = "DISABLING"
-	KeySummaryLifecycleStateDisabled  KeySummaryLifecycleStateEnum = "DISABLED"
-	KeySummaryLifecycleStateDeleting  KeySummaryLifecycleStateEnum = "DELETING"
-	KeySummaryLifecycleStateDeleted   KeySummaryLifecycleStateEnum = "DELETED"
+	KeySummaryLifecycleStateCreating           KeySummaryLifecycleStateEnum = "CREATING"
+	KeySummaryLifecycleStateEnabling           KeySummaryLifecycleStateEnum = "ENABLING"
+	KeySummaryLifecycleStateEnabled            KeySummaryLifecycleStateEnum = "ENABLED"
+	KeySummaryLifecycleStateDisabling          KeySummaryLifecycleStateEnum = "DISABLING"
+	KeySummaryLifecycleStateDisabled           KeySummaryLifecycleStateEnum = "DISABLED"
+	KeySummaryLifecycleStateDeleting           KeySummaryLifecycleStateEnum = "DELETING"
+	KeySummaryLifecycleStateDeleted            KeySummaryLifecycleStateEnum = "DELETED"
+	KeySummaryLifecycleStatePendingDeletion    KeySummaryLifecycleStateEnum = "PENDING_DELETION"
+	KeySummaryLifecycleStateSchedulingDeletion KeySummaryLifecycleStateEnum = "SCHEDULING_DELETION"
+	KeySummaryLifecycleStateCancellingDeletion KeySummaryLifecycleStateEnum = "CANCELLING_DELETION"
 )
 
 var mappingKeySummaryLifecycleState = map[string]KeySummaryLifecycleStateEnum{
-	"CREATING":  KeySummaryLifecycleStateCreating,
-	"ENABLING":  KeySummaryLifecycleStateEnabling,
-	"ENABLED":   KeySummaryLifecycleStateEnabled,
-	"DISABLING": KeySummaryLifecycleStateDisabling,
-	"DISABLED":  KeySummaryLifecycleStateDisabled,
-	"DELETING":  KeySummaryLifecycleStateDeleting,
-	"DELETED":   KeySummaryLifecycleStateDeleted,
+	"CREATING":            KeySummaryLifecycleStateCreating,
+	"ENABLING":            KeySummaryLifecycleStateEnabling,
+	"ENABLED":             KeySummaryLifecycleStateEnabled,
+	"DISABLING":           KeySummaryLifecycleStateDisabling,
+	"DISABLED":            KeySummaryLifecycleStateDisabled,
+	"DELETING":            KeySummaryLifecycleStateDeleting,
+	"DELETED":             KeySummaryLifecycleStateDeleted,
+	"PENDING_DELETION":    KeySummaryLifecycleStatePendingDeletion,
+	"SCHEDULING_DELETION": KeySummaryLifecycleStateSchedulingDeletion,
+	"CANCELLING_DELETION": KeySummaryLifecycleStateCancellingDeletion,
 }
 
 // GetKeySummaryLifecycleStateEnumValues Enumerates the set of values for KeySummaryLifecycleState

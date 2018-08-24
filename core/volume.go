@@ -21,7 +21,7 @@ import (
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 type Volume struct {
 
-	// The Availability Domain of the volume.
+	// The availability domain of the volume.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
@@ -64,7 +64,7 @@ type Volume struct {
 	// The size of the volume in GBs.
 	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
 
-	// The volume source, either an existing volume in the same Availability Domain or a volume backup.
+	// The volume source, either an existing volume in the same availability domain or a volume backup.
 	// If null, an empty volume is created.
 	SourceDetails VolumeSourceDetails `mandatory:"false" json:"sourceDetails"`
 

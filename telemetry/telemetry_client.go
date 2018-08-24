@@ -1,10 +1,11 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Telemetry Service API
+// Telemetry API
 //
-// Use the Telemetry Service API to access metric data about the health, capacity, and performance of your cloud resources.
-// For more information on monitoring metrics, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Monitoring/Concepts/overview.htm).
+// Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
+// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Alarms/Concepts/alarmsoverview.htm).
 //
 
 package telemetry
@@ -59,7 +60,7 @@ func (client *TelemetryClient) ConfigurationProvider() *common.ConfigurationProv
 	return client.config
 }
 
-// CreateAlarm Creates an alarm definition.
+// CreateAlarm Creates a new alarm in the specified compartment.
 func (client TelemetryClient) CreateAlarm(ctx context.Context, request CreateAlarmRequest) (response CreateAlarmResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -101,7 +102,7 @@ func (client TelemetryClient) createAlarm(ctx context.Context, request common.OC
 	return response, err
 }
 
-// DeleteAlarm Delete the alarm.
+// DeleteAlarm Deletes the specified alarm.
 func (client TelemetryClient) DeleteAlarm(ctx context.Context, request DeleteAlarmRequest) (response DeleteAlarmResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -143,7 +144,7 @@ func (client TelemetryClient) deleteAlarm(ctx context.Context, request common.OC
 	return response, err
 }
 
-// GetAlarm Get an alarm by its unique identifier
+// GetAlarm Gets the specified alarm.
 func (client TelemetryClient) GetAlarm(ctx context.Context, request GetAlarmRequest) (response GetAlarmResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -227,7 +228,7 @@ func (client TelemetryClient) getAlarmHistory(ctx context.Context, request commo
 	return response, err
 }
 
-// ListAlarms List the alarms for the specified compartment
+// ListAlarms Lists the alarms for the specified compartment.
 func (client TelemetryClient) ListAlarms(ctx context.Context, request ListAlarmsRequest) (response ListAlarmsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -270,7 +271,7 @@ func (client TelemetryClient) listAlarms(ctx context.Context, request common.OCI
 }
 
 // ListMetrics Returns metric definitions that match the criteria specified in the request. Compartment OCID required.
-// For more information on monitoring metrics, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Monitoring/Concepts/overview.htm).
+// For more information on monitoring metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
 func (client TelemetryClient) ListMetrics(ctx context.Context, request ListMetricsRequest) (response ListMetricsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -313,7 +314,7 @@ func (client TelemetryClient) listMetrics(ctx context.Context, request common.OC
 }
 
 // SummarizeMetricsData Returns aggregated data that match the criteria specified in the request. Compartment OCID required.
-// For more information on monitoring metrics, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Monitoring/Concepts/overview.htm).
+// For more information on monitoring metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
 func (client TelemetryClient) SummarizeMetricsData(ctx context.Context, request SummarizeMetricsDataRequest) (response SummarizeMetricsDataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -355,7 +356,7 @@ func (client TelemetryClient) summarizeMetricsData(ctx context.Context, request 
 	return response, err
 }
 
-// UpdateAlarm Update alarm.
+// UpdateAlarm Updates the specified alarm.
 func (client TelemetryClient) UpdateAlarm(ctx context.Context, request UpdateAlarmRequest) (response UpdateAlarmResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

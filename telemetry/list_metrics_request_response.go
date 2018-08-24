@@ -26,7 +26,9 @@ type ListMetricsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return in a paginated "List" call.
+	// The maximum number of items to return in a paginated "List" call. Default value: 1000.
+	// Minimum: 1
+	// Maximum: 1000
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

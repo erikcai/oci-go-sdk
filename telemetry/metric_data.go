@@ -1,10 +1,11 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Telemetry Service API
+// Telemetry API
 //
-// Use the Telemetry Service API to access metric data about the health, capacity, and performance of your cloud resources.
-// For more information on monitoring metrics, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Monitoring/Concepts/overview.htm).
+// Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
+// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Alarms/Concepts/alarmsoverview.htm).
 //
 
 package telemetry
@@ -14,11 +15,11 @@ import (
 )
 
 // MetricData The set of aggregated data returned for a metric.
-// For more information on monitoring metrics, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Monitoring/Concepts/overview.htm).
+// For more information on monitoring metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
 type MetricData struct {
 
 	// The reference provided in a metric definition to indicate the source service or
-	// application of the posted data point.
+	// application that emitted the metric.
 	// Example: `oci/compute`
 	Namespace *string `mandatory:"true" json:"namespace"`
 
@@ -42,9 +43,12 @@ type MetricData struct {
 	// Example: `unit`
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 
-	// The resolution value specified in the request. Resolution controls the time between
-	// calculated aggregation windows.
-	// Example: `1m`
+	// The time between calculated aggregation windows. Use with the query interval to vary the
+	// frequency at which aggregated data points are returned. For example, use a query interval of
+	// 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
+	// frequency. The resolution must be equal or less than the interval in the query. The default
+	// resolution is 1m (one minute). Supported values: `1m`, `5m`, `1h`.
+	// Example: `5m`
 	Resolution *string `mandatory:"false" json:"resolution"`
 }
 

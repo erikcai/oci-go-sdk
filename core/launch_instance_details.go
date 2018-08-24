@@ -17,7 +17,7 @@ import (
 // Use the `sourceDetails` parameter to specify whether a boot volume or an image should be used to launch a new instance.
 type LaunchInstanceDetails struct {
 
-	// The Availability Domain of the instance.
+	// The availability domain of the instance.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
@@ -54,8 +54,6 @@ type LaunchInstanceDetails struct {
 	// instances in other fault domains.
 	// If you do not specify the fault domain, the system selects one for you. To change the fault
 	// domain for an instance, terminate it and launch a new instance in the preferred fault domain.
-	// To get a list of fault domains, use the ListFaultDomains
-	// operation in the Identity and Access Management Service API.
 	// Example: `FAULT-DOMAIN-1`
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`
 
@@ -151,6 +149,9 @@ type LaunchInstanceDetails struct {
 
 	// Volume attachments to create as part of the launch instance operation.
 	VolumeAttachments []CreateVolumeAttachmentDetails `mandatory:"false" json:"volumeAttachments"`
+
+	// Whether to enable encryption in transit for the PV boot volume attachment. Defaults to false.
+	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 }
 
 func (m LaunchInstanceDetails) String() string {
@@ -160,22 +161,23 @@ func (m LaunchInstanceDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		CreateVnicDetails  *CreateVnicDetails                `json:"createVnicDetails"`
-		DefinedTags        map[string]map[string]interface{} `json:"definedTags"`
-		DisplayName        *string                           `json:"displayName"`
-		ExtendedMetadata   map[string]interface{}            `json:"extendedMetadata"`
-		FaultDomain        *string                           `json:"faultDomain"`
-		FreeformTags       map[string]string                 `json:"freeformTags"`
-		HostnameLabel      *string                           `json:"hostnameLabel"`
-		ImageId            *string                           `json:"imageId"`
-		IpxeScript         *string                           `json:"ipxeScript"`
-		Metadata           map[string]string                 `json:"metadata"`
-		SourceDetails      instancesourcedetails             `json:"sourceDetails"`
-		SubnetId           *string                           `json:"subnetId"`
-		VolumeAttachments  []createvolumeattachmentdetails   `json:"volumeAttachments"`
-		AvailabilityDomain *string                           `json:"availabilityDomain"`
-		CompartmentId      *string                           `json:"compartmentId"`
-		Shape              *string                           `json:"shape"`
+		CreateVnicDetails              *CreateVnicDetails                `json:"createVnicDetails"`
+		DefinedTags                    map[string]map[string]interface{} `json:"definedTags"`
+		DisplayName                    *string                           `json:"displayName"`
+		ExtendedMetadata               map[string]interface{}            `json:"extendedMetadata"`
+		FaultDomain                    *string                           `json:"faultDomain"`
+		FreeformTags                   map[string]string                 `json:"freeformTags"`
+		HostnameLabel                  *string                           `json:"hostnameLabel"`
+		ImageId                        *string                           `json:"imageId"`
+		IpxeScript                     *string                           `json:"ipxeScript"`
+		Metadata                       map[string]string                 `json:"metadata"`
+		SourceDetails                  instancesourcedetails             `json:"sourceDetails"`
+		SubnetId                       *string                           `json:"subnetId"`
+		VolumeAttachments              []createvolumeattachmentdetails   `json:"volumeAttachments"`
+		IsPvEncryptionInTransitEnabled *bool                             `json:"isPvEncryptionInTransitEnabled"`
+		AvailabilityDomain             *string                           `json:"availabilityDomain"`
+		CompartmentId                  *string                           `json:"compartmentId"`
+		Shape                          *string                           `json:"shape"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -214,6 +216,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 			m.VolumeAttachments[i] = nil
 		}
 	}
+	m.IsPvEncryptionInTransitEnabled = model.IsPvEncryptionInTransitEnabled
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId
 	m.Shape = model.Shape

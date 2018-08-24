@@ -62,23 +62,29 @@ type KeyLifecycleStateEnum string
 
 // Set of constants representing the allowable values for KeyLifecycleState
 const (
-	KeyLifecycleStateCreating  KeyLifecycleStateEnum = "CREATING"
-	KeyLifecycleStateEnabling  KeyLifecycleStateEnum = "ENABLING"
-	KeyLifecycleStateEnabled   KeyLifecycleStateEnum = "ENABLED"
-	KeyLifecycleStateDisabling KeyLifecycleStateEnum = "DISABLING"
-	KeyLifecycleStateDisabled  KeyLifecycleStateEnum = "DISABLED"
-	KeyLifecycleStateDeleting  KeyLifecycleStateEnum = "DELETING"
-	KeyLifecycleStateDeleted   KeyLifecycleStateEnum = "DELETED"
+	KeyLifecycleStateCreating           KeyLifecycleStateEnum = "CREATING"
+	KeyLifecycleStateEnabling           KeyLifecycleStateEnum = "ENABLING"
+	KeyLifecycleStateEnabled            KeyLifecycleStateEnum = "ENABLED"
+	KeyLifecycleStateDisabling          KeyLifecycleStateEnum = "DISABLING"
+	KeyLifecycleStateDisabled           KeyLifecycleStateEnum = "DISABLED"
+	KeyLifecycleStateDeleting           KeyLifecycleStateEnum = "DELETING"
+	KeyLifecycleStateDeleted            KeyLifecycleStateEnum = "DELETED"
+	KeyLifecycleStatePendingDeletion    KeyLifecycleStateEnum = "PENDING_DELETION"
+	KeyLifecycleStateSchedulingDeletion KeyLifecycleStateEnum = "SCHEDULING_DELETION"
+	KeyLifecycleStateCancellingDeletion KeyLifecycleStateEnum = "CANCELLING_DELETION"
 )
 
 var mappingKeyLifecycleState = map[string]KeyLifecycleStateEnum{
-	"CREATING":  KeyLifecycleStateCreating,
-	"ENABLING":  KeyLifecycleStateEnabling,
-	"ENABLED":   KeyLifecycleStateEnabled,
-	"DISABLING": KeyLifecycleStateDisabling,
-	"DISABLED":  KeyLifecycleStateDisabled,
-	"DELETING":  KeyLifecycleStateDeleting,
-	"DELETED":   KeyLifecycleStateDeleted,
+	"CREATING":            KeyLifecycleStateCreating,
+	"ENABLING":            KeyLifecycleStateEnabling,
+	"ENABLED":             KeyLifecycleStateEnabled,
+	"DISABLING":           KeyLifecycleStateDisabling,
+	"DISABLED":            KeyLifecycleStateDisabled,
+	"DELETING":            KeyLifecycleStateDeleting,
+	"DELETED":             KeyLifecycleStateDeleted,
+	"PENDING_DELETION":    KeyLifecycleStatePendingDeletion,
+	"SCHEDULING_DELETION": KeyLifecycleStateSchedulingDeletion,
+	"CANCELLING_DELETION": KeyLifecycleStateCancellingDeletion,
 }
 
 // GetKeyLifecycleStateEnumValues Enumerates the set of values for KeyLifecycleState

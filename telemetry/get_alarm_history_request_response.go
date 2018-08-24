@@ -11,7 +11,7 @@ import (
 // GetAlarmHistoryRequest wrapper for the GetAlarmHistory operation
 type GetAlarmHistoryRequest struct {
 
-	// The OCID of an alarm.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of an alarm.
 	AlarmId *string `mandatory:"true" contributesTo:"path" name:"alarmId"`
 
 	// Customer part of the request identifier token. If you need to contact Oracle about a particular
@@ -26,10 +26,12 @@ type GetAlarmHistoryRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return in a paginated "List" call.
+	// The maximum number of items to return in a paginated "List" call. Default value: 1000.
+	// Minimum: 1
+	// Maximum: 1000
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// A filter to return only alarm history entries with timestamps occurring after the specified date and time. Format defined by RFC3339.
+	// A filter to return only alarm history entries with timestamps occurring on or after the specified date and time. Format defined by RFC3339.
 	// Example: `2018-01-01T01:00:00.000Z`
 	TimestampGreaterThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timestampGreaterThanOrEqualTo"`
 

@@ -11,12 +11,12 @@ import (
 // ListPublicIpsRequest wrapper for the ListPublicIps operation
 type ListPublicIpsRequest struct {
 
-	// Whether the public IP is regional or specific to a particular Availability Domain.
+	// Whether the public IP is regional or specific to a particular availability domain.
 	// * `REGION`: The public IP exists within a region and is assigned to a regional entity
 	// (such as a NatGateway), or can be assigned to a private IP
-	// in any Availability Domain in the region. Reserved public IPs have `scope` = `REGION`, as do
+	// in any availability domain in the region. Reserved public IPs have `scope` = `REGION`, as do
 	// ephemeral public IPs assigned to a regional entity.
-	// * `AVAILABILITY_DOMAIN`: The public IP exists within the Availability Domain of the entity
+	// * `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity
 	// it's assigned to, which is specified by the `availabilityDomain` property of the public IP object.
 	// Ephemeral public IPs that are assigned to private IPs have `scope` = `AVAILABILITY_DOMAIN`.
 	Scope ListPublicIpsScopeEnum `mandatory:"true" contributesTo:"query" name:"scope" omitEmpty:"true"`
@@ -31,7 +31,7 @@ type ListPublicIpsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The name of the Availability Domain.
+	// The name of the availability domain.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" contributesTo:"query" name:"availabilityDomain"`
 

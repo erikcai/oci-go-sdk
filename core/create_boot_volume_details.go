@@ -16,14 +16,14 @@ import (
 // CreateBootVolumeDetails The representation of CreateBootVolumeDetails
 type CreateBootVolumeDetails struct {
 
-	// The Availability Domain of the boot volume.
+	// The availability domain of the boot volume.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
 	// The OCID of the compartment that contains the boot volume.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Specifies the boot volume source details for a new boot volume. The volume source is either another boot volume in the same Availability Domain or a boot volume backup.
+	// Specifies the boot volume source details for a new boot volume. The volume source is either another boot volume in the same availability domain or a boot volume backup.
 	// This is a mandatory field for a boot volume.
 	SourceDetails BootVolumeSourceDetails `mandatory:"true" json:"sourceDetails"`
 
@@ -46,6 +46,9 @@ type CreateBootVolumeDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// The OCID of the KMS key to be used as the master encryption key for the boot volume.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
+
 	// The size of the volume in GBs.
 	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
 }
@@ -61,6 +64,7 @@ func (m *CreateBootVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 		DefinedTags        map[string]map[string]interface{} `json:"definedTags"`
 		DisplayName        *string                           `json:"displayName"`
 		FreeformTags       map[string]string                 `json:"freeformTags"`
+		KmsKeyId           *string                           `json:"kmsKeyId"`
 		SizeInGBs          *int64                            `json:"sizeInGBs"`
 		AvailabilityDomain *string                           `json:"availabilityDomain"`
 		CompartmentId      *string                           `json:"compartmentId"`
@@ -75,6 +79,7 @@ func (m *CreateBootVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 	m.DefinedTags = model.DefinedTags
 	m.DisplayName = model.DisplayName
 	m.FreeformTags = model.FreeformTags
+	m.KmsKeyId = model.KmsKeyId
 	m.SizeInGBs = model.SizeInGBs
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId

@@ -16,7 +16,7 @@ import (
 // Virtual Network Interface Cards (VNICs) (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingVNICs.htm).
 type VnicAttachment struct {
 
-	// The Availability Domain of the instance.
+	// The availability domain of the instance.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 

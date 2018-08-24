@@ -37,7 +37,7 @@ import (
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 type PrivateIp struct {
 
-	// The private IP's Availability Domain.
+	// The private IP's availability domain.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 

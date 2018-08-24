@@ -1,10 +1,11 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Telemetry Service API
+// Telemetry API
 //
-// Use the Telemetry Service API to access metric data about the health, capacity, and performance of your cloud resources.
-// For more information on monitoring metrics, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Monitoring/Concepts/overview.htm).
+// Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
+// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Alarms/Concepts/alarmsoverview.htm).
 //
 
 package telemetry
@@ -29,20 +30,13 @@ type ListMetricsDetails struct {
 
 	// Qualifiers that you want to use when searching for metric definitions.
 	// Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.
-	// Example: "resourceId": "<instance_OCID>"
+	// Example: "resourceId": "<var>&lt;instance_OCID&gt;</var>"
 	DimensionFilters map[string]string `mandatory:"false" json:"dimensionFilters"`
 
 	// Group metrics by these fields in the response. For example, to list all metric namespaces available
 	// in a compartment, groupBy the "namespace" field.
-	// Example 1 - group by namespace and resource:
-	// [
-	//   "namespace",
-	//   "resourceId"
-	// ]
-	// Example 2 - group by a specific resource ID:
-	// [
-	//   "resourceId": "<var>&lt;instance_OCID&gt;</var>"
-	// ]
+	// Example - group by namespace and resource:
+	// `[ "namespace", "resourceId" ]`
 	GroupBy []string `mandatory:"false" json:"groupBy"`
 
 	// The field to use when sorting returned metric definitions. Only one sorting level is provided.

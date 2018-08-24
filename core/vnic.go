@@ -27,7 +27,7 @@ import (
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 type Vnic struct {
 
-	// The VNIC's Availability Domain.
+	// The VNIC's availability domain.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 

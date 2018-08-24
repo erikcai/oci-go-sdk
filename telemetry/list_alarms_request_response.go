@@ -23,10 +23,13 @@ type ListAlarmsRequest struct {
 	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return in a paginated "List" call.
+	// The maximum number of items to return in a paginated "List" call. Default value: 1000.
+	// Minimum: 1
+	// Maximum: 1000
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// A filter to return only resources that match the given display name exactly.
+	// Use this filter to list an alarm by name. Alternatively, when you know the alarm OCID, use the GetAlarm operation.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

@@ -17,7 +17,7 @@ import (
 // the instance or diagnosing problems. The console data is minimally formatted ASCII text.
 type ConsoleHistory struct {
 
-	// The Availability Domain of an instance.
+	// The availability domain of an instance.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 

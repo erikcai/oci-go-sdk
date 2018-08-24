@@ -21,9 +21,9 @@ import (
 // see Public IP Addresses (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingpublicIPs.htm).
 type PublicIp struct {
 
-	// The public IP's Availability Domain. This property is set only for ephemeral public IPs
+	// The public IP's availability domain. This property is set only for ephemeral public IPs
 	// that are assigned to a private IP (that is, when the `scope` of the public IP is set to
-	// AVAILABILITY_DOMAIN). The value is the Availability Domain of the assigned private IP.
+	// AVAILABILITY_DOMAIN). The value is the availability domain of the assigned private IP.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
@@ -75,12 +75,12 @@ type PublicIp struct {
 	// process of being assigned to.
 	PrivateIpId *string `mandatory:"false" json:"privateIpId"`
 
-	// Whether the public IP is regional or specific to a particular Availability Domain.
+	// Whether the public IP is regional or specific to a particular availability domain.
 	// * `REGION`: The public IP exists within a region and is assigned to a regional entity
 	// (such as a NatGateway), or can be assigned to a private
-	// IP in any Availability Domain in the region. Reserved public IPs and ephemeral public IPs
+	// IP in any availability domain in the region. Reserved public IPs and ephemeral public IPs
 	// assigned to a regional entity have `scope` = `REGION`.
-	// * `AVAILABILITY_DOMAIN`: The public IP exists within the Availability Domain of the entity
+	// * `AVAILABILITY_DOMAIN`: The public IP exists within the availability domain of the entity
 	// it's assigned to, which is specified by the `availabilityDomain` property of the public IP object.
 	// Ephemeral public IPs that are assigned to private IPs have `scope` = `AVAILABILITY_DOMAIN`.
 	Scope PublicIpScopeEnum `mandatory:"false" json:"scope,omitempty"`

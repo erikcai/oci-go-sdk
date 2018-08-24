@@ -20,7 +20,7 @@ import (
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 type BootVolume struct {
 
-	// The Availability Domain of the boot volume.
+	// The availability domain of the boot volume.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
@@ -64,7 +64,7 @@ type BootVolume struct {
 	// The size of the boot volume in GBs.
 	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
 
-	// The boot volume source, either an existing boot volume in the same Availability Domain or a boot volume backup.
+	// The boot volume source, either an existing boot volume in the same availability domain or a boot volume backup.
 	// If null, this means that the boot volume was created from an image.
 	SourceDetails BootVolumeSourceDetails `mandatory:"false" json:"sourceDetails"`
 

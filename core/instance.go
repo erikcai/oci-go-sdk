@@ -22,7 +22,7 @@ import (
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 type Instance struct {
 
-	// The Availability Domain the instance is running in.
+	// The availability domain the instance is running in.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
@@ -35,7 +35,7 @@ type Instance struct {
 	// The current state of the instance.
 	LifecycleState InstanceLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The region that contains the Availability Domain the instance is running in.
+	// The region that contains the availability domain the instance is running in.
 	// Example: `phx`
 	Region *string `mandatory:"true" json:"region"`
 

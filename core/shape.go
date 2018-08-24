@@ -20,7 +20,7 @@ type Shape struct {
 	// ListShapes.
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// The shape's Availability Domain.
+	// The shape's availability domain.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 }
 
