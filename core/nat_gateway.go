@@ -20,6 +20,8 @@ import (
 // administrator. If you are an administrator who needs to write
 // policies to give users access, see Getting Started with
 // Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type NatGateway struct {
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment that contains

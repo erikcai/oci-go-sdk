@@ -19,6 +19,8 @@ import (
 // 2. Reserved
 // For more information and comparison of the two types,
 // see Public IP Addresses (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingpublicIPs.htm).
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type PublicIp struct {
 
 	// The public IP's availability domain. This property is set only for ephemeral public IPs

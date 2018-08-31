@@ -8,8 +8,8 @@ import (
 	"net/http"
 )
 
-// GetWorkRequestLogsRequest wrapper for the GetWorkRequestLogs operation
-type GetWorkRequestLogsRequest struct {
+// ListWorkRequestErrorsRequest wrapper for the ListWorkRequestErrors operation
+type ListWorkRequestErrorsRequest struct {
 
 	// The ID of the asynchronous request.
 	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
@@ -28,46 +28,46 @@ type GetWorkRequestLogsRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GetWorkRequestLogsRequest) String() string {
+func (request ListWorkRequestErrorsRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GetWorkRequestLogsRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ListWorkRequestErrorsRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GetWorkRequestLogsRequest) RetryPolicy() *common.RetryPolicy {
+func (request ListWorkRequestErrorsRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GetWorkRequestLogsResponse wrapper for the GetWorkRequestLogs operation
-type GetWorkRequestLogsResponse struct {
+// ListWorkRequestErrorsResponse wrapper for the ListWorkRequestErrors operation
+type ListWorkRequestErrorsResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []WorkRequestLogEntry instances
-	Items []WorkRequestLogEntry `presentIn:"body"`
+	// A list of []WorkRequestError instances
+	Items []WorkRequestError `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
-	// Echoes back the value passed in the opc-client-request-id header, for use by clients when debugging.n
-	OpcClientRequestId *string `presentIn:"header" name:"opc-client-request-id"`
 
 	// For pagination of a list of items. When paging through a list, if this header appears in the response,
 	// then a partial list might have been returned. Include this value as the `page` parameter for the
 	// subsequent GET request to get the next batch of items.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
+
+	// Echoes back the value passed in the opc-client-request-id header, for use by clients when debugging.n
+	OpcClientRequestId *string `presentIn:"header" name:"opc-client-request-id"`
 }
 
-func (response GetWorkRequestLogsResponse) String() string {
+func (response ListWorkRequestErrorsResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GetWorkRequestLogsResponse) HTTPResponse() *http.Response {
+func (response ListWorkRequestErrorsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

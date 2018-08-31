@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateDatabaseDetails The representation of UpdateDatabaseDetails
+// UpdateDatabaseDetails Describes the modification parameters for the Database.
 type UpdateDatabaseDetails struct {
 	DbBackupConfig *DbBackupConfig `mandatory:"false" json:"dbBackupConfig"`
 

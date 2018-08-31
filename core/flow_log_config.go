@@ -29,6 +29,8 @@ import (
 // log configuration, attach the flow log configuration to that subnet. See
 // FlowLogConfigAttachment and
 // CreateFlowLogConfigAttachment.
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type FlowLogConfig struct {
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment containing the flow

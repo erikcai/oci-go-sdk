@@ -1974,7 +1974,6 @@ func (client DatabaseClient) listDbSystemShapes(ctx context.Context, request com
 }
 
 // ListDbSystems Gets a list of the DB Systems in the specified compartment. You can specify a backupId to list only the DB Systems that support creating a database using this backup in this compartment.
-//
 func (client DatabaseClient) ListDbSystems(ctx context.Context, request ListDbSystemsRequest) (response ListDbSystemsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

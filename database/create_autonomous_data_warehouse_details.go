@@ -43,7 +43,7 @@ type CreateAutonomousDataWarehouseDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// The Oracle license model that applies to the Oracle Autonomous Data Warehouse. The default is LICENSE_INCLUDED.
+	// The Oracle license model that applies to the Oracle Autonomous Data Warehouse. The default is BRING_YOUR_OWN_LICENSE.
 	LicenseModel CreateAutonomousDataWarehouseDetailsLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 }
 

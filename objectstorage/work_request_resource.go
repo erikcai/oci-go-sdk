@@ -3,7 +3,7 @@
 
 // Object Storage Service API
 //
-// Common set of Object and Archive Storage APIs for managing buckets and objects.
+// The Object and Archive Storage APIs for managing buckets and objects.
 //
 
 package objectstorage
@@ -26,6 +26,9 @@ type WorkRequestResource struct {
 
 	// The URI path that the user can do a GET on to access the resource metadata
 	EntityUri *string `mandatory:"false" json:"entityUri"`
+
+	// The metadata of the resource.
+	Metadata map[string]string `mandatory:"false" json:"metadata"`
 }
 
 func (m WorkRequestResource) String() string {

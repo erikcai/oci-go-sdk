@@ -3,7 +3,7 @@
 
 // Object Storage Service API
 //
-// Common set of Object and Archive Storage APIs for managing buckets and objects.
+// The Object and Archive Storage APIs for managing buckets and objects.
 //
 
 package objectstorage
@@ -27,7 +27,7 @@ type ObjectLifecycleRule struct {
 	Action *string `mandatory:"true" json:"action"`
 
 	// Specifies the age of objects to apply the rule to. The timeAmount is interpreted in units defined by the
-	// timeUnit parameter, and evaluates against each object's Last-Modified time.
+	// timeUnit parameter, and is calculated in relation to each object's Last-Modified time.
 	TimeAmount *int64 `mandatory:"true" json:"timeAmount"`
 
 	// The unit that should be used to interpret timeAmount.  Days are defined as starting and ending at midnight UTC.

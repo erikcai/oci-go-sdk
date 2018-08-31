@@ -3,7 +3,7 @@
 
 // Object Storage Service API
 //
-// Common set of Object and Archive Storage APIs for managing buckets and objects.
+// The Object and Archive Storage APIs for managing buckets and objects.
 //
 
 package objectstorage
@@ -76,6 +76,12 @@ type Bucket struct {
 
 	// The entity tag for the live object lifecycle policy on the bucket.
 	ObjectLifecyclePolicyEtag *string `mandatory:"false" json:"objectLifecyclePolicyEtag"`
+
+	// The estimated number of objects objects within the bucket.
+	EstimatedCount *int64 `mandatory:"false" json:"estimatedCount"`
+
+	// The estimated total size in bytes of all objects within the bucket.
+	EstimatedSize *int64 `mandatory:"false" json:"estimatedSize"`
 }
 
 func (m Bucket) String() string {

@@ -13,6 +13,8 @@ import (
 )
 
 // BootVolumeAttachment Represents an attachment between a boot volume and an instance.
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type BootVolumeAttachment struct {
 
 	// The availability domain of an instance.

@@ -18,6 +18,8 @@ import (
 // IScsiVolumeAttachment.
 // For general information about volume attachments, see
 // Overview of Block Volume Storage (https://docs.us-phoenix-1.oraclecloud.com/Content/Block/Concepts/overview.htm).
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type VolumeAttachment interface {
 
 	// The availability domain of an instance.

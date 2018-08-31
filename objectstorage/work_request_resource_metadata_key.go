@@ -12,13 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PutObjectLifecyclePolicyDetails Creates a new object lifecycle policy for a bucket.
-type PutObjectLifecyclePolicyDetails struct {
-
-	// The bucket's set of lifecycle policy rules.
-	Items []ObjectLifecycleRule `mandatory:"false" json:"items"`
+// WorkRequestResourceMetadataKey The keys of WorkRequestResource metadata.
+type WorkRequestResourceMetadataKey struct {
 }
 
-func (m PutObjectLifecyclePolicyDetails) String() string {
+func (m WorkRequestResourceMetadataKey) String() string {
 	return common.PointerString(m)
 }

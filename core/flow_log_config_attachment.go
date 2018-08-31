@@ -15,6 +15,8 @@ import (
 // FlowLogConfigAttachment Represents an attachment between a flow log configuration and a resource such as a subnet. By
 // creating a `FlowLogConfigAttachment`, you turn on flow logs for the attached resource. See
 // CreateFlowLogConfigAttachment.
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type FlowLogConfigAttachment struct {
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment containing the

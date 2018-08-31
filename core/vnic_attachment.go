@@ -14,6 +14,8 @@ import (
 
 // VnicAttachment Represents an attachment between a VNIC and an instance. For more information, see
 // Virtual Network Interface Cards (VNICs) (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingVNICs.htm).
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type VnicAttachment struct {
 
 	// The availability domain of the instance.

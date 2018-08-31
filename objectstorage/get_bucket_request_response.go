@@ -29,6 +29,11 @@ type GetBucketRequest struct {
 	// The client request ID for tracing.
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
 
+	// Bucket summary includes the 'namespace', 'name', 'compartmentId', 'createdBy', 'timeCreated',
+	// and 'etag' fields. This parameter can also include 'estimatedCount' (Estimated number of objects) and 'estimatedSize'
+	// (total Estimated size in bytes of all objects). For example 'estimatedCount,estimatedSize'
+	Fields []GetBucketFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"csv"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -81,4 +86,27 @@ func (response GetBucketResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response GetBucketResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// GetBucketFieldsEnum Enum with underlying type: string
+type GetBucketFieldsEnum string
+
+// Set of constants representing the allowable values for GetBucketFields
+const (
+	GetBucketFieldsEstimatedcount GetBucketFieldsEnum = "estimatedCount"
+	GetBucketFieldsEstimatedsize  GetBucketFieldsEnum = "estimatedSize"
+)
+
+var mappingGetBucketFields = map[string]GetBucketFieldsEnum{
+	"estimatedCount": GetBucketFieldsEstimatedcount,
+	"estimatedSize":  GetBucketFieldsEstimatedsize,
+}
+
+// GetGetBucketFieldsEnumValues Enumerates the set of values for GetBucketFields
+func GetGetBucketFieldsEnumValues() []GetBucketFieldsEnum {
+	values := make([]GetBucketFieldsEnum, 0)
+	for _, v := range mappingGetBucketFields {
+		values = append(values, v)
+	}
+	return values
 }
