@@ -8,5 +8,4 @@
 #
 # GROUP1 # comment
 # GROUP2 # comment
-UDX-1008
-UDX-124
+UDX-941

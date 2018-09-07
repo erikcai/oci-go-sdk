@@ -64,7 +64,7 @@
         <workrequests-api-spec.artifact.version>0.0.5</workrequests-api-spec.artifact.version>
         <workrequests-api-spec.artifact.id>workrequests-api-spec</workrequests-api-spec.artifact.id>
         <workrequests-api-spec.spec.name>workrequests-api-spec.yaml</workrequests-api-spec.spec.name>
-        <ons-gateway-spec.artifact.version>1.0.575</ons-gateway-spec.artifact.version>
+        <ons-gateway-spec.artifact.version>1.0.635</ons-gateway-spec.artifact.version>
         <ons-gateway-spec.artifact.id>ons-gateway-spec</ons-gateway-spec.artifact.id>
         <ons-gateway-spec.spec.name>api.yaml</ons-gateway-spec.spec.name>
     </properties>
