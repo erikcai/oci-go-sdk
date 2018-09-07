@@ -33,6 +33,8 @@ type SubscriptionSummary struct {
 	// The time when this suscription was created.
 	CreatedTime *int64 `mandatory:"false" json:"createdTime"`
 
+	DeliveryPolicy *DeliveryPolicy `mandatory:"false" json:"deliveryPolicy"`
+
 	// Used for pre-conditional change.
 	Etag *string `mandatory:"false" json:"etag"`
 }
