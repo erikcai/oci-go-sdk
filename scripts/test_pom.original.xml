@@ -904,9 +904,9 @@
               <specPath>${preprocessed.temp.dir}/${kms.spec.name}</specPath>
               <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
               <specGenerationType>${generationType}</specGenerationType>
-              <basePackage>kms</basePackage>
+              <basePackage>keymanagement</basePackage>
               <additionalProperties>
-                <specName>kms</specName>
+                <specName>keymanagement</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <isRegionalClient.kmscrypto>false</isRegionalClient.kmscrypto>
                 <isRegionalClient.kmsvault>false</isRegionalClient.kmsvault>

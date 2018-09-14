@@ -1090,10 +1090,10 @@
               <language>oracle-go-sdk</language>
               <specPath>${preprocessed-temp-dir}/kms-api-spec/${kms-api-spec-spec-file}</specPath>
               <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
-              <basePackage>kms</basePackage>
+              <basePackage>keymanagement</basePackage>
               <specGenerationType>${generationType}</specGenerationType>
               <additionalProperties>
-                <specName>kms</specName>
+                <specName>keymanagement</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>kms</serviceHostName>
                 <isRegionalClient.kmscrypto>false</isRegionalClient.kmscrypto>
