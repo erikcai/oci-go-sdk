@@ -372,6 +372,11 @@ func (client VirtualNetworkClient) CreateCpe(ctx context.Context, request Create
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createCpe, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -429,6 +434,11 @@ func (client VirtualNetworkClient) CreateCrossConnect(ctx context.Context, reque
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createCrossConnect, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -483,6 +493,11 @@ func (client VirtualNetworkClient) CreateCrossConnectGroup(ctx context.Context, 
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createCrossConnectGroup, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -534,6 +549,11 @@ func (client VirtualNetworkClient) CreateDhcpOptions(ctx context.Context, reques
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createDhcpOptions, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -585,6 +605,11 @@ func (client VirtualNetworkClient) CreateDrg(ctx context.Context, request Create
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createDrg, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -635,6 +660,11 @@ func (client VirtualNetworkClient) CreateDrgAttachment(ctx context.Context, requ
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createDrgAttachment, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -677,6 +707,11 @@ func (client VirtualNetworkClient) CreateFlowLogConfig(ctx context.Context, requ
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createFlowLogConfig, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -722,6 +757,11 @@ func (client VirtualNetworkClient) CreateFlowLogConfigAttachment(ctx context.Con
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createFlowLogConfigAttachment, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -784,6 +824,11 @@ func (client VirtualNetworkClient) CreateIPSecConnection(ctx context.Context, re
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createIPSecConnection, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -842,6 +887,11 @@ func (client VirtualNetworkClient) CreateInternetGateway(ctx context.Context, re
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createInternetGateway, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -884,6 +934,11 @@ func (client VirtualNetworkClient) CreateLocalPeeringConnection(ctx context.Cont
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createLocalPeeringConnection, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -926,6 +981,11 @@ func (client VirtualNetworkClient) CreateLocalPeeringGateway(ctx context.Context
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createLocalPeeringGateway, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -969,6 +1029,11 @@ func (client VirtualNetworkClient) CreateNatGateway(ctx context.Context, request
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createNatGateway, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1013,6 +1078,11 @@ func (client VirtualNetworkClient) CreatePrivateIp(ctx context.Context, request 
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createPrivateIp, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1071,6 +1141,11 @@ func (client VirtualNetworkClient) CreatePublicIp(ctx context.Context, request C
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createPublicIp, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1113,6 +1188,11 @@ func (client VirtualNetworkClient) CreateRemotePeeringConnection(ctx context.Con
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createRemotePeeringConnection, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1167,6 +1247,11 @@ func (client VirtualNetworkClient) CreateRouteTable(ctx context.Context, request
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createRouteTable, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1220,6 +1305,11 @@ func (client VirtualNetworkClient) CreateSecurityList(ctx context.Context, reque
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createSecurityList, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1268,6 +1358,11 @@ func (client VirtualNetworkClient) CreateServiceGateway(ctx context.Context, req
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createServiceGateway, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1334,6 +1429,11 @@ func (client VirtualNetworkClient) CreateSubnet(ctx context.Context, request Cre
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createSubnet, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1398,6 +1498,11 @@ func (client VirtualNetworkClient) CreateVcn(ctx context.Context, request Create
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createVcn, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1457,6 +1562,11 @@ func (client VirtualNetworkClient) CreateVirtualCircuit(ctx context.Context, req
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createVirtualCircuit, policy)
 	if err != nil {
 		if ociResponse != nil {

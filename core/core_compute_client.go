@@ -107,6 +107,11 @@ func (client ComputeClient) AttachBootVolume(ctx context.Context, request Attach
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.attachBootVolume, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -151,6 +156,11 @@ func (client ComputeClient) AttachVnic(ctx context.Context, request AttachVnicRe
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.attachVnic, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -193,6 +203,11 @@ func (client ComputeClient) AttachVolume(ctx context.Context, request AttachVolu
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.attachVolume, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -249,6 +264,11 @@ func (client ComputeClient) CaptureConsoleHistory(ctx context.Context, request C
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.captureConsoleHistory, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -291,6 +311,11 @@ func (client ComputeClient) CreateAppCatalogSubscription(ctx context.Context, re
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createAppCatalogSubscription, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -349,6 +374,11 @@ func (client ComputeClient) CreateImage(ctx context.Context, request CreateImage
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createImage, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -394,6 +424,11 @@ func (client ComputeClient) CreateInstanceConsoleConnection(ctx context.Context,
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createInstanceConsoleConnection, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -748,6 +783,11 @@ func (client ComputeClient) ExportImage(ctx context.Context, request ExportImage
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.exportImage, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1305,6 +1345,11 @@ func (client ComputeClient) InstanceAction(ctx context.Context, request Instance
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.instanceAction, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1371,6 +1416,11 @@ func (client ComputeClient) LaunchInstance(ctx context.Context, request LaunchIn
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.launchInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -2079,6 +2129,11 @@ func (client ComputeClient) UpdateImage(ctx context.Context, request UpdateImage
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updateImage, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -2125,6 +2180,11 @@ func (client ComputeClient) UpdateInstance(ctx context.Context, request UpdateIn
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updateInstance, policy)
 	if err != nil {
 		if ociResponse != nil {

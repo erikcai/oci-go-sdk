@@ -65,6 +65,11 @@ func (client ComputeManagementClient) CreateInstanceConfiguration(ctx context.Co
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createInstanceConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -107,6 +112,11 @@ func (client ComputeManagementClient) CreateInstancePool(ctx context.Context, re
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createInstancePool, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -275,6 +285,11 @@ func (client ComputeManagementClient) LaunchInstanceConfiguration(ctx context.Co
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.launchInstanceConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -444,6 +459,11 @@ func (client ComputeManagementClient) ResetInstancePool(ctx context.Context, req
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.resetInstancePool, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -487,6 +507,11 @@ func (client ComputeManagementClient) SoftresetInstancePool(ctx context.Context,
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.softresetInstancePool, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -530,6 +555,11 @@ func (client ComputeManagementClient) StartInstancePool(ctx context.Context, req
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.startInstancePool, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -573,6 +603,11 @@ func (client ComputeManagementClient) StopInstancePool(ctx context.Context, requ
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.stopInstancePool, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -657,6 +692,11 @@ func (client ComputeManagementClient) UpdateInstanceConfiguration(ctx context.Co
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updateInstanceConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -700,6 +740,11 @@ func (client ComputeManagementClient) UpdateInstancePool(ctx context.Context, re
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updateInstancePool, policy)
 	if err != nil {
 		if ociResponse != nil {

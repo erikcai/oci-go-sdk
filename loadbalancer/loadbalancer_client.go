@@ -65,6 +65,11 @@ func (client LoadBalancerClient) CreateBackend(ctx context.Context, request Crea
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createBackend, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -107,6 +112,11 @@ func (client LoadBalancerClient) CreateBackendSet(ctx context.Context, request C
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createBackendSet, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -149,6 +159,11 @@ func (client LoadBalancerClient) CreateCertificate(ctx context.Context, request 
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createCertificate, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -192,6 +207,11 @@ func (client LoadBalancerClient) CreateHostname(ctx context.Context, request Cre
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createHostname, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -234,6 +254,11 @@ func (client LoadBalancerClient) CreateListener(ctx context.Context, request Cre
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createListener, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -296,6 +321,11 @@ func (client LoadBalancerClient) CreateLoadBalancer(ctx context.Context, request
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createLoadBalancer, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -339,6 +369,11 @@ func (client LoadBalancerClient) CreatePathRouteSet(ctx context.Context, request
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createPathRouteSet, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1730,6 +1765,11 @@ func (client LoadBalancerClient) UpdateBackend(ctx context.Context, request Upda
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updateBackend, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1772,6 +1812,11 @@ func (client LoadBalancerClient) UpdateBackendSet(ctx context.Context, request U
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updateBackendSet, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1814,6 +1859,11 @@ func (client LoadBalancerClient) UpdateHealthChecker(ctx context.Context, reques
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updateHealthChecker, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1899,6 +1949,11 @@ func (client LoadBalancerClient) UpdateListener(ctx context.Context, request Upd
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updateListener, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1941,6 +1996,11 @@ func (client LoadBalancerClient) UpdateLoadBalancer(ctx context.Context, request
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updateLoadBalancer, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -1987,6 +2047,11 @@ func (client LoadBalancerClient) UpdatePathRouteSet(ctx context.Context, request
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.updatePathRouteSet, policy)
 	if err != nil {
 		if ociResponse != nil {

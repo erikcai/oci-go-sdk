@@ -107,6 +107,11 @@ func (client ResourceManagerClient) CreateJob(ctx context.Context, request Creat
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createJob, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -149,6 +154,11 @@ func (client ResourceManagerClient) CreateStack(ctx context.Context, request Cre
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createStack, policy)
 	if err != nil {
 		if ociResponse != nil {

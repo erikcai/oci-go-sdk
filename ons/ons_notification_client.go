@@ -65,6 +65,11 @@ func (client NotificationClient) CreateSubscription(ctx context.Context, request
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createSubscription, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -107,6 +112,11 @@ func (client NotificationClient) CreateTopic(ctx context.Context, request Create
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createTopic, policy)
 	if err != nil {
 		if ociResponse != nil {
