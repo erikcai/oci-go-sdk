@@ -3501,7 +3501,7 @@ func (client VirtualNetworkClient) getPrivateIp(ctx context.Context, request com
 // with the OCID of the private IP that the public IP is assigned to.
 // **Note:** If you're fetching a reserved public IP that is in the process of being
 // moved to a different private IP, the service returns the public IP object with
-// `lifecycleState` = ASSIGNING and `privateIpId` = OCID of the target private IP.
+// `lifecycleState` = ASSIGNING and `assignedEntityId` = OCID of the target private IP.
 func (client VirtualNetworkClient) GetPublicIp(ctx context.Context, request GetPublicIpRequest) (response GetPublicIpResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3546,7 +3546,7 @@ func (client VirtualNetworkClient) getPublicIp(ctx context.Context, request comm
 // GetPublicIpByIpAddress Gets the public IP based on the public IP address (for example, 129.146.2.1).
 // **Note:** If you're fetching a reserved public IP that is in the process of being
 // moved to a different private IP, the service returns the public IP object with
-// `lifecycleState` = ASSIGNING and `privateIpId` = OCID of the target private IP.
+// `lifecycleState` = ASSIGNING and `assignedEntityId` = OCID of the target private IP.
 func (client VirtualNetworkClient) GetPublicIpByIpAddress(ctx context.Context, request GetPublicIpByIpAddressRequest) (response GetPublicIpByIpAddressResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3596,8 +3596,8 @@ func (client VirtualNetworkClient) getPublicIpByIpAddress(ctx context.Context, r
 // private IP, or if you instead call
 // GetPublicIp or
 // GetPublicIpByIpAddress, the
-// service returns the public IP object with `lifecycleState` = ASSIGNING and `privateIpId` = OCID
-// of the target private IP.
+// service returns the public IP object with `lifecycleState` = ASSIGNING and
+// `assignedEntityId` = OCID of the target private IP.
 func (client VirtualNetworkClient) GetPublicIpByPrivateIpId(ctx context.Context, request GetPublicIpByPrivateIpIdRequest) (response GetPublicIpByPrivateIpIdResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

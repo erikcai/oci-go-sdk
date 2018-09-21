@@ -12,13 +12,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateDatabaseDetails The representation of CreateDatabaseDetails
+// CreateDatabaseDetails Details for creating a database backup.
+// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type CreateDatabaseDetails struct {
 
 	// A strong password for SYS, SYSTEM, and PDB Admin. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numbers, and two special characters. The special characters must be _, \#, or -.
 	AdminPassword *string `mandatory:"true" json:"adminPassword"`
 
-	// The database name. It must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.
+	// The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.
 	DbName *string `mandatory:"true" json:"dbName"`
 
 	// The character set for the database.  The default is AL32UTF8. Allowed values are:
@@ -27,7 +28,10 @@ type CreateDatabaseDetails struct {
 
 	DbBackupConfig *DbBackupConfig `mandatory:"false" json:"dbBackupConfig"`
 
-	// Database workload type.
+	// The database domain. In a distributed database system, DB_DOMAIN specifies the logical location of the database within the network structure.
+	DbDomain *string `mandatory:"false" json:"dbDomain"`
+
+	// The database workload type.
 	DbWorkload CreateDatabaseDetailsDbWorkloadEnum `mandatory:"false" json:"dbWorkload,omitempty"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -40,11 +44,11 @@ type CreateDatabaseDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// National character set for the database.  The default is AL16UTF16. Allowed values are:
+	// The national character set for the database.  The default is AL16UTF16. Allowed values are:
 	// AL16UTF16 or UTF8.
 	NcharacterSet *string `mandatory:"false" json:"ncharacterSet"`
 
-	// Pluggable database name. It must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.
+	// The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.
 	PdbName *string `mandatory:"false" json:"pdbName"`
 }
 

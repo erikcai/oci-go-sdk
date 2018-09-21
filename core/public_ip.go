@@ -23,6 +23,14 @@ import (
 // supply string values using the API.
 type PublicIp struct {
 
+	// The OCID of the entity the public IP is assigned to, or in the process of
+	// being assigned to.
+	AssignedEntityId *string `mandatory:"false" json:"assignedEntityId"`
+
+	// The type of entity the public IP is assigned to, or in the process of being
+	// assigned to.
+	AssignedEntityType PublicIpAssignedEntityTypeEnum `mandatory:"false" json:"assignedEntityType,omitempty"`
+
 	// The public IP's availability domain. This property is set only for ephemeral public IPs
 	// that are assigned to a private IP (that is, when the `scope` of the public IP is set to
 	// AVAILABILITY_DOMAIN). The value is the availability domain of the assigned private IP.
@@ -73,8 +81,11 @@ type PublicIp struct {
 	// see Public IP Addresses (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/managingpublicIPs.htm).
 	Lifetime PublicIpLifetimeEnum `mandatory:"false" json:"lifetime,omitempty"`
 
+	// Deprecated. Use `assignedEntityId` instead.
 	// The OCID of the private IP that the public IP is currently assigned to, or in the
 	// process of being assigned to.
+	// **Note:** This is `null` if the public IP is not assigned to a private IP, or is
+	// in the process of being assigned to one.
 	PrivateIpId *string `mandatory:"false" json:"privateIpId"`
 
 	// Whether the public IP is regional or specific to a particular availability domain.
@@ -94,6 +105,29 @@ type PublicIp struct {
 
 func (m PublicIp) String() string {
 	return common.PointerString(m)
+}
+
+// PublicIpAssignedEntityTypeEnum Enum with underlying type: string
+type PublicIpAssignedEntityTypeEnum string
+
+// Set of constants representing the allowable values for PublicIpAssignedEntityType
+const (
+	PublicIpAssignedEntityTypePrivateIp  PublicIpAssignedEntityTypeEnum = "PRIVATE_IP"
+	PublicIpAssignedEntityTypeNatGateway PublicIpAssignedEntityTypeEnum = "NAT_GATEWAY"
+)
+
+var mappingPublicIpAssignedEntityType = map[string]PublicIpAssignedEntityTypeEnum{
+	"PRIVATE_IP":  PublicIpAssignedEntityTypePrivateIp,
+	"NAT_GATEWAY": PublicIpAssignedEntityTypeNatGateway,
+}
+
+// GetPublicIpAssignedEntityTypeEnumValues Enumerates the set of values for PublicIpAssignedEntityType
+func GetPublicIpAssignedEntityTypeEnumValues() []PublicIpAssignedEntityTypeEnum {
+	values := make([]PublicIpAssignedEntityTypeEnum, 0)
+	for _, v := range mappingPublicIpAssignedEntityType {
+		values = append(values, v)
+	}
+	return values
 }
 
 // PublicIpLifecycleStateEnum Enum with underlying type: string

@@ -393,7 +393,7 @@ func (client DatabaseClient) createDataGuardAssociation(ctx context.Context, req
 	return response, err
 }
 
-// CreateDbHome Creates a new DB Home in the specified DB System based on the request parameters you provide.
+// CreateDbHome Creates a new database home in the specified DB system based on the request parameters you provide.
 func (client DatabaseClient) CreateDbHome(ctx context.Context, request CreateDbHomeRequest) (response CreateDbHomeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -494,7 +494,7 @@ func (client DatabaseClient) createExternalBackupJob(ctx context.Context, reques
 // **reset** - power off and power on
 // Note that the **stop** state has no effect on the resources you consume.
 // Billing continues for DB Nodes that you stop, and related resources continue
-// to apply against any relevant quotas. You must terminate the DB System
+// to apply against any relevant quotas. You must terminate the DB system
 // (TerminateDbSystem)
 // to remove its resources from billing and quotas.
 func (client DatabaseClient) DbNodeAction(ctx context.Context, request DbNodeActionRequest) (response DbNodeActionResponse, err error) {
@@ -669,7 +669,7 @@ func (client DatabaseClient) deleteBackup(ctx context.Context, request common.OC
 	return response, err
 }
 
-// DeleteDbHome Deletes a DB Home. The DB Home and its database data are local to the DB System and will be lost when it is deleted. Oracle recommends that you back up any data in the DB System prior to deleting it.
+// DeleteDbHome Deletes a DB Home. The DB Home and its database data are local to the DB system and will be lost when it is deleted. Oracle recommends that you back up any data in the DB system prior to deleting it.
 func (client DatabaseClient) DeleteDbHome(ctx context.Context, request DeleteDbHomeRequest) (response DeleteDbHomeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1218,7 +1218,7 @@ func (client DatabaseClient) getDbNode(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// GetDbSystem Gets information about the specified DB System.
+// GetDbSystem Gets information about the specified DB system.
 func (client DatabaseClient) GetDbSystem(ctx context.Context, request GetDbSystemRequest) (response GetDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1344,6 +1344,49 @@ func (client DatabaseClient) getDbSystemPatchHistoryEntry(ctx context.Context, r
 	return response, err
 }
 
+// GetExadataIormConfig Gets `IORM` Setting for the requested Exadata DB System.
+// The default IORM Settings is pre-created in all the Exadata DB System.
+func (client DatabaseClient) GetExadataIormConfig(ctx context.Context, request GetExadataIormConfigRequest) (response GetExadataIormConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getExadataIormConfig, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetExadataIormConfigResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetExadataIormConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetExadataIormConfigResponse")
+	}
+	return
+}
+
+// getExadataIormConfig implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getExadataIormConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dbSystems/{dbSystemId}/ExadataIormConfig")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetExadataIormConfigResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetExternalBackupJob Gets information about the specified external backup.
 func (client DatabaseClient) GetExternalBackupJob(ctx context.Context, request GetExternalBackupJobRequest) (response GetExternalBackupJobResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1386,14 +1429,11 @@ func (client DatabaseClient) getExternalBackupJob(ctx context.Context, request c
 	return response, err
 }
 
-// LaunchDbSystem Launches a new DB System in the specified compartment and Availability Domain. You'll specify a single Oracle
-// Database Edition that applies to all the databases on that DB System. The selected edition cannot be changed.
-// An initial database is created on the DB System based on the request parameters you provide and some default
+// LaunchDbSystem Launches a new DB system in the specified compartment and availability domain. The Oracle
+// Database edition that you specify applies to all the databases on that DB system. The selected edition cannot be changed.
+// An initial database is created on the DB system based on the request parameters you provide and some default
 // options. For more information,
-// see Default Options for the Initial Database (https://docs.us-phoenix-1.oraclecloud.com/Content/Database/Tasks/launchingDB.htm#Default_Options_for_the_Initial_Database).
-// The DB System will include a command line interface (CLI) that you can use to create additional databases and
-// manage existing databases. For more information, see the
-// Oracle Database CLI Reference (https://docs.us-phoenix-1.oraclecloud.com/Content/Database/References/odacli.htm#Oracle_Database_CLI_Reference).
+// see Default Options for the Initial Database (https://docs.us-phoenix-1.oraclecloud.com/Content/Database/Tasks/launchingDB.htm#DefaultOptionsfortheInitialDatabase).
 func (client DatabaseClient) LaunchDbSystem(ctx context.Context, request LaunchDbSystemRequest) (response LaunchDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1818,7 +1858,7 @@ func (client DatabaseClient) listDbHomePatches(ctx context.Context, request comm
 	return response, err
 }
 
-// ListDbHomes Gets a list of database homes in the specified DB System and compartment. A database home is a directory where Oracle database software is installed.
+// ListDbHomes Gets a list of database homes in the specified DB system and compartment. A database home is a directory where Oracle database software is installed.
 func (client DatabaseClient) ListDbHomes(ctx context.Context, request ListDbHomesRequest) (response ListDbHomesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1860,7 +1900,7 @@ func (client DatabaseClient) listDbHomes(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// ListDbNodes Gets a list of database nodes in the specified DB System and compartment. A database node is a server running database software.
+// ListDbNodes Gets a list of database nodes in the specified DB system and compartment. A database node is a server running database software.
 func (client DatabaseClient) ListDbNodes(ctx context.Context, request ListDbNodesRequest) (response ListDbNodesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1902,7 +1942,7 @@ func (client DatabaseClient) listDbNodes(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// ListDbSystemPatchHistoryEntries Gets the history of the patch actions performed on the specified DB System.
+// ListDbSystemPatchHistoryEntries Gets the history of the patch actions performed on the specified DB system.
 func (client DatabaseClient) ListDbSystemPatchHistoryEntries(ctx context.Context, request ListDbSystemPatchHistoryEntriesRequest) (response ListDbSystemPatchHistoryEntriesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1944,7 +1984,7 @@ func (client DatabaseClient) listDbSystemPatchHistoryEntries(ctx context.Context
 	return response, err
 }
 
-// ListDbSystemPatches Lists the patches applicable to the requested DB System.
+// ListDbSystemPatches Lists the patches applicable to the requested DB system.
 func (client DatabaseClient) ListDbSystemPatches(ctx context.Context, request ListDbSystemPatchesRequest) (response ListDbSystemPatchesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1986,7 +2026,7 @@ func (client DatabaseClient) listDbSystemPatches(ctx context.Context, request co
 	return response, err
 }
 
-// ListDbSystemShapes Gets a list of the shapes that can be used to launch a new DB System. The shape determines resources to allocate to the DB system - CPU cores and memory for VM shapes; CPU cores, memory and storage for non-VM (or bare metal) shapes.
+// ListDbSystemShapes Gets a list of the shapes that can be used to launch a new DB system. The shape determines resources to allocate to the DB system - CPU cores and memory for VM shapes; CPU cores, memory and storage for non-VM (or bare metal) shapes.
 func (client DatabaseClient) ListDbSystemShapes(ctx context.Context, request ListDbSystemShapesRequest) (response ListDbSystemShapesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2028,7 +2068,8 @@ func (client DatabaseClient) listDbSystemShapes(ctx context.Context, request com
 	return response, err
 }
 
-// ListDbSystems Gets a list of the DB Systems in the specified compartment. You can specify a backupId to list only the DB Systems that support creating a database using this backup in this compartment.
+// ListDbSystems Gets a list of the DB systems in the specified compartment. You can specify a backupId to list only the DB systems that support creating a database using this backup in this compartment.
+//
 func (client DatabaseClient) ListDbSystems(ctx context.Context, request ListDbSystemsRequest) (response ListDbSystemsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2492,7 +2533,7 @@ func (client DatabaseClient) switchoverDataGuardAssociation(ctx context.Context,
 	return response, err
 }
 
-// TerminateDbSystem Terminates a DB System and permanently deletes it and any databases running on it, and any storage volumes attached to it. The database data is local to the DB System and will be lost when the system is terminated. Oracle recommends that you back up any data in the DB System prior to terminating it.
+// TerminateDbSystem Terminates a DB system and permanently deletes it and any databases running on it, and any storage volumes attached to it. The database data is local to the DB system and will be lost when the system is terminated. Oracle recommends that you back up any data in the DB system prior to terminating it.
 func (client DatabaseClient) TerminateDbSystem(ctx context.Context, request TerminateDbSystemRequest) (response TerminateDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2702,7 +2743,7 @@ func (client DatabaseClient) updateDbHome(ctx context.Context, request common.OC
 	return response, err
 }
 
-// UpdateDbSystem Updates the properties of a DB System, such as the CPU core count.
+// UpdateDbSystem Updates the properties of a DB system, such as the CPU core count.
 func (client DatabaseClient) UpdateDbSystem(ctx context.Context, request UpdateDbSystemRequest) (response UpdateDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2732,6 +2773,48 @@ func (client DatabaseClient) updateDbSystem(ctx context.Context, request common.
 	}
 
 	var response UpdateDbSystemResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateExadataIormConfig Update `IORM` Settings for the requested Exadata DB System.
+func (client DatabaseClient) UpdateExadataIormConfig(ctx context.Context, request UpdateExadataIormConfigRequest) (response UpdateExadataIormConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateExadataIormConfig, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateExadataIormConfigResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateExadataIormConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateExadataIormConfigResponse")
+	}
+	return
+}
+
+// updateExadataIormConfig implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) updateExadataIormConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/dbSystems/{dbSystemId}/ExadataIormConfig")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateExadataIormConfigResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

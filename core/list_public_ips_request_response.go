@@ -39,6 +39,9 @@ type ListPublicIpsRequest struct {
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" contributesTo:"query" name:"availabilityDomain"`
 
+	// A filter to return only public IPs that match given lifetime.
+	Lifetime ListPublicIpsLifetimeEnum `mandatory:"false" contributesTo:"query" name:"lifetime" omitEmpty:"true"`
+
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -108,6 +111,29 @@ var mappingListPublicIpsScope = map[string]ListPublicIpsScopeEnum{
 func GetListPublicIpsScopeEnumValues() []ListPublicIpsScopeEnum {
 	values := make([]ListPublicIpsScopeEnum, 0)
 	for _, v := range mappingListPublicIpsScope {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListPublicIpsLifetimeEnum Enum with underlying type: string
+type ListPublicIpsLifetimeEnum string
+
+// Set of constants representing the allowable values for ListPublicIpsLifetime
+const (
+	ListPublicIpsLifetimeEphemeral ListPublicIpsLifetimeEnum = "EPHEMERAL"
+	ListPublicIpsLifetimeReserved  ListPublicIpsLifetimeEnum = "RESERVED"
+)
+
+var mappingListPublicIpsLifetime = map[string]ListPublicIpsLifetimeEnum{
+	"EPHEMERAL": ListPublicIpsLifetimeEphemeral,
+	"RESERVED":  ListPublicIpsLifetimeReserved,
+}
+
+// GetListPublicIpsLifetimeEnumValues Enumerates the set of values for ListPublicIpsLifetime
+func GetListPublicIpsLifetimeEnumValues() []ListPublicIpsLifetimeEnum {
+	values := make([]ListPublicIpsLifetimeEnum, 0)
+	for _, v := range mappingListPublicIpsLifetime {
 		values = append(values, v)
 	}
 	return values

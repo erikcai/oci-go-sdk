@@ -12,7 +12,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateDatabaseDetails Describes the modification parameters for the Database.
+// UpdateDatabaseDetails Details to update a database.
+// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type UpdateDatabaseDetails struct {
 	DbBackupConfig *DbBackupConfig `mandatory:"false" json:"dbBackupConfig"`
 

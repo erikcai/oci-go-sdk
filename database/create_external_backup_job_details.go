@@ -64,15 +64,15 @@ type CreateExternalBackupJobDetailsDatabaseEditionEnum string
 const (
 	CreateExternalBackupJobDetailsDatabaseEditionStandardEdition                     CreateExternalBackupJobDetailsDatabaseEditionEnum = "STANDARD_EDITION"
 	CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEdition                   CreateExternalBackupJobDetailsDatabaseEditionEnum = "ENTERPRISE_EDITION"
-	CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEditionExtremePerformance CreateExternalBackupJobDetailsDatabaseEditionEnum = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
 	CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEditionHighPerformance    CreateExternalBackupJobDetailsDatabaseEditionEnum = "ENTERPRISE_EDITION_HIGH_PERFORMANCE"
+	CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEditionExtremePerformance CreateExternalBackupJobDetailsDatabaseEditionEnum = "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
 )
 
 var mappingCreateExternalBackupJobDetailsDatabaseEdition = map[string]CreateExternalBackupJobDetailsDatabaseEditionEnum{
 	"STANDARD_EDITION":                       CreateExternalBackupJobDetailsDatabaseEditionStandardEdition,
 	"ENTERPRISE_EDITION":                     CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEdition,
-	"ENTERPRISE_EDITION_EXTREME_PERFORMANCE": CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEditionExtremePerformance,
 	"ENTERPRISE_EDITION_HIGH_PERFORMANCE":    CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEditionHighPerformance,
+	"ENTERPRISE_EDITION_EXTREME_PERFORMANCE": CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEditionExtremePerformance,
 }
 
 // GetCreateExternalBackupJobDetailsDatabaseEditionEnumValues Enumerates the set of values for CreateExternalBackupJobDetailsDatabaseEdition
