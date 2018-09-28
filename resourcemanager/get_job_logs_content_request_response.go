@@ -11,7 +11,7 @@ import (
 // GetJobLogsContentRequest wrapper for the GetJobLogsContent operation
 type GetJobLogsContentRequest struct {
 
-	// Job OCID
+	// The job OCID.
 	JobId *string `mandatory:"true" contributesTo:"path" name:"jobId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a

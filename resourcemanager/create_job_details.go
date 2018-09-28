@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -12,54 +12,28 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateJobDetails The representation of CreateJobDetails
+// CreateJobDetails Defines the requirements and details of the job to run against the specified stack.
 type CreateJobDetails struct {
 	StackId *string `mandatory:"true" json:"stackId"`
 
 	// Terraform specific operation to execute
-	Operation CreateJobDetailsOperationEnum `mandatory:"true" json:"operation"`
+	Operation JobOperationEnum `mandatory:"true" json:"operation"`
 
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The job to use an input plan for this apply. Only valid on apply. Must be the id of the most recent PLAN job. May be sentinel value LATEST, to use latest job without specifying id. May be sentinel AUTO_APPROVE to use the configuration directly without reference to any execution plan.
-	PlanJob *string `mandatory:"false" json:"planJob"`
+	ApplyJobPlanResolution *ApplyJobPlanResolution `mandatory:"false" json:"applyJobPlanResolution"`
 
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
 func (m CreateJobDetails) String() string {
 	return common.PointerString(m)
-}
-
-// CreateJobDetailsOperationEnum Enum with underlying type: string
-type CreateJobDetailsOperationEnum string
-
-// Set of constants representing the allowable values for CreateJobDetailsOperation
-const (
-	CreateJobDetailsOperationPlan    CreateJobDetailsOperationEnum = "PLAN"
-	CreateJobDetailsOperationApply   CreateJobDetailsOperationEnum = "APPLY"
-	CreateJobDetailsOperationDestroy CreateJobDetailsOperationEnum = "DESTROY"
-)
-
-var mappingCreateJobDetailsOperation = map[string]CreateJobDetailsOperationEnum{
-	"PLAN":    CreateJobDetailsOperationPlan,
-	"APPLY":   CreateJobDetailsOperationApply,
-	"DESTROY": CreateJobDetailsOperationDestroy,
-}
-
-// GetCreateJobDetailsOperationEnumValues Enumerates the set of values for CreateJobDetailsOperation
-func GetCreateJobDetailsOperationEnumValues() []CreateJobDetailsOperationEnum {
-	values := make([]CreateJobDetailsOperationEnum, 0)
-	for _, v := range mappingCreateJobDetailsOperation {
-		values = append(values, v)
-	}
-	return values
 }

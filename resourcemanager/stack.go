@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -13,31 +13,39 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Stack The representation of Stack
+// Stack The stack object.
 type Stack struct {
+
+	// Unique identifier (OCID) for the stack.
 	Id *string `mandatory:"false" json:"id"`
 
+	// Unique identifier (OCID) for the compartment where the stack is located.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
+	// Human-readable name of the stack.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// Description of the stack.
 	Description *string `mandatory:"false" json:"description"`
 
+	// The date and time at which the stack was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
+	// The current state of the stack.
 	LifecycleState StackLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
+	// File path to the stack's Terraform configuration.
 	ConfigSource ConfigSource `mandatory:"false" json:"configSource"`
 
 	Variables map[string]string `mandatory:"false" json:"variables"`
 
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }

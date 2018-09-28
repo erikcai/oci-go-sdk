@@ -12,7 +12,7 @@ import (
 // GetJobTfConfigRequest wrapper for the GetJobTfConfig operation
 type GetJobTfConfigRequest struct {
 
-	// Job OCID
+	// The job OCID.
 	JobId *string `mandatory:"true" contributesTo:"path" name:"jobId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -47,7 +47,7 @@ type GetJobTfConfigResponse struct {
 	// The io.ReadCloser instance
 	Content io.ReadCloser `presentIn:"body" encoding:"binary"`
 
-	// Unique identifier for the request
+	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

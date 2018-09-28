@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -13,11 +13,12 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateZipUploadConfigSourceDetails The representation of CreateZipUploadConfigSourceDetails
+// CreateZipUploadConfigSourceDetails Property details for configuration .zip file.
 type CreateZipUploadConfigSourceDetails struct {
 	ZipFileBase64Encoded *string `mandatory:"true" json:"zipFileBase64Encoded"`
 
-	// The path of the directory from which to run terraform. If not specified the the root will be used.
+	// The file path to the directory from which to run Terraform.
+	// If not specified, the root directory is used.
 	WorkingDirectory *string `mandatory:"false" json:"workingDirectory"`
 }
 

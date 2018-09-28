@@ -4,8 +4,8 @@
 // Telemetry API
 //
 // Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
-// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Alarms/Concepts/alarmsoverview.htm).
+// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Concepts/alarmsoverview.htm).
 //
 
 package telemetry
@@ -15,7 +15,7 @@ import (
 )
 
 // Suppression The configuration details for suppressing an alarm.
-// For more information, see Managing Alarms (https://docs.us-phoenix-1.oraclecloud.com/Content/Alarms/Tasks/managingalarms.htm).
+// For more information, see Managing Alarms (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Tasks/managingalarms.htm).
 // **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type Suppression struct {
 

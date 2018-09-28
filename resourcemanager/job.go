@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -22,31 +22,34 @@ type Job struct {
 
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The type of job executing
+	// The type of job executing.
 	Operation JobOperationEnum `mandatory:"false" json:"operation,omitempty"`
 
-	// The job to use as input plan for this apply. Only valid on apply. Must be the id of the most recent PLAN job. May be sentinel value LATEST, to use latest job without specifying id. May be sentinel AUTO_APPROVE to use the configuration directly without reference to any execution plan.
-	PlanJob *string `mandatory:"false" json:"planJob"`
+	ApplyJobPlanResolution *ApplyJobPlanResolution `mandatory:"false" json:"applyJobPlanResolution"`
 
+	// The plan job OCID that was used (if this was an APPLY job and not auto-approved).
+	ResolvedPlanJobId *string `mandatory:"false" json:"resolvedPlanJobId"`
+
+	// The date and time at which the job was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the job finished running independent on whether or not the job was successful.
+	// The date and time at which the job stopped running, irrespective of whether the job ran successfully.
 	TimeFinished *common.SDKTime `mandatory:"false" json:"timeFinished"`
 
 	LifecycleState JobLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The path of the directory within the configuration from which the job runs.
+	// The file path to the directory within the configuration from which the job runs.
 	WorkingDirectory *string `mandatory:"false" json:"workingDirectory"`
 
 	Variables map[string]string `mandatory:"false" json:"variables"`
 
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }

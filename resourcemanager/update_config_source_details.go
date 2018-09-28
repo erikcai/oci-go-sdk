@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateConfigSourceDetails The representation of UpdateConfigSourceDetails
+// UpdateConfigSourceDetails Updates the property details for the configuration source.
 type UpdateConfigSourceDetails interface {
 
 	// The path of the directory from which to run terraform. If not specified the the root will be used.

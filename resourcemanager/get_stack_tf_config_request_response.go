@@ -12,7 +12,7 @@ import (
 // GetStackTfConfigRequest wrapper for the GetStackTfConfig operation
 type GetStackTfConfigRequest struct {
 
-	// Stack OCID
+	// The stack OCID.
 	StackId *string `mandatory:"true" contributesTo:"path" name:"stackId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -47,7 +47,7 @@ type GetStackTfConfigResponse struct {
 	// The io.ReadCloser instance
 	Content io.ReadCloser `presentIn:"body" encoding:"binary"`
 
-	// Unique identifier for the request
+	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

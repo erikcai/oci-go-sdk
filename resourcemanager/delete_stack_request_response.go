@@ -11,7 +11,7 @@ import (
 // DeleteStackRequest wrapper for the DeleteStack operation
 type DeleteStackRequest struct {
 
-	// Stack OCID
+	// The stack OCID.
 	StackId *string `mandatory:"true" contributesTo:"path" name:"stackId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -43,7 +43,7 @@ type DeleteStackResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique identifier for the request
+	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

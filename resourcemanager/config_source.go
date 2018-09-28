@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -13,10 +13,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ConfigSource The representation of ConfigSource
+// ConfigSource Location of the configuration zip file.
 type ConfigSource interface {
 
-	// The path of the directory from which to run terraform. If not specified the the root will be used.
+	// The file path to the directory from which to run Terraform.
+	// If not specified, the root directory is used.
 	GetWorkingDirectory() *string
 }
 

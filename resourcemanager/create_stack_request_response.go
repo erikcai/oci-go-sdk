@@ -10,6 +10,8 @@ import (
 
 // CreateStackRequest wrapper for the CreateStack operation
 type CreateStackRequest struct {
+
+	// The properties for creating a stack.
 	CreateStackDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -17,10 +19,10 @@ type CreateStackRequest struct {
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
-	// server error without risk of executing that same action again. Retry tokens expire after
-	// 24 hours, but can be invalidated before then due to conflicting operations (for example,
+	// server error without risk of retrying the same action. Retry tokens expire after
+	// 24 hours, but can be invalidated before then due to conflicting operations. For example,
 	// if a resource has been deleted and purged from the system, then a retry of the original
-	// creation request may be rejected).
+	// creation request may be rejected.
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -51,7 +53,7 @@ type CreateStackResponse struct {
 	// The Stack instance
 	Stack `presentIn:"body"`
 
-	// Unique identifier for the request
+	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
 	// For optimistic concurrency control. See `if-match`.

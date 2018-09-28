@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateStackDetails The representation of UpdateStackDetails
+// UpdateStackDetails Specifies which fields and the data for each that will be updated on the stack.
 type UpdateStackDetails struct {
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
@@ -23,8 +23,8 @@ type UpdateStackDetails struct {
 
 	Variables map[string]string `mandatory:"false" json:"variables"`
 
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Free-form tags associated with this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 

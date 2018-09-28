@@ -17,7 +17,7 @@ import (
 // For more information, see Managing Tags and Tag Namespaces (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm).
 type Tag struct {
 
-	// The OCID of the compartment that contains the tagRule belongs to.
+	// The OCID of the compartment that contains the tagNamespace to which tag belongs to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The OCID of the namespace that contains the tag definition.

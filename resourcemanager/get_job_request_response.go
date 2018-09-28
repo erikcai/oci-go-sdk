@@ -11,7 +11,7 @@ import (
 // GetJobRequest wrapper for the GetJob operation
 type GetJobRequest struct {
 
-	// Job OCID
+	// The job OCID.
 	JobId *string `mandatory:"true" contributesTo:"path" name:"jobId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -46,7 +46,7 @@ type GetJobResponse struct {
 	// The Job instance
 	Job `presentIn:"body"`
 
-	// Unique identifier for the request
+	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
 	// For optimistic concurrency control. See `if-match`.

@@ -15,6 +15,9 @@ import (
 // AutonomousDatabaseConnectionStrings Connection strings to connect to an Oracle Autonomous Database.
 type AutonomousDatabaseConnectionStrings struct {
 
+	// All connection string used to connect to the Autonomous Database. The username for the Service Console is ADMIN. Use the password you entered when creating the Autonomous Database for the password value.
+	AllConnectionStrings map[string]string `mandatory:"false" json:"allConnectionStrings"`
+
 	// The High database service provides the highest level of resources to each SQL statement resulting in the highest performance, but supports the fewest number of concurrent SQL statements.
 	High *string `mandatory:"false" json:"high"`
 

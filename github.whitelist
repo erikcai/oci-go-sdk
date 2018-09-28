@@ -27,3 +27,4 @@
 ^ons/
 ^healthchecks/
 ^cloudevents/
+^streaming/

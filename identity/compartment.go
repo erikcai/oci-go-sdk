@@ -52,6 +52,9 @@ type Compartment struct {
 	// The detailed status of INACTIVE lifecycleState.
 	InactiveStatus *int64 `mandatory:"false" json:"inactiveStatus"`
 
+	// Indicates whether or not the compartment is accessible for caller. isAccessible field will only be returned if accessLevel = ACCESSIBLE
+	IsAccessible *bool `mandatory:"false" json:"isAccessible"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`

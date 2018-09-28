@@ -8,18 +8,11 @@ import (
 	"net/http"
 )
 
-// CreateTagRuleRequest wrapper for the CreateTagRule operation
-type CreateTagRuleRequest struct {
+// ResetIdpScimClientRequest wrapper for the ResetIdpScimClient operation
+type ResetIdpScimClientRequest struct {
 
-	// Request object for creating a new tag rule.
-	CreateTagRuleDetails `contributesTo:"body"`
-
-	// A token that uniquely identifies a request so it can be retried in case of a timeout or
-	// server error without risk of executing that same action again. Retry tokens expire after 24
-	// hours, but can be invalidated before then due to conflicting operations (e.g., if a resource
-	// has been deleted and purged from the system, then a retry of the original creation request
-	// may be rejected).
-	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
+	// The OCID of the identity provider.
+	IdentityProviderId *string `mandatory:"true" contributesTo:"path" name:"identityProviderId"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
@@ -30,42 +23,39 @@ type CreateTagRuleRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request CreateTagRuleRequest) String() string {
+func (request ResetIdpScimClientRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request CreateTagRuleRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ResetIdpScimClientRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request CreateTagRuleRequest) RetryPolicy() *common.RetryPolicy {
+func (request ResetIdpScimClientRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// CreateTagRuleResponse wrapper for the CreateTagRule operation
-type CreateTagRuleResponse struct {
+// ResetIdpScimClientResponse wrapper for the ResetIdpScimClient operation
+type ResetIdpScimClientResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The TagRule instance
-	TagRule `presentIn:"body"`
+	// The ScimClientCredentials instance
+	ScimClientCredentials `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
-	// For optimistic concurrency control. See `if-match`.
-	Etag *string `presentIn:"header" name:"etag"`
 }
 
-func (response CreateTagRuleResponse) String() string {
+func (response ResetIdpScimClientResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response CreateTagRuleResponse) HTTPResponse() *http.Response {
+func (response ResetIdpScimClientResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

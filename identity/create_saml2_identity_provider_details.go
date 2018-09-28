@@ -45,6 +45,10 @@ type CreateSaml2IdentityProviderDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
+	// Extra name value pairs associated with this identity provider.
+	// Example: `{"clientId": "app_sf3kdjf3"}`
+	FreeformAttributes map[string]string `mandatory:"false" json:"freeformAttributes"`
+
 	// The identity provider service or product (e.g., Oracle Identity Cloud Service).
 	// Example: `IDCS`
 	ProductType CreateIdentityProviderDetailsProductTypeEnum `mandatory:"true" json:"productType"`

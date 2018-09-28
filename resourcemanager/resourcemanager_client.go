@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -30,7 +30,7 @@ func NewResourceManagerClientWithConfigurationProvider(configProvider common.Con
 	}
 
 	client = ResourceManagerClient{BaseClient: baseClient}
-	client.BasePath = "20180701"
+	client.BasePath = "20180917"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -58,7 +58,9 @@ func (client *ResourceManagerClient) ConfigurationProvider() *common.Configurati
 	return client.config
 }
 
-// CancelJob Cancel the job
+// CancelJob Indicates the intention to cancel the specified job.
+// Cancellation of the job is not immediate, and may be delayed,
+// or may not happen at all.
 func (client ResourceManagerClient) CancelJob(ctx context.Context, request CancelJobRequest) (response CancelJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -100,7 +102,7 @@ func (client ResourceManagerClient) cancelJob(ctx context.Context, request commo
 	return response, err
 }
 
-// CreateJob Creates a Job
+// CreateJob Creates a job.
 func (client ResourceManagerClient) CreateJob(ctx context.Context, request CreateJobRequest) (response CreateJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -147,7 +149,8 @@ func (client ResourceManagerClient) createJob(ctx context.Context, request commo
 	return response, err
 }
 
-// CreateStack Creates a Stack
+// CreateStack Creates a stack in the specified comparment.
+// Specify the compartment using the compartment ID.
 func (client ResourceManagerClient) CreateStack(ctx context.Context, request CreateStackRequest) (response CreateStackResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -194,7 +197,7 @@ func (client ResourceManagerClient) createStack(ctx context.Context, request com
 	return response, err
 }
 
-// DeleteStack Delete the Stack object
+// DeleteStack Deletes the specified stack object.
 func (client ResourceManagerClient) DeleteStack(ctx context.Context, request DeleteStackRequest) (response DeleteStackResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -236,7 +239,7 @@ func (client ResourceManagerClient) deleteStack(ctx context.Context, request com
 	return response, err
 }
 
-// GetJob Returns a job
+// GetJob Returns the specified job along with the job details.
 func (client ResourceManagerClient) GetJob(ctx context.Context, request GetJobRequest) (response GetJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -278,7 +281,7 @@ func (client ResourceManagerClient) getJob(ctx context.Context, request common.O
 	return response, err
 }
 
-// GetJobLogs Returns a Job's logs
+// GetJobLogs Returns log entries for the specified job.
 func (client ResourceManagerClient) GetJobLogs(ctx context.Context, request GetJobLogsRequest) (response GetJobLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -320,7 +323,7 @@ func (client ResourceManagerClient) getJobLogs(ctx context.Context, request comm
 	return response, err
 }
 
-// GetJobLogsContent Returns a Job's raw logs. If the logs contain more than 100000 entries, only 100000 are returned.
+// GetJobLogsContent Returns logs for the specified job. Returns a maximum of 100,000 log entries.
 func (client ResourceManagerClient) GetJobLogsContent(ctx context.Context, request GetJobLogsContentRequest) (response GetJobLogsContentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -362,7 +365,8 @@ func (client ResourceManagerClient) getJobLogsContent(ctx context.Context, reque
 	return response, err
 }
 
-// GetJobTfConfig Returns a job's Terraform configuration in a zip file
+// GetJobTfConfig Returns the Terraform configuration file for the specified job in .zip format.
+// Returns an error if no zip file is found.
 func (client ResourceManagerClient) GetJobTfConfig(ctx context.Context, request GetJobTfConfigRequest) (response GetJobTfConfigResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -403,48 +407,7 @@ func (client ResourceManagerClient) getJobTfConfig(ctx context.Context, request 
 	return response, err
 }
 
-// GetJobTfExecutionPlan Returns a job's Terraform execution plan in a binary file
-func (client ResourceManagerClient) GetJobTfExecutionPlan(ctx context.Context, request GetJobTfExecutionPlanRequest) (response GetJobTfExecutionPlanResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getJobTfExecutionPlan, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = GetJobTfExecutionPlanResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetJobTfExecutionPlanResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetJobTfExecutionPlanResponse")
-	}
-	return
-}
-
-// getJobTfExecutionPlan implements the OCIOperation interface (enables retrying operations)
-func (client ResourceManagerClient) getJobTfExecutionPlan(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/jobs/{jobId}/tfExecutionPlan")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetJobTfExecutionPlanResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// GetJobTfState Returns a Job's Terraform state
+// GetJobTfState Returns the Terraform state for the specified job.
 func (client ResourceManagerClient) GetJobTfState(ctx context.Context, request GetJobTfStateRequest) (response GetJobTfStateResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -476,7 +439,6 @@ func (client ResourceManagerClient) getJobTfState(ctx context.Context, request c
 	var response GetJobTfStateResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
 	response.RawResponse = httpResponse
 	if err != nil {
 		return response, err
@@ -486,7 +448,7 @@ func (client ResourceManagerClient) getJobTfState(ctx context.Context, request c
 	return response, err
 }
 
-// GetStack Gets a Stack
+// GetStack Gets a stack using the stack ID.
 func (client ResourceManagerClient) GetStack(ctx context.Context, request GetStackRequest) (response GetStackResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -528,7 +490,8 @@ func (client ResourceManagerClient) getStack(ctx context.Context, request common
 	return response, err
 }
 
-// GetStackTfConfig Returns a stack's Terraform configuration in a zip file if one has been provided
+// GetStackTfConfig Returns the Terraform configuration file in .zip format for the specified stack.
+// Returns an error if no zip file is found.
 func (client ResourceManagerClient) GetStackTfConfig(ctx context.Context, request GetStackTfConfigRequest) (response GetStackTfConfigResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -569,7 +532,10 @@ func (client ResourceManagerClient) getStackTfConfig(ctx context.Context, reques
 	return response, err
 }
 
-// ListJobs Returns a list of jobs. Either stack or compartment must be provided to indicate which jobs to list.
+// ListJobs Returns a list of jobs in a stack or compartment, ordered by time created.
+// To list all jobs in a stack, provide the stack OCID.
+// To list all jobs in a compartment, provide the compartment OCID.
+// To return a specific job, provide the job OCID.
 func (client ResourceManagerClient) ListJobs(ctx context.Context, request ListJobsRequest) (response ListJobsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -611,7 +577,8 @@ func (client ResourceManagerClient) listJobs(ctx context.Context, request common
 	return response, err
 }
 
-// ListStacks Returns a list of stacks
+// ListStacks Returns a list of stacks. If called using a compartment ID, returns all stacks in the specified compartment.
+// If called using a stack ID, returns the specified stack.
 func (client ResourceManagerClient) ListStacks(ctx context.Context, request ListStacksRequest) (response ListStacksResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -653,7 +620,7 @@ func (client ResourceManagerClient) listStacks(ctx context.Context, request comm
 	return response, err
 }
 
-// UpdateJob Update the Job
+// UpdateJob Updates the specified job.
 func (client ResourceManagerClient) UpdateJob(ctx context.Context, request UpdateJobRequest) (response UpdateJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -695,7 +662,7 @@ func (client ResourceManagerClient) updateJob(ctx context.Context, request commo
 	return response, err
 }
 
-// UpdateStack Update the Stack object
+// UpdateStack Updates the specified stack object.
 func (client ResourceManagerClient) UpdateStack(ctx context.Context, request UpdateStackRequest) (response UpdateStackResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

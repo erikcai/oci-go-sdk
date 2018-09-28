@@ -4,8 +4,8 @@
 // Telemetry API
 //
 // Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
-// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Alarms/Concepts/alarmsoverview.htm).
+// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Concepts/alarmsoverview.htm).
 //
 
 package telemetry
@@ -27,8 +27,9 @@ type SummarizeMetricsDataDetails struct {
 	// Example: `CpuUtilization[1m].sum()`
 	Query *string `mandatory:"true" json:"query"`
 
-	// The source service or application to use when searching for metric data points to aggregate.
-	// Example: `oci/compute`
+	// The source service or application to use when searching for metric data points to aggregate. If not
+	// specified, then all available sources are used.
+	// Example: `oci_computeagent`
 	Namespace *string `mandatory:"false" json:"namespace"`
 
 	// The beginning of the time range to use when searching for metric data points.

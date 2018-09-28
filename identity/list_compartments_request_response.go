@@ -20,11 +20,21 @@ type ListCompartmentsRequest struct {
 	// The maximum number of items to return in a paginated "List" call.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// if INSPECT is specified as accessLevel, those compartments directly under the tenancy id
-	// where the client has INSPECT access (or greater) are returned;
-	// otherwise, all compartments directly under the tenancy id are returned. The current default is 'ANY'
-	// (which will be deprecated at some point in the future).
+	// if ACCESSIBLE is specified as accessLevel, those compartments under the compartment id
+	// where the client has at least one resource INSPECT access (or greater) directly
+	// or indirectly (the access permissions are in sub-compartments) are returned;
+	// otherwise, all compartments directly under the tenancy id are returned.
+	// And if ACCESSIBLE is specified as accessLevel, it will restrict the fields returned if the user doesn't have inspect access on that compartment"
+	// The current default is 'ANY' (which will be deprecated at some point in the future).
 	AccessLevel ListCompartmentsAccessLevelEnum `mandatory:"false" contributesTo:"query" name:"accessLevel" omitEmpty:"true"`
+
+	// The flag query parameter applies to fields that reference hierarchical entities,
+	// Every compartment has a parent compartment, which may be self-referential for tencancy root compartments.
+	// Specifies whether or not resources that are associated with descendants of the specified value are matched:
+	// False means no traversal of the <property> hierarchy, and is the default value.
+	// True traverses the <property> hierarchy as far down as possible.
+	// Only Service Principal is allowed to use this query parameters.
+	CompartmentIdInSubtree *bool `mandatory:"false" contributesTo:"query" name:"compartmentIdInSubtree"`
 
 	// A filter to only return resources that match the given name exactly.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
@@ -101,13 +111,13 @@ type ListCompartmentsAccessLevelEnum string
 
 // Set of constants representing the allowable values for ListCompartmentsAccessLevel
 const (
-	ListCompartmentsAccessLevelAny     ListCompartmentsAccessLevelEnum = "ANY"
-	ListCompartmentsAccessLevelInspect ListCompartmentsAccessLevelEnum = "INSPECT"
+	ListCompartmentsAccessLevelAny        ListCompartmentsAccessLevelEnum = "ANY"
+	ListCompartmentsAccessLevelAccessible ListCompartmentsAccessLevelEnum = "ACCESSIBLE"
 )
 
 var mappingListCompartmentsAccessLevel = map[string]ListCompartmentsAccessLevelEnum{
-	"ANY":     ListCompartmentsAccessLevelAny,
-	"INSPECT": ListCompartmentsAccessLevelInspect,
+	"ANY":        ListCompartmentsAccessLevelAny,
+	"ACCESSIBLE": ListCompartmentsAccessLevelAccessible,
 }
 
 // GetListCompartmentsAccessLevelEnumValues Enumerates the set of values for ListCompartmentsAccessLevel

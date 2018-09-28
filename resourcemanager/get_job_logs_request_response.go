@@ -11,34 +11,34 @@ import (
 // GetJobLogsRequest wrapper for the GetJobLogs operation
 type GetJobLogsRequest struct {
 
-	// Job OCID
+	// The job OCID.
 	JobId *string `mandatory:"true" contributesTo:"path" name:"jobId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// A filter to return logs only of the given type.
+	// A filter that returns only logs of a specified type.
 	Type []LogEntryTypeEnum `contributesTo:"query" name:"type" omitEmpty:"true" collectionFormat:"multi"`
 
-	// A filter to return logs only of the given level or of greater severity.
+	// A filter that returns logs of a given severity level or greater.
 	LevelGreaterThanOrEqualTo LogEntryLevelEnum `mandatory:"false" contributesTo:"query" name:"levelGreaterThanOrEqualTo" omitEmpty:"true"`
 
-	// The sort order to use, either 'asc' or 'desc'
+	// The sort order, either `ASC` (ascending) or `DESC` (descending).
 	SortOrder GetJobLogsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The maximum number of items to return in a paginated "List" call. For information about pagination, see
-	// List Pagination (https://docs.us-phoenix-1.oraclecloud.comAPI/Concepts/usingapi.htm#List_Pagination).
+	// The number of items returned in a paginated `List` call. For information about pagination, see
+	// List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The value of the `opc-next-page` response header from the previous "List" call. For information about
-	// pagination, see List Pagination (https://docs.us-phoenix-1.oraclecloud.comAPI/Concepts/usingapi.htm#List_Pagination).
+	// The value of the `opc-next-page` response header from the preceding `List` call.
+	// For information about pagination, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The timestamp before which logs will not be returned.
+	// Time stamp specifying the lower time limit for which logs are returned in a query.
 	TimestampGreaterThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timestampGreaterThanOrEqualTo"`
 
-	// The timestamp after which logs will not be returned.
+	// Time stamp specifying the upper time limit for which logs are returned in a query.
 	TimestampLessThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timestampLessThanOrEqualTo"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -69,10 +69,13 @@ type GetJobLogsResponse struct {
 	// A list of []LogEntry instances
 	Items []LogEntry `presentIn:"body"`
 
-	// Unique identifier for the request
+	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination token for the next page of items
+	// When paging list items, retrieves the next page of items.
+	// If this header appears in the response, then include
+	// this value in the 'page' parameter for the subsequent
+	// 'GET' request.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

@@ -4,8 +4,8 @@
 // Telemetry API
 //
 // Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
-// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Alarms/Concepts/alarmsoverview.htm).
+// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Concepts/alarmsoverview.htm).
 //
 
 package telemetry
@@ -24,28 +24,32 @@ type UpdateAlarmDetails struct {
 	// Example: `High CPU Utilization`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment containing the alarm.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the alarm.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment containing the metric
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric
 	// being evaluated by the alarm.
 	MetricCompartmentId *string `mandatory:"false" json:"metricCompartmentId"`
 
 	// The source service or application emitting the metric that is evaluated by the alarm.
-	// Example: `oci/compute`
+	// Example: `oci_computeagent`
 	Namespace *string `mandatory:"false" json:"namespace"`
 
-	// The Telemetry Query Language (TQL) expression to evaluate for the alarm. For each time series,
-	// the query must evaluate to a Boolean value, where zero represents false and non-zero values
-	// represent true. The query must specify a metric, statistic, interval, and  comparison operator
-	// (unless defining a query for an absence alarm). Supported values for
-	// interval: `1m`, `5m`, `1h`. You can optionally specify dimensions and grouping functions.
-	// Supported grouping functions: `grouping()`, `groupBy()`.
+	// The Telemetry Query Language (TQL) expression to evaluate for the alarm. The Alarms service
+	// interprets results for each returned time series as Boolean values, where zero represents false
+	// and a non-zero value represents true. A true value means that the trigger rule condition has
+	// been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or
+	// absence). Supported values for interval: `1m`, `5m`, `1h`. You can optionally specify dimensions
+	// and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
 	// For available dimensions, review the metric definition.
 	// Example of threshold alarm:
-	// `CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.groupBy(availabilityDomain).percentile(0.9) > 85`
+	//   -----
+	//     `CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.groupBy(availabilityDomain).percentile(0.9) > 85`
+	//   -----
 	// Example of absence alarm:
-	// `CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.absent()`
+	//   -----
+	//     `CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.absent()`
+	//   -----
 	Query *string `mandatory:"false" json:"query"`
 
 	// The time between calculated aggregation windows. Use with the query interval to vary the
@@ -79,13 +83,14 @@ type UpdateAlarmDetails struct {
 	// Example: `High CPU usage alert. Follow runbook instructions for resolution.`
 	Body *string `mandatory:"false" json:"body"`
 
-	// An array of OCIDs (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) to which the notifications for
+	// An array of OCIDs (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) to which the notifications for
 	// this alarm will be delivered. An example destination is an OCID for a topic managed by the
 	// Oracle Cloud Infrastructure Notification service.
 	Destinations []string `mandatory:"false" json:"destinations"`
 
 	// The frequency at which notifications are re-submitted, if the alarm keeps firing without
 	// interruption. Format defined by ISO 8601. For example, `PT4H` indicates four hours.
+	// Minimum: PT1M. Maximum: P30D.
 	// Default value: null (notifications are not re-submitted).
 	// Example: `PT2H`
 	RepeatNotificationDuration *string `mandatory:"false" json:"repeatNotificationDuration"`

@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -12,13 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// LogEntry Logs from executing a job
+// LogEntry Log entry resulting from a job's execution.
 type LogEntry struct {
 
-	// Type of log for which this is an entry
+	// Specifies the log type for the log entry.
 	Type LogEntryTypeEnum `mandatory:"false" json:"type,omitempty"`
 
-	// The severity level of this entry
+	// Specifies the severity level of the log entry.
 	Level LogEntryLevelEnum `mandatory:"false" json:"level,omitempty"`
 
 	Timestamp *common.SDKTime `mandatory:"false" json:"timestamp"`
@@ -36,12 +36,10 @@ type LogEntryTypeEnum string
 // Set of constants representing the allowable values for LogEntryType
 const (
 	LogEntryTypeConsole LogEntryTypeEnum = "TERRAFORM_CONSOLE"
-	LogEntryTypeLog     LogEntryTypeEnum = "TERRAFORM_LOG"
 )
 
 var mappingLogEntryType = map[string]LogEntryTypeEnum{
 	"TERRAFORM_CONSOLE": LogEntryTypeConsole,
-	"TERRAFORM_LOG":     LogEntryTypeLog,
 }
 
 // GetLogEntryTypeEnumValues Enumerates the set of values for LogEntryType

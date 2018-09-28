@@ -11,31 +11,38 @@ import (
 // ListStacksRequest wrapper for the ListStacks operation
 type ListStacksRequest struct {
 
-	// May be either a comparment OCID to list stacks within a compartment or stack OCID to list a single stack
-	Id *string `mandatory:"true" contributesTo:"query" name:"id"`
-
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// A filter to only return resources that match the given lifecycle state. The state value is case-insensitive.
-	LifecycleState StackSummaryLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+	// The compartment OCID to filter by.
+	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
-	// Display name
+	// The OCID on which to query for a stack.
+	// Use the compartment OCID to return all stacks in the compartment.
+	// Use the stack OCID to return a single stack.
+	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
+
+	// A filter for returning only those resources that match the specified lifecycle state. The state value is case-insensitive.
+	LifecycleState StackLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+
+	// Display name on which to query.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// The field to sort by. Only one sort order may be provided. Time created is default ordered as descending. Display name is default ordered as ascending.
+	// Specifies the field on which to sort.
+	// By default, `TIMECREATED` is ordered descending.
+	// By default, `DISPLAYNAME` is ordered ascending. Note that you can sort only on one field.
 	SortBy ListStacksSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either 'asc' or 'desc'
+	// The sort order, either `ASC` (ascending) or `DESC` (descending).
 	SortOrder ListStacksSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The maximum number of items to return in a paginated "List" call. For information about pagination, see
-	// List Pagination (https://docs.us-phoenix-1.oraclecloud.comAPI/Concepts/usingapi.htm#List_Pagination).
+	// The number of items returned in a paginated `List` call. For information about pagination, see
+	// List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The value of the `opc-next-page` response header from the previous "List" call. For information about
-	// pagination, see List Pagination (https://docs.us-phoenix-1.oraclecloud.comAPI/Concepts/usingapi.htm#List_Pagination).
+	// The value of the `opc-next-page` response header from the preceding `List` call.
+	// For information about pagination, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -66,10 +73,10 @@ type ListStacksResponse struct {
 	// A list of []StackSummary instances
 	Items []StackSummary `presentIn:"body"`
 
-	// Unique identifier for the request
+	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination token for the next page of items
+	// For pagination token, request the next page of list items.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

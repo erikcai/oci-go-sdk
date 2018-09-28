@@ -11,7 +11,7 @@ import (
 // ListAlarmsRequest wrapper for the ListAlarms operation
 type ListAlarmsRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment containing the
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the
 	// resources monitored by the metric that you are searching for. Use tenancyId to search in
 	// the root compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
@@ -20,12 +20,15 @@ type ListAlarmsRequest struct {
 	// request, please provide the complete request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The value of the `opc-next-page` response header from the previous "List" call.
+	// For list pagination. The value of the `opc-next-page` response header from the previous "List" call.
+	// For important details about how pagination works, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return in a paginated "List" call. Default value: 1000.
-	// Minimum: 1
-	// Maximum: 1000
+	// For list pagination. The maximum number of results per page, or items to return in a paginated "List" call.
+	// 1 is the minimum, 1000 is the maximum.
+	// For important details about how pagination works, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Default: 1000
+	// Example: 500
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// A filter to return only resources that match the given display name exactly.
@@ -60,9 +63,8 @@ type ListAlarmsResponse struct {
 	// A list of []AlarmSummary instances
 	Items []AlarmSummary `presentIn:"body"`
 
-	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then there are additional items still to get. Include this value as the `page` parameter for the
-	// subsequent GET request.
+	// For list pagination. When this header appears in the response, additional pages of results remain.
+	// For important details about how pagination works, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about

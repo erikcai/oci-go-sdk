@@ -4,8 +4,8 @@
 // Telemetry API
 //
 // Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
-// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Alarms/Concepts/alarmsoverview.htm).
+// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Concepts/alarmsoverview.htm).
 //
 
 package telemetry
@@ -15,7 +15,7 @@ import (
 )
 
 // Metric The properties that define a metric.
-// For more information on monitoring metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/Content/Telemetry/Concepts/telemetryoverview.htm).
+// For more information on monitoring metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
 type Metric struct {
 
 	// The name of the metric.
@@ -23,10 +23,10 @@ type Metric struct {
 	Name *string `mandatory:"false" json:"name"`
 
 	// The source service or application emitting the metric.
-	// Example: `oci/compute`
+	// Example: `oci_computeagent`
 	Namespace *string `mandatory:"false" json:"namespace"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment containing
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing
 	// the resources monitored by the metric.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
@@ -34,10 +34,6 @@ type Metric struct {
 	// Each dimension takes the form of a key-value pair.
 	// Example: "resourceId": "<var>&lt;instance_OCID&gt;</var>"
 	Dimensions map[string]string `mandatory:"false" json:"dimensions"`
-
-	// The references provided in a metric definition to indicate extra information about the metric.
-	// Example: `"unit": "milliseconds"`
-	Metadata map[string]string `mandatory:"false" json:"metadata"`
 }
 
 func (m Metric) String() string {

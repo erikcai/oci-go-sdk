@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateZipUploadConfigSourceDetails The representation of UpdateZipUploadConfigSourceDetails
+// UpdateZipUploadConfigSourceDetails Updates property details for the configuration .zip file.
 type UpdateZipUploadConfigSourceDetails struct {
 
 	// The path of the directory from which to run terraform. If not specified the the root will be used.

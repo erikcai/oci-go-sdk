@@ -5,13 +5,14 @@ package resourcemanager
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
+	"io"
 	"net/http"
 )
 
 // GetJobTfStateRequest wrapper for the GetJobTfState operation
 type GetJobTfStateRequest struct {
 
-	// Job OCID
+	// The job OCID.
 	JobId *string `mandatory:"true" contributesTo:"path" name:"jobId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -43,10 +44,10 @@ type GetJobTfStateResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The interface{} instance
-	Object interface{} `presentIn:"body"`
+	// The io.ReadCloser instance
+	Content io.ReadCloser `presentIn:"body" encoding:"binary"`
 
-	// Unique identifier for the request
+	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

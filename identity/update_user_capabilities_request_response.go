@@ -8,14 +8,14 @@ import (
 	"net/http"
 )
 
-// UpdateTagRuleRequest wrapper for the UpdateTagRule operation
-type UpdateTagRuleRequest struct {
+// UpdateUserCapabilitiesRequest wrapper for the UpdateUserCapabilities operation
+type UpdateUserCapabilitiesRequest struct {
 
-	// The OCID of the tag rule.
-	TagRuleId *string `mandatory:"true" contributesTo:"path" name:"tagRuleId"`
+	// The OCID of the user.
+	UserId *string `mandatory:"true" contributesTo:"path" name:"userId"`
 
-	// Request object for updating a tag rule.
-	UpdateTagRuleDetails `contributesTo:"body"`
+	// Request object for updating user capabilities.
+	UpdateUserCapabilitiesDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
@@ -31,28 +31,28 @@ type UpdateTagRuleRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request UpdateTagRuleRequest) String() string {
+func (request UpdateUserCapabilitiesRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request UpdateTagRuleRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request UpdateUserCapabilitiesRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request UpdateTagRuleRequest) RetryPolicy() *common.RetryPolicy {
+func (request UpdateUserCapabilitiesRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// UpdateTagRuleResponse wrapper for the UpdateTagRule operation
-type UpdateTagRuleResponse struct {
+// UpdateUserCapabilitiesResponse wrapper for the UpdateUserCapabilities operation
+type UpdateUserCapabilitiesResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The TagRule instance
-	TagRule `presentIn:"body"`
+	// The User instance
+	User `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
@@ -62,11 +62,11 @@ type UpdateTagRuleResponse struct {
 	Etag *string `presentIn:"header" name:"etag"`
 }
 
-func (response UpdateTagRuleResponse) String() string {
+func (response UpdateUserCapabilitiesResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response UpdateTagRuleResponse) HTTPResponse() *http.Response {
+func (response UpdateUserCapabilitiesResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

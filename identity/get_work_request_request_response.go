@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-// GetTagRuleRequest wrapper for the GetTagRule operation
-type GetTagRuleRequest struct {
+// GetWorkRequestRequest wrapper for the GetWorkRequest operation
+type GetWorkRequestRequest struct {
 
-	// The OCID of the tag rule.
-	TagRuleId *string `mandatory:"true" contributesTo:"path" name:"tagRuleId"`
+	// The OCID of the work request.
+	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
@@ -23,42 +23,42 @@ type GetTagRuleRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GetTagRuleRequest) String() string {
+func (request GetWorkRequestRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GetTagRuleRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetWorkRequestRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GetTagRuleRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetWorkRequestRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GetTagRuleResponse wrapper for the GetTagRule operation
-type GetTagRuleResponse struct {
+// GetWorkRequestResponse wrapper for the GetWorkRequest operation
+type GetWorkRequestResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The TagRule instance
-	TagRule `presentIn:"body"`
+	// The WorkRequest instance
+	WorkRequest `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For optimistic concurrency control. See `if-match`.
-	Etag *string `presentIn:"header" name:"etag"`
+	// The number of seconds that the client should wait before polling again.
+	RetryAfter *float32 `presentIn:"header" name:"retry-after"`
 }
 
-func (response GetTagRuleResponse) String() string {
+func (response GetWorkRequestResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GetTagRuleResponse) HTTPResponse() *http.Response {
+func (response GetWorkRequestResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

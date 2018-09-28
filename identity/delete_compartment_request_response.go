@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-// DeleteTagRuleRequest wrapper for the DeleteTagRule operation
-type DeleteTagRuleRequest struct {
+// DeleteCompartmentRequest wrapper for the DeleteCompartment operation
+type DeleteCompartmentRequest struct {
 
-	// The OCID of the tag rule.
-	TagRuleId *string `mandatory:"true" contributesTo:"path" name:"tagRuleId"`
+	// The OCID of the compartment.
+	CompartmentId *string `mandatory:"true" contributesTo:"path" name:"compartmentId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
@@ -28,22 +28,22 @@ type DeleteTagRuleRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request DeleteTagRuleRequest) String() string {
+func (request DeleteCompartmentRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request DeleteTagRuleRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request DeleteCompartmentRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request DeleteTagRuleRequest) RetryPolicy() *common.RetryPolicy {
+func (request DeleteCompartmentRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// DeleteTagRuleResponse wrapper for the DeleteTagRule operation
-type DeleteTagRuleResponse struct {
+// DeleteCompartmentResponse wrapper for the DeleteCompartment operation
+type DeleteCompartmentResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
@@ -51,13 +51,16 @@ type DeleteTagRuleResponse struct {
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the work request.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
-func (response DeleteTagRuleResponse) String() string {
+func (response DeleteCompartmentResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response DeleteTagRuleResponse) HTTPResponse() *http.Response {
+func (response DeleteCompartmentResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

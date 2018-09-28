@@ -34,8 +34,14 @@ type AutonomousDataWarehouse struct {
 	// The current state of the database.
 	LifecycleState AutonomousDataWarehouseLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
+	// More information about the database status.
+	AdditionalDatabaseStatus []string `mandatory:"false" json:"additionalDatabaseStatus"`
+
 	// The connection string used to connect to the Data Warehouse. The username for the Service Console is ADMIN. Use the password you entered when creating the Autonomous Data Warehouse for the password value.
 	ConnectionStrings *AutonomousDataWarehouseConnectionStrings `mandatory:"false" json:"connectionStrings"`
+
+	// A valid Oracle Database version for Autonomous Data Warehouse.
+	DbVersion *string `mandatory:"false" json:"dbVersion"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).

@@ -11,17 +11,18 @@ import (
 // UpdateJobRequest wrapper for the UpdateJob operation
 type UpdateJobRequest struct {
 
-	// Job OCID
+	// The job OCID.
 	JobId *string `mandatory:"true" contributesTo:"path" name:"jobId"`
 
+	// Updates properties for the specified job.
 	UpdateJobDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
-	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
+	// For optimistic concurrency control. In the `PUT` or `DELETE` call for a resource, set the `if-match`
+	// parameter to the value of the etag from a previous `GET` or `POST` response for that resource.  The resource
 	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
@@ -53,7 +54,7 @@ type UpdateJobResponse struct {
 	// The Job instance
 	Job `presentIn:"body"`
 
-	// Unique identifier for the request
+	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
 	// For optimistic concurrency control. See `if-match`.

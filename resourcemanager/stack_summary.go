@@ -3,7 +3,7 @@
 
 // Oracle Resource Manager
 //
-// Oracle Resource Manager API
+// Oracle Resource Manager API.
 //
 
 package resourcemanager
@@ -12,56 +12,37 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// StackSummary The representation of StackSummary
+// StackSummary Listing of properties and property values for the specified stack.
 type StackSummary struct {
+
+	// Unique identifier (OCID) of the specified stack.
 	Id *string `mandatory:"false" json:"id"`
 
+	// Unique identifier (OCID) of the compartment in which the stack resides.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
+	// Human-readable display name for the stack.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// General description of the stack.
 	Description *string `mandatory:"false" json:"description"`
 
+	// Date and time at which the stack was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	LifecycleState StackSummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState StackLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
 func (m StackSummary) String() string {
 	return common.PointerString(m)
-}
-
-// StackSummaryLifecycleStateEnum Enum with underlying type: string
-type StackSummaryLifecycleStateEnum string
-
-// Set of constants representing the allowable values for StackSummaryLifecycleState
-const (
-	StackSummaryLifecycleStateCreating StackSummaryLifecycleStateEnum = "CREATING"
-	StackSummaryLifecycleStateActive   StackSummaryLifecycleStateEnum = "ACTIVE"
-	StackSummaryLifecycleStateDeleting StackSummaryLifecycleStateEnum = "DELETING"
-)
-
-var mappingStackSummaryLifecycleState = map[string]StackSummaryLifecycleStateEnum{
-	"CREATING": StackSummaryLifecycleStateCreating,
-	"ACTIVE":   StackSummaryLifecycleStateActive,
-	"DELETING": StackSummaryLifecycleStateDeleting,
-}
-
-// GetStackSummaryLifecycleStateEnumValues Enumerates the set of values for StackSummaryLifecycleState
-func GetStackSummaryLifecycleStateEnumValues() []StackSummaryLifecycleStateEnum {
-	values := make([]StackSummaryLifecycleStateEnum, 0)
-	for _, v := range mappingStackSummaryLifecycleState {
-		values = append(values, v)
-	}
-	return values
 }
