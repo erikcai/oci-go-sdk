@@ -548,6 +548,7 @@ func TestIdentityClient_SwiftPasswordCRUD(t *testing.T) {
 }
 
 func TestIdentityClient_ListSwiftPasswords(t *testing.T) {
+	t.Skip("Skipping unstable tests: Should be run in testing service")
 	c, clerr := identity.NewIdentityClientWithConfigurationProvider(configurationProvider())
 	failIfError(t, clerr)
 
