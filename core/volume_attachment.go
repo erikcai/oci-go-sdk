@@ -191,7 +191,7 @@ func (m volumeattachment) String() string {
 // VolumeAttachmentLifecycleStateEnum Enum with underlying type: string
 type VolumeAttachmentLifecycleStateEnum string
 
-// Set of constants representing the allowable values for VolumeAttachmentLifecycleState
+// Set of constants representing the allowable values for VolumeAttachmentLifecycleStateEnum
 const (
 	VolumeAttachmentLifecycleStateAttaching VolumeAttachmentLifecycleStateEnum = "ATTACHING"
 	VolumeAttachmentLifecycleStateAttached  VolumeAttachmentLifecycleStateEnum = "ATTACHED"
@@ -206,7 +206,7 @@ var mappingVolumeAttachmentLifecycleState = map[string]VolumeAttachmentLifecycle
 	"DETACHED":  VolumeAttachmentLifecycleStateDetached,
 }
 
-// GetVolumeAttachmentLifecycleStateEnumValues Enumerates the set of values for VolumeAttachmentLifecycleState
+// GetVolumeAttachmentLifecycleStateEnumValues Enumerates the set of values for VolumeAttachmentLifecycleStateEnum
 func GetVolumeAttachmentLifecycleStateEnumValues() []VolumeAttachmentLifecycleStateEnum {
 	values := make([]VolumeAttachmentLifecycleStateEnum, 0)
 	for _, v := range mappingVolumeAttachmentLifecycleState {

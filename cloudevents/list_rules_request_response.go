@@ -84,7 +84,7 @@ func (response ListRulesResponse) HTTPResponse() *http.Response {
 // ListRulesSortByEnum Enum with underlying type: string
 type ListRulesSortByEnum string
 
-// Set of constants representing the allowable values for ListRulesSortBy
+// Set of constants representing the allowable values for ListRulesSortByEnum
 const (
 	ListRulesSortByTimeCreated ListRulesSortByEnum = "TIME_CREATED"
 	ListRulesSortById          ListRulesSortByEnum = "ID"
@@ -97,7 +97,7 @@ var mappingListRulesSortBy = map[string]ListRulesSortByEnum{
 	"DISPLAY_NAME": ListRulesSortByDisplayName,
 }
 
-// GetListRulesSortByEnumValues Enumerates the set of values for ListRulesSortBy
+// GetListRulesSortByEnumValues Enumerates the set of values for ListRulesSortByEnum
 func GetListRulesSortByEnumValues() []ListRulesSortByEnum {
 	values := make([]ListRulesSortByEnum, 0)
 	for _, v := range mappingListRulesSortBy {

@@ -42,7 +42,7 @@ func (m CreateGroupCursorDetails) String() string {
 // CreateGroupCursorDetailsTypeEnum Enum with underlying type: string
 type CreateGroupCursorDetailsTypeEnum string
 
-// Set of constants representing the allowable values for CreateGroupCursorDetailsType
+// Set of constants representing the allowable values for CreateGroupCursorDetailsTypeEnum
 const (
 	CreateGroupCursorDetailsTypeAtTime      CreateGroupCursorDetailsTypeEnum = "AT_TIME"
 	CreateGroupCursorDetailsTypeLatest      CreateGroupCursorDetailsTypeEnum = "LATEST"
@@ -55,7 +55,7 @@ var mappingCreateGroupCursorDetailsType = map[string]CreateGroupCursorDetailsTyp
 	"TRIM_HORIZON": CreateGroupCursorDetailsTypeTrimHorizon,
 }
 
-// GetCreateGroupCursorDetailsTypeEnumValues Enumerates the set of values for CreateGroupCursorDetailsType
+// GetCreateGroupCursorDetailsTypeEnumValues Enumerates the set of values for CreateGroupCursorDetailsTypeEnum
 func GetCreateGroupCursorDetailsTypeEnumValues() []CreateGroupCursorDetailsTypeEnum {
 	values := make([]CreateGroupCursorDetailsTypeEnum, 0)
 	for _, v := range mappingCreateGroupCursorDetailsType {

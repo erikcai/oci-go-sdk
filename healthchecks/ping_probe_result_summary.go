@@ -98,7 +98,7 @@ func (m PingProbeResultSummary) String() string {
 // PingProbeResultSummaryErrorCategoryEnum Enum with underlying type: string
 type PingProbeResultSummaryErrorCategoryEnum string
 
-// Set of constants representing the allowable values for PingProbeResultSummaryErrorCategory
+// Set of constants representing the allowable values for PingProbeResultSummaryErrorCategoryEnum
 const (
 	PingProbeResultSummaryErrorCategoryNone      PingProbeResultSummaryErrorCategoryEnum = "NONE"
 	PingProbeResultSummaryErrorCategoryDns       PingProbeResultSummaryErrorCategoryEnum = "DNS"
@@ -115,7 +115,7 @@ var mappingPingProbeResultSummaryErrorCategory = map[string]PingProbeResultSumma
 	"SYSTEM":    PingProbeResultSummaryErrorCategorySystem,
 }
 
-// GetPingProbeResultSummaryErrorCategoryEnumValues Enumerates the set of values for PingProbeResultSummaryErrorCategory
+// GetPingProbeResultSummaryErrorCategoryEnumValues Enumerates the set of values for PingProbeResultSummaryErrorCategoryEnum
 func GetPingProbeResultSummaryErrorCategoryEnumValues() []PingProbeResultSummaryErrorCategoryEnum {
 	values := make([]PingProbeResultSummaryErrorCategoryEnum, 0)
 	for _, v := range mappingPingProbeResultSummaryErrorCategory {
@@ -127,7 +127,7 @@ func GetPingProbeResultSummaryErrorCategoryEnumValues() []PingProbeResultSummary
 // PingProbeResultSummaryProtocolEnum Enum with underlying type: string
 type PingProbeResultSummaryProtocolEnum string
 
-// Set of constants representing the allowable values for PingProbeResultSummaryProtocol
+// Set of constants representing the allowable values for PingProbeResultSummaryProtocolEnum
 const (
 	PingProbeResultSummaryProtocolIcmp PingProbeResultSummaryProtocolEnum = "ICMP"
 	PingProbeResultSummaryProtocolTcp  PingProbeResultSummaryProtocolEnum = "TCP"
@@ -138,7 +138,7 @@ var mappingPingProbeResultSummaryProtocol = map[string]PingProbeResultSummaryPro
 	"TCP":  PingProbeResultSummaryProtocolTcp,
 }
 
-// GetPingProbeResultSummaryProtocolEnumValues Enumerates the set of values for PingProbeResultSummaryProtocol
+// GetPingProbeResultSummaryProtocolEnumValues Enumerates the set of values for PingProbeResultSummaryProtocolEnum
 func GetPingProbeResultSummaryProtocolEnumValues() []PingProbeResultSummaryProtocolEnum {
 	values := make([]PingProbeResultSummaryProtocolEnum, 0)
 	for _, v := range mappingPingProbeResultSummaryProtocol {

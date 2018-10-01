@@ -91,7 +91,7 @@ func (m LocalPeeringGateway) String() string {
 // LocalPeeringGatewayLifecycleStateEnum Enum with underlying type: string
 type LocalPeeringGatewayLifecycleStateEnum string
 
-// Set of constants representing the allowable values for LocalPeeringGatewayLifecycleState
+// Set of constants representing the allowable values for LocalPeeringGatewayLifecycleStateEnum
 const (
 	LocalPeeringGatewayLifecycleStateProvisioning LocalPeeringGatewayLifecycleStateEnum = "PROVISIONING"
 	LocalPeeringGatewayLifecycleStateAvailable    LocalPeeringGatewayLifecycleStateEnum = "AVAILABLE"
@@ -106,7 +106,7 @@ var mappingLocalPeeringGatewayLifecycleState = map[string]LocalPeeringGatewayLif
 	"TERMINATED":   LocalPeeringGatewayLifecycleStateTerminated,
 }
 
-// GetLocalPeeringGatewayLifecycleStateEnumValues Enumerates the set of values for LocalPeeringGatewayLifecycleState
+// GetLocalPeeringGatewayLifecycleStateEnumValues Enumerates the set of values for LocalPeeringGatewayLifecycleStateEnum
 func GetLocalPeeringGatewayLifecycleStateEnumValues() []LocalPeeringGatewayLifecycleStateEnum {
 	values := make([]LocalPeeringGatewayLifecycleStateEnum, 0)
 	for _, v := range mappingLocalPeeringGatewayLifecycleState {
@@ -118,7 +118,7 @@ func GetLocalPeeringGatewayLifecycleStateEnumValues() []LocalPeeringGatewayLifec
 // LocalPeeringGatewayPeeringStatusEnum Enum with underlying type: string
 type LocalPeeringGatewayPeeringStatusEnum string
 
-// Set of constants representing the allowable values for LocalPeeringGatewayPeeringStatus
+// Set of constants representing the allowable values for LocalPeeringGatewayPeeringStatusEnum
 const (
 	LocalPeeringGatewayPeeringStatusInvalid LocalPeeringGatewayPeeringStatusEnum = "INVALID"
 	LocalPeeringGatewayPeeringStatusNew     LocalPeeringGatewayPeeringStatusEnum = "NEW"
@@ -135,7 +135,7 @@ var mappingLocalPeeringGatewayPeeringStatus = map[string]LocalPeeringGatewayPeer
 	"REVOKED": LocalPeeringGatewayPeeringStatusRevoked,
 }
 
-// GetLocalPeeringGatewayPeeringStatusEnumValues Enumerates the set of values for LocalPeeringGatewayPeeringStatus
+// GetLocalPeeringGatewayPeeringStatusEnumValues Enumerates the set of values for LocalPeeringGatewayPeeringStatusEnum
 func GetLocalPeeringGatewayPeeringStatusEnumValues() []LocalPeeringGatewayPeeringStatusEnum {
 	values := make([]LocalPeeringGatewayPeeringStatusEnum, 0)
 	for _, v := range mappingLocalPeeringGatewayPeeringStatus {

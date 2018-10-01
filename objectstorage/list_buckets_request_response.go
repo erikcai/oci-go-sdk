@@ -91,7 +91,7 @@ func (response ListBucketsResponse) HTTPResponse() *http.Response {
 // ListBucketsFieldsEnum Enum with underlying type: string
 type ListBucketsFieldsEnum string
 
-// Set of constants representing the allowable values for ListBucketsFields
+// Set of constants representing the allowable values for ListBucketsFieldsEnum
 const (
 	ListBucketsFieldsTags ListBucketsFieldsEnum = "tags"
 )
@@ -100,7 +100,7 @@ var mappingListBucketsFields = map[string]ListBucketsFieldsEnum{
 	"tags": ListBucketsFieldsTags,
 }
 
-// GetListBucketsFieldsEnumValues Enumerates the set of values for ListBucketsFields
+// GetListBucketsFieldsEnumValues Enumerates the set of values for ListBucketsFieldsEnum
 func GetListBucketsFieldsEnumValues() []ListBucketsFieldsEnum {
 	values := make([]ListBucketsFieldsEnum, 0)
 	for _, v := range mappingListBucketsFields {
@@ -112,7 +112,7 @@ func GetListBucketsFieldsEnumValues() []ListBucketsFieldsEnum {
 // ListBucketsSortByEnum Enum with underlying type: string
 type ListBucketsSortByEnum string
 
-// Set of constants representing the allowable values for ListBucketsSortBy
+// Set of constants representing the allowable values for ListBucketsSortByEnum
 const (
 	ListBucketsSortByTimecreated ListBucketsSortByEnum = "TIMECREATED"
 	ListBucketsSortByName        ListBucketsSortByEnum = "NAME"
@@ -123,7 +123,7 @@ var mappingListBucketsSortBy = map[string]ListBucketsSortByEnum{
 	"NAME":        ListBucketsSortByName,
 }
 
-// GetListBucketsSortByEnumValues Enumerates the set of values for ListBucketsSortBy
+// GetListBucketsSortByEnumValues Enumerates the set of values for ListBucketsSortByEnum
 func GetListBucketsSortByEnumValues() []ListBucketsSortByEnum {
 	values := make([]ListBucketsSortByEnum, 0)
 	for _, v := range mappingListBucketsSortBy {
@@ -135,7 +135,7 @@ func GetListBucketsSortByEnumValues() []ListBucketsSortByEnum {
 // ListBucketsSortOrderEnum Enum with underlying type: string
 type ListBucketsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListBucketsSortOrder
+// Set of constants representing the allowable values for ListBucketsSortOrderEnum
 const (
 	ListBucketsSortOrderAsc  ListBucketsSortOrderEnum = "ASC"
 	ListBucketsSortOrderDesc ListBucketsSortOrderEnum = "DESC"
@@ -146,7 +146,7 @@ var mappingListBucketsSortOrder = map[string]ListBucketsSortOrderEnum{
 	"DESC": ListBucketsSortOrderDesc,
 }
 
-// GetListBucketsSortOrderEnumValues Enumerates the set of values for ListBucketsSortOrder
+// GetListBucketsSortOrderEnumValues Enumerates the set of values for ListBucketsSortOrderEnum
 func GetListBucketsSortOrderEnumValues() []ListBucketsSortOrderEnum {
 	values := make([]ListBucketsSortOrderEnum, 0)
 	for _, v := range mappingListBucketsSortOrder {

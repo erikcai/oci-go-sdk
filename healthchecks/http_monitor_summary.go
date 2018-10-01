@@ -46,7 +46,7 @@ func (m HttpMonitorSummary) String() string {
 // HttpMonitorSummaryProtocolEnum Enum with underlying type: string
 type HttpMonitorSummaryProtocolEnum string
 
-// Set of constants representing the allowable values for HttpMonitorSummaryProtocol
+// Set of constants representing the allowable values for HttpMonitorSummaryProtocolEnum
 const (
 	HttpMonitorSummaryProtocolHttp  HttpMonitorSummaryProtocolEnum = "HTTP"
 	HttpMonitorSummaryProtocolHttps HttpMonitorSummaryProtocolEnum = "HTTPS"
@@ -57,7 +57,7 @@ var mappingHttpMonitorSummaryProtocol = map[string]HttpMonitorSummaryProtocolEnu
 	"HTTPS": HttpMonitorSummaryProtocolHttps,
 }
 
-// GetHttpMonitorSummaryProtocolEnumValues Enumerates the set of values for HttpMonitorSummaryProtocol
+// GetHttpMonitorSummaryProtocolEnumValues Enumerates the set of values for HttpMonitorSummaryProtocolEnum
 func GetHttpMonitorSummaryProtocolEnumValues() []HttpMonitorSummaryProtocolEnum {
 	values := make([]HttpMonitorSummaryProtocolEnum, 0)
 	for _, v := range mappingHttpMonitorSummaryProtocol {

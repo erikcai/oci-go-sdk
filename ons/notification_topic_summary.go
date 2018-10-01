@@ -44,7 +44,7 @@ func (m NotificationTopicSummary) String() string {
 // NotificationTopicSummaryLifecycleStateEnum Enum with underlying type: string
 type NotificationTopicSummaryLifecycleStateEnum string
 
-// Set of constants representing the allowable values for NotificationTopicSummaryLifecycleState
+// Set of constants representing the allowable values for NotificationTopicSummaryLifecycleStateEnum
 const (
 	NotificationTopicSummaryLifecycleStateActive   NotificationTopicSummaryLifecycleStateEnum = "ACTIVE"
 	NotificationTopicSummaryLifecycleStateDeleting NotificationTopicSummaryLifecycleStateEnum = "DELETING"
@@ -57,7 +57,7 @@ var mappingNotificationTopicSummaryLifecycleState = map[string]NotificationTopic
 	"CREATING": NotificationTopicSummaryLifecycleStateCreating,
 }
 
-// GetNotificationTopicSummaryLifecycleStateEnumValues Enumerates the set of values for NotificationTopicSummaryLifecycleState
+// GetNotificationTopicSummaryLifecycleStateEnumValues Enumerates the set of values for NotificationTopicSummaryLifecycleStateEnum
 func GetNotificationTopicSummaryLifecycleStateEnumValues() []NotificationTopicSummaryLifecycleStateEnum {
 	values := make([]NotificationTopicSummaryLifecycleStateEnum, 0)
 	for _, v := range mappingNotificationTopicSummaryLifecycleState {

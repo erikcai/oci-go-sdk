@@ -41,7 +41,7 @@ func (m Subscription) String() string {
 // SubscriptionLifecycleStateEnum Enum with underlying type: string
 type SubscriptionLifecycleStateEnum string
 
-// Set of constants representing the allowable values for SubscriptionLifecycleState
+// Set of constants representing the allowable values for SubscriptionLifecycleStateEnum
 const (
 	SubscriptionLifecycleStatePending SubscriptionLifecycleStateEnum = "PENDING"
 	SubscriptionLifecycleStateActive  SubscriptionLifecycleStateEnum = "ACTIVE"
@@ -54,7 +54,7 @@ var mappingSubscriptionLifecycleState = map[string]SubscriptionLifecycleStateEnu
 	"DELETED": SubscriptionLifecycleStateDeleted,
 }
 
-// GetSubscriptionLifecycleStateEnumValues Enumerates the set of values for SubscriptionLifecycleState
+// GetSubscriptionLifecycleStateEnumValues Enumerates the set of values for SubscriptionLifecycleStateEnum
 func GetSubscriptionLifecycleStateEnumValues() []SubscriptionLifecycleStateEnum {
 	values := make([]SubscriptionLifecycleStateEnum, 0)
 	for _, v := range mappingSubscriptionLifecycleState {

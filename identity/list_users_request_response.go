@@ -99,7 +99,7 @@ func (response ListUsersResponse) HTTPResponse() *http.Response {
 // ListUsersSortByEnum Enum with underlying type: string
 type ListUsersSortByEnum string
 
-// Set of constants representing the allowable values for ListUsersSortBy
+// Set of constants representing the allowable values for ListUsersSortByEnum
 const (
 	ListUsersSortByTimecreated ListUsersSortByEnum = "TIMECREATED"
 	ListUsersSortByName        ListUsersSortByEnum = "NAME"
@@ -110,7 +110,7 @@ var mappingListUsersSortBy = map[string]ListUsersSortByEnum{
 	"NAME":        ListUsersSortByName,
 }
 
-// GetListUsersSortByEnumValues Enumerates the set of values for ListUsersSortBy
+// GetListUsersSortByEnumValues Enumerates the set of values for ListUsersSortByEnum
 func GetListUsersSortByEnumValues() []ListUsersSortByEnum {
 	values := make([]ListUsersSortByEnum, 0)
 	for _, v := range mappingListUsersSortBy {
@@ -122,7 +122,7 @@ func GetListUsersSortByEnumValues() []ListUsersSortByEnum {
 // ListUsersSortOrderEnum Enum with underlying type: string
 type ListUsersSortOrderEnum string
 
-// Set of constants representing the allowable values for ListUsersSortOrder
+// Set of constants representing the allowable values for ListUsersSortOrderEnum
 const (
 	ListUsersSortOrderAsc  ListUsersSortOrderEnum = "ASC"
 	ListUsersSortOrderDesc ListUsersSortOrderEnum = "DESC"
@@ -133,7 +133,7 @@ var mappingListUsersSortOrder = map[string]ListUsersSortOrderEnum{
 	"DESC": ListUsersSortOrderDesc,
 }
 
-// GetListUsersSortOrderEnumValues Enumerates the set of values for ListUsersSortOrder
+// GetListUsersSortOrderEnumValues Enumerates the set of values for ListUsersSortOrderEnum
 func GetListUsersSortOrderEnumValues() []ListUsersSortOrderEnum {
 	values := make([]ListUsersSortOrderEnum, 0)
 	for _, v := range mappingListUsersSortOrder {

@@ -77,7 +77,7 @@ func (response ListWorkRequestLogsResponse) HTTPResponse() *http.Response {
 // ListWorkRequestLogsSortOrderEnum Enum with underlying type: string
 type ListWorkRequestLogsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListWorkRequestLogsSortOrder
+// Set of constants representing the allowable values for ListWorkRequestLogsSortOrderEnum
 const (
 	ListWorkRequestLogsSortOrderAsc  ListWorkRequestLogsSortOrderEnum = "ASC"
 	ListWorkRequestLogsSortOrderDesc ListWorkRequestLogsSortOrderEnum = "DESC"
@@ -88,7 +88,7 @@ var mappingListWorkRequestLogsSortOrder = map[string]ListWorkRequestLogsSortOrde
 	"DESC": ListWorkRequestLogsSortOrderDesc,
 }
 
-// GetListWorkRequestLogsSortOrderEnumValues Enumerates the set of values for ListWorkRequestLogsSortOrder
+// GetListWorkRequestLogsSortOrderEnumValues Enumerates the set of values for ListWorkRequestLogsSortOrderEnum
 func GetListWorkRequestLogsSortOrderEnumValues() []ListWorkRequestLogsSortOrderEnum {
 	values := make([]ListWorkRequestLogsSortOrderEnum, 0)
 	for _, v := range mappingListWorkRequestLogsSortOrder {

@@ -86,7 +86,7 @@ func (response ListHttpMonitorsResponse) HTTPResponse() *http.Response {
 // ListHttpMonitorsSortByEnum Enum with underlying type: string
 type ListHttpMonitorsSortByEnum string
 
-// Set of constants representing the allowable values for ListHttpMonitorsSortBy
+// Set of constants representing the allowable values for ListHttpMonitorsSortByEnum
 const (
 	ListHttpMonitorsSortById          ListHttpMonitorsSortByEnum = "id"
 	ListHttpMonitorsSortByDisplayname ListHttpMonitorsSortByEnum = "displayName"
@@ -97,7 +97,7 @@ var mappingListHttpMonitorsSortBy = map[string]ListHttpMonitorsSortByEnum{
 	"displayName": ListHttpMonitorsSortByDisplayname,
 }
 
-// GetListHttpMonitorsSortByEnumValues Enumerates the set of values for ListHttpMonitorsSortBy
+// GetListHttpMonitorsSortByEnumValues Enumerates the set of values for ListHttpMonitorsSortByEnum
 func GetListHttpMonitorsSortByEnumValues() []ListHttpMonitorsSortByEnum {
 	values := make([]ListHttpMonitorsSortByEnum, 0)
 	for _, v := range mappingListHttpMonitorsSortBy {
@@ -109,7 +109,7 @@ func GetListHttpMonitorsSortByEnumValues() []ListHttpMonitorsSortByEnum {
 // ListHttpMonitorsSortOrderEnum Enum with underlying type: string
 type ListHttpMonitorsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListHttpMonitorsSortOrder
+// Set of constants representing the allowable values for ListHttpMonitorsSortOrderEnum
 const (
 	ListHttpMonitorsSortOrderAsc  ListHttpMonitorsSortOrderEnum = "ASC"
 	ListHttpMonitorsSortOrderDesc ListHttpMonitorsSortOrderEnum = "DESC"
@@ -120,7 +120,7 @@ var mappingListHttpMonitorsSortOrder = map[string]ListHttpMonitorsSortOrderEnum{
 	"DESC": ListHttpMonitorsSortOrderDesc,
 }
 
-// GetListHttpMonitorsSortOrderEnumValues Enumerates the set of values for ListHttpMonitorsSortOrder
+// GetListHttpMonitorsSortOrderEnumValues Enumerates the set of values for ListHttpMonitorsSortOrderEnum
 func GetListHttpMonitorsSortOrderEnumValues() []ListHttpMonitorsSortOrderEnum {
 	values := make([]ListHttpMonitorsSortOrderEnum, 0)
 	for _, v := range mappingListHttpMonitorsSortOrder {

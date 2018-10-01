@@ -113,7 +113,7 @@ func (m action) String() string {
 // ActionLifecycleStateEnum Enum with underlying type: string
 type ActionLifecycleStateEnum string
 
-// Set of constants representing the allowable values for ActionLifecycleState
+// Set of constants representing the allowable values for ActionLifecycleStateEnum
 const (
 	ActionLifecycleStateCreating ActionLifecycleStateEnum = "CREATING"
 	ActionLifecycleStateActive   ActionLifecycleStateEnum = "ACTIVE"
@@ -134,7 +134,7 @@ var mappingActionLifecycleState = map[string]ActionLifecycleStateEnum{
 	"FAILED":   ActionLifecycleStateFailed,
 }
 
-// GetActionLifecycleStateEnumValues Enumerates the set of values for ActionLifecycleState
+// GetActionLifecycleStateEnumValues Enumerates the set of values for ActionLifecycleStateEnum
 func GetActionLifecycleStateEnumValues() []ActionLifecycleStateEnum {
 	values := make([]ActionLifecycleStateEnum, 0)
 	for _, v := range mappingActionLifecycleState {

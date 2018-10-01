@@ -93,7 +93,7 @@ func (response ListDynamicGroupsResponse) HTTPResponse() *http.Response {
 // ListDynamicGroupsSortByEnum Enum with underlying type: string
 type ListDynamicGroupsSortByEnum string
 
-// Set of constants representing the allowable values for ListDynamicGroupsSortBy
+// Set of constants representing the allowable values for ListDynamicGroupsSortByEnum
 const (
 	ListDynamicGroupsSortByTimecreated ListDynamicGroupsSortByEnum = "TIMECREATED"
 	ListDynamicGroupsSortByName        ListDynamicGroupsSortByEnum = "NAME"
@@ -104,7 +104,7 @@ var mappingListDynamicGroupsSortBy = map[string]ListDynamicGroupsSortByEnum{
 	"NAME":        ListDynamicGroupsSortByName,
 }
 
-// GetListDynamicGroupsSortByEnumValues Enumerates the set of values for ListDynamicGroupsSortBy
+// GetListDynamicGroupsSortByEnumValues Enumerates the set of values for ListDynamicGroupsSortByEnum
 func GetListDynamicGroupsSortByEnumValues() []ListDynamicGroupsSortByEnum {
 	values := make([]ListDynamicGroupsSortByEnum, 0)
 	for _, v := range mappingListDynamicGroupsSortBy {
@@ -116,7 +116,7 @@ func GetListDynamicGroupsSortByEnumValues() []ListDynamicGroupsSortByEnum {
 // ListDynamicGroupsSortOrderEnum Enum with underlying type: string
 type ListDynamicGroupsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListDynamicGroupsSortOrder
+// Set of constants representing the allowable values for ListDynamicGroupsSortOrderEnum
 const (
 	ListDynamicGroupsSortOrderAsc  ListDynamicGroupsSortOrderEnum = "ASC"
 	ListDynamicGroupsSortOrderDesc ListDynamicGroupsSortOrderEnum = "DESC"
@@ -127,7 +127,7 @@ var mappingListDynamicGroupsSortOrder = map[string]ListDynamicGroupsSortOrderEnu
 	"DESC": ListDynamicGroupsSortOrderDesc,
 }
 
-// GetListDynamicGroupsSortOrderEnumValues Enumerates the set of values for ListDynamicGroupsSortOrder
+// GetListDynamicGroupsSortOrderEnumValues Enumerates the set of values for ListDynamicGroupsSortOrderEnum
 func GetListDynamicGroupsSortOrderEnumValues() []ListDynamicGroupsSortOrderEnum {
 	values := make([]ListDynamicGroupsSortOrderEnum, 0)
 	for _, v := range mappingListDynamicGroupsSortOrder {

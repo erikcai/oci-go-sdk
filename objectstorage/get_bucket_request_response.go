@@ -91,7 +91,7 @@ func (response GetBucketResponse) HTTPResponse() *http.Response {
 // GetBucketFieldsEnum Enum with underlying type: string
 type GetBucketFieldsEnum string
 
-// Set of constants representing the allowable values for GetBucketFields
+// Set of constants representing the allowable values for GetBucketFieldsEnum
 const (
 	GetBucketFieldsEstimatedcount GetBucketFieldsEnum = "estimatedCount"
 	GetBucketFieldsEstimatedsize  GetBucketFieldsEnum = "estimatedSize"
@@ -102,7 +102,7 @@ var mappingGetBucketFields = map[string]GetBucketFieldsEnum{
 	"estimatedSize":  GetBucketFieldsEstimatedsize,
 }
 
-// GetGetBucketFieldsEnumValues Enumerates the set of values for GetBucketFields
+// GetGetBucketFieldsEnumValues Enumerates the set of values for GetBucketFieldsEnum
 func GetGetBucketFieldsEnumValues() []GetBucketFieldsEnum {
 	values := make([]GetBucketFieldsEnum, 0)
 	for _, v := range mappingGetBucketFields {

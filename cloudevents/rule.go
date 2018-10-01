@@ -59,7 +59,7 @@ func (m Rule) String() string {
 // RuleLifecycleStateEnum Enum with underlying type: string
 type RuleLifecycleStateEnum string
 
-// Set of constants representing the allowable values for RuleLifecycleState
+// Set of constants representing the allowable values for RuleLifecycleStateEnum
 const (
 	RuleLifecycleStateCreating RuleLifecycleStateEnum = "CREATING"
 	RuleLifecycleStateActive   RuleLifecycleStateEnum = "ACTIVE"
@@ -80,7 +80,7 @@ var mappingRuleLifecycleState = map[string]RuleLifecycleStateEnum{
 	"FAILED":   RuleLifecycleStateFailed,
 }
 
-// GetRuleLifecycleStateEnumValues Enumerates the set of values for RuleLifecycleState
+// GetRuleLifecycleStateEnumValues Enumerates the set of values for RuleLifecycleStateEnum
 func GetRuleLifecycleStateEnumValues() []RuleLifecycleStateEnum {
 	values := make([]RuleLifecycleStateEnum, 0)
 	for _, v := range mappingRuleLifecycleState {

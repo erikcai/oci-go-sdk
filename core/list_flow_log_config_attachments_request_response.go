@@ -85,7 +85,7 @@ func (response ListFlowLogConfigAttachmentsResponse) HTTPResponse() *http.Respon
 // ListFlowLogConfigAttachmentsTargetEntityTypeEnum Enum with underlying type: string
 type ListFlowLogConfigAttachmentsTargetEntityTypeEnum string
 
-// Set of constants representing the allowable values for ListFlowLogConfigAttachmentsTargetEntityType
+// Set of constants representing the allowable values for ListFlowLogConfigAttachmentsTargetEntityTypeEnum
 const (
 	ListFlowLogConfigAttachmentsTargetEntityTypeSubnet ListFlowLogConfigAttachmentsTargetEntityTypeEnum = "SUBNET"
 )
@@ -94,7 +94,7 @@ var mappingListFlowLogConfigAttachmentsTargetEntityType = map[string]ListFlowLog
 	"SUBNET": ListFlowLogConfigAttachmentsTargetEntityTypeSubnet,
 }
 
-// GetListFlowLogConfigAttachmentsTargetEntityTypeEnumValues Enumerates the set of values for ListFlowLogConfigAttachmentsTargetEntityType
+// GetListFlowLogConfigAttachmentsTargetEntityTypeEnumValues Enumerates the set of values for ListFlowLogConfigAttachmentsTargetEntityTypeEnum
 func GetListFlowLogConfigAttachmentsTargetEntityTypeEnumValues() []ListFlowLogConfigAttachmentsTargetEntityTypeEnum {
 	values := make([]ListFlowLogConfigAttachmentsTargetEntityTypeEnum, 0)
 	for _, v := range mappingListFlowLogConfigAttachmentsTargetEntityType {

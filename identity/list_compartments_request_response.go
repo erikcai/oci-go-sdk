@@ -109,7 +109,7 @@ func (response ListCompartmentsResponse) HTTPResponse() *http.Response {
 // ListCompartmentsAccessLevelEnum Enum with underlying type: string
 type ListCompartmentsAccessLevelEnum string
 
-// Set of constants representing the allowable values for ListCompartmentsAccessLevel
+// Set of constants representing the allowable values for ListCompartmentsAccessLevelEnum
 const (
 	ListCompartmentsAccessLevelAny        ListCompartmentsAccessLevelEnum = "ANY"
 	ListCompartmentsAccessLevelAccessible ListCompartmentsAccessLevelEnum = "ACCESSIBLE"
@@ -120,7 +120,7 @@ var mappingListCompartmentsAccessLevel = map[string]ListCompartmentsAccessLevelE
 	"ACCESSIBLE": ListCompartmentsAccessLevelAccessible,
 }
 
-// GetListCompartmentsAccessLevelEnumValues Enumerates the set of values for ListCompartmentsAccessLevel
+// GetListCompartmentsAccessLevelEnumValues Enumerates the set of values for ListCompartmentsAccessLevelEnum
 func GetListCompartmentsAccessLevelEnumValues() []ListCompartmentsAccessLevelEnum {
 	values := make([]ListCompartmentsAccessLevelEnum, 0)
 	for _, v := range mappingListCompartmentsAccessLevel {
@@ -132,7 +132,7 @@ func GetListCompartmentsAccessLevelEnumValues() []ListCompartmentsAccessLevelEnu
 // ListCompartmentsSortByEnum Enum with underlying type: string
 type ListCompartmentsSortByEnum string
 
-// Set of constants representing the allowable values for ListCompartmentsSortBy
+// Set of constants representing the allowable values for ListCompartmentsSortByEnum
 const (
 	ListCompartmentsSortByTimecreated ListCompartmentsSortByEnum = "TIMECREATED"
 	ListCompartmentsSortByName        ListCompartmentsSortByEnum = "NAME"
@@ -143,7 +143,7 @@ var mappingListCompartmentsSortBy = map[string]ListCompartmentsSortByEnum{
 	"NAME":        ListCompartmentsSortByName,
 }
 
-// GetListCompartmentsSortByEnumValues Enumerates the set of values for ListCompartmentsSortBy
+// GetListCompartmentsSortByEnumValues Enumerates the set of values for ListCompartmentsSortByEnum
 func GetListCompartmentsSortByEnumValues() []ListCompartmentsSortByEnum {
 	values := make([]ListCompartmentsSortByEnum, 0)
 	for _, v := range mappingListCompartmentsSortBy {
@@ -155,7 +155,7 @@ func GetListCompartmentsSortByEnumValues() []ListCompartmentsSortByEnum {
 // ListCompartmentsSortOrderEnum Enum with underlying type: string
 type ListCompartmentsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListCompartmentsSortOrder
+// Set of constants representing the allowable values for ListCompartmentsSortOrderEnum
 const (
 	ListCompartmentsSortOrderAsc  ListCompartmentsSortOrderEnum = "ASC"
 	ListCompartmentsSortOrderDesc ListCompartmentsSortOrderEnum = "DESC"
@@ -166,7 +166,7 @@ var mappingListCompartmentsSortOrder = map[string]ListCompartmentsSortOrderEnum{
 	"DESC": ListCompartmentsSortOrderDesc,
 }
 
-// GetListCompartmentsSortOrderEnumValues Enumerates the set of values for ListCompartmentsSortOrder
+// GetListCompartmentsSortOrderEnumValues Enumerates the set of values for ListCompartmentsSortOrderEnum
 func GetListCompartmentsSortOrderEnumValues() []ListCompartmentsSortOrderEnum {
 	values := make([]ListCompartmentsSortOrderEnum, 0)
 	for _, v := range mappingListCompartmentsSortOrder {

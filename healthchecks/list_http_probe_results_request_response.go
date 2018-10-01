@@ -92,7 +92,7 @@ func (response ListHttpProbeResultsResponse) HTTPResponse() *http.Response {
 // ListHttpProbeResultsSortOrderEnum Enum with underlying type: string
 type ListHttpProbeResultsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListHttpProbeResultsSortOrder
+// Set of constants representing the allowable values for ListHttpProbeResultsSortOrderEnum
 const (
 	ListHttpProbeResultsSortOrderAsc  ListHttpProbeResultsSortOrderEnum = "ASC"
 	ListHttpProbeResultsSortOrderDesc ListHttpProbeResultsSortOrderEnum = "DESC"
@@ -103,7 +103,7 @@ var mappingListHttpProbeResultsSortOrder = map[string]ListHttpProbeResultsSortOr
 	"DESC": ListHttpProbeResultsSortOrderDesc,
 }
 
-// GetListHttpProbeResultsSortOrderEnumValues Enumerates the set of values for ListHttpProbeResultsSortOrder
+// GetListHttpProbeResultsSortOrderEnumValues Enumerates the set of values for ListHttpProbeResultsSortOrderEnum
 func GetListHttpProbeResultsSortOrderEnumValues() []ListHttpProbeResultsSortOrderEnum {
 	values := make([]ListHttpProbeResultsSortOrderEnum, 0)
 	for _, v := range mappingListHttpProbeResultsSortOrder {

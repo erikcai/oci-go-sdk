@@ -29,7 +29,7 @@ func (m BackoffRetryPolicy) String() string {
 // BackoffRetryPolicyPolicyTypeEnum Enum with underlying type: string
 type BackoffRetryPolicyPolicyTypeEnum string
 
-// Set of constants representing the allowable values for BackoffRetryPolicyPolicyType
+// Set of constants representing the allowable values for BackoffRetryPolicyPolicyTypeEnum
 const (
 	BackoffRetryPolicyPolicyTypeExponential BackoffRetryPolicyPolicyTypeEnum = "EXPONENTIAL"
 )
@@ -38,7 +38,7 @@ var mappingBackoffRetryPolicyPolicyType = map[string]BackoffRetryPolicyPolicyTyp
 	"EXPONENTIAL": BackoffRetryPolicyPolicyTypeExponential,
 }
 
-// GetBackoffRetryPolicyPolicyTypeEnumValues Enumerates the set of values for BackoffRetryPolicyPolicyType
+// GetBackoffRetryPolicyPolicyTypeEnumValues Enumerates the set of values for BackoffRetryPolicyPolicyTypeEnum
 func GetBackoffRetryPolicyPolicyTypeEnumValues() []BackoffRetryPolicyPolicyTypeEnum {
 	values := make([]BackoffRetryPolicyPolicyTypeEnum, 0)
 	for _, v := range mappingBackoffRetryPolicyPolicyType {

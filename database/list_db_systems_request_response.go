@@ -94,7 +94,7 @@ func (response ListDbSystemsResponse) HTTPResponse() *http.Response {
 // ListDbSystemsSortByEnum Enum with underlying type: string
 type ListDbSystemsSortByEnum string
 
-// Set of constants representing the allowable values for ListDbSystemsSortBy
+// Set of constants representing the allowable values for ListDbSystemsSortByEnum
 const (
 	ListDbSystemsSortByTimecreated ListDbSystemsSortByEnum = "TIMECREATED"
 	ListDbSystemsSortByDisplayname ListDbSystemsSortByEnum = "DISPLAYNAME"
@@ -105,7 +105,7 @@ var mappingListDbSystemsSortBy = map[string]ListDbSystemsSortByEnum{
 	"DISPLAYNAME": ListDbSystemsSortByDisplayname,
 }
 
-// GetListDbSystemsSortByEnumValues Enumerates the set of values for ListDbSystemsSortBy
+// GetListDbSystemsSortByEnumValues Enumerates the set of values for ListDbSystemsSortByEnum
 func GetListDbSystemsSortByEnumValues() []ListDbSystemsSortByEnum {
 	values := make([]ListDbSystemsSortByEnum, 0)
 	for _, v := range mappingListDbSystemsSortBy {
@@ -117,7 +117,7 @@ func GetListDbSystemsSortByEnumValues() []ListDbSystemsSortByEnum {
 // ListDbSystemsSortOrderEnum Enum with underlying type: string
 type ListDbSystemsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListDbSystemsSortOrder
+// Set of constants representing the allowable values for ListDbSystemsSortOrderEnum
 const (
 	ListDbSystemsSortOrderAsc  ListDbSystemsSortOrderEnum = "ASC"
 	ListDbSystemsSortOrderDesc ListDbSystemsSortOrderEnum = "DESC"
@@ -128,7 +128,7 @@ var mappingListDbSystemsSortOrder = map[string]ListDbSystemsSortOrderEnum{
 	"DESC": ListDbSystemsSortOrderDesc,
 }
 
-// GetListDbSystemsSortOrderEnumValues Enumerates the set of values for ListDbSystemsSortOrder
+// GetListDbSystemsSortOrderEnumValues Enumerates the set of values for ListDbSystemsSortOrderEnum
 func GetListDbSystemsSortOrderEnumValues() []ListDbSystemsSortOrderEnum {
 	values := make([]ListDbSystemsSortOrderEnum, 0)
 	for _, v := range mappingListDbSystemsSortOrder {

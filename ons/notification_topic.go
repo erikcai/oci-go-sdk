@@ -44,7 +44,7 @@ func (m NotificationTopic) String() string {
 // NotificationTopicLifecycleStateEnum Enum with underlying type: string
 type NotificationTopicLifecycleStateEnum string
 
-// Set of constants representing the allowable values for NotificationTopicLifecycleState
+// Set of constants representing the allowable values for NotificationTopicLifecycleStateEnum
 const (
 	NotificationTopicLifecycleStateActive   NotificationTopicLifecycleStateEnum = "ACTIVE"
 	NotificationTopicLifecycleStateDeleting NotificationTopicLifecycleStateEnum = "DELETING"
@@ -57,7 +57,7 @@ var mappingNotificationTopicLifecycleState = map[string]NotificationTopicLifecyc
 	"CREATING": NotificationTopicLifecycleStateCreating,
 }
 
-// GetNotificationTopicLifecycleStateEnumValues Enumerates the set of values for NotificationTopicLifecycleState
+// GetNotificationTopicLifecycleStateEnumValues Enumerates the set of values for NotificationTopicLifecycleStateEnum
 func GetNotificationTopicLifecycleStateEnumValues() []NotificationTopicLifecycleStateEnum {
 	values := make([]NotificationTopicLifecycleStateEnum, 0)
 	for _, v := range mappingNotificationTopicLifecycleState {

@@ -33,7 +33,7 @@ func (m LogEntry) String() string {
 // LogEntryTypeEnum Enum with underlying type: string
 type LogEntryTypeEnum string
 
-// Set of constants representing the allowable values for LogEntryType
+// Set of constants representing the allowable values for LogEntryTypeEnum
 const (
 	LogEntryTypeConsole LogEntryTypeEnum = "TERRAFORM_CONSOLE"
 )
@@ -42,7 +42,7 @@ var mappingLogEntryType = map[string]LogEntryTypeEnum{
 	"TERRAFORM_CONSOLE": LogEntryTypeConsole,
 }
 
-// GetLogEntryTypeEnumValues Enumerates the set of values for LogEntryType
+// GetLogEntryTypeEnumValues Enumerates the set of values for LogEntryTypeEnum
 func GetLogEntryTypeEnumValues() []LogEntryTypeEnum {
 	values := make([]LogEntryTypeEnum, 0)
 	for _, v := range mappingLogEntryType {
@@ -54,7 +54,7 @@ func GetLogEntryTypeEnumValues() []LogEntryTypeEnum {
 // LogEntryLevelEnum Enum with underlying type: string
 type LogEntryLevelEnum string
 
-// Set of constants representing the allowable values for LogEntryLevel
+// Set of constants representing the allowable values for LogEntryLevelEnum
 const (
 	LogEntryLevelTrace LogEntryLevelEnum = "TRACE"
 	LogEntryLevelDebug LogEntryLevelEnum = "DEBUG"
@@ -73,7 +73,7 @@ var mappingLogEntryLevel = map[string]LogEntryLevelEnum{
 	"FATAL": LogEntryLevelFatal,
 }
 
-// GetLogEntryLevelEnumValues Enumerates the set of values for LogEntryLevel
+// GetLogEntryLevelEnumValues Enumerates the set of values for LogEntryLevelEnum
 func GetLogEntryLevelEnumValues() []LogEntryLevelEnum {
 	values := make([]LogEntryLevelEnum, 0)
 	for _, v := range mappingLogEntryLevel {

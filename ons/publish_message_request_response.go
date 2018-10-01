@@ -70,7 +70,7 @@ func (response PublishMessageResponse) HTTPResponse() *http.Response {
 // PublishMessageMessageTypeEnum Enum with underlying type: string
 type PublishMessageMessageTypeEnum string
 
-// Set of constants representing the allowable values for PublishMessageMessageType
+// Set of constants representing the allowable values for PublishMessageMessageTypeEnum
 const (
 	PublishMessageMessageTypeJson    PublishMessageMessageTypeEnum = "JSON"
 	PublishMessageMessageTypeRawText PublishMessageMessageTypeEnum = "RAW_TEXT"
@@ -81,7 +81,7 @@ var mappingPublishMessageMessageType = map[string]PublishMessageMessageTypeEnum{
 	"RAW_TEXT": PublishMessageMessageTypeRawText,
 }
 
-// GetPublishMessageMessageTypeEnumValues Enumerates the set of values for PublishMessageMessageType
+// GetPublishMessageMessageTypeEnumValues Enumerates the set of values for PublishMessageMessageTypeEnum
 func GetPublishMessageMessageTypeEnumValues() []PublishMessageMessageTypeEnum {
 	values := make([]PublishMessageMessageTypeEnum, 0)
 	for _, v := range mappingPublishMessageMessageType {

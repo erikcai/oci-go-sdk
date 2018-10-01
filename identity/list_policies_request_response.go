@@ -93,7 +93,7 @@ func (response ListPoliciesResponse) HTTPResponse() *http.Response {
 // ListPoliciesSortByEnum Enum with underlying type: string
 type ListPoliciesSortByEnum string
 
-// Set of constants representing the allowable values for ListPoliciesSortBy
+// Set of constants representing the allowable values for ListPoliciesSortByEnum
 const (
 	ListPoliciesSortByTimecreated ListPoliciesSortByEnum = "TIMECREATED"
 	ListPoliciesSortByName        ListPoliciesSortByEnum = "NAME"
@@ -104,7 +104,7 @@ var mappingListPoliciesSortBy = map[string]ListPoliciesSortByEnum{
 	"NAME":        ListPoliciesSortByName,
 }
 
-// GetListPoliciesSortByEnumValues Enumerates the set of values for ListPoliciesSortBy
+// GetListPoliciesSortByEnumValues Enumerates the set of values for ListPoliciesSortByEnum
 func GetListPoliciesSortByEnumValues() []ListPoliciesSortByEnum {
 	values := make([]ListPoliciesSortByEnum, 0)
 	for _, v := range mappingListPoliciesSortBy {
@@ -116,7 +116,7 @@ func GetListPoliciesSortByEnumValues() []ListPoliciesSortByEnum {
 // ListPoliciesSortOrderEnum Enum with underlying type: string
 type ListPoliciesSortOrderEnum string
 
-// Set of constants representing the allowable values for ListPoliciesSortOrder
+// Set of constants representing the allowable values for ListPoliciesSortOrderEnum
 const (
 	ListPoliciesSortOrderAsc  ListPoliciesSortOrderEnum = "ASC"
 	ListPoliciesSortOrderDesc ListPoliciesSortOrderEnum = "DESC"
@@ -127,7 +127,7 @@ var mappingListPoliciesSortOrder = map[string]ListPoliciesSortOrderEnum{
 	"DESC": ListPoliciesSortOrderDesc,
 }
 
-// GetListPoliciesSortOrderEnumValues Enumerates the set of values for ListPoliciesSortOrder
+// GetListPoliciesSortOrderEnumValues Enumerates the set of values for ListPoliciesSortOrderEnum
 func GetListPoliciesSortOrderEnumValues() []ListPoliciesSortOrderEnum {
 	values := make([]ListPoliciesSortOrderEnum, 0)
 	for _, v := range mappingListPoliciesSortOrder {

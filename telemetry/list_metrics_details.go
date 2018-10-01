@@ -56,7 +56,7 @@ func (m ListMetricsDetails) String() string {
 // ListMetricsDetailsSortByEnum Enum with underlying type: string
 type ListMetricsDetailsSortByEnum string
 
-// Set of constants representing the allowable values for ListMetricsDetailsSortBy
+// Set of constants representing the allowable values for ListMetricsDetailsSortByEnum
 const (
 	ListMetricsDetailsSortByNamespace ListMetricsDetailsSortByEnum = "NAMESPACE"
 	ListMetricsDetailsSortByName      ListMetricsDetailsSortByEnum = "NAME"
@@ -67,7 +67,7 @@ var mappingListMetricsDetailsSortBy = map[string]ListMetricsDetailsSortByEnum{
 	"NAME":      ListMetricsDetailsSortByName,
 }
 
-// GetListMetricsDetailsSortByEnumValues Enumerates the set of values for ListMetricsDetailsSortBy
+// GetListMetricsDetailsSortByEnumValues Enumerates the set of values for ListMetricsDetailsSortByEnum
 func GetListMetricsDetailsSortByEnumValues() []ListMetricsDetailsSortByEnum {
 	values := make([]ListMetricsDetailsSortByEnum, 0)
 	for _, v := range mappingListMetricsDetailsSortBy {
@@ -79,7 +79,7 @@ func GetListMetricsDetailsSortByEnumValues() []ListMetricsDetailsSortByEnum {
 // ListMetricsDetailsSortOrderEnum Enum with underlying type: string
 type ListMetricsDetailsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListMetricsDetailsSortOrder
+// Set of constants representing the allowable values for ListMetricsDetailsSortOrderEnum
 const (
 	ListMetricsDetailsSortOrderAsc  ListMetricsDetailsSortOrderEnum = "ASC"
 	ListMetricsDetailsSortOrderDesc ListMetricsDetailsSortOrderEnum = "DESC"
@@ -90,7 +90,7 @@ var mappingListMetricsDetailsSortOrder = map[string]ListMetricsDetailsSortOrderE
 	"DESC": ListMetricsDetailsSortOrderDesc,
 }
 
-// GetListMetricsDetailsSortOrderEnumValues Enumerates the set of values for ListMetricsDetailsSortOrder
+// GetListMetricsDetailsSortOrderEnumValues Enumerates the set of values for ListMetricsDetailsSortOrderEnum
 func GetListMetricsDetailsSortOrderEnumValues() []ListMetricsDetailsSortOrderEnum {
 	values := make([]ListMetricsDetailsSortOrderEnum, 0)
 	for _, v := range mappingListMetricsDetailsSortOrder {

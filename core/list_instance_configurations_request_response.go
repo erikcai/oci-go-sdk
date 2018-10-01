@@ -92,7 +92,7 @@ func (response ListInstanceConfigurationsResponse) HTTPResponse() *http.Response
 // ListInstanceConfigurationsSortByEnum Enum with underlying type: string
 type ListInstanceConfigurationsSortByEnum string
 
-// Set of constants representing the allowable values for ListInstanceConfigurationsSortBy
+// Set of constants representing the allowable values for ListInstanceConfigurationsSortByEnum
 const (
 	ListInstanceConfigurationsSortByTimecreated ListInstanceConfigurationsSortByEnum = "TIMECREATED"
 	ListInstanceConfigurationsSortByDisplayname ListInstanceConfigurationsSortByEnum = "DISPLAYNAME"
@@ -103,7 +103,7 @@ var mappingListInstanceConfigurationsSortBy = map[string]ListInstanceConfigurati
 	"DISPLAYNAME": ListInstanceConfigurationsSortByDisplayname,
 }
 
-// GetListInstanceConfigurationsSortByEnumValues Enumerates the set of values for ListInstanceConfigurationsSortBy
+// GetListInstanceConfigurationsSortByEnumValues Enumerates the set of values for ListInstanceConfigurationsSortByEnum
 func GetListInstanceConfigurationsSortByEnumValues() []ListInstanceConfigurationsSortByEnum {
 	values := make([]ListInstanceConfigurationsSortByEnum, 0)
 	for _, v := range mappingListInstanceConfigurationsSortBy {
@@ -115,7 +115,7 @@ func GetListInstanceConfigurationsSortByEnumValues() []ListInstanceConfiguration
 // ListInstanceConfigurationsSortOrderEnum Enum with underlying type: string
 type ListInstanceConfigurationsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListInstanceConfigurationsSortOrder
+// Set of constants representing the allowable values for ListInstanceConfigurationsSortOrderEnum
 const (
 	ListInstanceConfigurationsSortOrderAsc  ListInstanceConfigurationsSortOrderEnum = "ASC"
 	ListInstanceConfigurationsSortOrderDesc ListInstanceConfigurationsSortOrderEnum = "DESC"
@@ -126,7 +126,7 @@ var mappingListInstanceConfigurationsSortOrder = map[string]ListInstanceConfigur
 	"DESC": ListInstanceConfigurationsSortOrderDesc,
 }
 
-// GetListInstanceConfigurationsSortOrderEnumValues Enumerates the set of values for ListInstanceConfigurationsSortOrder
+// GetListInstanceConfigurationsSortOrderEnumValues Enumerates the set of values for ListInstanceConfigurationsSortOrderEnum
 func GetListInstanceConfigurationsSortOrderEnumValues() []ListInstanceConfigurationsSortOrderEnum {
 	values := make([]ListInstanceConfigurationsSortOrderEnum, 0)
 	for _, v := range mappingListInstanceConfigurationsSortOrder {

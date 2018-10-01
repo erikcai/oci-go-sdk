@@ -82,7 +82,7 @@ func (m *CreateFlowLogConfigDetails) UnmarshalJSON(data []byte) (e error) {
 // CreateFlowLogConfigDetailsFlowLogTypeEnum Enum with underlying type: string
 type CreateFlowLogConfigDetailsFlowLogTypeEnum string
 
-// Set of constants representing the allowable values for CreateFlowLogConfigDetailsFlowLogType
+// Set of constants representing the allowable values for CreateFlowLogConfigDetailsFlowLogTypeEnum
 const (
 	CreateFlowLogConfigDetailsFlowLogTypeAll CreateFlowLogConfigDetailsFlowLogTypeEnum = "ALL"
 )
@@ -91,7 +91,7 @@ var mappingCreateFlowLogConfigDetailsFlowLogType = map[string]CreateFlowLogConfi
 	"ALL": CreateFlowLogConfigDetailsFlowLogTypeAll,
 }
 
-// GetCreateFlowLogConfigDetailsFlowLogTypeEnumValues Enumerates the set of values for CreateFlowLogConfigDetailsFlowLogType
+// GetCreateFlowLogConfigDetailsFlowLogTypeEnumValues Enumerates the set of values for CreateFlowLogConfigDetailsFlowLogTypeEnum
 func GetCreateFlowLogConfigDetailsFlowLogTypeEnumValues() []CreateFlowLogConfigDetailsFlowLogTypeEnum {
 	values := make([]CreateFlowLogConfigDetailsFlowLogTypeEnum, 0)
 	for _, v := range mappingCreateFlowLogConfigDetailsFlowLogType {

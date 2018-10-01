@@ -86,7 +86,7 @@ func (response ListPingMonitorsResponse) HTTPResponse() *http.Response {
 // ListPingMonitorsSortByEnum Enum with underlying type: string
 type ListPingMonitorsSortByEnum string
 
-// Set of constants representing the allowable values for ListPingMonitorsSortBy
+// Set of constants representing the allowable values for ListPingMonitorsSortByEnum
 const (
 	ListPingMonitorsSortById          ListPingMonitorsSortByEnum = "id"
 	ListPingMonitorsSortByDisplayname ListPingMonitorsSortByEnum = "displayName"
@@ -97,7 +97,7 @@ var mappingListPingMonitorsSortBy = map[string]ListPingMonitorsSortByEnum{
 	"displayName": ListPingMonitorsSortByDisplayname,
 }
 
-// GetListPingMonitorsSortByEnumValues Enumerates the set of values for ListPingMonitorsSortBy
+// GetListPingMonitorsSortByEnumValues Enumerates the set of values for ListPingMonitorsSortByEnum
 func GetListPingMonitorsSortByEnumValues() []ListPingMonitorsSortByEnum {
 	values := make([]ListPingMonitorsSortByEnum, 0)
 	for _, v := range mappingListPingMonitorsSortBy {
@@ -109,7 +109,7 @@ func GetListPingMonitorsSortByEnumValues() []ListPingMonitorsSortByEnum {
 // ListPingMonitorsSortOrderEnum Enum with underlying type: string
 type ListPingMonitorsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListPingMonitorsSortOrder
+// Set of constants representing the allowable values for ListPingMonitorsSortOrderEnum
 const (
 	ListPingMonitorsSortOrderAsc  ListPingMonitorsSortOrderEnum = "ASC"
 	ListPingMonitorsSortOrderDesc ListPingMonitorsSortOrderEnum = "DESC"
@@ -120,7 +120,7 @@ var mappingListPingMonitorsSortOrder = map[string]ListPingMonitorsSortOrderEnum{
 	"DESC": ListPingMonitorsSortOrderDesc,
 }
 
-// GetListPingMonitorsSortOrderEnumValues Enumerates the set of values for ListPingMonitorsSortOrder
+// GetListPingMonitorsSortOrderEnumValues Enumerates the set of values for ListPingMonitorsSortOrderEnum
 func GetListPingMonitorsSortOrderEnumValues() []ListPingMonitorsSortOrderEnum {
 	values := make([]ListPingMonitorsSortOrderEnum, 0)
 	for _, v := range mappingListPingMonitorsSortOrder {

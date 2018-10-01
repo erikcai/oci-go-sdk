@@ -60,7 +60,7 @@ func (m CreateExternalBackupJobDetails) String() string {
 // CreateExternalBackupJobDetailsDatabaseEditionEnum Enum with underlying type: string
 type CreateExternalBackupJobDetailsDatabaseEditionEnum string
 
-// Set of constants representing the allowable values for CreateExternalBackupJobDetailsDatabaseEdition
+// Set of constants representing the allowable values for CreateExternalBackupJobDetailsDatabaseEditionEnum
 const (
 	CreateExternalBackupJobDetailsDatabaseEditionStandardEdition                     CreateExternalBackupJobDetailsDatabaseEditionEnum = "STANDARD_EDITION"
 	CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEdition                   CreateExternalBackupJobDetailsDatabaseEditionEnum = "ENTERPRISE_EDITION"
@@ -75,7 +75,7 @@ var mappingCreateExternalBackupJobDetailsDatabaseEdition = map[string]CreateExte
 	"ENTERPRISE_EDITION_EXTREME_PERFORMANCE": CreateExternalBackupJobDetailsDatabaseEditionEnterpriseEditionExtremePerformance,
 }
 
-// GetCreateExternalBackupJobDetailsDatabaseEditionEnumValues Enumerates the set of values for CreateExternalBackupJobDetailsDatabaseEdition
+// GetCreateExternalBackupJobDetailsDatabaseEditionEnumValues Enumerates the set of values for CreateExternalBackupJobDetailsDatabaseEditionEnum
 func GetCreateExternalBackupJobDetailsDatabaseEditionEnumValues() []CreateExternalBackupJobDetailsDatabaseEditionEnum {
 	values := make([]CreateExternalBackupJobDetailsDatabaseEditionEnum, 0)
 	for _, v := range mappingCreateExternalBackupJobDetailsDatabaseEdition {
@@ -87,7 +87,7 @@ func GetCreateExternalBackupJobDetailsDatabaseEditionEnumValues() []CreateExtern
 // CreateExternalBackupJobDetailsDatabaseModeEnum Enum with underlying type: string
 type CreateExternalBackupJobDetailsDatabaseModeEnum string
 
-// Set of constants representing the allowable values for CreateExternalBackupJobDetailsDatabaseMode
+// Set of constants representing the allowable values for CreateExternalBackupJobDetailsDatabaseModeEnum
 const (
 	CreateExternalBackupJobDetailsDatabaseModeSi  CreateExternalBackupJobDetailsDatabaseModeEnum = "SI"
 	CreateExternalBackupJobDetailsDatabaseModeRac CreateExternalBackupJobDetailsDatabaseModeEnum = "RAC"
@@ -98,7 +98,7 @@ var mappingCreateExternalBackupJobDetailsDatabaseMode = map[string]CreateExterna
 	"RAC": CreateExternalBackupJobDetailsDatabaseModeRac,
 }
 
-// GetCreateExternalBackupJobDetailsDatabaseModeEnumValues Enumerates the set of values for CreateExternalBackupJobDetailsDatabaseMode
+// GetCreateExternalBackupJobDetailsDatabaseModeEnumValues Enumerates the set of values for CreateExternalBackupJobDetailsDatabaseModeEnum
 func GetCreateExternalBackupJobDetailsDatabaseModeEnumValues() []CreateExternalBackupJobDetailsDatabaseModeEnum {
 	values := make([]CreateExternalBackupJobDetailsDatabaseModeEnum, 0)
 	for _, v := range mappingCreateExternalBackupJobDetailsDatabaseMode {

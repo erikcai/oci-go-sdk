@@ -40,7 +40,7 @@ func (m CreateCursorDetails) String() string {
 // CreateCursorDetailsTypeEnum Enum with underlying type: string
 type CreateCursorDetailsTypeEnum string
 
-// Set of constants representing the allowable values for CreateCursorDetailsType
+// Set of constants representing the allowable values for CreateCursorDetailsTypeEnum
 const (
 	CreateCursorDetailsTypeAfterOffset CreateCursorDetailsTypeEnum = "AFTER_OFFSET"
 	CreateCursorDetailsTypeAtOffset    CreateCursorDetailsTypeEnum = "AT_OFFSET"
@@ -57,7 +57,7 @@ var mappingCreateCursorDetailsType = map[string]CreateCursorDetailsTypeEnum{
 	"TRIM_HORIZON": CreateCursorDetailsTypeTrimHorizon,
 }
 
-// GetCreateCursorDetailsTypeEnumValues Enumerates the set of values for CreateCursorDetailsType
+// GetCreateCursorDetailsTypeEnumValues Enumerates the set of values for CreateCursorDetailsTypeEnum
 func GetCreateCursorDetailsTypeEnumValues() []CreateCursorDetailsTypeEnum {
 	values := make([]CreateCursorDetailsTypeEnum, 0)
 	for _, v := range mappingCreateCursorDetailsType {

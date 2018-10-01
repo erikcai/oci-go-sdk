@@ -68,7 +68,7 @@ func (m PingMonitor) String() string {
 // PingMonitorProtocolEnum Enum with underlying type: string
 type PingMonitorProtocolEnum string
 
-// Set of constants representing the allowable values for PingMonitorProtocol
+// Set of constants representing the allowable values for PingMonitorProtocolEnum
 const (
 	PingMonitorProtocolIcmp PingMonitorProtocolEnum = "ICMP"
 	PingMonitorProtocolTcp  PingMonitorProtocolEnum = "TCP"
@@ -79,7 +79,7 @@ var mappingPingMonitorProtocol = map[string]PingMonitorProtocolEnum{
 	"TCP":  PingMonitorProtocolTcp,
 }
 
-// GetPingMonitorProtocolEnumValues Enumerates the set of values for PingMonitorProtocol
+// GetPingMonitorProtocolEnumValues Enumerates the set of values for PingMonitorProtocolEnum
 func GetPingMonitorProtocolEnumValues() []PingMonitorProtocolEnum {
 	values := make([]PingMonitorProtocolEnum, 0)
 	for _, v := range mappingPingMonitorProtocol {

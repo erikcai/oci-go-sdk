@@ -59,7 +59,7 @@ func (m InstancePool) String() string {
 // InstancePoolLifecycleStateEnum Enum with underlying type: string
 type InstancePoolLifecycleStateEnum string
 
-// Set of constants representing the allowable values for InstancePoolLifecycleState
+// Set of constants representing the allowable values for InstancePoolLifecycleStateEnum
 const (
 	InstancePoolLifecycleStateProvisioning InstancePoolLifecycleStateEnum = "PROVISIONING"
 	InstancePoolLifecycleStateScaling      InstancePoolLifecycleStateEnum = "SCALING"
@@ -82,7 +82,7 @@ var mappingInstancePoolLifecycleState = map[string]InstancePoolLifecycleStateEnu
 	"RUNNING":      InstancePoolLifecycleStateRunning,
 }
 
-// GetInstancePoolLifecycleStateEnumValues Enumerates the set of values for InstancePoolLifecycleState
+// GetInstancePoolLifecycleStateEnumValues Enumerates the set of values for InstancePoolLifecycleStateEnum
 func GetInstancePoolLifecycleStateEnumValues() []InstancePoolLifecycleStateEnum {
 	values := make([]InstancePoolLifecycleStateEnum, 0)
 	for _, v := range mappingInstancePoolLifecycleState {

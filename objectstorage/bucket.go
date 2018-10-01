@@ -91,7 +91,7 @@ func (m Bucket) String() string {
 // BucketPublicAccessTypeEnum Enum with underlying type: string
 type BucketPublicAccessTypeEnum string
 
-// Set of constants representing the allowable values for BucketPublicAccessType
+// Set of constants representing the allowable values for BucketPublicAccessTypeEnum
 const (
 	BucketPublicAccessTypeNopublicaccess        BucketPublicAccessTypeEnum = "NoPublicAccess"
 	BucketPublicAccessTypeObjectread            BucketPublicAccessTypeEnum = "ObjectRead"
@@ -104,7 +104,7 @@ var mappingBucketPublicAccessType = map[string]BucketPublicAccessTypeEnum{
 	"ObjectReadWithoutList": BucketPublicAccessTypeObjectreadwithoutlist,
 }
 
-// GetBucketPublicAccessTypeEnumValues Enumerates the set of values for BucketPublicAccessType
+// GetBucketPublicAccessTypeEnumValues Enumerates the set of values for BucketPublicAccessTypeEnum
 func GetBucketPublicAccessTypeEnumValues() []BucketPublicAccessTypeEnum {
 	values := make([]BucketPublicAccessTypeEnum, 0)
 	for _, v := range mappingBucketPublicAccessType {
@@ -116,7 +116,7 @@ func GetBucketPublicAccessTypeEnumValues() []BucketPublicAccessTypeEnum {
 // BucketStorageTierEnum Enum with underlying type: string
 type BucketStorageTierEnum string
 
-// Set of constants representing the allowable values for BucketStorageTier
+// Set of constants representing the allowable values for BucketStorageTierEnum
 const (
 	BucketStorageTierStandard BucketStorageTierEnum = "Standard"
 	BucketStorageTierArchive  BucketStorageTierEnum = "Archive"
@@ -127,7 +127,7 @@ var mappingBucketStorageTier = map[string]BucketStorageTierEnum{
 	"Archive":  BucketStorageTierArchive,
 }
 
-// GetBucketStorageTierEnumValues Enumerates the set of values for BucketStorageTier
+// GetBucketStorageTierEnumValues Enumerates the set of values for BucketStorageTierEnum
 func GetBucketStorageTierEnumValues() []BucketStorageTierEnum {
 	values := make([]BucketStorageTierEnum, 0)
 	for _, v := range mappingBucketStorageTier {
@@ -139,7 +139,7 @@ func GetBucketStorageTierEnumValues() []BucketStorageTierEnum {
 // BucketObjectLevelAuditModeEnum Enum with underlying type: string
 type BucketObjectLevelAuditModeEnum string
 
-// Set of constants representing the allowable values for BucketObjectLevelAuditMode
+// Set of constants representing the allowable values for BucketObjectLevelAuditModeEnum
 const (
 	BucketObjectLevelAuditModeDisabled  BucketObjectLevelAuditModeEnum = "Disabled"
 	BucketObjectLevelAuditModeWrite     BucketObjectLevelAuditModeEnum = "Write"
@@ -152,7 +152,7 @@ var mappingBucketObjectLevelAuditMode = map[string]BucketObjectLevelAuditModeEnu
 	"ReadWrite": BucketObjectLevelAuditModeReadwrite,
 }
 
-// GetBucketObjectLevelAuditModeEnumValues Enumerates the set of values for BucketObjectLevelAuditMode
+// GetBucketObjectLevelAuditModeEnumValues Enumerates the set of values for BucketObjectLevelAuditModeEnum
 func GetBucketObjectLevelAuditModeEnumValues() []BucketObjectLevelAuditModeEnum {
 	values := make([]BucketObjectLevelAuditModeEnum, 0)
 	for _, v := range mappingBucketObjectLevelAuditMode {

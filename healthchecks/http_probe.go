@@ -55,7 +55,7 @@ func (m HttpProbe) String() string {
 // HttpProbeProtocolEnum Enum with underlying type: string
 type HttpProbeProtocolEnum string
 
-// Set of constants representing the allowable values for HttpProbeProtocol
+// Set of constants representing the allowable values for HttpProbeProtocolEnum
 const (
 	HttpProbeProtocolHttp  HttpProbeProtocolEnum = "HTTP"
 	HttpProbeProtocolHttps HttpProbeProtocolEnum = "HTTPS"
@@ -66,7 +66,7 @@ var mappingHttpProbeProtocol = map[string]HttpProbeProtocolEnum{
 	"HTTPS": HttpProbeProtocolHttps,
 }
 
-// GetHttpProbeProtocolEnumValues Enumerates the set of values for HttpProbeProtocol
+// GetHttpProbeProtocolEnumValues Enumerates the set of values for HttpProbeProtocolEnum
 func GetHttpProbeProtocolEnumValues() []HttpProbeProtocolEnum {
 	values := make([]HttpProbeProtocolEnum, 0)
 	for _, v := range mappingHttpProbeProtocol {
@@ -78,7 +78,7 @@ func GetHttpProbeProtocolEnumValues() []HttpProbeProtocolEnum {
 // HttpProbeMethodEnum Enum with underlying type: string
 type HttpProbeMethodEnum string
 
-// Set of constants representing the allowable values for HttpProbeMethod
+// Set of constants representing the allowable values for HttpProbeMethodEnum
 const (
 	HttpProbeMethodGet  HttpProbeMethodEnum = "GET"
 	HttpProbeMethodHead HttpProbeMethodEnum = "HEAD"
@@ -89,7 +89,7 @@ var mappingHttpProbeMethod = map[string]HttpProbeMethodEnum{
 	"HEAD": HttpProbeMethodHead,
 }
 
-// GetHttpProbeMethodEnumValues Enumerates the set of values for HttpProbeMethod
+// GetHttpProbeMethodEnumValues Enumerates the set of values for HttpProbeMethodEnum
 func GetHttpProbeMethodEnumValues() []HttpProbeMethodEnum {
 	values := make([]HttpProbeMethodEnum, 0)
 	for _, v := range mappingHttpProbeMethod {

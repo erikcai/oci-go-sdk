@@ -58,7 +58,7 @@ func (m LocalPeeringConnection) String() string {
 // LocalPeeringConnectionLifecycleStateEnum Enum with underlying type: string
 type LocalPeeringConnectionLifecycleStateEnum string
 
-// Set of constants representing the allowable values for LocalPeeringConnectionLifecycleState
+// Set of constants representing the allowable values for LocalPeeringConnectionLifecycleStateEnum
 const (
 	LocalPeeringConnectionLifecycleStateProvisioning LocalPeeringConnectionLifecycleStateEnum = "PROVISIONING"
 	LocalPeeringConnectionLifecycleStateAvailable    LocalPeeringConnectionLifecycleStateEnum = "AVAILABLE"
@@ -73,7 +73,7 @@ var mappingLocalPeeringConnectionLifecycleState = map[string]LocalPeeringConnect
 	"TERMINATED":   LocalPeeringConnectionLifecycleStateTerminated,
 }
 
-// GetLocalPeeringConnectionLifecycleStateEnumValues Enumerates the set of values for LocalPeeringConnectionLifecycleState
+// GetLocalPeeringConnectionLifecycleStateEnumValues Enumerates the set of values for LocalPeeringConnectionLifecycleStateEnum
 func GetLocalPeeringConnectionLifecycleStateEnumValues() []LocalPeeringConnectionLifecycleStateEnum {
 	values := make([]LocalPeeringConnectionLifecycleStateEnum, 0)
 	for _, v := range mappingLocalPeeringConnectionLifecycleState {
@@ -85,7 +85,7 @@ func GetLocalPeeringConnectionLifecycleStateEnumValues() []LocalPeeringConnectio
 // LocalPeeringConnectionPeeringStatusEnum Enum with underlying type: string
 type LocalPeeringConnectionPeeringStatusEnum string
 
-// Set of constants representing the allowable values for LocalPeeringConnectionPeeringStatus
+// Set of constants representing the allowable values for LocalPeeringConnectionPeeringStatusEnum
 const (
 	LocalPeeringConnectionPeeringStatusInvalid LocalPeeringConnectionPeeringStatusEnum = "INVALID"
 	LocalPeeringConnectionPeeringStatusNew     LocalPeeringConnectionPeeringStatusEnum = "NEW"
@@ -102,7 +102,7 @@ var mappingLocalPeeringConnectionPeeringStatus = map[string]LocalPeeringConnecti
 	"REVOKED": LocalPeeringConnectionPeeringStatusRevoked,
 }
 
-// GetLocalPeeringConnectionPeeringStatusEnumValues Enumerates the set of values for LocalPeeringConnectionPeeringStatus
+// GetLocalPeeringConnectionPeeringStatusEnumValues Enumerates the set of values for LocalPeeringConnectionPeeringStatusEnum
 func GetLocalPeeringConnectionPeeringStatusEnumValues() []LocalPeeringConnectionPeeringStatusEnum {
 	values := make([]LocalPeeringConnectionPeeringStatusEnum, 0)
 	for _, v := range mappingLocalPeeringConnectionPeeringStatus {

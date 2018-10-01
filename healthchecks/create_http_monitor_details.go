@@ -70,7 +70,7 @@ func (m CreateHttpMonitorDetails) String() string {
 // CreateHttpMonitorDetailsProtocolEnum Enum with underlying type: string
 type CreateHttpMonitorDetailsProtocolEnum string
 
-// Set of constants representing the allowable values for CreateHttpMonitorDetailsProtocol
+// Set of constants representing the allowable values for CreateHttpMonitorDetailsProtocolEnum
 const (
 	CreateHttpMonitorDetailsProtocolHttp  CreateHttpMonitorDetailsProtocolEnum = "HTTP"
 	CreateHttpMonitorDetailsProtocolHttps CreateHttpMonitorDetailsProtocolEnum = "HTTPS"
@@ -81,7 +81,7 @@ var mappingCreateHttpMonitorDetailsProtocol = map[string]CreateHttpMonitorDetail
 	"HTTPS": CreateHttpMonitorDetailsProtocolHttps,
 }
 
-// GetCreateHttpMonitorDetailsProtocolEnumValues Enumerates the set of values for CreateHttpMonitorDetailsProtocol
+// GetCreateHttpMonitorDetailsProtocolEnumValues Enumerates the set of values for CreateHttpMonitorDetailsProtocolEnum
 func GetCreateHttpMonitorDetailsProtocolEnumValues() []CreateHttpMonitorDetailsProtocolEnum {
 	values := make([]CreateHttpMonitorDetailsProtocolEnum, 0)
 	for _, v := range mappingCreateHttpMonitorDetailsProtocol {
@@ -93,7 +93,7 @@ func GetCreateHttpMonitorDetailsProtocolEnumValues() []CreateHttpMonitorDetailsP
 // CreateHttpMonitorDetailsMethodEnum Enum with underlying type: string
 type CreateHttpMonitorDetailsMethodEnum string
 
-// Set of constants representing the allowable values for CreateHttpMonitorDetailsMethod
+// Set of constants representing the allowable values for CreateHttpMonitorDetailsMethodEnum
 const (
 	CreateHttpMonitorDetailsMethodGet  CreateHttpMonitorDetailsMethodEnum = "GET"
 	CreateHttpMonitorDetailsMethodHead CreateHttpMonitorDetailsMethodEnum = "HEAD"
@@ -104,7 +104,7 @@ var mappingCreateHttpMonitorDetailsMethod = map[string]CreateHttpMonitorDetailsM
 	"HEAD": CreateHttpMonitorDetailsMethodHead,
 }
 
-// GetCreateHttpMonitorDetailsMethodEnumValues Enumerates the set of values for CreateHttpMonitorDetailsMethod
+// GetCreateHttpMonitorDetailsMethodEnumValues Enumerates the set of values for CreateHttpMonitorDetailsMethodEnum
 func GetCreateHttpMonitorDetailsMethodEnumValues() []CreateHttpMonitorDetailsMethodEnum {
 	values := make([]CreateHttpMonitorDetailsMethodEnum, 0)
 	for _, v := range mappingCreateHttpMonitorDetailsMethod {

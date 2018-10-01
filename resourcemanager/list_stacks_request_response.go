@@ -92,7 +92,7 @@ func (response ListStacksResponse) HTTPResponse() *http.Response {
 // ListStacksSortByEnum Enum with underlying type: string
 type ListStacksSortByEnum string
 
-// Set of constants representing the allowable values for ListStacksSortBy
+// Set of constants representing the allowable values for ListStacksSortByEnum
 const (
 	ListStacksSortByTimecreated ListStacksSortByEnum = "TIMECREATED"
 	ListStacksSortByDisplayname ListStacksSortByEnum = "DISPLAYNAME"
@@ -103,7 +103,7 @@ var mappingListStacksSortBy = map[string]ListStacksSortByEnum{
 	"DISPLAYNAME": ListStacksSortByDisplayname,
 }
 
-// GetListStacksSortByEnumValues Enumerates the set of values for ListStacksSortBy
+// GetListStacksSortByEnumValues Enumerates the set of values for ListStacksSortByEnum
 func GetListStacksSortByEnumValues() []ListStacksSortByEnum {
 	values := make([]ListStacksSortByEnum, 0)
 	for _, v := range mappingListStacksSortBy {
@@ -115,7 +115,7 @@ func GetListStacksSortByEnumValues() []ListStacksSortByEnum {
 // ListStacksSortOrderEnum Enum with underlying type: string
 type ListStacksSortOrderEnum string
 
-// Set of constants representing the allowable values for ListStacksSortOrder
+// Set of constants representing the allowable values for ListStacksSortOrderEnum
 const (
 	ListStacksSortOrderAsc  ListStacksSortOrderEnum = "ASC"
 	ListStacksSortOrderDesc ListStacksSortOrderEnum = "DESC"
@@ -126,7 +126,7 @@ var mappingListStacksSortOrder = map[string]ListStacksSortOrderEnum{
 	"DESC": ListStacksSortOrderDesc,
 }
 
-// GetListStacksSortOrderEnumValues Enumerates the set of values for ListStacksSortOrder
+// GetListStacksSortOrderEnumValues Enumerates the set of values for ListStacksSortOrderEnum
 func GetListStacksSortOrderEnumValues() []ListStacksSortOrderEnum {
 	values := make([]ListStacksSortOrderEnum, 0)
 	for _, v := range mappingListStacksSortOrder {

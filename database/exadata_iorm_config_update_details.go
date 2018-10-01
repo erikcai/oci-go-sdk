@@ -31,7 +31,7 @@ func (m ExadataIormConfigUpdateDetails) String() string {
 // ExadataIormConfigUpdateDetailsObjectiveEnum Enum with underlying type: string
 type ExadataIormConfigUpdateDetailsObjectiveEnum string
 
-// Set of constants representing the allowable values for ExadataIormConfigUpdateDetailsObjective
+// Set of constants representing the allowable values for ExadataIormConfigUpdateDetailsObjectiveEnum
 const (
 	ExadataIormConfigUpdateDetailsObjectiveLowLatency     ExadataIormConfigUpdateDetailsObjectiveEnum = "LOW_LATENCY"
 	ExadataIormConfigUpdateDetailsObjectiveHighThroughput ExadataIormConfigUpdateDetailsObjectiveEnum = "HIGH_THROUGHPUT"
@@ -48,7 +48,7 @@ var mappingExadataIormConfigUpdateDetailsObjective = map[string]ExadataIormConfi
 	"BASIC":           ExadataIormConfigUpdateDetailsObjectiveBasic,
 }
 
-// GetExadataIormConfigUpdateDetailsObjectiveEnumValues Enumerates the set of values for ExadataIormConfigUpdateDetailsObjective
+// GetExadataIormConfigUpdateDetailsObjectiveEnumValues Enumerates the set of values for ExadataIormConfigUpdateDetailsObjectiveEnum
 func GetExadataIormConfigUpdateDetailsObjectiveEnumValues() []ExadataIormConfigUpdateDetailsObjectiveEnum {
 	values := make([]ExadataIormConfigUpdateDetailsObjectiveEnum, 0)
 	for _, v := range mappingExadataIormConfigUpdateDetailsObjective {

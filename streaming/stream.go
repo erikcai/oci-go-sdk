@@ -61,7 +61,7 @@ func (m Stream) String() string {
 // StreamLifecycleStateEnum Enum with underlying type: string
 type StreamLifecycleStateEnum string
 
-// Set of constants representing the allowable values for StreamLifecycleState
+// Set of constants representing the allowable values for StreamLifecycleStateEnum
 const (
 	StreamLifecycleStateCreating StreamLifecycleStateEnum = "CREATING"
 	StreamLifecycleStateActive   StreamLifecycleStateEnum = "ACTIVE"
@@ -78,7 +78,7 @@ var mappingStreamLifecycleState = map[string]StreamLifecycleStateEnum{
 	"FAILED":   StreamLifecycleStateFailed,
 }
 
-// GetStreamLifecycleStateEnumValues Enumerates the set of values for StreamLifecycleState
+// GetStreamLifecycleStateEnumValues Enumerates the set of values for StreamLifecycleStateEnum
 func GetStreamLifecycleStateEnumValues() []StreamLifecycleStateEnum {
 	values := make([]StreamLifecycleStateEnum, 0)
 	for _, v := range mappingStreamLifecycleState {

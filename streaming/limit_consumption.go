@@ -32,7 +32,7 @@ func (m LimitConsumption) String() string {
 // LimitConsumptionScopeEnum Enum with underlying type: string
 type LimitConsumptionScopeEnum string
 
-// Set of constants representing the allowable values for LimitConsumptionScope
+// Set of constants representing the allowable values for LimitConsumptionScopeEnum
 const (
 	LimitConsumptionScopeRegion             LimitConsumptionScopeEnum = "REGION"
 	LimitConsumptionScopeAvailabilityDomain LimitConsumptionScopeEnum = "AVAILABILITY_DOMAIN"
@@ -43,7 +43,7 @@ var mappingLimitConsumptionScope = map[string]LimitConsumptionScopeEnum{
 	"AVAILABILITY_DOMAIN": LimitConsumptionScopeAvailabilityDomain,
 }
 
-// GetLimitConsumptionScopeEnumValues Enumerates the set of values for LimitConsumptionScope
+// GetLimitConsumptionScopeEnumValues Enumerates the set of values for LimitConsumptionScopeEnum
 func GetLimitConsumptionScopeEnumValues() []LimitConsumptionScopeEnum {
 	values := make([]LimitConsumptionScopeEnum, 0)
 	for _, v := range mappingLimitConsumptionScope {

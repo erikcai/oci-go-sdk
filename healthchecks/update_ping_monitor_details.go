@@ -58,7 +58,7 @@ func (m UpdatePingMonitorDetails) String() string {
 // UpdatePingMonitorDetailsProtocolEnum Enum with underlying type: string
 type UpdatePingMonitorDetailsProtocolEnum string
 
-// Set of constants representing the allowable values for UpdatePingMonitorDetailsProtocol
+// Set of constants representing the allowable values for UpdatePingMonitorDetailsProtocolEnum
 const (
 	UpdatePingMonitorDetailsProtocolIcmp UpdatePingMonitorDetailsProtocolEnum = "ICMP"
 	UpdatePingMonitorDetailsProtocolTcp  UpdatePingMonitorDetailsProtocolEnum = "TCP"
@@ -69,7 +69,7 @@ var mappingUpdatePingMonitorDetailsProtocol = map[string]UpdatePingMonitorDetail
 	"TCP":  UpdatePingMonitorDetailsProtocolTcp,
 }
 
-// GetUpdatePingMonitorDetailsProtocolEnumValues Enumerates the set of values for UpdatePingMonitorDetailsProtocol
+// GetUpdatePingMonitorDetailsProtocolEnumValues Enumerates the set of values for UpdatePingMonitorDetailsProtocolEnum
 func GetUpdatePingMonitorDetailsProtocolEnumValues() []UpdatePingMonitorDetailsProtocolEnum {
 	values := make([]UpdatePingMonitorDetailsProtocolEnum, 0)
 	for _, v := range mappingUpdatePingMonitorDetailsProtocol {

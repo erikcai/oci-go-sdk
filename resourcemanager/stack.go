@@ -97,7 +97,7 @@ func (m *Stack) UnmarshalJSON(data []byte) (e error) {
 // StackLifecycleStateEnum Enum with underlying type: string
 type StackLifecycleStateEnum string
 
-// Set of constants representing the allowable values for StackLifecycleState
+// Set of constants representing the allowable values for StackLifecycleStateEnum
 const (
 	StackLifecycleStateCreating StackLifecycleStateEnum = "CREATING"
 	StackLifecycleStateActive   StackLifecycleStateEnum = "ACTIVE"
@@ -112,7 +112,7 @@ var mappingStackLifecycleState = map[string]StackLifecycleStateEnum{
 	"DELETED":  StackLifecycleStateDeleted,
 }
 
-// GetStackLifecycleStateEnumValues Enumerates the set of values for StackLifecycleState
+// GetStackLifecycleStateEnumValues Enumerates the set of values for StackLifecycleStateEnum
 func GetStackLifecycleStateEnumValues() []StackLifecycleStateEnum {
 	values := make([]StackLifecycleStateEnum, 0)
 	for _, v := range mappingStackLifecycleState {

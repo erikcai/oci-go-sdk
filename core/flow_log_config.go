@@ -115,7 +115,7 @@ func (m *FlowLogConfig) UnmarshalJSON(data []byte) (e error) {
 // FlowLogConfigLifecycleStateEnum Enum with underlying type: string
 type FlowLogConfigLifecycleStateEnum string
 
-// Set of constants representing the allowable values for FlowLogConfigLifecycleState
+// Set of constants representing the allowable values for FlowLogConfigLifecycleStateEnum
 const (
 	FlowLogConfigLifecycleStateProvisioning FlowLogConfigLifecycleStateEnum = "PROVISIONING"
 	FlowLogConfigLifecycleStateAvailable    FlowLogConfigLifecycleStateEnum = "AVAILABLE"
@@ -130,7 +130,7 @@ var mappingFlowLogConfigLifecycleState = map[string]FlowLogConfigLifecycleStateE
 	"TERMINATED":   FlowLogConfigLifecycleStateTerminated,
 }
 
-// GetFlowLogConfigLifecycleStateEnumValues Enumerates the set of values for FlowLogConfigLifecycleState
+// GetFlowLogConfigLifecycleStateEnumValues Enumerates the set of values for FlowLogConfigLifecycleStateEnum
 func GetFlowLogConfigLifecycleStateEnumValues() []FlowLogConfigLifecycleStateEnum {
 	values := make([]FlowLogConfigLifecycleStateEnum, 0)
 	for _, v := range mappingFlowLogConfigLifecycleState {
@@ -142,7 +142,7 @@ func GetFlowLogConfigLifecycleStateEnumValues() []FlowLogConfigLifecycleStateEnu
 // FlowLogConfigFlowLogTypeEnum Enum with underlying type: string
 type FlowLogConfigFlowLogTypeEnum string
 
-// Set of constants representing the allowable values for FlowLogConfigFlowLogType
+// Set of constants representing the allowable values for FlowLogConfigFlowLogTypeEnum
 const (
 	FlowLogConfigFlowLogTypeAll FlowLogConfigFlowLogTypeEnum = "ALL"
 )
@@ -151,7 +151,7 @@ var mappingFlowLogConfigFlowLogType = map[string]FlowLogConfigFlowLogTypeEnum{
 	"ALL": FlowLogConfigFlowLogTypeAll,
 }
 
-// GetFlowLogConfigFlowLogTypeEnumValues Enumerates the set of values for FlowLogConfigFlowLogType
+// GetFlowLogConfigFlowLogTypeEnumValues Enumerates the set of values for FlowLogConfigFlowLogTypeEnum
 func GetFlowLogConfigFlowLogTypeEnumValues() []FlowLogConfigFlowLogTypeEnum {
 	values := make([]FlowLogConfigFlowLogTypeEnum, 0)
 	for _, v := range mappingFlowLogConfigFlowLogType {

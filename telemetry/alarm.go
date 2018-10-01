@@ -126,7 +126,7 @@ func (m Alarm) String() string {
 // AlarmSeverityEnum Enum with underlying type: string
 type AlarmSeverityEnum string
 
-// Set of constants representing the allowable values for AlarmSeverity
+// Set of constants representing the allowable values for AlarmSeverityEnum
 const (
 	AlarmSeverityCritical AlarmSeverityEnum = "CRITICAL"
 	AlarmSeverityError    AlarmSeverityEnum = "ERROR"
@@ -141,7 +141,7 @@ var mappingAlarmSeverity = map[string]AlarmSeverityEnum{
 	"INFO":     AlarmSeverityInfo,
 }
 
-// GetAlarmSeverityEnumValues Enumerates the set of values for AlarmSeverity
+// GetAlarmSeverityEnumValues Enumerates the set of values for AlarmSeverityEnum
 func GetAlarmSeverityEnumValues() []AlarmSeverityEnum {
 	values := make([]AlarmSeverityEnum, 0)
 	for _, v := range mappingAlarmSeverity {

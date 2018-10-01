@@ -56,7 +56,7 @@ func (m FlowLogConfigAttachment) String() string {
 // FlowLogConfigAttachmentLifecycleStateEnum Enum with underlying type: string
 type FlowLogConfigAttachmentLifecycleStateEnum string
 
-// Set of constants representing the allowable values for FlowLogConfigAttachmentLifecycleState
+// Set of constants representing the allowable values for FlowLogConfigAttachmentLifecycleStateEnum
 const (
 	FlowLogConfigAttachmentLifecycleStateProvisioning FlowLogConfigAttachmentLifecycleStateEnum = "PROVISIONING"
 	FlowLogConfigAttachmentLifecycleStateAvailable    FlowLogConfigAttachmentLifecycleStateEnum = "AVAILABLE"
@@ -71,7 +71,7 @@ var mappingFlowLogConfigAttachmentLifecycleState = map[string]FlowLogConfigAttac
 	"TERMINATED":   FlowLogConfigAttachmentLifecycleStateTerminated,
 }
 
-// GetFlowLogConfigAttachmentLifecycleStateEnumValues Enumerates the set of values for FlowLogConfigAttachmentLifecycleState
+// GetFlowLogConfigAttachmentLifecycleStateEnumValues Enumerates the set of values for FlowLogConfigAttachmentLifecycleStateEnum
 func GetFlowLogConfigAttachmentLifecycleStateEnumValues() []FlowLogConfigAttachmentLifecycleStateEnum {
 	values := make([]FlowLogConfigAttachmentLifecycleStateEnum, 0)
 	for _, v := range mappingFlowLogConfigAttachmentLifecycleState {
@@ -83,7 +83,7 @@ func GetFlowLogConfigAttachmentLifecycleStateEnumValues() []FlowLogConfigAttachm
 // FlowLogConfigAttachmentTargetEntityTypeEnum Enum with underlying type: string
 type FlowLogConfigAttachmentTargetEntityTypeEnum string
 
-// Set of constants representing the allowable values for FlowLogConfigAttachmentTargetEntityType
+// Set of constants representing the allowable values for FlowLogConfigAttachmentTargetEntityTypeEnum
 const (
 	FlowLogConfigAttachmentTargetEntityTypeSubnet FlowLogConfigAttachmentTargetEntityTypeEnum = "SUBNET"
 )
@@ -92,7 +92,7 @@ var mappingFlowLogConfigAttachmentTargetEntityType = map[string]FlowLogConfigAtt
 	"SUBNET": FlowLogConfigAttachmentTargetEntityTypeSubnet,
 }
 
-// GetFlowLogConfigAttachmentTargetEntityTypeEnumValues Enumerates the set of values for FlowLogConfigAttachmentTargetEntityType
+// GetFlowLogConfigAttachmentTargetEntityTypeEnumValues Enumerates the set of values for FlowLogConfigAttachmentTargetEntityTypeEnum
 func GetFlowLogConfigAttachmentTargetEntityTypeEnumValues() []FlowLogConfigAttachmentTargetEntityTypeEnum {
 	values := make([]FlowLogConfigAttachmentTargetEntityTypeEnum, 0)
 	for _, v := range mappingFlowLogConfigAttachmentTargetEntityType {

@@ -41,7 +41,7 @@ func (m CreateOnDemandPingProbeDetails) String() string {
 // CreateOnDemandPingProbeDetailsProtocolEnum Enum with underlying type: string
 type CreateOnDemandPingProbeDetailsProtocolEnum string
 
-// Set of constants representing the allowable values for CreateOnDemandPingProbeDetailsProtocol
+// Set of constants representing the allowable values for CreateOnDemandPingProbeDetailsProtocolEnum
 const (
 	CreateOnDemandPingProbeDetailsProtocolIcmp CreateOnDemandPingProbeDetailsProtocolEnum = "ICMP"
 	CreateOnDemandPingProbeDetailsProtocolTcp  CreateOnDemandPingProbeDetailsProtocolEnum = "TCP"
@@ -52,7 +52,7 @@ var mappingCreateOnDemandPingProbeDetailsProtocol = map[string]CreateOnDemandPin
 	"TCP":  CreateOnDemandPingProbeDetailsProtocolTcp,
 }
 
-// GetCreateOnDemandPingProbeDetailsProtocolEnumValues Enumerates the set of values for CreateOnDemandPingProbeDetailsProtocol
+// GetCreateOnDemandPingProbeDetailsProtocolEnumValues Enumerates the set of values for CreateOnDemandPingProbeDetailsProtocolEnum
 func GetCreateOnDemandPingProbeDetailsProtocolEnumValues() []CreateOnDemandPingProbeDetailsProtocolEnum {
 	values := make([]CreateOnDemandPingProbeDetailsProtocolEnum, 0)
 	for _, v := range mappingCreateOnDemandPingProbeDetailsProtocol {

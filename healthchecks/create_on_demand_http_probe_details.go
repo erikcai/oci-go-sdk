@@ -49,7 +49,7 @@ func (m CreateOnDemandHttpProbeDetails) String() string {
 // CreateOnDemandHttpProbeDetailsProtocolEnum Enum with underlying type: string
 type CreateOnDemandHttpProbeDetailsProtocolEnum string
 
-// Set of constants representing the allowable values for CreateOnDemandHttpProbeDetailsProtocol
+// Set of constants representing the allowable values for CreateOnDemandHttpProbeDetailsProtocolEnum
 const (
 	CreateOnDemandHttpProbeDetailsProtocolHttp  CreateOnDemandHttpProbeDetailsProtocolEnum = "HTTP"
 	CreateOnDemandHttpProbeDetailsProtocolHttps CreateOnDemandHttpProbeDetailsProtocolEnum = "HTTPS"
@@ -60,7 +60,7 @@ var mappingCreateOnDemandHttpProbeDetailsProtocol = map[string]CreateOnDemandHtt
 	"HTTPS": CreateOnDemandHttpProbeDetailsProtocolHttps,
 }
 
-// GetCreateOnDemandHttpProbeDetailsProtocolEnumValues Enumerates the set of values for CreateOnDemandHttpProbeDetailsProtocol
+// GetCreateOnDemandHttpProbeDetailsProtocolEnumValues Enumerates the set of values for CreateOnDemandHttpProbeDetailsProtocolEnum
 func GetCreateOnDemandHttpProbeDetailsProtocolEnumValues() []CreateOnDemandHttpProbeDetailsProtocolEnum {
 	values := make([]CreateOnDemandHttpProbeDetailsProtocolEnum, 0)
 	for _, v := range mappingCreateOnDemandHttpProbeDetailsProtocol {
@@ -72,7 +72,7 @@ func GetCreateOnDemandHttpProbeDetailsProtocolEnumValues() []CreateOnDemandHttpP
 // CreateOnDemandHttpProbeDetailsMethodEnum Enum with underlying type: string
 type CreateOnDemandHttpProbeDetailsMethodEnum string
 
-// Set of constants representing the allowable values for CreateOnDemandHttpProbeDetailsMethod
+// Set of constants representing the allowable values for CreateOnDemandHttpProbeDetailsMethodEnum
 const (
 	CreateOnDemandHttpProbeDetailsMethodGet  CreateOnDemandHttpProbeDetailsMethodEnum = "GET"
 	CreateOnDemandHttpProbeDetailsMethodHead CreateOnDemandHttpProbeDetailsMethodEnum = "HEAD"
@@ -83,7 +83,7 @@ var mappingCreateOnDemandHttpProbeDetailsMethod = map[string]CreateOnDemandHttpP
 	"HEAD": CreateOnDemandHttpProbeDetailsMethodHead,
 }
 
-// GetCreateOnDemandHttpProbeDetailsMethodEnumValues Enumerates the set of values for CreateOnDemandHttpProbeDetailsMethod
+// GetCreateOnDemandHttpProbeDetailsMethodEnumValues Enumerates the set of values for CreateOnDemandHttpProbeDetailsMethodEnum
 func GetCreateOnDemandHttpProbeDetailsMethodEnumValues() []CreateOnDemandHttpProbeDetailsMethodEnum {
 	values := make([]CreateOnDemandHttpProbeDetailsMethodEnum, 0)
 	for _, v := range mappingCreateOnDemandHttpProbeDetailsMethod {

@@ -95,7 +95,7 @@ func (response ListFlowLogConfigsResponse) HTTPResponse() *http.Response {
 // ListFlowLogConfigsSortByEnum Enum with underlying type: string
 type ListFlowLogConfigsSortByEnum string
 
-// Set of constants representing the allowable values for ListFlowLogConfigsSortBy
+// Set of constants representing the allowable values for ListFlowLogConfigsSortByEnum
 const (
 	ListFlowLogConfigsSortByTimecreated ListFlowLogConfigsSortByEnum = "TIMECREATED"
 	ListFlowLogConfigsSortByDisplayname ListFlowLogConfigsSortByEnum = "DISPLAYNAME"
@@ -106,7 +106,7 @@ var mappingListFlowLogConfigsSortBy = map[string]ListFlowLogConfigsSortByEnum{
 	"DISPLAYNAME": ListFlowLogConfigsSortByDisplayname,
 }
 
-// GetListFlowLogConfigsSortByEnumValues Enumerates the set of values for ListFlowLogConfigsSortBy
+// GetListFlowLogConfigsSortByEnumValues Enumerates the set of values for ListFlowLogConfigsSortByEnum
 func GetListFlowLogConfigsSortByEnumValues() []ListFlowLogConfigsSortByEnum {
 	values := make([]ListFlowLogConfigsSortByEnum, 0)
 	for _, v := range mappingListFlowLogConfigsSortBy {
@@ -118,7 +118,7 @@ func GetListFlowLogConfigsSortByEnumValues() []ListFlowLogConfigsSortByEnum {
 // ListFlowLogConfigsSortOrderEnum Enum with underlying type: string
 type ListFlowLogConfigsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListFlowLogConfigsSortOrder
+// Set of constants representing the allowable values for ListFlowLogConfigsSortOrderEnum
 const (
 	ListFlowLogConfigsSortOrderAsc  ListFlowLogConfigsSortOrderEnum = "ASC"
 	ListFlowLogConfigsSortOrderDesc ListFlowLogConfigsSortOrderEnum = "DESC"
@@ -129,7 +129,7 @@ var mappingListFlowLogConfigsSortOrder = map[string]ListFlowLogConfigsSortOrderE
 	"DESC": ListFlowLogConfigsSortOrderDesc,
 }
 
-// GetListFlowLogConfigsSortOrderEnumValues Enumerates the set of values for ListFlowLogConfigsSortOrder
+// GetListFlowLogConfigsSortOrderEnumValues Enumerates the set of values for ListFlowLogConfigsSortOrderEnum
 func GetListFlowLogConfigsSortOrderEnumValues() []ListFlowLogConfigsSortOrderEnum {
 	values := make([]ListFlowLogConfigsSortOrderEnum, 0)
 	for _, v := range mappingListFlowLogConfigsSortOrder {

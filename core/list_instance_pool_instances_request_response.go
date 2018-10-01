@@ -98,7 +98,7 @@ func (response ListInstancePoolInstancesResponse) HTTPResponse() *http.Response 
 // ListInstancePoolInstancesSortByEnum Enum with underlying type: string
 type ListInstancePoolInstancesSortByEnum string
 
-// Set of constants representing the allowable values for ListInstancePoolInstancesSortBy
+// Set of constants representing the allowable values for ListInstancePoolInstancesSortByEnum
 const (
 	ListInstancePoolInstancesSortByTimecreated ListInstancePoolInstancesSortByEnum = "TIMECREATED"
 	ListInstancePoolInstancesSortByDisplayname ListInstancePoolInstancesSortByEnum = "DISPLAYNAME"
@@ -109,7 +109,7 @@ var mappingListInstancePoolInstancesSortBy = map[string]ListInstancePoolInstance
 	"DISPLAYNAME": ListInstancePoolInstancesSortByDisplayname,
 }
 
-// GetListInstancePoolInstancesSortByEnumValues Enumerates the set of values for ListInstancePoolInstancesSortBy
+// GetListInstancePoolInstancesSortByEnumValues Enumerates the set of values for ListInstancePoolInstancesSortByEnum
 func GetListInstancePoolInstancesSortByEnumValues() []ListInstancePoolInstancesSortByEnum {
 	values := make([]ListInstancePoolInstancesSortByEnum, 0)
 	for _, v := range mappingListInstancePoolInstancesSortBy {
@@ -121,7 +121,7 @@ func GetListInstancePoolInstancesSortByEnumValues() []ListInstancePoolInstancesS
 // ListInstancePoolInstancesSortOrderEnum Enum with underlying type: string
 type ListInstancePoolInstancesSortOrderEnum string
 
-// Set of constants representing the allowable values for ListInstancePoolInstancesSortOrder
+// Set of constants representing the allowable values for ListInstancePoolInstancesSortOrderEnum
 const (
 	ListInstancePoolInstancesSortOrderAsc  ListInstancePoolInstancesSortOrderEnum = "ASC"
 	ListInstancePoolInstancesSortOrderDesc ListInstancePoolInstancesSortOrderEnum = "DESC"
@@ -132,7 +132,7 @@ var mappingListInstancePoolInstancesSortOrder = map[string]ListInstancePoolInsta
 	"DESC": ListInstancePoolInstancesSortOrderDesc,
 }
 
-// GetListInstancePoolInstancesSortOrderEnumValues Enumerates the set of values for ListInstancePoolInstancesSortOrder
+// GetListInstancePoolInstancesSortOrderEnumValues Enumerates the set of values for ListInstancePoolInstancesSortOrderEnum
 func GetListInstancePoolInstancesSortOrderEnumValues() []ListInstancePoolInstancesSortOrderEnum {
 	values := make([]ListInstancePoolInstancesSortOrderEnum, 0)
 	for _, v := range mappingListInstancePoolInstancesSortOrder {

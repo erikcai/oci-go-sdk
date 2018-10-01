@@ -91,7 +91,7 @@ func (response GetAlarmHistoryResponse) HTTPResponse() *http.Response {
 // GetAlarmHistoryAlarmHistorytypeEnum Enum with underlying type: string
 type GetAlarmHistoryAlarmHistorytypeEnum string
 
-// Set of constants representing the allowable values for GetAlarmHistoryAlarmHistorytype
+// Set of constants representing the allowable values for GetAlarmHistoryAlarmHistorytypeEnum
 const (
 	GetAlarmHistoryAlarmHistorytypeHistory           GetAlarmHistoryAlarmHistorytypeEnum = "STATE_HISTORY"
 	GetAlarmHistoryAlarmHistorytypeTransitionHistory GetAlarmHistoryAlarmHistorytypeEnum = "STATE_TRANSITION_HISTORY"
@@ -102,7 +102,7 @@ var mappingGetAlarmHistoryAlarmHistorytype = map[string]GetAlarmHistoryAlarmHist
 	"STATE_TRANSITION_HISTORY": GetAlarmHistoryAlarmHistorytypeTransitionHistory,
 }
 
-// GetGetAlarmHistoryAlarmHistorytypeEnumValues Enumerates the set of values for GetAlarmHistoryAlarmHistorytype
+// GetGetAlarmHistoryAlarmHistorytypeEnumValues Enumerates the set of values for GetAlarmHistoryAlarmHistorytypeEnum
 func GetGetAlarmHistoryAlarmHistorytypeEnumValues() []GetAlarmHistoryAlarmHistorytypeEnum {
 	values := make([]GetAlarmHistoryAlarmHistorytypeEnum, 0)
 	for _, v := range mappingGetAlarmHistoryAlarmHistorytype {

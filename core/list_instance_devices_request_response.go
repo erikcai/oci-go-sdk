@@ -98,7 +98,7 @@ func (response ListInstanceDevicesResponse) HTTPResponse() *http.Response {
 // ListInstanceDevicesSortByEnum Enum with underlying type: string
 type ListInstanceDevicesSortByEnum string
 
-// Set of constants representing the allowable values for ListInstanceDevicesSortBy
+// Set of constants representing the allowable values for ListInstanceDevicesSortByEnum
 const (
 	ListInstanceDevicesSortByTimecreated ListInstanceDevicesSortByEnum = "TIMECREATED"
 	ListInstanceDevicesSortByDisplayname ListInstanceDevicesSortByEnum = "DISPLAYNAME"
@@ -109,7 +109,7 @@ var mappingListInstanceDevicesSortBy = map[string]ListInstanceDevicesSortByEnum{
 	"DISPLAYNAME": ListInstanceDevicesSortByDisplayname,
 }
 
-// GetListInstanceDevicesSortByEnumValues Enumerates the set of values for ListInstanceDevicesSortBy
+// GetListInstanceDevicesSortByEnumValues Enumerates the set of values for ListInstanceDevicesSortByEnum
 func GetListInstanceDevicesSortByEnumValues() []ListInstanceDevicesSortByEnum {
 	values := make([]ListInstanceDevicesSortByEnum, 0)
 	for _, v := range mappingListInstanceDevicesSortBy {
@@ -121,7 +121,7 @@ func GetListInstanceDevicesSortByEnumValues() []ListInstanceDevicesSortByEnum {
 // ListInstanceDevicesSortOrderEnum Enum with underlying type: string
 type ListInstanceDevicesSortOrderEnum string
 
-// Set of constants representing the allowable values for ListInstanceDevicesSortOrder
+// Set of constants representing the allowable values for ListInstanceDevicesSortOrderEnum
 const (
 	ListInstanceDevicesSortOrderAsc  ListInstanceDevicesSortOrderEnum = "ASC"
 	ListInstanceDevicesSortOrderDesc ListInstanceDevicesSortOrderEnum = "DESC"
@@ -132,7 +132,7 @@ var mappingListInstanceDevicesSortOrder = map[string]ListInstanceDevicesSortOrde
 	"DESC": ListInstanceDevicesSortOrderDesc,
 }
 
-// GetListInstanceDevicesSortOrderEnumValues Enumerates the set of values for ListInstanceDevicesSortOrder
+// GetListInstanceDevicesSortOrderEnumValues Enumerates the set of values for ListInstanceDevicesSortOrderEnum
 func GetListInstanceDevicesSortOrderEnumValues() []ListInstanceDevicesSortOrderEnum {
 	values := make([]ListInstanceDevicesSortOrderEnum, 0)
 	for _, v := range mappingListInstanceDevicesSortOrder {

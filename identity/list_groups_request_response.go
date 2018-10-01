@@ -93,7 +93,7 @@ func (response ListGroupsResponse) HTTPResponse() *http.Response {
 // ListGroupsSortByEnum Enum with underlying type: string
 type ListGroupsSortByEnum string
 
-// Set of constants representing the allowable values for ListGroupsSortBy
+// Set of constants representing the allowable values for ListGroupsSortByEnum
 const (
 	ListGroupsSortByTimecreated ListGroupsSortByEnum = "TIMECREATED"
 	ListGroupsSortByName        ListGroupsSortByEnum = "NAME"
@@ -104,7 +104,7 @@ var mappingListGroupsSortBy = map[string]ListGroupsSortByEnum{
 	"NAME":        ListGroupsSortByName,
 }
 
-// GetListGroupsSortByEnumValues Enumerates the set of values for ListGroupsSortBy
+// GetListGroupsSortByEnumValues Enumerates the set of values for ListGroupsSortByEnum
 func GetListGroupsSortByEnumValues() []ListGroupsSortByEnum {
 	values := make([]ListGroupsSortByEnum, 0)
 	for _, v := range mappingListGroupsSortBy {
@@ -116,7 +116,7 @@ func GetListGroupsSortByEnumValues() []ListGroupsSortByEnum {
 // ListGroupsSortOrderEnum Enum with underlying type: string
 type ListGroupsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListGroupsSortOrder
+// Set of constants representing the allowable values for ListGroupsSortOrderEnum
 const (
 	ListGroupsSortOrderAsc  ListGroupsSortOrderEnum = "ASC"
 	ListGroupsSortOrderDesc ListGroupsSortOrderEnum = "DESC"
@@ -127,7 +127,7 @@ var mappingListGroupsSortOrder = map[string]ListGroupsSortOrderEnum{
 	"DESC": ListGroupsSortOrderDesc,
 }
 
-// GetListGroupsSortOrderEnumValues Enumerates the set of values for ListGroupsSortOrder
+// GetListGroupsSortOrderEnumValues Enumerates the set of values for ListGroupsSortOrderEnum
 func GetListGroupsSortOrderEnumValues() []ListGroupsSortOrderEnum {
 	values := make([]ListGroupsSortOrderEnum, 0)
 	for _, v := range mappingListGroupsSortOrder {

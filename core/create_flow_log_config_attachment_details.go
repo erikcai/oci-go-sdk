@@ -37,7 +37,7 @@ func (m CreateFlowLogConfigAttachmentDetails) String() string {
 // CreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnum Enum with underlying type: string
 type CreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnum string
 
-// Set of constants representing the allowable values for CreateFlowLogConfigAttachmentDetailsTargetEntityType
+// Set of constants representing the allowable values for CreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnum
 const (
 	CreateFlowLogConfigAttachmentDetailsTargetEntityTypeSubnet CreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnum = "SUBNET"
 )
@@ -46,7 +46,7 @@ var mappingCreateFlowLogConfigAttachmentDetailsTargetEntityType = map[string]Cre
 	"SUBNET": CreateFlowLogConfigAttachmentDetailsTargetEntityTypeSubnet,
 }
 
-// GetCreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnumValues Enumerates the set of values for CreateFlowLogConfigAttachmentDetailsTargetEntityType
+// GetCreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnumValues Enumerates the set of values for CreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnum
 func GetCreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnumValues() []CreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnum {
 	values := make([]CreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnum, 0)
 	for _, v := range mappingCreateFlowLogConfigAttachmentDetailsTargetEntityType {

@@ -102,7 +102,7 @@ func (response ListSendersResponse) HTTPResponse() *http.Response {
 // ListSendersSortByEnum Enum with underlying type: string
 type ListSendersSortByEnum string
 
-// Set of constants representing the allowable values for ListSendersSortBy
+// Set of constants representing the allowable values for ListSendersSortByEnum
 const (
 	ListSendersSortByTimecreated  ListSendersSortByEnum = "TIMECREATED"
 	ListSendersSortByEmailaddress ListSendersSortByEnum = "EMAILADDRESS"
@@ -113,7 +113,7 @@ var mappingListSendersSortBy = map[string]ListSendersSortByEnum{
 	"EMAILADDRESS": ListSendersSortByEmailaddress,
 }
 
-// GetListSendersSortByEnumValues Enumerates the set of values for ListSendersSortBy
+// GetListSendersSortByEnumValues Enumerates the set of values for ListSendersSortByEnum
 func GetListSendersSortByEnumValues() []ListSendersSortByEnum {
 	values := make([]ListSendersSortByEnum, 0)
 	for _, v := range mappingListSendersSortBy {
@@ -125,7 +125,7 @@ func GetListSendersSortByEnumValues() []ListSendersSortByEnum {
 // ListSendersSortOrderEnum Enum with underlying type: string
 type ListSendersSortOrderEnum string
 
-// Set of constants representing the allowable values for ListSendersSortOrder
+// Set of constants representing the allowable values for ListSendersSortOrderEnum
 const (
 	ListSendersSortOrderAsc  ListSendersSortOrderEnum = "ASC"
 	ListSendersSortOrderDesc ListSendersSortOrderEnum = "DESC"
@@ -136,7 +136,7 @@ var mappingListSendersSortOrder = map[string]ListSendersSortOrderEnum{
 	"DESC": ListSendersSortOrderDesc,
 }
 
-// GetListSendersSortOrderEnumValues Enumerates the set of values for ListSendersSortOrder
+// GetListSendersSortOrderEnumValues Enumerates the set of values for ListSendersSortOrderEnum
 func GetListSendersSortOrderEnumValues() []ListSendersSortOrderEnum {
 	values := make([]ListSendersSortOrderEnum, 0)
 	for _, v := range mappingListSendersSortOrder {

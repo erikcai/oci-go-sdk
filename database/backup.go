@@ -61,7 +61,7 @@ func (m Backup) String() string {
 // BackupDatabaseEditionEnum Enum with underlying type: string
 type BackupDatabaseEditionEnum string
 
-// Set of constants representing the allowable values for BackupDatabaseEdition
+// Set of constants representing the allowable values for BackupDatabaseEditionEnum
 const (
 	BackupDatabaseEditionStandardEdition                     BackupDatabaseEditionEnum = "STANDARD_EDITION"
 	BackupDatabaseEditionEnterpriseEdition                   BackupDatabaseEditionEnum = "ENTERPRISE_EDITION"
@@ -76,7 +76,7 @@ var mappingBackupDatabaseEdition = map[string]BackupDatabaseEditionEnum{
 	"ENTERPRISE_EDITION_EXTREME_PERFORMANCE": BackupDatabaseEditionEnterpriseEditionExtremePerformance,
 }
 
-// GetBackupDatabaseEditionEnumValues Enumerates the set of values for BackupDatabaseEdition
+// GetBackupDatabaseEditionEnumValues Enumerates the set of values for BackupDatabaseEditionEnum
 func GetBackupDatabaseEditionEnumValues() []BackupDatabaseEditionEnum {
 	values := make([]BackupDatabaseEditionEnum, 0)
 	for _, v := range mappingBackupDatabaseEdition {
@@ -88,7 +88,7 @@ func GetBackupDatabaseEditionEnumValues() []BackupDatabaseEditionEnum {
 // BackupLifecycleStateEnum Enum with underlying type: string
 type BackupLifecycleStateEnum string
 
-// Set of constants representing the allowable values for BackupLifecycleState
+// Set of constants representing the allowable values for BackupLifecycleStateEnum
 const (
 	BackupLifecycleStateCreating  BackupLifecycleStateEnum = "CREATING"
 	BackupLifecycleStateActive    BackupLifecycleStateEnum = "ACTIVE"
@@ -107,7 +107,7 @@ var mappingBackupLifecycleState = map[string]BackupLifecycleStateEnum{
 	"RESTORING": BackupLifecycleStateRestoring,
 }
 
-// GetBackupLifecycleStateEnumValues Enumerates the set of values for BackupLifecycleState
+// GetBackupLifecycleStateEnumValues Enumerates the set of values for BackupLifecycleStateEnum
 func GetBackupLifecycleStateEnumValues() []BackupLifecycleStateEnum {
 	values := make([]BackupLifecycleStateEnum, 0)
 	for _, v := range mappingBackupLifecycleState {
@@ -119,7 +119,7 @@ func GetBackupLifecycleStateEnumValues() []BackupLifecycleStateEnum {
 // BackupTypeEnum Enum with underlying type: string
 type BackupTypeEnum string
 
-// Set of constants representing the allowable values for BackupType
+// Set of constants representing the allowable values for BackupTypeEnum
 const (
 	BackupTypeIncremental BackupTypeEnum = "INCREMENTAL"
 	BackupTypeFull        BackupTypeEnum = "FULL"
@@ -130,7 +130,7 @@ var mappingBackupType = map[string]BackupTypeEnum{
 	"FULL":        BackupTypeFull,
 }
 
-// GetBackupTypeEnumValues Enumerates the set of values for BackupType
+// GetBackupTypeEnumValues Enumerates the set of values for BackupTypeEnum
 func GetBackupTypeEnumValues() []BackupTypeEnum {
 	values := make([]BackupTypeEnum, 0)
 	for _, v := range mappingBackupType {

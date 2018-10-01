@@ -76,7 +76,7 @@ func (m HttpMonitor) String() string {
 // HttpMonitorProtocolEnum Enum with underlying type: string
 type HttpMonitorProtocolEnum string
 
-// Set of constants representing the allowable values for HttpMonitorProtocol
+// Set of constants representing the allowable values for HttpMonitorProtocolEnum
 const (
 	HttpMonitorProtocolHttp  HttpMonitorProtocolEnum = "HTTP"
 	HttpMonitorProtocolHttps HttpMonitorProtocolEnum = "HTTPS"
@@ -87,7 +87,7 @@ var mappingHttpMonitorProtocol = map[string]HttpMonitorProtocolEnum{
 	"HTTPS": HttpMonitorProtocolHttps,
 }
 
-// GetHttpMonitorProtocolEnumValues Enumerates the set of values for HttpMonitorProtocol
+// GetHttpMonitorProtocolEnumValues Enumerates the set of values for HttpMonitorProtocolEnum
 func GetHttpMonitorProtocolEnumValues() []HttpMonitorProtocolEnum {
 	values := make([]HttpMonitorProtocolEnum, 0)
 	for _, v := range mappingHttpMonitorProtocol {
@@ -99,7 +99,7 @@ func GetHttpMonitorProtocolEnumValues() []HttpMonitorProtocolEnum {
 // HttpMonitorMethodEnum Enum with underlying type: string
 type HttpMonitorMethodEnum string
 
-// Set of constants representing the allowable values for HttpMonitorMethod
+// Set of constants representing the allowable values for HttpMonitorMethodEnum
 const (
 	HttpMonitorMethodGet  HttpMonitorMethodEnum = "GET"
 	HttpMonitorMethodHead HttpMonitorMethodEnum = "HEAD"
@@ -110,7 +110,7 @@ var mappingHttpMonitorMethod = map[string]HttpMonitorMethodEnum{
 	"HEAD": HttpMonitorMethodHead,
 }
 
-// GetHttpMonitorMethodEnumValues Enumerates the set of values for HttpMonitorMethod
+// GetHttpMonitorMethodEnumValues Enumerates the set of values for HttpMonitorMethodEnum
 func GetHttpMonitorMethodEnumValues() []HttpMonitorMethodEnum {
 	values := make([]HttpMonitorMethodEnum, 0)
 	for _, v := range mappingHttpMonitorMethod {

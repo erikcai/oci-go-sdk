@@ -86,7 +86,7 @@ func (response ListHealthChecksVantagePointsResponse) HTTPResponse() *http.Respo
 // ListHealthChecksVantagePointsSortByEnum Enum with underlying type: string
 type ListHealthChecksVantagePointsSortByEnum string
 
-// Set of constants representing the allowable values for ListHealthChecksVantagePointsSortBy
+// Set of constants representing the allowable values for ListHealthChecksVantagePointsSortByEnum
 const (
 	ListHealthChecksVantagePointsSortByName        ListHealthChecksVantagePointsSortByEnum = "name"
 	ListHealthChecksVantagePointsSortByDisplayname ListHealthChecksVantagePointsSortByEnum = "displayName"
@@ -97,7 +97,7 @@ var mappingListHealthChecksVantagePointsSortBy = map[string]ListHealthChecksVant
 	"displayName": ListHealthChecksVantagePointsSortByDisplayname,
 }
 
-// GetListHealthChecksVantagePointsSortByEnumValues Enumerates the set of values for ListHealthChecksVantagePointsSortBy
+// GetListHealthChecksVantagePointsSortByEnumValues Enumerates the set of values for ListHealthChecksVantagePointsSortByEnum
 func GetListHealthChecksVantagePointsSortByEnumValues() []ListHealthChecksVantagePointsSortByEnum {
 	values := make([]ListHealthChecksVantagePointsSortByEnum, 0)
 	for _, v := range mappingListHealthChecksVantagePointsSortBy {
@@ -109,7 +109,7 @@ func GetListHealthChecksVantagePointsSortByEnumValues() []ListHealthChecksVantag
 // ListHealthChecksVantagePointsSortOrderEnum Enum with underlying type: string
 type ListHealthChecksVantagePointsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListHealthChecksVantagePointsSortOrder
+// Set of constants representing the allowable values for ListHealthChecksVantagePointsSortOrderEnum
 const (
 	ListHealthChecksVantagePointsSortOrderAsc  ListHealthChecksVantagePointsSortOrderEnum = "ASC"
 	ListHealthChecksVantagePointsSortOrderDesc ListHealthChecksVantagePointsSortOrderEnum = "DESC"
@@ -120,7 +120,7 @@ var mappingListHealthChecksVantagePointsSortOrder = map[string]ListHealthChecksV
 	"DESC": ListHealthChecksVantagePointsSortOrderDesc,
 }
 
-// GetListHealthChecksVantagePointsSortOrderEnumValues Enumerates the set of values for ListHealthChecksVantagePointsSortOrder
+// GetListHealthChecksVantagePointsSortOrderEnumValues Enumerates the set of values for ListHealthChecksVantagePointsSortOrderEnum
 func GetListHealthChecksVantagePointsSortOrderEnumValues() []ListHealthChecksVantagePointsSortOrderEnum {
 	values := make([]ListHealthChecksVantagePointsSortOrderEnum, 0)
 	for _, v := range mappingListHealthChecksVantagePointsSortOrder {

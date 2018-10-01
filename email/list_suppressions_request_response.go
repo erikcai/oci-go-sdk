@@ -113,7 +113,7 @@ func (response ListSuppressionsResponse) HTTPResponse() *http.Response {
 // ListSuppressionsSortByEnum Enum with underlying type: string
 type ListSuppressionsSortByEnum string
 
-// Set of constants representing the allowable values for ListSuppressionsSortBy
+// Set of constants representing the allowable values for ListSuppressionsSortByEnum
 const (
 	ListSuppressionsSortByTimecreated  ListSuppressionsSortByEnum = "TIMECREATED"
 	ListSuppressionsSortByEmailaddress ListSuppressionsSortByEnum = "EMAILADDRESS"
@@ -124,7 +124,7 @@ var mappingListSuppressionsSortBy = map[string]ListSuppressionsSortByEnum{
 	"EMAILADDRESS": ListSuppressionsSortByEmailaddress,
 }
 
-// GetListSuppressionsSortByEnumValues Enumerates the set of values for ListSuppressionsSortBy
+// GetListSuppressionsSortByEnumValues Enumerates the set of values for ListSuppressionsSortByEnum
 func GetListSuppressionsSortByEnumValues() []ListSuppressionsSortByEnum {
 	values := make([]ListSuppressionsSortByEnum, 0)
 	for _, v := range mappingListSuppressionsSortBy {
@@ -136,7 +136,7 @@ func GetListSuppressionsSortByEnumValues() []ListSuppressionsSortByEnum {
 // ListSuppressionsSortOrderEnum Enum with underlying type: string
 type ListSuppressionsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListSuppressionsSortOrder
+// Set of constants representing the allowable values for ListSuppressionsSortOrderEnum
 const (
 	ListSuppressionsSortOrderAsc  ListSuppressionsSortOrderEnum = "ASC"
 	ListSuppressionsSortOrderDesc ListSuppressionsSortOrderEnum = "DESC"
@@ -147,7 +147,7 @@ var mappingListSuppressionsSortOrder = map[string]ListSuppressionsSortOrderEnum{
 	"DESC": ListSuppressionsSortOrderDesc,
 }
 
-// GetListSuppressionsSortOrderEnumValues Enumerates the set of values for ListSuppressionsSortOrder
+// GetListSuppressionsSortOrderEnumValues Enumerates the set of values for ListSuppressionsSortOrderEnum
 func GetListSuppressionsSortOrderEnumValues() []ListSuppressionsSortOrderEnum {
 	values := make([]ListSuppressionsSortOrderEnum, 0)
 	for _, v := range mappingListSuppressionsSortOrder {

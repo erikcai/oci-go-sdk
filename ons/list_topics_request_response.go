@@ -87,7 +87,7 @@ func (response ListTopicsResponse) HTTPResponse() *http.Response {
 // ListTopicsSortByEnum Enum with underlying type: string
 type ListTopicsSortByEnum string
 
-// Set of constants representing the allowable values for ListTopicsSortBy
+// Set of constants representing the allowable values for ListTopicsSortByEnum
 const (
 	ListTopicsSortByTimecreated    ListTopicsSortByEnum = "TIMECREATED"
 	ListTopicsSortByLifecyclestate ListTopicsSortByEnum = "LIFECYCLESTATE"
@@ -98,7 +98,7 @@ var mappingListTopicsSortBy = map[string]ListTopicsSortByEnum{
 	"LIFECYCLESTATE": ListTopicsSortByLifecyclestate,
 }
 
-// GetListTopicsSortByEnumValues Enumerates the set of values for ListTopicsSortBy
+// GetListTopicsSortByEnumValues Enumerates the set of values for ListTopicsSortByEnum
 func GetListTopicsSortByEnumValues() []ListTopicsSortByEnum {
 	values := make([]ListTopicsSortByEnum, 0)
 	for _, v := range mappingListTopicsSortBy {
@@ -110,7 +110,7 @@ func GetListTopicsSortByEnumValues() []ListTopicsSortByEnum {
 // ListTopicsSortOrderEnum Enum with underlying type: string
 type ListTopicsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListTopicsSortOrder
+// Set of constants representing the allowable values for ListTopicsSortOrderEnum
 const (
 	ListTopicsSortOrderAsc  ListTopicsSortOrderEnum = "ASC"
 	ListTopicsSortOrderDesc ListTopicsSortOrderEnum = "DESC"
@@ -121,7 +121,7 @@ var mappingListTopicsSortOrder = map[string]ListTopicsSortOrderEnum{
 	"DESC": ListTopicsSortOrderDesc,
 }
 
-// GetListTopicsSortOrderEnumValues Enumerates the set of values for ListTopicsSortOrder
+// GetListTopicsSortOrderEnumValues Enumerates the set of values for ListTopicsSortOrderEnum
 func GetListTopicsSortOrderEnumValues() []ListTopicsSortOrderEnum {
 	values := make([]ListTopicsSortOrderEnum, 0)
 	for _, v := range mappingListTopicsSortOrder {

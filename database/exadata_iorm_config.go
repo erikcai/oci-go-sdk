@@ -37,7 +37,7 @@ func (m ExadataIormConfig) String() string {
 // ExadataIormConfigLifecycleStateEnum Enum with underlying type: string
 type ExadataIormConfigLifecycleStateEnum string
 
-// Set of constants representing the allowable values for ExadataIormConfigLifecycleState
+// Set of constants representing the allowable values for ExadataIormConfigLifecycleStateEnum
 const (
 	ExadataIormConfigLifecycleStateBootstrapping ExadataIormConfigLifecycleStateEnum = "BOOTSTRAPPING"
 	ExadataIormConfigLifecycleStateEnabled       ExadataIormConfigLifecycleStateEnum = "ENABLED"
@@ -54,7 +54,7 @@ var mappingExadataIormConfigLifecycleState = map[string]ExadataIormConfigLifecyc
 	"FAILED":        ExadataIormConfigLifecycleStateFailed,
 }
 
-// GetExadataIormConfigLifecycleStateEnumValues Enumerates the set of values for ExadataIormConfigLifecycleState
+// GetExadataIormConfigLifecycleStateEnumValues Enumerates the set of values for ExadataIormConfigLifecycleStateEnum
 func GetExadataIormConfigLifecycleStateEnumValues() []ExadataIormConfigLifecycleStateEnum {
 	values := make([]ExadataIormConfigLifecycleStateEnum, 0)
 	for _, v := range mappingExadataIormConfigLifecycleState {
@@ -66,7 +66,7 @@ func GetExadataIormConfigLifecycleStateEnumValues() []ExadataIormConfigLifecycle
 // ExadataIormConfigObjectiveEnum Enum with underlying type: string
 type ExadataIormConfigObjectiveEnum string
 
-// Set of constants representing the allowable values for ExadataIormConfigObjective
+// Set of constants representing the allowable values for ExadataIormConfigObjectiveEnum
 const (
 	ExadataIormConfigObjectiveLowLatency     ExadataIormConfigObjectiveEnum = "LOW_LATENCY"
 	ExadataIormConfigObjectiveHighThroughput ExadataIormConfigObjectiveEnum = "HIGH_THROUGHPUT"
@@ -83,7 +83,7 @@ var mappingExadataIormConfigObjective = map[string]ExadataIormConfigObjectiveEnu
 	"BASIC":           ExadataIormConfigObjectiveBasic,
 }
 
-// GetExadataIormConfigObjectiveEnumValues Enumerates the set of values for ExadataIormConfigObjective
+// GetExadataIormConfigObjectiveEnumValues Enumerates the set of values for ExadataIormConfigObjectiveEnum
 func GetExadataIormConfigObjectiveEnumValues() []ExadataIormConfigObjectiveEnum {
 	values := make([]ExadataIormConfigObjectiveEnum, 0)
 	for _, v := range mappingExadataIormConfigObjective {

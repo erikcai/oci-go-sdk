@@ -35,7 +35,7 @@ func (m UpdateGroupDetails) String() string {
 // UpdateGroupDetailsTypeEnum Enum with underlying type: string
 type UpdateGroupDetailsTypeEnum string
 
-// Set of constants representing the allowable values for UpdateGroupDetailsType
+// Set of constants representing the allowable values for UpdateGroupDetailsTypeEnum
 const (
 	UpdateGroupDetailsTypeAtTime      UpdateGroupDetailsTypeEnum = "AT_TIME"
 	UpdateGroupDetailsTypeLatest      UpdateGroupDetailsTypeEnum = "LATEST"
@@ -48,7 +48,7 @@ var mappingUpdateGroupDetailsType = map[string]UpdateGroupDetailsTypeEnum{
 	"TRIM_HORIZON": UpdateGroupDetailsTypeTrimHorizon,
 }
 
-// GetUpdateGroupDetailsTypeEnumValues Enumerates the set of values for UpdateGroupDetailsType
+// GetUpdateGroupDetailsTypeEnumValues Enumerates the set of values for UpdateGroupDetailsTypeEnum
 func GetUpdateGroupDetailsTypeEnumValues() []UpdateGroupDetailsTypeEnum {
 	values := make([]UpdateGroupDetailsTypeEnum, 0)
 	for _, v := range mappingUpdateGroupDetailsType {

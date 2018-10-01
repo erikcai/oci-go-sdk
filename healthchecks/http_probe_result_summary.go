@@ -121,7 +121,7 @@ func (m HttpProbeResultSummary) String() string {
 // HttpProbeResultSummaryErrorCategoryEnum Enum with underlying type: string
 type HttpProbeResultSummaryErrorCategoryEnum string
 
-// Set of constants representing the allowable values for HttpProbeResultSummaryErrorCategory
+// Set of constants representing the allowable values for HttpProbeResultSummaryErrorCategoryEnum
 const (
 	HttpProbeResultSummaryErrorCategoryNone      HttpProbeResultSummaryErrorCategoryEnum = "NONE"
 	HttpProbeResultSummaryErrorCategoryDns       HttpProbeResultSummaryErrorCategoryEnum = "DNS"
@@ -138,7 +138,7 @@ var mappingHttpProbeResultSummaryErrorCategory = map[string]HttpProbeResultSumma
 	"SYSTEM":    HttpProbeResultSummaryErrorCategorySystem,
 }
 
-// GetHttpProbeResultSummaryErrorCategoryEnumValues Enumerates the set of values for HttpProbeResultSummaryErrorCategory
+// GetHttpProbeResultSummaryErrorCategoryEnumValues Enumerates the set of values for HttpProbeResultSummaryErrorCategoryEnum
 func GetHttpProbeResultSummaryErrorCategoryEnumValues() []HttpProbeResultSummaryErrorCategoryEnum {
 	values := make([]HttpProbeResultSummaryErrorCategoryEnum, 0)
 	for _, v := range mappingHttpProbeResultSummaryErrorCategory {
@@ -150,7 +150,7 @@ func GetHttpProbeResultSummaryErrorCategoryEnumValues() []HttpProbeResultSummary
 // HttpProbeResultSummaryProtocolEnum Enum with underlying type: string
 type HttpProbeResultSummaryProtocolEnum string
 
-// Set of constants representing the allowable values for HttpProbeResultSummaryProtocol
+// Set of constants representing the allowable values for HttpProbeResultSummaryProtocolEnum
 const (
 	HttpProbeResultSummaryProtocolHttp  HttpProbeResultSummaryProtocolEnum = "HTTP"
 	HttpProbeResultSummaryProtocolHttps HttpProbeResultSummaryProtocolEnum = "HTTPS"
@@ -161,7 +161,7 @@ var mappingHttpProbeResultSummaryProtocol = map[string]HttpProbeResultSummaryPro
 	"HTTPS": HttpProbeResultSummaryProtocolHttps,
 }
 
-// GetHttpProbeResultSummaryProtocolEnumValues Enumerates the set of values for HttpProbeResultSummaryProtocol
+// GetHttpProbeResultSummaryProtocolEnumValues Enumerates the set of values for HttpProbeResultSummaryProtocolEnum
 func GetHttpProbeResultSummaryProtocolEnumValues() []HttpProbeResultSummaryProtocolEnum {
 	values := make([]HttpProbeResultSummaryProtocolEnum, 0)
 	for _, v := range mappingHttpProbeResultSummaryProtocol {

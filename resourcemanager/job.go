@@ -61,7 +61,7 @@ func (m Job) String() string {
 // JobOperationEnum Enum with underlying type: string
 type JobOperationEnum string
 
-// Set of constants representing the allowable values for JobOperation
+// Set of constants representing the allowable values for JobOperationEnum
 const (
 	JobOperationPlan    JobOperationEnum = "PLAN"
 	JobOperationApply   JobOperationEnum = "APPLY"
@@ -74,7 +74,7 @@ var mappingJobOperation = map[string]JobOperationEnum{
 	"DESTROY": JobOperationDestroy,
 }
 
-// GetJobOperationEnumValues Enumerates the set of values for JobOperation
+// GetJobOperationEnumValues Enumerates the set of values for JobOperationEnum
 func GetJobOperationEnumValues() []JobOperationEnum {
 	values := make([]JobOperationEnum, 0)
 	for _, v := range mappingJobOperation {
@@ -86,7 +86,7 @@ func GetJobOperationEnumValues() []JobOperationEnum {
 // JobLifecycleStateEnum Enum with underlying type: string
 type JobLifecycleStateEnum string
 
-// Set of constants representing the allowable values for JobLifecycleState
+// Set of constants representing the allowable values for JobLifecycleStateEnum
 const (
 	JobLifecycleStateAccepted   JobLifecycleStateEnum = "ACCEPTED"
 	JobLifecycleStateInProgress JobLifecycleStateEnum = "IN_PROGRESS"
@@ -105,7 +105,7 @@ var mappingJobLifecycleState = map[string]JobLifecycleStateEnum{
 	"CANCELED":    JobLifecycleStateCanceled,
 }
 
-// GetJobLifecycleStateEnumValues Enumerates the set of values for JobLifecycleState
+// GetJobLifecycleStateEnumValues Enumerates the set of values for JobLifecycleStateEnum
 func GetJobLifecycleStateEnumValues() []JobLifecycleStateEnum {
 	values := make([]JobLifecycleStateEnum, 0)
 	for _, v := range mappingJobLifecycleState {

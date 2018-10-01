@@ -69,7 +69,7 @@ func (response ListStreamingConsumptionResponse) HTTPResponse() *http.Response {
 // ListStreamingConsumptionScopeEnum Enum with underlying type: string
 type ListStreamingConsumptionScopeEnum string
 
-// Set of constants representing the allowable values for ListStreamingConsumptionScope
+// Set of constants representing the allowable values for ListStreamingConsumptionScopeEnum
 const (
 	ListStreamingConsumptionScopeRegion             ListStreamingConsumptionScopeEnum = "REGION"
 	ListStreamingConsumptionScopeAvailabilityDomain ListStreamingConsumptionScopeEnum = "AVAILABILITY_DOMAIN"
@@ -80,7 +80,7 @@ var mappingListStreamingConsumptionScope = map[string]ListStreamingConsumptionSc
 	"AVAILABILITY_DOMAIN": ListStreamingConsumptionScopeAvailabilityDomain,
 }
 
-// GetListStreamingConsumptionScopeEnumValues Enumerates the set of values for ListStreamingConsumptionScope
+// GetListStreamingConsumptionScopeEnumValues Enumerates the set of values for ListStreamingConsumptionScopeEnum
 func GetListStreamingConsumptionScopeEnumValues() []ListStreamingConsumptionScopeEnum {
 	values := make([]ListStreamingConsumptionScopeEnum, 0)
 	for _, v := range mappingListStreamingConsumptionScope {

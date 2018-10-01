@@ -96,7 +96,7 @@ func (response ListIdentityProvidersResponse) HTTPResponse() *http.Response {
 // ListIdentityProvidersProtocolEnum Enum with underlying type: string
 type ListIdentityProvidersProtocolEnum string
 
-// Set of constants representing the allowable values for ListIdentityProvidersProtocol
+// Set of constants representing the allowable values for ListIdentityProvidersProtocolEnum
 const (
 	ListIdentityProvidersProtocolSaml2 ListIdentityProvidersProtocolEnum = "SAML2"
 )
@@ -105,7 +105,7 @@ var mappingListIdentityProvidersProtocol = map[string]ListIdentityProvidersProto
 	"SAML2": ListIdentityProvidersProtocolSaml2,
 }
 
-// GetListIdentityProvidersProtocolEnumValues Enumerates the set of values for ListIdentityProvidersProtocol
+// GetListIdentityProvidersProtocolEnumValues Enumerates the set of values for ListIdentityProvidersProtocolEnum
 func GetListIdentityProvidersProtocolEnumValues() []ListIdentityProvidersProtocolEnum {
 	values := make([]ListIdentityProvidersProtocolEnum, 0)
 	for _, v := range mappingListIdentityProvidersProtocol {
@@ -117,7 +117,7 @@ func GetListIdentityProvidersProtocolEnumValues() []ListIdentityProvidersProtoco
 // ListIdentityProvidersSortByEnum Enum with underlying type: string
 type ListIdentityProvidersSortByEnum string
 
-// Set of constants representing the allowable values for ListIdentityProvidersSortBy
+// Set of constants representing the allowable values for ListIdentityProvidersSortByEnum
 const (
 	ListIdentityProvidersSortByTimecreated ListIdentityProvidersSortByEnum = "TIMECREATED"
 	ListIdentityProvidersSortByName        ListIdentityProvidersSortByEnum = "NAME"
@@ -128,7 +128,7 @@ var mappingListIdentityProvidersSortBy = map[string]ListIdentityProvidersSortByE
 	"NAME":        ListIdentityProvidersSortByName,
 }
 
-// GetListIdentityProvidersSortByEnumValues Enumerates the set of values for ListIdentityProvidersSortBy
+// GetListIdentityProvidersSortByEnumValues Enumerates the set of values for ListIdentityProvidersSortByEnum
 func GetListIdentityProvidersSortByEnumValues() []ListIdentityProvidersSortByEnum {
 	values := make([]ListIdentityProvidersSortByEnum, 0)
 	for _, v := range mappingListIdentityProvidersSortBy {
@@ -140,7 +140,7 @@ func GetListIdentityProvidersSortByEnumValues() []ListIdentityProvidersSortByEnu
 // ListIdentityProvidersSortOrderEnum Enum with underlying type: string
 type ListIdentityProvidersSortOrderEnum string
 
-// Set of constants representing the allowable values for ListIdentityProvidersSortOrder
+// Set of constants representing the allowable values for ListIdentityProvidersSortOrderEnum
 const (
 	ListIdentityProvidersSortOrderAsc  ListIdentityProvidersSortOrderEnum = "ASC"
 	ListIdentityProvidersSortOrderDesc ListIdentityProvidersSortOrderEnum = "DESC"
@@ -151,7 +151,7 @@ var mappingListIdentityProvidersSortOrder = map[string]ListIdentityProvidersSort
 	"DESC": ListIdentityProvidersSortOrderDesc,
 }
 
-// GetListIdentityProvidersSortOrderEnumValues Enumerates the set of values for ListIdentityProvidersSortOrder
+// GetListIdentityProvidersSortOrderEnumValues Enumerates the set of values for ListIdentityProvidersSortOrderEnum
 func GetListIdentityProvidersSortOrderEnumValues() []ListIdentityProvidersSortOrderEnum {
 	values := make([]ListIdentityProvidersSortOrderEnum, 0)
 	for _, v := range mappingListIdentityProvidersSortOrder {

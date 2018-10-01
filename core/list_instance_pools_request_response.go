@@ -98,7 +98,7 @@ func (response ListInstancePoolsResponse) HTTPResponse() *http.Response {
 // ListInstancePoolsSortByEnum Enum with underlying type: string
 type ListInstancePoolsSortByEnum string
 
-// Set of constants representing the allowable values for ListInstancePoolsSortBy
+// Set of constants representing the allowable values for ListInstancePoolsSortByEnum
 const (
 	ListInstancePoolsSortByTimecreated ListInstancePoolsSortByEnum = "TIMECREATED"
 	ListInstancePoolsSortByDisplayname ListInstancePoolsSortByEnum = "DISPLAYNAME"
@@ -109,7 +109,7 @@ var mappingListInstancePoolsSortBy = map[string]ListInstancePoolsSortByEnum{
 	"DISPLAYNAME": ListInstancePoolsSortByDisplayname,
 }
 
-// GetListInstancePoolsSortByEnumValues Enumerates the set of values for ListInstancePoolsSortBy
+// GetListInstancePoolsSortByEnumValues Enumerates the set of values for ListInstancePoolsSortByEnum
 func GetListInstancePoolsSortByEnumValues() []ListInstancePoolsSortByEnum {
 	values := make([]ListInstancePoolsSortByEnum, 0)
 	for _, v := range mappingListInstancePoolsSortBy {
@@ -121,7 +121,7 @@ func GetListInstancePoolsSortByEnumValues() []ListInstancePoolsSortByEnum {
 // ListInstancePoolsSortOrderEnum Enum with underlying type: string
 type ListInstancePoolsSortOrderEnum string
 
-// Set of constants representing the allowable values for ListInstancePoolsSortOrder
+// Set of constants representing the allowable values for ListInstancePoolsSortOrderEnum
 const (
 	ListInstancePoolsSortOrderAsc  ListInstancePoolsSortOrderEnum = "ASC"
 	ListInstancePoolsSortOrderDesc ListInstancePoolsSortOrderEnum = "DESC"
@@ -132,7 +132,7 @@ var mappingListInstancePoolsSortOrder = map[string]ListInstancePoolsSortOrderEnu
 	"DESC": ListInstancePoolsSortOrderDesc,
 }
 
-// GetListInstancePoolsSortOrderEnumValues Enumerates the set of values for ListInstancePoolsSortOrder
+// GetListInstancePoolsSortOrderEnumValues Enumerates the set of values for ListInstancePoolsSortOrderEnum
 func GetListInstancePoolsSortOrderEnumValues() []ListInstancePoolsSortOrderEnum {
 	values := make([]ListInstancePoolsSortOrderEnum, 0)
 	for _, v := range mappingListInstancePoolsSortOrder {
