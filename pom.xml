@@ -1011,7 +1011,7 @@
       <plugin>
         <groupId>com.oracle.bmc.sdk</groupId>
         <artifactId>bmc-sdk-swagger-maven-plugin</artifactId>
-        <version>1.45-SNAPSHOT</version>
+        <version>1.46-SNAPSHOT</version>
         <configuration>
           <isTestGenerationEnabled>true</isTestGenerationEnabled>
         </configuration>
@@ -1420,6 +1420,7 @@
                 <specName>streaming</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>streams</serviceHostName>
+                <isRegionalClient.stream>false</isRegionalClient.stream>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>

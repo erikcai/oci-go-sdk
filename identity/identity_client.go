@@ -937,6 +937,61 @@ func (client IdentityClient) createTagNamespace(ctx context.Context, request com
 	return response, err
 }
 
+// CreateTagRule Creates a new tag rule in the specified compartment (either the tenancy or another of your compartments).
+// You must specify a *name* for the tag rule, which must be unique across all tag rules in your tenancy
+// and cannot be changed.
+// You must also specify a *description* for the tag rule (although it can be an empty string). It does not
+// have to be unique, and you can change it anytime with UpdateTagRule.
+// You must specify *ruleText* for the tag rule which must follow the tag rule language syntax.
+// After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
+// object, first make sure its `lifecycleState` has changed to ACTIVE.
+// New tag rules take effect typically within 10 seconds.
+func (client IdentityClient) CreateTagRule(ctx context.Context, request CreateTagRuleRequest) (response CreateTagRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createTagRule, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateTagRuleResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateTagRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateTagRuleResponse")
+	}
+	return
+}
+
+// createTagRule implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) createTagRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tagRules/")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateTagRuleResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateUser Creates a new user in your tenancy. For conceptual information about users, your tenancy, and other
 // IAM Service components, see Overview of the IAM Service (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/overview.htm).
 // You must specify your tenancy's OCID as the compartment ID in the request object (remember that the
@@ -1480,6 +1535,48 @@ func (client IdentityClient) deleteSwiftPassword(ctx context.Context, request co
 	return response, err
 }
 
+// DeleteTagRule Deletes the specified tag rule.
+func (client IdentityClient) DeleteTagRule(ctx context.Context, request DeleteTagRuleRequest) (response DeleteTagRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteTagRule, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteTagRuleResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteTagRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteTagRuleResponse")
+	}
+	return
+}
+
+// deleteTagRule implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) deleteTagRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/tagRules/{tagRuleId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteTagRuleResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteUser Deletes the specified user. The user must not be in any groups.
 func (client IdentityClient) DeleteUser(ctx context.Context, request DeleteUserRequest) (response DeleteUserResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1897,6 +1994,48 @@ func (client IdentityClient) getTagNamespace(ctx context.Context, request common
 	}
 
 	var response GetTagNamespaceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetTagRule Gets the information of the specified tag rule.
+func (client IdentityClient) GetTagRule(ctx context.Context, request GetTagRuleRequest) (response GetTagRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getTagRule, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetTagRuleResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetTagRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetTagRuleResponse")
+	}
+	return
+}
+
+// getTagRule implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) getTagRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tagRules/{tagRuleId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetTagRuleResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2911,6 +3050,52 @@ func (client IdentityClient) listTagNamespaces(ctx context.Context, request comm
 	return response, err
 }
 
+// ListTagRules Lists the tag rules in the specified compartment (either the tenancy or another of your compartments).
+// See Where to Get the Tenancy's OCID and User's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm#five).
+// To use this and other API operations, you must be authorized in an IAM policy. If you're not authorized,
+// talk to an administrator. If you're an administrator who needs to write policies to give users access, see
+// Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
+func (client IdentityClient) ListTagRules(ctx context.Context, request ListTagRulesRequest) (response ListTagRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listTagRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListTagRulesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListTagRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListTagRulesResponse")
+	}
+	return
+}
+
+// listTagRules implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listTagRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tagRules/")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListTagRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListTags Lists the tag definitions in the specified tag namespace.
 func (client IdentityClient) ListTags(ctx context.Context, request ListTagsRequest) (response ListTagsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3715,6 +3900,49 @@ func (client IdentityClient) updateTagNamespace(ctx context.Context, request com
 	}
 
 	var response UpdateTagNamespaceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateTagRule Updates the specified tag rule. You can update the description, activity state or the ruleText itself.
+// tag rule changes take effect typically within 10 seconds.
+func (client IdentityClient) UpdateTagRule(ctx context.Context, request UpdateTagRuleRequest) (response UpdateTagRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateTagRule, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateTagRuleResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateTagRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateTagRuleResponse")
+	}
+	return
+}
+
+// updateTagRule implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) updateTagRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/tagRules/{tagRuleId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateTagRuleResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

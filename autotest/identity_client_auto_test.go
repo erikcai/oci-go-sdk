@@ -588,6 +588,42 @@ func TestIdentityClientCreateTagNamespace(t *testing.T) {
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+func TestIdentityClientCreateTagRule(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("identity", "CreateTagRule")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateTagRule is not enabled by the testing service")
+	}
+	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
+
+	body, err := testClient.getRequests("identity", "CreateTagRule")
+	assert.NoError(t, err)
+
+	type CreateTagRuleRequestInfo struct {
+		ContainerId string
+		Request     identity.CreateTagRuleRequest
+	}
+
+	var requests []CreateTagRuleRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreateTagRule(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestIdentityClientCreateUser(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("identity", "CreateUser")
 	assert.NoError(t, err)
@@ -1020,6 +1056,42 @@ func TestIdentityClientDeleteSwiftPassword(t *testing.T) {
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+func TestIdentityClientDeleteTagRule(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("identity", "DeleteTagRule")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteTagRule is not enabled by the testing service")
+	}
+	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
+
+	body, err := testClient.getRequests("identity", "DeleteTagRule")
+	assert.NoError(t, err)
+
+	type DeleteTagRuleRequestInfo struct {
+		ContainerId string
+		Request     identity.DeleteTagRuleRequest
+	}
+
+	var requests []DeleteTagRuleRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.DeleteTagRule(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestIdentityClientDeleteUser(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("identity", "DeleteUser")
 	assert.NoError(t, err)
@@ -1372,6 +1444,42 @@ func TestIdentityClientGetTagNamespace(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetTagNamespace(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+func TestIdentityClientGetTagRule(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("identity", "GetTagRule")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetTagRule is not enabled by the testing service")
+	}
+	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
+
+	body, err := testClient.getRequests("identity", "GetTagRule")
+	assert.NoError(t, err)
+
+	type GetTagRuleRequestInfo struct {
+		ContainerId string
+		Request     identity.GetTagRuleRequest
+	}
+
+	var requests []GetTagRuleRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetTagRule(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2297,6 +2405,51 @@ func TestIdentityClientListTagNamespaces(t *testing.T) {
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+func TestIdentityClientListTagRules(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("identity", "ListTagRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTagRules is not enabled by the testing service")
+	}
+	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
+
+	body, err := testClient.getRequests("identity", "ListTagRules")
+	assert.NoError(t, err)
+
+	type ListTagRulesRequestInfo struct {
+		ContainerId string
+		Request     identity.ListTagRulesRequest
+	}
+
+	var requests []ListTagRulesRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*identity.ListTagRulesRequest)
+				return c.ListTagRules(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]identity.ListTagRulesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(identity.ListTagRulesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestIdentityClientListTags(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("identity", "ListTags")
 	assert.NoError(t, err)
@@ -3018,6 +3171,42 @@ func TestIdentityClientUpdateTagNamespace(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateTagNamespace(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+func TestIdentityClientUpdateTagRule(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("identity", "UpdateTagRule")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateTagRule is not enabled by the testing service")
+	}
+	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
+
+	body, err := testClient.getRequests("identity", "UpdateTagRule")
+	assert.NoError(t, err)
+
+	type UpdateTagRuleRequestInfo struct {
+		ContainerId string
+		Request     identity.UpdateTagRuleRequest
+	}
+
+	var requests []UpdateTagRuleRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateTagRule(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
