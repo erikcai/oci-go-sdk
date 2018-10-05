@@ -561,8 +561,8 @@ func (client ObjectStorageClient) getBucket(ctx context.Context, request common.
 	return response, err
 }
 
-// GetNamespace Gets the name of the namespace for the user making the request. If an optional compartmentId query parameter is
-// provided it returns the namespace name of the corresponding tenancy, provided the user has access to it.
+// GetNamespace Gets the name of the namespace for the user making the request.
+// If an optional compartmentId query parameter is provided it returns the namespace name of the corresponding tenancy, provided the user has access to it.
 func (client ObjectStorageClient) GetNamespace(ctx context.Context, request GetNamespaceRequest) (response GetNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

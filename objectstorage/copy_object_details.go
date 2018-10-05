@@ -20,7 +20,7 @@ type CopyObjectDetails struct {
 	// The name of the object to be copied
 	SourceObjectName *string `mandatory:"true" json:"sourceObjectName"`
 
-	// The destination region object will be copied to.
+	// The destination region object will be copied to. Please specify name of the region, for example "us-ashburn-1".
 	DestinationRegion *string `mandatory:"true" json:"destinationRegion"`
 
 	// The destination namespace object will be copied to.

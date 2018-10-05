@@ -16,7 +16,7 @@ import (
 // given object.
 type ObjectNameFilter struct {
 
-	// An array of object name prefixs that the rule will apply to. An empty array means to include all objects.
+	// An array of object name prefixes that the rule will apply to. An empty array means to include all objects.
 	InclusionPrefixes []string `mandatory:"false" json:"inclusionPrefixes"`
 }
 

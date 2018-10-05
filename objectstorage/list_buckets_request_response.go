@@ -28,12 +28,6 @@ type ListBucketsRequest struct {
 	// of this parameter is 'tags' for now. Example 'tags'.
 	Fields []ListBucketsFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"csv"`
 
-	// The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for name is ascending.
-	SortBy ListBucketsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
-
-	// The sort order to use, either 'asc' or 'desc'.
-	SortOrder ListBucketsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-
 	// The client request ID for tracing.
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
 
@@ -104,52 +98,6 @@ var mappingListBucketsFields = map[string]ListBucketsFieldsEnum{
 func GetListBucketsFieldsEnumValues() []ListBucketsFieldsEnum {
 	values := make([]ListBucketsFieldsEnum, 0)
 	for _, v := range mappingListBucketsFields {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListBucketsSortByEnum Enum with underlying type: string
-type ListBucketsSortByEnum string
-
-// Set of constants representing the allowable values for ListBucketsSortByEnum
-const (
-	ListBucketsSortByTimecreated ListBucketsSortByEnum = "TIMECREATED"
-	ListBucketsSortByName        ListBucketsSortByEnum = "NAME"
-)
-
-var mappingListBucketsSortBy = map[string]ListBucketsSortByEnum{
-	"TIMECREATED": ListBucketsSortByTimecreated,
-	"NAME":        ListBucketsSortByName,
-}
-
-// GetListBucketsSortByEnumValues Enumerates the set of values for ListBucketsSortByEnum
-func GetListBucketsSortByEnumValues() []ListBucketsSortByEnum {
-	values := make([]ListBucketsSortByEnum, 0)
-	for _, v := range mappingListBucketsSortBy {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListBucketsSortOrderEnum Enum with underlying type: string
-type ListBucketsSortOrderEnum string
-
-// Set of constants representing the allowable values for ListBucketsSortOrderEnum
-const (
-	ListBucketsSortOrderAsc  ListBucketsSortOrderEnum = "ASC"
-	ListBucketsSortOrderDesc ListBucketsSortOrderEnum = "DESC"
-)
-
-var mappingListBucketsSortOrder = map[string]ListBucketsSortOrderEnum{
-	"ASC":  ListBucketsSortOrderAsc,
-	"DESC": ListBucketsSortOrderDesc,
-}
-
-// GetListBucketsSortOrderEnumValues Enumerates the set of values for ListBucketsSortOrderEnum
-func GetListBucketsSortOrderEnumValues() []ListBucketsSortOrderEnum {
-	values := make([]ListBucketsSortOrderEnum, 0)
-	for _, v := range mappingListBucketsSortOrder {
 		values = append(values, v)
 	}
 	return values

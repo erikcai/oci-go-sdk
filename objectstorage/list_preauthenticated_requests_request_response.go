@@ -27,9 +27,6 @@ type ListPreauthenticatedRequestsRequest struct {
 	// The page at which to start retrieving results.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The URL of a pre-authenticated request to lookup.  Only the details for the specified pre-authenticated request will be returned.
-	ParUrl *string `mandatory:"false" contributesTo:"query" name:"parUrl"`
-
 	// The client request ID for tracing.
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
 

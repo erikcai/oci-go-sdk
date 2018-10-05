@@ -8,3 +8,5 @@
 whitelisted:
   - udx-1244
   - udx-682
+  - update-object-metadata
+  - udx-1328

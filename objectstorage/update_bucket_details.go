@@ -36,12 +36,6 @@ type UpdateBucketDetails struct {
 	// on the bucket, public access is allowed for the `GetObject` and `HeadObject` operations.
 	PublicAccessType UpdateBucketDetailsPublicAccessTypeEnum `mandatory:"false" json:"publicAccessType,omitempty"`
 
-	// The type of requests for which object-level audit logging is enabled on this bucket.
-	// This property is set to `Disabled` by default, where no audit logs will be produced at the object level for this
-	// bucket. If the property is set to `Write`, audit logs will be produced for operations such as `Put Object`. If the
-	// property is set to `ReadWrite`, audit logs will be produced for operations such as `Put Object` and `Get Object`.
-	ObjectLevelAuditMode UpdateBucketDetailsObjectLevelAuditModeEnum `mandatory:"false" json:"objectLevelAuditMode,omitempty"`
-
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -83,31 +77,6 @@ var mappingUpdateBucketDetailsPublicAccessType = map[string]UpdateBucketDetailsP
 func GetUpdateBucketDetailsPublicAccessTypeEnumValues() []UpdateBucketDetailsPublicAccessTypeEnum {
 	values := make([]UpdateBucketDetailsPublicAccessTypeEnum, 0)
 	for _, v := range mappingUpdateBucketDetailsPublicAccessType {
-		values = append(values, v)
-	}
-	return values
-}
-
-// UpdateBucketDetailsObjectLevelAuditModeEnum Enum with underlying type: string
-type UpdateBucketDetailsObjectLevelAuditModeEnum string
-
-// Set of constants representing the allowable values for UpdateBucketDetailsObjectLevelAuditModeEnum
-const (
-	UpdateBucketDetailsObjectLevelAuditModeDisabled  UpdateBucketDetailsObjectLevelAuditModeEnum = "Disabled"
-	UpdateBucketDetailsObjectLevelAuditModeWrite     UpdateBucketDetailsObjectLevelAuditModeEnum = "Write"
-	UpdateBucketDetailsObjectLevelAuditModeReadwrite UpdateBucketDetailsObjectLevelAuditModeEnum = "ReadWrite"
-)
-
-var mappingUpdateBucketDetailsObjectLevelAuditMode = map[string]UpdateBucketDetailsObjectLevelAuditModeEnum{
-	"Disabled":  UpdateBucketDetailsObjectLevelAuditModeDisabled,
-	"Write":     UpdateBucketDetailsObjectLevelAuditModeWrite,
-	"ReadWrite": UpdateBucketDetailsObjectLevelAuditModeReadwrite,
-}
-
-// GetUpdateBucketDetailsObjectLevelAuditModeEnumValues Enumerates the set of values for UpdateBucketDetailsObjectLevelAuditModeEnum
-func GetUpdateBucketDetailsObjectLevelAuditModeEnumValues() []UpdateBucketDetailsObjectLevelAuditModeEnum {
-	values := make([]UpdateBucketDetailsObjectLevelAuditModeEnum, 0)
-	for _, v := range mappingUpdateBucketDetailsObjectLevelAuditMode {
 		values = append(values, v)
 	}
 	return values

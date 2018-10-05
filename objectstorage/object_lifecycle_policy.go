@@ -19,7 +19,9 @@ type ObjectLifecyclePolicy struct {
 	// RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The live lifecycle Policy on the bucket.
+	// The live lifecycle policy on the bucket.
+	// For an example of this value, see the
+	// PutObjectLifecyclePolicy API documentation (https://docs.us-phoenix-1.oraclecloud.com/iaas/api/#/en/objectstorage/20160918/ObjectLifecyclePolicy/PutObjectLifecyclePolicy).
 	Items []ObjectLifecycleRule `mandatory:"false" json:"items"`
 }
 
