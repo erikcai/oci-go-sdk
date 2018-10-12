@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// EventsControlService API
+// Event Control Service API
 //
-// This service exposes APIs to create, update and delete Rules. Rules are used to tap into the Events stream.
+// API for managing event rules and actions.
+// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -13,14 +14,18 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateFaaSActionDetails Deliver to a Function-as-a-service endpoint
+// CreateFaaSActionDetails Create an action that delivers to an Oracle Functions endpoint.
 type CreateFaaSActionDetails struct {
 
-	// whether or not this aciton is currently enabled
+	// Whether or not this action is currently enabled.
+	// Example: `true`
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
-	// OCID of the function to call
-	FunctionId *string `mandatory:"false" json:"functionId"`
+	// The unique URI for a function hosted by Functions-as-a-Service.
+	FaasFunctionUri *string `mandatory:"false" json:"faasFunctionUri"`
+
+	// The compartment OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) which hosts the FaaS application. Applications in FaaS hold the functions and triggers.
+	FaasAppCompartmentId *string `mandatory:"false" json:"faasAppCompartmentId"`
 }
 
 //GetIsEnabled returns IsEnabled

@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// EventsControlService API
+// Event Control Service API
 //
-// This service exposes APIs to create, update and delete Rules. Rules are used to tap into the Events stream.
+// API for managing event rules and actions.
+// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -13,10 +14,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ActionDetails Object used to create a action.
+// ActionDetails Object used to create an action.
 type ActionDetails interface {
 
-	// whether or not this aciton is currently enabled
+	// Whether or not this action is currently enabled.
+	// Example: `true`
 	GetIsEnabled() *bool
 }
 
@@ -66,10 +68,6 @@ func (m *actiondetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 		return mm, err
 	case "OBJECTSTORAGE":
 		mm := CreateObjectStorageServiceActionDetails{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
-	case "MS_EVENT_GRID":
-		mm := CreateEventGridActionDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	case "ONS":

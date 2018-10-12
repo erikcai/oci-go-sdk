@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientCreateZone(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "CreateZone")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestDnsClientCreateZone(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientDeleteDomainRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "DeleteDomainRecords")
     assert.NoError(t, err)
@@ -83,7 +83,7 @@ func TestDnsClientDeleteDomainRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientDeleteRRSet(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "DeleteRRSet")
     assert.NoError(t, err)
@@ -119,7 +119,7 @@ func TestDnsClientDeleteRRSet(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientDeleteZone(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "DeleteZone")
     assert.NoError(t, err)
@@ -155,7 +155,7 @@ func TestDnsClientDeleteZone(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientGetDomainRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "GetDomainRecords")
     assert.NoError(t, err)
@@ -200,7 +200,7 @@ func TestDnsClientGetDomainRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientGetRRSet(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "GetRRSet")
     assert.NoError(t, err)
@@ -245,7 +245,7 @@ func TestDnsClientGetRRSet(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientGetZone(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "GetZone")
     assert.NoError(t, err)
@@ -281,7 +281,7 @@ func TestDnsClientGetZone(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientGetZoneRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "GetZoneRecords")
     assert.NoError(t, err)
@@ -326,7 +326,7 @@ func TestDnsClientGetZoneRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientListZones(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "ListZones")
     assert.NoError(t, err)
@@ -371,7 +371,7 @@ func TestDnsClientListZones(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientPatchDomainRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "PatchDomainRecords")
     assert.NoError(t, err)
@@ -407,7 +407,7 @@ func TestDnsClientPatchDomainRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientPatchRRSet(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "PatchRRSet")
     assert.NoError(t, err)
@@ -443,7 +443,7 @@ func TestDnsClientPatchRRSet(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientPatchZoneRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "PatchZoneRecords")
     assert.NoError(t, err)
@@ -479,7 +479,7 @@ func TestDnsClientPatchZoneRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientUpdateDomainRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "UpdateDomainRecords")
     assert.NoError(t, err)
@@ -515,7 +515,7 @@ func TestDnsClientUpdateDomainRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientUpdateRRSet(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "UpdateRRSet")
     assert.NoError(t, err)
@@ -551,7 +551,7 @@ func TestDnsClientUpdateRRSet(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientUpdateZone(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "UpdateZone")
     assert.NoError(t, err)
@@ -587,7 +587,7 @@ func TestDnsClientUpdateZone(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestDnsClientUpdateZoneRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "UpdateZoneRecords")
     assert.NoError(t, err)

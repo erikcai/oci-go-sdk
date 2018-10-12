@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestKmsVaultClientCancelVaultDeletion(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "CancelVaultDeletion")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestKmsVaultClientCancelVaultDeletion(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestKmsVaultClientCreateVault(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "CreateVault")
     assert.NoError(t, err)
@@ -83,7 +83,7 @@ func TestKmsVaultClientCreateVault(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestKmsVaultClientGetVault(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "GetVault")
     assert.NoError(t, err)
@@ -119,7 +119,7 @@ func TestKmsVaultClientGetVault(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestKmsVaultClientListVaults(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "ListVaults")
     assert.NoError(t, err)
@@ -164,7 +164,7 @@ func TestKmsVaultClientListVaults(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestKmsVaultClientScheduleVaultDeletion(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "ScheduleVaultDeletion")
     assert.NoError(t, err)
@@ -200,7 +200,7 @@ func TestKmsVaultClientScheduleVaultDeletion(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestKmsVaultClientUpdateVault(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "UpdateVault")
     assert.NoError(t, err)

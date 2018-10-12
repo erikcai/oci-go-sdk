@@ -14,7 +14,8 @@ import (
 
 // NatGateway A NAT (Network Address Translation) gateway, which represents a router that lets instances
 // without public IPs contact the public internet without exposing the instance to inbound
-// internet traffic.
+// internet traffic. For more information, see
+// NAT Gateway (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/NATgateway.htm).
 // To use any of the API operations, you must be authorized in an
 // IAM policy. If you are not authorized, talk to an
 // administrator. If you are an administrator who needs to write
@@ -32,7 +33,7 @@ type NatGateway struct {
 	Id *string `mandatory:"true" json:"id"`
 
 	// Whether the NAT gateway blocks traffic through it. The default is `false`.
-	// Example: `false`
+	// Example: `true`
 	BlockTraffic *bool `mandatory:"true" json:"blockTraffic"`
 
 	// The NAT gateway's current state.
@@ -42,23 +43,26 @@ type NatGateway struct {
 	NatIp *string `mandatory:"true" json:"natIp"`
 
 	// The date and time the NAT gateway was created, in the format defined by RFC3339.
-	// Example: '2016-08-25T21:10:29.600Z'
+	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the VCN the NAT gateway
 	// belongs to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no
+	// predefined name, type, or namespace. For more information, see
+	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 }
 

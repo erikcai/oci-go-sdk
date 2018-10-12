@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// EventsControlService API
+// Event Control Service API
 //
-// This service exposes APIs to create, update and delete Rules. Rules are used to tap into the Events stream.
+// API for managing event rules and actions.
+// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -30,7 +31,7 @@ func NewCloudEventsClientWithConfigurationProvider(configProvider common.Configu
 	}
 
 	client = CloudEventsClient{BaseClient: baseClient}
-	client.BasePath = "20180401"
+	client.BasePath = "20181201"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -58,7 +59,7 @@ func (client *CloudEventsClient) ConfigurationProvider() *common.ConfigurationPr
 	return client.config
 }
 
-// CreateRule Creates a new rule
+// CreateRule Creates a new event rule.
 func (client CloudEventsClient) CreateRule(ctx context.Context, request CreateRuleRequest) (response CreateRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -105,7 +106,7 @@ func (client CloudEventsClient) createRule(ctx context.Context, request common.O
 	return response, err
 }
 
-// DeleteRule Deletes a rule
+// DeleteRule Deletes an event rule.
 func (client CloudEventsClient) DeleteRule(ctx context.Context, request DeleteRuleRequest) (response DeleteRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -147,7 +148,7 @@ func (client CloudEventsClient) deleteRule(ctx context.Context, request common.O
 	return response, err
 }
 
-// GetRule Retrieves a rule
+// GetRule Retrieves an event rule.
 func (client CloudEventsClient) GetRule(ctx context.Context, request GetRuleRequest) (response GetRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -189,7 +190,7 @@ func (client CloudEventsClient) getRule(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// ListRules Lists existing rules
+// ListRules Lists rules for this compartment.
 func (client CloudEventsClient) ListRules(ctx context.Context, request ListRulesRequest) (response ListRulesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -231,7 +232,7 @@ func (client CloudEventsClient) listRules(ctx context.Context, request common.OC
 	return response, err
 }
 
-// UpdateRule Updates an existing rule
+// UpdateRule Updates an event rule.
 func (client CloudEventsClient) UpdateRule(ctx context.Context, request UpdateRuleRequest) (response UpdateRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

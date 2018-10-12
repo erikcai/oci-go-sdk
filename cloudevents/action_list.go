@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// EventsControlService API
+// Event Control Service API
 //
-// This service exposes APIs to create, update and delete Rules. Rules are used to tap into the Events stream.
+// API for managing event rules and actions.
+// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -13,10 +14,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ActionList List of action object.
+// ActionList A list of Action objects associated with a rule.
 type ActionList struct {
 
-	// List of action object.
+	// A list of one or more Action objects.
 	Actions []Action `mandatory:"true" json:"actions"`
 }
 

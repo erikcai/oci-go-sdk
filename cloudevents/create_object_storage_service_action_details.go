@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// EventsControlService API
+// Event Control Service API
 //
-// This service exposes APIs to create, update and delete Rules. Rules are used to tap into the Events stream.
+// API for managing event rules and actions.
+// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -13,16 +14,18 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateObjectStorageServiceActionDetails deliver to an Oracle Object Storage bucket
+// CreateObjectStorageServiceActionDetails Create an action that delivers to an Oracle Object Storage bucket.
 type CreateObjectStorageServiceActionDetails struct {
 
-	// whether or not this aciton is currently enabled
+	// Whether or not this action is currently enabled.
+	// Example: `true`
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
-	// The top-level namespace for buckets
+	// The Object Storage namespace in which the bucket lives.
 	NamespaceName *string `mandatory:"true" json:"namespaceName"`
 
-	// The name of the bucket
+	// The name of the bucket.
+	// Example: `my-new-bucket1`
 	BucketName *string `mandatory:"true" json:"bucketName"`
 }
 

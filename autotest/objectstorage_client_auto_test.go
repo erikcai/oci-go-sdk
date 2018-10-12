@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientAbortMultipartUpload(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "AbortMultipartUpload")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestObjectStorageClientAbortMultipartUpload(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientCancelWorkRequest(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "CancelWorkRequest")
     assert.NoError(t, err)
@@ -83,7 +83,7 @@ func TestObjectStorageClientCancelWorkRequest(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientCommitMultipartUpload(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "CommitMultipartUpload")
     assert.NoError(t, err)
@@ -119,7 +119,7 @@ func TestObjectStorageClientCommitMultipartUpload(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientCopyObject(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "CopyObject")
     assert.NoError(t, err)
@@ -155,7 +155,7 @@ func TestObjectStorageClientCopyObject(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientCreateBucket(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "CreateBucket")
     assert.NoError(t, err)
@@ -191,7 +191,7 @@ func TestObjectStorageClientCreateBucket(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientCreateMultipartUpload(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "CreateMultipartUpload")
     assert.NoError(t, err)
@@ -227,7 +227,7 @@ func TestObjectStorageClientCreateMultipartUpload(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientCreatePreauthenticatedRequest(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "CreatePreauthenticatedRequest")
     assert.NoError(t, err)
@@ -263,7 +263,7 @@ func TestObjectStorageClientCreatePreauthenticatedRequest(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientDeleteBucket(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "DeleteBucket")
     assert.NoError(t, err)
@@ -299,7 +299,7 @@ func TestObjectStorageClientDeleteBucket(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientDeleteObject(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "DeleteObject")
     assert.NoError(t, err)
@@ -335,7 +335,7 @@ func TestObjectStorageClientDeleteObject(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientDeleteObjectLifecyclePolicy(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "DeleteObjectLifecyclePolicy")
     assert.NoError(t, err)
@@ -371,7 +371,7 @@ func TestObjectStorageClientDeleteObjectLifecyclePolicy(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientDeletePreauthenticatedRequest(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "DeletePreauthenticatedRequest")
     assert.NoError(t, err)
@@ -407,7 +407,7 @@ func TestObjectStorageClientDeletePreauthenticatedRequest(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientGetBucket(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "GetBucket")
     assert.NoError(t, err)
@@ -443,7 +443,7 @@ func TestObjectStorageClientGetBucket(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientGetNamespace(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "GetNamespace")
     assert.NoError(t, err)
@@ -479,7 +479,7 @@ func TestObjectStorageClientGetNamespace(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientGetNamespaceMetadata(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "GetNamespaceMetadata")
     assert.NoError(t, err)
@@ -515,7 +515,7 @@ func TestObjectStorageClientGetNamespaceMetadata(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientGetObject(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "GetObject")
     assert.NoError(t, err)
@@ -551,7 +551,7 @@ func TestObjectStorageClientGetObject(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientGetObjectLifecyclePolicy(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "GetObjectLifecyclePolicy")
     assert.NoError(t, err)
@@ -587,7 +587,7 @@ func TestObjectStorageClientGetObjectLifecyclePolicy(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientGetPreauthenticatedRequest(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "GetPreauthenticatedRequest")
     assert.NoError(t, err)
@@ -623,7 +623,7 @@ func TestObjectStorageClientGetPreauthenticatedRequest(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientGetWorkRequest(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "GetWorkRequest")
     assert.NoError(t, err)
@@ -659,7 +659,7 @@ func TestObjectStorageClientGetWorkRequest(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientHeadBucket(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "HeadBucket")
     assert.NoError(t, err)
@@ -695,7 +695,7 @@ func TestObjectStorageClientHeadBucket(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientHeadObject(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "HeadObject")
     assert.NoError(t, err)
@@ -731,7 +731,7 @@ func TestObjectStorageClientHeadObject(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientListBuckets(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "ListBuckets")
     assert.NoError(t, err)
@@ -776,7 +776,7 @@ func TestObjectStorageClientListBuckets(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientListMultipartUploadParts(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "ListMultipartUploadParts")
     assert.NoError(t, err)
@@ -821,7 +821,7 @@ func TestObjectStorageClientListMultipartUploadParts(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientListMultipartUploads(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "ListMultipartUploads")
     assert.NoError(t, err)
@@ -866,7 +866,7 @@ func TestObjectStorageClientListMultipartUploads(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientListObjects(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "ListObjects")
     assert.NoError(t, err)
@@ -902,7 +902,7 @@ func TestObjectStorageClientListObjects(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientListPreauthenticatedRequests(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "ListPreauthenticatedRequests")
     assert.NoError(t, err)
@@ -947,7 +947,7 @@ func TestObjectStorageClientListPreauthenticatedRequests(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientListWorkRequestErrors(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "ListWorkRequestErrors")
     assert.NoError(t, err)
@@ -992,7 +992,7 @@ func TestObjectStorageClientListWorkRequestErrors(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientListWorkRequestLogs(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "ListWorkRequestLogs")
     assert.NoError(t, err)
@@ -1037,7 +1037,7 @@ func TestObjectStorageClientListWorkRequestLogs(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientListWorkRequests(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "ListWorkRequests")
     assert.NoError(t, err)
@@ -1082,7 +1082,7 @@ func TestObjectStorageClientListWorkRequests(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientMergeObjectMetadata(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "MergeObjectMetadata")
     assert.NoError(t, err)
@@ -1118,7 +1118,7 @@ func TestObjectStorageClientMergeObjectMetadata(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientPutObject(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "PutObject")
     assert.NoError(t, err)
@@ -1154,7 +1154,7 @@ func TestObjectStorageClientPutObject(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientPutObjectLifecyclePolicy(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "PutObjectLifecyclePolicy")
     assert.NoError(t, err)
@@ -1190,7 +1190,7 @@ func TestObjectStorageClientPutObjectLifecyclePolicy(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientRenameObject(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "RenameObject")
     assert.NoError(t, err)
@@ -1226,7 +1226,7 @@ func TestObjectStorageClientRenameObject(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientReplaceObjectMetadata(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "ReplaceObjectMetadata")
     assert.NoError(t, err)
@@ -1262,7 +1262,7 @@ func TestObjectStorageClientReplaceObjectMetadata(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientRestoreObjects(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "RestoreObjects")
     assert.NoError(t, err)
@@ -1298,7 +1298,7 @@ func TestObjectStorageClientRestoreObjects(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientUpdateBucket(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "UpdateBucket")
     assert.NoError(t, err)
@@ -1334,7 +1334,7 @@ func TestObjectStorageClientUpdateBucket(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientUpdateNamespaceMetadata(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "UpdateNamespaceMetadata")
     assert.NoError(t, err)
@@ -1370,7 +1370,7 @@ func TestObjectStorageClientUpdateNamespaceMetadata(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientUploadPart(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "UploadPart")
     assert.NoError(t, err)

@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientCancelJob(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "CancelJob")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestResourceManagerClientCancelJob(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientCreateJob(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "CreateJob")
     assert.NoError(t, err)
@@ -83,7 +83,7 @@ func TestResourceManagerClientCreateJob(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientCreateStack(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "CreateStack")
     assert.NoError(t, err)
@@ -119,7 +119,7 @@ func TestResourceManagerClientCreateStack(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientDeleteStack(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "DeleteStack")
     assert.NoError(t, err)
@@ -155,7 +155,7 @@ func TestResourceManagerClientDeleteStack(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientGetJob(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "GetJob")
     assert.NoError(t, err)
@@ -191,7 +191,7 @@ func TestResourceManagerClientGetJob(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientGetJobLogs(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "GetJobLogs")
     assert.NoError(t, err)
@@ -236,7 +236,7 @@ func TestResourceManagerClientGetJobLogs(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientGetJobLogsContent(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "GetJobLogsContent")
     assert.NoError(t, err)
@@ -272,7 +272,7 @@ func TestResourceManagerClientGetJobLogsContent(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientGetJobTfConfig(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "GetJobTfConfig")
     assert.NoError(t, err)
@@ -308,7 +308,7 @@ func TestResourceManagerClientGetJobTfConfig(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientGetJobTfState(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "GetJobTfState")
     assert.NoError(t, err)
@@ -344,7 +344,7 @@ func TestResourceManagerClientGetJobTfState(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientGetStack(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "GetStack")
     assert.NoError(t, err)
@@ -380,7 +380,7 @@ func TestResourceManagerClientGetStack(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientGetStackTfConfig(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "GetStackTfConfig")
     assert.NoError(t, err)
@@ -416,7 +416,7 @@ func TestResourceManagerClientGetStackTfConfig(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientListJobs(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "ListJobs")
     assert.NoError(t, err)
@@ -461,7 +461,7 @@ func TestResourceManagerClientListJobs(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientListStacks(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "ListStacks")
     assert.NoError(t, err)
@@ -506,7 +506,7 @@ func TestResourceManagerClientListStacks(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientUpdateJob(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "UpdateJob")
     assert.NoError(t, err)
@@ -542,7 +542,7 @@ func TestResourceManagerClientUpdateJob(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestResourceManagerClientUpdateStack(t *testing.T) {
     enabled, err := testClient.isApiEnabled("resourcemanager", "UpdateStack")
     assert.NoError(t, err)

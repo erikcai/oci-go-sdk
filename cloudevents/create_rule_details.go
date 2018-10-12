@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// EventsControlService API
+// Event Control Service API
 //
-// This service exposes APIs to create, update and delete Rules. Rules are used to tap into the Events stream.
+// API for managing event rules and actions.
+// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -15,28 +16,31 @@ import (
 // CreateRuleDetails Object used to create a rule.
 type CreateRuleDetails struct {
 
-	// A string that describes the rule
+	// A string that describes the rule. It does not have to be unique, and you can change it. Avoid entering
+	// confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// whether or not this rule is currently enabled
+	// Whether or not this rule is currently enabled.
+	// Example: `true`
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
-	// specifies what the rule matches
+	// Specifies the event that will trigger the actions associated with this rule.
+	// Example: `"eventType": "DbaaSBackupCompleted"`
 	Condition *string `mandatory:"true" json:"condition"`
 
-	// OCID of the compartment to create the rule in
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// A list of action object.
 	Actions *ActionDetailsList `mandatory:"true" json:"actions"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. Exists for cross-compatibility only.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Operations": {"CostCenter": "42"}}'
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 

@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestWorkRequestClientGetWorkRequest(t *testing.T) {
     enabled, err := testClient.isApiEnabled("workrequests", "GetWorkRequest")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestWorkRequestClientGetWorkRequest(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestWorkRequestClientListWorkRequestErrors(t *testing.T) {
     enabled, err := testClient.isApiEnabled("workrequests", "ListWorkRequestErrors")
     assert.NoError(t, err)
@@ -92,7 +92,7 @@ func TestWorkRequestClientListWorkRequestErrors(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestWorkRequestClientListWorkRequestLogs(t *testing.T) {
     enabled, err := testClient.isApiEnabled("workrequests", "ListWorkRequestLogs")
     assert.NoError(t, err)
@@ -137,7 +137,7 @@ func TestWorkRequestClientListWorkRequestLogs(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestWorkRequestClientListWorkRequests(t *testing.T) {
     enabled, err := testClient.isApiEnabled("workrequests", "ListWorkRequests")
     assert.NoError(t, err)

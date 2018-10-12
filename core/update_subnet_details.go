@@ -36,9 +36,9 @@ type UpdateSubnetDetails struct {
 	// The OCID of the route table the subnet will use.
 	RouteTableId *string `mandatory:"false" json:"routeTableId"`
 
-	// OCIDs for the security lists to associate with the subnet. This
-	// replaces the current set of associated security lists. Remember that
-	// security lists are associated at the subnet level, but the rules are
+	// The OCIDs of the security list or lists the subnet will use. This
+	// replaces the entire current set of security lists. Remember that
+	// security lists are associated *with the subnet*, but the rules are
 	// applied to the individual VNICs in the subnet.
 	SecurityListIds []string `mandatory:"false" json:"securityListIds"`
 }

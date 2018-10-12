@@ -30,8 +30,8 @@ type GetBucketRequest struct {
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
 
 	// Bucket summary includes the 'namespace', 'name', 'compartmentId', 'createdBy', 'timeCreated',
-	// and 'etag' fields. This parameter can also include 'estimatedCount' (Estimated number of objects) and 'estimatedSize'
-	// (total Estimated size in bytes of all objects). For example 'estimatedCount,estimatedSize'
+	// and 'etag' fields. This parameter can also include 'approximateCount' (Approximate number of objects) and 'approximateSize'
+	// (total approximate size in bytes of all objects). For example 'approximateCount,approximateSize'
 	Fields []GetBucketFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"csv"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -93,13 +93,13 @@ type GetBucketFieldsEnum string
 
 // Set of constants representing the allowable values for GetBucketFieldsEnum
 const (
-	GetBucketFieldsEstimatedcount GetBucketFieldsEnum = "estimatedCount"
-	GetBucketFieldsEstimatedsize  GetBucketFieldsEnum = "estimatedSize"
+	GetBucketFieldsApproximatecount GetBucketFieldsEnum = "approximateCount"
+	GetBucketFieldsApproximatesize  GetBucketFieldsEnum = "approximateSize"
 )
 
 var mappingGetBucketFields = map[string]GetBucketFieldsEnum{
-	"estimatedCount": GetBucketFieldsEstimatedcount,
-	"estimatedSize":  GetBucketFieldsEstimatedsize,
+	"approximateCount": GetBucketFieldsApproximatecount,
+	"approximateSize":  GetBucketFieldsApproximatesize,
 }
 
 // GetGetBucketFieldsEnumValues Enumerates the set of values for GetBucketFieldsEnum

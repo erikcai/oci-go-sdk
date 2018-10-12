@@ -53,7 +53,9 @@ type CreateRuleResponse struct {
 	// The Rule instance
 	Rule `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. Add this value to the `if-match` parameter
+	// in a PUT or DELETE operation. The resource will be updated only if the value you
+	// provide matches the `etag` on the resource.
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about

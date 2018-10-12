@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// EventsControlService API
+// Event Control Service API
 //
-// This service exposes APIs to create, update and delete Rules. Rules are used to tap into the Events stream.
+// API for managing event rules and actions.
+// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -13,13 +14,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateNotificationServiceActionDetails delivery to an Oracle Notification Service topic
+// CreateNotificationServiceActionDetails Create an action that delivers to an Oracle Notification Service topic.
 type CreateNotificationServiceActionDetails struct {
 
-	// whether or not this aciton is currently enabled
+	// Whether or not this action is currently enabled.
+	// Example: `true`
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
-	// OCID of the topic to deliver messages to
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the topic to which messages are delivered.
 	TopicId *string `mandatory:"false" json:"topicId"`
 }
 

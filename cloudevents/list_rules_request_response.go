@@ -11,25 +11,37 @@ import (
 // ListRulesRequest wrapper for the ListRules operation
 type ListRulesRequest struct {
 
-	// Compartment OCID
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The maximum number of items to return. The value must be between 1 and 50. The default is 10.
+	// The maximum number of items to return. 1 is the minimum, 50 is the maximum.
+	// Default: 10
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The page at which to start retrieving results.
+	// For list pagination. The value of the opc-next-page response header from the previous
+	// "List" call. For important details about how pagination works, see
+	// List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// A filter to return only resources that match the given lifecycle state exactly.
+	// A filter to return only rules that match the lifecycle state in this parameter.
+	// Example: `Creating`
 	LifecycleState RuleLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// Only rules that have display names matching this parameter will be returned
+	// A filter to return only rules with descriptions that match the displayName string
+	// in this parameter.
+	// Example: `"This rule sends a notification upon completion of DbaaS backup."`
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// which rule attribute to sort by (defaults to timeCreated)
+	// Specifies the attribute with which to sort the rules.
+	// Default: `timeCreated`
+	// * **TIME_CREATED:** Sorts by timeCreated.
+	// * **DISPLAY_NAME:** Sorts by displayName.
+	// * **ID:** Sorts by id.
 	SortBy ListRulesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
+	// Specifies sort order.
+	// * **ASC:** Ascending sort order.
+	// * **DESC:** Descending sort order.
 	SortOrder *string `mandatory:"false" contributesTo:"query" name:"sortOrder"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -64,7 +76,9 @@ type ListRulesResponse struct {
 	// A list of []RuleSummary instances
 	Items []RuleSummary `presentIn:"body"`
 
-	// Pagination token
+	// For list pagination. When this header appears in the response, additional pages of
+	// results remain. For important details about how pagination works, see
+	// List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
