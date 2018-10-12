@@ -111,6 +111,7 @@ func (signer ociRequestSigner) getSigningStringAndHeaders(request *http.Request)
 	signedHeaders := make([]string, len(headersToSign))
 	signedHeaderCount := 0
 	for _, headerName := range headersToSign {
+		headerName = strings.ToLower(headerName)
 		var value string
 		switch headerName {
 		case "(request-target)":

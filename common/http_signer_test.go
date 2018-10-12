@@ -122,10 +122,10 @@ func TestOCIRequestSigner_SigningString(t *testing.T) {
 	assert.Equal(t, expectedSigningString, signature)
 }
 
-func TestOCIRequestSigner_ComputeSignature(t *testing.T) {
+func TestOCIRequestSigner_SigningString_Uppercase(t *testing.T) {
 	s := ociRequestSigner{
 		KeyProvider:    testKeyProvider{},
-		GenericHeaders: defaultGenericHeaders,
+		GenericHeaders: []string{"Date", "(Request-target)", "host"},
 		ShouldHashBody: defaultBodyHashPredicate,
 		BodyHeaders:    defaultBodyHeaders}
 	url, _ := url.Parse(testURL)
