@@ -1,1812 +1,1812 @@
 package autotest
 
 import (
-    "github.com/oracle/oci-go-sdk/core"
-    "github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/core"
 
-    "context"
-    "encoding/json"
-    "fmt"
-    "github.com/stretchr/testify/assert"
-    "testing"
+	"context"
+	"encoding/json"
+	"fmt"
+	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientAddImageShapeCompatibilityEntry(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "AddImageShapeCompatibilityEntry")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("AddImageShapeCompatibilityEntry is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "AddImageShapeCompatibilityEntry")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AddImageShapeCompatibilityEntry is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "AddImageShapeCompatibilityEntry")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "AddImageShapeCompatibilityEntry")
+	assert.NoError(t, err)
 
-    type AddImageShapeCompatibilityEntryRequestInfo struct {
-        ContainerId string
-        Request core.AddImageShapeCompatibilityEntryRequest
-    }
+	type AddImageShapeCompatibilityEntryRequestInfo struct {
+		ContainerId string
+		Request     core.AddImageShapeCompatibilityEntryRequest
+	}
 
-    var requests []AddImageShapeCompatibilityEntryRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []AddImageShapeCompatibilityEntryRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.AddImageShapeCompatibilityEntry(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.AddImageShapeCompatibilityEntry(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientAttachBootVolume(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "AttachBootVolume")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("AttachBootVolume is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "AttachBootVolume")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AttachBootVolume is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "AttachBootVolume")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "AttachBootVolume")
+	assert.NoError(t, err)
 
-    type AttachBootVolumeRequestInfo struct {
-        ContainerId string
-        Request core.AttachBootVolumeRequest
-    }
+	type AttachBootVolumeRequestInfo struct {
+		ContainerId string
+		Request     core.AttachBootVolumeRequest
+	}
 
-    var requests []AttachBootVolumeRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []AttachBootVolumeRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.AttachBootVolume(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.AttachBootVolume(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientAttachVnic(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "AttachVnic")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("AttachVnic is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "AttachVnic")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AttachVnic is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "AttachVnic")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "AttachVnic")
+	assert.NoError(t, err)
 
-    type AttachVnicRequestInfo struct {
-        ContainerId string
-        Request core.AttachVnicRequest
-    }
+	type AttachVnicRequestInfo struct {
+		ContainerId string
+		Request     core.AttachVnicRequest
+	}
 
-    var requests []AttachVnicRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []AttachVnicRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.AttachVnic(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.AttachVnic(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientAttachVolume(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "AttachVolume")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("AttachVolume is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "AttachVolume")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AttachVolume is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "AttachVolume")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "AttachVolume")
+	assert.NoError(t, err)
 
-    type AttachVolumeRequestInfo struct {
-        ContainerId string
-        Request core.AttachVolumeRequest
-    }
+	type AttachVolumeRequestInfo struct {
+		ContainerId string
+		Request     core.AttachVolumeRequest
+	}
 
-    var requests []AttachVolumeRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []AttachVolumeRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.AttachVolume(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.AttachVolume(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientCaptureConsoleHistory(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "CaptureConsoleHistory")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("CaptureConsoleHistory is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "CaptureConsoleHistory")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CaptureConsoleHistory is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "CaptureConsoleHistory")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "CaptureConsoleHistory")
+	assert.NoError(t, err)
 
-    type CaptureConsoleHistoryRequestInfo struct {
-        ContainerId string
-        Request core.CaptureConsoleHistoryRequest
-    }
+	type CaptureConsoleHistoryRequestInfo struct {
+		ContainerId string
+		Request     core.CaptureConsoleHistoryRequest
+	}
 
-    var requests []CaptureConsoleHistoryRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []CaptureConsoleHistoryRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.CaptureConsoleHistory(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.CaptureConsoleHistory(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientCreateAppCatalogSubscription(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "CreateAppCatalogSubscription")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("CreateAppCatalogSubscription is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "CreateAppCatalogSubscription")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateAppCatalogSubscription is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "CreateAppCatalogSubscription")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "CreateAppCatalogSubscription")
+	assert.NoError(t, err)
 
-    type CreateAppCatalogSubscriptionRequestInfo struct {
-        ContainerId string
-        Request core.CreateAppCatalogSubscriptionRequest
-    }
+	type CreateAppCatalogSubscriptionRequestInfo struct {
+		ContainerId string
+		Request     core.CreateAppCatalogSubscriptionRequest
+	}
 
-    var requests []CreateAppCatalogSubscriptionRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []CreateAppCatalogSubscriptionRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.CreateAppCatalogSubscription(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.CreateAppCatalogSubscription(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientCreateImage(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "CreateImage")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("CreateImage is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "CreateImage")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateImage is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "CreateImage")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "CreateImage")
+	assert.NoError(t, err)
 
-    type CreateImageRequestInfo struct {
-        ContainerId string
-        Request core.CreateImageRequest
-    }
+	type CreateImageRequestInfo struct {
+		ContainerId string
+		Request     core.CreateImageRequest
+	}
 
-    var requests []CreateImageRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []CreateImageRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.CreateImage(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.CreateImage(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientCreateInstanceConsoleConnection(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "CreateInstanceConsoleConnection")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("CreateInstanceConsoleConnection is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "CreateInstanceConsoleConnection")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateInstanceConsoleConnection is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "CreateInstanceConsoleConnection")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "CreateInstanceConsoleConnection")
+	assert.NoError(t, err)
 
-    type CreateInstanceConsoleConnectionRequestInfo struct {
-        ContainerId string
-        Request core.CreateInstanceConsoleConnectionRequest
-    }
+	type CreateInstanceConsoleConnectionRequestInfo struct {
+		ContainerId string
+		Request     core.CreateInstanceConsoleConnectionRequest
+	}
 
-    var requests []CreateInstanceConsoleConnectionRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []CreateInstanceConsoleConnectionRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.CreateInstanceConsoleConnection(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.CreateInstanceConsoleConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientDeleteAppCatalogSubscription(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "DeleteAppCatalogSubscription")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("DeleteAppCatalogSubscription is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "DeleteAppCatalogSubscription")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteAppCatalogSubscription is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "DeleteAppCatalogSubscription")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "DeleteAppCatalogSubscription")
+	assert.NoError(t, err)
 
-    type DeleteAppCatalogSubscriptionRequestInfo struct {
-        ContainerId string
-        Request core.DeleteAppCatalogSubscriptionRequest
-    }
+	type DeleteAppCatalogSubscriptionRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteAppCatalogSubscriptionRequest
+	}
 
-    var requests []DeleteAppCatalogSubscriptionRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []DeleteAppCatalogSubscriptionRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.DeleteAppCatalogSubscription(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.DeleteAppCatalogSubscription(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientDeleteConsoleHistory(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "DeleteConsoleHistory")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("DeleteConsoleHistory is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "DeleteConsoleHistory")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteConsoleHistory is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "DeleteConsoleHistory")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "DeleteConsoleHistory")
+	assert.NoError(t, err)
 
-    type DeleteConsoleHistoryRequestInfo struct {
-        ContainerId string
-        Request core.DeleteConsoleHistoryRequest
-    }
+	type DeleteConsoleHistoryRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteConsoleHistoryRequest
+	}
 
-    var requests []DeleteConsoleHistoryRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []DeleteConsoleHistoryRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.DeleteConsoleHistory(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.DeleteConsoleHistory(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientDeleteImage(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "DeleteImage")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("DeleteImage is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "DeleteImage")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteImage is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "DeleteImage")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "DeleteImage")
+	assert.NoError(t, err)
 
-    type DeleteImageRequestInfo struct {
-        ContainerId string
-        Request core.DeleteImageRequest
-    }
+	type DeleteImageRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteImageRequest
+	}
 
-    var requests []DeleteImageRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []DeleteImageRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.DeleteImage(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.DeleteImage(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientDeleteInstanceConsoleConnection(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "DeleteInstanceConsoleConnection")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("DeleteInstanceConsoleConnection is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "DeleteInstanceConsoleConnection")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteInstanceConsoleConnection is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "DeleteInstanceConsoleConnection")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "DeleteInstanceConsoleConnection")
+	assert.NoError(t, err)
 
-    type DeleteInstanceConsoleConnectionRequestInfo struct {
-        ContainerId string
-        Request core.DeleteInstanceConsoleConnectionRequest
-    }
+	type DeleteInstanceConsoleConnectionRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteInstanceConsoleConnectionRequest
+	}
 
-    var requests []DeleteInstanceConsoleConnectionRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []DeleteInstanceConsoleConnectionRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.DeleteInstanceConsoleConnection(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.DeleteInstanceConsoleConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientDetachBootVolume(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "DetachBootVolume")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("DetachBootVolume is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "DetachBootVolume")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DetachBootVolume is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "DetachBootVolume")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "DetachBootVolume")
+	assert.NoError(t, err)
 
-    type DetachBootVolumeRequestInfo struct {
-        ContainerId string
-        Request core.DetachBootVolumeRequest
-    }
+	type DetachBootVolumeRequestInfo struct {
+		ContainerId string
+		Request     core.DetachBootVolumeRequest
+	}
 
-    var requests []DetachBootVolumeRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []DetachBootVolumeRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.DetachBootVolume(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.DetachBootVolume(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientDetachVnic(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "DetachVnic")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("DetachVnic is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "DetachVnic")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DetachVnic is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "DetachVnic")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "DetachVnic")
+	assert.NoError(t, err)
 
-    type DetachVnicRequestInfo struct {
-        ContainerId string
-        Request core.DetachVnicRequest
-    }
+	type DetachVnicRequestInfo struct {
+		ContainerId string
+		Request     core.DetachVnicRequest
+	}
 
-    var requests []DetachVnicRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []DetachVnicRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.DetachVnic(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.DetachVnic(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientDetachVolume(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "DetachVolume")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("DetachVolume is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "DetachVolume")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DetachVolume is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "DetachVolume")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "DetachVolume")
+	assert.NoError(t, err)
 
-    type DetachVolumeRequestInfo struct {
-        ContainerId string
-        Request core.DetachVolumeRequest
-    }
+	type DetachVolumeRequestInfo struct {
+		ContainerId string
+		Request     core.DetachVolumeRequest
+	}
 
-    var requests []DetachVolumeRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []DetachVolumeRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.DetachVolume(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.DetachVolume(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientExportImage(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ExportImage")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ExportImage is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ExportImage")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ExportImage is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ExportImage")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ExportImage")
+	assert.NoError(t, err)
 
-    type ExportImageRequestInfo struct {
-        ContainerId string
-        Request core.ExportImageRequest
-    }
+	type ExportImageRequestInfo struct {
+		ContainerId string
+		Request     core.ExportImageRequest
+	}
 
-    var requests []ExportImageRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ExportImageRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.ExportImage(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.ExportImage(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetAppCatalogListing(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetAppCatalogListing")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetAppCatalogListing is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetAppCatalogListing")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAppCatalogListing is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetAppCatalogListing")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetAppCatalogListing")
+	assert.NoError(t, err)
 
-    type GetAppCatalogListingRequestInfo struct {
-        ContainerId string
-        Request core.GetAppCatalogListingRequest
-    }
+	type GetAppCatalogListingRequestInfo struct {
+		ContainerId string
+		Request     core.GetAppCatalogListingRequest
+	}
 
-    var requests []GetAppCatalogListingRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetAppCatalogListingRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetAppCatalogListing(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetAppCatalogListing(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetAppCatalogListingAgreements(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetAppCatalogListingAgreements")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetAppCatalogListingAgreements is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetAppCatalogListingAgreements")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAppCatalogListingAgreements is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetAppCatalogListingAgreements")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetAppCatalogListingAgreements")
+	assert.NoError(t, err)
 
-    type GetAppCatalogListingAgreementsRequestInfo struct {
-        ContainerId string
-        Request core.GetAppCatalogListingAgreementsRequest
-    }
+	type GetAppCatalogListingAgreementsRequestInfo struct {
+		ContainerId string
+		Request     core.GetAppCatalogListingAgreementsRequest
+	}
 
-    var requests []GetAppCatalogListingAgreementsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetAppCatalogListingAgreementsRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetAppCatalogListingAgreements(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetAppCatalogListingAgreements(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetAppCatalogListingResourceVersion(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetAppCatalogListingResourceVersion")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetAppCatalogListingResourceVersion is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetAppCatalogListingResourceVersion")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAppCatalogListingResourceVersion is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetAppCatalogListingResourceVersion")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetAppCatalogListingResourceVersion")
+	assert.NoError(t, err)
 
-    type GetAppCatalogListingResourceVersionRequestInfo struct {
-        ContainerId string
-        Request core.GetAppCatalogListingResourceVersionRequest
-    }
+	type GetAppCatalogListingResourceVersionRequestInfo struct {
+		ContainerId string
+		Request     core.GetAppCatalogListingResourceVersionRequest
+	}
 
-    var requests []GetAppCatalogListingResourceVersionRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetAppCatalogListingResourceVersionRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetAppCatalogListingResourceVersion(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetAppCatalogListingResourceVersion(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetBootVolumeAttachment(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetBootVolumeAttachment")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetBootVolumeAttachment is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetBootVolumeAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetBootVolumeAttachment is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetBootVolumeAttachment")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetBootVolumeAttachment")
+	assert.NoError(t, err)
 
-    type GetBootVolumeAttachmentRequestInfo struct {
-        ContainerId string
-        Request core.GetBootVolumeAttachmentRequest
-    }
+	type GetBootVolumeAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.GetBootVolumeAttachmentRequest
+	}
 
-    var requests []GetBootVolumeAttachmentRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetBootVolumeAttachmentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetBootVolumeAttachment(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetBootVolumeAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetConsoleHistory(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetConsoleHistory")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetConsoleHistory is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetConsoleHistory")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetConsoleHistory is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetConsoleHistory")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetConsoleHistory")
+	assert.NoError(t, err)
 
-    type GetConsoleHistoryRequestInfo struct {
-        ContainerId string
-        Request core.GetConsoleHistoryRequest
-    }
+	type GetConsoleHistoryRequestInfo struct {
+		ContainerId string
+		Request     core.GetConsoleHistoryRequest
+	}
 
-    var requests []GetConsoleHistoryRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetConsoleHistoryRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetConsoleHistory(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetConsoleHistory(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetConsoleHistoryContent(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetConsoleHistoryContent")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetConsoleHistoryContent is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetConsoleHistoryContent")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetConsoleHistoryContent is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetConsoleHistoryContent")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetConsoleHistoryContent")
+	assert.NoError(t, err)
 
-    type GetConsoleHistoryContentRequestInfo struct {
-        ContainerId string
-        Request core.GetConsoleHistoryContentRequest
-    }
+	type GetConsoleHistoryContentRequestInfo struct {
+		ContainerId string
+		Request     core.GetConsoleHistoryContentRequest
+	}
 
-    var requests []GetConsoleHistoryContentRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetConsoleHistoryContentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetConsoleHistoryContent(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetConsoleHistoryContent(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetImage(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetImage")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetImage is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetImage")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetImage is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetImage")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetImage")
+	assert.NoError(t, err)
 
-    type GetImageRequestInfo struct {
-        ContainerId string
-        Request core.GetImageRequest
-    }
+	type GetImageRequestInfo struct {
+		ContainerId string
+		Request     core.GetImageRequest
+	}
 
-    var requests []GetImageRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetImageRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetImage(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetImage(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetInstance(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetInstance")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetInstance is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInstance is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetInstance")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetInstance")
+	assert.NoError(t, err)
 
-    type GetInstanceRequestInfo struct {
-        ContainerId string
-        Request core.GetInstanceRequest
-    }
+	type GetInstanceRequestInfo struct {
+		ContainerId string
+		Request     core.GetInstanceRequest
+	}
 
-    var requests []GetInstanceRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetInstanceRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetInstance(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetInstanceConsoleConnection(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetInstanceConsoleConnection")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetInstanceConsoleConnection is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetInstanceConsoleConnection")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInstanceConsoleConnection is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetInstanceConsoleConnection")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetInstanceConsoleConnection")
+	assert.NoError(t, err)
 
-    type GetInstanceConsoleConnectionRequestInfo struct {
-        ContainerId string
-        Request core.GetInstanceConsoleConnectionRequest
-    }
+	type GetInstanceConsoleConnectionRequestInfo struct {
+		ContainerId string
+		Request     core.GetInstanceConsoleConnectionRequest
+	}
 
-    var requests []GetInstanceConsoleConnectionRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetInstanceConsoleConnectionRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetInstanceConsoleConnection(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetInstanceConsoleConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetVnicAttachment(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetVnicAttachment")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetVnicAttachment is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetVnicAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetVnicAttachment is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetVnicAttachment")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetVnicAttachment")
+	assert.NoError(t, err)
 
-    type GetVnicAttachmentRequestInfo struct {
-        ContainerId string
-        Request core.GetVnicAttachmentRequest
-    }
+	type GetVnicAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.GetVnicAttachmentRequest
+	}
 
-    var requests []GetVnicAttachmentRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetVnicAttachmentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetVnicAttachment(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetVnicAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetVolumeAttachment(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetVolumeAttachment")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetVolumeAttachment is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetVolumeAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetVolumeAttachment is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetVolumeAttachment")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetVolumeAttachment")
+	assert.NoError(t, err)
 
-    type GetVolumeAttachmentRequestInfo struct {
-        ContainerId string
-        Request core.GetVolumeAttachmentRequest
-    }
+	type GetVolumeAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.GetVolumeAttachmentRequest
+	}
 
-    var requests []GetVolumeAttachmentRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetVolumeAttachmentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetVolumeAttachment(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetVolumeAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientGetWindowsInstanceInitialCredentials(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "GetWindowsInstanceInitialCredentials")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetWindowsInstanceInitialCredentials is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "GetWindowsInstanceInitialCredentials")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetWindowsInstanceInitialCredentials is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "GetWindowsInstanceInitialCredentials")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "GetWindowsInstanceInitialCredentials")
+	assert.NoError(t, err)
 
-    type GetWindowsInstanceInitialCredentialsRequestInfo struct {
-        ContainerId string
-        Request core.GetWindowsInstanceInitialCredentialsRequest
-    }
+	type GetWindowsInstanceInitialCredentialsRequestInfo struct {
+		ContainerId string
+		Request     core.GetWindowsInstanceInitialCredentialsRequest
+	}
 
-    var requests []GetWindowsInstanceInitialCredentialsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []GetWindowsInstanceInitialCredentialsRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.GetWindowsInstanceInitialCredentials(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.GetWindowsInstanceInitialCredentials(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientInstanceAction(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "InstanceAction")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("InstanceAction is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "InstanceAction")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("InstanceAction is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "InstanceAction")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "InstanceAction")
+	assert.NoError(t, err)
 
-    type InstanceActionRequestInfo struct {
-        ContainerId string
-        Request core.InstanceActionRequest
-    }
+	type InstanceActionRequestInfo struct {
+		ContainerId string
+		Request     core.InstanceActionRequest
+	}
 
-    var requests []InstanceActionRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []InstanceActionRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.InstanceAction(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.InstanceAction(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientLaunchInstance(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "LaunchInstance")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("LaunchInstance is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "LaunchInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("LaunchInstance is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "LaunchInstance")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "LaunchInstance")
+	assert.NoError(t, err)
 
-    type LaunchInstanceRequestInfo struct {
-        ContainerId string
-        Request core.LaunchInstanceRequest
-    }
+	type LaunchInstanceRequestInfo struct {
+		ContainerId string
+		Request     core.LaunchInstanceRequest
+	}
 
-    var requests []LaunchInstanceRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []LaunchInstanceRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.LaunchInstance(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.LaunchInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListAppCatalogListingResourceVersions(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListAppCatalogListingResourceVersions")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListAppCatalogListingResourceVersions is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListAppCatalogListingResourceVersions")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAppCatalogListingResourceVersions is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListAppCatalogListingResourceVersions")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListAppCatalogListingResourceVersions")
+	assert.NoError(t, err)
 
-    type ListAppCatalogListingResourceVersionsRequestInfo struct {
-        ContainerId string
-        Request core.ListAppCatalogListingResourceVersionsRequest
-    }
+	type ListAppCatalogListingResourceVersionsRequestInfo struct {
+		ContainerId string
+		Request     core.ListAppCatalogListingResourceVersionsRequest
+	}
 
-    var requests []ListAppCatalogListingResourceVersionsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListAppCatalogListingResourceVersionsRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListAppCatalogListingResourceVersionsRequest)
-                return c.ListAppCatalogListingResourceVersions(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListAppCatalogListingResourceVersionsRequest)
+				return c.ListAppCatalogListingResourceVersions(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListAppCatalogListingResourceVersionsResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListAppCatalogListingResourceVersionsResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListAppCatalogListingResourceVersionsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListAppCatalogListingResourceVersionsResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListAppCatalogListings(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListAppCatalogListings")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListAppCatalogListings is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListAppCatalogListings")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAppCatalogListings is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListAppCatalogListings")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListAppCatalogListings")
+	assert.NoError(t, err)
 
-    type ListAppCatalogListingsRequestInfo struct {
-        ContainerId string
-        Request core.ListAppCatalogListingsRequest
-    }
+	type ListAppCatalogListingsRequestInfo struct {
+		ContainerId string
+		Request     core.ListAppCatalogListingsRequest
+	}
 
-    var requests []ListAppCatalogListingsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListAppCatalogListingsRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListAppCatalogListingsRequest)
-                return c.ListAppCatalogListings(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListAppCatalogListingsRequest)
+				return c.ListAppCatalogListings(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListAppCatalogListingsResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListAppCatalogListingsResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListAppCatalogListingsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListAppCatalogListingsResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListAppCatalogSubscriptions(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListAppCatalogSubscriptions")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListAppCatalogSubscriptions is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListAppCatalogSubscriptions")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAppCatalogSubscriptions is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListAppCatalogSubscriptions")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListAppCatalogSubscriptions")
+	assert.NoError(t, err)
 
-    type ListAppCatalogSubscriptionsRequestInfo struct {
-        ContainerId string
-        Request core.ListAppCatalogSubscriptionsRequest
-    }
+	type ListAppCatalogSubscriptionsRequestInfo struct {
+		ContainerId string
+		Request     core.ListAppCatalogSubscriptionsRequest
+	}
 
-    var requests []ListAppCatalogSubscriptionsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListAppCatalogSubscriptionsRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListAppCatalogSubscriptionsRequest)
-                return c.ListAppCatalogSubscriptions(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListAppCatalogSubscriptionsRequest)
+				return c.ListAppCatalogSubscriptions(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListAppCatalogSubscriptionsResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListAppCatalogSubscriptionsResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListAppCatalogSubscriptionsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListAppCatalogSubscriptionsResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListBootVolumeAttachments(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListBootVolumeAttachments")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListBootVolumeAttachments is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListBootVolumeAttachments")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListBootVolumeAttachments is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListBootVolumeAttachments")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListBootVolumeAttachments")
+	assert.NoError(t, err)
 
-    type ListBootVolumeAttachmentsRequestInfo struct {
-        ContainerId string
-        Request core.ListBootVolumeAttachmentsRequest
-    }
+	type ListBootVolumeAttachmentsRequestInfo struct {
+		ContainerId string
+		Request     core.ListBootVolumeAttachmentsRequest
+	}
 
-    var requests []ListBootVolumeAttachmentsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListBootVolumeAttachmentsRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListBootVolumeAttachmentsRequest)
-                return c.ListBootVolumeAttachments(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListBootVolumeAttachmentsRequest)
+				return c.ListBootVolumeAttachments(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListBootVolumeAttachmentsResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListBootVolumeAttachmentsResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListBootVolumeAttachmentsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListBootVolumeAttachmentsResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListConsoleHistories(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListConsoleHistories")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListConsoleHistories is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListConsoleHistories")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListConsoleHistories is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListConsoleHistories")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListConsoleHistories")
+	assert.NoError(t, err)
 
-    type ListConsoleHistoriesRequestInfo struct {
-        ContainerId string
-        Request core.ListConsoleHistoriesRequest
-    }
+	type ListConsoleHistoriesRequestInfo struct {
+		ContainerId string
+		Request     core.ListConsoleHistoriesRequest
+	}
 
-    var requests []ListConsoleHistoriesRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListConsoleHistoriesRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListConsoleHistoriesRequest)
-                return c.ListConsoleHistories(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListConsoleHistoriesRequest)
+				return c.ListConsoleHistories(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListConsoleHistoriesResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListConsoleHistoriesResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListConsoleHistoriesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListConsoleHistoriesResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListImages(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListImages")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListImages is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListImages")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListImages is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListImages")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListImages")
+	assert.NoError(t, err)
 
-    type ListImagesRequestInfo struct {
-        ContainerId string
-        Request core.ListImagesRequest
-    }
+	type ListImagesRequestInfo struct {
+		ContainerId string
+		Request     core.ListImagesRequest
+	}
 
-    var requests []ListImagesRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListImagesRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListImagesRequest)
-                return c.ListImages(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListImagesRequest)
+				return c.ListImages(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListImagesResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListImagesResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListImagesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListImagesResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListInstanceConsoleConnections(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListInstanceConsoleConnections")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListInstanceConsoleConnections is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListInstanceConsoleConnections")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListInstanceConsoleConnections is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListInstanceConsoleConnections")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListInstanceConsoleConnections")
+	assert.NoError(t, err)
 
-    type ListInstanceConsoleConnectionsRequestInfo struct {
-        ContainerId string
-        Request core.ListInstanceConsoleConnectionsRequest
-    }
+	type ListInstanceConsoleConnectionsRequestInfo struct {
+		ContainerId string
+		Request     core.ListInstanceConsoleConnectionsRequest
+	}
 
-    var requests []ListInstanceConsoleConnectionsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListInstanceConsoleConnectionsRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListInstanceConsoleConnectionsRequest)
-                return c.ListInstanceConsoleConnections(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListInstanceConsoleConnectionsRequest)
+				return c.ListInstanceConsoleConnections(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListInstanceConsoleConnectionsResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListInstanceConsoleConnectionsResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListInstanceConsoleConnectionsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListInstanceConsoleConnectionsResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListInstanceDevices(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListInstanceDevices")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListInstanceDevices is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListInstanceDevices")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListInstanceDevices is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListInstanceDevices")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListInstanceDevices")
+	assert.NoError(t, err)
 
-    type ListInstanceDevicesRequestInfo struct {
-        ContainerId string
-        Request core.ListInstanceDevicesRequest
-    }
+	type ListInstanceDevicesRequestInfo struct {
+		ContainerId string
+		Request     core.ListInstanceDevicesRequest
+	}
 
-    var requests []ListInstanceDevicesRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListInstanceDevicesRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListInstanceDevicesRequest)
-                return c.ListInstanceDevices(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListInstanceDevicesRequest)
+				return c.ListInstanceDevices(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListInstanceDevicesResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListInstanceDevicesResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListInstanceDevicesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListInstanceDevicesResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListInstances(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListInstances")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListInstances is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListInstances")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListInstances is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListInstances")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListInstances")
+	assert.NoError(t, err)
 
-    type ListInstancesRequestInfo struct {
-        ContainerId string
-        Request core.ListInstancesRequest
-    }
+	type ListInstancesRequestInfo struct {
+		ContainerId string
+		Request     core.ListInstancesRequest
+	}
 
-    var requests []ListInstancesRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListInstancesRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListInstancesRequest)
-                return c.ListInstances(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListInstancesRequest)
+				return c.ListInstances(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListInstancesResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListInstancesResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListInstancesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListInstancesResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListShapes(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListShapes")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListShapes is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListShapes")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListShapes is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListShapes")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListShapes")
+	assert.NoError(t, err)
 
-    type ListShapesRequestInfo struct {
-        ContainerId string
-        Request core.ListShapesRequest
-    }
+	type ListShapesRequestInfo struct {
+		ContainerId string
+		Request     core.ListShapesRequest
+	}
 
-    var requests []ListShapesRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListShapesRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListShapesRequest)
-                return c.ListShapes(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListShapesRequest)
+				return c.ListShapes(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListShapesResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListShapesResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListShapesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListShapesResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListVnicAttachments(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListVnicAttachments")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListVnicAttachments is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListVnicAttachments")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListVnicAttachments is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListVnicAttachments")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListVnicAttachments")
+	assert.NoError(t, err)
 
-    type ListVnicAttachmentsRequestInfo struct {
-        ContainerId string
-        Request core.ListVnicAttachmentsRequest
-    }
+	type ListVnicAttachmentsRequestInfo struct {
+		ContainerId string
+		Request     core.ListVnicAttachmentsRequest
+	}
 
-    var requests []ListVnicAttachmentsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListVnicAttachmentsRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListVnicAttachmentsRequest)
-                return c.ListVnicAttachments(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListVnicAttachmentsRequest)
+				return c.ListVnicAttachments(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListVnicAttachmentsResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListVnicAttachmentsResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListVnicAttachmentsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListVnicAttachmentsResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientListVolumeAttachments(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "ListVolumeAttachments")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListVolumeAttachments is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "ListVolumeAttachments")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListVolumeAttachments is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "ListVolumeAttachments")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "ListVolumeAttachments")
+	assert.NoError(t, err)
 
-    type ListVolumeAttachmentsRequestInfo struct {
-        ContainerId string
-        Request core.ListVolumeAttachmentsRequest
-    }
+	type ListVolumeAttachmentsRequestInfo struct {
+		ContainerId string
+		Request     core.ListVolumeAttachmentsRequest
+	}
 
-    var requests []ListVolumeAttachmentsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []ListVolumeAttachmentsRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*core.ListVolumeAttachmentsRequest)
-                return c.ListVolumeAttachments(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListVolumeAttachmentsRequest)
+				return c.ListVolumeAttachments(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]core.ListVolumeAttachmentsResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(core.ListVolumeAttachmentsResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListVolumeAttachmentsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListVolumeAttachmentsResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientRemoveImageShapeCompatibilityEntry(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "RemoveImageShapeCompatibilityEntry")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("RemoveImageShapeCompatibilityEntry is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "RemoveImageShapeCompatibilityEntry")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RemoveImageShapeCompatibilityEntry is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "RemoveImageShapeCompatibilityEntry")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "RemoveImageShapeCompatibilityEntry")
+	assert.NoError(t, err)
 
-    type RemoveImageShapeCompatibilityEntryRequestInfo struct {
-        ContainerId string
-        Request core.RemoveImageShapeCompatibilityEntryRequest
-    }
+	type RemoveImageShapeCompatibilityEntryRequestInfo struct {
+		ContainerId string
+		Request     core.RemoveImageShapeCompatibilityEntryRequest
+	}
 
-    var requests []RemoveImageShapeCompatibilityEntryRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []RemoveImageShapeCompatibilityEntryRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.RemoveImageShapeCompatibilityEntry(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.RemoveImageShapeCompatibilityEntry(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientTerminateInstance(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "TerminateInstance")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("TerminateInstance is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "TerminateInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("TerminateInstance is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "TerminateInstance")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "TerminateInstance")
+	assert.NoError(t, err)
 
-    type TerminateInstanceRequestInfo struct {
-        ContainerId string
-        Request core.TerminateInstanceRequest
-    }
+	type TerminateInstanceRequestInfo struct {
+		ContainerId string
+		Request     core.TerminateInstanceRequest
+	}
 
-    var requests []TerminateInstanceRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []TerminateInstanceRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.TerminateInstance(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.TerminateInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientUpdateConsoleHistory(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "UpdateConsoleHistory")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("UpdateConsoleHistory is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "UpdateConsoleHistory")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateConsoleHistory is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "UpdateConsoleHistory")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "UpdateConsoleHistory")
+	assert.NoError(t, err)
 
-    type UpdateConsoleHistoryRequestInfo struct {
-        ContainerId string
-        Request core.UpdateConsoleHistoryRequest
-    }
+	type UpdateConsoleHistoryRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateConsoleHistoryRequest
+	}
 
-    var requests []UpdateConsoleHistoryRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []UpdateConsoleHistoryRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.UpdateConsoleHistory(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.UpdateConsoleHistory(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientUpdateImage(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "UpdateImage")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("UpdateImage is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "UpdateImage")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateImage is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "UpdateImage")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "UpdateImage")
+	assert.NoError(t, err)
 
-    type UpdateImageRequestInfo struct {
-        ContainerId string
-        Request core.UpdateImageRequest
-    }
+	type UpdateImageRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateImageRequest
+	}
 
-    var requests []UpdateImageRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []UpdateImageRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.UpdateImage(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.UpdateImage(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestComputeClientUpdateInstance(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("core", "UpdateInstance")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("UpdateInstance is not enabled by the testing service")
-    }
-    c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
-    assert.NoError(t, err)
+	enabled, err := testClient.isApiEnabled("core", "UpdateInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateInstance is not enabled by the testing service")
+	}
+	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+	assert.NoError(t, err)
 
-    body, err := testClient.getRequests("core", "UpdateInstance")
-    assert.NoError(t, err)
+	body, err := testClient.getRequests("core", "UpdateInstance")
+	assert.NoError(t, err)
 
-    type UpdateInstanceRequestInfo struct {
-        ContainerId string
-        Request core.UpdateInstanceRequest
-    }
+	type UpdateInstanceRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateInstanceRequest
+	}
 
-    var requests []UpdateInstanceRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	var requests []UpdateInstanceRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-            response, err := c.UpdateInstance(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			response, err := c.UpdateInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }

@@ -1011,7 +1011,7 @@
       <plugin>
         <groupId>com.oracle.bmc.sdk</groupId>
         <artifactId>bmc-sdk-swagger-maven-plugin</artifactId>
-        <version>1.46-SNAPSHOT</version>
+        <version>1.50-SNAPSHOT</version>
         <configuration>
           <isTestGenerationEnabled>true</isTestGenerationEnabled>
         </configuration>
