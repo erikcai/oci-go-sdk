@@ -13,6 +13,7 @@ import (
 	"fmt"
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
+	"strings"
 )
 
 //StreamAdminClient a client for StreamAdmin
@@ -37,7 +38,7 @@ func NewStreamAdminClientWithConfigurationProvider(configProvider common.Configu
 
 // SetRegion overrides the region of this client.
 func (client *StreamAdminClient) SetRegion(region string) {
-	client.Host = fmt.Sprintf(common.DefaultHostURLTemplate, "streams", region)
+	client.Host = strings.Replace("https://streams.{region}.streaming.oci.oraclecloud.com", "{region}", region, 1)
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

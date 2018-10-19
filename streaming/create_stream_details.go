@@ -25,6 +25,10 @@ type CreateStreamDetails struct {
 	// The OCID of the compartment that contains the stream.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
+	// The retention period of the stream, in hours. Accepted values are between 24 and 168 (7 days).
+	// If not specified, the stream will have a retention period of 24 hours.
+	RetentionInHours *int `mandatory:"false" json:"retentionInHours"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair that is applied with no predefined name, type, or namespace. Exists for cross-compatibility only.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`

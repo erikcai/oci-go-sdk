@@ -40,6 +40,7 @@
     <healthchecks-api-spec-spec-file>ovp-api.yaml</healthchecks-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
     <rest-api-spec-spec-file>api.yaml</rest-api-spec-spec-file>
+    <oracache-public-api-spec-file>oracache-public-api-20181201.yaml</oracache-public-api-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -117,6 +118,10 @@
     <dependency>
       <groupId>com.oracle.pic.oss</groupId>
       <artifactId>rest-api-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.oracache</groupId>
+      <artifactId>oracache-public-api</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -482,6 +487,24 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/rest-api-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-oracache-public-api</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.oracache</groupId>
+                  <artifactId>oracache-public-api</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/oracache-public-api</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1006,6 +1029,33 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-oracache-public-api</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/oracache-public-api/source/${oracache-public-api-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/oracache-public-api/${oracache-public-api-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/oracache-public-api/${oracache-public-api-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-oracache-public-api</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/oracache-public-api/${oracache-public-api-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/oracache-public-api/${oracache-public-api-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -1426,6 +1476,27 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-oracache-public-api</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/oracache-public-api/${oracache-public-api-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>cache</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>cache</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <serviceHostName>caching</serviceHostName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -1590,6 +1661,12 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/cache</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -1680,7 +1757,7 @@
       <dependency>
         <groupId>com.oracle.oci</groupId>
         <artifactId>healthchecks-api-spec</artifactId>
-        <version>0.0.1-20180910.153745-3</version>
+        <version>0.0.1-20181012.150142-4</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
@@ -1690,7 +1767,12 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.1.104</version>
+        <version>0.1.132</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.oracache</groupId>
+        <artifactId>oracache-public-api</artifactId>
+        <version>1.0.0-10</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
