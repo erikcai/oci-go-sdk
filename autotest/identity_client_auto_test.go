@@ -1596,6 +1596,42 @@ func TestIdentityClientGetUserGroupMembership(t *testing.T) {
 }
 
 // IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
+func TestIdentityClientGetUserUIPasswordInformation(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("identity", "GetUserUIPasswordInformation")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("GetUserUIPasswordInformation is not enabled by the testing service")
+    }
+    c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("identity", "GetUserUIPasswordInformation")
+    assert.NoError(t, err)
+
+    type GetUserUIPasswordInformationRequestInfo struct {
+        ContainerId string
+        Request identity.GetUserUIPasswordInformationRequest
+    }
+
+    var requests []GetUserUIPasswordInformationRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.GetUserUIPasswordInformation(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="" jiraProject="" opsJiraProject=""
 func TestIdentityClientGetWorkRequest(t *testing.T) {
     enabled, err := testClient.isApiEnabled("identity", "GetWorkRequest")
     assert.NoError(t, err)

@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientCreateSubscription(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "CreateSubscription")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestNotificationClientCreateSubscription(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientCreateTopic(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "CreateTopic")
     assert.NoError(t, err)
@@ -83,7 +83,7 @@ func TestNotificationClientCreateTopic(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientDeleteSubscription(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "DeleteSubscription")
     assert.NoError(t, err)
@@ -119,7 +119,7 @@ func TestNotificationClientDeleteSubscription(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientDeleteTopic(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "DeleteTopic")
     assert.NoError(t, err)
@@ -155,7 +155,7 @@ func TestNotificationClientDeleteTopic(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientGetConfirmSubscription(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "GetConfirmSubscription")
     assert.NoError(t, err)
@@ -191,7 +191,7 @@ func TestNotificationClientGetConfirmSubscription(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientGetSubscription(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "GetSubscription")
     assert.NoError(t, err)
@@ -227,7 +227,7 @@ func TestNotificationClientGetSubscription(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientGetTopic(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "GetTopic")
     assert.NoError(t, err)
@@ -263,7 +263,7 @@ func TestNotificationClientGetTopic(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientGetUnsubscription(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "GetUnsubscription")
     assert.NoError(t, err)
@@ -299,7 +299,7 @@ func TestNotificationClientGetUnsubscription(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientListSubscriptions(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "ListSubscriptions")
     assert.NoError(t, err)
@@ -344,7 +344,7 @@ func TestNotificationClientListSubscriptions(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientListTopics(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "ListTopics")
     assert.NoError(t, err)
@@ -389,7 +389,7 @@ func TestNotificationClientListTopics(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientPublishMessage(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "PublishMessage")
     assert.NoError(t, err)
@@ -425,7 +425,7 @@ func TestNotificationClientPublishMessage(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientResendSubscriptionConfirmation(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "ResendSubscriptionConfirmation")
     assert.NoError(t, err)
@@ -461,7 +461,7 @@ func TestNotificationClientResendSubscriptionConfirmation(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientUpdateSubscription(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "UpdateSubscription")
     assert.NoError(t, err)
@@ -497,7 +497,7 @@ func TestNotificationClientUpdateSubscription(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestNotificationClientUpdateTopic(t *testing.T) {
     enabled, err := testClient.isApiEnabled("ons", "UpdateTopic")
     assert.NoError(t, err)

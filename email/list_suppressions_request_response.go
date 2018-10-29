@@ -14,6 +14,9 @@ type ListSuppressionsRequest struct {
 	// The OCID for the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
+	// The request ID for tracing from the system
+	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
+
 	// The email address of the suppression.
 	EmailAddress *string `mandatory:"false" contributesTo:"query" name:"emailAddress"`
 
@@ -51,10 +54,6 @@ type ListSuppressionsRequest struct {
 	// The sort order to use, either ascending or descending order.
 	SortOrder ListSuppressionsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// Unique Oracle-assigned identifier for the request.
-	// If you need to contact Oracle about a particular request, please provide the request ID.
-	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -88,10 +87,9 @@ type ListSuppressionsResponse struct {
 	// request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination of a list of items. If this header appears in the
-	// response, then a partial list might have been returned. Include
-	// this value for the `page` parameter in subsequent GET
-	// requests to return the next batch of items.
+	// For list pagination. When this header appears in the response, additional
+	// pages of results remain. For important details about how pagination works,
+	// see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
 	// For pagination of a list of items. If this header appears in the

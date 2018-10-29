@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsManagementClientCreateKey(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "CreateKey")
     assert.NoError(t, err)
@@ -49,7 +49,7 @@ func TestKmsManagementClientCreateKey(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsManagementClientCreateKeyVersion(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "CreateKeyVersion")
     assert.NoError(t, err)
@@ -87,7 +87,7 @@ func TestKmsManagementClientCreateKeyVersion(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsManagementClientDisableKey(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "DisableKey")
     assert.NoError(t, err)
@@ -125,7 +125,7 @@ func TestKmsManagementClientDisableKey(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsManagementClientEnableKey(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "EnableKey")
     assert.NoError(t, err)
@@ -163,7 +163,7 @@ func TestKmsManagementClientEnableKey(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsManagementClientGetKey(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "GetKey")
     assert.NoError(t, err)
@@ -201,7 +201,7 @@ func TestKmsManagementClientGetKey(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsManagementClientGetKeyVersion(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "GetKeyVersion")
     assert.NoError(t, err)
@@ -239,7 +239,7 @@ func TestKmsManagementClientGetKeyVersion(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsManagementClientListKeyVersions(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "ListKeyVersions")
     assert.NoError(t, err)
@@ -287,7 +287,7 @@ func TestKmsManagementClientListKeyVersions(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsManagementClientListKeys(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "ListKeys")
     assert.NoError(t, err)
@@ -335,7 +335,7 @@ func TestKmsManagementClientListKeys(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsManagementClientUpdateKey(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "UpdateKey")
     assert.NoError(t, err)

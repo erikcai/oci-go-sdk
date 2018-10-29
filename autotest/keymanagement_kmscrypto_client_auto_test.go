@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsCryptoClientDecrypt(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "Decrypt")
     assert.NoError(t, err)
@@ -49,7 +49,7 @@ func TestKmsCryptoClientDecrypt(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsCryptoClientEncrypt(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "Encrypt")
     assert.NoError(t, err)
@@ -87,7 +87,7 @@ func TestKmsCryptoClientEncrypt(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestKmsCryptoClientGenerateDataEncryptionKey(t *testing.T) {
     enabled, err := testClient.isApiEnabled("keymanagement", "GenerateDataEncryptionKey")
     assert.NoError(t, err)

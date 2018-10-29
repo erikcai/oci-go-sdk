@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Email Delivery Service API
+// Email Delivery API
 //
-// API for managing OCI Email Delivery services.
+// API for the Email Delivery service. Use this API to send high-volume, application-generated
+// emails. For more information, see Overview of the Email Delivery Service (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Email/Concepts/overview.htm).
 //
 
 package email
@@ -15,6 +16,11 @@ import (
 // Suppression The full information representing an email suppression.
 type Suppression struct {
 
+	// The OCID of the compartment to contain the suppression. Since
+	// suppressions are at the customer level, this must be the tenancy
+	// OCID.
+	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+
 	// Email address of the suppression.
 	EmailAddress *string `mandatory:"false" json:"emailAddress"`
 
@@ -24,7 +30,7 @@ type Suppression struct {
 	// The reason that the email address was suppressed. For more information on the types of bounces, see Suppression List (https://docs.us-phoenix-1.oraclecloud.com/Content/Email/Concepts/overview.htm#components).
 	Reason SuppressionReasonEnum `mandatory:"false" json:"reason,omitempty"`
 
-	// The date and time the approved sender was added in "YYYY-MM-ddThh:mmZ"
+	// The date and time the suppression was added in "YYYY-MM-ddThh:mmZ"
 	// format with a Z offset, as defined by RFC 3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 }

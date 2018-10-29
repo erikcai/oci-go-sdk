@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestTelemetryClientCreateAlarm(t *testing.T) {
     enabled, err := testClient.isApiEnabled("telemetry", "CreateAlarm")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestTelemetryClientCreateAlarm(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestTelemetryClientDeleteAlarm(t *testing.T) {
     enabled, err := testClient.isApiEnabled("telemetry", "DeleteAlarm")
     assert.NoError(t, err)
@@ -83,7 +83,7 @@ func TestTelemetryClientDeleteAlarm(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestTelemetryClientGetAlarm(t *testing.T) {
     enabled, err := testClient.isApiEnabled("telemetry", "GetAlarm")
     assert.NoError(t, err)
@@ -119,7 +119,7 @@ func TestTelemetryClientGetAlarm(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestTelemetryClientGetAlarmHistory(t *testing.T) {
     enabled, err := testClient.isApiEnabled("telemetry", "GetAlarmHistory")
     assert.NoError(t, err)
@@ -164,7 +164,7 @@ func TestTelemetryClientGetAlarmHistory(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestTelemetryClientListAlarms(t *testing.T) {
     enabled, err := testClient.isApiEnabled("telemetry", "ListAlarms")
     assert.NoError(t, err)
@@ -209,7 +209,7 @@ func TestTelemetryClientListAlarms(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestTelemetryClientListMetrics(t *testing.T) {
     enabled, err := testClient.isApiEnabled("telemetry", "ListMetrics")
     assert.NoError(t, err)
@@ -254,7 +254,7 @@ func TestTelemetryClientListMetrics(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestTelemetryClientRemoveAlarmSuppression(t *testing.T) {
     enabled, err := testClient.isApiEnabled("telemetry", "RemoveAlarmSuppression")
     assert.NoError(t, err)
@@ -290,7 +290,7 @@ func TestTelemetryClientRemoveAlarmSuppression(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestTelemetryClientSummarizeMetricsData(t *testing.T) {
     enabled, err := testClient.isApiEnabled("telemetry", "SummarizeMetricsData")
     assert.NoError(t, err)
@@ -326,7 +326,7 @@ func TestTelemetryClientSummarizeMetricsData(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestTelemetryClientUpdateAlarm(t *testing.T) {
     enabled, err := testClient.isApiEnabled("telemetry", "UpdateAlarm")
     assert.NoError(t, err)

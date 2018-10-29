@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DNS Service API
+// DNS API
 //
-// API for managing DNS zones, records, and policies.
+// API for the DNS service. Use this API to manage DNS zones, records, and other DNS resources.
+// For more information, see Overview of the DNS Service (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/DNS/Concepts/dnszonemanagement.htm).
 //
 
 package dns
@@ -13,6 +14,7 @@ import (
 )
 
 // ZoneSummary A DNS zone.
+// *Warning:* Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type ZoneSummary struct {
 
 	// The name of the zone.
@@ -23,11 +25,6 @@ type ZoneSummary struct {
 
 	// The OCID of the compartment containing the zone.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
-
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"bar-key": "value"}`
-	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The canonical absolute URL of the resource.
 	Self *string `mandatory:"false" json:"self"`
@@ -47,6 +44,9 @@ type ZoneSummary struct {
 
 	// The current serial of the zone. As seen in the zone's SOA record.
 	Serial *int64 `mandatory:"false" json:"serial"`
+
+	// The current state of the zone resource.
+	LifecycleState ZoneSummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 
 func (m ZoneSummary) String() string {
@@ -71,6 +71,35 @@ var mappingZoneSummaryZoneType = map[string]ZoneSummaryZoneTypeEnum{
 func GetZoneSummaryZoneTypeEnumValues() []ZoneSummaryZoneTypeEnum {
 	values := make([]ZoneSummaryZoneTypeEnum, 0)
 	for _, v := range mappingZoneSummaryZoneType {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ZoneSummaryLifecycleStateEnum Enum with underlying type: string
+type ZoneSummaryLifecycleStateEnum string
+
+// Set of constants representing the allowable values for ZoneSummaryLifecycleStateEnum
+const (
+	ZoneSummaryLifecycleStateActive   ZoneSummaryLifecycleStateEnum = "ACTIVE"
+	ZoneSummaryLifecycleStateCreating ZoneSummaryLifecycleStateEnum = "CREATING"
+	ZoneSummaryLifecycleStateDeleted  ZoneSummaryLifecycleStateEnum = "DELETED"
+	ZoneSummaryLifecycleStateDeleting ZoneSummaryLifecycleStateEnum = "DELETING"
+	ZoneSummaryLifecycleStateFailed   ZoneSummaryLifecycleStateEnum = "FAILED"
+)
+
+var mappingZoneSummaryLifecycleState = map[string]ZoneSummaryLifecycleStateEnum{
+	"ACTIVE":   ZoneSummaryLifecycleStateActive,
+	"CREATING": ZoneSummaryLifecycleStateCreating,
+	"DELETED":  ZoneSummaryLifecycleStateDeleted,
+	"DELETING": ZoneSummaryLifecycleStateDeleting,
+	"FAILED":   ZoneSummaryLifecycleStateFailed,
+}
+
+// GetZoneSummaryLifecycleStateEnumValues Enumerates the set of values for ZoneSummaryLifecycleStateEnum
+func GetZoneSummaryLifecycleStateEnumValues() []ZoneSummaryLifecycleStateEnum {
+	values := make([]ZoneSummaryLifecycleStateEnum, 0)
+	for _, v := range mappingZoneSummaryLifecycleState {
 		values = append(values, v)
 	}
 	return values

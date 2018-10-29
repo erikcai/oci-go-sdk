@@ -225,6 +225,48 @@ func (client ObjectStorageClient) copyObject(ctx context.Context, request common
 	return response, err
 }
 
+// CopyPart Copy part of an existing object to a destination object
+func (client ObjectStorageClient) CopyPart(ctx context.Context, request CopyPartRequest) (response CopyPartResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.copyPart, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CopyPartResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CopyPartResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CopyPartResponse")
+	}
+	return
+}
+
+// copyPart implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) copyPart(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/n/{namespaceName}/b/{bucketName}/cp/{objectName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CopyPartResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateBucket Creates a bucket in the given namespace with a bucket name and optional user-defined metadata.
 func (client ObjectStorageClient) CreateBucket(ctx context.Context, request CreateBucketRequest) (response CreateBucketResponse, err error) {
 	var ociResponse common.OCIResponse

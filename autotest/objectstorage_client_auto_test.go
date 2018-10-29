@@ -156,6 +156,42 @@ func TestObjectStorageClientCopyObject(t *testing.T) {
 }
 
 // IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+func TestObjectStorageClientCopyPart(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("objectstorage", "CopyPart")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("CopyPart is not enabled by the testing service")
+    }
+    c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("objectstorage", "CopyPart")
+    assert.NoError(t, err)
+
+    type CopyPartRequestInfo struct {
+        ContainerId string
+        Request objectstorage.CopyPartRequest
+    }
+
+    var requests []CopyPartRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.CopyPart(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientCreateBucket(t *testing.T) {
     enabled, err := testClient.isApiEnabled("objectstorage", "CreateBucket")
     assert.NoError(t, err)

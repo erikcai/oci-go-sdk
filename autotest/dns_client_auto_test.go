@@ -11,7 +11,79 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientCreateSteeringPolicy(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "CreateSteeringPolicy")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("CreateSteeringPolicy is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "CreateSteeringPolicy")
+    assert.NoError(t, err)
+
+    type CreateSteeringPolicyRequestInfo struct {
+        ContainerId string
+        Request dns.CreateSteeringPolicyRequest
+    }
+
+    var requests []CreateSteeringPolicyRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.CreateSteeringPolicy(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientCreateSteeringPolicyAttachment(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "CreateSteeringPolicyAttachment")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("CreateSteeringPolicyAttachment is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "CreateSteeringPolicyAttachment")
+    assert.NoError(t, err)
+
+    type CreateSteeringPolicyAttachmentRequestInfo struct {
+        ContainerId string
+        Request dns.CreateSteeringPolicyAttachmentRequest
+    }
+
+    var requests []CreateSteeringPolicyAttachmentRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.CreateSteeringPolicyAttachment(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientCreateZone(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "CreateZone")
     assert.NoError(t, err)
@@ -47,7 +119,7 @@ func TestDnsClientCreateZone(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientDeleteDomainRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "DeleteDomainRecords")
     assert.NoError(t, err)
@@ -83,7 +155,7 @@ func TestDnsClientDeleteDomainRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientDeleteRRSet(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "DeleteRRSet")
     assert.NoError(t, err)
@@ -119,7 +191,79 @@ func TestDnsClientDeleteRRSet(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientDeleteSteeringPolicy(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "DeleteSteeringPolicy")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("DeleteSteeringPolicy is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "DeleteSteeringPolicy")
+    assert.NoError(t, err)
+
+    type DeleteSteeringPolicyRequestInfo struct {
+        ContainerId string
+        Request dns.DeleteSteeringPolicyRequest
+    }
+
+    var requests []DeleteSteeringPolicyRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.DeleteSteeringPolicy(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientDeleteSteeringPolicyAttachment(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "DeleteSteeringPolicyAttachment")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("DeleteSteeringPolicyAttachment is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "DeleteSteeringPolicyAttachment")
+    assert.NoError(t, err)
+
+    type DeleteSteeringPolicyAttachmentRequestInfo struct {
+        ContainerId string
+        Request dns.DeleteSteeringPolicyAttachmentRequest
+    }
+
+    var requests []DeleteSteeringPolicyAttachmentRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.DeleteSteeringPolicyAttachment(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientDeleteZone(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "DeleteZone")
     assert.NoError(t, err)
@@ -155,7 +299,7 @@ func TestDnsClientDeleteZone(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientGetDomainRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "GetDomainRecords")
     assert.NoError(t, err)
@@ -200,7 +344,7 @@ func TestDnsClientGetDomainRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientGetRRSet(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "GetRRSet")
     assert.NoError(t, err)
@@ -245,7 +389,79 @@ func TestDnsClientGetRRSet(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientGetSteeringPolicy(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "GetSteeringPolicy")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("GetSteeringPolicy is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "GetSteeringPolicy")
+    assert.NoError(t, err)
+
+    type GetSteeringPolicyRequestInfo struct {
+        ContainerId string
+        Request dns.GetSteeringPolicyRequest
+    }
+
+    var requests []GetSteeringPolicyRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.GetSteeringPolicy(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientGetSteeringPolicyAttachment(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "GetSteeringPolicyAttachment")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("GetSteeringPolicyAttachment is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "GetSteeringPolicyAttachment")
+    assert.NoError(t, err)
+
+    type GetSteeringPolicyAttachmentRequestInfo struct {
+        ContainerId string
+        Request dns.GetSteeringPolicyAttachmentRequest
+    }
+
+    var requests []GetSteeringPolicyAttachmentRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.GetSteeringPolicyAttachment(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientGetZone(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "GetZone")
     assert.NoError(t, err)
@@ -281,7 +497,7 @@ func TestDnsClientGetZone(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientGetZoneRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "GetZoneRecords")
     assert.NoError(t, err)
@@ -326,7 +542,97 @@ func TestDnsClientGetZoneRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientListSteeringPolicies(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "ListSteeringPolicies")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("ListSteeringPolicies is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "ListSteeringPolicies")
+    assert.NoError(t, err)
+
+    type ListSteeringPoliciesRequestInfo struct {
+        ContainerId string
+        Request dns.ListSteeringPoliciesRequest
+    }
+
+    var requests []ListSteeringPoliciesRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy *common.RetryPolicy
+    for i, request := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
+            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+                r := req.(*dns.ListSteeringPoliciesRequest)
+                return c.ListSteeringPolicies(context.Background(), *r)
+            }
+
+            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+            typedListResponses := make([]dns.ListSteeringPoliciesResponse, len(listResponses))
+            for i, lr := range listResponses {
+                typedListResponses[i] = lr.(dns.ListSteeringPoliciesResponse)
+            }
+
+            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientListSteeringPolicyAttachments(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "ListSteeringPolicyAttachments")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("ListSteeringPolicyAttachments is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "ListSteeringPolicyAttachments")
+    assert.NoError(t, err)
+
+    type ListSteeringPolicyAttachmentsRequestInfo struct {
+        ContainerId string
+        Request dns.ListSteeringPolicyAttachmentsRequest
+    }
+
+    var requests []ListSteeringPolicyAttachmentsRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy *common.RetryPolicy
+    for i, request := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
+            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+                r := req.(*dns.ListSteeringPolicyAttachmentsRequest)
+                return c.ListSteeringPolicyAttachments(context.Background(), *r)
+            }
+
+            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+            typedListResponses := make([]dns.ListSteeringPolicyAttachmentsResponse, len(listResponses))
+            for i, lr := range listResponses {
+                typedListResponses[i] = lr.(dns.ListSteeringPolicyAttachmentsResponse)
+            }
+
+            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientListZones(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "ListZones")
     assert.NoError(t, err)
@@ -371,7 +677,7 @@ func TestDnsClientListZones(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientPatchDomainRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "PatchDomainRecords")
     assert.NoError(t, err)
@@ -407,7 +713,7 @@ func TestDnsClientPatchDomainRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientPatchRRSet(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "PatchRRSet")
     assert.NoError(t, err)
@@ -443,7 +749,7 @@ func TestDnsClientPatchRRSet(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientPatchZoneRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "PatchZoneRecords")
     assert.NoError(t, err)
@@ -479,7 +785,7 @@ func TestDnsClientPatchZoneRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientUpdateDomainRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "UpdateDomainRecords")
     assert.NoError(t, err)
@@ -515,7 +821,7 @@ func TestDnsClientUpdateDomainRecords(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientUpdateRRSet(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "UpdateRRSet")
     assert.NoError(t, err)
@@ -551,7 +857,79 @@ func TestDnsClientUpdateRRSet(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientUpdateSteeringPolicy(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "UpdateSteeringPolicy")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("UpdateSteeringPolicy is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "UpdateSteeringPolicy")
+    assert.NoError(t, err)
+
+    type UpdateSteeringPolicyRequestInfo struct {
+        ContainerId string
+        Request dns.UpdateSteeringPolicyRequest
+    }
+
+    var requests []UpdateSteeringPolicyRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.UpdateSteeringPolicy(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+func TestDnsClientUpdateSteeringPolicyAttachment(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("dns", "UpdateSteeringPolicyAttachment")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("UpdateSteeringPolicyAttachment is not enabled by the testing service")
+    }
+    c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("dns", "UpdateSteeringPolicyAttachment")
+    assert.NoError(t, err)
+
+    type UpdateSteeringPolicyAttachmentRequestInfo struct {
+        ContainerId string
+        Request dns.UpdateSteeringPolicyAttachmentRequest
+    }
+
+    var requests []UpdateSteeringPolicyAttachmentRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.UpdateSteeringPolicyAttachment(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientUpdateZone(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "UpdateZone")
     assert.NoError(t, err)
@@ -587,7 +965,7 @@ func TestDnsClientUpdateZone(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
 func TestDnsClientUpdateZoneRecords(t *testing.T) {
     enabled, err := testClient.isApiEnabled("dns", "UpdateZoneRecords")
     assert.NoError(t, err)
