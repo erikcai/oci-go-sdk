@@ -141,8 +141,6 @@ type LaunchInstanceDetails struct {
 	//  the metadata information for the specified key name, respectively.
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 
-	MetricsConfig *InstanceMetricsConfig `mandatory:"false" json:"metricsConfig"`
-
 	AgentConfig *LaunchInstanceAgentConfigDetails `mandatory:"false" json:"agentConfig"`
 
 	// Details for creating an instance.
@@ -178,7 +176,6 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		ImageId                        *string                           `json:"imageId"`
 		IpxeScript                     *string                           `json:"ipxeScript"`
 		Metadata                       map[string]string                 `json:"metadata"`
-		MetricsConfig                  *InstanceMetricsConfig            `json:"metricsConfig"`
 		AgentConfig                    *LaunchInstanceAgentConfigDetails `json:"agentConfig"`
 		SourceDetails                  instancesourcedetails             `json:"sourceDetails"`
 		SubnetId                       *string                           `json:"subnetId"`
@@ -203,7 +200,6 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.ImageId = model.ImageId
 	m.IpxeScript = model.IpxeScript
 	m.Metadata = model.Metadata
-	m.MetricsConfig = model.MetricsConfig
 	m.AgentConfig = model.AgentConfig
 	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
 	if e != nil {

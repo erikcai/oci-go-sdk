@@ -12,28 +12,29 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ExternalBackupJob Provides all the details of a backup, along with additional details that are applicable to an external backup.
+// ExternalBackupJob Provides all the details that apply to an external backup job.
 type ExternalBackupJob struct {
 
-	// The id of the associated backup resource.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the associated backup resource.
 	BackupId *string `mandatory:"true" json:"backupId"`
 
-	// The bucket where the backup should be stored.
-	BucketName *string `mandatory:"true" json:"bucketName"`
-
-	// An indicator for the provisioning state of the resource. If TRUE, the resource is still being provisioned.
+	// An indicator for the provisioning state of the resource. If `TRUE`, the resource is still being provisioned.
 	Provisioning *bool `mandatory:"true" json:"provisioning"`
 
-	// The Swift path to be used to take the backup.
+	// The Swift path to use as a destination for the standalone backup.
 	SwiftPath *string `mandatory:"true" json:"swiftPath"`
 
-	// The tag to be used by RMAN for the backup.
+	// The name of the Swift compartment bucket where the backup should be stored.
+	BucketName *string `mandatory:"true" json:"bucketName"`
+
+	// The tag for RMAN to apply to the backup.
 	Tag *string `mandatory:"true" json:"tag"`
 
-	// The Swift user name to be used to take the backup.
+	// The Swift user name to use for transferring the standalone backup to the designated Swift compartment bucket.
 	UserName *string `mandatory:"true" json:"userName"`
 
-	// The Swift password to be used to take the backup.
+	// The auth token to use for access to the Swift compartment bucket that will store the standalone backup.
+	// For information about auth tokens, see Working with Auth Tokens (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Tasks/managingcredentials.htm#two).
 	SwiftPassword *string `mandatory:"false" json:"swiftPassword"`
 }
 

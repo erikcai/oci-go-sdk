@@ -1,10 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Event Control Service API
+// CloudEvents API
 //
-// API for managing event rules and actions.
-// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
+// API for the CloudEvents Service. Use this API to manage rules and actions that create automation
+// in your tenancy. For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -20,12 +20,17 @@ type ActionDetails interface {
 	// Whether or not this action is currently enabled.
 	// Example: `true`
 	GetIsEnabled() *bool
+
+	// A string that describes the details of the action. It does not have to be unique, and you can change it. Avoid entering
+	// confidential information.
+	GetDescription() *string
 }
 
 type actiondetails struct {
-	JsonData   []byte
-	IsEnabled  *bool  `mandatory:"true" json:"isEnabled"`
-	ActionType string `json:"actionType"`
+	JsonData    []byte
+	IsEnabled   *bool   `mandatory:"true" json:"isEnabled"`
+	Description *string `mandatory:"false" json:"description"`
+	ActionType  string  `json:"actionType"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -40,6 +45,7 @@ func (m *actiondetails) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	m.IsEnabled = s.Model.IsEnabled
+	m.Description = s.Model.Description
 	m.ActionType = s.Model.ActionType
 
 	return err
@@ -82,6 +88,11 @@ func (m *actiondetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 //GetIsEnabled returns IsEnabled
 func (m actiondetails) GetIsEnabled() *bool {
 	return m.IsEnabled
+}
+
+//GetDescription returns Description
+func (m actiondetails) GetDescription() *string {
+	return m.Description
 }
 
 func (m actiondetails) String() string {

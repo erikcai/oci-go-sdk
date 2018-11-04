@@ -36,7 +36,7 @@ type ParavirtualizedVolumeAttachment struct {
 	// The OCID of the volume.
 	VolumeId *string `mandatory:"true" json:"volumeId"`
 
-	// The device name (for example, /dev/vdb).
+	// The device name.
 	Device *string `mandatory:"false" json:"device"`
 
 	// A user-friendly name. Does not have to be unique, and it cannot be changed.

@@ -25,7 +25,7 @@
     <identity-control-plane-api-spec-preview-spec-file>identity-control-plane-api-spec-20160918.yaml</identity-control-plane-api-spec-preview-spec-file>
     <casper-api-spec-spec-file>source/casper-api.cond.yaml</casper-api-spec-spec-file>
     <oralb-api-spec-preview-spec-file>spec-20170115.yaml</oralb-api-spec-preview-spec-file>
-    <dbaas-api-spec-spec-file>previewSdk/dbaas-api-spec-20160918-previewSdk.yaml</dbaas-api-spec-spec-file>
+    <dbaas-api-spec-spec-file>source/dbaas-api-spec-20160918.cond.yaml</dbaas-api-spec-spec-file>
     <fss-api-spec-spec-file>fss-api-spec-20171215.yaml</fss-api-spec-spec-file>
     <hemlock-spec-spec-file>hemlock-api-20160918.yaml</hemlock-spec-spec-file>
     <email-api-spec-spec-file>source/email-api-spec.cond.yaml</email-api-spec-spec-file>
@@ -1754,7 +1754,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.315</version>
+        <version>0.2.328</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -1774,7 +1774,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.35</version>
+        <version>0.1.55</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -1819,7 +1819,7 @@
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
         <artifactId>telemetry-public-api-spec</artifactId>
-        <version>0.2.207</version>
+        <version>0.2.300</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.commons.workrequests</groupId>
@@ -1839,7 +1839,7 @@
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
         <artifactId>events-control-plane-spec</artifactId>
-        <version>0.1.9</version>
+        <version>0.1.11</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>

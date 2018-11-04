@@ -15,19 +15,19 @@ import (
 // ExadataIormConfig Response details which has IORM Settings for this Exadata System
 type ExadataIormConfig struct {
 
-	// Array of IORM Setting for all the database in
-	// this Exadata DB System
-	DbPlans []DbIormConfig `mandatory:"false" json:"dbPlans"`
+	// The current config state of IORM settings for this Exadata System.
+	LifecycleState ExadataIormConfigLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// Additional information about the current lifecycleState.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
-	// The current config state of IORM settings for this Exadata System.
-	LifecycleState ExadataIormConfigLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
-
 	// Value for the IORM objective
 	// Default is "Auto"
 	Objective ExadataIormConfigObjectiveEnum `mandatory:"false" json:"objective,omitempty"`
+
+	// Array of IORM Setting for all the database in
+	// this Exadata DB System
+	DbPlans []DbIormConfig `mandatory:"false" json:"dbPlans"`
 }
 
 func (m ExadataIormConfig) String() string {

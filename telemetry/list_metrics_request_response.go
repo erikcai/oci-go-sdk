@@ -34,6 +34,13 @@ type ListMetricsRequest struct {
 	// Example: 500
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
+	// When true, returns resources from all compartments and subcompartments. The parameter can
+	// only be set to true when compartmentId is the tenancy OCID (the tenancy is the root compartment).
+	// A true value requires the user to have tenancy-level permissions. If this requirement is not met,
+	// then the call is rejected. When false, returns resources from only the compartment specified in
+	// compartmentId. Default is false.
+	CompartmentIdInSubtree *bool `mandatory:"false" contributesTo:"query" name:"compartmentIdInSubtree"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

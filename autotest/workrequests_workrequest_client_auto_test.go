@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestWorkRequestClientGetWorkRequest(t *testing.T) {
     enabled, err := testClient.isApiEnabled("workrequests", "GetWorkRequest")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestWorkRequestClientGetWorkRequest(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestWorkRequestClientListWorkRequestErrors(t *testing.T) {
     enabled, err := testClient.isApiEnabled("workrequests", "ListWorkRequestErrors")
     assert.NoError(t, err)
@@ -92,7 +92,7 @@ func TestWorkRequestClientListWorkRequestErrors(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestWorkRequestClientListWorkRequestLogs(t *testing.T) {
     enabled, err := testClient.isApiEnabled("workrequests", "ListWorkRequestLogs")
     assert.NoError(t, err)
@@ -137,7 +137,7 @@ func TestWorkRequestClientListWorkRequestLogs(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestWorkRequestClientListWorkRequests(t *testing.T) {
     enabled, err := testClient.isApiEnabled("workrequests", "ListWorkRequests")
     assert.NoError(t, err)

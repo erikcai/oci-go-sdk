@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestAuditClientGetConfiguration(t *testing.T) {
     enabled, err := testClient.isApiEnabled("audit", "GetConfiguration")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestAuditClientGetConfiguration(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestAuditClientListEvents(t *testing.T) {
     enabled, err := testClient.isApiEnabled("audit", "ListEvents")
     assert.NoError(t, err)
@@ -92,7 +92,7 @@ func TestAuditClientListEvents(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+// IssueRoutingInfo email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestAuditClientUpdateConfiguration(t *testing.T) {
     enabled, err := testClient.isApiEnabled("audit", "UpdateConfiguration")
     assert.NoError(t, err)

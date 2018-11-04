@@ -1,10 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Event Control Service API
+// CloudEvents API
 //
-// API for managing event rules and actions.
-// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
+// API for the CloudEvents Service. Use this API to manage rules and actions that create automation
+// in your tenancy. For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -23,11 +23,20 @@ type CreateStreamingServiceActionDetails struct {
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the stream to which messages are delivered.
 	StreamId *string `mandatory:"true" json:"streamId"`
+
+	// A string that describes the details of the action. It does not have to be unique, and you can change it. Avoid entering
+	// confidential information.
+	Description *string `mandatory:"false" json:"description"`
 }
 
 //GetIsEnabled returns IsEnabled
 func (m CreateStreamingServiceActionDetails) GetIsEnabled() *bool {
 	return m.IsEnabled
+}
+
+//GetDescription returns Description
+func (m CreateStreamingServiceActionDetails) GetDescription() *string {
+	return m.Description
 }
 
 func (m CreateStreamingServiceActionDetails) String() string {

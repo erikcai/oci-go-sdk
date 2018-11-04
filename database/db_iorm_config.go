@@ -18,11 +18,11 @@ type DbIormConfig struct {
 	// Database Name. For default DbPlan, the dbName will always be `default`
 	DbName *string `mandatory:"false" json:"dbName"`
 
-	// Flash Cache limit, internally configured based on shares
-	FlashCacheLimit *string `mandatory:"false" json:"flashCacheLimit"`
-
 	// Relative priority of a database
 	Share *int `mandatory:"false" json:"share"`
+
+	// Flash Cache limit, internally configured based on shares
+	FlashCacheLimit *string `mandatory:"false" json:"flashCacheLimit"`
 }
 
 func (m DbIormConfig) String() string {

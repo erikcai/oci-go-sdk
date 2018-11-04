@@ -45,7 +45,7 @@ type VolumeAttachment interface {
 	// The OCID of the volume.
 	GetVolumeId() *string
 
-	// The device name (for example, /dev/vdb).
+	// The device name.
 	GetDevice() *string
 
 	// A user-friendly name. Does not have to be unique, and it cannot be changed.

@@ -31,11 +31,15 @@ type CreateAlarmDetails struct {
 	// being evaluated by the alarm.
 	MetricCompartmentId *string `mandatory:"true" json:"metricCompartmentId"`
 
+	// The source service or application emitting the metric that is evaluated by the alarm.
+	// Example: `oci_computeagent`
+	Namespace *string `mandatory:"true" json:"namespace"`
+
 	// The Telemetry Query Language (TQL) expression to evaluate for the alarm. The Alarms service
 	// interprets results for each returned time series as Boolean values, where zero represents false
 	// and a non-zero value represents true. A true value means that the trigger rule condition has
 	// been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or
-	// absence). Supported values for interval: `1m`, `5m`, `1h`. You can optionally specify dimensions
+	// absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally specify dimensions
 	// and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
 	// For available dimensions, review the metric definition.
 	// Example of threshold alarm:
@@ -61,15 +65,19 @@ type CreateAlarmDetails struct {
 	// Example: `true`
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
-	// The source service or application emitting the metric that is evaluated by the alarm. If not specified, then all available sources are used.
-	// Example: `oci_computeagent`
-	Namespace *string `mandatory:"false" json:"namespace"`
+	// When true, the alarm evaluates metrics from all compartments and subcompartments. The parameter can
+	// only be set to true when metricCompartmentId is the tenancy OCID (the tenancy is the root compartment).
+	// A true value requires the user to have tenancy-level permissions. If this requirement is not met,
+	// then the call is rejected. When false, the alarm evaluates metrics from only the compartment specified
+	// in metricCompartmentId. Default is false.
+	// Example: `true`
+	MetricCompartmentIdInSubtree *bool `mandatory:"false" json:"metricCompartmentIdInSubtree"`
 
 	// The time between calculated aggregation windows. Use with the query interval to vary the
 	// frequency at which aggregated data points are returned. For example, use a query interval of
 	// 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
 	// frequency. The resolution must be equal or less than the interval in the query. The default
-	// resolution is 1m (one minute). Supported values: `1m`, `5m`, `1h`.
+	// resolution is 1m (one minute). Supported values: `1m`-`60m` (also `1h`).
 	// Example: `5m`
 	Resolution *string `mandatory:"false" json:"resolution"`
 
@@ -99,7 +107,16 @@ type CreateAlarmDetails struct {
 	// Example: `PT2H`
 	RepeatNotificationDuration *string `mandatory:"false" json:"repeatNotificationDuration"`
 
+	// The configuration details for suppressing an alarm.
 	Suppression *Suppression `mandatory:"false" json:"suppression"`
+
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
 func (m CreateAlarmDetails) String() string {

@@ -18,7 +18,7 @@ type CreateInstancePoolDetails struct {
 	// The OCID of the compartment containing the instance pool
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID of the instance configuration associated to the intance pool.
+	// The OCID of the instance configuration associated to the instance pool.
 	InstanceConfigurationId *string `mandatory:"true" json:"instanceConfigurationId"`
 
 	// The placement configurations for the instance pool.

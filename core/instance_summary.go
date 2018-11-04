@@ -30,11 +30,23 @@ type InstanceSummary struct {
 	// The region that contains the availability domain the instance is running in.
 	Region *string `mandatory:"true" json:"region"`
 
+	// The current state of the instance pool instance.
+	State *string `mandatory:"true" json:"state"`
+
+	// The date and time the instance pool instance was created, in the format defined by RFC3339.
+	// Example: `2016-08-25T21:10:29.600Z`
+	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
 	// The user-friendly name.  Does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The name of the Fault Domain the instance is running in.
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`
+
+	// The shape of an instance. The shape determines the number of CPUs, amount of memory,
+	// and other resources allocated to the instance.
+	// You can enumerate all available shapes by calling ListShapes.
+	Shape *string `mandatory:"false" json:"shape"`
 }
 
 func (m InstanceSummary) String() string {

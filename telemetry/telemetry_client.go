@@ -67,6 +67,11 @@ func (client TelemetryClient) CreateAlarm(ctx context.Context, request CreateAla
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.createAlarm, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -270,6 +275,48 @@ func (client TelemetryClient) listAlarms(ctx context.Context, request common.OCI
 	return response, err
 }
 
+// ListAlarmsStatus List the status of each alarm in the specified compartment.
+func (client TelemetryClient) ListAlarmsStatus(ctx context.Context, request ListAlarmsStatusRequest) (response ListAlarmsStatusResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listAlarmsStatus, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListAlarmsStatusResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListAlarmsStatusResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListAlarmsStatusResponse")
+	}
+	return
+}
+
+// listAlarmsStatus implements the OCIOperation interface (enables retrying operations)
+func (client TelemetryClient) listAlarmsStatus(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/alarms/status")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListAlarmsStatusResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListMetrics Returns metric definitions that match the criteria specified in the request. Compartment OCID required.
 // For more information on monitoring metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
 func (client TelemetryClient) ListMetrics(ctx context.Context, request ListMetricsRequest) (response ListMetricsResponse, err error) {
@@ -301,6 +348,48 @@ func (client TelemetryClient) listMetrics(ctx context.Context, request common.OC
 	}
 
 	var response ListMetricsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// PostMetricData Publishes raw metric data points to the Telemetry service.
+func (client TelemetryClient) PostMetricData(ctx context.Context, request PostMetricDataRequest) (response PostMetricDataResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.postMetricData, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = PostMetricDataResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(PostMetricDataResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into PostMetricDataResponse")
+	}
+	return
+}
+
+// postMetricData implements the OCIOperation interface (enables retrying operations)
+func (client TelemetryClient) postMetricData(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/metrics")
+	if err != nil {
+		return nil, err
+	}
+
+	var response PostMetricDataResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

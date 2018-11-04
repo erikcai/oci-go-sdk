@@ -15,13 +15,13 @@ import (
 // ExadataIormConfigUpdateDetails IORM Setting details for this Exadata System to be updated
 type ExadataIormConfigUpdateDetails struct {
 
-	// Array of IORM Setting for all the database in
-	// this Exadata DB System
-	DbPlans []DbIormConfigUpdateDetail `mandatory:"false" json:"dbPlans"`
-
 	// Value for the IORM objective
 	// Default is "Auto"
 	Objective ExadataIormConfigUpdateDetailsObjectiveEnum `mandatory:"false" json:"objective,omitempty"`
+
+	// Array of IORM Setting for all the database in
+	// this Exadata DB System
+	DbPlans []DbIormConfigUpdateDetail `mandatory:"false" json:"dbPlans"`
 }
 
 func (m ExadataIormConfigUpdateDetails) String() string {

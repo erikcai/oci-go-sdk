@@ -1,10 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Event Control Service API
+// CloudEvents API
 //
-// API for managing event rules and actions.
-// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
+// API for the CloudEvents Service. Use this API to manage rules and actions that create automation
+// in your tenancy. For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -25,7 +25,7 @@ type CreateRuleDetails struct {
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
 	// Specifies the event that will trigger the actions associated with this rule.
-	// Example: `"eventType": "DbaaSBackupCompleted"`
+	// Example: `"eventType": "com.oraclecloud.dbaas.autonomous.database.backup.end"`
 	Condition *string `mandatory:"true" json:"condition"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
@@ -33,6 +33,10 @@ type CreateRuleDetails struct {
 
 	// A list of action object.
 	Actions *ActionDetailsList `mandatory:"true" json:"actions"`
+
+	// A string that describes the details of the rule. It does not have to be unique, and you can change it. Avoid entering
+	// confidential information.
+	Description *string `mandatory:"false" json:"description"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. Exists for cross-compatibility only.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/resourcetags.htm).

@@ -11,7 +11,7 @@ import (
     "testing"
 )
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientCreateHttpMonitor(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "CreateHttpMonitor")
     assert.NoError(t, err)
@@ -47,7 +47,7 @@ func TestHealthChecksClientCreateHttpMonitor(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientCreateOnDemandHttpProbe(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "CreateOnDemandHttpProbe")
     assert.NoError(t, err)
@@ -83,7 +83,7 @@ func TestHealthChecksClientCreateOnDemandHttpProbe(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientCreateOnDemandPingProbe(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "CreateOnDemandPingProbe")
     assert.NoError(t, err)
@@ -119,7 +119,7 @@ func TestHealthChecksClientCreateOnDemandPingProbe(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientCreatePingMonitor(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "CreatePingMonitor")
     assert.NoError(t, err)
@@ -155,7 +155,7 @@ func TestHealthChecksClientCreatePingMonitor(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientDeleteHttpMonitor(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "DeleteHttpMonitor")
     assert.NoError(t, err)
@@ -191,7 +191,7 @@ func TestHealthChecksClientDeleteHttpMonitor(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientDeletePingMonitor(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "DeletePingMonitor")
     assert.NoError(t, err)
@@ -227,7 +227,7 @@ func TestHealthChecksClientDeletePingMonitor(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientGetHttpMonitor(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "GetHttpMonitor")
     assert.NoError(t, err)
@@ -263,7 +263,7 @@ func TestHealthChecksClientGetHttpMonitor(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientGetPingMonitor(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "GetPingMonitor")
     assert.NoError(t, err)
@@ -299,7 +299,7 @@ func TestHealthChecksClientGetPingMonitor(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientListHealthChecksVantagePoints(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "ListHealthChecksVantagePoints")
     assert.NoError(t, err)
@@ -344,7 +344,7 @@ func TestHealthChecksClientListHealthChecksVantagePoints(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientListHttpMonitors(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "ListHttpMonitors")
     assert.NoError(t, err)
@@ -389,7 +389,7 @@ func TestHealthChecksClientListHttpMonitors(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientListHttpProbeResults(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "ListHttpProbeResults")
     assert.NoError(t, err)
@@ -434,7 +434,7 @@ func TestHealthChecksClientListHttpProbeResults(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientListPingMonitors(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "ListPingMonitors")
     assert.NoError(t, err)
@@ -479,7 +479,7 @@ func TestHealthChecksClientListPingMonitors(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientListPingProbeResults(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "ListPingProbeResults")
     assert.NoError(t, err)
@@ -524,7 +524,7 @@ func TestHealthChecksClientListPingProbeResults(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientUpdateHttpMonitor(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "UpdateHttpMonitor")
     assert.NoError(t, err)
@@ -560,7 +560,7 @@ func TestHealthChecksClientUpdateHttpMonitor(t *testing.T) {
     }
 }
 
-// IssueRoutingInfo email="email-dev_us_grp@oracle.com" jiraProject="Email Delivery (ED)" opsJiraProject="Email Delivery"
+// IssueRoutingInfo email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestHealthChecksClientUpdatePingMonitor(t *testing.T) {
     enabled, err := testClient.isApiEnabled("healthchecks", "UpdatePingMonitor")
     assert.NoError(t, err)

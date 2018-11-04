@@ -19,18 +19,17 @@ import (
 // Maximum data points returned per call: 10,080
 type SummarizeMetricsDataDetails struct {
 
-	// The Telemetry Query Language (TQL) expression to use when searching for metric datapoints to
+	// The source service or application to use when searching for metric data points to aggregate.
+	// Example: `oci_computeagent`
+	Namespace *string `mandatory:"true" json:"namespace"`
+
+	// The Telemetry Query Language (TQL) expression to use when searching for metric data points to
 	// aggregate. The query must specify a metric, statistic, and interval. Supported values for
-	// interval: `1m`, `5m`, `1h`. You can optionally specify dimensions and grouping functions.
+	// interval: `1m`-`60m` (also `1h`). You can optionally specify dimensions and grouping functions.
 	// Supported grouping functions: `grouping()`, `groupBy()`.
 	// For available dimensions, review the metric definition.
 	// Example: `CpuUtilization[1m].sum()`
 	Query *string `mandatory:"true" json:"query"`
-
-	// The source service or application to use when searching for metric data points to aggregate. If not
-	// specified, then all available sources are used.
-	// Example: `oci_computeagent`
-	Namespace *string `mandatory:"false" json:"namespace"`
 
 	// The beginning of the time range to use when searching for metric data points.
 	// Format is defined by RFC3339. The response includes metric data points for the startTime.
@@ -48,7 +47,7 @@ type SummarizeMetricsDataDetails struct {
 	// frequency at which aggregated data points are returned. For example, use a query interval of
 	// 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
 	// frequency. The resolution must be equal or less than the interval in the query. The default
-	// resolution is 1m (one minute). Supported values: `1m`, `5m`, `1h`.
+	// resolution is 1m (one minute). Supported values: `1m`-`60m` (also `1h`).
 	// Example: `5m`
 	Resolution *string `mandatory:"false" json:"resolution"`
 }

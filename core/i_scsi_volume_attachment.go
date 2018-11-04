@@ -48,7 +48,7 @@ type IScsiVolumeAttachment struct {
 	// Example: `3260`
 	Port *int `mandatory:"true" json:"port"`
 
-	// The device name (for example, /dev/vdb).
+	// The device name.
 	Device *string `mandatory:"false" json:"device"`
 
 	// A user-friendly name. Does not have to be unique, and it cannot be changed.

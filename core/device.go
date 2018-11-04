@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Device The representation of Device
+// Device Device Path corresponding to the block devices attached to instances having a name and isAvailable flag.
 type Device struct {
 
-	// The device name (for example, /dev/vdb).
+	// The device name.
 	Name *string `mandatory:"true" json:"name"`
 
 	// The flag denoting whether device is available.

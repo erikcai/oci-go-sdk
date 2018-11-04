@@ -40,11 +40,15 @@ type AlarmSummary struct {
 	// being evaluated by the alarm.
 	MetricCompartmentId *string `mandatory:"true" json:"metricCompartmentId"`
 
+	// The source service or application emitting the metric that is evaluated by the alarm.
+	// Example: `oci_computeagent`
+	Namespace *string `mandatory:"true" json:"namespace"`
+
 	// The Telemetry Query Language (TQL) expression to evaluate for the alarm. The Alarms service
 	// interprets results for each returned time series as Boolean values, where zero represents false
 	// and a non-zero value represents true. A true value means that the trigger rule condition has
 	// been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or
-	// absence). Supported values for interval: `1m`, `5m`, `1h`. You can optionally specify dimensions
+	// absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally specify dimensions
 	// and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
 	// For available dimensions, review the metric definition.
 	// Example of threshold alarm:
@@ -70,11 +74,20 @@ type AlarmSummary struct {
 	// Example: `true`
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
-	// The source service or application emitting the metric that is evaluated by the alarm. If not specified, then all available sources are used.
-	// Example: `oci_computeagent`
-	Namespace *string `mandatory:"false" json:"namespace"`
+	// The current lifecycle state of the alarm.
+	// Example: `DELETED`
+	LifecycleState AlarmLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
+	// The configuration details for suppressing an alarm.
 	Suppression *Suppression `mandatory:"false" json:"suppression"`
+
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
 func (m AlarmSummary) String() string {

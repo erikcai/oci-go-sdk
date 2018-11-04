@@ -44,9 +44,6 @@ type ListVolumeGroupBackupsRequest struct {
 	// is case sensitive.
 	SortOrder ListVolumeGroupBackupsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
-	LifecycleState VolumeGroupBackupLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
-
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

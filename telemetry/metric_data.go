@@ -47,7 +47,7 @@ type MetricData struct {
 	// frequency at which aggregated data points are returned. For example, use a query interval of
 	// 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
 	// frequency. The resolution must be equal or less than the interval in the query. The default
-	// resolution is 1m (one minute). Supported values: `1m`, `5m`, `1h`.
+	// resolution is 1m (one minute). Supported values: `1m`-`60m` (also `1h`).
 	// Example: `5m`
 	Resolution *string `mandatory:"false" json:"resolution"`
 }

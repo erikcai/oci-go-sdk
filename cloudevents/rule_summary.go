@@ -1,10 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Event Control Service API
+// CloudEvents API
 //
-// API for managing event rules and actions.
-// For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
+// API for the CloudEvents Service. Use this API to manage rules and actions that create automation
+// in your tenancy. For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RuleSummary The summary details of event rules. For more information, see
+// RuleSummary The summary details of CloudEvent rules. For more information, see
 // Managing Rules for Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Task/managingrulesactions.htm)
 type RuleSummary struct {
 
@@ -25,8 +25,10 @@ type RuleSummary struct {
 	// Example: `"This rule sends a notification upon completion of DbaaS backup."`
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
+	LifecycleState RuleLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+
 	// Specifies the event that will trigger the actions associated with this rule.
-	// Example: `"eventType": "DbaaSBackupCompleted"`
+	// Example: `"eventType": "com.oraclecloud.dbaas.autonomous.database.backup.end"`
 	Condition *string `mandatory:"true" json:"condition"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
@@ -40,6 +42,10 @@ type RuleSummary struct {
 	// timestamp format.
 	// Example: `2018-09-12T22:47:12.613Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// A string that describes the details of the rule. It does not have to be unique, and you can change it. Avoid entering
+	// confidential information.
+	Description *string `mandatory:"false" json:"description"`
 }
 
 func (m RuleSummary) String() string {

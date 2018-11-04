@@ -35,6 +35,24 @@ type ListAlarmsRequest struct {
 	// Use this filter to list an alarm by name. Alternatively, when you know the alarm OCID, use the GetAlarm operation.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
+	// A filter to return only alarms that match the given lifecycle state exactly. When not specified, only alarms in the ACTIVE lifecycle state are listed.
+	LifecycleState AlarmLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+
+	// The field to use when sorting returned alarm definitions. Only one sorting level is provided.
+	// Example: `severity`
+	SortBy ListAlarmsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
+
+	// The sort order to use when sorting returned alarm definitions. Ascending (ASC) or descending (DESC).
+	// Example: `ASC`
+	SortOrder ListAlarmsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+
+	// When true, returns resources from all compartments and subcompartments. The parameter can
+	// only be set to true when compartmentId is the tenancy OCID (the tenancy is the root compartment).
+	// A true value requires the user to have tenancy-level permissions. If this requirement is not met,
+	// then the call is rejected. When false, returns resources from only the compartment specified in
+	// compartmentId. Default is false.
+	CompartmentIdInSubtree *bool `mandatory:"false" contributesTo:"query" name:"compartmentIdInSubtree"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -79,4 +97,50 @@ func (response ListAlarmsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListAlarmsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ListAlarmsSortByEnum Enum with underlying type: string
+type ListAlarmsSortByEnum string
+
+// Set of constants representing the allowable values for ListAlarmsSortByEnum
+const (
+	ListAlarmsSortByDisplayname ListAlarmsSortByEnum = "displayName"
+	ListAlarmsSortBySeverity    ListAlarmsSortByEnum = "severity"
+)
+
+var mappingListAlarmsSortBy = map[string]ListAlarmsSortByEnum{
+	"displayName": ListAlarmsSortByDisplayname,
+	"severity":    ListAlarmsSortBySeverity,
+}
+
+// GetListAlarmsSortByEnumValues Enumerates the set of values for ListAlarmsSortByEnum
+func GetListAlarmsSortByEnumValues() []ListAlarmsSortByEnum {
+	values := make([]ListAlarmsSortByEnum, 0)
+	for _, v := range mappingListAlarmsSortBy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListAlarmsSortOrderEnum Enum with underlying type: string
+type ListAlarmsSortOrderEnum string
+
+// Set of constants representing the allowable values for ListAlarmsSortOrderEnum
+const (
+	ListAlarmsSortOrderAsc  ListAlarmsSortOrderEnum = "ASC"
+	ListAlarmsSortOrderDesc ListAlarmsSortOrderEnum = "DESC"
+)
+
+var mappingListAlarmsSortOrder = map[string]ListAlarmsSortOrderEnum{
+	"ASC":  ListAlarmsSortOrderAsc,
+	"DESC": ListAlarmsSortOrderDesc,
+}
+
+// GetListAlarmsSortOrderEnumValues Enumerates the set of values for ListAlarmsSortOrderEnum
+func GetListAlarmsSortOrderEnumValues() []ListAlarmsSortOrderEnum {
+	values := make([]ListAlarmsSortOrderEnum, 0)
+	for _, v := range mappingListAlarmsSortOrder {
+		values = append(values, v)
+	}
+	return values
 }
