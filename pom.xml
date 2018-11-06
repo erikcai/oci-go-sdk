@@ -1854,7 +1854,7 @@
       <dependency>
         <groupId>com.oracle.marketplace</groupId>
         <artifactId>marketplace-api-spec</artifactId>
-        <version>1.9.1</version>
+        <version>1.9.3</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
