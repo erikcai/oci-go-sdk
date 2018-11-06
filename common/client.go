@@ -258,7 +258,7 @@ type OCIOperation func(context.Context, OCIRequest) (OCIResponse, error)
 
 // Call executes the http request with the given context
 func (client BaseClient) Call(ctx context.Context, request *http.Request) (response *http.Response, err error) {
-	Debugln("Atempting to call downstream service")
+	Debugln("Attempting to call downstream service")
 	request = request.WithContext(ctx)
 
 	err = client.prepareRequest(request)
