@@ -37,6 +37,12 @@ type CreateAutonomousDatabaseDetails struct {
 	// The Oracle license model that applies to the Oracle Autonomous Database. The default is BRING_YOUR_OWN_LICENSE.
 	LicenseModel CreateAutonomousDatabaseDetailsLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 
+	// True if it is dedicated database.
+	IsDedicated *bool `mandatory:"false" json:"isDedicated"`
+
+	// The OCID of the Autonomous Pod.
+	AutonomousPodId *string `mandatory:"false" json:"autonomousPodId"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`

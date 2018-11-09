@@ -24,6 +24,9 @@ type AutonomousDatabaseConnectionStrings struct {
 	// The Low database service provides the least level of resources to each SQL statement, but supports the most number of concurrent SQL statements.
 	Low *string `mandatory:"false" json:"low"`
 
+	// The database service provides the least level of resources to each SQL statement, but supports the most number of concurrent SQL statements.
+	Dedicated *string `mandatory:"false" json:"dedicated"`
+
 	// All connection strings to use to connect to the Autonomous Database.
 	AllConnectionStrings map[string]string `mandatory:"false" json:"allConnectionStrings"`
 }
