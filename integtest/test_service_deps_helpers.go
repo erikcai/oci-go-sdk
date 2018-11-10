@@ -301,7 +301,8 @@ func createOrGetInstance(t *testing.T) core.Instance {
 
 	// check if instance exists or not
 	for _, element := range listResp.Items {
-		if *element.DisplayName == instanceDisplayName {
+		if *element.DisplayName == instanceDisplayName &&
+			element.LifecycleState == core.InstanceLifecycleStateRunning {
 			return element
 		}
 	}
