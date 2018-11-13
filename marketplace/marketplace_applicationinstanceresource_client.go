@@ -13,7 +13,6 @@ import (
 	"fmt"
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
-	"strings"
 )
 
 //ApplicationInstanceResourceClient a client for ApplicationInstanceResource
@@ -38,7 +37,7 @@ func NewApplicationInstanceResourceClientWithConfigurationProvider(configProvide
 
 // SetRegion overrides the region of this client.
 func (client *ApplicationInstanceResourceClient) SetRegion(region string) {
-	client.Host = strings.Replace("https://marketplace.us-ashburn-1.oci.oraclecloud.com", "{region}", region, 1)
+	client.Host = common.StringToRegion(region).EndpointForTemplate("marketplace", "https://marketplace.us-ashburn-1.oci.oraclecloud.com")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

@@ -46,11 +46,8 @@ func (region Region) EndpointForTemplate(service string, serviceEndpointTemplate
 		return region.Endpoint(service)
 	}
 
-	// replace service prefix
-	endpoint := strings.Replace(serviceEndpointTemplate, "{serviceEndpointPrefix}", service, 1)
-
 	// replace region
-	endpoint = strings.Replace(endpoint, "{region}", string(region), 1)
+	endpoint := strings.Replace(serviceEndpointTemplate, "{region}", string(region), 1)
 
 	// replace second level domain
 	endpoint = strings.Replace(endpoint, "{secondLevelDomain}", region.secondLevelDomain(), 1)

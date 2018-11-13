@@ -37,7 +37,7 @@ func NewResourceManagerClientWithConfigurationProvider(configProvider common.Con
 
 // SetRegion overrides the region of this client.
 func (client *ResourceManagerClient) SetRegion(region string) {
-	client.Host = fmt.Sprintf(common.DefaultHostURLTemplate, "resourcemanager", region)
+	client.Host = common.StringToRegion(region).Endpoint("resourcemanager")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

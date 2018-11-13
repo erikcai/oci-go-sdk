@@ -39,7 +39,7 @@ func NewHealthChecksClientWithConfigurationProvider(configProvider common.Config
 
 // SetRegion overrides the region of this client.
 func (client *HealthChecksClient) SetRegion(region string) {
-	client.Host = fmt.Sprintf(common.DefaultHostURLTemplate, "healthchecks", region)
+	client.Host = common.StringToRegion(region).Endpoint("healthchecks")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

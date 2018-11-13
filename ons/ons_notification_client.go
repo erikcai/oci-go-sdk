@@ -37,7 +37,7 @@ func NewNotificationClientWithConfigurationProvider(configProvider common.Config
 
 // SetRegion overrides the region of this client.
 func (client *NotificationClient) SetRegion(region string) {
-	client.Host = fmt.Sprintf(common.DefaultHostURLTemplate, "notification-dev", region)
+	client.Host = common.StringToRegion(region).Endpoint("notification-dev")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

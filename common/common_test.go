@@ -28,12 +28,6 @@ func TestEndpointForTemplate(t *testing.T) {
 	}
 	testDataSet := []testData{
 		{
-			// template with service prefix
-			service:          "foo",
-			endpointTemplate: "https://{serviceEndpointPrefix}.region.bar.com",
-			expected:         "https://foo.region.bar.com",
-		},
-		{
 			// template with region
 			service:          "test",
 			endpointTemplate: "https://foo.{region}.bar.com",
@@ -48,8 +42,8 @@ func TestEndpointForTemplate(t *testing.T) {
 		{
 			// template with everything
 			service:          "test",
-			endpointTemplate: "https://{serviceEndpointPrefix}.{region}.{secondLevelDomain}",
-			expected:         "https://test.us-phoenix-1.oraclecloud.com",
+			endpointTemplate: "https://abc.{region}.{secondLevelDomain}",
+			expected:         "https://abc.us-phoenix-1.oraclecloud.com",
 		},
 	}
 
