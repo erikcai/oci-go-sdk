@@ -14,6 +14,16 @@ type Region string
 const (
 	//RegionSEA region SEA
 	RegionSEA Region = "sea"
+	//RegionAPMumbai1 region for mumbai
+	RegionAPMumbai1 Region = "ap-mumbai-1"
+	//RegionAPSaopaolo1 region for saopaolo
+	RegionAPSaopaolo1 Region = "ap-saopaolo-1"
+	//RegionAPSeoul1 region for seoul
+	RegionAPSeoul1 Region = "ap-seoul-1"
+	//RegionAPTokyo1 region for tokyo
+	RegionAPTokyo1 Region = "ap-tokyo-1"
+	//RegionAPToronto1 region for toronto
+	RegionAPToronto1 Region = "ap-toronto-1"
 	//RegionPHX region PHX
 	RegionPHX Region = "us-phoenix-1"
 	//RegionIAD region IAD
@@ -22,17 +32,43 @@ const (
 	RegionFRA Region = "eu-frankfurt-1"
 	//RegionLHR region LHR
 	RegionLHR Region = "uk-london-1"
+
+	//RegionUSLangley1 region for langley
+	RegionUSLangley1 Region = "us-langley-1"
+	//RegionUSLuke1 region for luke
+	RegionUSLuke1 Region = "us-luke-1"
+
+	//RegionUSGovAshburn1 region for langley
+	RegionUSGovAshburn1 Region = "us-gov-ashburn-1"
+	//RegionUSGovChicago1 region for luke
+	RegionUSGovChicago1 Region = "us-gov-chicago-1"
+	//RegionUSGovPhoenix1 region for luke
+	RegionUSGovPhoenix1 Region = "us-gov-phoenix-1"
 )
 
 var realm = map[string]string{
 	"oc1": "oraclecloud.com",
+	"oc2": "oraclegovcloud.com",
+	"oc3": "oraclegovcloud.com",
 }
 
 var regionRealm = map[Region]string{
-	RegionPHX: "oc1",
-	RegionIAD: "oc1",
-	RegionFRA: "oc1",
-	RegionLHR: "oc1",
+	RegionPHX:         "oc1",
+	RegionIAD:         "oc1",
+	RegionFRA:         "oc1",
+	RegionLHR:         "oc1",
+	RegionAPMumbai1:   "oc1",
+	RegionAPSaopaolo1: "oc1",
+	RegionAPSeoul1:    "oc1",
+	RegionAPTokyo1:    "oc1",
+	RegionAPToronto1:  "oc1",
+
+	RegionUSLangley1: "oc2",
+	RegionUSLuke1:    "oc2",
+
+	RegionUSGovAshburn1: "oc3",
+	RegionUSGovChicago1: "oc3",
+	RegionUSGovPhoenix1: "oc3",
 }
 
 // Endpoint returns a endpoint for a service
@@ -79,6 +115,26 @@ func StringToRegion(stringRegion string) (r Region) {
 		r = RegionFRA
 	case "lhr", "uk-london-1":
 		r = RegionLHR
+	case "ap-mumbai-1":
+		r = RegionAPMumbai1
+	case "ap-saopaolo-1":
+		r = RegionAPSaopaolo1
+	case "ap-seoul-1":
+		r = RegionAPSeoul1
+	case "ap-tokyo-1":
+		r = RegionAPTokyo1
+	case "ca-toronto-1":
+		r = RegionAPToronto1
+	case "us-langley-1":
+		r = RegionUSLangley1
+	case "us-luke-1":
+		r = RegionUSLuke1
+	case "us-gov-ashburn-1":
+		r = RegionUSGovAshburn1
+	case "us-gov-chicago-1":
+		r = RegionUSGovChicago1
+	case "us-gov-phoenix-1":
+		r = RegionUSGovPhoenix1
 	default:
 		r = Region(stringRegion)
 		Debugf("region named: %s, is not recognized", stringRegion)
