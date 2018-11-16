@@ -12,15 +12,15 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ApplyJobPlanResolution Specifies which Plan job provides an execution plan for input to the Apply job.
-// You can set only one of the three job properties.
+// ApplyJobPlanResolution Specifies which plan job provides an execution plan for input to the apply or destroy job.
+// You can set only one of the three job properties. For destroy jobs, only `isAutoApproved` is permitted.
 type ApplyJobPlanResolution struct {
 
-	// OCID of the most recently executed Plan job.
+	// OCID that specifies the most recently executed plan job.
 	PlanJobId *string `mandatory:"false" json:"planJobId"`
 
-	// Specifies whether to use the OCID of the most recently run Plan job.
-	// `True` if using the latest job OCID. Must be a Plan job that completed successfully.
+	// Specifies whether to use the OCID of the most recently run plan job.
+	// `True` if using the latest job OCID. Must be a plan job that completed successfully.
 	IsUseLatestJobId *bool `mandatory:"false" json:"isUseLatestJobId"`
 
 	// Specifies whether to use the configuration directly, without reference to a Plan job.

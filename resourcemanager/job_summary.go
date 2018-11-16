@@ -12,14 +12,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// JobSummary The representation of JobSummary
+// JobSummary Returns a listing of all of the specified job's properties and their values.
 type JobSummary struct {
+
+	// The job's OCID.
 	Id *string `mandatory:"false" json:"id"`
 
+	// OCID of the stack that is associated with the specified job.
 	StackId *string `mandatory:"false" json:"stackId"`
 
+	// OCID of the compartment where the stack of the associated job resides.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
+	// The job's display name.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The type of job executing
@@ -30,11 +35,19 @@ type JobSummary struct {
 	// The plan job OCID that was used (if this was an APPLY job and not auto approved).
 	ResolvedPlanJobId *string `mandatory:"false" json:"resolvedPlanJobId"`
 
+	// The date and time the job was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// The date and time the job succeeded or failed.
 	TimeFinished *common.SDKTime `mandatory:"false" json:"timeFinished"`
 
+	// Current state of the specified job. Allowed values are:
+	// - ACCEPTED
+	// - IN_PROGRESS
+	// - FAILED
+	// - SUCCEEDED
+	// - CANCELING
+	// - CANCELED
 	LifecycleState JobLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.

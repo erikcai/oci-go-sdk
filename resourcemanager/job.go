@@ -12,14 +12,25 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Job The representation of Job
+// Job Jobs perform the actions that are defined in your configuration. There are three job types
+// - **Plan job**. A plan job takes your Terraform configuration, parses it, and creates an execution plan.
+// - **Apply job**. The apply job takes your execution plan, applies it to the associated stack, then executes
+// the configuration's instructions.
+// - **Destroy job**. To clean up the infrastructure controlled by the stack, you run a destroy job.
+// A destroy job does not delete the stack or associated job resources,
+// but instead releases the resources managed by the stack.
 type Job struct {
+
+	// The job's OCID.
 	Id *string `mandatory:"false" json:"id"`
 
+	// The OCID of the stack that is associated with the job.
 	StackId *string `mandatory:"false" json:"stackId"`
 
+	// The OCID of the compartment in which the job's associated stack resides.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
+	// The job's display name.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The type of job executing.
@@ -27,7 +38,7 @@ type Job struct {
 
 	ApplyJobPlanResolution *ApplyJobPlanResolution `mandatory:"false" json:"applyJobPlanResolution"`
 
-	// The plan job OCID that was used (if this was an APPLY job and not auto-approved).
+	// The plan job OCID that was used (if this was an apply job and was not auto-approved).
 	ResolvedPlanJobId *string `mandatory:"false" json:"resolvedPlanJobId"`
 
 	// The date and time at which the job was created.
@@ -38,9 +49,15 @@ type Job struct {
 
 	LifecycleState JobLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
+	FailureDetails *FailureDetails `mandatory:"false" json:"failureDetails"`
+
 	// The file path to the directory within the configuration from which the job runs.
 	WorkingDirectory *string `mandatory:"false" json:"workingDirectory"`
 
+	// Terraform variables associated with this resource.
+	// Maximum number of variables supported is 100.
+	// The maximum size of each variable, including both name and value, is 4096 bytes.
+	// Example: `{"CompartmentId": "compartment-id-value"}`
 	Variables map[string]string `mandatory:"false" json:"variables"`
 
 	// Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.

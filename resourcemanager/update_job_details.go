@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateJobDetails Updates the details of the job.
+// UpdateJobDetails Updates the display name, free-form tags, and/or defined tag properties of the job.
 type UpdateJobDetails struct {
 
 	// The new display name to set.

@@ -21,7 +21,7 @@ type GetJobLogsRequest struct {
 	// A filter that returns only logs of a specified type.
 	Type []LogEntryTypeEnum `contributesTo:"query" name:"type" omitEmpty:"true" collectionFormat:"multi"`
 
-	// A filter that returns logs of a given severity level or greater.
+	// A filter that returns only log entries that match a given severity level or greater.
 	LevelGreaterThanOrEqualTo LogEntryLevelEnum `mandatory:"false" contributesTo:"query" name:"levelGreaterThanOrEqualTo" omitEmpty:"true"`
 
 	// The sort order, either `ASC` (ascending) or `DESC` (descending).
@@ -72,10 +72,12 @@ type GetJobLogsResponse struct {
 	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// When paging list items, retrieves the next page of items.
-	// If this header appears in the response, then include
-	// this value in the 'page' parameter for the subsequent
-	// 'GET' request.
+	// Retrieves the next page of paginated list items. If the `opc-next-page`
+	// header appears in the response, additional pages of results remain.
+	// To receive the next page, include the header value in the `page` param.
+	// If the `opc-next-page` header does not appear in the response, there
+	// are no more list items to get. For more information about list pagination,
+	// see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

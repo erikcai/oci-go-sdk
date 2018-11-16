@@ -13,14 +13,21 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateStackDetails Specifies which fields and the data for each that will be updated on the stack.
+// UpdateStackDetails Specifies which fields and the data for each to update on the specified stack.
 type UpdateStackDetails struct {
+
+	// The name of the stack.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// Description of the stack.
 	Description *string `mandatory:"false" json:"description"`
 
 	ConfigSource UpdateConfigSourceDetails `mandatory:"false" json:"configSource"`
 
+	// Terraform variables associated with this resource.
+	// The maximum number of variables supported is 100.
+	// The maximum size of each variable, including both name and value, is 4096 bytes.
+	// Example: `{"CompartmentId": "compartment-id-value"}`
 	Variables map[string]string `mandatory:"false" json:"variables"`
 
 	// Free-form tags associated with this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

@@ -16,7 +16,7 @@ import (
 // CreateConfigSourceDetails Property details for the configuration source.
 type CreateConfigSourceDetails interface {
 
-	// The file path to the directory from which to run Terraform.
+	// File path to the directory from which Terraform runs.
 	// If not specified, the root directory is used.
 	GetWorkingDirectory() *string
 }

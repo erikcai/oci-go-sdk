@@ -12,13 +12,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateJobDetails Defines the requirements and details of the job to run against the specified stack.
+// CreateJobDetails Defines the requirements and properties of a job to create and run against the specified stack.
 type CreateJobDetails struct {
+
+	// OCID of the stack that is associated with the current job.
 	StackId *string `mandatory:"true" json:"stackId"`
 
-	// Terraform specific operation to execute
+	// Terraform-specific operation to execute.
 	Operation JobOperationEnum `mandatory:"true" json:"operation"`
 
+	// Description of the job.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	ApplyJobPlanResolution *ApplyJobPlanResolution `mandatory:"false" json:"applyJobPlanResolution"`

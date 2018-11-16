@@ -13,11 +13,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ZipUploadConfigSource The representation of ZipUploadConfigSource
+// ZipUploadConfigSource File path to the location of the zip file that contains the Terraform configuration.
 type ZipUploadConfigSource struct {
 
-	// The file path to the directory from which to run Terraform.
-	// If not specified, the root directory is used.
+	// File path to the directory from which Terraform runs.
+	// If not specified, we use the root directory.
 	WorkingDirectory *string `mandatory:"false" json:"workingDirectory"`
 }
 

@@ -281,7 +281,7 @@ func (client ResourceManagerClient) getJob(ctx context.Context, request common.O
 	return response, err
 }
 
-// GetJobLogs Returns log entries for the specified job.
+// GetJobLogs Returns log entries for the specified job in JSON format.
 func (client ResourceManagerClient) GetJobLogs(ctx context.Context, request GetJobLogsRequest) (response GetJobLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -323,7 +323,8 @@ func (client ResourceManagerClient) getJobLogs(ctx context.Context, request comm
 	return response, err
 }
 
-// GetJobLogsContent Returns logs for the specified job. Returns a maximum of 100,000 log entries.
+// GetJobLogsContent Returns raw log file for the specified job in text format.
+// Returns a maximum of 100,000 log entries.
 func (client ResourceManagerClient) GetJobLogsContent(ctx context.Context, request GetJobLogsContentRequest) (response GetJobLogsContentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -533,9 +534,9 @@ func (client ResourceManagerClient) getStackTfConfig(ctx context.Context, reques
 }
 
 // ListJobs Returns a list of jobs in a stack or compartment, ordered by time created.
-// To list all jobs in a stack, provide the stack OCID.
-// To list all jobs in a compartment, provide the compartment OCID.
-// To return a specific job, provide the job OCID.
+// - To list all jobs in a stack, provide the stack OCID.
+// - To list all jobs in a compartment, provide the compartment OCID.
+// - To return a specific job, provide the job OCID.
 func (client ResourceManagerClient) ListJobs(ctx context.Context, request ListJobsRequest) (response ListJobsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -577,8 +578,9 @@ func (client ResourceManagerClient) listJobs(ctx context.Context, request common
 	return response, err
 }
 
-// ListStacks Returns a list of stacks. If called using a compartment ID, returns all stacks in the specified compartment.
-// If called using a stack ID, returns the specified stack.
+// ListStacks Returns a list of stacks.
+// - If called using the compartment ID, returns all stacks in the specified compartment.
+// - If called using the stack ID, returns the specified stack.
 func (client ResourceManagerClient) ListStacks(ctx context.Context, request ListStacksRequest) (response ListStacksResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -663,6 +665,8 @@ func (client ResourceManagerClient) updateJob(ctx context.Context, request commo
 }
 
 // UpdateStack Updates the specified stack object.
+// Use `UpdateStack` when you update your Terraform configuration
+// and want your changes to be reflected in the execution plan.
 func (client ResourceManagerClient) UpdateStack(ctx context.Context, request UpdateStackRequest) (response UpdateStackResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

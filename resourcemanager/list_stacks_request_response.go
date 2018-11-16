@@ -15,15 +15,20 @@ type ListStacksRequest struct {
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The compartment OCID to filter by.
+	// The compartment OCID on which to filter.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
 	// The OCID on which to query for a stack.
-	// Use the compartment OCID to return all stacks in the compartment.
-	// Use the stack OCID to return a single stack.
 	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
 
-	// A filter for returning only those resources that match the specified lifecycle state. The state value is case-insensitive.
+	// A filter that returns only those resources that match the specified
+	// lifecycle state. The state value is case-insensitive.
+	// Allowable values:
+	// - CREATING
+	// - ACTIVE
+	// - DELETING
+	// - DELETED
+	//
 	LifecycleState StackLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// Display name on which to query.
@@ -76,7 +81,12 @@ type ListStacksResponse struct {
 	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination token, request the next page of list items.
+	// Retrieves the next page of paginated list items. If the `opc-next-page`
+	// header appears in the response, additional pages of results remain.
+	// To receive the next page, include the header value in the `page` param.
+	// If the `opc-next-page` header does not appear in the response, there
+	// are no more list items to get. For more information about list pagination,
+	// see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

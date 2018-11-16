@@ -15,20 +15,24 @@ type ListJobsRequest struct {
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The compartment OCID to filter by.
+	// The compartment OCID on which to filter.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
-	// The stack OCID to filter by.
+	// The stack OCID on which to filter.
 	StackId *string `mandatory:"false" contributesTo:"query" name:"stackId"`
 
 	// The OCID on which to query for jobs.
-	// Use the comparment OCID to return all jobs in a compartment.
-	// Use the stack OCID to return all jobs in a stack.
-	// Use the job OCID to return a single job.
 	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
 
-	// A filter that returns all of the resources that match the specified lifecycle state.
+	// A filter that returns all resources that match the specified lifecycle state.
 	// The state value is case-insensitive.
+	// Allowable values:
+	// - ACCEPTED
+	// - IN_PROGRESS
+	// - FAILED
+	// - SUCCEEDED
+	// - CANCELING
+	// - CANCELED
 	LifecycleState JobLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// Display name on which to query.
@@ -81,9 +85,12 @@ type ListJobsResponse struct {
 	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// When paging list items, retrieves the next page of items.
-	// If this header appears in the response, then include
-	// this value in the `page` parameter for the subsequent `ListJobs` request.
+	// Retrieves the next page of paginated list items. If the `opc-next-page`
+	// header appears in the response, additional pages of results remain.
+	// To receive the next page, include the header value in the `page` param.
+	// If the `opc-next-page` header does not appear in the response, there
+	// are no more list items to get. For more information about list pagination,
+	// see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

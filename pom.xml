@@ -29,7 +29,7 @@
     <fss-api-spec-spec-file>fss-api-spec-20171215.yaml</fss-api-spec-spec-file>
     <hemlock-spec-spec-file>hemlock-api-20160918.yaml</hemlock-spec-spec-file>
     <email-api-spec-spec-file>source/email-api-spec.cond.yaml</email-api-spec-spec-file>
-    <public-dns-api-spec-spec-file>tm-preview/public-dns-api-spec.yaml</public-dns-api-spec-spec-file>
+    <public-dns-api-spec-spec-file>source/public-dns-api-spec.cond.yaml</public-dns-api-spec-spec-file>
     <maestro-spec-spec-file>api.yaml</maestro-spec-spec-file>
     <kms-api-spec-spec-file>kms-api-spec-20180608.yaml</kms-api-spec-spec-file>
     <resource-query-service-spec-spec-file>rqs.yaml</resource-query-service-spec-spec-file>
@@ -1774,7 +1774,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.58</version>
+        <version>0.1.67</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -1799,7 +1799,7 @@
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
         <artifactId>maestro-spec</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.5</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>

@@ -13,7 +13,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Stack The stack object.
+// Stack The stack object. Stacks represent definitions of groups of Oracle Cloud Infrastructure
+// resources that you can act upon as a group. You take action on stacks by using jobs.
 type Stack struct {
 
 	// Unique identifier (OCID) for the stack.
@@ -31,12 +32,17 @@ type Stack struct {
 	// The date and time at which the stack was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The current state of the stack.
+	// The current lifecycle state of the stack.
 	LifecycleState StackLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// File path to the stack's Terraform configuration.
+	// Specifies the `configSourceType` for uploading the Terraform configuration.
+	// Presently, the .zip file type (`ZIP_UPLOAD`) is the only supported `configSourceType`.
 	ConfigSource ConfigSource `mandatory:"false" json:"configSource"`
 
+	// Terraform variables associated with this resource.
+	// Maximum number of variables supported is 100.
+	// The maximum size of each variable, including both name and value, is 4096 bytes.
+	// Example: `{"CompartmentId": "compartment-id-value"}`
 	Variables map[string]string `mandatory:"false" json:"variables"`
 
 	// Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.

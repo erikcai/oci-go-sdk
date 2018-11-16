@@ -12,13 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// StackSummary Listing of properties and property values for the specified stack.
+// StackSummary Returns a list of properties and the defining property values for the specified stack.
 type StackSummary struct {
 
-	// Unique identifier (OCID) of the specified stack.
+	// Unique identifier of the specified stack.
 	Id *string `mandatory:"false" json:"id"`
 
-	// Unique identifier (OCID) of the compartment in which the stack resides.
+	// Unique identifier of the compartment in which the stack resides.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// Human-readable display name for the stack.

@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// LogEntry Log entry resulting from a job's execution.
+// LogEntry Log entry for an operation resulting from a job's execution.
 type LogEntry struct {
 
 	// Specifies the log type for the log entry.
@@ -21,8 +21,10 @@ type LogEntry struct {
 	// Specifies the severity level of the log entry.
 	Level LogEntryLevelEnum `mandatory:"false" json:"level,omitempty"`
 
+	// Date and time of the log entry.
 	Timestamp *common.SDKTime `mandatory:"false" json:"timestamp"`
 
+	// The log entry value.
 	Message *string `mandatory:"false" json:"message"`
 }
 

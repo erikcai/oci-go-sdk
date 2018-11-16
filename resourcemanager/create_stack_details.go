@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateStackDetails Property details for creating a stack.
+// CreateStackDetails Properties provided for creating a stack.
 type CreateStackDetails struct {
 
 	// Unique identifier (OCID) of the compartment in which the stack resides.
@@ -27,6 +27,10 @@ type CreateStackDetails struct {
 	// Description of the stack.
 	Description *string `mandatory:"false" json:"description"`
 
+	// Terraform variables associated with this resource.
+	// Maximum number of variables supported is 100.
+	// The maximum size of each variable, including both name and value, is 4096 bytes.
+	// Example: `{"CompartmentId": "compartment-id-value"}`
 	Variables map[string]string `mandatory:"false" json:"variables"`
 
 	// Free-form tags associated with this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
