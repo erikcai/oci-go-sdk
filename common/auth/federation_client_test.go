@@ -8,13 +8,14 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"fmt"
-	"github.com/oracle/oci-go-sdk/common"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/oracle/oci-go-sdk/common"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
 )
 
 func TestX509FederationClient_VeryFirstSecurityToken(t *testing.T) {
@@ -302,6 +303,41 @@ func TestX509FederationClient_AuthServerInternalError(t *testing.T) {
 	_, err := federationClient.SecurityToken()
 
 	assert.Error(t, err)
+}
+
+func TestX509FederationClient_ClientHost(t *testing.T) {
+	type testData struct {
+		region   common.Region
+		expected string
+	}
+	testDataSet := []testData{
+		{
+			// OC1
+			region:   common.StringToRegion("us-phoenix-1"),
+			expected: "auth.us-phoenix-1.oraclecloud.com",
+		},
+		{
+			// OC2
+			region:   common.StringToRegion("us-langley-1"),
+			expected: "auth.us-langley-1.oraclegovcloud.com",
+		},
+		{
+			// OC3
+			region:   common.StringToRegion("us-langley-1"),
+			expected: "auth.us-langley-1.oraclegovcloud.com",
+		},
+		{
+			// unknown
+			region:   common.StringToRegion("test"),
+			expected: "auth.test.oraclecloud.com",
+		},
+	}
+
+	for _, testData := range testDataSet {
+		federationClient := &x509FederationClient{}
+		federationClient.authClient = newAuthClient(testData.region, federationClient)
+		assert.Equal(t, testData.expected, federationClient.authClient.Host)
+	}
 }
 
 func parseCertificate(certPem string) *x509.Certificate {
