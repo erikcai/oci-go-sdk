@@ -315,7 +315,6 @@ func (client StreamClient) getMessages(ctx context.Context, request common.OCIRe
 // If a message does not contain a key or if the key is null, the service generates a message key for you.
 // The partition ID cannot be passed as a parameter.
 func (client StreamClient) PutMessages(ctx context.Context, request PutMessagesRequest) (response PutMessagesResponse, err error) {
-	client.Signer = common.RequestSignerExcludeBody(*client.config)
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -345,7 +344,17 @@ func (client StreamClient) putMessages(ctx context.Context, request common.OCIRe
 
 	var response PutMessagesResponse
 	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
+	var customSigner common.HTTPRequestSigner
+	excludeBodySigningPredicate := func(r *http.Request) bool { return false }
+	customSigner, err = common.NewSignerFromOCIRequestSigner(client.Signer, excludeBodySigningPredicate)
+
+	//if there was an error overriding the signer, then use the signer from the client itself
+	if err != nil {
+		customSigner = client.Signer
+	}
+
+	//Execute the request with a custom signer
+	httpResponse, err = client.CallWithDetails(ctx, &httpRequest, common.ClientCallDetails{Signer: customSigner})
 	defer common.CloseBodyIfValid(httpResponse)
 	response.RawResponse = httpResponse
 	if err != nil {
