@@ -58,6 +58,10 @@ func (m *createdbhomewithdbsystemidbase) UnmarshalPolymorphicJSON(data []byte) (
 
 	var err error
 	switch m.Source {
+	case "DATABASE":
+		mm := CreateDbHomeWithDbSystemIdFromDatabaseDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "DB_BACKUP":
 		mm := CreateDbHomeWithDbSystemIdFromBackupDetails{}
 		err = json.Unmarshal(data, &mm)

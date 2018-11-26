@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// ONS Gateway API
+// Notification API
 //
-// A description of the ONS Gateway API
+// Use the Notification API to broadcast messages to distributed components by topic, using a publish-subscribe pattern.
+// For information about managing topics, subscriptions, and messages, see Notification Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Notification/Concepts/notificationoverview.htm).
 //
 
 package ons
@@ -37,7 +38,7 @@ func NewNotificationClientWithConfigurationProvider(configProvider common.Config
 
 // SetRegion overrides the region of this client.
 func (client *NotificationClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("notification-dev")
+	client.Host = common.StringToRegion(region).Endpoint("notification")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -58,7 +59,7 @@ func (client *NotificationClient) ConfigurationProvider() *common.ConfigurationP
 	return client.config
 }
 
-// CreateSubscription Creates a subscription.
+// CreateSubscription Creates a subscription for the specified topic.
 func (client NotificationClient) CreateSubscription(ctx context.Context, request CreateSubscriptionRequest) (response CreateSubscriptionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -105,7 +106,15 @@ func (client NotificationClient) createSubscription(ctx context.Context, request
 	return response, err
 }
 
-// CreateTopic Creates a topic.
+// CreateTopic Creates a topic in the specified compartment. For general information about topics, see
+// Managing Topics and Subscriptions (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm).
+// For the purposes of access control, you must provide the OCID of the compartment where you want the topic to reside.
+// For information about access control and compartments, see Overview of the IAM Service (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/overview.htm).
+// You must specify a display name for the topic.
+// All Oracle Cloud Infrastructure resources, including topics, get an Oracle-assigned, unique ID called an
+// Oracle Cloud Identifier (OCID). When you create a resource, you can find its OCID in the response. You can also
+// retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the resource in the
+// Console. Fore more information, see Resource Identifiers (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 func (client NotificationClient) CreateTopic(ctx context.Context, request CreateTopicRequest) (response CreateTopicResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -152,7 +161,7 @@ func (client NotificationClient) createTopic(ctx context.Context, request common
 	return response, err
 }
 
-// DeleteSubscription Deletes a subscription.
+// DeleteSubscription Deletes the specified subscription.
 func (client NotificationClient) DeleteSubscription(ctx context.Context, request DeleteSubscriptionRequest) (response DeleteSubscriptionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -194,7 +203,7 @@ func (client NotificationClient) deleteSubscription(ctx context.Context, request
 	return response, err
 }
 
-// DeleteTopic Deletes a topic.
+// DeleteTopic Deletes the specified topic.
 func (client NotificationClient) DeleteTopic(ctx context.Context, request DeleteTopicRequest) (response DeleteTopicResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -236,7 +245,7 @@ func (client NotificationClient) deleteTopic(ctx context.Context, request common
 	return response, err
 }
 
-// GetConfirmSubscription Confirm a subscription under a specific topic.
+// GetConfirmSubscription Gets the confirmation details for the specified subscription.
 func (client NotificationClient) GetConfirmSubscription(ctx context.Context, request GetConfirmSubscriptionRequest) (response GetConfirmSubscriptionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -278,7 +287,7 @@ func (client NotificationClient) getConfirmSubscription(ctx context.Context, req
 	return response, err
 }
 
-// GetSubscription Returns details for the specified subscription.
+// GetSubscription Gets the specified subscription's configuration information.
 func (client NotificationClient) GetSubscription(ctx context.Context, request GetSubscriptionRequest) (response GetSubscriptionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -320,7 +329,7 @@ func (client NotificationClient) getSubscription(ctx context.Context, request co
 	return response, err
 }
 
-// GetTopic Returns details for the specified topic.
+// GetTopic Gets the specified topic's configuration information.
 func (client NotificationClient) GetTopic(ctx context.Context, request GetTopicRequest) (response GetTopicResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -362,7 +371,7 @@ func (client NotificationClient) getTopic(ctx context.Context, request common.OC
 	return response, err
 }
 
-// GetUnsubscription Unsubcribe a subscription.
+// GetUnsubscription Gets the unsubscription details for the specified subscription.
 func (client NotificationClient) GetUnsubscription(ctx context.Context, request GetUnsubscriptionRequest) (response GetUnsubscriptionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -404,7 +413,7 @@ func (client NotificationClient) getUnsubscription(ctx context.Context, request 
 	return response, err
 }
 
-// ListSubscriptions Lists the subscriptions.
+// ListSubscriptions Lists the subscriptions in the specified compartment or for the specified topic.
 func (client NotificationClient) ListSubscriptions(ctx context.Context, request ListSubscriptionsRequest) (response ListSubscriptionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -446,7 +455,7 @@ func (client NotificationClient) listSubscriptions(ctx context.Context, request 
 	return response, err
 }
 
-// ListTopics Returns a list of topics.
+// ListTopics Lists topics in the specified compartment.
 func (client NotificationClient) ListTopics(ctx context.Context, request ListTopicsRequest) (response ListTopicsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -488,7 +497,7 @@ func (client NotificationClient) listTopics(ctx context.Context, request common.
 	return response, err
 }
 
-// PublishMessage Publishes a message to a specified topic.
+// PublishMessage Publishes a message to the specified topic. For more information about publishing messages, see Publishing Messages (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Notification/Tasks/publishingmessages.htm).
 func (client NotificationClient) PublishMessage(ctx context.Context, request PublishMessageRequest) (response PublishMessageResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -530,7 +539,7 @@ func (client NotificationClient) publishMessage(ctx context.Context, request com
 	return response, err
 }
 
-// ResendSubscriptionConfirmation Re-sends a subscription confirmation.
+// ResendSubscriptionConfirmation Resends the confirmation details for the specified subscription.
 func (client NotificationClient) ResendSubscriptionConfirmation(ctx context.Context, request ResendSubscriptionConfirmationRequest) (response ResendSubscriptionConfirmationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -572,7 +581,7 @@ func (client NotificationClient) resendSubscriptionConfirmation(ctx context.Cont
 	return response, err
 }
 
-// UpdateSubscription Updates the attributes for a subscription.
+// UpdateSubscription Updates the specified subscription's configuration.
 func (client NotificationClient) UpdateSubscription(ctx context.Context, request UpdateSubscriptionRequest) (response UpdateSubscriptionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -614,7 +623,7 @@ func (client NotificationClient) updateSubscription(ctx context.Context, request
 	return response, err
 }
 
-// UpdateTopic Updates the attributes for a topic.
+// UpdateTopic Updates the specified topic's configuration.
 func (client NotificationClient) UpdateTopic(ctx context.Context, request UpdateTopicRequest) (response UpdateTopicResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

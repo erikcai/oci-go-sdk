@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// ONS Gateway API
+// Notification API
 //
-// A description of the ONS Gateway API
+// Use the Notification API to broadcast messages to distributed components by topic, using a publish-subscribe pattern.
+// For information about managing topics, subscriptions, and messages, see Notification Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Notification/Concepts/notificationoverview.htm).
 //
 
 package ons
@@ -12,29 +13,40 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// NotificationTopicSummary Summary of the notification topic.
+// NotificationTopicSummary A summary of the properties that define a topic.
 type NotificationTopicSummary struct {
 
-	// The name of the notification.
+	// The name of the topic. Avoid entering confidential information.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The OCID of the topic.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
 	TopicOcid *string `mandatory:"true" json:"topicOcid"`
 
-	// The OCID of the compartment for the topic.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the topic.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The lifecycle state of the topic. Valid values are ACTIVE, DELETING, or CREATING.
+	// The lifecycle state of the topic.
 	LifecycleState NotificationTopicSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The description of the topic.
+	// The time the topic was created.
+	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// The endpoint for managing topic subscriptions or publishing messages to the topic.
+	ApiEndpoint *string `mandatory:"true" json:"apiEndpoint"`
+
+	// The description of the topic. Avoid entering confidential information.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The time the topic was created.
-	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
-
-	// Used for pre-conditional update/delete.
+	// For optimistic concurrency control. See `if-match`.
 	Etag *string `mandatory:"false" json:"etag"`
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
 func (m NotificationTopicSummary) String() string {

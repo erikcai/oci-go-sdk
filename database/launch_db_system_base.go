@@ -169,6 +169,10 @@ func (m *launchdbsystembase) UnmarshalPolymorphicJSON(data []byte) (interface{},
 		mm := LaunchDbSystemDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "DATABASE":
+		mm := LaunchDbSystemFromDatabaseDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "DB_BACKUP":
 		mm := LaunchDbSystemFromBackupDetails{}
 		err = json.Unmarshal(data, &mm)

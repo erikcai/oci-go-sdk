@@ -11,13 +11,13 @@ import (
 // GetUnsubscriptionRequest wrapper for the GetUnsubscription operation
 type GetUnsubscriptionRequest struct {
 
-	// OCID of the subscription to unsubscribe from.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription to unsubscribe from.
 	Id *string `mandatory:"true" contributesTo:"path" name:"id"`
 
 	// The subscription confirmation token.
 	Token *string `mandatory:"true" contributesTo:"query" name:"token"`
 
-	// The subscription protocol. Valid values include EMAIL, or HTTPS.
+	// The subscription protocol. Valid values: EMAIL, HTTPS.
 	Protocol *string `mandatory:"true" contributesTo:"query" name:"protocol"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a

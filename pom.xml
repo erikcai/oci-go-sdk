@@ -1456,7 +1456,7 @@
               <additionalProperties>
                 <specName>ons</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-                <serviceHostName>notification-dev</serviceHostName>
+                <serviceHostName>notification</serviceHostName>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -1829,7 +1829,7 @@
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
         <artifactId>ons-gateway-spec</artifactId>
-        <version>1.0.635</version>
+        <version>1.0.891</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci</groupId>
@@ -1844,7 +1844,7 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.1.132</version>
+        <version>0.1.181</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracache</groupId>

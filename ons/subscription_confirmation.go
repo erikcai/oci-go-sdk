@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// ONS Gateway API
+// Notification API
 //
-// A description of the ONS Gateway API
+// Use the Notification API to broadcast messages to distributed components by topic, using a publish-subscribe pattern.
+// For information about managing topics, subscriptions, and messages, see Notification Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Notification/Concepts/notificationoverview.htm).
 //
 
 package ons
@@ -12,13 +13,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SubscriptionConfirmation Encapsulates a subscription confirmation object.
+// SubscriptionConfirmation The subscription confirmation.
 type SubscriptionConfirmation struct {
 
-	// The OCID of the subscription.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription.
 	Id *string `mandatory:"true" json:"id"`
 
-	// A string containing the authToken for the subscription confirmation from the endpoint side.
+	// The URL for confirming the subscription. Contains an authentication token and identifies the subscription by ID and protocol.
 	Url *string `mandatory:"true" json:"url"`
 }
 

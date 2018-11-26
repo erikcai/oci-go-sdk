@@ -11,7 +11,7 @@ import (
 // UpdateTopicRequest wrapper for the UpdateTopic operation
 type UpdateTopicRequest struct {
 
-	// OCID of the topic to update.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the topic to update.
 	TopicOcid *string `mandatory:"true" contributesTo:"path" name:"topicOcid"`
 
 	// TopicAttributes
@@ -58,7 +58,7 @@ type UpdateTopicResponse struct {
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For optimistic concurrency control, use if-match.
+	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
 }
 

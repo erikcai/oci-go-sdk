@@ -20,12 +20,6 @@ type UpdateGroupDetails struct {
 
 	// The time to consume from if type is AT_TIME.
 	Time *common.SDKTime `mandatory:"false" json:"time"`
-
-	// Causes getMessage calls to commit offsets of the previous request, per cursor.
-	CommitOnGet *bool `mandatory:"false" json:"commitOnGet"`
-
-	// The timeout duration per consumer in the group; in milliseconds.
-	TimeoutInMs *int `mandatory:"false" json:"timeoutInMs"`
 }
 
 func (m UpdateGroupDetails) String() string {

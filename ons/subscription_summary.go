@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// ONS Gateway API
+// Notification API
 //
-// A description of the ONS Gateway API
+// Use the Notification API to broadcast messages to distributed components by topic, using a publish-subscribe pattern.
+// For information about managing topics, subscriptions, and messages, see Notification Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Notification/Concepts/notificationoverview.htm).
 //
 
 package ons
@@ -12,31 +13,41 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SubscriptionSummary Encapsulates a subscription.
+// SubscriptionSummary The subscription's configuration summary.
 type SubscriptionSummary struct {
 
-	// The OCID of the subscription.
-	Id *string `mandatory:"false" json:"id"`
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription.
+	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID of associated topic.
-	TopicId *string `mandatory:"false" json:"topicId"`
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the associated topic.
+	TopicId *string `mandatory:"true" json:"topicId"`
 
-	// The protocol used for the subscription. Valid values include EMAIL, or HTTPS.
-	Protocol *string `mandatory:"false" json:"protocol"`
+	// The protocol used for the subscription. Valid values: EMAIL, HTTPS.
+	Protocol *string `mandatory:"true" json:"protocol"`
 
-	// The endpoint for the subscription. Valid values are an email address or an HTTP URL.
-	Endpoint *string `mandatory:"false" json:"endpoint"`
+	// The endpoint of the subscription. Valid values depend on the protocol.
+	// For EMAIL, only an email address is valid. For HTTPS, only a PagerDuty URL is valid. A URL cannot exceed 512 characters.
+	// Avoid entering confidential information.
+	Endpoint *string `mandatory:"true" json:"endpoint"`
 
-	// The lifecycle state of the subscription. Valid values are PENDING, ACTIVE, or DELETED.
-	LifecycleState SubscriptionSummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	// The lifecycle state of the subscription. Default value for a newly created subscription: PENDING.
+	LifecycleState SubscriptionSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The time when this suscription was created.
 	CreatedTime *int64 `mandatory:"false" json:"createdTime"`
 
 	DeliveryPolicy *DeliveryPolicy `mandatory:"false" json:"deliveryPolicy"`
 
-	// Used for pre-conditional change.
+	// For optimistic concurrency control. See `if-match`.
 	Etag *string `mandatory:"false" json:"etag"`
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
 func (m SubscriptionSummary) String() string {

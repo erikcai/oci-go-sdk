@@ -11,7 +11,7 @@ import (
 // GetSubscriptionRequest wrapper for the GetSubscription operation
 type GetSubscriptionRequest struct {
 
-	// OCID of the subscription to retrieve.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription to retrieve.
 	SubscriptionId *string `mandatory:"true" contributesTo:"path" name:"subscriptionId"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -50,7 +50,7 @@ type GetSubscriptionResponse struct {
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For optimistic concurrency control, use if-match.
+	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
 }
 

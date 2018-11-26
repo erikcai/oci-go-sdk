@@ -11,13 +11,13 @@ import (
 // GetConfirmSubscriptionRequest wrapper for the GetConfirmSubscription operation
 type GetConfirmSubscriptionRequest struct {
 
-	// the subscription ID
+	// The subscription ID.
 	Id *string `mandatory:"true" contributesTo:"path" name:"id"`
 
 	// The subscription confirmation token.
 	Token *string `mandatory:"true" contributesTo:"query" name:"token"`
 
-	// The subscription protocol. Valid values include EMAIL, or HTTPS.
+	// The subscription protocol. Valid values: EMAIL, HTTPS.
 	Protocol *string `mandatory:"true" contributesTo:"query" name:"protocol"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -56,7 +56,7 @@ type GetConfirmSubscriptionResponse struct {
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For optimistic concurrency control, use if-match.
+	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
 }
 

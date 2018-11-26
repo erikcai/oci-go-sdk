@@ -11,7 +11,7 @@ import (
 // PublishMessageRequest wrapper for the PublishMessage operation
 type PublishMessageRequest struct {
 
-	// The OCID of the topic.
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
 	TopicOcid *string `mandatory:"true" contributesTo:"path" name:"topicOcid"`
 
 	// The message to publish.
@@ -21,8 +21,7 @@ type PublishMessageRequest struct {
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// This flag is to indicate to the ONS gateway whether the message body of the push message request should be
-	// treated as a raw text or json document. If treated as a json document, the body must contain a 'default' key.
+	// Type of message body in the request. Default value: JSON.
 	MessageType PublishMessageMessageTypeEnum `mandatory:"false" contributesTo:"header" name:"messageType"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
