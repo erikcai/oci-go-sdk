@@ -162,13 +162,11 @@ func (r *urlBasedX509CertificateRetriever) PrivateKey() *rsa.PrivateKey {
 
 // newStaticX509CertificateRetriever creates a static memory based retriever.
 func newStaticX509CertificateRetriever(certificatePemRaw, privateKeyPemRaw []byte, passphrase []byte) x509CertificateRetriever {
-	retriever := &staticCertificateRetriever{
+	return &staticCertificateRetriever{
 		CertificatePem: certificatePemRaw,
 		PrivateKeyPem:  privateKeyPemRaw,
 		Passphrase:        passphrase,
 	}
-	retriever.Refresh()
-	return retriever
 }
 
 //staticCertificateRetriever serves certificates from static data
