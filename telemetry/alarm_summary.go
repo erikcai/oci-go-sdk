@@ -53,11 +53,11 @@ type AlarmSummary struct {
 	// For available dimensions, review the metric definition.
 	// Example of threshold alarm:
 	//   -----
-	//     `CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.groupBy(availabilityDomain).percentile(0.9) > 85`
+	//     CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.groupBy(availabilityDomain).percentile(0.9) > 85
 	//   -----
 	// Example of absence alarm:
 	//   -----
-	//     `CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.absent()`
+	//     CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.absent()
 	//   -----
 	Query *string `mandatory:"true" json:"query"`
 

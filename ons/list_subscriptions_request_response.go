@@ -15,7 +15,7 @@ type ListSubscriptionsRequest struct {
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// Return all subscriptions that are subscribed to the given topic OCID. Either this query parameter or the compartmentId query parameter must be set.
-	TopicOcid *string `mandatory:"false" contributesTo:"query" name:"topicOcid"`
+	TopicId *string `mandatory:"false" contributesTo:"query" name:"topicId"`
 
 	// For list pagination. The value of the opc-next-page response header from the previous "List" call. For important details about how pagination works, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`

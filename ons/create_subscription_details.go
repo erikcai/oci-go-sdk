@@ -17,7 +17,7 @@ import (
 type CreateSubscriptionDetails struct {
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the topic for the subscription.
-	TopicOcid *string `mandatory:"true" json:"topicOcid"`
+	TopicId *string `mandatory:"true" json:"topicId"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`

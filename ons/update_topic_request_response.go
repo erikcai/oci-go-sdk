@@ -12,7 +12,7 @@ import (
 type UpdateTopicRequest struct {
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the topic to update.
-	TopicOcid *string `mandatory:"true" contributesTo:"path" name:"topicOcid"`
+	TopicId *string `mandatory:"true" contributesTo:"path" name:"topicId"`
 
 	// TopicAttributes
 	TopicAttributesDetails `contributesTo:"body"`

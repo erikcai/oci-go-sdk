@@ -16,7 +16,9 @@ import (
 // MessageDetails The content of the message to be published.
 type MessageDetails struct {
 
+	// The body of the message to be published.
 	// For `messageType` of JSON, a default key-value pair is required. Example: `{"default": "Alarm breached", "Email": "Alarm breached: <url>"}.`
+	// Avoid entering confidential information.
 	Body *string `mandatory:"true" json:"body"`
 
 	// The title of the message to be published. Avoid entering confidential information.

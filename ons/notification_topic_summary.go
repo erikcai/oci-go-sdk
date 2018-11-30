@@ -20,7 +20,7 @@ type NotificationTopicSummary struct {
 	Name *string `mandatory:"true" json:"name"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
-	TopicOcid *string `mandatory:"true" json:"topicOcid"`
+	TopicId *string `mandatory:"true" json:"topicId"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the topic.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`

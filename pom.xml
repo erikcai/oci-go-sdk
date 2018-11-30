@@ -1821,7 +1821,7 @@
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
         <artifactId>telemetry-public-api-spec</artifactId>
-        <version>0.2.300</version>
+        <version>0.2.366</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.commons.workrequests</groupId>
@@ -1831,7 +1831,7 @@
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
         <artifactId>ons-gateway-spec</artifactId>
-        <version>1.0.891</version>
+        <version>1.0.908</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci</groupId>

@@ -12,7 +12,7 @@ import (
 type DeleteTopicRequest struct {
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the topic to delete.
-	TopicOcid *string `mandatory:"true" contributesTo:"path" name:"topicOcid"`
+	TopicId *string `mandatory:"true" contributesTo:"path" name:"topicId"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
