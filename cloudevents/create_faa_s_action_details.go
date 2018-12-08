@@ -25,12 +25,8 @@ type CreateFaaSActionDetails struct {
 	// confidential information.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The unique URI for a function hosted by Oracle Functions Service.
-	FaasFunctionUri *string `mandatory:"false" json:"faasFunctionUri"`
-
-	// The compartment OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) which hosts the
-	// Oracle Functions Service application. Applications in Functions hold the functions and triggers.
-	FaasAppCompartmentId *string `mandatory:"false" json:"faasAppCompartmentId"`
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of a Function hosted by Oracle Functions Service.
+	FunctionId *string `mandatory:"false" json:"functionId"`
 }
 
 //GetIsEnabled returns IsEnabled

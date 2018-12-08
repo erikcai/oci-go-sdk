@@ -1,11 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Telemetry API
+// Monitoring API
 //
-// Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
-// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Concepts/alarmsoverview.htm).
+// Use the Monitoring API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
+// For information about monitoring, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm).
 //
 
 package telemetry
@@ -14,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PostMetricDataDetails An array of metric objects containing raw metric data points to be posted to the Telemetry service.
+// PostMetricDataDetails An array of metric objects containing raw metric data points to be posted to the Monitoring service.
 type PostMetricDataDetails struct {
 
-	// A metric object containing raw metric data points to be posted to the Telemetry service.
+	// A metric object containing raw metric data points to be posted to the Monitoring service.
 	MetricData []MetricDataDetails `mandatory:"true" json:"metricData"`
 
 	// Batch atomicity behavior. Requires either partial or full pass of input validation for

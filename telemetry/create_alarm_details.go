@@ -1,11 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Telemetry API
+// Monitoring API
 //
-// Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
-// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Concepts/alarmsoverview.htm).
+// Use the Monitoring API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
+// For information about monitoring, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm).
 //
 
 package telemetry
@@ -35,13 +34,15 @@ type CreateAlarmDetails struct {
 	// Example: `oci_computeagent`
 	Namespace *string `mandatory:"true" json:"namespace"`
 
-	// The Telemetry Query Language (TQL) expression to evaluate for the alarm. The Alarms service
-	// interprets results for each returned time series as Boolean values, where zero represents false
-	// and a non-zero value represents true. A true value means that the trigger rule condition has
-	// been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or
-	// absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally specify dimensions
-	// and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
-	// For available dimensions, review the metric definition.
+	// The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of
+	// the Monitoring service interprets results for each returned time series as Boolean values,
+	// where zero represents false and a non-zero value represents true. A true value means that the trigger
+	// rule condition has been met. The query must specify a metric, statistic, interval, and trigger
+	// rule (threshold or absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally
+	// specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
+	// For details about Monitoring Query Language (MQL), see Monitoring Query Language (MQL) Reference (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Reference/MQL.htm).
+	// For available dimensions, review the metric definition for the supported service.
+	// See Supported Services (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).
 	// Example of threshold alarm:
 	//   -----
 	//     CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.groupBy(availabilityDomain).percentile(0.9) > 85
@@ -81,11 +82,11 @@ type CreateAlarmDetails struct {
 	// Example: `5m`
 	Resolution *string `mandatory:"false" json:"resolution"`
 
-	// The period of time that the condition defined in the alarm must persist before the alarm
-	// state changes from "OK" to "FIRING" or vice versa. For example, a value of 5 minutes means
-	// that five minutes of the alarm firing is required before the alarm can update its state to
-	// "FIRING" and five minutes of the alarm not firing is required before the alarm can update
-	// its state to "OK."
+	// The period of time that the condition defined in the alarm must persist before the alarm state
+	// changes from "OK" to "FIRING" or vice versa. For example, a value of 5 minutes means that the
+	// alarm must persist in breaching the condition for five minutes before the alarm updates its
+	// state to "FIRING"; likewise, the alarm must persist in not breaching the condition for five
+	// minutes before the alarm updates its state to "OK."
 	// The duration is specified as a string in ISO 8601 format (`PT10M` for ten minutes or `PT1H`
 	// for one hour). Minimum: PT1M. Maximum: PT1H. Default: PT1M.
 	// Under the default value of PT1M, the first evaluation that breaches the alarm updates the

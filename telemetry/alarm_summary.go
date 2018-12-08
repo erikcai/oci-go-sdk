@@ -1,11 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Telemetry API
+// Monitoring API
 //
-// Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
-// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Concepts/alarmsoverview.htm).
+// Use the Monitoring API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
+// For information about monitoring, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm).
 //
 
 package telemetry
@@ -15,7 +14,7 @@ import (
 )
 
 // AlarmSummary A summary of properties for the specified alarm.
-// For more information, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Concepts/alarmsoverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview#AlarmsOverview.htm).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Identity/Concepts/policygetstarted.htm).
@@ -44,13 +43,15 @@ type AlarmSummary struct {
 	// Example: `oci_computeagent`
 	Namespace *string `mandatory:"true" json:"namespace"`
 
-	// The Telemetry Query Language (TQL) expression to evaluate for the alarm. The Alarms service
-	// interprets results for each returned time series as Boolean values, where zero represents false
-	// and a non-zero value represents true. A true value means that the trigger rule condition has
-	// been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or
-	// absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally specify dimensions
-	// and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
-	// For available dimensions, review the metric definition.
+	// The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of
+	// the Monitoring service interprets results for each returned time series as Boolean values,
+	// where zero represents false and a non-zero value represents true. A true value means that the trigger
+	// rule condition has been met. The query must specify a metric, statistic, interval, and trigger
+	// rule (threshold or absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally
+	// specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
+	// For details about Monitoring Query Language (MQL), see Monitoring Query Language (MQL) Reference (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Reference/MQL.htm).
+	// For available dimensions, review the metric definition for the supported service.
+	// See Supported Services (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).
 	// Example of threshold alarm:
 	//   -----
 	//     CpuUtilization[1m]{availabilityDomain="cumS:PHX-AD-1"}.groupBy(availabilityDomain).percentile(0.9) > 85

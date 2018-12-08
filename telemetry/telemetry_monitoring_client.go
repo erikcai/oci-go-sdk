@@ -1,11 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Telemetry API
+// Monitoring API
 //
-// Use the Telemetry API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
-// For information about metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Alarms/Concepts/alarmsoverview.htm).
+// Use the Monitoring API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
+// For information about monitoring, see Monitoring Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm).
 //
 
 package telemetry
@@ -17,33 +16,33 @@ import (
 	"net/http"
 )
 
-//TelemetryClient a client for Telemetry
-type TelemetryClient struct {
+//MonitoringClient a client for Monitoring
+type MonitoringClient struct {
 	common.BaseClient
 	config *common.ConfigurationProvider
 }
 
-// NewTelemetryClientWithConfigurationProvider Creates a new default Telemetry client with the given configuration provider.
+// NewMonitoringClientWithConfigurationProvider Creates a new default Monitoring client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
-func NewTelemetryClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client TelemetryClient, err error) {
+func NewMonitoringClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client MonitoringClient, err error) {
 	baseClient, err := common.NewClientWithConfig(configProvider)
 	if err != nil {
 		return
 	}
 
-	client = TelemetryClient{BaseClient: baseClient}
+	client = MonitoringClient{BaseClient: baseClient}
 	client.BasePath = "20180401"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
 
 // SetRegion overrides the region of this client.
-func (client *TelemetryClient) SetRegion(region string) {
+func (client *MonitoringClient) SetRegion(region string) {
 	client.Host = common.StringToRegion(region).Endpoint("telemetry")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
-func (client *TelemetryClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
+func (client *MonitoringClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
 	if ok, err := common.IsConfigurationProviderValid(configProvider); !ok {
 		return err
 	}
@@ -56,12 +55,12 @@ func (client *TelemetryClient) setConfigurationProvider(configProvider common.Co
 }
 
 // ConfigurationProvider the ConfigurationProvider used in this client, or null if none set
-func (client *TelemetryClient) ConfigurationProvider() *common.ConfigurationProvider {
+func (client *MonitoringClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
 }
 
 // CreateAlarm Creates a new alarm in the specified compartment.
-func (client TelemetryClient) CreateAlarm(ctx context.Context, request CreateAlarmRequest) (response CreateAlarmResponse, err error) {
+func (client MonitoringClient) CreateAlarm(ctx context.Context, request CreateAlarmRequest) (response CreateAlarmResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -88,7 +87,7 @@ func (client TelemetryClient) CreateAlarm(ctx context.Context, request CreateAla
 }
 
 // createAlarm implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) createAlarm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) createAlarm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/alarms")
 	if err != nil {
 		return nil, err
@@ -108,7 +107,7 @@ func (client TelemetryClient) createAlarm(ctx context.Context, request common.OC
 }
 
 // DeleteAlarm Deletes the specified alarm.
-func (client TelemetryClient) DeleteAlarm(ctx context.Context, request DeleteAlarmRequest) (response DeleteAlarmResponse, err error) {
+func (client MonitoringClient) DeleteAlarm(ctx context.Context, request DeleteAlarmRequest) (response DeleteAlarmResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -130,7 +129,7 @@ func (client TelemetryClient) DeleteAlarm(ctx context.Context, request DeleteAla
 }
 
 // deleteAlarm implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) deleteAlarm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) deleteAlarm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/alarms/{alarmId}")
 	if err != nil {
 		return nil, err
@@ -150,7 +149,7 @@ func (client TelemetryClient) deleteAlarm(ctx context.Context, request common.OC
 }
 
 // GetAlarm Gets the specified alarm.
-func (client TelemetryClient) GetAlarm(ctx context.Context, request GetAlarmRequest) (response GetAlarmResponse, err error) {
+func (client MonitoringClient) GetAlarm(ctx context.Context, request GetAlarmRequest) (response GetAlarmResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -172,7 +171,7 @@ func (client TelemetryClient) GetAlarm(ctx context.Context, request GetAlarmRequ
 }
 
 // getAlarm implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) getAlarm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) getAlarm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/alarms/{alarmId}")
 	if err != nil {
 		return nil, err
@@ -192,7 +191,7 @@ func (client TelemetryClient) getAlarm(ctx context.Context, request common.OCIRe
 }
 
 // GetAlarmHistory Get the history of the specified alarm.
-func (client TelemetryClient) GetAlarmHistory(ctx context.Context, request GetAlarmHistoryRequest) (response GetAlarmHistoryResponse, err error) {
+func (client MonitoringClient) GetAlarmHistory(ctx context.Context, request GetAlarmHistoryRequest) (response GetAlarmHistoryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -214,7 +213,7 @@ func (client TelemetryClient) GetAlarmHistory(ctx context.Context, request GetAl
 }
 
 // getAlarmHistory implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) getAlarmHistory(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) getAlarmHistory(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/alarms/{alarmId}/history")
 	if err != nil {
 		return nil, err
@@ -234,7 +233,7 @@ func (client TelemetryClient) getAlarmHistory(ctx context.Context, request commo
 }
 
 // ListAlarms Lists the alarms for the specified compartment.
-func (client TelemetryClient) ListAlarms(ctx context.Context, request ListAlarmsRequest) (response ListAlarmsResponse, err error) {
+func (client MonitoringClient) ListAlarms(ctx context.Context, request ListAlarmsRequest) (response ListAlarmsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -256,7 +255,7 @@ func (client TelemetryClient) ListAlarms(ctx context.Context, request ListAlarms
 }
 
 // listAlarms implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) listAlarms(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) listAlarms(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/alarms")
 	if err != nil {
 		return nil, err
@@ -276,7 +275,7 @@ func (client TelemetryClient) listAlarms(ctx context.Context, request common.OCI
 }
 
 // ListAlarmsStatus List the status of each alarm in the specified compartment.
-func (client TelemetryClient) ListAlarmsStatus(ctx context.Context, request ListAlarmsStatusRequest) (response ListAlarmsStatusResponse, err error) {
+func (client MonitoringClient) ListAlarmsStatus(ctx context.Context, request ListAlarmsStatusRequest) (response ListAlarmsStatusResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -298,7 +297,7 @@ func (client TelemetryClient) ListAlarmsStatus(ctx context.Context, request List
 }
 
 // listAlarmsStatus implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) listAlarmsStatus(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) listAlarmsStatus(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/alarms/status")
 	if err != nil {
 		return nil, err
@@ -318,8 +317,8 @@ func (client TelemetryClient) listAlarmsStatus(ctx context.Context, request comm
 }
 
 // ListMetrics Returns metric definitions that match the criteria specified in the request. Compartment OCID required.
-// For more information on monitoring metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
-func (client TelemetryClient) ListMetrics(ctx context.Context, request ListMetricsRequest) (response ListMetricsResponse, err error) {
+// For information about metrics, see Metrics Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview).
+func (client MonitoringClient) ListMetrics(ctx context.Context, request ListMetricsRequest) (response ListMetricsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -341,7 +340,7 @@ func (client TelemetryClient) ListMetrics(ctx context.Context, request ListMetri
 }
 
 // listMetrics implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) listMetrics(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) listMetrics(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/metrics/actions/listMetrics")
 	if err != nil {
 		return nil, err
@@ -360,8 +359,8 @@ func (client TelemetryClient) listMetrics(ctx context.Context, request common.OC
 	return response, err
 }
 
-// PostMetricData Publishes raw metric data points to the Telemetry service.
-func (client TelemetryClient) PostMetricData(ctx context.Context, request PostMetricDataRequest) (response PostMetricDataResponse, err error) {
+// PostMetricData Publishes raw metric data points to the Monitoring service.
+func (client MonitoringClient) PostMetricData(ctx context.Context, request PostMetricDataRequest) (response PostMetricDataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -383,7 +382,7 @@ func (client TelemetryClient) PostMetricData(ctx context.Context, request PostMe
 }
 
 // postMetricData implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) postMetricData(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) postMetricData(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/metrics")
 	if err != nil {
 		return nil, err
@@ -403,7 +402,7 @@ func (client TelemetryClient) postMetricData(ctx context.Context, request common
 }
 
 // RemoveAlarmSuppression Removes any existing suppression for the specified alarm.
-func (client TelemetryClient) RemoveAlarmSuppression(ctx context.Context, request RemoveAlarmSuppressionRequest) (response RemoveAlarmSuppressionResponse, err error) {
+func (client MonitoringClient) RemoveAlarmSuppression(ctx context.Context, request RemoveAlarmSuppressionRequest) (response RemoveAlarmSuppressionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -425,7 +424,7 @@ func (client TelemetryClient) RemoveAlarmSuppression(ctx context.Context, reques
 }
 
 // removeAlarmSuppression implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) removeAlarmSuppression(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) removeAlarmSuppression(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/alarms/{alarmId}/actions/removeSuppression")
 	if err != nil {
 		return nil, err
@@ -445,8 +444,8 @@ func (client TelemetryClient) removeAlarmSuppression(ctx context.Context, reques
 }
 
 // SummarizeMetricsData Returns aggregated data that match the criteria specified in the request. Compartment OCID required.
-// For more information on monitoring metrics, see Telemetry Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Telemetry/Concepts/telemetryoverview.htm).
-func (client TelemetryClient) SummarizeMetricsData(ctx context.Context, request SummarizeMetricsDataRequest) (response SummarizeMetricsDataResponse, err error) {
+// For information on metric queries, see Building Metric Queries (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/buildingqueries.htm).
+func (client MonitoringClient) SummarizeMetricsData(ctx context.Context, request SummarizeMetricsDataRequest) (response SummarizeMetricsDataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -468,7 +467,7 @@ func (client TelemetryClient) SummarizeMetricsData(ctx context.Context, request 
 }
 
 // summarizeMetricsData implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) summarizeMetricsData(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) summarizeMetricsData(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/metrics/actions/summarizeMetricsData")
 	if err != nil {
 		return nil, err
@@ -488,7 +487,7 @@ func (client TelemetryClient) summarizeMetricsData(ctx context.Context, request 
 }
 
 // UpdateAlarm Updates the specified alarm.
-func (client TelemetryClient) UpdateAlarm(ctx context.Context, request UpdateAlarmRequest) (response UpdateAlarmResponse, err error) {
+func (client MonitoringClient) UpdateAlarm(ctx context.Context, request UpdateAlarmRequest) (response UpdateAlarmResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -510,7 +509,7 @@ func (client TelemetryClient) UpdateAlarm(ctx context.Context, request UpdateAla
 }
 
 // updateAlarm implements the OCIOperation interface (enables retrying operations)
-func (client TelemetryClient) updateAlarm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client MonitoringClient) updateAlarm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/alarms/{alarmId}")
 	if err != nil {
 		return nil, err

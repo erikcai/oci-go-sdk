@@ -1,21 +1,19 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package telemetry
+package autoscaling
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
 )
 
-// PostMetricDataRequest wrapper for the PostMetricData operation
-type PostMetricDataRequest struct {
+// GetAutoScalingConfigurationRequest wrapper for the GetAutoScalingConfiguration operation
+type GetAutoScalingConfigurationRequest struct {
 
-	// An array of metric objects containing raw metric data points to be posted to the Monitoring service.
-	PostMetricDataDetails `contributesTo:"body"`
+	// The OCID of the auto scaling configuration.
+	AutoScalingId *string `mandatory:"true" contributesTo:"path" name:"autoScalingId"`
 
-	// Customer part of the request identifier token. If you need to contact Oracle about a particular
-	// request, please provide the complete request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -23,39 +21,42 @@ type PostMetricDataRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request PostMetricDataRequest) String() string {
+func (request GetAutoScalingConfigurationRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request PostMetricDataRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetAutoScalingConfigurationRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request PostMetricDataRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetAutoScalingConfigurationRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// PostMetricDataResponse wrapper for the PostMetricData operation
-type PostMetricDataResponse struct {
+// GetAutoScalingConfigurationResponse wrapper for the GetAutoScalingConfiguration operation
+type GetAutoScalingConfigurationResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The PostMetricDataResponseDetails instance
-	PostMetricDataResponseDetails `presentIn:"body"`
+	// The AutoScalingConfiguration instance
+	AutoScalingConfiguration `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response PostMetricDataResponse) String() string {
+func (response GetAutoScalingConfigurationResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response PostMetricDataResponse) HTTPResponse() *http.Response {
+func (response GetAutoScalingConfigurationResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }
