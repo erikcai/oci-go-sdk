@@ -1,11 +1,11 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Oracle Health Checks Service API
+// Health Checks API
 //
-// Health Checks Service API.  This API allows clients to configure and run probes (tests)
-// that will be executed on one or more global vantage points to monitor OCI assets.  The API
-// supports running on-demand probes as well as retrieving historical results.
+// API for the Health Checks service. Use this API to manage endpoint probes and monitors.
+// For more information, see
+// Overview of the Health Checks Service (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/HealthChecks/Concepts/healthchecks.htm).
 //
 
 package healthchecks
@@ -60,9 +60,9 @@ func (client *HealthChecksClient) ConfigurationProvider() *common.ConfigurationP
 	return client.config
 }
 
-// CreateHttpMonitor Creates an HTTP monitor and returns the location and configuration details, including
-// the URL that the client uses to fetch results.  Probes run at each interval on all of
-// the specified vantage points.
+// CreateHttpMonitor Creates an HTTP monitor. Vantage points will be automatically selected if not specified,
+// and probes will be initiated from each vantage point to each of the targets at the frequency
+// specified by `intervalInSeconds`.
 func (client HealthChecksClient) CreateHttpMonitor(ctx context.Context, request CreateHttpMonitorRequest) (response CreateHttpMonitorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -109,9 +109,9 @@ func (client HealthChecksClient) createHttpMonitor(ctx context.Context, request 
 	return response, err
 }
 
-// CreateOnDemandHttpProbe Creates an on-demand HTTP probe.  The location response header contains the URL for
-// fetching results.
-// Note that on-demand probe configuration is __not__ persisted.
+// CreateOnDemandHttpProbe Creates an on-demand HTTP probe. The location response header contains the URL for
+// fetching the probe results.
+// *Note:* On-demand probe configurations are not saved.
 func (client HealthChecksClient) CreateOnDemandHttpProbe(ctx context.Context, request CreateOnDemandHttpProbeRequest) (response CreateOnDemandHttpProbeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -153,9 +153,9 @@ func (client HealthChecksClient) createOnDemandHttpProbe(ctx context.Context, re
 	return response, err
 }
 
-// CreateOnDemandPingProbe Creates an on-demand Ping probe.  The location response header contains the URL for
-// fetching results.
-// Note that on-demand probe configuration is __not__ persisted.
+// CreateOnDemandPingProbe Creates an on-demand ping probe. The location response header contains the URL for
+// fetching probe results.
+// *Note:* The on-demand probe configuration is not saved.
 func (client HealthChecksClient) CreateOnDemandPingProbe(ctx context.Context, request CreateOnDemandPingProbeRequest) (response CreateOnDemandPingProbeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -197,9 +197,9 @@ func (client HealthChecksClient) createOnDemandPingProbe(ctx context.Context, re
 	return response, err
 }
 
-// CreatePingMonitor Creates a Ping monitor and returns the location and configuration details, including
-// the URL that the client uses to fetch results.  Probes run at each interval on all of
-// the specified vantage points.
+// CreatePingMonitor Creates a ping monitor. Vantage points will be automatically selected if not specified,
+// and probes will be initiated from each vantage point to each of the targets at the frequency
+// specified by `intervalInSeconds`.
 func (client HealthChecksClient) CreatePingMonitor(ctx context.Context, request CreatePingMonitorRequest) (response CreatePingMonitorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -246,8 +246,8 @@ func (client HealthChecksClient) createPingMonitor(ctx context.Context, request 
 	return response, err
 }
 
-// DeleteHttpMonitor Deletes the HTTP monitor configuration.  All future recurring instances of this monitor are
-// stopped.  Results associated with the monitor are __not__ deleted.
+// DeleteHttpMonitor Deletes the HTTP monitor and its configuration. All future probes of this
+// monitor are stopped. Results associated with the monitor are not deleted.
 func (client HealthChecksClient) DeleteHttpMonitor(ctx context.Context, request DeleteHttpMonitorRequest) (response DeleteHttpMonitorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -289,8 +289,8 @@ func (client HealthChecksClient) deleteHttpMonitor(ctx context.Context, request 
 	return response, err
 }
 
-// DeletePingMonitor Deletes the Ping monitor configuration.  All future recurring instances of this monitor are
-// stopped.  Results associated with the monitor are __not__ deleted.
+// DeletePingMonitor Deletes the ping monitor and its configuration. All future probes of this
+// monitor are stopped. Results associated with the monitor are not deleted.
 func (client HealthChecksClient) DeletePingMonitor(ctx context.Context, request DeletePingMonitorRequest) (response DeletePingMonitorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -332,7 +332,7 @@ func (client HealthChecksClient) deletePingMonitor(ctx context.Context, request 
 	return response, err
 }
 
-// GetHttpMonitor Returns the HTTP monitor configuration for the specified monitor.
+// GetHttpMonitor Gets the configuration for the specified monitor.
 func (client HealthChecksClient) GetHttpMonitor(ctx context.Context, request GetHttpMonitorRequest) (response GetHttpMonitorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -374,7 +374,7 @@ func (client HealthChecksClient) getHttpMonitor(ctx context.Context, request com
 	return response, err
 }
 
-// GetPingMonitor Returns the Ping monitor configuration for the specified monitor.
+// GetPingMonitor Gets the configuration for the specified ping monitor.
 func (client HealthChecksClient) GetPingMonitor(ctx context.Context, request GetPingMonitorRequest) (response GetPingMonitorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -416,9 +416,7 @@ func (client HealthChecksClient) getPingMonitor(ctx context.Context, request com
 	return response, err
 }
 
-// ListHealthChecksVantagePoints Returns vantage point information for all vantage points available to the caller.
-// Results are paginated based on `page` and `limit`.  The `opc-next-page` header provides
-// a URL for fetching the next page.
+// ListHealthChecksVantagePoints Gets information about all vantage points available to the user.
 func (client HealthChecksClient) ListHealthChecksVantagePoints(ctx context.Context, request ListHealthChecksVantagePointsRequest) (response ListHealthChecksVantagePointsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -460,9 +458,7 @@ func (client HealthChecksClient) listHealthChecksVantagePoints(ctx context.Conte
 	return response, err
 }
 
-// ListHttpMonitors Returns HTTP monitors.
-// Results are paginated based on `page` and `limit`.  The `opc-next-page` header provides
-// a URL for fetching the next page.
+// ListHttpMonitors Gets a list of HTTP monitors.
 func (client HealthChecksClient) ListHttpMonitors(ctx context.Context, request ListHttpMonitorsRequest) (response ListHttpMonitorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -504,12 +500,9 @@ func (client HealthChecksClient) listHttpMonitors(ctx context.Context, request c
 	return response, err
 }
 
-// ListHttpProbeResults Returns the HTTP probe results for the specified probe, where the probeConfigurationId
-// is the OCID of either a monitor or an on-demand probe.
-// Results are paginated based on `page` and `limit`.  The `opc-next-page` header provides
-// a URL for fetching the next page.  `sortOrder` is used to control the order of the
-// results, sorting on the probe `startTime`.  If `sortOrder` is not specified, results
-// are sorted in ascending order by `startTime`.
+// ListHttpProbeResults Gets the HTTP probe results for the specified probe or monitor, where
+// the `probeConfigurationId` is the OCID of either a monitor or an
+// on-demand probe.
 func (client HealthChecksClient) ListHttpProbeResults(ctx context.Context, request ListHttpProbeResultsRequest) (response ListHttpProbeResultsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -551,7 +544,7 @@ func (client HealthChecksClient) listHttpProbeResults(ctx context.Context, reque
 	return response, err
 }
 
-// ListPingMonitors Returns Ping monitors.
+// ListPingMonitors Gets a list of configured ping monitors.
 // Results are paginated based on `page` and `limit`.  The `opc-next-page` header provides
 // a URL for fetching the next page.
 func (client HealthChecksClient) ListPingMonitors(ctx context.Context, request ListPingMonitorsRequest) (response ListPingMonitorsResponse, err error) {
@@ -595,12 +588,12 @@ func (client HealthChecksClient) listPingMonitors(ctx context.Context, request c
 	return response, err
 }
 
-// ListPingProbeResults Returns the Ping probe results for the specified probe, where the probeConfigurationId
+// ListPingProbeResults Returns the results for the specified probe, where the `probeConfigurationId`
 // is the OCID of either a monitor or an on-demand probe.
 // Results are paginated based on `page` and `limit`.  The `opc-next-page` header provides
-// a URL for fetching the next page.  `sortOrder` is used to control the order of the
-// results, sorting on the probe `startTime`.  If `sortOrder` is not specified, results
-// are sorted in ascending order by `startTime`.
+// a URL for fetching the next page.  Use `sortOrder` to set the order of the
+// results.  If `sortOrder` is unspecified, results are sorted in ascending order by
+// `startTime`.
 func (client HealthChecksClient) ListPingProbeResults(ctx context.Context, request ListPingProbeResultsRequest) (response ListPingProbeResultsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -642,7 +635,9 @@ func (client HealthChecksClient) listPingProbeResults(ctx context.Context, reque
 	return response, err
 }
 
-// UpdateHttpMonitor Updates the HTTP monitor configuration.
+// UpdateHttpMonitor Updates the configuration of the specified HTTP monitor. Only the fields
+// specified in the request body will be updated; all other configuration
+// properties will remain unchanged.
 func (client HealthChecksClient) UpdateHttpMonitor(ctx context.Context, request UpdateHttpMonitorRequest) (response UpdateHttpMonitorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -684,7 +679,9 @@ func (client HealthChecksClient) updateHttpMonitor(ctx context.Context, request 
 	return response, err
 }
 
-// UpdatePingMonitor Updates the Ping monitor configuration.
+// UpdatePingMonitor Updates the configuration of the specified ping monitor. Only the fields
+// specified in the request body will be updated; all other configuration properties
+// will remain unchanged.
 func (client HealthChecksClient) UpdatePingMonitor(ctx context.Context, request UpdatePingMonitorRequest) (response UpdatePingMonitorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

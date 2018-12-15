@@ -18,8 +18,10 @@ type GetPingMonitorRequest struct {
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// Specifies a conditional match when fetching resources.  The resource is returned only if
-	// the etag values do not match, otherwise an HTTP 304 is returned.
+	// The `If-None-Match` header field makes the request method conditional on
+	// the absence of any current representation of the target resource, when
+	// the field-value is `*`, or having a selected representation with an
+	// entity-tag that does not match any of those listed in the field-value.
 	IfNoneMatch *string `mandatory:"false" contributesTo:"header" name:"if-none-match"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -55,7 +57,7 @@ type GetPingMonitorResponse struct {
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// An entity tag that uniquely identifies a version of a resource.
+	// An entity tag that uniquely identifies a version of the resource.
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Flag to indicate whether or not the object was modified.  If this is true,

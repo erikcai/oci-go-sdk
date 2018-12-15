@@ -11,7 +11,7 @@ import (
 // CreateOnDemandHttpProbeRequest wrapper for the CreateOnDemandHttpProbe operation
 type CreateOnDemandHttpProbeRequest struct {
 
-	// Details for creating an on-demand HTTP probe.
+	// The configuration of the HTTP probe.
 	CreateOnDemandHttpProbeDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -51,7 +51,7 @@ type CreateOnDemandHttpProbeResponse struct {
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// The location for fetching results.
+	// The URL for fetching probe results.
 	Location *string `presentIn:"header" name:"location"`
 }
 

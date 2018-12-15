@@ -1,11 +1,11 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Oracle Health Checks Service API
+// Health Checks API
 //
-// Health Checks Service API.  This API allows clients to configure and run probes (tests)
-// that will be executed on one or more global vantage points to monitor OCI assets.  The API
-// supports running on-demand probes as well as retrieving historical results.
+// API for the Health Checks service. Use this API to manage endpoint probes and monitors.
+// For more information, see
+// Overview of the Health Checks Service (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/HealthChecks/Concepts/healthchecks.htm).
 //
 
 package healthchecks
@@ -14,13 +14,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Routing Routing information for a vantage point.
+// Routing The routing information for a vantage point.
 type Routing struct {
 
-	// Registry label for `asn`. May be null.
+	// The registry label for `asn`, usually the name of the organization that
+	// owns the ASN. May be omitted or null.
 	AsLabel *string `mandatory:"false" json:"asLabel"`
 
-	// Autonomous system number identifying the organization
+	// The Autonomous System Number (ASN) identifying the organization
 	// responsible for routing packets to `prefix`.
 	Asn *int `mandatory:"false" json:"asn"`
 

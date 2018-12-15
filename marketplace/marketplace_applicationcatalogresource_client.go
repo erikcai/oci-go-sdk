@@ -37,7 +37,7 @@ func NewApplicationCatalogResourceClientWithConfigurationProvider(configProvider
 
 // SetRegion overrides the region of this client.
 func (client *ApplicationCatalogResourceClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("marketplace", "https://marketplace.us-ashburn-1.oci.oraclecloud.com")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("marketplace", "https://marketplace.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

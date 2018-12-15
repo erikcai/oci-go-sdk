@@ -12,11 +12,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Status The status of the request, specifically for installing application instances request
+// Status The status of the application packages
 type Status struct {
 
-	// The display status
-	DisplayName *string `mandatory:"false" json:"displayName"`
+	// The name of the status
+	Name *string `mandatory:"false" json:"name"`
 }
 
 func (m Status) String() string {

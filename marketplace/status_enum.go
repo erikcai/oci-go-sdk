@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// StatusEnum The possible value of the status field
+// StatusEnum The possible value of the status field for application packages
 type StatusEnum struct {
 }
 

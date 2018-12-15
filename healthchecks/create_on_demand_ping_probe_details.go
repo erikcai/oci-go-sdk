@@ -1,11 +1,11 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Oracle Health Checks Service API
+// Health Checks API
 //
-// Health Checks Service API.  This API allows clients to configure and run probes (tests)
-// that will be executed on one or more global vantage points to monitor OCI assets.  The API
-// supports running on-demand probes as well as retrieving historical results.
+// API for the Health Checks service. Use this API to manage endpoint probes and monitors.
+// For more information, see
+// Overview of the Health Checks Service (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/HealthChecks/Concepts/healthchecks.htm).
 //
 
 package healthchecks
@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateOnDemandPingProbeDetails The request body used to create an on-demand Ping probe.
+// CreateOnDemandPingProbeDetails The request body used to create an on-demand ping probe.
 type CreateOnDemandPingProbeDetails struct {
 
 	// The OCID of the compartment.
@@ -26,11 +26,12 @@ type CreateOnDemandPingProbeDetails struct {
 
 	VantagePointNames []string `mandatory:"false" json:"vantagePointNames"`
 
-	// The probe port, defaults to the default port for the specified protocol.
+	// The port on which to probe endpoints. If unspecified, probes will use the
+	// default port of their protocol.
 	Port *int `mandatory:"false" json:"port"`
 
-	// The probe timeout in seconds. Legal values are: 10, 20, 30, and 60. The probe timeout
-	// must be less than or equal to `intervalInSeconds` for monitors.
+	// The probe timeout in seconds. Valid values: 10, 20, 30, and 60.
+	// The probe timeout must be less than or equal to `intervalInSeconds` for monitors.
 	TimeoutInSeconds *int `mandatory:"false" json:"timeoutInSeconds"`
 }
 

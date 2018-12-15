@@ -14,9 +14,6 @@ type ListHttpProbeResultsRequest struct {
 	// The OCID of a monitor or on-demand probe.
 	ProbeConfigurationId *string `mandatory:"true" contributesTo:"path" name:"probeConfigurationId"`
 
-	// The OCID of a monitor or on-demand probe.
-	ProbeConfigurationId2 *string `mandatory:"true" contributesTo:"path" name:"probeConfigurationId"`
-
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -28,16 +25,16 @@ type ListHttpProbeResultsRequest struct {
 	// from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// Return results with a startTime equal to or greater than the specified value.
+	// Returns results with a `startTime` equal to or greater than the specified value.
 	StartTimeGreaterThanOrEqualTo *float64 `mandatory:"false" contributesTo:"query" name:"startTimeGreaterThanOrEqualTo"`
 
-	// Return results with a startTime equal to or less than the specified value.
+	// Returns results with a `startTime` equal to or less than the specified value.
 	StartTimeLessThanOrEqualTo *float64 `mandatory:"false" contributesTo:"query" name:"startTimeLessThanOrEqualTo"`
 
 	// Controls the sort order of results.
 	SortOrder ListHttpProbeResultsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// Filters results that match the target.
+	// Filters results that match the `target`.
 	Target *string `mandatory:"false" contributesTo:"query" name:"target"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

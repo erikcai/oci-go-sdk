@@ -1,11 +1,11 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Oracle Health Checks Service API
+// Health Checks API
 //
-// Health Checks Service API.  This API allows clients to configure and run probes (tests)
-// that will be executed on one or more global vantage points to monitor OCI assets.  The API
-// supports running on-demand probes as well as retrieving historical results.
+// API for the Health Checks service. Use this API to manage endpoint probes and monitors.
+// For more information, see
+// Overview of the Health Checks Service (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/HealthChecks/Concepts/healthchecks.htm).
 //
 
 package healthchecks
@@ -17,20 +17,23 @@ import (
 // Geolocation Geographic information about a vantage point.
 type Geolocation struct {
 
-	// Opaque identifier for the geographical location of the vantage point.
+	// An opaque identifier for the geographic location of the vantage point.
 	GeoKey *string `mandatory:"false" json:"geoKey"`
 
-	// ISO 3166-2 code for the first-level administrative division (limited
-	// to US states and Canadian provinces, both of which use 2 characters).
+	// The ISO 3166-2 code for this location's first-level administrative
+	// division, either a US state or Canadian province. Only included for locations
+	// in the US or Canada. For a list of codes, see
+	// Country Codes (https://www.iso.org/obp/ui/#search).
 	AdminDivCode *string `mandatory:"false" json:"adminDivCode"`
 
 	// Common English-language name for the city.
 	CityName *string `mandatory:"false" json:"cityName"`
 
-	// 2-letter ISO 3166-1 alpha-2 country code.
+	// The ISO 3166-1 alpha-2 country code. For a list of codes,
+	// see Country Codes (https://www.iso.org/obp/ui/#search).
 	CountryCode *string `mandatory:"false" json:"countryCode"`
 
-	// Common English-language name for the country.
+	// The common English-language name for the country.
 	CountryName *string `mandatory:"false" json:"countryName"`
 
 	// Degrees north of the Equator.

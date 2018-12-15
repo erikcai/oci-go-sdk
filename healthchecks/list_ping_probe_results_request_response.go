@@ -14,9 +14,6 @@ type ListPingProbeResultsRequest struct {
 	// The OCID of a monitor or on-demand probe.
 	ProbeConfigurationId *string `mandatory:"true" contributesTo:"path" name:"probeConfigurationId"`
 
-	// The OCID of a monitor or on-demand probe.
-	ProbeConfigurationId2 *string `mandatory:"true" contributesTo:"path" name:"probeConfigurationId"`
-
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -28,16 +25,16 @@ type ListPingProbeResultsRequest struct {
 	// from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// Return results with a startTime equal to or greater than the specified value.
+	// Returns results with a `startTime` equal to or greater than the specified value.
 	StartTimeGreaterThanOrEqualTo *float64 `mandatory:"false" contributesTo:"query" name:"startTimeGreaterThanOrEqualTo"`
 
-	// Return results with a startTime equal to or less than the specified value.
+	// Returns results with a `startTime` equal to or less than the specified value.
 	StartTimeLessThanOrEqualTo *float64 `mandatory:"false" contributesTo:"query" name:"startTimeLessThanOrEqualTo"`
 
 	// Controls the sort order of results.
 	SortOrder ListPingProbeResultsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// Filters results that match the target.
+	// Filters results that match the `target`.
 	Target *string `mandatory:"false" contributesTo:"query" name:"target"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -73,10 +70,12 @@ type ListPingProbeResultsResponse struct {
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination of a list of items. When paging through a list, if this
-	// header appears in the response, then a partial list might have been
-	// returned. Include this value as the `page` parameter for the
-	// subsequent GET request to get the next batch of items.
+	// For pagination of a list of items. When paging through a list,
+	// if this header appears in the response, then there may be
+	// additional items still to get. Include this value as the `page`
+	// parameter for the subsequent GET request. For information about
+	// pagination, see
+	// List Pagination (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/usingapi.htm#List_Pagination).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

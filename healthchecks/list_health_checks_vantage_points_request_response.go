@@ -22,7 +22,7 @@ type ListHealthChecksVantagePointsRequest struct {
 	// from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// Controls the field to sort on when listing vantage points.
+	// The field to sort by when listing vantage points.
 	SortBy ListHealthChecksVantagePointsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// Controls the sort order of results.
@@ -67,10 +67,11 @@ type ListHealthChecksVantagePointsResponse struct {
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination of a list of items. When paging through a list, if this
-	// header appears in the response, then a partial list might have been
-	// returned. Include this value as the `page` parameter for the
-	// subsequent GET request to get the next batch of items.
+	// For pagination of a list of items. When paging through a list, if
+	// this header appears in the response, then there may be additional
+	// items still to get. Include this value as the `page` parameter for the
+	// subsequent GET request. For information about pagination, see
+	// List Pagination (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/usingapi.htm#List_Pagination).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

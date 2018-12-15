@@ -11,18 +11,18 @@ import (
 // CreateHttpMonitorRequest wrapper for the CreateHttpMonitor operation
 type CreateHttpMonitorRequest struct {
 
-	// Details for creating an HTTP monitor.
+	// The configuration details for creating an HTTP monitor.
 	CreateHttpMonitorDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// A token that uniquely identifies a request so it can be retried in case of a timeout or
-	// server error without risk of executing that same action again. Retry tokens expire after 24
-	// hours, but can be invalidated before then due to conflicting operations (for example, if a
-	// resource has been deleted and purged from the system, then a retry of the original creation
-	// request may be rejected).
+	// A token that uniquely identifies a request that can be retried in case of a timeout or
+	// server error without risk of executing the same action again. Retry tokens expire after 24
+	// hours.
+	// *Note:* Retry tokens can be invalidated before the 24 hour time limit due to conflicting
+	// operations, such as a resource being deleted or purged from the system.
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -58,10 +58,10 @@ type CreateHttpMonitorResponse struct {
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// The location of the newly created monitor.
+	// The URL of the newly created monitor.
 	Location *string `presentIn:"header" name:"location"`
 
-	// An entity tag that uniquely identifies a version of a resource.
+	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
 }
 

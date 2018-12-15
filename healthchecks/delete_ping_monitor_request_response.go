@@ -18,7 +18,10 @@ type DeletePingMonitorRequest struct {
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// Specifies the version of a resource to match.
+	// For optimistic concurrency control. In the PUT or DELETE call for a resource,
+	// set the `if-match` parameter to the value of the etag from a previous GET
+	// or POST response for that resource.  The resource will be updated or deleted
+	// only if the etag you provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

@@ -11,7 +11,7 @@ import (
 // CreateOnDemandPingProbeRequest wrapper for the CreateOnDemandPingProbe operation
 type CreateOnDemandPingProbeRequest struct {
 
-	// Details for creating an on-demand Ping probe.
+	// Configuration details for creating an on-demand ping probe.
 	CreateOnDemandPingProbeDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -51,7 +51,7 @@ type CreateOnDemandPingProbeResponse struct {
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// The location for fetching results.
+	// The URL for fetching probe results.
 	Location *string `presentIn:"header" name:"location"`
 }
 

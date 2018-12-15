@@ -1,11 +1,11 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Oracle Health Checks Service API
+// Health Checks API
 //
-// Health Checks Service API.  This API allows clients to configure and run probes (tests)
-// that will be executed on one or more global vantage points to monitor OCI assets.  The API
-// supports running on-demand probes as well as retrieving historical results.
+// API for the Health Checks service. Use this API to manage endpoint probes and monitors.
+// For more information, see
+// Overview of the Health Checks Service (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/HealthChecks/Concepts/healthchecks.htm).
 //
 
 package healthchecks
@@ -14,43 +14,44 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// HttpProbeResultSummary Results returned by running an HTTP probe.  All times and durations are in milliseconds.
-// All start and end times are relative to the same _origin_ as `startTime`.  Time
-// properties conform to the W3C Resource Timing
+// HttpProbeResultSummary The results returned by running an HTTP probe.  All times and durations are
+// returned in milliseconds. All times are relative to the POSIX epoch
+// (1970-01-01T00:00Z). Time properties conform to W3C Resource Timing.
+// For more information, see
 // PerformanceResourceTiming (https://w3c.github.io/resource-timing/#sec-resource-timing)
 // interface.
 type HttpProbeResultSummary struct {
 
-	// A value uniquely identifying this probe result within the currently-persisted results
-	// of the probe configuration responsible for creating it.
+	// A value identifying this specific probe result. The key is only unique within
+	// the results of its probe configuration. The key may be reused after 90 days.
 	Key *string `mandatory:"false" json:"key"`
 
 	// The OCID of the monitor or on-demand probe responsible for creating this result.
 	ProbeConfigurationId *string `mandatory:"false" json:"probeConfigurationId"`
 
-	// The time that that probe began execution. expressed in milliseconds since the
-	// POSIX epoch.  Since this API conforms to the W3C Resource Timing
-	// PerformanceResourceTiming (https://w3c.github.io/resource-timing/#sec-resource-timing)
-	// interface, this field is used instead of an RFC 3339-formatted `timeStarted`
-	// field.
+	// The date and time the probe was executed, expressed in milliseconds since the
+	// POSIX epoch. This field is defined by the PerformanceResourceTiming interface
+	// of the W3C Resource Timing specification. For more information, see
+	// Resource Timing (https://w3c.github.io/resource-timing/#sec-resource-timing).
 	StartTime *float64 `mandatory:"false" json:"startTime"`
 
-	// The hostname or IP address target of the probe.
+	// The target hostname or IP address of the probe.
 	Target *string `mandatory:"false" json:"target"`
 
 	// The name of the vantage point that executed the probe.
 	VantagePointName *string `mandatory:"false" json:"vantagePointName"`
 
-	// True if the probe did not complete before the configured time-out value.
+	// True if the probe did not complete before the configured `timeoutInSeconds` value.
 	IsTimedOut *bool `mandatory:"false" json:"isTimedOut"`
 
-	// True if the probe result is determined to be healthy based on probe type-specific
-	// criteria.  For HTTP probes, a probe result is considered healthy if the HTTP
-	// response code is greater than or equal to 200 and less than 300.
+	// True if the probe result is determined to be healthy based on probe
+	// type-specific criteria.  For HTTP probes, a probe result is considered
+	// healthy if the HTTP response code is greater than or equal to 200 and
+	// less than 300.
 	IsHealthy *bool `mandatory:"false" json:"isHealthy"`
 
-	// The category of error, if an error occurs executing the probe.  The `errorMessage`
-	// field provides a message with the error details.
+	// The category of error if an error occurs executing the probe.
+	// The `errorMessage` field provides a message with the error details.
 	// * NONE - No error
 	// * DNS - DNS errors
 	// * TRANSPORT - Transport-related errors, for example a "TLS certificate expired" error.
@@ -58,7 +59,7 @@ type HttpProbeResultSummary struct {
 	// * SYSTEM - Internal system errors.
 	ErrorCategory HttpProbeResultSummaryErrorCategoryEnum `mandatory:"false" json:"errorCategory,omitempty"`
 
-	// Error information indicating why a probe execution failed.
+	// The error information indicating why a probe execution failed.
 	ErrorMessage *string `mandatory:"false" json:"errorMessage"`
 
 	Protocol HttpProbeResultSummaryProtocolEnum `mandatory:"false" json:"protocol,omitempty"`
@@ -105,7 +106,7 @@ type HttpProbeResultSummary struct {
 	// or immediately before the transport connection is closed, whichever comes first.
 	ResponseEnd *float64 `mandatory:"false" json:"responseEnd"`
 
-	// Total duration from start of request until response is fully consumed or the
+	// The total duration from start of request until response is fully consumed or the
 	// connection is closed.
 	Duration *float64 `mandatory:"false" json:"duration"`
 

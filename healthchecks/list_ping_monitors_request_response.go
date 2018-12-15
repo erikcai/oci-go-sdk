@@ -25,7 +25,7 @@ type ListPingMonitorsRequest struct {
 	// from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// Controls the field to sort on when listing monitors.
+	// The field to sort by when listing monitors.
 	SortBy ListPingMonitorsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// Controls the sort order of results.
