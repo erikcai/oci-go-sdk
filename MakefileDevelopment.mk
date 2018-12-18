@@ -65,6 +65,8 @@ $(TARGETS): %:integtest/%_client_integ_test.go
 generate:
 	@echo "Cleaning and generating sdk"
 	@(cd $(PROJECT_PATH) && make clean-generate)
+	@echo "Cleaning autotest files"
+	@find autotest -name \*_auto_test.go|xargs rm -f
 	PROJECT_NAME=$(PROJECT_NAME) mvn clean install
 	@(cd $(PROJECT_PATH) && rm -f $(REMOVE_AFTER_GENERATE))
 

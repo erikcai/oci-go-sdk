@@ -16,7 +16,7 @@ type TestConfiguration struct {
 func configurationProvider() common.ConfigurationProvider {
 	fileConfig := os.Getenv("SDK_FILE_CONFIG")
 	if fileConfig == "" {
-		return common.DefaultConfigProvider()
+		return common.ConfigurationProviderEnvironmentVariables("TF_VAR", "")
 	}
 
 	fileConfigProvider, _ := common.ConfigurationProviderFromFile(fileConfig, "")
