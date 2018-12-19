@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Load Balancing Service API
+// Load Balancing API
 //
-// API for the Load Balancing Service
+// API for the Load Balancing service. Use this API to manage load balancers, backend sets, and related items. For more
+// information, see Overview of Load Balancing (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Balance/Concepts/balanceoverview.htm).
 //
 
 package loadbalancer
@@ -13,9 +14,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RemoveHttpRequestHeaderRule An object that represents the action of removing a header from a request.
-// If same header presented more than once then rule will be applie to all occurances of the header.
-// This rule will be applied only to HTTP or HTTP2 listeners.
+// RemoveHttpRequestHeaderRule An object that represents the action of removing a header from a request. This rule applies only to HTTP or HTTP2 listeners.
+// If the same header appears more than once in the request, the load balancer removes all occurances of the specified header.
+// **NOTE:** The system does not distinquish between underscore and dash characters in headers. That is, it treats
+// `example_header_name` and `example-header-name` as identical. Oracle recommends that you do not rely on underscore
+// or dash characters to uniquely distinguish header names.
 type RemoveHttpRequestHeaderRule struct {
 
 	// A header name that conforms to RFC 7230.

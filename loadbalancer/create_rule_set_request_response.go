@@ -14,7 +14,7 @@ type CreateRuleSetRequest struct {
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
 	LoadBalancerId *string `mandatory:"true" contributesTo:"path" name:"loadBalancerId"`
 
-	// The configuration details to update a set of rules.
+	// The configuration details for the rule set to create.
 	CreateRuleSetDetails `contributesTo:"body"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -46,12 +46,12 @@ type CreateRuleSetResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the work request.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
+
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the work request.
-	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
 func (response CreateRuleSetResponse) String() string {

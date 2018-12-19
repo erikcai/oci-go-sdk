@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Load Balancing Service API
+// Load Balancing API
 //
-// API for the Load Balancing Service
+// API for the Load Balancing service. Use this API to manage load balancers, backend sets, and related items. For more
+// information, see Overview of Load Balancing (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Balance/Concepts/balanceoverview.htm).
 //
 
 package loadbalancer
@@ -37,7 +38,7 @@ func NewLoadBalancerClientWithConfigurationProvider(configProvider common.Config
 
 // SetRegion overrides the region of this client.
 func (client *LoadBalancerClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("iaas")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("iaas", "https://iaas.{region}.oraclecloud.com")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -409,7 +410,7 @@ func (client LoadBalancerClient) createPathRouteSet(ctx context.Context, request
 	return response, err
 }
 
-// CreateRuleSet Creates new ruleSets.
+// CreateRuleSet Creates a new rule set associated with the specified load balancer.
 func (client LoadBalancerClient) CreateRuleSet(ctx context.Context, request CreateRuleSetRequest) (response CreateRuleSetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -748,9 +749,9 @@ func (client LoadBalancerClient) deletePathRouteSet(ctx context.Context, request
 	return response, err
 }
 
-// DeleteRuleSet Deletes an rule set from the specified load balancer.
-// To delete an rule from an rule set, use the
-// PutRuleSet operation.
+// DeleteRuleSet Deletes a rule set from the specified load balancer.
+// To delete a rule from a rule set, use the
+// UpdateRuleSet operation.
 func (client LoadBalancerClient) DeleteRuleSet(ctx context.Context, request DeleteRuleSetRequest) (response DeleteRuleSetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2087,9 +2088,9 @@ func (client LoadBalancerClient) updatePathRouteSet(ctx context.Context, request
 	return response, err
 }
 
-// UpdateRuleSet Overwrites an existing set of rules on the specified load balancer. Use this operation to add, delete, or alter
-// rules.
-// To add a new rule, the body must include both the new rule to add and the existing rules to retain.
+// UpdateRuleSet Overwrites an existing set of rules on the specified load balancer. Use this operation to add or alter
+// the rules in a rule set.
+// To add a new rule to a set, the body must include both the new rule to add and the existing rules to retain.
 func (client LoadBalancerClient) UpdateRuleSet(ctx context.Context, request UpdateRuleSetRequest) (response UpdateRuleSetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

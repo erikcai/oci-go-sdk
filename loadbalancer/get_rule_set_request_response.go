@@ -15,7 +15,7 @@ type GetRuleSetRequest struct {
 	LoadBalancerId *string `mandatory:"true" contributesTo:"path" name:"loadBalancerId"`
 
 	// The name of the rule set to retrieve.
-	// Example: `example_http_rule_list`
+	// Example: `example_rule_set`
 	RuleSetName *string `mandatory:"true" contributesTo:"path" name:"ruleSetName"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a

@@ -18,11 +18,13 @@ type ListLoadBalancersRequest struct {
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The maximum number of items to return in a paginated "List" call.
-	// Example: `500`
+	// For list pagination. The maximum number of results per page, or items to return in a paginated "List" call.
+	// For important details about how pagination works, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Example: `50`
 	Limit *int64 `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The value of the `opc-next-page` response header from the previous "List" call.
+	// For list pagination. The value of the `opc-next-page` response header from the previous "List" call.
+	// For important details about how pagination works, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	// Example: `3`
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
@@ -30,17 +32,18 @@ type ListLoadBalancersRequest struct {
 	// Example: `full`
 	Detail *string `mandatory:"false" contributesTo:"query" name:"detail"`
 
-	// The field to sort by.  Only one sort order may be provided.  Time created is default ordered as descending.  Display name is default ordered as ascending.
+	// The field to sort by.  You can provide one sort order (`sortOrder`). Default order for TIMECREATED is descending.
+	// Default order for DISPLAYNAME is ascending. The DISPLAYNAME sort order is case sensitive.
 	SortBy ListLoadBalancersSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either 'asc' or 'desc'
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order is case sensitive.
 	SortOrder ListLoadBalancersSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// A filter to only return resources that match the given display name exactly.
+	// A filter to return only resources that match the given display name exactly.
 	// Example: `example_load_balancer`
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// A filter to only return resources that match the given lifecycle state.
+	// A filter to return only resources that match the given lifecycle state.
 	// Example: `SUCCEEDED`
 	LifecycleState LoadBalancerLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
@@ -72,9 +75,8 @@ type ListLoadBalancersResponse struct {
 	// A list of []LoadBalancer instances
 	Items []LoadBalancer `presentIn:"body"`
 
-	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then a partial list might have been returned. Include this value as the `page` parameter for the
-	// subsequent GET request to get the next batch of items.
+	// For list pagination. When this header appears in the response, additional pages of results remain.
+	// For important details about how pagination works, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
