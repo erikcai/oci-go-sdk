@@ -3,9 +3,10 @@ package auth
 import (
 	"crypto/rsa"
 	"fmt"
+	"testing"
+
 	"github.com/oracle/oci-go-sdk/common"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestServicePrincipalKeyProvider(t *testing.T) {
@@ -72,7 +73,7 @@ func TestServicePrincipalKeyProvider(t *testing.T) {
 			mockFederationClient.On("SecurityToken").Return(test.expectSecToken, test.expectErrorToken).Once()
 
 			keyProvider, _ := newServicePrincipalKeyProvider(test.tenancy,
-				test.region, test.cert, test.key, test.intermediates, test.passphrase)
+				test.region, test.cert, test.key, test.intermediates, test.passphrase, nil)
 
 			keyProvider.federationClient = mockFederationClient
 			actualPrivateKey, errKey := keyProvider.PrivateRSAKey()

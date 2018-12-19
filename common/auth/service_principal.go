@@ -13,7 +13,9 @@ type servicePrincipalKeyProvider struct {
 	federationClient federationClient
 }
 
-func newServicePrincipalKeyProvider(tenancyID, region string, cert, key []byte, intermediates [][]byte, passphrase []byte) (provider *servicePrincipalKeyProvider, err error) {
+func newServicePrincipalKeyProvider(tenancyID, region string, cert, key []byte, intermediates [][]byte, passphrase []byte, modifier func(common.HTTPRequestDispatcher) (common.HTTPRequestDispatcher, error)) (provider *servicePrincipalKeyProvider, err error) {
+	clientModifier := newDispatcherModifier(modifier)
+
 	leafCertificateRetriever := newStaticX509CertificateRetriever(cert, key, passphrase)
 
 	var intermediateCertificateRetrievers []x509CertificateRetriever
@@ -22,8 +24,13 @@ func newServicePrincipalKeyProvider(tenancyID, region string, cert, key []byte, 
 			append(intermediateCertificateRetrievers, newStaticX509CertificateRetriever(intermediate, key, passphrase))
 	}
 
-	federationClient := newX509FederationClient(
-		common.Region(region), tenancyID, leafCertificateRetriever, intermediateCertificateRetrievers, true)
+	federationClient, err := newX509FederationClient(
+		common.Region(region), tenancyID, leafCertificateRetriever, intermediateCertificateRetrievers, true, *clientModifier)
+
+	if err != nil {
+		err = fmt.Errorf("failed to create federation client: %s", err.Error())
+		return nil, err
+	}
 
 	provider = &servicePrincipalKeyProvider{federationClient: federationClient}
 	return
@@ -54,9 +61,14 @@ type servicePrincipalConfigurationProvider struct {
 
 // NewServicePrincipalConfigurationProvider will create a new service principal configuration provider
 func NewServicePrincipalConfigurationProvider(tenancyID, region string, cert, key []byte, intermediates [][]byte, passphrase []byte) (common.ConfigurationProvider, error) {
+	return NewServicePrincipalConfigurationProviderWithCustomClient(nil, tenancyID, region, cert, key, intermediates, passphrase)
+}
+
+// NewServicePrincipalConfigurationProviderWithCustomClient will create a new service principal configuration provider using a modifier function to modify the HTTPRequestDispatcher
+func NewServicePrincipalConfigurationProviderWithCustomClient(modifier func(common.HTTPRequestDispatcher) (common.HTTPRequestDispatcher, error), tenancyID, region string, cert, key []byte, intermediates [][]byte, passphrase []byte) (common.ConfigurationProvider, error) {
 	var err error
 	var keyProvider *servicePrincipalKeyProvider
-	if keyProvider, err = newServicePrincipalKeyProvider(tenancyID, region, cert, key, intermediates, passphrase); err != nil {
+	if keyProvider, err = newServicePrincipalKeyProvider(tenancyID, region, cert, key, intermediates, passphrase, modifier); err != nil {
 		return nil, fmt.Errorf("failed to create a new key provider: %s", err.Error())
 	}
 	return servicePrincipalConfigurationProvider{keyProvider: keyProvider, region: region, tenancyID: tenancyID}, nil
