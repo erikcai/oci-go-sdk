@@ -27,7 +27,8 @@ type AutonomousDatabaseConnectionStrings struct {
 	// The database service provides the least level of resources to each SQL statement, but supports the most number of concurrent SQL statements.
 	Dedicated *string `mandatory:"false" json:"dedicated"`
 
-	// All connection strings to use to connect to the Autonomous Database.
+	// Returns all connection strings that can be used to connect to the Autonomous Database.
+	// For more information, please see Predefined Database Service Names for Autonomous Transaction Processing (https://docs.oracle.com/en/cloud/paas/atp-cloud/atpug/connect-predefined.html#GUID-9747539B-FD46-44F1-8FF8-F5AC650F15BE)
 	AllConnectionStrings map[string]string `mandatory:"false" json:"allConnectionStrings"`
 }
 

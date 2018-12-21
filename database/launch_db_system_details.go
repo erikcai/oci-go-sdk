@@ -37,7 +37,7 @@ type LaunchDbSystemDetails struct {
 	// To get a list of shapes, use the ListDbSystemShapes operation.
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined keys cannot exceed 10,000 characters.
+	// The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined keys cannot exceed 40,000 characters.
 	SshPublicKeys []string `mandatory:"true" json:"sshPublicKeys"`
 
 	// The hostname for the DB system. The hostname must begin with an alphabetic character and

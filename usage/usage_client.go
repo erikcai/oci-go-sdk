@@ -37,7 +37,7 @@ func NewUsageClientWithConfigurationProvider(configProvider common.Configuration
 
 // SetRegion overrides the region of this client.
 func (client *UsageClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("usage", "https://identity.{region}.{secondLevelDomain}")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("identity", "https://identity.{region}.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
