@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createApplicationCatalogResourceClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := marketplace.NewApplicationCatalogResourceClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestApplicationCatalogResourceClientGetAppCatalogApplicationMapping(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("marketplace", "GetAppCatalogApplicationMapping")

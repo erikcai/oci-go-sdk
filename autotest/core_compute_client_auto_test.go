@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createComputeClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := core.NewComputeClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
 func TestComputeClientAddImageShapeCompatibilityEntry(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("core", "AddImageShapeCompatibilityEntry")
@@ -1130,8 +1141,10 @@ func TestComputeClientListAppCatalogListingResourceVersions(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAppCatalogListingResourceVersions is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListAppCatalogListingResourceVersions", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListAppCatalogListingResourceVersions")
 	assert.NoError(t, err)
@@ -1175,8 +1188,10 @@ func TestComputeClientListAppCatalogListings(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAppCatalogListings is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListAppCatalogListings", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListAppCatalogListings")
 	assert.NoError(t, err)
@@ -1220,8 +1235,10 @@ func TestComputeClientListAppCatalogSubscriptions(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAppCatalogSubscriptions is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListAppCatalogSubscriptions", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListAppCatalogSubscriptions")
 	assert.NoError(t, err)
@@ -1265,8 +1282,10 @@ func TestComputeClientListBootVolumeAttachments(t *testing.T) {
 	if !enabled {
 		t.Skip("ListBootVolumeAttachments is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListBootVolumeAttachments", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListBootVolumeAttachments")
 	assert.NoError(t, err)
@@ -1310,8 +1329,10 @@ func TestComputeClientListConsoleHistories(t *testing.T) {
 	if !enabled {
 		t.Skip("ListConsoleHistories is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListConsoleHistories", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListConsoleHistories")
 	assert.NoError(t, err)
@@ -1355,8 +1376,10 @@ func TestComputeClientListImages(t *testing.T) {
 	if !enabled {
 		t.Skip("ListImages is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListImages", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListImages")
 	assert.NoError(t, err)
@@ -1400,8 +1423,10 @@ func TestComputeClientListInstanceConsoleConnections(t *testing.T) {
 	if !enabled {
 		t.Skip("ListInstanceConsoleConnections is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListInstanceConsoleConnections", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListInstanceConsoleConnections")
 	assert.NoError(t, err)
@@ -1445,8 +1470,10 @@ func TestComputeClientListInstanceDevices(t *testing.T) {
 	if !enabled {
 		t.Skip("ListInstanceDevices is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListInstanceDevices", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListInstanceDevices")
 	assert.NoError(t, err)
@@ -1490,8 +1517,10 @@ func TestComputeClientListInstances(t *testing.T) {
 	if !enabled {
 		t.Skip("ListInstances is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListInstances", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListInstances")
 	assert.NoError(t, err)
@@ -1535,8 +1564,10 @@ func TestComputeClientListShapes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListShapes is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListShapes", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListShapes")
 	assert.NoError(t, err)
@@ -1580,8 +1611,10 @@ func TestComputeClientListVnicAttachments(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVnicAttachments is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListVnicAttachments", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListVnicAttachments")
 	assert.NoError(t, err)
@@ -1625,8 +1658,10 @@ func TestComputeClientListVolumeAttachments(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVolumeAttachments is not enabled by the testing service")
 	}
-	c, err := core.NewComputeClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListVolumeAttachments", createComputeClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
 
 	body, err := testClient.getRequests("core", "ListVolumeAttachments")
 	assert.NoError(t, err)

@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createApplicationInstanceResourceClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := marketplace.NewApplicationInstanceResourceClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestApplicationInstanceResourceClientGetInstallConfiguration(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("marketplace", "GetInstallConfiguration")

@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createCloudEventsClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := cloudevents.NewCloudEventsClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="default" email="oci_events_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/CLEV" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/CLEV"
 func TestCloudEventsClientCreateRule(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("cloudevents", "CreateRule")
@@ -126,8 +137,10 @@ func TestCloudEventsClientListRules(t *testing.T) {
 	if !enabled {
 		t.Skip("ListRules is not enabled by the testing service")
 	}
-	c, err := cloudevents.NewCloudEventsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cloudevents", "CloudEvents", "ListRules", createCloudEventsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cloudevents.CloudEventsClient)
 
 	body, err := testClient.getRequests("cloudevents", "ListRules")
 	assert.NoError(t, err)

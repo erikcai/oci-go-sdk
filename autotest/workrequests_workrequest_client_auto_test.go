@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createWorkRequestClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := workrequests.NewWorkRequestClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestWorkRequestClientGetWorkRequest(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("workrequests", "GetWorkRequest")
@@ -54,8 +65,10 @@ func TestWorkRequestClientListWorkRequestErrors(t *testing.T) {
 	if !enabled {
 		t.Skip("ListWorkRequestErrors is not enabled by the testing service")
 	}
-	c, err := workrequests.NewWorkRequestClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("workrequests", "WorkRequest", "ListWorkRequestErrors", createWorkRequestClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(workrequests.WorkRequestClient)
 
 	body, err := testClient.getRequests("workrequests", "ListWorkRequestErrors")
 	assert.NoError(t, err)
@@ -99,8 +112,10 @@ func TestWorkRequestClientListWorkRequestLogs(t *testing.T) {
 	if !enabled {
 		t.Skip("ListWorkRequestLogs is not enabled by the testing service")
 	}
-	c, err := workrequests.NewWorkRequestClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("workrequests", "WorkRequest", "ListWorkRequestLogs", createWorkRequestClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(workrequests.WorkRequestClient)
 
 	body, err := testClient.getRequests("workrequests", "ListWorkRequestLogs")
 	assert.NoError(t, err)
@@ -144,8 +159,10 @@ func TestWorkRequestClientListWorkRequests(t *testing.T) {
 	if !enabled {
 		t.Skip("ListWorkRequests is not enabled by the testing service")
 	}
-	c, err := workrequests.NewWorkRequestClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("workrequests", "WorkRequest", "ListWorkRequests", createWorkRequestClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(workrequests.WorkRequestClient)
 
 	body, err := testClient.getRequests("workrequests", "ListWorkRequests")
 	assert.NoError(t, err)

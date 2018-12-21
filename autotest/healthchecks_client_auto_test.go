@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createHealthChecksClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := healthchecks.NewHealthChecksClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="default" email="groan-chomskies_us_grp@oracle.com" jiraProject="OHC" opsJiraProject="HC"
 func TestHealthChecksClientCreateHttpMonitor(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("healthchecks", "CreateHttpMonitor")
@@ -306,8 +317,10 @@ func TestHealthChecksClientListHealthChecksVantagePoints(t *testing.T) {
 	if !enabled {
 		t.Skip("ListHealthChecksVantagePoints is not enabled by the testing service")
 	}
-	c, err := healthchecks.NewHealthChecksClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("healthchecks", "HealthChecks", "ListHealthChecksVantagePoints", createHealthChecksClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(healthchecks.HealthChecksClient)
 
 	body, err := testClient.getRequests("healthchecks", "ListHealthChecksVantagePoints")
 	assert.NoError(t, err)
@@ -351,8 +364,10 @@ func TestHealthChecksClientListHttpMonitors(t *testing.T) {
 	if !enabled {
 		t.Skip("ListHttpMonitors is not enabled by the testing service")
 	}
-	c, err := healthchecks.NewHealthChecksClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("healthchecks", "HealthChecks", "ListHttpMonitors", createHealthChecksClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(healthchecks.HealthChecksClient)
 
 	body, err := testClient.getRequests("healthchecks", "ListHttpMonitors")
 	assert.NoError(t, err)
@@ -396,8 +411,10 @@ func TestHealthChecksClientListHttpProbeResults(t *testing.T) {
 	if !enabled {
 		t.Skip("ListHttpProbeResults is not enabled by the testing service")
 	}
-	c, err := healthchecks.NewHealthChecksClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("healthchecks", "HealthChecks", "ListHttpProbeResults", createHealthChecksClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(healthchecks.HealthChecksClient)
 
 	body, err := testClient.getRequests("healthchecks", "ListHttpProbeResults")
 	assert.NoError(t, err)
@@ -441,8 +458,10 @@ func TestHealthChecksClientListPingMonitors(t *testing.T) {
 	if !enabled {
 		t.Skip("ListPingMonitors is not enabled by the testing service")
 	}
-	c, err := healthchecks.NewHealthChecksClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("healthchecks", "HealthChecks", "ListPingMonitors", createHealthChecksClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(healthchecks.HealthChecksClient)
 
 	body, err := testClient.getRequests("healthchecks", "ListPingMonitors")
 	assert.NoError(t, err)
@@ -486,8 +505,10 @@ func TestHealthChecksClientListPingProbeResults(t *testing.T) {
 	if !enabled {
 		t.Skip("ListPingProbeResults is not enabled by the testing service")
 	}
-	c, err := healthchecks.NewHealthChecksClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("healthchecks", "HealthChecks", "ListPingProbeResults", createHealthChecksClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(healthchecks.HealthChecksClient)
 
 	body, err := testClient.getRequests("healthchecks", "ListPingProbeResults")
 	assert.NoError(t, err)

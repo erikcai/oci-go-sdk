@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createBlockstorageClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := core.NewBlockstorageClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
 func TestBlockstorageClientCopyBootVolumeBackup(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("core", "CopyBootVolumeBackup")
@@ -882,8 +893,10 @@ func TestBlockstorageClientGetVolumeBackupPolicyAssetAssignment(t *testing.T) {
 	if !enabled {
 		t.Skip("GetVolumeBackupPolicyAssetAssignment is not enabled by the testing service")
 	}
-	c, err := core.NewBlockstorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "GetVolumeBackupPolicyAssetAssignment", createBlockstorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
 
 	body, err := testClient.getRequests("core", "GetVolumeBackupPolicyAssetAssignment")
 	assert.NoError(t, err)
@@ -1071,8 +1084,10 @@ func TestBlockstorageClientListBootVolumeBackups(t *testing.T) {
 	if !enabled {
 		t.Skip("ListBootVolumeBackups is not enabled by the testing service")
 	}
-	c, err := core.NewBlockstorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ListBootVolumeBackups", createBlockstorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
 
 	body, err := testClient.getRequests("core", "ListBootVolumeBackups")
 	assert.NoError(t, err)
@@ -1116,8 +1131,10 @@ func TestBlockstorageClientListBootVolumes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListBootVolumes is not enabled by the testing service")
 	}
-	c, err := core.NewBlockstorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ListBootVolumes", createBlockstorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
 
 	body, err := testClient.getRequests("core", "ListBootVolumes")
 	assert.NoError(t, err)
@@ -1161,8 +1178,10 @@ func TestBlockstorageClientListVolumeBackupPolicies(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVolumeBackupPolicies is not enabled by the testing service")
 	}
-	c, err := core.NewBlockstorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ListVolumeBackupPolicies", createBlockstorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
 
 	body, err := testClient.getRequests("core", "ListVolumeBackupPolicies")
 	assert.NoError(t, err)
@@ -1206,8 +1225,10 @@ func TestBlockstorageClientListVolumeBackups(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVolumeBackups is not enabled by the testing service")
 	}
-	c, err := core.NewBlockstorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ListVolumeBackups", createBlockstorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
 
 	body, err := testClient.getRequests("core", "ListVolumeBackups")
 	assert.NoError(t, err)
@@ -1251,8 +1272,10 @@ func TestBlockstorageClientListVolumeGroupBackups(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVolumeGroupBackups is not enabled by the testing service")
 	}
-	c, err := core.NewBlockstorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ListVolumeGroupBackups", createBlockstorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
 
 	body, err := testClient.getRequests("core", "ListVolumeGroupBackups")
 	assert.NoError(t, err)
@@ -1296,8 +1319,10 @@ func TestBlockstorageClientListVolumeGroups(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVolumeGroups is not enabled by the testing service")
 	}
-	c, err := core.NewBlockstorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ListVolumeGroups", createBlockstorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
 
 	body, err := testClient.getRequests("core", "ListVolumeGroups")
 	assert.NoError(t, err)
@@ -1341,8 +1366,10 @@ func TestBlockstorageClientListVolumes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVolumes is not enabled by the testing service")
 	}
-	c, err := core.NewBlockstorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ListVolumes", createBlockstorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
 
 	body, err := testClient.getRequests("core", "ListVolumes")
 	assert.NoError(t, err)

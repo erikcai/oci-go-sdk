@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createNotificationControlPlaneClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := ons.NewNotificationControlPlaneClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestNotificationControlPlaneClientCreateTopic(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("ons", "CreateTopic")
@@ -126,8 +137,10 @@ func TestNotificationControlPlaneClientListTopics(t *testing.T) {
 	if !enabled {
 		t.Skip("ListTopics is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationControlPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationControlPlane", "ListTopics", createNotificationControlPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationControlPlaneClient)
 
 	body, err := testClient.getRequests("ons", "ListTopics")
 	assert.NoError(t, err)

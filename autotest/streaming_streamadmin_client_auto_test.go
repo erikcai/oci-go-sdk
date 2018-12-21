@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createStreamAdminClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := streaming.NewStreamAdminClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestStreamAdminClientCreateStream(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("streaming", "CreateStream")
@@ -162,8 +173,10 @@ func TestStreamAdminClientListStreams(t *testing.T) {
 	if !enabled {
 		t.Skip("ListStreams is not enabled by the testing service")
 	}
-	c, err := streaming.NewStreamAdminClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "ListStreams", createStreamAdminClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
 
 	body, err := testClient.getRequests("streaming", "ListStreams")
 	assert.NoError(t, err)

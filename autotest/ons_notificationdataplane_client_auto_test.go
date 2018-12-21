@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createNotificationDataPlaneClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestNotificationDataPlaneClientCreateSubscription(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("ons", "CreateSubscription")
@@ -198,8 +209,10 @@ func TestNotificationDataPlaneClientListSubscriptions(t *testing.T) {
 	if !enabled {
 		t.Skip("ListSubscriptions is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationDataPlane", "ListSubscriptions", createNotificationDataPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationDataPlaneClient)
 
 	body, err := testClient.getRequests("ons", "ListSubscriptions")
 	assert.NoError(t, err)

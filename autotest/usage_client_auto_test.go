@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createUsageClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := usage.NewUsageClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestUsageClientGetSubscriptionInfo(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("usage", "GetSubscriptionInfo")
@@ -54,8 +65,10 @@ func TestUsageClientListUsageRecords(t *testing.T) {
 	if !enabled {
 		t.Skip("ListUsageRecords is not enabled by the testing service")
 	}
-	c, err := usage.NewUsageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("usage", "Usage", "ListUsageRecords", createUsageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(usage.UsageClient)
 
 	body, err := testClient.getRequests("usage", "ListUsageRecords")
 	assert.NoError(t, err)

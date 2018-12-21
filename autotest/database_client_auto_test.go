@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createDatabaseClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := database.NewDatabaseClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientCompleteExternalBackupJob(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("database", "CompleteExternalBackupJob")
@@ -1613,8 +1624,10 @@ func TestDatabaseClientListAutonomousDataWarehouseBackups(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAutonomousDataWarehouseBackups is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDataWarehouseBackups", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListAutonomousDataWarehouseBackups")
 	assert.NoError(t, err)
@@ -1658,8 +1671,10 @@ func TestDatabaseClientListAutonomousDataWarehouses(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAutonomousDataWarehouses is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDataWarehouses", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListAutonomousDataWarehouses")
 	assert.NoError(t, err)
@@ -1703,8 +1718,10 @@ func TestDatabaseClientListAutonomousDatabaseBackups(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAutonomousDatabaseBackups is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDatabaseBackups", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListAutonomousDatabaseBackups")
 	assert.NoError(t, err)
@@ -1748,8 +1765,10 @@ func TestDatabaseClientListAutonomousDatabaseMissionCriticalAssociations(t *test
 	if !enabled {
 		t.Skip("ListAutonomousDatabaseMissionCriticalAssociations is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDatabaseMissionCriticalAssociations", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListAutonomousDatabaseMissionCriticalAssociations")
 	assert.NoError(t, err)
@@ -1793,8 +1812,10 @@ func TestDatabaseClientListAutonomousDatabases(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAutonomousDatabases is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDatabases", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListAutonomousDatabases")
 	assert.NoError(t, err)
@@ -1838,8 +1859,10 @@ func TestDatabaseClientListAutonomousDbSystemShapes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAutonomousDbSystemShapes is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDbSystemShapes", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListAutonomousDbSystemShapes")
 	assert.NoError(t, err)
@@ -1883,8 +1906,10 @@ func TestDatabaseClientListAutonomousDbSystems(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAutonomousDbSystems is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDbSystems", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListAutonomousDbSystems")
 	assert.NoError(t, err)
@@ -1928,8 +1953,10 @@ func TestDatabaseClientListAutonomousPodMissionCriticalAssociations(t *testing.T
 	if !enabled {
 		t.Skip("ListAutonomousPodMissionCriticalAssociations is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousPodMissionCriticalAssociations", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListAutonomousPodMissionCriticalAssociations")
 	assert.NoError(t, err)
@@ -1973,8 +2000,10 @@ func TestDatabaseClientListAutonomousPods(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAutonomousPods is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousPods", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListAutonomousPods")
 	assert.NoError(t, err)
@@ -2018,8 +2047,10 @@ func TestDatabaseClientListBackups(t *testing.T) {
 	if !enabled {
 		t.Skip("ListBackups is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListBackups", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListBackups")
 	assert.NoError(t, err)
@@ -2063,8 +2094,10 @@ func TestDatabaseClientListDataGuardAssociations(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDataGuardAssociations is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDataGuardAssociations", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDataGuardAssociations")
 	assert.NoError(t, err)
@@ -2108,8 +2141,10 @@ func TestDatabaseClientListDatabases(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDatabases is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDatabases", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDatabases")
 	assert.NoError(t, err)
@@ -2153,8 +2188,10 @@ func TestDatabaseClientListDbHomePatchHistoryEntries(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDbHomePatchHistoryEntries is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDbHomePatchHistoryEntries", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDbHomePatchHistoryEntries")
 	assert.NoError(t, err)
@@ -2198,8 +2235,10 @@ func TestDatabaseClientListDbHomePatches(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDbHomePatches is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDbHomePatches", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDbHomePatches")
 	assert.NoError(t, err)
@@ -2243,8 +2282,10 @@ func TestDatabaseClientListDbHomes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDbHomes is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDbHomes", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDbHomes")
 	assert.NoError(t, err)
@@ -2288,8 +2329,10 @@ func TestDatabaseClientListDbNodes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDbNodes is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDbNodes", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDbNodes")
 	assert.NoError(t, err)
@@ -2333,8 +2376,10 @@ func TestDatabaseClientListDbSystemPatchHistoryEntries(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDbSystemPatchHistoryEntries is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDbSystemPatchHistoryEntries", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDbSystemPatchHistoryEntries")
 	assert.NoError(t, err)
@@ -2378,8 +2423,10 @@ func TestDatabaseClientListDbSystemPatches(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDbSystemPatches is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDbSystemPatches", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDbSystemPatches")
 	assert.NoError(t, err)
@@ -2423,8 +2470,10 @@ func TestDatabaseClientListDbSystemShapes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDbSystemShapes is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDbSystemShapes", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDbSystemShapes")
 	assert.NoError(t, err)
@@ -2468,8 +2517,10 @@ func TestDatabaseClientListDbSystems(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDbSystems is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDbSystems", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDbSystems")
 	assert.NoError(t, err)
@@ -2513,8 +2564,10 @@ func TestDatabaseClientListDbVersions(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDbVersions is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListDbVersions", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListDbVersions")
 	assert.NoError(t, err)
@@ -2558,8 +2611,10 @@ func TestDatabaseClientListMaintenanceRuns(t *testing.T) {
 	if !enabled {
 		t.Skip("ListMaintenanceRuns is not enabled by the testing service")
 	}
-	c, err := database.NewDatabaseClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListMaintenanceRuns", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
 
 	body, err := testClient.getRequests("database", "ListMaintenanceRuns")
 	assert.NoError(t, err)

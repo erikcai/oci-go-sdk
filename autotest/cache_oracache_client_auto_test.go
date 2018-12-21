@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createOracacheClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := cache.NewOracacheClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestOracacheClientCancelWorkRequest(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("cache", "CancelWorkRequest")
@@ -234,8 +245,10 @@ func TestOracacheClientListRedisShapes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListRedisShapes is not enabled by the testing service")
 	}
-	c, err := cache.NewOracacheClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cache", "Oracache", "ListRedisShapes", createOracacheClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cache.OracacheClient)
 
 	body, err := testClient.getRequests("cache", "ListRedisShapes")
 	assert.NoError(t, err)
@@ -279,8 +292,10 @@ func TestOracacheClientListReplicatedCaches(t *testing.T) {
 	if !enabled {
 		t.Skip("ListReplicatedCaches is not enabled by the testing service")
 	}
-	c, err := cache.NewOracacheClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cache", "Oracache", "ListReplicatedCaches", createOracacheClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cache.OracacheClient)
 
 	body, err := testClient.getRequests("cache", "ListReplicatedCaches")
 	assert.NoError(t, err)
@@ -324,8 +339,10 @@ func TestOracacheClientListVersions(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVersions is not enabled by the testing service")
 	}
-	c, err := cache.NewOracacheClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cache", "Oracache", "ListVersions", createOracacheClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cache.OracacheClient)
 
 	body, err := testClient.getRequests("cache", "ListVersions")
 	assert.NoError(t, err)
@@ -369,8 +386,10 @@ func TestOracacheClientListWorkRequestErrors(t *testing.T) {
 	if !enabled {
 		t.Skip("ListWorkRequestErrors is not enabled by the testing service")
 	}
-	c, err := cache.NewOracacheClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cache", "Oracache", "ListWorkRequestErrors", createOracacheClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cache.OracacheClient)
 
 	body, err := testClient.getRequests("cache", "ListWorkRequestErrors")
 	assert.NoError(t, err)
@@ -414,8 +433,10 @@ func TestOracacheClientListWorkRequestLogs(t *testing.T) {
 	if !enabled {
 		t.Skip("ListWorkRequestLogs is not enabled by the testing service")
 	}
-	c, err := cache.NewOracacheClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cache", "Oracache", "ListWorkRequestLogs", createOracacheClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cache.OracacheClient)
 
 	body, err := testClient.getRequests("cache", "ListWorkRequestLogs")
 	assert.NoError(t, err)
@@ -459,8 +480,10 @@ func TestOracacheClientListWorkRequests(t *testing.T) {
 	if !enabled {
 		t.Skip("ListWorkRequests is not enabled by the testing service")
 	}
-	c, err := cache.NewOracacheClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cache", "Oracache", "ListWorkRequests", createOracacheClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cache.OracacheClient)
 
 	body, err := testClient.getRequests("cache", "ListWorkRequests")
 	assert.NoError(t, err)

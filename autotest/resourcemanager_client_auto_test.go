@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createResourceManagerClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestResourceManagerClientCancelJob(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("resourcemanager", "CancelJob")
@@ -198,8 +209,10 @@ func TestResourceManagerClientGetJobLogs(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJobLogs is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetJobLogs", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "GetJobLogs")
 	assert.NoError(t, err)
@@ -423,8 +436,10 @@ func TestResourceManagerClientListJobs(t *testing.T) {
 	if !enabled {
 		t.Skip("ListJobs is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "ListJobs", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "ListJobs")
 	assert.NoError(t, err)
@@ -468,8 +483,10 @@ func TestResourceManagerClientListStacks(t *testing.T) {
 	if !enabled {
 		t.Skip("ListStacks is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "ListStacks", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "ListStacks")
 	assert.NoError(t, err)

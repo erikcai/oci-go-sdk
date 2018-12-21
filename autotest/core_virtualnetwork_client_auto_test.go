@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createVirtualNetworkClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := core.NewVirtualNetworkClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
 func TestVirtualNetworkClientAcceptLocalPeeringToken(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("core", "AcceptLocalPeeringToken")
@@ -3078,8 +3089,10 @@ func TestVirtualNetworkClientListCpes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListCpes is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListCpes", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListCpes")
 	assert.NoError(t, err)
@@ -3123,8 +3136,10 @@ func TestVirtualNetworkClientListCrossConnectGroups(t *testing.T) {
 	if !enabled {
 		t.Skip("ListCrossConnectGroups is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListCrossConnectGroups", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListCrossConnectGroups")
 	assert.NoError(t, err)
@@ -3168,8 +3183,10 @@ func TestVirtualNetworkClientListCrossConnectLocations(t *testing.T) {
 	if !enabled {
 		t.Skip("ListCrossConnectLocations is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListCrossConnectLocations", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListCrossConnectLocations")
 	assert.NoError(t, err)
@@ -3213,8 +3230,10 @@ func TestVirtualNetworkClientListCrossConnects(t *testing.T) {
 	if !enabled {
 		t.Skip("ListCrossConnects is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListCrossConnects", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListCrossConnects")
 	assert.NoError(t, err)
@@ -3258,8 +3277,10 @@ func TestVirtualNetworkClientListCrossconnectPortSpeedShapes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListCrossconnectPortSpeedShapes is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListCrossconnectPortSpeedShapes", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListCrossconnectPortSpeedShapes")
 	assert.NoError(t, err)
@@ -3303,8 +3324,10 @@ func TestVirtualNetworkClientListDhcpOptions(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDhcpOptions is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListDhcpOptions", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListDhcpOptions")
 	assert.NoError(t, err)
@@ -3348,8 +3371,10 @@ func TestVirtualNetworkClientListDrgAttachments(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDrgAttachments is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListDrgAttachments", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListDrgAttachments")
 	assert.NoError(t, err)
@@ -3393,8 +3418,10 @@ func TestVirtualNetworkClientListDrgs(t *testing.T) {
 	if !enabled {
 		t.Skip("ListDrgs is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListDrgs", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListDrgs")
 	assert.NoError(t, err)
@@ -3438,8 +3465,10 @@ func TestVirtualNetworkClientListFastConnectProviderServices(t *testing.T) {
 	if !enabled {
 		t.Skip("ListFastConnectProviderServices is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListFastConnectProviderServices", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListFastConnectProviderServices")
 	assert.NoError(t, err)
@@ -3483,8 +3512,10 @@ func TestVirtualNetworkClientListFastConnectProviderVirtualCircuitBandwidthShape
 	if !enabled {
 		t.Skip("ListFastConnectProviderVirtualCircuitBandwidthShapes is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListFastConnectProviderVirtualCircuitBandwidthShapes", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListFastConnectProviderVirtualCircuitBandwidthShapes")
 	assert.NoError(t, err)
@@ -3528,8 +3559,10 @@ func TestVirtualNetworkClientListFlowLogConfigAttachments(t *testing.T) {
 	if !enabled {
 		t.Skip("ListFlowLogConfigAttachments is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListFlowLogConfigAttachments", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListFlowLogConfigAttachments")
 	assert.NoError(t, err)
@@ -3573,8 +3606,10 @@ func TestVirtualNetworkClientListFlowLogConfigs(t *testing.T) {
 	if !enabled {
 		t.Skip("ListFlowLogConfigs is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListFlowLogConfigs", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListFlowLogConfigs")
 	assert.NoError(t, err)
@@ -3618,8 +3653,10 @@ func TestVirtualNetworkClientListIPSecConnections(t *testing.T) {
 	if !enabled {
 		t.Skip("ListIPSecConnections is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListIPSecConnections", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListIPSecConnections")
 	assert.NoError(t, err)
@@ -3663,8 +3700,10 @@ func TestVirtualNetworkClientListInternetGateways(t *testing.T) {
 	if !enabled {
 		t.Skip("ListInternetGateways is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListInternetGateways", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListInternetGateways")
 	assert.NoError(t, err)
@@ -3708,8 +3747,10 @@ func TestVirtualNetworkClientListLocalPeeringConnections(t *testing.T) {
 	if !enabled {
 		t.Skip("ListLocalPeeringConnections is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListLocalPeeringConnections", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListLocalPeeringConnections")
 	assert.NoError(t, err)
@@ -3753,8 +3794,10 @@ func TestVirtualNetworkClientListLocalPeeringGateways(t *testing.T) {
 	if !enabled {
 		t.Skip("ListLocalPeeringGateways is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListLocalPeeringGateways", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListLocalPeeringGateways")
 	assert.NoError(t, err)
@@ -3798,8 +3841,10 @@ func TestVirtualNetworkClientListNatGateways(t *testing.T) {
 	if !enabled {
 		t.Skip("ListNatGateways is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListNatGateways", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListNatGateways")
 	assert.NoError(t, err)
@@ -3843,8 +3888,10 @@ func TestVirtualNetworkClientListPrivateIps(t *testing.T) {
 	if !enabled {
 		t.Skip("ListPrivateIps is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListPrivateIps", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListPrivateIps")
 	assert.NoError(t, err)
@@ -3888,8 +3935,10 @@ func TestVirtualNetworkClientListPublicIps(t *testing.T) {
 	if !enabled {
 		t.Skip("ListPublicIps is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListPublicIps", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListPublicIps")
 	assert.NoError(t, err)
@@ -3933,8 +3982,10 @@ func TestVirtualNetworkClientListRemotePeeringConnections(t *testing.T) {
 	if !enabled {
 		t.Skip("ListRemotePeeringConnections is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListRemotePeeringConnections", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListRemotePeeringConnections")
 	assert.NoError(t, err)
@@ -3978,8 +4029,10 @@ func TestVirtualNetworkClientListRouteTables(t *testing.T) {
 	if !enabled {
 		t.Skip("ListRouteTables is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListRouteTables", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListRouteTables")
 	assert.NoError(t, err)
@@ -4023,8 +4076,10 @@ func TestVirtualNetworkClientListSecurityLists(t *testing.T) {
 	if !enabled {
 		t.Skip("ListSecurityLists is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListSecurityLists", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListSecurityLists")
 	assert.NoError(t, err)
@@ -4068,8 +4123,10 @@ func TestVirtualNetworkClientListServiceGateways(t *testing.T) {
 	if !enabled {
 		t.Skip("ListServiceGateways is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListServiceGateways", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListServiceGateways")
 	assert.NoError(t, err)
@@ -4113,8 +4170,10 @@ func TestVirtualNetworkClientListServices(t *testing.T) {
 	if !enabled {
 		t.Skip("ListServices is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListServices", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListServices")
 	assert.NoError(t, err)
@@ -4158,8 +4217,10 @@ func TestVirtualNetworkClientListSubnets(t *testing.T) {
 	if !enabled {
 		t.Skip("ListSubnets is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListSubnets", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListSubnets")
 	assert.NoError(t, err)
@@ -4203,8 +4264,10 @@ func TestVirtualNetworkClientListVcns(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVcns is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListVcns", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListVcns")
 	assert.NoError(t, err)
@@ -4248,8 +4311,10 @@ func TestVirtualNetworkClientListVirtualCircuitBandwidthShapes(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVirtualCircuitBandwidthShapes is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListVirtualCircuitBandwidthShapes", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListVirtualCircuitBandwidthShapes")
 	assert.NoError(t, err)
@@ -4329,8 +4394,10 @@ func TestVirtualNetworkClientListVirtualCircuits(t *testing.T) {
 	if !enabled {
 		t.Skip("ListVirtualCircuits is not enabled by the testing service")
 	}
-	c, err := core.NewVirtualNetworkClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListVirtualCircuits", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
 
 	body, err := testClient.getRequests("core", "ListVirtualCircuits")
 	assert.NoError(t, err)

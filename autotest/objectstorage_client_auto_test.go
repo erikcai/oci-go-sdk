@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createObjectStorageClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="default" email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientAbortMultipartUpload(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("objectstorage", "AbortMultipartUpload")
@@ -774,8 +785,10 @@ func TestObjectStorageClientListBuckets(t *testing.T) {
 	if !enabled {
 		t.Skip("ListBuckets is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "ListBuckets", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "ListBuckets")
 	assert.NoError(t, err)
@@ -819,8 +832,10 @@ func TestObjectStorageClientListMultipartUploadParts(t *testing.T) {
 	if !enabled {
 		t.Skip("ListMultipartUploadParts is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "ListMultipartUploadParts", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "ListMultipartUploadParts")
 	assert.NoError(t, err)
@@ -864,8 +879,10 @@ func TestObjectStorageClientListMultipartUploads(t *testing.T) {
 	if !enabled {
 		t.Skip("ListMultipartUploads is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "ListMultipartUploads", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "ListMultipartUploads")
 	assert.NoError(t, err)
@@ -945,8 +962,10 @@ func TestObjectStorageClientListPreauthenticatedRequests(t *testing.T) {
 	if !enabled {
 		t.Skip("ListPreauthenticatedRequests is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "ListPreauthenticatedRequests", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "ListPreauthenticatedRequests")
 	assert.NoError(t, err)
@@ -990,8 +1009,10 @@ func TestObjectStorageClientListWorkRequestErrors(t *testing.T) {
 	if !enabled {
 		t.Skip("ListWorkRequestErrors is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "ListWorkRequestErrors", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "ListWorkRequestErrors")
 	assert.NoError(t, err)
@@ -1035,8 +1056,10 @@ func TestObjectStorageClientListWorkRequestLogs(t *testing.T) {
 	if !enabled {
 		t.Skip("ListWorkRequestLogs is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "ListWorkRequestLogs", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "ListWorkRequestLogs")
 	assert.NoError(t, err)
@@ -1080,8 +1103,10 @@ func TestObjectStorageClientListWorkRequests(t *testing.T) {
 	if !enabled {
 		t.Skip("ListWorkRequests is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "ListWorkRequests", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "ListWorkRequests")
 	assert.NoError(t, err)

@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createDnsClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := dns.NewDnsClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestDnsClientCreateZone(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("dns", "CreateZone")
@@ -162,8 +173,10 @@ func TestDnsClientGetDomainRecords(t *testing.T) {
 	if !enabled {
 		t.Skip("GetDomainRecords is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "GetDomainRecords", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "GetDomainRecords")
 	assert.NoError(t, err)
@@ -207,8 +220,10 @@ func TestDnsClientGetRRSet(t *testing.T) {
 	if !enabled {
 		t.Skip("GetRRSet is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "GetRRSet", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "GetRRSet")
 	assert.NoError(t, err)
@@ -288,8 +303,10 @@ func TestDnsClientGetZoneRecords(t *testing.T) {
 	if !enabled {
 		t.Skip("GetZoneRecords is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "GetZoneRecords", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "GetZoneRecords")
 	assert.NoError(t, err)
@@ -333,8 +350,10 @@ func TestDnsClientListZones(t *testing.T) {
 	if !enabled {
 		t.Skip("ListZones is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "ListZones", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "ListZones")
 	assert.NoError(t, err)

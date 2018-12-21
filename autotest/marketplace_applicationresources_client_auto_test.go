@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createApplicationResourcesClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := marketplace.NewApplicationResourcesClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestApplicationResourcesClientGetApplication(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("marketplace", "GetApplication")
@@ -54,8 +65,10 @@ func TestApplicationResourcesClientListApplications(t *testing.T) {
 	if !enabled {
 		t.Skip("ListApplications is not enabled by the testing service")
 	}
-	c, err := marketplace.NewApplicationResourcesClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("marketplace", "ApplicationResources", "ListApplications", createApplicationResourcesClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(marketplace.ApplicationResourcesClient)
 
 	body, err := testClient.getRequests("marketplace", "ListApplications")
 	assert.NoError(t, err)

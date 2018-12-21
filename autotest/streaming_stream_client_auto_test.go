@@ -11,6 +11,11 @@ import (
 	"testing"
 )
 
+func createStreamClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+	client, err := streaming.NewStreamClientWithConfigurationProvider(p, testConfig.Endpoint)
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestStreamClientConsumerCommit(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("streaming", "ConsumerCommit")
@@ -18,7 +23,7 @@ func TestStreamClientConsumerCommit(t *testing.T) {
 	if !enabled {
 		t.Skip("ConsumerCommit is not enabled by the testing service")
 	}
-	endpoint, err := testClient.getEndpointForService("streaming", "Stream")
+	endpoint, err := testClient.getEndpointForService("streaming", "Stream", "ConsumerCommit")
 	assert.NoError(t, err)
 	c, err := streaming.NewStreamClientWithConfigurationProvider(testConfig.ConfigurationProvider, endpoint)
 	assert.NoError(t, err)
@@ -56,7 +61,7 @@ func TestStreamClientConsumerHeartbeat(t *testing.T) {
 	if !enabled {
 		t.Skip("ConsumerHeartbeat is not enabled by the testing service")
 	}
-	endpoint, err := testClient.getEndpointForService("streaming", "Stream")
+	endpoint, err := testClient.getEndpointForService("streaming", "Stream", "ConsumerHeartbeat")
 	assert.NoError(t, err)
 	c, err := streaming.NewStreamClientWithConfigurationProvider(testConfig.ConfigurationProvider, endpoint)
 	assert.NoError(t, err)
@@ -94,7 +99,7 @@ func TestStreamClientCreateCursor(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateCursor is not enabled by the testing service")
 	}
-	endpoint, err := testClient.getEndpointForService("streaming", "Stream")
+	endpoint, err := testClient.getEndpointForService("streaming", "Stream", "CreateCursor")
 	assert.NoError(t, err)
 	c, err := streaming.NewStreamClientWithConfigurationProvider(testConfig.ConfigurationProvider, endpoint)
 	assert.NoError(t, err)
@@ -132,7 +137,7 @@ func TestStreamClientCreateGroupCursor(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateGroupCursor is not enabled by the testing service")
 	}
-	endpoint, err := testClient.getEndpointForService("streaming", "Stream")
+	endpoint, err := testClient.getEndpointForService("streaming", "Stream", "CreateGroupCursor")
 	assert.NoError(t, err)
 	c, err := streaming.NewStreamClientWithConfigurationProvider(testConfig.ConfigurationProvider, endpoint)
 	assert.NoError(t, err)
@@ -170,7 +175,7 @@ func TestStreamClientGetGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("GetGroup is not enabled by the testing service")
 	}
-	endpoint, err := testClient.getEndpointForService("streaming", "Stream")
+	endpoint, err := testClient.getEndpointForService("streaming", "Stream", "GetGroup")
 	assert.NoError(t, err)
 	c, err := streaming.NewStreamClientWithConfigurationProvider(testConfig.ConfigurationProvider, endpoint)
 	assert.NoError(t, err)
@@ -208,7 +213,7 @@ func TestStreamClientGetMessages(t *testing.T) {
 	if !enabled {
 		t.Skip("GetMessages is not enabled by the testing service")
 	}
-	endpoint, err := testClient.getEndpointForService("streaming", "Stream")
+	endpoint, err := testClient.getEndpointForService("streaming", "Stream", "GetMessages")
 	assert.NoError(t, err)
 	c, err := streaming.NewStreamClientWithConfigurationProvider(testConfig.ConfigurationProvider, endpoint)
 	assert.NoError(t, err)
@@ -246,7 +251,7 @@ func TestStreamClientPutMessages(t *testing.T) {
 	if !enabled {
 		t.Skip("PutMessages is not enabled by the testing service")
 	}
-	endpoint, err := testClient.getEndpointForService("streaming", "Stream")
+	endpoint, err := testClient.getEndpointForService("streaming", "Stream", "PutMessages")
 	assert.NoError(t, err)
 	c, err := streaming.NewStreamClientWithConfigurationProvider(testConfig.ConfigurationProvider, endpoint)
 	assert.NoError(t, err)
@@ -284,7 +289,7 @@ func TestStreamClientUpdateGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateGroup is not enabled by the testing service")
 	}
-	endpoint, err := testClient.getEndpointForService("streaming", "Stream")
+	endpoint, err := testClient.getEndpointForService("streaming", "Stream", "UpdateGroup")
 	assert.NoError(t, err)
 	c, err := streaming.NewStreamClientWithConfigurationProvider(testConfig.ConfigurationProvider, endpoint)
 	assert.NoError(t, err)

@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createPublisherResourcesClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := marketplace.NewPublisherResourcesClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestPublisherResourcesClientGetPublisher(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("marketplace", "GetPublisher")
@@ -54,8 +65,10 @@ func TestPublisherResourcesClientListPublisherApplications(t *testing.T) {
 	if !enabled {
 		t.Skip("ListPublisherApplications is not enabled by the testing service")
 	}
-	c, err := marketplace.NewPublisherResourcesClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("marketplace", "PublisherResources", "ListPublisherApplications", createPublisherResourcesClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(marketplace.PublisherResourcesClient)
 
 	body, err := testClient.getRequests("marketplace", "ListPublisherApplications")
 	assert.NoError(t, err)

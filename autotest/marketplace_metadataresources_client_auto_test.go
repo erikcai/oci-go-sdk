@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createMetadataResourcesClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := marketplace.NewMetadataResourcesClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestMetadataResourcesClientListCategories(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("marketplace", "ListCategories")
@@ -18,8 +29,10 @@ func TestMetadataResourcesClientListCategories(t *testing.T) {
 	if !enabled {
 		t.Skip("ListCategories is not enabled by the testing service")
 	}
-	c, err := marketplace.NewMetadataResourcesClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("marketplace", "MetadataResources", "ListCategories", createMetadataResourcesClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(marketplace.MetadataResourcesClient)
 
 	body, err := testClient.getRequests("marketplace", "ListCategories")
 	assert.NoError(t, err)
@@ -63,8 +76,10 @@ func TestMetadataResourcesClientListProductFilters(t *testing.T) {
 	if !enabled {
 		t.Skip("ListProductFilters is not enabled by the testing service")
 	}
-	c, err := marketplace.NewMetadataResourcesClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("marketplace", "MetadataResources", "ListProductFilters", createMetadataResourcesClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(marketplace.MetadataResourcesClient)
 
 	body, err := testClient.getRequests("marketplace", "ListProductFilters")
 	assert.NoError(t, err)

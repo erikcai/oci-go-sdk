@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createAutoScalingClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="default" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="COM"
 func TestAutoScalingClientCreateAutoScalingConfiguration(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("autoscaling", "CreateAutoScalingConfiguration")
@@ -248,8 +259,10 @@ func TestAutoScalingClientListAutoScalingConfigurations(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAutoScalingConfigurations is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "ListAutoScalingConfigurations", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "ListAutoScalingConfigurations")
 	assert.NoError(t, err)
@@ -293,8 +306,10 @@ func TestAutoScalingClientListAutoScalingPolicies(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAutoScalingPolicies is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "ListAutoScalingPolicies", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "ListAutoScalingPolicies")
 	assert.NoError(t, err)

@@ -11,6 +11,17 @@ import (
 	"testing"
 )
 
+func createMonitoringClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+
+	client, err := telemetry.NewMonitoringClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
+}
+
 // IssueRoutingInfo tag="default" email="pic_ion_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/TEL" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/TEL"
 func TestMonitoringClientCreateAlarm(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("telemetry", "CreateAlarm")
@@ -126,8 +137,10 @@ func TestMonitoringClientGetAlarmHistory(t *testing.T) {
 	if !enabled {
 		t.Skip("GetAlarmHistory is not enabled by the testing service")
 	}
-	c, err := telemetry.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("telemetry", "Monitoring", "GetAlarmHistory", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(telemetry.MonitoringClient)
 
 	body, err := testClient.getRequests("telemetry", "GetAlarmHistory")
 	assert.NoError(t, err)
@@ -171,8 +184,10 @@ func TestMonitoringClientListAlarms(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAlarms is not enabled by the testing service")
 	}
-	c, err := telemetry.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("telemetry", "Monitoring", "ListAlarms", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(telemetry.MonitoringClient)
 
 	body, err := testClient.getRequests("telemetry", "ListAlarms")
 	assert.NoError(t, err)
@@ -216,8 +231,10 @@ func TestMonitoringClientListAlarmsStatus(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAlarmsStatus is not enabled by the testing service")
 	}
-	c, err := telemetry.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("telemetry", "Monitoring", "ListAlarmsStatus", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(telemetry.MonitoringClient)
 
 	body, err := testClient.getRequests("telemetry", "ListAlarmsStatus")
 	assert.NoError(t, err)
@@ -261,8 +278,10 @@ func TestMonitoringClientListMetrics(t *testing.T) {
 	if !enabled {
 		t.Skip("ListMetrics is not enabled by the testing service")
 	}
-	c, err := telemetry.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("telemetry", "Monitoring", "ListMetrics", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(telemetry.MonitoringClient)
 
 	body, err := testClient.getRequests("telemetry", "ListMetrics")
 	assert.NoError(t, err)
