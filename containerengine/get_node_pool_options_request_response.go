@@ -11,7 +11,7 @@ import (
 // GetNodePoolOptionsRequest wrapper for the GetNodePoolOptions operation
 type GetNodePoolOptionsRequest struct {
 
-	// The id of the option set to retrieve. Only "all" is supported.
+	// The id of the option set to retrieve. Use "all" get all options, or use a cluster ID to get options specific to the provided cluster.
 	NodePoolOptionId *string `mandatory:"true" contributesTo:"path" name:"nodePoolOptionId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

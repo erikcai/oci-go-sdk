@@ -33,7 +33,7 @@
     <maestro-spec-spec-file>api.yaml</maestro-spec-spec-file>
     <kms-api-spec-spec-file>kms-api-spec-20180608.yaml</kms-api-spec-spec-file>
     <resource-query-service-spec-spec-file>rqs.yaml</resource-query-service-spec-spec-file>
-    <clusters-api-spec-spec-file>clusters-api-spec.yaml</clusters-api-spec-spec-file>
+    <clusters-api-spec-spec-file>preview/clusters-api-spec.yaml</clusters-api-spec-spec-file>
     <telemetry-public-api-spec-spec-file>source/telemetry-api.cond.yaml</telemetry-public-api-spec-spec-file>
     <workrequests-api-spec-spec-file>workrequests-api-spec.yaml</workrequests-api-spec-spec-file>
     <ons-gateway-spec-spec-file>api.yaml</ons-gateway-spec-spec-file>
@@ -2047,7 +2047,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.0.10</version>
+        <version>1.0.12-20181204.114604-4</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
