@@ -22,7 +22,7 @@
 
 
 
-^telemetry/
+^monitoring/
 ^workrequests/
 ^ons/
 ^healthchecks/

@@ -1559,10 +1559,10 @@
               <language>oracle-go-sdk</language>
               <specPath>${preprocessed-temp-dir}/telemetry-public-api-spec/${telemetry-public-api-spec-spec-file}</specPath>
               <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
-              <basePackage>telemetry</basePackage>
+              <basePackage>monitoring</basePackage>
               <specGenerationType>${generationType}</specGenerationType>
               <additionalProperties>
-                <specName>telemetry</specName>
+                <specName>monitoring</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>telemetry</serviceHostName>
               </additionalProperties>
