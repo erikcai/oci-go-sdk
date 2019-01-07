@@ -4,7 +4,3 @@ languages:
       - originalName: "error"
         mapping:
             identifier: "nodeError"
-    models:
-      - originalName: "Error"
-        mapping:
-          identifier: "NodeError"
