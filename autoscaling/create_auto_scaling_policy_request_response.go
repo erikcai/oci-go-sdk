@@ -12,7 +12,7 @@ import (
 type CreateAutoScalingPolicyRequest struct {
 
 	// The OCID of the auto scaling configuration.
-	AutoScalingId *string `mandatory:"true" contributesTo:"path" name:"autoScalingId"`
+	AutoScalingConfigurationId *string `mandatory:"true" contributesTo:"path" name:"autoScalingConfigurationId"`
 
 	// AutoScalingConfiguration Policy creation details
 	CreateAutoScalingPolicyDetails `contributesTo:"body"`

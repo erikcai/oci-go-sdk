@@ -21,6 +21,8 @@ type CreateAutoScalingConfigurationDetails struct {
 
 	Policies []CreateAutoScalingPolicyDetails `mandatory:"true" json:"policies"`
 
+	Resource Resource `mandatory:"true" json:"resource"`
+
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
@@ -40,8 +42,6 @@ type CreateAutoScalingConfigurationDetails struct {
 
 	// If the AutoScalingConfiguration is enabled
 	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
-
-	Resource Resource `mandatory:"false" json:"resource"`
 }
 
 func (m CreateAutoScalingConfigurationDetails) String() string {
@@ -56,9 +56,9 @@ func (m *CreateAutoScalingConfigurationDetails) UnmarshalJSON(data []byte) (e er
 		FreeformTags      map[string]string                 `json:"freeformTags"`
 		CoolDownInSeconds *int                              `json:"coolDownInSeconds"`
 		IsEnabled         *bool                             `json:"isEnabled"`
-		Resource          resource                          `json:"resource"`
 		CompartmentId     *string                           `json:"compartmentId"`
 		Policies          []createautoscalingpolicydetails  `json:"policies"`
+		Resource          resource                          `json:"resource"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -70,15 +70,6 @@ func (m *CreateAutoScalingConfigurationDetails) UnmarshalJSON(data []byte) (e er
 	m.FreeformTags = model.FreeformTags
 	m.CoolDownInSeconds = model.CoolDownInSeconds
 	m.IsEnabled = model.IsEnabled
-	nn, e := model.Resource.UnmarshalPolymorphicJSON(model.Resource.JsonData)
-	if e != nil {
-		return
-	}
-	if nn != nil {
-		m.Resource = nn.(Resource)
-	} else {
-		m.Resource = nil
-	}
 	m.CompartmentId = model.CompartmentId
 	m.Policies = make([]CreateAutoScalingPolicyDetails, len(model.Policies))
 	for i, n := range model.Policies {
@@ -91,6 +82,15 @@ func (m *CreateAutoScalingConfigurationDetails) UnmarshalJSON(data []byte) (e er
 		} else {
 			m.Policies[i] = nil
 		}
+	}
+	nn, e := model.Resource.UnmarshalPolymorphicJSON(model.Resource.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.Resource = nn.(Resource)
+	} else {
+		m.Resource = nil
 	}
 	return
 }

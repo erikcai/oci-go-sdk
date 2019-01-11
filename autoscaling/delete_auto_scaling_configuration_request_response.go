@@ -12,7 +12,7 @@ import (
 type DeleteAutoScalingConfigurationRequest struct {
 
 	// The OCID of the auto scaling configuration.
-	AutoScalingId *string `mandatory:"true" contributesTo:"path" name:"autoScalingId"`
+	AutoScalingConfigurationId *string `mandatory:"true" contributesTo:"path" name:"autoScalingConfigurationId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource

@@ -33,3 +33,5 @@
 ^autoscaling/
 ^usage/
 ^announcementsservice/
+^waas/
+^datasecurity/

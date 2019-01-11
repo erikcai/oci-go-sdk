@@ -17,7 +17,7 @@ type ListAutoScalingPoliciesRequest struct {
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// The OCID of the auto scaling configuration.
-	AutoScalingId *string `mandatory:"true" contributesTo:"path" name:"autoScalingId"`
+	AutoScalingConfigurationId *string `mandatory:"true" contributesTo:"path" name:"autoScalingConfigurationId"`
 
 	// A filter to return only resources that match the given display name exactly.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`

@@ -12,7 +12,7 @@ import (
 type GetAutoScalingConfigurationRequest struct {
 
 	// The OCID of the auto scaling configuration.
-	AutoScalingId *string `mandatory:"true" contributesTo:"path" name:"autoScalingId"`
+	AutoScalingConfigurationId *string `mandatory:"true" contributesTo:"path" name:"autoScalingConfigurationId"`
 
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
