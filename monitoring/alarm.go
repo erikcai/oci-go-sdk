@@ -14,7 +14,7 @@ import (
 )
 
 // Alarm The properties that define an alarm.
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview#AlarmsOverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#AlarmsOverview).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Identity/Concepts/policygetstarted.htm).
@@ -49,7 +49,7 @@ type Alarm struct {
 	// rule condition has been met. The query must specify a metric, statistic, interval, and trigger
 	// rule (threshold or absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally
 	// specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
-	// For details about Monitoring Query Language (MQL), see Monitoring Query Language (MQL) Reference (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Reference/MQL.htm).
+	// For details about Monitoring Query Language (MQL), see Monitoring Query Language (MQL) Reference (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Reference/mql.htm).
 	// For available dimensions, review the metric definition for the supported service.
 	// See Supported Services (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).
 	// Example of threshold alarm:
@@ -95,12 +95,7 @@ type Alarm struct {
 	// Example: `true`
 	MetricCompartmentIdInSubtree *bool `mandatory:"false" json:"metricCompartmentIdInSubtree"`
 
-	// The time between calculated aggregation windows. Use with the query interval to vary the
-	// frequency at which aggregated data points are returned. For example, use a query interval of
-	// 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
-	// frequency. The resolution must be equal or less than the interval in the query. The default
-	// resolution is 1m (one minute). Supported values: `1m`-`60m` (also `1h`).
-	// Example: `5m`
+	// The time between calculated aggregation windows for the alarm. Supported value: `1m`
 	Resolution *string `mandatory:"false" json:"resolution"`
 
 	// The period of time that the condition defined in the alarm must persist before the alarm state
@@ -118,7 +113,7 @@ type Alarm struct {
 
 	// The human-readable content of the notification delivered. Oracle recommends providing guidance
 	// to operators for resolving the alarm condition. Consider adding links to standard runbook
-	// practices.
+	// practices. Avoid entering confidential information.
 	// Example: `High CPU usage alert. Follow runbook instructions for resolution.`
 	Body *string `mandatory:"false" json:"body"`
 

@@ -14,7 +14,7 @@ import (
 )
 
 // AlarmSummary A summary of properties for the specified alarm.
-// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview#AlarmsOverview.htm).
+// For information about alarms, see Alarms Overview (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#AlarmsOverview).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Identity/Concepts/policygetstarted.htm).
@@ -49,7 +49,7 @@ type AlarmSummary struct {
 	// rule condition has been met. The query must specify a metric, statistic, interval, and trigger
 	// rule (threshold or absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally
 	// specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
-	// For details about Monitoring Query Language (MQL), see Monitoring Query Language (MQL) Reference (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Reference/MQL.htm).
+	// For details about Monitoring Query Language (MQL), see Monitoring Query Language (MQL) Reference (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Reference/mql.htm).
 	// For available dimensions, review the metric definition for the supported service.
 	// See Supported Services (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).
 	// Example of threshold alarm:

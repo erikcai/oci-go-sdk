@@ -360,6 +360,8 @@ func (client MonitoringClient) listMetrics(ctx context.Context, request common.O
 }
 
 // PostMetricData Publishes raw metric data points to the Monitoring service.
+// The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the endpoint, as in the following example:
+// https://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com
 func (client MonitoringClient) PostMetricData(ctx context.Context, request PostMetricDataRequest) (response PostMetricDataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -444,7 +446,7 @@ func (client MonitoringClient) removeAlarmSuppression(ctx context.Context, reque
 }
 
 // SummarizeMetricsData Returns aggregated data that match the criteria specified in the request. Compartment OCID required.
-// For information on metric queries, see Building Metric Queries (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/buildingqueries.htm).
+// For information on metric queries, see Building Metric Queries (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Tasks/buildingqueries.htm).
 func (client MonitoringClient) SummarizeMetricsData(ctx context.Context, request SummarizeMetricsDataRequest) (response SummarizeMetricsDataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

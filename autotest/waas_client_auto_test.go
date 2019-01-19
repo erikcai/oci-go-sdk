@@ -1429,6 +1429,42 @@ func TestWaasClientUpdateCaptchas(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_waas_dev_us_grp@oracle.com" jiraProject="WAAS" opsJiraProject="WAF"
+func TestWaasClientUpdateCertificate(t *testing.T) {
+    enabled, err := testClient.isApiEnabled("waas", "UpdateCertificate")
+    assert.NoError(t, err)
+    if !enabled {
+        t.Skip("UpdateCertificate is not enabled by the testing service")
+    }
+    c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+    assert.NoError(t, err)
+
+    body, err := testClient.getRequests("waas", "UpdateCertificate")
+    assert.NoError(t, err)
+
+    type UpdateCertificateRequestInfo struct {
+        ContainerId string
+        Request waas.UpdateCertificateRequest
+    }
+
+    var requests []UpdateCertificateRequestInfo
+    err = json.Unmarshal([]byte(body), &requests)
+    assert.NoError(t, err)
+
+    var retryPolicy  *common.RetryPolicy
+    for i, req := range requests {
+        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+            retryPolicy = retryPolicyForTests()
+            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+
+            response, err := c.UpdateCertificate(context.Background(), req.Request)
+            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+            assert.NoError(t, err)
+            assert.Empty(t, message, message)
+        })
+    }
+}
+
+// IssueRoutingInfo tag="default" email="oci_waas_dev_us_grp@oracle.com" jiraProject="WAAS" opsJiraProject="WAF"
 func TestWaasClientUpdateDeviceFingerprintChallenge(t *testing.T) {
     enabled, err := testClient.isApiEnabled("waas", "UpdateDeviceFingerprintChallenge")
     assert.NoError(t, err)

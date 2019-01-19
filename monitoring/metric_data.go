@@ -32,14 +32,14 @@ type MetricData struct {
 
 	// Qualifiers provided in the definition of the returned metric.
 	// Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.
-	// Example: `resourceId`
+	// Example: `"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"`
 	Dimensions map[string]string `mandatory:"true" json:"dimensions"`
 
 	// The list of timestamp-value pairs returned for the specified request. Metric values are rolled up to the start time specified in the request.
 	AggregatedDatapoints []AggregatedDatapoint `mandatory:"true" json:"aggregatedDatapoints"`
 
 	// The references provided in a metric definition to indicate extra information about the metric.
-	// Example: `unit`
+	// Example: `"unit": "bytes"`
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 
 	// The time between calculated aggregation windows. Use with the query interval to vary the

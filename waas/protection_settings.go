@@ -51,7 +51,7 @@ type ProtectionSettings struct {
 	MaxResponseSizeInKiB *int `mandatory:"false" json:"maxResponseSizeInKiB"`
 
 	// The list of allowed HTTP methods. If unspecified, default to `[OPTIONS, GET, HEAD, POST]`.
-	AllowedHTTPMethods []ProtectionSettingsAllowedHTTPMethodsEnum `mandatory:"false" json:"allowedHTTPMethods,omitempty"`
+	AllowedHttpMethods []ProtectionSettingsAllowedHttpMethodsEnum `mandatory:"false" json:"allowedHttpMethods,omitempty"`
 
 	// The list of media types to allow for inspection, if `isResponseInspected` is enabled. Only responses with MIME types in this list will be inspected. If unspecified, defaults to `[`text/html`, `text/plain`, `text/xml`]`.
 	//     Supported MIME types include:
@@ -103,40 +103,40 @@ func GetProtectionSettingsBlockActionEnumValues() []ProtectionSettingsBlockActio
 	return values
 }
 
-// ProtectionSettingsAllowedHTTPMethodsEnum Enum with underlying type: string
-type ProtectionSettingsAllowedHTTPMethodsEnum string
+// ProtectionSettingsAllowedHttpMethodsEnum Enum with underlying type: string
+type ProtectionSettingsAllowedHttpMethodsEnum string
 
-// Set of constants representing the allowable values for ProtectionSettingsAllowedHTTPMethodsEnum
+// Set of constants representing the allowable values for ProtectionSettingsAllowedHttpMethodsEnum
 const (
-	ProtectionSettingsAllowedHTTPMethodsOptions  ProtectionSettingsAllowedHTTPMethodsEnum = "OPTIONS"
-	ProtectionSettingsAllowedHTTPMethodsGet      ProtectionSettingsAllowedHTTPMethodsEnum = "GET"
-	ProtectionSettingsAllowedHTTPMethodsHead     ProtectionSettingsAllowedHTTPMethodsEnum = "HEAD"
-	ProtectionSettingsAllowedHTTPMethodsPost     ProtectionSettingsAllowedHTTPMethodsEnum = "POST"
-	ProtectionSettingsAllowedHTTPMethodsPut      ProtectionSettingsAllowedHTTPMethodsEnum = "PUT"
-	ProtectionSettingsAllowedHTTPMethodsDelete   ProtectionSettingsAllowedHTTPMethodsEnum = "DELETE"
-	ProtectionSettingsAllowedHTTPMethodsTrace    ProtectionSettingsAllowedHTTPMethodsEnum = "TRACE"
-	ProtectionSettingsAllowedHTTPMethodsConnect  ProtectionSettingsAllowedHTTPMethodsEnum = "CONNECT"
-	ProtectionSettingsAllowedHTTPMethodsPatch    ProtectionSettingsAllowedHTTPMethodsEnum = "PATCH"
-	ProtectionSettingsAllowedHTTPMethodsPropfind ProtectionSettingsAllowedHTTPMethodsEnum = "PROPFIND"
+	ProtectionSettingsAllowedHttpMethodsOptions  ProtectionSettingsAllowedHttpMethodsEnum = "OPTIONS"
+	ProtectionSettingsAllowedHttpMethodsGet      ProtectionSettingsAllowedHttpMethodsEnum = "GET"
+	ProtectionSettingsAllowedHttpMethodsHead     ProtectionSettingsAllowedHttpMethodsEnum = "HEAD"
+	ProtectionSettingsAllowedHttpMethodsPost     ProtectionSettingsAllowedHttpMethodsEnum = "POST"
+	ProtectionSettingsAllowedHttpMethodsPut      ProtectionSettingsAllowedHttpMethodsEnum = "PUT"
+	ProtectionSettingsAllowedHttpMethodsDelete   ProtectionSettingsAllowedHttpMethodsEnum = "DELETE"
+	ProtectionSettingsAllowedHttpMethodsTrace    ProtectionSettingsAllowedHttpMethodsEnum = "TRACE"
+	ProtectionSettingsAllowedHttpMethodsConnect  ProtectionSettingsAllowedHttpMethodsEnum = "CONNECT"
+	ProtectionSettingsAllowedHttpMethodsPatch    ProtectionSettingsAllowedHttpMethodsEnum = "PATCH"
+	ProtectionSettingsAllowedHttpMethodsPropfind ProtectionSettingsAllowedHttpMethodsEnum = "PROPFIND"
 )
 
-var mappingProtectionSettingsAllowedHTTPMethods = map[string]ProtectionSettingsAllowedHTTPMethodsEnum{
-	"OPTIONS":  ProtectionSettingsAllowedHTTPMethodsOptions,
-	"GET":      ProtectionSettingsAllowedHTTPMethodsGet,
-	"HEAD":     ProtectionSettingsAllowedHTTPMethodsHead,
-	"POST":     ProtectionSettingsAllowedHTTPMethodsPost,
-	"PUT":      ProtectionSettingsAllowedHTTPMethodsPut,
-	"DELETE":   ProtectionSettingsAllowedHTTPMethodsDelete,
-	"TRACE":    ProtectionSettingsAllowedHTTPMethodsTrace,
-	"CONNECT":  ProtectionSettingsAllowedHTTPMethodsConnect,
-	"PATCH":    ProtectionSettingsAllowedHTTPMethodsPatch,
-	"PROPFIND": ProtectionSettingsAllowedHTTPMethodsPropfind,
+var mappingProtectionSettingsAllowedHttpMethods = map[string]ProtectionSettingsAllowedHttpMethodsEnum{
+	"OPTIONS":  ProtectionSettingsAllowedHttpMethodsOptions,
+	"GET":      ProtectionSettingsAllowedHttpMethodsGet,
+	"HEAD":     ProtectionSettingsAllowedHttpMethodsHead,
+	"POST":     ProtectionSettingsAllowedHttpMethodsPost,
+	"PUT":      ProtectionSettingsAllowedHttpMethodsPut,
+	"DELETE":   ProtectionSettingsAllowedHttpMethodsDelete,
+	"TRACE":    ProtectionSettingsAllowedHttpMethodsTrace,
+	"CONNECT":  ProtectionSettingsAllowedHttpMethodsConnect,
+	"PATCH":    ProtectionSettingsAllowedHttpMethodsPatch,
+	"PROPFIND": ProtectionSettingsAllowedHttpMethodsPropfind,
 }
 
-// GetProtectionSettingsAllowedHTTPMethodsEnumValues Enumerates the set of values for ProtectionSettingsAllowedHTTPMethodsEnum
-func GetProtectionSettingsAllowedHTTPMethodsEnumValues() []ProtectionSettingsAllowedHTTPMethodsEnum {
-	values := make([]ProtectionSettingsAllowedHTTPMethodsEnum, 0)
-	for _, v := range mappingProtectionSettingsAllowedHTTPMethods {
+// GetProtectionSettingsAllowedHttpMethodsEnumValues Enumerates the set of values for ProtectionSettingsAllowedHttpMethodsEnum
+func GetProtectionSettingsAllowedHttpMethodsEnumValues() []ProtectionSettingsAllowedHttpMethodsEnum {
+	values := make([]ProtectionSettingsAllowedHttpMethodsEnum, 0)
+	for _, v := range mappingProtectionSettingsAllowedHttpMethods {
 		values = append(values, v)
 	}
 	return values

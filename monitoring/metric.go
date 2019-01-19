@@ -31,7 +31,7 @@ type Metric struct {
 
 	// Qualifiers provided in a metric definition. Available dimensions vary by metric namespace.
 	// Each dimension takes the form of a key-value pair.
-	// Example: "resourceId": "<var>&lt;instance_OCID&gt;</var>"
+	// Example: `"resourceId": "ocid1.instance.region1.phx.exampleuniqueID"`
 	Dimensions map[string]string `mandatory:"false" json:"dimensions"`
 }
 

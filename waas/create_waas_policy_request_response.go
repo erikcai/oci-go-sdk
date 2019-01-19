@@ -46,9 +46,6 @@ type CreateWaasPolicyResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The WaasPolicy instance
-	WaasPolicy `presentIn:"body"`
-
 	// A unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 

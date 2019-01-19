@@ -40,7 +40,7 @@ type CreateAlarmDetails struct {
 	// rule condition has been met. The query must specify a metric, statistic, interval, and trigger
 	// rule (threshold or absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally
 	// specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
-	// For details about Monitoring Query Language (MQL), see Monitoring Query Language (MQL) Reference (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Reference/MQL.htm).
+	// For details about Monitoring Query Language (MQL), see Monitoring Query Language (MQL) Reference (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Reference/mql.htm).
 	// For available dimensions, review the metric definition for the supported service.
 	// See Supported Services (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices).
 	// Example of threshold alarm:
@@ -74,12 +74,7 @@ type CreateAlarmDetails struct {
 	// Example: `true`
 	MetricCompartmentIdInSubtree *bool `mandatory:"false" json:"metricCompartmentIdInSubtree"`
 
-	// The time between calculated aggregation windows. Use with the query interval to vary the
-	// frequency at which aggregated data points are returned. For example, use a query interval of
-	// 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
-	// frequency. The resolution must be equal or less than the interval in the query. The default
-	// resolution is 1m (one minute). Supported values: `1m`-`60m` (also `1h`).
-	// Example: `5m`
+	// The time between calculated aggregation windows for the alarm. Supported value: `1m`
 	Resolution *string `mandatory:"false" json:"resolution"`
 
 	// The period of time that the condition defined in the alarm must persist before the alarm state
@@ -97,7 +92,7 @@ type CreateAlarmDetails struct {
 
 	// The human-readable content of the notification delivered. Oracle recommends providing guidance
 	// to operators for resolving the alarm condition. Consider adding links to standard runbook
-	// practices.
+	// practices. Avoid entering confidential information.
 	// Example: `High CPU usage alert. Follow runbook instructions for resolution.`
 	Body *string `mandatory:"false" json:"body"`
 

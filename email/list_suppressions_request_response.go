@@ -38,11 +38,14 @@ type ListSuppressionsRequest struct {
 	// **Example:** 2016-12-19T16:39:57.600Z
 	TimeCreatedLessThan *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeCreatedLessThan"`
 
-	// The value of the `opc-next-page` or `opc-prev-page` response header from the previous
-	// GET request
+	// For list pagination. The value of the opc-next-page response header from the previous "List" call.
+	// For important details about how pagination works,
+	// see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return in a paginated GET request.
+	// For list pagination. The maximum number of results per page, or items to return in a
+	// paginated "List" call. `1` is the minimum, `1000` is the maximum. For important details about
+	// how pagination works, see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// The field to sort by. The `TIMECREATED` value returns the list in in
@@ -92,10 +95,9 @@ type ListSuppressionsResponse struct {
 	// see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
-	// For pagination of a list of items. If this header appears in the
-	// response, then a partial list might have been returned. Include
-	// this value for the `page` parameter in subsequent GET
-	// requests to return the previous batch of items.
+	// For list pagination. When this header appears in the response, previous pages
+	// of results exist. For important details about how pagination works,
+	// see List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcPrevPage *string `presentIn:"header" name:"opc-prev-page"`
 }
 

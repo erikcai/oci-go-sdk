@@ -15,10 +15,9 @@ type UpdateSenderRequest struct {
 	SenderId *string `mandatory:"true" contributesTo:"path" name:"senderId"`
 
 	// update details for sender.
-	UpdateSenderBodyParam UpdateSenderDetails `contributesTo:"body"`
+	UpdateSenderDetails `contributesTo:"body"`
 
-	// Unique Oracle-assigned identifier for the request.
-	// If you need to contact Oracle about a particular request, please provide the request ID.
+	// The request ID for tracing from the system
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
