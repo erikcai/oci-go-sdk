@@ -29,8 +29,10 @@ func TestAnnouncementClientGetAnnouncement(t *testing.T) {
 	if !enabled {
 		t.Skip("GetAnnouncement is not enabled by the testing service")
 	}
-	c, err := announcementsservice.NewAnnouncementClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("announcementsservice", "Announcement", "GetAnnouncement", createAnnouncementClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(announcementsservice.AnnouncementClient)
 
 	body, err := testClient.getRequests("announcementsservice", "GetAnnouncement")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestAnnouncementClientGetAnnouncementUserStatus(t *testing.T) {
 	if !enabled {
 		t.Skip("GetAnnouncementUserStatus is not enabled by the testing service")
 	}
-	c, err := announcementsservice.NewAnnouncementClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("announcementsservice", "Announcement", "GetAnnouncementUserStatus", createAnnouncementClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(announcementsservice.AnnouncementClient)
 
 	body, err := testClient.getRequests("announcementsservice", "GetAnnouncementUserStatus")
 	assert.NoError(t, err)
@@ -148,8 +152,10 @@ func TestAnnouncementClientUpdateAnnouncementUserStatus(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateAnnouncementUserStatus is not enabled by the testing service")
 	}
-	c, err := announcementsservice.NewAnnouncementClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("announcementsservice", "Announcement", "UpdateAnnouncementUserStatus", createAnnouncementClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(announcementsservice.AnnouncementClient)
 
 	body, err := testClient.getRequests("announcementsservice", "UpdateAnnouncementUserStatus")
 	assert.NoError(t, err)

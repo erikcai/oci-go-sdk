@@ -29,8 +29,10 @@ func TestDataSecurityClientChangeDataSecurityInstanceCompartment(t *testing.T) {
 	if !enabled {
 		t.Skip("ChangeDataSecurityInstanceCompartment is not enabled by the testing service")
 	}
-	c, err := datasecurity.NewDataSecurityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "ChangeDataSecurityInstanceCompartment", createDataSecurityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(datasecurity.DataSecurityClient)
 
 	body, err := testClient.getRequests("datasecurity", "ChangeDataSecurityInstanceCompartment")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestDataSecurityClientCreateDataSecurityInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateDataSecurityInstance is not enabled by the testing service")
 	}
-	c, err := datasecurity.NewDataSecurityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "CreateDataSecurityInstance", createDataSecurityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(datasecurity.DataSecurityClient)
 
 	body, err := testClient.getRequests("datasecurity", "CreateDataSecurityInstance")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestDataSecurityClientDeleteDataSecurityInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteDataSecurityInstance is not enabled by the testing service")
 	}
-	c, err := datasecurity.NewDataSecurityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "DeleteDataSecurityInstance", createDataSecurityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(datasecurity.DataSecurityClient)
 
 	body, err := testClient.getRequests("datasecurity", "DeleteDataSecurityInstance")
 	assert.NoError(t, err)
@@ -137,8 +143,10 @@ func TestDataSecurityClientGetDataSecurityInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("GetDataSecurityInstance is not enabled by the testing service")
 	}
-	c, err := datasecurity.NewDataSecurityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "GetDataSecurityInstance", createDataSecurityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(datasecurity.DataSecurityClient)
 
 	body, err := testClient.getRequests("datasecurity", "GetDataSecurityInstance")
 	assert.NoError(t, err)
@@ -173,8 +181,10 @@ func TestDataSecurityClientGetWorkRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("GetWorkRequest is not enabled by the testing service")
 	}
-	c, err := datasecurity.NewDataSecurityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "GetWorkRequest", createDataSecurityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(datasecurity.DataSecurityClient)
 
 	body, err := testClient.getRequests("datasecurity", "GetWorkRequest")
 	assert.NoError(t, err)
@@ -397,8 +407,10 @@ func TestDataSecurityClientUpdateDataSecurityInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateDataSecurityInstance is not enabled by the testing service")
 	}
-	c, err := datasecurity.NewDataSecurityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "UpdateDataSecurityInstance", createDataSecurityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(datasecurity.DataSecurityClient)
 
 	body, err := testClient.getRequests("datasecurity", "UpdateDataSecurityInstance")
 	assert.NoError(t, err)

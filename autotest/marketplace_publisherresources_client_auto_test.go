@@ -29,8 +29,10 @@ func TestPublisherResourcesClientGetPublisher(t *testing.T) {
 	if !enabled {
 		t.Skip("GetPublisher is not enabled by the testing service")
 	}
-	c, err := marketplace.NewPublisherResourcesClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("marketplace", "PublisherResources", "GetPublisher", createPublisherResourcesClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(marketplace.PublisherResourcesClient)
 
 	body, err := testClient.getRequests("marketplace", "GetPublisher")
 	assert.NoError(t, err)

@@ -29,8 +29,10 @@ func TestCloudEventsClientCreateRule(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateRule is not enabled by the testing service")
 	}
-	c, err := cloudevents.NewCloudEventsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cloudevents", "CloudEvents", "CreateRule", createCloudEventsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cloudevents.CloudEventsClient)
 
 	body, err := testClient.getRequests("cloudevents", "CreateRule")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestCloudEventsClientDeleteRule(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteRule is not enabled by the testing service")
 	}
-	c, err := cloudevents.NewCloudEventsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cloudevents", "CloudEvents", "DeleteRule", createCloudEventsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cloudevents.CloudEventsClient)
 
 	body, err := testClient.getRequests("cloudevents", "DeleteRule")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestCloudEventsClientGetRule(t *testing.T) {
 	if !enabled {
 		t.Skip("GetRule is not enabled by the testing service")
 	}
-	c, err := cloudevents.NewCloudEventsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cloudevents", "CloudEvents", "GetRule", createCloudEventsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cloudevents.CloudEventsClient)
 
 	body, err := testClient.getRequests("cloudevents", "GetRule")
 	assert.NoError(t, err)
@@ -184,8 +190,10 @@ func TestCloudEventsClientUpdateRule(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateRule is not enabled by the testing service")
 	}
-	c, err := cloudevents.NewCloudEventsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("cloudevents", "CloudEvents", "UpdateRule", createCloudEventsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(cloudevents.CloudEventsClient)
 
 	body, err := testClient.getRequests("cloudevents", "UpdateRule")
 	assert.NoError(t, err)

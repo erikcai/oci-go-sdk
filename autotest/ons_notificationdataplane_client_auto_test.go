@@ -29,8 +29,10 @@ func TestNotificationDataPlaneClientCreateSubscription(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateSubscription is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationDataPlane", "CreateSubscription", createNotificationDataPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationDataPlaneClient)
 
 	body, err := testClient.getRequests("ons", "CreateSubscription")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestNotificationDataPlaneClientDeleteSubscription(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteSubscription is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationDataPlane", "DeleteSubscription", createNotificationDataPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationDataPlaneClient)
 
 	body, err := testClient.getRequests("ons", "DeleteSubscription")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestNotificationDataPlaneClientGetConfirmSubscription(t *testing.T) {
 	if !enabled {
 		t.Skip("GetConfirmSubscription is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationDataPlane", "GetConfirmSubscription", createNotificationDataPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationDataPlaneClient)
 
 	body, err := testClient.getRequests("ons", "GetConfirmSubscription")
 	assert.NoError(t, err)
@@ -137,8 +143,10 @@ func TestNotificationDataPlaneClientGetSubscription(t *testing.T) {
 	if !enabled {
 		t.Skip("GetSubscription is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationDataPlane", "GetSubscription", createNotificationDataPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationDataPlaneClient)
 
 	body, err := testClient.getRequests("ons", "GetSubscription")
 	assert.NoError(t, err)
@@ -173,8 +181,10 @@ func TestNotificationDataPlaneClientGetUnsubscription(t *testing.T) {
 	if !enabled {
 		t.Skip("GetUnsubscription is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationDataPlane", "GetUnsubscription", createNotificationDataPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationDataPlaneClient)
 
 	body, err := testClient.getRequests("ons", "GetUnsubscription")
 	assert.NoError(t, err)
@@ -256,8 +266,10 @@ func TestNotificationDataPlaneClientPublishMessage(t *testing.T) {
 	if !enabled {
 		t.Skip("PublishMessage is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationDataPlane", "PublishMessage", createNotificationDataPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationDataPlaneClient)
 
 	body, err := testClient.getRequests("ons", "PublishMessage")
 	assert.NoError(t, err)
@@ -292,8 +304,10 @@ func TestNotificationDataPlaneClientResendSubscriptionConfirmation(t *testing.T)
 	if !enabled {
 		t.Skip("ResendSubscriptionConfirmation is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationDataPlane", "ResendSubscriptionConfirmation", createNotificationDataPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationDataPlaneClient)
 
 	body, err := testClient.getRequests("ons", "ResendSubscriptionConfirmation")
 	assert.NoError(t, err)
@@ -328,8 +342,10 @@ func TestNotificationDataPlaneClientUpdateSubscription(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateSubscription is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationDataPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationDataPlane", "UpdateSubscription", createNotificationDataPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationDataPlaneClient)
 
 	body, err := testClient.getRequests("ons", "UpdateSubscription")
 	assert.NoError(t, err)

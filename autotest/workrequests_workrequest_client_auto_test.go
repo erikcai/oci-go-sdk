@@ -29,8 +29,10 @@ func TestWorkRequestClientGetWorkRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("GetWorkRequest is not enabled by the testing service")
 	}
-	c, err := workrequests.NewWorkRequestClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("workrequests", "WorkRequest", "GetWorkRequest", createWorkRequestClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(workrequests.WorkRequestClient)
 
 	body, err := testClient.getRequests("workrequests", "GetWorkRequest")
 	assert.NoError(t, err)

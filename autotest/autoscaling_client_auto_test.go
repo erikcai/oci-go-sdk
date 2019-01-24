@@ -29,8 +29,10 @@ func TestAutoScalingClientCreateAutoScalingConfiguration(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateAutoScalingConfiguration is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "CreateAutoScalingConfiguration", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "CreateAutoScalingConfiguration")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestAutoScalingClientCreateAutoScalingPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateAutoScalingPolicy is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "CreateAutoScalingPolicy", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "CreateAutoScalingPolicy")
 	assert.NoError(t, err)
@@ -115,8 +119,10 @@ func TestAutoScalingClientDeleteAutoScalingConfiguration(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteAutoScalingConfiguration is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "DeleteAutoScalingConfiguration", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "DeleteAutoScalingConfiguration")
 	assert.NoError(t, err)
@@ -151,8 +157,10 @@ func TestAutoScalingClientDeleteAutoScalingPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteAutoScalingPolicy is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "DeleteAutoScalingPolicy", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "DeleteAutoScalingPolicy")
 	assert.NoError(t, err)
@@ -187,8 +195,10 @@ func TestAutoScalingClientGetAutoScalingConfiguration(t *testing.T) {
 	if !enabled {
 		t.Skip("GetAutoScalingConfiguration is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "GetAutoScalingConfiguration", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "GetAutoScalingConfiguration")
 	assert.NoError(t, err)
@@ -223,8 +233,10 @@ func TestAutoScalingClientGetAutoScalingPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("GetAutoScalingPolicy is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "GetAutoScalingPolicy", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "GetAutoScalingPolicy")
 	assert.NoError(t, err)
@@ -353,8 +365,10 @@ func TestAutoScalingClientUpdateAutoScalingConfiguration(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateAutoScalingConfiguration is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "UpdateAutoScalingConfiguration", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "UpdateAutoScalingConfiguration")
 	assert.NoError(t, err)
@@ -389,8 +403,10 @@ func TestAutoScalingClientUpdateAutoScalingPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateAutoScalingPolicy is not enabled by the testing service")
 	}
-	c, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "UpdateAutoScalingPolicy", createAutoScalingClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
 
 	body, err := testClient.getRequests("autoscaling", "UpdateAutoScalingPolicy")
 	assert.NoError(t, err)

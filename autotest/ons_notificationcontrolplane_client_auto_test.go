@@ -29,8 +29,10 @@ func TestNotificationControlPlaneClientCreateTopic(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateTopic is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationControlPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationControlPlane", "CreateTopic", createNotificationControlPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationControlPlaneClient)
 
 	body, err := testClient.getRequests("ons", "CreateTopic")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestNotificationControlPlaneClientDeleteTopic(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteTopic is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationControlPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationControlPlane", "DeleteTopic", createNotificationControlPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationControlPlaneClient)
 
 	body, err := testClient.getRequests("ons", "DeleteTopic")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestNotificationControlPlaneClientGetTopic(t *testing.T) {
 	if !enabled {
 		t.Skip("GetTopic is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationControlPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationControlPlane", "GetTopic", createNotificationControlPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationControlPlaneClient)
 
 	body, err := testClient.getRequests("ons", "GetTopic")
 	assert.NoError(t, err)
@@ -184,8 +190,10 @@ func TestNotificationControlPlaneClientUpdateTopic(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateTopic is not enabled by the testing service")
 	}
-	c, err := ons.NewNotificationControlPlaneClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationControlPlane", "UpdateTopic", createNotificationControlPlaneClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(ons.NotificationControlPlaneClient)
 
 	body, err := testClient.getRequests("ons", "UpdateTopic")
 	assert.NoError(t, err)

@@ -29,8 +29,10 @@ func TestIdentityClientAddUserToGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("AddUserToGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "AddUserToGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "AddUserToGroup")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestIdentityClientCreateAuthToken(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateAuthToken is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateAuthToken", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateAuthToken")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestIdentityClientCreateCompartment(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateCompartment is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateCompartment", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateCompartment")
 	assert.NoError(t, err)
@@ -137,8 +143,10 @@ func TestIdentityClientCreateCustomerSecretKey(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateCustomerSecretKey is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateCustomerSecretKey", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateCustomerSecretKey")
 	assert.NoError(t, err)
@@ -173,8 +181,10 @@ func TestIdentityClientCreateDynamicGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateDynamicGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateDynamicGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateDynamicGroup")
 	assert.NoError(t, err)
@@ -209,8 +219,10 @@ func TestIdentityClientCreateGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateGroup")
 	assert.NoError(t, err)
@@ -245,8 +257,10 @@ func TestIdentityClientCreateIdentityProvider(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateIdentityProvider is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateIdentityProvider", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateIdentityProvider")
 	assert.NoError(t, err)
@@ -295,8 +309,10 @@ func TestIdentityClientCreateIdpGroupMapping(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateIdpGroupMapping is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateIdpGroupMapping", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateIdpGroupMapping")
 	assert.NoError(t, err)
@@ -331,8 +347,10 @@ func TestIdentityClientCreateManagedCompartment(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateManagedCompartment is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateManagedCompartment", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateManagedCompartment")
 	assert.NoError(t, err)
@@ -367,8 +385,10 @@ func TestIdentityClientCreateOrResetUIPassword(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateOrResetUIPassword is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateOrResetUIPassword", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateOrResetUIPassword")
 	assert.NoError(t, err)
@@ -403,8 +423,10 @@ func TestIdentityClientCreatePolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("CreatePolicy is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreatePolicy", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreatePolicy")
 	assert.NoError(t, err)
@@ -439,8 +461,10 @@ func TestIdentityClientCreateRegionSubscription(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateRegionSubscription is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateRegionSubscription", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateRegionSubscription")
 	assert.NoError(t, err)
@@ -475,8 +499,10 @@ func TestIdentityClientCreateSmtpCredential(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateSmtpCredential is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateSmtpCredential", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateSmtpCredential")
 	assert.NoError(t, err)
@@ -511,8 +537,10 @@ func TestIdentityClientCreateSwiftPassword(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateSwiftPassword is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateSwiftPassword", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateSwiftPassword")
 	assert.NoError(t, err)
@@ -547,8 +575,10 @@ func TestIdentityClientCreateTag(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateTag is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateTag", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateTag")
 	assert.NoError(t, err)
@@ -583,8 +613,10 @@ func TestIdentityClientCreateTagNamespace(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateTagNamespace is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateTagNamespace", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateTagNamespace")
 	assert.NoError(t, err)
@@ -619,8 +651,10 @@ func TestIdentityClientCreateTagRule(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateTagRule is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateTagRule", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateTagRule")
 	assert.NoError(t, err)
@@ -655,8 +689,10 @@ func TestIdentityClientCreateUser(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateUser is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateUser", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "CreateUser")
 	assert.NoError(t, err)
@@ -691,8 +727,10 @@ func TestIdentityClientDeleteApiKey(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteApiKey is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteApiKey", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteApiKey")
 	assert.NoError(t, err)
@@ -727,8 +765,10 @@ func TestIdentityClientDeleteAuthToken(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteAuthToken is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteAuthToken", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteAuthToken")
 	assert.NoError(t, err)
@@ -763,8 +803,10 @@ func TestIdentityClientDeleteCompartment(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteCompartment is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteCompartment", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteCompartment")
 	assert.NoError(t, err)
@@ -799,8 +841,10 @@ func TestIdentityClientDeleteCustomerSecretKey(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteCustomerSecretKey is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteCustomerSecretKey", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteCustomerSecretKey")
 	assert.NoError(t, err)
@@ -835,8 +879,10 @@ func TestIdentityClientDeleteDynamicGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteDynamicGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteDynamicGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteDynamicGroup")
 	assert.NoError(t, err)
@@ -871,8 +917,10 @@ func TestIdentityClientDeleteGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteGroup")
 	assert.NoError(t, err)
@@ -907,8 +955,10 @@ func TestIdentityClientDeleteIdentityProvider(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteIdentityProvider is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteIdentityProvider", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteIdentityProvider")
 	assert.NoError(t, err)
@@ -943,8 +993,10 @@ func TestIdentityClientDeleteIdpGroupMapping(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteIdpGroupMapping is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteIdpGroupMapping", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteIdpGroupMapping")
 	assert.NoError(t, err)
@@ -979,8 +1031,10 @@ func TestIdentityClientDeletePolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("DeletePolicy is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeletePolicy", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeletePolicy")
 	assert.NoError(t, err)
@@ -1015,8 +1069,10 @@ func TestIdentityClientDeleteSmtpCredential(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteSmtpCredential is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteSmtpCredential", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteSmtpCredential")
 	assert.NoError(t, err)
@@ -1051,8 +1107,10 @@ func TestIdentityClientDeleteSwiftPassword(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteSwiftPassword is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteSwiftPassword", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteSwiftPassword")
 	assert.NoError(t, err)
@@ -1087,8 +1145,10 @@ func TestIdentityClientDeleteTagRule(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteTagRule is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteTagRule", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteTagRule")
 	assert.NoError(t, err)
@@ -1123,8 +1183,10 @@ func TestIdentityClientDeleteUser(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteUser is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteUser", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "DeleteUser")
 	assert.NoError(t, err)
@@ -1159,8 +1221,10 @@ func TestIdentityClientGetAccountByEntitlementId(t *testing.T) {
 	if !enabled {
 		t.Skip("GetAccountByEntitlementId is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetAccountByEntitlementId", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetAccountByEntitlementId")
 	assert.NoError(t, err)
@@ -1195,8 +1259,10 @@ func TestIdentityClientGetCompartment(t *testing.T) {
 	if !enabled {
 		t.Skip("GetCompartment is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetCompartment", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetCompartment")
 	assert.NoError(t, err)
@@ -1231,8 +1297,10 @@ func TestIdentityClientGetDynamicGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("GetDynamicGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetDynamicGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetDynamicGroup")
 	assert.NoError(t, err)
@@ -1267,8 +1335,10 @@ func TestIdentityClientGetGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("GetGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetGroup")
 	assert.NoError(t, err)
@@ -1303,8 +1373,10 @@ func TestIdentityClientGetIdentityProvider(t *testing.T) {
 	if !enabled {
 		t.Skip("GetIdentityProvider is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetIdentityProvider", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetIdentityProvider")
 	assert.NoError(t, err)
@@ -1339,8 +1411,10 @@ func TestIdentityClientGetIdpGroupMapping(t *testing.T) {
 	if !enabled {
 		t.Skip("GetIdpGroupMapping is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetIdpGroupMapping", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetIdpGroupMapping")
 	assert.NoError(t, err)
@@ -1375,8 +1449,10 @@ func TestIdentityClientGetPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("GetPolicy is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetPolicy", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetPolicy")
 	assert.NoError(t, err)
@@ -1411,8 +1487,10 @@ func TestIdentityClientGetTag(t *testing.T) {
 	if !enabled {
 		t.Skip("GetTag is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetTag", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetTag")
 	assert.NoError(t, err)
@@ -1447,8 +1525,10 @@ func TestIdentityClientGetTagNamespace(t *testing.T) {
 	if !enabled {
 		t.Skip("GetTagNamespace is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetTagNamespace", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetTagNamespace")
 	assert.NoError(t, err)
@@ -1483,8 +1563,10 @@ func TestIdentityClientGetTagRule(t *testing.T) {
 	if !enabled {
 		t.Skip("GetTagRule is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetTagRule", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetTagRule")
 	assert.NoError(t, err)
@@ -1519,8 +1601,10 @@ func TestIdentityClientGetTenancy(t *testing.T) {
 	if !enabled {
 		t.Skip("GetTenancy is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetTenancy", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetTenancy")
 	assert.NoError(t, err)
@@ -1555,8 +1639,10 @@ func TestIdentityClientGetUser(t *testing.T) {
 	if !enabled {
 		t.Skip("GetUser is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetUser", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetUser")
 	assert.NoError(t, err)
@@ -1591,8 +1677,10 @@ func TestIdentityClientGetUserGroupMembership(t *testing.T) {
 	if !enabled {
 		t.Skip("GetUserGroupMembership is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetUserGroupMembership", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetUserGroupMembership")
 	assert.NoError(t, err)
@@ -1627,8 +1715,10 @@ func TestIdentityClientGetUserUIPasswordInformation(t *testing.T) {
 	if !enabled {
 		t.Skip("GetUserUIPasswordInformation is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetUserUIPasswordInformation", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetUserUIPasswordInformation")
 	assert.NoError(t, err)
@@ -1663,8 +1753,10 @@ func TestIdentityClientGetWorkRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("GetWorkRequest is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetWorkRequest", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "GetWorkRequest")
 	assert.NoError(t, err)
@@ -1699,8 +1791,10 @@ func TestIdentityClientListApiKeys(t *testing.T) {
 	if !enabled {
 		t.Skip("ListApiKeys is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListApiKeys", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ListApiKeys")
 	assert.NoError(t, err)
@@ -1735,8 +1829,10 @@ func TestIdentityClientListAuthTokens(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAuthTokens is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListAuthTokens", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ListAuthTokens")
 	assert.NoError(t, err)
@@ -1771,8 +1867,10 @@ func TestIdentityClientListAvailabilityDomains(t *testing.T) {
 	if !enabled {
 		t.Skip("ListAvailabilityDomains is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListAvailabilityDomains", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ListAvailabilityDomains")
 	assert.NoError(t, err)
@@ -1901,8 +1999,10 @@ func TestIdentityClientListCustomerSecretKeys(t *testing.T) {
 	if !enabled {
 		t.Skip("ListCustomerSecretKeys is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListCustomerSecretKeys", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ListCustomerSecretKeys")
 	assert.NoError(t, err)
@@ -1984,8 +2084,10 @@ func TestIdentityClientListFaultDomains(t *testing.T) {
 	if !enabled {
 		t.Skip("ListFaultDomains is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListFaultDomains", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ListFaultDomains")
 	assert.NoError(t, err)
@@ -2302,8 +2404,10 @@ func TestIdentityClientListRegionSubscriptions(t *testing.T) {
 	if !enabled {
 		t.Skip("ListRegionSubscriptions is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListRegionSubscriptions", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ListRegionSubscriptions")
 	assert.NoError(t, err)
@@ -2338,8 +2442,10 @@ func TestIdentityClientListRegions(t *testing.T) {
 	if !enabled {
 		t.Skip("ListRegions is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListRegions", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ListRegions")
 	assert.NoError(t, err)
@@ -2373,8 +2479,10 @@ func TestIdentityClientListSmtpCredentials(t *testing.T) {
 	if !enabled {
 		t.Skip("ListSmtpCredentials is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListSmtpCredentials", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ListSmtpCredentials")
 	assert.NoError(t, err)
@@ -2409,8 +2517,10 @@ func TestIdentityClientListSwiftPasswords(t *testing.T) {
 	if !enabled {
 		t.Skip("ListSwiftPasswords is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListSwiftPasswords", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ListSwiftPasswords")
 	assert.NoError(t, err)
@@ -2774,8 +2884,10 @@ func TestIdentityClientRemoveUserFromGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("RemoveUserFromGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "RemoveUserFromGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "RemoveUserFromGroup")
 	assert.NoError(t, err)
@@ -2810,8 +2922,10 @@ func TestIdentityClientResetIdpScimClient(t *testing.T) {
 	if !enabled {
 		t.Skip("ResetIdpScimClient is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ResetIdpScimClient", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "ResetIdpScimClient")
 	assert.NoError(t, err)
@@ -2846,8 +2960,10 @@ func TestIdentityClientUpdateAuthToken(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateAuthToken is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateAuthToken", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateAuthToken")
 	assert.NoError(t, err)
@@ -2882,8 +2998,10 @@ func TestIdentityClientUpdateCompartment(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateCompartment is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateCompartment", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateCompartment")
 	assert.NoError(t, err)
@@ -2918,8 +3036,10 @@ func TestIdentityClientUpdateCustomerSecretKey(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateCustomerSecretKey is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateCustomerSecretKey", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateCustomerSecretKey")
 	assert.NoError(t, err)
@@ -2954,8 +3074,10 @@ func TestIdentityClientUpdateDynamicGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateDynamicGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateDynamicGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateDynamicGroup")
 	assert.NoError(t, err)
@@ -2990,8 +3112,10 @@ func TestIdentityClientUpdateGroup(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateGroup is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateGroup", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateGroup")
 	assert.NoError(t, err)
@@ -3026,8 +3150,10 @@ func TestIdentityClientUpdateIdentityProvider(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateIdentityProvider is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateIdentityProvider", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateIdentityProvider")
 	assert.NoError(t, err)
@@ -3076,8 +3202,10 @@ func TestIdentityClientUpdateIdpGroupMapping(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateIdpGroupMapping is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateIdpGroupMapping", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateIdpGroupMapping")
 	assert.NoError(t, err)
@@ -3112,8 +3240,10 @@ func TestIdentityClientUpdatePolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdatePolicy is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdatePolicy", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdatePolicy")
 	assert.NoError(t, err)
@@ -3148,8 +3278,10 @@ func TestIdentityClientUpdateSmtpCredential(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateSmtpCredential is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateSmtpCredential", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateSmtpCredential")
 	assert.NoError(t, err)
@@ -3184,8 +3316,10 @@ func TestIdentityClientUpdateSwiftPassword(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateSwiftPassword is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateSwiftPassword", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateSwiftPassword")
 	assert.NoError(t, err)
@@ -3220,8 +3354,10 @@ func TestIdentityClientUpdateTag(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateTag is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateTag", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateTag")
 	assert.NoError(t, err)
@@ -3256,8 +3392,10 @@ func TestIdentityClientUpdateTagNamespace(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateTagNamespace is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateTagNamespace", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateTagNamespace")
 	assert.NoError(t, err)
@@ -3292,8 +3430,10 @@ func TestIdentityClientUpdateTagRule(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateTagRule is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateTagRule", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateTagRule")
 	assert.NoError(t, err)
@@ -3328,8 +3468,10 @@ func TestIdentityClientUpdateUser(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateUser is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateUser", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateUser")
 	assert.NoError(t, err)
@@ -3364,8 +3506,10 @@ func TestIdentityClientUpdateUserCapabilities(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateUserCapabilities is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateUserCapabilities", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateUserCapabilities")
 	assert.NoError(t, err)
@@ -3400,8 +3544,10 @@ func TestIdentityClientUpdateUserState(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateUserState is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UpdateUserState", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UpdateUserState")
 	assert.NoError(t, err)
@@ -3436,8 +3582,10 @@ func TestIdentityClientUploadApiKey(t *testing.T) {
 	if !enabled {
 		t.Skip("UploadApiKey is not enabled by the testing service")
 	}
-	c, err := identity.NewIdentityClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "UploadApiKey", createIdentityClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
 
 	body, err := testClient.getRequests("identity", "UploadApiKey")
 	assert.NoError(t, err)

@@ -29,8 +29,10 @@ func TestResourceManagerClientCancelJob(t *testing.T) {
 	if !enabled {
 		t.Skip("CancelJob is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "CancelJob", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "CancelJob")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestResourceManagerClientCreateJob(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateJob is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "CreateJob", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "CreateJob")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestResourceManagerClientCreateStack(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateStack is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "CreateStack", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "CreateStack")
 	assert.NoError(t, err)
@@ -137,8 +143,10 @@ func TestResourceManagerClientDeleteStack(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteStack is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "DeleteStack", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "DeleteStack")
 	assert.NoError(t, err)
@@ -173,8 +181,10 @@ func TestResourceManagerClientGetJob(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJob is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetJob", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "GetJob")
 	assert.NoError(t, err)
@@ -256,8 +266,10 @@ func TestResourceManagerClientGetJobLogsContent(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJobLogsContent is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetJobLogsContent", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "GetJobLogsContent")
 	assert.NoError(t, err)
@@ -292,8 +304,10 @@ func TestResourceManagerClientGetJobTfConfig(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJobTfConfig is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetJobTfConfig", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "GetJobTfConfig")
 	assert.NoError(t, err)
@@ -328,8 +342,10 @@ func TestResourceManagerClientGetJobTfState(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJobTfState is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetJobTfState", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "GetJobTfState")
 	assert.NoError(t, err)
@@ -364,8 +380,10 @@ func TestResourceManagerClientGetStack(t *testing.T) {
 	if !enabled {
 		t.Skip("GetStack is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetStack", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "GetStack")
 	assert.NoError(t, err)
@@ -400,8 +418,10 @@ func TestResourceManagerClientGetStackTfConfig(t *testing.T) {
 	if !enabled {
 		t.Skip("GetStackTfConfig is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetStackTfConfig", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "GetStackTfConfig")
 	assert.NoError(t, err)
@@ -530,8 +550,10 @@ func TestResourceManagerClientUpdateJob(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateJob is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "UpdateJob", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "UpdateJob")
 	assert.NoError(t, err)
@@ -566,8 +588,10 @@ func TestResourceManagerClientUpdateStack(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateStack is not enabled by the testing service")
 	}
-	c, err := resourcemanager.NewResourceManagerClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "UpdateStack", createResourceManagerClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
 
 	body, err := testClient.getRequests("resourcemanager", "UpdateStack")
 	assert.NoError(t, err)

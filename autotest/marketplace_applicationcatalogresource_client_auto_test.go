@@ -29,8 +29,10 @@ func TestApplicationCatalogResourceClientGetAppCatalogApplicationMapping(t *test
 	if !enabled {
 		t.Skip("GetAppCatalogApplicationMapping is not enabled by the testing service")
 	}
-	c, err := marketplace.NewApplicationCatalogResourceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("marketplace", "ApplicationCatalogResource", "GetAppCatalogApplicationMapping", createApplicationCatalogResourceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(marketplace.ApplicationCatalogResourceClient)
 
 	body, err := testClient.getRequests("marketplace", "GetAppCatalogApplicationMapping")
 	assert.NoError(t, err)

@@ -29,8 +29,10 @@ func TestBatchServiceClientCancelJob(t *testing.T) {
 	if !enabled {
 		t.Skip("CancelJob is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "CancelJob", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "CancelJob")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestBatchServiceClientCreateBatchInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateBatchInstance is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "CreateBatchInstance", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "CreateBatchInstance")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestBatchServiceClientCreateComputeEnvironment(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateComputeEnvironment is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "CreateComputeEnvironment", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "CreateComputeEnvironment")
 	assert.NoError(t, err)
@@ -137,8 +143,10 @@ func TestBatchServiceClientCreateJob(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateJob is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "CreateJob", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "CreateJob")
 	assert.NoError(t, err)
@@ -173,8 +181,10 @@ func TestBatchServiceClientCreateJobDefinition(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateJobDefinition is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "CreateJobDefinition", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "CreateJobDefinition")
 	assert.NoError(t, err)
@@ -209,8 +219,10 @@ func TestBatchServiceClientDeleteBatchInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteBatchInstance is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "DeleteBatchInstance", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "DeleteBatchInstance")
 	assert.NoError(t, err)
@@ -245,8 +257,10 @@ func TestBatchServiceClientDeleteComputeEnvironment(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteComputeEnvironment is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "DeleteComputeEnvironment", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "DeleteComputeEnvironment")
 	assert.NoError(t, err)
@@ -281,8 +295,10 @@ func TestBatchServiceClientDeleteJob(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteJob is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "DeleteJob", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "DeleteJob")
 	assert.NoError(t, err)
@@ -317,8 +333,10 @@ func TestBatchServiceClientDeleteJobDefinition(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteJobDefinition is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "DeleteJobDefinition", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "DeleteJobDefinition")
 	assert.NoError(t, err)
@@ -353,8 +371,10 @@ func TestBatchServiceClientDisableBatchInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("DisableBatchInstance is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "DisableBatchInstance", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "DisableBatchInstance")
 	assert.NoError(t, err)
@@ -389,8 +409,10 @@ func TestBatchServiceClientDisableComputeEnvironment(t *testing.T) {
 	if !enabled {
 		t.Skip("DisableComputeEnvironment is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "DisableComputeEnvironment", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "DisableComputeEnvironment")
 	assert.NoError(t, err)
@@ -425,8 +447,10 @@ func TestBatchServiceClientEnableBatchInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("EnableBatchInstance is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "EnableBatchInstance", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "EnableBatchInstance")
 	assert.NoError(t, err)
@@ -461,8 +485,10 @@ func TestBatchServiceClientEnableComputeEnvironment(t *testing.T) {
 	if !enabled {
 		t.Skip("EnableComputeEnvironment is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "EnableComputeEnvironment", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "EnableComputeEnvironment")
 	assert.NoError(t, err)
@@ -497,8 +523,10 @@ func TestBatchServiceClientGetBatchInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("GetBatchInstance is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "GetBatchInstance", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "GetBatchInstance")
 	assert.NoError(t, err)
@@ -533,8 +561,10 @@ func TestBatchServiceClientGetComputeEnvironment(t *testing.T) {
 	if !enabled {
 		t.Skip("GetComputeEnvironment is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "GetComputeEnvironment", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "GetComputeEnvironment")
 	assert.NoError(t, err)
@@ -569,8 +599,10 @@ func TestBatchServiceClientGetJob(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJob is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "GetJob", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "GetJob")
 	assert.NoError(t, err)
@@ -605,8 +637,10 @@ func TestBatchServiceClientGetJobDefinition(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJobDefinition is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "GetJobDefinition", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "GetJobDefinition")
 	assert.NoError(t, err)
@@ -641,8 +675,10 @@ func TestBatchServiceClientGetJobLog(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJobLog is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "GetJobLog", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "GetJobLog")
 	assert.NoError(t, err)
@@ -677,8 +713,10 @@ func TestBatchServiceClientGetJobLogContent(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJobLogContent is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "GetJobLogContent", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "GetJobLogContent")
 	assert.NoError(t, err)
@@ -948,8 +986,10 @@ func TestBatchServiceClientUpdateBatchInstance(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateBatchInstance is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "UpdateBatchInstance", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "UpdateBatchInstance")
 	assert.NoError(t, err)
@@ -984,8 +1024,10 @@ func TestBatchServiceClientUpdateComputeEnvironment(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateComputeEnvironment is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "UpdateComputeEnvironment", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "UpdateComputeEnvironment")
 	assert.NoError(t, err)
@@ -1020,8 +1062,10 @@ func TestBatchServiceClientUpdateJob(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateJob is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "UpdateJob", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "UpdateJob")
 	assert.NoError(t, err)
@@ -1056,8 +1100,10 @@ func TestBatchServiceClientUpdateJobDefinition(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateJobDefinition is not enabled by the testing service")
 	}
-	c, err := batch.NewBatchServiceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("batch", "BatchService", "UpdateJobDefinition", createBatchServiceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(batch.BatchServiceClient)
 
 	body, err := testClient.getRequests("batch", "UpdateJobDefinition")
 	assert.NoError(t, err)

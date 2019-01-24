@@ -29,8 +29,10 @@ func TestWaasClientAcceptRecommendations(t *testing.T) {
 	if !enabled {
 		t.Skip("AcceptRecommendations is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "AcceptRecommendations", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "AcceptRecommendations")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestWaasClientCancelWorkRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("CancelWorkRequest is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "CancelWorkRequest", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "CancelWorkRequest")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestWaasClientCreateCertificate(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateCertificate is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "CreateCertificate", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "CreateCertificate")
 	assert.NoError(t, err)
@@ -137,8 +143,10 @@ func TestWaasClientCreateWaasPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateWaasPolicy is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "CreateWaasPolicy", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "CreateWaasPolicy")
 	assert.NoError(t, err)
@@ -173,8 +181,10 @@ func TestWaasClientDeleteCertificate(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteCertificate is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "DeleteCertificate", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "DeleteCertificate")
 	assert.NoError(t, err)
@@ -209,8 +219,10 @@ func TestWaasClientDeleteWaasPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteWaasPolicy is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "DeleteWaasPolicy", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "DeleteWaasPolicy")
 	assert.NoError(t, err)
@@ -245,8 +257,10 @@ func TestWaasClientGetCertificate(t *testing.T) {
 	if !enabled {
 		t.Skip("GetCertificate is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetCertificate", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetCertificate")
 	assert.NoError(t, err)
@@ -281,8 +295,10 @@ func TestWaasClientGetDeviceFingerprintChallenge(t *testing.T) {
 	if !enabled {
 		t.Skip("GetDeviceFingerprintChallenge is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetDeviceFingerprintChallenge", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetDeviceFingerprintChallenge")
 	assert.NoError(t, err)
@@ -317,8 +333,10 @@ func TestWaasClientGetHumanInteractionChallenge(t *testing.T) {
 	if !enabled {
 		t.Skip("GetHumanInteractionChallenge is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetHumanInteractionChallenge", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetHumanInteractionChallenge")
 	assert.NoError(t, err)
@@ -353,8 +371,10 @@ func TestWaasClientGetJsChallenge(t *testing.T) {
 	if !enabled {
 		t.Skip("GetJsChallenge is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetJsChallenge", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetJsChallenge")
 	assert.NoError(t, err)
@@ -389,8 +409,10 @@ func TestWaasClientGetPolicyConfig(t *testing.T) {
 	if !enabled {
 		t.Skip("GetPolicyConfig is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetPolicyConfig", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetPolicyConfig")
 	assert.NoError(t, err)
@@ -425,8 +447,10 @@ func TestWaasClientGetProtectionRule(t *testing.T) {
 	if !enabled {
 		t.Skip("GetProtectionRule is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetProtectionRule", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetProtectionRule")
 	assert.NoError(t, err)
@@ -461,8 +485,10 @@ func TestWaasClientGetProtectionSettings(t *testing.T) {
 	if !enabled {
 		t.Skip("GetProtectionSettings is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetProtectionSettings", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetProtectionSettings")
 	assert.NoError(t, err)
@@ -497,8 +523,10 @@ func TestWaasClientGetWaasPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("GetWaasPolicy is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetWaasPolicy", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetWaasPolicy")
 	assert.NoError(t, err)
@@ -533,8 +561,10 @@ func TestWaasClientGetWafAddressRateLimiting(t *testing.T) {
 	if !enabled {
 		t.Skip("GetWafAddressRateLimiting is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetWafAddressRateLimiting", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetWafAddressRateLimiting")
 	assert.NoError(t, err)
@@ -569,8 +599,10 @@ func TestWaasClientGetWafConfig(t *testing.T) {
 	if !enabled {
 		t.Skip("GetWafConfig is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetWafConfig", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetWafConfig")
 	assert.NoError(t, err)
@@ -605,8 +637,10 @@ func TestWaasClientGetWorkRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("GetWorkRequest is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "GetWorkRequest", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "GetWorkRequest")
 	assert.NoError(t, err)
@@ -1346,8 +1380,10 @@ func TestWaasClientUpdateAccessRules(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateAccessRules is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateAccessRules", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateAccessRules")
 	assert.NoError(t, err)
@@ -1382,8 +1418,10 @@ func TestWaasClientUpdateCaptchas(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateCaptchas is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateCaptchas", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateCaptchas")
 	assert.NoError(t, err)
@@ -1418,8 +1456,10 @@ func TestWaasClientUpdateCertificate(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateCertificate is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateCertificate", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateCertificate")
 	assert.NoError(t, err)
@@ -1454,8 +1494,10 @@ func TestWaasClientUpdateDeviceFingerprintChallenge(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateDeviceFingerprintChallenge is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateDeviceFingerprintChallenge", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateDeviceFingerprintChallenge")
 	assert.NoError(t, err)
@@ -1490,8 +1532,10 @@ func TestWaasClientUpdateGoodBots(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateGoodBots is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateGoodBots", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateGoodBots")
 	assert.NoError(t, err)
@@ -1526,8 +1570,10 @@ func TestWaasClientUpdateHumanInteractionChallenge(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateHumanInteractionChallenge is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateHumanInteractionChallenge", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateHumanInteractionChallenge")
 	assert.NoError(t, err)
@@ -1562,8 +1608,10 @@ func TestWaasClientUpdateJsChallenge(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateJsChallenge is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateJsChallenge", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateJsChallenge")
 	assert.NoError(t, err)
@@ -1598,8 +1646,10 @@ func TestWaasClientUpdatePolicyConfig(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdatePolicyConfig is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdatePolicyConfig", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdatePolicyConfig")
 	assert.NoError(t, err)
@@ -1634,8 +1684,10 @@ func TestWaasClientUpdateProtectionRules(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateProtectionRules is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateProtectionRules", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateProtectionRules")
 	assert.NoError(t, err)
@@ -1670,8 +1722,10 @@ func TestWaasClientUpdateProtectionSettings(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateProtectionSettings is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateProtectionSettings", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateProtectionSettings")
 	assert.NoError(t, err)
@@ -1706,8 +1760,10 @@ func TestWaasClientUpdateThreatFeeds(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateThreatFeeds is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateThreatFeeds", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateThreatFeeds")
 	assert.NoError(t, err)
@@ -1742,8 +1798,10 @@ func TestWaasClientUpdateWaasPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateWaasPolicy is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateWaasPolicy", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateWaasPolicy")
 	assert.NoError(t, err)
@@ -1778,8 +1836,10 @@ func TestWaasClientUpdateWafAddressRateLimiting(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateWafAddressRateLimiting is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateWafAddressRateLimiting", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateWafAddressRateLimiting")
 	assert.NoError(t, err)
@@ -1814,8 +1874,10 @@ func TestWaasClientUpdateWafConfig(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateWafConfig is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateWafConfig", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateWafConfig")
 	assert.NoError(t, err)
@@ -1850,8 +1912,10 @@ func TestWaasClientUpdateWhitelists(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateWhitelists is not enabled by the testing service")
 	}
-	c, err := waas.NewWaasClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "UpdateWhitelists", createWaasClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
 
 	body, err := testClient.getRequests("waas", "UpdateWhitelists")
 	assert.NoError(t, err)

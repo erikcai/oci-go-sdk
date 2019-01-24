@@ -29,8 +29,10 @@ func TestMonitoringClientCreateAlarm(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateAlarm is not enabled by the testing service")
 	}
-	c, err := monitoring.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("monitoring", "Monitoring", "CreateAlarm", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(monitoring.MonitoringClient)
 
 	body, err := testClient.getRequests("monitoring", "CreateAlarm")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestMonitoringClientDeleteAlarm(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteAlarm is not enabled by the testing service")
 	}
-	c, err := monitoring.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("monitoring", "Monitoring", "DeleteAlarm", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(monitoring.MonitoringClient)
 
 	body, err := testClient.getRequests("monitoring", "DeleteAlarm")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestMonitoringClientGetAlarm(t *testing.T) {
 	if !enabled {
 		t.Skip("GetAlarm is not enabled by the testing service")
 	}
-	c, err := monitoring.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("monitoring", "Monitoring", "GetAlarm", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(monitoring.MonitoringClient)
 
 	body, err := testClient.getRequests("monitoring", "GetAlarm")
 	assert.NoError(t, err)
@@ -325,8 +331,10 @@ func TestMonitoringClientPostMetricData(t *testing.T) {
 	if !enabled {
 		t.Skip("PostMetricData is not enabled by the testing service")
 	}
-	c, err := monitoring.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("monitoring", "Monitoring", "PostMetricData", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(monitoring.MonitoringClient)
 
 	body, err := testClient.getRequests("monitoring", "PostMetricData")
 	assert.NoError(t, err)
@@ -361,8 +369,10 @@ func TestMonitoringClientRemoveAlarmSuppression(t *testing.T) {
 	if !enabled {
 		t.Skip("RemoveAlarmSuppression is not enabled by the testing service")
 	}
-	c, err := monitoring.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("monitoring", "Monitoring", "RemoveAlarmSuppression", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(monitoring.MonitoringClient)
 
 	body, err := testClient.getRequests("monitoring", "RemoveAlarmSuppression")
 	assert.NoError(t, err)
@@ -397,8 +407,10 @@ func TestMonitoringClientSummarizeMetricsData(t *testing.T) {
 	if !enabled {
 		t.Skip("SummarizeMetricsData is not enabled by the testing service")
 	}
-	c, err := monitoring.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("monitoring", "Monitoring", "SummarizeMetricsData", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(monitoring.MonitoringClient)
 
 	body, err := testClient.getRequests("monitoring", "SummarizeMetricsData")
 	assert.NoError(t, err)
@@ -433,8 +445,10 @@ func TestMonitoringClientUpdateAlarm(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateAlarm is not enabled by the testing service")
 	}
-	c, err := monitoring.NewMonitoringClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("monitoring", "Monitoring", "UpdateAlarm", createMonitoringClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(monitoring.MonitoringClient)
 
 	body, err := testClient.getRequests("monitoring", "UpdateAlarm")
 	assert.NoError(t, err)

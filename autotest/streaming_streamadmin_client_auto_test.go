@@ -29,8 +29,10 @@ func TestStreamAdminClientCreateStream(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateStream is not enabled by the testing service")
 	}
-	c, err := streaming.NewStreamAdminClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "CreateStream", createStreamAdminClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
 
 	body, err := testClient.getRequests("streaming", "CreateStream")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestStreamAdminClientDeleteStream(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteStream is not enabled by the testing service")
 	}
-	c, err := streaming.NewStreamAdminClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "DeleteStream", createStreamAdminClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
 
 	body, err := testClient.getRequests("streaming", "DeleteStream")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestStreamAdminClientGetStream(t *testing.T) {
 	if !enabled {
 		t.Skip("GetStream is not enabled by the testing service")
 	}
-	c, err := streaming.NewStreamAdminClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "GetStream", createStreamAdminClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
 
 	body, err := testClient.getRequests("streaming", "GetStream")
 	assert.NoError(t, err)
@@ -137,8 +143,10 @@ func TestStreamAdminClientListStreamingConsumption(t *testing.T) {
 	if !enabled {
 		t.Skip("ListStreamingConsumption is not enabled by the testing service")
 	}
-	c, err := streaming.NewStreamAdminClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "ListStreamingConsumption", createStreamAdminClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
 
 	body, err := testClient.getRequests("streaming", "ListStreamingConsumption")
 	assert.NoError(t, err)
@@ -220,8 +228,10 @@ func TestStreamAdminClientUpdateStream(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateStream is not enabled by the testing service")
 	}
-	c, err := streaming.NewStreamAdminClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "UpdateStream", createStreamAdminClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
 
 	body, err := testClient.getRequests("streaming", "UpdateStream")
 	assert.NoError(t, err)

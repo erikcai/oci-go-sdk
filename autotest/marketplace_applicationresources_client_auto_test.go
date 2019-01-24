@@ -29,8 +29,10 @@ func TestApplicationResourcesClientGetApplication(t *testing.T) {
 	if !enabled {
 		t.Skip("GetApplication is not enabled by the testing service")
 	}
-	c, err := marketplace.NewApplicationResourcesClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("marketplace", "ApplicationResources", "GetApplication", createApplicationResourcesClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(marketplace.ApplicationResourcesClient)
 
 	body, err := testClient.getRequests("marketplace", "GetApplication")
 	assert.NoError(t, err)

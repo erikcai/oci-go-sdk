@@ -29,8 +29,10 @@ func TestApplicationInstanceResourceClientGetInstallConfiguration(t *testing.T) 
 	if !enabled {
 		t.Skip("GetInstallConfiguration is not enabled by the testing service")
 	}
-	c, err := marketplace.NewApplicationInstanceResourceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("marketplace", "ApplicationInstanceResource", "GetInstallConfiguration", createApplicationInstanceResourceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(marketplace.ApplicationInstanceResourceClient)
 
 	body, err := testClient.getRequests("marketplace", "GetInstallConfiguration")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestApplicationInstanceResourceClientGetTermsOfUses(t *testing.T) {
 	if !enabled {
 		t.Skip("GetTermsOfUses is not enabled by the testing service")
 	}
-	c, err := marketplace.NewApplicationInstanceResourceClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("marketplace", "ApplicationInstanceResource", "GetTermsOfUses", createApplicationInstanceResourceClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(marketplace.ApplicationInstanceResourceClient)
 
 	body, err := testClient.getRequests("marketplace", "GetTermsOfUses")
 	assert.NoError(t, err)

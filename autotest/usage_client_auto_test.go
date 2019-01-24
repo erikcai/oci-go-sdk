@@ -29,8 +29,10 @@ func TestUsageClientGetSubscriptionInfo(t *testing.T) {
 	if !enabled {
 		t.Skip("GetSubscriptionInfo is not enabled by the testing service")
 	}
-	c, err := usage.NewUsageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("usage", "Usage", "GetSubscriptionInfo", createUsageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(usage.UsageClient)
 
 	body, err := testClient.getRequests("usage", "GetSubscriptionInfo")
 	assert.NoError(t, err)

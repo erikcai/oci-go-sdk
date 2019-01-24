@@ -29,8 +29,10 @@ func TestDnsClientCreateSteeringPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateSteeringPolicy is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "CreateSteeringPolicy", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "CreateSteeringPolicy")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestDnsClientCreateSteeringPolicyAttachment(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateSteeringPolicyAttachment is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "CreateSteeringPolicyAttachment", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "CreateSteeringPolicyAttachment")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestDnsClientCreateZone(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateZone is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "CreateZone", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "CreateZone")
 	assert.NoError(t, err)
@@ -137,8 +143,10 @@ func TestDnsClientDeleteDomainRecords(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteDomainRecords is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "DeleteDomainRecords", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "DeleteDomainRecords")
 	assert.NoError(t, err)
@@ -173,8 +181,10 @@ func TestDnsClientDeleteRRSet(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteRRSet is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "DeleteRRSet", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "DeleteRRSet")
 	assert.NoError(t, err)
@@ -209,8 +219,10 @@ func TestDnsClientDeleteSteeringPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteSteeringPolicy is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "DeleteSteeringPolicy", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "DeleteSteeringPolicy")
 	assert.NoError(t, err)
@@ -245,8 +257,10 @@ func TestDnsClientDeleteSteeringPolicyAttachment(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteSteeringPolicyAttachment is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "DeleteSteeringPolicyAttachment", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "DeleteSteeringPolicyAttachment")
 	assert.NoError(t, err)
@@ -281,8 +295,10 @@ func TestDnsClientDeleteZone(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteZone is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "DeleteZone", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "DeleteZone")
 	assert.NoError(t, err)
@@ -411,8 +427,10 @@ func TestDnsClientGetSteeringPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("GetSteeringPolicy is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "GetSteeringPolicy", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "GetSteeringPolicy")
 	assert.NoError(t, err)
@@ -447,8 +465,10 @@ func TestDnsClientGetSteeringPolicyAttachment(t *testing.T) {
 	if !enabled {
 		t.Skip("GetSteeringPolicyAttachment is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "GetSteeringPolicyAttachment", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "GetSteeringPolicyAttachment")
 	assert.NoError(t, err)
@@ -483,8 +503,10 @@ func TestDnsClientGetZone(t *testing.T) {
 	if !enabled {
 		t.Skip("GetZone is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "GetZone", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "GetZone")
 	assert.NoError(t, err)
@@ -707,8 +729,10 @@ func TestDnsClientPatchDomainRecords(t *testing.T) {
 	if !enabled {
 		t.Skip("PatchDomainRecords is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "PatchDomainRecords", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "PatchDomainRecords")
 	assert.NoError(t, err)
@@ -743,8 +767,10 @@ func TestDnsClientPatchRRSet(t *testing.T) {
 	if !enabled {
 		t.Skip("PatchRRSet is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "PatchRRSet", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "PatchRRSet")
 	assert.NoError(t, err)
@@ -779,8 +805,10 @@ func TestDnsClientPatchZoneRecords(t *testing.T) {
 	if !enabled {
 		t.Skip("PatchZoneRecords is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "PatchZoneRecords", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "PatchZoneRecords")
 	assert.NoError(t, err)
@@ -815,8 +843,10 @@ func TestDnsClientUpdateDomainRecords(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateDomainRecords is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "UpdateDomainRecords", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "UpdateDomainRecords")
 	assert.NoError(t, err)
@@ -851,8 +881,10 @@ func TestDnsClientUpdateRRSet(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateRRSet is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "UpdateRRSet", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "UpdateRRSet")
 	assert.NoError(t, err)
@@ -887,8 +919,10 @@ func TestDnsClientUpdateSteeringPolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateSteeringPolicy is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "UpdateSteeringPolicy", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "UpdateSteeringPolicy")
 	assert.NoError(t, err)
@@ -923,8 +957,10 @@ func TestDnsClientUpdateSteeringPolicyAttachment(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateSteeringPolicyAttachment is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "UpdateSteeringPolicyAttachment", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "UpdateSteeringPolicyAttachment")
 	assert.NoError(t, err)
@@ -959,8 +995,10 @@ func TestDnsClientUpdateZone(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateZone is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "UpdateZone", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "UpdateZone")
 	assert.NoError(t, err)
@@ -995,8 +1033,10 @@ func TestDnsClientUpdateZoneRecords(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateZoneRecords is not enabled by the testing service")
 	}
-	c, err := dns.NewDnsClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "UpdateZoneRecords", createDnsClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
 
 	body, err := testClient.getRequests("dns", "UpdateZoneRecords")
 	assert.NoError(t, err)

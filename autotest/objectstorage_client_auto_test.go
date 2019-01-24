@@ -29,8 +29,10 @@ func TestObjectStorageClientAbortMultipartUpload(t *testing.T) {
 	if !enabled {
 		t.Skip("AbortMultipartUpload is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "AbortMultipartUpload", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "AbortMultipartUpload")
 	assert.NoError(t, err)
@@ -65,8 +67,10 @@ func TestObjectStorageClientCancelWorkRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("CancelWorkRequest is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "CancelWorkRequest", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "CancelWorkRequest")
 	assert.NoError(t, err)
@@ -101,8 +105,10 @@ func TestObjectStorageClientCommitMultipartUpload(t *testing.T) {
 	if !enabled {
 		t.Skip("CommitMultipartUpload is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "CommitMultipartUpload", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "CommitMultipartUpload")
 	assert.NoError(t, err)
@@ -137,8 +143,10 @@ func TestObjectStorageClientCopyObject(t *testing.T) {
 	if !enabled {
 		t.Skip("CopyObject is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "CopyObject", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "CopyObject")
 	assert.NoError(t, err)
@@ -173,8 +181,10 @@ func TestObjectStorageClientCopyPart(t *testing.T) {
 	if !enabled {
 		t.Skip("CopyPart is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "CopyPart", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "CopyPart")
 	assert.NoError(t, err)
@@ -209,8 +219,10 @@ func TestObjectStorageClientCreateBucket(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateBucket is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "CreateBucket", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "CreateBucket")
 	assert.NoError(t, err)
@@ -245,8 +257,10 @@ func TestObjectStorageClientCreateMultipartUpload(t *testing.T) {
 	if !enabled {
 		t.Skip("CreateMultipartUpload is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "CreateMultipartUpload", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "CreateMultipartUpload")
 	assert.NoError(t, err)
@@ -281,8 +295,10 @@ func TestObjectStorageClientCreatePreauthenticatedRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("CreatePreauthenticatedRequest is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "CreatePreauthenticatedRequest", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "CreatePreauthenticatedRequest")
 	assert.NoError(t, err)
@@ -317,8 +333,10 @@ func TestObjectStorageClientDeleteBucket(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteBucket is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "DeleteBucket", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "DeleteBucket")
 	assert.NoError(t, err)
@@ -353,8 +371,10 @@ func TestObjectStorageClientDeleteObject(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteObject is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "DeleteObject", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "DeleteObject")
 	assert.NoError(t, err)
@@ -389,8 +409,10 @@ func TestObjectStorageClientDeleteObjectLifecyclePolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("DeleteObjectLifecyclePolicy is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "DeleteObjectLifecyclePolicy", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "DeleteObjectLifecyclePolicy")
 	assert.NoError(t, err)
@@ -425,8 +447,10 @@ func TestObjectStorageClientDeletePreauthenticatedRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("DeletePreauthenticatedRequest is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "DeletePreauthenticatedRequest", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "DeletePreauthenticatedRequest")
 	assert.NoError(t, err)
@@ -461,8 +485,10 @@ func TestObjectStorageClientGetBucket(t *testing.T) {
 	if !enabled {
 		t.Skip("GetBucket is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "GetBucket", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "GetBucket")
 	assert.NoError(t, err)
@@ -497,8 +523,10 @@ func TestObjectStorageClientGetNamespace(t *testing.T) {
 	if !enabled {
 		t.Skip("GetNamespace is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "GetNamespace", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "GetNamespace")
 	assert.NoError(t, err)
@@ -533,8 +561,10 @@ func TestObjectStorageClientGetNamespaceMetadata(t *testing.T) {
 	if !enabled {
 		t.Skip("GetNamespaceMetadata is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "GetNamespaceMetadata", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "GetNamespaceMetadata")
 	assert.NoError(t, err)
@@ -569,8 +599,10 @@ func TestObjectStorageClientGetObject(t *testing.T) {
 	if !enabled {
 		t.Skip("GetObject is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "GetObject", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "GetObject")
 	assert.NoError(t, err)
@@ -605,8 +637,10 @@ func TestObjectStorageClientGetObjectLifecyclePolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("GetObjectLifecyclePolicy is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "GetObjectLifecyclePolicy", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "GetObjectLifecyclePolicy")
 	assert.NoError(t, err)
@@ -641,8 +675,10 @@ func TestObjectStorageClientGetPreauthenticatedRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("GetPreauthenticatedRequest is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "GetPreauthenticatedRequest", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "GetPreauthenticatedRequest")
 	assert.NoError(t, err)
@@ -677,8 +713,10 @@ func TestObjectStorageClientGetWorkRequest(t *testing.T) {
 	if !enabled {
 		t.Skip("GetWorkRequest is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "GetWorkRequest", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "GetWorkRequest")
 	assert.NoError(t, err)
@@ -713,8 +751,10 @@ func TestObjectStorageClientHeadBucket(t *testing.T) {
 	if !enabled {
 		t.Skip("HeadBucket is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "HeadBucket", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "HeadBucket")
 	assert.NoError(t, err)
@@ -749,8 +789,10 @@ func TestObjectStorageClientHeadObject(t *testing.T) {
 	if !enabled {
 		t.Skip("HeadObject is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "HeadObject", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "HeadObject")
 	assert.NoError(t, err)
@@ -926,8 +968,10 @@ func TestObjectStorageClientListObjects(t *testing.T) {
 	if !enabled {
 		t.Skip("ListObjects is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "ListObjects", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "ListObjects")
 	assert.NoError(t, err)
@@ -1150,8 +1194,10 @@ func TestObjectStorageClientMergeObjectMetadata(t *testing.T) {
 	if !enabled {
 		t.Skip("MergeObjectMetadata is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "MergeObjectMetadata", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "MergeObjectMetadata")
 	assert.NoError(t, err)
@@ -1186,8 +1232,10 @@ func TestObjectStorageClientPutObject(t *testing.T) {
 	if !enabled {
 		t.Skip("PutObject is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "PutObject", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "PutObject")
 	assert.NoError(t, err)
@@ -1222,8 +1270,10 @@ func TestObjectStorageClientPutObjectLifecyclePolicy(t *testing.T) {
 	if !enabled {
 		t.Skip("PutObjectLifecyclePolicy is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "PutObjectLifecyclePolicy", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "PutObjectLifecyclePolicy")
 	assert.NoError(t, err)
@@ -1258,8 +1308,10 @@ func TestObjectStorageClientRenameObject(t *testing.T) {
 	if !enabled {
 		t.Skip("RenameObject is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "RenameObject", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "RenameObject")
 	assert.NoError(t, err)
@@ -1294,8 +1346,10 @@ func TestObjectStorageClientReplaceObjectMetadata(t *testing.T) {
 	if !enabled {
 		t.Skip("ReplaceObjectMetadata is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "ReplaceObjectMetadata", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "ReplaceObjectMetadata")
 	assert.NoError(t, err)
@@ -1330,8 +1384,10 @@ func TestObjectStorageClientRestoreObjects(t *testing.T) {
 	if !enabled {
 		t.Skip("RestoreObjects is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "RestoreObjects", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "RestoreObjects")
 	assert.NoError(t, err)
@@ -1366,8 +1422,10 @@ func TestObjectStorageClientUpdateBucket(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateBucket is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "UpdateBucket", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "UpdateBucket")
 	assert.NoError(t, err)
@@ -1402,8 +1460,10 @@ func TestObjectStorageClientUpdateNamespaceMetadata(t *testing.T) {
 	if !enabled {
 		t.Skip("UpdateNamespaceMetadata is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "UpdateNamespaceMetadata", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "UpdateNamespaceMetadata")
 	assert.NoError(t, err)
@@ -1438,8 +1498,10 @@ func TestObjectStorageClientUploadPart(t *testing.T) {
 	if !enabled {
 		t.Skip("UploadPart is not enabled by the testing service")
 	}
-	c, err := objectstorage.NewObjectStorageClientWithConfigurationProvider(testConfig.ConfigurationProvider)
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "UploadPart", createObjectStorageClientWithProvider)
 	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
 
 	body, err := testClient.getRequests("objectstorage", "UploadPart")
 	assert.NoError(t, err)
