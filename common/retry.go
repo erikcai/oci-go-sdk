@@ -2,9 +2,9 @@ package common
 
 import (
 	"context"
+	"fmt"
 	"math/rand"
 	"time"
-	"fmt"
 )
 
 const (
@@ -101,7 +101,7 @@ func Retry(ctx context.Context, request OCIRetryableRequest, operation OCIOperat
 
 	type retrierResult struct {
 		response OCIResponse
-		err error
+		err      error
 	}
 
 	var response OCIResponse
