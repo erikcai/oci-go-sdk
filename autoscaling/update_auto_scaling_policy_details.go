@@ -18,12 +18,16 @@ type UpdateAutoScalingPolicyDetails interface {
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	GetDisplayName() *string
+
+	// The capacity requirements of the Policy
+	GetCapacity() *Capacity
 }
 
 type updateautoscalingpolicydetails struct {
 	JsonData    []byte
-	DisplayName *string `mandatory:"false" json:"displayName"`
-	PolicyType  string  `json:"policyType"`
+	DisplayName *string   `mandatory:"false" json:"displayName"`
+	Capacity    *Capacity `mandatory:"false" json:"capacity"`
+	PolicyType  string    `json:"policyType"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -38,6 +42,7 @@ func (m *updateautoscalingpolicydetails) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	m.DisplayName = s.Model.DisplayName
+	m.Capacity = s.Model.Capacity
 	m.PolicyType = s.Model.PolicyType
 
 	return err
@@ -64,6 +69,11 @@ func (m *updateautoscalingpolicydetails) UnmarshalPolymorphicJSON(data []byte) (
 //GetDisplayName returns DisplayName
 func (m updateautoscalingpolicydetails) GetDisplayName() *string {
 	return m.DisplayName
+}
+
+//GetCapacity returns Capacity
+func (m updateautoscalingpolicydetails) GetCapacity() *Capacity {
+	return m.Capacity
 }
 
 func (m updateautoscalingpolicydetails) String() string {

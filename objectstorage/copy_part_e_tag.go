@@ -3,7 +3,7 @@
 
 // Object Storage Service API
 //
-// The Object and Archive Storage APIs for managing buckets and objects.
+// Common set of Object Storage and Archive Storage APIs for managing buckets, objects, and related resources.
 //
 
 package objectstorage
@@ -15,7 +15,7 @@ import (
 // CopyPartETag The representation of CopyPartETag
 type CopyPartETag struct {
 
-	// The ETag of the new part.
+	// The entity tag (ETag) of the new part.
 	ETag *string `mandatory:"true" json:"ETag"`
 }
 

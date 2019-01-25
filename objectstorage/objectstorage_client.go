@@ -3,7 +3,7 @@
 
 // Object Storage Service API
 //
-// The Object and Archive Storage APIs for managing buckets and objects.
+// Common set of Object Storage and Archive Storage APIs for managing buckets, objects, and related resources.
 //
 
 package objectstorage
@@ -99,7 +99,7 @@ func (client ObjectStorageClient) abortMultipartUpload(ctx context.Context, requ
 	return response, err
 }
 
-// CancelWorkRequest Cancel a work request.
+// CancelWorkRequest Cancels a work request.
 func (client ObjectStorageClient) CancelWorkRequest(ctx context.Context, request CancelWorkRequestRequest) (response CancelWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -141,7 +141,7 @@ func (client ObjectStorageClient) cancelWorkRequest(ctx context.Context, request
 	return response, err
 }
 
-// CommitMultipartUpload Commits a multipart upload, which involves checking part numbers and ETags of the parts, to create an aggregate object.
+// CommitMultipartUpload Commits a multipart upload, which involves checking part numbers and entity tags (ETags) of the parts, to create an aggregate object.
 func (client ObjectStorageClient) CommitMultipartUpload(ctx context.Context, request CommitMultipartUploadRequest) (response CommitMultipartUploadResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -183,7 +183,7 @@ func (client ObjectStorageClient) commitMultipartUpload(ctx context.Context, req
 	return response, err
 }
 
-// CopyObject Create a request for copy object within or cross region
+// CopyObject Creates a request to copy an object within a region or to another region.
 func (client ObjectStorageClient) CopyObject(ctx context.Context, request CopyObjectRequest) (response CopyObjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -267,7 +267,8 @@ func (client ObjectStorageClient) copyPart(ctx context.Context, request common.O
 	return response, err
 }
 
-// CreateBucket Creates a bucket in the given namespace with a bucket name and optional user-defined metadata.
+// CreateBucket Creates a bucket in the given namespace with a bucket name and optional user-defined metadata. Avoid entering
+// confidential information in bucket names.
 func (client ObjectStorageClient) CreateBucket(ctx context.Context, request CreateBucketRequest) (response CreateBucketResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -393,7 +394,9 @@ func (client ObjectStorageClient) createPreauthenticatedRequest(ctx context.Cont
 	return response, err
 }
 
-// DeleteBucket Deletes a bucket if it is already empty. If the bucket is not empty, use DeleteObject first.
+// DeleteBucket Deletes a bucket if the bucket is already empty. If the bucket is not empty, use
+// DeleteObject first. You also cannot
+// delete a bucket that has a pre-authenticated request associated with that bucket.
 func (client ObjectStorageClient) DeleteBucket(ctx context.Context, request DeleteBucketRequest) (response DeleteBucketResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -561,7 +564,7 @@ func (client ObjectStorageClient) deletePreauthenticatedRequest(ctx context.Cont
 	return response, err
 }
 
-// GetBucket Gets the current representation of the given bucket in the given namespace.
+// GetBucket Gets the current representation of the given bucket in the given Object Storage namespace.
 func (client ObjectStorageClient) GetBucket(ctx context.Context, request GetBucketRequest) (response GetBucketResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -603,8 +606,12 @@ func (client ObjectStorageClient) getBucket(ctx context.Context, request common.
 	return response, err
 }
 
-// GetNamespace Gets the name of the namespace for the user making the request.
-// If an optional compartmentId query parameter is provided it returns the namespace name of the corresponding tenancy, provided the user has access to it.
+// GetNamespace Each Oracle Cloud Infrastructure tenant is assigned one unique and uneditable Object Storage namespace. The namespace
+// is a system-generated string assigned during account creation. For some older tenancies, the namespace string may be
+// the tenancy name in all lower-case letters. You cannot edit a namespace.
+// GetNamespace returns the name of the Object Storage namespace for the user making the request.
+// If an optional compartmentId query parameter is provided, GetNamespace returns the namespace name of the corresponding
+// tenancy, provided the user has access to it.
 func (client ObjectStorageClient) GetNamespace(ctx context.Context, request GetNamespaceRequest) (response GetNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -646,10 +653,12 @@ func (client ObjectStorageClient) getNamespace(ctx context.Context, request comm
 	return response, err
 }
 
-// GetNamespaceMetadata Get the metadata for the namespace, which contains defaultS3CompartmentId and defaultSwiftCompartmentId.
-// Any user with the NAMESPACE_READ permission will be able to see the current metadata. If you're not authorized,
-// talk to an administrator. If you're an administrator who needs to write
-// policies to give users access, see Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
+// GetNamespaceMetadata Gets the metadata for the Object Storage namespace, which contains defaultS3CompartmentId and
+// defaultSwiftCompartmentId.
+// Any user with the NAMESPACE_READ permission will be able to see the current metadata. If you are
+// not authorized, talk to an administrator. If you are an administrator who needs to write policies
+// to give users access, see
+// Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 func (client ObjectStorageClient) GetNamespaceMetadata(ctx context.Context, request GetNamespaceMetadataRequest) (response GetNamespaceMetadataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -816,7 +825,7 @@ func (client ObjectStorageClient) getPreauthenticatedRequest(ctx context.Context
 	return response, err
 }
 
-// GetWorkRequest Gets the status of the work request with the given ID.
+// GetWorkRequest Gets the status of the work request for the given ID.
 func (client ObjectStorageClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -858,7 +867,7 @@ func (client ObjectStorageClient) getWorkRequest(ctx context.Context, request co
 	return response, err
 }
 
-// HeadBucket Efficiently checks to see if a bucket exists and gets the current ETag for the bucket.
+// HeadBucket Efficiently checks to see if a bucket exists and gets the current entity tag (ETag) for the bucket.
 func (client ObjectStorageClient) HeadBucket(ctx context.Context, request HeadBucketRequest) (response HeadBucketResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -900,7 +909,7 @@ func (client ObjectStorageClient) headBucket(ctx context.Context, request common
 	return response, err
 }
 
-// HeadObject Gets the user-defined metadata and entity tag for an object.
+// HeadObject Gets the user-defined metadata and entity tag (ETag) for an object.
 func (client ObjectStorageClient) HeadObject(ctx context.Context, request HeadObjectRequest) (response HeadObjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -942,10 +951,10 @@ func (client ObjectStorageClient) headObject(ctx context.Context, request common
 	return response, err
 }
 
-// ListBuckets Gets a list of all `BucketSummary`s in a compartment. A `BucketSummary` contains only summary fields for the bucket
+// ListBuckets Gets a list of all BucketSummary items in a compartment. A BucketSummary contains only summary fields for the bucket
 // and does not contain fields like the user-defined metadata.
-// To use this and other API operations, you must be authorized in an IAM policy. If you're not authorized,
-// talk to an administrator. If you're an administrator who needs to write policies to give users access, see
+// To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized,
+// talk to an administrator. If you are an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 func (client ObjectStorageClient) ListBuckets(ctx context.Context, request ListBucketsRequest) (response ListBucketsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1030,7 +1039,7 @@ func (client ObjectStorageClient) listMultipartUploadParts(ctx context.Context, 
 	return response, err
 }
 
-// ListMultipartUploads Lists all in-progress multipart uploads for the given bucket in the given namespace.
+// ListMultipartUploads Lists all of the in-progress multipart uploads for the given bucket in the given Object Storage namespace.
 func (client ObjectStorageClient) ListMultipartUploads(ctx context.Context, request ListMultipartUploadsRequest) (response ListMultipartUploadsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1073,8 +1082,8 @@ func (client ObjectStorageClient) listMultipartUploads(ctx context.Context, requ
 }
 
 // ListObjects Lists the objects in a bucket.
-// To use this and other API operations, you must be authorized in an IAM policy. If you're not authorized,
-// talk to an administrator. If you're an administrator who needs to write policies to give users access, see
+// To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized,
+// talk to an administrator. If you are an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
 func (client ObjectStorageClient) ListObjects(ctx context.Context, request ListObjectsRequest) (response ListObjectsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1285,7 +1294,7 @@ func (client ObjectStorageClient) listWorkRequests(ctx context.Context, request 
 	return response, err
 }
 
-// MergeObjectMetadata Performs a merge of a Object's user-defined metadata with existing metadata.
+// MergeObjectMetadata Merges an Object's user-defined metadata with existing metadata.
 func (client ObjectStorageClient) MergeObjectMetadata(ctx context.Context, request MergeObjectMetadataRequest) (response MergeObjectMetadataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1327,7 +1336,8 @@ func (client ObjectStorageClient) mergeObjectMetadata(ctx context.Context, reque
 	return response, err
 }
 
-// PutObject Creates a new object or overwrites an existing one.
+// PutObject Creates a new object or overwrites an existing one. See Special Instructions for Object Storage
+// PUT (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/signingrequests.htm#ObjectStoragePut) for request signature requirements.
 func (client ObjectStorageClient) PutObject(ctx context.Context, request PutObjectRequest) (response PutObjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1421,7 +1431,7 @@ func (client ObjectStorageClient) putObjectLifecyclePolicy(ctx context.Context, 
 	return response, err
 }
 
-// RenameObject Rename an object from source key to target key in the given namespace.
+// RenameObject Rename an object in the given Object Storage namespace.
 func (client ObjectStorageClient) RenameObject(ctx context.Context, request RenameObjectRequest) (response RenameObjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1463,7 +1473,7 @@ func (client ObjectStorageClient) renameObject(ctx context.Context, request comm
 	return response, err
 }
 
-// ReplaceObjectMetadata Performs a overwrite of a Object's user-defined metadata.
+// ReplaceObjectMetadata Overwrites an Object's user-defined metadata.
 func (client ObjectStorageClient) ReplaceObjectMetadata(ctx context.Context, request ReplaceObjectMetadataRequest) (response ReplaceObjectMetadataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1505,7 +1515,7 @@ func (client ObjectStorageClient) replaceObjectMetadata(ctx context.Context, req
 	return response, err
 }
 
-// RestoreObjects Restore one or more objects specified by the objectName parameter.
+// RestoreObjects Restores one or more objects specified by the objectName parameter.
 // By default objects will be restored for 24 hours. Duration can be configured using the hours parameter.
 func (client ObjectStorageClient) RestoreObjects(ctx context.Context, request RestoreObjectsRequest) (response RestoreObjectsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1590,10 +1600,12 @@ func (client ObjectStorageClient) updateBucket(ctx context.Context, request comm
 	return response, err
 }
 
-// UpdateNamespaceMetadata Change the default Swift/S3 compartmentId of user's namespace into the user-defined compartmentId. Upon doing
-// this, all subsequent bucket creations will use the new default compartment, but no previously created
-// buckets will be modified. A user must have the NAMESPACE_UPDATE permission to make changes to the default
-// compartments for S3 and Swift.
+// UpdateNamespaceMetadata By default, buckets created using the Amazon S3 Compatibility API or the Swift API are created in the root
+// compartment of the Oracle Cloud Infrastructure tenancy.
+// You can change the default Swift/Amazon S3 compartmentId designation to a different compartmentId. All
+// subsequent bucket creations will use the new default compartment, but no previously created
+// buckets will be modified. A user must have NAMESPACE_UPDATE permission to make changes to the default
+// compartments for Amazon S3 and Swift.
 func (client ObjectStorageClient) UpdateNamespaceMetadata(ctx context.Context, request UpdateNamespaceMetadataRequest) (response UpdateNamespaceMetadataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

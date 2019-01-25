@@ -155,7 +155,7 @@ type LaunchInstanceDetails struct {
 	// Volume attachments to create as part of the launch instance operation.
 	VolumeAttachments []CreateVolumeAttachmentDetails `mandatory:"false" json:"volumeAttachments"`
 
-	// Whether to enable encryption in transit for the PV boot volume attachment. Defaults to false.
+	// Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
 	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 }
 

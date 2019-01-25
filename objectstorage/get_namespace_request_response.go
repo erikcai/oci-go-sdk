@@ -14,7 +14,7 @@ type GetNamespaceRequest struct {
 	// The client request ID for tracing.
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
 
-	// This is an optional field representing the tenancy OCID or the compartment OCID within the tenancy whose namespace
+	// This is an optional field representing the tenancy OCID or the compartment OCID within the tenancy whose Object Storage namespace
 	// name has to be retrieved.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 

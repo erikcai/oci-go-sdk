@@ -11,11 +11,6 @@ import (
 // ListAutoScalingPoliciesRequest wrapper for the ListAutoScalingPolicies operation
 type ListAutoScalingPoliciesRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment containing the
-	// resources monitored by the metric that you are searching for. Use tenancyId to search in
-	// the root compartment.
-	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
-
 	// The OCID of the auto scaling configuration.
 	AutoScalingConfigurationId *string `mandatory:"true" contributesTo:"path" name:"autoScalingConfigurationId"`
 

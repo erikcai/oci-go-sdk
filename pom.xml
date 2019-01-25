@@ -48,6 +48,7 @@
     <oci-waas-api-spec-spec-file>oci-waas-api-spec.cond.yaml</oci-waas-api-spec-spec-file>
     <ads-control-plane-spec-spec-file>api.yaml</ads-control-plane-spec-spec-file>
     <batchservice-api-spec-spec-file>source/batchservice.cond.yaml</batchservice-api-spec-spec-file>
+    <fn-api-spec-spec-file>functions-api-spec.cond.yaml</fn-api-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -157,6 +158,10 @@
     <dependency>
       <groupId>com.oracle.pic.obcs</groupId>
       <artifactId>batchservice-api-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.pic.functions</groupId>
+      <artifactId>fn-api-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -666,6 +671,24 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/batchservice-api-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-fn-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.pic.functions</groupId>
+                  <artifactId>fn-api-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/fn-api-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1406,6 +1429,33 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-fn-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/fn-api-spec/source/${fn-api-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/fn-api-spec/${fn-api-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/fn-api-spec/${fn-api-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-fn-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/fn-api-spec/${fn-api-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/fn-api-spec/${fn-api-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -1996,6 +2046,27 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-fn-api-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/fn-api-spec/${fn-api-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>functions</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>functions</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <serviceHostName>functions</serviceHostName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2208,6 +2279,12 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/functions</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -2218,17 +2295,17 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.353</version>
+        <version>0.2.368</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec-preview</artifactId>
-        <version>0.2.27-PREVIEW</version>
+        <version>0.2.41-PREVIEW</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.47-20181019.191010-2</version>
+        <version>1.1.229</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -2323,7 +2400,7 @@
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>
         <artifactId>autoscaling-public-api-spec</artifactId>
-        <version>0.0.22</version>
+        <version>0.0.23</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.usage</groupId>
@@ -2349,6 +2426,11 @@
         <groupId>com.oracle.pic.obcs</groupId>
         <artifactId>batchservice-api-spec</artifactId>
         <version>0.1.14</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.pic.functions</groupId>
+        <artifactId>fn-api-spec</artifactId>
+        <version>0.3.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -23,6 +23,234 @@ func createBlockstorageClientWithProvider(p common.ConfigurationProvider, testCo
 }
 
 // IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestBlockstorageClientChangeBootVolumeBackupCompartment(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("core", "ChangeBootVolumeBackupCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeBootVolumeBackupCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ChangeBootVolumeBackupCompartment", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "ChangeBootVolumeBackupCompartment")
+	assert.NoError(t, err)
+
+	type ChangeBootVolumeBackupCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeBootVolumeBackupCompartmentRequest
+	}
+
+	var requests []ChangeBootVolumeBackupCompartmentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeBootVolumeBackupCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestBlockstorageClientChangeBootVolumeCompartment(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("core", "ChangeBootVolumeCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeBootVolumeCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ChangeBootVolumeCompartment", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "ChangeBootVolumeCompartment")
+	assert.NoError(t, err)
+
+	type ChangeBootVolumeCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeBootVolumeCompartmentRequest
+	}
+
+	var requests []ChangeBootVolumeCompartmentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeBootVolumeCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestBlockstorageClientChangeVolumeBackupCompartment(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("core", "ChangeVolumeBackupCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeVolumeBackupCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ChangeVolumeBackupCompartment", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "ChangeVolumeBackupCompartment")
+	assert.NoError(t, err)
+
+	type ChangeVolumeBackupCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeVolumeBackupCompartmentRequest
+	}
+
+	var requests []ChangeVolumeBackupCompartmentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeVolumeBackupCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestBlockstorageClientChangeVolumeCompartment(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("core", "ChangeVolumeCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeVolumeCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ChangeVolumeCompartment", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "ChangeVolumeCompartment")
+	assert.NoError(t, err)
+
+	type ChangeVolumeCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeVolumeCompartmentRequest
+	}
+
+	var requests []ChangeVolumeCompartmentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeVolumeCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestBlockstorageClientChangeVolumeGroupBackupCompartment(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("core", "ChangeVolumeGroupBackupCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeVolumeGroupBackupCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ChangeVolumeGroupBackupCompartment", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "ChangeVolumeGroupBackupCompartment")
+	assert.NoError(t, err)
+
+	type ChangeVolumeGroupBackupCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeVolumeGroupBackupCompartmentRequest
+	}
+
+	var requests []ChangeVolumeGroupBackupCompartmentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeVolumeGroupBackupCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestBlockstorageClientChangeVolumeGroupCompartment(t *testing.T) {
+	enabled, err := testClient.isApiEnabled("core", "ChangeVolumeGroupCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeVolumeGroupCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ChangeVolumeGroupCompartment", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "ChangeVolumeGroupCompartment")
+	assert.NoError(t, err)
+
+	type ChangeVolumeGroupCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeVolumeGroupCompartmentRequest
+	}
+
+	var requests []ChangeVolumeGroupCompartmentRequestInfo
+	err = json.Unmarshal([]byte(body), &requests)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeVolumeGroupCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
 func TestBlockstorageClientCopyBootVolumeBackup(t *testing.T) {
 	enabled, err := testClient.isApiEnabled("core", "CopyBootVolumeBackup")
 	assert.NoError(t, err)

@@ -11,7 +11,7 @@ import (
 // ReplaceObjectMetadataRequest wrapper for the ReplaceObjectMetadata operation
 type ReplaceObjectMetadataRequest struct {
 
-	// The top-level namespace used for the request.
+	// The Object Storage namespace used for the request.
 	NamespaceName *string `mandatory:"true" contributesTo:"path" name:"namespaceName"`
 
 	// The name of the bucket. Avoid entering confidential information.
@@ -25,7 +25,7 @@ type ReplaceObjectMetadataRequest struct {
 	// The new user metadata of object.
 	ReplaceObjectMetadataDetails `contributesTo:"body"`
 
-	// The entity tag to match. For creating and committing a multipart upload to an object, this is the entity tag of the target object.
+	// The entity tag (ETag) to match. For creating and committing a multipart upload to an object, this is the entity tag of the target object.
 	// For uploading a part, this is the entity tag of the target part.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 

@@ -28,7 +28,9 @@ type CreateIdentityProviderDetails interface {
 	// Does not have to be unique, and it's changeable.
 	GetDescription() *string
 
-	// The identity provider service or product (e.g., Oracle Identity Cloud Service).
+	// The identity provider service or product.
+	// Supported identity providers are Oracle Identity Cloud Service (IDCS) and Microsoft
+	// Active Directory Federation Services (ADFS).
 	// Example: `IDCS`
 	GetProductType() CreateIdentityProviderDetailsProductTypeEnum
 
@@ -134,10 +136,12 @@ type CreateIdentityProviderDetailsProductTypeEnum string
 // Set of constants representing the allowable values for CreateIdentityProviderDetailsProductTypeEnum
 const (
 	CreateIdentityProviderDetailsProductTypeIdcs CreateIdentityProviderDetailsProductTypeEnum = "IDCS"
+	CreateIdentityProviderDetailsProductTypeAdfs CreateIdentityProviderDetailsProductTypeEnum = "ADFS"
 )
 
 var mappingCreateIdentityProviderDetailsProductType = map[string]CreateIdentityProviderDetailsProductTypeEnum{
 	"IDCS": CreateIdentityProviderDetailsProductTypeIdcs,
+	"ADFS": CreateIdentityProviderDetailsProductTypeAdfs,
 }
 
 // GetCreateIdentityProviderDetailsProductTypeEnumValues Enumerates the set of values for CreateIdentityProviderDetailsProductTypeEnum

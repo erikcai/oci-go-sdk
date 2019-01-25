@@ -3,7 +3,7 @@
 
 // Object Storage Service API
 //
-// The Object and Archive Storage APIs for managing buckets and objects.
+// Common set of Object Storage and Archive Storage APIs for managing buckets, objects, and related resources.
 //
 
 package objectstorage
@@ -18,7 +18,7 @@ type ReplaceObjectMetadataDetails struct {
 	// Arbitrary string keys-values pair for the user-defined metadata for the object.
 	// Keys must be in "opc-meta-*" format. Avoid entering confidential information.
 	// The size of user-defined metadata is measured by taking the sum of the number of bytes in the UTF-8 encoding
-	// of each key and value.The maximum metadata size is 2975 bytes.
+	// of each key and value. The maximum metadata size is 2975 bytes.
 	Metadata map[string]string `mandatory:"true" json:"metadata"`
 }
 

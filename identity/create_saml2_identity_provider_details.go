@@ -64,7 +64,9 @@ type CreateSaml2IdentityProviderDetails struct {
 	// "urn:oasis:names:tc:SAML:2.0:ac:classes:TLSClient"]`
 	AuthnContextClassRefs []string `mandatory:"false" json:"authnContextClassRefs"`
 
-	// The identity provider service or product (e.g., Oracle Identity Cloud Service).
+	// The identity provider service or product.
+	// Supported identity providers are Oracle Identity Cloud Service (IDCS) and Microsoft
+	// Active Directory Federation Services (ADFS).
 	// Example: `IDCS`
 	ProductType CreateIdentityProviderDetailsProductTypeEnum `mandatory:"true" json:"productType"`
 }

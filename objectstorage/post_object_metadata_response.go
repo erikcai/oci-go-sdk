@@ -3,7 +3,7 @@
 
 // Object Storage Service API
 //
-// The Object and Archive Storage APIs for managing buckets and objects.
+// Common set of Object Storage and Archive Storage APIs for managing buckets, objects, and related resources.
 //
 
 package objectstorage
@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PostObjectMetadataResponse Updated object info after user-metadata Update.
+// PostObjectMetadataResponse Updated object information after user-metadata update.
 type PostObjectMetadataResponse struct {
 
-	// The new entity tag for the object.
+	// The new entity tag (ETag) for the object.
 	ETag *string `mandatory:"true" json:"ETag"`
 
 	// The time the object was modified, as described in RFC 2616 (https://tools.ietf.org/rfc/rfc2616), section 14.29.

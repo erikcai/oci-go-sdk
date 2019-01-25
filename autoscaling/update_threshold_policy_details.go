@@ -15,15 +15,24 @@ import (
 
 // UpdateThresholdPolicyDetails The representation of UpdateThresholdPolicyDetails
 type UpdateThresholdPolicyDetails struct {
-	Rules []UpdateConditionDetails `mandatory:"true" json:"rules"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// The capacity requirements of the Policy
+	Capacity *Capacity `mandatory:"false" json:"capacity"`
+
+	Rules []UpdateConditionDetails `mandatory:"false" json:"rules"`
 }
 
 //GetDisplayName returns DisplayName
 func (m UpdateThresholdPolicyDetails) GetDisplayName() *string {
 	return m.DisplayName
+}
+
+//GetCapacity returns Capacity
+func (m UpdateThresholdPolicyDetails) GetCapacity() *Capacity {
+	return m.Capacity
 }
 
 func (m UpdateThresholdPolicyDetails) String() string {
