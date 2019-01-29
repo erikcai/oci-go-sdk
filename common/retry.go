@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"math/rand"
+	"runtime"
 	"time"
 )
 
@@ -109,6 +110,17 @@ func Retry(ctx context.Context, request OCIRetryableRequest, operation OCIOperat
 	retrierChannel := make(chan retrierResult)
 
 	go func() {
+
+		// Deal with panics more graciously
+		defer func() {
+			if r := recover(); r != nil {
+				stackBuffer := make([]byte, 1024)
+				bytesWritten := runtime.Stack(stackBuffer, false)
+				stack := string(stackBuffer[:bytesWritten])
+				retrierChannel <- retrierResult{nil, fmt.Errorf("panicked while retrying operation. Panic was: %s\nStack: %s", r, stack)}
+			}
+		}()
+
 		// use a one-based counter because it's easier to think about operation retry in terms of attempt numbering
 		for currentOperationAttempt := uint(1); shouldContinueIssuingRequests(currentOperationAttempt, policy.MaximumNumberAttempts); currentOperationAttempt++ {
 			Debugln(fmt.Sprintf("operation attempt #%v", currentOperationAttempt))
@@ -134,6 +146,7 @@ func Retry(ctx context.Context, request OCIRetryableRequest, operation OCIOperat
 			// sleep before retrying the operation
 			<-time.After(duration)
 		}
+
 		retrierChannel <- retrierResult{nil, fmt.Errorf("maximum number of attempts exceeded (%v)", policy.MaximumNumberAttempts)}
 	}()
 
