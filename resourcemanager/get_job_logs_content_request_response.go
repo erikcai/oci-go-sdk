@@ -44,7 +44,7 @@ type GetJobLogsContentResponse struct {
 	RawResponse *http.Response
 
 	// The string instance
-	Value *string `presentIn:"body"`
+	Value *string `presentIn:"body" encoding:"plain-text"`
 
 	// Unique identifier for the request
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`

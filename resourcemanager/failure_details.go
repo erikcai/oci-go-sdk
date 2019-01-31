@@ -36,7 +36,6 @@ const (
 	FailureDetailsCodeTerraformConfigUnzipFailed FailureDetailsCodeEnum = "TERRAFORM_CONFIG_UNZIP_FAILED"
 	FailureDetailsCodeInvalidWorkingDirectory    FailureDetailsCodeEnum = "INVALID_WORKING_DIRECTORY"
 	FailureDetailsCodeJobTimeout                 FailureDetailsCodeEnum = "JOB_TIMEOUT"
-	FailureDetailsCodeTerraformConfigVirusFound  FailureDetailsCodeEnum = "TERRAFORM_CONFIG_VIRUS_FOUND"
 )
 
 var mappingFailureDetailsCode = map[string]FailureDetailsCodeEnum{
@@ -45,7 +44,6 @@ var mappingFailureDetailsCode = map[string]FailureDetailsCodeEnum{
 	"TERRAFORM_CONFIG_UNZIP_FAILED": FailureDetailsCodeTerraformConfigUnzipFailed,
 	"INVALID_WORKING_DIRECTORY":     FailureDetailsCodeInvalidWorkingDirectory,
 	"JOB_TIMEOUT":                   FailureDetailsCodeJobTimeout,
-	"TERRAFORM_CONFIG_VIRUS_FOUND":  FailureDetailsCodeTerraformConfigVirusFound,
 }
 
 // GetFailureDetailsCodeEnumValues Enumerates the set of values for FailureDetailsCodeEnum
