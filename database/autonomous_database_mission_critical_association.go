@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AutonomousDatabaseMissionCriticalAssociation The properties that define the Mission Critical assocation between two different Autonomous Databases.
+// AutonomousDatabaseMissionCriticalAssociation The properties that define the Mission Critical Association between two different Autonomous Databases.
 type AutonomousDatabaseMissionCriticalAssociation struct {
 
 	// The OCID of the Autonomous Database Mission Critical Id.
@@ -24,16 +24,16 @@ type AutonomousDatabaseMissionCriticalAssociation struct {
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the peer Autonomous Database.
 	PeerAutonomousDatabaseId *string `mandatory:"true" json:"peerAutonomousDatabaseId"`
 
-	// The OCID of the peer Autonomous Database Mission Critical association id.
-	PeerAutonomousDatabaseMissionCriticalAssociationId *string `mandatory:"true" json:"peerAutonomousDatabaseMissionCriticalAssociationId"`
+	// The OCID of the peer Autonomous Database Mission Critical Association id.
+	PeerMissionCriticalAssociationId *string `mandatory:"true" json:"peerMissionCriticalAssociationId"`
 
-	// The current state of the Autonomous Database Mission Critical association.
+	// The current state of the Autonomous Database Mission Critical Association.
 	LifecycleState AutonomousDatabaseMissionCriticalAssociationLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The role of the reporting Autonomous Database in this Autonomous Mission Critical association.
+	// The role of the reporting Autonomous Database in this Autonomous Mission Critical Association.
 	Role AutonomousDatabaseMissionCriticalAssociationRoleEnum `mandatory:"false" json:"role,omitempty"`
 
-	// The role of the peer Autonomous Database in this Autonomous Mission Critical association.
+	// The role of the peer Autonomous Database in this Autonomous Mission Critical Association.
 	PeerRole AutonomousDatabaseMissionCriticalAssociationPeerRoleEnum `mandatory:"false" json:"peerRole,omitempty"`
 
 	// Additional information about the current lifecycleState, if available.

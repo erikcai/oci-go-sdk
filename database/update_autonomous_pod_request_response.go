@@ -14,7 +14,7 @@ type UpdateAutonomousPodRequest struct {
 	// The Autonomous Pod OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 	AutonomousPodId *string `mandatory:"true" contributesTo:"path" name:"autonomousPodId"`
 
-	// Request to update the properties of a Autonomous Pod.
+	// Request to update the properties of an Autonomous Pod.
 	UpdateAutonomousPodDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AutonomousPodMissionCriticalAssociation The properties that define the Mission Critical assocation between two different Autonomous Pods.
+// AutonomousPodMissionCriticalAssociation The properties that define the Mission Critical Association between two different Autonomous Pods.
 type AutonomousPodMissionCriticalAssociation struct {
 
-	// The OCID of the Autonomous Mission Critical Pod id.
+	// The OCID of the Mission Critical Autonomous Pod id.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the Autonomous Pod that has a relationship with the peer Autonomous Pod.
@@ -24,13 +24,13 @@ type AutonomousPodMissionCriticalAssociation struct {
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the peer Autonomous Pod.
 	PeerAutonomousPodId *string `mandatory:"true" json:"peerAutonomousPodId"`
 
-	// The role of the reporting Pod in this Autonomous Mission Critical association.
+	// The role of the reporting Pod in this Autonomous Mission Critical Association.
 	Role AutonomousPodMissionCriticalAssociationRoleEnum `mandatory:"true" json:"role"`
 
-	// The role of the peer Pod in this Autonomous Mission Critical association.
+	// The role of the peer Pod in this Autonomous Mission Critical Association.
 	PeerRole AutonomousPodMissionCriticalAssociationPeerRoleEnum `mandatory:"true" json:"peerRole"`
 
-	// The OCID of the peer Autonomous Pod Mission Critical Association Id.
+	// The OCID of the peer Autonomous Pod Mission Critical Association.
 	PeerAutonomousPodMissionCriticalAssociationId *string `mandatory:"true" json:"peerAutonomousPodMissionCriticalAssociationId"`
 
 	// The current state of the Autonomous Pod Mission Critical Association.

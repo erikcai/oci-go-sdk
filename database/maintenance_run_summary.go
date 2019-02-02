@@ -93,13 +93,13 @@ type MaintenanceRunSummaryTargetResourceTypeEnum string
 
 // Set of constants representing the allowable values for MaintenanceRunSummaryTargetResourceTypeEnum
 const (
-	MaintenanceRunSummaryTargetResourceTypeDbsystem MaintenanceRunSummaryTargetResourceTypeEnum = "AUTONOMOUS_DBSYSTEM"
-	MaintenanceRunSummaryTargetResourceTypePod      MaintenanceRunSummaryTargetResourceTypeEnum = "AUTONOMOUS_POD"
+	MaintenanceRunSummaryTargetResourceTypeDbsystem          MaintenanceRunSummaryTargetResourceTypeEnum = "AUTONOMOUS_DBSYSTEM"
+	MaintenanceRunSummaryTargetResourceTypeContainerdatabase MaintenanceRunSummaryTargetResourceTypeEnum = "AUTONOMOUS_CONTAINERDATABASE"
 )
 
 var mappingMaintenanceRunSummaryTargetResourceType = map[string]MaintenanceRunSummaryTargetResourceTypeEnum{
-	"AUTONOMOUS_DBSYSTEM": MaintenanceRunSummaryTargetResourceTypeDbsystem,
-	"AUTONOMOUS_POD":      MaintenanceRunSummaryTargetResourceTypePod,
+	"AUTONOMOUS_DBSYSTEM":          MaintenanceRunSummaryTargetResourceTypeDbsystem,
+	"AUTONOMOUS_CONTAINERDATABASE": MaintenanceRunSummaryTargetResourceTypeContainerdatabase,
 }
 
 // GetMaintenanceRunSummaryTargetResourceTypeEnumValues Enumerates the set of values for MaintenanceRunSummaryTargetResourceTypeEnum

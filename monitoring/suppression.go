@@ -19,11 +19,11 @@ import (
 type Suppression struct {
 
 	// The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.
-	// Example: `2018-02-01T01:02:29.600Z`
+	// Example: `2019-02-01T01:02:29.600Z`
 	TimeSuppressFrom *common.SDKTime `mandatory:"true" json:"timeSuppressFrom"`
 
 	// The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.
-	// Example: `2018-02-01T02:02:29.600Z`
+	// Example: `2019-02-01T02:02:29.600Z`
 	TimeSuppressUntil *common.SDKTime `mandatory:"true" json:"timeSuppressUntil"`
 
 	// Human-readable reason for suppressing alarm notifications.

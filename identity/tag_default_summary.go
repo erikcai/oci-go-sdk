@@ -36,8 +36,32 @@ type TagDefaultSummary struct {
 	// Date and time the `TagDefault` object was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// The tag default's current state. After creating a tagdefault, make sure its `lifecycleState` is ACTIVE before using it.
+	LifecycleState TagDefaultSummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 
 func (m TagDefaultSummary) String() string {
 	return common.PointerString(m)
+}
+
+// TagDefaultSummaryLifecycleStateEnum Enum with underlying type: string
+type TagDefaultSummaryLifecycleStateEnum string
+
+// Set of constants representing the allowable values for TagDefaultSummaryLifecycleStateEnum
+const (
+	TagDefaultSummaryLifecycleStateActive TagDefaultSummaryLifecycleStateEnum = "ACTIVE"
+)
+
+var mappingTagDefaultSummaryLifecycleState = map[string]TagDefaultSummaryLifecycleStateEnum{
+	"ACTIVE": TagDefaultSummaryLifecycleStateActive,
+}
+
+// GetTagDefaultSummaryLifecycleStateEnumValues Enumerates the set of values for TagDefaultSummaryLifecycleStateEnum
+func GetTagDefaultSummaryLifecycleStateEnumValues() []TagDefaultSummaryLifecycleStateEnum {
+	values := make([]TagDefaultSummaryLifecycleStateEnum, 0)
+	for _, v := range mappingTagDefaultSummaryLifecycleState {
+		values = append(values, v)
+	}
+	return values
 }

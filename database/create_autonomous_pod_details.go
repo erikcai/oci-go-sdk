@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateAutonomousPodDetails Describes the create parameters for the autonomous Pod.
+// CreateAutonomousPodDetails Describes the required parameters for the creation of an Autonomous Pod.
 type CreateAutonomousPodDetails struct {
 
 	// The display name for the Autonomous Pod.
@@ -27,10 +27,10 @@ type CreateAutonomousPodDetails struct {
 	// Maintenance Window preference, if set to WEEK_TWO, database patch will be applied in the second week during each patching cycle.
 	MaintenanceWindow CreateAutonomousPodDetailsMaintenanceWindowEnum `mandatory:"true" json:"maintenanceWindow"`
 
-	// Service level agreement type of the Pod. Default is STANDARD. For the MISSION_CRITICAL Pod, the specified Autonomous DB System must be in association with a remote Autonomous DB System.
+	// The service level agreement type of the Autonomous Pod. The default is STANDARD. For a Mission Critical Pod, the specified Autonomous Exadata Infrastructure must be associated with a remote Autonomous Exadata Infrastructure.
 	ServiceLevelAgreementType CreateAutonomousPodDetailsServiceLevelAgreementTypeEnum `mandatory:"false" json:"serviceLevelAgreementType,omitempty"`
 
-	// The OCID of the Peer Autonomous DB System for Mission Critical association
+	// The OCID of the Peer Autonomous DB System for Mission Critical Association
 	PeerAutonomousDbSystemId *string `mandatory:"false" json:"peerAutonomousDbSystemId"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Autonomous Pod.

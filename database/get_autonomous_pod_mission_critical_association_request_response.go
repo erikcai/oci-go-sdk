@@ -14,7 +14,7 @@ type GetAutonomousPodMissionCriticalAssociationRequest struct {
 	// The Autonomous Pod OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 	AutonomousPodId *string `mandatory:"true" contributesTo:"path" name:"autonomousPodId"`
 
-	// The Autonomous Pod Mission Critical association OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	// The Autonomous Pod Mission Critical Association OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 	AutonomousPodMissionCriticalAssociationId *string `mandatory:"true" contributesTo:"path" name:"autonomousPodMissionCriticalAssociationId"`
 
 	// Unique Oracle-assigned identifier for the request.

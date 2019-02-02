@@ -37,7 +37,7 @@ func NewDatabaseClientWithConfigurationProvider(configProvider common.Configurat
 
 // SetRegion overrides the region of this client.
 func (client *DatabaseClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("database")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("database", "https://database.{region}.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -94,6 +94,53 @@ func (client DatabaseClient) completeExternalBackupJob(ctx context.Context, requ
 	}
 
 	var response CompleteExternalBackupJobResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateAutonomousContainerDatabase Create a new Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
+func (client DatabaseClient) CreateAutonomousContainerDatabase(ctx context.Context, request CreateAutonomousContainerDatabaseRequest) (response CreateAutonomousContainerDatabaseResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createAutonomousContainerDatabase, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateAutonomousContainerDatabaseResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateAutonomousContainerDatabaseResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateAutonomousContainerDatabaseResponse")
+	}
+	return
+}
+
+// createAutonomousContainerDatabase implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) createAutonomousContainerDatabase(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousContainerDatabases")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateAutonomousContainerDatabaseResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -294,7 +341,7 @@ func (client DatabaseClient) createAutonomousDatabaseBackup(ctx context.Context,
 	return response, err
 }
 
-// CreateAutonomousPod Create a new Autonomous Pod in the specified Autonomous DB System.
+// CreateAutonomousPod Create a new Autonomous Pod in the specified Autonomous Exadata Infrastructure.
 func (client DatabaseClient) CreateAutonomousPod(ctx context.Context, request CreateAutonomousPodRequest) (response CreateAutonomousPodResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -536,16 +583,18 @@ func (client DatabaseClient) createExternalBackupJob(ctx context.Context, reques
 	return response, err
 }
 
-// DbNodeAction Performs an action, such as one of the power actions (start, stop, softreset, or reset), on the specified DB Node.
-// **start** - power on
-// **stop** - power off
-// **softreset** - ACPI shutdown and power on
-// **reset** - power off and power on
-// Note that the **stop** state has no effect on the resources you consume.
-// Billing continues for DB Nodes that you stop, and related resources continue
+// DbNodeAction Performs one of the following power actions on the specified DB node:
+// - start - power on
+// - stop - power off
+// - softreset - ACPI shutdown and power on
+// - reset - power off and power on
+// **Note:** Stopping a node affects billing differently, depending on the type of DB system:
+// *Bare metal and Exadata DB systems* - The _stop_ state has no effect on the resources you consume.
+// Billing continues for DB nodes that you stop, and related resources continue
 // to apply against any relevant quotas. You must terminate the DB system
 // (TerminateDbSystem)
 // to remove its resources from billing and quotas.
+// *Virtual machine DB systems* - Stopping a node stops billing for all OCPUs associated with that node, and billing resumes when you restart the node.
 func (client DatabaseClient) DbNodeAction(ctx context.Context, request DbNodeActionRequest) (response DbNodeActionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -802,10 +851,51 @@ func (client DatabaseClient) deleteDbHome(ctx context.Context, request common.OC
 	return response, err
 }
 
-// FailoverAutonomousPodMissionCriticalAssociation Performs a failover to transition the standby Pod identified by the `autonomousPodId` parameter into the
-// specified Autonomous Pod Mission Critical association's primary role after the existing primary Pod fails or becomes unreachable.
-// A failover might result in data loss depending on the protection mode in effect at the time of the primary
-// Pod failure.
+// FailoverAutonomousContainerDatabaseMissionCriticalAssociation Performs a failover to transition the standby Container Database identified by the autonomousContainerDatabaseId parameter into the specified Autonomous Container Database Mission Critical Association's primary role after the existing primary Container Database fails or becomes unreachable.
+// A failover might result in data loss, depending on the protection mode in effect at the time of the primary Container Database failure.
+func (client DatabaseClient) FailoverAutonomousContainerDatabaseMissionCriticalAssociation(ctx context.Context, request FailoverAutonomousContainerDatabaseMissionCriticalAssociationRequest) (response FailoverAutonomousContainerDatabaseMissionCriticalAssociationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.failoverAutonomousContainerDatabaseMissionCriticalAssociation, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = FailoverAutonomousContainerDatabaseMissionCriticalAssociationResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(FailoverAutonomousContainerDatabaseMissionCriticalAssociationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into FailoverAutonomousContainerDatabaseMissionCriticalAssociationResponse")
+	}
+	return
+}
+
+// failoverAutonomousContainerDatabaseMissionCriticalAssociation implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) failoverAutonomousContainerDatabaseMissionCriticalAssociation(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}/autonomousContainerDatabaseMissionCriticalAssociations/{autonomousContainerDatabaseMissionCriticalAssociationId}/actions/failover")
+	if err != nil {
+		return nil, err
+	}
+
+	var response FailoverAutonomousContainerDatabaseMissionCriticalAssociationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// FailoverAutonomousPodMissionCriticalAssociation Performs a failover to transition the standby Pod identified by the autonomousPodId parameter into the specified Autonomous Pod Mission Critical Association's primary role after the existing primary Pod fails or becomes unreachable.
+// A failover might result in data loss, depending on the protection mode in effect at the time of the primary Pod failure.
 func (client DatabaseClient) FailoverAutonomousPodMissionCriticalAssociation(ctx context.Context, request FailoverAutonomousPodMissionCriticalAssociationRequest) (response FailoverAutonomousPodMissionCriticalAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -975,6 +1065,90 @@ func (client DatabaseClient) generateAutonomousDatabaseWallet(ctx context.Contex
 	var response GenerateAutonomousDatabaseWalletResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetAutonomousContainerDatabase Gets information about the specified Autonomous Container Database.
+func (client DatabaseClient) GetAutonomousContainerDatabase(ctx context.Context, request GetAutonomousContainerDatabaseRequest) (response GetAutonomousContainerDatabaseResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAutonomousContainerDatabase, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetAutonomousContainerDatabaseResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAutonomousContainerDatabaseResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAutonomousContainerDatabaseResponse")
+	}
+	return
+}
+
+// getAutonomousContainerDatabase implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getAutonomousContainerDatabase(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAutonomousContainerDatabaseResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetAutonomousContainerDatabaseMissionCriticalAssociation Gets an Autonomous Container Database Mission Critical Association for the specified Autonomous Container Database.
+func (client DatabaseClient) GetAutonomousContainerDatabaseMissionCriticalAssociation(ctx context.Context, request GetAutonomousContainerDatabaseMissionCriticalAssociationRequest) (response GetAutonomousContainerDatabaseMissionCriticalAssociationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAutonomousContainerDatabaseMissionCriticalAssociation, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetAutonomousContainerDatabaseMissionCriticalAssociationResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAutonomousContainerDatabaseMissionCriticalAssociationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAutonomousContainerDatabaseMissionCriticalAssociationResponse")
+	}
+	return
+}
+
+// getAutonomousContainerDatabaseMissionCriticalAssociation implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getAutonomousContainerDatabaseMissionCriticalAssociation(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}/autonomousContainerDatabaseMissionCriticalAssociations/{autonomousContainerDatabaseMissionCriticalAssociationId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAutonomousContainerDatabaseMissionCriticalAssociationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
 	response.RawResponse = httpResponse
 	if err != nil {
 		return response, err
@@ -1278,7 +1452,7 @@ func (client DatabaseClient) getAutonomousPod(ctx context.Context, request commo
 	return response, err
 }
 
-// GetAutonomousPodMissionCriticalAssociation Gets an Autonomous Pod Mission Critical Assocation associated with the specified Autonomous Pod.
+// GetAutonomousPodMissionCriticalAssociation Gets an Autonomous Pod Mission Critical Association for the specified Autonomous Pod.
 func (client DatabaseClient) GetAutonomousPodMissionCriticalAssociation(ctx context.Context, request GetAutonomousPodMissionCriticalAssociationRequest) (response GetAutonomousPodMissionCriticalAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1966,6 +2140,90 @@ func (client DatabaseClient) launchDbSystem(ctx context.Context, request common.
 	return response, err
 }
 
+// ListAutonomousContainerDatabaseMissionCriticalAssociations Gets a list of the Autonomous Container Database Mission Critical Associations for the specified Autonomous Container Database.
+func (client DatabaseClient) ListAutonomousContainerDatabaseMissionCriticalAssociations(ctx context.Context, request ListAutonomousContainerDatabaseMissionCriticalAssociationsRequest) (response ListAutonomousContainerDatabaseMissionCriticalAssociationsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listAutonomousContainerDatabaseMissionCriticalAssociations, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListAutonomousContainerDatabaseMissionCriticalAssociationsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListAutonomousContainerDatabaseMissionCriticalAssociationsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListAutonomousContainerDatabaseMissionCriticalAssociationsResponse")
+	}
+	return
+}
+
+// listAutonomousContainerDatabaseMissionCriticalAssociations implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listAutonomousContainerDatabaseMissionCriticalAssociations(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}/autonomousContainerDatabaseMissionCriticalAssociations")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListAutonomousContainerDatabaseMissionCriticalAssociationsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListAutonomousContainerDatabases Gets a list of the Autonomous Container Databases in the specified compartment.
+func (client DatabaseClient) ListAutonomousContainerDatabases(ctx context.Context, request ListAutonomousContainerDatabasesRequest) (response ListAutonomousContainerDatabasesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listAutonomousContainerDatabases, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListAutonomousContainerDatabasesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListAutonomousContainerDatabasesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListAutonomousContainerDatabasesResponse")
+	}
+	return
+}
+
+// listAutonomousContainerDatabases implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listAutonomousContainerDatabases(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousContainerDatabases")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListAutonomousContainerDatabasesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListAutonomousDataWarehouseBackups Gets a list of Autonomous Data Warehouse backups based on either the `autonomousDataWarehouseId` or `compartmentId` specified as a query parameter.
 func (client DatabaseClient) ListAutonomousDataWarehouseBackups(ctx context.Context, request ListAutonomousDataWarehouseBackupsRequest) (response ListAutonomousDataWarehouseBackupsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2092,7 +2350,7 @@ func (client DatabaseClient) listAutonomousDatabaseBackups(ctx context.Context, 
 	return response, err
 }
 
-// ListAutonomousDatabaseMissionCriticalAssociations Gets a list of the Autonomous Database Mission Critical assocations associated with the given Autonomous Database.
+// ListAutonomousDatabaseMissionCriticalAssociations Gets a list of the Autonomous Database Mission Critical Assocations associated with the given Autonomous Database.
 func (client DatabaseClient) ListAutonomousDatabaseMissionCriticalAssociations(ctx context.Context, request ListAutonomousDatabaseMissionCriticalAssociationsRequest) (response ListAutonomousDatabaseMissionCriticalAssociationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2260,7 +2518,7 @@ func (client DatabaseClient) listAutonomousDbSystems(ctx context.Context, reques
 	return response, err
 }
 
-// ListAutonomousPodMissionCriticalAssociations Gets a list of the Autonomous Pod Mission Critical assocations associated with the given Autonomous Pod.
+// ListAutonomousPodMissionCriticalAssociations Gets a list of the Autonomous Pod Mission Critical Associations for the specified Autonomous Pod.
 func (client DatabaseClient) ListAutonomousPodMissionCriticalAssociations(ctx context.Context, request ListAutonomousPodMissionCriticalAssociationsRequest) (response ListAutonomousPodMissionCriticalAssociationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2302,7 +2560,7 @@ func (client DatabaseClient) listAutonomousPodMissionCriticalAssociations(ctx co
 	return response, err
 }
 
-// ListAutonomousPods Gets a list of the Autonomous Pod in the specified compartment.
+// ListAutonomousPods Gets a list of the Autonomous Pods in the specified compartment.
 func (client DatabaseClient) ListAutonomousPods(ctx context.Context, request ListAutonomousPodsRequest) (response ListAutonomousPodsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2554,7 +2812,7 @@ func (client DatabaseClient) listDbHomePatches(ctx context.Context, request comm
 	return response, err
 }
 
-// ListDbHomes Gets a list of database homes in the specified DB system and compartment. A database home is a directory where Oracle database software is installed.
+// ListDbHomes Gets a list of database homes in the specified DB system and compartment. A database home is a directory where Oracle Database software is installed.
 func (client DatabaseClient) ListDbHomes(ctx context.Context, request ListDbHomesRequest) (response ListDbHomesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2807,7 +3065,7 @@ func (client DatabaseClient) listDbSystems(ctx context.Context, request common.O
 	return response, err
 }
 
-// ListDbVersions Gets a list of supported Oracle database versions.
+// ListDbVersions Gets a list of supported Oracle Database versions.
 func (client DatabaseClient) ListDbVersions(ctx context.Context, request ListDbVersionsRequest) (response ListDbVersionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3227,8 +3485,50 @@ func (client DatabaseClient) stopAutonomousDatabase(ctx context.Context, request
 	return response, err
 }
 
-// SwitchoverAutonomousPodMissionCriticalAssociation Performs a switchover to transition the primary Pod of a Autonomous Pod Mission Critical association into a standby role. The
-// standby Pod associated with the `autonomousPodMissionCriticalAssociationId` assumes the primary Pod role.
+// SwitchoverAutonomousContainerDatabaseMissionCriticalAssociation Performs a switchover to transition the primary Container Database of an Autonomous Container Database Mission Critical Association into a standby role. The standby Container Database associated with autonomousContainerDatabaseMissionCriticalAssociationId assumes the primary Container Database role.
+// A switchover guarantees no data loss.
+func (client DatabaseClient) SwitchoverAutonomousContainerDatabaseMissionCriticalAssociation(ctx context.Context, request SwitchoverAutonomousContainerDatabaseMissionCriticalAssociationRequest) (response SwitchoverAutonomousContainerDatabaseMissionCriticalAssociationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.switchoverAutonomousContainerDatabaseMissionCriticalAssociation, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = SwitchoverAutonomousContainerDatabaseMissionCriticalAssociationResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(SwitchoverAutonomousContainerDatabaseMissionCriticalAssociationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into SwitchoverAutonomousContainerDatabaseMissionCriticalAssociationResponse")
+	}
+	return
+}
+
+// switchoverAutonomousContainerDatabaseMissionCriticalAssociation implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) switchoverAutonomousContainerDatabaseMissionCriticalAssociation(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}/autonomousContainerDatabaseMissionCriticalAssociations/{autonomousContainerDatabaseMissionCriticalAssociationId}/actions/switchover")
+	if err != nil {
+		return nil, err
+	}
+
+	var response SwitchoverAutonomousContainerDatabaseMissionCriticalAssociationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// SwitchoverAutonomousPodMissionCriticalAssociation Performs a switchover to transition the primary Pod of an Autonomous Pod Mission Critical Association into a standby role. The standby Pod associated with autonomousPodMissionCriticalAssociationId assumes the primary Pod role.
 // A switchover guarantees no data loss.
 func (client DatabaseClient) SwitchoverAutonomousPodMissionCriticalAssociation(ctx context.Context, request SwitchoverAutonomousPodMissionCriticalAssociationRequest) (response SwitchoverAutonomousPodMissionCriticalAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3315,7 +3615,49 @@ func (client DatabaseClient) switchoverDataGuardAssociation(ctx context.Context,
 	return response, err
 }
 
-// TerminateAutonomousDbSystem Terminates a Autonomous DB System and permanently deletes it and any PODS and databases running on it. The database data is local to the Autonomous DB System and will be lost when the system is terminated. Oracle recommends that you back up any data in the Autonomous DB System prior to terminating it.
+// TerminateAutonomousContainerDatabase Terminates an Autonomous Container Database, which permanently deletes the container database and any databases within the container database. The database data is local to the Autonomous Exadata Infrastructure and will be lost when the container database is terminated. Oracle recommends that you back up any data in the Autonomous Container Database prior to terminating it.
+func (client DatabaseClient) TerminateAutonomousContainerDatabase(ctx context.Context, request TerminateAutonomousContainerDatabaseRequest) (response TerminateAutonomousContainerDatabaseResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.terminateAutonomousContainerDatabase, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = TerminateAutonomousContainerDatabaseResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(TerminateAutonomousContainerDatabaseResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into TerminateAutonomousContainerDatabaseResponse")
+	}
+	return
+}
+
+// terminateAutonomousContainerDatabase implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) terminateAutonomousContainerDatabase(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response TerminateAutonomousContainerDatabaseResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// TerminateAutonomousDbSystem Terminates an Autonomous Exadata Infrastructure, which permanently deletes the Exadata Infrastructure and any container databases and databases contained in the Exadata Infrastructure. The database data is local to the Autonomous Exadata Infrastructure and will be lost when the system is terminated. Oracle recommends that you back up any data in the Autonomous Exadata Infrastructure prior to terminating it.
 func (client DatabaseClient) TerminateAutonomousDbSystem(ctx context.Context, request TerminateAutonomousDbSystemRequest) (response TerminateAutonomousDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3357,7 +3699,7 @@ func (client DatabaseClient) terminateAutonomousDbSystem(ctx context.Context, re
 	return response, err
 }
 
-// TerminateAutonomousPod Terminates a Autonomous Pod and permanently deletes it and any databases running on it. The database data is local to the Autonomous DB System and will be lost when the Pod is terminated. Oracle recommends that you back up any data in the Autonomous Pod prior to terminating it.
+// TerminateAutonomousPod Terminates an Autonomous Pod, which permanently deletes the container database and any databases within the container database. The database data is local to the Autonomous Exadata Infrastructure and will be lost when the container database is terminated. Oracle recommends that you back up any data in the Autonomous Pod prior to terminating it.
 func (client DatabaseClient) TerminateAutonomousPod(ctx context.Context, request TerminateAutonomousPodRequest) (response TerminateAutonomousPodResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3429,6 +3771,48 @@ func (client DatabaseClient) terminateDbSystem(ctx context.Context, request comm
 	}
 
 	var response TerminateDbSystemResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateAutonomousContainerDatabase Updates the properties of an Autonomous Container Database, such as the CPU core count and storage size.
+func (client DatabaseClient) UpdateAutonomousContainerDatabase(ctx context.Context, request UpdateAutonomousContainerDatabaseRequest) (response UpdateAutonomousContainerDatabaseResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateAutonomousContainerDatabase, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateAutonomousContainerDatabaseResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateAutonomousContainerDatabaseResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateAutonomousContainerDatabaseResponse")
+	}
+	return
+}
+
+// updateAutonomousContainerDatabase implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) updateAutonomousContainerDatabase(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateAutonomousContainerDatabaseResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -3567,7 +3951,7 @@ func (client DatabaseClient) updateAutonomousDbSystem(ctx context.Context, reque
 	return response, err
 }
 
-// UpdateAutonomousPod Updates the properties of a Autonomous Pod, such as the CPU core count, memory size.
+// UpdateAutonomousPod Updates the properties of an Autonomous Pod, such as the CPU core count and storage size.
 func (client DatabaseClient) UpdateAutonomousPod(ctx context.Context, request UpdateAutonomousPodRequest) (response UpdateAutonomousPodResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

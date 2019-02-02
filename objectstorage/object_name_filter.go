@@ -36,7 +36,7 @@ type ObjectNameFilter struct {
 	//                             [a-mn-z] is not valid
 	//                         Character ranges can not start with ^ or :
 	//                         To include a '-' in the range, make it the first or last character.
-	InclusionPatterns []string `mandatory:"true" json:"inclusionPatterns"`
+	InclusionPatterns []string `mandatory:"false" json:"inclusionPatterns"`
 
 	// An array of glob patterns to match the object names to exclude. An empty array is ignored. Exclusion
 	// patterns take precedence over inclusion patterns.

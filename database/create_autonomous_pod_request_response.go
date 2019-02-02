@@ -11,7 +11,7 @@ import (
 // CreateAutonomousPodRequest wrapper for the CreateAutonomousPod operation
 type CreateAutonomousPodRequest struct {
 
-	// Request to create a Autonomous Pod on a specified Autonomous DB System.
+	// Request to create an Autonomous Pod in a specified Autonomous Exadata Infrastructure.
 	CreateAutonomousPodDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

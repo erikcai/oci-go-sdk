@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AutonomousPodSummary Autonomous Pod is a container Database service that enables the customer to host one or more databases on it. There are two types of autonomous pods, Basic Pod and Mission Critical Pod. Basic Pod runs on a single Autonomous DB System from an Availability Domain without the High availability (HA) and Data Guard features enabled. Mission Critical Pod runs on two different Autonomous DB Systems from two different Availability Domains with HA and Data Guard features enabled.
+// AutonomousPodSummary An Autonomous Pod is a container database service that enables the customer to host one or more databases within the container database. There are two types of Autonomous Pods, the basic container database, and the Mission Critical container database. A basic container database runs on a single Autonomous Exadata Infrastructure from an availability domain without the Extreme Availability features enabled. A Mission Critical container database runs on two different Autonomous Exadata Infrastructures from two different availability domains, with Extreme Availability enabled.
 type AutonomousPodSummary struct {
 
 	// The OCID of the Autonomous Pod.
@@ -24,7 +24,7 @@ type AutonomousPodSummary struct {
 	// The user-provided name for the Autonomous Pod.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Service level agreement type of the Pod. Default is STANDARD.
+	// The service level agreement type of the container database. The default is STANDARD.
 	ServiceLevelAgreementType AutonomousPodSummaryServiceLevelAgreementTypeEnum `mandatory:"true" json:"serviceLevelAgreementType"`
 
 	// The OCID of the Autonomous DB System.
@@ -59,10 +59,10 @@ type AutonomousPodSummary struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// The role of the Autonomous Pod in this Mission Critical association.
+	// The role of the Autonomous Pod in this Mission Critical Association.
 	Role AutonomousPodSummaryRoleEnum `mandatory:"false" json:"role,omitempty"`
 
-	// The Availability Domain where the Autonomous Pod located.
+	// The availability domain of the Autonomous Pod.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
 	BackupConfig *AutonomousPodBackupConfig `mandatory:"false" json:"backupConfig"`

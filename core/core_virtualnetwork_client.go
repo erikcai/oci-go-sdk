@@ -3068,6 +3068,48 @@ func (client VirtualNetworkClient) getFastConnectProviderService(ctx context.Con
 	return response, err
 }
 
+// GetFastConnectProviderServiceKey Gets the specified provider service key's information.
+func (client VirtualNetworkClient) GetFastConnectProviderServiceKey(ctx context.Context, request GetFastConnectProviderServiceKeyRequest) (response GetFastConnectProviderServiceKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getFastConnectProviderServiceKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetFastConnectProviderServiceKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetFastConnectProviderServiceKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetFastConnectProviderServiceKeyResponse")
+	}
+	return
+}
+
+// getFastConnectProviderServiceKey implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getFastConnectProviderServiceKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/fastConnectProviderServices/{providerServiceId}/providerServiceKeys/{providerServiceKeyName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetFastConnectProviderServiceKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetFlowLogConfig Gets the specified flow log configuration.
 func (client VirtualNetworkClient) GetFlowLogConfig(ctx context.Context, request GetFlowLogConfigRequest) (response GetFlowLogConfigResponse, err error) {
 	var ociResponse common.OCIResponse

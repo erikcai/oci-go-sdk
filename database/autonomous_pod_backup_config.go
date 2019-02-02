@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AutonomousPodBackupConfig Backup options for autonomous pod.
+// AutonomousPodBackupConfig Backup options for the Autonomous Pod.
 type AutonomousPodBackupConfig struct {
 
 	// Number of days between the current and the earliest point of recoverability covered by automatic backups.

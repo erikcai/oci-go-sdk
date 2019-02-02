@@ -17,7 +17,7 @@ import (
 type AggregatedDatapoint struct {
 
 	// The date and time associated with the value of this data point. Format defined by RFC3339.
-	// Example: `2018-02-01T01:02:29.600Z`
+	// Example: `2019-02-01T01:02:29.600Z`
 	Timestamp *common.SDKTime `mandatory:"true" json:"timestamp"`
 
 	// Numeric value of the metric.

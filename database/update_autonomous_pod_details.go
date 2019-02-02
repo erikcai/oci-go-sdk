@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateAutonomousPodDetails Describe the modification parameters for the Autonomous Pod.
+// UpdateAutonomousPodDetails Describes the modification parameters for the Autonomous Pod.
 type UpdateAutonomousPodDetails struct {
 
 	// The display name for the Autonomous Pod.

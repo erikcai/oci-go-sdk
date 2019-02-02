@@ -80,11 +80,11 @@ type Alarm struct {
 	LifecycleState AlarmLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The date and time the alarm was created. Format defined by RFC3339.
-	// Example: `2018-02-01T01:02:29.600Z`
+	// Example: `2019-02-01T01:02:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	// The date and time the alarm was last updated. Format defined by RFC3339.
-	// Example: `2018-02-03T01:02:29.600Z`
+	// Example: `2019-02-03T01:02:29.600Z`
 	TimeUpdated *common.SDKTime `mandatory:"true" json:"timeUpdated"`
 
 	// When true, the alarm evaluates metrics from all compartments and subcompartments. The parameter can

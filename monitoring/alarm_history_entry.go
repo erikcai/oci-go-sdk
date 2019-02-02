@@ -23,12 +23,12 @@ type AlarmHistoryEntry struct {
 	Summary *string `mandatory:"true" json:"summary"`
 
 	// Timestamp for this alarm history entry. Format defined by RFC3339.
-	// Example: `2018-02-01T01:02:29.600Z`
+	// Example: `2019-02-01T01:02:29.600Z`
 	Timestamp *common.SDKTime `mandatory:"true" json:"timestamp"`
 
 	// Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing.
 	// Available for state transition entries only. Note: A three-minute lag for this value accounts for any late-arriving metrics.
-	// Example: `2018-02-01T0:59:00.000Z`
+	// Example: `2019-02-01T0:59:00.789Z`
 	TimestampTriggered *common.SDKTime `mandatory:"false" json:"timestampTriggered"`
 }
 

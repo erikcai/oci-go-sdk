@@ -24,7 +24,7 @@ type AutonomousPod struct {
 	// The user-provided name for the Autonomous Pod.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Service level agreement type of the Pod. Default is STANDARD.
+	// The service level agreement type of the container database. The default is STANDARD.
 	ServiceLevelAgreementType AutonomousPodServiceLevelAgreementTypeEnum `mandatory:"true" json:"serviceLevelAgreementType"`
 
 	// The OCID of the Autonomous DB System.
@@ -59,10 +59,10 @@ type AutonomousPod struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// The role of the Autonomous Pod in this Mission Critical association.
+	// The role of the Autonomous Pod in this Mission Critical Association.
 	Role AutonomousPodRoleEnum `mandatory:"false" json:"role,omitempty"`
 
-	// The Availability Domain where the Autonomous Pod located.
+	// The availability domain of the Autonomous Pod.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
 	BackupConfig *AutonomousPodBackupConfig `mandatory:"false" json:"backupConfig"`
