@@ -18,6 +18,9 @@ type UpdateUserDetails struct {
 	// The description you assign to the user. Does not have to be unique, and it's changeable.
 	Description *string `mandatory:"false" json:"description"`
 
+	// The email you assign to the user. Has to be unique across the tenancy.
+	Email *string `mandatory:"false" json:"email"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`

@@ -2300,7 +2300,7 @@
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec-preview</artifactId>
-        <version>0.2.43-PREVIEW</version>
+        <version>0.2.44-PREVIEW</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
