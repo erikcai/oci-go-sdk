@@ -23,7 +23,7 @@ const bufferTimeBeforeTokenExpiration = 5 * time.Minute
 func (t *jwtToken) expired() bool {
 	exp := int64(t.payload["exp"].(float64))
 	expTime := time.Unix(exp, 0)
-	expired := exp <= time.Now().Unix() + int64(bufferTimeBeforeTokenExpiration.Seconds())
+	expired := exp <= time.Now().Unix()+int64(bufferTimeBeforeTokenExpiration.Seconds())
 	if expired {
 		common.Debugf("Token expires at:  %v, currently expired due to bufferTime: %v", expTime.Format("15:04:05.000"), expired)
 	}
