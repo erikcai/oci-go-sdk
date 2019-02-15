@@ -1,0 +1,21 @@
+# Add whitelisted feature ids here. Please include a comment describing what the feature is.
+# Example:
+# whitelisted:
+#   # comment
+#   - udx-123
+#   # comment
+#   - udx-456
+whitelisted:
+  - udx-1461
+  - UDX-1464
+  - UDX-123
+  - FilterByNameAndSortBy
+  - MyServicesIdentifier
+  - UDX-1452
+  - UDX-1424
+  - UDX-1321
+  - UDX-1459
+  - UDX-1461
+  - managed-compartments
+  - entitlements
+  - list-tenancies
