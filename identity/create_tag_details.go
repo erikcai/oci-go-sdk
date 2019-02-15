@@ -15,10 +15,10 @@ import (
 // CreateTagDetails The representation of CreateTagDetails
 type CreateTagDetails struct {
 
-	// The name of the tag which must be unique across all tags in the tagNamespace and cannot be changed.
+	// The name you assign to the tag during creation. The name must be unique within the tag namespace and cannot be changed.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The description of the tag.
+	// The description you assign to the tag during creation.
 	Description *string `mandatory:"true" json:"description"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -31,7 +31,7 @@ type CreateTagDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Whether the tag is a cost tracking tag.
+	// Indicates whether the tag is enabled for cost tracking.
 	IsCostTracking *bool `mandatory:"false" json:"isCostTracking"`
 }
 

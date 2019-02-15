@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,16 +12,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RedisNodeDetails The availability domain and subnet details for each redis node.
+// RedisNodeDetails The Redis nodes that host the Redis servers. The nodes are attached to the specified subnet and are created in the specified availability domain.
 type RedisNodeDetails struct {
 
-	// The availability domain of this redis node.
+	// The name of the availability domain where the Redis node is located.
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
-	// The subnet id of this redis node.
+	// The subnet id to which this Redis node is attached.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
-	// A flag that indicates the primary node. Default value is 'false'.
+	// Whether this node is the primary Redis node. The default value is `false`.
 	IsPrimary *bool `mandatory:"false" json:"isPrimary"`
 }
 

@@ -32,7 +32,7 @@ type UpdateTagDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Whether the tag is a cost tracking tag.
+	// Indicates whether the tag is enabled for cost tracking.
 	IsCostTracking *bool `mandatory:"false" json:"isCostTracking"`
 }
 

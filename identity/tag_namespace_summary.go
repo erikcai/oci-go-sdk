@@ -12,19 +12,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TagNamespaceSummary A bag of tags that is attached to a compartment and has unique existence in tenancy.
+// TagNamespaceSummary A container for defined tags.
 type TagNamespaceSummary struct {
 
-	// The OCID of the tagNamespace.
+	// The OCID of the tag namespace.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The OCID of the compartment which the namespace is attached to.
+	// The OCID of the compartment that contains the tag namespace.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The name of the tagNamespace. It must be unique across all tagNamespaces in the tenancy and cannot be changed.
+	// The name of the tag namespace. It must be unique across all tag namespaces in the tenancy and cannot be changed.
 	Name *string `mandatory:"false" json:"name"`
 
-	// The description you assign to the tagNamespace.
+	// The description you assign to the tag namespace.
 	Description *string `mandatory:"false" json:"description"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -37,10 +37,14 @@ type TagNamespaceSummary struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Indicated whether or not the tagNamespace is retired
+	// Whether the tag namespace is retired.
+	// For more information, see Retiring Key Definitions and Namespace Definitions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
 	IsRetired *bool `mandatory:"false" json:"isRetired"`
 
-	// Date and time the tagNamespace was created, in the format defined by RFC3339.
+	// The tagnamespace's current state. After creating a tagnamespace, make sure its `lifecycleState` is ACTIVE before using it. After retiring a tagnamespace, make sure its `lifecycleState` is INACTIVE before using it.
+	LifecycleState TagNamespaceLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+
+	// Date and time the tag namespace was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 }

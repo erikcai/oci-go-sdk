@@ -11,17 +11,17 @@ import (
 // DeleteReplicatedCacheRequest wrapper for the DeleteReplicatedCache operation
 type DeleteReplicatedCacheRequest struct {
 
-	// OCID that uniquely identifies a redis replicated cache
+	// The OCID that uniquely identifies the Redis replicated cache.
 	Id *string `mandatory:"true" contributesTo:"path" name:"id"`
 
-	// For optimistic concurrency control. In the PUT or DELETE call
-	// for a resource, set the `if-match` parameter to the value of the etag
-	// from a previous GET or POST response for that resource.  The resource
-	// will be updated or deleted only if the etag you provide matches the resource's
-	// current etag value.
+	// Use the `if-match` parameter to use optimistic concurrency control. In the `PUT` or `DELETE` call
+	// for a resource, set the `if-match` parameter to the value of the `etag`
+	// from a previous `GET` or `POST` response for that resource. The resource
+	// is updated or deleted only if the `etag` matches the resource's
+	// current `etag` value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"If-Match"`
 
-	// Unique Oracle-assigned identifier for the request. If you need
+	// A unique Oracle-assigned identifier for the request. If you need
 	// to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
@@ -50,7 +50,7 @@ type DeleteReplicatedCacheResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique Oracle-assigned identifier for the request. If
+	// A unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request, please provide
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
@@ -58,9 +58,9 @@ type DeleteReplicatedCacheResponse struct {
 	// The OCID of the work request.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 
-	// URL to the replicated cache resource. This representative
-	// object for the replicated cache also includes the current status
-	// of the individual servers of the replicated cache.
+	// A URL to the replicated cache resource. This is a representative object
+	// for the Redis replicated cache and also includes the current status of the
+	// individual Redis nodes of the Redis replicated cache.
 	Location *string `presentIn:"header" name:"location"`
 }
 

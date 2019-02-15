@@ -258,13 +258,13 @@ func (client IdentityClient) createAuthToken(ctx context.Context, request common
 	return response, err
 }
 
-// CreateCompartment Creates a new compartment in your tenancy.
-// **Important:** Compartments cannot be renamed or deleted.
-// You must specify your tenancy's OCID as the compartment ID in the request object. Remember that the tenancy
+// CreateCompartment Creates a new compartment in the specified compartment.
+// **Important:** Compartments cannot be deleted.
+// Specify the parent compartment's OCID as the compartment ID in the request object. Remember that the tenancy
 // is simply the root compartment. For information about OCIDs, see
 // Resource Identifiers (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 // You must also specify a *name* for the compartment, which must be unique across all compartments in
-// your tenancy and cannot be changed. You can use this name or the OCID when writing policies that apply
+// your tenancy. You can use this name or the OCID when writing policies that apply
 // to the compartment. For more information about policies, see
 // How Policies Work (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policies.htm).
 // You must also specify a *description* for the compartment (although it can be an empty string). It does
@@ -815,7 +815,7 @@ func (client IdentityClient) createPolicy(ctx context.Context, request common.OC
 	return response, err
 }
 
-// CreateRegionSubscription Create a new regionSubscription for tenancy
+// CreateRegionSubscription Creates a subscription to a region for a tenancy.
 func (client IdentityClient) CreateRegionSubscription(ctx context.Context, request CreateRegionSubscriptionRequest) (response CreateRegionSubscriptionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -862,7 +862,7 @@ func (client IdentityClient) createRegionSubscription(ctx context.Context, reque
 	return response, err
 }
 
-// CreateSmtpCredential Creates a new SMTP credential for the specified user. A SMTP credential has a SMTP user name and a SMTP password.
+// CreateSmtpCredential Creates a new SMTP credential for the specified user. An SMTP credential has an SMTP user name and an SMTP password.
 // You must specify a *description* for the SMTP credential (although it can be an empty string). It does not
 // have to be unique, and you can change it anytime with
 // UpdateSmtpCredential.
@@ -976,8 +976,6 @@ func (client IdentityClient) createSwiftPassword(ctx context.Context, request co
 // You must also specify a *description* for the tag.
 // It does not have to be unique, and you can change it with
 // UpdateTag.
-// After you send your request, the new object will be created. Before using the object, first make sure its
-// `lifecycleState` has changed to ACTIVE.
 func (client IdentityClient) CreateTag(ctx context.Context, request CreateTagRequest) (response CreateTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1084,8 +1082,6 @@ func (client IdentityClient) createTagDefault(ctx context.Context, request commo
 // UpdateTagNamespace.
 // Tag namespaces cannot be deleted, but they can be retired.
 // See Retiring Key Definitions and Namespace Definitions (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#Retiring) for more information.
-// After you send your request, the new object will be created. Before using the object, first make sure its
-// `lifecycleState` has changed to ACTIVE.
 func (client IdentityClient) CreateTagNamespace(ctx context.Context, request CreateTagNamespaceRequest) (response CreateTagNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1211,7 +1207,7 @@ func (client IdentityClient) createTagRule(ctx context.Context, request common.O
 // AddUserToGroup). If the user needs to
 // access the Console, you need to provide the user a password (see
 // CreateOrResetUIPassword).
-// If the user needs to access the Oracle Bare Metal Cloud Services REST API, you need to upload a
+// If the user needs to access the Oracle Cloud Infrastructure REST API, you need to upload a
 // public API signing key for that user (see
 // Required Keys and OCIDs (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm) and also
 // UploadApiKey).
@@ -1760,6 +1756,48 @@ func (client IdentityClient) deleteSwiftPassword(ctx context.Context, request co
 	}
 
 	var response DeleteSwiftPasswordResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteTag Deletes the the specified tag definition.
+func (client IdentityClient) DeleteTag(ctx context.Context, request DeleteTagRequest) (response DeleteTagResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteTag, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteTagResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteTagResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteTagResponse")
+	}
+	return
+}
+
+// deleteTag implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) deleteTag(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/tagNamespaces/{tagNamespaceId}/tags/{tagName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteTagResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2622,8 +2660,8 @@ func (client IdentityClient) getUserUIPasswordInformation(ctx context.Context, r
 	return response, err
 }
 
-// GetWorkRequest Gets details on a specified work request. The workRequestId is returned in opc-workrequest-id
-// header for any asynchronous operation on Identity control plane service.
+// GetWorkRequest Gets details on a specified work request. The workRequestID is returned in the opc-workrequest-id header
+// for any asynchronous operation in the Identity and Access Management service.
 func (client IdentityClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2752,9 +2790,11 @@ func (client IdentityClient) listAuthTokens(ctx context.Context, request common.
 	return response, err
 }
 
-// ListAvailabilityDomains Lists the Availability Domains in your tenancy. Specify the OCID of either the tenancy or another
+// ListAvailabilityDomains Lists the availability domains in your tenancy. Specify the OCID of either the tenancy or another
 // of your compartments as the value for the compartment ID (remember that the tenancy is simply the root compartment).
 // See Where to Get the Tenancy's OCID and User's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm#five).
+// Note that the order of the results returned can change if availability domains are added or removed; therefore, do not
+// create a dependency on the list order.
 func (client IdentityClient) ListAvailabilityDomains(ctx context.Context, request ListAvailabilityDomainsRequest) (response ListAvailabilityDomainsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2796,8 +2836,19 @@ func (client IdentityClient) listAvailabilityDomains(ctx context.Context, reques
 	return response, err
 }
 
-// ListCompartments Lists the compartments in your tenancy. You must specify your tenancy's OCID as the value
-// for the compartment ID (remember that the tenancy is simply the root compartment).
+// ListCompartments Lists the compartments in a specified compartment. The members of the list
+// returned depends on the values set for several parameters.
+// With the exception of the tenancy (root compartment), the ListCompartments operation
+// returns only the first-level child compartments in the parent compartment specified in
+// `compartmentId`. The list does not include any subcompartments of the child
+// compartments (grandchildren).
+// The parameter `accessLevel` specifies whether to return only those compartments for which the
+// requestor has INSPECT permissions on at least one resource directly
+// or indirectly (the resource can be in a subcompartment).
+// The parameter `compartmentIdInSubtree` applies only when you perform ListCompartments on the
+// tenancy (root compartment). When set to true, the entire hierarchy of compartments can be returned.
+// To get a full list of all compartments and subcompartments in the tenancy (root compartment),
+// set the parameter `compartmentIdInSubtree` to true and `accessLevel` to ANY.
 // See Where to Get the Tenancy's OCID and User's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm#five).
 func (client IdentityClient) ListCompartments(ctx context.Context, request ListCompartmentsRequest) (response ListCompartmentsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2840,8 +2891,8 @@ func (client IdentityClient) listCompartments(ctx context.Context, request commo
 	return response, err
 }
 
-// ListCostTrackingTags List all the cost tracking tags for the compartment. Currently tenancy is the only allowed
-// value for compartment.
+// ListCostTrackingTags Lists all the tags enabled for cost-tracking in the specified tenancy. For information about
+// cost-tracking tags, see Using Cost-tracking Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/taggingoverview.htm#costs).
 func (client IdentityClient) ListCostTrackingTags(ctx context.Context, request ListCostTrackingTagsRequest) (response ListCostTrackingTagsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3334,7 +3385,7 @@ func (client IdentityClient) listPolicies(ctx context.Context, request common.OC
 	return response, err
 }
 
-// ListRegionSubscriptions Retrive the region subscriptions for the specific tenancy
+// ListRegionSubscriptions Lists the region subscriptions for the specified tenancy.
 func (client IdentityClient) ListRegionSubscriptions(ctx context.Context, request ListRegionSubscriptionsRequest) (response ListRegionSubscriptionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3376,7 +3427,7 @@ func (client IdentityClient) listRegionSubscriptions(ctx context.Context, reques
 	return response, err
 }
 
-// ListRegions List all the regions
+// ListRegions Lists all the regions offered by Oracle Cloud Infrastructure.
 func (client IdentityClient) ListRegions(ctx context.Context) (response ListRegionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	ociResponse, err = client.listRegions(ctx)
@@ -3975,7 +4026,7 @@ func (client IdentityClient) updateAuthToken(ctx context.Context, request common
 	return response, err
 }
 
-// UpdateCompartment Updates the specified compartment.
+// UpdateCompartment Updates the specified compartment's description or name. You can't update the root compartment.
 func (client IdentityClient) UpdateCompartment(ctx context.Context, request UpdateCompartmentRequest) (response UpdateCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

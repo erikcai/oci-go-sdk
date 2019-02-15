@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReplicatedCacheSortField The fields of a redis replicated cache that can be sorted upon.
+// ReplicatedCacheSortField Fields for sorting the list of Redis replicated cache names.
 type ReplicatedCacheSortField struct {
 }
 

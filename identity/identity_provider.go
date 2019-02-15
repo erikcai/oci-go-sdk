@@ -32,15 +32,15 @@ type IdentityProvider interface {
 	// The name you assign to the `IdentityProvider` during creation. The name
 	// must be unique across all `IdentityProvider` objects in the tenancy and
 	// cannot be changed. This is the name federated users see when choosing
-	// which identity provider to use when signing in to the Oracle Bare Metal Cloud
-	// Services Console.
+	// which identity provider to use when signing in to the Oracle Cloud Infrastructure
+	// Console.
 	GetName() *string
 
 	// The description you assign to the `IdentityProvider` during creation. Does
 	// not have to be unique, and it's changeable.
 	GetDescription() *string
 
-	// The identity provider service or product (e.g., Oracle Identity Cloud Service).
+	// The identity provider service or product.
 	// Supported identity providers are Oracle Identity Cloud Service (IDCS) and Microsoft
 	// Active Directory Federation Services (ADFS).
 	// Allowed values are:

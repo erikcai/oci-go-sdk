@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestStatus The various status values that a work request can have.
+// WorkRequestStatus The various status values for a work request.
 type WorkRequestStatus struct {
 }
 

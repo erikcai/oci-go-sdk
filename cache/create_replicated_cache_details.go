@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,29 +12,29 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateReplicatedCacheDetails The details to create the replicated cache with.
+// CreateReplicatedCacheDetails The properties that are required to create the Redis replicated cache.
 type CreateReplicatedCacheDetails struct {
 
-	// The OCID of the customer's compartment that the redis replicated cache is being created in.
+	// The OCID of a compartment in the customer's tenancy. A Redis replicated cache object is created in this compartment. The object represents the logical set of Redis server instances that are deployed in an Oracle-managed tenancy. The Redis server instances are network accessible from the customer's tenancy.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The name of the redis replicated cache.
+	// A user-friendly name. Avoid entering confidential information.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The OCID of the customer's VCN that the redis replicated cache is being created in.
+	// The OCID of a VCN in the customer's tenancy. The VCN must be located in the specified compartment. The VCN contains the network resources and subnets that allow access to the Redis nodes that are deployed in an Oracle-managed tenancy.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// The number of replicas.
+	// The number of Redis replication nodes.
 	ReplicaCount *int `mandatory:"true" json:"replicaCount"`
 
-	// The shape of the redis replicated cache.
+	// The physical characteristics (memory, network bandwidth, OCPUs, and so on) of the virtual machine on which the Redis node runs. The shape determines the amount of memory allocated to the Redis replicated cache.
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// The description of the redis replicated cache.
+	// A description of the Redis replicated cache. Avoid entering confidential information.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The ad/subnet within which each redis node (primary/replica) should be created in.
-	RedisNodeDetailsList []RedisNodeDetails `mandatory:"false" json:"redisNodeDetailsList"`
+	// The primary Redis node and up to 5 replication nodes. Each node hosts a Redis server instance and is associated with a specific availability domain and subnet.
+	RedisNodes []RedisNodeDetails `mandatory:"false" json:"redisNodes"`
 }
 
 func (m CreateReplicatedCacheDetails) String() string {

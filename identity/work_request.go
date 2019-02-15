@@ -12,10 +12,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequest The work request. Tracks the status of the async operation.
+// WorkRequest The asynchronous API request does not take effect immediately. This request spawns an asynchronous
+// workflow to fulfill the request. WorkRequest objects provide visibility for in-progress workflows.
 type WorkRequest struct {
 
-	// The id of the work request.
+	// The OCID of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
 	// An enum-like description of the type of work the work request is doing.

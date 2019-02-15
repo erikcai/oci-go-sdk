@@ -40,7 +40,7 @@
     <healthchecks-api-spec-spec-file>ovp-api.yaml</healthchecks-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
     <rest-api-spec-spec-file>api.yaml</rest-api-spec-spec-file>
-    <oracache-public-api-spec-file>oracache-public-api-20181201.yaml</oracache-public-api-spec-file>
+    <oracache-public-api-spec-file>specs/oracache-public-api-20181201.cond.yaml</oracache-public-api-spec-file>
     <marketplace-api-spec-spec-file>source/marketplace-api-swagger.cond.yaml</marketplace-api-spec-spec-file>
     <autoscaling-public-api-spec-spec-file>source/autoscaling-api-spec.cond.yaml</autoscaling-public-api-spec-spec-file>
     <usage-proxy-spec-spec-file>api.yaml</usage-proxy-spec-spec-file>
@@ -2295,7 +2295,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.368</version>
+        <version>0.2.377</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -2340,7 +2340,7 @@
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
         <artifactId>maestro-spec</artifactId>
-        <version>0.0.5</version>
+        <version>0.0.8</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
@@ -2370,7 +2370,7 @@
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
         <artifactId>ons-gateway-spec</artifactId>
-        <version>1.0.908</version>
+        <version>1.0.1016</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci</groupId>
@@ -2390,7 +2390,7 @@
       <dependency>
         <groupId>com.oracle.oracache</groupId>
         <artifactId>oracache-public-api</artifactId>
-        <version>1.0.0-10</version>
+        <version>1.0.0-14</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.marketplace</groupId>

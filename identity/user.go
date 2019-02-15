@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// User An individual employee or system that needs to manage or use your company's Oracle Bare Metal Cloud Services
+// User An individual employee or system that needs to manage or use your company's Oracle Cloud Infrastructure
 // resources. Users might need to launch instances, manage remote disks, work with your cloud network, etc. Users
 // have one or more IAM Service credentials (ApiKey,
 // UIPassword, SwiftPassword and
@@ -56,9 +56,6 @@ type User struct {
 	// The email you assign to the user during creation.
 	// The name must be unique across all users in the tenancy.
 	Email *string `mandatory:"false" json:"email"`
-
-	// Whether the email address has been validated.
-	EmailVerified *bool `mandatory:"false" json:"emailVerified"`
 
 	// The OCID of the `IdentityProvider` this user belongs to.
 	IdentityProviderId *string `mandatory:"false" json:"identityProviderId"`

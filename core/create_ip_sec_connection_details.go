@@ -18,13 +18,13 @@ type CreateIpSecConnectionDetails struct {
 	// The OCID of the compartment to contain the IPSec connection.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID of the CPE.
+	// The OCID of the Cpe object.
 	CpeId *string `mandatory:"true" json:"cpeId"`
 
 	// The OCID of the DRG.
 	DrgId *string `mandatory:"true" json:"drgId"`
 
-	// Static routes to the CPE. At least one route must be included. The CIDR must not be a
+	// Static routes to the CPE. At least one route must be included. A static route's CIDR must not be a
 	// multicast address or class E address.
 	// Example: `10.0.1.0/24`
 	StaticRoutes []string `mandatory:"true" json:"staticRoutes"`

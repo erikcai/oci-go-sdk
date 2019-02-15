@@ -22,6 +22,15 @@ type CreateVcnDetails struct {
 	// The OCID of the compartment to contain the VCN.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
+	// When IPv6 is enabled, Oracle will automatically assign a /48 CIDR to a VCN. Oracle assigned
+	// addresses are globally unique address. Alternatively, a custom IPv6 CIDR block can be assigned
+	// to a VCN using this attribute. If `ipv6CidrBlock` is defined, IPv6 addresses will be considered
+	// private and cannot be accessed from the internet directly. However, Oracle will still
+	// assign an additional public IPv6 CIDR to the VCN. User will have an option to enable internet
+	// access on a private IPv6 address via NPTv6 using the prefix of the public CIDR.
+	// Example: `2001:0db8:0123:45::/56`
+	Ipv6CidrBlock *string `mandatory:"false" json:"ipv6CidrBlock"`
+
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
@@ -49,6 +58,9 @@ type CreateVcnDetails struct {
 	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Whether IPv6 is enabled for a VCN. IPv6 is not enabled by default.
+	IsIpv6Enabled *bool `mandatory:"false" json:"isIpv6Enabled"`
 }
 
 func (m CreateVcnDetails) String() string {

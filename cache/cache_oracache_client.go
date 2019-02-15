@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -37,7 +37,7 @@ func NewOracacheClientWithConfigurationProvider(configProvider common.Configurat
 
 // SetRegion overrides the region of this client.
 func (client *OracacheClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("caching", "https://{region}.caching.oci.oraclecloud.com")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("caching", "https://caching.{region}.oci.oraclecloud.com")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -58,8 +58,8 @@ func (client *OracacheClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
-// CancelWorkRequest At least a work request that is still in ACCEPTED status should
-// allow to be cancelled.
+// CancelWorkRequest An operation that cancels a work request. A work request must be at least `ACCEPTED`
+// before it can be canceled.
 func (client OracacheClient) CancelWorkRequest(ctx context.Context, request CancelWorkRequestRequest) (response CancelWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -101,7 +101,7 @@ func (client OracacheClient) cancelWorkRequest(ctx context.Context, request comm
 	return response, err
 }
 
-// CreateReplicatedCache An asynchronous operation that creates a new redis replicated cache.
+// CreateReplicatedCache An asynchronous operation that creates a new Redis replicated cache.
 func (client OracacheClient) CreateReplicatedCache(ctx context.Context, request CreateReplicatedCacheRequest) (response CreateReplicatedCacheResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -148,7 +148,7 @@ func (client OracacheClient) createReplicatedCache(ctx context.Context, request 
 	return response, err
 }
 
-// DeleteReplicatedCache An asynchronous operation to delete the specified redis replicated cache.
+// DeleteReplicatedCache An asynchronous operation that deletes the specified Redis replicated cache.
 func (client OracacheClient) DeleteReplicatedCache(ctx context.Context, request DeleteReplicatedCacheRequest) (response DeleteReplicatedCacheResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -190,7 +190,7 @@ func (client OracacheClient) deleteReplicatedCache(ctx context.Context, request 
 	return response, err
 }
 
-// GetReplicatedCache A synchronous operation to retrieve the details of the specified redis replicated cache.
+// GetReplicatedCache A synchronous operation that retrieves details of the specified Redis replicated cache.
 func (client OracacheClient) GetReplicatedCache(ctx context.Context, request GetReplicatedCacheRequest) (response GetReplicatedCacheResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -232,7 +232,7 @@ func (client OracacheClient) getReplicatedCache(ctx context.Context, request com
 	return response, err
 }
 
-// GetWorkRequest An operation to get the details of a specified work requests.
+// GetWorkRequest An operation that gets the details of a specific work request.
 func (client OracacheClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -274,7 +274,7 @@ func (client OracacheClient) getWorkRequest(ctx context.Context, request common.
 	return response, err
 }
 
-// ListCachingConsumption Lists the corresponding usage for the caching limit group in the specified tenancy of the targeting Region.
+// ListCachingConsumption An operation that lists cache consumption for a tenancy in the current region. Service limits determine the maximum number of caches that can be created.
 func (client OracacheClient) ListCachingConsumption(ctx context.Context, request ListCachingConsumptionRequest) (response ListCachingConsumptionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -316,9 +316,9 @@ func (client OracacheClient) listCachingConsumption(ctx context.Context, request
 	return response, err
 }
 
-// ListRedisShapes A redis cache instance can be created with any one of these supported
-// shapes. Redis shapes generally indicate how much memory or bandwidth is available
-// for a redis cache.
+// ListRedisShapes A Redis replicated cache can be created with any one of these supported
+// shapes. The shape generally indicate how much memory or bandwidth is available
+// for a Redis replicated cache.
 func (client OracacheClient) ListRedisShapes(ctx context.Context, request ListRedisShapesRequest) (response ListRedisShapesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -360,7 +360,7 @@ func (client OracacheClient) listRedisShapes(ctx context.Context, request common
 	return response, err
 }
 
-// ListReplicatedCaches A synchronous operation to list out all the redis replicated caches
+// ListReplicatedCaches A synchronous operation that lists all the Redis replicated caches
 // according to the specified filters.
 func (client OracacheClient) ListReplicatedCaches(ctx context.Context, request ListReplicatedCachesRequest) (response ListReplicatedCachesResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -403,7 +403,7 @@ func (client OracacheClient) listReplicatedCaches(ctx context.Context, request c
 	return response, err
 }
 
-// ListVersions A redis cache instance can be created with any one of these supported redis versions.
+// ListVersions A Redis replicated cache instance can be created with any one of these supported Redis versions.
 func (client OracacheClient) ListVersions(ctx context.Context, request ListVersionsRequest) (response ListVersionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -445,9 +445,8 @@ func (client OracacheClient) listVersions(ctx context.Context, request common.OC
 	return response, err
 }
 
-// ListWorkRequestErrors An operation to list all the errors that occurred while executing
-// the specified work request. The errors are listed in the order of oldest
-// error first.
+// ListWorkRequestErrors An operation that lists all the errors that occurred while executing
+// the specified work request. Errors are listed from oldest to newest.
 func (client OracacheClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -489,9 +488,8 @@ func (client OracacheClient) listWorkRequestErrors(ctx context.Context, request 
 	return response, err
 }
 
-// ListWorkRequestLogs An operation to list all the log messages that were written while
-// executing the specified work request. The log messages are listed in the
-// order of oldest message first.
+// ListWorkRequestLogs An operation that lists all the log messages that were written while
+// executing the specified work request. Errors are listed from oldest to newest.
 func (client OracacheClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -533,7 +531,7 @@ func (client OracacheClient) listWorkRequestLogs(ctx context.Context, request co
 	return response, err
 }
 
-// ListWorkRequests An operation to list all the work requests.
+// ListWorkRequests An operation that lists all current work requests.
 func (client OracacheClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

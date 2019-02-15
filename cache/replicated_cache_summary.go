@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,28 +12,28 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReplicatedCacheSummary Summary of a redis replicated cache
+// ReplicatedCacheSummary Summary information of the Redis replicated cache.
 type ReplicatedCacheSummary struct {
 
-	// The OCID of the redis replicated cache
+	// The OCID of the Redis replicated cache.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The name of the redis replicated cache
+	// The name of the Redis replicated cache.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The number of replicas in the redis replicated cache
+	// The number of replicas that make up the Redis replicated cache.
 	ReplicaCount *int `mandatory:"true" json:"replicaCount"`
 
-	// The lifecycleState of the redis replicated cache
+	// The `lifecycleState` of the Redis replicated cache.
 	LifecycleState ReplicatedCacheSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The URI to access the detailed information of the redis replicated cache
+	// The URI to access detailed information about the Redis replicated cache.
 	ResourceUri *string `mandatory:"true" json:"resourceUri"`
 
-	// The shape of the redis replicated cache
+	// The amount of memory allocated to the Redis replicated cache.
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// A brief description of the redis replicated cache
+	// A brief description of the Redis replicated cache.
 	Description *string `mandatory:"false" json:"description"`
 }
 

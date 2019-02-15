@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Compartment A collection of related resources. Compartments are a fundamental component of Oracle Bare Metal Cloud Services
+// Compartment A collection of related resources. Compartments are a fundamental component of Oracle Cloud Infrastructure
 // for organizing and isolating your cloud resources. You use them to clearly separate resources for the purposes
 // of measuring usage and billing, access (through the use of IAM Service policies), and isolation (separating the
 // resources for one project or business unit from another). A common approach is to create a compartment for each
@@ -31,11 +31,11 @@ type Compartment struct {
 	// The OCID of the compartment.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID of the tenancy containing the compartment.
+	// The OCID of the parent compartment containing the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The name you assign to the compartment during creation. The name must be unique across all
-	// compartments in the tenancy and cannot be changed.
+	// compartments in the parent. Avoid entering confidential information.
 	Name *string `mandatory:"true" json:"name"`
 
 	// The description you assign to the compartment. Does not have to be unique, and it's changeable.
@@ -52,7 +52,9 @@ type Compartment struct {
 	// The detailed status of INACTIVE lifecycleState.
 	InactiveStatus *int64 `mandatory:"false" json:"inactiveStatus"`
 
-	// Indicates whether or not the compartment is accessible for caller. isAccessible field will only be returned if accessLevel = ACCESSIBLE
+	// Indicates whether or not the compartment is accessible for the user making the request.
+	// Returns true when the user has INSPECT permissions directly on a resource in the
+	// compartment or indirectly (permissions can be on a resource in a subcompartment).
 	IsAccessible *bool `mandatory:"false" json:"isAccessible"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

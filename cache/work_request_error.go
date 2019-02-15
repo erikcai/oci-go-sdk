@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -15,13 +15,13 @@ import (
 // WorkRequestError An error that occurred while executing a work request.
 type WorkRequestError struct {
 
-	// The code of the error that occurred
+	// The code of the error that occurred.
 	Code *string `mandatory:"true" json:"code"`
 
-	// The log message
+	// The log message.
 	Message *string `mandatory:"true" json:"message"`
 
-	// The time the log message was written
+	// The time the log message was written.
 	TimeStamp *common.SDKTime `mandatory:"true" json:"timeStamp"`
 }
 

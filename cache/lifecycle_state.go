@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// LifecycleState The various lifecycle states that a redis replicated cache can have.
+// LifecycleState The various lifecycle states of Redis replicated caches.
 type LifecycleState struct {
 }
 

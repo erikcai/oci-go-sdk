@@ -20,6 +20,12 @@ type ListUsersRequest struct {
 	// The maximum number of items to return in a paginated "List" call.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
+	// The id of the identity provider.
+	IdentityProviderId *string `mandatory:"false" contributesTo:"query" name:"identityProviderId"`
+
+	// The id of a user in the identity provider.
+	ExternalIdentifier *string `mandatory:"false" contributesTo:"query" name:"externalIdentifier"`
+
 	// A filter to only return resources that match the given name exactly.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
 
@@ -35,12 +41,6 @@ type ListUsersRequest struct {
 	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The NAME sort order
 	// is case sensitive.
 	SortOrder ListUsersSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-
-	// The id of the identity provider.
-	IdentityProviderId *string `mandatory:"false" contributesTo:"query" name:"identityProviderId"`
-
-	// The id of a user in the identity provider.
-	ExternalIdentifier *string `mandatory:"false" contributesTo:"query" name:"externalIdentifier"`
 
 	// A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
 	LifecycleState UserLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`

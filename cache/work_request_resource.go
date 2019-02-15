@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,19 +12,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestResource The details of a resource a work request affects.
+// WorkRequestResource The details of a resource that a work request affects.
 type WorkRequestResource struct {
 
-	// The way in which a resource was affected.
+	// The way in which the resource is affected.
 	ActionType WorkRequestResourceActionTypeEnum `mandatory:"true" json:"actionType"`
 
-	// The type of the resource that is affected.
+	// The type of the resource.
 	EntityType *string `mandatory:"true" json:"entityType"`
 
-	// The OCID of the resource
+	// The OCID of the resource.
 	Identifier *string `mandatory:"true" json:"identifier"`
 
-	// The URI path to the resource
+	// The URI path to the resource.
 	EntityUri *string `mandatory:"true" json:"entityUri"`
 }
 

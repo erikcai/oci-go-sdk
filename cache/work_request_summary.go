@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -15,31 +15,31 @@ import (
 // WorkRequestSummary A summary of a work request.
 type WorkRequestSummary struct {
 
-	// The type of operation that is currently being perfomed.
+	// The type of operation that is being perfomed by the work request.
 	OperationType *string `mandatory:"true" json:"operationType"`
 
-	// The current status of the work request
+	// The current status of the work request.
 	Status WorkRequestSummaryStatusEnum `mandatory:"true" json:"status"`
 
-	// The OCID of the work request
+	// The OCID of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID of the compartment that contains the work request
+	// The OCID of the compartment that initiated the work request.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The list of resources this work request affects
+	// The list of resources the work request affects.
 	Resources []WorkRequestResource `mandatory:"true" json:"resources"`
 
-	// The current progress of the work request
+	// The current progress of the work request.
 	PercentComplete *float32 `mandatory:"true" json:"percentComplete"`
 
-	// The time this work request was created
+	// The time the work request was created.
 	TimeAccepted *common.SDKTime `mandatory:"true" json:"timeAccepted"`
 
-	// The time this work request was moved from ACCEPTED status to IN_PROGRESS status
+	// The time the work request was moved from `ACCEPTED` status to `IN_PROGRESS` status.
 	TimeStarted *common.SDKTime `mandatory:"false" json:"timeStarted"`
 
-	// The time this work request reached a terminal status - SUCCEEDED, CANCELED or FAILED
+	// The time this work request reached a terminal status - `SUCCEEDED`, `CANCELED` or `FAILED`.
 	TimeFinished *common.SDKTime `mandatory:"false" json:"timeFinished"`
 }
 

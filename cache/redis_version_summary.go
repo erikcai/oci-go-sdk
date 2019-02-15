@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RedisVersionSummary Summary object describing a redis version
+// RedisVersionSummary The Redis version number
 type RedisVersionSummary struct {
 
 	// Redis version

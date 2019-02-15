@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,37 +12,37 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReplicatedCache Details of a redis replicated cache
+// ReplicatedCache Details of the Redis replicated cache. Redis replicated caches are comprised of Oracle-managed Redis nodes that each contain a replica of the cached data. The cache is accessible from a tenant's compartment using a published endpoint.
 type ReplicatedCache struct {
 
-	// The OCID of the redis replicated cache
+	// The OCID of the Redis replicated cache.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The compartment OCID of the redis replicated cache
+	// The compartment OCID from which the Redis replicated cache is accessible.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The VCN OCID of the redis replicated cache
+	// The VCN OCID that contains the network resources and subnets to which the Redis nodes are attached.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// The name of the redis replicated cache
+	// The name of the Redis replicated cache
 	Name *string `mandatory:"true" json:"name"`
 
-	// The number of replicas in the redis replicated cache
+	// The number of replica nodes that make up the Redis replicated cache.
 	ReplicaCount *int `mandatory:"true" json:"replicaCount"`
 
-	// The shape of the redis replicated cache
+	// The amount of memory allocated to the Redis replicated cache.
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// The endpoints of the replicas in the redis replicated cache
-	RedisEndPoints []EndPoint `mandatory:"true" json:"redisEndPoints"`
+	// The endpoints of the replicas that make up the Redis replicated cache.
+	RedisNodes []EndPoint `mandatory:"true" json:"redisNodes"`
 
 	// Cache creation timestamp. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The lifecycleState of the redis replicated cache
+	// The `lifecycleState` of the Redis replicated cache.
 	LifecycleState ReplicatedCacheLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// A brief description of the redis replicated cache
+	// A brief description of the Redis replicated cache
 	Description *string `mandatory:"false" json:"description"`
 }
 

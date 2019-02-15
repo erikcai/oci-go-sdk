@@ -31,7 +31,7 @@ type RouteRule struct {
 	// Conceptually, this is the range of IP addresses used for matching when routing
 	// traffic. Required if you provide a `destinationType`.
 	// Allowed values:
-	//   * IP address range in CIDR notation. For example: `192.168.1.0/24`
+	//   * IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`
 	//   * The `cidrBlock` value for a Service, if you're
 	//     setting up a route rule for traffic destined for a particular service through
 	//     a service gateway. For example: `oci-phx-objectstorage`

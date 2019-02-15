@@ -11,25 +11,25 @@ import (
 // ListWorkRequestsRequest wrapper for the ListWorkRequests operation
 type ListWorkRequestsRequest struct {
 
-	// The OCID of the compartment in which to list the redis replicated caches.
+	// The OCID of the compartment which initiated the work request.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// The OCID of the work request.
 	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
 
-	// The field on which to sort the result.
+	// The field on which to sort the results.
 	SortBy ListWorkRequestsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// The order of sorting (ASC or DESC).
 	SortOrder ListWorkRequestsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The value of the opc-next-page response header from previous request.
+	// The value of the opc-next-page response header from the previous request.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// Maximum number of items returned from list.
+	// The maximum number of items to return.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// Unique Oracle-assigned identifier for the request. If you need
+	// A unique Oracle-assigned identifier for the request. If you need
 	// to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
@@ -61,12 +61,12 @@ type ListWorkRequestsResponse struct {
 	// A list of []WorkRequestSummary instances
 	Items []WorkRequestSummary `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If
+	// A unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request, please provide
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// Next page value to provide as page header in next request
+	// The next page value to provide for the page header in the next request.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

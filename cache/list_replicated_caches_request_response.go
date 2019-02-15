@@ -11,20 +11,20 @@ import (
 // ListReplicatedCachesRequest wrapper for the ListReplicatedCaches operation
 type ListReplicatedCachesRequest struct {
 
-	// The OCID of the compartment in which to list the redis replicated
+	// The OCID of the compartment for which to list the Redis replicated
 	// caches.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The OCID of the redis replicated cache.
+	// The OCID of the Redis replicated cache.
 	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
 
-	// Name of the redis replicated cache to be included in the list.
+	// The name of the Redis replicated cache to be included in the list.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
 
-	// The lifecycle state in which the redis replicated caches are in.
+	// The current lifecycle state of the Redis replicated cache.
 	LifecycleState ListReplicatedCachesLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// The lifecycle state in which the redis replicated caches are not in.
+	// The lifecycle states that are not current for the Redis replicated cache.
 	LifecycleStateNotEquals ListReplicatedCachesLifecycleStateNotEqualsEnum `mandatory:"false" contributesTo:"query" name:"lifecycleStateNotEquals" omitEmpty:"true"`
 
 	// The field on which to sort the results.
@@ -33,13 +33,13 @@ type ListReplicatedCachesRequest struct {
 	// The order of sorting (ASC or DESC).
 	SortOrder ListReplicatedCachesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The value of the opc-next-page response header from previous request.
+	// The value of the opc-next-page response header from the previous request.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// Maximum number of items returned from list.
+	// The maximum number of items to return.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// Unique Oracle-assigned identifier for the request. If you need
+	// A unique Oracle-assigned identifier for the request. If you need
 	// to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
@@ -71,12 +71,12 @@ type ListReplicatedCachesResponse struct {
 	// A list of []ReplicatedCacheSummary instances
 	Items []ReplicatedCacheSummary `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If
+	// A unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request, please provide
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// Next page value to provide as page header in next request
+	// The next page value to provide as a page header in next request
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

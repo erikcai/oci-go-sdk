@@ -25,7 +25,15 @@ type CreateSubnetDetails struct {
 	// The OCID of the VCN to contain the subnet.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// The availability domain to contain the subnet.
+	// Controls whether the subnet is regional or specific to an availability domain. Oracle
+	// recommends creating regional subnets because they're more flexible and make it easier to
+	// implement failover across availability domains. Originally, AD-specific subnets were the
+	// only kind available to use.
+	// To create a regional subnet, omit this attribute. Then any resources later created in this
+	// subnet (such as a Compute instance) can be created in any availability domain in the region.
+	// To instead create an AD-specific subnet, set this attribute to the availability domain you
+	// want this subnet to be in. Then any resources later created in this subnet can only be
+	// created in that availability domain.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
@@ -60,6 +68,15 @@ type CreateSubnetDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// User need to specify an IPv6 CIDR block for the subnet in order to enable IPv6. Otherwise, IPv6 addresses
+	// will not be allowed in the subnet despite VCN having IPv6 enabled. IPv6 can only be enabled for a subnet
+	// if its VCN also has IPv6 enabled. The subnet IPv6 CIDR has to be
+	// - /64 in length
+	// - unique across all subnets in the VCN
+	// - within VCN CIDR range
+	// Example: `2001:0db8:0123:4567::/64`
+	Ipv6CidrBlock *string `mandatory:"false" json:"ipv6CidrBlock"`
+
 	// Whether learning mode is enabled for this subnet. The default is `false`.
 	// **Note:** When a subnet has learning mode enabled, only certain types
 	// of resources can be launched in the subnet.
@@ -79,7 +96,9 @@ type CreateSubnetDetails struct {
 	// If `prohibitPublicIpOnVnic` is set to true, VNICs created in this
 	// subnet cannot have public IP addresses (that is, it's a private
 	// subnet).
-	//
+	// For IPv6, if `prohibitPublicIpOnVnic` is set to true, internet access will not be allowed on any
+	// IPv6 attached to VNICs in the subnet. This includes both cases where IPv6s are already globally
+	// unique and when internet access is provided via NPTv6.
 	// Example: `true`
 	ProhibitPublicIpOnVnic *bool `mandatory:"false" json:"prohibitPublicIpOnVnic"`
 

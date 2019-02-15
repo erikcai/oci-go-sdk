@@ -15,13 +15,13 @@ import (
 // CreateTagNamespaceDetails The representation of CreateTagNamespaceDetails
 type CreateTagNamespaceDetails struct {
 
-	// The OCID of the tenancy containing the user.
+	// The OCID of the tenancy containing the tag namespace.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The name of the tagNamespace. It must be unique across all tagNamespaces in the tenancy and cannot be changed.
+	// The name you assign to the tag namespace during creation. It must be unique across all tag namespaces in the tenancy and cannot be changed.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The description of the tagNamespace.
+	// The description you assign to the tag namespace during creation.
 	Description *string `mandatory:"true" json:"description"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

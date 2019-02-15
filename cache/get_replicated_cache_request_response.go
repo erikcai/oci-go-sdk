@@ -11,10 +11,10 @@ import (
 // GetReplicatedCacheRequest wrapper for the GetReplicatedCache operation
 type GetReplicatedCacheRequest struct {
 
-	// OCID that uniquely identifies a redis replicated cache
+	// OCID that uniquely identifies the Redis replicated cache.
 	Id *string `mandatory:"true" contributesTo:"path" name:"id"`
 
-	// Unique Oracle-assigned identifier for the request. If you need
+	// A unique Oracle-assigned identifier for the request. If you need
 	// to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
@@ -46,7 +46,7 @@ type GetReplicatedCacheResponse struct {
 	// The ReplicatedCache instance
 	ReplicatedCache `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If
+	// A unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request, please provide
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`

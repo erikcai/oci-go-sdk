@@ -43,8 +43,8 @@ type ResendSubscriptionConfirmationResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The SubscriptionConfirmation instance
-	SubscriptionConfirmation `presentIn:"body"`
+	// The Subscription instance
+	Subscription `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.

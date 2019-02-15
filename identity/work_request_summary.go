@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestSummary The work request summary. Tracks the status of the async operation.
+// WorkRequestSummary The work request summary. Tracks the status of the asynchronous operation.
 type WorkRequestSummary struct {
 
-	// The id of the work request.
+	// The OCID of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
 	// An enum-like description of the type of work the work request is doing.

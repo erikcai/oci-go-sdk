@@ -51,7 +51,8 @@ type Subnet struct {
 	// Example: `00:00:17:B6:4D:DD`
 	VirtualRouterMac *string `mandatory:"true" json:"virtualRouterMac"`
 
-	// The subnet's availability domain.
+	// The subnet's availability domain. This attribute will be null if this is a regional subnet
+	// instead of an AD-specific subnet. Oracle recommends creating regional subnets.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
@@ -84,6 +85,20 @@ type Subnet struct {
 	// Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// The CIDR IPv6 address block of the Subnet. The CIDR length is always /64.
+	// Example: `2001:0db8:0123:4567::/64`
+	Ipv6CidrBlock *string `mandatory:"false" json:"ipv6CidrBlock"`
+
+	// The public CIDR IPv6 address block of the Subnet. The CIDR length is always /64.
+	// The CIDR is inherited from VCN's `ipv6PublicCidrBlock` with the remaining bits
+	// being the same as subnet's `ipv6CidrBlock`.
+	// Example: `2001:0db8:0123:4567::/64`
+	Ipv6PublicCidrBlock *string `mandatory:"false" json:"ipv6PublicCidrBlock"`
+
+	// The IPv6 address of the virtual router.
+	// Example: `2001:0db8:0123:4567:89ab:cdef:1234:5678`
+	Ipv6VirtualRouterIp *string `mandatory:"false" json:"ipv6VirtualRouterIp"`
 
 	// Whether learning mode is enabled for this subnet. The default is `false`.
 	// **Note:** When a subnet has learning mode enabled, only certain types

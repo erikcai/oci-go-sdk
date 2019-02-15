@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -15,10 +15,10 @@ import (
 // WorkRequestLogEntry A log entry of a work request.
 type WorkRequestLogEntry struct {
 
-	// The log message
+	// The log message.
 	Message *string `mandatory:"true" json:"message"`
 
-	// The time the log message was written
+	// The time the log message was written.
 	TimeStamp *common.SDKTime `mandatory:"true" json:"timeStamp"`
 }
 

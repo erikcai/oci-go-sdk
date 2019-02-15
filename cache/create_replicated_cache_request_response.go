@@ -11,18 +11,18 @@ import (
 // CreateReplicatedCacheRequest wrapper for the CreateReplicatedCache operation
 type CreateReplicatedCacheRequest struct {
 
-	// Details for creating a redis replicated cache
+	// Input parameters that are used to create the Redis replicated cache.
 	CreateReplicatedCacheDetails `contributesTo:"body"`
 
-	// A token that uniquely identifies a request so it can be retried
+	// A token that uniquely identifies a request so that it can be retried
 	// in case of a timeout or server error without risk of executing that same
-	// action again. Retry tokens expire after 24 hours, but can be invalidated
-	// before then due to conflicting operations (e.g., if a resource has been
-	// deleted and purged from the system, then a retry of the original creation
-	// request may be rejected).
+	// action again. Retry tokens expire after 24 hours but can be invalidated
+	// prior to the expiration due to conflicting operations (e.g., if a resource
+	// has been deleted and purged from the system, then a retry of the original
+	// creation request may be rejected).
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
-	// Unique Oracle-assigned identifier for the request. If you need
+	// A unique Oracle-assigned identifier for the request. If you need
 	// to contact Oracle about a particular request, please provide the request
 	// ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -52,7 +52,7 @@ type CreateReplicatedCacheResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique Oracle-assigned identifier for the request. If
+	// A unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request, please provide
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
@@ -60,10 +60,9 @@ type CreateReplicatedCacheResponse struct {
 	// The OCID of the work request.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 
-	// URL to the replicated cache resource that was created.
-	// This is a representative object for the replicated cache and also
-	// includes the current status of the individual servers of the replicated
-	// cache.
+	// A URL to the replicated cache resource. This is a representative object
+	// for the replicated cache and also includes the current status of the
+	// individual Redis nodes of the replicated cache.
 	Location *string `presentIn:"header" name:"location"`
 }
 

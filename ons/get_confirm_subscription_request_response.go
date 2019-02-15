@@ -49,8 +49,8 @@ type GetConfirmSubscriptionResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The string instance
-	Value *string `presentIn:"body"`
+	// The ConfirmationResult instance
+	ConfirmationResult `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.

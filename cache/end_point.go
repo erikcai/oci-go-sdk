@@ -3,7 +3,7 @@
 
 // OraCache Public API
 //
-// Oracle Caching Service Public API
+// API for the Data Caching Service. Use this service to manage Redis replicated caches.
 //
 
 package cache
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// EndPoint Represents an endpoint through which the cache can be accessed
+// EndPoint An endpoint for accessing a Redis replicated cache.
 type EndPoint struct {
 
 	// The IP of the endpoint.
@@ -21,13 +21,13 @@ type EndPoint struct {
 	// The port of the endpoint.
 	Port *int `mandatory:"true" json:"port"`
 
-	// A flag to indicate the primary redis node.
+	// A flag that indicates the primary Redis node.
 	IsPrimary *bool `mandatory:"true" json:"isPrimary"`
 
-	// The subnet id of this redis node.
+	// The subnet id of this Redis node.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
-	// The availability domain of this redis node.
+	// The availability domain of this Redis node.
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
 	// The hostname of the endpoint.

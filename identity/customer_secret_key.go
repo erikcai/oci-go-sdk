@@ -22,10 +22,10 @@ type CustomerSecretKey struct {
 	// The secret key.
 	Key *string `mandatory:"false" json:"key"`
 
-	// The ID of the secret key.
+	// The OCID of the secret key.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The OCID of the user the secret key belongs to.
+	// The OCID of the user the password belongs to.
 	UserId *string `mandatory:"false" json:"userId"`
 
 	// The display name you assign to the secret key. Does not have to be unique, and it's changeable.
