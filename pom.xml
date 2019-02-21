@@ -93,7 +93,7 @@
     </dependency>
     <dependency>
       <groupId>com.oracle.pic.kms</groupId>
-      <artifactId>kms-api-spec-20180608</artifactId>
+      <artifactId>kms-api-spec</artifactId>
     </dependency>
     <dependency>
       <groupId>com.oracle.pic.query</groupId>
@@ -379,7 +379,7 @@
               <artifactItems>
                 <artifactItem>
                   <groupId>com.oracle.pic.kms</groupId>
-                  <artifactId>kms-api-spec-20180608</artifactId>
+                  <artifactId>kms-api-spec</artifactId>
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/kms-api-spec</outputDirectory>
@@ -2344,8 +2344,8 @@
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
-        <artifactId>kms-api-spec-20180608</artifactId>
-        <version>0.1.80</version>
+        <artifactId>kms-api-spec</artifactId>
+        <version>0.1.94</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.query</groupId>
