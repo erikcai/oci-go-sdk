@@ -2062,6 +2062,7 @@
                 <specName>functions</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>functions</serviceHostName>
+                <isRegionalClient.functions_invoke>false</isRegionalClient.functions_invoke>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
