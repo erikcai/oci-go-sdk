@@ -58,6 +58,19 @@ type IpSecConnection struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// Your identifier for your CPE device. Can be either an IP address or a hostname (specifically,
+	// the fully qualified domain name (FQDN)). The type of identifier here must correspond
+	// to the value for `cpeLocalIdentifierType`.
+	// If you don't provide a value when creating the IPSec connection, the `ipAddress` attribute
+	// for the Cpe object specified by `cpeId` is used as the `cpeLocalIdentifier`.
+	// Example IP address: `10.0.3.3`
+	// Example hostname: `cpe.example.com`
+	CpeLocalIdentifier *string `mandatory:"false" json:"cpeLocalIdentifier"`
+
+	// The type of identifier for your CPE device. The value here must correspond to the value
+	// for `cpeLocalIdentifier`.
+	CpeLocalIdentifierType IpSecConnectionCpeLocalIdentifierTypeEnum `mandatory:"false" json:"cpeLocalIdentifierType,omitempty"`
+
 	// The date and time the IPSec connection was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
@@ -89,6 +102,29 @@ var mappingIpSecConnectionLifecycleState = map[string]IpSecConnectionLifecycleSt
 func GetIpSecConnectionLifecycleStateEnumValues() []IpSecConnectionLifecycleStateEnum {
 	values := make([]IpSecConnectionLifecycleStateEnum, 0)
 	for _, v := range mappingIpSecConnectionLifecycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// IpSecConnectionCpeLocalIdentifierTypeEnum Enum with underlying type: string
+type IpSecConnectionCpeLocalIdentifierTypeEnum string
+
+// Set of constants representing the allowable values for IpSecConnectionCpeLocalIdentifierTypeEnum
+const (
+	IpSecConnectionCpeLocalIdentifierTypeIpAddress IpSecConnectionCpeLocalIdentifierTypeEnum = "IP_ADDRESS"
+	IpSecConnectionCpeLocalIdentifierTypeHostname  IpSecConnectionCpeLocalIdentifierTypeEnum = "HOSTNAME"
+)
+
+var mappingIpSecConnectionCpeLocalIdentifierType = map[string]IpSecConnectionCpeLocalIdentifierTypeEnum{
+	"IP_ADDRESS": IpSecConnectionCpeLocalIdentifierTypeIpAddress,
+	"HOSTNAME":   IpSecConnectionCpeLocalIdentifierTypeHostname,
+}
+
+// GetIpSecConnectionCpeLocalIdentifierTypeEnumValues Enumerates the set of values for IpSecConnectionCpeLocalIdentifierTypeEnum
+func GetIpSecConnectionCpeLocalIdentifierTypeEnumValues() []IpSecConnectionCpeLocalIdentifierTypeEnum {
+	values := make([]IpSecConnectionCpeLocalIdentifierTypeEnum, 0)
+	for _, v := range mappingIpSecConnectionCpeLocalIdentifierType {
 		values = append(values, v)
 	}
 	return values

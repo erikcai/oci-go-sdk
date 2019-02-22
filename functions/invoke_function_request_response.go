@@ -15,7 +15,8 @@ type InvokeFunctionRequest struct {
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of this function.
 	FunctionId *string `mandatory:"true" contributesTo:"path" name:"functionId"`
 
-	// The body of the function invocation
+	// The body of the function invocation.
+	// Note: The maximum size of the request is limited. This limit is currently 6MB and the endpoint will not accept requests that are bigger than this limit.
 	InvokeFunctionBody io.ReadCloser `mandatory:"true" contributesTo:"body" encoding:"binary"`
 
 	// An optional intent header that indicates to the FDK the way the event should be interpreted. E.g. 'httprequest', 'cloudevent'.

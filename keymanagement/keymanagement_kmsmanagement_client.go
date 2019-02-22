@@ -98,7 +98,7 @@ func (client KmsManagementClient) createKey(ctx context.Context, request common.
 	return response, err
 }
 
-// CreateKeyVersion Generates new cryptographic material for a key. Key must be in an `ENABLED` state to be
+// CreateKeyVersion Generates new cryptographic material for a key. The key must be in an `ENABLED` state to be
 // rotated.
 func (client KmsManagementClient) CreateKeyVersion(ctx context.Context, request CreateKeyVersionRequest) (response CreateKeyVersionResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -411,8 +411,8 @@ func (client KmsManagementClient) listKeys(ctx context.Context, request common.O
 }
 
 // UpdateKey Updates the properties of a key. Specifically, you can update the
-// `displayName` , `freeformTags`, and `definedTags` properties. Furthermore,
-// the key must in an `ACTIVE` or `CREATING` state.
+// `displayName`, `freeformTags`, and `definedTags` properties. Furthermore,
+// the key must in an `ACTIVE` or `CREATING` state to be updated.
 func (client KmsManagementClient) UpdateKey(ctx context.Context, request UpdateKeyRequest) (response UpdateKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

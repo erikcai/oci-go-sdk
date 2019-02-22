@@ -15,33 +15,33 @@ import (
 	"net/http"
 )
 
-//FunctionsClient a client for Functions
-type FunctionsClient struct {
+//FunctionsManagementClient a client for FunctionsManagement
+type FunctionsManagementClient struct {
 	common.BaseClient
 	config *common.ConfigurationProvider
 }
 
-// NewFunctionsClientWithConfigurationProvider Creates a new default Functions client with the given configuration provider.
+// NewFunctionsManagementClientWithConfigurationProvider Creates a new default FunctionsManagement client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
-func NewFunctionsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client FunctionsClient, err error) {
+func NewFunctionsManagementClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client FunctionsManagementClient, err error) {
 	baseClient, err := common.NewClientWithConfig(configProvider)
 	if err != nil {
 		return
 	}
 
-	client = FunctionsClient{BaseClient: baseClient}
+	client = FunctionsManagementClient{BaseClient: baseClient}
 	client.BasePath = "20181201"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
 
 // SetRegion overrides the region of this client.
-func (client *FunctionsClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("functions", "https://functions.{region}.oci.{secondLevelDomain}")
+func (client *FunctionsManagementClient) SetRegion(region string) {
+	client.Host = common.StringToRegion(region).EndpointForTemplate("functions", "https://functions.{region}.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
-func (client *FunctionsClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
+func (client *FunctionsManagementClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
 	if ok, err := common.IsConfigurationProviderValid(configProvider); !ok {
 		return err
 	}
@@ -54,12 +54,12 @@ func (client *FunctionsClient) setConfigurationProvider(configProvider common.Co
 }
 
 // ConfigurationProvider the ConfigurationProvider used in this client, or null if none set
-func (client *FunctionsClient) ConfigurationProvider() *common.ConfigurationProvider {
+func (client *FunctionsManagementClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
 }
 
 // CreateApplication Creates a new application.
-func (client FunctionsClient) CreateApplication(ctx context.Context, request CreateApplicationRequest) (response CreateApplicationResponse, err error) {
+func (client FunctionsManagementClient) CreateApplication(ctx context.Context, request CreateApplicationRequest) (response CreateApplicationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -86,7 +86,7 @@ func (client FunctionsClient) CreateApplication(ctx context.Context, request Cre
 }
 
 // createApplication implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) createApplication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) createApplication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/applications")
 	if err != nil {
 		return nil, err
@@ -106,7 +106,7 @@ func (client FunctionsClient) createApplication(ctx context.Context, request com
 }
 
 // CreateFunction Creates a new function.
-func (client FunctionsClient) CreateFunction(ctx context.Context, request CreateFunctionRequest) (response CreateFunctionResponse, err error) {
+func (client FunctionsManagementClient) CreateFunction(ctx context.Context, request CreateFunctionRequest) (response CreateFunctionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -133,7 +133,7 @@ func (client FunctionsClient) CreateFunction(ctx context.Context, request Create
 }
 
 // createFunction implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) createFunction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) createFunction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/functions")
 	if err != nil {
 		return nil, err
@@ -153,7 +153,7 @@ func (client FunctionsClient) createFunction(ctx context.Context, request common
 }
 
 // CreateTrigger Creates a new trigger.
-func (client FunctionsClient) CreateTrigger(ctx context.Context, request CreateTriggerRequest) (response CreateTriggerResponse, err error) {
+func (client FunctionsManagementClient) CreateTrigger(ctx context.Context, request CreateTriggerRequest) (response CreateTriggerResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -180,7 +180,7 @@ func (client FunctionsClient) CreateTrigger(ctx context.Context, request CreateT
 }
 
 // createTrigger implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) createTrigger(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) createTrigger(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/triggers")
 	if err != nil {
 		return nil, err
@@ -200,7 +200,7 @@ func (client FunctionsClient) createTrigger(ctx context.Context, request common.
 }
 
 // DeleteApplication Deletes an application.
-func (client FunctionsClient) DeleteApplication(ctx context.Context, request DeleteApplicationRequest) (response DeleteApplicationResponse, err error) {
+func (client FunctionsManagementClient) DeleteApplication(ctx context.Context, request DeleteApplicationRequest) (response DeleteApplicationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -227,7 +227,7 @@ func (client FunctionsClient) DeleteApplication(ctx context.Context, request Del
 }
 
 // deleteApplication implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) deleteApplication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) deleteApplication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/applications/{applicationId}")
 	if err != nil {
 		return nil, err
@@ -247,7 +247,7 @@ func (client FunctionsClient) deleteApplication(ctx context.Context, request com
 }
 
 // DeleteFunction Deletes a function.
-func (client FunctionsClient) DeleteFunction(ctx context.Context, request DeleteFunctionRequest) (response DeleteFunctionResponse, err error) {
+func (client FunctionsManagementClient) DeleteFunction(ctx context.Context, request DeleteFunctionRequest) (response DeleteFunctionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -274,7 +274,7 @@ func (client FunctionsClient) DeleteFunction(ctx context.Context, request Delete
 }
 
 // deleteFunction implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) deleteFunction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) deleteFunction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/functions/{functionId}")
 	if err != nil {
 		return nil, err
@@ -294,7 +294,7 @@ func (client FunctionsClient) deleteFunction(ctx context.Context, request common
 }
 
 // DeleteTrigger Deletes a trigger.
-func (client FunctionsClient) DeleteTrigger(ctx context.Context, request DeleteTriggerRequest) (response DeleteTriggerResponse, err error) {
+func (client FunctionsManagementClient) DeleteTrigger(ctx context.Context, request DeleteTriggerRequest) (response DeleteTriggerResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -321,7 +321,7 @@ func (client FunctionsClient) DeleteTrigger(ctx context.Context, request DeleteT
 }
 
 // deleteTrigger implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) deleteTrigger(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) deleteTrigger(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/triggers/{triggerId}")
 	if err != nil {
 		return nil, err
@@ -341,7 +341,7 @@ func (client FunctionsClient) deleteTrigger(ctx context.Context, request common.
 }
 
 // GetApplication Retrieves an application.
-func (client FunctionsClient) GetApplication(ctx context.Context, request GetApplicationRequest) (response GetApplicationResponse, err error) {
+func (client FunctionsManagementClient) GetApplication(ctx context.Context, request GetApplicationRequest) (response GetApplicationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -363,7 +363,7 @@ func (client FunctionsClient) GetApplication(ctx context.Context, request GetApp
 }
 
 // getApplication implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) getApplication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) getApplication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/applications/{applicationId}")
 	if err != nil {
 		return nil, err
@@ -383,7 +383,7 @@ func (client FunctionsClient) getApplication(ctx context.Context, request common
 }
 
 // GetFunction Retrieves a function.
-func (client FunctionsClient) GetFunction(ctx context.Context, request GetFunctionRequest) (response GetFunctionResponse, err error) {
+func (client FunctionsManagementClient) GetFunction(ctx context.Context, request GetFunctionRequest) (response GetFunctionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -410,7 +410,7 @@ func (client FunctionsClient) GetFunction(ctx context.Context, request GetFuncti
 }
 
 // getFunction implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) getFunction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) getFunction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/functions/{functionId}")
 	if err != nil {
 		return nil, err
@@ -430,7 +430,7 @@ func (client FunctionsClient) getFunction(ctx context.Context, request common.OC
 }
 
 // GetTrigger Retrieves a trigger.
-func (client FunctionsClient) GetTrigger(ctx context.Context, request GetTriggerRequest) (response GetTriggerResponse, err error) {
+func (client FunctionsManagementClient) GetTrigger(ctx context.Context, request GetTriggerRequest) (response GetTriggerResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -457,7 +457,7 @@ func (client FunctionsClient) GetTrigger(ctx context.Context, request GetTrigger
 }
 
 // getTrigger implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) getTrigger(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) getTrigger(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/triggers/{triggerId}")
 	if err != nil {
 		return nil, err
@@ -476,49 +476,8 @@ func (client FunctionsClient) getTrigger(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// InvokeFunction Invokes a function
-func (client FunctionsClient) InvokeFunction(ctx context.Context, request InvokeFunctionRequest) (response InvokeFunctionResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.invokeFunction, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = InvokeFunctionResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(InvokeFunctionResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into InvokeFunctionResponse")
-	}
-	return
-}
-
-// invokeFunction implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) invokeFunction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/functions/{functionId}/actions/invoke")
-	if err != nil {
-		return nil, err
-	}
-
-	var response InvokeFunctionResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // ListApplications Lists applications for a compartment.
-func (client FunctionsClient) ListApplications(ctx context.Context, request ListApplicationsRequest) (response ListApplicationsResponse, err error) {
+func (client FunctionsManagementClient) ListApplications(ctx context.Context, request ListApplicationsRequest) (response ListApplicationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -540,7 +499,7 @@ func (client FunctionsClient) ListApplications(ctx context.Context, request List
 }
 
 // listApplications implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) listApplications(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) listApplications(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/applications")
 	if err != nil {
 		return nil, err
@@ -560,7 +519,7 @@ func (client FunctionsClient) listApplications(ctx context.Context, request comm
 }
 
 // ListFunctions Lists functions for an application.
-func (client FunctionsClient) ListFunctions(ctx context.Context, request ListFunctionsRequest) (response ListFunctionsResponse, err error) {
+func (client FunctionsManagementClient) ListFunctions(ctx context.Context, request ListFunctionsRequest) (response ListFunctionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -582,7 +541,7 @@ func (client FunctionsClient) ListFunctions(ctx context.Context, request ListFun
 }
 
 // listFunctions implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) listFunctions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) listFunctions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/functions")
 	if err != nil {
 		return nil, err
@@ -602,7 +561,7 @@ func (client FunctionsClient) listFunctions(ctx context.Context, request common.
 }
 
 // ListTriggers Lists triggers for a function.
-func (client FunctionsClient) ListTriggers(ctx context.Context, request ListTriggersRequest) (response ListTriggersResponse, err error) {
+func (client FunctionsManagementClient) ListTriggers(ctx context.Context, request ListTriggersRequest) (response ListTriggersResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -624,7 +583,7 @@ func (client FunctionsClient) ListTriggers(ctx context.Context, request ListTrig
 }
 
 // listTriggers implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) listTriggers(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) listTriggers(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/triggers")
 	if err != nil {
 		return nil, err
@@ -644,7 +603,7 @@ func (client FunctionsClient) listTriggers(ctx context.Context, request common.O
 }
 
 // UpdateApplication Modifies an application
-func (client FunctionsClient) UpdateApplication(ctx context.Context, request UpdateApplicationRequest) (response UpdateApplicationResponse, err error) {
+func (client FunctionsManagementClient) UpdateApplication(ctx context.Context, request UpdateApplicationRequest) (response UpdateApplicationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -671,7 +630,7 @@ func (client FunctionsClient) UpdateApplication(ctx context.Context, request Upd
 }
 
 // updateApplication implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) updateApplication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) updateApplication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/applications/{applicationId}")
 	if err != nil {
 		return nil, err
@@ -691,7 +650,7 @@ func (client FunctionsClient) updateApplication(ctx context.Context, request com
 }
 
 // UpdateFunction Modifies a function
-func (client FunctionsClient) UpdateFunction(ctx context.Context, request UpdateFunctionRequest) (response UpdateFunctionResponse, err error) {
+func (client FunctionsManagementClient) UpdateFunction(ctx context.Context, request UpdateFunctionRequest) (response UpdateFunctionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -718,7 +677,7 @@ func (client FunctionsClient) UpdateFunction(ctx context.Context, request Update
 }
 
 // updateFunction implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) updateFunction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) updateFunction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/functions/{functionId}")
 	if err != nil {
 		return nil, err
@@ -738,7 +697,7 @@ func (client FunctionsClient) updateFunction(ctx context.Context, request common
 }
 
 // UpdateTrigger Modifies a trigger
-func (client FunctionsClient) UpdateTrigger(ctx context.Context, request UpdateTriggerRequest) (response UpdateTriggerResponse, err error) {
+func (client FunctionsManagementClient) UpdateTrigger(ctx context.Context, request UpdateTriggerRequest) (response UpdateTriggerResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -765,7 +724,7 @@ func (client FunctionsClient) UpdateTrigger(ctx context.Context, request UpdateT
 }
 
 // updateTrigger implements the OCIOperation interface (enables retrying operations)
-func (client FunctionsClient) updateTrigger(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client FunctionsManagementClient) updateTrigger(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/triggers/{triggerId}")
 	if err != nil {
 		return nil, err

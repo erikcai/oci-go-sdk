@@ -58,8 +58,8 @@ func (client *KmsVaultClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
-// CancelVaultDeletion Cancels the scheduled deletion of the specified Vault, which must be in PendingDeletion
-// state. The Vault and all Keys in it will be moved back to their previous states before
+// CancelVaultDeletion Cancels the scheduled deletion of the specified vault. Canceling a scheduled deletion
+// restores the vault and all keys in it to the respective states they were in before
 // the deletion was scheduled.
 func (client KmsVaultClient) CancelVaultDeletion(ctx context.Context, request CancelVaultDeletionRequest) (response CancelVaultDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -110,7 +110,7 @@ func (client KmsVaultClient) cancelVaultDeletion(ctx context.Context, request co
 // CreateVault Creates a new vault. The type of vault you create determines key
 // placement, pricing, and available options. Options include storage
 // isolation, a dedicated service endpoint instead of a shared service
-// endpoint for API calls, and a dedicated HSM or a multitenant HSM.
+// endpoint for API calls, and a dedicated hardware security module (HSM) or a multitenant HSM.
 func (client KmsVaultClient) CreateVault(ctx context.Context, request CreateVaultRequest) (response CreateVaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -199,7 +199,7 @@ func (client KmsVaultClient) getVault(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
-// ListVaults Lists vaults in the specified compartment.
+// ListVaults Lists the vaults in the specified compartment.
 func (client KmsVaultClient) ListVaults(ctx context.Context, request ListVaultsRequest) (response ListVaultsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -241,8 +241,8 @@ func (client KmsVaultClient) listVaults(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// ScheduleVaultDeletion Schedules the deletion of the specified Vault. The Vault and all Keys in it
-// will be moved to PendingDeletion state and deleted after the retention period.
+// ScheduleVaultDeletion Schedules the deletion of the specified vault. This sets the state of the vault and all keys in it
+// to `PENDING_DELETION` and then deletes them after the retention period ends.
 func (client KmsVaultClient) ScheduleVaultDeletion(ctx context.Context, request ScheduleVaultDeletionRequest) (response ScheduleVaultDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -290,8 +290,8 @@ func (client KmsVaultClient) scheduleVaultDeletion(ctx context.Context, request 
 }
 
 // UpdateVault Updates the properties of a vault. Specifically, you can update the
-// `displayName` , `freeformTags`, and `definedTags` properties. Furthermore,
-// the vault must be in an `ACTIVE` or `CREATING` state.
+// `displayName`, `freeformTags`, and `definedTags` properties. Furthermore,
+// the vault must be in an `ACTIVE` or `CREATING` state to be updated.
 func (client KmsVaultClient) UpdateVault(ctx context.Context, request UpdateVaultRequest) (response UpdateVaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
