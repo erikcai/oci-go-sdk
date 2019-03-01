@@ -15,10 +15,17 @@ import (
 // CreateServiceGatewayDetails The representation of CreateServiceGatewayDetails
 type CreateServiceGatewayDetails struct {
 
-	// The OCID  (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm)  of the compartment to contain the service gateway.
+	// The OCID  (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the service gateway.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// List of the service OCIDs. These are the services that will be enabled on the service gateway. This list can be empty.
+	// List of the OCIDs of the Service objects to
+	// enable for the service gateway. This list can be empty if you don't want to enable any
+	// `Service` objects when you create the gateway. You can enable a `Service`
+	// object later by using either AttachServiceId
+	// or UpdateServiceGateway.
+	// For each enabled `Service`, make sure there's a route rule with the `Service` object's `cidrBlock`
+	// as the rule's destination and the service gateway as the rule's target. See
+	// RouteTable.
 	Services []ServiceIdRequestDetails `mandatory:"true" json:"services"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the VCN.

@@ -12,13 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ServiceGateway Represents a router that connects the edge of a VCN with public Oracle Cloud Infrastructure
-// services such as Object Storage. Traffic leaving the VCN and destined for a supported public
-// service (see ListServices) is routed through the
-// service gateway and does not traverse the internet. The instances in the VCN do not need to
-// have public IP addresses nor be in a public subnet. The VCN does not need an internet gateway
+// ServiceGateway Represents a router that lets your VCN privately access specific Oracle services such as Object
+// Storage without exposing the VCN to the public internet. Traffic leaving the VCN and destined
+// for a supported Oracle service (see ListServices) is
+// routed through the service gateway and does not traverse the internet. The instances in the VCN
+// do not need to have public IP addresses nor be in a public subnet. The VCN does not need an internet gateway
 // for this traffic. For more information, see
-// Access to Object Storage: Service Gateway (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/servicegateway.htm).
+// Access to Oracle Services: Service Gateway (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Tasks/servicegateway.htm).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -41,9 +41,10 @@ type ServiceGateway struct {
 	// The service gateway's current state.
 	LifecycleState ServiceGatewayLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// List of the services enabled on this service gateway. The list can be empty.
-	// You can enable a particular service by using
-	// AttachServiceId.
+	// List of the Service objects enabled for this service gateway.
+	// The list can be empty. You can enable a particular `Service` by using
+	// AttachServiceId or
+	// UpdateServiceGateway.
 	Services []ServiceIdResponseDetails `mandatory:"true" json:"services"`
 
 	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the VCN the service gateway

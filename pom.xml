@@ -2373,7 +2373,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.392</version>
+        <version>0.2.405</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -2413,7 +2413,7 @@
       <dependency>
         <groupId>com.oracle.pic.dns.pub</groupId>
         <artifactId>public-dns-api-spec</artifactId>
-        <version>2.0.13</version>
+        <version>2.0.28</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
@@ -2433,7 +2433,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.0.12-20181204.114604-4</version>
+        <version>1.0.12-20190228.221627-12</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>

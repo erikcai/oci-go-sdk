@@ -29,7 +29,7 @@ type CreateNodePoolDetails struct {
 	// The version of Kubernetes to install on the nodes in the node pool.
 	KubernetesVersion *string `mandatory:"true" json:"kubernetesVersion"`
 
-	// The name or the OCID of the image running on the nodes in the node pool.
+	// The name of the node shape of the nodes in the node pool.
 	NodeImageName *string `mandatory:"true" json:"nodeImageName"`
 
 	// The name of the node shape of the nodes in the node pool.
@@ -39,7 +39,7 @@ type CreateNodePoolDetails struct {
 	SubnetIds []string `mandatory:"true" json:"subnetIds"`
 
 	// A list of key/value pairs to add to each underlying OCI instance in the node pool.
-	NodeMetadata []KeyValue `mandatory:"false" json:"nodeMetadata"`
+	NodeMetadata map[string]string `mandatory:"false" json:"nodeMetadata"`
 
 	// A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
 	InitialNodeLabels []KeyValue `mandatory:"false" json:"initialNodeLabels"`

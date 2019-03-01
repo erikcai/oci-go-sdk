@@ -33,12 +33,12 @@ type NodePool struct {
 	KubernetesVersion *string `mandatory:"false" json:"kubernetesVersion"`
 
 	// A list of key/value pairs to add to each underlying OCI instance in the node pool.
-	NodeMetadata []KeyValue `mandatory:"false" json:"nodeMetadata"`
+	NodeMetadata map[string]string `mandatory:"false" json:"nodeMetadata"`
 
 	// The OCID of the image running on the nodes in the node pool.
 	NodeImageId *string `mandatory:"false" json:"nodeImageId"`
 
-	// The name or the OCID of the image running on the nodes in the node pool.
+	// The name of the node shape of the nodes in the node pool.
 	NodeImageName *string `mandatory:"false" json:"nodeImageName"`
 
 	// The name of the node shape of the nodes in the node pool.

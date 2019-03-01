@@ -100,15 +100,15 @@ func (client VirtualNetworkClient) acceptLocalPeeringToken(ctx context.Context, 
 	return response, err
 }
 
-// AttachServiceId Enables the specified service on the specified gateway. In other words, enables the service
-// gateway to send traffic to the specified service. You must also set up a route rule with the
-// service's `cidrBlock` as the rule's destination CIDR and the gateway as the rule's target.
-// See RouteTable.
-// **Note:** The `AttachServiceId` operation is an easy way to enable an individual service on
+// AttachServiceId Adds the specified Service to the list of enabled
+// `Service` objects for the specified gateway. You must also set up a route rule with the
+// `cidrBlock` of the `Service` as the rule's destination and the service gateway as the rule's
+// target. See RouteTable.
+// **Note:** The `AttachServiceId` operation is an easy way to add an individual `Service` to
 // the service gateway. Compare it with
-// UpdateServiceGateway, which also
-// lets you enable an individual service. However, with `UpdateServiceGateway`, you must specify
-// the *entire* list of services you want enabled on the service gateway.
+// UpdateServiceGateway, which replaces
+// the entire existing list of enabled `Service` objects with the list that you provide in the
+// `Update` call.
 func (client VirtualNetworkClient) AttachServiceId(ctx context.Context, request AttachServiceIdRequest) (response AttachServiceIdResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2681,18 +2681,17 @@ func (client VirtualNetworkClient) deleteVirtualCircuit(ctx context.Context, req
 	return response, err
 }
 
-// DetachServiceId Disables the specified service on the specified gateway. In other words, stops the service
-// gateway from sending traffic to the specified service. You do not need to remove any route
-// rules that specify this service's `cidrBlock` as the destination CIDR. However, consider
-// removing the rules if your intent is to permanently disable use of the service through this
+// DetachServiceId Removes the specified Service from the list of enabled
+// `Service` objects for the specified gateway. You do not need to remove any route
+// rules that specify this `Service` object's `cidrBlock` as the destination CIDR. However, consider
+// removing the rules if your intent is to permanently disable use of the `Service` through this
 // service gateway.
-// **Note:** The `DetachServiceId` operation is an easy way to disable an individual service on
+// **Note:** The `DetachServiceId` operation is an easy way to remove an individual `Service` from
 // the service gateway. Compare it with
-// UpdateServiceGateway, which also
-// lets you disable an individual service. However, with `UpdateServiceGateway`, you must specify
-// the *entire* list of services you want enabled on the service gateway. `UpdateServiceGateway`
-// also lets you block all traffic through the service gateway without having to disable each of
-// the individual services.
+// UpdateServiceGateway, which replaces
+// the entire existing list of enabled `Service` objects with the list that you provide in the
+// `Update` call. `UpdateServiceGateway` also lets you block all traffic through the service
+// gateway without having to remove each of the individual `Service` objects.
 func (client VirtualNetworkClient) DetachServiceId(ctx context.Context, request DetachServiceIdRequest) (response DetachServiceIdResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3943,7 +3942,7 @@ func (client VirtualNetworkClient) getSecurityList(ctx context.Context, request 
 	return response, err
 }
 
-// GetService Gets the specified service's information.
+// GetService Gets the specified Service object.
 func (client VirtualNetworkClient) GetService(ctx context.Context, request GetServiceRequest) (response GetServiceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5302,7 +5301,8 @@ func (client VirtualNetworkClient) listServiceGateways(ctx context.Context, requ
 	return response, err
 }
 
-// ListServices Lists the available services that you can access through a service gateway in this region.
+// ListServices Lists the available Service objects that you can enable for a
+// service gateway in this region.
 func (client VirtualNetworkClient) ListServices(ctx context.Context, request ListServicesRequest) (response ListServicesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

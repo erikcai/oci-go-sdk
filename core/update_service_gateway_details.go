@@ -35,14 +35,14 @@ type UpdateServiceGatewayDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// List of all the services you want enabled on this service gateway. Sending an empty list
+	// List of all the `Service` objects you want enabled on this service gateway. Sending an empty list
 	// means you want to disable all services. Omitting this parameter entirely keeps the
 	// existing list of services intact.
-	// You can also enable or disable a particular service by using
-	// AttachServiceId and
+	// You can also enable or disable a particular `Service` by using
+	// AttachServiceId or
 	// DetachServiceId.
-	// For each enabled service, make sure there's a route rule with the service's `cidrBlock`
-	// as the rule's destination CIDR and the service gateway as the rule's target. See
+	// For each enabled `Service`, make sure there's a route rule with the `Service` object's `cidrBlock`
+	// as the rule's destination and the service gateway as the rule's target. See
 	// RouteTable.
 	Services []ServiceIdRequestDetails `mandatory:"false" json:"services"`
 }

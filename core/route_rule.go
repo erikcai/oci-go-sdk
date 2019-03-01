@@ -33,15 +33,15 @@ type RouteRule struct {
 	// Allowed values:
 	//   * IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`
 	//   * The `cidrBlock` value for a Service, if you're
-	//     setting up a route rule for traffic destined for a particular service through
-	//     a service gateway. For example: `oci-phx-objectstorage`
+	//     setting up a route rule for traffic destined for a particular `Service` through
+	//     a service gateway. For example: `oci-phx-objectstorage`.
 	Destination *string `mandatory:"false" json:"destination"`
 
 	// Type of destination for the rule. Required if you provide a `destination`.
 	//   * `CIDR_BLOCK`: If the rule's `destination` is an IP address range in CIDR notation.
 	//   * `SERVICE_CIDR_BLOCK`: If the rule's `destination` is the `cidrBlock` value for a
 	//     Service (the rule is for traffic destined for a
-	//     particular service through a service gateway).
+	//     particular `Service` through a service gateway).
 	DestinationType RouteRuleDestinationTypeEnum `mandatory:"false" json:"destinationType,omitempty"`
 }
 

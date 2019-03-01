@@ -26,8 +26,8 @@ type IngressSecurityRule struct {
 	// Allowed values:
 	//   * IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`
 	//   * The `cidrBlock` value for a Service, if you're
-	//     setting up a security list rule for traffic coming from a particular service through
-	//     a service gateway. For example: `oci-phx-objectstorage`
+	//     setting up a security list rule for traffic coming from a particular `Service` through
+	//     a service gateway. For example: `oci-phx-objectstorage`.
 	Source *string `mandatory:"true" json:"source"`
 
 	// Optional and valid only for ICMP and ICMPv6. Use to specify a particular ICMP type and code
@@ -52,7 +52,7 @@ type IngressSecurityRule struct {
 	//   * `CIDR_BLOCK`: If the rule's `source` is an IP address range in CIDR notation.
 	//   * `SERVICE_CIDR_BLOCK`: If the rule's `source` is the `cidrBlock` value for a
 	//     Service (the rule is for traffic coming from a
-	//     particular service through a service gateway).
+	//     particular `Service` through a service gateway).
 	SourceType IngressSecurityRuleSourceTypeEnum `mandatory:"false" json:"sourceType,omitempty"`
 
 	// Optional and valid only for TCP. Use to specify particular destination ports for TCP rules.
