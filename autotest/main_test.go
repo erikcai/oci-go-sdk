@@ -1,6 +1,7 @@
 package autotest
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -8,7 +9,18 @@ import (
 var testClient *OCITestClient
 var testConfig *TestConfiguration
 
+var testingServiceEnabled = true
+
 func TestMain(m *testing.M) {
+
+	if _, ok := os.LookupEnv("AUTOTEST_DISABLE_SERVICE"); ok {
+		fmt.Println("Running auto tests without testing service")
+		testingServiceEnabled = false
+	}
+
+	if !testingServiceEnabled {
+		os.Exit(m.Run())
+	}
 
 	var err error
 	testConfig, err = newTestConfiguration()
@@ -21,6 +33,7 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		panic(err)
 	}
+
 	runResult := m.Run()
 
 	err = testClient.endSession()

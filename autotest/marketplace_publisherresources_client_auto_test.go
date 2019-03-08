@@ -1,111 +1,118 @@
 package autotest
 
 import (
-    "github.com/oracle/oci-go-sdk/marketplace"
-    "github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/marketplace"
 
-    "context"
-    "encoding/json"
-    "fmt"
-    "github.com/stretchr/testify/assert"
-    "testing"
+	"context"
+	"encoding/json"
+	"fmt"
+	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func createPublisherResourcesClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
-    
-    client, err := marketplace.NewPublisherResourcesClientWithConfigurationProvider(p)
-    if testConfig.Endpoint != "" {
-        client.Host = testConfig.Endpoint
-    }else {
-        client.SetRegion(testConfig.Region)
-    }
-   return client, err
+
+	client, err := marketplace.NewPublisherResourcesClientWithConfigurationProvider(p)
+	if testConfig.Endpoint != "" {
+		client.Host = testConfig.Endpoint
+	} else {
+		client.SetRegion(testConfig.Region)
+	}
+	return client, err
 }
-
-
 
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestPublisherResourcesClientGetPublisher(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("marketplace", "GetPublisher")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("GetPublisher is not enabled by the testing service")
-    }
+	defer failTestOnPanic(t)
 
-    cc, err := testClient.createClientForOperation("marketplace", "PublisherResources", "GetPublisher", createPublisherResourcesClientWithProvider)
-    assert.NoError(t, err)
-    c := cc.(marketplace.PublisherResourcesClient)
+	enabled, err := testClient.isApiEnabled("marketplace", "GetPublisher")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPublisher is not enabled by the testing service")
+	}
 
-    body, err := testClient.getRequests("marketplace", "GetPublisher")
-    assert.NoError(t, err)
+	cc, err := testClient.createClientForOperation("marketplace", "PublisherResources", "GetPublisher", createPublisherResourcesClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(marketplace.PublisherResourcesClient)
 
-    type GetPublisherRequestInfo struct {
-        ContainerId string
-        Request marketplace.GetPublisherRequest
-    }
+	body, err := testClient.getRequests("marketplace", "GetPublisher")
+	assert.NoError(t, err)
 
-    var requests []GetPublisherRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	type GetPublisherRequestInfo struct {
+		ContainerId string
+		Request     marketplace.GetPublisherRequest
+	}
 
-    var retryPolicy  *common.RetryPolicy
-    for i, req := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            req.Request.RequestMetadata.RetryPolicy =  retryPolicy
+	var requests []GetPublisherRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
 
-            response, err := c.GetPublisher(context.Background(), req.Request)
-            message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetPublisher(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
 
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestPublisherResourcesClientListPublisherApplications(t *testing.T) {
-    enabled, err := testClient.isApiEnabled("marketplace", "ListPublisherApplications")
-    assert.NoError(t, err)
-    if !enabled {
-        t.Skip("ListPublisherApplications is not enabled by the testing service")
-    }
+	defer failTestOnPanic(t)
 
-    cc, err := testClient.createClientForOperation("marketplace", "PublisherResources", "ListPublisherApplications", createPublisherResourcesClientWithProvider)
-    assert.NoError(t, err)
-    c := cc.(marketplace.PublisherResourcesClient)
+	enabled, err := testClient.isApiEnabled("marketplace", "ListPublisherApplications")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListPublisherApplications is not enabled by the testing service")
+	}
 
-    body, err := testClient.getRequests("marketplace", "ListPublisherApplications")
-    assert.NoError(t, err)
+	cc, err := testClient.createClientForOperation("marketplace", "PublisherResources", "ListPublisherApplications", createPublisherResourcesClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(marketplace.PublisherResourcesClient)
 
-    type ListPublisherApplicationsRequestInfo struct {
-        ContainerId string
-        Request marketplace.ListPublisherApplicationsRequest
-    }
+	body, err := testClient.getRequests("marketplace", "ListPublisherApplications")
+	assert.NoError(t, err)
 
-    var requests []ListPublisherApplicationsRequestInfo
-    err = json.Unmarshal([]byte(body), &requests)
-    assert.NoError(t, err)
+	type ListPublisherApplicationsRequestInfo struct {
+		ContainerId string
+		Request     marketplace.ListPublisherApplicationsRequest
+	}
 
+	var requests []ListPublisherApplicationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
 
-    var retryPolicy *common.RetryPolicy
-    for i, request := range requests {
-        t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-            retryPolicy = retryPolicyForTests()
-            request.Request.RequestMetadata.RetryPolicy =  retryPolicy
-            listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-                r := req.(*marketplace.ListPublisherApplicationsRequest)
-                return c.ListPublisherApplications(context.Background(), *r)
-            }
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*marketplace.ListPublisherApplicationsRequest)
+				return c.ListPublisherApplications(context.Background(), *r)
+			}
 
-            listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-            typedListResponses := make([]marketplace.ListPublisherApplicationsResponse, len(listResponses))
-            for i, lr := range listResponses {
-                typedListResponses[i] = lr.(marketplace.ListPublisherApplicationsResponse)
-            }
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]marketplace.ListPublisherApplicationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(marketplace.ListPublisherApplicationsResponse)
+			}
 
-            message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-            assert.NoError(t, err)
-            assert.Empty(t, message, message)
-        })
-    }
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
 }
