@@ -21,9 +21,6 @@ type UpdateAutonomousContainerDatabaseDetails struct {
 	// Database Patch model preference.
 	PatchModel UpdateAutonomousContainerDatabaseDetailsPatchModelEnum `mandatory:"false" json:"patchModel,omitempty"`
 
-	// Maintenance Window preference, if set to WEEK_TWO, database patch will be applied in the second week during each patching cycle.
-	MaintenanceWindow UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum `mandatory:"false" json:"maintenanceWindow,omitempty"`
-
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -59,37 +56,6 @@ var mappingUpdateAutonomousContainerDatabaseDetailsPatchModel = map[string]Updat
 func GetUpdateAutonomousContainerDatabaseDetailsPatchModelEnumValues() []UpdateAutonomousContainerDatabaseDetailsPatchModelEnum {
 	values := make([]UpdateAutonomousContainerDatabaseDetailsPatchModelEnum, 0)
 	for _, v := range mappingUpdateAutonomousContainerDatabaseDetailsPatchModel {
-		values = append(values, v)
-	}
-	return values
-}
-
-// UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum Enum with underlying type: string
-type UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum string
-
-// Set of constants representing the allowable values for UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum
-const (
-	UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowAny       UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum = "ANY"
-	UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekTwo   UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum = "WEEK_TWO"
-	UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekThree UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum = "WEEK_THREE"
-	UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekFour  UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum = "WEEK_FOUR"
-	UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekFive  UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum = "WEEK_FIVE"
-	UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekSix   UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum = "WEEK_SIX"
-)
-
-var mappingUpdateAutonomousContainerDatabaseDetailsMaintenanceWindow = map[string]UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum{
-	"ANY":        UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowAny,
-	"WEEK_TWO":   UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekTwo,
-	"WEEK_THREE": UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekThree,
-	"WEEK_FOUR":  UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekFour,
-	"WEEK_FIVE":  UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekFive,
-	"WEEK_SIX":   UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowWeekSix,
-}
-
-// GetUpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnumValues Enumerates the set of values for UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum
-func GetUpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnumValues() []UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum {
-	values := make([]UpdateAutonomousContainerDatabaseDetailsMaintenanceWindowEnum, 0)
-	for _, v := range mappingUpdateAutonomousContainerDatabaseDetailsMaintenanceWindow {
 		values = append(values, v)
 	}
 	return values

@@ -35,7 +35,7 @@ type NodePoolSummary struct {
 	// The OCID of the image running on the nodes in the node pool.
 	NodeImageId *string `mandatory:"false" json:"nodeImageId"`
 
-	// The name of the node shape of the nodes in the node pool.
+	// The name of the image running on the nodes in the node pool.
 	NodeImageName *string `mandatory:"false" json:"nodeImageName"`
 
 	// The name of the node shape of the nodes in the node pool.

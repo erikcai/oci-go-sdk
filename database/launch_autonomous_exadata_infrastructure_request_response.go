@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-// CreateAutonomousPodRequest wrapper for the CreateAutonomousPod operation
-type CreateAutonomousPodRequest struct {
+// LaunchAutonomousExadataInfrastructureRequest wrapper for the LaunchAutonomousExadataInfrastructure operation
+type LaunchAutonomousExadataInfrastructureRequest struct {
 
-	// Request to create an Autonomous Pod in a specified Autonomous Exadata Infrastructure.
-	CreateAutonomousPodDetails `contributesTo:"body"`
+	// Request to launch a Autonomous Exadata Infrastructure.
+	LaunchAutonomousExadataInfrastructureDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
 	// server error without risk of executing that same action again. Retry tokens expire after 24
@@ -30,28 +30,28 @@ type CreateAutonomousPodRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request CreateAutonomousPodRequest) String() string {
+func (request LaunchAutonomousExadataInfrastructureRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request CreateAutonomousPodRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request LaunchAutonomousExadataInfrastructureRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request CreateAutonomousPodRequest) RetryPolicy() *common.RetryPolicy {
+func (request LaunchAutonomousExadataInfrastructureRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// CreateAutonomousPodResponse wrapper for the CreateAutonomousPod operation
-type CreateAutonomousPodResponse struct {
+// LaunchAutonomousExadataInfrastructureResponse wrapper for the LaunchAutonomousExadataInfrastructure operation
+type LaunchAutonomousExadataInfrastructureResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The AutonomousPod instance
-	AutonomousPod `presentIn:"body"`
+	// The AutonomousExadataInfrastructure instance
+	AutonomousExadataInfrastructure `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -61,11 +61,11 @@ type CreateAutonomousPodResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response CreateAutonomousPodResponse) String() string {
+func (response LaunchAutonomousExadataInfrastructureResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response CreateAutonomousPodResponse) HTTPResponse() *http.Response {
+func (response LaunchAutonomousExadataInfrastructureResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

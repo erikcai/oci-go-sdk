@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateAutonomousDataWarehouseDetails Details to update an Oracle Autonomous Data Warehouse.
+// UpdateAutonomousDataWarehouseDetails **Deprecated.** See UpdateAutonomousDatabaseDetails for reference information about updating an Autonomous Data Warehouse.
 // **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type UpdateAutonomousDataWarehouseDetails struct {
 
@@ -37,34 +37,8 @@ type UpdateAutonomousDataWarehouseDetails struct {
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
-
-	// The new Oracle license model that applies to the Oracle Autonomous Data Warehouse.
-	LicenseModel UpdateAutonomousDataWarehouseDetailsLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 }
 
 func (m UpdateAutonomousDataWarehouseDetails) String() string {
 	return common.PointerString(m)
-}
-
-// UpdateAutonomousDataWarehouseDetailsLicenseModelEnum Enum with underlying type: string
-type UpdateAutonomousDataWarehouseDetailsLicenseModelEnum string
-
-// Set of constants representing the allowable values for UpdateAutonomousDataWarehouseDetailsLicenseModelEnum
-const (
-	UpdateAutonomousDataWarehouseDetailsLicenseModelLicenseIncluded     UpdateAutonomousDataWarehouseDetailsLicenseModelEnum = "LICENSE_INCLUDED"
-	UpdateAutonomousDataWarehouseDetailsLicenseModelBringYourOwnLicense UpdateAutonomousDataWarehouseDetailsLicenseModelEnum = "BRING_YOUR_OWN_LICENSE"
-)
-
-var mappingUpdateAutonomousDataWarehouseDetailsLicenseModel = map[string]UpdateAutonomousDataWarehouseDetailsLicenseModelEnum{
-	"LICENSE_INCLUDED":       UpdateAutonomousDataWarehouseDetailsLicenseModelLicenseIncluded,
-	"BRING_YOUR_OWN_LICENSE": UpdateAutonomousDataWarehouseDetailsLicenseModelBringYourOwnLicense,
-}
-
-// GetUpdateAutonomousDataWarehouseDetailsLicenseModelEnumValues Enumerates the set of values for UpdateAutonomousDataWarehouseDetailsLicenseModelEnum
-func GetUpdateAutonomousDataWarehouseDetailsLicenseModelEnumValues() []UpdateAutonomousDataWarehouseDetailsLicenseModelEnum {
-	values := make([]UpdateAutonomousDataWarehouseDetailsLicenseModelEnum, 0)
-	for _, v := range mappingUpdateAutonomousDataWarehouseDetailsLicenseModel {
-		values = append(values, v)
-	}
-	return values
 }

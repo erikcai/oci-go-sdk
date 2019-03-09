@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-// TerminateAutonomousDbSystemRequest wrapper for the TerminateAutonomousDbSystem operation
-type TerminateAutonomousDbSystemRequest struct {
+// TerminateAutonomousExadataInfrastructureRequest wrapper for the TerminateAutonomousExadataInfrastructure operation
+type TerminateAutonomousExadataInfrastructureRequest struct {
 
-	// The Autonomous DB System OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
-	AutonomousDbSystemId *string `mandatory:"true" contributesTo:"path" name:"autonomousDbSystemId"`
+	// The Autonomous Exadata Infrastructure  OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	AutonomousExadataInfrastructureId *string `mandatory:"true" contributesTo:"path" name:"autonomousExadataInfrastructureId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
@@ -28,22 +28,22 @@ type TerminateAutonomousDbSystemRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request TerminateAutonomousDbSystemRequest) String() string {
+func (request TerminateAutonomousExadataInfrastructureRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request TerminateAutonomousDbSystemRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request TerminateAutonomousExadataInfrastructureRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request TerminateAutonomousDbSystemRequest) RetryPolicy() *common.RetryPolicy {
+func (request TerminateAutonomousExadataInfrastructureRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// TerminateAutonomousDbSystemResponse wrapper for the TerminateAutonomousDbSystem operation
-type TerminateAutonomousDbSystemResponse struct {
+// TerminateAutonomousExadataInfrastructureResponse wrapper for the TerminateAutonomousExadataInfrastructure operation
+type TerminateAutonomousExadataInfrastructureResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
@@ -53,11 +53,11 @@ type TerminateAutonomousDbSystemResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response TerminateAutonomousDbSystemResponse) String() string {
+func (response TerminateAutonomousExadataInfrastructureResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response TerminateAutonomousDbSystemResponse) HTTPResponse() *http.Response {
+func (response TerminateAutonomousExadataInfrastructureResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

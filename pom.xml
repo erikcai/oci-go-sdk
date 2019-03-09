@@ -2378,7 +2378,7 @@
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.12</version>
+        <version>0.4.22</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -2393,7 +2393,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.87</version>
+        <version>0.1.108</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -2408,7 +2408,7 @@
       <dependency>
         <groupId>com.oracle.pic.email</groupId>
         <artifactId>email-api-spec</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dns.pub</groupId>
@@ -2418,7 +2418,7 @@
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
         <artifactId>maestro-spec</artifactId>
-        <version>0.0.8</version>
+        <version>0.0.9</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
@@ -2433,7 +2433,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.0.12-20190228.221627-12</version>
+        <version>1.0.12-20190305.195020-13</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
@@ -2468,7 +2468,7 @@
       <dependency>
         <groupId>com.oracle.oracache</groupId>
         <artifactId>oracache-public-api</artifactId>
-        <version>1.0.0-14</version>
+        <version>1.0.0-23</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.marketplace</groupId>

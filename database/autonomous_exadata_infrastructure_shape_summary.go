@@ -12,20 +12,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AutonomousDbSystemShapeSummary The shape of the Autonomous DB System. The shape determines resources to allocate to the Autonomous DB system -  CPU cores, memory and storage for shapes.
-// For a description of shapes, see Auotonomous DB System Launch Options (https://docs.us-phoenix-1.oraclecloud.com/Content/Database/References/launchoptions.htm).
+// AutonomousExadataInfrastructureShapeSummary The shape of the Autonomous Exadata Infrastructure. The shape determines resources to allocate to the Autonomous Exadata Infrastructure (CPU cores, memory and storage).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized, talk to an administrator.
 // If you're an administrator who needs to write policies to give users access,
 // see Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
-type AutonomousDbSystemShapeSummary struct {
+type AutonomousExadataInfrastructureShapeSummary struct {
 
-	// The name of the shape used for the Autonomous DB System.
+	// The name of the shape used for the Autonomous Exadata Infrastructure.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The maximum number of CPU cores that can be enabled on the Autonomoous DB System.
+	// The maximum number of CPU cores that can be enabled on the Autonomous Exadata Infrastructure.
 	AvailableCoreCount *int `mandatory:"true" json:"availableCoreCount"`
 
-	// The minimum number of CPU cores that can be enabled on the Autonomous DB System.
+	// The minimum number of CPU cores that can be enabled on the Autonomous Exadata Infrastructure.
 	MinimumCoreCount *int `mandatory:"false" json:"minimumCoreCount"`
 
 	// The increment in which core count can be increased or decreased.
@@ -38,6 +37,6 @@ type AutonomousDbSystemShapeSummary struct {
 	MaximumNodeCount *int `mandatory:"false" json:"maximumNodeCount"`
 }
 
-func (m AutonomousDbSystemShapeSummary) String() string {
+func (m AutonomousExadataInfrastructureShapeSummary) String() string {
 	return common.PointerString(m)
 }

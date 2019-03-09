@@ -22,7 +22,7 @@ func createOracacheClientWithProvider(p common.ConfigurationProvider, testConfig
 	return client, err
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientCancelWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestOracacheClientCancelWorkRequest(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientCreateReplicatedCache(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestOracacheClientCreateReplicatedCache(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientDeleteReplicatedCache(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestOracacheClientDeleteReplicatedCache(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientGetReplicatedCache(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestOracacheClientGetReplicatedCache(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,50 +237,7 @@ func TestOracacheClientGetWorkRequest(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
-func TestOracacheClientListCachingConsumption(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("cache", "ListCachingConsumption")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListCachingConsumption is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("cache", "Oracache", "ListCachingConsumption", createOracacheClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(cache.OracacheClient)
-
-	body, err := testClient.getRequests("cache", "ListCachingConsumption")
-	assert.NoError(t, err)
-
-	type ListCachingConsumptionRequestInfo struct {
-		ContainerId string
-		Request     cache.ListCachingConsumptionRequest
-	}
-
-	var requests []ListCachingConsumptionRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
-			response, err := c.ListCachingConsumption(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientListRedisShapes(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -332,7 +289,7 @@ func TestOracacheClientListRedisShapes(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientListReplicatedCaches(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -384,7 +341,7 @@ func TestOracacheClientListReplicatedCaches(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientListVersions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -436,7 +393,7 @@ func TestOracacheClientListVersions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientListWorkRequestErrors(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -488,7 +445,7 @@ func TestOracacheClientListWorkRequestErrors(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientListWorkRequestLogs(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -540,7 +497,7 @@ func TestOracacheClientListWorkRequestLogs(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
 func TestOracacheClientListWorkRequests(t *testing.T) {
 	defer failTestOnPanic(t)
 

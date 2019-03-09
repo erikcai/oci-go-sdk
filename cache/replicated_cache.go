@@ -34,7 +34,7 @@ type ReplicatedCache struct {
 	Shape *string `mandatory:"true" json:"shape"`
 
 	// The endpoints of the replicas that make up the Redis replicated cache.
-	RedisNodes []EndPoint `mandatory:"true" json:"redisNodes"`
+	RedisEndPoints []EndPoint `mandatory:"true" json:"redisEndPoints"`
 
 	// Cache creation timestamp. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`

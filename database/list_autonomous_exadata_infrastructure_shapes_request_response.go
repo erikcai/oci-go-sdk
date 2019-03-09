@@ -8,11 +8,14 @@ import (
 	"net/http"
 )
 
-// ListAutonomousPodMissionCriticalAssociationsRequest wrapper for the ListAutonomousPodMissionCriticalAssociations operation
-type ListAutonomousPodMissionCriticalAssociationsRequest struct {
+// ListAutonomousExadataInfrastructureShapesRequest wrapper for the ListAutonomousExadataInfrastructureShapes operation
+type ListAutonomousExadataInfrastructureShapesRequest struct {
 
-	// The Autonomous Pod OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
-	AutonomousPodId *string `mandatory:"true" contributesTo:"path" name:"autonomousPodId"`
+	// The name of the Availability Domain.
+	AvailabilityDomain *string `mandatory:"true" contributesTo:"query" name:"availabilityDomain"`
+
+	// The compartment OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// The maximum number of items to return per page.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
@@ -20,8 +23,7 @@ type ListAutonomousPodMissionCriticalAssociationsRequest struct {
 	// The pagination token to continue listing from.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// Unique Oracle-assigned identifier for the request.
-	// If you need to contact Oracle about a particular request, please provide the request ID.
+	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -29,28 +31,28 @@ type ListAutonomousPodMissionCriticalAssociationsRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ListAutonomousPodMissionCriticalAssociationsRequest) String() string {
+func (request ListAutonomousExadataInfrastructureShapesRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ListAutonomousPodMissionCriticalAssociationsRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ListAutonomousExadataInfrastructureShapesRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ListAutonomousPodMissionCriticalAssociationsRequest) RetryPolicy() *common.RetryPolicy {
+func (request ListAutonomousExadataInfrastructureShapesRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ListAutonomousPodMissionCriticalAssociationsResponse wrapper for the ListAutonomousPodMissionCriticalAssociations operation
-type ListAutonomousPodMissionCriticalAssociationsResponse struct {
+// ListAutonomousExadataInfrastructureShapesResponse wrapper for the ListAutonomousExadataInfrastructureShapes operation
+type ListAutonomousExadataInfrastructureShapesResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []AutonomousPodMissionCriticalAssociation instances
-	Items []AutonomousPodMissionCriticalAssociation `presentIn:"body"`
+	// A list of []AutonomousExadataInfrastructureShapeSummary instances
+	Items []AutonomousExadataInfrastructureShapeSummary `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
@@ -63,11 +65,11 @@ type ListAutonomousPodMissionCriticalAssociationsResponse struct {
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 
-func (response ListAutonomousPodMissionCriticalAssociationsResponse) String() string {
+func (response ListAutonomousExadataInfrastructureShapesResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ListAutonomousPodMissionCriticalAssociationsResponse) HTTPResponse() *http.Response {
+func (response ListAutonomousExadataInfrastructureShapesResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

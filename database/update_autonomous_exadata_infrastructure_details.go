@@ -12,13 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateAutonomousDbSystemDetails Describes the modification parameters for the Autonomous DB System.
-type UpdateAutonomousDbSystemDetails struct {
+// UpdateAutonomousExadataInfrastructureDetails Describes the modification parameters for the Autonomous Exadata Infrastructure.
+type UpdateAutonomousExadataInfrastructureDetails struct {
 
-	// The user-friendly name for the Autonomous DB System. It does not have to be unique.
+	// The display name is a user-friendly name for the Autonomous Exadata Infrastructure. The display name does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	MaintenanceWindowDetails *AutonomousDbSystemMaintenanceWindow `mandatory:"false" json:"maintenanceWindowDetails"`
+	MaintenanceWindowDetails *MaintenanceWindow `mandatory:"false" json:"maintenanceWindowDetails"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
@@ -31,6 +31,6 @@ type UpdateAutonomousDbSystemDetails struct {
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
-func (m UpdateAutonomousDbSystemDetails) String() string {
+func (m UpdateAutonomousExadataInfrastructureDetails) String() string {
 	return common.PointerString(m)
 }

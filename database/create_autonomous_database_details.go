@@ -40,9 +40,6 @@ type CreateAutonomousDatabaseDetails struct {
 	// The Autonomous Container Database OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 	AutonomousContainerDatabaseId *string `mandatory:"false" json:"autonomousContainerDatabaseId"`
 
-	// The Autonomous Pod OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
-	AutonomousPodId *string `mandatory:"false" json:"autonomousPodId"`
-
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -53,7 +50,7 @@ type CreateAutonomousDatabaseDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// The autonomous database workload type.
+	// The autonomous database workload type. OLTP indicates an Autonomous Transaction Processing database and DW indicates an Autonomous Data Warehouse. The default is OLTP.
 	DbWorkload CreateAutonomousDatabaseBaseDbWorkloadEnum `mandatory:"false" json:"dbWorkload,omitempty"`
 
 	// The Oracle license model that applies to the Oracle Autonomous Database. The default is BRING_YOUR_OWN_LICENSE.
@@ -108,11 +105,6 @@ func (m CreateAutonomousDatabaseDetails) GetIsDedicated() *bool {
 //GetAutonomousContainerDatabaseId returns AutonomousContainerDatabaseId
 func (m CreateAutonomousDatabaseDetails) GetAutonomousContainerDatabaseId() *string {
 	return m.AutonomousContainerDatabaseId
-}
-
-//GetAutonomousPodId returns AutonomousPodId
-func (m CreateAutonomousDatabaseDetails) GetAutonomousPodId() *string {
-	return m.AutonomousPodId
 }
 
 //GetFreeformTags returns FreeformTags

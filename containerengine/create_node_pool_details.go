@@ -29,7 +29,7 @@ type CreateNodePoolDetails struct {
 	// The version of Kubernetes to install on the nodes in the node pool.
 	KubernetesVersion *string `mandatory:"true" json:"kubernetesVersion"`
 
-	// The name of the node shape of the nodes in the node pool.
+	// The name of the image running on the nodes in the node pool.
 	NodeImageName *string `mandatory:"true" json:"nodeImageName"`
 
 	// The name of the node shape of the nodes in the node pool.

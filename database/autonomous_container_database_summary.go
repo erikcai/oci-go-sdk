@@ -27,8 +27,8 @@ type AutonomousContainerDatabaseSummary struct {
 	// The service level agreement type of the container database. The default is STANDARD.
 	ServiceLevelAgreementType AutonomousContainerDatabaseSummaryServiceLevelAgreementTypeEnum `mandatory:"true" json:"serviceLevelAgreementType"`
 
-	// The OCID of the Autonomous DB System.
-	AutonomousDbSystemId *string `mandatory:"true" json:"autonomousDbSystemId"`
+	// The OCID of the Autonomous Exadata Infrastructure.
+	AutonomousExadataInfrastructureId *string `mandatory:"true" json:"autonomousExadataInfrastructureId"`
 
 	// The current state of the Autonomous Container Database.
 	LifecycleState AutonomousContainerDatabaseSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
@@ -36,18 +36,17 @@ type AutonomousContainerDatabaseSummary struct {
 	// Database Patch model preference.
 	PatchModel AutonomousContainerDatabaseSummaryPatchModelEnum `mandatory:"true" json:"patchModel"`
 
-	// Maintenance Week preference, if set to WEEK_TWO, database patch will be applied in the second week during each patching cycle.
-	MaintenanceWeek AutonomousContainerDatabaseSummaryMaintenanceWeekEnum `mandatory:"true" json:"maintenanceWeek"`
-
 	// Additional information about the current lifecycleState.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
 	// The date and time the Autonomous was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	LastMaintenanceRun *MaintenanceRun `mandatory:"false" json:"lastMaintenanceRun"`
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
+	LastMaintenanceRunId *string `mandatory:"false" json:"lastMaintenanceRunId"`
 
-	NextMaintenanceRun *MaintenanceRun `mandatory:"false" json:"nextMaintenanceRun"`
+	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
+	NextMaintenanceRunId *string `mandatory:"false" json:"nextMaintenanceRunId"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
@@ -150,37 +149,6 @@ var mappingAutonomousContainerDatabaseSummaryPatchModel = map[string]AutonomousC
 func GetAutonomousContainerDatabaseSummaryPatchModelEnumValues() []AutonomousContainerDatabaseSummaryPatchModelEnum {
 	values := make([]AutonomousContainerDatabaseSummaryPatchModelEnum, 0)
 	for _, v := range mappingAutonomousContainerDatabaseSummaryPatchModel {
-		values = append(values, v)
-	}
-	return values
-}
-
-// AutonomousContainerDatabaseSummaryMaintenanceWeekEnum Enum with underlying type: string
-type AutonomousContainerDatabaseSummaryMaintenanceWeekEnum string
-
-// Set of constants representing the allowable values for AutonomousContainerDatabaseSummaryMaintenanceWeekEnum
-const (
-	AutonomousContainerDatabaseSummaryMaintenanceWeekAny       AutonomousContainerDatabaseSummaryMaintenanceWeekEnum = "ANY"
-	AutonomousContainerDatabaseSummaryMaintenanceWeekWeekTwo   AutonomousContainerDatabaseSummaryMaintenanceWeekEnum = "WEEK_TWO"
-	AutonomousContainerDatabaseSummaryMaintenanceWeekWeekThree AutonomousContainerDatabaseSummaryMaintenanceWeekEnum = "WEEK_THREE"
-	AutonomousContainerDatabaseSummaryMaintenanceWeekWeekFour  AutonomousContainerDatabaseSummaryMaintenanceWeekEnum = "WEEK_FOUR"
-	AutonomousContainerDatabaseSummaryMaintenanceWeekWeekFive  AutonomousContainerDatabaseSummaryMaintenanceWeekEnum = "WEEK_FIVE"
-	AutonomousContainerDatabaseSummaryMaintenanceWeekWeekSix   AutonomousContainerDatabaseSummaryMaintenanceWeekEnum = "WEEK_SIX"
-)
-
-var mappingAutonomousContainerDatabaseSummaryMaintenanceWeek = map[string]AutonomousContainerDatabaseSummaryMaintenanceWeekEnum{
-	"ANY":        AutonomousContainerDatabaseSummaryMaintenanceWeekAny,
-	"WEEK_TWO":   AutonomousContainerDatabaseSummaryMaintenanceWeekWeekTwo,
-	"WEEK_THREE": AutonomousContainerDatabaseSummaryMaintenanceWeekWeekThree,
-	"WEEK_FOUR":  AutonomousContainerDatabaseSummaryMaintenanceWeekWeekFour,
-	"WEEK_FIVE":  AutonomousContainerDatabaseSummaryMaintenanceWeekWeekFive,
-	"WEEK_SIX":   AutonomousContainerDatabaseSummaryMaintenanceWeekWeekSix,
-}
-
-// GetAutonomousContainerDatabaseSummaryMaintenanceWeekEnumValues Enumerates the set of values for AutonomousContainerDatabaseSummaryMaintenanceWeekEnum
-func GetAutonomousContainerDatabaseSummaryMaintenanceWeekEnumValues() []AutonomousContainerDatabaseSummaryMaintenanceWeekEnum {
-	values := make([]AutonomousContainerDatabaseSummaryMaintenanceWeekEnum, 0)
-	for _, v := range mappingAutonomousContainerDatabaseSummaryMaintenanceWeek {
 		values = append(values, v)
 	}
 	return values

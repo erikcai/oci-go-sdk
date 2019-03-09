@@ -8,19 +8,11 @@ import (
 	"net/http"
 )
 
-// UpdateAutonomousDbSystemRequest wrapper for the UpdateAutonomousDbSystem operation
-type UpdateAutonomousDbSystemRequest struct {
+// GetAutonomousExadataInfrastructureRequest wrapper for the GetAutonomousExadataInfrastructure operation
+type GetAutonomousExadataInfrastructureRequest struct {
 
-	// The Autonomous DB System OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
-	AutonomousDbSystemId *string `mandatory:"true" contributesTo:"path" name:"autonomousDbSystemId"`
-
-	// Request to update the properties of a Autonomous DB System.
-	UpdateAutonomousDbSystemDetails `contributesTo:"body"`
-
-	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
-	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
-	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
+	// The Autonomous Exadata Infrastructure  OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	AutonomousExadataInfrastructureId *string `mandatory:"true" contributesTo:"path" name:"autonomousExadataInfrastructureId"`
 
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
@@ -31,28 +23,28 @@ type UpdateAutonomousDbSystemRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request UpdateAutonomousDbSystemRequest) String() string {
+func (request GetAutonomousExadataInfrastructureRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request UpdateAutonomousDbSystemRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetAutonomousExadataInfrastructureRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request UpdateAutonomousDbSystemRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetAutonomousExadataInfrastructureRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// UpdateAutonomousDbSystemResponse wrapper for the UpdateAutonomousDbSystem operation
-type UpdateAutonomousDbSystemResponse struct {
+// GetAutonomousExadataInfrastructureResponse wrapper for the GetAutonomousExadataInfrastructure operation
+type GetAutonomousExadataInfrastructureResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The AutonomousDbSystem instance
-	AutonomousDbSystem `presentIn:"body"`
+	// The AutonomousExadataInfrastructure instance
+	AutonomousExadataInfrastructure `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -62,11 +54,11 @@ type UpdateAutonomousDbSystemResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response UpdateAutonomousDbSystemResponse) String() string {
+func (response GetAutonomousExadataInfrastructureResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response UpdateAutonomousDbSystemResponse) HTTPResponse() *http.Response {
+func (response GetAutonomousExadataInfrastructureResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

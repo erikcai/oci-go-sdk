@@ -34,7 +34,7 @@ type CreateReplicatedCacheDetails struct {
 	Description *string `mandatory:"false" json:"description"`
 
 	// The primary Redis node and up to 5 replication nodes. Each node hosts a Redis server instance and is associated with a specific availability domain and subnet.
-	RedisNodes []RedisNodeDetails `mandatory:"false" json:"redisNodes"`
+	RedisNodeDetailsList []RedisNodeDetails `mandatory:"false" json:"redisNodeDetailsList"`
 }
 
 func (m CreateReplicatedCacheDetails) String() string {

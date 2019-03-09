@@ -37,7 +37,7 @@ func NewOracacheClientWithConfigurationProvider(configProvider common.Configurat
 
 // SetRegion overrides the region of this client.
 func (client *OracacheClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("caching", "https://caching.{region}.oci.oraclecloud.com")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("caching", "https://caching.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -262,48 +262,6 @@ func (client OracacheClient) getWorkRequest(ctx context.Context, request common.
 	}
 
 	var response GetWorkRequestResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListCachingConsumption An operation that lists cache consumption for a tenancy in the current region. Service limits determine the maximum number of caches that can be created.
-func (client OracacheClient) ListCachingConsumption(ctx context.Context, request ListCachingConsumptionRequest) (response ListCachingConsumptionResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listCachingConsumption, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = ListCachingConsumptionResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListCachingConsumptionResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListCachingConsumptionResponse")
-	}
-	return
-}
-
-// listCachingConsumption implements the OCIOperation interface (enables retrying operations)
-func (client OracacheClient) listCachingConsumption(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cachingConsumption")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListCachingConsumptionResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

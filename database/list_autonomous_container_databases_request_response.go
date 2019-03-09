@@ -14,8 +14,8 @@ type ListAutonomousContainerDatabasesRequest struct {
 	// The compartment OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The Autonomous Container Database OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
-	AutonomousDbSystemId *string `mandatory:"false" contributesTo:"query" name:"autonomousDbSystemId"`
+	// The Autonomous Exadata Infrastructure OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	AutonomousExadataInfrastructureId *string `mandatory:"false" contributesTo:"query" name:"autonomousExadataInfrastructureId"`
 
 	// The maximum number of items to return per page.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`

@@ -32,7 +32,7 @@ type CreateAutonomousDatabaseBase interface {
 	// The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (") or the username "admin", regardless of casing.
 	GetAdminPassword() *string
 
-	// The autonomous database workload type.
+	// The autonomous database workload type. OLTP indicates an Autonomous Transaction Processing database and DW indicates an Autonomous Data Warehouse. The default is OLTP.
 	GetDbWorkload() CreateAutonomousDatabaseBaseDbWorkloadEnum
 
 	// The user-friendly name for the Autonomous Database. The name does not have to be unique.
@@ -46,9 +46,6 @@ type CreateAutonomousDatabaseBase interface {
 
 	// The Autonomous Container Database OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
 	GetAutonomousContainerDatabaseId() *string
-
-	// The Autonomous Pod OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
-	GetAutonomousPodId() *string
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/resourcetags.htm).
@@ -73,7 +70,6 @@ type createautonomousdatabasebase struct {
 	LicenseModel                  CreateAutonomousDatabaseBaseLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 	IsDedicated                   *bool                                        `mandatory:"false" json:"isDedicated"`
 	AutonomousContainerDatabaseId *string                                      `mandatory:"false" json:"autonomousContainerDatabaseId"`
-	AutonomousPodId               *string                                      `mandatory:"false" json:"autonomousPodId"`
 	FreeformTags                  map[string]string                            `mandatory:"false" json:"freeformTags"`
 	DefinedTags                   map[string]map[string]interface{}            `mandatory:"false" json:"definedTags"`
 	Source                        string                                       `json:"source"`
@@ -100,7 +96,6 @@ func (m *createautonomousdatabasebase) UnmarshalJSON(data []byte) error {
 	m.LicenseModel = s.Model.LicenseModel
 	m.IsDedicated = s.Model.IsDedicated
 	m.AutonomousContainerDatabaseId = s.Model.AutonomousContainerDatabaseId
-	m.AutonomousPodId = s.Model.AutonomousPodId
 	m.FreeformTags = s.Model.FreeformTags
 	m.DefinedTags = s.Model.DefinedTags
 	m.Source = s.Model.Source
@@ -178,11 +173,6 @@ func (m createautonomousdatabasebase) GetIsDedicated() *bool {
 //GetAutonomousContainerDatabaseId returns AutonomousContainerDatabaseId
 func (m createautonomousdatabasebase) GetAutonomousContainerDatabaseId() *string {
 	return m.AutonomousContainerDatabaseId
-}
-
-//GetAutonomousPodId returns AutonomousPodId
-func (m createautonomousdatabasebase) GetAutonomousPodId() *string {
-	return m.AutonomousPodId
 }
 
 //GetFreeformTags returns FreeformTags

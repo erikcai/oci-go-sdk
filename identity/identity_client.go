@@ -58,7 +58,7 @@ func (client *IdentityClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
-// ActivateMfaTotpDevice Activate the specified MFA TOTP device for the user.
+// ActivateMfaTotpDevice Activates the specified MFA TOTP device for the user. Activation requires manual interaction with the Console.
 func (client IdentityClient) ActivateMfaTotpDevice(ctx context.Context, request ActivateMfaTotpDeviceRequest) (response ActivateMfaTotpDeviceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -655,7 +655,7 @@ func (client IdentityClient) createManagedCompartment(ctx context.Context, reque
 	return response, err
 }
 
-// CreateMfaTotpDevice Create a new MFA TOTP device for the user. A user can only create one MFA TOTP device.
+// CreateMfaTotpDevice Creates a new MFA TOTP device for the user. A user can have one MFA TOTP device.
 func (client IdentityClient) CreateMfaTotpDevice(ctx context.Context, request CreateMfaTotpDeviceRequest) (response CreateMfaTotpDeviceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1599,7 +1599,7 @@ func (client IdentityClient) deleteIdpGroupMapping(ctx context.Context, request 
 	return response, err
 }
 
-// DeleteMfaTotpDevice Delete the specified MFA TOTP device for the specified user.
+// DeleteMfaTotpDevice Deletes the specified MFA TOTP device for the specified user.
 func (client IdentityClient) DeleteMfaTotpDevice(ctx context.Context, request DeleteMfaTotpDeviceRequest) (response DeleteMfaTotpDeviceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1936,7 +1936,7 @@ func (client IdentityClient) deleteUser(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// GenerateTotpSeed Generate seed for the MFA TOTP device
+// GenerateTotpSeed Generate seed for the MFA TOTP device.
 func (client IdentityClient) GenerateTotpSeed(ctx context.Context, request GenerateTotpSeedRequest) (response GenerateTotpSeedResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2660,49 +2660,6 @@ func (client IdentityClient) getUserGroupMembership(ctx context.Context, request
 	return response, err
 }
 
-// GetUserUIPasswordInformation Gets the specified user's console password information. The returned object contains the user's OCID,
-// but not the password itself. The actual password is returned only when created or reset.
-func (client IdentityClient) GetUserUIPasswordInformation(ctx context.Context, request GetUserUIPasswordInformationRequest) (response GetUserUIPasswordInformationResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getUserUIPasswordInformation, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = GetUserUIPasswordInformationResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetUserUIPasswordInformationResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetUserUIPasswordInformationResponse")
-	}
-	return
-}
-
-// getUserUIPasswordInformation implements the OCIOperation interface (enables retrying operations)
-func (client IdentityClient) getUserUIPasswordInformation(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/uiPassword")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetUserUIPasswordInformationResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // GetWorkRequest Gets details on a specified work request. The workRequestID is returned in the opc-workrequest-id header
 // for any asynchronous operation in the Identity and Access Management service.
 func (client IdentityClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
@@ -3341,7 +3298,7 @@ func (client IdentityClient) listManagedCompartments(ctx context.Context, reques
 }
 
 // ListMfaTotpDevices Lists the MFA TOTP devices for the specified user. The returned object contains the device's OCID, but not
-// the seed. The seed is returned only upon creation or when we regenerate MFA seed for the device.
+// the seed. The seed is returned only upon creation or when the IAM service regenerates the MFA seed for the device.
 func (client IdentityClient) ListMfaTotpDevices(ctx context.Context, request ListMfaTotpDevicesRequest) (response ListMfaTotpDevicesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
