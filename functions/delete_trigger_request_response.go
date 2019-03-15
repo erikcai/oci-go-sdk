@@ -11,7 +11,7 @@ import (
 // DeleteTriggerRequest wrapper for the DeleteTrigger operation
 type DeleteTriggerRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of this trigger.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this trigger.
 	TriggerId *string `mandatory:"true" contributesTo:"path" name:"triggerId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

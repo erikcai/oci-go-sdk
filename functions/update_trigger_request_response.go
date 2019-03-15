@@ -11,7 +11,7 @@ import (
 // UpdateTriggerRequest wrapper for the UpdateTrigger operation
 type UpdateTriggerRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of this trigger.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this trigger.
 	TriggerId *string `mandatory:"true" contributesTo:"path" name:"triggerId"`
 
 	// The new trigger spec to apply

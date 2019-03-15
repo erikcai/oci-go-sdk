@@ -11,10 +11,10 @@ import (
 // GetAutonomousDatabaseMissionCriticalAssociationRequest wrapper for the GetAutonomousDatabaseMissionCriticalAssociation operation
 type GetAutonomousDatabaseMissionCriticalAssociationRequest struct {
 
-	// The database OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	// The database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	AutonomousDatabaseId *string `mandatory:"true" contributesTo:"path" name:"autonomousDatabaseId"`
 
-	// The Autonomous Database Mission Critical Association OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	// The Autonomous Database Mission Critical Association OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	AutonomousDatabaseMissionCriticalAssociationId *string `mandatory:"true" contributesTo:"path" name:"autonomousDatabaseMissionCriticalAssociationId"`
 
 	// Unique identifier for the request.

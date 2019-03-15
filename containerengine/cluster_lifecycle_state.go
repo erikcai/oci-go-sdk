@@ -5,7 +5,7 @@
 //
 // API for the Container Engine for Kubernetes service. Use this API to build, deploy,
 // and manage cloud-native applications. For more information, see
-// Overview of Container Engine for Kubernetes (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/ContEng/Concepts/contengoverview.htm).
+// Overview of Container Engine for Kubernetes (https://docs.cloud.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm).
 //
 
 package containerengine

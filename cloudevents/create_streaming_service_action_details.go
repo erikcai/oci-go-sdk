@@ -4,7 +4,7 @@
 // CloudEvents API
 //
 // API for the CloudEvents Service. Use this API to manage rules and actions that create automation
-// in your tenancy. For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
+// in your tenancy. For more information, see Overview of Events (https://docs.cloud.oracle.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -21,7 +21,7 @@ type CreateStreamingServiceActionDetails struct {
 	// Example: `true`
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the stream to which messages are delivered.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream to which messages are delivered.
 	StreamId *string `mandatory:"true" json:"streamId"`
 
 	// A string that describes the details of the action. It does not have to be unique, and you can change it. Avoid entering

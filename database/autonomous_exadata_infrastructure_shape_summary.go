@@ -15,7 +15,7 @@ import (
 // AutonomousExadataInfrastructureShapeSummary The shape of the Autonomous Exadata Infrastructure. The shape determines resources to allocate to the Autonomous Exadata Infrastructure (CPU cores, memory and storage).
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized, talk to an administrator.
 // If you're an administrator who needs to write policies to give users access,
-// see Getting Started with Policies (https://docs.us-phoenix-1.oraclecloud.com/Content/Identity/Concepts/policygetstarted.htm).
+// see Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
 type AutonomousExadataInfrastructureShapeSummary struct {
 
 	// The name of the shape used for the Autonomous Exadata Infrastructure.

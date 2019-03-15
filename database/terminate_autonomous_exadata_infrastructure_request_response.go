@@ -11,7 +11,7 @@ import (
 // TerminateAutonomousExadataInfrastructureRequest wrapper for the TerminateAutonomousExadataInfrastructure operation
 type TerminateAutonomousExadataInfrastructureRequest struct {
 
-	// The Autonomous Exadata Infrastructure  OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	// The Autonomous Exadata Infrastructure  OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	AutonomousExadataInfrastructureId *string `mandatory:"true" contributesTo:"path" name:"autonomousExadataInfrastructureId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

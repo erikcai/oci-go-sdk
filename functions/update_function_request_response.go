@@ -11,7 +11,7 @@ import (
 // UpdateFunctionRequest wrapper for the UpdateFunction operation
 type UpdateFunctionRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of this function.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this function.
 	FunctionId *string `mandatory:"true" contributesTo:"path" name:"functionId"`
 
 	// The new function spec to apply

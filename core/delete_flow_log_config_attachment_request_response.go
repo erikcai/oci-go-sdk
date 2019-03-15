@@ -11,7 +11,7 @@ import (
 // DeleteFlowLogConfigAttachmentRequest wrapper for the DeleteFlowLogConfigAttachment operation
 type DeleteFlowLogConfigAttachmentRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the flow log configuration attachment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the flow log configuration attachment.
 	FlowLogConfigAttachmentId *string `mandatory:"true" contributesTo:"path" name:"flowLogConfigAttachmentId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

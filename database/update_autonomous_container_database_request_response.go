@@ -11,7 +11,7 @@ import (
 // UpdateAutonomousContainerDatabaseRequest wrapper for the UpdateAutonomousContainerDatabase operation
 type UpdateAutonomousContainerDatabaseRequest struct {
 
-	// The Autonomous Container Database OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	// The Autonomous Container Database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	AutonomousContainerDatabaseId *string `mandatory:"true" contributesTo:"path" name:"autonomousContainerDatabaseId"`
 
 	// Request to update the properties of an Autonomous Container Database.

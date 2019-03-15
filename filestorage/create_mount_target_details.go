@@ -38,7 +38,7 @@ type CreateMountTargetDetails struct {
 	// with RFC 952 (https://tools.ietf.org/html/rfc952)
 	// and RFC 1123 (https://tools.ietf.org/html/rfc1123).
 	// For more information, see
-	// DNS in Your Virtual Cloud Network (https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm).
+	// DNS in Your Virtual Cloud Network (https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
 	// Example: `files-1`
 	HostnameLabel *string `mandatory:"false" json:"hostnameLabel"`
 

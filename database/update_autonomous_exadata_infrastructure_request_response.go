@@ -11,7 +11,7 @@ import (
 // UpdateAutonomousExadataInfrastructureRequest wrapper for the UpdateAutonomousExadataInfrastructure operation
 type UpdateAutonomousExadataInfrastructureRequest struct {
 
-	// The Autonomous Exadata Infrastructure  OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	// The Autonomous Exadata Infrastructure  OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	AutonomousExadataInfrastructureId *string `mandatory:"true" contributesTo:"path" name:"autonomousExadataInfrastructureId"`
 
 	// Request to update the properties of a Autonomous Exadata Infrastructure.

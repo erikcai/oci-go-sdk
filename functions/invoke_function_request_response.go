@@ -12,7 +12,7 @@ import (
 // InvokeFunctionRequest wrapper for the InvokeFunction operation
 type InvokeFunctionRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of this function.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this function.
 	FunctionId *string `mandatory:"true" contributesTo:"path" name:"functionId"`
 
 	// The body of the function invocation.

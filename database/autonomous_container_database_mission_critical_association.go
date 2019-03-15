@@ -18,10 +18,10 @@ type AutonomousContainerDatabaseMissionCriticalAssociation struct {
 	// The OCID of the Mission Critical Autonomous Container Database id.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the Autonomous Container Database that has a relationship with the peer Autonomous Container Database.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Container Database that has a relationship with the peer Autonomous Container Database.
 	AutonomousContainerDatabaseId *string `mandatory:"true" json:"autonomousContainerDatabaseId"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the peer Autonomous Container Database.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the peer Autonomous Container Database.
 	PeerAutonomousContainerDatabaseId *string `mandatory:"true" json:"peerAutonomousContainerDatabaseId"`
 
 	// The role of the reporting Container Database in this Autonomous Mission Critical Association.

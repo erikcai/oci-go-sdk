@@ -16,7 +16,7 @@ import (
 // CreateDbHomeWithDbSystemIdFromDatabaseDetails The representation of CreateDbHomeWithDbSystemIdFromDatabaseDetails
 type CreateDbHomeWithDbSystemIdFromDatabaseDetails struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the DB system.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
 	DbSystemId *string `mandatory:"true" json:"dbSystemId"`
 
 	Database *CreateDatabaseFromAnotherDatabaseDetails `mandatory:"true" json:"database"`

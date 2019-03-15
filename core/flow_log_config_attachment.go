@@ -19,7 +19,7 @@ import (
 // supply string values using the API.
 type FlowLogConfigAttachment struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the compartment containing the
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the
 	// flow log configuration attachment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
@@ -27,20 +27,20 @@ type FlowLogConfigAttachment struct {
 	// entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The flow log configuration attachment's OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	// The flow log configuration attachment's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	Id *string `mandatory:"true" json:"id"`
 
 	// The flow log configuration attachment's current state.
 	LifecycleState FlowLogConfigAttachmentLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the resource that the flow log
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource that the flow log
 	// configuration is attached to.
 	TargetEntityId *string `mandatory:"true" json:"targetEntityId"`
 
 	// The type of resource that the flow log configuration is attached to.
 	TargetEntityType FlowLogConfigAttachmentTargetEntityTypeEnum `mandatory:"true" json:"targetEntityType"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the flow log configuration that
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the flow log configuration that
 	// is attached to the resource.
 	FlowLogConfigId *string `mandatory:"true" json:"flowLogConfigId"`
 

@@ -11,7 +11,7 @@ import (
 // UpdateRuleRequest wrapper for the UpdateRule operation
 type UpdateRuleRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of this rule.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this rule.
 	RuleId *string `mandatory:"true" contributesTo:"path" name:"ruleId"`
 
 	// The new rule spec to apply

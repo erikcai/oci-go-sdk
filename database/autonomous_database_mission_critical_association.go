@@ -18,10 +18,10 @@ type AutonomousDatabaseMissionCriticalAssociation struct {
 	// The OCID of the Autonomous Database Mission Critical Id.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database that has a relationship with the peer Autonomous Dedicated Database.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database that has a relationship with the peer Autonomous Dedicated Database.
 	AutonomousDatabaseId *string `mandatory:"true" json:"autonomousDatabaseId"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the peer Autonomous Database.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the peer Autonomous Database.
 	PeerAutonomousDatabaseId *string `mandatory:"true" json:"peerAutonomousDatabaseId"`
 
 	// The OCID of the peer Autonomous Database Mission Critical Association id.

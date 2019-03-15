@@ -11,7 +11,7 @@ import (
 // DeleteApplicationRequest wrapper for the DeleteApplication operation
 type DeleteApplicationRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of this application.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this application.
 	ApplicationId *string `mandatory:"true" contributesTo:"path" name:"applicationId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

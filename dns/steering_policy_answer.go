@@ -4,7 +4,7 @@
 // DNS API
 //
 // API for the DNS service. Use this API to manage DNS zones, records, and other DNS resources.
-// For more information, see Overview of the DNS Service (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/DNS/Concepts/dnszonemanagement.htm).
+// For more information, see Overview of the DNS Service (https://docs.cloud.oracle.com/iaas/Content/DNS/Concepts/dnszonemanagement.htm).
 //
 
 package dns
@@ -36,13 +36,13 @@ type SteeringPolicyAnswer struct {
 	Name *string `mandatory:"true" json:"name"`
 
 	// The canonical name for the record's type. Only A, AAAA, and CNAME are supported. For more
-	// information, see Supported DNS Resource Record Types (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/DNS/Reference/supporteddnsresource.htm).
+	// information, see Supported DNS Resource Record Types (https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm).
 	Rtype *string `mandatory:"true" json:"rtype"`
 
 	// The record's data, as whitespace-delimited tokens in
 	// type-specific presentation format. All RDATA is normalized and the
 	// returned presentation of your RDATA may differ from its initial input.
-	// For more information about RDATA, see Supported DNS Resource Record Types (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/DNS/Reference/supporteddnsresource.htm).
+	// For more information about RDATA, see Supported DNS Resource Record Types (https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm).
 	Rdata *string `mandatory:"true" json:"rdata"`
 
 	// The freeform name of a group of one or more records in which this record is included,

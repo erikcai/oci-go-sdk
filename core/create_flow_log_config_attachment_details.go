@@ -15,14 +15,14 @@ import (
 // CreateFlowLogConfigAttachmentDetails The representation of CreateFlowLogConfigAttachmentDetails
 type CreateFlowLogConfigAttachmentDetails struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the resource to attach the
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource to attach the
 	// flow log configuration to. Attaching the configuration enables flow logs for the resource.
 	TargetEntityId *string `mandatory:"true" json:"targetEntityId"`
 
 	// The type of resource to attach the flow log configuration to.
 	TargetEntityType CreateFlowLogConfigAttachmentDetailsTargetEntityTypeEnum `mandatory:"true" json:"targetEntityType"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm) of the flow log configuration to attach.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the flow log configuration to attach.
 	FlowLogConfigId *string `mandatory:"true" json:"flowLogConfigId"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid

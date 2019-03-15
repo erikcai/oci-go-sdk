@@ -4,7 +4,7 @@
 // CloudEvents API
 //
 // API for the CloudEvents Service. Use this API to manage rules and actions that create automation
-// in your tenancy. For more information, see Overview of Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Concepts/eventsoverview.htm).
+// in your tenancy. For more information, see Overview of Events (https://docs.cloud.oracle.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
 package cloudevents
@@ -14,10 +14,10 @@ import (
 )
 
 // RuleSummary The summary details of CloudEvent rules. For more information, see
-// Managing Rules for Events (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/Events/Task/managingrulesactions.htm)
+// Managing Rules for Events (https://docs.cloud.oracle.com/iaas/Content/Events/Task/managingrulesactions.htm)
 type RuleSummary struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of this rule.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this rule.
 	Id *string `mandatory:"true" json:"id"`
 
 	// A string that describes the rule. It does not have to be unique, and you can change it. Avoid entering
@@ -31,7 +31,7 @@ type RuleSummary struct {
 	// Example: `"eventType": "com.oraclecloud.dbaas.autonomous.database.backup.end"`
 	Condition *string `mandatory:"true" json:"condition"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// Whether or not this rule is currently enabled.

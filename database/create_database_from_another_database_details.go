@@ -15,7 +15,7 @@ import (
 // CreateDatabaseFromAnotherDatabaseDetails The representation of CreateDatabaseFromAnotherDatabaseDetails
 type CreateDatabaseFromAnotherDatabaseDetails struct {
 
-	// The database OCID (https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/identifiers.htm).
+	// The database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	DatabaseId *string `mandatory:"true" json:"databaseId"`
 
 	// The password to open the TDE wallet.

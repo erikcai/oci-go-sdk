@@ -11,10 +11,10 @@ import (
 // ListTriggersRequest wrapper for the ListTriggers operation
 type ListTriggersRequest struct {
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the application to which this function belongs.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the application to which this function belongs.
 	ApplicationId *string `mandatory:"true" contributesTo:"query" name:"applicationId"`
 
-	// The OCID (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/General/Concepts/identifiers.htm) of the function to which this trigger belongs.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function to which this trigger belongs.
 	FunctionId *string `mandatory:"false" contributesTo:"query" name:"functionId"`
 
 	// The maximum number of items to return. 1 is the minimum, 50 is the maximum.
@@ -80,7 +80,7 @@ type ListTriggersResponse struct {
 
 	// For list pagination. When this header appears in the response, additional pages of
 	// results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.us-phoenix-1.oraclecloud.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
