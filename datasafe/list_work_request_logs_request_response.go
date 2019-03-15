@@ -1,21 +1,18 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package datasecurity
+package datasafe
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
 )
 
-// ListWorkRequestsRequest wrapper for the ListWorkRequests operation
-type ListWorkRequestsRequest struct {
+// ListWorkRequestLogsRequest wrapper for the ListWorkRequestLogs operation
+type ListWorkRequestLogsRequest struct {
 
-	// The ID of the compartment in which to list resources.
-	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
-
-	// unique data security instance identifier
-	DataSecurityInstanceId *string `mandatory:"false" contributesTo:"query" name:"dataSecurityInstanceId"`
+	// The ID of the asynchronous request.
+	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
 
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -31,45 +28,44 @@ type ListWorkRequestsRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ListWorkRequestsRequest) String() string {
+func (request ListWorkRequestLogsRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ListWorkRequestsRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ListWorkRequestLogsRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ListWorkRequestsRequest) RetryPolicy() *common.RetryPolicy {
+func (request ListWorkRequestLogsRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ListWorkRequestsResponse wrapper for the ListWorkRequests operation
-type ListWorkRequestsResponse struct {
+// ListWorkRequestLogsResponse wrapper for the ListWorkRequestLogs operation
+type ListWorkRequestLogsResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []WorkRequestSummary instances
-	Items []WorkRequestSummary `presentIn:"body"`
-
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
-	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+	// A list of []WorkRequestLogEntry instances
+	Items []WorkRequestLogEntry `presentIn:"body"`
 
 	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then a partial list might have been returned. Include this value as the `page` parameter for the
-	// subsequent GET request to get the next batch of items.
+	// then there might be additional items still to get. Include this value as the `page` parameter for the
+	// subsequent GET request.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
+
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+	// particular request, please provide the request ID.
+	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response ListWorkRequestsResponse) String() string {
+func (response ListWorkRequestLogsResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ListWorkRequestsResponse) HTTPResponse() *http.Response {
+func (response ListWorkRequestLogsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

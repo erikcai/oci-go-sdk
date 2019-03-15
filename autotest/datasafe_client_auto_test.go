@@ -2,7 +2,7 @@ package autotest
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
-	"github.com/oracle/oci-go-sdk/datasecurity"
+	"github.com/oracle/oci-go-sdk/datasafe"
 
 	"context"
 	"encoding/json"
@@ -11,9 +11,9 @@ import (
 	"testing"
 )
 
-func createDataSecurityClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+func createDataSafeClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
 
-	client, err := datasecurity.NewDataSecurityClientWithConfigurationProvider(p)
+	client, err := datasafe.NewDataSafeClientWithConfigurationProvider(p)
 	if testConfig.Endpoint != "" {
 		client.Host = testConfig.Endpoint
 	} else {
@@ -22,29 +22,29 @@ func createDataSecurityClientWithProvider(p common.ConfigurationProvider, testCo
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientChangeDataSecurityInstanceCompartment(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientChangeDataSafeInstanceCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "ChangeDataSecurityInstanceCompartment")
+	enabled, err := testClient.isApiEnabled("datasafe", "ChangeDataSafeInstanceCompartment")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ChangeDataSecurityInstanceCompartment is not enabled by the testing service")
+		t.Skip("ChangeDataSafeInstanceCompartment is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "ChangeDataSecurityInstanceCompartment", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "ChangeDataSafeInstanceCompartment", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "ChangeDataSecurityInstanceCompartment")
+	body, err := testClient.getRequests("datasafe", "ChangeDataSafeInstanceCompartment")
 	assert.NoError(t, err)
 
-	type ChangeDataSecurityInstanceCompartmentRequestInfo struct {
+	type ChangeDataSafeInstanceCompartmentRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.ChangeDataSecurityInstanceCompartmentRequest
+		Request     datasafe.ChangeDataSafeInstanceCompartmentRequest
 	}
 
-	var requests []ChangeDataSecurityInstanceCompartmentRequestInfo
+	var requests []ChangeDataSafeInstanceCompartmentRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -57,7 +57,7 @@ func TestDataSecurityClientChangeDataSecurityInstanceCompartment(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-			response, err := c.ChangeDataSecurityInstanceCompartment(context.Background(), req.Request)
+			response, err := c.ChangeDataSafeInstanceCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -65,29 +65,29 @@ func TestDataSecurityClientChangeDataSecurityInstanceCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientCreateDataSecurityInstance(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientCreateDataSafeInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "CreateDataSecurityInstance")
+	enabled, err := testClient.isApiEnabled("datasafe", "CreateDataSafeInstance")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("CreateDataSecurityInstance is not enabled by the testing service")
+		t.Skip("CreateDataSafeInstance is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "CreateDataSecurityInstance", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "CreateDataSafeInstance", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "CreateDataSecurityInstance")
+	body, err := testClient.getRequests("datasafe", "CreateDataSafeInstance")
 	assert.NoError(t, err)
 
-	type CreateDataSecurityInstanceRequestInfo struct {
+	type CreateDataSafeInstanceRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.CreateDataSecurityInstanceRequest
+		Request     datasafe.CreateDataSafeInstanceRequest
 	}
 
-	var requests []CreateDataSecurityInstanceRequestInfo
+	var requests []CreateDataSafeInstanceRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -100,7 +100,7 @@ func TestDataSecurityClientCreateDataSecurityInstance(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-			response, err := c.CreateDataSecurityInstance(context.Background(), req.Request)
+			response, err := c.CreateDataSafeInstance(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -108,29 +108,29 @@ func TestDataSecurityClientCreateDataSecurityInstance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientDeleteDataSecurityInstance(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientDeleteDataSafeInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "DeleteDataSecurityInstance")
+	enabled, err := testClient.isApiEnabled("datasafe", "DeleteDataSafeInstance")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("DeleteDataSecurityInstance is not enabled by the testing service")
+		t.Skip("DeleteDataSafeInstance is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "DeleteDataSecurityInstance", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "DeleteDataSafeInstance", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "DeleteDataSecurityInstance")
+	body, err := testClient.getRequests("datasafe", "DeleteDataSafeInstance")
 	assert.NoError(t, err)
 
-	type DeleteDataSecurityInstanceRequestInfo struct {
+	type DeleteDataSafeInstanceRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.DeleteDataSecurityInstanceRequest
+		Request     datasafe.DeleteDataSafeInstanceRequest
 	}
 
-	var requests []DeleteDataSecurityInstanceRequestInfo
+	var requests []DeleteDataSafeInstanceRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -143,7 +143,7 @@ func TestDataSecurityClientDeleteDataSecurityInstance(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-			response, err := c.DeleteDataSecurityInstance(context.Background(), req.Request)
+			response, err := c.DeleteDataSafeInstance(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -151,29 +151,29 @@ func TestDataSecurityClientDeleteDataSecurityInstance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientGetDataSecurityInstance(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientGetDataSafeInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "GetDataSecurityInstance")
+	enabled, err := testClient.isApiEnabled("datasafe", "GetDataSafeInstance")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("GetDataSecurityInstance is not enabled by the testing service")
+		t.Skip("GetDataSafeInstance is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "GetDataSecurityInstance", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "GetDataSafeInstance", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "GetDataSecurityInstance")
+	body, err := testClient.getRequests("datasafe", "GetDataSafeInstance")
 	assert.NoError(t, err)
 
-	type GetDataSecurityInstanceRequestInfo struct {
+	type GetDataSafeInstanceRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.GetDataSecurityInstanceRequest
+		Request     datasafe.GetDataSafeInstanceRequest
 	}
 
-	var requests []GetDataSecurityInstanceRequestInfo
+	var requests []GetDataSafeInstanceRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -186,7 +186,7 @@ func TestDataSecurityClientGetDataSecurityInstance(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-			response, err := c.GetDataSecurityInstance(context.Background(), req.Request)
+			response, err := c.GetDataSafeInstance(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -194,26 +194,26 @@ func TestDataSecurityClientGetDataSecurityInstance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientGetWorkRequest(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "GetWorkRequest")
+	enabled, err := testClient.isApiEnabled("datasafe", "GetWorkRequest")
 	assert.NoError(t, err)
 	if !enabled {
 		t.Skip("GetWorkRequest is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "GetWorkRequest", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "GetWorkRequest", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "GetWorkRequest")
+	body, err := testClient.getRequests("datasafe", "GetWorkRequest")
 	assert.NoError(t, err)
 
 	type GetWorkRequestRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.GetWorkRequestRequest
+		Request     datasafe.GetWorkRequestRequest
 	}
 
 	var requests []GetWorkRequestRequestInfo
@@ -237,29 +237,29 @@ func TestDataSecurityClientGetWorkRequest(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientListDataSecurityInstances(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientListDataSafeInstances(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "ListDataSecurityInstances")
+	enabled, err := testClient.isApiEnabled("datasafe", "ListDataSafeInstances")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ListDataSecurityInstances is not enabled by the testing service")
+		t.Skip("ListDataSafeInstances is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "ListDataSecurityInstances", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "ListDataSafeInstances", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "ListDataSecurityInstances")
+	body, err := testClient.getRequests("datasafe", "ListDataSafeInstances")
 	assert.NoError(t, err)
 
-	type ListDataSecurityInstancesRequestInfo struct {
+	type ListDataSafeInstancesRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.ListDataSecurityInstancesRequest
+		Request     datasafe.ListDataSafeInstancesRequest
 	}
 
-	var requests []ListDataSecurityInstancesRequestInfo
+	var requests []ListDataSafeInstancesRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -272,14 +272,14 @@ func TestDataSecurityClientListDataSecurityInstances(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*datasecurity.ListDataSecurityInstancesRequest)
-				return c.ListDataSecurityInstances(context.Background(), *r)
+				r := req.(*datasafe.ListDataSafeInstancesRequest)
+				return c.ListDataSafeInstances(context.Background(), *r)
 			}
 
 			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]datasecurity.ListDataSecurityInstancesResponse, len(listResponses))
+			typedListResponses := make([]datasafe.ListDataSafeInstancesResponse, len(listResponses))
 			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(datasecurity.ListDataSecurityInstancesResponse)
+				typedListResponses[i] = lr.(datasafe.ListDataSafeInstancesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -289,26 +289,26 @@ func TestDataSecurityClientListDataSecurityInstances(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientListWorkRequestErrors(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientListWorkRequestErrors(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "ListWorkRequestErrors")
+	enabled, err := testClient.isApiEnabled("datasafe", "ListWorkRequestErrors")
 	assert.NoError(t, err)
 	if !enabled {
 		t.Skip("ListWorkRequestErrors is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "ListWorkRequestErrors", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "ListWorkRequestErrors", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "ListWorkRequestErrors")
+	body, err := testClient.getRequests("datasafe", "ListWorkRequestErrors")
 	assert.NoError(t, err)
 
 	type ListWorkRequestErrorsRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.ListWorkRequestErrorsRequest
+		Request     datasafe.ListWorkRequestErrorsRequest
 	}
 
 	var requests []ListWorkRequestErrorsRequestInfo
@@ -324,14 +324,14 @@ func TestDataSecurityClientListWorkRequestErrors(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*datasecurity.ListWorkRequestErrorsRequest)
+				r := req.(*datasafe.ListWorkRequestErrorsRequest)
 				return c.ListWorkRequestErrors(context.Background(), *r)
 			}
 
 			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]datasecurity.ListWorkRequestErrorsResponse, len(listResponses))
+			typedListResponses := make([]datasafe.ListWorkRequestErrorsResponse, len(listResponses))
 			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(datasecurity.ListWorkRequestErrorsResponse)
+				typedListResponses[i] = lr.(datasafe.ListWorkRequestErrorsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -341,26 +341,26 @@ func TestDataSecurityClientListWorkRequestErrors(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientListWorkRequestLogs(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientListWorkRequestLogs(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "ListWorkRequestLogs")
+	enabled, err := testClient.isApiEnabled("datasafe", "ListWorkRequestLogs")
 	assert.NoError(t, err)
 	if !enabled {
 		t.Skip("ListWorkRequestLogs is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "ListWorkRequestLogs", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "ListWorkRequestLogs", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "ListWorkRequestLogs")
+	body, err := testClient.getRequests("datasafe", "ListWorkRequestLogs")
 	assert.NoError(t, err)
 
 	type ListWorkRequestLogsRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.ListWorkRequestLogsRequest
+		Request     datasafe.ListWorkRequestLogsRequest
 	}
 
 	var requests []ListWorkRequestLogsRequestInfo
@@ -376,14 +376,14 @@ func TestDataSecurityClientListWorkRequestLogs(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*datasecurity.ListWorkRequestLogsRequest)
+				r := req.(*datasafe.ListWorkRequestLogsRequest)
 				return c.ListWorkRequestLogs(context.Background(), *r)
 			}
 
 			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]datasecurity.ListWorkRequestLogsResponse, len(listResponses))
+			typedListResponses := make([]datasafe.ListWorkRequestLogsResponse, len(listResponses))
 			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(datasecurity.ListWorkRequestLogsResponse)
+				typedListResponses[i] = lr.(datasafe.ListWorkRequestLogsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -393,26 +393,26 @@ func TestDataSecurityClientListWorkRequestLogs(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientListWorkRequests(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientListWorkRequests(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "ListWorkRequests")
+	enabled, err := testClient.isApiEnabled("datasafe", "ListWorkRequests")
 	assert.NoError(t, err)
 	if !enabled {
 		t.Skip("ListWorkRequests is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "ListWorkRequests", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "ListWorkRequests", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "ListWorkRequests")
+	body, err := testClient.getRequests("datasafe", "ListWorkRequests")
 	assert.NoError(t, err)
 
 	type ListWorkRequestsRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.ListWorkRequestsRequest
+		Request     datasafe.ListWorkRequestsRequest
 	}
 
 	var requests []ListWorkRequestsRequestInfo
@@ -428,14 +428,14 @@ func TestDataSecurityClientListWorkRequests(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*datasecurity.ListWorkRequestsRequest)
+				r := req.(*datasafe.ListWorkRequestsRequest)
 				return c.ListWorkRequests(context.Background(), *r)
 			}
 
 			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]datasecurity.ListWorkRequestsResponse, len(listResponses))
+			typedListResponses := make([]datasafe.ListWorkRequestsResponse, len(listResponses))
 			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(datasecurity.ListWorkRequestsResponse)
+				typedListResponses[i] = lr.(datasafe.ListWorkRequestsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -445,29 +445,29 @@ func TestDataSecurityClientListWorkRequests(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="datasecurity_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
-func TestDataSecurityClientUpdateDataSecurityInstance(t *testing.T) {
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientUpdateDataSafeInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datasecurity", "UpdateDataSecurityInstance")
+	enabled, err := testClient.isApiEnabled("datasafe", "UpdateDataSafeInstance")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("UpdateDataSecurityInstance is not enabled by the testing service")
+		t.Skip("UpdateDataSafeInstance is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datasecurity", "DataSecurity", "UpdateDataSecurityInstance", createDataSecurityClientWithProvider)
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "UpdateDataSafeInstance", createDataSafeClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(datasecurity.DataSecurityClient)
+	c := cc.(datasafe.DataSafeClient)
 
-	body, err := testClient.getRequests("datasecurity", "UpdateDataSecurityInstance")
+	body, err := testClient.getRequests("datasafe", "UpdateDataSafeInstance")
 	assert.NoError(t, err)
 
-	type UpdateDataSecurityInstanceRequestInfo struct {
+	type UpdateDataSafeInstanceRequestInfo struct {
 		ContainerId string
-		Request     datasecurity.UpdateDataSecurityInstanceRequest
+		Request     datasafe.UpdateDataSafeInstanceRequest
 	}
 
-	var requests []UpdateDataSecurityInstanceRequestInfo
+	var requests []UpdateDataSafeInstanceRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -480,7 +480,7 @@ func TestDataSecurityClientUpdateDataSecurityInstance(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-			response, err := c.UpdateDataSecurityInstance(context.Background(), req.Request)
+			response, err := c.UpdateDataSafeInstance(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

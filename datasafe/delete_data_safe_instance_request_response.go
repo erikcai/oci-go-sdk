@@ -1,18 +1,18 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package datasecurity
+package datasafe
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
 )
 
-// DeleteDataSecurityInstanceRequest wrapper for the DeleteDataSecurityInstance operation
-type DeleteDataSecurityInstanceRequest struct {
+// DeleteDataSafeInstanceRequest wrapper for the DeleteDataSafeInstance operation
+type DeleteDataSafeInstanceRequest struct {
 
-	// unique data security instance identifier
-	DataSecurityInstanceId *string `mandatory:"true" contributesTo:"path" name:"dataSecurityInstanceId"`
+	// unique data safe instance identifier
+	DataSafeInstanceId *string `mandatory:"true" contributesTo:"path" name:"dataSafeInstanceId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
 	// for a resource, set the `if-match` parameter to the value of the
@@ -29,22 +29,22 @@ type DeleteDataSecurityInstanceRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request DeleteDataSecurityInstanceRequest) String() string {
+func (request DeleteDataSafeInstanceRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request DeleteDataSecurityInstanceRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request DeleteDataSafeInstanceRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request DeleteDataSecurityInstanceRequest) RetryPolicy() *common.RetryPolicy {
+func (request DeleteDataSafeInstanceRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// DeleteDataSecurityInstanceResponse wrapper for the DeleteDataSecurityInstance operation
-type DeleteDataSecurityInstanceResponse struct {
+// DeleteDataSafeInstanceResponse wrapper for the DeleteDataSafeInstance operation
+type DeleteDataSafeInstanceResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
@@ -58,11 +58,11 @@ type DeleteDataSecurityInstanceResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response DeleteDataSecurityInstanceResponse) String() string {
+func (response DeleteDataSafeInstanceResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response DeleteDataSecurityInstanceResponse) HTTPResponse() *http.Response {
+func (response DeleteDataSafeInstanceResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

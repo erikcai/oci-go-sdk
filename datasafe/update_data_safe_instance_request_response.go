@@ -1,21 +1,21 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package datasecurity
+package datasafe
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
 )
 
-// UpdateDataSecurityInstanceRequest wrapper for the UpdateDataSecurityInstance operation
-type UpdateDataSecurityInstanceRequest struct {
+// UpdateDataSafeInstanceRequest wrapper for the UpdateDataSafeInstance operation
+type UpdateDataSafeInstanceRequest struct {
 
-	// unique data security instance identifier
-	DataSecurityInstanceId *string `mandatory:"true" contributesTo:"path" name:"dataSecurityInstanceId"`
+	// unique data safe instance identifier
+	DataSafeInstanceId *string `mandatory:"true" contributesTo:"path" name:"dataSafeInstanceId"`
 
 	// The information to be updated.
-	UpdateDataSecurityInstanceDetails `contributesTo:"body"`
+	UpdateDataSafeInstanceDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
 	// for a resource, set the `if-match` parameter to the value of the
@@ -32,22 +32,22 @@ type UpdateDataSecurityInstanceRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request UpdateDataSecurityInstanceRequest) String() string {
+func (request UpdateDataSafeInstanceRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request UpdateDataSecurityInstanceRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request UpdateDataSafeInstanceRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request UpdateDataSecurityInstanceRequest) RetryPolicy() *common.RetryPolicy {
+func (request UpdateDataSafeInstanceRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// UpdateDataSecurityInstanceResponse wrapper for the UpdateDataSecurityInstance operation
-type UpdateDataSecurityInstanceResponse struct {
+// UpdateDataSafeInstanceResponse wrapper for the UpdateDataSafeInstance operation
+type UpdateDataSafeInstanceResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
@@ -61,11 +61,11 @@ type UpdateDataSecurityInstanceResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response UpdateDataSecurityInstanceResponse) String() string {
+func (response UpdateDataSafeInstanceResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response UpdateDataSecurityInstanceResponse) HTTPResponse() *http.Response {
+func (response UpdateDataSafeInstanceResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

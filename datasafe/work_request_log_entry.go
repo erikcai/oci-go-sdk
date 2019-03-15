@@ -3,10 +3,10 @@
 
 // Data Security Control Plane API
 //
-// The API to manage data security instance creation and deletion
+// The API to manage data safe instance creation and deletion
 //
 
-package datasecurity
+package datasafe
 
 import (
 	"github.com/oracle/oci-go-sdk/common"

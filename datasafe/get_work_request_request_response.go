@@ -1,18 +1,18 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package datasecurity
+package datasafe
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
 )
 
-// GetDataSecurityInstanceRequest wrapper for the GetDataSecurityInstance operation
-type GetDataSecurityInstanceRequest struct {
+// GetWorkRequestRequest wrapper for the GetWorkRequest operation
+type GetWorkRequestRequest struct {
 
-	// unique data security instance identifier
-	DataSecurityInstanceId *string `mandatory:"true" contributesTo:"path" name:"dataSecurityInstanceId"`
+	// The ID of the asynchronous request.
+	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
 
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -22,28 +22,28 @@ type GetDataSecurityInstanceRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GetDataSecurityInstanceRequest) String() string {
+func (request GetWorkRequestRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GetDataSecurityInstanceRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetWorkRequestRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GetDataSecurityInstanceRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetWorkRequestRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GetDataSecurityInstanceResponse wrapper for the GetDataSecurityInstance operation
-type GetDataSecurityInstanceResponse struct {
+// GetWorkRequestResponse wrapper for the GetWorkRequest operation
+type GetWorkRequestResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The DataSecurityInstance instance
-	DataSecurityInstance `presentIn:"body"`
+	// The WorkRequest instance
+	WorkRequest `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -52,13 +52,16 @@ type GetDataSecurityInstanceResponse struct {
 	// you need to contact Oracle about a particular request,
 	// please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// a number representing the number of seconds the client should wait before polling this endpoint again
+	RetryAfter *int `presentIn:"header" name:"retry-after"`
 }
 
-func (response GetDataSecurityInstanceResponse) String() string {
+func (response GetWorkRequestResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GetDataSecurityInstanceResponse) HTTPResponse() *http.Response {
+func (response GetWorkRequestResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

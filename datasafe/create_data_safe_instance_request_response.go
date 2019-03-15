@@ -1,18 +1,18 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package datasecurity
+package datasafe
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
 )
 
-// CreateDataSecurityInstanceRequest wrapper for the CreateDataSecurityInstance operation
-type CreateDataSecurityInstanceRequest struct {
+// CreateDataSafeInstanceRequest wrapper for the CreateDataSafeInstance operation
+type CreateDataSafeInstanceRequest struct {
 
-	// Details for the new data security in Instance.
-	CreateDataSecurityInstanceDetails `contributesTo:"body"`
+	// Details for the new data safe in Instance.
+	CreateDataSafeInstanceDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
 	// server error without risk of executing that same action again. Retry tokens expire after 24
@@ -29,22 +29,22 @@ type CreateDataSecurityInstanceRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request CreateDataSecurityInstanceRequest) String() string {
+func (request CreateDataSafeInstanceRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request CreateDataSecurityInstanceRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request CreateDataSafeInstanceRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request CreateDataSecurityInstanceRequest) RetryPolicy() *common.RetryPolicy {
+func (request CreateDataSafeInstanceRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// CreateDataSecurityInstanceResponse wrapper for the CreateDataSecurityInstance operation
-type CreateDataSecurityInstanceResponse struct {
+// CreateDataSafeInstanceResponse wrapper for the CreateDataSafeInstance operation
+type CreateDataSafeInstanceResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
@@ -58,11 +58,11 @@ type CreateDataSecurityInstanceResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response CreateDataSecurityInstanceResponse) String() string {
+func (response CreateDataSafeInstanceResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response CreateDataSecurityInstanceResponse) HTTPResponse() *http.Response {
+func (response CreateDataSafeInstanceResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

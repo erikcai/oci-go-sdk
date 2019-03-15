@@ -2064,12 +2064,12 @@
               <language>oracle-go-sdk</language>
               <specPath>${preprocessed-temp-dir}/ads-control-plane-spec/${ads-control-plane-spec-spec-file}</specPath>
               <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
-              <basePackage>datasecurity</basePackage>
+              <basePackage>datasafe</basePackage>
               <specGenerationType>${generationType}</specGenerationType>
               <additionalProperties>
-                <specName>datasecurity</specName>
+                <specName>datasafe</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-                <serviceHostName>datasecurity</serviceHostName>
+                <serviceHostName>datasafe</serviceHostName>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -2340,7 +2340,7 @@
               </includes>
             </fileset>
             <fileset>
-              <directory>lib/oci/datasecurity</directory>
+              <directory>lib/oci/datasafe</directory>
               <includes>
                 <include>**/*</include>
               </includes>
@@ -2498,7 +2498,7 @@
       <dependency>
         <groupId>com.oracle.ads.admin.cp</groupId>
         <artifactId>ads-control-plane-spec</artifactId>
-        <version>18.4.6-1812220000</version>
+        <version>19.1.5-1903122299</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.obcs</groupId>

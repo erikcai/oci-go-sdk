@@ -3,25 +3,25 @@
 
 // Data Security Control Plane API
 //
-// The API to manage data security instance creation and deletion
+// The API to manage data safe instance creation and deletion
 //
 
-package datasecurity
+package datasafe
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateDataSecurityInstanceDetails The information about new data security instance.
-type CreateDataSecurityInstanceDetails struct {
+// CreateDataSafeInstanceDetails The information about new data safe instance.
+type CreateDataSafeInstanceDetails struct {
 
-	// data security instance name
+	// data safe instance name
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// data security instance Compartment Identifier
+	// data safe instance Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// data security instance Description
+	// data safe instance Description
 	Description *string `mandatory:"false" json:"description"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -33,6 +33,6 @@ type CreateDataSecurityInstanceDetails struct {
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
-func (m CreateDataSecurityInstanceDetails) String() string {
+func (m CreateDataSafeInstanceDetails) String() string {
 	return common.PointerString(m)
 }

@@ -3,10 +3,10 @@
 
 // Data Security Control Plane API
 //
-// The API to manage data security instance creation and deletion
+// The API to manage data safe instance creation and deletion
 //
 
-package datasecurity
+package datasafe
 
 import (
 	"context"
@@ -15,33 +15,33 @@ import (
 	"net/http"
 )
 
-//DataSecurityClient a client for DataSecurity
-type DataSecurityClient struct {
+//DataSafeClient a client for DataSafe
+type DataSafeClient struct {
 	common.BaseClient
 	config *common.ConfigurationProvider
 }
 
-// NewDataSecurityClientWithConfigurationProvider Creates a new default DataSecurity client with the given configuration provider.
+// NewDataSafeClientWithConfigurationProvider Creates a new default DataSafe client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
-func NewDataSecurityClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client DataSecurityClient, err error) {
+func NewDataSafeClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client DataSafeClient, err error) {
 	baseClient, err := common.NewClientWithConfig(configProvider)
 	if err != nil {
 		return
 	}
 
-	client = DataSecurityClient{BaseClient: baseClient}
+	client = DataSafeClient{BaseClient: baseClient}
 	client.BasePath = "20181201"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
 
 // SetRegion overrides the region of this client.
-func (client *DataSecurityClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("datasecurity")
+func (client *DataSafeClient) SetRegion(region string) {
+	client.Host = common.StringToRegion(region).EndpointForTemplate("datasafe", "https://datasafe.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
-func (client *DataSecurityClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
+func (client *DataSafeClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
 	if ok, err := common.IsConfigurationProviderValid(configProvider); !ok {
 		return err
 	}
@@ -54,40 +54,40 @@ func (client *DataSecurityClient) setConfigurationProvider(configProvider common
 }
 
 // ConfigurationProvider the ConfigurationProvider used in this client, or null if none set
-func (client *DataSecurityClient) ConfigurationProvider() *common.ConfigurationProvider {
+func (client *DataSafeClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
 }
 
-// ChangeDataSecurityInstanceCompartment Change the compartment of a data security instance
-func (client DataSecurityClient) ChangeDataSecurityInstanceCompartment(ctx context.Context, request ChangeDataSecurityInstanceCompartmentRequest) (response ChangeDataSecurityInstanceCompartmentResponse, err error) {
+// ChangeDataSafeInstanceCompartment Change the compartment of a data safe instance
+func (client DataSafeClient) ChangeDataSafeInstanceCompartment(ctx context.Context, request ChangeDataSafeInstanceCompartmentRequest) (response ChangeDataSafeInstanceCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.changeDataSecurityInstanceCompartment, policy)
+	ociResponse, err = common.Retry(ctx, request, client.changeDataSafeInstanceCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ChangeDataSecurityInstanceCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			response = ChangeDataSafeInstanceCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(ChangeDataSecurityInstanceCompartmentResponse); ok {
+	if convertedResponse, ok := ociResponse.(ChangeDataSafeInstanceCompartmentResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ChangeDataSecurityInstanceCompartmentResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeDataSafeInstanceCompartmentResponse")
 	}
 	return
 }
 
-// changeDataSecurityInstanceCompartment implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) changeDataSecurityInstanceCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dataSecurityInstances/{dataSecurityInstanceId}/actions/changeCompartment")
+// changeDataSafeInstanceCompartment implements the OCIOperation interface (enables retrying operations)
+func (client DataSafeClient) changeDataSafeInstanceCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dataSafeInstances/{dataSafeInstanceId}/actions/changeCompartment")
 	if err != nil {
 		return nil, err
 	}
 
-	var response ChangeDataSecurityInstanceCompartmentResponse
+	var response ChangeDataSafeInstanceCompartmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -100,8 +100,8 @@ func (client DataSecurityClient) changeDataSecurityInstanceCompartment(ctx conte
 	return response, err
 }
 
-// CreateDataSecurityInstance Creates a new data security instance.
-func (client DataSecurityClient) CreateDataSecurityInstance(ctx context.Context, request CreateDataSecurityInstanceRequest) (response CreateDataSecurityInstanceResponse, err error) {
+// CreateDataSafeInstance Creates a new data safe instance.
+func (client DataSafeClient) CreateDataSafeInstance(ctx context.Context, request CreateDataSafeInstanceRequest) (response CreateDataSafeInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -112,29 +112,29 @@ func (client DataSecurityClient) CreateDataSecurityInstance(ctx context.Context,
 		request.OpcRetryToken = common.String(common.RetryToken())
 	}
 
-	ociResponse, err = common.Retry(ctx, request, client.createDataSecurityInstance, policy)
+	ociResponse, err = common.Retry(ctx, request, client.createDataSafeInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateDataSecurityInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			response = CreateDataSafeInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(CreateDataSecurityInstanceResponse); ok {
+	if convertedResponse, ok := ociResponse.(CreateDataSafeInstanceResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into CreateDataSecurityInstanceResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into CreateDataSafeInstanceResponse")
 	}
 	return
 }
 
-// createDataSecurityInstance implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) createDataSecurityInstance(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dataSecurityInstances")
+// createDataSafeInstance implements the OCIOperation interface (enables retrying operations)
+func (client DataSafeClient) createDataSafeInstance(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dataSafeInstances")
 	if err != nil {
 		return nil, err
 	}
 
-	var response CreateDataSecurityInstanceResponse
+	var response CreateDataSafeInstanceResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -147,36 +147,36 @@ func (client DataSecurityClient) createDataSecurityInstance(ctx context.Context,
 	return response, err
 }
 
-// DeleteDataSecurityInstance Deletes a data security instance resource by identifier
-func (client DataSecurityClient) DeleteDataSecurityInstance(ctx context.Context, request DeleteDataSecurityInstanceRequest) (response DeleteDataSecurityInstanceResponse, err error) {
+// DeleteDataSafeInstance Deletes a data safe instance resource by identifier
+func (client DataSafeClient) DeleteDataSafeInstance(ctx context.Context, request DeleteDataSafeInstanceRequest) (response DeleteDataSafeInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.deleteDataSecurityInstance, policy)
+	ociResponse, err = common.Retry(ctx, request, client.deleteDataSafeInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteDataSecurityInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			response = DeleteDataSafeInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(DeleteDataSecurityInstanceResponse); ok {
+	if convertedResponse, ok := ociResponse.(DeleteDataSafeInstanceResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DeleteDataSecurityInstanceResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteDataSafeInstanceResponse")
 	}
 	return
 }
 
-// deleteDataSecurityInstance implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) deleteDataSecurityInstance(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/dataSecurityInstances/{dataSecurityInstanceId}")
+// deleteDataSafeInstance implements the OCIOperation interface (enables retrying operations)
+func (client DataSafeClient) deleteDataSafeInstance(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/dataSafeInstances/{dataSafeInstanceId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response DeleteDataSecurityInstanceResponse
+	var response DeleteDataSafeInstanceResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -189,36 +189,36 @@ func (client DataSecurityClient) deleteDataSecurityInstance(ctx context.Context,
 	return response, err
 }
 
-// GetDataSecurityInstance Gets a data security instance by identifier
-func (client DataSecurityClient) GetDataSecurityInstance(ctx context.Context, request GetDataSecurityInstanceRequest) (response GetDataSecurityInstanceResponse, err error) {
+// GetDataSafeInstance Gets a data safe instance by identifier
+func (client DataSafeClient) GetDataSafeInstance(ctx context.Context, request GetDataSafeInstanceRequest) (response GetDataSafeInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.getDataSecurityInstance, policy)
+	ociResponse, err = common.Retry(ctx, request, client.getDataSafeInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetDataSecurityInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			response = GetDataSafeInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(GetDataSecurityInstanceResponse); ok {
+	if convertedResponse, ok := ociResponse.(GetDataSafeInstanceResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetDataSecurityInstanceResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into GetDataSafeInstanceResponse")
 	}
 	return
 }
 
-// getDataSecurityInstance implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) getDataSecurityInstance(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dataSecurityInstances/{dataSecurityInstanceId}")
+// getDataSafeInstance implements the OCIOperation interface (enables retrying operations)
+func (client DataSafeClient) getDataSafeInstance(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dataSafeInstances/{dataSafeInstanceId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response GetDataSecurityInstanceResponse
+	var response GetDataSafeInstanceResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -232,7 +232,7 @@ func (client DataSecurityClient) getDataSecurityInstance(ctx context.Context, re
 }
 
 // GetWorkRequest Gets the status of the work request with the given ID.
-func (client DataSecurityClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
+func (client DataSafeClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -254,7 +254,7 @@ func (client DataSecurityClient) GetWorkRequest(ctx context.Context, request Get
 }
 
 // getWorkRequest implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) getWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client DataSafeClient) getWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}")
 	if err != nil {
 		return nil, err
@@ -273,36 +273,36 @@ func (client DataSecurityClient) getWorkRequest(ctx context.Context, request com
 	return response, err
 }
 
-// ListDataSecurityInstances Returns a list of DataSecurityInstances.
-func (client DataSecurityClient) ListDataSecurityInstances(ctx context.Context, request ListDataSecurityInstancesRequest) (response ListDataSecurityInstancesResponse, err error) {
+// ListDataSafeInstances Returns a list of DataSafeInstances.
+func (client DataSafeClient) ListDataSafeInstances(ctx context.Context, request ListDataSafeInstancesRequest) (response ListDataSafeInstancesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.listDataSecurityInstances, policy)
+	ociResponse, err = common.Retry(ctx, request, client.listDataSafeInstances, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListDataSecurityInstancesResponse{RawResponse: ociResponse.HTTPResponse()}
+			response = ListDataSafeInstancesResponse{RawResponse: ociResponse.HTTPResponse()}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(ListDataSecurityInstancesResponse); ok {
+	if convertedResponse, ok := ociResponse.(ListDataSafeInstancesResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListDataSecurityInstancesResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ListDataSafeInstancesResponse")
 	}
 	return
 }
 
-// listDataSecurityInstances implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) listDataSecurityInstances(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dataSecurityInstances")
+// listDataSafeInstances implements the OCIOperation interface (enables retrying operations)
+func (client DataSafeClient) listDataSafeInstances(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dataSafeInstances")
 	if err != nil {
 		return nil, err
 	}
 
-	var response ListDataSecurityInstancesResponse
+	var response ListDataSafeInstancesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -316,7 +316,7 @@ func (client DataSecurityClient) listDataSecurityInstances(ctx context.Context, 
 }
 
 // ListWorkRequestErrors Return a (paginated) list of errors for a given work request.
-func (client DataSecurityClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
+func (client DataSafeClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -338,7 +338,7 @@ func (client DataSecurityClient) ListWorkRequestErrors(ctx context.Context, requ
 }
 
 // listWorkRequestErrors implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) listWorkRequestErrors(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client DataSafeClient) listWorkRequestErrors(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}/errors")
 	if err != nil {
 		return nil, err
@@ -358,7 +358,7 @@ func (client DataSecurityClient) listWorkRequestErrors(ctx context.Context, requ
 }
 
 // ListWorkRequestLogs Return a (paginated) list of logs for a given work request.
-func (client DataSecurityClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
+func (client DataSafeClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -380,7 +380,7 @@ func (client DataSecurityClient) ListWorkRequestLogs(ctx context.Context, reques
 }
 
 // listWorkRequestLogs implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) listWorkRequestLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client DataSafeClient) listWorkRequestLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}/logs")
 	if err != nil {
 		return nil, err
@@ -400,7 +400,7 @@ func (client DataSecurityClient) listWorkRequestLogs(ctx context.Context, reques
 }
 
 // ListWorkRequests Lists the work requests in a compartment.
-func (client DataSecurityClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
+func (client DataSafeClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -422,7 +422,7 @@ func (client DataSecurityClient) ListWorkRequests(ctx context.Context, request L
 }
 
 // listWorkRequests implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) listWorkRequests(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client DataSafeClient) listWorkRequests(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests")
 	if err != nil {
 		return nil, err
@@ -441,36 +441,36 @@ func (client DataSecurityClient) listWorkRequests(ctx context.Context, request c
 	return response, err
 }
 
-// UpdateDataSecurityInstance Updates the data security instance
-func (client DataSecurityClient) UpdateDataSecurityInstance(ctx context.Context, request UpdateDataSecurityInstanceRequest) (response UpdateDataSecurityInstanceResponse, err error) {
+// UpdateDataSafeInstance Updates the data safe instance
+func (client DataSafeClient) UpdateDataSafeInstance(ctx context.Context, request UpdateDataSafeInstanceRequest) (response UpdateDataSafeInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.updateDataSecurityInstance, policy)
+	ociResponse, err = common.Retry(ctx, request, client.updateDataSafeInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateDataSecurityInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			response = UpdateDataSafeInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(UpdateDataSecurityInstanceResponse); ok {
+	if convertedResponse, ok := ociResponse.(UpdateDataSafeInstanceResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into UpdateDataSecurityInstanceResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateDataSafeInstanceResponse")
 	}
 	return
 }
 
-// updateDataSecurityInstance implements the OCIOperation interface (enables retrying operations)
-func (client DataSecurityClient) updateDataSecurityInstance(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/dataSecurityInstances/{dataSecurityInstanceId}")
+// updateDataSafeInstance implements the OCIOperation interface (enables retrying operations)
+func (client DataSafeClient) updateDataSafeInstance(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/dataSafeInstances/{dataSafeInstanceId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response UpdateDataSecurityInstanceResponse
+	var response UpdateDataSafeInstanceResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

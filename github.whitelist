@@ -34,7 +34,7 @@
 ^usage/
 ^announcementsservice/
 ^waas/
-^datasecurity/
+^datasafe/
 ^batch/
 ^functions/
 ^budget/

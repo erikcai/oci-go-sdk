@@ -3,10 +3,10 @@
 
 // Data Security Control Plane API
 //
-// The API to manage data security instance creation and deletion
+// The API to manage data safe instance creation and deletion
 //
 
-package datasecurity
+package datasafe
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
@@ -57,15 +57,15 @@ type WorkRequestOperationTypeEnum string
 
 // Set of constants representing the allowable values for WorkRequestOperationTypeEnum
 const (
-	WorkRequestOperationTypeCreateDataSecurityInstance WorkRequestOperationTypeEnum = "CREATE_DATA_SECURITY_INSTANCE"
-	WorkRequestOperationTypeUpdateDataSecurityInstance WorkRequestOperationTypeEnum = "UPDATE_DATA_SECURITY_INSTANCE"
-	WorkRequestOperationTypeDeleteDataSecurityInstance WorkRequestOperationTypeEnum = "DELETE_DATA_SECURITY_INSTANCE"
+	WorkRequestOperationTypeCreateDataSafeInstance WorkRequestOperationTypeEnum = "CREATE_DATA_SAFE_INSTANCE"
+	WorkRequestOperationTypeUpdateDataSafeInstance WorkRequestOperationTypeEnum = "UPDATE_DATA_SAFE_INSTANCE"
+	WorkRequestOperationTypeDeleteDataSafeInstance WorkRequestOperationTypeEnum = "DELETE_DATA_SAFE_INSTANCE"
 )
 
 var mappingWorkRequestOperationType = map[string]WorkRequestOperationTypeEnum{
-	"CREATE_DATA_SECURITY_INSTANCE": WorkRequestOperationTypeCreateDataSecurityInstance,
-	"UPDATE_DATA_SECURITY_INSTANCE": WorkRequestOperationTypeUpdateDataSecurityInstance,
-	"DELETE_DATA_SECURITY_INSTANCE": WorkRequestOperationTypeDeleteDataSecurityInstance,
+	"CREATE_DATA_SAFE_INSTANCE": WorkRequestOperationTypeCreateDataSafeInstance,
+	"UPDATE_DATA_SAFE_INSTANCE": WorkRequestOperationTypeUpdateDataSafeInstance,
+	"DELETE_DATA_SAFE_INSTANCE": WorkRequestOperationTypeDeleteDataSafeInstance,
 }
 
 // GetWorkRequestOperationTypeEnumValues Enumerates the set of values for WorkRequestOperationTypeEnum

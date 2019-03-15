@@ -3,10 +3,10 @@
 
 // Data Security Control Plane API
 //
-// The API to manage data security instance creation and deletion
+// The API to manage data safe instance creation and deletion
 //
 
-package datasecurity
+package datasafe
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
@@ -15,7 +15,7 @@ import (
 // ChangeCompartmentDetails The compartment to be changed to
 type ChangeCompartmentDetails struct {
 
-	// The new compartment identifier for the data security instance
+	// The new compartment identifier for the data safe instance
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 }
 
