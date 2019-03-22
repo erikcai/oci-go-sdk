@@ -55,6 +55,9 @@ type CreateIpSecConnectionDetails struct {
 	// The type of identifier for your CPE device. The value you provide here must correspond to the value
 	// for `cpeLocalIdentifier`.
 	CpeLocalIdentifierType CreateIpSecConnectionDetailsCpeLocalIdentifierTypeEnum `mandatory:"false" json:"cpeLocalIdentifierType,omitempty"`
+
+	// array of tunnel parameters to create tunnels for IPSecConnection.
+	TunnelConfiguration []CreateIpSecConnectionTunnelDetails `mandatory:"false" json:"tunnelConfiguration"`
 }
 
 func (m CreateIpSecConnectionDetails) String() string {

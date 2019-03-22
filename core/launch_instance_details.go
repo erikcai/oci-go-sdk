@@ -152,9 +152,6 @@ type LaunchInstanceDetails struct {
 	// At least one of them is required; if you provide both, the values must match.
 	SubnetId *string `mandatory:"false" json:"subnetId"`
 
-	// Volume attachments to create as part of the launch instance operation.
-	VolumeAttachments []CreateVolumeAttachmentDetails `mandatory:"false" json:"volumeAttachments"`
-
 	// Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
 	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 }
@@ -179,7 +176,6 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		AgentConfig                    *LaunchInstanceAgentConfigDetails `json:"agentConfig"`
 		SourceDetails                  instancesourcedetails             `json:"sourceDetails"`
 		SubnetId                       *string                           `json:"subnetId"`
-		VolumeAttachments              []createvolumeattachmentdetails   `json:"volumeAttachments"`
 		IsPvEncryptionInTransitEnabled *bool                             `json:"isPvEncryptionInTransitEnabled"`
 		AvailabilityDomain             *string                           `json:"availabilityDomain"`
 		CompartmentId                  *string                           `json:"compartmentId"`
@@ -211,18 +207,6 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		m.SourceDetails = nil
 	}
 	m.SubnetId = model.SubnetId
-	m.VolumeAttachments = make([]CreateVolumeAttachmentDetails, len(model.VolumeAttachments))
-	for i, n := range model.VolumeAttachments {
-		nn, err := n.UnmarshalPolymorphicJSON(n.JsonData)
-		if err != nil {
-			return err
-		}
-		if nn != nil {
-			m.VolumeAttachments[i] = nn.(CreateVolumeAttachmentDetails)
-		} else {
-			m.VolumeAttachments[i] = nil
-		}
-	}
 	m.IsPvEncryptionInTransitEnabled = model.IsPvEncryptionInTransitEnabled
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId

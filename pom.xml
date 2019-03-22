@@ -2373,7 +2373,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.405</version>
+        <version>0.2.429</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -2458,7 +2458,7 @@
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
         <artifactId>events-control-plane-spec</artifactId>
-        <version>0.1.12</version>
+        <version>0.1.13</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>

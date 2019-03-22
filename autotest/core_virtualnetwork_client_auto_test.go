@@ -3032,6 +3032,92 @@ func TestVirtualNetworkClientGetIPSecConnectionDeviceStatus(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientGetIPSecConnectionTunnel(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetIPSecConnectionTunnel")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetIPSecConnectionTunnel is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetIPSecConnectionTunnel", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetIPSecConnectionTunnel")
+	assert.NoError(t, err)
+
+	type GetIPSecConnectionTunnelRequestInfo struct {
+		ContainerId string
+		Request     core.GetIPSecConnectionTunnelRequest
+	}
+
+	var requests []GetIPSecConnectionTunnelRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetIPSecConnectionTunnel(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientGetIPSecConnectionTunnelSharedSecret(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetIPSecConnectionTunnelSharedSecret")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetIPSecConnectionTunnelSharedSecret is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetIPSecConnectionTunnelSharedSecret", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetIPSecConnectionTunnelSharedSecret")
+	assert.NoError(t, err)
+
+	type GetIPSecConnectionTunnelSharedSecretRequestInfo struct {
+		ContainerId string
+		Request     core.GetIPSecConnectionTunnelSharedSecretRequest
+	}
+
+	var requests []GetIPSecConnectionTunnelSharedSecretRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetIPSecConnectionTunnelSharedSecret(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
 func TestVirtualNetworkClientGetInternetGateway(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -4474,6 +4560,58 @@ func TestVirtualNetworkClientListFlowLogConfigs(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientListIPSecConnectionTunnels(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListIPSecConnectionTunnels")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListIPSecConnectionTunnels is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListIPSecConnectionTunnels", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListIPSecConnectionTunnels")
+	assert.NoError(t, err)
+
+	type ListIPSecConnectionTunnelsRequestInfo struct {
+		ContainerId string
+		Request     core.ListIPSecConnectionTunnelsRequest
+	}
+
+	var requests []ListIPSecConnectionTunnelsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListIPSecConnectionTunnelsRequest)
+				return c.ListIPSecConnectionTunnels(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListIPSecConnectionTunnelsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListIPSecConnectionTunnelsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientListIPSecConnections(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5780,6 +5918,92 @@ func TestVirtualNetworkClientUpdateIPSecConnection(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateIPSecConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientUpdateIPSecConnectionTunnel(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateIPSecConnectionTunnel")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateIPSecConnectionTunnel is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateIPSecConnectionTunnel", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateIPSecConnectionTunnel")
+	assert.NoError(t, err)
+
+	type UpdateIPSecConnectionTunnelRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateIPSecConnectionTunnelRequest
+	}
+
+	var requests []UpdateIPSecConnectionTunnelRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateIPSecConnectionTunnel(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientUpdateIPSecConnectionTunnelSharedSecret(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateIPSecConnectionTunnelSharedSecret")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateIPSecConnectionTunnelSharedSecret is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateIPSecConnectionTunnelSharedSecret", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateIPSecConnectionTunnelSharedSecret")
+	assert.NoError(t, err)
+
+	type UpdateIPSecConnectionTunnelSharedSecretRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateIPSecConnectionTunnelSharedSecretRequest
+	}
+
+	var requests []UpdateIPSecConnectionTunnelSharedSecretRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateIPSecConnectionTunnelSharedSecret(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
