@@ -111,7 +111,7 @@ func (fileUpload *fileUpload) UploadFilePutObject(ctx context.Context, request U
 	}
 
 	// set the response
-	response.PutObjectResponse = resp
+	response.SinglepartUploadResponse = &SinglepartUploadResponse{PutObjectResponse: resp}
 	return response, nil
 }
 
