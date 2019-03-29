@@ -3108,6 +3108,49 @@ func TestDatabaseClientReinstateDataGuardAssociation(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientRestartAutonomousContainerDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "RestartAutonomousContainerDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RestartAutonomousContainerDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "RestartAutonomousContainerDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "RestartAutonomousContainerDatabase")
+	assert.NoError(t, err)
+
+	type RestartAutonomousContainerDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.RestartAutonomousContainerDatabaseRequest
+	}
+
+	var requests []RestartAutonomousContainerDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.RestartAutonomousContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientRestoreAutonomousDataWarehouse(t *testing.T) {
 	defer failTestOnPanic(t)

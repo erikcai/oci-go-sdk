@@ -22,7 +22,7 @@ func createFileStorageClientWithProvider(p common.ConfigurationProvider, testCon
 	return client, err
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientCreateExport(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestFileStorageClientCreateExport(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientCreateFileSystem(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestFileStorageClientCreateFileSystem(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientCreateMountTarget(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestFileStorageClientCreateMountTarget(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientCreateSnapshot(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestFileStorageClientCreateSnapshot(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientDeleteExport(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,7 +237,7 @@ func TestFileStorageClientDeleteExport(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientDeleteFileSystem(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -280,7 +280,7 @@ func TestFileStorageClientDeleteFileSystem(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientDeleteMountTarget(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -323,7 +323,7 @@ func TestFileStorageClientDeleteMountTarget(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientDeleteSnapshot(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -366,7 +366,7 @@ func TestFileStorageClientDeleteSnapshot(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientGetExport(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -409,7 +409,7 @@ func TestFileStorageClientGetExport(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientGetExportSet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -452,7 +452,7 @@ func TestFileStorageClientGetExportSet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientGetFileSystem(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -495,7 +495,7 @@ func TestFileStorageClientGetFileSystem(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientGetMountTarget(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -538,7 +538,7 @@ func TestFileStorageClientGetMountTarget(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientGetSnapshot(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -581,7 +581,7 @@ func TestFileStorageClientGetSnapshot(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientListExportSets(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -633,7 +633,7 @@ func TestFileStorageClientListExportSets(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientListExports(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -685,7 +685,7 @@ func TestFileStorageClientListExports(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientListFileSystems(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -737,59 +737,7 @@ func TestFileStorageClientListFileSystems(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
-func TestFileStorageClientListLockOwners(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("filestorage", "ListLockOwners")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListLockOwners is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "ListLockOwners", createFileStorageClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(filestorage.FileStorageClient)
-
-	body, err := testClient.getRequests("filestorage", "ListLockOwners")
-	assert.NoError(t, err)
-
-	type ListLockOwnersRequestInfo struct {
-		ContainerId string
-		Request     filestorage.ListLockOwnersRequest
-	}
-
-	var requests []ListLockOwnersRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*filestorage.ListLockOwnersRequest)
-				return c.ListLockOwners(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]filestorage.ListLockOwnersResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(filestorage.ListLockOwnersResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientListMountTargets(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -841,7 +789,7 @@ func TestFileStorageClientListMountTargets(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientListSnapshots(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -893,7 +841,7 @@ func TestFileStorageClientListSnapshots(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientUpdateExport(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -936,7 +884,7 @@ func TestFileStorageClientUpdateExport(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientUpdateExportSet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -979,7 +927,7 @@ func TestFileStorageClientUpdateExportSet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientUpdateFileSystem(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1022,7 +970,7 @@ func TestFileStorageClientUpdateFileSystem(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientUpdateMountTarget(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1065,7 +1013,7 @@ func TestFileStorageClientUpdateMountTarget(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientUpdateSnapshot(t *testing.T) {
 	defer failTestOnPanic(t)
 

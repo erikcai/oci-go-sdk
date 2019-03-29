@@ -37,6 +37,9 @@ type CreateAutonomousDatabaseCloneDetails struct {
 	// The user-friendly name for the Autonomous Database. The name does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// Indicates if auto scaling is enabled for the Autonomous Database CPU core count. The default value is false.
+	IsAutoScalingEnabled *bool `mandatory:"false" json:"isAutoScalingEnabled"`
+
 	// True if it is dedicated database.
 	IsDedicated *bool `mandatory:"false" json:"isDedicated"`
 
@@ -101,6 +104,11 @@ func (m CreateAutonomousDatabaseCloneDetails) GetDisplayName() *string {
 //GetLicenseModel returns LicenseModel
 func (m CreateAutonomousDatabaseCloneDetails) GetLicenseModel() CreateAutonomousDatabaseBaseLicenseModelEnum {
 	return m.LicenseModel
+}
+
+//GetIsAutoScalingEnabled returns IsAutoScalingEnabled
+func (m CreateAutonomousDatabaseCloneDetails) GetIsAutoScalingEnabled() *bool {
+	return m.IsAutoScalingEnabled
 }
 
 //GetIsDedicated returns IsDedicated

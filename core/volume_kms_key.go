@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// VolumeKmsKey Kms key id associated with this volume.
+// VolumeKmsKey The KMS key OCID associated with this volume.
 type VolumeKmsKey struct {
 
-	// Kms key id associated with this volume. If volume is not using KMS, then kmsKeyId will be null string.
+	// The KMS key OCID associated with this volume. If the volume is not using KMS, then the `kmsKeyId` will be a null string.
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 

@@ -14,16 +14,19 @@ type ListSnapshotsRequest struct {
 	// The OCID of the file system.
 	FileSystemId *string `mandatory:"true" contributesTo:"query" name:"fileSystemId"`
 
-	// The maximum number of items to return in a paginated "List" call.
+	// For list pagination. The maximum number of results per page,
+	// or items to return in a paginated "List" call.
+	// 1 is the minimum, 1000 is the maximum.
+	// For important details about how pagination works,
+	// see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	// Example: `500`
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The value of the `opc-next-page` response header from the previous "List" call.
+	// For list pagination. The value of the `opc-next-page` response
+	// header from the previous "List" call.
+	// For important details about how pagination works,
+	// see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
-
-	// The name you assigned to the snapshot.
-	// Example: `Sunday` This feature is currently in preview and may change before public release. Do not use it for production workloads.
-	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
 
 	// Filter results by the specified lifecycle state. Must be a valid
 	// state for the resource type.
@@ -36,14 +39,14 @@ type ListSnapshotsRequest struct {
 	// The field to sort by. You can provide either value, but not both.
 	// By default, when you sort by time created, results are shown
 	// in descending order. When you sort by name, results are
-	// shown in alphabetical order. This feature is currently in preview and may change before public release. Do not use it for production workloads.
+	// shown in alphabetical order.
 	SortBy ListSnapshotsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// The sort order to use, either 'asc' or 'desc', where 'asc' is
 	// ascending and 'desc' is descending.
 	SortOrder ListSnapshotsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// Unique Oracle-assigned identifier for the request.
+	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
@@ -75,11 +78,10 @@ type ListSnapshotsResponse struct {
 	// A list of []SnapshotSummary instances
 	Items []SnapshotSummary `presentIn:"body"`
 
-	// For pagination of a list of items. When paging through
-	// a list, if this header appears in the response, then a
-	// partial list might have been returned. Include this
-	// value as the `page` parameter for the subsequent GET
-	// request to get the next batch of items.
+	// For list pagination. When this header appears in the response,
+	// additional pages of results remain.
+	// For important details about how pagination works,
+	// see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
 	// Unique Oracle-assigned identifier for the request. If
@@ -106,7 +108,6 @@ const (
 	ListSnapshotsLifecycleStateActive   ListSnapshotsLifecycleStateEnum = "ACTIVE"
 	ListSnapshotsLifecycleStateDeleting ListSnapshotsLifecycleStateEnum = "DELETING"
 	ListSnapshotsLifecycleStateDeleted  ListSnapshotsLifecycleStateEnum = "DELETED"
-	ListSnapshotsLifecycleStateFailed   ListSnapshotsLifecycleStateEnum = "FAILED"
 )
 
 var mappingListSnapshotsLifecycleState = map[string]ListSnapshotsLifecycleStateEnum{
@@ -114,7 +115,6 @@ var mappingListSnapshotsLifecycleState = map[string]ListSnapshotsLifecycleStateE
 	"ACTIVE":   ListSnapshotsLifecycleStateActive,
 	"DELETING": ListSnapshotsLifecycleStateDeleting,
 	"DELETED":  ListSnapshotsLifecycleStateDeleted,
-	"FAILED":   ListSnapshotsLifecycleStateFailed,
 }
 
 // GetListSnapshotsLifecycleStateEnumValues Enumerates the set of values for ListSnapshotsLifecycleStateEnum

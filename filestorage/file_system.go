@@ -21,6 +21,7 @@ import (
 // administrator. If you're an administrator who needs to write
 // policies to give users access, see Getting Started with
 // Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
+// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type FileSystem struct {
 
 	// The number of bytes consumed by the file system, including
@@ -53,15 +54,15 @@ type FileSystem struct {
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
-	// Simple key-value pair that is applied without any predefined name,
-	// type, or scope.
-	// Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair
+	//  with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Usage of predefined tag keys.
-	// These predefined keys are scoped to a namespace.
-	// Example: `{"foo-namespace": {"bar-key": "foo-value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 

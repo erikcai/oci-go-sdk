@@ -14,7 +14,7 @@ type UpdateBootVolumeKmsKeyRequest struct {
 	// The OCID of the boot volume.
 	BootVolumeId *string `mandatory:"true" contributesTo:"path" name:"bootVolumeId"`
 
-	// Update kms key id for the specific boot volume.
+	// Updates the KMS key ID for the specified boot volume.
 	UpdateBootVolumeKmsKeyDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

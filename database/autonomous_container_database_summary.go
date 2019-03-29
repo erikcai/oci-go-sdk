@@ -108,6 +108,7 @@ const (
 	AutonomousContainerDatabaseSummaryLifecycleStateBackupInProgress AutonomousContainerDatabaseSummaryLifecycleStateEnum = "BACKUP_IN_PROGRESS"
 	AutonomousContainerDatabaseSummaryLifecycleStateRestoring        AutonomousContainerDatabaseSummaryLifecycleStateEnum = "RESTORING"
 	AutonomousContainerDatabaseSummaryLifecycleStateRestoreFailed    AutonomousContainerDatabaseSummaryLifecycleStateEnum = "RESTORE_FAILED"
+	AutonomousContainerDatabaseSummaryLifecycleStateRestarting       AutonomousContainerDatabaseSummaryLifecycleStateEnum = "RESTARTING"
 )
 
 var mappingAutonomousContainerDatabaseSummaryLifecycleState = map[string]AutonomousContainerDatabaseSummaryLifecycleStateEnum{
@@ -120,6 +121,7 @@ var mappingAutonomousContainerDatabaseSummaryLifecycleState = map[string]Autonom
 	"BACKUP_IN_PROGRESS": AutonomousContainerDatabaseSummaryLifecycleStateBackupInProgress,
 	"RESTORING":          AutonomousContainerDatabaseSummaryLifecycleStateRestoring,
 	"RESTORE_FAILED":     AutonomousContainerDatabaseSummaryLifecycleStateRestoreFailed,
+	"RESTARTING":         AutonomousContainerDatabaseSummaryLifecycleStateRestarting,
 }
 
 // GetAutonomousContainerDatabaseSummaryLifecycleStateEnumValues Enumerates the set of values for AutonomousContainerDatabaseSummaryLifecycleStateEnum

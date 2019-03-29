@@ -37,7 +37,7 @@ func NewFileStorageClientWithConfigurationProvider(configProvider common.Configu
 
 // SetRegion overrides the region of this client.
 func (client *FileStorageClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("filestorage")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("filestorage", "https://filestorage.{region}.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -793,48 +793,6 @@ func (client FileStorageClient) listFileSystems(ctx context.Context, request com
 	}
 
 	var response ListFileSystemsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListLockOwners List the lock owners in a given file system.
-func (client FileStorageClient) ListLockOwners(ctx context.Context, request ListLockOwnersRequest) (response ListLockOwnersResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listLockOwners, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = ListLockOwnersResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListLockOwnersResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListLockOwnersResponse")
-	}
-	return
-}
-
-// listLockOwners implements the OCIOperation interface (enables retrying operations)
-func (client FileStorageClient) listLockOwners(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/fileSystems/{fileSystemId}/lockOwners")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListLockOwnersResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
