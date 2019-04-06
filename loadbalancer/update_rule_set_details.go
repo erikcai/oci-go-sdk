@@ -16,6 +16,8 @@ import (
 
 // UpdateRuleSetDetails An updated set of rules that overwrites the existing set of rules.
 type UpdateRuleSetDetails struct {
+
+	// An array of rules that compose the rule set.
 	Items []Rule `mandatory:"true" json:"items"`
 }
 

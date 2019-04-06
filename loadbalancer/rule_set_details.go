@@ -14,8 +14,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RuleSetDetails The name and rules that compose a rule set.
+// RuleSetDetails The rules that compose a rule set.
 type RuleSetDetails struct {
+
+	// An array of rules that compose the rule set.
 	Items []Rule `mandatory:"true" json:"items"`
 }
 

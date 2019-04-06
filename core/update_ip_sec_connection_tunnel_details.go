@@ -12,17 +12,17 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateIpSecConnectionTunnelDetails Details to modify an IPSecConnection Tunnel paramaters.
+// UpdateIpSecConnectionTunnelDetails The representation of UpdateIpSecConnectionTunnelDetails
 type UpdateIpSecConnectionTunnelDetails struct {
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid
 	// entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// the routing strategy used for this tunnel, either static route or BGP.
+	// The type of routing to use for this tunnel (either BGP dynamic routing or static routing).
 	Routing UpdateIpSecConnectionTunnelDetailsRoutingEnum `mandatory:"false" json:"routing,omitempty"`
 
-	// Information needed to establish a BGP Session on an interface.
+	// Information for establishing a BGP session for the IPSec tunnel.
 	BgpSessionConfig *UpdateIpSecTunnelBgpSessionDetails `mandatory:"false" json:"bgpSessionConfig"`
 }
 

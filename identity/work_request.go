@@ -19,7 +19,6 @@ type WorkRequest struct {
 	// The OCID of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
-	// An enum-like description of the type of work the work request is doing.
 	OperationType WorkRequestOperationTypeEnum `mandatory:"true" json:"operationType"`
 
 	// The current status of the work request.
@@ -62,11 +61,13 @@ type WorkRequestOperationTypeEnum string
 
 // Set of constants representing the allowable values for WorkRequestOperationTypeEnum
 const (
-	WorkRequestOperationTypeCompartment WorkRequestOperationTypeEnum = "DELETE_COMPARTMENT"
+	WorkRequestOperationTypeCompartment   WorkRequestOperationTypeEnum = "DELETE_COMPARTMENT"
+	WorkRequestOperationTypeTagDefinition WorkRequestOperationTypeEnum = "DELETE_TAG_DEFINITION"
 )
 
 var mappingWorkRequestOperationType = map[string]WorkRequestOperationTypeEnum{
-	"DELETE_COMPARTMENT": WorkRequestOperationTypeCompartment,
+	"DELETE_COMPARTMENT":    WorkRequestOperationTypeCompartment,
+	"DELETE_TAG_DEFINITION": WorkRequestOperationTypeTagDefinition,
 }
 
 // GetWorkRequestOperationTypeEnumValues Enumerates the set of values for WorkRequestOperationTypeEnum

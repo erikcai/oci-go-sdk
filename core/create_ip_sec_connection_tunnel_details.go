@@ -12,21 +12,27 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateIpSecConnectionTunnelDetails details need to create an IPSecConnection tunnel.
+// CreateIpSecConnectionTunnelDetails The representation of CreateIpSecConnectionTunnelDetails
 type CreateIpSecConnectionTunnelDetails struct {
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid
 	// entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// the routing strategy used for this tunnel, either static route or BGP.
+	// The type of routing to use for this tunnel (either BGP dynamic routing or static routing).
 	Routing CreateIpSecConnectionTunnelDetailsRoutingEnum `mandatory:"false" json:"routing,omitempty"`
 
-	// The shared secret of the IPSec tunnel.
-	// Example: `vFG2IF6TWq4UToUiLSRDoJEUs6j1c.p8G.dVQxiMfMO0yXMLi.lZTbYIWhGu4V8o`
+	// The shared secret (pre-shared key) to use for the IPSec tunnel. If you don't provide a value,
+	// Oracle generates a value for you. You can specify your own shared secret later if
+	// you like with UpdateIPSecConnectionTunnelSharedSecret.
+	// Example: `EXAMPLEToUis6j1c.p8G.dVQxcmdfMO0yXMLi.lZTbYCMDGu4V8o`
 	SharedSecret *string `mandatory:"false" json:"sharedSecret"`
 
-	// Information needed to establish a BGP Session on an interface.
+	// Information for establishing a BGP session for the IPSec tunnel. Required if the tunnel uses
+	// BGP dynamic routing.
+	// If the tunnel instead uses static routing, you may optionally provide
+	// this object and set an IP address for one or both ends of the IPSec tunnel for the purposes
+	// of troubleshooting or monitoring the tunnel.
 	BgpSessionConfig *CreateIpSecTunnelBgpSessionDetails `mandatory:"false" json:"bgpSessionConfig"`
 }
 

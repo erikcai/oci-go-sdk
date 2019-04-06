@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TunnelStatus Specific connection details for an IPSec tunnel.
+// TunnelStatus Deprecated. For tunnel information, instead see IPSecConnectionTunnel.
 type TunnelStatus struct {
 
 	// The IP address of Oracle's VPN headend.

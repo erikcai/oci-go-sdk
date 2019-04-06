@@ -12,16 +12,35 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateIpSecTunnelBgpSessionDetails Details to create an IPSec Tunnel's BGP session paramaters.
+// CreateIpSecTunnelBgpSessionDetails The representation of CreateIpSecTunnelBgpSessionDetails
 type CreateIpSecTunnelBgpSessionDetails struct {
 
-	// The IPv4 Address used in the BGP peering session for the Oracle router. Example: 10.0.0.1/31.
+	// The IP address for the Oracle end of the inside tunnel interface.
+	// If the tunnel's `routing` attribute is set to `BGP`
+	// (see IPSecConnectionTunnel), this IP address
+	// is required and used for the tunnel's BGP session.
+	// If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP
+	// address to troubleshoot or monitor the tunnel.
+	// The value must be a /30 or /31.
+	// Example: `10.0.0.4/31`
 	OracleInterfaceIp *string `mandatory:"false" json:"oracleInterfaceIp"`
 
-	// The IPv4 Address used in the BGP peering session for the non-Oracle router. Example: 10.0.0.2/31.
+	// The IP address for the CPE end of the inside tunnel interface.
+	// If the tunnel's `routing` attribute is set to `BGP`
+	// (see IPSecConnectionTunnel), this IP address
+	// is required and used for the tunnel's BGP session.
+	// If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP
+	// address to troubleshoot or monitor the tunnel.
+	// The value must be a /30 or /31.
+	// Example: `10.0.0.5/31`
 	CustomerInterfaceIp *string `mandatory:"false" json:"customerInterfaceIp"`
 
-	// The value of the remote Bgp ASN in asplain format, as a string. Example: 1587232876 (4 byte ASN) or 12345 (2 byte ASN).
+	// If the tunnel's `routing` attribute is set to `BGP`
+	// (see IPSecConnectionTunnel), this ASN
+	// is required and used for the tunnel's BGP session. This is the ASN of the network on the
+	// CPE end of the BGP session. Can be a 2-byte or 4-byte ASN. Uses "asplain" format.
+	// If the tunnel's `routing` attribute is set to `STATIC`, the `customerBgpAsn` must be null.
+	// Example: `12345` (2-byte) or `1587232876` (4-byte)
 	CustomerBgpAsn *string `mandatory:"false" json:"customerBgpAsn"`
 }
 

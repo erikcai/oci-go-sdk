@@ -22,6 +22,11 @@ type CopyVolumeBackupDetails struct {
 	// A user-friendly name for the volume backup. Does not have to be unique and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// The OCID of the KMS key in the destination region which will be the master encryption key
+	// for the copied volume backup.
+	// Required when copying a volume backup taken from a volume using a KMS key as its master encryption key.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
 func (m CopyVolumeBackupDetails) String() string {

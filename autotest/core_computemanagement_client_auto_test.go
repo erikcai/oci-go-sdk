@@ -324,6 +324,49 @@ func TestComputeManagementClientGetInstancePool(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestComputeManagementClientGetInstancePoolLoadBalancerAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInstancePoolLoadBalancerAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInstancePoolLoadBalancerAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "GetInstancePoolLoadBalancerAttachment", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "GetInstancePoolLoadBalancerAttachment")
+	assert.NoError(t, err)
+
+	type GetInstancePoolLoadBalancerAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.GetInstancePoolLoadBalancerAttachmentRequest
+	}
+
+	var requests []GetInstancePoolLoadBalancerAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetInstancePoolLoadBalancerAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
 func TestComputeManagementClientLaunchInstanceConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -60,6 +60,9 @@ type VolumeBackup struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// The OCID of the KMS key which is the master encryption key for the backup.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
+
 	// The size of the volume, in GBs.
 	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
 

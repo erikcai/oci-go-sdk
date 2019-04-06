@@ -2399,6 +2399,49 @@ func TestIdentityClientGetUserGroupMembership(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientGetUserUIPasswordInformation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "GetUserUIPasswordInformation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetUserUIPasswordInformation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetUserUIPasswordInformation", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "GetUserUIPasswordInformation")
+	assert.NoError(t, err)
+
+	type GetUserUIPasswordInformationRequestInfo struct {
+		ContainerId string
+		Request     identity.GetUserUIPasswordInformationRequest
+	}
+
+	var requests []GetUserUIPasswordInformationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetUserUIPasswordInformation(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
 func TestIdentityClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -12,11 +12,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// IpSecConnectionTunnelSharedSecret The shared secret of a IPSec connection's specified tunnel.
+// IpSecConnectionTunnelSharedSecret The tunnel's shared secret (pre-shared key).
 type IpSecConnectionTunnelSharedSecret struct {
 
-	// The shared secret of the IPSec tunnel.
-	// Example: `vFG2IF6TWq4UToUiLSRDoJEUs6j1c.p8G.dVQxiMfMO0yXMLi.lZTbYIWhGu4V8o`
+	// The tunnel's shared secret (pre-shared key).
+	// Example: `EXAMPLEToUis6j1c.p8G.dVQxcmdfMO0yXMLi.lZTbYCMDGu4V8o`
 	SharedSecret *string `mandatory:"true" json:"sharedSecret"`
 }
 

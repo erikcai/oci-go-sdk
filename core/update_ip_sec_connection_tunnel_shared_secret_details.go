@@ -15,8 +15,8 @@ import (
 // UpdateIpSecConnectionTunnelSharedSecretDetails The representation of UpdateIpSecConnectionTunnelSharedSecretDetails
 type UpdateIpSecConnectionTunnelSharedSecretDetails struct {
 
-	// The shared secret of the IPSec tunnel.
-	// Example: `vFG2IF6TWq4UToUiLSRDoJEUs6j1c.p8G.dVQxiMfMO0yXMLi.lZTbYIWhGu4V8o`
+	// The shared secret (pre-shared key) to use for the tunnel.
+	// Example: `EXAMPLEToUis6j1c.p8G.dVQxcmdfMO0yXMLi.lZTbYCMDGu4V8o`
 	SharedSecret *string `mandatory:"false" json:"sharedSecret"`
 }
 

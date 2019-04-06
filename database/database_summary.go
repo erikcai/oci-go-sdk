@@ -70,6 +70,9 @@ type DatabaseSummary struct {
 
 	// The Connection strings used to connect to the Oracle Database.
 	ConnectionStrings *DatabaseConnectionStrings `mandatory:"false" json:"connectionStrings"`
+
+	// The date and time when the latest remote automatic incremental database backup was created.
+	LastRemoteBackupTimestamp *common.SDKTime `mandatory:"false" json:"lastRemoteBackupTimestamp"`
 }
 
 func (m DatabaseSummary) String() string {

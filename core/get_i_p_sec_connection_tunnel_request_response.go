@@ -14,7 +14,7 @@ type GetIPSecConnectionTunnelRequest struct {
 	// The OCID of the IPSec connection.
 	IpscId *string `mandatory:"true" contributesTo:"path" name:"ipscId"`
 
-	// The OCID of the IPSec connection's tunnel.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the tunnel.
 	TunnelId *string `mandatory:"true" contributesTo:"path" name:"tunnelId"`
 
 	// Unique Oracle-assigned identifier for the request.

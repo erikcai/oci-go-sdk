@@ -50,6 +50,15 @@ type Backup struct {
 
 	// The size of the database in gigabytes at the time the backup was taken.
 	DatabaseSizeInGBs *float64 `mandatory:"false" json:"databaseSizeInGBs"`
+
+	// The region location of the source database.
+	SourceDbRegion *string `mandatory:"false" json:"sourceDbRegion"`
+
+	// The name (`dbName`) of the database from which the backup was created.
+	SourceDbName *string `mandatory:"false" json:"sourceDbName"`
+
+	// The DB system name of the source database.
+	SourceDbSystemName *string `mandatory:"false" json:"sourceDbSystemName"`
 }
 
 func (m Backup) String() string {

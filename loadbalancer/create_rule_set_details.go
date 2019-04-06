@@ -22,6 +22,7 @@ type CreateRuleSetDetails struct {
 	// Example: `example_rule_set`
 	Name *string `mandatory:"true" json:"name"`
 
+	// An array of rules that compose the rule set.
 	Items []Rule `mandatory:"true" json:"items"`
 }
 
