@@ -20,10 +20,14 @@ const (
 	RegionAPSaopaolo1 Region = "ap-saopaolo-1"
 	//RegionAPSeoul1 region for seoul
 	RegionAPSeoul1 Region = "ap-seoul-1"
+	//RegionAPSydney1 region for Sydney
+	RegionAPSydney1 Region = "ap-sydney-1"
 	//RegionAPTokyo1 region for tokyo
 	RegionAPTokyo1 Region = "ap-tokyo-1"
 	//RegionCAToronto1 region for toronto
 	RegionCAToronto1 Region = "ca-toronto-1"
+	//RegionEUZurich1 region for Zurich
+	RegionEUZurich1 Region = "eu-zurich-1"
 	//RegionPHX region PHX
 	RegionPHX Region = "us-phoenix-1"
 	//RegionIAD region IAD
@@ -60,8 +64,10 @@ var regionRealm = map[Region]string{
 	RegionAPMumbai1:   "oc1",
 	RegionAPSaopaolo1: "oc1",
 	RegionAPSeoul1:    "oc1",
+	RegionAPSydney1:   "oc1",
 	RegionAPTokyo1:    "oc1",
 	RegionCAToronto1:  "oc1",
+	RegionEUZurich1:   "oc1",
 
 	RegionUSLangley1: "oc2",
 	RegionUSLuke1:    "oc2",
