@@ -35,12 +35,13 @@ import (
 	"log"
 	"math"
 	"os"
+	"strings"
 	"time"
 )
 
 var (
 	instanceId, compartmentId, targetCompartmentId, ifMatch, opcRetryToken string
-	retryPolicy                                                            common.RetryPolicy
+	retryPolicy common.RetryPolicy
 )
 
 func ExampleChangeCompartment() {
@@ -61,6 +62,12 @@ func ExampleChangeCompartment() {
 	helpers.FatalIfError(err)
 	availabilityDomain := *r.AvailabilityDomain
 	sourceCompartmentId := *r.Instance.CompartmentId
+	// Do not attempt compartment move, if the source and target compartment ids are same
+	if sourceCompartmentId == targetCompartmentId {
+		log.Printf("Source and target compartment ids are same !")
+		os.Exit(1)
+	}
+
 	log.Printf(" ")
 	log.Printf("Instance info before compartment move : ")
 	if r.Etag != nil {
@@ -274,8 +281,8 @@ func getRetryPolicy() common.RetryPolicy {
 
 		if converted, ok := r.Response.(workrequests.GetWorkRequestResponse); ok {
 			log.Printf("     WorkRequest Status : %s", *converted.Status)
-			// do the retry until WorkReqeut Status is Succeeded
-			return *converted.Status != expectedWorkStatus
+			// do the retry until WorkReqeut Status is Succeeded  - ignore case (BMI-2652)
+			return !strings.EqualFold(*converted.Status, expectedWorkStatus)
 		}
 
 		return true
