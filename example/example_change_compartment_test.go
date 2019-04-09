@@ -63,6 +63,9 @@ func ExampleChangeCompartment() {
 	sourceCompartmentId := *r.Instance.CompartmentId
 	log.Printf(" ")
 	log.Printf("Instance info before compartment move : ")
+	if r.Etag != nil {
+		log.Printf("   ETag : %s", *r.Etag)
+	}
 	printInstanceInfo(sourceCompartmentId, computeClient, availabilityDomain);
 
 	// Create ChangeInstanceCompartmentDetails
@@ -76,11 +79,11 @@ func ExampleChangeCompartment() {
 		ChangeInstanceCompartmentDetails: changeInstanceCompartmentDetails,
 	}
 
-	if !(ifMatch != "") {
+	if len(ifMatch) > 0  {
 		changeInstanceCompartmentRequest.IfMatch = common.String(ifMatch)
 	}
 
-	if !(opcRetryToken != "") {
+	if len(opcRetryToken) > 0 {
 		changeInstanceCompartmentRequest.OpcRetryToken = common.String(opcRetryToken)
 	}
 
@@ -89,9 +92,6 @@ func ExampleChangeCompartment() {
 	// Perform compartment move operation
 	rs, err := computeClient.ChangeInstanceCompartment(ctx, changeInstanceCompartmentRequest)
 	helpers.FatalIfError(err)
-	if rs.Etag != nil {
-		log.Printf("ETag : %s", *rs.Etag)
-	}
 
 	//Wait for compartment move operation
 	waitUnitlMoveCompletion(rs.OpcWorkRequestId)
