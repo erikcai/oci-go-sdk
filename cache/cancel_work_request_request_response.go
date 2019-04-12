@@ -11,7 +11,7 @@ import (
 // CancelWorkRequestRequest wrapper for the CancelWorkRequest operation
 type CancelWorkRequestRequest struct {
 
-	// The OCID of the Redis replicated cache.
+	// The OCID of the work request.
 	Id *string `mandatory:"true" contributesTo:"path" name:"id"`
 
 	// Use the `if-match` parameter to use optimistic concurrency control. In the `PUT` or `DELETE` call

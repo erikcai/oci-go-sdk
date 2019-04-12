@@ -34,7 +34,15 @@ type CreateReplicatedCacheDetails struct {
 	Description *string `mandatory:"false" json:"description"`
 
 	// The primary Redis node and up to 5 replication nodes. Each node hosts a Redis server instance and is associated with a specific availability domain and subnet.
-	RedisNodeDetailsList []RedisNodeDetails `mandatory:"false" json:"redisNodeDetailsList"`
+	RedisNodes []RedisNodeDetails `mandatory:"false" json:"redisNodes"`
+
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 }
 
 func (m CreateReplicatedCacheDetails) String() string {

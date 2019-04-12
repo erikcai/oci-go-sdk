@@ -34,7 +34,7 @@ type ReplicatedCache struct {
 	Shape *string `mandatory:"true" json:"shape"`
 
 	// The endpoints of the replicas that make up the Redis replicated cache.
-	RedisEndPoints []EndPoint `mandatory:"true" json:"redisEndPoints"`
+	RedisNodes []EndPoint `mandatory:"true" json:"redisNodes"`
 
 	// Cache creation timestamp. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
@@ -44,6 +44,14 @@ type ReplicatedCache struct {
 
 	// A brief description of the Redis replicated cache
 	Description *string `mandatory:"false" json:"description"`
+
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 }
 
 func (m ReplicatedCache) String() string {

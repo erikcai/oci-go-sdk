@@ -22,7 +22,7 @@ func createComputeClientWithProvider(p common.ConfigurationProvider, testConfig 
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientAddImageShapeCompatibilityEntry(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestComputeClientAddImageShapeCompatibilityEntry(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientAttachBootVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestComputeClientAttachBootVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientAttachVnic(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestComputeClientAttachVnic(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientAttachVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -208,7 +208,7 @@ func TestComputeClientAttachVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientCaptureConsoleHistory(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -251,7 +251,7 @@ func TestComputeClientCaptureConsoleHistory(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientChangeInstanceCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -294,7 +294,7 @@ func TestComputeClientChangeInstanceCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientCreateAppCatalogSubscription(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -337,7 +337,7 @@ func TestComputeClientCreateAppCatalogSubscription(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientCreateImage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -380,7 +380,7 @@ func TestComputeClientCreateImage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeServices" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="COM"
 func TestComputeClientCreateInstanceConsoleConnection(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -423,7 +423,7 @@ func TestComputeClientCreateInstanceConsoleConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientDeleteAppCatalogSubscription(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -466,7 +466,7 @@ func TestComputeClientDeleteAppCatalogSubscription(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientDeleteConsoleHistory(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -509,7 +509,7 @@ func TestComputeClientDeleteConsoleHistory(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientDeleteImage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -552,7 +552,7 @@ func TestComputeClientDeleteImage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeServices" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="COM"
 func TestComputeClientDeleteInstanceConsoleConnection(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -595,7 +595,7 @@ func TestComputeClientDeleteInstanceConsoleConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientDetachBootVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -638,7 +638,7 @@ func TestComputeClientDetachBootVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientDetachVnic(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -681,7 +681,7 @@ func TestComputeClientDetachVnic(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientDetachVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -724,7 +724,7 @@ func TestComputeClientDetachVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientExportImage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -779,7 +779,7 @@ func TestComputeClientExportImage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientGetAppCatalogListing(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -822,7 +822,7 @@ func TestComputeClientGetAppCatalogListing(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientGetAppCatalogListingAgreements(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -865,7 +865,7 @@ func TestComputeClientGetAppCatalogListingAgreements(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientGetAppCatalogListingResourceVersion(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -908,7 +908,7 @@ func TestComputeClientGetAppCatalogListingResourceVersion(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientGetBootVolumeAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -951,7 +951,7 @@ func TestComputeClientGetBootVolumeAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientGetConsoleHistory(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -994,7 +994,7 @@ func TestComputeClientGetConsoleHistory(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientGetConsoleHistoryContent(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1037,7 +1037,7 @@ func TestComputeClientGetConsoleHistoryContent(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientGetImage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1080,7 +1080,7 @@ func TestComputeClientGetImage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientGetInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1123,7 +1123,7 @@ func TestComputeClientGetInstance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeServices" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="COM"
 func TestComputeClientGetInstanceConsoleConnection(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1166,7 +1166,7 @@ func TestComputeClientGetInstanceConsoleConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientGetVnicAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1209,7 +1209,7 @@ func TestComputeClientGetVnicAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientGetVolumeAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1252,7 +1252,7 @@ func TestComputeClientGetVolumeAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientGetWindowsInstanceInitialCredentials(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1295,7 +1295,7 @@ func TestComputeClientGetWindowsInstanceInitialCredentials(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientInstanceAction(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1338,7 +1338,7 @@ func TestComputeClientInstanceAction(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientLaunchInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1381,7 +1381,7 @@ func TestComputeClientLaunchInstance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientListAppCatalogListingResourceVersions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1433,7 +1433,7 @@ func TestComputeClientListAppCatalogListingResourceVersions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientListAppCatalogListings(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1485,7 +1485,7 @@ func TestComputeClientListAppCatalogListings(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientListAppCatalogSubscriptions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1537,7 +1537,7 @@ func TestComputeClientListAppCatalogSubscriptions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientListBootVolumeAttachments(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1589,7 +1589,7 @@ func TestComputeClientListBootVolumeAttachments(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientListConsoleHistories(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1641,7 +1641,7 @@ func TestComputeClientListConsoleHistories(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientListImages(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1693,7 +1693,7 @@ func TestComputeClientListImages(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeServices" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="COM"
 func TestComputeClientListInstanceConsoleConnections(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1745,7 +1745,7 @@ func TestComputeClientListInstanceConsoleConnections(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientListInstanceDevices(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1797,7 +1797,7 @@ func TestComputeClientListInstanceDevices(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientListInstances(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1849,7 +1849,7 @@ func TestComputeClientListInstances(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientListShapes(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1901,7 +1901,7 @@ func TestComputeClientListShapes(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientListVnicAttachments(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1953,7 +1953,7 @@ func TestComputeClientListVnicAttachments(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientListVolumeAttachments(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2005,7 +2005,7 @@ func TestComputeClientListVolumeAttachments(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientRemoveImageShapeCompatibilityEntry(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2048,7 +2048,7 @@ func TestComputeClientRemoveImageShapeCompatibilityEntry(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientTerminateInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2091,7 +2091,7 @@ func TestComputeClientTerminateInstance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientUpdateConsoleHistory(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2134,7 +2134,7 @@ func TestComputeClientUpdateConsoleHistory(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientUpdateImage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2177,7 +2177,7 @@ func TestComputeClientUpdateImage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientUpdateInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2220,7 +2220,7 @@ func TestComputeClientUpdateInstance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeServices" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="COM"
 func TestComputeClientUpdateInstanceConsoleConnection(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -23,6 +23,92 @@ func createFileStorageClientWithProvider(p common.ConfigurationProvider, testCon
 }
 
 // IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientChangeFileSystemCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "ChangeFileSystemCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeFileSystemCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "ChangeFileSystemCompartment", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "ChangeFileSystemCompartment")
+	assert.NoError(t, err)
+
+	type ChangeFileSystemCompartmentRequestInfo struct {
+		ContainerId string
+		Request     filestorage.ChangeFileSystemCompartmentRequest
+	}
+
+	var requests []ChangeFileSystemCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeFileSystemCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientChangeMountTargetCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "ChangeMountTargetCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeMountTargetCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "ChangeMountTargetCompartment", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "ChangeMountTargetCompartment")
+	assert.NoError(t, err)
+
+	type ChangeMountTargetCompartmentRequestInfo struct {
+		ContainerId string
+		Request     filestorage.ChangeMountTargetCompartmentRequest
+	}
+
+	var requests []ChangeMountTargetCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeMountTargetCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientCreateExport(t *testing.T) {
 	defer failTestOnPanic(t)
 

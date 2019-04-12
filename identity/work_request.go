@@ -19,6 +19,7 @@ type WorkRequest struct {
 	// The OCID of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
+	// An enum-like description of the type of work the work request is doing.
 	OperationType WorkRequestOperationTypeEnum `mandatory:"true" json:"operationType"`
 
 	// The current status of the work request.

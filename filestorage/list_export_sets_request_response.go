@@ -116,6 +116,7 @@ const (
 	ListExportSetsLifecycleStateActive   ListExportSetsLifecycleStateEnum = "ACTIVE"
 	ListExportSetsLifecycleStateDeleting ListExportSetsLifecycleStateEnum = "DELETING"
 	ListExportSetsLifecycleStateDeleted  ListExportSetsLifecycleStateEnum = "DELETED"
+	ListExportSetsLifecycleStateFailed   ListExportSetsLifecycleStateEnum = "FAILED"
 )
 
 var mappingListExportSetsLifecycleState = map[string]ListExportSetsLifecycleStateEnum{
@@ -123,6 +124,7 @@ var mappingListExportSetsLifecycleState = map[string]ListExportSetsLifecycleStat
 	"ACTIVE":   ListExportSetsLifecycleStateActive,
 	"DELETING": ListExportSetsLifecycleStateDeleting,
 	"DELETED":  ListExportSetsLifecycleStateDeleted,
+	"FAILED":   ListExportSetsLifecycleStateFailed,
 }
 
 // GetListExportSetsLifecycleStateEnumValues Enumerates the set of values for ListExportSetsLifecycleStateEnum

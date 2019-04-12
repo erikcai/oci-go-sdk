@@ -12,16 +12,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RedisNodeDetails The Redis nodes that host the Redis servers. The nodes are attached to the specified subnet and are created in the specified availability domain.
+// RedisNodeDetails The Redis nodes that host the Redis servers. The nodes are created in the specified availability domain.
 type RedisNodeDetails struct {
 
-	// The name of the availability domain where the Redis node is located.
+	// The name of the availability domain where the Redis node should be located.
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
 	// The subnet id to which this Redis node is attached.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
-	// Whether this node is the primary Redis node. The default value is `false`.
+	// Whether this node should be the primary Redis node. The default value is `false`.
 	IsPrimary *bool `mandatory:"false" json:"isPrimary"`
 }
 

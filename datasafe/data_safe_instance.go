@@ -1,7 +1,7 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Data Security Control Plane API
+// Data Safe Control Plane API
 //
 // The API to manage data safe instance creation and deletion
 //

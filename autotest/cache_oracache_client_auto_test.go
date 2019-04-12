@@ -548,3 +548,46 @@ func TestOracacheClientListWorkRequests(t *testing.T) {
 		})
 	}
 }
+
+// IssueRoutingInfo tag="default" email="oci_caching_users_us_grp@oracle.com" jiraProject="ORACACHE" opsJiraProject="ORACACHE"
+func TestOracacheClientUpdateReplicatedCache(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("cache", "UpdateReplicatedCache")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateReplicatedCache is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("cache", "Oracache", "UpdateReplicatedCache", createOracacheClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(cache.OracacheClient)
+
+	body, err := testClient.getRequests("cache", "UpdateReplicatedCache")
+	assert.NoError(t, err)
+
+	type UpdateReplicatedCacheRequestInfo struct {
+		ContainerId string
+		Request     cache.UpdateReplicatedCacheRequest
+	}
+
+	var requests []UpdateReplicatedCacheRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateReplicatedCache(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}

@@ -22,7 +22,7 @@ func createComputeManagementClientWithProvider(p common.ConfigurationProvider, t
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientAttachLoadBalancer(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestComputeManagementClientAttachLoadBalancer(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientCreateInstanceConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestComputeManagementClientCreateInstanceConfiguration(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientCreateInstancePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestComputeManagementClientCreateInstancePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientDeleteInstanceConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestComputeManagementClientDeleteInstanceConfiguration(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientDetachLoadBalancer(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,7 +237,7 @@ func TestComputeManagementClientDetachLoadBalancer(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientGetInstanceConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -280,7 +280,7 @@ func TestComputeManagementClientGetInstanceConfiguration(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientGetInstancePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -323,7 +323,7 @@ func TestComputeManagementClientGetInstancePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientGetInstancePoolLoadBalancerAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -366,7 +366,7 @@ func TestComputeManagementClientGetInstancePoolLoadBalancerAttachment(t *testing
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientLaunchInstanceConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -420,7 +420,7 @@ func TestComputeManagementClientLaunchInstanceConfiguration(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientListInstanceConfigurations(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -472,7 +472,7 @@ func TestComputeManagementClientListInstanceConfigurations(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientListInstancePoolInstances(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -524,7 +524,7 @@ func TestComputeManagementClientListInstancePoolInstances(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientListInstancePools(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -576,7 +576,7 @@ func TestComputeManagementClientListInstancePools(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientResetInstancePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -619,7 +619,7 @@ func TestComputeManagementClientResetInstancePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientSoftresetInstancePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -662,7 +662,7 @@ func TestComputeManagementClientSoftresetInstancePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientStartInstancePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -705,7 +705,7 @@ func TestComputeManagementClientStartInstancePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientStopInstancePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -748,7 +748,7 @@ func TestComputeManagementClientStopInstancePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientTerminateInstancePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -791,7 +791,7 @@ func TestComputeManagementClientTerminateInstancePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientUpdateInstanceConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -834,7 +834,7 @@ func TestComputeManagementClientUpdateInstanceConfiguration(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientUpdateInstancePool(t *testing.T) {
 	defer failTestOnPanic(t)
 

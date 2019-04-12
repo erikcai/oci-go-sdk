@@ -30,7 +30,7 @@ func NewOracacheClientWithConfigurationProvider(configProvider common.Configurat
 	}
 
 	client = OracacheClient{BaseClient: baseClient}
-	client.BasePath = "20181201"
+	client.BasePath = "20190501"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -519,6 +519,48 @@ func (client OracacheClient) listWorkRequests(ctx context.Context, request commo
 	}
 
 	var response ListWorkRequestsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateReplicatedCache A synchronous operation that updates a Redis replicated cache.
+func (client OracacheClient) UpdateReplicatedCache(ctx context.Context, request UpdateReplicatedCacheRequest) (response UpdateReplicatedCacheResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateReplicatedCache, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateReplicatedCacheResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateReplicatedCacheResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateReplicatedCacheResponse")
+	}
+	return
+}
+
+// updateReplicatedCache implements the OCIOperation interface (enables retrying operations)
+func (client OracacheClient) updateReplicatedCache(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/redis/replicatedCaches/{id}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateReplicatedCacheResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

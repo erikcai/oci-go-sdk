@@ -40,13 +40,13 @@
     <healthchecks-api-spec-spec-file>ovp-api.yaml</healthchecks-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
     <rest-api-spec-spec-file>api.yaml</rest-api-spec-spec-file>
-    <oracache-public-api-spec-file>specs/oracache-public-api-20181201.cond.yaml</oracache-public-api-spec-file>
+    <oracache-public-api-spec-file>specs/oracache-public-api-20190501.cond.yaml</oracache-public-api-spec-file>
     <marketplace-api-spec-spec-file>source/marketplace-api-swagger.cond.yaml</marketplace-api-spec-spec-file>
     <autoscaling-public-api-spec-spec-file>source/autoscaling-api-spec.cond.yaml</autoscaling-public-api-spec-spec-file>
     <usage-proxy-spec-spec-file>api.yaml</usage-proxy-spec-spec-file>
     <announcements-service-spec-spec-file>source/announcement-service.cond.yaml</announcements-service-spec-spec-file>
     <oci-waas-api-spec-spec-file>oci-waas-api-spec.cond.yaml</oci-waas-api-spec-spec-file>
-    <ads-control-plane-spec-spec-file>api.yaml</ads-control-plane-spec-spec-file>
+    <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
     <batchservice-api-spec-spec-file>source/batchservice.cond.yaml</batchservice-api-spec-spec-file>
     <fn-api-spec-spec-file>functions-api-spec.cond.yaml</fn-api-spec-spec-file>
     <budgets-control-plane-spec-spec-file>api.cond.yaml</budgets-control-plane-spec-spec-file>
@@ -2449,12 +2449,12 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.508</version>
+        <version>0.2.557</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.41</version>
+        <version>0.4.47</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -2474,7 +2474,7 @@
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
         <artifactId>fss-api-spec</artifactId>
-        <version>0.0.18</version>
+        <version>0.0.19</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.sherlock</groupId>
@@ -2544,7 +2544,7 @@
       <dependency>
         <groupId>com.oracle.oracache</groupId>
         <artifactId>oracache-public-api</artifactId>
-        <version>1.0.0-23</version>
+        <version>1.0.0-26</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.marketplace</groupId>
@@ -2574,7 +2574,7 @@
       <dependency>
         <groupId>com.oracle.ads.admin.cp</groupId>
         <artifactId>ads-control-plane-spec</artifactId>
-        <version>19.1.5-1903122299</version>
+        <version>19.2.1-1904092100</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.obcs</groupId>

@@ -116,6 +116,7 @@ const (
 	ListFileSystemsLifecycleStateActive   ListFileSystemsLifecycleStateEnum = "ACTIVE"
 	ListFileSystemsLifecycleStateDeleting ListFileSystemsLifecycleStateEnum = "DELETING"
 	ListFileSystemsLifecycleStateDeleted  ListFileSystemsLifecycleStateEnum = "DELETED"
+	ListFileSystemsLifecycleStateFailed   ListFileSystemsLifecycleStateEnum = "FAILED"
 )
 
 var mappingListFileSystemsLifecycleState = map[string]ListFileSystemsLifecycleStateEnum{
@@ -123,6 +124,7 @@ var mappingListFileSystemsLifecycleState = map[string]ListFileSystemsLifecycleSt
 	"ACTIVE":   ListFileSystemsLifecycleStateActive,
 	"DELETING": ListFileSystemsLifecycleStateDeleting,
 	"DELETED":  ListFileSystemsLifecycleStateDeleted,
+	"FAILED":   ListFileSystemsLifecycleStateFailed,
 }
 
 // GetListFileSystemsLifecycleStateEnumValues Enumerates the set of values for ListFileSystemsLifecycleStateEnum

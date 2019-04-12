@@ -58,6 +58,90 @@ func (client *FileStorageClient) ConfigurationProvider() *common.ConfigurationPr
 	return client.config
 }
 
+// ChangeFileSystemCompartment Changes the compartment for a file system.
+func (client FileStorageClient) ChangeFileSystemCompartment(ctx context.Context, request ChangeFileSystemCompartmentRequest) (response ChangeFileSystemCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.changeFileSystemCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeFileSystemCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeFileSystemCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeFileSystemCompartmentResponse")
+	}
+	return
+}
+
+// changeFileSystemCompartment implements the OCIOperation interface (enables retrying operations)
+func (client FileStorageClient) changeFileSystemCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/fileSystems/{fileSystemId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeFileSystemCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ChangeMountTargetCompartment Changes the compartment for a mount target and its associated export set.
+func (client FileStorageClient) ChangeMountTargetCompartment(ctx context.Context, request ChangeMountTargetCompartmentRequest) (response ChangeMountTargetCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.changeMountTargetCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeMountTargetCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeMountTargetCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeMountTargetCompartmentResponse")
+	}
+	return
+}
+
+// changeMountTargetCompartment implements the OCIOperation interface (enables retrying operations)
+func (client FileStorageClient) changeMountTargetCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/mountTargets/{mountTargetId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeMountTargetCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateExport Creates a new export in the specified export set, path, and
 // file system.
 func (client FileStorageClient) CreateExport(ctx context.Context, request CreateExportRequest) (response CreateExportResponse, err error) {

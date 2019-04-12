@@ -14,7 +14,7 @@ type ListWorkRequestsRequest struct {
 	// The OCID of the compartment which initiated the work request.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The OCID of the work request.
+	// The OCID of the Redis Replicated Cache.
 	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
 
 	// The field on which to sort the results.

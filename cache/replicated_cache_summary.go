@@ -33,6 +33,14 @@ type ReplicatedCacheSummary struct {
 	// The amount of memory allocated to the Redis replicated cache.
 	Shape *string `mandatory:"true" json:"shape"`
 
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"true" json:"definedTags"`
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"true" json:"freeformTags"`
+
 	// A brief description of the Redis replicated cache.
 	Description *string `mandatory:"false" json:"description"`
 }

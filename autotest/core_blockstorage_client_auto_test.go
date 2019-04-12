@@ -22,7 +22,7 @@ func createBlockstorageClientWithProvider(p common.ConfigurationProvider, testCo
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientChangeBootVolumeBackupCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestBlockstorageClientChangeBootVolumeBackupCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientChangeBootVolumeCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestBlockstorageClientChangeBootVolumeCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientChangeVolumeBackupCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestBlockstorageClientChangeVolumeBackupCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientChangeVolumeCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestBlockstorageClientChangeVolumeCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientChangeVolumeGroupBackupCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,7 +237,7 @@ func TestBlockstorageClientChangeVolumeGroupBackupCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientChangeVolumeGroupCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -280,7 +280,7 @@ func TestBlockstorageClientChangeVolumeGroupCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCopyBootVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -323,7 +323,7 @@ func TestBlockstorageClientCopyBootVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCopyVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -366,7 +366,7 @@ func TestBlockstorageClientCopyVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCreateBootVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -409,7 +409,7 @@ func TestBlockstorageClientCreateBootVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCreateBootVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -452,7 +452,7 @@ func TestBlockstorageClientCreateBootVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCreateVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -495,7 +495,7 @@ func TestBlockstorageClientCreateVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCreateVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -538,7 +538,7 @@ func TestBlockstorageClientCreateVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCreateVolumeBackupPolicy(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -581,7 +581,7 @@ func TestBlockstorageClientCreateVolumeBackupPolicy(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCreateVolumeBackupPolicyAssignment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -624,7 +624,7 @@ func TestBlockstorageClientCreateVolumeBackupPolicyAssignment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCreateVolumeGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -667,7 +667,7 @@ func TestBlockstorageClientCreateVolumeGroup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientCreateVolumeGroupBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -710,7 +710,7 @@ func TestBlockstorageClientCreateVolumeGroupBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteBootVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -753,7 +753,7 @@ func TestBlockstorageClientDeleteBootVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteBootVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -796,7 +796,7 @@ func TestBlockstorageClientDeleteBootVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteBootVolumeKmsKey(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -839,7 +839,7 @@ func TestBlockstorageClientDeleteBootVolumeKmsKey(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -882,7 +882,7 @@ func TestBlockstorageClientDeleteVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -925,7 +925,7 @@ func TestBlockstorageClientDeleteVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteVolumeBackupPolicy(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -968,7 +968,7 @@ func TestBlockstorageClientDeleteVolumeBackupPolicy(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteVolumeBackupPolicyAssignment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1011,7 +1011,7 @@ func TestBlockstorageClientDeleteVolumeBackupPolicyAssignment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteVolumeGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1054,7 +1054,7 @@ func TestBlockstorageClientDeleteVolumeGroup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteVolumeGroupBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1097,7 +1097,7 @@ func TestBlockstorageClientDeleteVolumeGroupBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientDeleteVolumeKmsKey(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1140,7 +1140,7 @@ func TestBlockstorageClientDeleteVolumeKmsKey(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetBootVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1183,7 +1183,7 @@ func TestBlockstorageClientGetBootVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetBootVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1226,7 +1226,7 @@ func TestBlockstorageClientGetBootVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetBootVolumeKmsKey(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1269,7 +1269,7 @@ func TestBlockstorageClientGetBootVolumeKmsKey(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1312,7 +1312,7 @@ func TestBlockstorageClientGetVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1355,7 +1355,7 @@ func TestBlockstorageClientGetVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetVolumeBackupPolicy(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1398,7 +1398,7 @@ func TestBlockstorageClientGetVolumeBackupPolicy(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetVolumeBackupPolicyAssetAssignment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1450,7 +1450,7 @@ func TestBlockstorageClientGetVolumeBackupPolicyAssetAssignment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetVolumeBackupPolicyAssignment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1493,7 +1493,7 @@ func TestBlockstorageClientGetVolumeBackupPolicyAssignment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetVolumeGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1536,7 +1536,7 @@ func TestBlockstorageClientGetVolumeGroup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetVolumeGroupBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1579,7 +1579,7 @@ func TestBlockstorageClientGetVolumeGroupBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetVolumeKmsKey(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1622,7 +1622,7 @@ func TestBlockstorageClientGetVolumeKmsKey(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientListBootVolumeBackups(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1674,7 +1674,7 @@ func TestBlockstorageClientListBootVolumeBackups(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientListBootVolumes(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1726,7 +1726,7 @@ func TestBlockstorageClientListBootVolumes(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientListVolumeBackupPolicies(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1778,7 +1778,7 @@ func TestBlockstorageClientListVolumeBackupPolicies(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientListVolumeBackups(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1830,7 +1830,7 @@ func TestBlockstorageClientListVolumeBackups(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientListVolumeGroupBackups(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1882,7 +1882,7 @@ func TestBlockstorageClientListVolumeGroupBackups(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientListVolumeGroups(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1934,7 +1934,7 @@ func TestBlockstorageClientListVolumeGroups(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientListVolumes(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1986,7 +1986,7 @@ func TestBlockstorageClientListVolumes(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientUpdateBootVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2029,7 +2029,7 @@ func TestBlockstorageClientUpdateBootVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientUpdateBootVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2072,7 +2072,7 @@ func TestBlockstorageClientUpdateBootVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientUpdateBootVolumeKmsKey(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2115,7 +2115,7 @@ func TestBlockstorageClientUpdateBootVolumeKmsKey(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientUpdateVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2158,7 +2158,7 @@ func TestBlockstorageClientUpdateVolume(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientUpdateVolumeBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2201,7 +2201,7 @@ func TestBlockstorageClientUpdateVolumeBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientUpdateVolumeBackupPolicy(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2244,7 +2244,7 @@ func TestBlockstorageClientUpdateVolumeBackupPolicy(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientUpdateVolumeGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2287,7 +2287,7 @@ func TestBlockstorageClientUpdateVolumeGroup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientUpdateVolumeGroupBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2330,7 +2330,7 @@ func TestBlockstorageClientUpdateVolumeGroupBackup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientUpdateVolumeKmsKey(t *testing.T) {
 	defer failTestOnPanic(t)
 

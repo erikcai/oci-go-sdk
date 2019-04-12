@@ -22,7 +22,7 @@ func createVirtualNetworkClientWithProvider(p common.ConfigurationProvider, test
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientAcceptLocalPeeringToken(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestVirtualNetworkClientAcceptLocalPeeringToken(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientAttachServiceId(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -452,7 +452,7 @@ func TestVirtualNetworkClientChangeVirtualCircuitCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientConnectLocalPeeringConnections(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -495,7 +495,7 @@ func TestVirtualNetworkClientConnectLocalPeeringConnections(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientConnectLocalPeeringGateways(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -710,7 +710,7 @@ func TestVirtualNetworkClientCreateCrossConnectGroup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateDhcpOptions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -753,7 +753,7 @@ func TestVirtualNetworkClientCreateDhcpOptions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateDrg(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -796,7 +796,7 @@ func TestVirtualNetworkClientCreateDrg(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateDrgAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -839,7 +839,7 @@ func TestVirtualNetworkClientCreateDrgAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateFlowLogConfig(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -882,7 +882,7 @@ func TestVirtualNetworkClientCreateFlowLogConfig(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateFlowLogConfigAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -968,7 +968,7 @@ func TestVirtualNetworkClientCreateIPSecConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateInternetGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1011,7 +1011,7 @@ func TestVirtualNetworkClientCreateInternetGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateIpv6(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1054,7 +1054,7 @@ func TestVirtualNetworkClientCreateIpv6(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateLocalPeeringConnection(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1097,7 +1097,7 @@ func TestVirtualNetworkClientCreateLocalPeeringConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateLocalPeeringGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1140,7 +1140,7 @@ func TestVirtualNetworkClientCreateLocalPeeringGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
 func TestVirtualNetworkClientCreateNatGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1183,7 +1183,7 @@ func TestVirtualNetworkClientCreateNatGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreatePrivateIp(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1226,7 +1226,7 @@ func TestVirtualNetworkClientCreatePrivateIp(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreatePublicIp(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1312,7 +1312,7 @@ func TestVirtualNetworkClientCreateRemotePeeringConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateRouteTable(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1355,7 +1355,7 @@ func TestVirtualNetworkClientCreateRouteTable(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateSecurityList(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1398,7 +1398,7 @@ func TestVirtualNetworkClientCreateSecurityList(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientCreateServiceGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1441,7 +1441,7 @@ func TestVirtualNetworkClientCreateServiceGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateSubnet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1484,7 +1484,7 @@ func TestVirtualNetworkClientCreateSubnet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateVcn(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1699,7 +1699,7 @@ func TestVirtualNetworkClientDeleteCrossConnectGroup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteDhcpOptions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1742,7 +1742,7 @@ func TestVirtualNetworkClientDeleteDhcpOptions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteDrg(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1785,7 +1785,7 @@ func TestVirtualNetworkClientDeleteDrg(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteDrgAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1828,7 +1828,7 @@ func TestVirtualNetworkClientDeleteDrgAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteFlowLogConfig(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1871,7 +1871,7 @@ func TestVirtualNetworkClientDeleteFlowLogConfig(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteFlowLogConfigAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1957,7 +1957,7 @@ func TestVirtualNetworkClientDeleteIPSecConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteInternetGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2000,7 +2000,7 @@ func TestVirtualNetworkClientDeleteInternetGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteIpv6(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2043,7 +2043,7 @@ func TestVirtualNetworkClientDeleteIpv6(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteLocalPeeringConnection(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2086,7 +2086,7 @@ func TestVirtualNetworkClientDeleteLocalPeeringConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteLocalPeeringGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2129,7 +2129,7 @@ func TestVirtualNetworkClientDeleteLocalPeeringGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
 func TestVirtualNetworkClientDeleteNatGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2172,7 +2172,7 @@ func TestVirtualNetworkClientDeleteNatGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeletePrivateIp(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2215,7 +2215,7 @@ func TestVirtualNetworkClientDeletePrivateIp(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeletePublicIp(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2301,7 +2301,7 @@ func TestVirtualNetworkClientDeleteRemotePeeringConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteRouteTable(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2344,7 +2344,7 @@ func TestVirtualNetworkClientDeleteRouteTable(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteSecurityList(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2387,7 +2387,7 @@ func TestVirtualNetworkClientDeleteSecurityList(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientDeleteServiceGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2430,7 +2430,7 @@ func TestVirtualNetworkClientDeleteServiceGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteSubnet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2473,7 +2473,7 @@ func TestVirtualNetworkClientDeleteSubnet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteVcn(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2559,7 +2559,7 @@ func TestVirtualNetworkClientDeleteVirtualCircuit(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientDetachServiceId(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2602,7 +2602,7 @@ func TestVirtualNetworkClientDetachServiceId(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGenerateLocalPeeringToken(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2860,7 +2860,7 @@ func TestVirtualNetworkClientGetCrossConnectStatus(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetDhcpOptions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2903,7 +2903,7 @@ func TestVirtualNetworkClientGetDhcpOptions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetDrg(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2946,7 +2946,7 @@ func TestVirtualNetworkClientGetDrg(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetDrgAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3075,7 +3075,7 @@ func TestVirtualNetworkClientGetFastConnectProviderServiceKey(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetFlowLogConfig(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3118,7 +3118,7 @@ func TestVirtualNetworkClientGetFlowLogConfig(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetFlowLogConfigAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3376,7 +3376,7 @@ func TestVirtualNetworkClientGetIPSecConnectionTunnelSharedSecret(t *testing.T) 
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetInternetGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3419,7 +3419,7 @@ func TestVirtualNetworkClientGetInternetGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetIpv6(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3462,7 +3462,7 @@ func TestVirtualNetworkClientGetIpv6(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetLocalPeeringConnection(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3505,7 +3505,7 @@ func TestVirtualNetworkClientGetLocalPeeringConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetLocalPeeringGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3548,7 +3548,7 @@ func TestVirtualNetworkClientGetLocalPeeringGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
 func TestVirtualNetworkClientGetNatGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3591,7 +3591,7 @@ func TestVirtualNetworkClientGetNatGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetPrivateIp(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3634,7 +3634,7 @@ func TestVirtualNetworkClientGetPrivateIp(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetPublicIp(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3677,7 +3677,7 @@ func TestVirtualNetworkClientGetPublicIp(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetPublicIpByIpAddress(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3720,7 +3720,7 @@ func TestVirtualNetworkClientGetPublicIpByIpAddress(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetPublicIpByPrivateIpId(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3806,7 +3806,7 @@ func TestVirtualNetworkClientGetRemotePeeringConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetRouteTable(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3849,7 +3849,7 @@ func TestVirtualNetworkClientGetRouteTable(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetSecurityList(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3892,7 +3892,7 @@ func TestVirtualNetworkClientGetSecurityList(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientGetService(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3935,7 +3935,7 @@ func TestVirtualNetworkClientGetService(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientGetServiceGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3978,7 +3978,7 @@ func TestVirtualNetworkClientGetServiceGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetSubnet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4021,7 +4021,7 @@ func TestVirtualNetworkClientGetSubnet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetVcn(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4107,7 +4107,7 @@ func TestVirtualNetworkClientGetVirtualCircuit(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetVnic(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4453,7 +4453,7 @@ func TestVirtualNetworkClientListCrossconnectPortSpeedShapes(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListDhcpOptions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4505,7 +4505,7 @@ func TestVirtualNetworkClientListDhcpOptions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListDrgAttachments(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4557,7 +4557,7 @@ func TestVirtualNetworkClientListDrgAttachments(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListDrgs(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4713,7 +4713,7 @@ func TestVirtualNetworkClientListFastConnectProviderVirtualCircuitBandwidthShape
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListFlowLogConfigAttachments(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4765,7 +4765,7 @@ func TestVirtualNetworkClientListFlowLogConfigAttachments(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListFlowLogConfigs(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4921,7 +4921,7 @@ func TestVirtualNetworkClientListIPSecConnections(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListInternetGateways(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4973,7 +4973,7 @@ func TestVirtualNetworkClientListInternetGateways(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListIpv6s(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5025,7 +5025,7 @@ func TestVirtualNetworkClientListIpv6s(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListLocalPeeringConnections(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5077,7 +5077,7 @@ func TestVirtualNetworkClientListLocalPeeringConnections(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListLocalPeeringGateways(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5129,7 +5129,7 @@ func TestVirtualNetworkClientListLocalPeeringGateways(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
 func TestVirtualNetworkClientListNatGateways(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5181,7 +5181,7 @@ func TestVirtualNetworkClientListNatGateways(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListPrivateIps(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5233,7 +5233,7 @@ func TestVirtualNetworkClientListPrivateIps(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListPublicIps(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5337,7 +5337,7 @@ func TestVirtualNetworkClientListRemotePeeringConnections(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListRouteTables(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5389,7 +5389,7 @@ func TestVirtualNetworkClientListRouteTables(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListSecurityLists(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5441,7 +5441,7 @@ func TestVirtualNetworkClientListSecurityLists(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientListServiceGateways(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5493,7 +5493,7 @@ func TestVirtualNetworkClientListServiceGateways(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientListServices(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5545,7 +5545,7 @@ func TestVirtualNetworkClientListServices(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListSubnets(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5597,7 +5597,7 @@ func TestVirtualNetworkClientListSubnets(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListVcns(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5925,7 +5925,7 @@ func TestVirtualNetworkClientUpdateCrossConnectGroup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateDhcpOptions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5968,7 +5968,7 @@ func TestVirtualNetworkClientUpdateDhcpOptions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateDrg(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6011,7 +6011,7 @@ func TestVirtualNetworkClientUpdateDrg(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateDrgAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6054,7 +6054,7 @@ func TestVirtualNetworkClientUpdateDrgAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateFlowLogConfig(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6097,7 +6097,7 @@ func TestVirtualNetworkClientUpdateFlowLogConfig(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateFlowLogConfigAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6269,7 +6269,7 @@ func TestVirtualNetworkClientUpdateIPSecConnectionTunnelSharedSecret(t *testing.
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateInternetGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6312,7 +6312,7 @@ func TestVirtualNetworkClientUpdateInternetGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateIpv6(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6355,7 +6355,7 @@ func TestVirtualNetworkClientUpdateIpv6(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateLocalPeeringConnection(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6398,7 +6398,7 @@ func TestVirtualNetworkClientUpdateLocalPeeringConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateLocalPeeringGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6441,7 +6441,7 @@ func TestVirtualNetworkClientUpdateLocalPeeringGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
 func TestVirtualNetworkClientUpdateNatGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6484,7 +6484,7 @@ func TestVirtualNetworkClientUpdateNatGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdatePrivateIp(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6527,7 +6527,7 @@ func TestVirtualNetworkClientUpdatePrivateIp(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdatePublicIp(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6613,7 +6613,7 @@ func TestVirtualNetworkClientUpdateRemotePeeringConnection(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateRouteTable(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6656,7 +6656,7 @@ func TestVirtualNetworkClientUpdateRouteTable(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateSecurityList(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6699,7 +6699,7 @@ func TestVirtualNetworkClientUpdateSecurityList(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientUpdateServiceGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6742,7 +6742,7 @@ func TestVirtualNetworkClientUpdateServiceGateway(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateSubnet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6785,7 +6785,7 @@ func TestVirtualNetworkClientUpdateSubnet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateVcn(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6871,7 +6871,7 @@ func TestVirtualNetworkClientUpdateVirtualCircuit(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateVnic(t *testing.T) {
 	defer failTestOnPanic(t)
 

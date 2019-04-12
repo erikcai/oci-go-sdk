@@ -108,6 +108,7 @@ const (
 	ListSnapshotsLifecycleStateActive   ListSnapshotsLifecycleStateEnum = "ACTIVE"
 	ListSnapshotsLifecycleStateDeleting ListSnapshotsLifecycleStateEnum = "DELETING"
 	ListSnapshotsLifecycleStateDeleted  ListSnapshotsLifecycleStateEnum = "DELETED"
+	ListSnapshotsLifecycleStateFailed   ListSnapshotsLifecycleStateEnum = "FAILED"
 )
 
 var mappingListSnapshotsLifecycleState = map[string]ListSnapshotsLifecycleStateEnum{
@@ -115,6 +116,7 @@ var mappingListSnapshotsLifecycleState = map[string]ListSnapshotsLifecycleStateE
 	"ACTIVE":   ListSnapshotsLifecycleStateActive,
 	"DELETING": ListSnapshotsLifecycleStateDeleting,
 	"DELETED":  ListSnapshotsLifecycleStateDeleted,
+	"FAILED":   ListSnapshotsLifecycleStateFailed,
 }
 
 // GetListSnapshotsLifecycleStateEnumValues Enumerates the set of values for ListSnapshotsLifecycleStateEnum

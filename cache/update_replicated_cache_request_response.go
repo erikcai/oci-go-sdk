@@ -8,43 +8,51 @@ import (
 	"net/http"
 )
 
-// GetWorkRequestRequest wrapper for the GetWorkRequest operation
-type GetWorkRequestRequest struct {
+// UpdateReplicatedCacheRequest wrapper for the UpdateReplicatedCache operation
+type UpdateReplicatedCacheRequest struct {
 
-	// The OCID of the work request.
+	// Input parameters that are used to update the Redis replicated cache.
+	UpdateReplicatedCacheDetails `contributesTo:"body"`
+
+	// The OCID that uniquely identifies the Redis replicated cache.
 	Id *string `mandatory:"true" contributesTo:"path" name:"id"`
 
 	// A unique Oracle-assigned identifier for the request. If you need
-	// to contact Oracle about a particular request, please provide the request ID.
+	// to contact Oracle about a particular request, please provide the request
+	// ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
+
+	// Use the `if-match` parameter to use optimistic concurrency control. In the `PUT` or `DELETE` call
+	// for a resource, set the `if-match` parameter to the value of the `etag`
+	// from a previous `GET` or `POST` response for that resource. The resource
+	// is updated or deleted only if the `etag` matches the resource's
+	// current `etag` value.
+	IfMatch *string `mandatory:"false" contributesTo:"header" name:"If-Match"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GetWorkRequestRequest) String() string {
+func (request UpdateReplicatedCacheRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GetWorkRequestRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request UpdateReplicatedCacheRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GetWorkRequestRequest) RetryPolicy() *common.RetryPolicy {
+func (request UpdateReplicatedCacheRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GetWorkRequestResponse wrapper for the GetWorkRequest operation
-type GetWorkRequestResponse struct {
+// UpdateReplicatedCacheResponse wrapper for the UpdateReplicatedCache operation
+type UpdateReplicatedCacheResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
-
-	// The WorkRequest instance
-	WorkRequest `presentIn:"body"`
 
 	// A unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request, please provide
@@ -55,11 +63,11 @@ type GetWorkRequestResponse struct {
 	Etag *string `presentIn:"header" name:"etag"`
 }
 
-func (response GetWorkRequestResponse) String() string {
+func (response UpdateReplicatedCacheResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GetWorkRequestResponse) HTTPResponse() *http.Response {
+func (response UpdateReplicatedCacheResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }
