@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// BudgetsControlPlane API
+// Budgets API
 //
-// A description of the BudgetsControlPlane API
+// Use the Budgets API to manage budgets and budget alerts.
 //
 
 package budget
@@ -12,8 +12,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AlertType ACTUAL means the alert will trigger based on actual usage.
-// FORECAST means the alert will trigger based on predicted usage.
+// AlertType Valid values are ACTUAL (the alert will trigger based on actual usage) or
+// FORECAST (the alert will trigger based on predicted usage).
 type AlertType struct {
 }
 

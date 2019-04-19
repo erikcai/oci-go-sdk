@@ -23,6 +23,49 @@ func createStreamAdminClientWithProvider(p common.ConfigurationProvider, testCon
 }
 
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+func TestStreamAdminClientCreateArchiver(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "CreateArchiver")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateArchiver is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "CreateArchiver", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "CreateArchiver")
+	assert.NoError(t, err)
+
+	type CreateArchiverRequestInfo struct {
+		ContainerId string
+		Request     streaming.CreateArchiverRequest
+	}
+
+	var requests []CreateArchiverRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreateArchiver(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestStreamAdminClientCreateStream(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -109,6 +152,49 @@ func TestStreamAdminClientDeleteStream(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+func TestStreamAdminClientGetArchiver(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "GetArchiver")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetArchiver is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "GetArchiver", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "GetArchiver")
+	assert.NoError(t, err)
+
+	type GetArchiverRequestInfo struct {
+		ContainerId string
+		Request     streaming.GetArchiverRequest
+	}
+
+	var requests []GetArchiverRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetArchiver(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestStreamAdminClientGetStream(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -144,49 +230,6 @@ func TestStreamAdminClientGetStream(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetStream(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
-func TestStreamAdminClientListStreamingConsumption(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("streaming", "ListStreamingConsumption")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListStreamingConsumption is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "ListStreamingConsumption", createStreamAdminClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(streaming.StreamAdminClient)
-
-	body, err := testClient.getRequests("streaming", "ListStreamingConsumption")
-	assert.NoError(t, err)
-
-	type ListStreamingConsumptionRequestInfo struct {
-		ContainerId string
-		Request     streaming.ListStreamingConsumptionRequest
-	}
-
-	var requests []ListStreamingConsumptionRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
-			response, err := c.ListStreamingConsumption(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -240,6 +283,135 @@ func TestStreamAdminClientListStreams(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+func TestStreamAdminClientStartArchiver(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "StartArchiver")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("StartArchiver is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "StartArchiver", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "StartArchiver")
+	assert.NoError(t, err)
+
+	type StartArchiverRequestInfo struct {
+		ContainerId string
+		Request     streaming.StartArchiverRequest
+	}
+
+	var requests []StartArchiverRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.StartArchiver(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+func TestStreamAdminClientStopArchiver(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "StopArchiver")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("StopArchiver is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "StopArchiver", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "StopArchiver")
+	assert.NoError(t, err)
+
+	type StopArchiverRequestInfo struct {
+		ContainerId string
+		Request     streaming.StopArchiverRequest
+	}
+
+	var requests []StopArchiverRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.StopArchiver(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+func TestStreamAdminClientUpdateArchiver(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "UpdateArchiver")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateArchiver is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "UpdateArchiver", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "UpdateArchiver")
+	assert.NoError(t, err)
+
+	type UpdateArchiverRequestInfo struct {
+		ContainerId string
+		Request     streaming.UpdateArchiverRequest
+	}
+
+	var requests []UpdateArchiverRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateArchiver(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

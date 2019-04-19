@@ -747,49 +747,6 @@ func TestDatabaseClientDeleteDbHome(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientFailoverAutonomousContainerDatabaseMissionCriticalAssociation(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "FailoverAutonomousContainerDatabaseMissionCriticalAssociation")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("FailoverAutonomousContainerDatabaseMissionCriticalAssociation is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "FailoverAutonomousContainerDatabaseMissionCriticalAssociation", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "FailoverAutonomousContainerDatabaseMissionCriticalAssociation")
-	assert.NoError(t, err)
-
-	type FailoverAutonomousContainerDatabaseMissionCriticalAssociationRequestInfo struct {
-		ContainerId string
-		Request     database.FailoverAutonomousContainerDatabaseMissionCriticalAssociationRequest
-	}
-
-	var requests []FailoverAutonomousContainerDatabaseMissionCriticalAssociationRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
-			response, err := c.FailoverAutonomousContainerDatabaseMissionCriticalAssociation(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientFailoverDataGuardAssociation(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -962,49 +919,6 @@ func TestDatabaseClientGetAutonomousContainerDatabase(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientGetAutonomousContainerDatabaseMissionCriticalAssociation(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "GetAutonomousContainerDatabaseMissionCriticalAssociation")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetAutonomousContainerDatabaseMissionCriticalAssociation is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousContainerDatabaseMissionCriticalAssociation", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "GetAutonomousContainerDatabaseMissionCriticalAssociation")
-	assert.NoError(t, err)
-
-	type GetAutonomousContainerDatabaseMissionCriticalAssociationRequestInfo struct {
-		ContainerId string
-		Request     database.GetAutonomousContainerDatabaseMissionCriticalAssociationRequest
-	}
-
-	var requests []GetAutonomousContainerDatabaseMissionCriticalAssociationRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
-			response, err := c.GetAutonomousContainerDatabaseMissionCriticalAssociation(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientGetAutonomousDataWarehouse(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -1170,49 +1084,6 @@ func TestDatabaseClientGetAutonomousDatabaseBackup(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetAutonomousDatabaseBackup(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientGetAutonomousDatabaseMissionCriticalAssociation(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "GetAutonomousDatabaseMissionCriticalAssociation")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetAutonomousDatabaseMissionCriticalAssociation is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousDatabaseMissionCriticalAssociation", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "GetAutonomousDatabaseMissionCriticalAssociation")
-	assert.NoError(t, err)
-
-	type GetAutonomousDatabaseMissionCriticalAssociationRequestInfo struct {
-		ContainerId string
-		Request     database.GetAutonomousDatabaseMissionCriticalAssociationRequest
-	}
-
-	var requests []GetAutonomousDatabaseMissionCriticalAssociationRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
-			response, err := c.GetAutonomousDatabaseMissionCriticalAssociation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1922,58 +1793,6 @@ func TestDatabaseClientLaunchDbSystem(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientListAutonomousContainerDatabaseMissionCriticalAssociations(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "ListAutonomousContainerDatabaseMissionCriticalAssociations")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListAutonomousContainerDatabaseMissionCriticalAssociations is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousContainerDatabaseMissionCriticalAssociations", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "ListAutonomousContainerDatabaseMissionCriticalAssociations")
-	assert.NoError(t, err)
-
-	type ListAutonomousContainerDatabaseMissionCriticalAssociationsRequestInfo struct {
-		ContainerId string
-		Request     database.ListAutonomousContainerDatabaseMissionCriticalAssociationsRequest
-	}
-
-	var requests []ListAutonomousContainerDatabaseMissionCriticalAssociationsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*database.ListAutonomousContainerDatabaseMissionCriticalAssociationsRequest)
-				return c.ListAutonomousContainerDatabaseMissionCriticalAssociations(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]database.ListAutonomousContainerDatabaseMissionCriticalAssociationsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(database.ListAutonomousContainerDatabaseMissionCriticalAssociationsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientListAutonomousContainerDatabases(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2172,58 +1991,6 @@ func TestDatabaseClientListAutonomousDatabaseBackups(t *testing.T) {
 			typedListResponses := make([]database.ListAutonomousDatabaseBackupsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(database.ListAutonomousDatabaseBackupsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientListAutonomousDatabaseMissionCriticalAssociations(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "ListAutonomousDatabaseMissionCriticalAssociations")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListAutonomousDatabaseMissionCriticalAssociations is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDatabaseMissionCriticalAssociations", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "ListAutonomousDatabaseMissionCriticalAssociations")
-	assert.NoError(t, err)
-
-	type ListAutonomousDatabaseMissionCriticalAssociationsRequestInfo struct {
-		ContainerId string
-		Request     database.ListAutonomousDatabaseMissionCriticalAssociationsRequest
-	}
-
-	var requests []ListAutonomousDatabaseMissionCriticalAssociationsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*database.ListAutonomousDatabaseMissionCriticalAssociationsRequest)
-				return c.ListAutonomousDatabaseMissionCriticalAssociations(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]database.ListAutonomousDatabaseMissionCriticalAssociationsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(database.ListAutonomousDatabaseMissionCriticalAssociationsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -3445,49 +3212,6 @@ func TestDatabaseClientStopAutonomousDatabase(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.StopAutonomousDatabase(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientSwitchoverAutonomousContainerDatabaseMissionCriticalAssociation(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "SwitchoverAutonomousContainerDatabaseMissionCriticalAssociation")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("SwitchoverAutonomousContainerDatabaseMissionCriticalAssociation is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "SwitchoverAutonomousContainerDatabaseMissionCriticalAssociation", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "SwitchoverAutonomousContainerDatabaseMissionCriticalAssociation")
-	assert.NoError(t, err)
-
-	type SwitchoverAutonomousContainerDatabaseMissionCriticalAssociationRequestInfo struct {
-		ContainerId string
-		Request     database.SwitchoverAutonomousContainerDatabaseMissionCriticalAssociationRequest
-	}
-
-	var requests []SwitchoverAutonomousContainerDatabaseMissionCriticalAssociationRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
-			response, err := c.SwitchoverAutonomousContainerDatabaseMissionCriticalAssociation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

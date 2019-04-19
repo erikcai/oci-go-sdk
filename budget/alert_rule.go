@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// BudgetsControlPlane API
+// Budgets API
 //
-// A description of the BudgetsControlPlane API
+// Use the Budgets API to manage budgets and budget alerts.
 //
 
 package budget
@@ -24,8 +24,8 @@ type AlertRule struct {
 	// The name of the alert rule.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// ACTUAL means the alert will trigger based on actual usage.
-	// FORECAST means the alert will trigger based on predicted usage.
+	// The type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or
+	// FORECAST (the alert will trigger based on predicted usage).
 	Type AlertRuleTypeEnum `mandatory:"true" json:"type"`
 
 	// The threshold for triggering the alert. If thresholdType is PERCENTAGE, the maximum value is 10000.
@@ -37,16 +37,17 @@ type AlertRule struct {
 	// The current state of the alert rule.
 	LifecycleState AlertRuleLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The audience that will received the alert when it triggers.
+	// Delimited list of email addresses to receive the alert when it triggers.
+	// Delimiter character can be comma, space, TAB, or semicolon.
 	Recipients *string `mandatory:"true" json:"recipients"`
 
-	// Time when budget was created
+	// Time budget was created
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// Time when budget was updated
+	// Time budget was updated
 	TimeUpdated *common.SDKTime `mandatory:"true" json:"timeUpdated"`
 
-	// Custom message that will be sent when alert is triggered
+	// Custom message sent when alert is triggered
 	Message *string `mandatory:"false" json:"message"`
 
 	// The description of the alert rule.
@@ -55,12 +56,14 @@ type AlertRule struct {
 	// Version of the alert rule. Starts from 1 and increments by 1.
 	Version *int `mandatory:"false" json:"version"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 

@@ -12,8 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateIpv6Details Attributes availble for updating IPv6. Users can move the IPv6 by specifying the target VNIC ID.
-// Internet access can also be enabled/disabled via isInternetAccessAllowed flag.
+// UpdateIpv6Details The representation of UpdateIpv6Details
 type UpdateIpv6Details struct {
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -31,14 +30,16 @@ type UpdateIpv6Details struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Whether IPv6 is usable for intenet communication. Internet access via IPv6 will not be allowed for
-	// private subnet the same way as IPv4. Internet access will be enabled by default for a public subnet.
-	// If VCN has IPv6 enabled with a custom IPv6 CIDR, a different public IPv6 address will be assigned
-	// for a particular IPv6.
+	// Whether the IPv6 can be used for internet communication. Allowed by default for an IPv6 in
+	// a public subnet. Never allowed for an IPv6 in a private subnet. If the value is `true`, the
+	// IPv6 uses its public IP address for internet communication.
+	// If you switch this from `true` to `false`, the `publicIpAddress` attribute for the IPv6
+	// becomes null.
+	// Example: `false`
 	IsInternetAccessAllowed *bool `mandatory:"false" json:"isInternetAccessAllowed"`
 
-	// The OCID of the VNIC to reassign the IPv6 to. The VNIC must
-	// be in the same subnet as the current VNIC.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC to reassign the IPv6 to.
+	// The VNIC must be in the same subnet as the current VNIC.
 	VnicId *string `mandatory:"false" json:"vnicId"`
 }
 

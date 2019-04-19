@@ -39,7 +39,7 @@
     <ons-gateway-spec-spec-file>api.yaml</ons-gateway-spec-spec-file>
     <healthchecks-api-spec-spec-file>ovp-api.yaml</healthchecks-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
-    <rest-api-spec-spec-file>api.yaml</rest-api-spec-spec-file>
+    <rest-api-spec-spec-file>source/api.cond.yaml</rest-api-spec-spec-file>
     <oracache-public-api-spec-file>specs/oracache-public-api-20190501.cond.yaml</oracache-public-api-spec-file>
     <marketplace-api-spec-spec-file>source/marketplace-api-swagger.cond.yaml</marketplace-api-spec-spec-file>
     <autoscaling-public-api-spec-spec-file>source/autoscaling-api-spec.cond.yaml</autoscaling-public-api-spec-spec-file>
@@ -49,7 +49,7 @@
     <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
     <batchservice-api-spec-spec-file>source/batchservice.cond.yaml</batchservice-api-spec-spec-file>
     <fn-api-spec-spec-file>functions-api-spec.cond.yaml</fn-api-spec-spec-file>
-    <budgets-control-plane-spec-spec-file>api.cond.yaml</budgets-control-plane-spec-spec-file>
+    <budgets-control-plane-spec-spec-file>budget.api.cond.yaml</budgets-control-plane-spec-spec-file>
     <quotas-control-plane-api-spec-spec-file>preview/quotas-control-plane-api-spec-20181025.yaml</quotas-control-plane-api-spec-spec-file>
   </properties>
   <dependencies>
@@ -2449,7 +2449,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.557</version>
+        <version>0.2.647</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -2469,7 +2469,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.127</version>
+        <version>0.1.143</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -2539,7 +2539,7 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.1.181</version>
+        <version>0.2.8</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracache</groupId>
@@ -2589,7 +2589,7 @@
       <dependency>
         <groupId>com.oracle.oci.usage.budgets</groupId>
         <artifactId>budgets-control-plane-spec</artifactId>
-        <version>2.2.0</version>
+        <version>2.4.1</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.quotas</groupId>

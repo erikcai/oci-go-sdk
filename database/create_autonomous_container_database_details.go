@@ -27,9 +27,6 @@ type CreateAutonomousContainerDatabaseDetails struct {
 	// The service level agreement type of the Autonomous Container Database. The default is STANDARD. For a Mission Critical Container Database, the specified Autonomous Exadata Infrastructure must be associated with a remote Autonomous Exadata Infrastructure.
 	ServiceLevelAgreementType CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum `mandatory:"false" json:"serviceLevelAgreementType,omitempty"`
 
-	// The OCID of the peer Autonomous Exadata Infrastructure for a Mission Critical Association
-	PeerAutonomousExadataInfrastructureId *string `mandatory:"false" json:"peerAutonomousExadataInfrastructureId"`
-
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Autonomous Container Database.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
@@ -61,13 +58,11 @@ type CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum strin
 
 // Set of constants representing the allowable values for CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum
 const (
-	CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeStandard        CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum = "STANDARD"
-	CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeMissionCritical CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum = "MISSION_CRITICAL"
+	CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeStandard CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum = "STANDARD"
 )
 
 var mappingCreateAutonomousContainerDatabaseDetailsServiceLevelAgreementType = map[string]CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum{
-	"STANDARD":         CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeStandard,
-	"MISSION_CRITICAL": CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeMissionCritical,
+	"STANDARD": CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeStandard,
 }
 
 // GetCreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnumValues Enumerates the set of values for CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum

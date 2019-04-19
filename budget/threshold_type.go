@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// BudgetsControlPlane API
+// Budgets API
 //
-// A description of the BudgetsControlPlane API
+// Use the Budgets API to manage budgets and budget alerts.
 //
 
 package budget
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ThresholdType The type of threshold.
+// ThresholdType The type of threshold. Valid values are PERCENTAGE or ABSOLUTE.
 type ThresholdType struct {
 }
 

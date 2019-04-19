@@ -58,9 +58,6 @@ type AutonomousContainerDatabase struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// The role of the Autonomous Container Database in this Mission Critical Association.
-	Role AutonomousContainerDatabaseRoleEnum `mandatory:"false" json:"role,omitempty"`
-
 	// The availability domain of the Autonomous Container Database.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
@@ -151,31 +148,6 @@ var mappingAutonomousContainerDatabasePatchModel = map[string]AutonomousContaine
 func GetAutonomousContainerDatabasePatchModelEnumValues() []AutonomousContainerDatabasePatchModelEnum {
 	values := make([]AutonomousContainerDatabasePatchModelEnum, 0)
 	for _, v := range mappingAutonomousContainerDatabasePatchModel {
-		values = append(values, v)
-	}
-	return values
-}
-
-// AutonomousContainerDatabaseRoleEnum Enum with underlying type: string
-type AutonomousContainerDatabaseRoleEnum string
-
-// Set of constants representing the allowable values for AutonomousContainerDatabaseRoleEnum
-const (
-	AutonomousContainerDatabaseRolePrimary         AutonomousContainerDatabaseRoleEnum = "PRIMARY"
-	AutonomousContainerDatabaseRoleStandby         AutonomousContainerDatabaseRoleEnum = "STANDBY"
-	AutonomousContainerDatabaseRoleDisabledStandby AutonomousContainerDatabaseRoleEnum = "DISABLED_STANDBY"
-)
-
-var mappingAutonomousContainerDatabaseRole = map[string]AutonomousContainerDatabaseRoleEnum{
-	"PRIMARY":          AutonomousContainerDatabaseRolePrimary,
-	"STANDBY":          AutonomousContainerDatabaseRoleStandby,
-	"DISABLED_STANDBY": AutonomousContainerDatabaseRoleDisabledStandby,
-}
-
-// GetAutonomousContainerDatabaseRoleEnumValues Enumerates the set of values for AutonomousContainerDatabaseRoleEnum
-func GetAutonomousContainerDatabaseRoleEnumValues() []AutonomousContainerDatabaseRoleEnum {
-	values := make([]AutonomousContainerDatabaseRoleEnum, 0)
-	for _, v := range mappingAutonomousContainerDatabaseRole {
 		values = append(values, v)
 	}
 	return values

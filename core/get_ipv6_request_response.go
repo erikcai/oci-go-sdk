@@ -11,7 +11,7 @@ import (
 // GetIpv6Request wrapper for the GetIpv6 operation
 type GetIpv6Request struct {
 
-	// The OCID of the IPv6.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPv6.
 	Ipv6Id *string `mandatory:"true" contributesTo:"path" name:"ipv6Id"`
 
 	// Unique identifier for the request.

@@ -12,11 +12,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateIpv6Details Attributes available for IPv6 creation. VNIC to be attached to is the only required attribute.
-// User can choose to define a specific address and have the address automatically assigned.
+// CreateIpv6Details The representation of CreateIpv6Details
 type CreateIpv6Details struct {
 
-	// The OCID of the VNIC to assign the IPv6 to. The VNIC and IPv6 will be in the same subnet.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC to assign the IPv6 to. The
+	// IPv6 will be in the VNIC's subnet.
 	VnicId *string `mandatory:"true" json:"vnicId"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -36,14 +36,17 @@ type CreateIpv6Details struct {
 
 	// An IPv6 address of your choice. Must be an available IP address within
 	// the subnet's CIDR. If you don't specify a value, Oracle automatically
-	// assigns an IPv6 address from the subnet.
-	// Example: `2001:0db8:0123:4567:89ab:cdef:1234:5678`
+	// assigns an IPv6 address from the subnet. The subnet is the one that
+	// contains the VNIC you specify in `vnicId`.
+	// Example: `2001:0db8:0123:1111:abcd:ef01:2345:6789`
 	IpAddress *string `mandatory:"false" json:"ipAddress"`
 
-	// Whether IPv6 is usable for internet communication. Internet access via IPv6 will not be allowed for
-	// private subnet the same way as IPv4. Internet access will be enabled by default for a public subnet.
-	// If VCN has IPv6 enabled with a custom IPv6 CIDR, a different public IPv6 address will be assigned
-	// for a particular IPv6.
+	// Whether the IPv6 can be used for internet communication. Allowed by default for an IPv6 in
+	// a public subnet. Never allowed for an IPv6 in a private subnet. If the value is `true`, the
+	// IPv6 uses its public IP address for internet communication.
+	// If `isInternetAccessAllowed` is set to `false`, the resulting `publicIpAddress` attribute
+	// for the Ipv6 is null.
+	// Example: `true`
 	IsInternetAccessAllowed *bool `mandatory:"false" json:"isInternetAccessAllowed"`
 }
 

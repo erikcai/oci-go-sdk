@@ -451,6 +451,53 @@ func (client VirtualNetworkClient) changeRemotePeeringConnectionCompartment(ctx 
 	return response, err
 }
 
+// ChangeServiceGatewayCompartment Change the compartment of a Service Gateway
+func (client VirtualNetworkClient) ChangeServiceGatewayCompartment(ctx context.Context, request ChangeServiceGatewayCompartmentRequest) (response ChangeServiceGatewayCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeServiceGatewayCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeServiceGatewayCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeServiceGatewayCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeServiceGatewayCompartmentResponse")
+	}
+	return
+}
+
+// changeServiceGatewayCompartment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) changeServiceGatewayCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/serviceGateways/{serviceGatewayId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeServiceGatewayCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ChangeVirtualCircuitCompartment Change the compartment of the specified set of virtual circuit
 func (client VirtualNetworkClient) ChangeVirtualCircuitCompartment(ctx context.Context, request ChangeVirtualCircuitCompartmentRequest) (response ChangeVirtualCircuitCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3831,7 +3878,7 @@ func (client VirtualNetworkClient) getInternetGateway(ctx context.Context, reque
 // GetIpv6 Gets the specified IPv6. You must specify the object's OCID.
 // Alternatively, you can get the object by using
 // ListIpv6s
-// with the IPv6 address (for example, 2001:0db8:0123:4567:89ab:cdef:1234:5678) and subnet OCID.
+// with the IPv6 address (for example, 2001:0db8:0123:1111:98fe:dcba:9876:4321) and subnet OCID.
 func (client VirtualNetworkClient) GetIpv6(ctx context.Context, request GetIpv6Request) (response GetIpv6Response, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5260,12 +5307,11 @@ func (client VirtualNetworkClient) listInternetGateways(ctx context.Context, req
 
 // ListIpv6s Lists the Ipv6 objects based
 // on one of these filters:
-//   - Subnet OCID.
-//   - VNIC OCID.
-//   - Both IPv6 address and subnet OCID: This lets you get a `ipv6` object based on its address
-//   (for example, 2001:0db8:0123:4567:89ab:cdef:1234:5678) and not its OCID. For comparison,
-//   GetIpv6
-//   requires the OCID.
+//   * Subnet OCID.
+//   * VNIC OCID.
+//   * Both IPv6 address and subnet OCID: This lets you get an `Ipv6` object based on its private
+//   IPv6 address (for example, 2001:0db8:0123:1111:abcd:ef01:2345:6789) and not its OCID. For comparison,
+//   GetIpv6 requires the OCID.
 func (client VirtualNetworkClient) ListIpv6s(ctx context.Context, request ListIpv6sRequest) (response ListIpv6sResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6493,12 +6539,12 @@ func (client VirtualNetworkClient) updateInternetGateway(ctx context.Context, re
 	return response, err
 }
 
-// UpdateIpv6 Updates the specified IPv6 You must specify the object's OCID.
+// UpdateIpv6 Updates the specified IPv6. You must specify the object's OCID.
 // Use this operation if you want to:
-//   - Move an IPv6 to a different VNIC in the same subnet.
-//   - Enable/disable internet access for an IPv6.
-//   - Change the display name for an IPv6.
-//   - Update resource tags.
+//   * Move an IPv6 to a different VNIC in the same subnet.
+//   * Enable/disable internet access for an IPv6.
+//   * Change the display name for an IPv6.
+//   * Update resource tags for an IPv6.
 func (client VirtualNetworkClient) UpdateIpv6(ctx context.Context, request UpdateIpv6Request) (response UpdateIpv6Response, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

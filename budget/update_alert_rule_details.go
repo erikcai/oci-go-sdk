@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// BudgetsControlPlane API
+// Budgets API
 //
-// A description of the BudgetsControlPlane API
+// Use the Budgets API to manage budgets and budget alerts.
 //
 
 package budget
@@ -18,11 +18,13 @@ type UpdateAlertRuleDetails struct {
 	// The name of the alert rule.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// ACTUAL means the alert will trigger based on actual usage.
-	// FORECAST means the alert will trigger based on predicted usage.
+	// Type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or
+	// FORECAST (the alert will trigger based on predicted usage).
 	Type UpdateAlertRuleDetailsTypeEnum `mandatory:"false" json:"type,omitempty"`
 
-	// The threshold for triggering the alert. If thresholdType is PERCENTAGE, the maximum value is 10000.
+	// The threshold for triggering the alert expressed as a whole number or decimal value.
+	// If thresholdType is ABSOLUTE, threshold can have at most 12 digits before the decimal point and up to 2 digits after the decimal point.
+	// If thresholdType is PERCENTAGE, the maximum value is 10000 and can have up to 2 digits after the decimal point.
 	Threshold *float32 `mandatory:"false" json:"threshold"`
 
 	// The type of threshold.
@@ -37,12 +39,14 @@ type UpdateAlertRuleDetails struct {
 	// The message to be delivered to the recipients when alert is triggered
 	Message *string `mandatory:"false" json:"message"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 

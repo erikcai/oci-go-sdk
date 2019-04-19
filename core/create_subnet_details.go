@@ -68,13 +68,11 @@ type CreateSubnetDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// User need to specify an IPv6 CIDR block for the subnet in order to enable IPv6. Otherwise, IPv6 addresses
-	// will not be allowed in the subnet despite VCN having IPv6 enabled. IPv6 can only be enabled for a subnet
-	// if its VCN also has IPv6 enabled. The subnet IPv6 CIDR has to be
-	// - /64 in length
-	// - unique across all subnets in the VCN
-	// - within VCN CIDR range
-	// Example: `2001:0db8:0123:4567::/64`
+	// Use this to enable IPv6 addressing for this subnet. The VCN must be enabled for IPv6.
+	// You can't change this subnet characteristic later. All subnets are /64 in size. The subnet
+	// portion of the IPv6 address is the fourth hextet from the left (1111 in the following example).
+	// For important details about IPv6 addressing in a VCN, see IPv6 Addresses (https://docs.cloud.oracle.com/Content/Network/Concepts/ipv6.htm).
+	// Example: `2001:0db8:0123:1111::/64`
 	Ipv6CidrBlock *string `mandatory:"false" json:"ipv6CidrBlock"`
 
 	// Whether learning mode is enabled for this subnet. The default is `false`.
@@ -96,9 +94,8 @@ type CreateSubnetDetails struct {
 	// If `prohibitPublicIpOnVnic` is set to true, VNICs created in this
 	// subnet cannot have public IP addresses (that is, it's a private
 	// subnet).
-	// For IPv6, if `prohibitPublicIpOnVnic` is set to true, internet access will not be allowed on any
-	// IPv6 attached to VNICs in the subnet. This includes both cases where IPv6s are already globally
-	// unique and when internet access is provided via NPTv6.
+	// For IPv6, if `prohibitPublicIpOnVnic` is set to `true`, internet access is not allowed for any
+	// IPv6s assigned to VNICs in the subnet.
 	// Example: `true`
 	ProhibitPublicIpOnVnic *bool `mandatory:"false" json:"prohibitPublicIpOnVnic"`
 

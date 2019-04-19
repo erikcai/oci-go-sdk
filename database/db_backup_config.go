@@ -37,11 +37,6 @@ type DbBackupConfig struct {
 	// For information about valid region names, see
 	// Regions and Availability Domains (https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm).
 	RemoteRegion *string `mandatory:"false" json:"remoteRegion"`
-
-	// The availability domain of the remote region where the remote automatic incremental backups will be stored.
-	// If you restore the remote automatic backup to create a new DB system, the new DB system will be created in the specified remote region availability domain.
-	// To get a list of availability domains, use the `ListAvailabilityDomains` operation in the Identity and Access Management Service (IAM) API.
-	RemoteAvailabilityDomain *string `mandatory:"false" json:"remoteAvailabilityDomain"`
 }
 
 func (m DbBackupConfig) String() string {

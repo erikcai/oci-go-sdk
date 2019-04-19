@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// BudgetsControlPlane API
+// Budgets API
 //
-// A description of the BudgetsControlPlane API
+// Use the Budgets API to manage budgets and budget alerts.
 //
 
 package budget
@@ -152,7 +152,7 @@ func (client BudgetClient) createBudget(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// DeleteAlertRule Deletes an Alert Rule resource by identifier
+// DeleteAlertRule Deletes a specified Alert Rule resource.
 func (client BudgetClient) DeleteAlertRule(ctx context.Context, request DeleteAlertRuleRequest) (response DeleteAlertRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -194,7 +194,7 @@ func (client BudgetClient) deleteAlertRule(ctx context.Context, request common.O
 	return response, err
 }
 
-// DeleteBudget Deletes a Budget resource by identifier
+// DeleteBudget Deletes a specified Budget resource
 func (client BudgetClient) DeleteBudget(ctx context.Context, request DeleteBudgetRequest) (response DeleteBudgetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -236,7 +236,7 @@ func (client BudgetClient) deleteBudget(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// GetAlertRule Gets an Alert Rule for a Budget by identifier
+// GetAlertRule Gets an Alert Rule for a specified Budget.
 func (client BudgetClient) GetAlertRule(ctx context.Context, request GetAlertRuleRequest) (response GetAlertRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -320,7 +320,7 @@ func (client BudgetClient) getBudget(ctx context.Context, request common.OCIRequ
 	return response, err
 }
 
-// ListAlertRules Returns a list of Alert Rules.
+// ListAlertRules Returns a list of Alert Rules for a specified Budget.
 func (client BudgetClient) ListAlertRules(ctx context.Context, request ListAlertRulesRequest) (response ListAlertRulesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -362,7 +362,13 @@ func (client BudgetClient) listAlertRules(ctx context.Context, request common.OC
 	return response, err
 }
 
-// ListBudgets Returns a list of Budgets.
+// ListBudgets Gets a list of Budgets in a compartment.
+// By default, ListBudgets returns budgets of 'COMPARTMENT' target type and the budget records with only ONE target compartment OCID.
+// To list ALL budgets, set the targetType query parameter to ALL.
+// Example:
+//   'targetType=ALL'
+// Additional targetTypes would be available in future releases. Clients should ignore new targetType
+// or upgrade to latest version of client SDK to handle new targetType.
 func (client BudgetClient) ListBudgets(ctx context.Context, request ListBudgetsRequest) (response ListBudgetsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -404,7 +410,7 @@ func (client BudgetClient) listBudgets(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// UpdateAlertRule Updates the Alert Rule
+// UpdateAlertRule Update an Alert Rule for the budget identified by the OCID.
 func (client BudgetClient) UpdateAlertRule(ctx context.Context, request UpdateAlertRuleRequest) (response UpdateAlertRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -446,7 +452,7 @@ func (client BudgetClient) updateAlertRule(ctx context.Context, request common.O
 	return response, err
 }
 
-// UpdateBudget Updates the Budget
+// UpdateBudget Update a Budget identified by the OCID
 func (client BudgetClient) UpdateBudget(ctx context.Context, request UpdateBudgetRequest) (response UpdateBudgetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

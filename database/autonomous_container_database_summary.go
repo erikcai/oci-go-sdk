@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AutonomousContainerDatabaseSummary An Autonomous Container Database is a container database service that enables the customer to host one or more databases within the container database. There are two types of Autonomous Container Databases, the basic container database, and the Mission Critical container database. A basic container database runs on a single Autonomous Exadata Infrastructure from an availability domain without the Extreme Availability features enabled. A Mission Critical container database runs on two different Autonomous Exadata Infrastructures from two different availability domains, with Extreme Availability enabled.
+// AutonomousContainerDatabaseSummary An Autonomous Container Database is a container database service that enables the customer to host one or more databases within the container database. A basic container database runs on a single Autonomous Exadata Infrastructure from an availability domain without the Extreme Availability features enabled.
 type AutonomousContainerDatabaseSummary struct {
 
 	// The OCID of the Autonomous Container Database.
@@ -57,9 +57,6 @@ type AutonomousContainerDatabaseSummary struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
-
-	// The role of the Autonomous Container Database in this Mission Critical Association.
-	Role AutonomousContainerDatabaseSummaryRoleEnum `mandatory:"false" json:"role,omitempty"`
 
 	// The availability domain of the Autonomous Container Database.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
@@ -151,31 +148,6 @@ var mappingAutonomousContainerDatabaseSummaryPatchModel = map[string]AutonomousC
 func GetAutonomousContainerDatabaseSummaryPatchModelEnumValues() []AutonomousContainerDatabaseSummaryPatchModelEnum {
 	values := make([]AutonomousContainerDatabaseSummaryPatchModelEnum, 0)
 	for _, v := range mappingAutonomousContainerDatabaseSummaryPatchModel {
-		values = append(values, v)
-	}
-	return values
-}
-
-// AutonomousContainerDatabaseSummaryRoleEnum Enum with underlying type: string
-type AutonomousContainerDatabaseSummaryRoleEnum string
-
-// Set of constants representing the allowable values for AutonomousContainerDatabaseSummaryRoleEnum
-const (
-	AutonomousContainerDatabaseSummaryRolePrimary         AutonomousContainerDatabaseSummaryRoleEnum = "PRIMARY"
-	AutonomousContainerDatabaseSummaryRoleStandby         AutonomousContainerDatabaseSummaryRoleEnum = "STANDBY"
-	AutonomousContainerDatabaseSummaryRoleDisabledStandby AutonomousContainerDatabaseSummaryRoleEnum = "DISABLED_STANDBY"
-)
-
-var mappingAutonomousContainerDatabaseSummaryRole = map[string]AutonomousContainerDatabaseSummaryRoleEnum{
-	"PRIMARY":          AutonomousContainerDatabaseSummaryRolePrimary,
-	"STANDBY":          AutonomousContainerDatabaseSummaryRoleStandby,
-	"DISABLED_STANDBY": AutonomousContainerDatabaseSummaryRoleDisabledStandby,
-}
-
-// GetAutonomousContainerDatabaseSummaryRoleEnumValues Enumerates the set of values for AutonomousContainerDatabaseSummaryRoleEnum
-func GetAutonomousContainerDatabaseSummaryRoleEnumValues() []AutonomousContainerDatabaseSummaryRoleEnum {
-	values := make([]AutonomousContainerDatabaseSummaryRoleEnum, 0)
-	for _, v := range mappingAutonomousContainerDatabaseSummaryRole {
 		values = append(values, v)
 	}
 	return values

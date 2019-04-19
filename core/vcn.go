@@ -70,15 +70,19 @@ type Vcn struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// The CIDR IPv6 address block of the VCN.
-	// Example: `2001:0db8:0123:45::/56`
+	// For an IPv6-enabled VCN, this is the IPv6 CIDR block for the VCN's private IP address space.
+	// The VCN size is always /48. If you don't provide a value when creating the VCN, Oracle
+	// provides one and uses that *same* CIDR for the `ipv6PublicCidrBlock`. If you do provide a
+	// value, Oracle provides a *different* CIDR for the `ipv6PublicCidrBlock`.
+	// Example: `2001:0db8:0123::/48`
 	Ipv6CidrBlock *string `mandatory:"false" json:"ipv6CidrBlock"`
 
-	// The public CIDR IPv6 address block of the VCN. The public CIDR is always provided by Oracle.
-	// If a user does not provide `ipv6CidrBlock` when creating a VCN, Oracle will assign
-	// the same CIDR for both `ipv6CidrBlock` and `ipv6PublicCidrBlock`. Public CIDR is used to provide
-	// public IPv6 for addresses that come from a custom IPv6 CIDR which are considered private.
-	// Example: `2001:0db8:0123:45::/56`
+	// For an IPv6-enabled VCN, this is the IPv6 CIDR block for the VCN's public IP address space.
+	// The VCN size is always /48. This CIDR is always provided by Oracle. If you don't provide a
+	// custom CIDR for the `ipv6CidrBlock` when creating the VCN, Oracle assigns that value and also
+	// uses it for `ipv6PublicCidrBlock`. Oracle uses addresses from this block for the `publicIpAddress`
+	// attribute of an Ipv6 that has internet access allowed.
+	// Example: `2001:0db8:0123::/48`
 	Ipv6PublicCidrBlock *string `mandatory:"false" json:"ipv6PublicCidrBlock"`
 
 	// The date and time the VCN was created, in the format defined by RFC3339.

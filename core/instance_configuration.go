@@ -42,6 +42,8 @@ type InstanceConfiguration struct {
 
 	InstanceDetails InstanceConfigurationInstanceDetails `mandatory:"false" json:"instanceDetails"`
 
+	// The required details when using the LaunchInstanceConfiguration operation.
+	// These attributes are optional when using the CreateInstanceConfiguration operation.
 	DeferredFields []string `mandatory:"false" json:"deferredFields"`
 }
 

@@ -18,11 +18,14 @@ type CreateInstancePoolDetails struct {
 	// The OCID of the compartment containing the instance pool
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID of the instance configuration associated to the instance pool.
+	// The OCID of the instance configuration associated with the instance pool.
 	InstanceConfigurationId *string `mandatory:"true" json:"instanceConfigurationId"`
 
-	// The placement configurations for the instance pool.
-	// There should be 1 placement configuration for each desired AD.
+	// The placement configurations for the instance pool. Provide one placement configuration for
+	// each availability domain.
+	// To use the instance pool with a regional subnet, provide a placement configuration for
+	// each availability domain, and include the regional subnet in each placement
+	// configuration.
 	PlacementConfigurations []CreateInstancePoolPlacementConfigurationDetails `mandatory:"true" json:"placementConfigurations"`
 
 	// The number of instances that should be in the instance pool.

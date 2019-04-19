@@ -70,6 +70,9 @@ type ListStreamsResponse struct {
 	// Pagination token
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
+	// Pagination token
+	OpcPrevPage *string `presentIn:"header" name:"opc-prev-page"`
+
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`

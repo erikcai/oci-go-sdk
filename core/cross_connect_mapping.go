@@ -33,9 +33,9 @@ import (
 // goes from Oracle to the customer's edge router, then the customer specifies the BGP
 // peering information. There's one exception: for a public virtual circuit, Oracle
 // specifies the BGP IPv4 addresses.
-// Every CrossConnectMapping must have BGP IPv4 peering addresses. BGP IPv6 peering
-// addresses are optional. If BGP IPv6 addresses are provided customer will be able
-// to exchange IPv6 routes with Oracle.
+// Every `CrossConnectMapping` must have BGP IPv4 peering addresses. BGP IPv6 peering
+// addresses are optional. If BGP IPv6 addresses are provided, the customer can
+// exchange IPv6 routes with Oracle.
 type CrossConnectMapping struct {
 
 	// The key for BGP MD5 authentication. Only applicable if your system
