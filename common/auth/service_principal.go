@@ -24,8 +24,9 @@ func newServicePrincipalKeyProvider(tenancyID, region string, cert, key []byte, 
 			append(intermediateCertificateRetrievers, newStaticX509CertificateRetriever(intermediate, key, passphrase))
 	}
 
-	federationClient, err := newX509FederationClient(
-		common.Region(region), tenancyID, leafCertificateRetriever, intermediateCertificateRetrievers, true, *clientModifier)
+	federationClient, err := newX509FederationClientWithPurpose(
+		common.Region(region), tenancyID, leafCertificateRetriever,
+		intermediateCertificateRetrievers, true, *clientModifier, defaultTokenPurpose)
 
 	if err != nil {
 		err = fmt.Errorf("failed to create federation client: %s", err.Error())
@@ -72,6 +73,11 @@ func NewServicePrincipalConfigurationProviderWithCustomClient(modifier func(comm
 		return nil, fmt.Errorf("failed to create a new key provider: %s", err.Error())
 	}
 	return servicePrincipalConfigurationProvider{keyProvider: keyProvider, region: region, tenancyID: tenancyID}, nil
+}
+
+//NewServicePrincipalWithInstancePrincipalConfigurationProvider create a S2S configuration provider by acquiring credentials via instance principals
+func NewServicePrincipalWithInstancePrincipalConfigurationProvider(region common.Region) (common.ConfigurationProvider, error) {
+	return newInstancePrincipalConfigurationProvider(region, servicePrincipalTokenPurpose, nil)
 }
 
 func (p servicePrincipalConfigurationProvider) PrivateRSAKey() (*rsa.PrivateKey, error) {

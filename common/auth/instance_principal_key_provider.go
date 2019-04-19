@@ -41,7 +41,8 @@ type instancePrincipalKeyProvider struct {
 // The x509FederationClient caches the security token in memory until it is expired.  Thus, even if a client obtains a
 // KeyID that is not expired at the moment, the PrivateRSAKey that the client acquires at a next moment could be
 // invalid because the KeyID could be already expired.
-func newInstancePrincipalKeyProvider(modifier func(common.HTTPRequestDispatcher) (common.HTTPRequestDispatcher, error)) (provider *instancePrincipalKeyProvider, err error) {
+func newInstancePrincipalKeyProvider(modifier func(common.HTTPRequestDispatcher) (common.HTTPRequestDispatcher, error),
+	tokenPurpose string) (provider *instancePrincipalKeyProvider, err error) {
 	clientModifier := newDispatcherModifier(modifier)
 
 	client, err := clientModifier.Modify(&http.Client{})
@@ -72,7 +73,8 @@ func newInstancePrincipalKeyProvider(modifier func(common.HTTPRequestDispatcher)
 	}
 	tenancyID := extractTenancyIDFromCertificate(leafCertificateRetriever.Certificate())
 
-	federationClient, err := newX509FederationClient(region, tenancyID, leafCertificateRetriever, intermediateCertificateRetrievers, true, *clientModifier)
+	federationClient, err := newX509FederationClientWithPurpose(region, tenancyID, leafCertificateRetriever,
+		intermediateCertificateRetrievers, true, *clientModifier, tokenPurpose)
 
 	if err != nil {
 		err = fmt.Errorf("failed to create federation client: %s", err.Error())

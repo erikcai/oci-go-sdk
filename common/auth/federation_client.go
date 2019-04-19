@@ -36,14 +36,17 @@ type x509FederationClient struct {
 	authClient                        *common.BaseClient
 	mux                               sync.Mutex
 	skipTenancyValidation             bool
+	tokenPurpose                      string
 }
 
-func newX509FederationClient(region common.Region, tenancyID string, leafCertificateRetriever x509CertificateRetriever, intermediateCertificateRetrievers []x509CertificateRetriever, skipTenancyValidation bool, modifier dispatcherModifier) (federationClient, error) {
+func newX509FederationClientWithPurpose(region common.Region, tenancyID string, leafCertificateRetriever x509CertificateRetriever, intermediateCertificateRetrievers []x509CertificateRetriever,
+	skipTenancyValidation bool, modifier dispatcherModifier, purpose string) (federationClient, error) {
 	client := &x509FederationClient{
 		tenancyID:                         tenancyID,
 		leafCertificateRetriever:          leafCertificateRetriever,
 		intermediateCertificateRetrievers: intermediateCertificateRetrievers,
 		skipTenancyValidation:             skipTenancyValidation,
+		tokenPurpose:                      purpose,
 	}
 	client.sessionKeySupplier = newSessionKeySupplier()
 	authClient := newAuthClient(region, client)
@@ -59,7 +62,8 @@ func newX509FederationClient(region common.Region, tenancyID string, leafCertifi
 	return client, nil
 }
 
-func newX509FederationClientWithCerts(region common.Region, tenancyID string, leafCertificate, leafPassphrase, leafPrivateKey []byte, intermediateCertificates [][]byte, modifier dispatcherModifier) (federationClient, error) {
+func newX509FederationClientWithCerts(region common.Region, tenancyID string, leafCertificate, leafPassphrase, leafPrivateKey []byte,
+	intermediateCertificates [][]byte, modifier dispatcherModifier, purpose string) (federationClient, error) {
 	intermediateRetrievers := make([]x509CertificateRetriever, len(intermediateCertificates))
 	for i, c := range intermediateCertificates {
 		intermediateRetrievers[i] = &staticCertificateRetriever{Passphrase: []byte(""), CertificatePem: c, PrivateKeyPem: nil}
@@ -69,6 +73,7 @@ func newX509FederationClientWithCerts(region common.Region, tenancyID string, le
 		tenancyID:                         tenancyID,
 		leafCertificateRetriever:          &staticCertificateRetriever{Passphrase: leafPassphrase, CertificatePem: leafCertificate, PrivateKeyPem: leafPrivateKey},
 		intermediateCertificateRetrievers: intermediateRetrievers,
+		tokenPurpose:                      purpose,
 	}
 	client.sessionKeySupplier = newSessionKeySupplier()
 	authClient := newAuthClient(region, client)
@@ -211,6 +216,7 @@ type X509FederationDetails struct {
 	Certificate              string   `mandatory:"true" json:"certificate,omitempty"`
 	PublicKey                string   `mandatory:"true" json:"publicKey,omitempty"`
 	IntermediateCertificates []string `mandatory:"false" json:"intermediateCertificates,omitempty"`
+	Purpose                  string   `mandatory:"true" json:"purpose,omitempty"`
 }
 
 type x509FederationResponse struct {
@@ -234,6 +240,7 @@ func (c *x509FederationClient) makeX509FederationRequest() *x509FederationReques
 		Certificate:              certificate,
 		PublicKey:                publicKey,
 		IntermediateCertificates: intermediateCertificates,
+		Purpose:                  c.tokenPurpose,
 	}
 	return &x509FederationRequest{details}
 }
