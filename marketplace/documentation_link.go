@@ -12,16 +12,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Item The model for an item within an array of filter values.
-type Item struct {
+// DocumentationLink A link to a documentation web resource.
+type DocumentationLink struct {
 
-	// The name of the item.
+	// The text describing the resource.
 	Name *string `mandatory:"false" json:"name"`
 
-	// The code of the item.
-	Code *string `mandatory:"false" json:"code"`
+	// The url of the resource.
+	Url *string `mandatory:"false" json:"url"`
+
+	// The category of the document.
+	DocumentCategory *string `mandatory:"false" json:"documentCategory"`
 }
 
-func (m Item) String() string {
+func (m DocumentationLink) String() string {
 	return common.PointerString(m)
 }

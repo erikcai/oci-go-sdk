@@ -12,22 +12,25 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UploadData The model for upload data for images and icons.
-type UploadData struct {
+// Screenshot The model for a listing's screenshot.
+type Screenshot struct {
 
-	// The name used to refer to the upload data.
+	// The name of the screenshot.
 	Name *string `mandatory:"false" json:"name"`
 
-	// The content URL of the upload data.
+	// A description of the screenshot.
+	Description *string `mandatory:"false" json:"description"`
+
+	// The content URL of the screenshot.
 	ContentUrl *string `mandatory:"false" json:"contentUrl"`
 
-	// The MIME type of the upload data.
+	// The MIME type of the screenshot.
 	MimeType *string `mandatory:"false" json:"mimeType"`
 
-	// The file extension of the upload data.
+	// The file extension of the screenshot.
 	FileExtension *string `mandatory:"false" json:"fileExtension"`
 }
 
-func (m UploadData) String() string {
+func (m Screenshot) String() string {
 	return common.PointerString(m)
 }

@@ -41,7 +41,7 @@
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
     <rest-api-spec-spec-file>source/api.cond.yaml</rest-api-spec-spec-file>
     <oracache-public-api-spec-file>specs/oracache-public-api-20190501.cond.yaml</oracache-public-api-spec-file>
-    <marketplace-api-spec-spec-file>source/marketplace-api-swagger.cond.yaml</marketplace-api-spec-spec-file>
+    <marketplace-api-spec-spec-file>release/consumer-service-api.yaml</marketplace-api-spec-spec-file>
     <autoscaling-public-api-spec-spec-file>source/autoscaling-api-spec.cond.yaml</autoscaling-public-api-spec-spec-file>
     <usage-proxy-spec-spec-file>api.yaml</usage-proxy-spec-spec-file>
     <announcements-service-spec-spec-file>source/announcement-service.cond.yaml</announcements-service-spec-spec-file>
@@ -134,8 +134,8 @@
       <artifactId>oracache-public-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.oracle.marketplace</groupId>
-      <artifactId>marketplace-api-spec</artifactId>
+      <groupId>com.oracle.oci.marketplace</groupId>
+      <artifactId>marketplace-consumer-service-spec</artifactId>
     </dependency>
     <dependency>
       <groupId>com.oracle.pic.autoscaling.api</groupId>
@@ -568,8 +568,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>com.oracle.marketplace</groupId>
-                  <artifactId>marketplace-api-spec</artifactId>
+                  <groupId>com.oracle.oci.marketplace</groupId>
+                  <artifactId>marketplace-consumer-service-spec</artifactId>
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/marketplace-api-spec</outputDirectory>
@@ -2547,9 +2547,9 @@
         <version>1.0.0-26</version>
       </dependency>
       <dependency>
-        <groupId>com.oracle.marketplace</groupId>
-        <artifactId>marketplace-api-spec</artifactId>
-        <version>1.9.4</version>
+        <groupId>com.oracle.oci.marketplace</groupId>
+        <artifactId>marketplace-consumer-service-spec</artifactId>
+        <version>0.1.267</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>

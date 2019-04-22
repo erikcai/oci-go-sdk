@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Marketplace REST API endpoint
+// Marketplace Service API
 //
-// Marketplace REST API for loom plugin
+// Manage applications in Oracle Cloud Infrastructure Marketplace.
 //
 
 package marketplace
@@ -12,16 +12,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Region The model of regions of an application
+// Region The model for regions supported by a listing.
 type Region struct {
 
-	// The name of the region
+	// The name of the region.
 	Name *string `mandatory:"false" json:"name"`
 
-	// Code of the region
+	// The code of the region.
 	Code *string `mandatory:"false" json:"code"`
 
-	// Countries of the region
+	// Countries in the region.
 	Countries []Item `mandatory:"false" json:"countries"`
 }
 

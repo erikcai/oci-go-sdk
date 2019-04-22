@@ -12,16 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ErrorEntity The model for the error entity.
-type ErrorEntity struct {
-
-	// A short error code that defines the error.
-	Code *string `mandatory:"true" json:"code"`
-
-	// A human-readable error string.
-	Message *string `mandatory:"true" json:"message"`
+// PackageTypeEnum Possible values for package type.
+type PackageTypeEnum struct {
 }
 
-func (m ErrorEntity) String() string {
+func (m PackageTypeEnum) String() string {
 	return common.PointerString(m)
 }

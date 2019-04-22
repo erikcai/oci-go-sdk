@@ -12,16 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ErrorEntity The model for the error entity.
-type ErrorEntity struct {
-
-	// A short error code that defines the error.
-	Code *string `mandatory:"true" json:"code"`
-
-	// A human-readable error string.
-	Message *string `mandatory:"true" json:"message"`
+// LifecycleStateEnum Possible values for the lifecycle state.
+type LifecycleStateEnum struct {
 }
 
-func (m ErrorEntity) String() string {
+func (m LifecycleStateEnum) String() string {
 	return common.PointerString(m)
 }

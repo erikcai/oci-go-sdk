@@ -12,16 +12,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ErrorEntity The model for the error entity.
-type ErrorEntity struct {
+// NamedLink A link to a web resource.
+type NamedLink struct {
 
-	// A short error code that defines the error.
-	Code *string `mandatory:"true" json:"code"`
+	// The text describing the resource.
+	Name *string `mandatory:"false" json:"name"`
 
-	// A human-readable error string.
-	Message *string `mandatory:"true" json:"message"`
+	// The url of the resource.
+	Url *string `mandatory:"false" json:"url"`
 }
 
-func (m ErrorEntity) String() string {
+func (m NamedLink) String() string {
 	return common.PointerString(m)
 }

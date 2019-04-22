@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Marketplace REST API endpoint
+// Marketplace Service API
 //
-// Marketplace REST API for loom plugin
+// Manage applications in Oracle Cloud Infrastructure Marketplace.
 //
 
 package marketplace
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// LinkEnum Link enums
+// LinkEnum Possible values for the link type.
 type LinkEnum struct {
 }
 
