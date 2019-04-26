@@ -44,6 +44,8 @@ type Archiver struct {
 
 	// The rollover time in milliseconds.
 	BatchRolloverTime *int `mandatory:"false" json:"batchRolloverTime"`
+
+	Error *ArchiverError `mandatory:"false" json:"error"`
 }
 
 func (m Archiver) String() string {

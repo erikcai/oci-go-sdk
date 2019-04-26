@@ -3,7 +3,11 @@
 
 // Core Services API
 //
-// APIs for Networking Service, Compute Service, and Block Volume Service.
+// API covering the Networking (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm),
+// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm), and
+// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm) services. Use this API
+// to manage resources such as virtual cloud networks (VCNs), compute instances, and
+// block storage volumes.
 //
 
 package core
@@ -121,6 +125,19 @@ type InstanceConfigurationLaunchInstanceDetails struct {
 	// Details for creating an instance.
 	// Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.
 	SourceDetails InstanceConfigurationInstanceSourceDetails `mandatory:"false" json:"sourceDetails"`
+
+	// A fault domain is a grouping of hardware and infrastructure within an availability domain.
+	// Each availability domain contains three fault domains. Fault domains let you distribute your
+	// instances so that they are not on the same physical hardware within a single availability domain.
+	// A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
+	// instances in other fault domains.
+	// If you do not specify the fault domain, the system selects one for you. To change the fault
+	// domain for an instance, terminate it and launch a new instance in the preferred fault domain.
+	// To get a list of fault domains, use the
+	// ListFaultDomains operation in the
+	// Identity and Access Management Service API.
+	// Example: `FAULT-DOMAIN-1`
+	FaultDomain *string `mandatory:"false" json:"faultDomain"`
 }
 
 func (m InstanceConfigurationLaunchInstanceDetails) String() string {
@@ -141,6 +158,7 @@ func (m *InstanceConfigurationLaunchInstanceDetails) UnmarshalJSON(data []byte) 
 		Metadata           map[string]string                          `json:"metadata"`
 		Shape              *string                                    `json:"shape"`
 		SourceDetails      instanceconfigurationinstancesourcedetails `json:"sourceDetails"`
+		FaultDomain        *string                                    `json:"faultDomain"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -166,5 +184,6 @@ func (m *InstanceConfigurationLaunchInstanceDetails) UnmarshalJSON(data []byte) 
 	} else {
 		m.SourceDetails = nil
 	}
+	m.FaultDomain = model.FaultDomain
 	return
 }

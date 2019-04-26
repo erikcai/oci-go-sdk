@@ -23,6 +23,49 @@ func createAutoScalingClientWithProvider(p common.ConfigurationProvider, testCon
 }
 
 // IssueRoutingInfo tag="default" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="COM"
+func TestAutoScalingClientChangeAutoScalingConfigurationCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("autoscaling", "ChangeAutoScalingConfigurationCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeAutoScalingConfigurationCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("autoscaling", "AutoScaling", "ChangeAutoScalingConfigurationCompartment", createAutoScalingClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(autoscaling.AutoScalingClient)
+
+	body, err := testClient.getRequests("autoscaling", "ChangeAutoScalingConfigurationCompartment")
+	assert.NoError(t, err)
+
+	type ChangeAutoScalingConfigurationCompartmentRequestInfo struct {
+		ContainerId string
+		Request     autoscaling.ChangeAutoScalingConfigurationCompartmentRequest
+	}
+
+	var requests []ChangeAutoScalingConfigurationCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeAutoScalingConfigurationCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="COM"
 func TestAutoScalingClientCreateAutoScalingConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 

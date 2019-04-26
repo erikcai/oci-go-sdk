@@ -11,10 +11,10 @@ import (
 // UpdateAutoScalingConfigurationRequest wrapper for the UpdateAutoScalingConfiguration operation
 type UpdateAutoScalingConfigurationRequest struct {
 
-	// The OCID of the auto scaling configuration.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
 	AutoScalingConfigurationId *string `mandatory:"true" contributesTo:"path" name:"autoScalingConfigurationId"`
 
-	// AutoScalingConfiguration update details
+	// Update details for an autoscaling configuration.
 	UpdateAutoScalingConfigurationDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

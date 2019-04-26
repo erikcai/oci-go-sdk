@@ -66,6 +66,92 @@ func TestComputeManagementClientAttachLoadBalancer(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
+func TestComputeManagementClientChangeInstanceConfigurationCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeInstanceConfigurationCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeInstanceConfigurationCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "ChangeInstanceConfigurationCompartment", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "ChangeInstanceConfigurationCompartment")
+	assert.NoError(t, err)
+
+	type ChangeInstanceConfigurationCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeInstanceConfigurationCompartmentRequest
+	}
+
+	var requests []ChangeInstanceConfigurationCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeInstanceConfigurationCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
+func TestComputeManagementClientChangeInstancePoolCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeInstancePoolCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeInstancePoolCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "ChangeInstancePoolCompartment", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "ChangeInstancePoolCompartment")
+	assert.NoError(t, err)
+
+	type ChangeInstancePoolCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeInstancePoolCompartmentRequest
+	}
+
+	var requests []ChangeInstancePoolCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeInstancePoolCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientCreateInstanceConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 

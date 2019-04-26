@@ -16,7 +16,7 @@ func createStreamClientWithProvider(p common.ConfigurationProvider, testConfig T
 	return client, err
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamClientConsumerCommit(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -59,7 +59,7 @@ func TestStreamClientConsumerCommit(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamClientConsumerHeartbeat(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -102,7 +102,7 @@ func TestStreamClientConsumerHeartbeat(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamClientCreateCursor(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -145,7 +145,7 @@ func TestStreamClientCreateCursor(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamClientCreateGroupCursor(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -188,7 +188,7 @@ func TestStreamClientCreateGroupCursor(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamClientGetGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -231,7 +231,7 @@ func TestStreamClientGetGroup(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamClientGetMessages(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -274,7 +274,7 @@ func TestStreamClientGetMessages(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamClientPutMessages(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -317,7 +317,7 @@ func TestStreamClientPutMessages(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamClientUpdateGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -366,6 +366,49 @@ func TestVirtualNetworkClientChangeIpsecConnectionCompartment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientChangeNatGatewayCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeNatGatewayCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeNatGatewayCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeNatGatewayCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeNatGatewayCompartment")
+	assert.NoError(t, err)
+
+	type ChangeNatGatewayCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeNatGatewayCompartmentRequest
+	}
+
+	var requests []ChangeNatGatewayCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeNatGatewayCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientChangeRemotePeeringConnectionCompartment(t *testing.T) {
 	defer failTestOnPanic(t)

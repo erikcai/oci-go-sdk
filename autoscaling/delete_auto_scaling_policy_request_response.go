@@ -11,10 +11,10 @@ import (
 // DeleteAutoScalingPolicyRequest wrapper for the DeleteAutoScalingPolicy operation
 type DeleteAutoScalingPolicyRequest struct {
 
-	// The OCID of the auto scaling configuration.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
 	AutoScalingConfigurationId *string `mandatory:"true" contributesTo:"path" name:"autoScalingConfigurationId"`
 
-	// The ID of the auto scaling configuration policy.
+	// The ID of the autoscaling policy.
 	AutoScalingPolicyId *string `mandatory:"true" contributesTo:"path" name:"autoScalingPolicyId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

@@ -11,7 +11,7 @@ import (
 // CreateAutoScalingConfigurationRequest wrapper for the CreateAutoScalingConfiguration operation
 type CreateAutoScalingConfigurationRequest struct {
 
-	// AutoScalingConfiguration creation details
+	// Creation details for an autoscaling configuration.
 	CreateAutoScalingConfigurationDetails `contributesTo:"body"`
 
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

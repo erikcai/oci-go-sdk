@@ -17,6 +17,92 @@ func createKmsManagementClientWithProvider(p common.ConfigurationProvider, testC
 }
 
 // IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsManagementClientCancelKeyDeletion(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "CancelKeyDeletion")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CancelKeyDeletion is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsManagement", "CancelKeyDeletion", createKmsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsManagementClient)
+
+	body, err := testClient.getRequests("keymanagement", "CancelKeyDeletion")
+	assert.NoError(t, err)
+
+	type CancelKeyDeletionRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.CancelKeyDeletionRequest
+	}
+
+	var requests []CancelKeyDeletionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CancelKeyDeletion(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsManagementClientChangeKeyCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "ChangeKeyCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeKeyCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsManagement", "ChangeKeyCompartment", createKmsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsManagementClient)
+
+	body, err := testClient.getRequests("keymanagement", "ChangeKeyCompartment")
+	assert.NoError(t, err)
+
+	type ChangeKeyCompartmentRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.ChangeKeyCompartmentRequest
+	}
+
+	var requests []ChangeKeyCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeKeyCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
 func TestKmsManagementClientCreateKey(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -372,6 +458,49 @@ func TestKmsManagementClientListKeys(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsManagementClientScheduleKeyDeletion(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "ScheduleKeyDeletion")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ScheduleKeyDeletion is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsManagement", "ScheduleKeyDeletion", createKmsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsManagementClient)
+
+	body, err := testClient.getRequests("keymanagement", "ScheduleKeyDeletion")
+	assert.NoError(t, err)
+
+	type ScheduleKeyDeletionRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.ScheduleKeyDeletionRequest
+	}
+
+	var requests []ScheduleKeyDeletionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ScheduleKeyDeletion(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

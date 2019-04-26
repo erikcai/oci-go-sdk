@@ -31,7 +31,7 @@
     <email-api-spec-spec-file>source/email-api-spec.cond.yaml</email-api-spec-spec-file>
     <public-dns-api-spec-spec-file>source/public-dns-api-spec.cond.yaml</public-dns-api-spec-spec-file>
     <maestro-spec-spec-file>api.yaml</maestro-spec-spec-file>
-    <kms-api-spec-spec-file>kms-api-spec-20180608.yaml</kms-api-spec-spec-file>
+    <kms-api-spec-spec-file>source/kms-api-spec-20180608.cond.yaml</kms-api-spec-spec-file>
     <resource-query-service-spec-spec-file>rqs.yaml</resource-query-service-spec-spec-file>
     <clusters-api-spec-spec-file>source/clusters-api-spec.cond.yaml</clusters-api-spec-spec-file>
     <telemetry-public-api-spec-spec-file>source/telemetry-api.cond.yaml</telemetry-public-api-spec-spec-file>
@@ -50,6 +50,7 @@
     <fn-api-spec-spec-file>functions-api-spec.cond.yaml</fn-api-spec-spec-file>
     <budgets-control-plane-spec-spec-file>budget.api.cond.yaml</budgets-control-plane-spec-spec-file>
     <quotas-control-plane-api-spec-spec-file>preview/quotas-control-plane-api-spec-20181025.yaml</quotas-control-plane-api-spec-spec-file>
+    <digital-assistant-spec-spec-file>source/digital-assistant-api.cond.yaml</digital-assistant-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -167,6 +168,10 @@
     <dependency>
       <groupId>com.oracle.oci.quotas</groupId>
       <artifactId>quotas-control-plane-api-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.pic.oda.cp</groupId>
+      <artifactId>digital-assistant-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -712,6 +717,24 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/quotas-control-plane-api-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-digital-assistant-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.pic.oda.cp</groupId>
+                  <artifactId>digital-assistant-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/digital-assistant-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1506,6 +1529,33 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-digital-assistant-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/digital-assistant-spec/source/${digital-assistant-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/digital-assistant-spec/${digital-assistant-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/digital-assistant-spec/${digital-assistant-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-digital-assistant-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/digital-assistant-spec/${digital-assistant-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/digital-assistant-spec/${digital-assistant-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2138,6 +2188,26 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-digital-assistant-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/digital-assistant-spec/${digital-assistant-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>oda</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>oda</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2362,6 +2432,12 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/oda</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -2372,7 +2448,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.647</version>
+        <version>0.2.670</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -2387,7 +2463,7 @@
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
         <artifactId>oralb-api-spec</artifactId>
-        <version>2.1.1</version>
+        <version>4.0.4</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
@@ -2422,7 +2498,7 @@
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
         <artifactId>kms-api-spec</artifactId>
-        <version>0.1.104</version>
+        <version>0.1.115</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.query</groupId>
@@ -2462,7 +2538,7 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.2.8</version>
+        <version>0.2.10</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracache</groupId>
@@ -2477,7 +2553,7 @@
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>
         <artifactId>autoscaling-public-api-spec</artifactId>
-        <version>0.0.25</version>
+        <version>0.0.42</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.usage</groupId>
@@ -2513,6 +2589,11 @@
         <groupId>com.oracle.oci.quotas</groupId>
         <artifactId>quotas-control-plane-api-spec</artifactId>
         <version>0.0.5</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.pic.oda.cp</groupId>
+        <artifactId>digital-assistant-spec</artifactId>
+        <version>0.0.1-20190423.134703-163</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
