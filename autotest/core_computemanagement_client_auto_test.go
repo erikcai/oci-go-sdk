@@ -174,11 +174,23 @@ func TestComputeManagementClientCreateInstanceConfiguration(t *testing.T) {
 	}
 
 	var requests []CreateInstanceConfigurationRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]CreateInstanceConfigurationRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateInstanceConfigurationBase"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "source",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"NONE":     &core.CreateInstanceConfigurationDetails{},
+				"INSTANCE": &core.CreateInstanceConfigurationFromInstanceDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {

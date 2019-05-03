@@ -23,6 +23,92 @@ func createDnsClientWithProvider(p common.ConfigurationProvider, testConfig Test
 }
 
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+func TestDnsClientChangeSteeringPolicyCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dns", "ChangeSteeringPolicyCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeSteeringPolicyCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "ChangeSteeringPolicyCompartment", createDnsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
+
+	body, err := testClient.getRequests("dns", "ChangeSteeringPolicyCompartment")
+	assert.NoError(t, err)
+
+	type ChangeSteeringPolicyCompartmentRequestInfo struct {
+		ContainerId string
+		Request     dns.ChangeSteeringPolicyCompartmentRequest
+	}
+
+	var requests []ChangeSteeringPolicyCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeSteeringPolicyCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+func TestDnsClientChangeZoneCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dns", "ChangeZoneCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeZoneCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "ChangeZoneCompartment", createDnsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
+
+	body, err := testClient.getRequests("dns", "ChangeZoneCompartment")
+	assert.NoError(t, err)
+
+	type ChangeZoneCompartmentRequestInfo struct {
+		ContainerId string
+		Request     dns.ChangeZoneCompartmentRequest
+	}
+
+	var requests []ChangeZoneCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeZoneCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestDnsClientCreateSteeringPolicy(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -422,9 +422,12 @@ func TestDatabaseClientCreateDbHome(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
-				"DATABASE":  &database.CreateDbHomeWithDbSystemIdFromDatabaseDetails{},
-				"DB_BACKUP": &database.CreateDbHomeWithDbSystemIdFromBackupDetails{},
-				"NONE":      &database.CreateDbHomeWithDbSystemIdDetails{},
+				"DATABASE":     &database.CreateDbHomeWithDbSystemIdFromDatabaseDetails{},
+				"DATABASE_V2":  &database.CreateDatabaseHomeFromDatabaseDetails{},
+				"DB_BACKUP":    &database.CreateDbHomeWithDbSystemIdFromBackupDetails{},
+				"DB_BACKUP_V2": &database.CreateDatabaseHomeFromBackupDetails{},
+				"NONE":         &database.CreateDbHomeWithDbSystemIdDetails{},
+				"NONE_V2":      &database.CreateDatabaseHomeDetails{},
 			},
 		}
 

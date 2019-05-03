@@ -96,29 +96,31 @@ type AutonomousContainerDatabaseSummaryLifecycleStateEnum string
 
 // Set of constants representing the allowable values for AutonomousContainerDatabaseSummaryLifecycleStateEnum
 const (
-	AutonomousContainerDatabaseSummaryLifecycleStateProvisioning     AutonomousContainerDatabaseSummaryLifecycleStateEnum = "PROVISIONING"
-	AutonomousContainerDatabaseSummaryLifecycleStateAvailable        AutonomousContainerDatabaseSummaryLifecycleStateEnum = "AVAILABLE"
-	AutonomousContainerDatabaseSummaryLifecycleStateUpdating         AutonomousContainerDatabaseSummaryLifecycleStateEnum = "UPDATING"
-	AutonomousContainerDatabaseSummaryLifecycleStateTerminating      AutonomousContainerDatabaseSummaryLifecycleStateEnum = "TERMINATING"
-	AutonomousContainerDatabaseSummaryLifecycleStateTerminated       AutonomousContainerDatabaseSummaryLifecycleStateEnum = "TERMINATED"
-	AutonomousContainerDatabaseSummaryLifecycleStateFailed           AutonomousContainerDatabaseSummaryLifecycleStateEnum = "FAILED"
-	AutonomousContainerDatabaseSummaryLifecycleStateBackupInProgress AutonomousContainerDatabaseSummaryLifecycleStateEnum = "BACKUP_IN_PROGRESS"
-	AutonomousContainerDatabaseSummaryLifecycleStateRestoring        AutonomousContainerDatabaseSummaryLifecycleStateEnum = "RESTORING"
-	AutonomousContainerDatabaseSummaryLifecycleStateRestoreFailed    AutonomousContainerDatabaseSummaryLifecycleStateEnum = "RESTORE_FAILED"
-	AutonomousContainerDatabaseSummaryLifecycleStateRestarting       AutonomousContainerDatabaseSummaryLifecycleStateEnum = "RESTARTING"
+	AutonomousContainerDatabaseSummaryLifecycleStateProvisioning          AutonomousContainerDatabaseSummaryLifecycleStateEnum = "PROVISIONING"
+	AutonomousContainerDatabaseSummaryLifecycleStateAvailable             AutonomousContainerDatabaseSummaryLifecycleStateEnum = "AVAILABLE"
+	AutonomousContainerDatabaseSummaryLifecycleStateUpdating              AutonomousContainerDatabaseSummaryLifecycleStateEnum = "UPDATING"
+	AutonomousContainerDatabaseSummaryLifecycleStateTerminating           AutonomousContainerDatabaseSummaryLifecycleStateEnum = "TERMINATING"
+	AutonomousContainerDatabaseSummaryLifecycleStateTerminated            AutonomousContainerDatabaseSummaryLifecycleStateEnum = "TERMINATED"
+	AutonomousContainerDatabaseSummaryLifecycleStateFailed                AutonomousContainerDatabaseSummaryLifecycleStateEnum = "FAILED"
+	AutonomousContainerDatabaseSummaryLifecycleStateBackupInProgress      AutonomousContainerDatabaseSummaryLifecycleStateEnum = "BACKUP_IN_PROGRESS"
+	AutonomousContainerDatabaseSummaryLifecycleStateRestoring             AutonomousContainerDatabaseSummaryLifecycleStateEnum = "RESTORING"
+	AutonomousContainerDatabaseSummaryLifecycleStateRestoreFailed         AutonomousContainerDatabaseSummaryLifecycleStateEnum = "RESTORE_FAILED"
+	AutonomousContainerDatabaseSummaryLifecycleStateRestarting            AutonomousContainerDatabaseSummaryLifecycleStateEnum = "RESTARTING"
+	AutonomousContainerDatabaseSummaryLifecycleStateMaintenanceInProgress AutonomousContainerDatabaseSummaryLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 )
 
 var mappingAutonomousContainerDatabaseSummaryLifecycleState = map[string]AutonomousContainerDatabaseSummaryLifecycleStateEnum{
-	"PROVISIONING":       AutonomousContainerDatabaseSummaryLifecycleStateProvisioning,
-	"AVAILABLE":          AutonomousContainerDatabaseSummaryLifecycleStateAvailable,
-	"UPDATING":           AutonomousContainerDatabaseSummaryLifecycleStateUpdating,
-	"TERMINATING":        AutonomousContainerDatabaseSummaryLifecycleStateTerminating,
-	"TERMINATED":         AutonomousContainerDatabaseSummaryLifecycleStateTerminated,
-	"FAILED":             AutonomousContainerDatabaseSummaryLifecycleStateFailed,
-	"BACKUP_IN_PROGRESS": AutonomousContainerDatabaseSummaryLifecycleStateBackupInProgress,
-	"RESTORING":          AutonomousContainerDatabaseSummaryLifecycleStateRestoring,
-	"RESTORE_FAILED":     AutonomousContainerDatabaseSummaryLifecycleStateRestoreFailed,
-	"RESTARTING":         AutonomousContainerDatabaseSummaryLifecycleStateRestarting,
+	"PROVISIONING":            AutonomousContainerDatabaseSummaryLifecycleStateProvisioning,
+	"AVAILABLE":               AutonomousContainerDatabaseSummaryLifecycleStateAvailable,
+	"UPDATING":                AutonomousContainerDatabaseSummaryLifecycleStateUpdating,
+	"TERMINATING":             AutonomousContainerDatabaseSummaryLifecycleStateTerminating,
+	"TERMINATED":              AutonomousContainerDatabaseSummaryLifecycleStateTerminated,
+	"FAILED":                  AutonomousContainerDatabaseSummaryLifecycleStateFailed,
+	"BACKUP_IN_PROGRESS":      AutonomousContainerDatabaseSummaryLifecycleStateBackupInProgress,
+	"RESTORING":               AutonomousContainerDatabaseSummaryLifecycleStateRestoring,
+	"RESTORE_FAILED":          AutonomousContainerDatabaseSummaryLifecycleStateRestoreFailed,
+	"RESTARTING":              AutonomousContainerDatabaseSummaryLifecycleStateRestarting,
+	"MAINTENANCE_IN_PROGRESS": AutonomousContainerDatabaseSummaryLifecycleStateMaintenanceInProgress,
 }
 
 // GetAutonomousContainerDatabaseSummaryLifecycleStateEnumValues Enumerates the set of values for AutonomousContainerDatabaseSummaryLifecycleStateEnum

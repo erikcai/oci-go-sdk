@@ -26,7 +26,7 @@ type CreateDbHomeWithDbSystemIdBase interface {
 
 type createdbhomewithdbsystemidbase struct {
 	JsonData    []byte
-	DbSystemId  *string `mandatory:"true" json:"dbSystemId"`
+	DbSystemId  *string `mandatory:"false" json:"dbSystemId"`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 	Source      string  `json:"source"`
 }
@@ -62,12 +62,24 @@ func (m *createdbhomewithdbsystemidbase) UnmarshalPolymorphicJSON(data []byte) (
 		mm := CreateDbHomeWithDbSystemIdFromDatabaseDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "DATABASE_V2":
+		mm := CreateDatabaseHomeFromDatabaseDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "DB_BACKUP":
 		mm := CreateDbHomeWithDbSystemIdFromBackupDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "DB_BACKUP_V2":
+		mm := CreateDatabaseHomeFromBackupDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "NONE":
 		mm := CreateDbHomeWithDbSystemIdDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "NONE_V2":
+		mm := CreateDatabaseHomeDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:

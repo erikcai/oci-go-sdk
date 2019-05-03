@@ -56,6 +56,8 @@ type AutonomousExadataInfrastructureSummary struct {
 	// The current lifecycle state of the Autonomous Exadata Infrastructure.
 	LifecycleState AutonomousExadataInfrastructureSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
+	MaintenanceWindow *MaintenanceWindow `mandatory:"true" json:"maintenanceWindow"`
+
 	// Additional information about the current lifecycle state of the Autonomous Exadata Infrastructure.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
@@ -64,8 +66,6 @@ type AutonomousExadataInfrastructureSummary struct {
 
 	// The date and time the Autonomous Exadata Infrastructure was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
-
-	MaintenanceWindow *MaintenanceWindow `mandatory:"false" json:"maintenanceWindow"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
 	LastMaintenanceRunId *string `mandatory:"false" json:"lastMaintenanceRunId"`
@@ -93,21 +93,23 @@ type AutonomousExadataInfrastructureSummaryLifecycleStateEnum string
 
 // Set of constants representing the allowable values for AutonomousExadataInfrastructureSummaryLifecycleStateEnum
 const (
-	AutonomousExadataInfrastructureSummaryLifecycleStateProvisioning AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "PROVISIONING"
-	AutonomousExadataInfrastructureSummaryLifecycleStateAvailable    AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "AVAILABLE"
-	AutonomousExadataInfrastructureSummaryLifecycleStateUpdating     AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "UPDATING"
-	AutonomousExadataInfrastructureSummaryLifecycleStateTerminating  AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "TERMINATING"
-	AutonomousExadataInfrastructureSummaryLifecycleStateTerminated   AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "TERMINATED"
-	AutonomousExadataInfrastructureSummaryLifecycleStateFailed       AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "FAILED"
+	AutonomousExadataInfrastructureSummaryLifecycleStateProvisioning          AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "PROVISIONING"
+	AutonomousExadataInfrastructureSummaryLifecycleStateAvailable             AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "AVAILABLE"
+	AutonomousExadataInfrastructureSummaryLifecycleStateUpdating              AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "UPDATING"
+	AutonomousExadataInfrastructureSummaryLifecycleStateTerminating           AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "TERMINATING"
+	AutonomousExadataInfrastructureSummaryLifecycleStateTerminated            AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "TERMINATED"
+	AutonomousExadataInfrastructureSummaryLifecycleStateFailed                AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "FAILED"
+	AutonomousExadataInfrastructureSummaryLifecycleStateMaintenanceInProgress AutonomousExadataInfrastructureSummaryLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 )
 
 var mappingAutonomousExadataInfrastructureSummaryLifecycleState = map[string]AutonomousExadataInfrastructureSummaryLifecycleStateEnum{
-	"PROVISIONING": AutonomousExadataInfrastructureSummaryLifecycleStateProvisioning,
-	"AVAILABLE":    AutonomousExadataInfrastructureSummaryLifecycleStateAvailable,
-	"UPDATING":     AutonomousExadataInfrastructureSummaryLifecycleStateUpdating,
-	"TERMINATING":  AutonomousExadataInfrastructureSummaryLifecycleStateTerminating,
-	"TERMINATED":   AutonomousExadataInfrastructureSummaryLifecycleStateTerminated,
-	"FAILED":       AutonomousExadataInfrastructureSummaryLifecycleStateFailed,
+	"PROVISIONING":            AutonomousExadataInfrastructureSummaryLifecycleStateProvisioning,
+	"AVAILABLE":               AutonomousExadataInfrastructureSummaryLifecycleStateAvailable,
+	"UPDATING":                AutonomousExadataInfrastructureSummaryLifecycleStateUpdating,
+	"TERMINATING":             AutonomousExadataInfrastructureSummaryLifecycleStateTerminating,
+	"TERMINATED":              AutonomousExadataInfrastructureSummaryLifecycleStateTerminated,
+	"FAILED":                  AutonomousExadataInfrastructureSummaryLifecycleStateFailed,
+	"MAINTENANCE_IN_PROGRESS": AutonomousExadataInfrastructureSummaryLifecycleStateMaintenanceInProgress,
 }
 
 // GetAutonomousExadataInfrastructureSummaryLifecycleStateEnumValues Enumerates the set of values for AutonomousExadataInfrastructureSummaryLifecycleStateEnum
