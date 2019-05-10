@@ -14,7 +14,7 @@ type GetResourceTypeRequest struct {
 	// The name of the resource type.
 	Name *string `mandatory:"true" contributesTo:"path" name:"name"`
 
-	// Customer part of the request identifier token. If you need to contact Oracle about a particular
+	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular
 	// request, please provide the complete request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 

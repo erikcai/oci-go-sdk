@@ -28,10 +28,10 @@ type CreateArchiverDetails struct {
 	StartPosition CreateArchiverDetailsStartPositionEnum `mandatory:"true" json:"startPosition"`
 
 	// The batch rollover size in bytes.
-	BatchRolloverSize *int `mandatory:"true" json:"batchRolloverSize"`
+	BatchRolloverSizeInMBs *int `mandatory:"true" json:"batchRolloverSizeInMBs"`
 
 	// The rollover time in milliseconds.
-	BatchRolloverTime *int `mandatory:"true" json:"batchRolloverTime"`
+	BatchRolloverTimeInSeconds *int `mandatory:"true" json:"batchRolloverTimeInSeconds"`
 }
 
 func (m CreateArchiverDetails) String() string {

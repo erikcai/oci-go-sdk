@@ -23,6 +23,135 @@ func createDatabaseClientWithProvider(p common.ConfigurationProvider, testConfig
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeAutonomousDataWarehouseCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeAutonomousDataWarehouseCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeAutonomousDataWarehouseCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeAutonomousDataWarehouseCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeAutonomousDataWarehouseCompartment")
+	assert.NoError(t, err)
+
+	type ChangeAutonomousDataWarehouseCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeAutonomousDataWarehouseCompartmentRequest
+	}
+
+	var requests []ChangeAutonomousDataWarehouseCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeAutonomousDataWarehouseCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeAutonomousDatabaseCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeAutonomousDatabaseCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeAutonomousDatabaseCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeAutonomousDatabaseCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeAutonomousDatabaseCompartment")
+	assert.NoError(t, err)
+
+	type ChangeAutonomousDatabaseCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeAutonomousDatabaseCompartmentRequest
+	}
+
+	var requests []ChangeAutonomousDatabaseCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeAutonomousDatabaseCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeDbSystemCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeDbSystemCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeDbSystemCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeDbSystemCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeDbSystemCompartment")
+	assert.NoError(t, err)
+
+	type ChangeDbSystemCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeDbSystemCompartmentRequest
+	}
+
+	var requests []ChangeDbSystemCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeDbSystemCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientCompleteExternalBackupJob(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -422,12 +551,9 @@ func TestDatabaseClientCreateDbHome(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
-				"DATABASE":     &database.CreateDbHomeWithDbSystemIdFromDatabaseDetails{},
-				"DATABASE_V2":  &database.CreateDatabaseHomeFromDatabaseDetails{},
-				"DB_BACKUP":    &database.CreateDbHomeWithDbSystemIdFromBackupDetails{},
-				"DB_BACKUP_V2": &database.CreateDatabaseHomeFromBackupDetails{},
-				"NONE":         &database.CreateDbHomeWithDbSystemIdDetails{},
-				"NONE_V2":      &database.CreateDatabaseHomeDetails{},
+				"DATABASE":  &database.CreateDbHomeWithDbSystemIdFromDatabaseDetails{},
+				"DB_BACKUP": &database.CreateDbHomeWithDbSystemIdFromBackupDetails{},
+				"NONE":      &database.CreateDbHomeWithDbSystemIdDetails{},
 			},
 		}
 

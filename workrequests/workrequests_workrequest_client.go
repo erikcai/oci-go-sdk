@@ -37,7 +37,7 @@ func NewWorkRequestClientWithConfigurationProvider(configProvider common.Configu
 
 // SetRegion overrides the region of this client.
 func (client *WorkRequestClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("iaas")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("iaas", "https://iaas.{region}.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

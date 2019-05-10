@@ -18,8 +18,8 @@ type WorkRequestSummary struct {
 	// The asynchronous operation tracked by this work request.
 	OperationType *string `mandatory:"true" json:"operationType"`
 
-	// The status of the work request. (ACCEPTED, IN_PROGRESS, FAILED, SUCCEEDED)
-	Status *string `mandatory:"true" json:"status"`
+	// The status of the work request.
+	Status WorkRequestSummaryStatusEnum `mandatory:"true" json:"status"`
 
 	// OCID identifying this work request.
 	Id *string `mandatory:"true" json:"id"`
@@ -42,4 +42,35 @@ type WorkRequestSummary struct {
 
 func (m WorkRequestSummary) String() string {
 	return common.PointerString(m)
+}
+
+// WorkRequestSummaryStatusEnum Enum with underlying type: string
+type WorkRequestSummaryStatusEnum string
+
+// Set of constants representing the allowable values for WorkRequestSummaryStatusEnum
+const (
+	WorkRequestSummaryStatusAccepted   WorkRequestSummaryStatusEnum = "ACCEPTED"
+	WorkRequestSummaryStatusInProgress WorkRequestSummaryStatusEnum = "IN_PROGRESS"
+	WorkRequestSummaryStatusFailed     WorkRequestSummaryStatusEnum = "FAILED"
+	WorkRequestSummaryStatusSucceeded  WorkRequestSummaryStatusEnum = "SUCCEEDED"
+	WorkRequestSummaryStatusCanceling  WorkRequestSummaryStatusEnum = "CANCELING"
+	WorkRequestSummaryStatusCanceled   WorkRequestSummaryStatusEnum = "CANCELED"
+)
+
+var mappingWorkRequestSummaryStatus = map[string]WorkRequestSummaryStatusEnum{
+	"ACCEPTED":    WorkRequestSummaryStatusAccepted,
+	"IN_PROGRESS": WorkRequestSummaryStatusInProgress,
+	"FAILED":      WorkRequestSummaryStatusFailed,
+	"SUCCEEDED":   WorkRequestSummaryStatusSucceeded,
+	"CANCELING":   WorkRequestSummaryStatusCanceling,
+	"CANCELED":    WorkRequestSummaryStatusCanceled,
+}
+
+// GetWorkRequestSummaryStatusEnumValues Enumerates the set of values for WorkRequestSummaryStatusEnum
+func GetWorkRequestSummaryStatusEnumValues() []WorkRequestSummaryStatusEnum {
+	values := make([]WorkRequestSummaryStatusEnum, 0)
+	for _, v := range mappingWorkRequestSummaryStatus {
+		values = append(values, v)
+	}
+	return values
 }

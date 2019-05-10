@@ -15,9 +15,6 @@ import (
 // Archiver Represents the current state of the stream archiver.
 type Archiver struct {
 
-	// The archiver user identifier.
-	UserId *string `mandatory:"false" json:"userId"`
-
 	// The archiver group identifier.
 	GroupId *string `mandatory:"false" json:"groupId"`
 
@@ -40,11 +37,12 @@ type Archiver struct {
 	StartPosition ArchiverStartPositionEnum `mandatory:"false" json:"startPosition,omitempty"`
 
 	// The batch rollover size in bytes.
-	BatchRolloverSize *int `mandatory:"false" json:"batchRolloverSize"`
+	BatchRolloverSizeInMBs *int `mandatory:"false" json:"batchRolloverSizeInMBs"`
 
 	// The rollover time in milliseconds.
-	BatchRolloverTime *int `mandatory:"false" json:"batchRolloverTime"`
+	BatchRolloverTimeInSeconds *int `mandatory:"false" json:"batchRolloverTimeInSeconds"`
 
+	// If an operation failed this property contained the last error occurred.
 	Error *ArchiverError `mandatory:"false" json:"error"`
 }
 

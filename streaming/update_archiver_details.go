@@ -28,10 +28,10 @@ type UpdateArchiverDetails struct {
 	StartPosition UpdateArchiverDetailsStartPositionEnum `mandatory:"false" json:"startPosition,omitempty"`
 
 	// The batch rollover size in bytes.
-	BatchRolloverSize *int `mandatory:"false" json:"batchRolloverSize"`
+	BatchRolloverSizeInMBs *int `mandatory:"false" json:"batchRolloverSizeInMBs"`
 
 	// The rollover time in milliseconds.
-	BatchRolloverTime *int `mandatory:"false" json:"batchRolloverTime"`
+	BatchRolloverTimeInSeconds *int `mandatory:"false" json:"batchRolloverTimeInSeconds"`
 }
 
 func (m UpdateArchiverDetails) String() string {

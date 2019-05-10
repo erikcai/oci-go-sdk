@@ -32,12 +32,12 @@
     <public-dns-api-spec-spec-file>source/public-dns-api-spec.cond.yaml</public-dns-api-spec-spec-file>
     <maestro-spec-spec-file>api.yaml</maestro-spec-spec-file>
     <kms-api-spec-spec-file>source/kms-api-spec-20180608.cond.yaml</kms-api-spec-spec-file>
-    <resource-query-service-spec-spec-file>rqs.yaml</resource-query-service-spec-spec-file>
+    <resource-query-service-spec-spec-file>source/rqs.cond.yaml</resource-query-service-spec-spec-file>
     <clusters-api-spec-spec-file>source/clusters-api-spec.cond.yaml</clusters-api-spec-spec-file>
     <telemetry-public-api-spec-spec-file>source/telemetry-api.cond.yaml</telemetry-public-api-spec-spec-file>
-    <workrequests-api-spec-spec-file>workrequests-api-spec.yaml</workrequests-api-spec-spec-file>
+    <workrequests-api-spec-spec-file>workrequests-api-spec.cond.yaml</workrequests-api-spec-spec-file>
     <ons-gateway-spec-spec-file>api.yaml</ons-gateway-spec-spec-file>
-    <healthchecks-api-spec-spec-file>ovp-api.yaml</healthchecks-api-spec-spec-file>
+    <healthchecks-api-spec-spec-file>health-checks-api-spec-20180501.cond.yaml</healthchecks-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
     <rest-api-spec-spec-file>source/api.cond.yaml</rest-api-spec-spec-file>
     <oracache-public-api-spec-file>specs/oracache-public-api-20190501.cond.yaml</oracache-public-api-spec-file>
@@ -2524,7 +2524,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.670</version>
+        <version>0.2.693</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -2544,7 +2544,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.152</version>
+        <version>0.1.155</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -2579,7 +2579,7 @@
       <dependency>
         <groupId>com.oracle.pic.query</groupId>
         <artifactId>resource-query-service-spec</artifactId>
-        <version>0.0.6</version>
+        <version>0.0.23</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
@@ -2594,7 +2594,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons.workrequests</groupId>
         <artifactId>workrequests-api-spec</artifactId>
-        <version>0.0.13</version>
+        <version>0.0.14</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
@@ -2604,7 +2604,7 @@
       <dependency>
         <groupId>com.oracle.oci</groupId>
         <artifactId>healthchecks-api-spec</artifactId>
-        <version>0.0.1-20181210.154927-6</version>
+        <version>1.1.0-20190508.183610-1</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
@@ -2614,7 +2614,7 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.2.10</version>
+        <version>0.2.11</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracache</groupId>

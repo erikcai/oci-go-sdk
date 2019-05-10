@@ -11,16 +11,16 @@ import (
 // SearchResourcesRequest wrapper for the SearchResources operation
 type SearchResourcesRequest struct {
 
-	// Request parameters describing the search criteria.
+	// Request parameters that describe query criteria.
 	SearchDetails `contributesTo:"body"`
 
-	// The maximum number of items to return.
+	// The maximum number of items to return. The value must be between 1 and 1000.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// The page at which to start retrieving results.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// Customer part of the request identifier token. If you need to contact Oracle about a particular
+	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular
 	// request, please provide the complete request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 

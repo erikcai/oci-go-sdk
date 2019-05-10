@@ -23,6 +23,92 @@ func createHealthChecksClientWithProvider(p common.ConfigurationProvider, testCo
 }
 
 // IssueRoutingInfo tag="default" email="groan-chomskies_us_grp@oracle.com" jiraProject="OHC" opsJiraProject="HC"
+func TestHealthChecksClientChangeHttpMonitorCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("healthchecks", "ChangeHttpMonitorCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeHttpMonitorCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("healthchecks", "HealthChecks", "ChangeHttpMonitorCompartment", createHealthChecksClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(healthchecks.HealthChecksClient)
+
+	body, err := testClient.getRequests("healthchecks", "ChangeHttpMonitorCompartment")
+	assert.NoError(t, err)
+
+	type ChangeHttpMonitorCompartmentRequestInfo struct {
+		ContainerId string
+		Request     healthchecks.ChangeHttpMonitorCompartmentRequest
+	}
+
+	var requests []ChangeHttpMonitorCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeHttpMonitorCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="groan-chomskies_us_grp@oracle.com" jiraProject="OHC" opsJiraProject="HC"
+func TestHealthChecksClientChangePingMonitorCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("healthchecks", "ChangePingMonitorCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangePingMonitorCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("healthchecks", "HealthChecks", "ChangePingMonitorCompartment", createHealthChecksClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(healthchecks.HealthChecksClient)
+
+	body, err := testClient.getRequests("healthchecks", "ChangePingMonitorCompartment")
+	assert.NoError(t, err)
+
+	type ChangePingMonitorCompartmentRequestInfo struct {
+		ContainerId string
+		Request     healthchecks.ChangePingMonitorCompartmentRequest
+	}
+
+	var requests []ChangePingMonitorCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangePingMonitorCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="groan-chomskies_us_grp@oracle.com" jiraProject="OHC" opsJiraProject="HC"
 func TestHealthChecksClientCreateHttpMonitor(t *testing.T) {
 	defer failTestOnPanic(t)
 
