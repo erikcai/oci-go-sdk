@@ -158,6 +158,45 @@ func ExampleObjectStorage_UploadManager_Stream() {
 	// delete bucket
 }
 
+// Example for getting Object Storage namespace of a tenancy that is not their own. This
+// is useful in cross-tenant Object Storage operations. Object Storage namespace can be retrieved using the
+// compartment id of the target tenancy if the user has necessary permissions to access that tenancy.
+//
+// For example if Tenant A wants to access Tenant B's object storage namespace then Tenant A has to define
+// a policy similar to following:
+//
+// DEFINE TENANCY TenantB AS <TenantB OCID>
+// ENDORSE GROUP <TenantA user group OCID> TO {TENANCY_INSPECT} IN TENANCY TenantB
+//
+// and Tenant B should add a policy similar to following:
+//
+// DEFINE TENANCY TenantA AS <TenantA OCID>
+// DEFINE GROUP TenantAGroup AS <TenantA user group OCID>
+// ADMIT GROUP TenantAGroup OF TENANCY TenantA TO {TENANCY_INSPECT} IN TENANCY
+//
+// This example covers only GetNamespace operation across tenants. Additional permissions
+// will be required to perform more Object Storage operations.
+//
+// ExampleObjectStorage_GetNamespace shows how to get namespace providing compartmentId.
+func ExampleObjectStorage_GetNamespace() {
+	c, clerr := objectstorage.NewObjectStorageClientWithConfigurationProvider(common.DefaultConfigProvider())
+	helpers.FatalIfError(clerr)
+
+	ctx := context.Background()
+
+	request := objectstorage.GetNamespaceRequest{}
+	request.CompartmentId = helpers.CompartmentID()
+
+	fmt.Println("Compartment ID:")
+	fmt.Println(request.CompartmentId)
+
+	r, err := c.GetNamespace(ctx, request)
+	helpers.FatalIfError(err)
+
+	fmt.Println("Namespace:")
+	fmt.Println(*r.Value)
+}
+
 func getNamespace(ctx context.Context, c objectstorage.ObjectStorageClient) string {
 	request := objectstorage.GetNamespaceRequest{}
 	r, err := c.GetNamespace(ctx, request)
