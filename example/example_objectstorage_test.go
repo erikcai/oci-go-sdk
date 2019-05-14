@@ -9,6 +9,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"path"
 
@@ -187,14 +188,15 @@ func ExampleObjectStorage_GetNamespace() {
 	request := objectstorage.GetNamespaceRequest{}
 	request.CompartmentId = helpers.CompartmentID()
 
-	fmt.Println("Compartment ID:")
-	fmt.Println(request.CompartmentId)
-
 	r, err := c.GetNamespace(ctx, request)
 	helpers.FatalIfError(err)
 
-	fmt.Println("Namespace:")
-	fmt.Println(*r.Value)
+	log.Printf("Namespace for compartment %s is: %s", *request.CompartmentId, *r.Value)
+
+	fmt.Println("Namespace retrieved")
+
+	// Output:
+	// Namespace retrieved
 }
 
 func getNamespace(ctx context.Context, c objectstorage.ObjectStorageClient) string {
