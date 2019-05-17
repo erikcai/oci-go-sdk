@@ -15,17 +15,11 @@ import (
 // Archiver Represents the current state of the stream archiver.
 type Archiver struct {
 
-	// The archiver group identifier.
-	GroupId *string `mandatory:"false" json:"groupId"`
-
 	// Time when the resource was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// The state of the stream archiver.
 	LifecycleState ArchiverLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
-
-	// The namespace of the bucket.
-	BucketNamespace *string `mandatory:"false" json:"bucketNamespace"`
 
 	// The name of the bucket.
 	BucketName *string `mandatory:"false" json:"bucketName"`

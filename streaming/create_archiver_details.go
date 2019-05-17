@@ -15,9 +15,6 @@ import (
 // CreateArchiverDetails Represents the parameters of the stream archiver.
 type CreateArchiverDetails struct {
 
-	// The namespace of the bucket.
-	BucketNamespace *string `mandatory:"true" json:"bucketNamespace"`
-
 	// The name of the bucket.
 	BucketName *string `mandatory:"true" json:"bucketName"`
 

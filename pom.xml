@@ -52,6 +52,7 @@
     <quotas-control-plane-api-spec-spec-file>preview/quotas-control-plane-api-spec-20181025.yaml</quotas-control-plane-api-spec-spec-file>
     <digital-assistant-spec-spec-file>source/digital-assistant-api.cond.yaml</digital-assistant-spec-spec-file>
     <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
+    <csg-api-spec-spec-file>source/storage-gateway-api.cond.yaml</csg-api-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -177,6 +178,10 @@
     <dependency>
       <groupId>dscs-cp-spec</groupId>
       <artifactId>ads-control-plane-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.oci.csg</groupId>
+      <artifactId>csg-api-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -758,6 +763,24 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/ads-control-plane-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-csg-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.oci.csg</groupId>
+                  <artifactId>csg-api-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/csg-api-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1606,6 +1629,33 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-csg-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/csg-api-spec/source/${csg-api-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/csg-api-spec/${csg-api-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/csg-api-spec/${csg-api-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-csg-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/csg-api-spec/${csg-api-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/csg-api-spec/${csg-api-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2278,6 +2328,26 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-csg-api-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/csg-api-spec/${csg-api-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>storagegateway</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>storagegateway</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2514,6 +2584,12 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/storagegateway</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -2529,7 +2605,7 @@
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.47</version>
+        <version>0.4.52</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -2544,7 +2620,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.155</version>
+        <version>0.1.160</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -2594,7 +2670,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons.workrequests</groupId>
         <artifactId>workrequests-api-spec</artifactId>
-        <version>0.0.14</version>
+        <version>0.0.16</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
@@ -2604,7 +2680,7 @@
       <dependency>
         <groupId>com.oracle.oci</groupId>
         <artifactId>healthchecks-api-spec</artifactId>
-        <version>1.1.0-20190508.183610-1</version>
+        <version>1.1.1-20190516.152342-1</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
@@ -2614,7 +2690,7 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.2.11</version>
+        <version>0.2.12</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracache</groupId>
@@ -2644,7 +2720,7 @@
       <dependency>
         <groupId>com.oracle.oci.waas</groupId>
         <artifactId>oci-waas-api-spec</artifactId>
-        <version>1.0.410</version>
+        <version>1.0.571</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.obcs</groupId>
@@ -2675,6 +2751,11 @@
         <groupId>dscs-cp-spec</groupId>
         <artifactId>ads-control-plane-spec</artifactId>
         <version>19.2.2-1904260600</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.oci.csg</groupId>
+        <artifactId>csg-api-spec</artifactId>
+        <version>1.0.16</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

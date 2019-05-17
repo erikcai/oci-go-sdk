@@ -15,9 +15,6 @@ import (
 // UpdateArchiverDetails The update stream archiver parameters.
 type UpdateArchiverDetails struct {
 
-	// The namespace of the bucket.
-	BucketNamespace *string `mandatory:"false" json:"bucketNamespace"`
-
 	// The name of the bucket.
 	BucketName *string `mandatory:"false" json:"bucketName"`
 

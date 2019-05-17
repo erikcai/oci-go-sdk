@@ -16,7 +16,12 @@ import (
 // SessionPersistenceConfigurationDetails The configuration details for implementing session persistence. Session persistence enables the Load Balancing
 // Service to direct any number of requests that originate from a single logical client to a single backend web server.
 // For more information, see Session Persistence (https://docs.cloud.oracle.com/Content/Balance/Reference/sessionpersistence.htm).
-//
+// a.k.a APP_COOKIE session persistence
+// In APP_COOKIE session persistence, the load balancer inserts a cookie by name "X-Oracle-BMC-LBS-Route"
+// in to the response to enable session stickiness. The stickiness is enabled at load balancer only when
+// the response from backend application server includes user configured cookie name.
+// NOTE: This configuration is mutually exclusive with `LBCookieSessionPersistenceConfigurationDetails` object.
+// An error will be thrown if user attempts to enable both types of session persistence.
 // To disable session persistence on a running load balancer, use the
 // UpdateBackendSet operation and specify "null" for the
 // `SessionPersistenceConfigurationDetails` object.

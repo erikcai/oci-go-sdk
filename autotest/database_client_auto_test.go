@@ -747,49 +747,6 @@ func TestDatabaseClientDeleteAutonomousDatabase(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientDeleteAutonomousDatabaseBackup(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "DeleteAutonomousDatabaseBackup")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("DeleteAutonomousDatabaseBackup is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "DeleteAutonomousDatabaseBackup", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "DeleteAutonomousDatabaseBackup")
-	assert.NoError(t, err)
-
-	type DeleteAutonomousDatabaseBackupRequestInfo struct {
-		ContainerId string
-		Request     database.DeleteAutonomousDatabaseBackupRequest
-	}
-
-	var requests []DeleteAutonomousDatabaseBackupRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
-			response, err := c.DeleteAutonomousDatabaseBackup(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientDeleteBackup(t *testing.T) {
 	defer failTestOnPanic(t)

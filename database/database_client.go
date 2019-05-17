@@ -819,48 +819,6 @@ func (client DatabaseClient) deleteAutonomousDatabase(ctx context.Context, reque
 	return response, err
 }
 
-// DeleteAutonomousDatabaseBackup Deletes manual backup. You cannot delete automatic backups using this API.
-func (client DatabaseClient) DeleteAutonomousDatabaseBackup(ctx context.Context, request DeleteAutonomousDatabaseBackupRequest) (response DeleteAutonomousDatabaseBackupResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.deleteAutonomousDatabaseBackup, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = DeleteAutonomousDatabaseBackupResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(DeleteAutonomousDatabaseBackupResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DeleteAutonomousDatabaseBackupResponse")
-	}
-	return
-}
-
-// deleteAutonomousDatabaseBackup implements the OCIOperation interface (enables retrying operations)
-func (client DatabaseClient) deleteAutonomousDatabaseBackup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/autonomousDatabaseBackups/{autonomousDatabaseBackupId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response DeleteAutonomousDatabaseBackupResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // DeleteBackup Deletes a full backup. You cannot delete automatic backups using this API.
 func (client DatabaseClient) DeleteBackup(ctx context.Context, request DeleteBackupRequest) (response DeleteBackupResponse, err error) {
 	var ociResponse common.OCIResponse

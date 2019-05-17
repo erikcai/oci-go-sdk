@@ -109,6 +109,92 @@ func TestWaasClientCancelWorkRequest(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_waas_dev_us_grp@oracle.com" jiraProject="WAAS" opsJiraProject="WAF"
+func TestWaasClientChangeCertificateCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("waas", "ChangeCertificateCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeCertificateCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "ChangeCertificateCompartment", createWaasClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
+
+	body, err := testClient.getRequests("waas", "ChangeCertificateCompartment")
+	assert.NoError(t, err)
+
+	type ChangeCertificateCompartmentRequestInfo struct {
+		ContainerId string
+		Request     waas.ChangeCertificateCompartmentRequest
+	}
+
+	var requests []ChangeCertificateCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeCertificateCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_waas_dev_us_grp@oracle.com" jiraProject="WAAS" opsJiraProject="WAF"
+func TestWaasClientChangeWaasPolicyCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("waas", "ChangeWaasPolicyCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeWaasPolicyCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("waas", "Waas", "ChangeWaasPolicyCompartment", createWaasClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(waas.WaasClient)
+
+	body, err := testClient.getRequests("waas", "ChangeWaasPolicyCompartment")
+	assert.NoError(t, err)
+
+	type ChangeWaasPolicyCompartmentRequestInfo struct {
+		ContainerId string
+		Request     waas.ChangeWaasPolicyCompartmentRequest
+	}
+
+	var requests []ChangeWaasPolicyCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeWaasPolicyCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_waas_dev_us_grp@oracle.com" jiraProject="WAAS" opsJiraProject="WAF"
 func TestWaasClientCreateCertificate(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -17,6 +17,8 @@ import (
 // For more information on backend set configuration, see
 // Managing Backend Sets (https://docs.cloud.oracle.com/Content/Balance/Tasks/managingbackendsets.htm).
 // **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
+// NOTE: `sessionPersistenceConfiguration` (a.k.a APP_COOKIE session persistence) and
+// `lbCookieSessionPersistenceConfiguration` are mutually exclusive. Only one of them should be configured.
 type BackendSet struct {
 
 	// A friendly name for the backend set. It must be unique and it cannot be changed.
@@ -37,6 +39,8 @@ type BackendSet struct {
 	SslConfiguration *SslConfiguration `mandatory:"false" json:"sslConfiguration"`
 
 	SessionPersistenceConfiguration *SessionPersistenceConfigurationDetails `mandatory:"false" json:"sessionPersistenceConfiguration"`
+
+	LbCookieSessionPersistenceConfiguration *LbCookieSessionPersistenceConfigurationDetails `mandatory:"false" json:"lbCookieSessionPersistenceConfiguration"`
 }
 
 func (m BackendSet) String() string {

@@ -16,6 +16,8 @@ import (
 // UpdateBackendSetDetails The configuration details for updating a load balancer backend set.
 // For more information on backend set configuration, see
 // Managing Backend Sets (https://docs.cloud.oracle.com/Content/Balance/Tasks/managingbackendsets.htm).
+// NOTE: `sessionPersistenceConfiguration` (a.k.a APP_COOKIE session persistence) and
+// `lbCookieSessionPersistenceConfiguration` are mutually exclusive. Only one of them should be configured.
 type UpdateBackendSetDetails struct {
 
 	// The load balancer policy for the backend set. To get a list of available policies, use the
@@ -30,6 +32,8 @@ type UpdateBackendSetDetails struct {
 	SslConfiguration *SslConfigurationDetails `mandatory:"false" json:"sslConfiguration"`
 
 	SessionPersistenceConfiguration *SessionPersistenceConfigurationDetails `mandatory:"false" json:"sessionPersistenceConfiguration"`
+
+	LbCookieSessionPersistenceConfiguration *LbCookieSessionPersistenceConfigurationDetails `mandatory:"false" json:"lbCookieSessionPersistenceConfiguration"`
 }
 
 func (m UpdateBackendSetDetails) String() string {

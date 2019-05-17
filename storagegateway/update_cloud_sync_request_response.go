@@ -1,25 +1,32 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package database
+package storagegateway
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
 )
 
-// DeleteAutonomousDatabaseBackupRequest wrapper for the DeleteAutonomousDatabaseBackup operation
-type DeleteAutonomousDatabaseBackupRequest struct {
+// UpdateCloudSyncRequest wrapper for the UpdateCloudSync operation
+type UpdateCloudSyncRequest struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database backup.
-	AutonomousDatabaseBackupId *string `mandatory:"true" contributesTo:"path" name:"autonomousDatabaseBackupId"`
+	// The storage gateway OCID.
+	StorageGatewayId *string `mandatory:"true" contributesTo:"path" name:"storageGatewayId"`
+
+	// The cloud sync's name.
+	CloudSyncName *string `mandatory:"true" contributesTo:"path" name:"cloudSyncName"`
+
+	// Request object for updating a cloud sync.
+	UpdateCloudSyncDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
 	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
-	// Unique identifier for the request.
+	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -27,36 +34,42 @@ type DeleteAutonomousDatabaseBackupRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request DeleteAutonomousDatabaseBackupRequest) String() string {
+func (request UpdateCloudSyncRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request DeleteAutonomousDatabaseBackupRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request UpdateCloudSyncRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request DeleteAutonomousDatabaseBackupRequest) RetryPolicy() *common.RetryPolicy {
+func (request UpdateCloudSyncRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// DeleteAutonomousDatabaseBackupResponse wrapper for the DeleteAutonomousDatabaseBackup operation
-type DeleteAutonomousDatabaseBackupResponse struct {
+// UpdateCloudSyncResponse wrapper for the UpdateCloudSync operation
+type UpdateCloudSyncResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
-	// a particular request, please provide the request ID.
+	// The CloudSync instance
+	CloudSync `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
+
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+	// particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response DeleteAutonomousDatabaseBackupResponse) String() string {
+func (response UpdateCloudSyncResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response DeleteAutonomousDatabaseBackupResponse) HTTPResponse() *http.Response {
+func (response UpdateCloudSyncResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

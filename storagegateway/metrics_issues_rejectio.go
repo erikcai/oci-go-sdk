@@ -1,0 +1,24 @@
+// Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
+// Code generated. DO NOT EDIT.
+
+// StorageGateway API
+//
+// API for interfacing with StorageGateway
+//
+
+package storagegateway
+
+import (
+	"github.com/oracle/oci-go-sdk/common"
+)
+
+// MetricsIssuesRejectio Rejection IO info.
+type MetricsIssuesRejectio struct {
+
+	// Zero unless system is in the rejecting-IO mode; otherwise non-zero.
+	Count *float32 `mandatory:"false" json:"count"`
+}
+
+func (m MetricsIssuesRejectio) String() string {
+	return common.PointerString(m)
+}
