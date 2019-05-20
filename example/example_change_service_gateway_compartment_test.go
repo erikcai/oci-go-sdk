@@ -17,7 +17,7 @@
 //    * SRC_COMPARTMENT_ID    - Source Compartment ID where the service gateway and VCN should be created
 //    * DEST_COMPARTMENT_ID   - Destination Compartment ID where the service gateway should be moved to
 //
-// Additionally this script assumes that the Default OCI config is setup 
+// Additionally this script assumes that the Default OCI config is setup
 
 package example
 
@@ -32,7 +32,7 @@ import (
 )
 
 const (
-	displayName = "OCI-GOSDK-Sample"
+	serviceGatewayVcnDisplayName = "OCI-GOSDK-Sample"
 )
 
 var (
@@ -42,7 +42,7 @@ var (
 func ExampleChangeServiceGatewayCompartment() {
 
 	// Parse environment variables to get srcCompartmentId, destCompartmentId
-	parseEnvVariables();
+	parseEnvVariables()
 
 	// Create VirtualNetworkClient with default configuration
 	client, err := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
@@ -75,8 +75,8 @@ func ExampleChangeServiceGatewayCompartment() {
 		log.Printf("Deleted VCN")
 	}()
 
-    // Output:
-    // change compartment completed
+	// Output:
+	// change compartment completed
 
 }
 
@@ -85,7 +85,7 @@ func createSgwVcn(ctx context.Context, c core.VirtualNetworkClient) core.Vcn {
 	request := core.CreateVcnRequest{}
 	request.CidrBlock = common.String("10.0.0.0/16")
 	request.CompartmentId = common.String(srcCompartmentId)
-	request.DisplayName = common.String(displayName)
+	request.DisplayName = common.String(serviceGatewayVcnDisplayName)
 
 	r, err := c.CreateVcn(ctx, request)
 	helpers.FatalIfError(err)
@@ -99,7 +99,7 @@ func createSgwVcn(ctx context.Context, c core.VirtualNetworkClient) core.Vcn {
 	}
 
 	pollGetRequest := core.GetVcnRequest{
-		VcnId:        r.Id,
+		VcnId:           r.Id,
 		RequestMetadata: helpers.GetRequestMetadataWithCustomizedRetryPolicy(pollUntilAvailable),
 	}
 
@@ -148,13 +148,13 @@ func deleteSgwVcn(ctx context.Context, c core.VirtualNetworkClient, vcn core.Vcn
 
 func createServiceGateway(ctx context.Context, c core.VirtualNetworkClient, vcn core.Vcn) core.ServiceGateway {
 
-    // Update the services field to required Oracle Services 
+	// Update the services field to required Oracle Services
 	var services = []core.ServiceIdRequestDetails{}
 	createServiceGatewayDetails := core.CreateServiceGatewayDetails{
 		CompartmentId: common.String(srcCompartmentId),
-		VcnId: vcn.Id,
-		DisplayName: common.String(displayName),
-		Services: services,
+		VcnId:         vcn.Id,
+		DisplayName:   common.String(serviceGatewayVcnDisplayName),
+		Services:      services,
 	}
 
 	// create a new VCN
@@ -173,8 +173,8 @@ func createServiceGateway(ctx context.Context, c core.VirtualNetworkClient, vcn 
 	}
 
 	pollGetRequest := core.GetServiceGatewayRequest{
-		ServiceGatewayId:        r.Id,
-		RequestMetadata: helpers.GetRequestMetadataWithCustomizedRetryPolicy(pollUntilAvailable),
+		ServiceGatewayId: r.Id,
+		RequestMetadata:  helpers.GetRequestMetadataWithCustomizedRetryPolicy(pollUntilAvailable),
 	}
 
 	// wait for lifecyle become Available
@@ -185,8 +185,8 @@ func createServiceGateway(ctx context.Context, c core.VirtualNetworkClient, vcn 
 
 func deleteServiceGateway(ctx context.Context, c core.VirtualNetworkClient, serviceGateway core.ServiceGateway) {
 	request := core.DeleteServiceGatewayRequest{
-		ServiceGatewayId:					serviceGateway.Id,
-		RequestMetadata: helpers.GetRequestMetadataWithDefaultRetryPolicy(),
+		ServiceGatewayId: serviceGateway.Id,
+		RequestMetadata:  helpers.GetRequestMetadataWithDefaultRetryPolicy(),
 	}
 
 	_, err := c.DeleteServiceGateway(ctx, request)
@@ -207,8 +207,8 @@ func deleteServiceGateway(ctx context.Context, c core.VirtualNetworkClient, serv
 	}
 
 	pollGetRequest := core.GetServiceGatewayRequest{
-		ServiceGatewayId:           serviceGateway.Id,
-		RequestMetadata: helpers.GetRequestMetadataWithCustomizedRetryPolicy(shouldRetryFunc),
+		ServiceGatewayId: serviceGateway.Id,
+		RequestMetadata:  helpers.GetRequestMetadataWithCustomizedRetryPolicy(shouldRetryFunc),
 	}
 
 	_, pollErr := c.GetServiceGateway(ctx, pollGetRequest)
@@ -225,7 +225,7 @@ func changeServiceGatewayCompartment(ctx context.Context, c core.VirtualNetworkC
 		CompartmentId: common.String(destCompartmentId),
 	}
 
-	request := core.ChangeServiceGatewayCompartmentRequest {}
+	request := core.ChangeServiceGatewayCompartmentRequest{}
 	request.ServiceGatewayId = serviceGateway.Id
 	request.ChangeServiceGatewayCompartmentDetails = changeCompartmentDetails
 
@@ -244,7 +244,6 @@ func getServiceGateway(ctx context.Context, c core.VirtualNetworkClient, service
 
 	return r.ServiceGateway
 }
-
 
 func printUsage() {
 	fmt.Printf("Please set the following environment variables to use ChangeServiceGatewayCompartment()")
@@ -267,4 +266,3 @@ func parseEnvVariables() {
 	log.Printf("SRC_COMPARTMENT_ID     : %s", srcCompartmentId)
 	log.Printf("DEST_COMPARTMENT_ID  : %s", destCompartmentId)
 }
-

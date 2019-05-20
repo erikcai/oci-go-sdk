@@ -32,18 +32,18 @@ import (
 )
 
 const (
-	displayName = "oci-go-sdk-example-ngw"
+	natGatewayDisplayName = "oci-go-sdk-example-ngw"
 )
 
 var (
-	srcCompartmentId, destCompartmentId string
+	natGatewaySrcCompartmentId, natGatewayDestCompartmentId string
 )
 
 func ExampleChangeNatGatewayCompartment() {
 
 	// Parse environment variables to get srcCompartmentId and destCompartmentId
 	parseArgs()
-	log.Printf("Performing operations to change NAT Gateway compartment from %s to %s", srcCompartmentId, destCompartmentId)
+	log.Printf("Performing operations to change NAT Gateway compartment from %s to %s", natGatewaySrcCompartmentId, natGatewayDestCompartmentId)
 
 	// Create VirtualNetworkClient with default configuration
 	vcnClient, err := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
@@ -80,8 +80,8 @@ func createVcnforNatGateway(ctx context.Context, c core.VirtualNetworkClient) co
 	// create a new VCN
 	request := core.CreateVcnRequest{}
 	request.CidrBlock = common.String("10.0.0.0/16")
-	request.CompartmentId = common.String(srcCompartmentId)
-	request.DisplayName = common.String(displayName)
+	request.CompartmentId = common.String(natGatewaySrcCompartmentId)
+	request.DisplayName = common.String(natGatewayDisplayName)
 
 	r, err := c.CreateVcn(ctx, request)
 	helpers.FatalIfError(err)
@@ -147,9 +147,9 @@ func createNatGateway(ctx context.Context, c core.VirtualNetworkClient, vcn core
 	log.Printf("Creating NAT Gateway")
 	log.Printf("=======================================")
 	createNatGatewayDetails := core.CreateNatGatewayDetails{
-		CompartmentId: common.String(srcCompartmentId),
+		CompartmentId: common.String(natGatewaySrcCompartmentId),
 		VcnId:         vcn.Id,
-		DisplayName:   common.String(displayName),
+		DisplayName:   common.String(natGatewayDisplayName),
 	}
 
 	request := core.CreateNatGatewayRequest{}
@@ -258,14 +258,14 @@ func envUsage() {
 
 func parseArgs() {
 
-	srcCompartmentId = os.Getenv("SRC_COMPARTMENT_ID")
-	destCompartmentId = os.Getenv("DEST_COMPARTMENT_ID")
+	natGatewaySrcCompartmentId = os.Getenv("SRC_COMPARTMENT_ID")
+	natGatewayDestCompartmentId = os.Getenv("DEST_COMPARTMENT_ID")
 
-	if srcCompartmentId == "" || destCompartmentId == "" {
+	if natGatewaySrcCompartmentId == "" || natGatewayDestCompartmentId == "" {
 		envUsage()
 	}
 
-	log.Printf("SRC_COMPARTMENT_ID     : %s", srcCompartmentId)
-	log.Printf("DEST_COMPARTMENT_ID  : %s", destCompartmentId)
+	log.Printf("SRC_COMPARTMENT_ID     : %s", natGatewaySrcCompartmentId)
+	log.Printf("DEST_COMPARTMENT_ID  : %s", natGatewayDestCompartmentId)
 
 }
