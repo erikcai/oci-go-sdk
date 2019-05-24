@@ -470,7 +470,7 @@ func (client ComputeManagementClient) getInstancePool(ctx context.Context, reque
 	return response, err
 }
 
-// GetInstancePoolLoadBalancerAttachment Gets the specified instance pool's attached load balancer by id.
+// GetInstancePoolLoadBalancerAttachment Gets information about a load balancer that is attached to the specified instance pool.
 func (client ComputeManagementClient) GetInstancePoolLoadBalancerAttachment(ctx context.Context, request GetInstancePoolLoadBalancerAttachmentRequest) (response GetInstancePoolLoadBalancerAttachmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

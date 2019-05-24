@@ -35,6 +35,9 @@ type Function struct {
 	// Example: `phx.ocir.io/ten/functions/function:0.0.1`
 	Image *string `mandatory:"false" json:"image"`
 
+	// The image digest.
+	ImageDigest *string `mandatory:"false" json:"imageDigest"`
+
 	// Maximum usable memory for the function (MiB).
 	MemoryInMBs *int64 `mandatory:"false" json:"memoryInMBs"`
 

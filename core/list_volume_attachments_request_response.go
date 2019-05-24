@@ -11,7 +11,7 @@ import (
 // ListVolumeAttachmentsRequest wrapper for the ListVolumeAttachments operation
 type ListVolumeAttachmentsRequest struct {
 
-	// The OCID of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// The name of the availability domain.

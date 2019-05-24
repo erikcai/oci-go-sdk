@@ -4,6 +4,7 @@
 // Monitoring API
 //
 // Use the Monitoring API to manage metric queries and alarms for assessing the health, capacity, and performance of your cloud resources.
+// Endpoints vary by operation. For PostMetric, use the `telemetry-ingestion` endpoints; for all other operations, use the `telemetry` endpoints.
 // For information about monitoring, see Monitoring Overview (https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm).
 //
 
@@ -82,15 +83,13 @@ type AlarmStatusSummaryStatusEnum string
 
 // Set of constants representing the allowable values for AlarmStatusSummaryStatusEnum
 const (
-	AlarmStatusSummaryStatusFiring    AlarmStatusSummaryStatusEnum = "FIRING"
-	AlarmStatusSummaryStatusOk        AlarmStatusSummaryStatusEnum = "OK"
-	AlarmStatusSummaryStatusSuspended AlarmStatusSummaryStatusEnum = "SUSPENDED"
+	AlarmStatusSummaryStatusFiring AlarmStatusSummaryStatusEnum = "FIRING"
+	AlarmStatusSummaryStatusOk     AlarmStatusSummaryStatusEnum = "OK"
 )
 
 var mappingAlarmStatusSummaryStatus = map[string]AlarmStatusSummaryStatusEnum{
-	"FIRING":    AlarmStatusSummaryStatusFiring,
-	"OK":        AlarmStatusSummaryStatusOk,
-	"SUSPENDED": AlarmStatusSummaryStatusSuspended,
+	"FIRING": AlarmStatusSummaryStatusFiring,
+	"OK":     AlarmStatusSummaryStatusOk,
 }
 
 // GetAlarmStatusSummaryStatusEnumValues Enumerates the set of values for AlarmStatusSummaryStatusEnum

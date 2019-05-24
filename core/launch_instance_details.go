@@ -99,6 +99,8 @@ type LaunchInstanceDetails struct {
 	// For more information about iPXE, see http://ipxe.org.
 	IpxeScript *string `mandatory:"false" json:"ipxeScript"`
 
+	LaunchOptions *LaunchOptions `mandatory:"false" json:"launchOptions"`
+
 	// Custom metadata key/value pairs that you provide, such as the SSH public key
 	// required to connect to the instance.
 	// A metadata service runs on every launched instance. The service is an HTTP
@@ -163,6 +165,11 @@ type LaunchInstanceDetails struct {
 
 	// Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
 	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
+
+	// The preferred maintenance action for an instance. The default is LIVE_MIGRATE, if live migration is supported.
+	// * `LIVE_MIGRATE` - Run maintenance using a live migration.
+	// * `REBOOT` - Run maintenance using a reboot.
+	PreferredMaintenanceAction LaunchInstanceDetailsPreferredMaintenanceActionEnum `mandatory:"false" json:"preferredMaintenanceAction,omitempty"`
 }
 
 func (m LaunchInstanceDetails) String() string {
@@ -172,25 +179,27 @@ func (m LaunchInstanceDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		CreateVnicDetails              *CreateVnicDetails                `json:"createVnicDetails"`
-		DefinedTags                    map[string]map[string]interface{} `json:"definedTags"`
-		DisplayName                    *string                           `json:"displayName"`
-		ExtendedMetadata               map[string]interface{}            `json:"extendedMetadata"`
-		FaultDomain                    *string                           `json:"faultDomain"`
-		FreeformTags                   map[string]string                 `json:"freeformTags"`
-		HostnameLabel                  *string                           `json:"hostnameLabel"`
-		ImageId                        *string                           `json:"imageId"`
-		IpxeScript                     *string                           `json:"ipxeScript"`
-		Metadata                       map[string]string                 `json:"metadata"`
-		AgentConfig                    *LaunchInstanceAgentConfigDetails `json:"agentConfig"`
-		SourceDetails                  instancesourcedetails             `json:"sourceDetails"`
-		SubnetId                       *string                           `json:"subnetId"`
-		VolumeAttachments              []attachvolumedetails             `json:"volumeAttachments"`
-		SecondaryVnicAttachments       []AttachVnicDetails               `json:"secondaryVnicAttachments"`
-		IsPvEncryptionInTransitEnabled *bool                             `json:"isPvEncryptionInTransitEnabled"`
-		AvailabilityDomain             *string                           `json:"availabilityDomain"`
-		CompartmentId                  *string                           `json:"compartmentId"`
-		Shape                          *string                           `json:"shape"`
+		CreateVnicDetails              *CreateVnicDetails                                  `json:"createVnicDetails"`
+		DefinedTags                    map[string]map[string]interface{}                   `json:"definedTags"`
+		DisplayName                    *string                                             `json:"displayName"`
+		ExtendedMetadata               map[string]interface{}                              `json:"extendedMetadata"`
+		FaultDomain                    *string                                             `json:"faultDomain"`
+		FreeformTags                   map[string]string                                   `json:"freeformTags"`
+		HostnameLabel                  *string                                             `json:"hostnameLabel"`
+		ImageId                        *string                                             `json:"imageId"`
+		IpxeScript                     *string                                             `json:"ipxeScript"`
+		LaunchOptions                  *LaunchOptions                                      `json:"launchOptions"`
+		Metadata                       map[string]string                                   `json:"metadata"`
+		AgentConfig                    *LaunchInstanceAgentConfigDetails                   `json:"agentConfig"`
+		SourceDetails                  instancesourcedetails                               `json:"sourceDetails"`
+		SubnetId                       *string                                             `json:"subnetId"`
+		VolumeAttachments              []attachvolumedetails                               `json:"volumeAttachments"`
+		SecondaryVnicAttachments       []AttachVnicDetails                                 `json:"secondaryVnicAttachments"`
+		IsPvEncryptionInTransitEnabled *bool                                               `json:"isPvEncryptionInTransitEnabled"`
+		PreferredMaintenanceAction     LaunchInstanceDetailsPreferredMaintenanceActionEnum `json:"preferredMaintenanceAction"`
+		AvailabilityDomain             *string                                             `json:"availabilityDomain"`
+		CompartmentId                  *string                                             `json:"compartmentId"`
+		Shape                          *string                                             `json:"shape"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -206,6 +215,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.HostnameLabel = model.HostnameLabel
 	m.ImageId = model.ImageId
 	m.IpxeScript = model.IpxeScript
+	m.LaunchOptions = model.LaunchOptions
 	m.Metadata = model.Metadata
 	m.AgentConfig = model.AgentConfig
 	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
@@ -235,8 +245,32 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		m.SecondaryVnicAttachments[i] = n
 	}
 	m.IsPvEncryptionInTransitEnabled = model.IsPvEncryptionInTransitEnabled
+	m.PreferredMaintenanceAction = model.PreferredMaintenanceAction
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId
 	m.Shape = model.Shape
 	return
+}
+
+// LaunchInstanceDetailsPreferredMaintenanceActionEnum Enum with underlying type: string
+type LaunchInstanceDetailsPreferredMaintenanceActionEnum string
+
+// Set of constants representing the allowable values for LaunchInstanceDetailsPreferredMaintenanceActionEnum
+const (
+	LaunchInstanceDetailsPreferredMaintenanceActionLiveMigrate LaunchInstanceDetailsPreferredMaintenanceActionEnum = "LIVE_MIGRATE"
+	LaunchInstanceDetailsPreferredMaintenanceActionReboot      LaunchInstanceDetailsPreferredMaintenanceActionEnum = "REBOOT"
+)
+
+var mappingLaunchInstanceDetailsPreferredMaintenanceAction = map[string]LaunchInstanceDetailsPreferredMaintenanceActionEnum{
+	"LIVE_MIGRATE": LaunchInstanceDetailsPreferredMaintenanceActionLiveMigrate,
+	"REBOOT":       LaunchInstanceDetailsPreferredMaintenanceActionReboot,
+}
+
+// GetLaunchInstanceDetailsPreferredMaintenanceActionEnumValues Enumerates the set of values for LaunchInstanceDetailsPreferredMaintenanceActionEnum
+func GetLaunchInstanceDetailsPreferredMaintenanceActionEnumValues() []LaunchInstanceDetailsPreferredMaintenanceActionEnum {
+	values := make([]LaunchInstanceDetailsPreferredMaintenanceActionEnum, 0)
+	for _, v := range mappingLaunchInstanceDetailsPreferredMaintenanceAction {
+		values = append(values, v)
+	}
+	return values
 }

@@ -38,6 +38,9 @@ type UpdateServiceGatewayDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table associated with ServiceGateway.
+	RouteTableId *string `mandatory:"false" json:"routeTableId"`
+
 	// List of all the `Service` objects you want enabled on this service gateway. Sending an empty list
 	// means you want to disable all services. Omitting this parameter entirely keeps the
 	// existing list of services intact.

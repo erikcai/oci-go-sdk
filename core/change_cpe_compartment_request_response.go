@@ -15,7 +15,7 @@ type ChangeCpeCompartmentRequest struct {
 	CpeId *string `mandatory:"true" contributesTo:"path" name:"cpeId"`
 
 	// Request to change the compartment of a CPE.
-	ChangeCompartmentDetails `contributesTo:"body"`
+	ChangeCpeCompartmentDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.

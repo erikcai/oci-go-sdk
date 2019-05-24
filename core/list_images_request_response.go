@@ -11,7 +11,7 @@ import (
 // ListImagesRequest wrapper for the ListImages operation
 type ListImagesRequest struct {
 
-	// The OCID of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// A filter to return only resources that match the given display name exactly.

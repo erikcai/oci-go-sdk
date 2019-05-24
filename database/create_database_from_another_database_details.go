@@ -26,6 +26,9 @@ type CreateDatabaseFromAnotherDatabaseDetails struct {
 
 	// The display name of the database to be created from the backup. It must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.
 	DbName *string `mandatory:"false" json:"dbName"`
+
+	// The point in time of the original database from which the new database is created. If not specifed, the latest backup is used to create the database.
+	TimeStampForPointInTimeRecovery *common.SDKTime `mandatory:"false" json:"timeStampForPointInTimeRecovery"`
 }
 
 func (m CreateDatabaseFromAnotherDatabaseDetails) String() string {

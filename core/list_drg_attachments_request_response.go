@@ -11,10 +11,10 @@ import (
 // ListDrgAttachmentsRequest wrapper for the ListDrgAttachments operation
 type ListDrgAttachmentsRequest struct {
 
-	// The OCID of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The OCID of the VCN.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
 	VcnId *string `mandatory:"false" contributesTo:"query" name:"vcnId"`
 
 	// The OCID of the DRG.

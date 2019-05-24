@@ -11,7 +11,7 @@ import (
 // ListCrossConnectLocationsRequest wrapper for the ListCrossConnectLocations operation
 type ListCrossConnectLocationsRequest struct {
 
-	// The OCID of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// For list pagination. The maximum number of results per page, or items to return in a paginated

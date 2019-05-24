@@ -15,7 +15,7 @@ type ChangeVirtualCircuitCompartmentRequest struct {
 	VirtualCircuitId *string `mandatory:"true" contributesTo:"path" name:"virtualCircuitId"`
 
 	// Request to change the compartment of a virtual circuit.
-	ChangeCompartmentDetails `contributesTo:"body"`
+	ChangeVirtualCircuitCompartmentDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.

@@ -24,6 +24,9 @@ type CloudSync struct {
 	// A unique name in the storage gateway you assign to the cloud sync during creation.
 	Name *string `mandatory:"true" json:"name"`
 
+	// The cloud Sync's Oracle ID (OCID).
+	Id *string `mandatory:"true" json:"id"`
+
 	// A path to a directory or file of the cloud sync source.
 	SourcePath *string `mandatory:"true" json:"sourcePath"`
 

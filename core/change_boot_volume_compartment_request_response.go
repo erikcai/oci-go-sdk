@@ -15,7 +15,7 @@ type ChangeBootVolumeCompartmentRequest struct {
 	BootVolumeId *string `mandatory:"true" contributesTo:"path" name:"bootVolumeId"`
 
 	// Request to change the compartment of given boot volume.
-	ChangeCompartmentDetails `contributesTo:"body"`
+	ChangeBootVolumeCompartmentDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.

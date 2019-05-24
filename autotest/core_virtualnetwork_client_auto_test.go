@@ -65,6 +65,49 @@ func TestVirtualNetworkClientAcceptLocalPeeringToken(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientAddNetworkSecurityGroupSecurityRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "AddNetworkSecurityGroupSecurityRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AddNetworkSecurityGroupSecurityRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "AddNetworkSecurityGroupSecurityRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "AddNetworkSecurityGroupSecurityRules")
+	assert.NoError(t, err)
+
+	type AddNetworkSecurityGroupSecurityRulesRequestInfo struct {
+		ContainerId string
+		Request     core.AddNetworkSecurityGroupSecurityRulesRequest
+	}
+
+	var requests []AddNetworkSecurityGroupSecurityRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.AddNetworkSecurityGroupSecurityRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientAttachServiceId(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -324,28 +367,28 @@ func TestVirtualNetworkClientChangeCrossConnectGroupCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
-func TestVirtualNetworkClientChangeIpsecConnectionCompartment(t *testing.T) {
+func TestVirtualNetworkClientChangeIPSecConnectionCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("core", "ChangeIpsecConnectionCompartment")
+	enabled, err := testClient.isApiEnabled("core", "ChangeIPSecConnectionCompartment")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ChangeIpsecConnectionCompartment is not enabled by the testing service")
+		t.Skip("ChangeIPSecConnectionCompartment is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeIpsecConnectionCompartment", createVirtualNetworkClientWithProvider)
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeIPSecConnectionCompartment", createVirtualNetworkClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(core.VirtualNetworkClient)
 
-	body, err := testClient.getRequests("core", "ChangeIpsecConnectionCompartment")
+	body, err := testClient.getRequests("core", "ChangeIPSecConnectionCompartment")
 	assert.NoError(t, err)
 
-	type ChangeIpsecConnectionCompartmentRequestInfo struct {
+	type ChangeIPSecConnectionCompartmentRequestInfo struct {
 		ContainerId string
-		Request     core.ChangeIpsecConnectionCompartmentRequest
+		Request     core.ChangeIPSecConnectionCompartmentRequest
 	}
 
-	var requests []ChangeIpsecConnectionCompartmentRequestInfo
+	var requests []ChangeIPSecConnectionCompartmentRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -358,7 +401,7 @@ func TestVirtualNetworkClientChangeIpsecConnectionCompartment(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-			response, err := c.ChangeIpsecConnectionCompartment(context.Background(), req.Request)
+			response, err := c.ChangeIPSecConnectionCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -409,6 +452,49 @@ func TestVirtualNetworkClientChangeNatGatewayCompartment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientChangeNetworkSecurityGroupCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeNetworkSecurityGroupCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeNetworkSecurityGroupCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeNetworkSecurityGroupCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeNetworkSecurityGroupCompartment")
+	assert.NoError(t, err)
+
+	type ChangeNetworkSecurityGroupCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeNetworkSecurityGroupCompartmentRequest
+	}
+
+	var requests []ChangeNetworkSecurityGroupCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeNetworkSecurityGroupCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientChangeRemotePeeringConnectionCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -452,6 +538,92 @@ func TestVirtualNetworkClientChangeRemotePeeringConnectionCompartment(t *testing
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientChangeRouteTableCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeRouteTableCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeRouteTableCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeRouteTableCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeRouteTableCompartment")
+	assert.NoError(t, err)
+
+	type ChangeRouteTableCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeRouteTableCompartmentRequest
+	}
+
+	var requests []ChangeRouteTableCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeRouteTableCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientChangeSecurityListCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeSecurityListCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeSecurityListCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeSecurityListCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeSecurityListCompartment")
+	assert.NoError(t, err)
+
+	type ChangeSecurityListCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeSecurityListCompartmentRequest
+	}
+
+	var requests []ChangeSecurityListCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeSecurityListCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientChangeServiceGatewayCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -488,6 +660,92 @@ func TestVirtualNetworkClientChangeServiceGatewayCompartment(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ChangeServiceGatewayCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientChangeSubnetCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeSubnetCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeSubnetCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeSubnetCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeSubnetCompartment")
+	assert.NoError(t, err)
+
+	type ChangeSubnetCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeSubnetCompartmentRequest
+	}
+
+	var requests []ChangeSubnetCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeSubnetCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientChangeVcnCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeVcnCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeVcnCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeVcnCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeVcnCompartment")
+	assert.NoError(t, err)
+
+	type ChangeVcnCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeVcnCompartmentRequest
+	}
+
+	var requests []ChangeVcnCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeVcnCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1262,6 +1520,49 @@ func TestVirtualNetworkClientCreateNatGateway(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateNatGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateNetworkSecurityGroup(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateNetworkSecurityGroup")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateNetworkSecurityGroup is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateNetworkSecurityGroup", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateNetworkSecurityGroup")
+	assert.NoError(t, err)
+
+	type CreateNetworkSecurityGroupRequestInfo struct {
+		ContainerId string
+		Request     core.CreateNetworkSecurityGroupRequest
+	}
+
+	var requests []CreateNetworkSecurityGroupRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreateNetworkSecurityGroup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2251,6 +2552,49 @@ func TestVirtualNetworkClientDeleteNatGateway(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteNatGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteNetworkSecurityGroup(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteNetworkSecurityGroup")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteNetworkSecurityGroup is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteNetworkSecurityGroup", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteNetworkSecurityGroup")
+	assert.NoError(t, err)
+
+	type DeleteNetworkSecurityGroupRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteNetworkSecurityGroupRequest
+	}
+
+	var requests []DeleteNetworkSecurityGroupRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.DeleteNetworkSecurityGroup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3670,6 +4014,49 @@ func TestVirtualNetworkClientGetNatGateway(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetNatGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetNetworkSecurityGroup(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetNetworkSecurityGroup")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetNetworkSecurityGroup is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetNetworkSecurityGroup", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetNetworkSecurityGroup")
+	assert.NoError(t, err)
+
+	type GetNetworkSecurityGroupRequestInfo struct {
+		ContainerId string
+		Request     core.GetNetworkSecurityGroupRequest
+	}
+
+	var requests []GetNetworkSecurityGroupRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetNetworkSecurityGroup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -5268,6 +5655,162 @@ func TestVirtualNetworkClientListNatGateways(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListNetworkSecurityGroupSecurityRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListNetworkSecurityGroupSecurityRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListNetworkSecurityGroupSecurityRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListNetworkSecurityGroupSecurityRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListNetworkSecurityGroupSecurityRules")
+	assert.NoError(t, err)
+
+	type ListNetworkSecurityGroupSecurityRulesRequestInfo struct {
+		ContainerId string
+		Request     core.ListNetworkSecurityGroupSecurityRulesRequest
+	}
+
+	var requests []ListNetworkSecurityGroupSecurityRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListNetworkSecurityGroupSecurityRulesRequest)
+				return c.ListNetworkSecurityGroupSecurityRules(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListNetworkSecurityGroupSecurityRulesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListNetworkSecurityGroupSecurityRulesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListNetworkSecurityGroupVnics(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListNetworkSecurityGroupVnics")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListNetworkSecurityGroupVnics is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListNetworkSecurityGroupVnics", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListNetworkSecurityGroupVnics")
+	assert.NoError(t, err)
+
+	type ListNetworkSecurityGroupVnicsRequestInfo struct {
+		ContainerId string
+		Request     core.ListNetworkSecurityGroupVnicsRequest
+	}
+
+	var requests []ListNetworkSecurityGroupVnicsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListNetworkSecurityGroupVnicsRequest)
+				return c.ListNetworkSecurityGroupVnics(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListNetworkSecurityGroupVnicsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListNetworkSecurityGroupVnicsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListNetworkSecurityGroups(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListNetworkSecurityGroups")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListNetworkSecurityGroups is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListNetworkSecurityGroups", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListNetworkSecurityGroups")
+	assert.NoError(t, err)
+
+	type ListNetworkSecurityGroupsRequestInfo struct {
+		ContainerId string
+		Request     core.ListNetworkSecurityGroupsRequest
+	}
+
+	var requests []ListNetworkSecurityGroupsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListNetworkSecurityGroupsRequest)
+				return c.ListNetworkSecurityGroups(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListNetworkSecurityGroupsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListNetworkSecurityGroupsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListPrivateIps(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5876,6 +6419,49 @@ func TestVirtualNetworkClientListVirtualCircuits(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientRemoveNetworkSecurityGroupSecurityRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "RemoveNetworkSecurityGroupSecurityRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RemoveNetworkSecurityGroupSecurityRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "RemoveNetworkSecurityGroupSecurityRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "RemoveNetworkSecurityGroupSecurityRules")
+	assert.NoError(t, err)
+
+	type RemoveNetworkSecurityGroupSecurityRulesRequestInfo struct {
+		ContainerId string
+		Request     core.RemoveNetworkSecurityGroupSecurityRulesRequest
+	}
+
+	var requests []RemoveNetworkSecurityGroupSecurityRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.RemoveNetworkSecurityGroupSecurityRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -6563,6 +7149,92 @@ func TestVirtualNetworkClientUpdateNatGateway(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateNatGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateNetworkSecurityGroup(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateNetworkSecurityGroup")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateNetworkSecurityGroup is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateNetworkSecurityGroup", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateNetworkSecurityGroup")
+	assert.NoError(t, err)
+
+	type UpdateNetworkSecurityGroupRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateNetworkSecurityGroupRequest
+	}
+
+	var requests []UpdateNetworkSecurityGroupRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateNetworkSecurityGroup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateNetworkSecurityGroupSecurityRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateNetworkSecurityGroupSecurityRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateNetworkSecurityGroupSecurityRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateNetworkSecurityGroupSecurityRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateNetworkSecurityGroupSecurityRules")
+	assert.NoError(t, err)
+
+	type UpdateNetworkSecurityGroupSecurityRulesRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateNetworkSecurityGroupSecurityRulesRequest
+	}
+
+	var requests []UpdateNetworkSecurityGroupSecurityRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateNetworkSecurityGroupSecurityRules(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

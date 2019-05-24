@@ -11,7 +11,7 @@ import (
 // ListRemotePeeringConnectionsRequest wrapper for the ListRemotePeeringConnections operation
 type ListRemotePeeringConnectionsRequest struct {
 
-	// The OCID of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// The OCID of the DRG.

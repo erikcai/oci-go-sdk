@@ -23,6 +23,49 @@ func createMonitoringClientWithProvider(p common.ConfigurationProvider, testConf
 }
 
 // IssueRoutingInfo tag="default" email="pic_ion_dev_grp@oracle.com" jiraProject="TEL" opsJiraProject="TEL"
+func TestMonitoringClientChangeAlarmCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("monitoring", "ChangeAlarmCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeAlarmCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("monitoring", "Monitoring", "ChangeAlarmCompartment", createMonitoringClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(monitoring.MonitoringClient)
+
+	body, err := testClient.getRequests("monitoring", "ChangeAlarmCompartment")
+	assert.NoError(t, err)
+
+	type ChangeAlarmCompartmentRequestInfo struct {
+		ContainerId string
+		Request     monitoring.ChangeAlarmCompartmentRequest
+	}
+
+	var requests []ChangeAlarmCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeAlarmCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="pic_ion_dev_grp@oracle.com" jiraProject="TEL" opsJiraProject="TEL"
 func TestMonitoringClientCreateAlarm(t *testing.T) {
 	defer failTestOnPanic(t)
 

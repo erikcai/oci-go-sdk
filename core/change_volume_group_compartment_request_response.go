@@ -15,7 +15,7 @@ type ChangeVolumeGroupCompartmentRequest struct {
 	VolumeGroupId *string `mandatory:"true" contributesTo:"path" name:"volumeGroupId"`
 
 	// Request to change the compartment of given volume group.
-	ChangeCompartmentDetails `contributesTo:"body"`
+	ChangeVolumeGroupCompartmentDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.

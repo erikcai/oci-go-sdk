@@ -33,7 +33,9 @@ type CreateApplicationDetails struct {
 	// A syslog URL to send all function logs to. Supports tls, udp, and tcp.
 	// The syslog address must be reachable from all of the subnets configured on the application.
 	// Example: `tls://logserver.myserver:1234`
-	SysLogUrl *string `mandatory:"false" json:"sysLogUrl"`
+	SyslogUrl *string `mandatory:"false" json:"syslogUrl"`
+
+	OciLogging *ApplicationOciLogging `mandatory:"false" json:"ociLogging"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).

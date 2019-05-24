@@ -23,6 +23,49 @@ func createNotificationControlPlaneClientWithProvider(p common.ConfigurationProv
 }
 
 // IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+func TestNotificationControlPlaneClientChangeTopicCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("ons", "ChangeTopicCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeTopicCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("ons", "NotificationControlPlane", "ChangeTopicCompartment", createNotificationControlPlaneClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(ons.NotificationControlPlaneClient)
+
+	body, err := testClient.getRequests("ons", "ChangeTopicCompartment")
+	assert.NoError(t, err)
+
+	type ChangeTopicCompartmentRequestInfo struct {
+		ContainerId string
+		Request     ons.ChangeTopicCompartmentRequest
+	}
+
+	var requests []ChangeTopicCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeTopicCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
 func TestNotificationControlPlaneClientCreateTopic(t *testing.T) {
 	defer failTestOnPanic(t)
 

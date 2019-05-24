@@ -48,6 +48,9 @@ type CreateServiceGatewayDetails struct {
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table associated with ServiceGateway.
+	RouteTableId *string `mandatory:"false" json:"routeTableId"`
 }
 
 func (m CreateServiceGatewayDetails) String() string {

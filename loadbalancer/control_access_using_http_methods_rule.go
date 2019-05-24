@@ -15,15 +15,17 @@ import (
 )
 
 // ControlAccessUsingHttpMethodsRule An object that represents the action of returning a specified response code when the requested HTTP method is not in
-// the list of allowed methods for the listener. The default response code is `405 Method Not Allowed`. The load balancer
-// does not forward the request to the back end servers. The system adds an "allow" response header that contains a list
-// of the allowed methods for the listener.
+// the list of allowed methods for the listener. The load balancer does not forward a disallowed request to the back end
+// servers. The default response code is `405 Method Not Allowed`.
+// If you set the response code to `405` or leave it blank, the system adds an "allow" response header that contains a
+// list of the allowed methods for the listener. If you set the response code to anything other than `405` (or blank),
+// the system does not add the "allow" response header with a list of allowed methods.
 // This rule applies only to HTTP listeners. No more than one `ControlAccessUsingHttpMethodsRule` object can be present in
 // a given listener.
 type ControlAccessUsingHttpMethodsRule struct {
 
 	// The list of HTTP methods allowed for this listener.
-	// By default, you can list only the standard HTTP methods defined in the
+	// By default, you can specify only the standard HTTP methods defined in the
 	// HTTP Method Registry (http://www.iana.org/assignments/http-methods/http-methods.xhtml). You can also
 	// see a list of supported standard HTTP methods in the Load Balancing service documentation at
 	// Managing Rule Sets (https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrulesets.htm).
@@ -36,7 +38,7 @@ type ControlAccessUsingHttpMethodsRule struct {
 	// The HTTP status code to return when the requested HTTP method is not in the list of allowed methods.
 	// The associated status line returned with the code is mapped from the standard HTTP specification. The
 	// default value is `405 (Method Not Allowed)`.
-	// Example: 400
+	// Example: 403
 	StatusCode *int `mandatory:"false" json:"statusCode"`
 }
 

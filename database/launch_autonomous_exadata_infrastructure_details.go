@@ -35,13 +35,6 @@ type LaunchAutonomousExadataInfrastructureDetails struct {
 	// The user-friendly name for the Autonomous Exadata Infrastructure. It does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The host name for the Autonomous Exadata Infrastructure. The host name must begin with an alphabetic character and
-	// can contain a maximum of 30 alphanumeric characters, including hyphens (-).
-	// The maximum length of the combined hostname and domain is 63 characters.
-	// **Note:** The hostname must be unique within the subnet. If it is not unique,
-	// the Autonomous Exadata Infrastructure will fail to provision.
-	Hostname *string `mandatory:"false" json:"hostname"`
-
 	// A domain name used for the Autonomous Exadata Infrastructure. If the Oracle-provided Internet and VCN
 	// Resolver is enabled for the specified subnet, the domain name for the subnet is used
 	// (don't provide one). Otherwise, provide a valid DNS domain name. Hyphens (-) are not permitted.

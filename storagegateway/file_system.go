@@ -24,11 +24,17 @@ type FileSystem struct {
 	// A unique file system in the storage gateway.
 	Name *string `mandatory:"true" json:"name"`
 
+	// The file system's Oracle ID (OCID).
+	Id *string `mandatory:"true" json:"id"`
+
 	// The type of Object Storage tier.
 	StorageTier FileSystemStorageTierEnum `mandatory:"true" json:"storageTier"`
 
 	// True if the Object Storage bucket is connected.
 	IsConnected *bool `mandatory:"true" json:"isConnected"`
+
+	// True if the File System is in refresh mode.
+	IsInRefreshMode *bool `mandatory:"true" json:"isInRefreshMode"`
 
 	// A comma-separated with optional whitespace list of hosts allowed to connect to the NFS export.
 	// Specifying '*' allows all hosts to connect. Example: 2001:db8:9:e54::/64, 192.0.2.0/24
@@ -49,9 +55,6 @@ type FileSystem struct {
 
 	// The non-unique, changeable description you assign to the file system.
 	Description *string `mandatory:"false" json:"description"`
-
-	// True if the File System is in refresh mode.
-	IsInRefreshMode *bool `mandatory:"false" json:"isInRefreshMode"`
 
 	// Reclaim an Object Storage bucket that has been already owned by another file system.
 	IsReclaimAttempt *bool `mandatory:"false" json:"isReclaimAttempt"`

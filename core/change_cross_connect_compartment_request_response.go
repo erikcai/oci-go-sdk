@@ -15,7 +15,7 @@ type ChangeCrossConnectCompartmentRequest struct {
 	CrossConnectId *string `mandatory:"true" contributesTo:"path" name:"crossConnectId"`
 
 	// Request to change the compartment of a Cross Connect.
-	ChangeCompartmentDetails `contributesTo:"body"`
+	ChangeCrossConnectCompartmentDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.

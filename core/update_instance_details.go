@@ -61,8 +61,36 @@ type UpdateInstanceDetails struct {
 	// ListShapes.
 	// Example: `VM.Standard1.1`
 	Shape *string `mandatory:"false" json:"shape"`
+
+	// The preferred maintenance action for an instance. The default is LIVE_MIGRATE, if live migration is supported.
+	// * `LIVE_MIGRATE` - Run maintenance using a live migration.
+	// * `REBOOT` - Run maintenance using a reboot.
+	PreferredMaintenanceAction UpdateInstanceDetailsPreferredMaintenanceActionEnum `mandatory:"false" json:"preferredMaintenanceAction,omitempty"`
 }
 
 func (m UpdateInstanceDetails) String() string {
 	return common.PointerString(m)
+}
+
+// UpdateInstanceDetailsPreferredMaintenanceActionEnum Enum with underlying type: string
+type UpdateInstanceDetailsPreferredMaintenanceActionEnum string
+
+// Set of constants representing the allowable values for UpdateInstanceDetailsPreferredMaintenanceActionEnum
+const (
+	UpdateInstanceDetailsPreferredMaintenanceActionLiveMigrate UpdateInstanceDetailsPreferredMaintenanceActionEnum = "LIVE_MIGRATE"
+	UpdateInstanceDetailsPreferredMaintenanceActionReboot      UpdateInstanceDetailsPreferredMaintenanceActionEnum = "REBOOT"
+)
+
+var mappingUpdateInstanceDetailsPreferredMaintenanceAction = map[string]UpdateInstanceDetailsPreferredMaintenanceActionEnum{
+	"LIVE_MIGRATE": UpdateInstanceDetailsPreferredMaintenanceActionLiveMigrate,
+	"REBOOT":       UpdateInstanceDetailsPreferredMaintenanceActionReboot,
+}
+
+// GetUpdateInstanceDetailsPreferredMaintenanceActionEnumValues Enumerates the set of values for UpdateInstanceDetailsPreferredMaintenanceActionEnum
+func GetUpdateInstanceDetailsPreferredMaintenanceActionEnumValues() []UpdateInstanceDetailsPreferredMaintenanceActionEnum {
+	values := make([]UpdateInstanceDetailsPreferredMaintenanceActionEnum, 0)
+	for _, v := range mappingUpdateInstanceDetailsPreferredMaintenanceAction {
+		values = append(values, v)
+	}
+	return values
 }

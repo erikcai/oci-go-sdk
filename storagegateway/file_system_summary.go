@@ -18,11 +18,17 @@ type FileSystemSummary struct {
 	// A unique file system name in the given storage gateway.
 	Name *string `mandatory:"true" json:"name"`
 
+	// The file system's Oracle ID (OCID).
+	Id *string `mandatory:"true" json:"id"`
+
 	// The tyep of Object Storage tier.
 	StorageTier FileSystemSummaryStorageTierEnum `mandatory:"true" json:"storageTier"`
 
 	// True if the Object Storage bucket is connected.
 	IsConnected *bool `mandatory:"true" json:"isConnected"`
+
+	// True if the File System is in refresh mode.
+	IsInRefreshMode *bool `mandatory:"true" json:"isInRefreshMode"`
 
 	// Error count.
 	ErrorCount *float32 `mandatory:"true" json:"errorCount"`
@@ -40,9 +46,6 @@ type FileSystemSummary struct {
 	// File system-specific lifecycle substates: File system has one of the following substates:
 	// "NONE", "CONNECTING", "DISCONNECTING", "RECLAIMING", "REFRESHING", "UPDATING".
 	LifecycleDetails *string `mandatory:"true" json:"lifecycleDetails"`
-
-	// True if the File System is in refresh mode.
-	IsInRefreshMode *bool `mandatory:"false" json:"isInRefreshMode"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information,

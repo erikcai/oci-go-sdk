@@ -30,13 +30,13 @@
     <hemlock-spec-spec-file>hemlock-api-20160918.yaml</hemlock-spec-spec-file>
     <email-api-spec-spec-file>source/email-api-spec.cond.yaml</email-api-spec-spec-file>
     <public-dns-api-spec-spec-file>source/public-dns-api-spec.cond.yaml</public-dns-api-spec-spec-file>
-    <maestro-spec-spec-file>api.yaml</maestro-spec-spec-file>
+    <maestro-spec-spec-file>internal/api.yaml</maestro-spec-spec-file>
     <kms-api-spec-spec-file>source/kms-api-spec-20180608.cond.yaml</kms-api-spec-spec-file>
     <resource-query-service-spec-spec-file>source/rqs.cond.yaml</resource-query-service-spec-spec-file>
     <clusters-api-spec-spec-file>source/clusters-api-spec.cond.yaml</clusters-api-spec-spec-file>
-    <telemetry-public-api-spec-spec-file>source/telemetry-api.cond.yaml</telemetry-public-api-spec-spec-file>
+    <telemetry-public-api-spec-spec-file>release/telemetry-api.yaml</telemetry-public-api-spec-spec-file>
     <workrequests-api-spec-spec-file>workrequests-api-spec.cond.yaml</workrequests-api-spec-spec-file>
-    <ons-gateway-spec-spec-file>api.yaml</ons-gateway-spec-spec-file>
+    <ons-gateway-spec-spec-file>notification-api.yaml</ons-gateway-spec-spec-file>
     <healthchecks-api-spec-spec-file>health-checks-api-spec-20180501.cond.yaml</healthchecks-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
     <rest-api-spec-spec-file>source/api.cond.yaml</rest-api-spec-spec-file>
@@ -47,7 +47,7 @@
     <announcements-service-spec-spec-file>source/announcement-service.cond.yaml</announcements-service-spec-spec-file>
     <oci-waas-api-spec-spec-file>oci-waas-api-spec.cond.yaml</oci-waas-api-spec-spec-file>
     <batchservice-api-spec-spec-file>source/batchservice.cond.yaml</batchservice-api-spec-spec-file>
-    <fn-api-spec-spec-file>functions-api-spec.cond.yaml</fn-api-spec-spec-file>
+    <fn-api-spec-spec-file>release/functions-api-spec.yaml</fn-api-spec-spec-file>
     <budgets-control-plane-spec-spec-file>budget.api.cond.yaml</budgets-control-plane-spec-spec-file>
     <quotas-control-plane-api-spec-spec-file>preview/quotas-control-plane-api-spec-20181025.yaml</quotas-control-plane-api-spec-spec-file>
     <digital-assistant-spec-spec-file>source/digital-assistant-api.cond.yaml</digital-assistant-spec-spec-file>
@@ -2600,7 +2600,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.693</version>
+        <version>0.2.722</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -2615,12 +2615,12 @@
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
         <artifactId>oralb-api-spec</artifactId>
-        <version>4.0.4</version>
+        <version>4.0.11</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.160</version>
+        <version>0.1.168</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -2645,7 +2645,7 @@
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
         <artifactId>maestro-spec</artifactId>
-        <version>0.0.9</version>
+        <version>0.1.2</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
@@ -2665,7 +2665,7 @@
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
         <artifactId>telemetry-public-api-spec</artifactId>
-        <version>1.0.0-20190128.234836-64</version>
+        <version>1.0.0-20190522.211402-265</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.commons.workrequests</groupId>
@@ -2675,7 +2675,7 @@
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
         <artifactId>ons-gateway-spec</artifactId>
-        <version>1.0.1016</version>
+        <version>1.0.1176</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci</groupId>
@@ -2730,7 +2730,7 @@
       <dependency>
         <groupId>com.oracle.pic.functions</groupId>
         <artifactId>fn-api-spec</artifactId>
-        <version>0.4.0</version>
+        <version>0.6.0</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.usage.budgets</groupId>
@@ -2755,7 +2755,7 @@
       <dependency>
         <groupId>com.oracle.oci.csg</groupId>
         <artifactId>csg-api-spec</artifactId>
-        <version>1.0.16</version>
+        <version>1.0.18</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

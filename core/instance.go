@@ -131,6 +131,11 @@ type Instance struct {
 	// Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state.
 	// Example: `2018-05-25T21:10:29.600Z`
 	TimeMaintenanceRebootDue *common.SDKTime `mandatory:"false" json:"timeMaintenanceRebootDue"`
+
+	// The preferred maintenance action for an instance.
+	// * `LIVE_MIGRATE` - Run maintenance using a live migration.
+	// * `REBOOT` - Run maintenance using a reboot.
+	PreferredMaintenanceAction InstancePreferredMaintenanceActionEnum `mandatory:"false" json:"preferredMaintenanceAction,omitempty"`
 }
 
 func (m Instance) String() string {
@@ -140,26 +145,27 @@ func (m Instance) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		DefinedTags              map[string]map[string]interface{} `json:"definedTags"`
-		DisplayName              *string                           `json:"displayName"`
-		ExtendedMetadata         map[string]interface{}            `json:"extendedMetadata"`
-		FaultDomain              *string                           `json:"faultDomain"`
-		FreeformTags             map[string]string                 `json:"freeformTags"`
-		ImageId                  *string                           `json:"imageId"`
-		IpxeScript               *string                           `json:"ipxeScript"`
-		LaunchMode               InstanceLaunchModeEnum            `json:"launchMode"`
-		LaunchOptions            *LaunchOptions                    `json:"launchOptions"`
-		Metadata                 map[string]string                 `json:"metadata"`
-		SourceDetails            instancesourcedetails             `json:"sourceDetails"`
-		AgentConfig              *InstanceAgentConfig              `json:"agentConfig"`
-		TimeMaintenanceRebootDue *common.SDKTime                   `json:"timeMaintenanceRebootDue"`
-		AvailabilityDomain       *string                           `json:"availabilityDomain"`
-		CompartmentId            *string                           `json:"compartmentId"`
-		Id                       *string                           `json:"id"`
-		LifecycleState           InstanceLifecycleStateEnum        `json:"lifecycleState"`
-		Region                   *string                           `json:"region"`
-		Shape                    *string                           `json:"shape"`
-		TimeCreated              *common.SDKTime                   `json:"timeCreated"`
+		DefinedTags                map[string]map[string]interface{}      `json:"definedTags"`
+		DisplayName                *string                                `json:"displayName"`
+		ExtendedMetadata           map[string]interface{}                 `json:"extendedMetadata"`
+		FaultDomain                *string                                `json:"faultDomain"`
+		FreeformTags               map[string]string                      `json:"freeformTags"`
+		ImageId                    *string                                `json:"imageId"`
+		IpxeScript                 *string                                `json:"ipxeScript"`
+		LaunchMode                 InstanceLaunchModeEnum                 `json:"launchMode"`
+		LaunchOptions              *LaunchOptions                         `json:"launchOptions"`
+		Metadata                   map[string]string                      `json:"metadata"`
+		SourceDetails              instancesourcedetails                  `json:"sourceDetails"`
+		AgentConfig                *InstanceAgentConfig                   `json:"agentConfig"`
+		TimeMaintenanceRebootDue   *common.SDKTime                        `json:"timeMaintenanceRebootDue"`
+		PreferredMaintenanceAction InstancePreferredMaintenanceActionEnum `json:"preferredMaintenanceAction"`
+		AvailabilityDomain         *string                                `json:"availabilityDomain"`
+		CompartmentId              *string                                `json:"compartmentId"`
+		Id                         *string                                `json:"id"`
+		LifecycleState             InstanceLifecycleStateEnum             `json:"lifecycleState"`
+		Region                     *string                                `json:"region"`
+		Shape                      *string                                `json:"shape"`
+		TimeCreated                *common.SDKTime                        `json:"timeCreated"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -187,6 +193,7 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	}
 	m.AgentConfig = model.AgentConfig
 	m.TimeMaintenanceRebootDue = model.TimeMaintenanceRebootDue
+	m.PreferredMaintenanceAction = model.PreferredMaintenanceAction
 	m.AvailabilityDomain = model.AvailabilityDomain
 	m.CompartmentId = model.CompartmentId
 	m.Id = model.Id
@@ -256,6 +263,29 @@ var mappingInstanceLifecycleState = map[string]InstanceLifecycleStateEnum{
 func GetInstanceLifecycleStateEnumValues() []InstanceLifecycleStateEnum {
 	values := make([]InstanceLifecycleStateEnum, 0)
 	for _, v := range mappingInstanceLifecycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// InstancePreferredMaintenanceActionEnum Enum with underlying type: string
+type InstancePreferredMaintenanceActionEnum string
+
+// Set of constants representing the allowable values for InstancePreferredMaintenanceActionEnum
+const (
+	InstancePreferredMaintenanceActionLiveMigrate InstancePreferredMaintenanceActionEnum = "LIVE_MIGRATE"
+	InstancePreferredMaintenanceActionReboot      InstancePreferredMaintenanceActionEnum = "REBOOT"
+)
+
+var mappingInstancePreferredMaintenanceAction = map[string]InstancePreferredMaintenanceActionEnum{
+	"LIVE_MIGRATE": InstancePreferredMaintenanceActionLiveMigrate,
+	"REBOOT":       InstancePreferredMaintenanceActionReboot,
+}
+
+// GetInstancePreferredMaintenanceActionEnumValues Enumerates the set of values for InstancePreferredMaintenanceActionEnum
+func GetInstancePreferredMaintenanceActionEnumValues() []InstancePreferredMaintenanceActionEnum {
+	values := make([]InstancePreferredMaintenanceActionEnum, 0)
+	for _, v := range mappingInstancePreferredMaintenanceAction {
 		values = append(values, v)
 	}
 	return values

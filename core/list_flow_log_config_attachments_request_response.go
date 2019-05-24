@@ -11,7 +11,7 @@ import (
 // ListFlowLogConfigAttachmentsRequest wrapper for the ListFlowLogConfigAttachments operation
 type ListFlowLogConfigAttachmentsRequest struct {
 
-	// The OCID of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a resource that has flow logs enabled.

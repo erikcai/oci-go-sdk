@@ -15,7 +15,7 @@ type ChangeRemotePeeringConnectionCompartmentRequest struct {
 	RemotePeeringConnectionId *string `mandatory:"true" contributesTo:"path" name:"remotePeeringConnectionId"`
 
 	// Request to change the compartment of a Remote Peering Connection.
-	ChangeCompartmentDetails `contributesTo:"body"`
+	ChangeRemotePeeringConnectionCompartmentDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
