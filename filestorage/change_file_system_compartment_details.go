@@ -15,7 +15,7 @@ import (
 // ChangeFileSystemCompartmentDetails Details for changing the compartment.
 type ChangeFileSystemCompartmentDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment into which the resource should be moved.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the file system to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

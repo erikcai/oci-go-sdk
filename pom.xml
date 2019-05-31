@@ -53,6 +53,8 @@
     <digital-assistant-spec-spec-file>source/digital-assistant-api.cond.yaml</digital-assistant-spec-spec-file>
     <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
     <csg-api-spec-spec-file>source/storage-gateway-api.cond.yaml</csg-api-spec-spec-file>
+    <rhino-spec-file>datats-customer-control-plane.cond.yaml</rhino-spec-file>
+    <public-api-spec-spec-file>source/api.cond.yaml</public-api-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -182,6 +184,14 @@
     <dependency>
       <groupId>com.oracle.oci.csg</groupId>
       <artifactId>csg-api-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.pic</groupId>
+      <artifactId>rhino</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.pic.apigw</groupId>
+      <artifactId>public-api-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -781,6 +791,42 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/csg-api-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-rhino</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.pic</groupId>
+                  <artifactId>rhino</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/rhino</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-public-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.pic.apigw</groupId>
+                  <artifactId>public-api-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/public-api-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1656,6 +1702,60 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-rhino</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/rhino/source/${rhino-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/rhino/${rhino-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/rhino/${rhino-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-rhino</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/rhino/${rhino-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/rhino/${rhino-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-prefer-public-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/public-api-spec/source/${public-api-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/public-api-spec/${public-api-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/public-api-spec/${public-api-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-public-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/public-api-spec/${public-api-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/public-api-spec/${public-api-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2348,6 +2448,46 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-rhino</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/rhino/${rhino-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>dts</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>dts</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>go-public-sdk-public-api-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/public-api-spec/${public-api-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>apigateway</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>apigateway</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2590,6 +2730,18 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/dts</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
+            <fileset>
+              <directory>lib/oci/apigateway</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -2605,7 +2757,7 @@
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.52</version>
+        <version>0.4.55</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -2625,7 +2777,7 @@
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
         <artifactId>fss-api-spec</artifactId>
-        <version>0.0.19</version>
+        <version>0.0.22</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.sherlock</groupId>
@@ -2665,7 +2817,7 @@
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
         <artifactId>telemetry-public-api-spec</artifactId>
-        <version>1.0.0-20190522.211402-265</version>
+        <version>1.0.0-20190530.190635-280</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.commons.workrequests</groupId>
@@ -2756,6 +2908,16 @@
         <groupId>com.oracle.oci.csg</groupId>
         <artifactId>csg-api-spec</artifactId>
         <version>1.0.18</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.pic</groupId>
+        <artifactId>rhino</artifactId>
+        <version>1.0.005</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.pic.apigw</groupId>
+        <artifactId>public-api-spec</artifactId>
+        <version>1.0.2</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

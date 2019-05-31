@@ -1023,6 +1023,10 @@ func (client IdentityClient) createTag(ctx context.Context, request common.OCIRe
 }
 
 // CreateTagDefault Creates a new tag default in the specified compartment for the specified tag definition.
+// If the 'isRequired' flag is set to 'true', then the tag and a value are required on all
+// resources created in the specified compartment.
+// If the 'isRequired' flag is set to 'false', then a new tag default is created in the
+// specified compartment for the specified tag definition.
 func (client IdentityClient) CreateTagDefault(ctx context.Context, request CreateTagDefaultRequest) (response CreateTagDefaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1080,8 +1084,6 @@ func (client IdentityClient) createTagDefault(ctx context.Context, request commo
 // You must also specify a *description* for the namespace.
 // It does not have to be unique, and you can change it with
 // UpdateTagNamespace.
-// Tag namespaces cannot be deleted, but they can be retired.
-// See Retiring Key Definitions and Namespace Definitions (https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring) for more information.
 func (client IdentityClient) CreateTagNamespace(ctx context.Context, request CreateTagNamespaceRequest) (response CreateTagNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1768,7 +1770,21 @@ func (client IdentityClient) deleteSwiftPassword(ctx context.Context, request co
 	return response, err
 }
 
-// DeleteTag Deletes the the specified tag definition.
+// DeleteTag Deletes the specified tag definition. This operation triggers a process that removes the
+// tag from all resources in your tenancy.
+// These things happen immediately:
+//
+//   * If the tag was a cost-tracking tag, it no longer counts against your 10 cost-tracking
+//   tags limit, whether you first disabled it or not.
+//   * If the tag was used with dynamic groups, none of the rules that contain the tag will
+//   be evaluated against the tag.
+// Once you start the delete operation, the state of the tag changes to DELETING and tag removal
+// from resources begins. This can take up to 48 hours depending on the number of resources that
+// were tagged as well as the regions in which those resources reside. When all tags have been
+// removed, the state changes to DELETED. You cannot restore a deleted tag. Once the deleted tag
+// changes its state to DELETED, you can use the same tag name again.
+// To delete a tag, you must first retire it. Use UpdateTag
+// to retire a tag.
 func (client IdentityClient) DeleteTag(ctx context.Context, request DeleteTagRequest) (response DeleteTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1852,8 +1868,9 @@ func (client IdentityClient) deleteTagDefault(ctx context.Context, request commo
 	return response, err
 }
 
-// DeleteTagNamespace Delete the specified tag namespace. Only an empty tagnamespace can be deleted.
-// If the tag namespace you are trying to delete is not empty, please remove tag definitions from it first.
+// DeleteTagNamespace Deletes the specified tag namespace. Only an empty tag namespace can be deleted. To delete
+// a tag namespace, first delete all its tag definitions.
+// Use DeleteTag to delete a tag definition.
 func (client IdentityClient) DeleteTagNamespace(ctx context.Context, request DeleteTagNamespaceRequest) (response DeleteTagNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4624,6 +4641,8 @@ func (client IdentityClient) updateTag(ctx context.Context, request common.OCIRe
 }
 
 // UpdateTagDefault Updates the specified tag default. You can update the following field: `value`.
+// Use the 'isRequired' flag to toggle on/off to enforce the required tag and a value on all
+// resources created in the specified compartment.
 func (client IdentityClient) UpdateTagDefault(ctx context.Context, request UpdateTagDefaultRequest) (response UpdateTagDefaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

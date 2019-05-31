@@ -46,6 +46,10 @@ type TagDefault struct {
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
+	// Indicates whether the tag default is marked as required.  When marked as required, the tag and a value are required on all resources created
+	// in the specified compartment.
+	IsRequired *bool `mandatory:"true" json:"isRequired"`
+
 	// The tag default's current state. After creating a `TagDefault`, make sure its `lifecycleState` is ACTIVE before using it.
 	LifecycleState TagDefaultLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }

@@ -43,3 +43,5 @@
 ^oda/
 ^datasafe/
 ^storagegateway/
+^dts/
+^apigateway/

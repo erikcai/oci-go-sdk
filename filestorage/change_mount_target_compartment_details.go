@@ -15,7 +15,7 @@ import (
 // ChangeMountTargetCompartmentDetails Details for changing the compartment.
 type ChangeMountTargetCompartmentDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment into which the resource should be moved.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the mount target to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

@@ -23,6 +23,9 @@ type CreateTagDefaultDetails struct {
 
 	// The default value for the tag definition. This will be applied to all new resources created in the compartment.
 	Value *string `mandatory:"true" json:"value"`
+
+	// Flag to enforce the required tag and a value on all new resources created in the compartment.
+	IsRequired *bool `mandatory:"false" json:"isRequired"`
 }
 
 func (m CreateTagDefaultDetails) String() string {
