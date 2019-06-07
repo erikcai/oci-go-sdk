@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -12,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// LifecycleState The resource's life-cycle state. After creating the resource, make sure its state changes to
+// LifecycleState The resource's lifecycle state. After creating the resource, make sure its state changes to
 // ACTIVE before using it.
 type LifecycleState struct {
 }

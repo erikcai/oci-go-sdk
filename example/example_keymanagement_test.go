@@ -50,7 +50,6 @@ func ExampleVaultOperations() {
 	// schedule vault deletion
 }
 
-
 // ExampleKeyManagement_KeyOperations shows how to create, enable and disable a KMS key
 func ExampleKeyOperations() {
 	vaultClient, clientError := keymanagement.NewKmsVaultClientWithConfigurationProvider(common.DefaultConfigProvider())
@@ -67,7 +66,7 @@ func ExampleKeyOperations() {
 	waitForStateVaultClient(ctx, vault.Id, vaultClient, keymanagement.VaultLifecycleStateActive)
 
 	vaultManagementClient, mgmtClientError := keymanagement.
-				NewKmsManagementClientWithConfigurationProvider(common.DefaultConfigProvider(), *vault.ManagementEndpoint)
+		NewKmsManagementClientWithConfigurationProvider(common.DefaultConfigProvider(), *vault.ManagementEndpoint)
 	helpers.FatalIfError(mgmtClientError)
 
 	// Create Key
@@ -99,29 +98,29 @@ func ExampleKeyOperations() {
 
 	fmt.Println("enable key")
 
-    // Schedule Key Deletion
-    scheduleKeyDeletionRequest := keymanagement.ScheduleKeyDeletionRequest{
-        KeyId: key.Id,
-    }
+	// Schedule Key Deletion
+	scheduleKeyDeletionRequest := keymanagement.ScheduleKeyDeletionRequest{
+		KeyId: key.Id,
+	}
 
-    scheduleKeyDeletionResponse, scheduleKeyDeletionErr := vaultManagementClient.ScheduleKeyDeletion(ctx, scheduleKeyDeletionRequest)
-    helpers.FatalIfError(scheduleKeyDeletionErr)
-    key = scheduleKeyDeletionResponse.Key
-    // Wait for key to be in PendingDeletion state
-    waitForStateVaultManagementClient(ctx, key.Id, vaultManagementClient, keymanagement.KeyLifecycleStatePendingDeletion)
+	scheduleKeyDeletionResponse, scheduleKeyDeletionErr := vaultManagementClient.ScheduleKeyDeletion(ctx, scheduleKeyDeletionRequest)
+	helpers.FatalIfError(scheduleKeyDeletionErr)
+	key = scheduleKeyDeletionResponse.Key
+	// Wait for key to be in PendingDeletion state
+	waitForStateVaultManagementClient(ctx, key.Id, vaultManagementClient, keymanagement.KeyLifecycleStatePendingDeletion)
 
 	fmt.Println("schedule key deletion")
 
-    // Cancel Key Deletion
-    cancelKeyDeletionRequest := keymanagement.CancelKeyDeletionRequest{
-        KeyId: key.Id,
-    }
+	// Cancel Key Deletion
+	cancelKeyDeletionRequest := keymanagement.CancelKeyDeletionRequest{
+		KeyId: key.Id,
+	}
 
-    cancelKeyDeletionResponse, cancelKeyDeletionErr := vaultManagementClient.CancelKeyDeletion(ctx, cancelKeyDeletionRequest)
-    helpers.FatalIfError(cancelKeyDeletionErr)
-    key = cancelKeyDeletionResponse.Key
-    // Wait for key to be in Enabled state
-    waitForStateVaultManagementClient(ctx, key.Id, vaultManagementClient, keymanagement.KeyLifecycleStateEnabled)
+	cancelKeyDeletionResponse, cancelKeyDeletionErr := vaultManagementClient.CancelKeyDeletion(ctx, cancelKeyDeletionRequest)
+	helpers.FatalIfError(cancelKeyDeletionErr)
+	key = cancelKeyDeletionResponse.Key
+	// Wait for key to be in Enabled state
+	waitForStateVaultManagementClient(ctx, key.Id, vaultManagementClient, keymanagement.KeyLifecycleStateEnabled)
 
 	fmt.Println("cancel scheduled key deletion")
 
@@ -130,7 +129,7 @@ func ExampleKeyOperations() {
 		DisplayName: &updatedKeyName,
 	}
 	updateKeyRequest := keymanagement.UpdateKeyRequest{
-		KeyId: key.Id,
+		KeyId:            key.Id,
 		UpdateKeyDetails: updateKeyDetails,
 	}
 
@@ -160,7 +159,6 @@ func ExampleCryptoOperations() {
 	keyName := "KmsKey"
 	testInput := "CryptoOps Test Input"
 
-
 	vault := createVault(ctx, vaultClient, vaultName)
 	defer cleanupResources(ctx, vaultClient, vault.Id)
 	// wait for instance lifecycle state becomes active
@@ -181,8 +179,8 @@ func ExampleCryptoOperations() {
 	// Generate DEK
 	includePlaintextKeyInResponse := true
 	generateKeyDetails := keymanagement.GenerateKeyDetails{
-		KeyId: key.Id,
-		KeyShape: &keyShape,
+		KeyId:               key.Id,
+		KeyShape:            &keyShape,
 		IncludePlaintextKey: &includePlaintextKeyInResponse,
 	}
 	generateDekRequest := keymanagement.GenerateDataEncryptionKeyRequest{
@@ -198,7 +196,7 @@ func ExampleCryptoOperations() {
 
 	// Encrypt
 	encryptedDataDetails := keymanagement.EncryptDataDetails{
-		KeyId: key.Id,
+		KeyId:     key.Id,
 		Plaintext: &testInput,
 	}
 	encryptRequest := keymanagement.EncryptRequest{
@@ -214,7 +212,7 @@ func ExampleCryptoOperations() {
 
 	// Decrypt
 	decryptDataDetails := keymanagement.DecryptDataDetails{
-		KeyId: key.Id,
+		KeyId:      key.Id,
 		Ciphertext: cipherText,
 	}
 	decryptRequest := keymanagement.DecryptRequest{
@@ -254,10 +252,10 @@ func getVault(ctx context.Context, client keymanagement.KmsVaultClient, retryPol
 
 func updateVault(ctx context.Context, client keymanagement.KmsVaultClient, newName, vaultId *string) keymanagement.Vault {
 	updateVaultDetails := keymanagement.UpdateVaultDetails{
-		DisplayName:newName,
+		DisplayName: newName,
 	}
 	request := keymanagement.UpdateVaultRequest{
-		VaultId: vaultId,
+		VaultId:            vaultId,
 		UpdateVaultDetails: updateVaultDetails,
 	}
 	response, err := client.UpdateVault(ctx, request)
@@ -283,10 +281,10 @@ func getKey(ctx context.Context, client keymanagement.KmsManagementClient, retry
 func createVault(ctx context.Context, c keymanagement.KmsVaultClient, vaultName string) (vault keymanagement.Vault) {
 	vaultDetails := keymanagement.CreateVaultDetails{
 		CompartmentId: helpers.CompartmentID(),
-		DisplayName: &vaultName,
-		VaultType: keymanagement.CreateVaultDetailsVaultTypePrivate,
+		DisplayName:   &vaultName,
+		VaultType:     keymanagement.CreateVaultDetailsVaultTypePrivate,
 	}
-	request := keymanagement.CreateVaultRequest {}
+	request := keymanagement.CreateVaultRequest{}
 	request.CreateVaultDetails = vaultDetails
 	response, err := c.CreateVault(ctx, request)
 	helpers.FatalIfError(err)
@@ -322,12 +320,12 @@ func createKey(ctx context.Context, vaultManagementClient keymanagement.KmsManag
 
 	keyShape := keymanagement.KeyShape{
 		Algorithm: keymanagement.KeyShapeAlgorithmAes,
-		Length: &keyLength,
+		Length:    &keyLength,
 	}
 	createKeyDetails := keymanagement.CreateKeyDetails{
 		CompartmentId: helpers.CompartmentID(),
-		KeyShape: &keyShape,
-		DisplayName: keyName,
+		KeyShape:      &keyShape,
+		DisplayName:   keyName,
 	}
 	request := keymanagement.CreateKeyRequest{
 		CreateKeyDetails: createKeyDetails,
@@ -345,7 +343,7 @@ func createKey(ctx context.Context, vaultManagementClient keymanagement.KmsManag
 }
 
 func waitForStateVaultClient(ctx context.Context, vaultId *string, client keymanagement.KmsVaultClient,
-					state keymanagement.VaultLifecycleStateEnum) {
+	state keymanagement.VaultLifecycleStateEnum) {
 	// maximum times of retry
 	attempts := uint(10)
 
@@ -375,7 +373,6 @@ func waitForStateVaultClient(ctx context.Context, vaultId *string, client keyman
 
 	getVault(ctx, client, &lifecycleStateCheckRetryPolicy, vaultId)
 }
-
 
 func waitForStateVaultManagementClient(ctx context.Context, keyId *string, client keymanagement.KmsManagementClient,
 	state keymanagement.KeyLifecycleStateEnum) {

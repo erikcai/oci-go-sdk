@@ -22,7 +22,7 @@ func createDnsClientWithProvider(p common.ConfigurationProvider, testConfig Test
 	return client, err
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientChangeSteeringPolicyCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestDnsClientChangeSteeringPolicyCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientChangeZoneCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestDnsClientChangeZoneCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientCreateSteeringPolicy(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestDnsClientCreateSteeringPolicy(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientCreateSteeringPolicyAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestDnsClientCreateSteeringPolicyAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientCreateZone(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,7 +237,7 @@ func TestDnsClientCreateZone(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientDeleteDomainRecords(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -280,7 +280,7 @@ func TestDnsClientDeleteDomainRecords(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientDeleteRRSet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -323,7 +323,7 @@ func TestDnsClientDeleteRRSet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientDeleteSteeringPolicy(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -366,7 +366,7 @@ func TestDnsClientDeleteSteeringPolicy(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientDeleteSteeringPolicyAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -409,7 +409,7 @@ func TestDnsClientDeleteSteeringPolicyAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientDeleteZone(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -452,7 +452,7 @@ func TestDnsClientDeleteZone(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientGetDomainRecords(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -504,7 +504,7 @@ func TestDnsClientGetDomainRecords(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientGetRRSet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -556,7 +556,7 @@ func TestDnsClientGetRRSet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientGetSteeringPolicy(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -599,7 +599,7 @@ func TestDnsClientGetSteeringPolicy(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientGetSteeringPolicyAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -642,7 +642,7 @@ func TestDnsClientGetSteeringPolicyAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientGetZone(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -685,7 +685,7 @@ func TestDnsClientGetZone(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientGetZoneRecords(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -737,7 +737,7 @@ func TestDnsClientGetZoneRecords(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientListSteeringPolicies(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -789,7 +789,7 @@ func TestDnsClientListSteeringPolicies(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientListSteeringPolicyAttachments(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -841,7 +841,7 @@ func TestDnsClientListSteeringPolicyAttachments(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientListZones(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -893,7 +893,7 @@ func TestDnsClientListZones(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientPatchDomainRecords(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -936,7 +936,7 @@ func TestDnsClientPatchDomainRecords(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientPatchRRSet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -979,7 +979,7 @@ func TestDnsClientPatchRRSet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientPatchZoneRecords(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1022,7 +1022,7 @@ func TestDnsClientPatchZoneRecords(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientUpdateDomainRecords(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1065,7 +1065,7 @@ func TestDnsClientUpdateDomainRecords(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientUpdateRRSet(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1108,7 +1108,7 @@ func TestDnsClientUpdateRRSet(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientUpdateSteeringPolicy(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1151,7 +1151,7 @@ func TestDnsClientUpdateSteeringPolicy(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientUpdateSteeringPolicyAttachment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1194,7 +1194,7 @@ func TestDnsClientUpdateSteeringPolicyAttachment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientUpdateZone(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1237,7 +1237,7 @@ func TestDnsClientUpdateZone(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientUpdateZoneRecords(t *testing.T) {
 	defer failTestOnPanic(t)
 

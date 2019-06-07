@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -58,7 +59,7 @@ func (client *StorageGatewayClient) ConfigurationProvider() *common.Configuratio
 	return client.config
 }
 
-// CancelCloudSync Cancels a cloud sync in the given storage gateway.
+// CancelCloudSync Cancels the specified cloud sync in the specified storage gateway.
 func (client StorageGatewayClient) CancelCloudSync(ctx context.Context, request CancelCloudSyncRequest) (response CancelCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -100,7 +101,9 @@ func (client StorageGatewayClient) cancelCloudSync(ctx context.Context, request 
 	return response, err
 }
 
-// ChangeStorageGatewayCompartment Change the compartment of storage gateway.
+// ChangeStorageGatewayCompartment Moves a storage gateway into a different compartment within the same tenancy. For information about moving
+// resources between compartments, see
+// Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 func (client StorageGatewayClient) ChangeStorageGatewayCompartment(ctx context.Context, request ChangeStorageGatewayCompartmentRequest) (response ChangeStorageGatewayCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -147,7 +150,7 @@ func (client StorageGatewayClient) changeStorageGatewayCompartment(ctx context.C
 	return response, err
 }
 
-// ConnectFileSystem Connects a file system in the given storage gateway to its object storage bucket.
+// ConnectFileSystem Connects the specified file system in the specified storage gateway to its object storage bucket.
 func (client StorageGatewayClient) ConnectFileSystem(ctx context.Context, request ConnectFileSystemRequest) (response ConnectFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -189,7 +192,12 @@ func (client StorageGatewayClient) connectFileSystem(ctx context.Context, reques
 	return response, err
 }
 
-// CreateCloudSync Creates a cloud sync in the given storage gateway and compartment.
+// CreateCloudSync Creates a cloud sync in the specified storage gateway and compartment. For general information about cloud syncs,
+// see Using Storage Gateway Cloud Sync (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Reference/storagegatewaycloudsync.htm).
+// After you send your request, the new object's state will temporarily be CREATING. Before using the
+// the object, first make sure its state has changed to ACTIVE.
+// For general information about Oracle Cloud Infrastructure API requests, see
+// REST APIs (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm).
 func (client StorageGatewayClient) CreateCloudSync(ctx context.Context, request CreateCloudSyncRequest) (response CreateCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -236,7 +244,12 @@ func (client StorageGatewayClient) createCloudSync(ctx context.Context, request 
 	return response, err
 }
 
-// CreateFileSystem Creates a file system in the given storage gateway and compartment.
+// CreateFileSystem Creates a file system in the specified storage gateway. For more information about storage gateway file systems,
+// see Creating Your First File System (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Tasks/creatingyourfirstfilesystem.htm).
+// After you send your request, the new object's state will temporarily be CREATING. Before using the
+// the object, first make sure its state has changed to ACTIVE.
+// For general information about Oracle Cloud Infrastructure API requests, see
+// REST APIs (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm).
 func (client StorageGatewayClient) CreateFileSystem(ctx context.Context, request CreateFileSystemRequest) (response CreateFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -283,13 +296,17 @@ func (client StorageGatewayClient) createFileSystem(ctx context.Context, request
 	return response, err
 }
 
-// CreateStorageGateway Creates a new storage gateway in a compartment. You must specify a OCID as the compartment ID
-// in the request object. You must also specify a *name* for the storage gateway, which must be
-// unique across all gateways in your compartment and cannot be changed.
-// After you send your request, the new object's state will temporarily be CREATING. Before using
-// the object, first make sure its state has changed to ACTIVE.
-// For information about endpoints and signing API requests,
-// see Making API Requests (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm).
+// CreateStorageGateway Creates a new storage gateway in the specified compartment. For general information about storage gateways, see
+// Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
+// For the purposes of access control, you must provide the OCID of the compartment where you want the storage
+// gateway to reside. For information about access control and compartments, see
+// Overview of the IAM Service (https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
+// You must specify a name for the storage gateway. The name must be unique across all storage gateways in your
+// compartment. The storage gateway name cannot be changed.
+// After you send your request, the new object's state will temporarily be CREATING. Before using the object,
+// ensure that its state is either INACTIVE or ACTIVE.
+// For general information about Oracle Cloud Infrastructure API requests, see
+// REST APIs (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm).
 func (client StorageGatewayClient) CreateStorageGateway(ctx context.Context, request CreateStorageGatewayRequest) (response CreateStorageGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -336,7 +353,7 @@ func (client StorageGatewayClient) createStorageGateway(ctx context.Context, req
 	return response, err
 }
 
-// DeleteCloudSync Deletes the given cloud sync.
+// DeleteCloudSync Deletes the specified cloud sync.
 func (client StorageGatewayClient) DeleteCloudSync(ctx context.Context, request DeleteCloudSyncRequest) (response DeleteCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -378,7 +395,7 @@ func (client StorageGatewayClient) deleteCloudSync(ctx context.Context, request 
 	return response, err
 }
 
-// DeleteFileSystem Deletes the given file system.
+// DeleteFileSystem Deletes the specified storage gateway file system.
 func (client StorageGatewayClient) DeleteFileSystem(ctx context.Context, request DeleteFileSystemRequest) (response DeleteFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -420,7 +437,7 @@ func (client StorageGatewayClient) deleteFileSystem(ctx context.Context, request
 	return response, err
 }
 
-// DeleteStorageGateway Deletes the given storage gateway.
+// DeleteStorageGateway Deletes the specified storage gateway.
 func (client StorageGatewayClient) DeleteStorageGateway(ctx context.Context, request DeleteStorageGatewayRequest) (response DeleteStorageGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -462,7 +479,7 @@ func (client StorageGatewayClient) deleteStorageGateway(ctx context.Context, req
 	return response, err
 }
 
-// DisconnectFileSystem Disconnects a file system in the given storage gateway from its object storage bucket.
+// DisconnectFileSystem Disconnects the specified file system in the specified storage gateway from its object storage bucket.
 func (client StorageGatewayClient) DisconnectFileSystem(ctx context.Context, request DisconnectFileSystemRequest) (response DisconnectFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -504,7 +521,7 @@ func (client StorageGatewayClient) disconnectFileSystem(ctx context.Context, req
 	return response, err
 }
 
-// GetCloudSync Gets the given cloud sync information.
+// GetCloudSync Gets the specified cloud sync's configuration information.
 func (client StorageGatewayClient) GetCloudSync(ctx context.Context, request GetCloudSyncRequest) (response GetCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -546,7 +563,7 @@ func (client StorageGatewayClient) getCloudSync(ctx context.Context, request com
 	return response, err
 }
 
-// GetCloudSyncHealth Gets the health about the cloud sync.
+// GetCloudSyncHealth Gets the health status of the specified cloud sync.
 func (client StorageGatewayClient) GetCloudSyncHealth(ctx context.Context, request GetCloudSyncHealthRequest) (response GetCloudSyncHealthResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -588,7 +605,7 @@ func (client StorageGatewayClient) getCloudSyncHealth(ctx context.Context, reque
 	return response, err
 }
 
-// GetFileSystem Gets the information of the given file system.
+// GetFileSystem Gets information about the specified file system.
 func (client StorageGatewayClient) GetFileSystem(ctx context.Context, request GetFileSystemRequest) (response GetFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -672,7 +689,7 @@ func (client StorageGatewayClient) getFileSystemHealth(ctx context.Context, requ
 	return response, err
 }
 
-// GetStorageGateway Gets the specified gateway information.
+// GetStorageGateway Gets configuration and status information for the specified storage gateway.
 func (client StorageGatewayClient) GetStorageGateway(ctx context.Context, request GetStorageGatewayRequest) (response GetStorageGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -714,7 +731,7 @@ func (client StorageGatewayClient) getStorageGateway(ctx context.Context, reques
 	return response, err
 }
 
-// GetStorageGatewayHealth Gets the health about the storage gateway.
+// GetStorageGatewayHealth Gets health information for the specified storage gateway.
 func (client StorageGatewayClient) GetStorageGatewayHealth(ctx context.Context, request GetStorageGatewayHealthRequest) (response GetStorageGatewayHealthResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -756,7 +773,7 @@ func (client StorageGatewayClient) getStorageGatewayHealth(ctx context.Context, 
 	return response, err
 }
 
-// ListCloudSyncs Gets a list of all the cloud syncs in the given storage gateway and compartment.
+// ListCloudSyncs Lists all cloud syncs in the specified storage gateway and compartment.
 func (client StorageGatewayClient) ListCloudSyncs(ctx context.Context, request ListCloudSyncsRequest) (response ListCloudSyncsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -798,7 +815,7 @@ func (client StorageGatewayClient) listCloudSyncs(ctx context.Context, request c
 	return response, err
 }
 
-// ListFileSystems Gets a list of all the file systems in the given storage gateway and compartment.
+// ListFileSystems Lists all file systems in the specified storage gateway.
 func (client StorageGatewayClient) ListFileSystems(ctx context.Context, request ListFileSystemsRequest) (response ListFileSystemsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -840,7 +857,7 @@ func (client StorageGatewayClient) listFileSystems(ctx context.Context, request 
 	return response, err
 }
 
-// ListStorageGateways Gets a list of all the storage gateways in the given compartment.
+// ListStorageGateways Lists all storage gateways in the specified compartment.
 func (client StorageGatewayClient) ListStorageGateways(ctx context.Context, request ListStorageGatewaysRequest) (response ListStorageGatewaysResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -882,7 +899,7 @@ func (client StorageGatewayClient) listStorageGateways(ctx context.Context, requ
 	return response, err
 }
 
-// ReclaimFileSystem Reclaims a file system in the given storage gateway from its object storage bucket.
+// ReclaimFileSystem Reclaims the specified file system in the specified storage gateway from its object storage bucket.
 func (client StorageGatewayClient) ReclaimFileSystem(ctx context.Context, request ReclaimFileSystemRequest) (response ReclaimFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -924,8 +941,9 @@ func (client StorageGatewayClient) reclaimFileSystem(ctx context.Context, reques
 	return response, err
 }
 
-// RefreshFileSystem Refreshes a file system in the given storage gateway with the contents in the object storage bucket.
-// While a file system is in the refresh mode, the file system can handle any other API calls, such as Disconnect and DeleteFileSystem.
+// RefreshFileSystem Refreshes the specified file system in the specified storage gateway with the contents in the object storage
+// bucket. A file system can handle other API calls, such as `Disconnect` and `DeleteFileSystem`, while it is in
+// refresh mode.
 func (client StorageGatewayClient) RefreshFileSystem(ctx context.Context, request RefreshFileSystemRequest) (response RefreshFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -967,7 +985,7 @@ func (client StorageGatewayClient) refreshFileSystem(ctx context.Context, reques
 	return response, err
 }
 
-// RunCloudSync Runs a cloud sync in the given storage gateway.
+// RunCloudSync Runs the specified cloud sync in the specified storage gateway.
 func (client StorageGatewayClient) RunCloudSync(ctx context.Context, request RunCloudSyncRequest) (response RunCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1009,7 +1027,7 @@ func (client StorageGatewayClient) runCloudSync(ctx context.Context, request com
 	return response, err
 }
 
-// UpdateCloudSync Updates the information of the given cloud sync.
+// UpdateCloudSync Updates the configuration information of the specified cloud sync.
 func (client StorageGatewayClient) UpdateCloudSync(ctx context.Context, request UpdateCloudSyncRequest) (response UpdateCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1051,7 +1069,7 @@ func (client StorageGatewayClient) updateCloudSync(ctx context.Context, request 
 	return response, err
 }
 
-// UpdateFileSystem Updates the information of the given file system.
+// UpdateFileSystem Updates the configuration of the specified file system.
 func (client StorageGatewayClient) UpdateFileSystem(ctx context.Context, request UpdateFileSystemRequest) (response UpdateFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1093,7 +1111,7 @@ func (client StorageGatewayClient) updateFileSystem(ctx context.Context, request
 	return response, err
 }
 
-// UpdateStorageGateway Update the given storage gateway.
+// UpdateStorageGateway Updates the specified storage gateway's configuration.
 func (client StorageGatewayClient) UpdateStorageGateway(ctx context.Context, request UpdateStorageGatewayRequest) (response UpdateStorageGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -11,10 +11,11 @@ import (
 // DeleteCloudSyncRequest wrapper for the DeleteCloudSync operation
 type DeleteCloudSyncRequest struct {
 
-	// The storage gateway OCID.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the storage gateway.
 	StorageGatewayId *string `mandatory:"true" contributesTo:"path" name:"storageGatewayId"`
 
-	// The cloud sync's name.
+	// The cloud sync's unique name.
+	// Example: `cloud_sync_52019`
 	CloudSyncName *string `mandatory:"true" contributesTo:"path" name:"cloudSyncName"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -46,7 +47,7 @@ type DeleteCloudSyncResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }

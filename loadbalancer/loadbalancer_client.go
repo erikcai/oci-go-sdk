@@ -1424,6 +1424,48 @@ func (client LoadBalancerClient) listHostnames(ctx context.Context, request comm
 	return response, err
 }
 
+// ListListenerRules List set of all rules associated with a listener ordered by execution phase.
+func (client LoadBalancerClient) ListListenerRules(ctx context.Context, request ListListenerRulesRequest) (response ListListenerRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listListenerRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListListenerRulesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListListenerRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListListenerRulesResponse")
+	}
+	return
+}
+
+// listListenerRules implements the OCIOperation interface (enables retrying operations)
+func (client LoadBalancerClient) listListenerRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/loadBalancers/{loadBalancerId}/listeners/{listenerName}/rules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListListenerRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListLoadBalancerHealths Lists the summary health statuses for all load balancers in the specified compartment.
 func (client LoadBalancerClient) ListLoadBalancerHealths(ctx context.Context, request ListLoadBalancerHealthsRequest) (response ListLoadBalancerHealthsResponse, err error) {
 	var ociResponse common.OCIResponse

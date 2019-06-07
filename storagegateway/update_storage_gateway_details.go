@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -12,23 +13,26 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateStorageGatewayDetails Details to set when updating the storage gateway.
+// UpdateStorageGatewayDetails Configuration details for updating a storage gateway.
+// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type UpdateStorageGatewayDetails struct {
 
-	// A non-unique, name to update the gateway with.
+	// A user-friendly name. It does not have to be unique, and it is changeable.
+	// Example: `example_storage_gateway`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// A non-unique, changeable description to update the storage gateway with.
+	// The changeable description you assign to the storage gateway during creation. It does not have to be unique.
+	//  Example: `my first storage gateway`
 	Description *string `mandatory:"false" json:"description"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information,
-	// see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
-	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }

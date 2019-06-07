@@ -251,7 +251,7 @@ func TestComputeClientCaptureConsoleHistory(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientChangeImageCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 

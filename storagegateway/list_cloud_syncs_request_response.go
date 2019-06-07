@@ -11,31 +11,35 @@ import (
 // ListCloudSyncsRequest wrapper for the ListCloudSyncs operation
 type ListCloudSyncsRequest struct {
 
-	// The storage gateway OCID.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the storage gateway.
 	StorageGatewayId *string `mandatory:"true" contributesTo:"path" name:"storageGatewayId"`
 
-	// The value of the `opc-next-page` response header from the previous "List" call. For information about
-	// pagination, see List Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
+	// For list pagination. The value of the `opc-next-page` response header from the previous "List" call. For important
+	// details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return in a paginated "List" call. For information about pagination, see
-	// List Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
+	// For list pagination. The maximum number of results per page, or items to return in a paginated "List" call.
+	// For important details about how pagination works, see
+	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The optional field to sort the results by.
+	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for TIMECREATED is descending.
+	// Default order for DISPLAYNAME is ascending. The DISPLAYNAME sort order is case sensitive.
 	SortBy ListCloudSyncsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The optional order in which to sort the results.
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order is case sensitive.
 	SortOrder ListCloudSyncsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The optional filter to apply to the results.
+	// A filter to return only resources that match the specified display name exactly.
+	// Example: `example_resource_display_name`
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// The optional filter to apply to the results.
+	// A filter to return only resources that match the specified lifecycle state.
+	// Example: `ACTIVE`
 	LifecycleState LifecycleState `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -66,18 +70,19 @@ type ListCloudSyncsResponse struct {
 	// A list of []CloudSyncSummary instances
 	Items []CloudSyncSummary `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
-	// a particular request, please provide the request ID.
+	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+	// particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination of list of items. When paging through a list, provide this value as the `page` parameter for
-	// the subsequent request to page backwards.
+	// For list pagination. When this header appears in the response, previous pages of results exist. When
+	// paging through a list, provide this value as the `page` parameter for the subsequent request to page
+	// backwards. For important details about how pagination works, see
+	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcPrevPage *string `presentIn:"header" name:"opc-prev-page"`
 
-	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then there are additional items still to get. Include this value as the `page` parameter for the
-	// subsequent GET request. For information about pagination, see
-	// List Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
+	// For list pagination. When this header appears in the response, additional pages of results remain.
+	// Include this value as the `page` parameter for the subsequent GET request. For important details about
+	// how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

@@ -11,10 +11,11 @@ import (
 // DeleteFileSystemRequest wrapper for the DeleteFileSystem operation
 type DeleteFileSystemRequest struct {
 
-	// The storage gateway OCID.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the storage gateway.
 	StorageGatewayId *string `mandatory:"true" contributesTo:"path" name:"storageGatewayId"`
 
-	// The file system's name.
+	// The file system's unique name.
+	// Example: `file_system_52019`
 	FileSystemName *string `mandatory:"true" contributesTo:"path" name:"fileSystemName"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
@@ -46,7 +47,7 @@ type DeleteFileSystemResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }

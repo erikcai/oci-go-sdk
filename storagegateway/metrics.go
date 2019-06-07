@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -12,29 +13,23 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Metrics The latest telemetry data posted from the storage gateway instance. This telemetry
-// data include five areas: 'resource', 'stats', 'issues', 'filesystems', and 'cloudsyncs'.
-// The 'resource' contains telemetry data on storage gateway resource capacity, such
-// as the number of vCPUs, memory size, etc. The 'stats' contains telemetry data on
-// the resource usages, such as CPU/memory utilization, created/connected file systems
-// count, etc. The 'issues' contains telemetry data on errors, warnings, and rejecting IO
-// on the storage gateway. The 'filesystems' and 'cloudsyncs' respectively contain
-// telemetry data on each of the file systems and cloud syncs on the storage gateway.
+// Metrics The most current telemetry data posted from the specified storage gateway instance.
 type Metrics struct {
 
-	// resource
+	// Provides metrics on storage gateway resource capacity, such as the number of vCPUs, memory size, and so forth.
 	Resource *MetricsResource `mandatory:"false" json:"resource"`
 
-	// stats
+	// Provides metrics on resource usage, such as CPU and memory utilization, created or connected file systems
+	// count, and so forth.
 	Stats *MetricsStats `mandatory:"false" json:"stats"`
 
-	// issues
+	// Provides metrics on errors, warnings, and rejected IO on the storage gateway.
 	Issues *MetricsIssues `mandatory:"false" json:"issues"`
 
-	// filesystems, where each key represents a file system name.
+	// Provides metrics on each of the file systems in the storage gateway. Each key represents a file system name.
 	Filesystems map[string]MetricsFilesystem `mandatory:"false" json:"filesystems"`
 
-	// cloudsyncs, where each key represents a cloud sync name.
+	// Provides metrics on each of the cloud syncs in the storage gateway. Each key represents a cloud sync name.
 	Cloudsyncs map[string]MetricsCloudsync `mandatory:"false" json:"cloudsyncs"`
 }
 

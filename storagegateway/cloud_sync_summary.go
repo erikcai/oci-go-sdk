@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -12,65 +13,94 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CloudSyncSummary Summary view of the cloud sync.
+// CloudSyncSummary Summary view of the specified cloud sync.
 type CloudSyncSummary struct {
 
-	// A unique cloud sync name in the given storage gateway.
+	// A unique cloud sync name from the specified storage gateway.
+	// Example: `cloud_sync_52019`
 	Name *string `mandatory:"true" json:"name"`
 
-	// The cloud Sync's Oracle ID (OCID).
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cloud sync.
 	Id *string `mandatory:"true" json:"id"`
 
-	// A path to a directory or file of the cloud sync source.
+	// The path to a source directory or file for the cloud sync.
+	// The path configuration depends on the direction of the cloud sync. To upload from an on-premises system to
+	// the cloud, the source path resembles the following:
+	// /cloudsync/mounts/<var>&lt;user_mount&gt;</var>/<var>&lt;path_to_directory&gt;</var>
+	// To download from the cloud to an on-premises system, the source path resembles the following:
+	// <var>&lt;storage_gateway_file_system&gt;</var>/<var>&lt;path_to_directory&gt;</var>
+	// **Note:** To configure a cloud sync, the file system on an on-premises storage gateway must be mounted under
+	// `/cloudsync/mounts`.
 	SourcePath *string `mandatory:"true" json:"sourcePath"`
 
-	// A path to a directory or file of the cloud sync target.
+	// The path to a target directory or file for the cloud sync.
+	// The path configuration depends on the direction of the cloud sync. To upload from an on-premises system to
+	// the cloud, the target path resembles the following:
+	// <var>&lt;storage_gateway_file_system&gt;</var>/<var>&lt;path_to_directory&gt;</var>
+	// To download from the cloud to an on-premises system, the target path resembles the following:
+	// /cloudsync/mounts/<var>&lt;user_mount&gt;</var>/<var>&lt;path_to_directory&gt;</var>
+	// **Note:** To configure a cloud sync, the file system on an on-premises storage gateway must be mounted under
+	// `/cloudsync/mounts`.
 	TargetPath *string `mandatory:"true" json:"targetPath"`
 
-	// Set to true if the cloud sync uploads data to the cloud.
+	// Whether the cloud sync uploads data to the cloud. If "true", the cloud sync uploads data to the cloud.
+	// Example: `true`
 	IsUpload *bool `mandatory:"true" json:"isUpload"`
 
-	// True if cloud sync needs to automatically delete files from the target when files are
-	// deleted from the source or source files have been renamed.
+	// Whether the cloud sync automatically deletes files from the target when source files are renamed or deleted.
+	// If "true", the cloud sync automatically deletes files from the target.
+	// Example: `true`
 	IsAutoDeletionEnabled *bool `mandatory:"true" json:"isAutoDeletionEnabled"`
 
-	// A path to the file that includes a set of files to sync to the target. If not provided,
-	// the service syncs all files. The file should be a file under the /cloudsync/ directory,
-	// for example, "/cloudsync/files.list" on the VM running the storage gateway instance.
+	// The path to a file that lists a set of files to sync to the target. If you do not specify a file list, the
+	// service syncs all files. The list file should reside under the `/cloudsync/` directory on the machine running
+	// the storage gateway instance.
+	// Example: `/cloudsync/files.list`
 	FilesFrom *string `mandatory:"true" json:"filesFrom"`
 
-	// Error count.
+	// The number of errors returned by the cloud sync.
+	// Example: `1`
 	ErrorCount *float32 `mandatory:"true" json:"errorCount"`
 
-	// Warning count.
+	// The number of warnings returned by the cloud sync.
+	// Example: `3`
 	WarnCount *float32 `mandatory:"true" json:"warnCount"`
 
-	// Date and time the cloud sync created.
+	// The date and time the cloud sync was created, in the format defined by RFC3339.
+	// Example: `2019-05-16T21:52:40.793Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// Date and time the cloud sync started.
+	// The date and time the cloud sync started, in the format defined by RFC3339.
+	// Example: `2019-05-16T22:45:30.793Z`
 	TimeStarted *common.SDKTime `mandatory:"true" json:"timeStarted"`
 
-	// The cloud sync's state. After creating the resource, make sure its state changes
-	// to ACTIVE before using it.
+	// The current lifecycle state of the cloud sync.
 	LifecycleState LifecycleState `mandatory:"true" json:"lifecycleState"`
 
-	// Cloud sync-specific lifecycle substates: Cloud sync has one of the following substates:
-	// "NONE", "CREATED", "RUN", "RUNNING", "COMPLETED", "FAILED", "CANCELING", "CANCELED",
-	// "UPDATING"
+	// One of the following cloud sync-specific lifecycle substates:
+	// *  NONE
+	// *  CREATED
+	// *  RUN
+	// *  RUNNING
+	// *  COMPLETED
+	// *  FAILED
+	// *  CANCELING
+	// *  CANCELED
+	// *  UPDATING
 	LifecycleDetails *string `mandatory:"true" json:"lifecycleDetails"`
 
-	// Date and time the cloud sync was completed, canceled, or failed.
+	// The date and time the cloud sync was completed, canceled, or failed, in the format defined by RFC3339.
+	// Example: `2019-05-16T23:30:30.793Z`
 	TimeEnded *common.SDKTime `mandatory:"false" json:"timeEnded"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information,
-	// see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
-	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }

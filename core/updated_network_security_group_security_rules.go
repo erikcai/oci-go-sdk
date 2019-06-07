@@ -16,14 +16,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeNetworkSecurityGroupCompartmentDetails The representation of ChangeNetworkSecurityGroupCompartmentDetails
-type ChangeNetworkSecurityGroupCompartmentDetails struct {
+// UpdatedNetworkSecurityGroupSecurityRules The representation of UpdatedNetworkSecurityGroupSecurityRules
+type UpdatedNetworkSecurityGroupSecurityRules struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the network
-	// security group to.
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+	// The NSG security rules that were updated.
+	SecurityRules []SecurityRule `mandatory:"false" json:"securityRules"`
 }
 
-func (m ChangeNetworkSecurityGroupCompartmentDetails) String() string {
+func (m UpdatedNetworkSecurityGroupSecurityRules) String() string {
 	return common.PointerString(m)
 }

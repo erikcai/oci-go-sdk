@@ -68,6 +68,10 @@ func (m *rule) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 		mm := ControlAccessUsingHttpMethodsRule{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "ALLOW":
+		mm := AllowRule{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "ADD_HTTP_RESPONSE_HEADER":
 		mm := AddHttpResponseHeaderRule{}
 		err = json.Unmarshal(data, &mm)

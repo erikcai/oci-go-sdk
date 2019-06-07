@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -12,45 +13,54 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// StorageGatewaySummary Summary view of the storage gateway.
+// StorageGatewaySummary Summary view of the specified storage gateway.
 type StorageGatewaySummary struct {
 
-	// The storage gateway's Oracle ID (OCID).
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the storage gateway.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID of the compartment containing the storage gateway.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the storage gateway.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The non-unique name assigned to the storage gateway during creation or update.
+	// The user-friendly name of the storage gateway. It does not have to be unique, and it is changeable.
+	// Example: `example_storage_gateway`
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The current storage gateway status
+	// The overall health status of the storage gateway.
+	// *  ACTIVE - The storage gateway is running with no issues.
+	// *  INACTIVE - The storage gateway instance has not yet been installed on a Compute instance or on premises,
+	// or the control plane has not received recent heartbeat data.
+	// *  WARNING - The storage gateway has warnings.
+	// *  CRITICAL - The storage gateway has critical issues.
 	Status StorageGatewaySummaryStatusEnum `mandatory:"true" json:"status"`
 
-	// The current version of storage gateway instance on-premise or on-compute.
+	// The version of the storage gateway instance.
+	// Example: `2.0`
 	Version *string `mandatory:"true" json:"version"`
 
-	// Availability of a newer version.
+	// Whether a newer storage gateway version is available.
+	// Example: `false`
 	IsNewerVersionAvailable *bool `mandatory:"true" json:"isNewerVersionAvailable"`
 
-	// Date and time the storage gateway was created.
+	// The date and time the storage gateway was created, in the format defined by RFC3339.
+	// Example: `2019-05-16T21:52:40.793Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The storage gateway's state. After creating the resource, make sure its state changes
-	// to ACTIVE before using it.
+	// The current lifecycle state of the storage gateway. You cannot use the storage gateway before the state is ACTIVE.
 	LifecycleState LifecycleState `mandatory:"true" json:"lifecycleState"`
 
-	// The non-unique, changeable description you assign to the storage gateway during creation or update.
+	// The changeable description assigned to the storage gateway during creation. It does not have to be unique.
+	//  Example: `my first storage gateway`
 	Description *string `mandatory:"false" json:"description"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information,
-	// see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
-	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }

@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -12,49 +13,61 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// FileSystemSummary Summary view of a file system.
+// FileSystemSummary Summary view of the specified file system.
 type FileSystemSummary struct {
 
-	// A unique file system name in the given storage gateway.
+	// The file system name, which is unique within your tenancy.
+	// Example: `file_system_52019`
 	Name *string `mandatory:"true" json:"name"`
 
-	// The file system's Oracle ID (OCID).
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the file system.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The tyep of Object Storage tier.
+	// The type of object storage tier used for data storage. The Standard tier is the default for data that
+	// requires frequent and fast access.
 	StorageTier FileSystemSummaryStorageTierEnum `mandatory:"true" json:"storageTier"`
 
-	// True if the Object Storage bucket is connected.
+	// Whether the object storage bucket is connected. If "true", the object storage bucket is connected.
+	// Example: `true`
 	IsConnected *bool `mandatory:"true" json:"isConnected"`
 
-	// True if the File System is in refresh mode.
+	// Whether the file system is in refresh mode. If "true", the file system is in refresh mode.
+	// Example: `false`
 	IsInRefreshMode *bool `mandatory:"true" json:"isInRefreshMode"`
 
-	// Error count.
+	// The number of errors returned by the file system.
+	// Example: `1`
 	ErrorCount *float32 `mandatory:"true" json:"errorCount"`
 
-	// Warning count.
+	// The number of warnings returned by the file system.
+	// Example: `3`
 	WarnCount *float32 `mandatory:"true" json:"warnCount"`
 
-	// Date and time the file system was created.
+	// The date and time the file system was created, in the format defined by RFC3339.
+	// Example: `2019-05-16T21:52:40.793Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The file system's state. After creating the resource, make sure its state changes
-	// to ACTIVE before using it.
+	// The current lifecycle state of the file system. You cannot use the file system before the state is ACTIVE.
+	// When you disconnect a file system, its lifecycle state changes to INACTIVE.
 	LifecycleState LifecycleState `mandatory:"true" json:"lifecycleState"`
 
-	// File system-specific lifecycle substates: File system has one of the following substates:
-	// "NONE", "CONNECTING", "DISCONNECTING", "RECLAIMING", "REFRESHING", "UPDATING".
+	// One of the following file system-specific lifecycle substates:
+	// *  `NONE`
+	// *  `CONNECTING`
+	// *  `DISCONNECTING`
+	// *  `RECLAIMING`
+	// *  `REFRESHING`
+	// *  `UPDATING`
 	LifecycleDetails *string `mandatory:"true" json:"lifecycleDetails"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information,
-	// see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
-	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }

@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -12,19 +13,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// MetricsIssues Metrics for different types of issues: errors, warnings, and rejecting IO.
-// Get the total number of errors & warnings and collect the existence of rejecting IO.
-// Non-zero rejecting IO count means rejecting IO starts for all the file systems in the
-// storage gateway.
+// MetricsIssues Metrics for errors, warnings, and input/output (IO) rejection issues.
 type MetricsIssues struct {
 
-	// error
+	// Error information.
 	Error *MetricsIssuesError `mandatory:"false" json:"error"`
 
-	// warn
+	// Warning information.
 	Warn *MetricsIssuesWarn `mandatory:"false" json:"warn"`
 
-	// rejectio
+	// IO Rejection information.
 	Rejectio *MetricsIssuesRejectio `mandatory:"false" json:"rejectio"`
 }
 

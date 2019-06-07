@@ -1356,6 +1356,49 @@ func TestLoadBalancerClientListHostnames(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientListListenerRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "ListListenerRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListListenerRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "ListListenerRules", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "ListListenerRules")
+	assert.NoError(t, err)
+
+	type ListListenerRulesRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.ListListenerRulesRequest
+	}
+
+	var requests []ListListenerRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ListListenerRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
 func TestLoadBalancerClientListLoadBalancerHealths(t *testing.T) {
 	defer failTestOnPanic(t)
 

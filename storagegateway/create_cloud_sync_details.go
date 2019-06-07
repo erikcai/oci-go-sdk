@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -12,47 +13,57 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateCloudSyncDetails Details to set when creating a cloud sync.
+// CreateCloudSyncDetails Configuration details for creating a cloud sync.
+// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type CreateCloudSyncDetails struct {
 
-	// A unique name in the storage gateway you assign to the cloud sync during creation.
+	// A name for the cloud sync. It must be unique within the storage gateway, and it cannot be changed.
+	// Example: `cloud_sync_52019`
 	Name *string `mandatory:"true" json:"name"`
 
-	// A path to a directory or file of the cloud sync source. Note that the file system on
-	// premise needs to be mounted under /cloudsync/mounts.
-	// In the case of the upload from the on-premise to the cloud, the source & target paths
-	// look like this:
-	// Source Path: /cloudsync/mounts/<user_mount>[/<path_to_folder>] and
-	// Target Path: <storage_gateway_file_system>[/<path_to_folder>].
-	// In the case of the download from the cloud to the on-premise, the source & target paths
-	// look like this:
-	// Source Path: <storage_gateway_file_system>[/<path_to_folder>]
-	// Target Path: /cloudsync/mounts/<user_mount>[/<path_to_folder>]
+	// The path to a source directory or file for the cloud sync.
+	// The path configuration depends on the direction of the cloud sync. To upload from an on-premises system to
+	// the cloud, the source path resembles the following:
+	// /cloudsync/mounts/<var>&lt;user_mount&gt;</var>/<var>&lt;path_to_directory&gt;</var>
+	// To download from the cloud to an on-premises system, the source path resembles the following:
+	// <var>&lt;storage_gateway_file_system&gt;</var>/<var>&lt;path_to_directory&gt;</var>
+	// **Note:** To configure a cloud sync, the file system on an on-premises storage gateway must be mounted under
+	// `/cloudsync/mounts`.
 	SourcePath *string `mandatory:"true" json:"sourcePath"`
 
-	// A path to a directory or file of the cloud sync target.
+	// The path to a target directory or file for the cloud sync.
+	// The path configuration depends on the direction of the cloud sync. To upload from an on-premises system to
+	// the cloud, the target path resembles the following:
+	// <var>&lt;storage_gateway_file_system&gt;</var>/<var>&lt;path_to_directory&gt;</var>
+	// To download from the cloud to an on-premises system, the target path resembles the following:
+	// /cloudsync/mounts/<var>&lt;user_mount&gt;</var>/<var>&lt;path_to_directory&gt;</var>
+	// **Note:** To configure a cloud sync, the file system on an on-premises storage gateway must be mounted under
+	// `/cloudsync/mounts`.
 	TargetPath *string `mandatory:"true" json:"targetPath"`
 
-	// The non-unique, changeable description you assign to the cloud sync during creation.
+	// A description of the cloud sync. It does not have to be unique, and it is changeable.
+	// Example: `my first cloud sync`
 	Description *string `mandatory:"false" json:"description"`
 
-	// True if cloud sync needs to automatically delete files from the target when files are
-	// deleted from the source or source files have been renamed.
+	// Whether the cloud sync automatically deletes files from the target when source files are renamed or deleted.
+	// If "true", the cloud sync automatically deletes files from the target.
+	// Example: `true`
 	IsAutoDeletionEnabled *bool `mandatory:"false" json:"isAutoDeletionEnabled"`
 
-	// A path to the file that includes a set of files to sync to the target. If not provided,
-	// the service syncs all files. The file should be a file under the /cloudsync/ directory,
-	// for example, "/cloudsync/files.list" on the VM running the storage gateway instance.
+	// The path to a file that lists a set of files to sync to the target. If you do not specify a file list, the
+	// service syncs all files. The list file should reside under the `/cloudsync/` directory on the machine running
+	// the storage gateway instance.
+	// Example: `/cloudsync/files.list`
 	FilesFrom *string `mandatory:"false" json:"filesFrom"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information,
-	// see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
-	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }

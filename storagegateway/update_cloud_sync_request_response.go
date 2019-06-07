@@ -11,17 +11,18 @@ import (
 // UpdateCloudSyncRequest wrapper for the UpdateCloudSync operation
 type UpdateCloudSyncRequest struct {
 
-	// The storage gateway OCID.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the storage gateway.
 	StorageGatewayId *string `mandatory:"true" contributesTo:"path" name:"storageGatewayId"`
 
-	// The cloud sync's name.
+	// The cloud sync's unique name.
+	// Example: `cloud_sync_52019`
 	CloudSyncName *string `mandatory:"true" contributesTo:"path" name:"cloudSyncName"`
 
 	// Request object for updating a cloud sync.
 	UpdateCloudSyncDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
-	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
+	// parameter to the value of the etag from a previous GET or POST response for that resource. The resource
 	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
@@ -60,7 +61,7 @@ type UpdateCloudSyncResponse struct {
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }

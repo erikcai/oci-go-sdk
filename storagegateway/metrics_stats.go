@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// StorageGateway API
+// Storage Gateway API
 //
-// API for interfacing with StorageGateway
+// API for the Storage Gateway service. Use this API to manage storage gateways and related items. For more
+// information, see Overview of Storage Gateway (https://docs.cloud.oracle.com/iaas/Content/StorageGateway/Concepts/storagegatewayoverview.htm).
 //
 
 package storagegateway
@@ -15,28 +16,28 @@ import (
 // MetricsStats Storage Gateway statistics.
 type MetricsStats struct {
 
-	// cpu
+	// CPU statistics.
 	Cpu *MetricsStatsCpu `mandatory:"false" json:"cpu"`
 
-	// memory
+	// Memory statistics.
 	Memory *MetricsStatsMem `mandatory:"false" json:"memory"`
 
-	// cache
+	// File system cache statistics.
 	Cache *MetricsStatsCache `mandatory:"false" json:"cache"`
 
-	// metadata
+	// Metadata storage statistics.
 	Metadata *MetricsStatsMetadata `mandatory:"false" json:"metadata"`
 
-	// log
+	// Log storage statistics.
 	Log *MetricsStatsLog `mandatory:"false" json:"log"`
 
-	// filesystems
+	// File systems statistics.
 	Filesystems *MetricsStatsFilesystems `mandatory:"false" json:"filesystems"`
 
-	// cloudsyncs
+	// Cloud syncs statistics.
 	Cloudsyncs *MetricsStatsCloudsyncs `mandatory:"false" json:"cloudsyncs"`
 
-	// data
+	// Data activity statistics.
 	Data *MetricsStatsData `mandatory:"false" json:"data"`
 }
 
