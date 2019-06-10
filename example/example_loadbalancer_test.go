@@ -26,7 +26,6 @@ func ExampleCreateLoadbalancer() {
 	c, clerr := loadbalancer.NewLoadBalancerClientWithConfigurationProvider(common.DefaultConfigProvider())
 	ctx := context.Background()
 	helpers.FatalIfError(clerr)
-
 	request := loadbalancer.CreateLoadBalancerRequest{}
 	request.CompartmentId = helpers.CompartmentID()
 	request.DisplayName = common.String(loadbalancerDisplayName)
@@ -52,6 +51,32 @@ func ExampleCreateLoadbalancer() {
 	fmt.Println("list load balancer shapes complete")
 
 	request.ShapeName = shapes[0].Name
+
+	ruleSets := map[string]loadbalancer.RuleSetDetails{
+		"ruleset1": loadbalancer.RuleSetDetails{
+			Items: []loadbalancer.Rule{
+				loadbalancer.AddHttpRequestHeaderRule{
+					Header: common.String("some-header-name-to-add"),
+					Value:  common.String("some-value-for-header"),
+				},
+				loadbalancer.RemoveHttpResponseHeaderRule{
+					Header: common.String("some-header-name-to-remove"),
+				},
+				loadbalancer.ExtendHttpRequestHeaderValueRule{
+					Header: common.String("some-other-header-name-to-alter"),
+					Prefix: common.String("some-prefix-value-for-header"),
+					Suffix: common.String("some-suffix-value-for-header"),
+				},
+				loadbalancer.ControlAccessUsingHttpMethodsRule{
+					AllowedMethods: []string{
+						"PUT",
+						"POST",
+					},
+					StatusCode: common.Int(403),
+				},
+			}},
+	}
+	request.RuleSets = ruleSets
 
 	_, err = c.CreateLoadBalancer(ctx, request)
 	helpers.FatalIfError(err)
@@ -92,6 +117,12 @@ func ExampleCreateLoadbalancer() {
 	newCreatedLoadBalancer := getLoadBalancer()
 	fmt.Printf("new loadbalancer LifecycleState is: %s\n", newCreatedLoadBalancer.LifecycleState)
 
+	loadBalancerRuleSets := listRuleSets(ctx, c, newCreatedLoadBalancer.Id)
+	fmt.Printf("Rule Sets from GET: %+v", loadBalancerRuleSets)
+
+	newRuleSetResponse, err := addRuleSet(ctx, c, newCreatedLoadBalancer.Id)
+	fmt.Printf("New rule set response: %+v", newRuleSetResponse)
+
 	// clean up resources
 	defer func() {
 		deleteLoadbalancer(ctx, c, newCreatedLoadBalancer.Id)
@@ -111,6 +142,8 @@ func ExampleCreateLoadbalancer() {
 	// list load balancer shapes complete
 	// create load balancer complete
 	// new loadbalancer LifecycleState is: ACTIVE
+	// Rule Sets from GET: {}
+	// New rule set response: {}
 	// deleting load balancer
 	// load balancer deleted
 	// deleteing subnet
@@ -185,4 +218,37 @@ func deleteLoadbalancer(ctx context.Context, client loadbalancer.LoadBalancerCli
 			time.After((10 * time.Minute))))
 
 	fmt.Println("load balancer deleted")
+}
+
+func addRuleSet(ctx context.Context, client loadbalancer.LoadBalancerClient, id *string) (loadbalancer.CreateRuleSetResponse, error) {
+	request := loadbalancer.CreateRuleSetRequest{}
+	request.LoadBalancerId = id
+	ruleSetDetails := loadbalancer.CreateRuleSetDetails{
+		Name: common.String("ruleset2"),
+		Items: []loadbalancer.Rule{
+			loadbalancer.AddHttpResponseHeaderRule{
+				Header: common.String("some-second-header-name-to-add"),
+				Value:  common.String("some-second-value-for-header"),
+			},
+			loadbalancer.RemoveHttpRequestHeaderRule{
+				Header: common.String("some-second-header-name-to-remove"),
+			},
+		},
+	}
+	request.CreateRuleSetDetails = ruleSetDetails
+
+	response, err := client.CreateRuleSet(ctx, request)
+	helpers.FatalIfError(err)
+	println("ruleset added")
+	return response, err
+}
+
+func listRuleSets(ctx context.Context, client loadbalancer.LoadBalancerClient, id *string) []loadbalancer.RuleSet {
+	request := loadbalancer.ListRuleSetsRequest{
+		LoadBalancerId: id,
+	}
+
+	r, err := client.ListRuleSets(ctx, request)
+	helpers.FatalIfError(err)
+	return r.Items
 }
