@@ -71,3 +71,4 @@ func ExampleListGroupsWithCustomSignedHeader() {
 	// Output:
 	// list groups completed
 }
+
