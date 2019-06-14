@@ -42,7 +42,7 @@ func ExampleMoveCompartment() {
 	moveRequest := identity.MoveCompartmentRequest{
 		CompartmentId:          cpSource,
 		MoveCompartmentDetails: moveDetail,
-		RequestMetadata: 		helpers.GetRequestMetadataWithDefaultRetryPolicy(),
+		RequestMetadata:        helpers.GetRequestMetadataWithDefaultRetryPolicy(),
 	}
 
 	resp, err := c.MoveCompartment(ctx, moveRequest)
@@ -70,7 +70,7 @@ func createCompartment(ctx context.Context, client identity.IdentityClient, tena
 	}
 	request := identity.CreateCompartmentRequest{
 		CreateCompartmentDetails: detail,
-		RequestMetadata: helpers.GetRequestMetadataWithDefaultRetryPolicy(),
+		RequestMetadata:          helpers.GetRequestMetadataWithDefaultRetryPolicy(),
 	}
 
 	resp, err := client.CreateCompartment(ctx, request)
@@ -81,7 +81,7 @@ func createCompartment(ctx context.Context, client identity.IdentityClient, tena
 
 func getCompartment(ctx context.Context, client identity.IdentityClient, compartmentId *string) identity.Compartment {
 	request := identity.GetCompartmentRequest{
-		CompartmentId: compartmentId,
+		CompartmentId:   compartmentId,
 		RequestMetadata: helpers.GetRequestMetadataWithDefaultRetryPolicy(),
 	}
 
@@ -90,4 +90,3 @@ func getCompartment(ctx context.Context, client identity.IdentityClient, compart
 
 	return resp.Compartment
 }
-

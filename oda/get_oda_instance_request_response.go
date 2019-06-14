@@ -58,6 +58,12 @@ type GetOdaInstanceResponse struct {
 
 	// Internal use only
 	OpcHsmApp *string `presentIn:"header" name:"opc-hsm-app"`
+
+	// Internal use only
+	OpcHsmRequestId *string `presentIn:"header" name:"opc-hsm-request-id"`
+
+	// Internal use only
+	OpcHsmDomain *string `presentIn:"header" name:"opc-hsm-domain"`
 }
 
 func (response GetOdaInstanceResponse) String() string {

@@ -2752,7 +2752,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.744</version>
+        <version>0.2.745</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -2767,7 +2767,7 @@
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
         <artifactId>oralb-api-spec</artifactId>
-        <version>4.0.20</version>
+        <version>4.0.21</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
@@ -2897,7 +2897,7 @@
       <dependency>
         <groupId>com.oracle.pic.oda.cp</groupId>
         <artifactId>digital-assistant-spec</artifactId>
-        <version>0.0.1-20190423.134703-163</version>
+        <version>0.0.1-20190612.092859-336</version>
       </dependency>
       <dependency>
         <groupId>dscs-cp-spec</groupId>

@@ -43,15 +43,17 @@ type WorkRequestSummaryRequestActionEnum string
 
 // Set of constants representing the allowable values for WorkRequestSummaryRequestActionEnum
 const (
-	WorkRequestSummaryRequestActionCreateOdaInstance WorkRequestSummaryRequestActionEnum = "CREATE_ODA_INSTANCE"
-	WorkRequestSummaryRequestActionUpdateOdaInstance WorkRequestSummaryRequestActionEnum = "UPDATE_ODA_INSTANCE"
-	WorkRequestSummaryRequestActionDeleteOdaInstance WorkRequestSummaryRequestActionEnum = "DELETE_ODA_INSTANCE"
+	WorkRequestSummaryRequestActionCreateOdaInstance  WorkRequestSummaryRequestActionEnum = "CREATE_ODA_INSTANCE"
+	WorkRequestSummaryRequestActionDeleteOdaInstance  WorkRequestSummaryRequestActionEnum = "DELETE_ODA_INSTANCE"
+	WorkRequestSummaryRequestActionPurgeOdaInstance   WorkRequestSummaryRequestActionEnum = "PURGE_ODA_INSTANCE"
+	WorkRequestSummaryRequestActionRecoverOdaInstance WorkRequestSummaryRequestActionEnum = "RECOVER_ODA_INSTANCE"
 )
 
 var mappingWorkRequestSummaryRequestAction = map[string]WorkRequestSummaryRequestActionEnum{
-	"CREATE_ODA_INSTANCE": WorkRequestSummaryRequestActionCreateOdaInstance,
-	"UPDATE_ODA_INSTANCE": WorkRequestSummaryRequestActionUpdateOdaInstance,
-	"DELETE_ODA_INSTANCE": WorkRequestSummaryRequestActionDeleteOdaInstance,
+	"CREATE_ODA_INSTANCE":  WorkRequestSummaryRequestActionCreateOdaInstance,
+	"DELETE_ODA_INSTANCE":  WorkRequestSummaryRequestActionDeleteOdaInstance,
+	"PURGE_ODA_INSTANCE":   WorkRequestSummaryRequestActionPurgeOdaInstance,
+	"RECOVER_ODA_INSTANCE": WorkRequestSummaryRequestActionRecoverOdaInstance,
 }
 
 // GetWorkRequestSummaryRequestActionEnumValues Enumerates the set of values for WorkRequestSummaryRequestActionEnum

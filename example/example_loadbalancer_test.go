@@ -53,7 +53,7 @@ func ExampleCreateLoadbalancer() {
 	request.ShapeName = shapes[0].Name
 
 	ruleSets := map[string]loadbalancer.RuleSetDetails{
-		"ruleset1": loadbalancer.RuleSetDetails{
+		"ruleset1": {
 			Items: []loadbalancer.Rule{
 				loadbalancer.AddHttpRequestHeaderRule{
 					Header: common.String("some-header-name-to-add"),

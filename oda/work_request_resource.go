@@ -44,15 +44,17 @@ type WorkRequestResourceResourceActionEnum string
 
 // Set of constants representing the allowable values for WorkRequestResourceResourceActionEnum
 const (
-	WorkRequestResourceResourceActionCreate WorkRequestResourceResourceActionEnum = "CREATE"
-	WorkRequestResourceResourceActionUpdate WorkRequestResourceResourceActionEnum = "UPDATE"
-	WorkRequestResourceResourceActionDelete WorkRequestResourceResourceActionEnum = "DELETE"
+	WorkRequestResourceResourceActionCreate  WorkRequestResourceResourceActionEnum = "CREATE"
+	WorkRequestResourceResourceActionDelete  WorkRequestResourceResourceActionEnum = "DELETE"
+	WorkRequestResourceResourceActionPurge   WorkRequestResourceResourceActionEnum = "PURGE"
+	WorkRequestResourceResourceActionRecover WorkRequestResourceResourceActionEnum = "RECOVER"
 )
 
 var mappingWorkRequestResourceResourceAction = map[string]WorkRequestResourceResourceActionEnum{
-	"CREATE": WorkRequestResourceResourceActionCreate,
-	"UPDATE": WorkRequestResourceResourceActionUpdate,
-	"DELETE": WorkRequestResourceResourceActionDelete,
+	"CREATE":  WorkRequestResourceResourceActionCreate,
+	"DELETE":  WorkRequestResourceResourceActionDelete,
+	"PURGE":   WorkRequestResourceResourceActionPurge,
+	"RECOVER": WorkRequestResourceResourceActionRecover,
 }
 
 // GetWorkRequestResourceResourceActionEnumValues Enumerates the set of values for WorkRequestResourceResourceActionEnum

@@ -27,9 +27,6 @@ type UpdateOdaInstanceRequest struct {
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// Internal use only.
-	OpcOboToken *string `mandatory:"false" contributesTo:"header" name:"opc-obo-token"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -55,8 +52,8 @@ type UpdateOdaInstanceResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
-	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
+	// The OdaInstance instance
+	OdaInstance `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request,

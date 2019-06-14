@@ -18,9 +18,6 @@ type CreateOdaInstanceDetails struct {
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Type of the instance, corresponds to the SKU and metering method
-	InstanceType CreateOdaInstanceDetailsInstanceTypeEnum `mandatory:"true" json:"instanceType"`
-
 	// Shape or size of the instance
 	ShapeName CreateOdaInstanceDetailsShapeNameEnum `mandatory:"true" json:"shapeName"`
 
@@ -29,6 +26,9 @@ type CreateOdaInstanceDetails struct {
 
 	// Description of the ODA instance
 	Description *string `mandatory:"false" json:"description"`
+
+	// Type of the instance, corresponds to the SKU and metering method
+	InstanceType CreateOdaInstanceDetailsInstanceTypeEnum `mandatory:"false" json:"instanceType,omitempty"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

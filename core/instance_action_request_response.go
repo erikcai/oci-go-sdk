@@ -83,19 +83,21 @@ type InstanceActionActionEnum string
 
 // Set of constants representing the allowable values for InstanceActionActionEnum
 const (
-	InstanceActionActionStop      InstanceActionActionEnum = "STOP"
-	InstanceActionActionStart     InstanceActionActionEnum = "START"
-	InstanceActionActionSoftreset InstanceActionActionEnum = "SOFTRESET"
-	InstanceActionActionReset     InstanceActionActionEnum = "RESET"
-	InstanceActionActionSoftstop  InstanceActionActionEnum = "SOFTSTOP"
+	InstanceActionActionStop                InstanceActionActionEnum = "STOP"
+	InstanceActionActionStart               InstanceActionActionEnum = "START"
+	InstanceActionActionSoftreset           InstanceActionActionEnum = "SOFTRESET"
+	InstanceActionActionReset               InstanceActionActionEnum = "RESET"
+	InstanceActionActionSoftstop            InstanceActionActionEnum = "SOFTSTOP"
+	InstanceActionActionValidatelivemigrate InstanceActionActionEnum = "VALIDATELIVEMIGRATE"
 )
 
 var mappingInstanceActionAction = map[string]InstanceActionActionEnum{
-	"STOP":      InstanceActionActionStop,
-	"START":     InstanceActionActionStart,
-	"SOFTRESET": InstanceActionActionSoftreset,
-	"RESET":     InstanceActionActionReset,
-	"SOFTSTOP":  InstanceActionActionSoftstop,
+	"STOP":                InstanceActionActionStop,
+	"START":               InstanceActionActionStart,
+	"SOFTRESET":           InstanceActionActionSoftreset,
+	"RESET":               InstanceActionActionReset,
+	"SOFTSTOP":            InstanceActionActionSoftstop,
+	"VALIDATELIVEMIGRATE": InstanceActionActionValidatelivemigrate,
 }
 
 // GetInstanceActionActionEnumValues Enumerates the set of values for InstanceActionActionEnum

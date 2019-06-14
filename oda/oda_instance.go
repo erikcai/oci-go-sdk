@@ -21,9 +21,6 @@ type OdaInstance struct {
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Type of the instance, corresponds to the SKU and metering method
-	InstanceType OdaInstanceInstanceTypeEnum `mandatory:"true" json:"instanceType"`
-
 	// Shape or size of the instance
 	ShapeName OdaInstanceShapeNameEnum `mandatory:"true" json:"shapeName"`
 
@@ -32,6 +29,9 @@ type OdaInstance struct {
 
 	// Description of the ODA instance
 	Description *string `mandatory:"false" json:"description"`
+
+	// Type of the instance, corresponds to the SKU and metering method
+	InstanceType OdaInstanceInstanceTypeEnum `mandatory:"false" json:"instanceType,omitempty"`
 
 	// URL for the ODA web application associated with the instance
 	WebAppUrl *string `mandatory:"false" json:"webAppUrl"`

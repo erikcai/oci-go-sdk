@@ -1436,6 +1436,8 @@ func (client ComputeClient) getWindowsInstanceInitialCredentials(ctx context.Con
 // - **SOFTRESET** - Gracefully reboots instance by sending a shutdown command to the operating system and then powers the instance back on.
 // - **SOFTSTOP** - Gracefully shuts down instance by sending a shutdown command to the operating system.
 // - **RESET** - Powers off the instance and then powers it back on.
+// - **VALIDATELIVEMIGRATE** - Live migrate the instance to validate impact on the customer workload.
+//                             Live migrating an instance moves it to a different physical host while the instance is running.
 // For more information see Stopping and Starting an Instance (https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm).
 func (client ComputeClient) InstanceAction(ctx context.Context, request InstanceActionRequest) (response InstanceActionResponse, err error) {
 	var ociResponse common.OCIResponse

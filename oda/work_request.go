@@ -61,15 +61,17 @@ type WorkRequestRequestActionEnum string
 
 // Set of constants representing the allowable values for WorkRequestRequestActionEnum
 const (
-	WorkRequestRequestActionCreateOdaInstance WorkRequestRequestActionEnum = "CREATE_ODA_INSTANCE"
-	WorkRequestRequestActionUpdateOdaInstance WorkRequestRequestActionEnum = "UPDATE_ODA_INSTANCE"
-	WorkRequestRequestActionDeleteOdaInstance WorkRequestRequestActionEnum = "DELETE_ODA_INSTANCE"
+	WorkRequestRequestActionCreateOdaInstance  WorkRequestRequestActionEnum = "CREATE_ODA_INSTANCE"
+	WorkRequestRequestActionDeleteOdaInstance  WorkRequestRequestActionEnum = "DELETE_ODA_INSTANCE"
+	WorkRequestRequestActionPurgeOdaInstance   WorkRequestRequestActionEnum = "PURGE_ODA_INSTANCE"
+	WorkRequestRequestActionRecoverOdaInstance WorkRequestRequestActionEnum = "RECOVER_ODA_INSTANCE"
 )
 
 var mappingWorkRequestRequestAction = map[string]WorkRequestRequestActionEnum{
-	"CREATE_ODA_INSTANCE": WorkRequestRequestActionCreateOdaInstance,
-	"UPDATE_ODA_INSTANCE": WorkRequestRequestActionUpdateOdaInstance,
-	"DELETE_ODA_INSTANCE": WorkRequestRequestActionDeleteOdaInstance,
+	"CREATE_ODA_INSTANCE":  WorkRequestRequestActionCreateOdaInstance,
+	"DELETE_ODA_INSTANCE":  WorkRequestRequestActionDeleteOdaInstance,
+	"PURGE_ODA_INSTANCE":   WorkRequestRequestActionPurgeOdaInstance,
+	"RECOVER_ODA_INSTANCE": WorkRequestRequestActionRecoverOdaInstance,
 }
 
 // GetWorkRequestRequestActionEnumValues Enumerates the set of values for WorkRequestRequestActionEnum

@@ -2055,6 +2055,49 @@ func TestLoadBalancerClientUpdateLoadBalancer(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientUpdateNetworkSecurityGroups(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "UpdateNetworkSecurityGroups")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateNetworkSecurityGroups is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "UpdateNetworkSecurityGroups", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "UpdateNetworkSecurityGroups")
+	assert.NoError(t, err)
+
+	type UpdateNetworkSecurityGroupsRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.UpdateNetworkSecurityGroupsRequest
+	}
+
+	var requests []UpdateNetworkSecurityGroupsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateNetworkSecurityGroups(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
 func TestLoadBalancerClientUpdatePathRouteSet(t *testing.T) {
 	defer failTestOnPanic(t)
 
