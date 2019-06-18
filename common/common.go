@@ -71,16 +71,20 @@ var realm = map[string]string{
 }
 
 var regionRealm = map[Region]string{
-	RegionPHX:          "oc1",
-	RegionIAD:          "oc1",
-	RegionFRA:          "oc1",
-	RegionLHR:          "oc1",
-	RegionAPMumbai1:    "oc1",
-	RegionSASaopaulo1:  "oc1",
-	RegionAPSeoul1:     "oc1",
-	RegionAPSydney1:    "oc1",
-	RegionAPTokyo1:     "oc1",
-	RegionCAToronto1:   "oc1",
+	RegionPHX:        "oc1",
+	RegionCAToronto1: "oc1",
+	RegionIAD:        "oc1",
+	RegionFRA:        "oc1",
+	RegionLHR:        "oc1",
+
+	RegionSASaopaulo1: "oc1",
+
+	RegionAPMumbai1: "oc1",
+	RegionAPSeoul1:  "oc1",
+	RegionAPSydney1: "oc1",
+	RegionAPTokyo1:  "oc1",
+	RegionAPOsaka1:  "oc1",
+
 	RegionEUZurich1:    "oc1",
 	RegionEUAmsterdam1: "oc1",
 
