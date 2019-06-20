@@ -44,7 +44,7 @@ func ExampleCreateAndDeleteAutoscalingConfiguration() {
 	autoscalingClient, err := autoscaling.NewAutoScalingClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(err)
 
-	createInstanceConfigurationResponse, _ := createInstanceConfiguration(ctx, computeMgmtClient, imageId, compartmentId);
+	createInstanceConfigurationResponse, _ := createInstanceConfiguration(ctx, computeMgmtClient, imageId, compartmentId)
 	fmt.Println("Instance configuration created")
 
 	instanceConfiguration := createInstanceConfigurationResponse.InstanceConfiguration
@@ -122,11 +122,11 @@ func createInstanceConfiguration(ctx context.Context, client core.ComputeManagem
 	shape := "VM.Standard2.1"
 
 	launchDetails := core.InstanceConfigurationLaunchInstanceDetails{
-		CompartmentId: &compartmentId,
-		DisplayName: &displayName,
+		CompartmentId:     &compartmentId,
+		DisplayName:       &displayName,
 		CreateVnicDetails: &vnicDetails,
-		Shape: &shape,
-		SourceDetails: &sourceDetails,
+		Shape:             &shape,
+		SourceDetails:     &sourceDetails,
 	}
 
 	instanceDetails := core.ComputeInstanceDetails{
@@ -134,8 +134,8 @@ func createInstanceConfiguration(ctx context.Context, client core.ComputeManagem
 	}
 
 	configurationDetails := core.CreateInstanceConfigurationDetails{
-		DisplayName: &displayName,
-		CompartmentId: &compartmentId,
+		DisplayName:     &displayName,
+		CompartmentId:   &compartmentId,
 		InstanceDetails: &instanceDetails,
 	}
 
@@ -160,24 +160,24 @@ func createInstancePool(ctx context.Context, client core.ComputeManagementClient
 		CreateInstancePoolDetails: core.CreateInstancePoolDetails{
 			CompartmentId:           &compartmentId,
 			InstanceConfigurationId: &instanceConfigurationId,
-			PlacementConfigurations: [] core.CreateInstancePoolPlacementConfigurationDetails{
+			PlacementConfigurations: []core.CreateInstancePoolPlacementConfigurationDetails{
 				{
 					PrimarySubnetId:    &subnetId,
 					AvailabilityDomain: &availabilityDomain,
 				},
 			},
-			Size:                    &size,
-			DisplayName:             &displayName,
+			Size:        &size,
+			DisplayName: &displayName,
 		},
 	}
 
-	response, err = client.CreateInstancePool(ctx, req);
+	response, err = client.CreateInstancePool(ctx, req)
 	return
 }
 
 // helper method to create an autoscaling configuration
 func createAutoscalingConfiguration(ctx context.Context, client autoscaling.AutoScalingClient,
-	instancePoolId string, compartmentId string) (response autoscaling.CreateAutoScalingConfigurationResponse , err error) {
+	instancePoolId string, compartmentId string) (response autoscaling.CreateAutoScalingConfigurationResponse, err error) {
 
 	displayName := "Autoscaling Example"
 
@@ -195,23 +195,23 @@ func createAutoscalingConfiguration(ctx context.Context, client autoscaling.Auto
 
 	capacity := autoscaling.Capacity{
 		Initial: &capInit,
-		Max: &capMax,
-		Min: &capMin,
+		Max:     &capMax,
+		Min:     &capMin,
 	}
 
 	// scale in params
 	lowerBound := autoscaling.Threshold{
 		Operator: autoscaling.ThresholdOperatorLt,
-		Value: &scaleInThreshold,
+		Value:    &scaleInThreshold,
 	}
 
 	scaleInAction := autoscaling.Action{
-		Type: autoscaling.ActionTypeBy,
+		Type:  autoscaling.ActionTypeBy,
 		Value: &scaleInChange,
 	}
 
 	scaleInMetric := autoscaling.Metric{
-		Threshold: &lowerBound,
+		Threshold:  &lowerBound,
 		MetricType: autoscaling.MetricMetricTypeCpuUtilization,
 	}
 
@@ -223,16 +223,16 @@ func createAutoscalingConfiguration(ctx context.Context, client autoscaling.Auto
 	// scale out params
 	upperBound := autoscaling.Threshold{
 		Operator: autoscaling.ThresholdOperatorGt,
-		Value: &scaleOutThreshold,
+		Value:    &scaleOutThreshold,
 	}
 
 	scaleOutAction := autoscaling.Action{
-		Type: autoscaling.ActionTypeBy,
+		Type:  autoscaling.ActionTypeBy,
 		Value: &scaleOutChange,
 	}
 
 	scaleOutMetric := autoscaling.Metric{
-		Threshold: &upperBound,
+		Threshold:  &upperBound,
 		MetricType: autoscaling.MetricMetricTypeCpuUtilization,
 	}
 
@@ -244,7 +244,7 @@ func createAutoscalingConfiguration(ctx context.Context, client autoscaling.Auto
 	// defining the threshold policy
 	policy := autoscaling.CreateThresholdPolicyDetails{
 		Capacity: &capacity,
-		Rules: [] autoscaling.CreateConditionDetails {
+		Rules: []autoscaling.CreateConditionDetails{
 			scaleInRule,
 			scaleOutRule,
 		},
@@ -252,10 +252,10 @@ func createAutoscalingConfiguration(ctx context.Context, client autoscaling.Auto
 
 	// defining the autoscaling configuration
 	createAutoscalingConfigurationDetails := autoscaling.CreateAutoScalingConfigurationDetails{
-		DisplayName: &displayName,
+		DisplayName:   &displayName,
 		CompartmentId: &compartmentId,
-		Resource: &resource,
-		Policies: [] autoscaling.CreateAutoScalingPolicyDetails { &policy },
+		Resource:      &resource,
+		Policies:      []autoscaling.CreateAutoScalingPolicyDetails{&policy},
 	}
 
 	req := autoscaling.CreateAutoScalingConfigurationRequest{
@@ -270,7 +270,7 @@ func createAutoscalingConfiguration(ctx context.Context, client autoscaling.Auto
 
 // helper method to delete an instance configuration
 func deleteAutoscalingConfiguration(ctx context.Context, client autoscaling.AutoScalingClient,
-	autoscalingConfigurationId string) (response autoscaling.DeleteAutoScalingConfigurationResponse , err error) {
+	autoscalingConfigurationId string) (response autoscaling.DeleteAutoScalingConfigurationResponse, err error) {
 
 	req := autoscaling.DeleteAutoScalingConfigurationRequest{
 		AutoScalingConfigurationId: &autoscalingConfigurationId,
