@@ -14,12 +14,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SourceVcnIdCondition Source VCN OCID based match condition
+// SourceVcnIdCondition An access control rule condition that requires a match on the specified source VCN OCID.
 type SourceVcnIdCondition struct {
 
-	// OCID of the customer VCN to which the service gateway embedded VCN ID of incoming packet would be matched against
-	// This condition can be used in conjunction with `SourceVcnIpAddressCondition`.
-	// **NOTE:** If this condition is defined on a rule without `SourceVcnIpAddressCondition`, then this condition matches all incoming traffic in the specified customer VCN
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the originating VCN that an incoming packet
+	// must match.
+	// You can use this condition in conjunction with `SourceVcnIpAddressCondition`.
+	// **NOTE:** If you define this condition for a rule without a `SourceVcnIpAddressCondition`, this condition
+	// matches all incoming traffic in the specified VCN.
 	AttributeValue *string `mandatory:"true" json:"attributeValue"`
 }
 

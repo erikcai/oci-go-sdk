@@ -37,6 +37,9 @@ type DbBackupConfig struct {
 	// For information about valid region names, see
 	// Regions and Availability Domains (https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm).
 	RemoteRegion *string `mandatory:"false" json:"remoteRegion"`
+
+	// Backup destination details.
+	BackupDestinationDetails []BackupDestinationDetails `mandatory:"false" json:"backupDestinationDetails"`
 }
 
 func (m DbBackupConfig) String() string {

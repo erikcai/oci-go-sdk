@@ -14,13 +14,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ListenerRuleSummary Information about a Rule.
+// ListenerRuleSummary The attributes of a rule associated with the specified listener, and the name of the rule set that the rule
+// belongs to.
 type ListenerRuleSummary struct {
 
-	// Rule object that was applied to a listener.
+	// A rule object that applies to the listener.
 	Rule Rule `mandatory:"false" json:"rule"`
 
-	// Name of the ruleset to which rule belongs to
+	// The name of the rule set that the rule belongs to.
 	RuleSetName *string `mandatory:"false" json:"ruleSetName"`
 }
 

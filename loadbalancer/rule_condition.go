@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RuleCondition A predicate used in listener rules supporting conditions.
+// RuleCondition A condition to apply to an access control rule.
 type RuleCondition interface {
 }
 

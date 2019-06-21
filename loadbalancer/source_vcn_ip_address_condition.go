@@ -14,12 +14,15 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SourceVcnIpAddressCondition Source VCN/Overlay IP address based match condition. Should be used always in conjunction with SourceVcnIdCondition
+// SourceVcnIpAddressCondition An access control rule condition that requires a match on the specified source VCN and IP address range.
+// This condition must be used only in conjunction with `SourceVcnIdCondition`.
 type SourceVcnIpAddressCondition struct {
 
-	// IPv4 address range to which the original client IP address (in customer VCN) of incoming packet would be matched against
-	// Only classless inter-domain routing (CIDR) format(x.x.x.x/y or x:x::x/y) is accepted
-	// Specify 0.0.0.0/0 or ::/0 to match all incoming traffic in the customer VCN
+	// An IPv4 address range that the original client IP address (in the context of the specified VCN) of an
+	// incoming packet must match.
+	// The service accepts only classless inter-domain routing (CIDR) format (x.x.x.x/y) strings.
+	// Specify 0.0.0.0/0 to match all incoming traffic in the customer VCN.
+	// example: "10.10.1.0/24"
 	AttributeValue *string `mandatory:"true" json:"attributeValue"`
 }
 

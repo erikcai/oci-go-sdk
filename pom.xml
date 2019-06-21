@@ -30,7 +30,7 @@
     <hemlock-spec-spec-file>hemlock-api-20160918.yaml</hemlock-spec-spec-file>
     <email-api-spec-spec-file>source/email-api-spec.cond.yaml</email-api-spec-spec-file>
     <public-dns-api-spec-spec-file>source/public-dns-api-spec.cond.yaml</public-dns-api-spec-spec-file>
-    <maestro-spec-spec-file>internal/api.yaml</maestro-spec-spec-file>
+    <maestro-spec-spec-file>source/api.cond.yaml</maestro-spec-spec-file>
     <kms-api-spec-spec-file>source/kms-api-spec-20180608.cond.yaml</kms-api-spec-spec-file>
     <resource-query-service-spec-spec-file>source/rqs.cond.yaml</resource-query-service-spec-spec-file>
     <clusters-api-spec-spec-file>source/clusters-api-spec.cond.yaml</clusters-api-spec-spec-file>
@@ -39,7 +39,7 @@
     <ons-gateway-spec-spec-file>notification-api.yaml</ons-gateway-spec-spec-file>
     <healthchecks-api-spec-spec-file>health-checks-api-spec-20180501.cond.yaml</healthchecks-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
-    <rest-api-spec-spec-file>source/api.cond.yaml</rest-api-spec-spec-file>
+    <rest-api-spec-spec-file>internal/api.yaml</rest-api-spec-spec-file>
     <oracache-public-api-spec-file>specs/oracache-public-api-20190501.cond.yaml</oracache-public-api-spec-file>
     <marketplace-consumer-service-spec-spec-file>release/consumer-service-api.yaml</marketplace-consumer-service-spec-spec-file>
     <autoscaling-public-api-spec-spec-file>source/autoscaling-api-spec.cond.yaml</autoscaling-public-api-spec-spec-file>
@@ -2767,17 +2767,17 @@
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
         <artifactId>oralb-api-spec</artifactId>
-        <version>4.0.21</version>
+        <version>4.0.26</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.168</version>
+        <version>0.1.180</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
         <artifactId>fss-api-spec</artifactId>
-        <version>0.0.22</version>
+        <version>0.0.23</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.sherlock</groupId>
@@ -2797,7 +2797,7 @@
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
         <artifactId>maestro-spec</artifactId>
-        <version>0.1.2</version>
+        <version>0.1.4</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
@@ -2817,7 +2817,7 @@
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
         <artifactId>telemetry-public-api-spec</artifactId>
-        <version>1.0.0-20190530.190635-280</version>
+        <version>1.0.0-20190620.230816-312</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.commons.workrequests</groupId>
@@ -2837,7 +2837,7 @@
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
         <artifactId>events-control-plane-spec</artifactId>
-        <version>0.1.13</version>
+        <version>0.1.23</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
@@ -2882,7 +2882,7 @@
       <dependency>
         <groupId>com.oracle.pic.functions</groupId>
         <artifactId>fn-api-spec</artifactId>
-        <version>0.6.0</version>
+        <version>1.0.0</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.usage.budgets</groupId>

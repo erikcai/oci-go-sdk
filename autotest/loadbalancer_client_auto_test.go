@@ -23,6 +23,49 @@ func createLoadBalancerClientWithProvider(p common.ConfigurationProvider, testCo
 }
 
 // IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientChangeLoadBalancerCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "ChangeLoadBalancerCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeLoadBalancerCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "ChangeLoadBalancerCompartment", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "ChangeLoadBalancerCompartment")
+	assert.NoError(t, err)
+
+	type ChangeLoadBalancerCompartmentRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.ChangeLoadBalancerCompartmentRequest
+	}
+
+	var requests []ChangeLoadBalancerCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeLoadBalancerCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
 func TestLoadBalancerClientCreateBackend(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// CloudEvents API
+// Events API
 //
-// API for the CloudEvents Service. Use this API to manage rules and actions that create automation
+// API for the Events Service. Use this API to manage rules and actions that create automation
 // in your tenancy. For more information, see Overview of Events (https://docs.cloud.oracle.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
@@ -66,10 +66,6 @@ func (m *actiondetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 		return mm, err
 	case "FAAS":
 		mm := CreateFaaSActionDetails{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
-	case "NOOP":
-		mm := CreateNoOpActionDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	case "OBJECTSTORAGE":

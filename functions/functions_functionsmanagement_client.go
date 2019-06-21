@@ -66,11 +66,6 @@ func (client FunctionsManagementClient) ChangeApplicationCompartment(ctx context
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
 	ociResponse, err = common.Retry(ctx, request, client.changeApplicationCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -113,11 +108,6 @@ func (client FunctionsManagementClient) CreateApplication(ctx context.Context, r
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
 	ociResponse, err = common.Retry(ctx, request, client.createApplication, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -160,11 +150,6 @@ func (client FunctionsManagementClient) CreateFunction(ctx context.Context, requ
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
 	ociResponse, err = common.Retry(ctx, request, client.createFunction, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -207,11 +192,6 @@ func (client FunctionsManagementClient) DeleteApplication(ctx context.Context, r
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
 	ociResponse, err = common.Retry(ctx, request, client.deleteApplication, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -254,11 +234,6 @@ func (client FunctionsManagementClient) DeleteFunction(ctx context.Context, requ
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
 	ociResponse, err = common.Retry(ctx, request, client.deleteFunction, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -343,11 +318,6 @@ func (client FunctionsManagementClient) GetFunction(ctx context.Context, request
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
 	ociResponse, err = common.Retry(ctx, request, client.getFunction, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -474,11 +444,6 @@ func (client FunctionsManagementClient) UpdateApplication(ctx context.Context, r
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
 	ociResponse, err = common.Retry(ctx, request, client.updateApplication, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -521,11 +486,6 @@ func (client FunctionsManagementClient) UpdateFunction(ctx context.Context, requ
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
 	ociResponse, err = common.Retry(ctx, request, client.updateFunction, policy)
 	if err != nil {
 		if ociResponse != nil {

@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// CloudEvents API
+// Events API
 //
-// API for the CloudEvents Service. Use this API to manage rules and actions that create automation
+// API for the Events Service. Use this API to manage rules and actions that create automation
 // in your tenancy. For more information, see Overview of Events (https://docs.cloud.oracle.com/iaas/Content/Events/Concepts/eventsoverview.htm).
 //
 
@@ -16,33 +16,33 @@ import (
 	"net/http"
 )
 
-//CloudEventsClient a client for CloudEvents
-type CloudEventsClient struct {
+//EventsClient a client for Events
+type EventsClient struct {
 	common.BaseClient
 	config *common.ConfigurationProvider
 }
 
-// NewCloudEventsClientWithConfigurationProvider Creates a new default CloudEvents client with the given configuration provider.
+// NewEventsClientWithConfigurationProvider Creates a new default Events client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
-func NewCloudEventsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client CloudEventsClient, err error) {
+func NewEventsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client EventsClient, err error) {
 	baseClient, err := common.NewClientWithConfig(configProvider)
 	if err != nil {
 		return
 	}
 
-	client = CloudEventsClient{BaseClient: baseClient}
+	client = EventsClient{BaseClient: baseClient}
 	client.BasePath = "20181201"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
 
 // SetRegion overrides the region of this client.
-func (client *CloudEventsClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("cloudevents")
+func (client *EventsClient) SetRegion(region string) {
+	client.Host = common.StringToRegion(region).EndpointForTemplate("cloudevents", "https://events.{region}.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
-func (client *CloudEventsClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
+func (client *EventsClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
 	if ok, err := common.IsConfigurationProviderValid(configProvider); !ok {
 		return err
 	}
@@ -55,12 +55,59 @@ func (client *CloudEventsClient) setConfigurationProvider(configProvider common.
 }
 
 // ConfigurationProvider the ConfigurationProvider used in this client, or null if none set
-func (client *CloudEventsClient) ConfigurationProvider() *common.ConfigurationProvider {
+func (client *EventsClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
 }
 
+// ChangeRuleCompartment Moves a rule into a different compartment. When provided, If-Match is checked against ETag values of the resource.
+func (client EventsClient) ChangeRuleCompartment(ctx context.Context, request ChangeRuleCompartmentRequest) (response ChangeRuleCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeRuleCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeRuleCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeRuleCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeRuleCompartmentResponse")
+	}
+	return
+}
+
+// changeRuleCompartment implements the OCIOperation interface (enables retrying operations)
+func (client EventsClient) changeRuleCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/rules/{ruleId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeRuleCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateRule Creates a new rule.
-func (client CloudEventsClient) CreateRule(ctx context.Context, request CreateRuleRequest) (response CreateRuleResponse, err error) {
+func (client EventsClient) CreateRule(ctx context.Context, request CreateRuleRequest) (response CreateRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -87,7 +134,7 @@ func (client CloudEventsClient) CreateRule(ctx context.Context, request CreateRu
 }
 
 // createRule implements the OCIOperation interface (enables retrying operations)
-func (client CloudEventsClient) createRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client EventsClient) createRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/rules")
 	if err != nil {
 		return nil, err
@@ -107,7 +154,7 @@ func (client CloudEventsClient) createRule(ctx context.Context, request common.O
 }
 
 // DeleteRule Deletes an event rule.
-func (client CloudEventsClient) DeleteRule(ctx context.Context, request DeleteRuleRequest) (response DeleteRuleResponse, err error) {
+func (client EventsClient) DeleteRule(ctx context.Context, request DeleteRuleRequest) (response DeleteRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -129,7 +176,7 @@ func (client CloudEventsClient) DeleteRule(ctx context.Context, request DeleteRu
 }
 
 // deleteRule implements the OCIOperation interface (enables retrying operations)
-func (client CloudEventsClient) deleteRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client EventsClient) deleteRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/rules/{ruleId}")
 	if err != nil {
 		return nil, err
@@ -149,7 +196,7 @@ func (client CloudEventsClient) deleteRule(ctx context.Context, request common.O
 }
 
 // GetRule Retrieves an event rule.
-func (client CloudEventsClient) GetRule(ctx context.Context, request GetRuleRequest) (response GetRuleResponse, err error) {
+func (client EventsClient) GetRule(ctx context.Context, request GetRuleRequest) (response GetRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -171,7 +218,7 @@ func (client CloudEventsClient) GetRule(ctx context.Context, request GetRuleRequ
 }
 
 // getRule implements the OCIOperation interface (enables retrying operations)
-func (client CloudEventsClient) getRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client EventsClient) getRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/rules/{ruleId}")
 	if err != nil {
 		return nil, err
@@ -191,7 +238,7 @@ func (client CloudEventsClient) getRule(ctx context.Context, request common.OCIR
 }
 
 // ListRules Lists rules for this compartment.
-func (client CloudEventsClient) ListRules(ctx context.Context, request ListRulesRequest) (response ListRulesResponse, err error) {
+func (client EventsClient) ListRules(ctx context.Context, request ListRulesRequest) (response ListRulesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -213,7 +260,7 @@ func (client CloudEventsClient) ListRules(ctx context.Context, request ListRules
 }
 
 // listRules implements the OCIOperation interface (enables retrying operations)
-func (client CloudEventsClient) listRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client EventsClient) listRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/rules")
 	if err != nil {
 		return nil, err
@@ -233,7 +280,7 @@ func (client CloudEventsClient) listRules(ctx context.Context, request common.OC
 }
 
 // UpdateRule Updates an event rule.
-func (client CloudEventsClient) UpdateRule(ctx context.Context, request UpdateRuleRequest) (response UpdateRuleResponse, err error) {
+func (client EventsClient) UpdateRule(ctx context.Context, request UpdateRuleRequest) (response UpdateRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -255,7 +302,7 @@ func (client CloudEventsClient) UpdateRule(ctx context.Context, request UpdateRu
 }
 
 // updateRule implements the OCIOperation interface (enables retrying operations)
-func (client CloudEventsClient) updateRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client EventsClient) updateRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/rules/{ruleId}")
 	if err != nil {
 		return nil, err

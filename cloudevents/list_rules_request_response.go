@@ -42,7 +42,7 @@ type ListRulesRequest struct {
 	// Specifies sort order.
 	// * **ASC:** Ascending sort order.
 	// * **DESC:** Descending sort order.
-	SortOrder *string `mandatory:"false" contributesTo:"query" name:"sortOrder"`
+	SortOrder ListRulesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
@@ -115,6 +115,29 @@ var mappingListRulesSortBy = map[string]ListRulesSortByEnum{
 func GetListRulesSortByEnumValues() []ListRulesSortByEnum {
 	values := make([]ListRulesSortByEnum, 0)
 	for _, v := range mappingListRulesSortBy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListRulesSortOrderEnum Enum with underlying type: string
+type ListRulesSortOrderEnum string
+
+// Set of constants representing the allowable values for ListRulesSortOrderEnum
+const (
+	ListRulesSortOrderAsc  ListRulesSortOrderEnum = "ASC"
+	ListRulesSortOrderDesc ListRulesSortOrderEnum = "DESC"
+)
+
+var mappingListRulesSortOrder = map[string]ListRulesSortOrderEnum{
+	"ASC":  ListRulesSortOrderAsc,
+	"DESC": ListRulesSortOrderDesc,
+}
+
+// GetListRulesSortOrderEnumValues Enumerates the set of values for ListRulesSortOrderEnum
+func GetListRulesSortOrderEnumValues() []ListRulesSortOrderEnum {
+	values := make([]ListRulesSortOrderEnum, 0)
+	for _, v := range mappingListRulesSortOrder {
 		values = append(values, v)
 	}
 	return values

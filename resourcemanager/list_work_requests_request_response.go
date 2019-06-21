@@ -12,7 +12,7 @@ import (
 type ListWorkRequestsRequest struct {
 
 	// The compartment OCID on which to filter.
-	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
+	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// The OCID of the resource.
 	ResourceId *string `mandatory:"false" contributesTo:"query" name:"resourceId"`

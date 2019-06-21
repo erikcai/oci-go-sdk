@@ -41,7 +41,7 @@ type ListFunctionsRequest struct {
 	SortOrder ListFunctionsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
 	// Specifies the attribute with which to sort the rules.
-	// Default: `timeCreated`
+	// Default: `displayName`
 	// * **timeCreated:** Sorts by timeCreated.
 	// * **displayName:** Sorts by displayName.
 	// * **id:** Sorts by id.

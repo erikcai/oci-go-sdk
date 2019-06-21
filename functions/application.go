@@ -33,15 +33,8 @@ type Application struct {
 	// The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each key and value in UTF-8.
 	Config map[string]string `mandatory:"false" json:"config"`
 
-	// Subnet Ids that functions in the application are associated with.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)s of the subnets in which to run functions in the application.
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
-
-	// A syslog URL to send all function logs to. Supports tls, udp, and tcp.
-	// The syslog address must be reachable from all of the subnets configured on the application.
-	// Example: `tls://logserver.myserver:1234`
-	SyslogUrl *string `mandatory:"false" json:"syslogUrl"`
-
-	OciLogging *ApplicationOciLogging `mandatory:"false" json:"ociLogging"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
