@@ -52,6 +52,7 @@ func ExampleCreateLoadbalancer() {
 
 	request.ShapeName = shapes[0].Name
 
+	// Create rulesets to modify response / request headers or control access types based on REST request
 	ruleSets := map[string]loadbalancer.RuleSetDetails{
 		"ruleset1": {
 			Items: []loadbalancer.Rule{
@@ -77,6 +78,39 @@ func ExampleCreateLoadbalancer() {
 			}},
 	}
 	request.RuleSets = ruleSets
+
+	// Backend Sets for our new LB. Includes an LB Cookie session persistence configuration. Note that this is
+	//   mutually exclusive with a session persistence configuration.
+	backendSets := map[string]loadbalancer.BackendSetDetails{
+		"backendset1": {
+			Policy: common.String("ROUND_ROBIN"),
+			HealthChecker: &loadbalancer.HealthCheckerDetails{
+				Protocol: common.String("HTTP"),
+				UrlPath:  common.String("/health"),
+				Port:     common.Int(80),
+			},
+			Backends: []loadbalancer.BackendDetails{
+				{
+					IpAddress: common.String("10.11.10.5"),
+					Port:      common.Int(80),
+				},
+				{
+					IpAddress: common.String("10.12.20.3"),
+					Port:      common.Int(80),
+				},
+			},
+			LbCookieSessionPersistenceConfiguration: &loadbalancer.LbCookieSessionPersistenceConfigurationDetails{
+				CookieName:      common.String("X-Oracle-OCI-cookie-1"),
+				DisableFallback: common.Bool(true),
+				Domain:          common.String("www.example.org"),
+				Path:            common.String("/cookiepath1"),
+				MaxAgeInSeconds: common.Int(300),
+				IsSecure:        common.Bool(false),
+				IsHttpOnly:      common.Bool(false),
+			},
+		},
+	}
+	request.BackendSets = backendSets
 
 	_, err = c.CreateLoadBalancer(ctx, request)
 	helpers.FatalIfError(err)
@@ -123,6 +157,9 @@ func ExampleCreateLoadbalancer() {
 	newRuleSetResponse, err := addRuleSet(ctx, c, newCreatedLoadBalancer.Id)
 	fmt.Printf("New rule set response: %+v", newRuleSetResponse)
 
+	newBackendSetResponse, err := addBackendSet(ctx, c, newCreatedLoadBalancer.Id)
+	fmt.Printf("New backend set: %+v", newBackendSetResponse)
+
 	// clean up resources
 	defer func() {
 		deleteLoadbalancer(ctx, c, newCreatedLoadBalancer.Id)
@@ -144,6 +181,7 @@ func ExampleCreateLoadbalancer() {
 	// new loadbalancer LifecycleState is: ACTIVE
 	// Rule Sets from GET: {}
 	// New rule set response: {}
+	// New backend set: {}
 	// deleting load balancer
 	// load balancer deleted
 	// deleteing subnet
@@ -220,6 +258,7 @@ func deleteLoadbalancer(ctx context.Context, client loadbalancer.LoadBalancerCli
 	fmt.Println("load balancer deleted")
 }
 
+// Add a new ruleset to an existing LB
 func addRuleSet(ctx context.Context, client loadbalancer.LoadBalancerClient, id *string) (loadbalancer.CreateRuleSetResponse, error) {
 	request := loadbalancer.CreateRuleSetRequest{}
 	request.LoadBalancerId = id
@@ -243,6 +282,7 @@ func addRuleSet(ctx context.Context, client loadbalancer.LoadBalancerClient, id 
 	return response, err
 }
 
+// Get a list of rulesets from a given LB
 func listRuleSets(ctx context.Context, client loadbalancer.LoadBalancerClient, id *string) []loadbalancer.RuleSet {
 	request := loadbalancer.ListRuleSetsRequest{
 		LoadBalancerId: id,
@@ -251,4 +291,44 @@ func listRuleSets(ctx context.Context, client loadbalancer.LoadBalancerClient, i
 	r, err := client.ListRuleSets(ctx, request)
 	helpers.FatalIfError(err)
 	return r.Items
+}
+
+// Add a new backend set to an existing LB
+func addBackendSet(ctx context.Context, client loadbalancer.LoadBalancerClient, id *string) (loadbalancer.CreateBackendSetResponse, error) {
+	request := loadbalancer.CreateBackendSetRequest{}
+	request.LoadBalancerId = id
+	backendSetDetails := loadbalancer.CreateBackendSetDetails{
+		Name:   common.String("backendset2"),
+		Policy: common.String("ROUND_ROBIN"),
+		HealthChecker: &loadbalancer.HealthCheckerDetails{
+			Protocol: common.String("HTTP"),
+			UrlPath:  common.String("/health"),
+			Port:     common.Int(80),
+		},
+		Backends: []loadbalancer.BackendDetails{
+			{
+				IpAddress: common.String("10.11.10.5"),
+				Port:      common.Int(80),
+			},
+			{
+				IpAddress: common.String("10.12.20.3"),
+				Port:      common.Int(80),
+			},
+		},
+		LbCookieSessionPersistenceConfiguration: &loadbalancer.LbCookieSessionPersistenceConfigurationDetails{
+			CookieName:      common.String("X-Oracle-OCI-cookie-2"),
+			DisableFallback: common.Bool(true),
+			Domain:          common.String("www.example.org"),
+			Path:            common.String("/cookiepath2"),
+			MaxAgeInSeconds: common.Int(300),
+			IsSecure:        common.Bool(false),
+			IsHttpOnly:      common.Bool(false),
+		},
+	}
+	request.CreateBackendSetDetails = backendSetDetails
+
+	response, err := client.CreateBackendSet(ctx, request)
+	helpers.FatalIfError(err)
+	println("backendset added")
+	return response, err
 }
