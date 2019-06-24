@@ -160,6 +160,11 @@ func ExampleCreateLoadbalancer() {
 	newBackendSetResponse, err := addBackendSet(ctx, c, newCreatedLoadBalancer.Id)
 	fmt.Printf("New backend set: %+v", newBackendSetResponse)
 
+	// Change Compartment (Requires second compartment to move the LB into)
+	secondCompartmentId := helpers.RootCompartmentID()
+	changeCompartmentResponse, err := changeLBCompartment(ctx, c, newCreatedLoadBalancer.Id, secondCompartmentId)
+	fmt.Printf("Load balancer compartment changed: %+v", changeCompartmentResponse)
+
 	// clean up resources
 	defer func() {
 		deleteLoadbalancer(ctx, c, newCreatedLoadBalancer.Id)
@@ -330,5 +335,19 @@ func addBackendSet(ctx context.Context, client loadbalancer.LoadBalancerClient, 
 	response, err := client.CreateBackendSet(ctx, request)
 	helpers.FatalIfError(err)
 	println("backendset added")
+	return response, err
+}
+
+// Move the LB to a new compartment
+func changeLBCompartment(ctx context.Context, client loadbalancer.LoadBalancerClient, id *string, compartmentId *string) (loadbalancer.ChangeLoadBalancerCompartmentResponse, error) {
+	request := loadbalancer.ChangeLoadBalancerCompartmentRequest{}
+	request.LoadBalancerId = id
+	changeCompartmentDetails := loadbalancer.ChangeLoadBalancerCompartmentDetails{
+		CompartmentId: compartmentId,
+	}
+	request.ChangeLoadBalancerCompartmentDetails = changeCompartmentDetails
+	response, err := client.ChangeLoadBalancerCompartment(ctx, request)
+	helpers.FatalIfError(err)
+
 	return response, err
 }
