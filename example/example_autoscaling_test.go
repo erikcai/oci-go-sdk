@@ -1,6 +1,6 @@
 // Copyright (c) 2019, Oracle and/or its affiliates. All rights reserved.
 //
-// Example code for Core Services API
+// Example code for Autoscaling Services API
 //
 //
 
@@ -26,10 +26,6 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 	"github.com/oracle/oci-go-sdk/core"
 	"github.com/oracle/oci-go-sdk/example/helpers"
-)
-
-var (
-	imageId, ad, subnetId string
 )
 
 // Example to showcase autoscaling configuration creation and eventual teardown
@@ -79,7 +75,7 @@ func ExampleCreateAndDeleteAutoscalingConfiguration() {
 
 // Usage printing
 func AutoscalingUsage() {
-	log.Printf("Please set the following environment variables to run ChangeAutoscalingCompartment sample")
+	log.Printf("Please set the following environment variables to run Autoscaling sample")
 	log.Printf(" ")
 	log.Printf("   IMAGE_ID       # Required: Image Id to use")
 	log.Printf("   COMPARTMENT_ID    # Required: Compartment Id to use")
@@ -108,71 +104,6 @@ func AutoscalingParseEnvironmentVariables() {
 	log.Printf("COMPARTMENT_ID  : %s", compartmentId)
 	log.Printf("AD     : %s", ad)
 	log.Printf("SUBNET_ID  : %s", subnetId)
-}
-
-// helper method to create an instance configuration
-func createInstanceConfiguration(ctx context.Context, client core.ComputeManagementClient, imageId string, compartmentId string) (response core.CreateInstanceConfigurationResponse, err error) {
-	vnicDetails := core.InstanceConfigurationCreateVnicDetails{}
-
-	sourceDetails := core.InstanceConfigurationInstanceSourceViaImageDetails{
-		ImageId: &imageId,
-	}
-
-	displayName := "Instance Configuration Example"
-	shape := "VM.Standard2.1"
-
-	launchDetails := core.InstanceConfigurationLaunchInstanceDetails{
-		CompartmentId:     &compartmentId,
-		DisplayName:       &displayName,
-		CreateVnicDetails: &vnicDetails,
-		Shape:             &shape,
-		SourceDetails:     &sourceDetails,
-	}
-
-	instanceDetails := core.ComputeInstanceDetails{
-		LaunchDetails: &launchDetails,
-	}
-
-	configurationDetails := core.CreateInstanceConfigurationDetails{
-		DisplayName:     &displayName,
-		CompartmentId:   &compartmentId,
-		InstanceDetails: &instanceDetails,
-	}
-
-	req := core.CreateInstanceConfigurationRequest{
-		CreateInstanceConfiguration: &configurationDetails,
-	}
-
-	response, err = client.CreateInstanceConfiguration(ctx, req)
-	helpers.FatalIfError(err)
-
-	return
-}
-
-// helper method to create an instance pool
-func createInstancePool(ctx context.Context, client core.ComputeManagementClient, instanceConfigurationId string,
-	subnetId string, availabilityDomain string, compartmentId string) (response core.CreateInstancePoolResponse, err error) {
-
-	displayName := "Instance Pool Example"
-	size := 1
-
-	req := core.CreateInstancePoolRequest{
-		CreateInstancePoolDetails: core.CreateInstancePoolDetails{
-			CompartmentId:           &compartmentId,
-			InstanceConfigurationId: &instanceConfigurationId,
-			PlacementConfigurations: []core.CreateInstancePoolPlacementConfigurationDetails{
-				{
-					PrimarySubnetId:    &subnetId,
-					AvailabilityDomain: &availabilityDomain,
-				},
-			},
-			Size:        &size,
-			DisplayName: &displayName,
-		},
-	}
-
-	response, err = client.CreateInstancePool(ctx, req)
-	return
 }
 
 // helper method to create an autoscaling configuration
@@ -277,34 +208,6 @@ func deleteAutoscalingConfiguration(ctx context.Context, client autoscaling.Auto
 	}
 
 	response, err = client.DeleteAutoScalingConfiguration(ctx, req)
-	helpers.FatalIfError(err)
-
-	return
-}
-
-// helper method to termiante an instance configuration
-func terminateInstancePool(ctx context.Context, client core.ComputeManagementClient,
-	poolId string) (response core.TerminateInstancePoolResponse, err error) {
-
-	req := core.TerminateInstancePoolRequest{
-		InstancePoolId: &poolId,
-	}
-
-	response, err = client.TerminateInstancePool(ctx, req)
-	helpers.FatalIfError(err)
-
-	return
-}
-
-// helper method to delete an instance configuration
-func deleteInstanceConfiguration(ctx context.Context, client core.ComputeManagementClient,
-	instanceConfigurationId string) (response core.DeleteInstanceConfigurationResponse, err error) {
-
-	req := core.DeleteInstanceConfigurationRequest{
-		InstanceConfigurationId: &instanceConfigurationId,
-	}
-
-	response, err = client.DeleteInstanceConfiguration(ctx, req)
 	helpers.FatalIfError(err)
 
 	return
