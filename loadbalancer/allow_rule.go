@@ -49,3 +49,30 @@ func (m AllowRule) MarshalJSON() (buff []byte, e error) {
 
 	return json.Marshal(&s)
 }
+
+// UnmarshalJSON unmarshals from json
+func (m *AllowRule) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		Description *string         `json:"description"`
+		Conditions  []rulecondition `json:"conditions"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	m.Description = model.Description
+	m.Conditions = make([]RuleCondition, len(model.Conditions))
+	for i, n := range model.Conditions {
+		nn, err := n.UnmarshalPolymorphicJSON(n.JsonData)
+		if err != nil {
+			return err
+		}
+		if nn != nil {
+			m.Conditions[i] = nn.(RuleCondition)
+		} else {
+			m.Conditions[i] = nil
+		}
+	}
+	return
+}

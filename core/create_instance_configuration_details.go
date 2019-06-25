@@ -76,3 +76,33 @@ func (m CreateInstanceConfigurationDetails) MarshalJSON() (buff []byte, e error)
 
 	return json.Marshal(&s)
 }
+
+// UnmarshalJSON unmarshals from json
+func (m *CreateInstanceConfigurationDetails) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		DefinedTags     map[string]map[string]interface{}    `json:"definedTags"`
+		DisplayName     *string                              `json:"displayName"`
+		FreeformTags    map[string]string                    `json:"freeformTags"`
+		CompartmentId   *string                              `json:"compartmentId"`
+		InstanceDetails instanceconfigurationinstancedetails `json:"instanceDetails"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	m.DefinedTags = model.DefinedTags
+	m.DisplayName = model.DisplayName
+	m.FreeformTags = model.FreeformTags
+	m.CompartmentId = model.CompartmentId
+	nn, e := model.InstanceDetails.UnmarshalPolymorphicJSON(model.InstanceDetails.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.InstanceDetails = nn.(InstanceConfigurationInstanceDetails)
+	} else {
+		m.InstanceDetails = nil
+	}
+	return
+}
