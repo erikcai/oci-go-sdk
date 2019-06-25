@@ -44,7 +44,7 @@ func ExampleCreateAndWaitForRunningInstancePool() {
 	computeMgmtClient, err := core.NewComputeManagementClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(err)
 
-	createInstanceConfigurationResponse, _ := createInstanceConfiguration(ctx, computeMgmtClient, imageId, compartmentId);
+	createInstanceConfigurationResponse, _ := createInstanceConfiguration(ctx, computeMgmtClient, imageId, compartmentId)
 	fmt.Println("Instance configuration created")
 
 	instanceConfiguration := createInstanceConfigurationResponse.InstanceConfiguration
@@ -119,7 +119,6 @@ func InstancePoolsParseEnvironmentVariables() {
 		InstancePoolsUsage()
 	}
 
-
 	log.Printf("IMAGE_ID     : %s", imageId)
 	log.Printf("COMPARTMENT_ID  : %s", compartmentId)
 	log.Printf("AD     : %s", ad)
@@ -140,11 +139,11 @@ func createInstanceConfiguration(ctx context.Context, client core.ComputeManagem
 	shape := "VM.Standard2.1"
 
 	launchDetails := core.InstanceConfigurationLaunchInstanceDetails{
-		CompartmentId: &compartmentId,
-		DisplayName: &displayName,
+		CompartmentId:     &compartmentId,
+		DisplayName:       &displayName,
 		CreateVnicDetails: &vnicDetails,
-		Shape: &shape,
-		SourceDetails: &sourceDetails,
+		Shape:             &shape,
+		SourceDetails:     &sourceDetails,
 	}
 
 	instanceDetails := core.ComputeInstanceDetails{
@@ -152,8 +151,8 @@ func createInstanceConfiguration(ctx context.Context, client core.ComputeManagem
 	}
 
 	configurationDetails := core.CreateInstanceConfigurationDetails{
-		DisplayName: &displayName,
-		CompartmentId: &compartmentId,
+		DisplayName:     &displayName,
+		CompartmentId:   &compartmentId,
 		InstanceDetails: &instanceDetails,
 	}
 
@@ -178,18 +177,18 @@ func createInstancePool(ctx context.Context, client core.ComputeManagementClient
 		CreateInstancePoolDetails: core.CreateInstancePoolDetails{
 			CompartmentId:           &compartmentId,
 			InstanceConfigurationId: &instanceConfigurationId,
-			PlacementConfigurations: [] core.CreateInstancePoolPlacementConfigurationDetails{
+			PlacementConfigurations: []core.CreateInstancePoolPlacementConfigurationDetails{
 				{
 					PrimarySubnetId:    &subnetId,
 					AvailabilityDomain: &availabilityDomain,
 				},
 			},
-			Size:                    &size,
-			DisplayName:             &displayName,
+			Size:        &size,
+			DisplayName: &displayName,
 		},
 	}
 
-	response, err = client.CreateInstancePool(ctx, req);
+	response, err = client.CreateInstancePool(ctx, req)
 	return
 }
 
@@ -221,7 +220,6 @@ func deleteInstanceConfiguration(ctx context.Context, client core.ComputeManagem
 	return
 }
 
-
 // helper method to update an instance pool size
 func setInstancePoolSize(ctx context.Context, client core.ComputeManagementClient,
 	poolId string, newSize int) (response core.UpdateInstancePoolResponse, err error) {
@@ -231,7 +229,7 @@ func setInstancePoolSize(ctx context.Context, client core.ComputeManagementClien
 	}
 
 	req := core.UpdateInstancePoolRequest{
-		InstancePoolId: &poolId,
+		InstancePoolId:            &poolId,
 		UpdateInstancePoolDetails: updateDetails,
 	}
 
@@ -251,13 +249,12 @@ func attachLBtoInstancePool(ctx context.Context, client core.ComputeManagementCl
 	attachDetails := core.AttachLoadBalancerDetails{
 		LoadBalancerId: &loadBalancerId,
 		BackendSetName: &loadBalancerBackendSetName,
-		Port: &port,
-		VnicSelection: &vnic,
-
+		Port:           &port,
+		VnicSelection:  &vnic,
 	}
 
 	req := core.AttachLoadBalancerRequest{
-		InstancePoolId: &poolId,
+		InstancePoolId:            &poolId,
 		AttachLoadBalancerDetails: attachDetails,
 	}
 
