@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeStreamCompartmentDetails Detailed representation of a change stream comprtment operation.
+// ChangeStreamCompartmentDetails Detailed representation of a change stream compartment operation.
 type ChangeStreamCompartmentDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
