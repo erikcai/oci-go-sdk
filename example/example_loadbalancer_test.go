@@ -19,6 +19,8 @@ import (
 
 const (
 	loadbalancerDisplayName = "OCI-GO-Sample-LB"
+	nsgDisplayNameOne       = "OCI-GOSDK-Sample-NSG-1"
+	nsgDisplayNameTwo       = "OCI-GOSDK-Sample-NSG-2"
 )
 
 func ExampleCreateLoadbalancer() {
@@ -165,17 +167,28 @@ func ExampleCreateLoadbalancer() {
 	changeCompartmentResponse, err := changeLBCompartment(ctx, c, newCreatedLoadBalancer.Id, secondCompartmentId)
 	fmt.Printf("Load balancer compartment changed: %+v", changeCompartmentResponse)
 
+	vnClient, vclerr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
+	helpers.FatalIfError(vclerr)
+	vcnId := subnet1.VcnId
+
+	nsg1 := createNsg(ctx, vnClient, nsgDisplayNameOne, helpers.CompartmentID(), vcnId)
+	nsg2 := createNsg(ctx, vnClient, nsgDisplayNameTwo, helpers.CompartmentID(), vcnId)
+
+	var nsgArray = []string{*(nsg1.Id), *(nsg2.Id)}
+
+	//Update nsg call
+	updateNsgWithLbr(ctx, c, newCreatedLoadBalancer.Id, nsgArray)
+
 	// clean up resources
 	defer func() {
 		deleteLoadbalancer(ctx, c, newCreatedLoadBalancer.Id)
 
-		client, clerr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
-		helpers.FatalIfError(clerr)
-
 		vcnID := subnet1.VcnId
-		deleteSubnet(ctx, client, subnet1.Id)
-		deleteSubnet(ctx, client, subnet2.Id)
-		deleteVcn(ctx, client, vcnID)
+		deleteSubnet(ctx, vnClient, subnet1.Id)
+		deleteSubnet(ctx, vnClient, subnet2.Id)
+		deleteNsg(ctx, vnClient, nsg1.Id)
+		deleteNsg(ctx, vnClient, nsg2.Id)
+		deleteVcn(ctx, vnClient, vcnID)
 	}()
 
 	// Output:
@@ -350,4 +363,50 @@ func changeLBCompartment(ctx context.Context, client loadbalancer.LoadBalancerCl
 	helpers.FatalIfError(err)
 
 	return response, err
+}
+
+// Create network security group
+func createNsg(ctx context.Context, c core.VirtualNetworkClient, displayName string, compartmentId, vcnId *string) core.NetworkSecurityGroup {
+	// create a new nsg
+	createNsgRequest := core.CreateNetworkSecurityGroupRequest{
+		RequestMetadata: helpers.GetRequestMetadataWithDefaultRetryPolicy(),
+	}
+	cnsgDetails := core.CreateNetworkSecurityGroupDetails{}
+	cnsgDetails.CompartmentId = compartmentId
+	cnsgDetails.DisplayName = common.String(displayName)
+	cnsgDetails.VcnId = vcnId
+
+	createNsgRequest.CreateNetworkSecurityGroupDetails = cnsgDetails
+
+	r, err := c.CreateNetworkSecurityGroup(ctx, createNsgRequest)
+	helpers.FatalIfError(err)
+	return r.NetworkSecurityGroup
+}
+
+// Delete network security group
+func deleteNsg(ctx context.Context, c core.VirtualNetworkClient, nsgId *string) {
+	//delete the nsg
+	deleteNsgRequest := core.DeleteNetworkSecurityGroupRequest{
+		RequestMetadata: helpers.GetRequestMetadataWithDefaultRetryPolicy(),
+	}
+
+	deleteNsgRequest.NetworkSecurityGroupId = nsgId
+
+	_, err := c.DeleteNetworkSecurityGroup(ctx, deleteNsgRequest)
+	helpers.FatalIfError(err)
+}
+
+// Update nsg list with load balancer
+func updateNsgWithLbr(ctx context.Context, c loadbalancer.LoadBalancerClient, loadBalancerId *string, networkSecurityGroupIds []string) {
+	request := loadbalancer.UpdateNetworkSecurityGroupsRequest{
+		RequestMetadata: helpers.GetRequestMetadataWithDefaultRetryPolicy(),
+	}
+	details := loadbalancer.UpdateNetworkSecurityGroupsDetails{
+		NetworkSecurityGroupIds: networkSecurityGroupIds,
+	}
+	request.LoadBalancerId = loadBalancerId
+	request.UpdateNetworkSecurityGroupsDetails = details
+
+	_, err := c.UpdateNetworkSecurityGroups(ctx, request)
+	helpers.FatalIfError(err)
 }
