@@ -187,9 +187,9 @@ func ExampleCreateLoadbalancer() {
 	fmt.Printf("Listener Rules: %+v\n\n", getListenerRulesResponse)
 
 	// Change Compartment (Requires second compartment to move the LB into)
-	//secondCompartmentId := helpers.RootCompartmentID()
-	//changeCompartmentResponse, err := changeLBCompartment(ctx, c, newCreatedLoadBalancer.Id, secondCompartmentId)
-	//fmt.Printf("Load balancer compartment changed: %+v", changeCompartmentResponse)
+	secondCompartmentId := helpers.RootCompartmentID()
+	changeCompartmentResponse, err := changeLBCompartment(ctx, c, newCreatedLoadBalancer.Id, secondCompartmentId)
+	fmt.Printf("Load balancer compartment changed: %+v", changeCompartmentResponse)
 
 	vnClient, vclerr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(vclerr)
