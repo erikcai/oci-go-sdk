@@ -8,19 +8,21 @@ package example
 import (
 	"context"
 	"fmt"
-	"time"
-
 	"github.com/oracle/oci-go-sdk/common"
 	"github.com/oracle/oci-go-sdk/core"
 	"github.com/oracle/oci-go-sdk/example/helpers"
 	"github.com/oracle/oci-go-sdk/identity"
 	"github.com/oracle/oci-go-sdk/loadbalancer"
+	"time"
 )
 
 const (
 	loadbalancerDisplayName = "OCI-GO-Sample-LB"
 	nsgDisplayNameOne       = "OCI-GOSDK-Sample-NSG-1"
 	nsgDisplayNameTwo       = "OCI-GOSDK-Sample-NSG-2"
+	listenerDisplayName     = "GO_SDK_Listener"
+	rulesetOneName          = "ruleset1"
+	backendSetOneName 		= "backendset1"
 )
 
 func ExampleCreateLoadbalancer() {
@@ -56,7 +58,7 @@ func ExampleCreateLoadbalancer() {
 
 	// Create rulesets to modify response / request headers or control access types based on REST request
 	ruleSets := map[string]loadbalancer.RuleSetDetails{
-		"ruleset1": {
+		rulesetOneName: {
 			Items: []loadbalancer.Rule{
 				loadbalancer.AddHttpRequestHeaderRule{
 					Header: common.String("some-header-name-to-add"),
@@ -77,6 +79,14 @@ func ExampleCreateLoadbalancer() {
 					},
 					StatusCode: common.Int(403),
 				},
+				loadbalancer.AllowRule{
+					Description: common.String("Allow traffic from internet clients"),
+					Conditions: []loadbalancer.RuleCondition{
+						loadbalancer.SourceIpAddressCondition{
+							AttributeValue: common.String("111.111.111.111/32"),
+						},
+					},
+				},
 			}},
 	}
 	request.RuleSets = ruleSets
@@ -84,7 +94,7 @@ func ExampleCreateLoadbalancer() {
 	// Backend Sets for our new LB. Includes an LB Cookie session persistence configuration. Note that this is
 	//   mutually exclusive with a session persistence configuration.
 	backendSets := map[string]loadbalancer.BackendSetDetails{
-		"backendset1": {
+		backendSetOneName: {
 			Policy: common.String("ROUND_ROBIN"),
 			HealthChecker: &loadbalancer.HealthCheckerDetails{
 				Protocol: common.String("HTTP"),
@@ -113,6 +123,17 @@ func ExampleCreateLoadbalancer() {
 		},
 	}
 	request.BackendSets = backendSets
+
+	listeners := map[string]loadbalancer.ListenerDetails{
+		listenerDisplayName: {
+			DefaultBackendSetName: common.String(backendSetOneName),
+			Port:                  common.Int(80),
+			Protocol:              common.String("HTTP"),
+			RuleSetNames:          []string{rulesetOneName},
+		},
+	}
+
+	request.Listeners = listeners
 
 	_, err = c.CreateLoadBalancer(ctx, request)
 	helpers.FatalIfError(err)
@@ -147,25 +168,28 @@ func ExampleCreateLoadbalancer() {
 		helpers.RetryUntilTrueOrError(
 			loadBalancerLifecycleStateCheck,
 			helpers.CheckLifecycleState(string(loadbalancer.LoadBalancerLifecycleStateActive)),
-			time.Tick(10*time.Second),
+			time.Tick(10 * time.Second),
 			time.After((5 * time.Minute))))
 
 	newCreatedLoadBalancer := getLoadBalancer()
-	fmt.Printf("new loadbalancer LifecycleState is: %s\n", newCreatedLoadBalancer.LifecycleState)
+	fmt.Printf("new loadbalancer LifecycleState is: %s\n\n", newCreatedLoadBalancer.LifecycleState)
 
 	loadBalancerRuleSets := listRuleSets(ctx, c, newCreatedLoadBalancer.Id)
-	fmt.Printf("Rule Sets from GET: %+v", loadBalancerRuleSets)
+	fmt.Printf("Rule Sets from GET: %+v\n\n", loadBalancerRuleSets)
 
 	newRuleSetResponse, err := addRuleSet(ctx, c, newCreatedLoadBalancer.Id)
-	fmt.Printf("New rule set response: %+v", newRuleSetResponse)
+	fmt.Printf("New rule set response: %+v\n\n", newRuleSetResponse)
 
 	newBackendSetResponse, err := addBackendSet(ctx, c, newCreatedLoadBalancer.Id)
-	fmt.Printf("New backend set: %+v", newBackendSetResponse)
+	fmt.Printf("New backend set: %+v\n\n", newBackendSetResponse)
+
+	getListenerRulesResponse := listListenerRules(ctx, c, newCreatedLoadBalancer.Id, common.String(listenerDisplayName))
+	fmt.Printf("Listener Rules: %+v\n\n", getListenerRulesResponse)
 
 	// Change Compartment (Requires second compartment to move the LB into)
-	secondCompartmentId := helpers.RootCompartmentID()
-	changeCompartmentResponse, err := changeLBCompartment(ctx, c, newCreatedLoadBalancer.Id, secondCompartmentId)
-	fmt.Printf("Load balancer compartment changed: %+v", changeCompartmentResponse)
+	//secondCompartmentId := helpers.RootCompartmentID()
+	//changeCompartmentResponse, err := changeLBCompartment(ctx, c, newCreatedLoadBalancer.Id, secondCompartmentId)
+	//fmt.Printf("Load balancer compartment changed: %+v", changeCompartmentResponse)
 
 	vnClient, vclerr := core.NewVirtualNetworkClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(vclerr)
@@ -409,4 +433,15 @@ func updateNsgWithLbr(ctx context.Context, c loadbalancer.LoadBalancerClient, lo
 
 	_, err := c.UpdateNetworkSecurityGroups(ctx, request)
 	helpers.FatalIfError(err)
+}
+
+// List Listener Rules for a given listener (by load balancer id and listener name)
+func listListenerRules(ctx context.Context, client loadbalancer.LoadBalancerClient, id *string, name *string) []loadbalancer.ListenerRuleSummary {
+	request := loadbalancer.ListListenerRulesRequest{
+		LoadBalancerId: id,
+		ListenerName:   name,
+	}
+	r, err := client.ListListenerRules(ctx, request)
+	helpers.FatalIfError(err)
+	return r.Items
 }
