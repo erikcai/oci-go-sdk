@@ -61,10 +61,14 @@ func ExampleCreateAndWaitForRunningInstancePool() {
 	pollUntilDesiredState(ctx, computeMgmtClient, instancePool, core.InstancePoolLifecycleStateScaling)
 	pollUntilDesiredState(ctx, computeMgmtClient, instancePool, core.InstancePoolLifecycleStateRunning)
 
+	// attach load balancer to the created pool
 	attachLBtoInstancePool(ctx, computeMgmtClient, *instancePool.Id, loadBalancerId, loadBalancerBackendSetName)
 
 	// poll for instance pool until the lb becomes attached
 	pollUntilDesiredLBAttachmentState(ctx, computeMgmtClient, instancePool, core.InstancePoolLoadBalancerAttachmentLifecycleStateAttached)
+
+	// gets the targeted load balancer information
+	getLbAttachmentForPool(ctx, computeMgmtClient, *instancePool.Id)
 
 	// clean up resources
 	defer func() {
@@ -82,6 +86,7 @@ func ExampleCreateAndWaitForRunningInstancePool() {
 	// Instance pool is SCALING
 	// Instance pool is RUNNING
 	// Instance pool attachment is ATTACHED
+	// Instance pool attachment has vnic PrimaryVnic
 	// Terminated Instance Pool
 	// Deleted Instance Configuration
 }
@@ -314,4 +319,27 @@ func pollUntilDesiredLBAttachmentState(ctx context.Context, computeMgmtClient co
 	_, pollError := computeMgmtClient.GetInstancePool(ctx, pollingGetRequest)
 	helpers.FatalIfError(pollError)
 	fmt.Println("Instance pool attachment is", desiredState)
+}
+
+// function showing how to get lb attachment info for a pool
+func getLbAttachmentForPool(ctx context.Context, computeMgmtClient core.ComputeManagementClient,
+	instancePoolId string) {
+
+	// gets the fresh instance pool info which, after lb attaching, now has lb attachment information
+	getReq := core.GetInstancePoolRequest{
+		InstancePoolId: &instancePoolId,
+	}
+
+	instancePoolResp, _ := computeMgmtClient.GetInstancePool(ctx, getReq)
+
+	// takes the 1st load balancer attachment id from the pool
+	lbAttachmentId := instancePoolResp.LoadBalancers[0].Id
+
+	req := core.GetInstancePoolLoadBalancerAttachmentRequest{
+		InstancePoolId:                       &instancePoolId,
+		InstancePoolLoadBalancerAttachmentId: lbAttachmentId,
+	}
+
+	response, _ := computeMgmtClient.GetInstancePoolLoadBalancerAttachment(ctx, req)
+	fmt.Println("Instance pool attachment has vnic", *response.VnicSelection)
 }
