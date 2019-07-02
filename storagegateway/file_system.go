@@ -58,7 +58,7 @@ type FileSystem struct {
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	// The current lifecycle state of the file system.
-	LifecycleState LifecycleState `mandatory:"true" json:"lifecycleState"`
+	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// One of the following file system-specific lifecycle substates:
 	// *  `NONE`

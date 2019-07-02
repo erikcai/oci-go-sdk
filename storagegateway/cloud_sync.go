@@ -75,7 +75,7 @@ type CloudSync struct {
 	TimeStarted *common.SDKTime `mandatory:"true" json:"timeStarted"`
 
 	// The current lifecycle state of the cloud sync.
-	LifecycleState LifecycleState `mandatory:"true" json:"lifecycleState"`
+	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// One of the following cloud sync-specific lifecycle substates:
 	// *  NONE

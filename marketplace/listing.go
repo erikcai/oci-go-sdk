@@ -85,7 +85,7 @@ type Listing struct {
 	Regions []Region `mandatory:"false" json:"regions"`
 
 	// The package type of the listing.
-	PackageType ListingPackageTypeEnum `mandatory:"false" json:"packageType,omitempty"`
+	PackageType PackageTypeEnumEnum `mandatory:"false" json:"packageType,omitempty"`
 
 	// The default package version.
 	DefaultPackageVersion *string `mandatory:"false" json:"defaultPackageVersion"`
@@ -98,23 +98,18 @@ func (m Listing) String() string {
 	return common.PointerString(m)
 }
 
-// ListingPackageTypeEnum Enum with underlying type: string
-type ListingPackageTypeEnum string
+// ListingPackageTypeEnum is an alias to type: PackageTypeEnumEnum
+// Consider using PackageTypeEnumEnum instead
+// Deprecated
+type ListingPackageTypeEnum = PackageTypeEnumEnum
 
-// Set of constants representing the allowable values for ListingPackageTypeEnum
+// Set of constants representing the allowable values for PackageTypeEnumEnum
+// Deprecated
 const (
-	ListingPackageTypeImage ListingPackageTypeEnum = "IMAGE"
+	ListingPackageTypeImage PackageTypeEnumEnum = "IMAGE"
 )
 
-var mappingListingPackageType = map[string]ListingPackageTypeEnum{
-	"IMAGE": ListingPackageTypeImage,
-}
-
-// GetListingPackageTypeEnumValues Enumerates the set of values for ListingPackageTypeEnum
-func GetListingPackageTypeEnumValues() []ListingPackageTypeEnum {
-	values := make([]ListingPackageTypeEnum, 0)
-	for _, v := range mappingListingPackageType {
-		values = append(values, v)
-	}
-	return values
-}
+// GetListingPackageTypeEnumValues Enumerates the set of values for PackageTypeEnumEnum
+// Consider using GetPackageTypeEnumEnumValue
+// Deprecated
+var GetListingPackageTypeEnumValues = GetPackageTypeEnumEnumValues

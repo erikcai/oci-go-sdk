@@ -8,14 +8,23 @@
 
 package marketplace
 
-import (
-	"github.com/oracle/oci-go-sdk/common"
+// PackageTypeEnumEnum Enum with underlying type: string
+type PackageTypeEnumEnum string
+
+// Set of constants representing the allowable values for PackageTypeEnumEnum
+const (
+	PackageTypeEnumImage PackageTypeEnumEnum = "IMAGE"
 )
 
-// PackageTypeEnum Possible values for package type.
-type PackageTypeEnum struct {
+var mappingPackageTypeEnum = map[string]PackageTypeEnumEnum{
+	"IMAGE": PackageTypeEnumImage,
 }
 
-func (m PackageTypeEnum) String() string {
-	return common.PointerString(m)
+// GetPackageTypeEnumEnumValues Enumerates the set of values for PackageTypeEnumEnum
+func GetPackageTypeEnumEnumValues() []PackageTypeEnumEnum {
+	values := make([]PackageTypeEnumEnum, 0)
+	for _, v := range mappingPackageTypeEnum {
+		values = append(values, v)
+	}
+	return values
 }

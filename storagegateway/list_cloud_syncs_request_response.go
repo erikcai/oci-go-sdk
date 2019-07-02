@@ -40,7 +40,7 @@ type ListCloudSyncsRequest struct {
 
 	// A filter to return only resources that match the specified lifecycle state.
 	// Example: `ACTIVE`
-	LifecycleState LifecycleState `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+	LifecycleState LifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.

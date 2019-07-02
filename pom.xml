@@ -55,7 +55,6 @@
     <rhino-spec-file>datats-customer-control-plane.cond.yaml</rhino-spec-file>
     <public-api-spec-spec-file>source/api.cond.yaml</public-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
-    <cloud-incident-management-service-spec-spec-file>api.yaml</cloud-incident-management-service-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -193,10 +192,6 @@
     <dependency>
       <groupId>com.oracle.pic.events</groupId>
       <artifactId>events-control-plane-spec</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.oracle.custops.cims</groupId>
-      <artifactId>cloud-incident-management-service-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -832,24 +827,6 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/events-control-plane-spec</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-cloud-incident-management-service-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.oracle.custops.cims</groupId>
-                  <artifactId>cloud-incident-management-service-spec</artifactId>
-                  <type>jar</type>
-                  <includes>**/*</includes>
-                  <outputDirectory>${spec-temp-dir}/cloud-incident-management-service-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1779,39 +1756,12 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
-          <execution>
-            <id>spec-conditionals-prefer-cloud-incident-management-service-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>prefer</goal>
-            </goals>
-            <configuration>
-              <inputFiles>
-                <inputFile>${spec-temp-dir}/cloud-incident-management-service-spec/source/${cloud-incident-management-service-spec-spec-file}</inputFile>
-                <inputFile>${spec-temp-dir}/cloud-incident-management-service-spec/${cloud-incident-management-service-spec-spec-file}</inputFile>
-              </inputFiles>
-              <outputFile>${preferred-temp-dir}/cloud-incident-management-service-spec/${cloud-incident-management-service-spec-spec-file}</outputFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>spec-conditionals-preprocess-cloud-incident-management-service-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>preprocess</goal>
-            </goals>
-            <configuration>
-              <inputFile>${preferred-temp-dir}/cloud-incident-management-service-spec/${cloud-incident-management-service-spec-spec-file}</inputFile>
-              <outputFile>${preprocessed-temp-dir}/cloud-incident-management-service-spec/${cloud-incident-management-service-spec-spec-file}</outputFile>
-              <groupFile>${enabled-groups-file}</groupFile>
-              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
       <plugin>
         <groupId>com.oracle.bmc.sdk</groupId>
         <artifactId>bmc-sdk-swagger-maven-plugin</artifactId>
-        <version>1.92-SNAPSHOT</version>
+        <version>1.92</version>
         <configuration>
           <isTestGenerationEnabled>true</isTestGenerationEnabled>
         </configuration>
@@ -2537,26 +2487,6 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
-          <execution>
-            <id>go-public-sdk-cloud-incident-management-service-spec</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <language>oracle-go-sdk</language>
-              <specPath>${preprocessed-temp-dir}/cloud-incident-management-service-spec/${cloud-incident-management-service-spec-spec-file}</specPath>
-              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
-              <basePackage>cims</basePackage>
-              <specGenerationType>${generationType}</specGenerationType>
-              <additionalProperties>
-                <specName>cims</specName>
-                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-              </additionalProperties>
-              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
-              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2993,11 +2923,6 @@
         <groupId>com.oracle.pic.events</groupId>
         <artifactId>events-control-plane-spec</artifactId>
         <version>0.1.23</version>
-      </dependency>
-      <dependency>
-        <groupId>com.oracle.custops.cims</groupId>
-        <artifactId>cloud-incident-management-service-spec</artifactId>
-        <version>1.4.3</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

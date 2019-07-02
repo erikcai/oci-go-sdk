@@ -47,7 +47,7 @@ type StorageGatewaySummary struct {
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	// The current lifecycle state of the storage gateway. You cannot use the storage gateway before the state is ACTIVE.
-	LifecycleState LifecycleState `mandatory:"true" json:"lifecycleState"`
+	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The changeable description assigned to the storage gateway during creation. It does not have to be unique.
 	//  Example: `my first storage gateway`

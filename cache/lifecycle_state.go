@@ -8,14 +8,33 @@
 
 package cache
 
-import (
-	"github.com/oracle/oci-go-sdk/common"
+// LifecycleStateEnum Enum with underlying type: string
+type LifecycleStateEnum string
+
+// Set of constants representing the allowable values for LifecycleStateEnum
+const (
+	LifecycleStateCreating LifecycleStateEnum = "CREATING"
+	LifecycleStateActive   LifecycleStateEnum = "ACTIVE"
+	LifecycleStateUpdating LifecycleStateEnum = "UPDATING"
+	LifecycleStateDeleting LifecycleStateEnum = "DELETING"
+	LifecycleStateDeleted  LifecycleStateEnum = "DELETED"
+	LifecycleStateFailed   LifecycleStateEnum = "FAILED"
 )
 
-// LifecycleState The various lifecycle states of Redis replicated caches.
-type LifecycleState struct {
+var mappingLifecycleState = map[string]LifecycleStateEnum{
+	"CREATING": LifecycleStateCreating,
+	"ACTIVE":   LifecycleStateActive,
+	"UPDATING": LifecycleStateUpdating,
+	"DELETING": LifecycleStateDeleting,
+	"DELETED":  LifecycleStateDeleted,
+	"FAILED":   LifecycleStateFailed,
 }
 
-func (m LifecycleState) String() string {
-	return common.PointerString(m)
+// GetLifecycleStateEnumValues Enumerates the set of values for LifecycleStateEnum
+func GetLifecycleStateEnumValues() []LifecycleStateEnum {
+	values := make([]LifecycleStateEnum, 0)
+	for _, v := range mappingLifecycleState {
+		values = append(values, v)
+	}
+	return values
 }

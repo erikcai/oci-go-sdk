@@ -8,14 +8,33 @@
 
 package streaming
 
-import (
-	"github.com/oracle/oci-go-sdk/common"
+// ArchiverLifecycleStateEnum Enum with underlying type: string
+type ArchiverLifecycleStateEnum string
+
+// Set of constants representing the allowable values for ArchiverLifecycleStateEnum
+const (
+	ArchiverLifecycleStateCreating ArchiverLifecycleStateEnum = "CREATING"
+	ArchiverLifecycleStateStopped  ArchiverLifecycleStateEnum = "STOPPED"
+	ArchiverLifecycleStateStarting ArchiverLifecycleStateEnum = "STARTING"
+	ArchiverLifecycleStateRunning  ArchiverLifecycleStateEnum = "RUNNING"
+	ArchiverLifecycleStateStopping ArchiverLifecycleStateEnum = "STOPPING"
+	ArchiverLifecycleStateUpdating ArchiverLifecycleStateEnum = "UPDATING"
 )
 
-// ArchiverLifecycleState The state of the stream archiver.
-type ArchiverLifecycleState struct {
+var mappingArchiverLifecycleState = map[string]ArchiverLifecycleStateEnum{
+	"CREATING": ArchiverLifecycleStateCreating,
+	"STOPPED":  ArchiverLifecycleStateStopped,
+	"STARTING": ArchiverLifecycleStateStarting,
+	"RUNNING":  ArchiverLifecycleStateRunning,
+	"STOPPING": ArchiverLifecycleStateStopping,
+	"UPDATING": ArchiverLifecycleStateUpdating,
 }
 
-func (m ArchiverLifecycleState) String() string {
-	return common.PointerString(m)
+// GetArchiverLifecycleStateEnumValues Enumerates the set of values for ArchiverLifecycleStateEnum
+func GetArchiverLifecycleStateEnumValues() []ArchiverLifecycleStateEnum {
+	values := make([]ArchiverLifecycleStateEnum, 0)
+	for _, v := range mappingArchiverLifecycleState {
+		values = append(values, v)
+	}
+	return values
 }

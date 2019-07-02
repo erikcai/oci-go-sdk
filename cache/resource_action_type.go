@@ -8,14 +8,37 @@
 
 package cache
 
-import (
-	"github.com/oracle/oci-go-sdk/common"
+// ResourceActionTypeEnum Enum with underlying type: string
+type ResourceActionTypeEnum string
+
+// Set of constants representing the allowable values for ResourceActionTypeEnum
+const (
+	ResourceActionTypeCreated        ResourceActionTypeEnum = "CREATED"
+	ResourceActionTypeUpdated        ResourceActionTypeEnum = "UPDATED"
+	ResourceActionTypeDeleted        ResourceActionTypeEnum = "DELETED"
+	ResourceActionTypeInProgress     ResourceActionTypeEnum = "IN_PROGRESS"
+	ResourceActionTypeCanceledCreate ResourceActionTypeEnum = "CANCELED_CREATE"
+	ResourceActionTypeCanceledDelete ResourceActionTypeEnum = "CANCELED_DELETE"
+	ResourceActionTypeCanceledUpdate ResourceActionTypeEnum = "CANCELED_UPDATE"
+	ResourceActionTypeFailed         ResourceActionTypeEnum = "FAILED"
 )
 
-// ResourceActionType The various action types by which a work request can affect a resource.
-type ResourceActionType struct {
+var mappingResourceActionType = map[string]ResourceActionTypeEnum{
+	"CREATED":         ResourceActionTypeCreated,
+	"UPDATED":         ResourceActionTypeUpdated,
+	"DELETED":         ResourceActionTypeDeleted,
+	"IN_PROGRESS":     ResourceActionTypeInProgress,
+	"CANCELED_CREATE": ResourceActionTypeCanceledCreate,
+	"CANCELED_DELETE": ResourceActionTypeCanceledDelete,
+	"CANCELED_UPDATE": ResourceActionTypeCanceledUpdate,
+	"FAILED":          ResourceActionTypeFailed,
 }
 
-func (m ResourceActionType) String() string {
-	return common.PointerString(m)
+// GetResourceActionTypeEnumValues Enumerates the set of values for ResourceActionTypeEnum
+func GetResourceActionTypeEnumValues() []ResourceActionTypeEnum {
+	values := make([]ResourceActionTypeEnum, 0)
+	for _, v := range mappingResourceActionType {
+		values = append(values, v)
+	}
+	return values
 }

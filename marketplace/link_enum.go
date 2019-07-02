@@ -8,14 +8,31 @@
 
 package marketplace
 
-import (
-	"github.com/oracle/oci-go-sdk/common"
+// LinkEnumEnum Enum with underlying type: string
+type LinkEnumEnum string
+
+// Set of constants representing the allowable values for LinkEnumEnum
+const (
+	LinkEnumSelf      LinkEnumEnum = "SELF"
+	LinkEnumCanonical LinkEnumEnum = "CANONICAL"
+	LinkEnumNext      LinkEnumEnum = "NEXT"
+	LinkEnumTemplate  LinkEnumEnum = "TEMPLATE"
+	LinkEnumPrev      LinkEnumEnum = "PREV"
 )
 
-// LinkEnum Possible values for the link type.
-type LinkEnum struct {
+var mappingLinkEnum = map[string]LinkEnumEnum{
+	"SELF":      LinkEnumSelf,
+	"CANONICAL": LinkEnumCanonical,
+	"NEXT":      LinkEnumNext,
+	"TEMPLATE":  LinkEnumTemplate,
+	"PREV":      LinkEnumPrev,
 }
 
-func (m LinkEnum) String() string {
-	return common.PointerString(m)
+// GetLinkEnumEnumValues Enumerates the set of values for LinkEnumEnum
+func GetLinkEnumEnumValues() []LinkEnumEnum {
+	values := make([]LinkEnumEnum, 0)
+	for _, v := range mappingLinkEnum {
+		values = append(values, v)
+	}
+	return values
 }

@@ -49,7 +49,7 @@ type FileSystemSummary struct {
 
 	// The current lifecycle state of the file system. You cannot use the file system before the state is ACTIVE.
 	// When you disconnect a file system, its lifecycle state changes to INACTIVE.
-	LifecycleState LifecycleState `mandatory:"true" json:"lifecycleState"`
+	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// One of the following file system-specific lifecycle substates:
 	// *  `NONE`

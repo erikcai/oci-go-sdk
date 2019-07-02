@@ -22,7 +22,7 @@ type UpdateArchiverDetails struct {
 	UseExistingBucket *bool `mandatory:"false" json:"useExistingBucket"`
 
 	// The start message.
-	StartPosition UpdateArchiverDetailsStartPositionEnum `mandatory:"false" json:"startPosition,omitempty"`
+	StartPosition ArchiverStartPositionEnum `mandatory:"false" json:"startPosition,omitempty"`
 
 	// The batch rollover size in bytes.
 	BatchRolloverSizeInMBs *int `mandatory:"false" json:"batchRolloverSizeInMBs"`
@@ -35,25 +35,19 @@ func (m UpdateArchiverDetails) String() string {
 	return common.PointerString(m)
 }
 
-// UpdateArchiverDetailsStartPositionEnum Enum with underlying type: string
-type UpdateArchiverDetailsStartPositionEnum string
+// UpdateArchiverDetailsStartPositionEnum is an alias to type: ArchiverStartPositionEnum
+// Consider using ArchiverStartPositionEnum instead
+// Deprecated
+type UpdateArchiverDetailsStartPositionEnum = ArchiverStartPositionEnum
 
-// Set of constants representing the allowable values for UpdateArchiverDetailsStartPositionEnum
+// Set of constants representing the allowable values for ArchiverStartPositionEnum
+// Deprecated
 const (
-	UpdateArchiverDetailsStartPositionLatest      UpdateArchiverDetailsStartPositionEnum = "LATEST"
-	UpdateArchiverDetailsStartPositionTrimHorizon UpdateArchiverDetailsStartPositionEnum = "TRIM_HORIZON"
+	UpdateArchiverDetailsStartPositionLatest      ArchiverStartPositionEnum = "LATEST"
+	UpdateArchiverDetailsStartPositionTrimHorizon ArchiverStartPositionEnum = "TRIM_HORIZON"
 )
 
-var mappingUpdateArchiverDetailsStartPosition = map[string]UpdateArchiverDetailsStartPositionEnum{
-	"LATEST":       UpdateArchiverDetailsStartPositionLatest,
-	"TRIM_HORIZON": UpdateArchiverDetailsStartPositionTrimHorizon,
-}
-
-// GetUpdateArchiverDetailsStartPositionEnumValues Enumerates the set of values for UpdateArchiverDetailsStartPositionEnum
-func GetUpdateArchiverDetailsStartPositionEnumValues() []UpdateArchiverDetailsStartPositionEnum {
-	values := make([]UpdateArchiverDetailsStartPositionEnum, 0)
-	for _, v := range mappingUpdateArchiverDetailsStartPosition {
-		values = append(values, v)
-	}
-	return values
-}
+// GetUpdateArchiverDetailsStartPositionEnumValues Enumerates the set of values for ArchiverStartPositionEnum
+// Consider using GetArchiverStartPositionEnumValue
+// Deprecated
+var GetUpdateArchiverDetailsStartPositionEnumValues = GetArchiverStartPositionEnumValues

@@ -13,8 +13,8 @@ import (
 	"github.com/oracle/oci-go-sdk/example/helpers"
 	"github.com/oracle/oci-go-sdk/identity"
 	"github.com/oracle/oci-go-sdk/loadbalancer"
-	"time"
 	"math"
+	"time"
 )
 
 const (
@@ -23,7 +23,7 @@ const (
 	nsgDisplayNameTwo       = "OCI-GOSDK-Sample-NSG-2"
 	listenerDisplayName     = "GO_SDK_Listener"
 	rulesetOneName          = "ruleset1"
-	backendSetOneName 		= "backendset1"
+	backendSetOneName       = "backendset1"
 )
 
 func ExampleCreateLoadbalancer() {
@@ -134,7 +134,6 @@ func ExampleCreateLoadbalancer() {
 	}
 
 	request.Listeners = listeners
-
 
 	_, err = c.CreateLoadBalancer(ctx, request)
 	helpers.FatalIfError(err)

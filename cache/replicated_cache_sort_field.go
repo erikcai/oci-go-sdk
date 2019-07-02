@@ -8,14 +8,27 @@
 
 package cache
 
-import (
-	"github.com/oracle/oci-go-sdk/common"
+// ReplicatedCacheSortFieldEnum Enum with underlying type: string
+type ReplicatedCacheSortFieldEnum string
+
+// Set of constants representing the allowable values for ReplicatedCacheSortFieldEnum
+const (
+	ReplicatedCacheSortFieldName           ReplicatedCacheSortFieldEnum = "NAME"
+	ReplicatedCacheSortFieldTimeCreated    ReplicatedCacheSortFieldEnum = "TIME_CREATED"
+	ReplicatedCacheSortFieldLifecycleState ReplicatedCacheSortFieldEnum = "LIFECYCLE_STATE"
 )
 
-// ReplicatedCacheSortField Fields for sorting the list of Redis replicated cache names.
-type ReplicatedCacheSortField struct {
+var mappingReplicatedCacheSortField = map[string]ReplicatedCacheSortFieldEnum{
+	"NAME":            ReplicatedCacheSortFieldName,
+	"TIME_CREATED":    ReplicatedCacheSortFieldTimeCreated,
+	"LIFECYCLE_STATE": ReplicatedCacheSortFieldLifecycleState,
 }
 
-func (m ReplicatedCacheSortField) String() string {
-	return common.PointerString(m)
+// GetReplicatedCacheSortFieldEnumValues Enumerates the set of values for ReplicatedCacheSortFieldEnum
+func GetReplicatedCacheSortFieldEnumValues() []ReplicatedCacheSortFieldEnum {
+	values := make([]ReplicatedCacheSortFieldEnum, 0)
+	for _, v := range mappingReplicatedCacheSortField {
+		values = append(values, v)
+	}
+	return values
 }
