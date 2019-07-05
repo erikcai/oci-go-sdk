@@ -23,6 +23,49 @@ func createDatabaseClientWithProvider(p common.ConfigurationProvider, testConfig
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeAutonomousContainerDatabaseCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeAutonomousContainerDatabaseCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeAutonomousContainerDatabaseCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeAutonomousContainerDatabaseCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeAutonomousContainerDatabaseCompartment")
+	assert.NoError(t, err)
+
+	type ChangeAutonomousContainerDatabaseCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeAutonomousContainerDatabaseCompartmentRequest
+	}
+
+	var requests []ChangeAutonomousContainerDatabaseCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeAutonomousContainerDatabaseCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientChangeAutonomousDataWarehouseCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -101,6 +144,49 @@ func TestDatabaseClientChangeAutonomousDatabaseCompartment(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ChangeAutonomousDatabaseCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeAutonomousExadataInfrastructureCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeAutonomousExadataInfrastructureCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeAutonomousExadataInfrastructureCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeAutonomousExadataInfrastructureCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeAutonomousExadataInfrastructureCompartment")
+	assert.NoError(t, err)
+
+	type ChangeAutonomousExadataInfrastructureCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeAutonomousExadataInfrastructureCompartmentRequest
+	}
+
+	var requests []ChangeAutonomousExadataInfrastructureCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeAutonomousExadataInfrastructureCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1232,6 +1318,49 @@ func TestDatabaseClientGetAutonomousDataWarehouseBackup(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetAutonomousDataWarehouseConsoleToken(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetAutonomousDataWarehouseConsoleToken")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAutonomousDataWarehouseConsoleToken is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousDataWarehouseConsoleToken", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetAutonomousDataWarehouseConsoleToken")
+	assert.NoError(t, err)
+
+	type GetAutonomousDataWarehouseConsoleTokenRequestInfo struct {
+		ContainerId string
+		Request     database.GetAutonomousDataWarehouseConsoleTokenRequest
+	}
+
+	var requests []GetAutonomousDataWarehouseConsoleTokenRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetAutonomousDataWarehouseConsoleToken(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientGetAutonomousDatabase(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -1311,6 +1440,49 @@ func TestDatabaseClientGetAutonomousDatabaseBackup(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetAutonomousDatabaseBackup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetAutonomousDatabaseConsoleToken(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetAutonomousDatabaseConsoleToken")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAutonomousDatabaseConsoleToken is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousDatabaseConsoleToken", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetAutonomousDatabaseConsoleToken")
+	assert.NoError(t, err)
+
+	type GetAutonomousDatabaseConsoleTokenRequestInfo struct {
+		ContainerId string
+		Request     database.GetAutonomousDatabaseConsoleTokenRequest
+	}
+
+	var requests []GetAutonomousDatabaseConsoleTokenRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetAutonomousDatabaseConsoleToken(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

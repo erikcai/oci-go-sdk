@@ -12,16 +12,17 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateBackupDestinationDetails Used for adding Recovery Appliance backup destination users or backup destination in case of Recovery Appliance , NFS if no database is attached yet.
+// UpdateBackupDestinationDetails For a RECOVERY_APPLIANCE backup destination, used to update the connection string and/or the list of VPC users.
+// For an NFS backup destination, used to update the NFS location.
 type UpdateBackupDestinationDetails struct {
 
-	// The Virtual Private Catalog users that will be used to access the Zero Data Loss Recovery Appliance.
+	// For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) users that are used to access the Recovery Appliance.
 	VpcUsers []string `mandatory:"false" json:"vpcUsers"`
 
-	// The connection string that is used to connect to the Zero Data Loss Recovery Appliance.
+	// For a RECOVERY_APPLIANCE backup destination, the connection string for connecting to the Recovery Appliance.
 	ConnectionString *string `mandatory:"false" json:"connectionString"`
 
-	// The network file path of the NFS device to be mounted.In the format server:/directory/folder.
+	// For an NFS backup destination, the path of the NFS location expressed as <host>:<directory>, where <host> is the hostname or IP address of the NFS server, and <directory> is the absolute path to the directory location on the NFS server.
 	Path *string `mandatory:"false" json:"path"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

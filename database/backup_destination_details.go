@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// BackupDestinationDetails Details for the different possible backup destinations
+// BackupDestinationDetails Backup destination details
 type BackupDestinationDetails struct {
 
 	// Type of the database backup destination.
@@ -21,10 +21,10 @@ type BackupDestinationDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The Virtual Private Catalog user that will be used to access the Zero Data Loss Recovery Appliance if the backup destination is of type Recovery Appliance.
+	// For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.
 	VpcUser *string `mandatory:"false" json:"vpcUser"`
 
-	// The password of the Virtual Private Catalog user if the backup destination is of type Recovery Appliance.
+	// For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
 	VpcPassword *string `mandatory:"false" json:"vpcPassword"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

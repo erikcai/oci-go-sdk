@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateDbHomeWithDbSystemIdFromDatabaseDetails The representation of CreateDbHomeWithDbSystemIdFromDatabaseDetails
+// CreateDbHomeWithDbSystemIdFromDatabaseDetails Note that a valid `dbSystemId` value must be supplied for the `CreateDbHomeWithDbSystemIdFromDatabase` API operation to successfully complete.
 type CreateDbHomeWithDbSystemIdFromDatabaseDetails struct {
 	Database *CreateDatabaseFromAnotherDatabaseDetails `mandatory:"true" json:"database"`
 

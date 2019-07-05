@@ -12,31 +12,31 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// BackupDestinationSummary A database backup destination summary, databases field will include an array of all the databases using this backup destination.
+// BackupDestinationSummary Backup destination details, including the list of databases using the backup destination.
 type BackupDestinationSummary struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database backup destination.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The user-provided name of the database backup destination.
+	// The user-provided name of the backup destination.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// Type of the database backup destination.
+	// Type of the backup destination.
 	Type BackupDestinationSummaryTypeEnum `mandatory:"false" json:"type,omitempty"`
 
-	// List of databases associated to this backup destination
+	// List of databases associated with the backup destination.
 	AssociatedDatabases []AssociatedDatabaseDetails `mandatory:"false" json:"associatedDatabases"`
 
-	// The connection string that is used to connect to the Zero Data Loss Recovery Appliance.
+	// For a RECOVERY_APPLIANCE backup destination, the connection string for connecting to the Recovery Appliance.
 	ConnectionString *string `mandatory:"false" json:"connectionString"`
 
-	// The Virtual Private Catalog users that will be used to access the Zero Data Loss Recovery Appliance.
+	// For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) users that are used to access the Recovery Appliance.
 	VpcUsers []string `mandatory:"false" json:"vpcUsers"`
 
-	// The network file path of the NFS device to be mounted. In the format server:/directory/folder.
+	// For an NFS backup destination, the path of the NFS location expressed as <host>:<directory>, where <host> is the hostname or IP address of the NFS server, and <directory> is the absolute path to the directory location on the NFS server.
 	Path *string `mandatory:"false" json:"path"`
 
 	// The current lifecycle state of the backup destination.

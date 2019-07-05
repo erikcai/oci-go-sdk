@@ -2842,17 +2842,17 @@
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
         <artifactId>oralb-api-spec</artifactId>
-        <version>4.0.26</version>
+        <version>4.0.28</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.180</version>
+        <version>0.1.197</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
         <artifactId>fss-api-spec</artifactId>
-        <version>0.0.23</version>
+        <version>0.0.24</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.sherlock</groupId>

@@ -16,16 +16,16 @@ import (
 // CreateRecoveryApplianceBackupDestinationDetails Used for creating Recovery Appliance backup destinations.
 type CreateRecoveryApplianceBackupDestinationDetails struct {
 
-	// The user-provided name of the database backup destination.
+	// The user-provided name of the backup destination.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The connection string that is used to connect to the Zero Data Loss Recovery Appliance.
+	// The connection string for connecting to the Recovery Appliance.
 	ConnectionString *string `mandatory:"true" json:"connectionString"`
 
-	// The Virtual Private Catalog users that will be used to access the Zero Data Loss Recovery Appliance.
+	// The Virtual Private Catalog (VPC) users that are used to access the Recovery Appliance.
 	VpcUsers []string `mandatory:"true" json:"vpcUsers"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

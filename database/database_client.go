@@ -58,6 +58,53 @@ func (client *DatabaseClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
+// ChangeAutonomousContainerDatabaseCompartment Move the Autonomous Container Database and all the dependent resources to the new compartment.
+func (client DatabaseClient) ChangeAutonomousContainerDatabaseCompartment(ctx context.Context, request ChangeAutonomousContainerDatabaseCompartmentRequest) (response ChangeAutonomousContainerDatabaseCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeAutonomousContainerDatabaseCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeAutonomousContainerDatabaseCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeAutonomousContainerDatabaseCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeAutonomousContainerDatabaseCompartmentResponse")
+	}
+	return
+}
+
+// changeAutonomousContainerDatabaseCompartment implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) changeAutonomousContainerDatabaseCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeAutonomousContainerDatabaseCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ChangeAutonomousDataWarehouseCompartment **Deprecated.** To move an Autonomous Data Warehouse and all the dependent resources to a new compartment, use the ChangeAutonomousDatabaseCompartment operation.
 func (client DatabaseClient) ChangeAutonomousDataWarehouseCompartment(ctx context.Context, request ChangeAutonomousDataWarehouseCompartmentRequest) (response ChangeAutonomousDataWarehouseCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -140,6 +187,53 @@ func (client DatabaseClient) changeAutonomousDatabaseCompartment(ctx context.Con
 	}
 
 	var response ChangeAutonomousDatabaseCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ChangeAutonomousExadataInfrastructureCompartment Move the Autonomous Exadata Infrastructures and all the dependent resources to the new compartment.
+func (client DatabaseClient) ChangeAutonomousExadataInfrastructureCompartment(ctx context.Context, request ChangeAutonomousExadataInfrastructureCompartmentRequest) (response ChangeAutonomousExadataInfrastructureCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeAutonomousExadataInfrastructureCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeAutonomousExadataInfrastructureCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeAutonomousExadataInfrastructureCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeAutonomousExadataInfrastructureCompartmentResponse")
+	}
+	return
+}
+
+// changeAutonomousExadataInfrastructureCompartment implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) changeAutonomousExadataInfrastructureCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousExadataInfrastructures/{autonomousExadataInfrastructureId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeAutonomousExadataInfrastructureCompartmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1302,6 +1396,48 @@ func (client DatabaseClient) getAutonomousDataWarehouseBackup(ctx context.Contex
 	return response, err
 }
 
+// GetAutonomousDataWarehouseConsoleToken **Deprecated.** To get a token allowing the OCI Console to automatically login to the Autonomous Data Warehouse Service Console, use the GetAutonomousDatabaseConsoleToken operation.
+func (client DatabaseClient) GetAutonomousDataWarehouseConsoleToken(ctx context.Context, request GetAutonomousDataWarehouseConsoleTokenRequest) (response GetAutonomousDataWarehouseConsoleTokenResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAutonomousDataWarehouseConsoleToken, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetAutonomousDataWarehouseConsoleTokenResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAutonomousDataWarehouseConsoleTokenResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAutonomousDataWarehouseConsoleTokenResponse")
+	}
+	return
+}
+
+// getAutonomousDataWarehouseConsoleToken implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getAutonomousDataWarehouseConsoleToken(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousDataWarehouses/{autonomousDataWarehouseId}/consoleToken")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAutonomousDataWarehouseConsoleTokenResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetAutonomousDatabase Gets the details of the specified Autonomous Database.
 func (client DatabaseClient) GetAutonomousDatabase(ctx context.Context, request GetAutonomousDatabaseRequest) (response GetAutonomousDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1374,6 +1510,48 @@ func (client DatabaseClient) getAutonomousDatabaseBackup(ctx context.Context, re
 	}
 
 	var response GetAutonomousDatabaseBackupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetAutonomousDatabaseConsoleToken Gets a token allowing the OCI Console to automatically login to the Autonomous Transaction Processing Service Console.
+func (client DatabaseClient) GetAutonomousDatabaseConsoleToken(ctx context.Context, request GetAutonomousDatabaseConsoleTokenRequest) (response GetAutonomousDatabaseConsoleTokenResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAutonomousDatabaseConsoleToken, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetAutonomousDatabaseConsoleTokenResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAutonomousDatabaseConsoleTokenResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAutonomousDatabaseConsoleTokenResponse")
+	}
+	return
+}
+
+// getAutonomousDatabaseConsoleToken implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getAutonomousDatabaseConsoleToken(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousDatabases/{autonomousDatabaseId}/consoleToken")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAutonomousDatabaseConsoleTokenResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2326,7 +2504,7 @@ func (client DatabaseClient) listAutonomousDatabases(ctx context.Context, reques
 	return response, err
 }
 
-// ListAutonomousDbPreviewVersions Gets a list of supported Autonomous Database versions.
+// ListAutonomousDbPreviewVersions Gets a list of supported Autonomous Database versions. Note that preview version software is only available for serverless deployments (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI).
 func (client DatabaseClient) ListAutonomousDbPreviewVersions(ctx context.Context, request ListAutonomousDbPreviewVersionsRequest) (response ListAutonomousDbPreviewVersionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2452,7 +2630,7 @@ func (client DatabaseClient) listAutonomousExadataInfrastructures(ctx context.Co
 	return response, err
 }
 
-// ListBackupDestination Gets a list of backup destinations based on the compartmentId specified.
+// ListBackupDestination Gets a list of backup destinations in the specified compartment.
 func (client DatabaseClient) ListBackupDestination(ctx context.Context, request ListBackupDestinationRequest) (response ListBackupDestinationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3757,7 +3935,9 @@ func (client DatabaseClient) updateAutonomousExadataInfrastructure(ctx context.C
 	return response, err
 }
 
-// UpdateBackupDestination To update the list of users for a given Recovery Appliance backup destination , update the backup destination incase of Recovery Appliance or NFS if no database is attached to the current user.
+// UpdateBackupDestination If no database is associated with the backup destination:
+// - For a RECOVERY_APPLIANCE backup destination, updates the connection string and/or the list of VPC users.
+// - For an NFS backup destination, updates the NFS location.
 func (client DatabaseClient) UpdateBackupDestination(ctx context.Context, request UpdateBackupDestinationRequest) (response UpdateBackupDestinationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

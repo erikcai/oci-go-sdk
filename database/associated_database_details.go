@@ -12,13 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AssociatedDatabaseDetails Databases associated to a given backup destination
+// AssociatedDatabaseDetails Databases associated with a backup destination
 type AssociatedDatabaseDetails struct {
 
 	// The database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	Id *string `mandatory:"false" json:"id"`
 
-	// The display name of the database to be created from the backup. It must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.
+	// The display name of the database that is associated with the backup destination.
 	DbName *string `mandatory:"false" json:"dbName"`
 }
 

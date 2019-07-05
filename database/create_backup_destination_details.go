@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateBackupDestinationDetails Details for creating a database backup destination.
+// CreateBackupDestinationDetails Details for creating a backup destination.
 type CreateBackupDestinationDetails interface {
 
-	// The user-provided name of the database backup destination.
+	// The user-provided name of the backup destination.
 	GetDisplayName() *string
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.

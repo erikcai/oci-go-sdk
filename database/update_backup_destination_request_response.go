@@ -14,7 +14,8 @@ type UpdateBackupDestinationRequest struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
 	BackupDestinationId *string `mandatory:"true" contributesTo:"path" name:"backupDestinationId"`
 
-	// Request to update the users of Recovery Appliance backup destination or update the backup destination incase of Recovery Appliance or NFS if no database is attached to the current user.
+	// For a RECOVERY_APPLIANCE backup destination, request to update the connection string and/or the list of VPC users.
+	// For an NFS backup destination, request to update the NFS location.
 	UpdateBackupDestinationDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

@@ -16,13 +16,13 @@ import (
 // CreateNfsBackupDestinationDetails Used for creating NFS backup destinations.
 type CreateNfsBackupDestinationDetails struct {
 
-	// The user-provided name of the database backup destination.
+	// The user-provided name of the backup destination.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The network file path of the NFS device to be mounted. In the format server:/directory/folder.
+	// The path of the NFS location expressed as <host>:<directory>, where <host> is the hostname or IP address of the NFS server, and <directory> is the absolute path to the directory location on the NFS server.
 	Path *string `mandatory:"true" json:"path"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
