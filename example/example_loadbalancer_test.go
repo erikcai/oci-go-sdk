@@ -14,6 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/identity"
 	"github.com/oracle/oci-go-sdk/loadbalancer"
 	"time"
+	"math"
 )
 
 const (
@@ -26,7 +27,6 @@ const (
 )
 
 func ExampleCreateLoadbalancer() {
-
 	c, clerr := loadbalancer.NewLoadBalancerClientWithConfigurationProvider(common.DefaultConfigProvider())
 	ctx := context.Background()
 	helpers.FatalIfError(clerr)
@@ -135,6 +135,7 @@ func ExampleCreateLoadbalancer() {
 
 	request.Listeners = listeners
 
+
 	_, err = c.CreateLoadBalancer(ctx, request)
 	helpers.FatalIfError(err)
 
@@ -153,26 +154,46 @@ func ExampleCreateLoadbalancer() {
 		return nil
 	}
 
-	// use to check the lifecycle states of new load balancer
-	loadBalancerLifecycleStateCheck := func() (interface{}, error) {
+	attempts := uint(10)
+	retryIfLBNotReady := func(r common.OCIOperationResponse) bool {
 		loadBalancer := getLoadBalancer()
 		if loadBalancer != nil {
-			return loadBalancer, nil
-		}
+			fieldLifecycle, err := helpers.FindLifecycleFieldValue(loadBalancer)
 
-		return loadbalancer.LoadBalancer{}, nil
+			if err != nil {
+				common.Logf("Error getting lifecycleState. Error is %v", err)
+				return true
+			}
+
+			lifecycleState := string(loadbalancer.LoadBalancerLifecycleStateActive)
+			isEqual := fieldLifecycle == lifecycleState
+			if isEqual {
+				return false
+			}
+			common.Logf("Current lifecycle state is %s, waiting for it to become %s", fieldLifecycle, lifecycleState)
+			return true
+		}
+		common.Logf("LB not available, waiting...")
+		return true
 	}
 
-	// wait for instance lifecyle state become running
-	helpers.FatalIfError(
-		helpers.RetryUntilTrueOrError(
-			loadBalancerLifecycleStateCheck,
-			helpers.CheckLifecycleState(string(loadbalancer.LoadBalancerLifecycleStateActive)),
-			time.Tick(10 * time.Second),
-			time.After((5 * time.Minute))))
+	nextDuration := func(r common.OCIOperationResponse) time.Duration {
+		// this function will return the duration as:
+		// 1s, 2s, 4s, 8s, 16s, 32s, 64s etc...
+		return time.Duration(math.Pow(float64(2), float64(r.AttemptNumber-1))) * time.Second
+	}
+
+	defaultRetryPolicy := common.NewRetryPolicy(attempts, retryIfLBNotReady, nextDuration)
+
+	request.RequestMetadata = common.RequestMetadata{
+		RetryPolicy: &defaultRetryPolicy,
+	}
+
+	_, err = c.CreateLoadBalancer(ctx, request)
+	helpers.FatalIfError(err)
 
 	newCreatedLoadBalancer := getLoadBalancer()
-	fmt.Printf("new loadbalancer LifecycleState is: %s\n\n", newCreatedLoadBalancer.LifecycleState)
+	fmt.Printf("New loadbalancer LifecycleState is: %s\n\n", newCreatedLoadBalancer.LifecycleState)
 
 	loadBalancerRuleSets := listRuleSets(ctx, c, newCreatedLoadBalancer.Id)
 	fmt.Printf("Rule Sets from GET: %+v\n\n", loadBalancerRuleSets)
