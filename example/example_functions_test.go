@@ -42,8 +42,6 @@ var (
 func ExampleFunctionInvoke() {
 	managementClient, err := functions.NewFunctionsManagementClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(err)
-	invokeClient, err := functions.NewFunctionsInvokeClientWithConfigurationProvider(common.DefaultConfigProvider())
-	helpers.FatalIfError(err)
 	fnImage = os.Getenv("OCI_FN_IMAGE")
 
 	ctx := context.Background()
@@ -75,8 +73,9 @@ func ExampleFunctionInvoke() {
 
 	listedFns := listFunctions(ctx, managementClient, createdApp.Id)
 	fmt.Println("Functions Listed:", *listedFns[0].DisplayName)
-	// Set invoke endpoint for this function so that we can address it
-	invokeClient.Host = *createdFn.InvokeEndpoint
+
+	invokeClient, err := functions.NewFunctionsInvokeClientWithConfigurationProvider(common.DefaultConfigProvider(), *createdFn.InvokeEndpoint)
+	helpers.FatalIfError(err)
 
 	invokeFunction(ctx, invokeClient, createdFn.Id)
 

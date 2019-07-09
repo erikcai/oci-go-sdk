@@ -12,13 +12,7 @@ import (
 )
 
 func createFunctionsInvokeClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
-
-	client, err := functions.NewFunctionsInvokeClientWithConfigurationProvider(p)
-	if testConfig.Endpoint != "" {
-		client.Host = testConfig.Endpoint
-	} else {
-		client.SetRegion(testConfig.Region)
-	}
+	client, err := functions.NewFunctionsInvokeClientWithConfigurationProvider(p, testConfig.Endpoint)
 	return client, err
 }
 
