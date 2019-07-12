@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-// GetAutonomousDatabaseConsoleTokenRequest wrapper for the GetAutonomousDatabaseConsoleToken operation
-type GetAutonomousDatabaseConsoleTokenRequest struct {
+// GetVmClusterRequest wrapper for the GetVmCluster operation
+type GetVmClusterRequest struct {
 
-	// The database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-	AutonomousDatabaseId *string `mandatory:"true" contributesTo:"path" name:"autonomousDatabaseId"`
+	// The VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	VmClusterId *string `mandatory:"true" contributesTo:"path" name:"vmClusterId"`
 
 	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -22,39 +22,42 @@ type GetAutonomousDatabaseConsoleTokenRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GetAutonomousDatabaseConsoleTokenRequest) String() string {
+func (request GetVmClusterRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GetAutonomousDatabaseConsoleTokenRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetVmClusterRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GetAutonomousDatabaseConsoleTokenRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetVmClusterRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GetAutonomousDatabaseConsoleTokenResponse wrapper for the GetAutonomousDatabaseConsoleToken operation
-type GetAutonomousDatabaseConsoleTokenResponse struct {
+// GetVmClusterResponse wrapper for the GetVmCluster operation
+type GetVmClusterResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The AutonomousDatabaseConsoleTokenDetails instance
-	AutonomousDatabaseConsoleTokenDetails `presentIn:"body"`
+	// The VmCluster instance
+	VmCluster `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response GetAutonomousDatabaseConsoleTokenResponse) String() string {
+func (response GetVmClusterResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GetAutonomousDatabaseConsoleTokenResponse) HTTPResponse() *http.Response {
+func (response GetVmClusterResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

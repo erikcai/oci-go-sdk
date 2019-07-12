@@ -30,9 +30,6 @@ type OdaInstance struct {
 	// Description of the ODA instance
 	Description *string `mandatory:"false" json:"description"`
 
-	// Type of the instance, corresponds to the SKU and metering method
-	InstanceType OdaInstanceInstanceTypeEnum `mandatory:"false" json:"instanceType,omitempty"`
-
 	// URL for the ODA web application associated with the instance
 	WebAppUrl *string `mandatory:"false" json:"webAppUrl"`
 
@@ -64,46 +61,17 @@ func (m OdaInstance) String() string {
 	return common.PointerString(m)
 }
 
-// OdaInstanceInstanceTypeEnum Enum with underlying type: string
-type OdaInstanceInstanceTypeEnum string
-
-// Set of constants representing the allowable values for OdaInstanceInstanceTypeEnum
-const (
-	OdaInstanceInstanceTypeUcm              OdaInstanceInstanceTypeEnum = "UCM"
-	OdaInstanceInstanceTypeSaasUserSessions OdaInstanceInstanceTypeEnum = "SAAS_USER_SESSIONS"
-	OdaInstanceInstanceTypeSaasEmployees    OdaInstanceInstanceTypeEnum = "SAAS_EMPLOYEES"
-)
-
-var mappingOdaInstanceInstanceType = map[string]OdaInstanceInstanceTypeEnum{
-	"UCM":                OdaInstanceInstanceTypeUcm,
-	"SAAS_USER_SESSIONS": OdaInstanceInstanceTypeSaasUserSessions,
-	"SAAS_EMPLOYEES":     OdaInstanceInstanceTypeSaasEmployees,
-}
-
-// GetOdaInstanceInstanceTypeEnumValues Enumerates the set of values for OdaInstanceInstanceTypeEnum
-func GetOdaInstanceInstanceTypeEnumValues() []OdaInstanceInstanceTypeEnum {
-	values := make([]OdaInstanceInstanceTypeEnum, 0)
-	for _, v := range mappingOdaInstanceInstanceType {
-		values = append(values, v)
-	}
-	return values
-}
-
 // OdaInstanceShapeNameEnum Enum with underlying type: string
 type OdaInstanceShapeNameEnum string
 
 // Set of constants representing the allowable values for OdaInstanceShapeNameEnum
 const (
 	OdaInstanceShapeNameDevelopment OdaInstanceShapeNameEnum = "DEVELOPMENT"
-	OdaInstanceShapeNameTrial       OdaInstanceShapeNameEnum = "TRIAL"
-	OdaInstanceShapeNameTest        OdaInstanceShapeNameEnum = "TEST"
 	OdaInstanceShapeNameProduction  OdaInstanceShapeNameEnum = "PRODUCTION"
 )
 
 var mappingOdaInstanceShapeName = map[string]OdaInstanceShapeNameEnum{
 	"DEVELOPMENT": OdaInstanceShapeNameDevelopment,
-	"TRIAL":       OdaInstanceShapeNameTrial,
-	"TEST":        OdaInstanceShapeNameTest,
 	"PRODUCTION":  OdaInstanceShapeNameProduction,
 }
 

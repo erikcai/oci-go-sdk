@@ -47,6 +47,8 @@ const (
 	WorkRequestSummaryRequestActionDeleteOdaInstance  WorkRequestSummaryRequestActionEnum = "DELETE_ODA_INSTANCE"
 	WorkRequestSummaryRequestActionPurgeOdaInstance   WorkRequestSummaryRequestActionEnum = "PURGE_ODA_INSTANCE"
 	WorkRequestSummaryRequestActionRecoverOdaInstance WorkRequestSummaryRequestActionEnum = "RECOVER_ODA_INSTANCE"
+	WorkRequestSummaryRequestActionCreateAssocation   WorkRequestSummaryRequestActionEnum = "CREATE_ASSOCATION"
+	WorkRequestSummaryRequestActionDeleteAssociation  WorkRequestSummaryRequestActionEnum = "DELETE_ASSOCIATION"
 )
 
 var mappingWorkRequestSummaryRequestAction = map[string]WorkRequestSummaryRequestActionEnum{
@@ -54,6 +56,8 @@ var mappingWorkRequestSummaryRequestAction = map[string]WorkRequestSummaryReques
 	"DELETE_ODA_INSTANCE":  WorkRequestSummaryRequestActionDeleteOdaInstance,
 	"PURGE_ODA_INSTANCE":   WorkRequestSummaryRequestActionPurgeOdaInstance,
 	"RECOVER_ODA_INSTANCE": WorkRequestSummaryRequestActionRecoverOdaInstance,
+	"CREATE_ASSOCATION":    WorkRequestSummaryRequestActionCreateAssocation,
+	"DELETE_ASSOCIATION":   WorkRequestSummaryRequestActionDeleteAssociation,
 }
 
 // GetWorkRequestSummaryRequestActionEnumValues Enumerates the set of values for WorkRequestSummaryRequestActionEnum

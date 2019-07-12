@@ -52,6 +52,9 @@ type NodePoolSummary struct {
 
 	// The OCIDs of the subnets in which to place nodes for this node pool.
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
+
+	// The nodes configuration of the node pool.
+	NodeConfigurationDetails *NodePoolNodeConfigurationDetails `mandatory:"false" json:"nodeConfigurationDetails"`
 }
 
 func (m NodePoolSummary) String() string {

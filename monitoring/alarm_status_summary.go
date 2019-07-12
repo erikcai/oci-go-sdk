@@ -83,13 +83,15 @@ type AlarmStatusSummaryStatusEnum string
 
 // Set of constants representing the allowable values for AlarmStatusSummaryStatusEnum
 const (
-	AlarmStatusSummaryStatusFiring AlarmStatusSummaryStatusEnum = "FIRING"
-	AlarmStatusSummaryStatusOk     AlarmStatusSummaryStatusEnum = "OK"
+	AlarmStatusSummaryStatusFiring    AlarmStatusSummaryStatusEnum = "FIRING"
+	AlarmStatusSummaryStatusOk        AlarmStatusSummaryStatusEnum = "OK"
+	AlarmStatusSummaryStatusSuspended AlarmStatusSummaryStatusEnum = "SUSPENDED"
 )
 
 var mappingAlarmStatusSummaryStatus = map[string]AlarmStatusSummaryStatusEnum{
-	"FIRING": AlarmStatusSummaryStatusFiring,
-	"OK":     AlarmStatusSummaryStatusOk,
+	"FIRING":    AlarmStatusSummaryStatusFiring,
+	"OK":        AlarmStatusSummaryStatusOk,
+	"SUSPENDED": AlarmStatusSummaryStatusSuspended,
 }
 
 // GetAlarmStatusSummaryStatusEnumValues Enumerates the set of values for AlarmStatusSummaryStatusEnum

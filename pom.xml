@@ -34,7 +34,7 @@
     <kms-api-spec-spec-file>source/kms-api-spec-20180608.cond.yaml</kms-api-spec-spec-file>
     <resource-query-service-spec-spec-file>source/rqs.cond.yaml</resource-query-service-spec-spec-file>
     <clusters-api-spec-spec-file>source/clusters-api-spec.cond.yaml</clusters-api-spec-spec-file>
-    <telemetry-public-api-spec-spec-file>release/telemetry-api.yaml</telemetry-public-api-spec-spec-file>
+    <telemetry-public-api-spec-spec-file>source/telemetry-api.cond.yaml</telemetry-public-api-spec-spec-file>
     <workrequests-api-spec-spec-file>workrequests-api-spec.cond.yaml</workrequests-api-spec-spec-file>
     <ons-gateway-spec-spec-file>notification-api.yaml</ons-gateway-spec-spec-file>
     <healthchecks-api-spec-spec-file>health-checks-api-spec-20180501.cond.yaml</healthchecks-api-spec-spec-file>
@@ -48,7 +48,7 @@
     <batchservice-api-spec-spec-file>source/batchservice.cond.yaml</batchservice-api-spec-spec-file>
     <fn-api-spec-spec-file>release/functions-api-spec.yaml</fn-api-spec-spec-file>
     <budgets-control-plane-spec-spec-file>budget.api.cond.yaml</budgets-control-plane-spec-spec-file>
-    <quotas-control-plane-api-spec-spec-file>preview/quotas-control-plane-api-spec-20181025.yaml</quotas-control-plane-api-spec-spec-file>
+    <quotas-control-plane-api-spec-spec-file>quotas-control-plane-api-spec-20181025.cond.yaml</quotas-control-plane-api-spec-spec-file>
     <digital-assistant-spec-spec-file>source/digital-assistant-api.cond.yaml</digital-assistant-spec-spec-file>
     <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
     <csg-api-spec-spec-file>source/storage-gateway-api.cond.yaml</csg-api-spec-spec-file>
@@ -1761,7 +1761,7 @@
       <plugin>
         <groupId>com.oracle.bmc.sdk</groupId>
         <artifactId>bmc-sdk-swagger-maven-plugin</artifactId>
-        <version>1.92</version>
+        <version>1.94-SNAPSHOT</version>
         <configuration>
           <isTestGenerationEnabled>true</isTestGenerationEnabled>
         </configuration>
@@ -2777,7 +2777,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.197</version>
+        <version>0.1.212</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -2817,12 +2817,12 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.0.12-20190305.195020-13</version>
+        <version>1.1.0</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
         <artifactId>telemetry-public-api-spec</artifactId>
-        <version>1.0.0-20190620.230816-312</version>
+        <version>1.0.0-20190709.204418-326</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.commons.workrequests</groupId>
@@ -2892,12 +2892,12 @@
       <dependency>
         <groupId>com.oracle.oci.quotas</groupId>
         <artifactId>quotas-control-plane-api-spec</artifactId>
-        <version>0.0.5</version>
+        <version>0.0.8</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.oda.cp</groupId>
         <artifactId>digital-assistant-spec</artifactId>
-        <version>0.0.1-20190612.092859-336</version>
+        <version>0.0.1-20190711.165404-403</version>
       </dependency>
       <dependency>
         <groupId>dscs-cp-spec</groupId>

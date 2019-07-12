@@ -8,11 +8,11 @@ import (
 	"net/http"
 )
 
-// GetAutonomousDataWarehouseConsoleTokenRequest wrapper for the GetAutonomousDataWarehouseConsoleToken operation
-type GetAutonomousDataWarehouseConsoleTokenRequest struct {
+// GetExadataInfrastructureRequest wrapper for the GetExadataInfrastructure operation
+type GetExadataInfrastructureRequest struct {
 
-	// The database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-	AutonomousDataWarehouseId *string `mandatory:"true" contributesTo:"path" name:"autonomousDataWarehouseId"`
+	// The Exadata infrastructure OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	ExadataInfrastructureId *string `mandatory:"true" contributesTo:"path" name:"exadataInfrastructureId"`
 
 	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -22,39 +22,42 @@ type GetAutonomousDataWarehouseConsoleTokenRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GetAutonomousDataWarehouseConsoleTokenRequest) String() string {
+func (request GetExadataInfrastructureRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GetAutonomousDataWarehouseConsoleTokenRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetExadataInfrastructureRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GetAutonomousDataWarehouseConsoleTokenRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetExadataInfrastructureRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GetAutonomousDataWarehouseConsoleTokenResponse wrapper for the GetAutonomousDataWarehouseConsoleToken operation
-type GetAutonomousDataWarehouseConsoleTokenResponse struct {
+// GetExadataInfrastructureResponse wrapper for the GetExadataInfrastructure operation
+type GetExadataInfrastructureResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The AutonomousDataWarehouseConsoleTokenDetails instance
-	AutonomousDataWarehouseConsoleTokenDetails `presentIn:"body"`
+	// The ExadataInfrastructure instance
+	ExadataInfrastructure `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response GetAutonomousDataWarehouseConsoleTokenResponse) String() string {
+func (response GetExadataInfrastructureResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GetAutonomousDataWarehouseConsoleTokenResponse) HTTPResponse() *http.Response {
+func (response GetExadataInfrastructureResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

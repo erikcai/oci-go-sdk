@@ -8,14 +8,14 @@ import (
 	"net/http"
 )
 
-// ChangeAutonomousDataWarehouseCompartmentRequest wrapper for the ChangeAutonomousDataWarehouseCompartment operation
-type ChangeAutonomousDataWarehouseCompartmentRequest struct {
+// ChangeExadataInfrastructureCompartmentRequest wrapper for the ChangeExadataInfrastructureCompartment operation
+type ChangeExadataInfrastructureCompartmentRequest struct {
 
-	// Request to move Autonomous Data Warehouse to a different compartment
-	ChangeCompartmentDetails `contributesTo:"body"`
+	// Request to move Exadata infrastructure to a different compartment
+	ChangeExadataInfrastructureCompartmentDetails `contributesTo:"body"`
 
-	// The database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-	AutonomousDataWarehouseId *string `mandatory:"true" contributesTo:"path" name:"autonomousDataWarehouseId"`
+	// The Exadata infrastructure OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	ExadataInfrastructureId *string `mandatory:"true" contributesTo:"path" name:"exadataInfrastructureId"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
 	// server error without risk of executing that same action again. Retry tokens expire after 24
@@ -37,28 +37,25 @@ type ChangeAutonomousDataWarehouseCompartmentRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ChangeAutonomousDataWarehouseCompartmentRequest) String() string {
+func (request ChangeExadataInfrastructureCompartmentRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ChangeAutonomousDataWarehouseCompartmentRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ChangeExadataInfrastructureCompartmentRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ChangeAutonomousDataWarehouseCompartmentRequest) RetryPolicy() *common.RetryPolicy {
+func (request ChangeExadataInfrastructureCompartmentRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ChangeAutonomousDataWarehouseCompartmentResponse wrapper for the ChangeAutonomousDataWarehouseCompartment operation
-type ChangeAutonomousDataWarehouseCompartmentResponse struct {
+// ChangeExadataInfrastructureCompartmentResponse wrapper for the ChangeExadataInfrastructureCompartment operation
+type ChangeExadataInfrastructureCompartmentResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
-
-	// For optimistic concurrency control. See `if-match`.
-	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier of the work request.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
@@ -68,11 +65,11 @@ type ChangeAutonomousDataWarehouseCompartmentResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response ChangeAutonomousDataWarehouseCompartmentResponse) String() string {
+func (response ChangeExadataInfrastructureCompartmentResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ChangeAutonomousDataWarehouseCompartmentResponse) HTTPResponse() *http.Response {
+func (response ChangeExadataInfrastructureCompartmentResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

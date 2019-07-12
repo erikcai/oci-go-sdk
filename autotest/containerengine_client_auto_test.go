@@ -22,7 +22,7 @@ func createContainerEngineClientWithProvider(p common.ConfigurationProvider, tes
 	return client, err
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientCreateCluster(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestContainerEngineClientCreateCluster(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientCreateKubeconfig(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestContainerEngineClientCreateKubeconfig(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientCreateNodePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestContainerEngineClientCreateNodePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientDeleteCluster(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestContainerEngineClientDeleteCluster(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientDeleteNodePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,7 +237,7 @@ func TestContainerEngineClientDeleteNodePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientDeleteWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -280,7 +280,7 @@ func TestContainerEngineClientDeleteWorkRequest(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientGetCluster(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -323,7 +323,7 @@ func TestContainerEngineClientGetCluster(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientGetClusterOptions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -366,7 +366,7 @@ func TestContainerEngineClientGetClusterOptions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientGetNodePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -409,7 +409,7 @@ func TestContainerEngineClientGetNodePool(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientGetNodePoolOptions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -452,7 +452,7 @@ func TestContainerEngineClientGetNodePoolOptions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -495,7 +495,7 @@ func TestContainerEngineClientGetWorkRequest(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientListClusters(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -547,7 +547,7 @@ func TestContainerEngineClientListClusters(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientListNodePools(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -599,7 +599,7 @@ func TestContainerEngineClientListNodePools(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientListWorkRequestErrors(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -642,7 +642,7 @@ func TestContainerEngineClientListWorkRequestErrors(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientListWorkRequestLogs(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -685,7 +685,7 @@ func TestContainerEngineClientListWorkRequestLogs(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientListWorkRequests(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -737,7 +737,7 @@ func TestContainerEngineClientListWorkRequests(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientUpdateCluster(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -780,7 +780,7 @@ func TestContainerEngineClientUpdateCluster(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientUpdateNodePool(t *testing.T) {
 	defer failTestOnPanic(t)
 

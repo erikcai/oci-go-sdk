@@ -58,6 +58,9 @@ type NodePool struct {
 
 	// The nodes in the node pool.
 	Nodes []Node `mandatory:"false" json:"nodes"`
+
+	// The nodes configuration of the node pool.
+	NodeConfigurationDetails *NodePoolNodeConfigurationDetails `mandatory:"false" json:"nodeConfigurationDetails"`
 }
 
 func (m NodePool) String() string {

@@ -64,13 +64,15 @@ type ListMetricsDetailsSortByEnum string
 
 // Set of constants representing the allowable values for ListMetricsDetailsSortByEnum
 const (
-	ListMetricsDetailsSortByNamespace ListMetricsDetailsSortByEnum = "NAMESPACE"
-	ListMetricsDetailsSortByName      ListMetricsDetailsSortByEnum = "NAME"
+	ListMetricsDetailsSortByNamespace     ListMetricsDetailsSortByEnum = "NAMESPACE"
+	ListMetricsDetailsSortByName          ListMetricsDetailsSortByEnum = "NAME"
+	ListMetricsDetailsSortByResourcegroup ListMetricsDetailsSortByEnum = "RESOURCEGROUP"
 )
 
 var mappingListMetricsDetailsSortBy = map[string]ListMetricsDetailsSortByEnum{
-	"NAMESPACE": ListMetricsDetailsSortByNamespace,
-	"NAME":      ListMetricsDetailsSortByName,
+	"NAMESPACE":     ListMetricsDetailsSortByNamespace,
+	"NAME":          ListMetricsDetailsSortByName,
+	"RESOURCEGROUP": ListMetricsDetailsSortByResourcegroup,
 }
 
 // GetListMetricsDetailsSortByEnumValues Enumerates the set of values for ListMetricsDetailsSortByEnum

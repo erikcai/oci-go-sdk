@@ -21,16 +21,11 @@ type CreateDbHomeWithDbSystemIdDetails struct {
 
 	Database *CreateDatabaseDetails `mandatory:"true" json:"database"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
-	DbSystemId *string `mandatory:"false" json:"dbSystemId"`
-
 	// The user-provided name of the database home.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-}
 
-//GetDbSystemId returns DbSystemId
-func (m CreateDbHomeWithDbSystemIdDetails) GetDbSystemId() *string {
-	return m.DbSystemId
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+	DbSystemId *string `mandatory:"false" json:"dbSystemId"`
 }
 
 //GetDisplayName returns DisplayName

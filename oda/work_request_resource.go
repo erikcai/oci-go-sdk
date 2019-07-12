@@ -44,17 +44,21 @@ type WorkRequestResourceResourceActionEnum string
 
 // Set of constants representing the allowable values for WorkRequestResourceResourceActionEnum
 const (
-	WorkRequestResourceResourceActionCreate  WorkRequestResourceResourceActionEnum = "CREATE"
-	WorkRequestResourceResourceActionDelete  WorkRequestResourceResourceActionEnum = "DELETE"
-	WorkRequestResourceResourceActionPurge   WorkRequestResourceResourceActionEnum = "PURGE"
-	WorkRequestResourceResourceActionRecover WorkRequestResourceResourceActionEnum = "RECOVER"
+	WorkRequestResourceResourceActionCreate            WorkRequestResourceResourceActionEnum = "CREATE"
+	WorkRequestResourceResourceActionDelete            WorkRequestResourceResourceActionEnum = "DELETE"
+	WorkRequestResourceResourceActionPurge             WorkRequestResourceResourceActionEnum = "PURGE"
+	WorkRequestResourceResourceActionRecover           WorkRequestResourceResourceActionEnum = "RECOVER"
+	WorkRequestResourceResourceActionCreateAssociation WorkRequestResourceResourceActionEnum = "CREATE_ASSOCIATION"
+	WorkRequestResourceResourceActionDeleteAssociation WorkRequestResourceResourceActionEnum = "DELETE_ASSOCIATION"
 )
 
 var mappingWorkRequestResourceResourceAction = map[string]WorkRequestResourceResourceActionEnum{
-	"CREATE":  WorkRequestResourceResourceActionCreate,
-	"DELETE":  WorkRequestResourceResourceActionDelete,
-	"PURGE":   WorkRequestResourceResourceActionPurge,
-	"RECOVER": WorkRequestResourceResourceActionRecover,
+	"CREATE":             WorkRequestResourceResourceActionCreate,
+	"DELETE":             WorkRequestResourceResourceActionDelete,
+	"PURGE":              WorkRequestResourceResourceActionPurge,
+	"RECOVER":            WorkRequestResourceResourceActionRecover,
+	"CREATE_ASSOCIATION": WorkRequestResourceResourceActionCreateAssociation,
+	"DELETE_ASSOCIATION": WorkRequestResourceResourceActionDeleteAssociation,
 }
 
 // GetWorkRequestResourceResourceActionEnumValues Enumerates the set of values for WorkRequestResourceResourceActionEnum

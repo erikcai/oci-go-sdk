@@ -17,7 +17,7 @@ import (
 // CreateClusterKubeconfigContentDetails The properties that define a request to create a cluster kubeconfig.
 type CreateClusterKubeconfigContentDetails struct {
 
-	// The version of the kubeconfig token.
+	// The version of the kubeconfig token. Supported value 1.0.0
 	TokenVersion *string `mandatory:"false" json:"tokenVersion"`
 
 	// The desired expiration, in seconds, to use for the kubeconfig token.

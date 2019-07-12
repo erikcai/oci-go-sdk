@@ -27,9 +27,6 @@ type CreateOdaInstanceDetails struct {
 	// Description of the ODA instance
 	Description *string `mandatory:"false" json:"description"`
 
-	// Type of the instance, corresponds to the SKU and metering method
-	InstanceType CreateOdaInstanceDetailsInstanceTypeEnum `mandatory:"false" json:"instanceType,omitempty"`
-
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
@@ -43,46 +40,17 @@ func (m CreateOdaInstanceDetails) String() string {
 	return common.PointerString(m)
 }
 
-// CreateOdaInstanceDetailsInstanceTypeEnum Enum with underlying type: string
-type CreateOdaInstanceDetailsInstanceTypeEnum string
-
-// Set of constants representing the allowable values for CreateOdaInstanceDetailsInstanceTypeEnum
-const (
-	CreateOdaInstanceDetailsInstanceTypeUcm              CreateOdaInstanceDetailsInstanceTypeEnum = "UCM"
-	CreateOdaInstanceDetailsInstanceTypeSaasUserSessions CreateOdaInstanceDetailsInstanceTypeEnum = "SAAS_USER_SESSIONS"
-	CreateOdaInstanceDetailsInstanceTypeSaasEmployees    CreateOdaInstanceDetailsInstanceTypeEnum = "SAAS_EMPLOYEES"
-)
-
-var mappingCreateOdaInstanceDetailsInstanceType = map[string]CreateOdaInstanceDetailsInstanceTypeEnum{
-	"UCM":                CreateOdaInstanceDetailsInstanceTypeUcm,
-	"SAAS_USER_SESSIONS": CreateOdaInstanceDetailsInstanceTypeSaasUserSessions,
-	"SAAS_EMPLOYEES":     CreateOdaInstanceDetailsInstanceTypeSaasEmployees,
-}
-
-// GetCreateOdaInstanceDetailsInstanceTypeEnumValues Enumerates the set of values for CreateOdaInstanceDetailsInstanceTypeEnum
-func GetCreateOdaInstanceDetailsInstanceTypeEnumValues() []CreateOdaInstanceDetailsInstanceTypeEnum {
-	values := make([]CreateOdaInstanceDetailsInstanceTypeEnum, 0)
-	for _, v := range mappingCreateOdaInstanceDetailsInstanceType {
-		values = append(values, v)
-	}
-	return values
-}
-
 // CreateOdaInstanceDetailsShapeNameEnum Enum with underlying type: string
 type CreateOdaInstanceDetailsShapeNameEnum string
 
 // Set of constants representing the allowable values for CreateOdaInstanceDetailsShapeNameEnum
 const (
 	CreateOdaInstanceDetailsShapeNameDevelopment CreateOdaInstanceDetailsShapeNameEnum = "DEVELOPMENT"
-	CreateOdaInstanceDetailsShapeNameTrial       CreateOdaInstanceDetailsShapeNameEnum = "TRIAL"
-	CreateOdaInstanceDetailsShapeNameTest        CreateOdaInstanceDetailsShapeNameEnum = "TEST"
 	CreateOdaInstanceDetailsShapeNameProduction  CreateOdaInstanceDetailsShapeNameEnum = "PRODUCTION"
 )
 
 var mappingCreateOdaInstanceDetailsShapeName = map[string]CreateOdaInstanceDetailsShapeNameEnum{
 	"DEVELOPMENT": CreateOdaInstanceDetailsShapeNameDevelopment,
-	"TRIAL":       CreateOdaInstanceDetailsShapeNameTrial,
-	"TEST":        CreateOdaInstanceDetailsShapeNameTest,
 	"PRODUCTION":  CreateOdaInstanceDetailsShapeNameProduction,
 }
 

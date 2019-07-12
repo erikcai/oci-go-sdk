@@ -23,14 +23,21 @@ type UpdateNodePoolDetails struct {
 	// The version of Kubernetes to which the nodes in the node pool should be upgraded.
 	KubernetesVersion *string `mandatory:"false" json:"kubernetesVersion"`
 
-	// The number of nodes to ensure in each subnet.
-	QuantityPerSubnet *int `mandatory:"false" json:"quantityPerSubnet"`
-
 	// A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
 	InitialNodeLabels []KeyValue `mandatory:"false" json:"initialNodeLabels"`
 
-	// The OCIDs of the subnets in which to place nodes for this node pool.
+	// The number of nodes to have in each subnet specified in subnetIds property. This property is deprecated,
+	// use nodeConfigurationDetails instead.
+	QuantityPerSubnet *int `mandatory:"false" json:"quantityPerSubnet"`
+
+	// The OCIDs of the subnets in which to place nodes for this node pool. This property is deprecated,
+	// use nodeConfigurationDetails instead. Only one of the subnetIds or nodeConfigurationDetails
+	// properties can be specified.
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
+
+	// The nodes configuration of the node pool. Only one of the subnetIds or nodeConfigurationDetails
+	// properties should be specified.
+	NodeConfigurationDetails *UpdateNodePoolNodeConfigurationDetails `mandatory:"false" json:"nodeConfigurationDetails"`
 }
 
 func (m UpdateNodePoolDetails) String() string {
