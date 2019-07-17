@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Bdtstest1 API
+// DTS API
 //
-// A description of the Bdtstest1 API
+// A description of the DTS API
 //
 
 package dts
@@ -16,17 +16,17 @@ import (
 type TransferJob struct {
 	Id *string `mandatory:"true" json:"id"`
 
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	UploadBucketName *string `mandatory:"false" json:"uploadBucketName"`
+	UploadBucketName *string `mandatory:"true" json:"uploadBucketName"`
 
-	DisplayName *string `mandatory:"false" json:"displayName"`
+	DisplayName *string `mandatory:"true" json:"displayName"`
+
+	DeviceType TransferJobDeviceTypeEnum `mandatory:"true" json:"deviceType"`
 
 	Label *string `mandatory:"false" json:"label"`
 
 	CreationTime *common.SDKTime `mandatory:"false" json:"creationTime"`
-
-	DeviceType TransferJobDeviceTypeEnum `mandatory:"false" json:"deviceType,omitempty"`
 
 	LifecycleState TransferJobLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 

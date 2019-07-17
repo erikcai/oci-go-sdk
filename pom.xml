@@ -182,8 +182,8 @@
       <artifactId>csg-api-spec</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.oracle.pic</groupId>
-      <artifactId>rhino</artifactId>
+      <groupId>com.oracle.pic.rhino</groupId>
+      <artifactId>dts-api-spec</artifactId>
     </dependency>
     <dependency>
       <groupId>com.oracle.pic.apigw</groupId>
@@ -786,8 +786,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>com.oracle.pic</groupId>
-                  <artifactId>rhino</artifactId>
+                  <groupId>com.oracle.pic.rhino</groupId>
+                  <artifactId>dts-api-spec</artifactId>
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/rhino</outputDirectory>
@@ -2910,9 +2910,9 @@
         <version>1.0.21</version>
       </dependency>
       <dependency>
-        <groupId>com.oracle.pic</groupId>
-        <artifactId>rhino</artifactId>
-        <version>1.0.005</version>
+        <groupId>com.oracle.pic.rhino</groupId>
+        <artifactId>dts-api-spec</artifactId>
+        <version>1.0.008</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.apigw</groupId>
