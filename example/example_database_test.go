@@ -50,7 +50,8 @@ func ExampleCreateAdbPreview() {
 		DataStorageSizeInTBs:                     common.Int(1),
 		AdminPassword:                            common.String("DBaaS12345_#"),
 		IsAutoScalingEnabled:                     common.Bool(false),
-		IsPreviewVersionWithServiceTermsAccepted: common.Bool(true),
+		IsPreviewVersionWithServiceTermsAccepted: common.Bool(false),
+		WhitelistedIps:                           []string{"1.1.1.1/28", "3.3.3.3", "ocid1.vcn.oc1.sea.aaaaaaaakqohsex2akivaccpfwswfevmxwsfcuk2odhecarxvz7qgisezewa;0.0.0.0;10.10.10.0/24"},
 	}
 
 	createadbReq := database.CreateAutonomousDatabaseRequest{
@@ -94,7 +95,7 @@ func ExampleUpdateAdbAcl() {
 	helpers.FatalIfError(clerr)
 
 	updateDbDetails := database.UpdateAutonomousDatabaseDetails{
-		WhitelistedIps: []string{"1.1.1.1/28", "3.3.3.3"},
+		WhitelistedIps: []string{"1.1.1.1/28", "3.3.3.3", "ocid1.vcn.oc1.sea.aaaaaaaakqohsex2akivaccpfwswfevmxwsfcuk2odhecarxvz7qgisezewa;0.0.0.0;10.10.10.0/24"},
 	}
 
 	updateReq := database.UpdateAutonomousDatabaseRequest{
