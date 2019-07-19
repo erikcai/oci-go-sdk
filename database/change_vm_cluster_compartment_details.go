@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeVmClusterCompartmentDetails Details regarding target compartment id
+// ChangeVmClusterCompartmentDetails The configuration details for moving the VM cluster.
 type ChangeVmClusterCompartmentDetails struct {
 
-	// The Oracle Cloud ID (OCID) of the compartment the resource belongs in.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the VM cluster to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

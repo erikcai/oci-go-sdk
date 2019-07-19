@@ -30,7 +30,7 @@ type Quota struct {
 	// in the tenancy and cannot be changed.
 	Name *string `mandatory:"true" json:"name"`
 
-	// An array of one or more quota statements written in the declarative language.
+	// An array of one or more quota statements written in the declarative quota statement language.
 	Statements []string `mandatory:"true" json:"statements"`
 
 	// The description you assign to the quota.

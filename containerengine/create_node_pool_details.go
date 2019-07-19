@@ -45,17 +45,17 @@ type CreateNodePoolDetails struct {
 	SshPublicKey *string `mandatory:"false" json:"sshPublicKey"`
 
 	// Optional, default to 1. The number of nodes to create in each subnet specified in subnetIds property.
-	// When used, subnetIds is required. This property is deprecated, use nodeConfigurationDetails instead.
+	// When used, subnetIds is required. This property is deprecated, use nodeConfigDetails instead.
 	QuantityPerSubnet *int `mandatory:"false" json:"quantityPerSubnet"`
 
 	// The OCIDs of the subnets in which to place nodes for this node pool. When used, quantityPerSubnet
-	// can be provided. This property is deprecated, use nodeConfigurationDetails. Exactly one of the
-	// subnetIds or nodeConfigurationDetails properties must be specified.
+	// can be provided. This property is deprecated, use nodeConfigDetails. Exactly one of the
+	// subnetIds or nodeConfigDetails properties must be specified.
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
 
 	// The nodes configuration of the node pool. Exactly one of the
-	// subnetIds or nodeConfigurationDetails properties must be specified.
-	NodeConfigurationDetails *CreateNodePoolNodeConfigurationDetails `mandatory:"false" json:"nodeConfigurationDetails"`
+	// subnetIds or nodeConfigDetails properties must be specified.
+	NodeConfigDetails *CreateNodePoolNodeConfigDetails `mandatory:"false" json:"nodeConfigDetails"`
 }
 
 func (m CreateNodePoolDetails) String() string {

@@ -104,8 +104,8 @@ func (client LimitsClient) getResourceAvailability(ctx context.Context, request 
 }
 
 // ListLimitDefinitions Includes a list of resource limits that are currently supported.
-// If the 'areQuotasSupported' property is true, then it means that the customer can create quota policies on top of this limit at the
-// compartment level they wish to.
+// If the 'areQuotasSupported' property is true, you can create quota policies on top of this limit at the
+// compartment level.
 func (client LimitsClient) ListLimitDefinitions(ctx context.Context, request ListLimitDefinitionsRequest) (response ListLimitDefinitionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

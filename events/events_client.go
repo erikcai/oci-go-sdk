@@ -59,7 +59,8 @@ func (client *EventsClient) ConfigurationProvider() *common.ConfigurationProvide
 	return client.config
 }
 
-// ChangeRuleCompartment Moves a rule into a different compartment. When provided, If-Match is checked against ETag values of the resource.
+// ChangeRuleCompartment Moves a rule into a different compartment within the same tenancy. For information about moving
+// resources between compartments, see Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 func (client EventsClient) ChangeRuleCompartment(ctx context.Context, request ChangeRuleCompartmentRequest) (response ChangeRuleCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -153,7 +154,7 @@ func (client EventsClient) createRule(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
-// DeleteRule Deletes an event rule.
+// DeleteRule Deletes a rule.
 func (client EventsClient) DeleteRule(ctx context.Context, request DeleteRuleRequest) (response DeleteRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -195,7 +196,7 @@ func (client EventsClient) deleteRule(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
-// GetRule Retrieves an event rule.
+// GetRule Retrieves a rule.
 func (client EventsClient) GetRule(ctx context.Context, request GetRuleRequest) (response GetRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -279,7 +280,7 @@ func (client EventsClient) listRules(ctx context.Context, request common.OCIRequ
 	return response, err
 }
 
-// UpdateRule Updates an event rule.
+// UpdateRule Updates a rule.
 func (client EventsClient) UpdateRule(ctx context.Context, request UpdateRuleRequest) (response UpdateRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

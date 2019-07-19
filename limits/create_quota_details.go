@@ -25,7 +25,7 @@ type CreateQuotaDetails struct {
 	// in the tenancy and cannot be changed.
 	Name *string `mandatory:"true" json:"name"`
 
-	// An array of quota statements written in the declarative language.
+	// An array of quota statements written in the declarative quota statement language.
 	Statements []string `mandatory:"true" json:"statements"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

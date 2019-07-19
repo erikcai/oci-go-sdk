@@ -20,9 +20,9 @@ type GetResourceAvailabilityRequest struct {
 	// The OCID of the compartment for which data is being fetched.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// This field is mandatory, if the scopeType of the target resource limit is AD.
+	// This field is mandatory if the scopeType of the target resource limit is AD.
 	// Otherwise, this field should be omitted.
-	// If the above are not respected, the API will return a 400 - InvalidParameter response.
+	// If the above requirements are not met, the API will return a 400 - InvalidParameter response.
 	AvailabilityDomain *string `mandatory:"false" contributesTo:"query" name:"availabilityDomain"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a

@@ -60,7 +60,7 @@ type NodePool struct {
 	Nodes []Node `mandatory:"false" json:"nodes"`
 
 	// The nodes configuration of the node pool.
-	NodeConfigurationDetails *NodePoolNodeConfigurationDetails `mandatory:"false" json:"nodeConfigurationDetails"`
+	NodeConfigDetails *NodePoolNodeConfigDetails `mandatory:"false" json:"nodeConfigDetails"`
 }
 
 func (m NodePool) String() string {

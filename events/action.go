@@ -73,10 +73,6 @@ func (m *action) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 		mm := StreamingServiceAction{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
-	case "OBJECTSTORAGE":
-		mm := ObjectStorageServiceAction{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	case "ONS":
 		mm := NotificationServiceAction{}
 		err = json.Unmarshal(data, &mm)

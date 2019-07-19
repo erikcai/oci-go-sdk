@@ -27,17 +27,22 @@ type UpdateNodePoolDetails struct {
 	InitialNodeLabels []KeyValue `mandatory:"false" json:"initialNodeLabels"`
 
 	// The number of nodes to have in each subnet specified in subnetIds property. This property is deprecated,
-	// use nodeConfigurationDetails instead.
+	// use nodeConfigDetails instead. If the current value of quantityPerSubnet is greater than 0, you can only
+	// use quantityPerSubnet to scale the node pool. If the current value of quantityPerSubnet is equal to 0 and
+	// the current value of size in nodeConfigDetails is greater than 0, before you can use quantityPerSubnet,
+	// you must first scale the node pool to 0 nodes using nodeConfigDetails.
 	QuantityPerSubnet *int `mandatory:"false" json:"quantityPerSubnet"`
 
 	// The OCIDs of the subnets in which to place nodes for this node pool. This property is deprecated,
-	// use nodeConfigurationDetails instead. Only one of the subnetIds or nodeConfigurationDetails
+	// use nodeConfigDetails instead. Only one of the subnetIds or nodeConfigDetails
 	// properties can be specified.
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
 
-	// The nodes configuration of the node pool. Only one of the subnetIds or nodeConfigurationDetails
-	// properties should be specified.
-	NodeConfigurationDetails *UpdateNodePoolNodeConfigurationDetails `mandatory:"false" json:"nodeConfigurationDetails"`
+	// The nodes configuration of the node pool. Only one of the subnetIds or nodeConfigDetails
+	// properties should be specified. If the current value of quantityPerSubnet is greater than 0, the node
+	// pool may still be scaled using quantityPerSubnet. Before you can use nodeConfigDetails,
+	// you must first scale the node pool to 0 nodes using quantityPerSubnet.
+	NodeConfigDetails *UpdateNodePoolNodeConfigDetails `mandatory:"false" json:"nodeConfigDetails"`
 }
 
 func (m UpdateNodePoolDetails) String() string {

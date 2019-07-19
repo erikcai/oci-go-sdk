@@ -18,7 +18,7 @@ type UpdateQuotaDetails struct {
 	// The description you assign to the quota.
 	Description *string `mandatory:"false" json:"description"`
 
-	// An array of quota statements written in the declarative language.
+	// An array of quota statements written in the declarative quota statement language.
 	Statements []string `mandatory:"false" json:"statements"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

@@ -14,8 +14,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// NodePoolPlacementConfigurationDetails The location where a node pool will place nodes.
-type NodePoolPlacementConfigurationDetails struct {
+// NodePoolPlacementConfigDetails The location where a node pool will place nodes.
+type NodePoolPlacementConfigDetails struct {
 
 	// The availability domain to place nodes.
 	// Example: `Uocm:PHX-AD-1`
@@ -25,6 +25,6 @@ type NodePoolPlacementConfigurationDetails struct {
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 }
 
-func (m NodePoolPlacementConfigurationDetails) String() string {
+func (m NodePoolPlacementConfigDetails) String() string {
 	return common.PointerString(m)
 }

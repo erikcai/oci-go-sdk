@@ -14,8 +14,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// NodePoolNodeConfigurationDetails The size and placement configuration of nodes in the node pool.
-type NodePoolNodeConfigurationDetails struct {
+// UpdateNodePoolNodeConfigDetails The size and placement configuration of nodes in the node pool.
+type UpdateNodePoolNodeConfigDetails struct {
 
 	// The number of nodes in the node pool.
 	Size *int `mandatory:"false" json:"size"`
@@ -25,9 +25,9 @@ type NodePoolNodeConfigurationDetails struct {
 	// To use the node pool with a regional subnet, provide a placement configuration for
 	// each availability domain, and include the regional subnet in each placement
 	// configuration.
-	PlacementConfigurations []NodePoolPlacementConfigurationDetails `mandatory:"false" json:"placementConfigurations"`
+	PlacementConfigs []NodePoolPlacementConfigDetails `mandatory:"false" json:"placementConfigs"`
 }
 
-func (m NodePoolNodeConfigurationDetails) String() string {
+func (m UpdateNodePoolNodeConfigDetails) String() string {
 	return common.PointerString(m)
 }

@@ -54,7 +54,7 @@ type NodePoolSummary struct {
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
 
 	// The nodes configuration of the node pool.
-	NodeConfigurationDetails *NodePoolNodeConfigurationDetails `mandatory:"false" json:"nodeConfigurationDetails"`
+	NodeConfigDetails *NodePoolNodeConfigDetails `mandatory:"false" json:"nodeConfigDetails"`
 }
 
 func (m NodePoolSummary) String() string {

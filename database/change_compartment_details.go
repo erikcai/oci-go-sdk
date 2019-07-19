@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeCompartmentDetails Details regarding target compartment id
+// ChangeCompartmentDetails The configuration details for moving the resource.
 type ChangeCompartmentDetails struct {
 
-	// The Oracle Cloud ID (OCID) of the compartment the resource belongs in.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

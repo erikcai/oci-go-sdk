@@ -68,10 +68,6 @@ func (m *actiondetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 		mm := CreateFaaSActionDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
-	case "OBJECTSTORAGE":
-		mm := CreateObjectStorageServiceActionDetails{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	case "ONS":
 		mm := CreateNotificationServiceActionDetails{}
 		err = json.Unmarshal(data, &mm)

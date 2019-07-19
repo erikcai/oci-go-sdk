@@ -105,7 +105,9 @@ func (client DatabaseClient) activateExadataInfrastructure(ctx context.Context, 
 	return response, err
 }
 
-// ChangeAutonomousContainerDatabaseCompartment Move the Autonomous Container Database and all the dependent resources to the new compartment.
+// ChangeAutonomousContainerDatabaseCompartment Move the Autonomous Container Database and its dependent resources to the specified compartment.
+// For more information about moving Autonomous Container Databases, see
+// Moving Database Resources to a Different Compartment (https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
 func (client DatabaseClient) ChangeAutonomousContainerDatabaseCompartment(ctx context.Context, request ChangeAutonomousContainerDatabaseCompartmentRequest) (response ChangeAutonomousContainerDatabaseCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -152,7 +154,9 @@ func (client DatabaseClient) changeAutonomousContainerDatabaseCompartment(ctx co
 	return response, err
 }
 
-// ChangeAutonomousDatabaseCompartment Move the Autonomous Database and all the dependent resources to the new compartment.
+// ChangeAutonomousDatabaseCompartment Move the Autonomous Database and its dependent resources to the specified compartment.
+// For more information about moving Autonomous Databases, see
+// Moving Database Resources to a Different Compartment (https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
 func (client DatabaseClient) ChangeAutonomousDatabaseCompartment(ctx context.Context, request ChangeAutonomousDatabaseCompartmentRequest) (response ChangeAutonomousDatabaseCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -199,7 +203,9 @@ func (client DatabaseClient) changeAutonomousDatabaseCompartment(ctx context.Con
 	return response, err
 }
 
-// ChangeAutonomousExadataInfrastructureCompartment Move the Autonomous Exadata Infrastructures and all the dependent resources to the new compartment.
+// ChangeAutonomousExadataInfrastructureCompartment Move the Autonomous Exadata Infrastructure and its dependent resources to the specified compartment.
+// For more information about moving Autonomous Exadata Infrastructures, see
+// Moving Database Resources to a Different Compartment (https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
 func (client DatabaseClient) ChangeAutonomousExadataInfrastructureCompartment(ctx context.Context, request ChangeAutonomousExadataInfrastructureCompartmentRequest) (response ChangeAutonomousExadataInfrastructureCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -246,7 +252,9 @@ func (client DatabaseClient) changeAutonomousExadataInfrastructureCompartment(ct
 	return response, err
 }
 
-// ChangeBackupDestinationCompartment Move the backup destination and all the dependent resources to the new compartment.
+// ChangeBackupDestinationCompartment Move the backup destination and its dependent resources to the specified compartment.
+// For more information about moving backup destinations, see
+// Moving Database Resources to a Different Compartment (https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
 func (client DatabaseClient) ChangeBackupDestinationCompartment(ctx context.Context, request ChangeBackupDestinationCompartmentRequest) (response ChangeBackupDestinationCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -293,7 +301,9 @@ func (client DatabaseClient) changeBackupDestinationCompartment(ctx context.Cont
 	return response, err
 }
 
-// ChangeDbSystemCompartment Move the DB system and all the dependent resources to the new compartment.
+// ChangeDbSystemCompartment Move the DB system and its dependent resources to the specified compartment.
+// For more information about moving DB systems, see
+// Moving Database Resources to a Different Compartment (https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
 func (client DatabaseClient) ChangeDbSystemCompartment(ctx context.Context, request ChangeDbSystemCompartmentRequest) (response ChangeDbSystemCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -340,7 +350,8 @@ func (client DatabaseClient) changeDbSystemCompartment(ctx context.Context, requ
 	return response, err
 }
 
-// ChangeExadataInfrastructureCompartment To move Exadata infrastructure and all the dependent resources to a new compartment, use the ChangeExadataInfrastructureCompartment operation.
+// ChangeExadataInfrastructureCompartment To move an Exadata infrastructure and its dependent resources to another compartment, use the
+// ChangeExadataInfrastructureCompartment operation.
 func (client DatabaseClient) ChangeExadataInfrastructureCompartment(ctx context.Context, request ChangeExadataInfrastructureCompartmentRequest) (response ChangeExadataInfrastructureCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -387,7 +398,8 @@ func (client DatabaseClient) changeExadataInfrastructureCompartment(ctx context.
 	return response, err
 }
 
-// ChangeVmClusterCompartment To move an VM cluster and all the dependent resources to a new compartment, use the ChangeVmClusterCompartment operation.
+// ChangeVmClusterCompartment To move a VM cluster and its dependent resources to another compartment, use the
+// ChangeVmClusterCompartment operation.
 func (client DatabaseClient) ChangeVmClusterCompartment(ctx context.Context, request ChangeVmClusterCompartmentRequest) (response ChangeVmClusterCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

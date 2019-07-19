@@ -2777,7 +2777,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.212</version>
+        <version>0.1.214</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -2817,7 +2817,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.4</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
@@ -2872,7 +2872,7 @@
       <dependency>
         <groupId>com.oracle.oci.waas</groupId>
         <artifactId>oci-waas-api-spec</artifactId>
-        <version>1.0.581</version>
+        <version>1.1.631</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.obcs</groupId>
@@ -2892,7 +2892,7 @@
       <dependency>
         <groupId>com.oracle.oci.quotas</groupId>
         <artifactId>quotas-control-plane-api-spec</artifactId>
-        <version>0.0.8</version>
+        <version>0.0.9</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.oda.cp</groupId>
@@ -2912,7 +2912,7 @@
       <dependency>
         <groupId>com.oracle.pic.rhino</groupId>
         <artifactId>dts-api-spec</artifactId>
-        <version>1.0.008</version>
+        <version>1.0.009</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.apigw</groupId>
@@ -2922,7 +2922,7 @@
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
         <artifactId>events-control-plane-spec</artifactId>
-        <version>0.1.23</version>
+        <version>0.1.25</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

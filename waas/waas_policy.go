@@ -43,14 +43,21 @@ type WaasPolicy struct {
 	// A map of host servers (origins) and their keys for the web application. Origin keys are used to associate origins to specific protection rules. The key should be a user-friendly name for the host. **Examples:** `primary` or `secondary`.
 	Origins map[string]Origin `mandatory:"false" json:"origins"`
 
+	// The map of origin groups and their keys used to associate origins to the wafConfig.
+	OriginGroups map[string]OriginGroup `mandatory:"false" json:"originGroups"`
+
 	PolicyConfig *PolicyConfig `mandatory:"false" json:"policyConfig"`
 
 	WafConfig *WafConfig `mandatory:"false" json:"wafConfig"`
 
-	// A simple key-value pair without any defined schema.
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// A key-value pair with a defined schema that restricts the values of tags. These predefined keys are scoped to namespaces.
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
