@@ -52,7 +52,7 @@
     <digital-assistant-spec-spec-file>source/digital-assistant-api.cond.yaml</digital-assistant-spec-spec-file>
     <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
     <csg-api-spec-spec-file>source/storage-gateway-api.cond.yaml</csg-api-spec-spec-file>
-    <rhino-spec-file>datats-customer-control-plane.cond.yaml</rhino-spec-file>
+    <dts-api-spec-spec-file>datats-customer-control-plane.cond.yaml</dts-api-spec-spec-file>
     <public-api-spec-spec-file>source/api.cond.yaml</public-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
   </properties>
@@ -1683,10 +1683,10 @@
             </goals>
             <configuration>
               <inputFiles>
-                <inputFile>${spec-temp-dir}/rhino/source/${rhino-spec-file}</inputFile>
-                <inputFile>${spec-temp-dir}/rhino/${rhino-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/rhino/source/${dts-api-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/rhino/${dts-api-spec-spec-file}</inputFile>
               </inputFiles>
-              <outputFile>${preferred-temp-dir}/rhino/${rhino-spec-file}</outputFile>
+              <outputFile>${preferred-temp-dir}/rhino/${dts-api-spec-spec-file}</outputFile>
             </configuration>
           </execution>
           <execution>
@@ -1696,8 +1696,8 @@
               <goal>preprocess</goal>
             </goals>
             <configuration>
-              <inputFile>${preferred-temp-dir}/rhino/${rhino-spec-file}</inputFile>
-              <outputFile>${preprocessed-temp-dir}/rhino/${rhino-spec-file}</outputFile>
+              <inputFile>${preferred-temp-dir}/rhino/${dts-api-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/rhino/${dts-api-spec-spec-file}</outputFile>
               <groupFile>${enabled-groups-file}</groupFile>
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
@@ -2435,7 +2435,7 @@
             </goals>
             <configuration>
               <language>oracle-go-sdk</language>
-              <specPath>${preprocessed-temp-dir}/rhino/${rhino-spec-file}</specPath>
+              <specPath>${preprocessed-temp-dir}/rhino/${dts-api-spec-spec-file}</specPath>
               <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
               <basePackage>dts</basePackage>
               <specGenerationType>${generationType}</specGenerationType>
