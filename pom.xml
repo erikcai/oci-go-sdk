@@ -2767,7 +2767,7 @@
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.237</version>
+        <version>1.1.248</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -2777,7 +2777,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.214</version>
+        <version>0.1.216</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -2827,7 +2827,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons.workrequests</groupId>
         <artifactId>workrequests-api-spec</artifactId>
-        <version>0.0.16</version>
+        <version>0.0.17</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
@@ -2892,7 +2892,7 @@
       <dependency>
         <groupId>com.oracle.oci.quotas</groupId>
         <artifactId>quotas-control-plane-api-spec</artifactId>
-        <version>0.0.9</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.oda.cp</groupId>

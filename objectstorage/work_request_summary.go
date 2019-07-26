@@ -24,10 +24,11 @@ type WorkRequestSummary struct {
 	// The id of the work request.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The OCID of the compartment that contains the work request. Work requests should be scoped to
-	// the same compartment as the resource the work request affects. If the work request affects multiple resources,
-	// and those resources are not in the same compartment, it is up to the service team to pick the primary
-	// resource whose compartment should be used.
+	// The OCID of the compartment that contains the work request. Work requests are scoped to the same compartment
+	// as the resource the work request affects.
+	// If the work request affects multiple resources and those resources are not in the same compartment, the OCID of
+	// the primary resource is used. For example, you can copy an object in a bucket in one compartment to a bucket in
+	// another compartment. In this case, the OCID of the source compartment is used.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	Resources []WorkRequestResource `mandatory:"false" json:"resources"`

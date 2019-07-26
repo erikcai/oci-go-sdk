@@ -36,7 +36,7 @@ func NewObjectStorageClientWithConfigurationProvider(configProvider common.Confi
 
 // SetRegion overrides the region of this client.
 func (client *ObjectStorageClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("objectstorage")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("objectstorage", "https://objectstorage.{region}.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -395,8 +395,9 @@ func (client ObjectStorageClient) createPreauthenticatedRequest(ctx context.Cont
 }
 
 // DeleteBucket Deletes a bucket if the bucket is already empty. If the bucket is not empty, use
-// DeleteObject first. You also cannot
-// delete a bucket that has a pre-authenticated request associated with that bucket.
+// DeleteObject first. In addition,
+// you cannot delete a bucket that has a multipart upload in progress or a pre-authenticated
+// request associated with that bucket.
 func (client ObjectStorageClient) DeleteBucket(ctx context.Context, request DeleteBucketRequest) (response DeleteBucketResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -655,7 +656,7 @@ func (client ObjectStorageClient) getNamespace(ctx context.Context, request comm
 
 // GetNamespaceMetadata Gets the metadata for the Object Storage namespace, which contains defaultS3CompartmentId and
 // defaultSwiftCompartmentId.
-// Any user with the NAMESPACE_READ permission will be able to see the current metadata. If you are
+// Any user with the OBJECTSTORAGE_NAMESPACE_READ permission will be able to see the current metadata. If you are
 // not authorized, talk to an administrator. If you are an administrator who needs to write policies
 // to give users access, see
 // Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -1559,6 +1560,9 @@ func (client ObjectStorageClient) restoreObjects(ctx context.Context, request co
 }
 
 // UpdateBucket Performs a partial or full update of a bucket's user-defined metadata.
+// Use UpdateBucket to move a bucket from one compartment to another within the same tenancy. Supply the compartmentID
+// of the compartment that you want to move the bucket to. For more information about moving resources between compartments,
+// see Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 func (client ObjectStorageClient) UpdateBucket(ctx context.Context, request UpdateBucketRequest) (response UpdateBucketResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1604,7 +1608,7 @@ func (client ObjectStorageClient) updateBucket(ctx context.Context, request comm
 // compartment of the Oracle Cloud Infrastructure tenancy.
 // You can change the default Swift/Amazon S3 compartmentId designation to a different compartmentId. All
 // subsequent bucket creations will use the new default compartment, but no previously created
-// buckets will be modified. A user must have NAMESPACE_UPDATE permission to make changes to the default
+// buckets will be modified. A user must have OBJECTSTORAGE_NAMESPACE_UPDATE permission to make changes to the default
 // compartments for Amazon S3 and Swift.
 func (client ObjectStorageClient) UpdateNamespaceMetadata(ctx context.Context, request UpdateNamespaceMetadataRequest) (response UpdateNamespaceMetadataResponse, err error) {
 	var ociResponse common.OCIResponse

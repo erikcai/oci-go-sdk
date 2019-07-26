@@ -22,7 +22,7 @@ func createWorkRequestClientWithProvider(p common.ConfigurationProvider, testCon
 	return client, err
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="kewilke_org_ww@oracle.com" jiraProject="BMI" opsJiraProject="COM"
 func TestWorkRequestClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestWorkRequestClientGetWorkRequest(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="kewilke_org_ww@oracle.com" jiraProject="BMI" opsJiraProject="COM"
 func TestWorkRequestClientListWorkRequestErrors(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -117,7 +117,7 @@ func TestWorkRequestClientListWorkRequestErrors(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="kewilke_org_ww@oracle.com" jiraProject="BMI" opsJiraProject="COM"
 func TestWorkRequestClientListWorkRequestLogs(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -169,7 +169,7 @@ func TestWorkRequestClientListWorkRequestLogs(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="kewilke_org_ww@oracle.com" jiraProject="BMI" opsJiraProject="COM"
 func TestWorkRequestClientListWorkRequests(t *testing.T) {
 	defer failTestOnPanic(t)
 
