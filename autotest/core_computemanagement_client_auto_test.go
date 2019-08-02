@@ -66,6 +66,49 @@ func TestComputeManagementClientAttachLoadBalancer(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
+func TestComputeManagementClientChangeClusterNetworkCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeClusterNetworkCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeClusterNetworkCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "ChangeClusterNetworkCompartment", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "ChangeClusterNetworkCompartment")
+	assert.NoError(t, err)
+
+	type ChangeClusterNetworkCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeClusterNetworkCompartmentRequest
+	}
+
+	var requests []ChangeClusterNetworkCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeClusterNetworkCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientChangeInstanceConfigurationCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -144,6 +187,49 @@ func TestComputeManagementClientChangeInstancePoolCompartment(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ChangeInstancePoolCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
+func TestComputeManagementClientCreateClusterNetwork(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateClusterNetwork")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateClusterNetwork is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "CreateClusterNetwork", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "CreateClusterNetwork")
+	assert.NoError(t, err)
+
+	type CreateClusterNetworkRequestInfo struct {
+		ContainerId string
+		Request     core.CreateClusterNetworkRequest
+	}
+
+	var requests []CreateClusterNetworkRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreateClusterNetwork(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -336,6 +422,49 @@ func TestComputeManagementClientDetachLoadBalancer(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
+func TestComputeManagementClientGetClusterNetwork(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetClusterNetwork")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetClusterNetwork is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "GetClusterNetwork", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "GetClusterNetwork")
+	assert.NoError(t, err)
+
+	type GetClusterNetworkRequestInfo struct {
+		ContainerId string
+		Request     core.GetClusterNetworkRequest
+	}
+
+	var requests []GetClusterNetworkRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetClusterNetwork(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientGetInstanceConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -512,6 +641,110 @@ func TestComputeManagementClientLaunchInstanceConfiguration(t *testing.T) {
 
 			response, err := c.LaunchInstanceConfiguration(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
+func TestComputeManagementClientListClusterNetworkInstances(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListClusterNetworkInstances")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListClusterNetworkInstances is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "ListClusterNetworkInstances", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "ListClusterNetworkInstances")
+	assert.NoError(t, err)
+
+	type ListClusterNetworkInstancesRequestInfo struct {
+		ContainerId string
+		Request     core.ListClusterNetworkInstancesRequest
+	}
+
+	var requests []ListClusterNetworkInstancesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListClusterNetworkInstancesRequest)
+				return c.ListClusterNetworkInstances(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListClusterNetworkInstancesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListClusterNetworkInstancesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
+func TestComputeManagementClientListClusterNetworks(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListClusterNetworks")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListClusterNetworks is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "ListClusterNetworks", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "ListClusterNetworks")
+	assert.NoError(t, err)
+
+	type ListClusterNetworksRequestInfo struct {
+		ContainerId string
+		Request     core.ListClusterNetworksRequest
+	}
+
+	var requests []ListClusterNetworksRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListClusterNetworksRequest)
+				return c.ListClusterNetworks(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListClusterNetworksResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListClusterNetworksResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -847,6 +1080,49 @@ func TestComputeManagementClientStopInstancePool(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
+func TestComputeManagementClientTerminateClusterNetwork(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "TerminateClusterNetwork")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("TerminateClusterNetwork is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "TerminateClusterNetwork", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "TerminateClusterNetwork")
+	assert.NoError(t, err)
+
+	type TerminateClusterNetworkRequestInfo struct {
+		ContainerId string
+		Request     core.TerminateClusterNetworkRequest
+	}
+
+	var requests []TerminateClusterNetworkRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.TerminateClusterNetwork(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
 func TestComputeManagementClientTerminateInstancePool(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -882,6 +1158,49 @@ func TestComputeManagementClientTerminateInstancePool(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.TerminateInstancePool(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeManagement" email="instance_dev_us_grp@oracle.com" jiraProject="CIM" opsJiraProject="IPA"
+func TestComputeManagementClientUpdateClusterNetwork(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateClusterNetwork")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateClusterNetwork is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "ComputeManagement", "UpdateClusterNetwork", createComputeManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeManagementClient)
+
+	body, err := testClient.getRequests("core", "UpdateClusterNetwork")
+	assert.NoError(t, err)
+
+	type UpdateClusterNetworkRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateClusterNetworkRequest
+	}
+
+	var requests []UpdateClusterNetworkRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateClusterNetwork(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

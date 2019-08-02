@@ -47,14 +47,6 @@ func (m *authenticationpolicy) UnmarshalPolymorphicJSON(data []byte) (interface{
 
 	var err error
 	switch m.Type {
-	case "BASIC_AUTHENTICATION":
-		mm := BasicAuthenticationPolicy{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
-	case "BEARER_TOKEN_AUTHENTICATION":
-		mm := BearerTokenAuthenticationPolicy{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	case "CUSTOM_AUTHENTICATION":
 		mm := CustomAuthenticationPolicy{}
 		err = json.Unmarshal(data, &mm)

@@ -46,3 +46,4 @@
 ^apigateway/
 ^events/
 ^cims/
+^nosql/

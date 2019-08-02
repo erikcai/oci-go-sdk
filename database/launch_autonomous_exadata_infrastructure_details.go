@@ -35,6 +35,9 @@ type LaunchAutonomousExadataInfrastructureDetails struct {
 	// The user-friendly name for the Autonomous Exadata Infrastructure. It does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+	NsgIds []string `mandatory:"false" json:"nsgIds"`
+
 	// A domain name used for the Autonomous Exadata Infrastructure. If the Oracle-provided Internet and VCN
 	// Resolver is enabled for the specified subnet, the domain name for the subnet is used
 	// (don't provide one). Otherwise, provide a valid DNS domain name. Hyphens (-) are not permitted.

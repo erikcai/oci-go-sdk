@@ -68,6 +68,9 @@ type BootVolumeBackup struct {
 	ImageId *string `mandatory:"false" json:"imageId"`
 
 	// The OCID of the KMS key which is the master encryption key for the boot volume backup.
+	// For more information about the Key Management service and encryption keys, see
+	// Overview of Key Management (https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
+	// Using Keys (https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 
 	// The size of the boot volume, in GBs.

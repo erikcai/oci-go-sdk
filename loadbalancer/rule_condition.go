@@ -56,6 +56,10 @@ func (m *rulecondition) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 		mm := SourceIpAddressCondition{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "PATH":
+		mm := PathMatchCondition{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "SOURCE_VCN_IP_ADDRESS":
 		mm := SourceVcnIpAddressCondition{}
 		err = json.Unmarshal(data, &mm)

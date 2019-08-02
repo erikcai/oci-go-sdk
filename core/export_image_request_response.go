@@ -11,7 +11,7 @@ import (
 // ExportImageRequest wrapper for the ExportImage operation
 type ExportImageRequest struct {
 
-	// The OCID of the image.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
 	ImageId *string `mandatory:"true" contributesTo:"path" name:"imageId"`
 
 	// Details for the image export.

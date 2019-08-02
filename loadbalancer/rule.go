@@ -52,6 +52,10 @@ func (m *rule) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 		mm := AddHttpRequestHeaderRule{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "REDIRECT":
+		mm := RedirectRule{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "REMOVE_HTTP_REQUEST_HEADER":
 		mm := RemoveHttpRequestHeaderRule{}
 		err = json.Unmarshal(data, &mm)

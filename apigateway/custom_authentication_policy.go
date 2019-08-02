@@ -13,15 +13,18 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CustomAuthenticationPolicy Use a function to validate custom headers or query parameters sent with the request authentication.
+// CustomAuthenticationPolicy Use a function to validate a custom header or query parameter sent with the request authentication.
+// A valid policy must specify either tokenHeader or tokenQueryParam.
 type CustomAuthenticationPolicy struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle function resource.
 	FunctionId *string `mandatory:"true" json:"functionId"`
 
-	Headers []string `mandatory:"false" json:"headers"`
+	// The name of the header containing the authentication token.
+	TokenHeader *string `mandatory:"false" json:"tokenHeader"`
 
-	QueryParams []string `mandatory:"false" json:"queryParams"`
+	// The name of the query parameter containing the authentication token.
+	TokenQueryParam *string `mandatory:"false" json:"tokenQueryParam"`
 }
 
 func (m CustomAuthenticationPolicy) String() string {

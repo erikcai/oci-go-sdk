@@ -5,7 +5,6 @@ package database
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
-	"io"
 	"net/http"
 )
 
@@ -15,8 +14,8 @@ type ActivateExadataInfrastructureRequest struct {
 	// The Exadata infrastructure OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	ExadataInfrastructureId *string `mandatory:"true" contributesTo:"path" name:"exadataInfrastructureId"`
 
-	// The activation key for the Exadata infrastructure.
-	ActiovationKey io.ReadCloser `mandatory:"true" contributesTo:"body" encoding:"binary"`
+	// The activation details for the Exadata infrastructure.
+	ActivateExadataInfrastructureDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

@@ -15,21 +15,12 @@ import (
 // ApiSpecificationRouteRequestPolicies Behaviour applied to any requests received by the API on this route.
 type ApiSpecificationRouteRequestPolicies struct {
 
-	// If the request has been authenticated, validate that the given scopes are active for the request on a
-	// specific route.
-	AuthorizeScopes *AuthorizeScopesPolicy `mandatory:"false" json:"authorizeScopes"`
+	// If the request has been authenticated, validate that the given scope
+	// is active for the request on a specific route.
+	AuthorizeScope *AuthorizeScopePolicy `mandatory:"false" json:"authorizeScope"`
 
-	// Validate the headers on the incoming API requests on a specific route.
-	ValidateHeaders *ValidateHeadersPolicy `mandatory:"false" json:"validateHeaders"`
-
-	// Validate the query parameters on the incoming API requests on a specific route.
-	ValidateQueryParams *ValidateQueryParamsPolicy `mandatory:"false" json:"validateQueryParams"`
-
-	// Transform the headers on the incoming API requests on a specific route.
-	TransformHeaders *TransformHeadersPolicy `mandatory:"false" json:"transformHeaders"`
-
-	// Transform the query parameters on the incoming API requests on a specific route.
-	TransformQueryParams *TransformQueryParamsPolicy `mandatory:"false" json:"transformQueryParams"`
+	// Enable CORS (Cross-Origin-Resource-Sharing) request handling.
+	Cors *CorsPolicy `mandatory:"false" json:"cors"`
 }
 
 func (m ApiSpecificationRouteRequestPolicies) String() string {

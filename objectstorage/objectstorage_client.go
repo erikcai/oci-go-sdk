@@ -607,6 +607,49 @@ func (client ObjectStorageClient) getBucket(ctx context.Context, request common.
 	return response, err
 }
 
+// GetBucketOptions Lists the various options associated with the bucket. The options are returned as a JSON-formatted object.
+// This API is for internal-use only.
+func (client ObjectStorageClient) GetBucketOptions(ctx context.Context, request GetBucketOptionsRequest) (response GetBucketOptionsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getBucketOptions, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetBucketOptionsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetBucketOptionsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetBucketOptionsResponse")
+	}
+	return
+}
+
+// getBucketOptions implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) getBucketOptions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/n/{namespaceName}/b/{bucketName}/actions/options")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetBucketOptionsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetNamespace Each Oracle Cloud Infrastructure tenant is assigned one unique and uneditable Object Storage namespace. The namespace
 // is a system-generated string assigned during account creation. For some older tenancies, the namespace string may be
 // the tenancy name in all lower-case letters. You cannot edit a namespace.
@@ -1592,6 +1635,53 @@ func (client ObjectStorageClient) updateBucket(ctx context.Context, request comm
 	}
 
 	var response UpdateBucketResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateBucketOptions Updates internal options associated with a bucket. The options to be updated/added/removed are specified in a
+// JSON object in the body of the request. This API only affects the bucket options that are specified in the JSON
+// body. Other options that have been set (by prior use of this API) are left unchanged.
+// Options that have a value set to null are removed.
+// All the existing options are removed, if the value associated with "freeformOptions" is null.
+// This API is for internal-use only.
+func (client ObjectStorageClient) UpdateBucketOptions(ctx context.Context, request UpdateBucketOptionsRequest) (response UpdateBucketOptionsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateBucketOptions, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateBucketOptionsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateBucketOptionsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateBucketOptionsResponse")
+	}
+	return
+}
+
+// updateBucketOptions implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) updateBucketOptions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/n/{namespaceName}/b/{bucketName}/actions/options")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateBucketOptionsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

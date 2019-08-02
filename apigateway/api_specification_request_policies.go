@@ -22,20 +22,12 @@ type ApiSpecificationRequestPolicies struct {
 	// Rate limiting policy for the incoming API requests.
 	RateLimiting *RateLimitingPolicy `mandatory:"false" json:"rateLimiting"`
 
-	// If the request has been authenticated, validate that the given scopes are active for the request.
-	AuthorizeScopes *AuthorizeScopesPolicy `mandatory:"false" json:"authorizeScopes"`
+	// If the request has been authenticated, validate that the given scope
+	// is active for the request.
+	AuthorizeScope *AuthorizeScopePolicy `mandatory:"false" json:"authorizeScope"`
 
-	// Validate the headers on the incoming API requests.
-	ValidateHeaders *ValidateHeadersPolicy `mandatory:"false" json:"validateHeaders"`
-
-	// Validate the query parameters on the incoming API requests.
-	ValidateQueryParams *ValidateQueryParamsPolicy `mandatory:"false" json:"validateQueryParams"`
-
-	// Transform the headers on the incoming API requests.
-	TransformHeaders *TransformHeadersPolicy `mandatory:"false" json:"transformHeaders"`
-
-	// Transform the query parameters on the incoming API requests.
-	TransformQueryParams *TransformQueryParamsPolicy `mandatory:"false" json:"transformQueryParams"`
+	// Enable CORS (Cross-Origin-Resource-Sharing) request handling.
+	Cors *CorsPolicy `mandatory:"false" json:"cors"`
 }
 
 func (m ApiSpecificationRequestPolicies) String() string {
@@ -45,13 +37,10 @@ func (m ApiSpecificationRequestPolicies) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *ApiSpecificationRequestPolicies) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		Authentication       authenticationpolicy        `json:"authentication"`
-		RateLimiting         *RateLimitingPolicy         `json:"rateLimiting"`
-		AuthorizeScopes      *AuthorizeScopesPolicy      `json:"authorizeScopes"`
-		ValidateHeaders      *ValidateHeadersPolicy      `json:"validateHeaders"`
-		ValidateQueryParams  *ValidateQueryParamsPolicy  `json:"validateQueryParams"`
-		TransformHeaders     *TransformHeadersPolicy     `json:"transformHeaders"`
-		TransformQueryParams *TransformQueryParamsPolicy `json:"transformQueryParams"`
+		Authentication authenticationpolicy  `json:"authentication"`
+		RateLimiting   *RateLimitingPolicy   `json:"rateLimiting"`
+		AuthorizeScope *AuthorizeScopePolicy `json:"authorizeScope"`
+		Cors           *CorsPolicy           `json:"cors"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -68,10 +57,7 @@ func (m *ApiSpecificationRequestPolicies) UnmarshalJSON(data []byte) (e error) {
 		m.Authentication = nil
 	}
 	m.RateLimiting = model.RateLimiting
-	m.AuthorizeScopes = model.AuthorizeScopes
-	m.ValidateHeaders = model.ValidateHeaders
-	m.ValidateQueryParams = model.ValidateQueryParams
-	m.TransformHeaders = model.TransformHeaders
-	m.TransformQueryParams = model.TransformQueryParams
+	m.AuthorizeScope = model.AuthorizeScope
+	m.Cors = model.Cors
 	return
 }

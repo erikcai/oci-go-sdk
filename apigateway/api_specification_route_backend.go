@@ -55,6 +55,10 @@ func (m *apispecificationroutebackend) UnmarshalPolymorphicJSON(data []byte) (in
 		mm := OracleFunctionBackend{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "STOCK_RESPONSE_BACKEND":
+		mm := StockResponseBackend{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	default:
 		return *m, nil
 	}

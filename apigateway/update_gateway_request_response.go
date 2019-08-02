@@ -52,9 +52,6 @@ type UpdateGatewayResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// For optimistic concurrency control. See `if-match`.
-	Etag *string `presentIn:"header" name:"etag"`
-
 	// The OCID of the work request. Use
 	// GetWorkRequest with
 	// this id to track the status

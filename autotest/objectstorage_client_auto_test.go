@@ -582,6 +582,49 @@ func TestObjectStorageClientGetBucket(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+func TestObjectStorageClientGetBucketOptions(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("objectstorage", "GetBucketOptions")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetBucketOptions is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "GetBucketOptions", createObjectStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
+
+	body, err := testClient.getRequests("objectstorage", "GetBucketOptions")
+	assert.NoError(t, err)
+
+	type GetBucketOptionsRequestInfo struct {
+		ContainerId string
+		Request     objectstorage.GetBucketOptionsRequest
+	}
+
+	var requests []GetBucketOptionsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetBucketOptions(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
 func TestObjectStorageClientGetNamespace(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1626,6 +1669,49 @@ func TestObjectStorageClientUpdateBucket(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateBucket(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_casper_us_grp@oracle.com" jiraProject="CASPER" opsJiraProject="IOS"
+func TestObjectStorageClientUpdateBucketOptions(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("objectstorage", "UpdateBucketOptions")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateBucketOptions is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("objectstorage", "ObjectStorage", "UpdateBucketOptions", createObjectStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(objectstorage.ObjectStorageClient)
+
+	body, err := testClient.getRequests("objectstorage", "UpdateBucketOptions")
+	assert.NoError(t, err)
+
+	type UpdateBucketOptionsRequestInfo struct {
+		ContainerId string
+		Request     objectstorage.UpdateBucketOptionsRequest
+	}
+
+	var requests []UpdateBucketOptionsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateBucketOptions(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

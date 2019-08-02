@@ -61,7 +61,14 @@ type LoadBalancer struct {
 	// An array of subnet OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
 
-	// The array of NSG OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) in use by this Load Balancer.
+	// An array of NSG OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with the load
+	// balancer.
+	// During the load balancer's creation, the service adds the new load balancer to the specified NSGs.
+	// The benefits of associating the load balancer with NSGs include:
+	// *  NSGs define network security rules to govern ingress and egress traffic for the load balancer.
+	// *  The network security rules of other resources can reference the NSGs associated with the load balancer
+	//    to ensure access.
+	// Example: ["ocid1.nsg.oc1.phx.unique_ID"]
 	NetworkSecurityGroupIds []string `mandatory:"false" json:"networkSecurityGroupIds"`
 
 	Listeners map[string]Listener `mandatory:"false" json:"listeners"`

@@ -16,10 +16,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeImageCompartmentDetails Contains details indicating which compartment the resource should move to
+// ChangeImageCompartmentDetails The configuration details for the move operation.
 type ChangeImageCompartmentDetails struct {
 
-	// The OCID of the new compartment
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the image to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

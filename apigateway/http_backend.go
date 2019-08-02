@@ -16,6 +16,18 @@ import (
 // HttpBackend Send the request to an HTTP backend.
 type HttpBackend struct {
 	Url *string `mandatory:"true" json:"url"`
+
+	// Defines a timeout for establishing a connection with a proxied server
+	ConnectTimeoutInSeconds *float32 `mandatory:"false" json:"connectTimeoutInSeconds"`
+
+	// Defines a timeout for reading a response from the proxied server
+	ReadTimeoutInSeconds *float32 `mandatory:"false" json:"readTimeoutInSeconds"`
+
+	// Defines a timeout for transmitting a request to the proxied server
+	SendTimeoutInSeconds *float32 `mandatory:"false" json:"sendTimeoutInSeconds"`
+
+	// Defines whether or not to uphold SSL verfication
+	IsSslVerifyDisabled *bool `mandatory:"false" json:"isSslVerifyDisabled"`
 }
 
 func (m HttpBackend) String() string {

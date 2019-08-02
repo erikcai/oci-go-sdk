@@ -11,7 +11,7 @@ import (
 // AddImageShapeCompatibilityEntryRequest wrapper for the AddImageShapeCompatibilityEntry operation
 type AddImageShapeCompatibilityEntryRequest struct {
 
-	// The OCID of the image.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
 	ImageId *string `mandatory:"true" contributesTo:"path" name:"imageId"`
 
 	// Shape name.

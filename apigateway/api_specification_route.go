@@ -29,8 +29,8 @@ type ApiSpecificationRoute struct {
 	// Policies to apply on the incoming API requests on a specific route.
 	RequestPolicies *ApiSpecificationRouteRequestPolicies `mandatory:"false" json:"requestPolicies"`
 
-	// Policies to apply on the outgoing API response on a specific route.
-	ResponsePolicies *ApiSpecificationRouteResponsePolicies `mandatory:"false" json:"responsePolicies"`
+	// Policies controlling the pushing of logs to OCI Public Logging.
+	LoggingPolicies *ApiSpecificationLoggingPolicies `mandatory:"false" json:"loggingPolicies"`
 }
 
 func (m ApiSpecificationRoute) String() string {
@@ -40,11 +40,11 @@ func (m ApiSpecificationRoute) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *ApiSpecificationRoute) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		Methods          []ApiSpecificationRouteMethodsEnum     `json:"methods"`
-		RequestPolicies  *ApiSpecificationRouteRequestPolicies  `json:"requestPolicies"`
-		ResponsePolicies *ApiSpecificationRouteResponsePolicies `json:"responsePolicies"`
-		Path             *string                                `json:"path"`
-		Backend          apispecificationroutebackend           `json:"backend"`
+		Methods         []ApiSpecificationRouteMethodsEnum    `json:"methods"`
+		RequestPolicies *ApiSpecificationRouteRequestPolicies `json:"requestPolicies"`
+		LoggingPolicies *ApiSpecificationLoggingPolicies      `json:"loggingPolicies"`
+		Path            *string                               `json:"path"`
+		Backend         apispecificationroutebackend          `json:"backend"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -56,7 +56,7 @@ func (m *ApiSpecificationRoute) UnmarshalJSON(data []byte) (e error) {
 		m.Methods[i] = n
 	}
 	m.RequestPolicies = model.RequestPolicies
-	m.ResponsePolicies = model.ResponsePolicies
+	m.LoggingPolicies = model.LoggingPolicies
 	m.Path = model.Path
 	nn, e := model.Backend.UnmarshalPolymorphicJSON(model.Backend.JsonData)
 	if e != nil {

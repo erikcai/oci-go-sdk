@@ -33,6 +33,8 @@ import (
 // ListNetworkSecurityGroupVnics.
 // To list the security rules in an NSG, see
 // ListNetworkSecurityGroupSecurityRules.
+// For more information about network security groups, see
+// Network Security Groups (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/networksecuritygroups.htm).
 // **Important:** Oracle Cloud Infrastructure Compute service images automatically include firewall rules (for example,
 // Linux iptables, Windows firewall). If there are issues with some type of access to an instance,
 // make sure all of the following are set correctly:
