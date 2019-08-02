@@ -2883,7 +2883,7 @@
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
         <artifactId>kms-api-spec</artifactId>
-        <version>0.1.115</version>
+        <version>0.1.122</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.query</groupId>

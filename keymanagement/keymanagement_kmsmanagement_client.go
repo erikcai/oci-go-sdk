@@ -100,6 +100,55 @@ func (client KmsManagementClient) cancelKeyDeletion(ctx context.Context, request
 	return response, err
 }
 
+// CancelKeyVersionDeletion Cancels the scheduled deletion of the specified key version. Canceling
+// a scheduled deletion restores the key version to the respective
+// states they were in before the deletion was scheduled.
+func (client KmsManagementClient) CancelKeyVersionDeletion(ctx context.Context, request CancelKeyVersionDeletionRequest) (response CancelKeyVersionDeletionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.cancelKeyVersionDeletion, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CancelKeyVersionDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CancelKeyVersionDeletionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CancelKeyVersionDeletionResponse")
+	}
+	return
+}
+
+// cancelKeyVersionDeletion implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) cancelKeyVersionDeletion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/keys/{keyId}/keyVersions/{keyVersionId}/actions/cancelDeletion")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CancelKeyVersionDeletionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ChangeKeyCompartment Moves a key into a different compartment. When provided, If-Match is checked against ETag values of the key.
 func (client KmsManagementClient) ChangeKeyCompartment(ctx context.Context, request ChangeKeyCompartmentRequest) (response ChangeKeyCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -147,7 +196,11 @@ func (client KmsManagementClient) changeKeyCompartment(ctx context.Context, requ
 	return response, err
 }
 
-// CreateKey Creates a new key.
+// CreateKey Creates a new master encryption key.
+// As a management operation, this call is subject to a Key Management limit that applies to the total
+// number of requests across all management write operations. Key Management might throttle this call
+// to reject an otherwise valid request when the total rate of management write operations exceeds 10
+// requests per second for a given tenancy.
 func (client KmsManagementClient) CreateKey(ctx context.Context, request CreateKeyRequest) (response CreateKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -194,8 +247,12 @@ func (client KmsManagementClient) createKey(ctx context.Context, request common.
 	return response, err
 }
 
-// CreateKeyVersion Generates new cryptographic material for a key. The key must be in an `ENABLED` state to be
-// rotated.
+// CreateKeyVersion Generates a new KeyVersion (https://docs.cloud.oracle.com/api/#/en/key/release/KeyVersion/) resource that provides new cryptographic
+// material for a master encryption key. The key must be in an ENABLED state to be rotated.
+// As a management operation, this call is subject to a Key Management limit that applies to the total number
+// of requests across all  management write operations. Key Management might throttle this call to reject an
+// otherwise valid request when the total rate of management write operations exceeds 10 requests per second
+// for a given tenancy.
 func (client KmsManagementClient) CreateKeyVersion(ctx context.Context, request CreateKeyVersionRequest) (response CreateKeyVersionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -242,8 +299,12 @@ func (client KmsManagementClient) createKeyVersion(ctx context.Context, request 
 	return response, err
 }
 
-// DisableKey Disables a key to make it unavailable for encryption
-// or decryption.
+// DisableKey Disables a master encryption key so it can no longer be used for encryption, decryption, or
+// generating new data encryption keys.
+// As a management operation, this call is subject to a Key Management limit that applies to the total number
+// of requests across all management write operations. Key Management might throttle this call to reject an
+// otherwise valid request when the total rate of management write operations exceeds 10 requests per second
+// for a given tenancy.
 func (client KmsManagementClient) DisableKey(ctx context.Context, request DisableKeyRequest) (response DisableKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -290,8 +351,12 @@ func (client KmsManagementClient) disableKey(ctx context.Context, request common
 	return response, err
 }
 
-// EnableKey Enables a key to make it available for encryption or
-// decryption.
+// EnableKey Enables a master encryption key so it can be used for encryption, decryption, or
+// generating new data encryption keys.
+// As a management operation, this call is subject to a Key Management limit that applies to the total number
+// of requests across all management write operations. Key Management might throttle this call to reject an
+// otherwise valid request when the total rate of management write operations exceeds 10 requests per second
+// for a given tenancy.
 func (client KmsManagementClient) EnableKey(ctx context.Context, request EnableKeyRequest) (response EnableKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -338,7 +403,11 @@ func (client KmsManagementClient) enableKey(ctx context.Context, request common.
 	return response, err
 }
 
-// GetKey Gets information about the specified key.
+// GetKey Gets information about the specified master encryption key.
+// As a management operation, this call is subject to a Key Management limit that applies to the total number
+// of requests across all management read operations. Key Management might throttle this call to reject an
+// otherwise valid request when the total rate of management read operations exceeds 10 requests per second for
+// a given tenancy.
 func (client KmsManagementClient) GetKey(ctx context.Context, request GetKeyRequest) (response GetKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -381,6 +450,10 @@ func (client KmsManagementClient) getKey(ctx context.Context, request common.OCI
 }
 
 // GetKeyVersion Gets information about the specified key version.
+// As a management operation, this call is subject to a Key Management limit that applies to the total number
+// of requests across all management read operations. Key Management might throttle this call to reject an
+// otherwise valid request when the total rate of management read operations exceeds 10 requests per second
+// for a given tenancy.
 func (client KmsManagementClient) GetKeyVersion(ctx context.Context, request GetKeyVersionRequest) (response GetKeyVersionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -422,7 +495,12 @@ func (client KmsManagementClient) getKeyVersion(ctx context.Context, request com
 	return response, err
 }
 
-// ListKeyVersions Lists all key versions for the specified key.
+// ListKeyVersions Lists all KeyVersion (https://docs.cloud.oracle.com/api/#/en/key/release/KeyVersion/) resources for the specified
+// master encryption key.
+// As a management operation, this call is subject to a Key Management limit that applies to the total number
+// of requests across all management read operations. Key Management might throttle this call to reject an
+// otherwise valid request when the total rate of management read operations exceeds 10 requests per second
+// for a given tenancy.
 func (client KmsManagementClient) ListKeyVersions(ctx context.Context, request ListKeyVersionsRequest) (response ListKeyVersionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -464,7 +542,11 @@ func (client KmsManagementClient) listKeyVersions(ctx context.Context, request c
 	return response, err
 }
 
-// ListKeys Lists the keys in the specified vault and compartment.
+// ListKeys Lists the master encryption keys in the specified vault and compartment.
+// As a management operation, this call is subject to a Key Management limit that applies to the total number
+// of requests across all management read operations. Key Management might throttle this call to reject an
+// otherwise valid request when the total rate of management read operations exceeds 10 requests per second
+// for a given tenancy.
 func (client KmsManagementClient) ListKeys(ctx context.Context, request ListKeysRequest) (response ListKeysResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -554,9 +636,61 @@ func (client KmsManagementClient) scheduleKeyDeletion(ctx context.Context, reque
 	return response, err
 }
 
-// UpdateKey Updates the properties of a key. Specifically, you can update the
+// ScheduleKeyVersionDeletion Schedules the deletion of the specified key version. This sets the state of the key version
+// to `PENDING_DELETION` and then deletes it after the retention period ends.
+func (client KmsManagementClient) ScheduleKeyVersionDeletion(ctx context.Context, request ScheduleKeyVersionDeletionRequest) (response ScheduleKeyVersionDeletionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.scheduleKeyVersionDeletion, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ScheduleKeyVersionDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ScheduleKeyVersionDeletionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ScheduleKeyVersionDeletionResponse")
+	}
+	return
+}
+
+// scheduleKeyVersionDeletion implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) scheduleKeyVersionDeletion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/keys/{keyId}/keyVersions/{keyVersionId}/actions/scheduleDeletion")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ScheduleKeyVersionDeletionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateKey Updates the properties of a master encryption key. Specifically, you can update the
 // `displayName`, `freeformTags`, and `definedTags` properties. Furthermore,
-// the key must in an `ACTIVE` or `CREATING` state to be updated.
+// the key must in an ENABLED or CREATING state to be updated.
+// As a management operation, this call is subject to a Key Management limit that applies to the total number
+// of requests across all management write operations. Key Management might throttle this call to reject an
+// otherwise valid request when the total rate of management write operations exceeds 10 requests per second
+// for a given tenancy.
 func (client KmsManagementClient) UpdateKey(ctx context.Context, request UpdateKeyRequest) (response UpdateKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
