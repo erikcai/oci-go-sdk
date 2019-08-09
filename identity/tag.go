@@ -15,6 +15,8 @@ import (
 // Tag A tag definition that belongs to a specific tag namespace.  "Defined tags" must be set up in your tenancy before
 // you can apply them to resources.
 // For more information, see Managing Tags and Tag Namespaces (https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm).
+// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values
+// using the API.
 type Tag struct {
 
 	// The OCID of the compartment that contains the tag definition.

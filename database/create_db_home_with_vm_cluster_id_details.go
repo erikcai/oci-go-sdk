@@ -16,6 +16,9 @@ import (
 // CreateDbHomeWithVmClusterIdDetails Note that a valid `vmClusterId` value must be supplied for the `CreateDbHomeWithVmClusterId` API operation to successfully complete.
 type CreateDbHomeWithVmClusterIdDetails struct {
 
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
+	VmClusterId *string `mandatory:"true" json:"vmClusterId"`
+
 	// A valid Oracle Database version. To get a list of supported versions, use the ListDbVersions operation.
 	DbVersion *string `mandatory:"true" json:"dbVersion"`
 
@@ -23,9 +26,6 @@ type CreateDbHomeWithVmClusterIdDetails struct {
 
 	// The user-provided name of the database home.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
-	VmClusterId *string `mandatory:"false" json:"vmClusterId"`
 }
 
 //GetDisplayName returns DisplayName

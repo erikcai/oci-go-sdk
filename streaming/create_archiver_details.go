@@ -24,10 +24,10 @@ type CreateArchiverDetails struct {
 	// The start message.
 	StartPosition ArchiverStartPositionEnum `mandatory:"true" json:"startPosition"`
 
-	// The batch rollover size in bytes.
+	// The batch rollover size in megabytes.
 	BatchRolloverSizeInMBs *int `mandatory:"true" json:"batchRolloverSizeInMBs"`
 
-	// The rollover time in milliseconds.
+	// The rollover time in seconds.
 	BatchRolloverTimeInSeconds *int `mandatory:"true" json:"batchRolloverTimeInSeconds"`
 }
 

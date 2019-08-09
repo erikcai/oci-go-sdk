@@ -16,8 +16,8 @@ import (
 // ActivateExadataInfrastructureDetails The activation details for the Exadata infrastructure.
 type ActivateExadataInfrastructureDetails struct {
 
-	// The activation key file.
-	ActivationKey io.ReadCloser `mandatory:"true" json:"activationKey"`
+	// The activation key zip file.
+	ActivationKey io.ReadCloser `mandatory:"false" json:"activationKey"`
 }
 
 func (m ActivateExadataInfrastructureDetails) String() string {

@@ -37,6 +37,9 @@ type Tenancy struct {
 	// - `PHX`
 	// - `FRA`
 	// - `LHR`
+	// - `ICN`
+	// - `YYZ`
+	// - `NRT`
 	HomeRegionKey *string `mandatory:"false" json:"homeRegionKey"`
 
 	// OracleMyServicesIdentifier is Oracle MyServices Cloud Account Identifier.

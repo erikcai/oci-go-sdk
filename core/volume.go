@@ -66,6 +66,9 @@ type Volume struct {
 	// The OCID of the KMS key which is the master encryption key for the volume.
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 
+	// The performance tier of the volume.
+	PerformanceTier VolumePerformanceTierEnum `mandatory:"false" json:"performanceTier,omitempty"`
+
 	// The size of the volume in GBs.
 	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
 
@@ -88,6 +91,7 @@ func (m *Volume) UnmarshalJSON(data []byte) (e error) {
 		FreeformTags       map[string]string                 `json:"freeformTags"`
 		IsHydrated         *bool                             `json:"isHydrated"`
 		KmsKeyId           *string                           `json:"kmsKeyId"`
+		PerformanceTier    VolumePerformanceTierEnum         `json:"performanceTier"`
 		SizeInGBs          *int64                            `json:"sizeInGBs"`
 		SourceDetails      volumesourcedetails               `json:"sourceDetails"`
 		VolumeGroupId      *string                           `json:"volumeGroupId"`
@@ -108,6 +112,7 @@ func (m *Volume) UnmarshalJSON(data []byte) (e error) {
 	m.FreeformTags = model.FreeformTags
 	m.IsHydrated = model.IsHydrated
 	m.KmsKeyId = model.KmsKeyId
+	m.PerformanceTier = model.PerformanceTier
 	m.SizeInGBs = model.SizeInGBs
 	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
 	if e != nil {
@@ -155,6 +160,31 @@ var mappingVolumeLifecycleState = map[string]VolumeLifecycleStateEnum{
 func GetVolumeLifecycleStateEnumValues() []VolumeLifecycleStateEnum {
 	values := make([]VolumeLifecycleStateEnum, 0)
 	for _, v := range mappingVolumeLifecycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// VolumePerformanceTierEnum Enum with underlying type: string
+type VolumePerformanceTierEnum string
+
+// Set of constants representing the allowable values for VolumePerformanceTierEnum
+const (
+	VolumePerformanceTierOne   VolumePerformanceTierEnum = "TIER_ONE"
+	VolumePerformanceTierTwo   VolumePerformanceTierEnum = "TIER_TWO"
+	VolumePerformanceTierThree VolumePerformanceTierEnum = "TIER_THREE"
+)
+
+var mappingVolumePerformanceTier = map[string]VolumePerformanceTierEnum{
+	"TIER_ONE":   VolumePerformanceTierOne,
+	"TIER_TWO":   VolumePerformanceTierTwo,
+	"TIER_THREE": VolumePerformanceTierThree,
+}
+
+// GetVolumePerformanceTierEnumValues Enumerates the set of values for VolumePerformanceTierEnum
+func GetVolumePerformanceTierEnumValues() []VolumePerformanceTierEnum {
+	values := make([]VolumePerformanceTierEnum, 0)
+	for _, v := range mappingVolumePerformanceTier {
 		values = append(values, v)
 	}
 	return values

@@ -15,13 +15,14 @@ import (
 
 // CreateDbHomeWithDbSystemIdFromBackupDetails Note that a valid `dbSystemId` value must be supplied for the `CreateDbHomeWithDbSystemIdFromBackup` API operation to successfully complete.
 type CreateDbHomeWithDbSystemIdFromBackupDetails struct {
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+	DbSystemId *string `mandatory:"true" json:"dbSystemId"`
+
 	Database *CreateDatabaseFromBackupDetails `mandatory:"true" json:"database"`
 
 	// The user-provided name of the database home.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
-	DbSystemId *string `mandatory:"false" json:"dbSystemId"`
 }
 
 //GetDisplayName returns DisplayName

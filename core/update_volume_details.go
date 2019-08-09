@@ -33,6 +33,9 @@ type UpdateVolumeDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// The performance tier to set the volume to.
+	PerformanceTier VolumePerformanceTierEnum `mandatory:"false" json:"performanceTier,omitempty"`
+
 	// The size to resize the volume to in GBs. Has to be larger than the current size.
 	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
 }

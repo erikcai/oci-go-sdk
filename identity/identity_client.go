@@ -1023,10 +1023,11 @@ func (client IdentityClient) createTag(ctx context.Context, request common.OCIRe
 }
 
 // CreateTagDefault Creates a new tag default in the specified compartment for the specified tag definition.
-// If the 'isRequired' flag is set to 'true', then the tag and a value are required on all
-// resources created in the specified compartment.
-// If the 'isRequired' flag is set to 'false', then a new tag default is created in the
-// specified compartment for the specified tag definition.
+// If you specify that a value is required, a value is set during resource creation (either by
+// the user creating the resource or another tag defualt). If no value is set, resource creation
+// is blocked.
+// * If the `isRequired` flag is set to "true", the value is set during resource creation.
+// * If the `isRequired` flag is set to "false", the value you enter is set during resource creation.
 func (client IdentityClient) CreateTagDefault(ctx context.Context, request CreateTagDefaultRequest) (response CreateTagDefaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2594,6 +2595,49 @@ func (client IdentityClient) getTagRule(ctx context.Context, request common.OCIR
 	return response, err
 }
 
+// GetTaggingWorkRequest Gets details on a specified work request. The workRequestID is returned in the opc-workrequest-id header
+// for any asynchronous operation in the Identity and Access Management service.
+func (client IdentityClient) GetTaggingWorkRequest(ctx context.Context, request GetTaggingWorkRequestRequest) (response GetTaggingWorkRequestResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getTaggingWorkRequest, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetTaggingWorkRequestResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetTaggingWorkRequestResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetTaggingWorkRequestResponse")
+	}
+	return
+}
+
+// getTaggingWorkRequest implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) getTaggingWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/taggingWorkRequests/{workRequestId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetTaggingWorkRequestResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetTenancy Get the specified tenancy's information.
 func (client IdentityClient) GetTenancy(ctx context.Context, request GetTenancyRequest) (response GetTenancyResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3783,6 +3827,132 @@ func (client IdentityClient) listTagRules(ctx context.Context, request common.OC
 	return response, err
 }
 
+// ListTaggingWorkRequestErrors Gets the errors for a work request.
+func (client IdentityClient) ListTaggingWorkRequestErrors(ctx context.Context, request ListTaggingWorkRequestErrorsRequest) (response ListTaggingWorkRequestErrorsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listTaggingWorkRequestErrors, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListTaggingWorkRequestErrorsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListTaggingWorkRequestErrorsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListTaggingWorkRequestErrorsResponse")
+	}
+	return
+}
+
+// listTaggingWorkRequestErrors implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listTaggingWorkRequestErrors(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/taggingWorkRequests/{workRequestId}/errors")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListTaggingWorkRequestErrorsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListTaggingWorkRequestLogs Gets the logs for a work request.
+func (client IdentityClient) ListTaggingWorkRequestLogs(ctx context.Context, request ListTaggingWorkRequestLogsRequest) (response ListTaggingWorkRequestLogsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listTaggingWorkRequestLogs, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListTaggingWorkRequestLogsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListTaggingWorkRequestLogsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListTaggingWorkRequestLogsResponse")
+	}
+	return
+}
+
+// listTaggingWorkRequestLogs implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listTaggingWorkRequestLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/taggingWorkRequests/{workRequestId}/logs")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListTaggingWorkRequestLogsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListTaggingWorkRequests Lists the tagging work requests in compartment.
+func (client IdentityClient) ListTaggingWorkRequests(ctx context.Context, request ListTaggingWorkRequestsRequest) (response ListTaggingWorkRequestsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listTaggingWorkRequests, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListTaggingWorkRequestsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListTaggingWorkRequestsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListTaggingWorkRequestsResponse")
+	}
+	return
+}
+
+// listTaggingWorkRequests implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listTaggingWorkRequests(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/taggingWorkRequests/")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListTaggingWorkRequestsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListTags Lists the tag definitions in the specified tag namespace.
 func (client IdentityClient) ListTags(ctx context.Context, request ListTagsRequest) (response ListTagsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -4003,7 +4173,13 @@ func (client IdentityClient) listWorkRequests(ctx context.Context, request commo
 	return response, err
 }
 
-// MoveCompartment Move the compartment tree to a different parent compartment.
+// MoveCompartment Move the compartment to a different parent compartment in the same tenancy. When you move a
+// compartment, all its contents (subcompartments and resources) are moved with it. Note that
+// the `CompartmentId` that you specify in the path is the compartment that you want to move.
+// **IMPORTANT**: After you move a compartment to a new parent compartment, the access policies of
+// the new parent take effect and the policies of the previous parent no longer apply. Ensure that you
+// are aware of the implications for the compartment contents before you move it. For more
+// information, see Moving a Compartment (https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcompartments.htm#MoveCompartment).
 func (client IdentityClient) MoveCompartment(ctx context.Context, request MoveCompartmentRequest) (response MoveCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4640,9 +4816,11 @@ func (client IdentityClient) updateTag(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// UpdateTagDefault Updates the specified tag default. You can update the following field: `value`.
-// Use the 'isRequired' flag to toggle on/off to enforce the required tag and a value on all
-// resources created in the specified compartment.
+// UpdateTagDefault Updates the specified tag default. If you specify that a value is required, a value is set
+// during resource creation (either by the user creating the resource or another tag defualt).
+// If no value is set, resource creation is blocked.
+// * If the `isRequired` flag is set to "true", the value is set during resource creation.
+// * If the `isRequired` flag is set to "false", the value you enter is set during resource creation.
 func (client IdentityClient) UpdateTagDefault(ctx context.Context, request UpdateTagDefaultRequest) (response UpdateTagDefaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

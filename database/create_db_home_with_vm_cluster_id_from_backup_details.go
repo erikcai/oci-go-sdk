@@ -15,13 +15,14 @@ import (
 
 // CreateDbHomeWithVmClusterIdFromBackupDetails Note that a valid `vmClusterId` value must be supplied for the `CreateDbHomeWithVmClusterIdFromBackup` API operation to successfully complete.
 type CreateDbHomeWithVmClusterIdFromBackupDetails struct {
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+	VmClusterId *string `mandatory:"true" json:"vmClusterId"`
+
 	Database *CreateDatabaseFromBackupDetails `mandatory:"true" json:"database"`
 
 	// The user-provided name of the database home.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
-	VmClusterId *string `mandatory:"false" json:"vmClusterId"`
 }
 
 //GetDisplayName returns DisplayName

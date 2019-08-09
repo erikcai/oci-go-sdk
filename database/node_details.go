@@ -18,14 +18,14 @@ type NodeDetails struct {
 	// The node IP address.
 	Ip *string `mandatory:"true" json:"ip"`
 
-	// The node virtual IP (VIP) host name.
-	VipHostname *string `mandatory:"true" json:"vipHostname"`
-
-	// The node virtual IP (VIP) address.
-	Vip *string `mandatory:"true" json:"vip"`
-
 	// The node host name.
 	Hostname *string `mandatory:"false" json:"hostname"`
+
+	// The node virtual IP (VIP) host name.
+	VipHostname *string `mandatory:"false" json:"vipHostname"`
+
+	// The node virtual IP (VIP) address.
+	Vip *string `mandatory:"false" json:"vip"`
 }
 
 func (m NodeDetails) String() string {

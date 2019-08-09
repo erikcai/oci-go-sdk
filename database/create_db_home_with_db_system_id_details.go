@@ -16,6 +16,9 @@ import (
 // CreateDbHomeWithDbSystemIdDetails Note that a valid `dbSystemId` value must be supplied for the `CreateDbHomeWithDbSystemId` API operation to successfully complete.
 type CreateDbHomeWithDbSystemIdDetails struct {
 
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+	DbSystemId *string `mandatory:"true" json:"dbSystemId"`
+
 	// A valid Oracle Database version. To get a list of supported versions, use the ListDbVersions operation.
 	DbVersion *string `mandatory:"true" json:"dbVersion"`
 
@@ -23,9 +26,6 @@ type CreateDbHomeWithDbSystemIdDetails struct {
 
 	// The user-provided name of the database home.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
-	DbSystemId *string `mandatory:"false" json:"dbSystemId"`
 }
 
 //GetDisplayName returns DisplayName

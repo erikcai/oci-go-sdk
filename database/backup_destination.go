@@ -36,8 +36,8 @@ type BackupDestination struct {
 	// For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) users that are used to access the Recovery Appliance.
 	VpcUsers []string `mandatory:"false" json:"vpcUsers"`
 
-	// For an NFS backup destination, the path of the NFS location expressed as <host>:<directory>, where <host> is the hostname or IP address of the NFS server, and <directory> is the absolute path to the directory location on the NFS server.
-	Path *string `mandatory:"false" json:"path"`
+	// The local directory path on each VM cluster node where the NFS server location is mounted. The local directory path and the NFS server location must each be the same across all of the VM cluster nodes. Ensure that the NFS mount is maintained continuously on all of the VM cluster nodes.
+	LocalMountPointPath *string `mandatory:"false" json:"localMountPointPath"`
 
 	// The current lifecycle state of the backup destination.
 	LifecycleState BackupDestinationLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
@@ -56,7 +56,6 @@ type BackupDestination struct {
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 

@@ -2313,6 +2313,49 @@ func TestIdentityClientGetTagRule(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientGetTaggingWorkRequest(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "GetTaggingWorkRequest")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetTaggingWorkRequest is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "GetTaggingWorkRequest", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "GetTaggingWorkRequest")
+	assert.NoError(t, err)
+
+	type GetTaggingWorkRequestRequestInfo struct {
+		ContainerId string
+		Request     identity.GetTaggingWorkRequestRequest
+	}
+
+	var requests []GetTaggingWorkRequestRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetTaggingWorkRequest(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
 func TestIdentityClientGetTenancy(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3578,6 +3621,162 @@ func TestIdentityClientListTagRules(t *testing.T) {
 			typedListResponses := make([]identity.ListTagRulesResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(identity.ListTagRulesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientListTaggingWorkRequestErrors(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "ListTaggingWorkRequestErrors")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTaggingWorkRequestErrors is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListTaggingWorkRequestErrors", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "ListTaggingWorkRequestErrors")
+	assert.NoError(t, err)
+
+	type ListTaggingWorkRequestErrorsRequestInfo struct {
+		ContainerId string
+		Request     identity.ListTaggingWorkRequestErrorsRequest
+	}
+
+	var requests []ListTaggingWorkRequestErrorsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*identity.ListTaggingWorkRequestErrorsRequest)
+				return c.ListTaggingWorkRequestErrors(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]identity.ListTaggingWorkRequestErrorsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(identity.ListTaggingWorkRequestErrorsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientListTaggingWorkRequestLogs(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "ListTaggingWorkRequestLogs")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTaggingWorkRequestLogs is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListTaggingWorkRequestLogs", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "ListTaggingWorkRequestLogs")
+	assert.NoError(t, err)
+
+	type ListTaggingWorkRequestLogsRequestInfo struct {
+		ContainerId string
+		Request     identity.ListTaggingWorkRequestLogsRequest
+	}
+
+	var requests []ListTaggingWorkRequestLogsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*identity.ListTaggingWorkRequestLogsRequest)
+				return c.ListTaggingWorkRequestLogs(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]identity.ListTaggingWorkRequestLogsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(identity.ListTaggingWorkRequestLogsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientListTaggingWorkRequests(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "ListTaggingWorkRequests")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTaggingWorkRequests is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListTaggingWorkRequests", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "ListTaggingWorkRequests")
+	assert.NoError(t, err)
+
+	type ListTaggingWorkRequestsRequestInfo struct {
+		ContainerId string
+		Request     identity.ListTaggingWorkRequestsRequest
+	}
+
+	var requests []ListTaggingWorkRequestsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*identity.ListTaggingWorkRequestsRequest)
+				return c.ListTaggingWorkRequests(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]identity.ListTaggingWorkRequestsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(identity.ListTaggingWorkRequestsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
