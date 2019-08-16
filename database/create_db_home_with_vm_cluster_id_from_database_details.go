@@ -16,7 +16,7 @@ import (
 // CreateDbHomeWithVmClusterIdFromDatabaseDetails Note that a valid `vmClusterId` value must be supplied for the `CreateDbHomeWithVmClusterIdFromDatabase` API operation to successfully complete.
 type CreateDbHomeWithVmClusterIdFromDatabaseDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
 	VmClusterId *string `mandatory:"true" json:"vmClusterId"`
 
 	Database *CreateDatabaseFromAnotherDatabaseDetails `mandatory:"true" json:"database"`

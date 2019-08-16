@@ -22,7 +22,7 @@ func createNotificationDataPlaneClientWithProvider(p common.ConfigurationProvide
 	return client, err
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientChangeSubscriptionCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestNotificationDataPlaneClientChangeSubscriptionCompartment(t *testing.T) 
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientCreateSubscription(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestNotificationDataPlaneClientCreateSubscription(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientDeleteSubscription(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestNotificationDataPlaneClientDeleteSubscription(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientGetConfirmSubscription(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestNotificationDataPlaneClientGetConfirmSubscription(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientGetSubscription(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,7 +237,7 @@ func TestNotificationDataPlaneClientGetSubscription(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientGetUnsubscription(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -280,7 +280,7 @@ func TestNotificationDataPlaneClientGetUnsubscription(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientListSubscriptions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -332,7 +332,7 @@ func TestNotificationDataPlaneClientListSubscriptions(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientPublishMessage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -375,7 +375,7 @@ func TestNotificationDataPlaneClientPublishMessage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientResendSubscriptionConfirmation(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -418,7 +418,7 @@ func TestNotificationDataPlaneClientResendSubscriptionConfirmation(t *testing.T)
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationDataPlaneClientUpdateSubscription(t *testing.T) {
 	defer failTestOnPanic(t)
 

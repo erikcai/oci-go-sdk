@@ -35,6 +35,9 @@ type CreateAutonomousDatabaseBase interface {
 	// The autonomous database workload type. OLTP indicates an Autonomous Transaction Processing database and DW indicates an Autonomous Data Warehouse. The default is OLTP.
 	GetDbWorkload() CreateAutonomousDatabaseBaseDbWorkloadEnum
 
+	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB memory. For Always Free databases, memory and CPU cannot be scaled.
+	GetIsFreeTier() *bool
+
 	// The user-friendly name for the Autonomous Database. The name does not have to be unique.
 	GetDisplayName() *string
 
@@ -77,6 +80,7 @@ type createautonomousdatabasebase struct {
 	DataStorageSizeInTBs                     *int                                         `mandatory:"true" json:"dataStorageSizeInTBs"`
 	AdminPassword                            *string                                      `mandatory:"true" json:"adminPassword"`
 	DbWorkload                               CreateAutonomousDatabaseBaseDbWorkloadEnum   `mandatory:"false" json:"dbWorkload,omitempty"`
+	IsFreeTier                               *bool                                        `mandatory:"false" json:"isFreeTier"`
 	DisplayName                              *string                                      `mandatory:"false" json:"displayName"`
 	LicenseModel                             CreateAutonomousDatabaseBaseLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 	IsPreviewVersionWithServiceTermsAccepted *bool                                        `mandatory:"false" json:"isPreviewVersionWithServiceTermsAccepted"`
@@ -106,6 +110,7 @@ func (m *createautonomousdatabasebase) UnmarshalJSON(data []byte) error {
 	m.DataStorageSizeInTBs = s.Model.DataStorageSizeInTBs
 	m.AdminPassword = s.Model.AdminPassword
 	m.DbWorkload = s.Model.DbWorkload
+	m.IsFreeTier = s.Model.IsFreeTier
 	m.DisplayName = s.Model.DisplayName
 	m.LicenseModel = s.Model.LicenseModel
 	m.IsPreviewVersionWithServiceTermsAccepted = s.Model.IsPreviewVersionWithServiceTermsAccepted
@@ -170,6 +175,11 @@ func (m createautonomousdatabasebase) GetAdminPassword() *string {
 //GetDbWorkload returns DbWorkload
 func (m createautonomousdatabasebase) GetDbWorkload() CreateAutonomousDatabaseBaseDbWorkloadEnum {
 	return m.DbWorkload
+}
+
+//GetIsFreeTier returns IsFreeTier
+func (m createautonomousdatabasebase) GetIsFreeTier() *bool {
+	return m.IsFreeTier
 }
 
 //GetDisplayName returns DisplayName

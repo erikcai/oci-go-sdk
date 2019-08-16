@@ -31,6 +31,9 @@ type CreateAutonomousDatabaseDetails struct {
 	// The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (") or the username "admin", regardless of casing.
 	AdminPassword *string `mandatory:"true" json:"adminPassword"`
 
+	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB memory. For Always Free databases, memory and CPU cannot be scaled.
+	IsFreeTier *bool `mandatory:"false" json:"isFreeTier"`
+
 	// The user-friendly name for the Autonomous Database. The name does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
@@ -91,6 +94,11 @@ func (m CreateAutonomousDatabaseDetails) GetDbWorkload() CreateAutonomousDatabas
 //GetDataStorageSizeInTBs returns DataStorageSizeInTBs
 func (m CreateAutonomousDatabaseDetails) GetDataStorageSizeInTBs() *int {
 	return m.DataStorageSizeInTBs
+}
+
+//GetIsFreeTier returns IsFreeTier
+func (m CreateAutonomousDatabaseDetails) GetIsFreeTier() *bool {
+	return m.IsFreeTier
 }
 
 //GetAdminPassword returns AdminPassword

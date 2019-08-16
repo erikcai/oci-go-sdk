@@ -26,7 +26,7 @@ type SubscriptionSummary struct {
 	Protocol *string `mandatory:"true" json:"protocol"`
 
 	// The endpoint of the subscription. Valid values depend on the protocol.
-	// For EMAIL, only an email address is valid. For HTTPS, only a PagerDuty URL is valid. A URL cannot exceed 512 characters.
+	// For EMAIL, only an email address is valid. For HTTPS, only a URL or address corresponding to the provider is valid. A URL cannot exceed 512 characters.
 	Endpoint *string `mandatory:"true" json:"endpoint"`
 
 	// The lifecycle state of the subscription. The status of a new subscription is PENDING; when confirmed, the subscription status changes to ACTIVE.

@@ -27,14 +27,8 @@ type VmNetworkDetails struct {
 	// The network gateway.
 	Gateway *string `mandatory:"true" json:"gateway"`
 
-	// The network prefix.
-	Prefix *string `mandatory:"true" json:"prefix"`
-
 	// The network domain name.
 	DomainName *string `mandatory:"true" json:"domainName"`
-
-	// The network CIDR.
-	Cidr *string `mandatory:"true" json:"cidr"`
 
 	// The list of node details.
 	Nodes []NodeDetails `mandatory:"true" json:"nodes"`

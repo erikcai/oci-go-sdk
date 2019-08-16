@@ -25,6 +25,9 @@ type UpdateAutonomousDatabaseDetails struct {
 	// The user-friendly name for the Autonomous Database. The name does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB memory. For Always Free databases, memory and CPU cannot be scaled.
+	IsFreeTier *bool `mandatory:"false" json:"isFreeTier"`
+
 	// The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (") or the username "admin", regardless of casing. It must be different from the last four passwords and it must not be a password used within the last 24 hours.
 	AdminPassword *string `mandatory:"false" json:"adminPassword"`
 

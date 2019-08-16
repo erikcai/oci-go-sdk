@@ -55,6 +55,19 @@ type Bucket struct {
 	// The 'storageTier' property is immutable after bucket is created.
 	StorageTier BucketStorageTierEnum `mandatory:"false" json:"storageTier,omitempty"`
 
+	// The type of requests for which object-level audit logging is enabled on this bucket.
+	// This property is set to `Disabled` by default, where no audit logs will be produced at the object level for this
+	// bucket. If the property is set to `Write`, audit logs will be produced for operations such as `Put Object`. If the
+	// property is set to `ReadWrite`, audit logs will be produced for operations such as `Put Object` and `Get Object`.
+	ObjectLevelAuditMode BucketObjectLevelAuditModeEnum `mandatory:"false" json:"objectLevelAuditMode,omitempty"`
+
+	// The type of requests for which Service Logging is be enabled on this bucket.
+	// This property is set to `Disabled` by default, so no Service-Logs will be produced at the object level for
+	// this bucket. If the property is set to `Write`, Service Logs will be produced for operations such as
+	// `Put Object`. If the property is set to `ReadWrite`, Service Logs will be produced for operations such as
+	// `Put Object` and `Get Object`.
+	ServiceLoggingStatus BucketServiceLoggingStatusEnum `mandatory:"false" json:"serviceLoggingStatus,omitempty"`
+
 	// A property that determines whether events will be generated for operations on objects in this bucket.
 	// This is false by default.
 	ObjectEventsEnabled *bool `mandatory:"false" json:"objectEventsEnabled"`
@@ -131,6 +144,56 @@ var mappingBucketStorageTier = map[string]BucketStorageTierEnum{
 func GetBucketStorageTierEnumValues() []BucketStorageTierEnum {
 	values := make([]BucketStorageTierEnum, 0)
 	for _, v := range mappingBucketStorageTier {
+		values = append(values, v)
+	}
+	return values
+}
+
+// BucketObjectLevelAuditModeEnum Enum with underlying type: string
+type BucketObjectLevelAuditModeEnum string
+
+// Set of constants representing the allowable values for BucketObjectLevelAuditModeEnum
+const (
+	BucketObjectLevelAuditModeDisabled  BucketObjectLevelAuditModeEnum = "Disabled"
+	BucketObjectLevelAuditModeWrite     BucketObjectLevelAuditModeEnum = "Write"
+	BucketObjectLevelAuditModeReadwrite BucketObjectLevelAuditModeEnum = "ReadWrite"
+)
+
+var mappingBucketObjectLevelAuditMode = map[string]BucketObjectLevelAuditModeEnum{
+	"Disabled":  BucketObjectLevelAuditModeDisabled,
+	"Write":     BucketObjectLevelAuditModeWrite,
+	"ReadWrite": BucketObjectLevelAuditModeReadwrite,
+}
+
+// GetBucketObjectLevelAuditModeEnumValues Enumerates the set of values for BucketObjectLevelAuditModeEnum
+func GetBucketObjectLevelAuditModeEnumValues() []BucketObjectLevelAuditModeEnum {
+	values := make([]BucketObjectLevelAuditModeEnum, 0)
+	for _, v := range mappingBucketObjectLevelAuditMode {
+		values = append(values, v)
+	}
+	return values
+}
+
+// BucketServiceLoggingStatusEnum Enum with underlying type: string
+type BucketServiceLoggingStatusEnum string
+
+// Set of constants representing the allowable values for BucketServiceLoggingStatusEnum
+const (
+	BucketServiceLoggingStatusDisabled  BucketServiceLoggingStatusEnum = "Disabled"
+	BucketServiceLoggingStatusWrite     BucketServiceLoggingStatusEnum = "Write"
+	BucketServiceLoggingStatusReadwrite BucketServiceLoggingStatusEnum = "ReadWrite"
+)
+
+var mappingBucketServiceLoggingStatus = map[string]BucketServiceLoggingStatusEnum{
+	"Disabled":  BucketServiceLoggingStatusDisabled,
+	"Write":     BucketServiceLoggingStatusWrite,
+	"ReadWrite": BucketServiceLoggingStatusReadwrite,
+}
+
+// GetBucketServiceLoggingStatusEnumValues Enumerates the set of values for BucketServiceLoggingStatusEnum
+func GetBucketServiceLoggingStatusEnumValues() []BucketServiceLoggingStatusEnum {
+	values := make([]BucketServiceLoggingStatusEnum, 0)
+	for _, v := range mappingBucketServiceLoggingStatus {
 		values = append(values, v)
 	}
 	return values

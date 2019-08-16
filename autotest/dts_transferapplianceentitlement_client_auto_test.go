@@ -22,7 +22,7 @@ func createTransferApplianceEntitlementClientWithProvider(p common.Configuration
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceEntitlementClientCreateTransferApplianceEntitlement(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestTransferApplianceEntitlementClientCreateTransferApplianceEntitlement(t 
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceEntitlementClientGetTransferApplianceEntitlement(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -101,6 +101,49 @@ func TestTransferApplianceEntitlementClientGetTransferApplianceEntitlement(t *te
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetTransferApplianceEntitlement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
+func TestTransferApplianceEntitlementClientListTransferApplianceEntitlement(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dts", "ListTransferApplianceEntitlement")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTransferApplianceEntitlement is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dts", "TransferApplianceEntitlement", "ListTransferApplianceEntitlement", createTransferApplianceEntitlementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dts.TransferApplianceEntitlementClient)
+
+	body, err := testClient.getRequests("dts", "ListTransferApplianceEntitlement")
+	assert.NoError(t, err)
+
+	type ListTransferApplianceEntitlementRequestInfo struct {
+		ContainerId string
+		Request     dts.ListTransferApplianceEntitlementRequest
+	}
+
+	var requests []ListTransferApplianceEntitlementRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ListTransferApplianceEntitlement(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

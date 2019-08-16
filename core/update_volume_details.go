@@ -36,6 +36,9 @@ type UpdateVolumeDetails struct {
 	// The performance tier to set the volume to.
 	PerformanceTier VolumePerformanceTierEnum `mandatory:"false" json:"performanceTier,omitempty"`
 
+	// The number of Volume Performance Units that will be applied to this volume per GB.
+	VpusPerGB *int64 `mandatory:"false" json:"vpusPerGB"`
+
 	// The size to resize the volume to in GBs. Has to be larger than the current size.
 	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
 }

@@ -16,7 +16,7 @@ import (
 // CreateTopicDetails The configuration details for creating the topic.
 type CreateTopicDetails struct {
 
-	// The name of the topic being created. Avoid entering confidential information.
+	// The name of the topic being created. The topic name must be unique across the tenancy. Avoid entering confidential information.
 	Name *string `mandatory:"true" json:"name"`
 
 	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to create the topic in.

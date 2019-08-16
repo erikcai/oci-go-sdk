@@ -22,7 +22,7 @@ func createNotificationControlPlaneClientWithProvider(p common.ConfigurationProv
 	return client, err
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationControlPlaneClientChangeTopicCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestNotificationControlPlaneClientChangeTopicCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationControlPlaneClientCreateTopic(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestNotificationControlPlaneClientCreateTopic(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationControlPlaneClientDeleteTopic(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestNotificationControlPlaneClientDeleteTopic(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationControlPlaneClientGetTopic(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestNotificationControlPlaneClientGetTopic(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationControlPlaneClientListTopics(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -246,7 +246,7 @@ func TestNotificationControlPlaneClientListTopics(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="" email="" jiraProject="" opsJiraProject=""
+// IssueRoutingInfo tag="default" email="team_oci_ons_us_grp@oracle.com" jiraProject="ONS" opsJiraProject="ONS"
 func TestNotificationControlPlaneClientUpdateTopic(t *testing.T) {
 	defer failTestOnPanic(t)
 

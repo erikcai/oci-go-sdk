@@ -60,8 +60,8 @@ func (client *NotificationDataPlaneClient) ConfigurationProvider() *common.Confi
 }
 
 // ChangeSubscriptionCompartment Moves a subscription into a different compartment within the same tenancy. For information about moving
-// resources between compartments, see Moving Resources to a Different Compartment
-//  (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+// resources between compartments, see
+// Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 // Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 func (client NotificationDataPlaneClient) ChangeSubscriptionCompartment(ctx context.Context, request ChangeSubscriptionCompartmentRequest) (response ChangeSubscriptionCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -374,9 +374,10 @@ func (client NotificationDataPlaneClient) listSubscriptions(ctx context.Context,
 
 // PublishMessage Publishes a message to the specified topic. Limits information follows.
 // Message size limit per request: 64KB.
-// Message delivery rate limit per endpoint: 60 messages per minute for HTTPS (PagerDuty) protocol, 10 messages per minute for Email protocol.
+// Message delivery rate limit per endpoint: 60 messages per minute for HTTPS protocol, 10 messages per minute for Email protocol.
 // Transactions Per Minute (TPM) per-tenancy limit for this operation: 60 per topic.
 // For more information about publishing messages, see Publishing Messages (https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/publishingmessages.htm).
+// For steps to request a limit increase, see Requesting a Service Limit Increase (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm#three).
 func (client NotificationDataPlaneClient) PublishMessage(ctx context.Context, request PublishMessageRequest) (response PublishMessageResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

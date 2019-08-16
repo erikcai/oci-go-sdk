@@ -51,6 +51,10 @@ type ClusterNetworkSummary struct {
 
 	// The instance pools in the cluster network.
 	InstancePools []InstancePoolSummary `mandatory:"false" json:"instancePools"`
+
+	// The availability domain of the placement for the cluster network.
+	// Example: `Uocm:PHX-AD-1`
+	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 }
 
 func (m ClusterNetworkSummary) String() string {

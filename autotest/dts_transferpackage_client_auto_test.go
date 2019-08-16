@@ -22,7 +22,7 @@ func createTransferPackageClientWithProvider(p common.ConfigurationProvider, tes
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferPackageClientAttachDevicesToTransferPackage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestTransferPackageClientAttachDevicesToTransferPackage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferPackageClientCreateTransferPackage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestTransferPackageClientCreateTransferPackage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferPackageClientDeleteTransferPackage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestTransferPackageClientDeleteTransferPackage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferPackageClientDetachDevicesFromTransferPackage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestTransferPackageClientDetachDevicesFromTransferPackage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferPackageClientGetTransferPackage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,7 +237,7 @@ func TestTransferPackageClientGetTransferPackage(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferPackageClientListTransferPackages(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -280,7 +280,7 @@ func TestTransferPackageClientListTransferPackages(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferPackageClientUpdateTransferPackage(t *testing.T) {
 	defer failTestOnPanic(t)
 

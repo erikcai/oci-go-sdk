@@ -34,6 +34,9 @@ type CreateAutonomousDatabaseCloneDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create a new Autonomous Database.
 	SourceId *string `mandatory:"true" json:"sourceId"`
 
+	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB memory. For Always Free databases, memory and CPU cannot be scaled.
+	IsFreeTier *bool `mandatory:"false" json:"isFreeTier"`
+
 	// The user-friendly name for the Autonomous Database. The name does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
@@ -97,6 +100,11 @@ func (m CreateAutonomousDatabaseCloneDetails) GetDbWorkload() CreateAutonomousDa
 //GetDataStorageSizeInTBs returns DataStorageSizeInTBs
 func (m CreateAutonomousDatabaseCloneDetails) GetDataStorageSizeInTBs() *int {
 	return m.DataStorageSizeInTBs
+}
+
+//GetIsFreeTier returns IsFreeTier
+func (m CreateAutonomousDatabaseCloneDetails) GetIsFreeTier() *bool {
+	return m.IsFreeTier
 }
 
 //GetAdminPassword returns AdminPassword

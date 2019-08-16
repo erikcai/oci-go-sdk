@@ -22,7 +22,7 @@ func createTransferJobClientWithProvider(p common.ConfigurationProvider, testCon
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferJobClientChangeTransferJobCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestTransferJobClientChangeTransferJobCompartment(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferJobClientCreateTransferJob(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestTransferJobClientCreateTransferJob(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferJobClientDeleteTransferJob(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestTransferJobClientDeleteTransferJob(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferJobClientGetTransferJob(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestTransferJobClientGetTransferJob(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferJobClientListTransferJobs(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,7 +237,7 @@ func TestTransferJobClientListTransferJobs(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferJobClientUpdateTransferJob(t *testing.T) {
 	defer failTestOnPanic(t)
 

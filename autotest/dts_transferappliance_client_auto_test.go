@@ -22,7 +22,7 @@ func createTransferApplianceClientWithProvider(p common.ConfigurationProvider, t
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceClientCreateTransferAppliance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -65,7 +65,7 @@ func TestTransferApplianceClientCreateTransferAppliance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceClientCreateTransferApplianceAdminCredentials(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -108,7 +108,7 @@ func TestTransferApplianceClientCreateTransferApplianceAdminCredentials(t *testi
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceClientDeleteTransferAppliance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -151,7 +151,7 @@ func TestTransferApplianceClientDeleteTransferAppliance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceClientGetTransferAppliance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -194,7 +194,7 @@ func TestTransferApplianceClientGetTransferAppliance(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceClientGetTransferApplianceCertificateAuthorityCertificate(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -237,7 +237,7 @@ func TestTransferApplianceClientGetTransferApplianceCertificateAuthorityCertific
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceClientGetTransferApplianceEncryptionPassphrase(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -280,7 +280,7 @@ func TestTransferApplianceClientGetTransferApplianceEncryptionPassphrase(t *test
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceClientListTransferAppliances(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -323,7 +323,7 @@ func TestTransferApplianceClientListTransferAppliances(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestTransferApplianceClientUpdateTransferAppliance(t *testing.T) {
 	defer failTestOnPanic(t)
 

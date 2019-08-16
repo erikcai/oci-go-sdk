@@ -89,6 +89,7 @@ const (
 	AutonomousDataWarehouseLifecycleStateScaleInProgress         AutonomousDataWarehouseLifecycleStateEnum = "SCALE_IN_PROGRESS"
 	AutonomousDataWarehouseLifecycleStateAvailableNeedsAttention AutonomousDataWarehouseLifecycleStateEnum = "AVAILABLE_NEEDS_ATTENTION"
 	AutonomousDataWarehouseLifecycleStateUpdating                AutonomousDataWarehouseLifecycleStateEnum = "UPDATING"
+	AutonomousDataWarehouseLifecycleStateReclaimInProgress       AutonomousDataWarehouseLifecycleStateEnum = "RECLAIM_IN_PROGRESS"
 )
 
 var mappingAutonomousDataWarehouseLifecycleState = map[string]AutonomousDataWarehouseLifecycleStateEnum{
@@ -105,6 +106,7 @@ var mappingAutonomousDataWarehouseLifecycleState = map[string]AutonomousDataWare
 	"SCALE_IN_PROGRESS":         AutonomousDataWarehouseLifecycleStateScaleInProgress,
 	"AVAILABLE_NEEDS_ATTENTION": AutonomousDataWarehouseLifecycleStateAvailableNeedsAttention,
 	"UPDATING":                  AutonomousDataWarehouseLifecycleStateUpdating,
+	"RECLAIM_IN_PROGRESS":       AutonomousDataWarehouseLifecycleStateReclaimInProgress,
 }
 
 // GetAutonomousDataWarehouseLifecycleStateEnumValues Enumerates the set of values for AutonomousDataWarehouseLifecycleStateEnum

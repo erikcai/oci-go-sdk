@@ -40,6 +40,19 @@ type AutonomousDatabaseSummary struct {
 	// Additional details about the status of the database, such as the progress of a backup or restore operation. UNPUBLISHED "HIDDEN" FIELD. This field is being added to unblock console functionality but will not be published in the SDK or documentation. It will be present in responses, so deprecating will require coordination to ensure we do not break customers if they begin relying on this field. Please see https://confluence.oci.oraclecorp.com/pages/viewpage.action?pageId=58769459 for details regarding the motivation of this field and the longer term plan.
 	AdditionalDatabaseStatus []string `mandatory:"false" json:"additionalDatabaseStatus"`
 
+	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB memory. For Always Free databases, memory and CPU cannot be scaled.
+	IsFreeTier *bool `mandatory:"false" json:"isFreeTier"`
+
+	// System tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	SystemTags map[string]map[string]interface{} `mandatory:"false" json:"systemTags"`
+
+	// The date and time the Always Free database will be stopped because of inactivity. If this time is reached without any database activity, the database will automatically be put into the STOPPED state.
+	TimeReclamationOfFreeAutonomousDatabase *common.SDKTime `mandatory:"false" json:"timeReclamationOfFreeAutonomousDatabase"`
+
+	// The date and time the Always Free database will be automatically deleted because of inactivity. If the database is in the STOPPED state and without activity until this time, it will be deleted.
+	TimeDeletionOfFreeAutonomousDatabase *common.SDKTime `mandatory:"false" json:"timeDeletionOfFreeAutonomousDatabase"`
+
 	// True if the database uses the dedicated deployment (https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm) option.
 	IsDedicated *bool `mandatory:"false" json:"isDedicated"`
 

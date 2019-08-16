@@ -22,7 +22,7 @@ func createShippingVendorsClientWithProvider(p common.ConfigurationProvider, tes
 	return client, err
 }
 
-// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="DTS" opsJiraProject="NONE"
+// IssueRoutingInfo tag="default" email="data_transfer_platform_dev_ww_grp@oracle.com" jiraProject="BDTS" opsJiraProject="DTS"
 func TestShippingVendorsClientListShippingVendors(t *testing.T) {
 	defer failTestOnPanic(t)
 

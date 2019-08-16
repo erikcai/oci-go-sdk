@@ -60,8 +60,8 @@ func (client *NotificationControlPlaneClient) ConfigurationProvider() *common.Co
 }
 
 // ChangeTopicCompartment Moves a topic into a different compartment within the same tenancy. For information about moving resources
-// between compartments, see Moving Resources to a Different Compartment
-//  (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+// between compartments, see
+// Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 // Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 func (client NotificationControlPlaneClient) ChangeTopicCompartment(ctx context.Context, request ChangeTopicCompartmentRequest) (response ChangeTopicCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse

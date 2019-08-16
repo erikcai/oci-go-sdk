@@ -36,7 +36,7 @@
     <clusters-api-spec-spec-file>source/clusters-api-spec.cond.yaml</clusters-api-spec-spec-file>
     <telemetry-public-api-spec-spec-file>source/telemetry-api.cond.yaml</telemetry-public-api-spec-spec-file>
     <workrequests-api-spec-spec-file>workrequests-api-spec.cond.yaml</workrequests-api-spec-spec-file>
-    <ons-gateway-spec-spec-file>notification-api.yaml</ons-gateway-spec-spec-file>
+    <ons-gateway-spec-spec-file>source/notification-api.cond.yaml</ons-gateway-spec-spec-file>
     <healthchecks-api-spec-spec-file>health-checks-api-spec-20180501.cond.yaml</healthchecks-api-spec-spec-file>
     <rest-api-spec-spec-file>source/api.cond.yaml</rest-api-spec-spec-file>
     <oracache-public-api-spec-file>specs/oracache-public-api-20190501.cond.yaml</oracache-public-api-spec-file>
@@ -46,7 +46,7 @@
     <announcements-service-spec-spec-file>source/announcement-service.cond.yaml</announcements-service-spec-spec-file>
     <oci-waas-api-spec-spec-file>oci-waas-api-spec.cond.yaml</oci-waas-api-spec-spec-file>
     <batchservice-api-spec-spec-file>source/batchservice.cond.yaml</batchservice-api-spec-spec-file>
-    <fn-api-spec-spec-file>release/functions-api-spec.yaml</fn-api-spec-spec-file>
+    <fn-api-spec-spec-file>source/functions-api-spec.cond.yaml</fn-api-spec-spec-file>
     <budgets-control-plane-spec-spec-file>budget.api.cond.yaml</budgets-control-plane-spec-spec-file>
     <quotas-control-plane-api-spec-spec-file>quotas-control-plane-api-spec-20181025.cond.yaml</quotas-control-plane-api-spec-spec-file>
     <digital-assistant-spec-spec-file>source/digital-assistant-api.cond.yaml</digital-assistant-spec-spec-file>
@@ -57,6 +57,7 @@
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
     <ndcs-control-plane-spec-spec-file>source/api.cond.yaml</ndcs-control-plane-spec-spec-file>
     <datacatalog-api-spec-spec-file>datacatalog-api-spec.cond.yaml</datacatalog-api-spec-spec-file>
+    <cec-public-spec-spec-file>source/api.cond.yaml</cec-public-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -202,6 +203,10 @@
     <dependency>
       <groupId>com.oracle.pic.dcat</groupId>
       <artifactId>datacatalog-api-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.cec.provisioning.controlplane</groupId>
+      <artifactId>cec-public-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -873,6 +878,24 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/datacatalog-api-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-cec-public-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.cec.provisioning.controlplane</groupId>
+                  <artifactId>cec-public-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/cec-public-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1856,6 +1879,33 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-cec-public-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/cec-public-spec/source/${cec-public-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/cec-public-spec/${cec-public-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/cec-public-spec/${cec-public-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-cec-public-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/cec-public-spec/${cec-public-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/cec-public-spec/${cec-public-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2627,6 +2677,26 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-cec-public-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/cec-public-spec/${cec-public-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>oce</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>oce</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2899,6 +2969,12 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/oce</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -2909,7 +2985,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.811</version>
+        <version>0.2.827</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -2919,7 +2995,7 @@
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.250</version>
+        <version>1.1.251</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -2929,7 +3005,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.240</version>
+        <version>0.1.251</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -2954,7 +3030,7 @@
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
         <artifactId>maestro-spec</artifactId>
-        <version>0.1.4</version>
+        <version>0.1.5</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
@@ -2984,7 +3060,7 @@
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
         <artifactId>ons-gateway-spec</artifactId>
-        <version>1.0.1176</version>
+        <version>2.0.25</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci</groupId>
@@ -3034,7 +3110,7 @@
       <dependency>
         <groupId>com.oracle.pic.functions</groupId>
         <artifactId>fn-api-spec</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.usage.budgets</groupId>
@@ -3064,7 +3140,7 @@
       <dependency>
         <groupId>com.oracle.pic.rhino</groupId>
         <artifactId>dts-api-spec</artifactId>
-        <version>1.0.009</version>
+        <version>1.0.011</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.apigw</groupId>
@@ -3085,6 +3161,11 @@
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
         <version>1.0.0-1908090259</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.cec.provisioning.controlplane</groupId>
+        <artifactId>cec-public-spec</artifactId>
+        <version>19.32.21</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

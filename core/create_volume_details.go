@@ -51,6 +51,9 @@ type CreateVolumeDetails struct {
 	// The performance tier to use for the volume.
 	PerformanceTier VolumePerformanceTierEnum `mandatory:"false" json:"performanceTier,omitempty"`
 
+	// The number of Volume Performance Units that will be applied to this volume per GB.
+	VpusPerGB *int64 `mandatory:"false" json:"vpusPerGB"`
+
 	// The size of the volume in GBs.
 	SizeInGBs *int64 `mandatory:"false" json:"sizeInGBs"`
 
@@ -82,6 +85,7 @@ func (m *CreateVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 		FreeformTags       map[string]string                 `json:"freeformTags"`
 		KmsKeyId           *string                           `json:"kmsKeyId"`
 		PerformanceTier    VolumePerformanceTierEnum         `json:"performanceTier"`
+		VpusPerGB          *int64                            `json:"vpusPerGB"`
 		SizeInGBs          *int64                            `json:"sizeInGBs"`
 		SizeInMBs          *int64                            `json:"sizeInMBs"`
 		SourceDetails      volumesourcedetails               `json:"sourceDetails"`
@@ -100,6 +104,7 @@ func (m *CreateVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 	m.FreeformTags = model.FreeformTags
 	m.KmsKeyId = model.KmsKeyId
 	m.PerformanceTier = model.PerformanceTier
+	m.VpusPerGB = model.VpusPerGB
 	m.SizeInGBs = model.SizeInGBs
 	m.SizeInMBs = model.SizeInMBs
 	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)

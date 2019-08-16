@@ -10,14 +10,13 @@ package database
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
-	"io"
 )
 
 // ActivateExadataInfrastructureDetails The activation details for the Exadata infrastructure.
 type ActivateExadataInfrastructureDetails struct {
 
-	// The activation key zip file.
-	ActivationKey io.ReadCloser `mandatory:"false" json:"activationKey"`
+	// The activation zip file.
+	ActivationFile []byte `mandatory:"true" json:"activationFile"`
 }
 
 func (m ActivateExadataInfrastructureDetails) String() string {

@@ -695,6 +695,49 @@ func TestResourceManagerClientListStacks(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientListTerraformVersions(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "ListTerraformVersions")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTerraformVersions is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "ListTerraformVersions", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "ListTerraformVersions")
+	assert.NoError(t, err)
+
+	type ListTerraformVersionsRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.ListTerraformVersionsRequest
+	}
+
+	var requests []ListTerraformVersionsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ListTerraformVersions(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
 func TestResourceManagerClientListWorkRequestErrors(t *testing.T) {
 	defer failTestOnPanic(t)
 

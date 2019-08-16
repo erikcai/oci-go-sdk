@@ -23,7 +23,7 @@ type ConfirmationResult struct {
 	TopicId *string `mandatory:"true" json:"topicId"`
 
 	// The endpoint of the subscription. Valid values depend on the protocol.
-	// For EMAIL, only an email address is valid. For HTTPS, only a PagerDuty URL is valid. A URL cannot exceed 512 characters.
+	// For EMAIL, only an email address is valid. For HTTPS, only a URL or address corresponding to the provider is valid. A URL cannot exceed 512 characters.
 	Endpoint *string `mandatory:"true" json:"endpoint"`
 
 	// The URL for unsubscribing from the topic.

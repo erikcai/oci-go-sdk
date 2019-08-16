@@ -36,6 +36,19 @@ type UpdateBucketDetails struct {
 	// on the bucket, public access is allowed for the `GetObject` and `HeadObject` operations.
 	PublicAccessType UpdateBucketDetailsPublicAccessTypeEnum `mandatory:"false" json:"publicAccessType,omitempty"`
 
+	// The type of requests for which object-level audit logging is enabled on this bucket.
+	// This property is set to `Disabled` by default, so no audit logs will be produced at the object level for this
+	// bucket. If the property is set to `Write`, audit logs will be produced for operations such as `Put Object`. If the
+	// property is set to `ReadWrite`, audit logs will be produced for operations such as `Put Object` and `Get Object`.
+	ObjectLevelAuditMode UpdateBucketDetailsObjectLevelAuditModeEnum `mandatory:"false" json:"objectLevelAuditMode,omitempty"`
+
+	// The type of requests for which Service Logging is be enabled on this bucket.
+	// This property is set to `Disabled` by default, so no Service-Logs will be produced at the object level for
+	// this bucket. If the property is set to `Write`, Service Logs will be produced for operations such as
+	// `Put Object`. If the property is set to `ReadWrite`, Service Logs will be produced for operations such as
+	// `Put Object` and `Get Object`.
+	ServiceLoggingStatus UpdateBucketDetailsServiceLoggingStatusEnum `mandatory:"false" json:"serviceLoggingStatus,omitempty"`
+
 	// A property that determines whether events will be generated for operations on objects in this bucket.
 	// This is false by default.
 	ObjectEventsEnabled *bool `mandatory:"false" json:"objectEventsEnabled"`
@@ -81,6 +94,56 @@ var mappingUpdateBucketDetailsPublicAccessType = map[string]UpdateBucketDetailsP
 func GetUpdateBucketDetailsPublicAccessTypeEnumValues() []UpdateBucketDetailsPublicAccessTypeEnum {
 	values := make([]UpdateBucketDetailsPublicAccessTypeEnum, 0)
 	for _, v := range mappingUpdateBucketDetailsPublicAccessType {
+		values = append(values, v)
+	}
+	return values
+}
+
+// UpdateBucketDetailsObjectLevelAuditModeEnum Enum with underlying type: string
+type UpdateBucketDetailsObjectLevelAuditModeEnum string
+
+// Set of constants representing the allowable values for UpdateBucketDetailsObjectLevelAuditModeEnum
+const (
+	UpdateBucketDetailsObjectLevelAuditModeDisabled  UpdateBucketDetailsObjectLevelAuditModeEnum = "Disabled"
+	UpdateBucketDetailsObjectLevelAuditModeWrite     UpdateBucketDetailsObjectLevelAuditModeEnum = "Write"
+	UpdateBucketDetailsObjectLevelAuditModeReadwrite UpdateBucketDetailsObjectLevelAuditModeEnum = "ReadWrite"
+)
+
+var mappingUpdateBucketDetailsObjectLevelAuditMode = map[string]UpdateBucketDetailsObjectLevelAuditModeEnum{
+	"Disabled":  UpdateBucketDetailsObjectLevelAuditModeDisabled,
+	"Write":     UpdateBucketDetailsObjectLevelAuditModeWrite,
+	"ReadWrite": UpdateBucketDetailsObjectLevelAuditModeReadwrite,
+}
+
+// GetUpdateBucketDetailsObjectLevelAuditModeEnumValues Enumerates the set of values for UpdateBucketDetailsObjectLevelAuditModeEnum
+func GetUpdateBucketDetailsObjectLevelAuditModeEnumValues() []UpdateBucketDetailsObjectLevelAuditModeEnum {
+	values := make([]UpdateBucketDetailsObjectLevelAuditModeEnum, 0)
+	for _, v := range mappingUpdateBucketDetailsObjectLevelAuditMode {
+		values = append(values, v)
+	}
+	return values
+}
+
+// UpdateBucketDetailsServiceLoggingStatusEnum Enum with underlying type: string
+type UpdateBucketDetailsServiceLoggingStatusEnum string
+
+// Set of constants representing the allowable values for UpdateBucketDetailsServiceLoggingStatusEnum
+const (
+	UpdateBucketDetailsServiceLoggingStatusDisabled  UpdateBucketDetailsServiceLoggingStatusEnum = "Disabled"
+	UpdateBucketDetailsServiceLoggingStatusWrite     UpdateBucketDetailsServiceLoggingStatusEnum = "Write"
+	UpdateBucketDetailsServiceLoggingStatusReadwrite UpdateBucketDetailsServiceLoggingStatusEnum = "ReadWrite"
+)
+
+var mappingUpdateBucketDetailsServiceLoggingStatus = map[string]UpdateBucketDetailsServiceLoggingStatusEnum{
+	"Disabled":  UpdateBucketDetailsServiceLoggingStatusDisabled,
+	"Write":     UpdateBucketDetailsServiceLoggingStatusWrite,
+	"ReadWrite": UpdateBucketDetailsServiceLoggingStatusReadwrite,
+}
+
+// GetUpdateBucketDetailsServiceLoggingStatusEnumValues Enumerates the set of values for UpdateBucketDetailsServiceLoggingStatusEnum
+func GetUpdateBucketDetailsServiceLoggingStatusEnumValues() []UpdateBucketDetailsServiceLoggingStatusEnum {
+	values := make([]UpdateBucketDetailsServiceLoggingStatusEnum, 0)
+	for _, v := range mappingUpdateBucketDetailsServiceLoggingStatus {
 		values = append(values, v)
 	}
 	return values
