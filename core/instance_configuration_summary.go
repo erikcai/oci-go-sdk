@@ -41,12 +41,6 @@ type InstanceConfigurationSummary struct {
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
-
-	// The name of the shape of the instance to launch
-	Shape *string `mandatory:"false" json:"shape"`
-
-	// The OCID of the image to use if the instance source is from an image
-	ImageId *string `mandatory:"false" json:"imageId"`
 }
 
 func (m InstanceConfigurationSummary) String() string {
