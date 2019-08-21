@@ -137,7 +137,7 @@ func createAutoscalingConfiguration(ctx context.Context, client autoscaling.Auto
 	}
 
 	scaleInAction := autoscaling.Action{
-		Type:  autoscaling.ActionTypeBy,
+		Type:  autoscaling.ActionTypeChangeCountBy,
 		Value: &scaleInChange,
 	}
 
@@ -158,7 +158,7 @@ func createAutoscalingConfiguration(ctx context.Context, client autoscaling.Auto
 	}
 
 	scaleOutAction := autoscaling.Action{
-		Type:  autoscaling.ActionTypeBy,
+		Type:  autoscaling.ActionTypeChangeCountBy,
 		Value: &scaleOutChange,
 	}
 

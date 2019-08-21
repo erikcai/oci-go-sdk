@@ -45,11 +45,11 @@ type DestroyJobOperationDetailsExecutionPlanStrategyEnum string
 
 // Set of constants representing the allowable values for DestroyJobOperationDetailsExecutionPlanStrategyEnum
 const (
-	DestroyJobOperationDetailsExecutionPlanStrategyApproved DestroyJobOperationDetailsExecutionPlanStrategyEnum = "AUTO_APPROVED"
+	DestroyJobOperationDetailsExecutionPlanStrategyAutoApproved DestroyJobOperationDetailsExecutionPlanStrategyEnum = "AUTO_APPROVED"
 )
 
 var mappingDestroyJobOperationDetailsExecutionPlanStrategy = map[string]DestroyJobOperationDetailsExecutionPlanStrategyEnum{
-	"AUTO_APPROVED": DestroyJobOperationDetailsExecutionPlanStrategyApproved,
+	"AUTO_APPROVED": DestroyJobOperationDetailsExecutionPlanStrategyAutoApproved,
 }
 
 // GetDestroyJobOperationDetailsExecutionPlanStrategyEnumValues Enumerates the set of values for DestroyJobOperationDetailsExecutionPlanStrategyEnum

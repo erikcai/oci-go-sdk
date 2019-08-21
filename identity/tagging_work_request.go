@@ -56,11 +56,11 @@ type TaggingWorkRequestOperationTypeEnum string
 
 // Set of constants representing the allowable values for TaggingWorkRequestOperationTypeEnum
 const (
-	TaggingWorkRequestOperationTypeDefinition TaggingWorkRequestOperationTypeEnum = "DELETE_TAG_DEFINITION"
+	TaggingWorkRequestOperationTypeDeleteTagDefinition TaggingWorkRequestOperationTypeEnum = "DELETE_TAG_DEFINITION"
 )
 
 var mappingTaggingWorkRequestOperationType = map[string]TaggingWorkRequestOperationTypeEnum{
-	"DELETE_TAG_DEFINITION": TaggingWorkRequestOperationTypeDefinition,
+	"DELETE_TAG_DEFINITION": TaggingWorkRequestOperationTypeDeleteTagDefinition,
 }
 
 // GetTaggingWorkRequestOperationTypeEnumValues Enumerates the set of values for TaggingWorkRequestOperationTypeEnum
