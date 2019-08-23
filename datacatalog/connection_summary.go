@@ -28,6 +28,9 @@ type ConnectionSummary struct {
 	// The unique key of the parent Data Asset.
 	DataAssetKey *string `mandatory:"false" json:"dataAssetKey"`
 
+	// The key of the object type. Type key's can be found via the '/types' endpoint.
+	TypeKey *string `mandatory:"false" json:"typeKey"`
+
 	// URI to the Connection instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 

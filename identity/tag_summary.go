@@ -21,7 +21,8 @@ type TagSummary struct {
 	// The OCID of the tag definition.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The name of the tag. The name must be unique across all tags in the tag namespace and can't be changed.
+	// The name assigned to the tag during creation. This is the tag key definition.
+	// The name must be unique within the tag namespace and cannot be changed.
 	Name *string `mandatory:"false" json:"name"`
 
 	// The description you assign to the tag.

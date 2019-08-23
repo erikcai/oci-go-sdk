@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -15,23 +15,24 @@ import (
 // WorkRequestResource A resource created or operated on by a work request.
 type WorkRequestResource struct {
 
-	// The action to be taken against the ODA instance
+	// The action to take against the Digital Assistant instance.
 	ResourceAction WorkRequestResourceResourceActionEnum `mandatory:"true" json:"resourceAction"`
 
-	// The resource type the work request is affects.
+	// The resource type that the work request affects.
 	ResourceType *string `mandatory:"true" json:"resourceType"`
 
-	// The identifier of the ODA instance that is the subject of the request.
+	// The identifier of the Digital Assistant instance that is the subject of the request.
 	ResourceId *string `mandatory:"true" json:"resourceId"`
 
-	// The current state of the work request. Terminal states correspond to the action being performed.
+	// The current state of the work request. The `SUCCEEDED`, `FAILED`, AND `CANCELED` states
+	// correspond to the action being performed.
 	Status WorkRequestResourceStatusEnum `mandatory:"true" json:"status"`
 
 	// Short message providing more detail for the current status. For example, if an operation fails
-	// this may include information about the reason for the failure and possible resolution.
+	// this may include information about the reason for the failure and a possible resolution.
 	StatusMessage *string `mandatory:"false" json:"statusMessage"`
 
-	// The URI path that the user can do a GET on to access the resource metadata
+	// The URI path that the user can do a GET on to access the resource metadata.
 	ResourceUri *string `mandatory:"false" json:"resourceUri"`
 }
 
@@ -44,21 +45,23 @@ type WorkRequestResourceResourceActionEnum string
 
 // Set of constants representing the allowable values for WorkRequestResourceResourceActionEnum
 const (
-	WorkRequestResourceResourceActionCreate            WorkRequestResourceResourceActionEnum = "CREATE"
-	WorkRequestResourceResourceActionDelete            WorkRequestResourceResourceActionEnum = "DELETE"
-	WorkRequestResourceResourceActionPurge             WorkRequestResourceResourceActionEnum = "PURGE"
-	WorkRequestResourceResourceActionRecover           WorkRequestResourceResourceActionEnum = "RECOVER"
-	WorkRequestResourceResourceActionCreateAssociation WorkRequestResourceResourceActionEnum = "CREATE_ASSOCIATION"
-	WorkRequestResourceResourceActionDeleteAssociation WorkRequestResourceResourceActionEnum = "DELETE_ASSOCIATION"
+	WorkRequestResourceResourceActionCreate                     WorkRequestResourceResourceActionEnum = "CREATE"
+	WorkRequestResourceResourceActionDelete                     WorkRequestResourceResourceActionEnum = "DELETE"
+	WorkRequestResourceResourceActionPurge                      WorkRequestResourceResourceActionEnum = "PURGE"
+	WorkRequestResourceResourceActionRecover                    WorkRequestResourceResourceActionEnum = "RECOVER"
+	WorkRequestResourceResourceActionCreateAssociation          WorkRequestResourceResourceActionEnum = "CREATE_ASSOCIATION"
+	WorkRequestResourceResourceActionDeleteAssociation          WorkRequestResourceResourceActionEnum = "DELETE_ASSOCIATION"
+	WorkRequestResourceResourceActionLookupOdaInstancesForCacct WorkRequestResourceResourceActionEnum = "LOOKUP_ODA_INSTANCES_FOR_CACCT"
 )
 
 var mappingWorkRequestResourceResourceAction = map[string]WorkRequestResourceResourceActionEnum{
-	"CREATE":             WorkRequestResourceResourceActionCreate,
-	"DELETE":             WorkRequestResourceResourceActionDelete,
-	"PURGE":              WorkRequestResourceResourceActionPurge,
-	"RECOVER":            WorkRequestResourceResourceActionRecover,
-	"CREATE_ASSOCIATION": WorkRequestResourceResourceActionCreateAssociation,
-	"DELETE_ASSOCIATION": WorkRequestResourceResourceActionDeleteAssociation,
+	"CREATE":                         WorkRequestResourceResourceActionCreate,
+	"DELETE":                         WorkRequestResourceResourceActionDelete,
+	"PURGE":                          WorkRequestResourceResourceActionPurge,
+	"RECOVER":                        WorkRequestResourceResourceActionRecover,
+	"CREATE_ASSOCIATION":             WorkRequestResourceResourceActionCreateAssociation,
+	"DELETE_ASSOCIATION":             WorkRequestResourceResourceActionDeleteAssociation,
+	"LOOKUP_ODA_INSTANCES_FOR_CACCT": WorkRequestResourceResourceActionLookupOdaInstancesForCacct,
 }
 
 // GetWorkRequestResourceResourceActionEnumValues Enumerates the set of values for WorkRequestResourceResourceActionEnum

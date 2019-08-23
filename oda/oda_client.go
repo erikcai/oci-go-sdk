@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -58,7 +58,9 @@ func (client *OdaClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
 }
 
-// CreateOdaInstance Creates a new ODA Instance.
+// CreateOdaInstance Starts an asynchronous job to create a Digital Assistant instance.
+// To monitor the status of the job, take the `opc-work-request-id` response
+// header value and use it to call `GET /workRequests/{workRequestID}`.
 func (client OdaClient) CreateOdaInstance(ctx context.Context, request CreateOdaInstanceRequest) (response CreateOdaInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -105,7 +107,8 @@ func (client OdaClient) createOdaInstance(ctx context.Context, request common.OC
 	return response, err
 }
 
-// DeleteOdaInstance Deletes an ODA instance resource by identifier
+// DeleteOdaInstance Starts an asynchronous job to delete the specified Digital Assistant instance.
+// To monitor the status of the job, take the `opc-work-request-id` response header value and use it to call `GET /workRequests/{workRequestID}`.
 func (client OdaClient) DeleteOdaInstance(ctx context.Context, request DeleteOdaInstanceRequest) (response DeleteOdaInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -147,7 +150,7 @@ func (client OdaClient) deleteOdaInstance(ctx context.Context, request common.OC
 	return response, err
 }
 
-// GetOdaInstance Gets an ODA instance by identifier
+// GetOdaInstance Gets the specified Digital Assistant instance.
 func (client OdaClient) GetOdaInstance(ctx context.Context, request GetOdaInstanceRequest) (response GetOdaInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -189,7 +192,9 @@ func (client OdaClient) getOdaInstance(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// GetWorkRequest Gets the status of the work request with the given ID.
+// GetWorkRequest Gets information about the work request with the specified ID, including its status.
+// You can use this operation to monitor the status of jobs that you
+// requested to create, delete, and update instances.
 func (client OdaClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -231,7 +236,11 @@ func (client OdaClient) getWorkRequest(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// ListOdaInstances Returns a list of Digital Assistant instances.
+// ListOdaInstances Returns a page of Digital Assistant instances that belong to the specified
+// compartment.
+// If the `opc-next-page` header appears in the response, then
+// there are more items to retrieve. To get the next page in the subsequent
+// GET request, include the header's value as the `page` query parameter.
 func (client OdaClient) ListOdaInstances(ctx context.Context, request ListOdaInstancesRequest) (response ListOdaInstancesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -273,7 +282,10 @@ func (client OdaClient) listOdaInstances(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// ListWorkRequestErrors Return a (paginated) list of errors for a given work request.
+// ListWorkRequestErrors Returns a page of errors for the specified work request.
+// If the `opc-next-page` header appears in the response, then
+// there are more items to retrieve. To get the next page in the subsequent
+// GET request, include the header's value as the `page` query parameter.
 func (client OdaClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -315,7 +327,10 @@ func (client OdaClient) listWorkRequestErrors(ctx context.Context, request commo
 	return response, err
 }
 
-// ListWorkRequestLogs Return a (paginated) list of logs for a given work request.
+// ListWorkRequestLogs Returns a page of of log messages for a given work request.
+// If the `opc-next-page` header appears in the response, then
+// there are more items to retrieve. To get the next page in the subsequent
+// GET request, include the header's value as the `page` query parameter.
 func (client OdaClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -357,7 +372,10 @@ func (client OdaClient) listWorkRequestLogs(ctx context.Context, request common.
 	return response, err
 }
 
-// ListWorkRequests Returns a paginated list of work requests in a compartment.
+// ListWorkRequests Returns a page of work requests for the specified compartment.
+// If the `opc-next-page` header appears in the response, then
+// there are more items to retrieve. To get the next page in the subsequent
+// GET request, include the header's value as the `page` query parameter.
 func (client OdaClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -399,7 +417,7 @@ func (client OdaClient) listWorkRequests(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// UpdateOdaInstance Updates the ODA instance
+// UpdateOdaInstance Updates the specified Digital Assistant instance with the information in the request body.
 func (client OdaClient) UpdateOdaInstance(ctx context.Context, request UpdateOdaInstanceRequest) (response UpdateOdaInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

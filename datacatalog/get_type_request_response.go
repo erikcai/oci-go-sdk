@@ -81,6 +81,7 @@ const (
 	GetTypeFieldsIsinternal       GetTypeFieldsEnum = "isInternal"
 	GetTypeFieldsIstag            GetTypeFieldsEnum = "isTag"
 	GetTypeFieldsIsapproved       GetTypeFieldsEnum = "isApproved"
+	GetTypeFieldsTypecategory     GetTypeFieldsEnum = "typeCategory"
 	GetTypeFieldsExternaltypename GetTypeFieldsEnum = "externalTypeName"
 	GetTypeFieldsLifecyclestate   GetTypeFieldsEnum = "lifecycleState"
 	GetTypeFieldsUri              GetTypeFieldsEnum = "uri"
@@ -95,6 +96,7 @@ var mappingGetTypeFields = map[string]GetTypeFieldsEnum{
 	"isInternal":       GetTypeFieldsIsinternal,
 	"isTag":            GetTypeFieldsIstag,
 	"isApproved":       GetTypeFieldsIsapproved,
+	"typeCategory":     GetTypeFieldsTypecategory,
 	"externalTypeName": GetTypeFieldsExternaltypename,
 	"lifecycleState":   GetTypeFieldsLifecyclestate,
 	"uri":              GetTypeFieldsUri,

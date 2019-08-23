@@ -82,13 +82,15 @@ const (
 	GetJobFieldsTimeupdated            GetJobFieldsEnum = "timeUpdated"
 	GetJobFieldsJobtype                GetJobFieldsEnum = "jobType"
 	GetJobFieldsSchedulecronexpression GetJobFieldsEnum = "scheduleCronExpression"
-	GetJobFieldsTimescheduled          GetJobFieldsEnum = "timeScheduled"
 	GetJobFieldsTimeschedulebegin      GetJobFieldsEnum = "timeScheduleBegin"
 	GetJobFieldsTimescheduleend        GetJobFieldsEnum = "timeScheduleEnd"
 	GetJobFieldsScheduletype           GetJobFieldsEnum = "scheduleType"
 	GetJobFieldsConnectionkey          GetJobFieldsEnum = "connectionKey"
 	GetJobFieldsJobdefinitionkey       GetJobFieldsEnum = "jobDefinitionKey"
 	GetJobFieldsInternalversion        GetJobFieldsEnum = "internalVersion"
+	GetJobFieldsExecutioncount         GetJobFieldsEnum = "executionCount"
+	GetJobFieldsTimeoflatestexecution  GetJobFieldsEnum = "timeOfLatestExecution"
+	GetJobFieldsExecutions             GetJobFieldsEnum = "executions"
 	GetJobFieldsCreatedbyid            GetJobFieldsEnum = "createdById"
 	GetJobFieldsUpdatedbyid            GetJobFieldsEnum = "updatedById"
 	GetJobFieldsUri                    GetJobFieldsEnum = "uri"
@@ -104,13 +106,15 @@ var mappingGetJobFields = map[string]GetJobFieldsEnum{
 	"timeUpdated":            GetJobFieldsTimeupdated,
 	"jobType":                GetJobFieldsJobtype,
 	"scheduleCronExpression": GetJobFieldsSchedulecronexpression,
-	"timeScheduled":          GetJobFieldsTimescheduled,
 	"timeScheduleBegin":      GetJobFieldsTimeschedulebegin,
 	"timeScheduleEnd":        GetJobFieldsTimescheduleend,
 	"scheduleType":           GetJobFieldsScheduletype,
 	"connectionKey":          GetJobFieldsConnectionkey,
 	"jobDefinitionKey":       GetJobFieldsJobdefinitionkey,
 	"internalVersion":        GetJobFieldsInternalversion,
+	"executionCount":         GetJobFieldsExecutioncount,
+	"timeOfLatestExecution":  GetJobFieldsTimeoflatestexecution,
+	"executions":             GetJobFieldsExecutions,
 	"createdById":            GetJobFieldsCreatedbyid,
 	"updatedById":            GetJobFieldsUpdatedbyid,
 	"uri":                    GetJobFieldsUri,

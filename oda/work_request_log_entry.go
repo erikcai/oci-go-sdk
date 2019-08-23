@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -18,7 +18,7 @@ type WorkRequestLogEntry struct {
 	// Human-readable log message.
 	Message *string `mandatory:"true" json:"message"`
 
-	// The time the log message was written. An RFC3339 formatted datetime string
+	// When the log message was written. A date-time string as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeStamp *common.SDKTime `mandatory:"true" json:"timeStamp"`
 }
 

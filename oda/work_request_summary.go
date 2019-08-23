@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -12,25 +12,25 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestSummary A description of workrequest status
+// WorkRequestSummary A description of the work request's status.
 type WorkRequestSummary struct {
 
-	// The id of the work request.
+	// The identifier of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The ocid of the compartment that contains the work request.
+	// The identifier of the compartment that contains the work request.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The ocid of the ODA instance to which this work request pertains.
+	// The identifier of the Digital Assistant instance to which this work request pertains.
 	OdaInstanceId *string `mandatory:"true" json:"odaInstanceId"`
 
-	// type of the operation associated with the work request
+	// The type of the operation that's associated with the work request.
 	RequestAction WorkRequestSummaryRequestActionEnum `mandatory:"true" json:"requestAction"`
 
-	// status of current work request.
+	// The status of current work request.
 	Status WorkRequestSummaryStatusEnum `mandatory:"true" json:"status"`
 
-	// The resources affected by this work request.
+	// The resources that this work request affects.
 	Resources []WorkRequestResource `mandatory:"true" json:"resources"`
 }
 
@@ -43,21 +43,23 @@ type WorkRequestSummaryRequestActionEnum string
 
 // Set of constants representing the allowable values for WorkRequestSummaryRequestActionEnum
 const (
-	WorkRequestSummaryRequestActionCreateOdaInstance  WorkRequestSummaryRequestActionEnum = "CREATE_ODA_INSTANCE"
-	WorkRequestSummaryRequestActionDeleteOdaInstance  WorkRequestSummaryRequestActionEnum = "DELETE_ODA_INSTANCE"
-	WorkRequestSummaryRequestActionPurgeOdaInstance   WorkRequestSummaryRequestActionEnum = "PURGE_ODA_INSTANCE"
-	WorkRequestSummaryRequestActionRecoverOdaInstance WorkRequestSummaryRequestActionEnum = "RECOVER_ODA_INSTANCE"
-	WorkRequestSummaryRequestActionCreateAssocation   WorkRequestSummaryRequestActionEnum = "CREATE_ASSOCATION"
-	WorkRequestSummaryRequestActionDeleteAssociation  WorkRequestSummaryRequestActionEnum = "DELETE_ASSOCIATION"
+	WorkRequestSummaryRequestActionCreateOdaInstance          WorkRequestSummaryRequestActionEnum = "CREATE_ODA_INSTANCE"
+	WorkRequestSummaryRequestActionDeleteOdaInstance          WorkRequestSummaryRequestActionEnum = "DELETE_ODA_INSTANCE"
+	WorkRequestSummaryRequestActionPurgeOdaInstance           WorkRequestSummaryRequestActionEnum = "PURGE_ODA_INSTANCE"
+	WorkRequestSummaryRequestActionRecoverOdaInstance         WorkRequestSummaryRequestActionEnum = "RECOVER_ODA_INSTANCE"
+	WorkRequestSummaryRequestActionCreateAssocation           WorkRequestSummaryRequestActionEnum = "CREATE_ASSOCATION"
+	WorkRequestSummaryRequestActionDeleteAssociation          WorkRequestSummaryRequestActionEnum = "DELETE_ASSOCIATION"
+	WorkRequestSummaryRequestActionLookupOdaInstancesForCacct WorkRequestSummaryRequestActionEnum = "LOOKUP_ODA_INSTANCES_FOR_CACCT"
 )
 
 var mappingWorkRequestSummaryRequestAction = map[string]WorkRequestSummaryRequestActionEnum{
-	"CREATE_ODA_INSTANCE":  WorkRequestSummaryRequestActionCreateOdaInstance,
-	"DELETE_ODA_INSTANCE":  WorkRequestSummaryRequestActionDeleteOdaInstance,
-	"PURGE_ODA_INSTANCE":   WorkRequestSummaryRequestActionPurgeOdaInstance,
-	"RECOVER_ODA_INSTANCE": WorkRequestSummaryRequestActionRecoverOdaInstance,
-	"CREATE_ASSOCATION":    WorkRequestSummaryRequestActionCreateAssocation,
-	"DELETE_ASSOCIATION":   WorkRequestSummaryRequestActionDeleteAssociation,
+	"CREATE_ODA_INSTANCE":            WorkRequestSummaryRequestActionCreateOdaInstance,
+	"DELETE_ODA_INSTANCE":            WorkRequestSummaryRequestActionDeleteOdaInstance,
+	"PURGE_ODA_INSTANCE":             WorkRequestSummaryRequestActionPurgeOdaInstance,
+	"RECOVER_ODA_INSTANCE":           WorkRequestSummaryRequestActionRecoverOdaInstance,
+	"CREATE_ASSOCATION":              WorkRequestSummaryRequestActionCreateAssocation,
+	"DELETE_ASSOCIATION":             WorkRequestSummaryRequestActionDeleteAssociation,
+	"LOOKUP_ODA_INSTANCES_FOR_CACCT": WorkRequestSummaryRequestActionLookupOdaInstancesForCacct,
 }
 
 // GetWorkRequestSummaryRequestActionEnumValues Enumerates the set of values for WorkRequestSummaryRequestActionEnum

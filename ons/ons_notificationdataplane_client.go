@@ -374,7 +374,8 @@ func (client NotificationDataPlaneClient) listSubscriptions(ctx context.Context,
 
 // PublishMessage Publishes a message to the specified topic. Limits information follows.
 // Message size limit per request: 64KB.
-// Message delivery rate limit per endpoint: 60 messages per minute for HTTPS protocol, 10 messages per minute for Email protocol.
+// Message delivery rate limit per endpoint: 60 messages per minute for HTTP-based protocols, 10 messages per minute for the `EMAIL` protocol.
+// HTTP-based protocols use URL endpoints that begin with "http:" or "https:".
 // Transactions Per Minute (TPM) per-tenancy limit for this operation: 60 per topic.
 // For more information about publishing messages, see Publishing Messages (https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/publishingmessages.htm).
 // For steps to request a limit increase, see Requesting a Service Limit Increase (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm#three).

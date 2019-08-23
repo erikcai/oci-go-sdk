@@ -26,7 +26,7 @@ type UpdateNodePoolDetails struct {
 	// A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
 	InitialNodeLabels []KeyValue `mandatory:"false" json:"initialNodeLabels"`
 
-	// The number of nodes to have in each subnet specified in subnetIds property. This property is deprecated,
+	// The number of nodes to have in each subnet specified in the subnetIds property. This property is deprecated,
 	// use nodeConfigDetails instead. If the current value of quantityPerSubnet is greater than 0, you can only
 	// use quantityPerSubnet to scale the node pool. If the current value of quantityPerSubnet is equal to 0 and
 	// the current value of size in nodeConfigDetails is greater than 0, before you can use quantityPerSubnet,
@@ -38,7 +38,7 @@ type UpdateNodePoolDetails struct {
 	// properties can be specified.
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
 
-	// The nodes configuration of the node pool. Only one of the subnetIds or nodeConfigDetails
+	// The configuration of nodes in the node pool. Only one of the subnetIds or nodeConfigDetails
 	// properties should be specified. If the current value of quantityPerSubnet is greater than 0, the node
 	// pool may still be scaled using quantityPerSubnet. Before you can use nodeConfigDetails,
 	// you must first scale the node pool to 0 nodes using quantityPerSubnet.

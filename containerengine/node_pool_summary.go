@@ -53,7 +53,7 @@ type NodePoolSummary struct {
 	// The OCIDs of the subnets in which to place nodes for this node pool.
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
 
-	// The nodes configuration of the node pool.
+	// The configuration of nodes in the node pool.
 	NodeConfigDetails *NodePoolNodeConfigDetails `mandatory:"false" json:"nodeConfigDetails"`
 }
 

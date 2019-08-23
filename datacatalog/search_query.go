@@ -14,7 +14,12 @@ import (
 
 // SearchQuery Search Query object that allows complex search predicates that cannot be expressed through simple query params.
 type SearchQuery struct {
-	Predicate *SearchQueryPredicate `mandatory:"false" json:"predicate"`
+
+	// The set of attributes that is part of the search query criteria
+	Fields []string `mandatory:"false" json:"fields"`
+
+	// Qualifier query predicate expression. For example, this AND that OR thus
+	Predicate *string `mandatory:"false" json:"predicate"`
 }
 
 func (m SearchQuery) String() string {

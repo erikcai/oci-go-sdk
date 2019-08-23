@@ -11,27 +11,27 @@ import (
 // ListWorkRequestErrorsRequest wrapper for the ListWorkRequestErrors operation
 type ListWorkRequestErrorsRequest struct {
 
-	// The ID of the asynchronous request.
+	// The identifier of the asynchronous work request.
 	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
 
-	// The client request ID for tracing.
+	// The client request ID for tracing. This value is included in the opc-request-id response header.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The page token representing the page at which to start retrieving results. This is usually retrieved from a previous list call.
+	// The page at which to start retrieving results.
+	// You get this value from the `opc-next-page` header in a previous list request.
+	// To retireve the first page, omit this query parameter.
+	// Example: `MToxMA==`
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return.
+	// The maximum number of items to return per page.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The field to sort by. Only one sort order may be provided. Default order for TIMESTAMP and CODE is ascending.
-	// If no value is specified TIMESTAMP is the default.
+	// The field to sort by. You can specify only one sort order. If no value is specified, then the default is `TIMESTAMP`.
+	// The default sort order for both `TIMESTAMP` and `CODE` is ascending.
 	SortBy ListWorkRequestErrorsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either 'asc' or 'desc'.
+	// Sort the results in this order, use either `ASC` (ascending) or `DESC` (descending).
 	SortOrder ListWorkRequestErrorsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-
-	// Internal use only.
-	OpcOboToken *string `mandatory:"false" contributesTo:"header" name:"opc-obo-token"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
@@ -61,13 +61,13 @@ type ListWorkRequestErrorsResponse struct {
 	// A list of []WorkRequestError instances
 	Items []WorkRequestError `presentIn:"body"`
 
-	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then there might be additional items still to get. Include this value as the `page` parameter for the
-	// subsequent GET request.
+	// When you are paging through a list, if this header appears in the response,
+	// then there might be additional items still to get. Include this value as the
+	// `page` query parameter for the subsequent GET request.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
-	// particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you contact Oracle
+	// about this request, provide this request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

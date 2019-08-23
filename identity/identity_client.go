@@ -154,6 +154,51 @@ func (client IdentityClient) addUserToGroup(ctx context.Context, request common.
 	return response, err
 }
 
+// AssembleEffectiveTagSet Assembles tag defaults in the specified compartment and any parent compartments to determine
+// the tags to apply. Tag defaults from parent compartments do not override tag defaults
+// referencing the same tag in a compartment lower down the hierarchy. This set of tag defaults
+// includes all tag defaults from the current compartment back to the root compartment.
+func (client IdentityClient) AssembleEffectiveTagSet(ctx context.Context, request AssembleEffectiveTagSetRequest) (response AssembleEffectiveTagSetResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.assembleEffectiveTagSet, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = AssembleEffectiveTagSetResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(AssembleEffectiveTagSetResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into AssembleEffectiveTagSetResponse")
+	}
+	return
+}
+
+// assembleEffectiveTagSet implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) assembleEffectiveTagSet(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tagDefaults/actions/assembleEffectiveTagSet")
+	if err != nil {
+		return nil, err
+	}
+
+	var response AssembleEffectiveTagSetResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ChangeTagNamespaceCompartment Moves the specified tag namespace to the specified compartment within the same tenancy.
 // To move the tag namespace, you must have the manage tag-namespaces permission on both compartments.
 // For more information about IAM policies, see Details for IAM (https://docs.cloud.oracle.com/Content/Identity/Reference/iampolicyreference.htm).
@@ -976,6 +1021,9 @@ func (client IdentityClient) createSwiftPassword(ctx context.Context, request co
 // You must also specify a *description* for the tag.
 // It does not have to be unique, and you can change it with
 // UpdateTag.
+// If no 'validator' is set on this tag definition, then any (valid) value can be set for this definedTag.
+// If a 'validator' is set on this tag definition, then the only valid values that can be set for this
+// definedTag those that pass the additional validation imposed by the set 'validator'.
 func (client IdentityClient) CreateTag(ctx context.Context, request CreateTagRequest) (response CreateTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4774,7 +4822,10 @@ func (client IdentityClient) updateSwiftPassword(ctx context.Context, request co
 	return response, err
 }
 
-// UpdateTag Updates the the specified tag definition. You can update `description`, and `isRetired`.
+// UpdateTag Updates the specified tag definition.
+// Setting a 'validator' will enable enforcement of additional validation on values contained in the specified for
+// this definedTag. Any values that were previously set will not be changed, but any new value set for the
+// definedTag must pass validation.
 func (client IdentityClient) UpdateTag(ctx context.Context, request UpdateTagRequest) (response UpdateTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

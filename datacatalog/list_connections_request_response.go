@@ -118,6 +118,7 @@ const (
 	ListConnectionsFieldsDisplayname    ListConnectionsFieldsEnum = "displayName"
 	ListConnectionsFieldsDescription    ListConnectionsFieldsEnum = "description"
 	ListConnectionsFieldsDataassetkey   ListConnectionsFieldsEnum = "dataAssetKey"
+	ListConnectionsFieldsTypekey        ListConnectionsFieldsEnum = "typeKey"
 	ListConnectionsFieldsTimecreated    ListConnectionsFieldsEnum = "timeCreated"
 	ListConnectionsFieldsExternalkey    ListConnectionsFieldsEnum = "externalKey"
 	ListConnectionsFieldsLifecyclestate ListConnectionsFieldsEnum = "lifecycleState"
@@ -130,6 +131,7 @@ var mappingListConnectionsFields = map[string]ListConnectionsFieldsEnum{
 	"displayName":    ListConnectionsFieldsDisplayname,
 	"description":    ListConnectionsFieldsDescription,
 	"dataAssetKey":   ListConnectionsFieldsDataassetkey,
+	"typeKey":        ListConnectionsFieldsTypekey,
 	"timeCreated":    ListConnectionsFieldsTimecreated,
 	"externalKey":    ListConnectionsFieldsExternalkey,
 	"lifecycleState": ListConnectionsFieldsLifecyclestate,

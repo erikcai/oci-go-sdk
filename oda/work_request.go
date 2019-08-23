@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -12,43 +12,44 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequest A description of workrequest status
+// WorkRequest The description of work request, including its status.
 type WorkRequest struct {
 
-	// The id of the work request.
+	// The identifier of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The ocid of the compartment that contains the work request.
+	// The identifier of the compartment that contains the work request.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The ocid of the ODA instance to which this work request pertains.
+	// The identifier of the Digital Assistant instance to which this work request pertains.
 	OdaInstanceId *string `mandatory:"true" json:"odaInstanceId"`
 
-	// type of the operation associated with the work request
+	// The type of the operation that's associated with the work request.
 	RequestAction WorkRequestRequestActionEnum `mandatory:"true" json:"requestAction"`
 
-	// status of current work request.
+	// The status of current work request.
 	Status WorkRequestStatusEnum `mandatory:"true" json:"status"`
 
-	// The resources affected by this work request.
+	// The resources that this work request affects.
 	Resources []WorkRequestResource `mandatory:"true" json:"resources"`
 
 	// Percentage of the request completed.
 	PercentComplete *float32 `mandatory:"true" json:"percentComplete"`
 
-	// The date and time the request was created, as described in
+	// The date and time that the request was created, as described in
 	// RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeAccepted *common.SDKTime `mandatory:"true" json:"timeAccepted"`
 
-	// Short message providing more detail for the current status. For example, if a work request fails
-	// this may include information about the resource that failed
+	// A short message that provides more detail about the current status.
+	// For example, if a work request fails, then this may include information
+	// about why it failed.
 	StatusMessage *string `mandatory:"false" json:"statusMessage"`
 
-	// The date and time the request was started, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339),
+	// The date and time that the request was started, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339), CKQ
 	// section 14.29.
 	TimeStarted *common.SDKTime `mandatory:"false" json:"timeStarted"`
 
-	// The date and time the object was finished, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
+	// The date and time that the object finished, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339). CKQ
 	TimeFinished *common.SDKTime `mandatory:"false" json:"timeFinished"`
 }
 
@@ -61,21 +62,23 @@ type WorkRequestRequestActionEnum string
 
 // Set of constants representing the allowable values for WorkRequestRequestActionEnum
 const (
-	WorkRequestRequestActionCreateOdaInstance  WorkRequestRequestActionEnum = "CREATE_ODA_INSTANCE"
-	WorkRequestRequestActionDeleteOdaInstance  WorkRequestRequestActionEnum = "DELETE_ODA_INSTANCE"
-	WorkRequestRequestActionPurgeOdaInstance   WorkRequestRequestActionEnum = "PURGE_ODA_INSTANCE"
-	WorkRequestRequestActionRecoverOdaInstance WorkRequestRequestActionEnum = "RECOVER_ODA_INSTANCE"
-	WorkRequestRequestActionCreateAssociation  WorkRequestRequestActionEnum = "CREATE_ASSOCIATION"
-	WorkRequestRequestActionDeleteAssociation  WorkRequestRequestActionEnum = "DELETE_ASSOCIATION"
+	WorkRequestRequestActionCreateOdaInstance          WorkRequestRequestActionEnum = "CREATE_ODA_INSTANCE"
+	WorkRequestRequestActionDeleteOdaInstance          WorkRequestRequestActionEnum = "DELETE_ODA_INSTANCE"
+	WorkRequestRequestActionPurgeOdaInstance           WorkRequestRequestActionEnum = "PURGE_ODA_INSTANCE"
+	WorkRequestRequestActionRecoverOdaInstance         WorkRequestRequestActionEnum = "RECOVER_ODA_INSTANCE"
+	WorkRequestRequestActionCreateAssociation          WorkRequestRequestActionEnum = "CREATE_ASSOCIATION"
+	WorkRequestRequestActionDeleteAssociation          WorkRequestRequestActionEnum = "DELETE_ASSOCIATION"
+	WorkRequestRequestActionLookupOdaInstancesForCacct WorkRequestRequestActionEnum = "LOOKUP_ODA_INSTANCES_FOR_CACCT"
 )
 
 var mappingWorkRequestRequestAction = map[string]WorkRequestRequestActionEnum{
-	"CREATE_ODA_INSTANCE":  WorkRequestRequestActionCreateOdaInstance,
-	"DELETE_ODA_INSTANCE":  WorkRequestRequestActionDeleteOdaInstance,
-	"PURGE_ODA_INSTANCE":   WorkRequestRequestActionPurgeOdaInstance,
-	"RECOVER_ODA_INSTANCE": WorkRequestRequestActionRecoverOdaInstance,
-	"CREATE_ASSOCIATION":   WorkRequestRequestActionCreateAssociation,
-	"DELETE_ASSOCIATION":   WorkRequestRequestActionDeleteAssociation,
+	"CREATE_ODA_INSTANCE":            WorkRequestRequestActionCreateOdaInstance,
+	"DELETE_ODA_INSTANCE":            WorkRequestRequestActionDeleteOdaInstance,
+	"PURGE_ODA_INSTANCE":             WorkRequestRequestActionPurgeOdaInstance,
+	"RECOVER_ODA_INSTANCE":           WorkRequestRequestActionRecoverOdaInstance,
+	"CREATE_ASSOCIATION":             WorkRequestRequestActionCreateAssociation,
+	"DELETE_ASSOCIATION":             WorkRequestRequestActionDeleteAssociation,
+	"LOOKUP_ODA_INSTANCES_FOR_CACCT": WorkRequestRequestActionLookupOdaInstancesForCacct,
 }
 
 // GetWorkRequestRequestActionEnumValues Enumerates the set of values for WorkRequestRequestActionEnum

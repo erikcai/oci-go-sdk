@@ -20,11 +20,20 @@ type CustomAuthenticationPolicy struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle function resource.
 	FunctionId *string `mandatory:"true" json:"functionId"`
 
+	// Whether an unauthenticated user may access the API. Must be "true" to enable ANONYMOUS
+	// route authorization.
+	IsAnonymousAccessAllowed *bool `mandatory:"false" json:"isAnonymousAccessAllowed"`
+
 	// The name of the header containing the authentication token.
 	TokenHeader *string `mandatory:"false" json:"tokenHeader"`
 
 	// The name of the query parameter containing the authentication token.
 	TokenQueryParam *string `mandatory:"false" json:"tokenQueryParam"`
+}
+
+//GetIsAnonymousAccessAllowed returns IsAnonymousAccessAllowed
+func (m CustomAuthenticationPolicy) GetIsAnonymousAccessAllowed() *bool {
+	return m.IsAnonymousAccessAllowed
 }
 
 func (m CustomAuthenticationPolicy) String() string {

@@ -16,12 +16,18 @@ const (
 	JobTypeHarvest   JobTypeEnum = "HARVEST"
 	JobTypeProfiling JobTypeEnum = "PROFILING"
 	JobTypeSampling  JobTypeEnum = "SAMPLING"
+	JobTypePreview   JobTypeEnum = "PREVIEW"
+	JobTypeImport    JobTypeEnum = "IMPORT"
+	JobTypeExport    JobTypeEnum = "EXPORT"
 )
 
 var mappingJobType = map[string]JobTypeEnum{
 	"HARVEST":   JobTypeHarvest,
 	"PROFILING": JobTypeProfiling,
 	"SAMPLING":  JobTypeSampling,
+	"PREVIEW":   JobTypePreview,
+	"IMPORT":    JobTypeImport,
+	"EXPORT":    JobTypeExport,
 }
 
 // GetJobTypeEnumValues Enumerates the set of values for JobTypeEnum

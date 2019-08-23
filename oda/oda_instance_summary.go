@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -12,36 +12,44 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// OdaInstanceSummary Summary of the ODA instance
+// OdaInstanceSummary Summary of the Digital Assistant instance.
 type OdaInstanceSummary struct {
 
-	// Unique identifier of the ODA instance
+	// Unique identifier of the Digital Assistant instance.
 	Id *string `mandatory:"true" json:"id"`
 
-	// Compartment Identifier
+	// Identifier of the compartment that the instance belongs to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The current state of the ODA instance
+	// The current state of the instance.
 	LifecycleState OdaInstanceSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// Name of the ODA instance (can be modified)
+	// User-defined name for the Digital Assistant instance. You can change this value.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Description of the ODA instance
+	// Description of the Digital Assistant instance.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Shape or size of the instance
+	// Shape or size of the instance.
 	ShapeName OdaInstanceSummaryShapeNameEnum `mandatory:"false" json:"shapeName,omitempty"`
 
-	// The time the the ODA instance was created. An RFC3339 formatted datetime string
+	// When the Digital Assistant instance was created. A date-time string as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the ODA instance was updated. An RFC3339 formatted datetime string
+	// When the Digital Assistant instance was last updated. A date-time string as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
-	// An message describing the current state in more detail. For example, can be used to provide actionable
-	// information for a resource in Failed state.
+	// A message describing the current state in more detail. For example, actionable
+	// information about an instance that's in the `FAILED` state.
 	StateMessage *string `mandatory:"false" json:"stateMessage"`
+
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Example: `{"bar-key": "value"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"foo-namespace": {"bar-key": "value"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
 func (m OdaInstanceSummary) String() string {

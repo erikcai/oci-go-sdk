@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -12,22 +12,23 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateOdaInstanceDetails Properties required to create a new ODA instance
+// CreateOdaInstanceDetails Properties that are required to create a Digital Assistant instance.
 type CreateOdaInstanceDetails struct {
 
-	// Compartment Identifier
+	// Identifier of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Shape or size of the instance
+	// Shape or size of the instance.
 	ShapeName CreateOdaInstanceDetailsShapeNameEnum `mandatory:"true" json:"shapeName"`
 
-	// ODA instance Identifier
+	// User-friendly name for the instance. Avoid entering confidential information. You can change this value anytime.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Description of the ODA instance
+	// Description of the Digital Assistant instance.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for
+	// cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 

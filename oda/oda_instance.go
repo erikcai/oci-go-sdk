@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -12,43 +12,45 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// OdaInstance Description of OdaServiceInstance.
+// OdaInstance Description of `OdaServiceInstance` object.
 type OdaInstance struct {
 
-	// Unique identifier that is immutable on creation
+	// Unique immutable identifier that was assigned when the instance was created.
 	Id *string `mandatory:"true" json:"id"`
 
-	// Compartment Identifier
+	// Identifier of the compartment that the instance belongs to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Shape or size of the instance
+	// Shape or size of the instance.
 	ShapeName OdaInstanceShapeNameEnum `mandatory:"true" json:"shapeName"`
 
-	// OdaServiceInstance Identifier, can be renamed
+	// User-defined name for the Digital Assistant instance. Avoid entering confidential information.
+	// You can change this value.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Description of the ODA instance
+	// Description of the Digital Assistant instance.
 	Description *string `mandatory:"false" json:"description"`
 
-	// URL for the ODA web application associated with the instance
+	// URL for the Digital Assistant web application that's associated with the instance.
 	WebAppUrl *string `mandatory:"false" json:"webAppUrl"`
 
-	// URL for the Connectors endpoint
+	// URL for the connector's endpoint.
 	ConnectorUrl *string `mandatory:"false" json:"connectorUrl"`
 
-	// The time the the OdaServiceInstance was created. An RFC3339 formatted datetime string
+	// When the Digital Assistant instance was created. A date-time string as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the OdaServiceInstance was updated. An RFC3339 formatted datetime string
+	// When the Digital Assistance instance was last updated. A date-time string as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
-	// The current state of the ODA instance
+	// The current state of the Digital Assistant instance.
 	LifecycleState OdaInstanceLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
+	// A message that describes the current state in more detail.
+	// For example, actionable information about an instance that's in the `FAILED` state.
 	StateMessage *string `mandatory:"false" json:"stateMessage"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Simple key-value pair that is applied without any predefined name, type, or scope.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 

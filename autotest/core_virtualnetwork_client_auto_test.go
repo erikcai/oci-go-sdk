@@ -1355,6 +1355,49 @@ func TestVirtualNetworkClientCreateDrgAttachment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientCreateEndpointService(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateEndpointService")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateEndpointService is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateEndpointService", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateEndpointService")
+	assert.NoError(t, err)
+
+	type CreateEndpointServiceRequestInfo struct {
+		ContainerId string
+		Request     core.CreateEndpointServiceRequest
+	}
+
+	var requests []CreateEndpointServiceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreateEndpointService(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateFlowLogConfig(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -1735,6 +1778,92 @@ func TestVirtualNetworkClientCreateNetworkSecurityGroup(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateNetworkSecurityGroup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientCreatePrivateAccessGateway(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreatePrivateAccessGateway")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreatePrivateAccessGateway is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreatePrivateAccessGateway", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreatePrivateAccessGateway")
+	assert.NoError(t, err)
+
+	type CreatePrivateAccessGatewayRequestInfo struct {
+		ContainerId string
+		Request     core.CreatePrivateAccessGatewayRequest
+	}
+
+	var requests []CreatePrivateAccessGatewayRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreatePrivateAccessGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientCreatePrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreatePrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreatePrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreatePrivateEndpoint", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreatePrivateEndpoint")
+	assert.NoError(t, err)
+
+	type CreatePrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     core.CreatePrivateEndpointRequest
+	}
+
+	var requests []CreatePrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreatePrivateEndpoint(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2387,6 +2516,49 @@ func TestVirtualNetworkClientDeleteDrgAttachment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientDeleteEndpointService(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteEndpointService")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteEndpointService is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteEndpointService", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteEndpointService")
+	assert.NoError(t, err)
+
+	type DeleteEndpointServiceRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteEndpointServiceRequest
+	}
+
+	var requests []DeleteEndpointServiceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.DeleteEndpointService(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteFlowLogConfig(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2767,6 +2939,92 @@ func TestVirtualNetworkClientDeleteNetworkSecurityGroup(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteNetworkSecurityGroup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientDeletePrivateAccessGateway(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeletePrivateAccessGateway")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeletePrivateAccessGateway is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeletePrivateAccessGateway", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeletePrivateAccessGateway")
+	assert.NoError(t, err)
+
+	type DeletePrivateAccessGatewayRequestInfo struct {
+		ContainerId string
+		Request     core.DeletePrivateAccessGatewayRequest
+	}
+
+	var requests []DeletePrivateAccessGatewayRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.DeletePrivateAccessGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientDeletePrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeletePrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeletePrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeletePrivateEndpoint", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeletePrivateEndpoint")
+	assert.NoError(t, err)
+
+	type DeletePrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     core.DeletePrivateEndpointRequest
+	}
+
+	var requests []DeletePrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.DeletePrivateEndpoint(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3591,6 +3849,49 @@ func TestVirtualNetworkClientGetDrgAttachment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientGetEndpointService(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetEndpointService")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetEndpointService is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetEndpointService", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetEndpointService")
+	assert.NoError(t, err)
+
+	type GetEndpointServiceRequestInfo struct {
+		ContainerId string
+		Request     core.GetEndpointServiceRequest
+	}
+
+	var requests []GetEndpointServiceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetEndpointService(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientGetFastConnectProviderService(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -4229,6 +4530,135 @@ func TestVirtualNetworkClientGetNetworkSecurityGroup(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetNetworkSecurityGroup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientGetPrivateAccessGateway(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetPrivateAccessGateway")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPrivateAccessGateway is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetPrivateAccessGateway", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetPrivateAccessGateway")
+	assert.NoError(t, err)
+
+	type GetPrivateAccessGatewayRequestInfo struct {
+		ContainerId string
+		Request     core.GetPrivateAccessGatewayRequest
+	}
+
+	var requests []GetPrivateAccessGatewayRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetPrivateAccessGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientGetPrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetPrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetPrivateEndpoint", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetPrivateEndpoint")
+	assert.NoError(t, err)
+
+	type GetPrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     core.GetPrivateEndpointRequest
+	}
+
+	var requests []GetPrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetPrivateEndpoint(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientGetPrivateEndpointAssociation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetPrivateEndpointAssociation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPrivateEndpointAssociation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetPrivateEndpointAssociation", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetPrivateEndpointAssociation")
+	assert.NoError(t, err)
+
+	type GetPrivateEndpointAssociationRequestInfo struct {
+		ContainerId string
+		Request     core.GetPrivateEndpointAssociationRequest
+	}
+
+	var requests []GetPrivateEndpointAssociationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetPrivateEndpointAssociation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -5254,6 +5684,58 @@ func TestVirtualNetworkClientListDrgs(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientListEndpointServices(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListEndpointServices")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListEndpointServices is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListEndpointServices", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListEndpointServices")
+	assert.NoError(t, err)
+
+	type ListEndpointServicesRequestInfo struct {
+		ContainerId string
+		Request     core.ListEndpointServicesRequest
+	}
+
+	var requests []ListEndpointServicesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListEndpointServicesRequest)
+				return c.ListEndpointServices(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListEndpointServicesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListEndpointServicesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientListFastConnectProviderServices(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -5973,6 +6455,162 @@ func TestVirtualNetworkClientListNetworkSecurityGroups(t *testing.T) {
 			typedListResponses := make([]core.ListNetworkSecurityGroupsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(core.ListNetworkSecurityGroupsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientListPrivateAccessGateways(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListPrivateAccessGateways")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListPrivateAccessGateways is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListPrivateAccessGateways", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListPrivateAccessGateways")
+	assert.NoError(t, err)
+
+	type ListPrivateAccessGatewaysRequestInfo struct {
+		ContainerId string
+		Request     core.ListPrivateAccessGatewaysRequest
+	}
+
+	var requests []ListPrivateAccessGatewaysRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListPrivateAccessGatewaysRequest)
+				return c.ListPrivateAccessGateways(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListPrivateAccessGatewaysResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListPrivateAccessGatewaysResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientListPrivateEndpointAssociations(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListPrivateEndpointAssociations")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListPrivateEndpointAssociations is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListPrivateEndpointAssociations", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListPrivateEndpointAssociations")
+	assert.NoError(t, err)
+
+	type ListPrivateEndpointAssociationsRequestInfo struct {
+		ContainerId string
+		Request     core.ListPrivateEndpointAssociationsRequest
+	}
+
+	var requests []ListPrivateEndpointAssociationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListPrivateEndpointAssociationsRequest)
+				return c.ListPrivateEndpointAssociations(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListPrivateEndpointAssociationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListPrivateEndpointAssociationsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientListPrivateEndpoints(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListPrivateEndpoints")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListPrivateEndpoints is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListPrivateEndpoints", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListPrivateEndpoints")
+	assert.NoError(t, err)
+
+	type ListPrivateEndpointsRequestInfo struct {
+		ContainerId string
+		Request     core.ListPrivateEndpointsRequest
+	}
+
+	var requests []ListPrivateEndpointsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListPrivateEndpointsRequest)
+				return c.ListPrivateEndpoints(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListPrivateEndpointsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListPrivateEndpointsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -6898,6 +7536,49 @@ func TestVirtualNetworkClientUpdateDrgAttachment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientUpdateEndpointService(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateEndpointService")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateEndpointService is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateEndpointService", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateEndpointService")
+	assert.NoError(t, err)
+
+	type UpdateEndpointServiceRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateEndpointServiceRequest
+	}
+
+	var requests []UpdateEndpointServiceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateEndpointService(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateFlowLogConfig(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -7407,6 +8088,92 @@ func TestVirtualNetworkClientUpdateNetworkSecurityGroupSecurityRules(t *testing.
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateNetworkSecurityGroupSecurityRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientUpdatePrivateAccessGateway(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdatePrivateAccessGateway")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdatePrivateAccessGateway is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdatePrivateAccessGateway", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdatePrivateAccessGateway")
+	assert.NoError(t, err)
+
+	type UpdatePrivateAccessGatewayRequestInfo struct {
+		ContainerId string
+		Request     core.UpdatePrivateAccessGatewayRequest
+	}
+
+	var requests []UpdatePrivateAccessGatewayRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdatePrivateAccessGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientUpdatePrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdatePrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdatePrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdatePrivateEndpoint", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdatePrivateEndpoint")
+	assert.NoError(t, err)
+
+	type UpdatePrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     core.UpdatePrivateEndpointRequest
+	}
+
+	var requests []UpdatePrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdatePrivateEndpoint(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

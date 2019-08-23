@@ -23,6 +23,9 @@ type ListBackupDestinationRequest struct {
 	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
+	// A filter to return only resources that match the given type of the Backup Destination.
+	Type *string `mandatory:"false" contributesTo:"query" name:"type"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

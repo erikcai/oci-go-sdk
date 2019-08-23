@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -12,17 +12,17 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestError An error encountered while executing a work request.
+// WorkRequestError Description of the unexpected error that prevented completion of the request.
 type WorkRequestError struct {
 
-	// A machine-usable code for the error that occured. Error codes are listed on
+	// A machine-usable code for the error that occurred. Error codes are listed at
 	// (https://docs.cloud.oracle.com/Content/API/References/apierrors.htm)
 	Code *string `mandatory:"true" json:"code"`
 
-	// A human readable description of the issue encountered.
+	// A human-readable description of the issue.
 	Message *string `mandatory:"true" json:"message"`
 
-	// The time the error occured. An RFC3339 formatted datetime string.
+	// When the error occurred. A date-time string as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeStamp *common.SDKTime `mandatory:"true" json:"timeStamp"`
 }
 

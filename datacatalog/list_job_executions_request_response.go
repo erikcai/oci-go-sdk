@@ -41,7 +41,7 @@ type ListJobExecutionsRequest struct {
 	// The unique key of the parent execution or null if this Job Execution has no parent.
 	ParentKey *string `mandatory:"false" contributesTo:"query" name:"parentKey"`
 
-	// Time that the Job Execution was started or in the case of a future time, the time in which the job will start.
+	// Time that the Job Execution was started or in the case of a future time, the time in which the job will start
 	// An RFC3339 formatted datetime string.
 	TimeStart *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeStart"`
 

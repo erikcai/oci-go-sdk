@@ -11,14 +11,11 @@ import (
 // GetWorkRequestRequest wrapper for the GetWorkRequest operation
 type GetWorkRequestRequest struct {
 
-	// The ID of the asynchronous request.
+	// The identifier of the asynchronous work request.
 	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
 
-	// The client request ID for tracing.
+	// The client request ID for tracing. This value is included in the opc-request-id response header.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
-
-	// Internal use only.
-	OpcOboToken *string `mandatory:"false" contributesTo:"header" name:"opc-obo-token"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
@@ -48,12 +45,12 @@ type GetWorkRequestResponse struct {
 	// The WorkRequest instance
 	WorkRequest `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you contact Oracle
+	// about this request, provide this request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// a non-negative integer representing the number of seconds the client should wait before polling this endpoint again
+	// A non-negative integer representing the number of seconds the client should
+	// wait before polling this endpoint again.
 	RetryAfter *int `presentIn:"header" name:"retry-after"`
 }
 

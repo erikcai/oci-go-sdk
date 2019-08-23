@@ -1580,6 +1580,58 @@ func (client VirtualNetworkClient) createDrgAttachment(ctx context.Context, requ
 	return response, err
 }
 
+// CreateEndpointService Creates a new Endpoint Service in the specified compartment. For more information,
+// see Managing Services (https://docs.cloud.oracle.com/Content/Network/Tasks/managingEndpointServices.htm).
+// You may optionally specify a *display name* for the Endpoint Service, otherwise a default is provided.
+// For more information about compartments and access control, see
+// Overview of the IAM Service (https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+// For information about OCIDs, see Resource Identifiers (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+func (client VirtualNetworkClient) CreateEndpointService(ctx context.Context, request CreateEndpointServiceRequest) (response CreateEndpointServiceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createEndpointService, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateEndpointServiceResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateEndpointServiceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateEndpointServiceResponse")
+	}
+	return
+}
+
+// createEndpointService implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createEndpointService(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/endpointServices")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateEndpointServiceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateFlowLogConfig Creates a new flow log configuration in the specified compartment.
 func (client VirtualNetworkClient) CreateFlowLogConfig(ctx context.Context, request CreateFlowLogConfigRequest) (response CreateFlowLogConfigResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2033,6 +2085,109 @@ func (client VirtualNetworkClient) createNetworkSecurityGroup(ctx context.Contex
 	}
 
 	var response CreateNetworkSecurityGroupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreatePrivateAccessGateway Creates a new Private Access Gateway in the specified compartment. For more information,
+// see Managing Private Access Gateway (https://docs.cloud.oracle.com/Content/Network/Tasks/managingPrivateAccessGateways.htm).
+// You may optionally specify a *display name* for the private access gateway, otherwise a default is provided.
+// This api is for service provider to create a Private Access Gateway per VCN.
+// Service Provider will then create a PA GW route in relevant VCN to respond to client connections.
+// For more information about compartments and access control, see
+// Overview of the IAM Service (https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+// For information about OCIDs, see Resource Identifiers (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+func (client VirtualNetworkClient) CreatePrivateAccessGateway(ctx context.Context, request CreatePrivateAccessGatewayRequest) (response CreatePrivateAccessGatewayResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createPrivateAccessGateway, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreatePrivateAccessGatewayResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreatePrivateAccessGatewayResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreatePrivateAccessGatewayResponse")
+	}
+	return
+}
+
+// createPrivateAccessGateway implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createPrivateAccessGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/privateAccessGateways")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreatePrivateAccessGatewayResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreatePrivateEndpoint Creates a new Private Endpoint in the specified compartment.
+// You may optionally specify a *display name* for the Private Endpoint, otherwise a default is provided.
+// It does not have to be unique, and you can change it. Avoid entering confidential information.
+func (client VirtualNetworkClient) CreatePrivateEndpoint(ctx context.Context, request CreatePrivateEndpointRequest) (response CreatePrivateEndpointResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createPrivateEndpoint, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreatePrivateEndpointResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreatePrivateEndpointResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreatePrivateEndpointResponse")
+	}
+	return
+}
+
+// createPrivateEndpoint implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createPrivateEndpoint(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/privateEndpoints")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreatePrivateEndpointResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2843,6 +2998,49 @@ func (client VirtualNetworkClient) deleteDrgAttachment(ctx context.Context, requ
 	return response, err
 }
 
+// DeleteEndpointService Deletes the specified Endpoint Service.
+// There must not be any Private Endpoint associated with the EndpointService. - if there are any, delete will be forbidden.
+func (client VirtualNetworkClient) DeleteEndpointService(ctx context.Context, request DeleteEndpointServiceRequest) (response DeleteEndpointServiceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteEndpointService, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteEndpointServiceResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteEndpointServiceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteEndpointServiceResponse")
+	}
+	return
+}
+
+// deleteEndpointService implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteEndpointService(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/endpointServices/{endpointServiceId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteEndpointServiceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteFlowLogConfig Deletes the specified flow log configuration. It must not be attached to a resource.
 func (client VirtualNetworkClient) DeleteFlowLogConfig(ctx context.Context, request DeleteFlowLogConfigRequest) (response DeleteFlowLogConfigResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3232,6 +3430,90 @@ func (client VirtualNetworkClient) deleteNetworkSecurityGroup(ctx context.Contex
 	}
 
 	var response DeleteNetworkSecurityGroupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeletePrivateAccessGateway Deletes the specified Private Access Gateway.
+func (client VirtualNetworkClient) DeletePrivateAccessGateway(ctx context.Context, request DeletePrivateAccessGatewayRequest) (response DeletePrivateAccessGatewayResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deletePrivateAccessGateway, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeletePrivateAccessGatewayResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeletePrivateAccessGatewayResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeletePrivateAccessGatewayResponse")
+	}
+	return
+}
+
+// deletePrivateAccessGateway implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deletePrivateAccessGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/privateAccessGateways/{privateAccessGatewayId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeletePrivateAccessGatewayResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeletePrivateEndpoint Delete a specifed Private Endpoint.
+func (client VirtualNetworkClient) DeletePrivateEndpoint(ctx context.Context, request DeletePrivateEndpointRequest) (response DeletePrivateEndpointResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deletePrivateEndpoint, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeletePrivateEndpointResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeletePrivateEndpointResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeletePrivateEndpointResponse")
+	}
+	return
+}
+
+// deletePrivateEndpoint implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deletePrivateEndpoint(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/privateEndpoints/{privateEndpointId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeletePrivateEndpointResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -4090,6 +4372,48 @@ func (client VirtualNetworkClient) getDrgAttachment(ctx context.Context, request
 	return response, err
 }
 
+// GetEndpointService Gets the specified Endpoint Service's information.
+func (client VirtualNetworkClient) GetEndpointService(ctx context.Context, request GetEndpointServiceRequest) (response GetEndpointServiceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getEndpointService, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetEndpointServiceResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetEndpointServiceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetEndpointServiceResponse")
+	}
+	return
+}
+
+// getEndpointService implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getEndpointService(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/endpointServices/{endpointServiceId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetEndpointServiceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetFastConnectProviderService Gets the specified provider service.
 // For more information, see FastConnect Overview (https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
 func (client VirtualNetworkClient) GetFastConnectProviderService(ctx context.Context, request GetFastConnectProviderServiceRequest) (response GetFastConnectProviderServiceResponse, err error) {
@@ -4725,6 +5049,132 @@ func (client VirtualNetworkClient) getNetworkSecurityGroup(ctx context.Context, 
 	}
 
 	var response GetNetworkSecurityGroupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetPrivateAccessGateway Gets the specified Private Access Gateway's information.
+func (client VirtualNetworkClient) GetPrivateAccessGateway(ctx context.Context, request GetPrivateAccessGatewayRequest) (response GetPrivateAccessGatewayResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getPrivateAccessGateway, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetPrivateAccessGatewayResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetPrivateAccessGatewayResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetPrivateAccessGatewayResponse")
+	}
+	return
+}
+
+// getPrivateAccessGateway implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getPrivateAccessGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/privateAccessGateways/{privateAccessGatewayId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetPrivateAccessGatewayResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetPrivateEndpoint Get the specified Private Endpoint's information
+func (client VirtualNetworkClient) GetPrivateEndpoint(ctx context.Context, request GetPrivateEndpointRequest) (response GetPrivateEndpointResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getPrivateEndpoint, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetPrivateEndpointResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetPrivateEndpointResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetPrivateEndpointResponse")
+	}
+	return
+}
+
+// getPrivateEndpoint implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getPrivateEndpoint(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/privateEndpoints/{privateEndpointId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetPrivateEndpointResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetPrivateEndpointAssociation Gets the private Endpoint association to this Endpoint Service for the specified Private Endpoint.
+func (client VirtualNetworkClient) GetPrivateEndpointAssociation(ctx context.Context, request GetPrivateEndpointAssociationRequest) (response GetPrivateEndpointAssociationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getPrivateEndpointAssociation, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetPrivateEndpointAssociationResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetPrivateEndpointAssociationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetPrivateEndpointAssociationResponse")
+	}
+	return
+}
+
+// getPrivateEndpointAssociation implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getPrivateEndpointAssociation(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/endpointServices/{endpointServiceId}/privateEndpointAssociations/{privateEndpointId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetPrivateEndpointAssociationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -5694,6 +6144,48 @@ func (client VirtualNetworkClient) listDrgs(ctx context.Context, request common.
 	return response, err
 }
 
+// ListEndpointServices Lists all Endpoint Service resources filtered by service provider compartment and optionally service provider's VCN OCID.
+func (client VirtualNetworkClient) ListEndpointServices(ctx context.Context, request ListEndpointServicesRequest) (response ListEndpointServicesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listEndpointServices, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListEndpointServicesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListEndpointServicesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListEndpointServicesResponse")
+	}
+	return
+}
+
+// listEndpointServices implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listEndpointServices(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/endpointServices")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListEndpointServicesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListFastConnectProviderServices Lists the service offerings from supported providers. You need this
 // information so you can specify your desired provider and service
 // offering when you create a virtual circuit.
@@ -6286,6 +6778,132 @@ func (client VirtualNetworkClient) listNetworkSecurityGroups(ctx context.Context
 	}
 
 	var response ListNetworkSecurityGroupsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListPrivateAccessGateways Lists all Private Access Gateway resources filtered by service provider compartment
+func (client VirtualNetworkClient) ListPrivateAccessGateways(ctx context.Context, request ListPrivateAccessGatewaysRequest) (response ListPrivateAccessGatewaysResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listPrivateAccessGateways, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListPrivateAccessGatewaysResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListPrivateAccessGatewaysResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListPrivateAccessGatewaysResponse")
+	}
+	return
+}
+
+// listPrivateAccessGateways implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listPrivateAccessGateways(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/privateAccessGateways")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListPrivateAccessGatewaysResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListPrivateEndpointAssociations Gets all the Private Endpoints associations to this Endpoint Service.
+func (client VirtualNetworkClient) ListPrivateEndpointAssociations(ctx context.Context, request ListPrivateEndpointAssociationsRequest) (response ListPrivateEndpointAssociationsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listPrivateEndpointAssociations, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListPrivateEndpointAssociationsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListPrivateEndpointAssociationsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListPrivateEndpointAssociationsResponse")
+	}
+	return
+}
+
+// listPrivateEndpointAssociations implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listPrivateEndpointAssociations(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/endpointServices/{endpointServiceId}/privateEndpointAssociations")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListPrivateEndpointAssociationsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListPrivateEndpoints List the Private Endpoints in the specified compartment. You may optionally specify the Subnet OCID to filter the result by Subnet.
+func (client VirtualNetworkClient) ListPrivateEndpoints(ctx context.Context, request ListPrivateEndpointsRequest) (response ListPrivateEndpointsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listPrivateEndpoints, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListPrivateEndpointsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListPrivateEndpointsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListPrivateEndpointsResponse")
+	}
+	return
+}
+
+// listPrivateEndpoints implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listPrivateEndpoints(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/privateEndpoints")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListPrivateEndpointsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -7132,6 +7750,48 @@ func (client VirtualNetworkClient) updateDrgAttachment(ctx context.Context, requ
 	return response, err
 }
 
+// UpdateEndpointService Updates the specified Endpoint Service.
+func (client VirtualNetworkClient) UpdateEndpointService(ctx context.Context, request UpdateEndpointServiceRequest) (response UpdateEndpointServiceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateEndpointService, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateEndpointServiceResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateEndpointServiceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateEndpointServiceResponse")
+	}
+	return
+}
+
+// updateEndpointService implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateEndpointService(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/endpointServices/{endpointServiceId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateEndpointServiceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // UpdateFlowLogConfig Updates a flow log configuration.
 func (client VirtualNetworkClient) UpdateFlowLogConfig(ctx context.Context, request UpdateFlowLogConfigRequest) (response UpdateFlowLogConfigResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -7653,6 +8313,91 @@ func (client VirtualNetworkClient) updateNetworkSecurityGroupSecurityRules(ctx c
 	}
 
 	var response UpdateNetworkSecurityGroupSecurityRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdatePrivateAccessGateway Update an existing Private Access Gateway. For more information,
+// see Managing Private Access Gateway (https://docs.cloud.oracle.com/Content/Network/Tasks/managingPrivateAccessGateways.htm).
+func (client VirtualNetworkClient) UpdatePrivateAccessGateway(ctx context.Context, request UpdatePrivateAccessGatewayRequest) (response UpdatePrivateAccessGatewayResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updatePrivateAccessGateway, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdatePrivateAccessGatewayResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdatePrivateAccessGatewayResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdatePrivateAccessGatewayResponse")
+	}
+	return
+}
+
+// updatePrivateAccessGateway implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updatePrivateAccessGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/privateAccessGateways/{privateAccessGatewayId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdatePrivateAccessGatewayResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdatePrivateEndpoint Update an existing Private Endpoint.
+func (client VirtualNetworkClient) UpdatePrivateEndpoint(ctx context.Context, request UpdatePrivateEndpointRequest) (response UpdatePrivateEndpointResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updatePrivateEndpoint, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdatePrivateEndpointResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdatePrivateEndpointResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdatePrivateEndpointResponse")
+	}
+	return
+}
+
+// updatePrivateEndpoint implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updatePrivateEndpoint(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/privateEndpoints/{privateEndpointId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdatePrivateEndpointResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

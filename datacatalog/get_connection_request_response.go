@@ -80,6 +80,7 @@ const (
 	GetConnectionFieldsDisplayname       GetConnectionFieldsEnum = "displayName"
 	GetConnectionFieldsDescription       GetConnectionFieldsEnum = "description"
 	GetConnectionFieldsDataassetkey      GetConnectionFieldsEnum = "dataAssetKey"
+	GetConnectionFieldsTypekey           GetConnectionFieldsEnum = "typeKey"
 	GetConnectionFieldsTimecreated       GetConnectionFieldsEnum = "timeCreated"
 	GetConnectionFieldsTimeupdated       GetConnectionFieldsEnum = "timeUpdated"
 	GetConnectionFieldsCreatedbyid       GetConnectionFieldsEnum = "createdById"
@@ -97,6 +98,7 @@ var mappingGetConnectionFields = map[string]GetConnectionFieldsEnum{
 	"displayName":       GetConnectionFieldsDisplayname,
 	"description":       GetConnectionFieldsDescription,
 	"dataAssetKey":      GetConnectionFieldsDataassetkey,
+	"typeKey":           GetConnectionFieldsTypekey,
 	"timeCreated":       GetConnectionFieldsTimecreated,
 	"timeUpdated":       GetConnectionFieldsTimeupdated,
 	"createdById":       GetConnectionFieldsCreatedbyid,

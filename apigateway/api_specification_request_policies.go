@@ -22,10 +22,6 @@ type ApiSpecificationRequestPolicies struct {
 	// Rate limiting policy for the incoming API requests.
 	RateLimiting *RateLimitingPolicy `mandatory:"false" json:"rateLimiting"`
 
-	// If the request has been authenticated, validate that the given scope
-	// is active for the request.
-	AuthorizeScope *AuthorizeScopePolicy `mandatory:"false" json:"authorizeScope"`
-
 	// Enable CORS (Cross-Origin-Resource-Sharing) request handling.
 	Cors *CorsPolicy `mandatory:"false" json:"cors"`
 }
@@ -37,10 +33,9 @@ func (m ApiSpecificationRequestPolicies) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *ApiSpecificationRequestPolicies) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		Authentication authenticationpolicy  `json:"authentication"`
-		RateLimiting   *RateLimitingPolicy   `json:"rateLimiting"`
-		AuthorizeScope *AuthorizeScopePolicy `json:"authorizeScope"`
-		Cors           *CorsPolicy           `json:"cors"`
+		Authentication authenticationpolicy `json:"authentication"`
+		RateLimiting   *RateLimitingPolicy  `json:"rateLimiting"`
+		Cors           *CorsPolicy          `json:"cors"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -57,7 +52,6 @@ func (m *ApiSpecificationRequestPolicies) UnmarshalJSON(data []byte) (e error) {
 		m.Authentication = nil
 	}
 	m.RateLimiting = model.RateLimiting
-	m.AuthorizeScope = model.AuthorizeScope
 	m.Cors = model.Cors
 	return
 }

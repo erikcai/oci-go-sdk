@@ -14,20 +14,29 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RedirectRule An object that represents the action of returning a specified response code along with the redirect URI
-// configured for the listener for a specific path.
+// RedirectRule An object that represents the action of returning a specified response code and a redirect URI. Each RedirectRule
+// object is configured for a particular listener and a designated path.
 // The default response code is `302 Moved Temporarily`.
-// This rule applies only to HTTP listeners. Only one `RedirectRule` object can be present in
-// a given listener for a given originalPath.
-// **NOTE:** User can specify this rule only with the RuleCondition of type 'PATH'.
+// **NOTES:**
+// *  This rule applies only to HTTP listeners.
+// *  You can specify this rule only with the RuleCondition
+//    type `PATH`.
+// *  A listener can have only one RedirectRule object for a given original path. The
+//   PathMatchCondition `attributeValue` specifies the
+//   original path.
 type RedirectRule struct {
 	Conditions []RuleCondition `mandatory:"true" json:"conditions"`
 
-	// The HTTP status code to return when the redirection is performed.
-	// The associated status line returned with the code is mapped from the standard HTTP specification.
-	// Valid response codes for redirection are 301, 302, 303, 307 and 308.
-	// The default value is `302 (Moved Temporarily)`.
-	// Example: 301
+	// The HTTP status code to return when the incoming request is redirected.
+	// The status line returned with the code is mapped from the standard HTTP specification. Valid response
+	// codes for redirection are:
+	// *  301
+	// *  302
+	// *  303
+	// *  307
+	// *  308
+	// The default value is `302` (Moved Temporarily).
+	// Example: `301`
 	ResponseCode *int `mandatory:"false" json:"responseCode"`
 
 	RedirectUri *RedirectUri `mandatory:"false" json:"redirectUri"`

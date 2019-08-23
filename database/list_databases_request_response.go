@@ -15,7 +15,10 @@ type ListDatabasesRequest struct {
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// A database home OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-	DbHomeId *string `mandatory:"true" contributesTo:"query" name:"dbHomeId"`
+	DbHomeId *string `mandatory:"false" contributesTo:"query" name:"dbHomeId"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a DB system or a VM cluster that you want to filter the database results by.
+	SystemId *string `mandatory:"false" contributesTo:"query" name:"systemId"`
 
 	// The maximum number of items to return per page.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`

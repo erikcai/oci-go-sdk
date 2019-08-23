@@ -8,8 +8,8 @@ import (
 	"net/http"
 )
 
-// DeleteGlossaryTermRequest wrapper for the DeleteGlossaryTerm operation
-type DeleteGlossaryTermRequest struct {
+// ExpandTreeForGlossaryRequest wrapper for the ExpandTreeForGlossary operation
+type ExpandTreeForGlossaryRequest struct {
 
 	// unique Catalog identifier
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
@@ -17,54 +17,57 @@ type DeleteGlossaryTermRequest struct {
 	// Unique Glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// Unique Glossary Term key.
-	TermKey *string `mandatory:"true" contributesTo:"path" name:"termKey"`
-
-	// For optimistic concurrency control. In the PUT or DELETE call
-	// for a resource, set the `if-match` parameter to the value of the
-	// etag from a previous GET or POST response for that resource.
-	// The resource will be updated or deleted only if the etag you
-	// provide matches the resource's current etag value.
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
-
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
+
+	// A token that uniquely identifies a request so it can be retried in case of a timeout or
+	// server error without risk of executing that same action again. Retry tokens expire after 24
+	// hours, but can be invalidated before then due to conflicting operations. For example, if a resource
+	// has been deleted and purged from the system, then a retry of the original creation request
+	// might be rejected.
+	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
 }
 
-func (request DeleteGlossaryTermRequest) String() string {
+func (request ExpandTreeForGlossaryRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request DeleteGlossaryTermRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ExpandTreeForGlossaryRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request DeleteGlossaryTermRequest) RetryPolicy() *common.RetryPolicy {
+func (request ExpandTreeForGlossaryRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// DeleteGlossaryTermResponse wrapper for the DeleteGlossaryTerm operation
-type DeleteGlossaryTermResponse struct {
+// ExpandTreeForGlossaryResponse wrapper for the ExpandTreeForGlossary operation
+type ExpandTreeForGlossaryResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
+
+	// The []GlossaryTreeElement instance
+	Items []GlossaryTreeElement `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response DeleteGlossaryTermResponse) String() string {
+func (response ExpandTreeForGlossaryResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response DeleteGlossaryTermResponse) HTTPResponse() *http.Response {
+func (response ExpandTreeForGlossaryResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

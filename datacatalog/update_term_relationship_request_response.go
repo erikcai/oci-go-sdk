@@ -8,8 +8,8 @@ import (
 	"net/http"
 )
 
-// UpdateGlossaryTermRequest wrapper for the UpdateGlossaryTerm operation
-type UpdateGlossaryTermRequest struct {
+// UpdateTermRelationshipRequest wrapper for the UpdateTermRelationship operation
+type UpdateTermRelationshipRequest struct {
 
 	// unique Catalog identifier
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
@@ -20,8 +20,11 @@ type UpdateGlossaryTermRequest struct {
 	// Unique Glossary Term key.
 	TermKey *string `mandatory:"true" contributesTo:"path" name:"termKey"`
 
-	// The information to be updated in the Term.
-	UpdateTermDetails `contributesTo:"body"`
+	// Unique Glossary Term Relationship key.
+	TermRelationshipKey *string `mandatory:"true" contributesTo:"path" name:"termRelationshipKey"`
+
+	// The information to be updated in the Term Relationship.
+	UpdateTermRelationshipDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
 	// for a resource, set the `if-match` parameter to the value of the
@@ -38,28 +41,28 @@ type UpdateGlossaryTermRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request UpdateGlossaryTermRequest) String() string {
+func (request UpdateTermRelationshipRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request UpdateGlossaryTermRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request UpdateTermRelationshipRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request UpdateGlossaryTermRequest) RetryPolicy() *common.RetryPolicy {
+func (request UpdateTermRelationshipRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// UpdateGlossaryTermResponse wrapper for the UpdateGlossaryTerm operation
-type UpdateGlossaryTermResponse struct {
+// UpdateTermRelationshipResponse wrapper for the UpdateTermRelationship operation
+type UpdateTermRelationshipResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The Term instance
-	Term `presentIn:"body"`
+	// The TermRelationship instance
+	TermRelationship `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -69,11 +72,11 @@ type UpdateGlossaryTermResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response UpdateGlossaryTermResponse) String() string {
+func (response UpdateTermRelationshipResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response UpdateGlossaryTermResponse) HTTPResponse() *http.Response {
+func (response UpdateTermRelationshipResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

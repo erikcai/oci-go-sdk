@@ -46,10 +46,6 @@ type Job struct {
 	// special strings. For example, @hourly will run the job every hour.
 	ScheduleCronExpression *int `mandatory:"false" json:"scheduleCronExpression"`
 
-	// Time of the day the execution is scheduled. An RFC3339 formatted time only string.
-	// Example: `21:10:00Z`
-	TimeScheduled *common.SDKTime `mandatory:"false" json:"timeScheduled"`
-
 	// Date that the schedule should be operational. An RFC3339 formatted datetime string.
 	TimeScheduleBegin *common.SDKTime `mandatory:"false" json:"timeScheduleBegin"`
 
@@ -68,6 +64,13 @@ type Job struct {
 
 	// Internal Version of the Job resource
 	InternalVersion *string `mandatory:"false" json:"internalVersion"`
+
+	// The total number of executions for this job schedule.
+	ExecutionCount *int `mandatory:"false" json:"executionCount"`
+
+	// The date and time of the most recent execution for this Job, in the format defined by RFC3339.
+	// Example: `2019-03-25T21:10:29.600Z`
+	TimeOfLatestExecution *common.SDKTime `mandatory:"false" json:"timeOfLatestExecution"`
 
 	// Id (OCID) of the user who created this job.
 	CreatedById *string `mandatory:"false" json:"createdById"`

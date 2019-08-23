@@ -15,11 +15,16 @@ import (
 
 // AuthenticationPolicy Information on how to authenticate incoming requests.
 type AuthenticationPolicy interface {
+
+	// Whether an unauthenticated user may access the API. Must be "true" to enable ANONYMOUS
+	// route authorization.
+	GetIsAnonymousAccessAllowed() *bool
 }
 
 type authenticationpolicy struct {
-	JsonData []byte
-	Type     string `json:"type"`
+	JsonData                 []byte
+	IsAnonymousAccessAllowed *bool  `mandatory:"false" json:"isAnonymousAccessAllowed"`
+	Type                     string `json:"type"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -33,6 +38,7 @@ func (m *authenticationpolicy) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
+	m.IsAnonymousAccessAllowed = s.Model.IsAnonymousAccessAllowed
 	m.Type = s.Model.Type
 
 	return err
@@ -54,6 +60,11 @@ func (m *authenticationpolicy) UnmarshalPolymorphicJSON(data []byte) (interface{
 	default:
 		return *m, nil
 	}
+}
+
+//GetIsAnonymousAccessAllowed returns IsAnonymousAccessAllowed
+func (m authenticationpolicy) GetIsAnonymousAccessAllowed() *bool {
+	return m.IsAnonymousAccessAllowed
 }
 
 func (m authenticationpolicy) String() string {

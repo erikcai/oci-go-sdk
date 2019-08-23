@@ -58,6 +58,9 @@ type Term struct {
 	// URI to the Term instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
+	// The number of objects tagged with this term
+	AssociatedObjectCount *int `mandatory:"false" json:"associatedObjectCount"`
+
 	// Array of objects associated to a term.
 	AssociatedObjects []TermAssociatedObject `mandatory:"false" json:"associatedObjects"`
 }

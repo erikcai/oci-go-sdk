@@ -17,11 +17,11 @@ import (
 // NodePoolPlacementConfigDetails The location where a node pool will place nodes.
 type NodePoolPlacementConfigDetails struct {
 
-	// The availability domain to place nodes.
+	// The availability domain in which to place nodes.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
-	// The OCID of the subnet to place nodes.
+	// The OCID of the subnet in which to place nodes.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 }
 

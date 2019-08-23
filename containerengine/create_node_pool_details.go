@@ -53,7 +53,7 @@ type CreateNodePoolDetails struct {
 	// subnetIds or nodeConfigDetails properties must be specified.
 	SubnetIds []string `mandatory:"false" json:"subnetIds"`
 
-	// The nodes configuration of the node pool. Exactly one of the
+	// The configuration of nodes in the node pool. Exactly one of the
 	// subnetIds or nodeConfigDetails properties must be specified.
 	NodeConfigDetails *CreateNodePoolNodeConfigDetails `mandatory:"false" json:"nodeConfigDetails"`
 }

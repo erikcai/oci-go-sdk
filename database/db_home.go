@@ -30,6 +30,9 @@ type DbHome struct {
 	// The Oracle Database version.
 	DbVersion *string `mandatory:"true" json:"dbVersion"`
 
+	// The location of the Oracle Database home.
+	DbHomeLocation *string `mandatory:"true" json:"dbHomeLocation"`
+
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as a patch operation is started.
 	LastPatchHistoryEntryId *string `mandatory:"false" json:"lastPatchHistoryEntryId"`
 

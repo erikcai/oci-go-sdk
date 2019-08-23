@@ -32,6 +32,9 @@ type ListTypesRequest struct {
 	// Data Type as defined in an external system.
 	ExternalTypeName *string `mandatory:"false" contributesTo:"query" name:"externalTypeName"`
 
+	// Indicates the category of this type . For example data assets or connections.
+	TypeCategory *string `mandatory:"false" contributesTo:"query" name:"typeCategory"`
+
 	// Used to control which fields are returned in a Type summary response.
 	Fields []ListTypesFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
@@ -107,6 +110,7 @@ const (
 	ListTypesFieldsName           ListTypesFieldsEnum = "name"
 	ListTypesFieldsCatalogid      ListTypesFieldsEnum = "catalogId"
 	ListTypesFieldsLifecyclestate ListTypesFieldsEnum = "lifecycleState"
+	ListTypesFieldsTypecategory   ListTypesFieldsEnum = "typeCategory"
 	ListTypesFieldsUri            ListTypesFieldsEnum = "uri"
 )
 
@@ -116,6 +120,7 @@ var mappingListTypesFields = map[string]ListTypesFieldsEnum{
 	"name":           ListTypesFieldsName,
 	"catalogId":      ListTypesFieldsCatalogid,
 	"lifecycleState": ListTypesFieldsLifecyclestate,
+	"typeCategory":   ListTypesFieldsTypecategory,
 	"uri":            ListTypesFieldsUri,
 }
 

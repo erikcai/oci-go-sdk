@@ -19,6 +19,9 @@ type CreateConnectionDetails struct {
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
+	// The key of the object type. Type key's can be found via the '/types' endpoint.
+	TypeKey *string `mandatory:"true" json:"typeKey"`
+
 	// A map of maps which contains the properties which are specific to the connection type. Each connection type
 	// definition defines it's set of required and optional properties. The map keys are category names and the
 	// values are maps of property name to property value. Every property is contained inside of a category. Most

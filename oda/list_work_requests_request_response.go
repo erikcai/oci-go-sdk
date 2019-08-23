@@ -11,30 +11,30 @@ import (
 // ListWorkRequestsRequest wrapper for the ListWorkRequests operation
 type ListWorkRequestsRequest struct {
 
-	// The ID of the compartment in which to list resources.
+	// List the Digital Assistant instances that belong to this compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The client request ID for tracing.
+	// The client request ID for tracing. This value is included in the opc-request-id response header.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// unique ODA instance identifier
+	// List only the information for this Digital Assistant instance.
 	OdaInstanceId *string `mandatory:"false" contributesTo:"query" name:"odaInstanceId"`
 
-	// The page token representing the page at which to start retrieving results. This is usually retrieved from a previous list call.
+	// The page at which to start retrieving results.
+	// You get this value from the `opc-next-page` header in a previous list request.
+	// To retireve the first page, omit this query parameter.
+	// Example: `MToxMA==`
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return.
+	// The maximum number of items to return per page.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The field to sort by. Only one sort order may be provided. Default order for TIME* properties is descending.
-	// Default order for DISPLAYNAME and STATUS is ascending. If no value is specified TIME_ACCEPTED is default.
+	// The field to sort by. You can specify only one sort order. If no value is specified, then the default is `TIME_ACCEPTED`.
+	// The default sort order for the time fields is descending. The default order for `DISPLAYNAME` and `STATUS` is ascending.default: TIME_ACCEPTED
 	SortBy ListWorkRequestsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either 'asc' or 'desc'.
+	// Sort the results in this order, use either `ASC` (ascending) or `DESC` (descending).
 	SortOrder ListWorkRequestsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-
-	// Internal use only.
-	OpcOboToken *string `mandatory:"false" contributesTo:"header" name:"opc-obo-token"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
@@ -64,14 +64,13 @@ type ListWorkRequestsResponse struct {
 	// A list of []WorkRequestSummary instances
 	Items []WorkRequestSummary `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you contact Oracle
+	// about this request, provide this request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then a partial list might have been returned. Include this value as the `page` parameter for the
-	// subsequent GET request to get the next batch of items.
+	// When you are paging through a list, if this header appears in the response,
+	// then there might be additional items still to get. Include this value as the
+	// `page` query parameter for the subsequent GET request.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

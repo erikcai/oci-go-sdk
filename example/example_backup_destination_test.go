@@ -19,7 +19,6 @@ var (
 	displayNameBackupDestination, localMountPath string
 )
 
-
 func ExampleCreateNFSBackupDestination() {
 	c, clerr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(clerr)
@@ -27,9 +26,9 @@ func ExampleCreateNFSBackupDestination() {
 	compartmentId := os.Getenv("OCI_COMPARTMENT_ID")
 
 	createBackupDestinationDetails := database.CreateNfsBackupDestinationDetails{
-		CompartmentId:        &compartmentId,
-		DisplayName:          &displayNameBackupDestination,
-		LocalMountPointPath:  common.String("path"),
+		CompartmentId:       &compartmentId,
+		DisplayName:         &displayNameBackupDestination,
+		LocalMountPointPath: common.String("path"),
 	}
 
 	createbackupdestinationReq := database.CreateBackupDestinationRequest{
@@ -45,13 +44,13 @@ func ExampleCreateNFSBackupDestination() {
 	// create backup destination is successful
 }
 
-func ExampleGetBackupDestination(){
+func ExampleGetBackupDestination() {
 	c, clerr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(clerr)
 
 	getbackupDestinationReq := database.GetBackupDestinationRequest{
-		BackupDestinationId:	common.String("backup-destination-ocid"),
-			}
+		BackupDestinationId: common.String("backup-destination-ocid"),
+	}
 
 	_, err := c.GetBackupDestination(context.Background(), getbackupDestinationReq)
 	helpers.FatalIfError(err)
@@ -62,12 +61,12 @@ func ExampleGetBackupDestination(){
 	// get backup destination is successful
 }
 
-func ExampleUpdateBackupDestination(){
+func ExampleUpdateBackupDestination() {
 	c, clerr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(clerr)
 
 	updateBackupDestinationDetails := database.UpdateBackupDestinationDetails{
-		LocalMountPointPath:	&localMountPath,
+		LocalMountPointPath: &localMountPath,
 	}
 
 	updatebackupdestinationReq := database.UpdateBackupDestinationRequest{
@@ -84,13 +83,13 @@ func ExampleUpdateBackupDestination(){
 	// update backup destination is successful
 }
 
-func ExampleUpdateDbBackupBackupDestination(){
+func ExampleUpdateDbBackupBackupDestination() {
 	c, clerr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(clerr)
 
 	backupDestination := database.BackupDestinationDetails{
-		Type:         database.BackupDestinationDetailsTypeEnum("NFS"),
-		Id:           common.String("backup-destination-ocid"),
+		Type: database.BackupDestinationDetailsTypeEnum("NFS"),
+		Id:   common.String("backup-destination-ocid"),
 	}
 
 	dbBackupConfig := database.DbBackupConfig{
@@ -98,7 +97,7 @@ func ExampleUpdateDbBackupBackupDestination(){
 	}
 
 	updatedatabaseDetails := database.UpdateDatabaseDetails{
-		DbBackupConfig:  &dbBackupConfig,
+		DbBackupConfig: &dbBackupConfig,
 	}
 
 	updateDatabaseReq := database.UpdateDatabaseRequest{
@@ -115,10 +114,9 @@ func ExampleUpdateDbBackupBackupDestination(){
 	// update backup destination is successful
 }
 
-func ExampleCreateDbHomeBackupDestination(){
+func ExampleCreateDbHomeBackupDestination() {
 	c, clerr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(clerr)
-
 
 	dbName := strings.ToLower(helpers.GetRandomString(8))
 	dbUniqueName := dbName + "_" + strings.ToLower(helpers.GetRandomString(20))
@@ -127,9 +125,8 @@ func ExampleCreateDbHomeBackupDestination(){
 	displayName := helpers.GetRandomString(32)
 
 	backupDestination := database.BackupDestinationDetails{
-		Type:         database.BackupDestinationDetailsTypeEnum("NFS"),
-		Id:           common.String("backup-destination-ocid"),
-
+		Type: database.BackupDestinationDetailsTypeEnum("NFS"),
+		Id:   common.String("backup-destination-ocid"),
 	}
 
 	dbBackupConfig := database.DbBackupConfig{
@@ -138,18 +135,18 @@ func ExampleCreateDbHomeBackupDestination(){
 
 	// create database details
 	createDatabaseDetails := database.CreateDatabaseDetails{
-		AdminPassword:      &adminPassword,
-		DbName:             &dbName,
-		DbUniqueName:       &dbUniqueName,
-		DbBackupConfig:     &dbBackupConfig,
+		AdminPassword:  &adminPassword,
+		DbName:         &dbName,
+		DbUniqueName:   &dbUniqueName,
+		DbBackupConfig: &dbBackupConfig,
 	}
 
 	// create dbhome details
 	createDbHomeDetails := database.CreateDbHomeWithVmClusterIdDetails{
-		DisplayName:       &displayName,
-		Database:          &createDatabaseDetails,
-		VmClusterId:       common.String("vm-cluster-ocid"),
-		DbVersion:         &dbVersion,
+		DisplayName: &displayName,
+		Database:    &createDatabaseDetails,
+		VmClusterId: common.String("vm-cluster-ocid"),
+		DbVersion:   &dbVersion,
 	}
 
 	// create dbome request
@@ -165,12 +162,12 @@ func ExampleCreateDbHomeBackupDestination(){
 	// Create DB Home with backupDestination completed
 }
 
-func ExampleDeleteBackupDestination(){
+func ExampleDeleteBackupDestination() {
 	c, clerr := database.NewDatabaseClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(clerr)
 
 	deletebackupDestinationReq := database.DeleteBackupDestinationRequest{
-		BackupDestinationId:	common.String("backup-destination-ocid"),
+		BackupDestinationId: common.String("backup-destination-ocid"),
 	}
 
 	_, err := c.DeleteBackupDestination(context.Background(), deletebackupDestinationReq)

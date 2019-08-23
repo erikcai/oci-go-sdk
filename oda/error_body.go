@@ -3,7 +3,7 @@
 
 // Digital Assistant Control Plane API
 //
-// API to create and maintain Digital Assistant (ODA) service instances.
+// API to create and maintain Oracle Digital Assistant service instances.
 //
 
 package oda
@@ -15,7 +15,7 @@ import (
 // ErrorBody Error Information.
 type ErrorBody struct {
 
-	// A short error code that defines the error, meant for programmatic parsing.
+	// A short error code that defines the error, which is useful for programmatic parsing.
 	Code *string `mandatory:"true" json:"code"`
 
 	// A human-readable error string.

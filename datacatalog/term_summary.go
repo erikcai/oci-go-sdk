@@ -43,6 +43,9 @@ type TermSummary struct {
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
+	// The number of objects tagged with this term
+	AssociatedObjectCount *int `mandatory:"false" json:"associatedObjectCount"`
+
 	// State of the Term.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }

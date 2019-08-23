@@ -59,7 +59,7 @@ type NodePool struct {
 	// The nodes in the node pool.
 	Nodes []Node `mandatory:"false" json:"nodes"`
 
-	// The nodes configuration of the node pool.
+	// The configuration of nodes in the node pool.
 	NodeConfigDetails *NodePoolNodeConfigDetails `mandatory:"false" json:"nodeConfigDetails"`
 }
 

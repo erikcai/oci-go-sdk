@@ -31,7 +31,10 @@ type SearchResult struct {
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// Array of the tags associated with this object
-	TagSummary []BaseTagSummary `mandatory:"false" json:"tagSummary"`
+	TagSummary []SearchTagSummary `mandatory:"false" json:"tagSummary"`
+
+	// Array of the terms associated with this object
+	TermSummary []SearchTermSummary `mandatory:"false" json:"termSummary"`
 
 	// Name of the object type
 	TypeName *string `mandatory:"false" json:"typeName"`
@@ -53,6 +56,18 @@ type SearchResult struct {
 
 	// Name of the parent entity object if this object is an attribute
 	EntityName *string `mandatory:"false" json:"entityName"`
+
+	// Unique id of the parent Glossary.
+	GlossaryKey *string `mandatory:"false" json:"glossaryKey"`
+
+	// Name of the parent glossary if this object is a term
+	GlossaryName *string `mandatory:"false" json:"glossaryName"`
+
+	// This terms parent term key. Will be null if the term has no parent term.
+	ParentTermKey *string `mandatory:"false" json:"parentTermKey"`
+
+	// Name of the parent term . Will be null if the term has no parent term.
+	ParentTermName *string `mandatory:"false" json:"parentTermName"`
 }
 
 func (m SearchResult) String() string {

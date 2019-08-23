@@ -43,9 +43,6 @@ type ListJobsRequest struct {
 	// special strings. For example, @hourly will run the job every hour.
 	ScheduleCronExpression *int `mandatory:"false" contributesTo:"query" name:"scheduleCronExpression"`
 
-	// Time of the day the execution is scheduled. An RFC3339 formatted datetime string.
-	TimeScheduled *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeScheduled"`
-
 	// Date that the schedule should be operational. An RFC3339 formatted datetime string.
 	TimeScheduleBegin *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeScheduleBegin"`
 
@@ -60,6 +57,13 @@ type ListJobsRequest struct {
 
 	// Used to control which fields are returned in a Job summary response.
 	Fields []ListJobsFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
+
+	// The total number of executions for this job schedule.
+	ExecutionCount *int `mandatory:"false" contributesTo:"query" name:"executionCount"`
+
+	// The date and time the most recent execution for this Job ,in the format defined by RFC3339.
+	// Example: `2019-03-25T21:10:29.600Z`
+	TimeOfLatestExecution *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeOfLatestExecution"`
 
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
 	SortBy ListJobsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
@@ -128,29 +132,45 @@ type ListJobsFieldsEnum string
 
 // Set of constants representing the allowable values for ListJobsFieldsEnum
 const (
-	ListJobsFieldsKey              ListJobsFieldsEnum = "key"
-	ListJobsFieldsDisplayname      ListJobsFieldsEnum = "displayName"
-	ListJobsFieldsDescription      ListJobsFieldsEnum = "description"
-	ListJobsFieldsCatalogid        ListJobsFieldsEnum = "catalogId"
-	ListJobsFieldsJobdefinitionkey ListJobsFieldsEnum = "jobDefinitionKey"
-	ListJobsFieldsLifecyclestate   ListJobsFieldsEnum = "lifecycleState"
-	ListJobsFieldsTimecreated      ListJobsFieldsEnum = "timeCreated"
-	ListJobsFieldsJobtype          ListJobsFieldsEnum = "jobType"
-	ListJobsFieldsScheduletype     ListJobsFieldsEnum = "scheduleType"
-	ListJobsFieldsUri              ListJobsFieldsEnum = "uri"
+	ListJobsFieldsKey                    ListJobsFieldsEnum = "key"
+	ListJobsFieldsDisplayname            ListJobsFieldsEnum = "displayName"
+	ListJobsFieldsDescription            ListJobsFieldsEnum = "description"
+	ListJobsFieldsCatalogid              ListJobsFieldsEnum = "catalogId"
+	ListJobsFieldsJobdefinitionkey       ListJobsFieldsEnum = "jobDefinitionKey"
+	ListJobsFieldsLifecyclestate         ListJobsFieldsEnum = "lifecycleState"
+	ListJobsFieldsTimecreated            ListJobsFieldsEnum = "timeCreated"
+	ListJobsFieldsTimeupdated            ListJobsFieldsEnum = "timeUpdated"
+	ListJobsFieldsCreatedbyid            ListJobsFieldsEnum = "createdById"
+	ListJobsFieldsUpdatedbyid            ListJobsFieldsEnum = "updatedById"
+	ListJobsFieldsJobtype                ListJobsFieldsEnum = "jobType"
+	ListJobsFieldsSchedulecronexpression ListJobsFieldsEnum = "scheduleCronExpression"
+	ListJobsFieldsTimeschedulebegin      ListJobsFieldsEnum = "timeScheduleBegin"
+	ListJobsFieldsScheduletype           ListJobsFieldsEnum = "scheduleType"
+	ListJobsFieldsExecutioncount         ListJobsFieldsEnum = "executionCount"
+	ListJobsFieldsTimeoflatestexecution  ListJobsFieldsEnum = "timeOfLatestExecution"
+	ListJobsFieldsExecutions             ListJobsFieldsEnum = "executions"
+	ListJobsFieldsUri                    ListJobsFieldsEnum = "uri"
 )
 
 var mappingListJobsFields = map[string]ListJobsFieldsEnum{
-	"key":              ListJobsFieldsKey,
-	"displayName":      ListJobsFieldsDisplayname,
-	"description":      ListJobsFieldsDescription,
-	"catalogId":        ListJobsFieldsCatalogid,
-	"jobDefinitionKey": ListJobsFieldsJobdefinitionkey,
-	"lifecycleState":   ListJobsFieldsLifecyclestate,
-	"timeCreated":      ListJobsFieldsTimecreated,
-	"jobType":          ListJobsFieldsJobtype,
-	"scheduleType":     ListJobsFieldsScheduletype,
-	"uri":              ListJobsFieldsUri,
+	"key":                    ListJobsFieldsKey,
+	"displayName":            ListJobsFieldsDisplayname,
+	"description":            ListJobsFieldsDescription,
+	"catalogId":              ListJobsFieldsCatalogid,
+	"jobDefinitionKey":       ListJobsFieldsJobdefinitionkey,
+	"lifecycleState":         ListJobsFieldsLifecyclestate,
+	"timeCreated":            ListJobsFieldsTimecreated,
+	"timeUpdated":            ListJobsFieldsTimeupdated,
+	"createdById":            ListJobsFieldsCreatedbyid,
+	"updatedById":            ListJobsFieldsUpdatedbyid,
+	"jobType":                ListJobsFieldsJobtype,
+	"scheduleCronExpression": ListJobsFieldsSchedulecronexpression,
+	"timeScheduleBegin":      ListJobsFieldsTimeschedulebegin,
+	"scheduleType":           ListJobsFieldsScheduletype,
+	"executionCount":         ListJobsFieldsExecutioncount,
+	"timeOfLatestExecution":  ListJobsFieldsTimeoflatestexecution,
+	"executions":             ListJobsFieldsExecutions,
+	"uri":                    ListJobsFieldsUri,
 }
 
 // GetListJobsFieldsEnumValues Enumerates the set of values for ListJobsFieldsEnum

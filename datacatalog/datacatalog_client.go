@@ -576,53 +576,6 @@ func (client DataCatalogClient) createGlossary(ctx context.Context, request comm
 	return response, err
 }
 
-// CreateGlossaryTerm Create a new Term within a Glossary.
-func (client DataCatalogClient) CreateGlossaryTerm(ctx context.Context, request CreateGlossaryTermRequest) (response CreateGlossaryTermResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
-	ociResponse, err = common.Retry(ctx, request, client.createGlossaryTerm, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = CreateGlossaryTermResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(CreateGlossaryTermResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into CreateGlossaryTermResponse")
-	}
-	return
-}
-
-// createGlossaryTerm implements the OCIOperation interface (enables retrying operations)
-func (client DataCatalogClient) createGlossaryTerm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms")
-	if err != nil {
-		return nil, err
-	}
-
-	var response CreateGlossaryTermResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // CreateJob Create a new job.
 func (client DataCatalogClient) CreateJob(ctx context.Context, request CreateJobRequest) (response CreateJobResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -705,6 +658,100 @@ func (client DataCatalogClient) createJobDefinition(ctx context.Context, request
 	}
 
 	var response CreateJobDefinitionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateTerm Create a new Term within a Glossary.
+func (client DataCatalogClient) CreateTerm(ctx context.Context, request CreateTermRequest) (response CreateTermResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createTerm, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateTermResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateTermResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateTermResponse")
+	}
+	return
+}
+
+// createTerm implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) createTerm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateTermResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateTermRelationship Create a new Term Relationship for this term within a Glossary.
+func (client DataCatalogClient) CreateTermRelationship(ctx context.Context, request CreateTermRelationshipRequest) (response CreateTermRelationshipResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createTermRelationship, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateTermRelationshipResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateTermRelationshipResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateTermRelationshipResponse")
+	}
+	return
+}
+
+// createTermRelationship implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) createTermRelationship(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}/termRelationships")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateTermRelationshipResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1179,48 +1226,6 @@ func (client DataCatalogClient) deleteGlossary(ctx context.Context, request comm
 	return response, err
 }
 
-// DeleteGlossaryTerm Delete a specific Glossary Term.
-func (client DataCatalogClient) DeleteGlossaryTerm(ctx context.Context, request DeleteGlossaryTermRequest) (response DeleteGlossaryTermResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.deleteGlossaryTerm, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = DeleteGlossaryTermResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(DeleteGlossaryTermResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DeleteGlossaryTermResponse")
-	}
-	return
-}
-
-// deleteGlossaryTerm implements the OCIOperation interface (enables retrying operations)
-func (client DataCatalogClient) deleteGlossaryTerm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response DeleteGlossaryTermResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // DeleteJob Delete a specific job  identified by it's key
 func (client DataCatalogClient) DeleteJob(ctx context.Context, request DeleteJobRequest) (response DeleteJobResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1293,6 +1298,137 @@ func (client DataCatalogClient) deleteJobDefinition(ctx context.Context, request
 	}
 
 	var response DeleteJobDefinitionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteTerm Delete a specific Glossary Term.
+func (client DataCatalogClient) DeleteTerm(ctx context.Context, request DeleteTermRequest) (response DeleteTermResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteTerm, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteTermResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteTermResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteTermResponse")
+	}
+	return
+}
+
+// deleteTerm implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) deleteTerm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteTermResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteTermRelationship Delete a specific Glossary Term Relationship.
+func (client DataCatalogClient) DeleteTermRelationship(ctx context.Context, request DeleteTermRelationshipRequest) (response DeleteTermRelationshipResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteTermRelationship, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteTermRelationshipResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteTermRelationshipResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteTermRelationshipResponse")
+	}
+	return
+}
+
+// deleteTermRelationship implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) deleteTermRelationship(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}/termRelationships/{termRelationshipKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteTermRelationshipResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ExpandTreeForGlossary Returns the fully expanded tree hierarchy of parent and child terms in this glossary
+func (client DataCatalogClient) ExpandTreeForGlossary(ctx context.Context, request ExpandTreeForGlossaryRequest) (response ExpandTreeForGlossaryResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.expandTreeForGlossary, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ExpandTreeForGlossaryResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ExpandTreeForGlossaryResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ExpandTreeForGlossaryResponse")
+	}
+	return
+}
+
+// expandTreeForGlossary implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) expandTreeForGlossary(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/catalogs/{catalogId}/glossaries/{glossaryKey}/actions/expandTree")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ExpandTreeForGlossaryResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1767,48 +1903,6 @@ func (client DataCatalogClient) getGlossary(ctx context.Context, request common.
 	return response, err
 }
 
-// GetGlossaryTerm Get a specific Glossary Term by key.
-func (client DataCatalogClient) GetGlossaryTerm(ctx context.Context, request GetGlossaryTermRequest) (response GetGlossaryTermResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getGlossaryTerm, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = GetGlossaryTermResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetGlossaryTermResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetGlossaryTermResponse")
-	}
-	return
-}
-
-// getGlossaryTerm implements the OCIOperation interface (enables retrying operations)
-func (client DataCatalogClient) getGlossaryTerm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetGlossaryTermResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // GetJob Get a specific Job by key within a data catalog.
 func (client DataCatalogClient) GetJob(ctx context.Context, request GetJobRequest) (response GetJobResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2019,6 +2113,90 @@ func (client DataCatalogClient) getJobMetrics(ctx context.Context, request commo
 	return response, err
 }
 
+// GetTerm Get a specific Glossary Term by key.
+func (client DataCatalogClient) GetTerm(ctx context.Context, request GetTermRequest) (response GetTermResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getTerm, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetTermResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetTermResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetTermResponse")
+	}
+	return
+}
+
+// getTerm implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) getTerm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetTermResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetTermRelationship Get a specific Glossary Term Relationship by key.
+func (client DataCatalogClient) GetTermRelationship(ctx context.Context, request GetTermRelationshipRequest) (response GetTermRelationshipResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getTermRelationship, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetTermRelationshipResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetTermRelationshipResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetTermRelationshipResponse")
+	}
+	return
+}
+
+// getTermRelationship implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) getTermRelationship(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}/termRelationships/{termRelationshipKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetTermRelationshipResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetType Get a specific Type by key within a data catalog.
 func (client DataCatalogClient) GetType(ctx context.Context, request GetTypeRequest) (response GetTypeResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2091,6 +2269,53 @@ func (client DataCatalogClient) getWorkRequest(ctx context.Context, request comm
 	}
 
 	var response GetWorkRequestResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ImportConnection Import new connections for this Data Asset
+func (client DataCatalogClient) ImportConnection(ctx context.Context, request ImportConnectionRequest) (response ImportConnectionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.importConnection, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ImportConnectionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ImportConnectionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ImportConnectionResponse")
+	}
+	return
+}
+
+// importConnection implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) importConnection(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/catalogs/{catalogId}/dataAssets/{dataAssetKey}/actions/importConnections")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ImportConnectionResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2691,6 +2916,48 @@ func (client DataCatalogClient) listGlossaryPermissions(ctx context.Context, req
 	return response, err
 }
 
+// ListGlossaryTermRelationships Returns a list of all term relationships within a glossary.
+func (client DataCatalogClient) ListGlossaryTermRelationships(ctx context.Context, request ListGlossaryTermRelationshipsRequest) (response ListGlossaryTermRelationshipsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listGlossaryTermRelationships, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListGlossaryTermRelationshipsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListGlossaryTermRelationshipsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListGlossaryTermRelationshipsResponse")
+	}
+	return
+}
+
+// listGlossaryTermRelationships implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) listGlossaryTermRelationships(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}/termRelationships")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListGlossaryTermRelationshipsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListGlossaryTerms Returns a list of all terms within a glossary.
 func (client DataCatalogClient) ListGlossaryTerms(ctx context.Context, request ListGlossaryTermsRequest) (response ListGlossaryTermsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3195,6 +3462,53 @@ func (client DataCatalogClient) listWorkRequests(ctx context.Context, request co
 	return response, err
 }
 
+// ParseConnection Parse data asset references through connections from this Data Asset
+func (client DataCatalogClient) ParseConnection(ctx context.Context, request ParseConnectionRequest) (response ParseConnectionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.parseConnection, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ParseConnectionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ParseConnectionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ParseConnectionResponse")
+	}
+	return
+}
+
+// parseConnection implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) parseConnection(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/catalogs/{catalogId}/dataAssets/{dataAssetKey}/actions/parseConnections")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ParseConnectionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // UpdateAttribute Update a specific Data Asset Attribute.
 func (client DataCatalogClient) UpdateAttribute(ctx context.Context, request UpdateAttributeRequest) (response UpdateAttributeResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3489,48 +3803,6 @@ func (client DataCatalogClient) updateGlossary(ctx context.Context, request comm
 	return response, err
 }
 
-// UpdateGlossaryTerm Update a specific Glossary Term.
-func (client DataCatalogClient) UpdateGlossaryTerm(ctx context.Context, request UpdateGlossaryTermRequest) (response UpdateGlossaryTermResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.updateGlossaryTerm, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = UpdateGlossaryTermResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(UpdateGlossaryTermResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into UpdateGlossaryTermResponse")
-	}
-	return
-}
-
-// updateGlossaryTerm implements the OCIOperation interface (enables retrying operations)
-func (client DataCatalogClient) updateGlossaryTerm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response UpdateGlossaryTermResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // UpdateJob Update a specific job identified by the given key
 func (client DataCatalogClient) UpdateJob(ctx context.Context, request UpdateJobRequest) (response UpdateJobResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3603,6 +3875,184 @@ func (client DataCatalogClient) updateJobDefinition(ctx context.Context, request
 	}
 
 	var response UpdateJobDefinitionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateTerm Update a specific Glossary Term.
+func (client DataCatalogClient) UpdateTerm(ctx context.Context, request UpdateTermRequest) (response UpdateTermResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateTerm, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateTermResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateTermResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateTermResponse")
+	}
+	return
+}
+
+// updateTerm implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) updateTerm(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateTermResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateTermRelationship Update a specific Glossary Term Relationship.
+func (client DataCatalogClient) UpdateTermRelationship(ctx context.Context, request UpdateTermRelationshipRequest) (response UpdateTermRelationshipResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateTermRelationship, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateTermRelationshipResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateTermRelationshipResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateTermRelationshipResponse")
+	}
+	return
+}
+
+// updateTermRelationship implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) updateTermRelationship(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/catalogs/{catalogId}/glossaries/{glossaryKey}/terms/{termKey}/termRelationships/{termRelationshipKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateTermRelationshipResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ValidateConnection validate connection by connecting to the data asset using credentials in the metadata
+func (client DataCatalogClient) ValidateConnection(ctx context.Context, request ValidateConnectionRequest) (response ValidateConnectionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.validateConnection, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ValidateConnectionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ValidateConnectionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ValidateConnectionResponse")
+	}
+	return
+}
+
+// validateConnection implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) validateConnection(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/catalogs/{catalogId}/dataAssets/{dataAssetKey}/connections/{connectionKey}/actions/validateConnection")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ValidateConnectionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ValidateConnections validate connections by connecting to the data asset using credentials in metadata
+func (client DataCatalogClient) ValidateConnections(ctx context.Context, request ValidateConnectionsRequest) (response ValidateConnectionsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.validateConnections, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ValidateConnectionsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ValidateConnectionsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ValidateConnectionsResponse")
+	}
+	return
+}
+
+// validateConnections implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) validateConnections(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/catalogs/{catalogId}/dataAssets/{dataAssetKey}/actions/validateConnections")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ValidateConnectionsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

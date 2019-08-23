@@ -33,7 +33,7 @@ type UpdateJobDefinitionDetails struct {
 
 	// Scope for the Job Definition. This property specifies the filters, object types and other criteria
 	// which define the extract scope.
-	JobDefinitionScope []ExtractJobDefinitionScope `mandatory:"false" json:"jobDefinitionScope"`
+	JobDefinitionScope []JobDefinitionScope `mandatory:"false" json:"jobDefinitionScope"`
 }
 
 func (m UpdateJobDefinitionDetails) String() string {

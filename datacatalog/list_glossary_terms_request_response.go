@@ -102,27 +102,29 @@ type ListGlossaryTermsFieldsEnum string
 
 // Set of constants representing the allowable values for ListGlossaryTermsFieldsEnum
 const (
-	ListGlossaryTermsFieldsKey            ListGlossaryTermsFieldsEnum = "key"
-	ListGlossaryTermsFieldsDisplayname    ListGlossaryTermsFieldsEnum = "displayName"
-	ListGlossaryTermsFieldsDescription    ListGlossaryTermsFieldsEnum = "description"
-	ListGlossaryTermsFieldsGlossarykey    ListGlossaryTermsFieldsEnum = "glossaryKey"
-	ListGlossaryTermsFieldsParenttermkey  ListGlossaryTermsFieldsEnum = "parentTermKey"
-	ListGlossaryTermsFieldsPath           ListGlossaryTermsFieldsEnum = "path"
-	ListGlossaryTermsFieldsLifecyclestate ListGlossaryTermsFieldsEnum = "lifecycleState"
-	ListGlossaryTermsFieldsTimecreated    ListGlossaryTermsFieldsEnum = "timeCreated"
-	ListGlossaryTermsFieldsUri            ListGlossaryTermsFieldsEnum = "uri"
+	ListGlossaryTermsFieldsKey                   ListGlossaryTermsFieldsEnum = "key"
+	ListGlossaryTermsFieldsDisplayname           ListGlossaryTermsFieldsEnum = "displayName"
+	ListGlossaryTermsFieldsDescription           ListGlossaryTermsFieldsEnum = "description"
+	ListGlossaryTermsFieldsGlossarykey           ListGlossaryTermsFieldsEnum = "glossaryKey"
+	ListGlossaryTermsFieldsParenttermkey         ListGlossaryTermsFieldsEnum = "parentTermKey"
+	ListGlossaryTermsFieldsPath                  ListGlossaryTermsFieldsEnum = "path"
+	ListGlossaryTermsFieldsLifecyclestate        ListGlossaryTermsFieldsEnum = "lifecycleState"
+	ListGlossaryTermsFieldsTimecreated           ListGlossaryTermsFieldsEnum = "timeCreated"
+	ListGlossaryTermsFieldsAssociatedobjectcount ListGlossaryTermsFieldsEnum = "associatedObjectCount"
+	ListGlossaryTermsFieldsUri                   ListGlossaryTermsFieldsEnum = "uri"
 )
 
 var mappingListGlossaryTermsFields = map[string]ListGlossaryTermsFieldsEnum{
-	"key":            ListGlossaryTermsFieldsKey,
-	"displayName":    ListGlossaryTermsFieldsDisplayname,
-	"description":    ListGlossaryTermsFieldsDescription,
-	"glossaryKey":    ListGlossaryTermsFieldsGlossarykey,
-	"parentTermKey":  ListGlossaryTermsFieldsParenttermkey,
-	"path":           ListGlossaryTermsFieldsPath,
-	"lifecycleState": ListGlossaryTermsFieldsLifecyclestate,
-	"timeCreated":    ListGlossaryTermsFieldsTimecreated,
-	"uri":            ListGlossaryTermsFieldsUri,
+	"key":                   ListGlossaryTermsFieldsKey,
+	"displayName":           ListGlossaryTermsFieldsDisplayname,
+	"description":           ListGlossaryTermsFieldsDescription,
+	"glossaryKey":           ListGlossaryTermsFieldsGlossarykey,
+	"parentTermKey":         ListGlossaryTermsFieldsParenttermkey,
+	"path":                  ListGlossaryTermsFieldsPath,
+	"lifecycleState":        ListGlossaryTermsFieldsLifecyclestate,
+	"timeCreated":           ListGlossaryTermsFieldsTimecreated,
+	"associatedObjectCount": ListGlossaryTermsFieldsAssociatedobjectcount,
+	"uri": ListGlossaryTermsFieldsUri,
 }
 
 // GetListGlossaryTermsFieldsEnumValues Enumerates the set of values for ListGlossaryTermsFieldsEnum

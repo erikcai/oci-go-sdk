@@ -61,6 +61,9 @@ type ModelType struct {
 	// Indicates whether the type is approved for use as a classifying object.
 	IsApproved *bool `mandatory:"false" json:"isApproved"`
 
+	// Indicates the category this type belongs to. For instance , data assets , connections.
+	TypeCategory *string `mandatory:"false" json:"typeCategory"`
+
 	// Mapping type equivalence in the external system.
 	ExternalTypeName *string `mandatory:"false" json:"externalTypeName"`
 

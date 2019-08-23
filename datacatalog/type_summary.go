@@ -28,6 +28,9 @@ type TypeSummary struct {
 	// The Catalog's Oracle ID (OCID).
 	CatalogId *string `mandatory:"false" json:"catalogId"`
 
+	// Indicates the category this type belongs to. For instance , data assets , connections.
+	TypeCategory *string `mandatory:"false" json:"typeCategory"`
+
 	// URI to the Type instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 

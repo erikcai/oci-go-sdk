@@ -14,19 +14,22 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PathMatchCondition Path match condition for redirect path.
+// PathMatchCondition The path string and match condition to apply when evaluating an incoming URI for redirection.
 type PathMatchCondition struct {
 
-	// The path string for which the redirection rule should be applied.
+	// The path string that the redirection rule applies to.
+	// Example: `/example`
 	AttributeValue *string `mandatory:"true" json:"attributeValue"`
 
-	// Specifies how the load balancing service compares a [PathMatchCondition] object's `attributeValue` string
-	//     against the incoming URI.
-	//     *  **EXACT_MATCH** - Looks for a `attributeValue` string that exactly matches the incoming URI path.
-	//     *  **FORCE_LONGEST_PREFIX_MATCH** - Looks for the `attributeValue` string with the best, longest match of the beginning
-	//        portion of the incoming URI path.
-	//     *  **PREFIX_MATCH** - Looks for a `attributeValue` string that matches the beginning portion of the incoming URI path.
-	//     *  **SUFFIX_MATCH** - Looks for a `attributeValue` string that matches the ending portion of the incoming URI path.
+	// A string that specifies how to compare the PathMatchCondition object's `attributeValue` string to the
+	// incoming URI.
+	// *  **EXACT_MATCH** - The incoming URI path must exactly and completely match the `attributeValue` string.
+	// *  **FORCE_LONGEST_PREFIX_MATCH** - The system looks for the `attributeValue` string with the best,
+	//    longest match of the beginning portion of the incoming URI path.
+	// *  **PREFIX_MATCH** - The beginning portion of the incoming URI path must exactly match the
+	//    `attributeValue` string.
+	// *  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
+	//    string.
 	Operator PathMatchConditionOperatorEnum `mandatory:"true" json:"operator"`
 }
 

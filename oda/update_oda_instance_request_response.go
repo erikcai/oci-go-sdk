@@ -11,20 +11,21 @@ import (
 // UpdateOdaInstanceRequest wrapper for the UpdateOdaInstance operation
 type UpdateOdaInstanceRequest struct {
 
-	// unique ODA instance identifier
+	// Unique Digital Assistant instance identifier.
 	OdaInstanceId *string `mandatory:"true" contributesTo:"path" name:"odaInstanceId"`
 
-	// The information to be updated.
+	// The information to update.
 	UpdateOdaInstanceDetails `contributesTo:"body"`
 
-	// For optimistic concurrency control. In the PUT or DELETE call
-	// for a resource, set the `if-match` parameter to the value of the
-	// etag from a previous GET or POST response for that resource.
-	// The resource will be updated or deleted only if the etag you
-	// provide matches the resource's current etag value.
+	// For optimistic concurrency control in a PUT or DELETE call for
+	// a Digital Assistant instance, set the `if-match` query parameter
+	// to the value of the `ETAG` header from a previous GET or POST
+	// response for that instance. The service updates or deletes the
+	// instance only if the etag that you provide matches the instance's
+	// current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
-	// The client request ID for tracing.
+	// The client request ID for tracing. This value is included in the opc-request-id response header.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -55,9 +56,8 @@ type UpdateOdaInstanceResponse struct {
 	// The OdaInstance instance
 	OdaInstance `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you contact Oracle
+	// about this request, provide this request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

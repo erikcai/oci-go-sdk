@@ -790,6 +790,62 @@ func TestDatabaseClientCreateDataGuardAssociation(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateDatabase")
+	assert.NoError(t, err)
+
+	type CreateDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.CreateDatabaseRequest
+	}
+
+	var requests []CreateDatabaseRequestInfo
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
+	assert.NoError(t, err)
+	requests = make([]CreateDatabaseRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateDatabaseBase"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "source",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"NONE":      &database.CreateNewDatabaseDetails{},
+				"DATABASE":  &database.CreateDatabaseFromDatabase{},
+				"DB_BACKUP": &database.CreateDatabaseFromBackup{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreateDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientCreateDbHome(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1228,6 +1284,49 @@ func TestDatabaseClientDeleteBackupDestination(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteBackupDestination(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteDatabase")
+	assert.NoError(t, err)
+
+	type DeleteDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteDatabaseRequest
+	}
+
+	var requests []DeleteDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.DeleteDatabase(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

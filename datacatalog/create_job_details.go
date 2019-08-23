@@ -30,10 +30,6 @@ type CreateJobDetails struct {
 	// special strings. For example, @hourly will run the job every hour.
 	ScheduleCronExpression *int `mandatory:"false" json:"scheduleCronExpression"`
 
-	// Time of the day the execution is scheduled. An RFC3339 formatted time only string.
-	// Example: `21:10:00Z`
-	TimeScheduled *common.SDKTime `mandatory:"false" json:"timeScheduled"`
-
 	// Date that the schedule should be operational. An RFC3339 formatted datetime string.
 	TimeScheduleBegin *common.SDKTime `mandatory:"false" json:"timeScheduleBegin"`
 

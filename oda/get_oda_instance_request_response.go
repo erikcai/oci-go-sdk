@@ -11,14 +11,11 @@ import (
 // GetOdaInstanceRequest wrapper for the GetOdaInstance operation
 type GetOdaInstanceRequest struct {
 
-	// unique ODA instance identifier
+	// Unique Digital Assistant instance identifier.
 	OdaInstanceId *string `mandatory:"true" contributesTo:"path" name:"odaInstanceId"`
 
-	// The client request ID for tracing.
+	// The client request ID for tracing. This value is included in the opc-request-id response header.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
-
-	// Internal use only.
-	OpcOboToken *string `mandatory:"false" contributesTo:"header" name:"opc-obo-token"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
@@ -48,22 +45,12 @@ type GetOdaInstanceResponse struct {
 	// The OdaInstance instance
 	OdaInstance `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For use in a PUT or DELETE `if-match` query parameter for optimistic concurrency control.
 	Etag *string `presentIn:"header" name:"etag"`
 
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you contact Oracle
+	// about this request, provide this request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
-	// Internal use only
-	OpcHsmApp *string `presentIn:"header" name:"opc-hsm-app"`
-
-	// Internal use only
-	OpcHsmRequestId *string `presentIn:"header" name:"opc-hsm-request-id"`
-
-	// Internal use only
-	OpcHsmDomain *string `presentIn:"header" name:"opc-hsm-domain"`
 }
 
 func (response GetOdaInstanceResponse) String() string {
