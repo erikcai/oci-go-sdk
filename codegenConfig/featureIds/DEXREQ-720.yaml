@@ -1,0 +1,15 @@
+# Add whitelisted feature ids here. Please include a comment describing what the feature is.
+# Example:
+# whitelisted:
+#   # comment
+#   - udx-123
+#   # comment
+#   - udx-456
+whitelisted:
+  - opcrequestid
+  - etag
+  - retrytoken
+  - error_code_429
+  - error_code_500
+  - default_error
+  - changecompartments

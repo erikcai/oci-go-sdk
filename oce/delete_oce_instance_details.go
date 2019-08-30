@@ -3,7 +3,7 @@
 
 // OceInstance API
 //
-// A description of the OceInstance API
+// Oracle Content and Experience is a cloud-based content hub to drive omni-channel content management and accelerate experience delivery
 //
 
 package oce
@@ -15,8 +15,8 @@ import (
 // DeleteOceInstanceDetails The information about the resource to be deleted.
 type DeleteOceInstanceDetails struct {
 
-	// IDCS Proof of Stripe Token
-	IdcsAt *string `mandatory:"true" json:"idcsAt"`
+	// IDCS access token identifying a stripe and service administrator user
+	IdcsAccessToken *string `mandatory:"true" json:"idcsAccessToken"`
 }
 
 func (m DeleteOceInstanceDetails) String() string {

@@ -29,6 +29,12 @@ type UpdateRowResult struct {
 	// The map of values from a row.
 	ExistingValue map[string]interface{} `mandatory:"false" json:"existingValue"`
 
+	// The value generated if the operation created a new value for
+	// an identity column. If the table has no identity column, this value
+	// is null. If it has an identity column, and a value was generated for
+	// that column, it is non-null.
+	GeneratedValue *string `mandatory:"false" json:"generatedValue"`
+
 	Usage *RequestUsage `mandatory:"false" json:"usage"`
 }
 

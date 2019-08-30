@@ -14,6 +14,8 @@ import (
 )
 
 // ConfirmationResult The confirmation details for the specified subscription.
+// For information about confirming subscriptions, see
+// To confirm a subscription (https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#confirmSub).
 type ConfirmationResult struct {
 
 	// The name of the subscribed topic.

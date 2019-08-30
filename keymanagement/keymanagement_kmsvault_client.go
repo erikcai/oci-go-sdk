@@ -37,7 +37,7 @@ func NewKmsVaultClientWithConfigurationProvider(configProvider common.Configurat
 
 // SetRegion overrides the region of this client.
 func (client *KmsVaultClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("kms")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("kms", "https://kms.{region}.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -58,10 +58,51 @@ func (client *KmsVaultClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
+// BackupVault Get an encrypted binary payload that contains only the metadata of the vault so it can be restored.
+func (client KmsVaultClient) BackupVault(ctx context.Context, request BackupVaultRequest) (response BackupVaultResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.backupVault, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = BackupVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(BackupVaultResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into BackupVaultResponse")
+	}
+	return
+}
+
+// backupVault implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) backupVault(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20180608/vaults/{vaultId}/backup")
+	if err != nil {
+		return nil, err
+	}
+
+	var response BackupVaultResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CancelVaultDeletion Cancels the scheduled deletion of the specified vault. Canceling a scheduled deletion
-// restores the vault and all keys in it to the respective states they were in before the
-// deletion was scheduled. All keys that have already been scheduled for deletion prior to vault
-// deletion will retain their state and time of deletion.
+// restores the vault and all keys in it to their respective states from before their
+// scheduled deletion. All keys that were scheduled for deletion prior to vault
+// deletion retain their lifecycle state and time of deletion.
 // As a provisioning operation, this call is subject to a Key Management limit that applies to
 // the total number of requests across all provisioning write operations. Key Management might
 // throttle this call to reject an otherwise valid request when the total rate of provisioning
@@ -112,7 +153,13 @@ func (client KmsVaultClient) cancelVaultDeletion(ctx context.Context, request co
 	return response, err
 }
 
-// ChangeVaultCompartment Moves a vault into a different compartment. When provided, If-Match is checked against ETag values of the resource.
+// ChangeVaultCompartment Moves a vault into a different compartment within the same tenancy. For information about
+// moving resources between compartments, see Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+// When provided, if-match is checked against the ETag values of the resource.
+// As a provisioning operation, this call is subject to a Key Management limit that applies to
+// the total number of requests across all provisioning write operations. Key Management might
+// throttle this call to reject an otherwise valid request when the total rate of provisioning
+// write operations exceeds 10 requests per second for a given tenancy.
 func (client KmsVaultClient) ChangeVaultCompartment(ctx context.Context, request ChangeVaultCompartmentRequest) (response ChangeVaultCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -305,11 +352,68 @@ func (client KmsVaultClient) listVaults(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// ScheduleVaultDeletion Schedules the deletion of the specified vault. This sets the state of the vault and all keys in it
+// RestoreVault Restore a vault from an encrypted binary backup.  If the vault with the OCID already exists, this operation will return a response with a 409 HTTP status code.
+func (client KmsVaultClient) RestoreVault(ctx context.Context, request RestoreVaultRequest) (response RestoreVaultResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.restoreVault, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = RestoreVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RestoreVaultResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RestoreVaultResponse")
+	}
+	return
+}
+
+// restoreVault implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) restoreVault(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/vaults/restore")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RestoreVaultResponse
+	var httpResponse *http.Response
+	var customSigner common.HTTPRequestSigner
+	excludeBodySigningPredicate := func(r *http.Request) bool { return false }
+	customSigner, err = common.NewSignerFromOCIRequestSigner(client.Signer, excludeBodySigningPredicate)
+
+	//if there was an error overriding the signer, then use the signer from the client itself
+	if err != nil {
+		customSigner = client.Signer
+	}
+
+	//Execute the request with a custom signer
+	httpResponse, err = client.CallWithDetails(ctx, &httpRequest, common.ClientCallDetails{Signer: customSigner})
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ScheduleVaultDeletion Schedules the deletion of the specified vault. This sets the lifecycle state of the vault and all keys in it
 // that are not already scheduled for deletion to PENDING_DELETION and then deletes them after the
-// retention period ends. The state and time of deletion for keys already scheduled for deletion won't
-// change. If any keys in the vault are scheduled for deletion at a time after the specified time of
-// deletion for the vault, the call will be rejected with error code 409.
+// retention period ends. The lifecycle state and time of deletion for keys already scheduled for deletion won't
+// change. If any keys in the vault are scheduled to be deleted after the specified time of
+// deletion for the vault, the call is rejected with the error code 409.
 // As a provisioning operation, this call is subject to a Key Management limit that applies to
 // the total number of requests across all provisioning write operations. Key Management might
 // throttle this call to reject an otherwise valid request when the total rate of provisioning

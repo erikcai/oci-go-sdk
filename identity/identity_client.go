@@ -747,6 +747,66 @@ func (client IdentityClient) createMfaTotpDevice(ctx context.Context, request co
 	return response, err
 }
 
+// CreateNetworkSource Creates a new network source in your tenancy.
+// You must specify your tenancy's OCID as the compartment ID in the request object (remember that the tenancy
+// is simply the root compartment). Notice that IAM resources (users, groups, compartments, and some policies)
+// reside within the tenancy itself, unlike cloud resources such as compute instances, which typically
+// reside within compartments inside the tenancy. For information about OCIDs, see
+// Resource Identifiers (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+// You must also specify a *name* for the network source, which must be unique across all network sources in your
+// tenancy, and cannot be changed.
+// You can use this name or the OCID when writing policies that apply to the network source. For more information
+// about policies, see How Policies Work (https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm).
+// You must also specify a *description* for the network source (although it can be an empty string). It does not
+// have to be unique, and you can change it anytime with UpdateNetworkSource.
+// After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
+// object, first make sure its `lifecycleState` has changed to ACTIVE.
+func (client IdentityClient) CreateNetworkSource(ctx context.Context, request CreateNetworkSourceRequest) (response CreateNetworkSourceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createNetworkSource, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateNetworkSourceResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateNetworkSourceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateNetworkSourceResponse")
+	}
+	return
+}
+
+// createNetworkSource implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) createNetworkSource(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/networkSources")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateNetworkSourceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateOrResetUIPassword Creates a new Console one-time password for the specified user. For more information about user
 // credentials, see User Credentials (https://docs.cloud.oracle.com/Content/Identity/Concepts/usercredentials.htm).
 // Use this operation after creating a new user, or if a user forgets their password. The new one-time
@@ -1692,6 +1752,48 @@ func (client IdentityClient) deleteMfaTotpDevice(ctx context.Context, request co
 	return response, err
 }
 
+// DeleteNetworkSource Deletes the specified network source
+func (client IdentityClient) DeleteNetworkSource(ctx context.Context, request DeleteNetworkSourceRequest) (response DeleteNetworkSourceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteNetworkSource, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteNetworkSourceResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteNetworkSourceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteNetworkSourceResponse")
+	}
+	return
+}
+
+// deleteNetworkSource implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) deleteNetworkSource(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/networkSources/{networkSourceId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteNetworkSourceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeletePolicy Deletes the specified policy. The deletion takes effect typically within 10 seconds.
 func (client IdentityClient) DeletePolicy(ctx context.Context, request DeletePolicyRequest) (response DeletePolicyResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2421,6 +2523,48 @@ func (client IdentityClient) getMfaTotpDevice(ctx context.Context, request commo
 	}
 
 	var response GetMfaTotpDeviceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetNetworkSource Gets the specified network source's information.
+func (client IdentityClient) GetNetworkSource(ctx context.Context, request GetNetworkSourceRequest) (response GetNetworkSourceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getNetworkSource, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetNetworkSourceResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetNetworkSourceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetNetworkSourceResponse")
+	}
+	return
+}
+
+// getNetworkSource implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) getNetworkSource(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/networkSources/{networkSourceId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetNetworkSourceResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -3523,6 +3667,50 @@ func (client IdentityClient) listMfaTotpDevices(ctx context.Context, request com
 	}
 
 	var response ListMfaTotpDevicesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListNetworkSources Lists the network sources in your tenancy. You must specify your tenancy's OCID as the value for
+// the compartment ID (remember that the tenancy is simply the root compartment).
+// See Where to Get the Tenancy's OCID and User's OCID (https://docs.cloud.oracle.com/Content/API/Concepts/apisigningkey.htm#five).
+func (client IdentityClient) ListNetworkSources(ctx context.Context, request ListNetworkSourcesRequest) (response ListNetworkSourcesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listNetworkSources, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListNetworkSourcesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListNetworkSourcesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListNetworkSourcesResponse")
+	}
+	return
+}
+
+// listNetworkSources implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listNetworkSources(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/networkSources")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListNetworkSourcesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -4682,6 +4870,48 @@ func (client IdentityClient) updateIdpGroupMapping(ctx context.Context, request 
 	}
 
 	var response UpdateIdpGroupMappingResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateNetworkSource Updates the specified network source.
+func (client IdentityClient) UpdateNetworkSource(ctx context.Context, request UpdateNetworkSourceRequest) (response UpdateNetworkSourceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateNetworkSource, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateNetworkSourceResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateNetworkSourceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateNetworkSourceResponse")
+	}
+	return
+}
+
+// updateNetworkSource implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) updateNetworkSource(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/networkSources/{networkSourceId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateNetworkSourceResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

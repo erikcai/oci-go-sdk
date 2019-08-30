@@ -3,7 +3,7 @@
 
 // OceInstance API
 //
-// A description of the OceInstance API
+// Oracle Content and Experience is a cloud-based content hub to drive omni-channel content management and accelerate experience delivery
 //
 
 package oce
@@ -15,44 +15,29 @@ import (
 // CreateOceInstanceDetails The information about new OceInstance.
 type CreateOceInstanceDetails struct {
 
-	// OceInstance Identifier
-	DisplayName *string `mandatory:"true" json:"displayName"`
-
-	// OceInstance Identifier
-	OceInstanceType *string `mandatory:"true" json:"oceInstanceType"`
-
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Region
-	Region *string `mandatory:"true" json:"region"`
-
-	// Storage Compartment Identifier
-	StorageCompartmentId *string `mandatory:"true" json:"storageCompartmentId"`
-
-	// Service Name
-	ServiceName *string `mandatory:"true" json:"serviceName"`
+	// OceInstance Name
+	Name *string `mandatory:"true" json:"name"`
 
 	// Tenancy Identifier
 	TenancyId *string `mandatory:"true" json:"tenancyId"`
 
-	// IDCS Proof of Stripe Token
-	IdcsAt *string `mandatory:"true" json:"idcsAt"`
+	// Identity Cloud Service access token identifying a stripe and service administrator user
+	IdcsAccessToken *string `mandatory:"true" json:"idcsAccessToken"`
 
-	// Namespace
-	Namespace *string `mandatory:"true" json:"namespace"`
+	// Tenancy Name
+	TenancyName *string `mandatory:"true" json:"tenancyName"`
+
+	// Object Storage Namespace of Tenancy
+	ObjectStorageNamespace *string `mandatory:"true" json:"objectStorageNamespace"`
 
 	// Admin Email for Notification
 	AdminEmail *string `mandatory:"true" json:"adminEmail"`
 
 	// OceInstance description
 	Description *string `mandatory:"false" json:"description"`
-
-	// Account Name
-	AccountName *string `mandatory:"false" json:"accountName"`
-
-	// Target POD Name
-	PodName *string `mandatory:"false" json:"podName"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

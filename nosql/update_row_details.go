@@ -35,14 +35,24 @@ type UpdateRowDetails struct {
 	// the existing row will be returned.
 	IsGetReturnRow *bool `mandatory:"false" json:"isGetReturnRow"`
 
-	// Timeout setting for the put, in ms.
-	Timeout *int `mandatory:"false" json:"timeout"`
+	// Timeout setting for the put.
+	TimeoutInMs *int `mandatory:"false" json:"timeoutInMs"`
 
 	// Time-to-live for the row, in days.
 	Ttl *int `mandatory:"false" json:"ttl"`
 
 	// If true, set time-to-live for this row to the table's default.
 	IsTtlUseTableDefault *bool `mandatory:"false" json:"isTtlUseTableDefault"`
+
+	// Sets the number of generated identity values that are
+	// requested from the server during a put. If present and greater than 0,
+	// this value takes precedence over a default value for the table.
+	IdentityCacheSize *int `mandatory:"false" json:"identityCacheSize"`
+
+	// If present and true, the presented row value must exactly
+	// match the table's schema.  Otherwise, rows with missing
+	// non-key fields or extra fields can be written successfully.
+	IsExactMatch *bool `mandatory:"false" json:"isExactMatch"`
 }
 
 func (m UpdateRowDetails) String() string {

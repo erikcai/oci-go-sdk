@@ -51,9 +51,54 @@ func (client *KmsManagementClient) ConfigurationProvider() *common.Configuration
 	return client.config
 }
 
+// BackupKey Get an encrypted binary payload that contains all key versions and metadata of the key and vault so it can be restored.
+func (client KmsManagementClient) BackupKey(ctx context.Context, request BackupKeyRequest) (response BackupKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.backupKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = BackupKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(BackupKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into BackupKeyResponse")
+	}
+	return
+}
+
+// backupKey implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) backupKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20180608/keys/{keyId}/backup")
+	if err != nil {
+		return nil, err
+	}
+
+	var response BackupKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CancelKeyDeletion Cancels the scheduled deletion of the specified key. Canceling
-// a scheduled deletion restores the key to the respective
-// states they were in before the deletion was scheduled.
+// a scheduled deletion restores the key's lifecycle state to what
+// it was before its scheduled deletion.
+// As a provisioning operation, this call is subject to a Key Management limit that applies to
+// the total number of requests across all provisioning write operations. Key Management might
+// throttle this call to reject an otherwise valid request when the total rate of provisioning
+// write operations exceeds 10 requests per second for a given tenancy.
 func (client KmsManagementClient) CancelKeyDeletion(ctx context.Context, request CancelKeyDeletionRequest) (response CancelKeyDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -101,8 +146,12 @@ func (client KmsManagementClient) cancelKeyDeletion(ctx context.Context, request
 }
 
 // CancelKeyVersionDeletion Cancels the scheduled deletion of the specified key version. Canceling
-// a scheduled deletion restores the key version to the respective
-// states they were in before the deletion was scheduled.
+// a scheduled deletion restores the key version to its lifecycle state from
+// before its scheduled deletion.
+// As a provisioning operation, this call is subject to a Key Management limit that applies to
+// the total number of requests across all provisioning write operations. Key Management might
+// throttle this call to reject an otherwise valid request when the total rate of provisioning
+// write operations exceeds 10 requests per second for a given tenancy.
 func (client KmsManagementClient) CancelKeyVersionDeletion(ctx context.Context, request CancelKeyVersionDeletionRequest) (response CancelKeyVersionDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -149,7 +198,13 @@ func (client KmsManagementClient) cancelKeyVersionDeletion(ctx context.Context, 
 	return response, err
 }
 
-// ChangeKeyCompartment Moves a key into a different compartment. When provided, If-Match is checked against ETag values of the key.
+// ChangeKeyCompartment Moves a key into a different compartment within the same tenancy. For information about
+// moving resources between compartments, see Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+// When provided, if-match is checked against the ETag values of the key.
+// As a provisioning operation, this call is subject to a Key Management limit that applies to
+// the total number of requests across all provisioning write operations. Key Management might
+// throttle this call to reject an otherwise valid request when the total rate of provisioning
+// write operations exceeds 10 requests per second for a given tenancy.
 func (client KmsManagementClient) ChangeKeyCompartment(ctx context.Context, request ChangeKeyCompartmentRequest) (response ChangeKeyCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -588,8 +643,69 @@ func (client KmsManagementClient) listKeys(ctx context.Context, request common.O
 	return response, err
 }
 
-// ScheduleKeyDeletion Schedules the deletion of the specified key. This sets the state of the key
-// to `PENDING_DELETION` and then deletes it after the retention period ends.
+// RestoreKey Restores the key to a given vault.If the vault does not exist, then this operation will return a response with a 400 HTTP status code indicating that the vault must be restored first. If the key has already been restored, then we will append the key versions that had not been restored to the key.
+func (client KmsManagementClient) RestoreKey(ctx context.Context, request RestoreKeyRequest) (response RestoreKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.restoreKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = RestoreKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RestoreKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RestoreKeyResponse")
+	}
+	return
+}
+
+// restoreKey implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) restoreKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/keys/restore")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RestoreKeyResponse
+	var httpResponse *http.Response
+	var customSigner common.HTTPRequestSigner
+	excludeBodySigningPredicate := func(r *http.Request) bool { return false }
+	customSigner, err = common.NewSignerFromOCIRequestSigner(client.Signer, excludeBodySigningPredicate)
+
+	//if there was an error overriding the signer, then use the signer from the client itself
+	if err != nil {
+		customSigner = client.Signer
+	}
+
+	//Execute the request with a custom signer
+	httpResponse, err = client.CallWithDetails(ctx, &httpRequest, common.ClientCallDetails{Signer: customSigner})
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ScheduleKeyDeletion Schedules the deletion of the specified key. This sets the lifecycle state of the key
+// to `PENDING_DELETION` and then deletes it after the specified retention period ends.
+// As a provisioning operation, this call is subject to a Key Management limit that applies to
+// the total number of requests across all provisioning write operations. Key Management might
+// throttle this call to reject an otherwise valid request when the total rate of provisioning
+// write operations exceeds 10 requests per second for a given tenancy.
 func (client KmsManagementClient) ScheduleKeyDeletion(ctx context.Context, request ScheduleKeyDeletionRequest) (response ScheduleKeyDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -636,8 +752,12 @@ func (client KmsManagementClient) scheduleKeyDeletion(ctx context.Context, reque
 	return response, err
 }
 
-// ScheduleKeyVersionDeletion Schedules the deletion of the specified key version. This sets the state of the key version
-// to `PENDING_DELETION` and then deletes it after the retention period ends.
+// ScheduleKeyVersionDeletion Schedules the deletion of the specified key version. This sets the lifecycle state of the key version
+// to `PENDING_DELETION` and then deletes it after the specified retention period ends.
+// As a provisioning operation, this call is subject to a Key Management limit that applies to
+// the total number of requests across all provisioning write operations. Key Management might
+// throttle this call to reject an otherwise valid request when the total rate of provisioning
+// write operations exceeds 10 requests per second for a given tenancy.
 func (client KmsManagementClient) ScheduleKeyVersionDeletion(ctx context.Context, request ScheduleKeyVersionDeletionRequest) (response ScheduleKeyVersionDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

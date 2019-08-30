@@ -30,6 +30,11 @@ type CreateIndexDetails struct {
 	// is an OCID, and compartmentId is supplied, the latter
 	// must match the identified table's compartmentId.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+
+	// If true, the operation completes successfully even when the
+	// index exists.  Otherwise, an attempt to create an index
+	// that already exists will return an error.
+	IsIfNotExists *bool `mandatory:"false" json:"isIfNotExists"`
 }
 
 func (m CreateIndexDetails) String() string {

@@ -21,6 +21,8 @@ type PreparedStatement struct {
 	// A base64-encoded, compiled and parameterized version of
 	// a SQL statement.
 	Statement *string `mandatory:"false" json:"statement"`
+
+	Usage *RequestUsage `mandatory:"false" json:"usage"`
 }
 
 func (m PreparedStatement) String() string {

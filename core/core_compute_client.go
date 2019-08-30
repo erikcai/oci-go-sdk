@@ -308,7 +308,7 @@ func (client ComputeClient) captureConsoleHistory(ctx context.Context, request c
 	return response, err
 }
 
-// ChangeDedicatedVmHostCompartment Moves a dedicated vm host from one compartment to another
+// ChangeDedicatedVmHostCompartment Moves a dedicated virtual machine host from one compartment to another.
 func (client ComputeClient) ChangeDedicatedVmHostCompartment(ctx context.Context, request ChangeDedicatedVmHostCompartmentRequest) (response ChangeDedicatedVmHostCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -502,7 +502,10 @@ func (client ComputeClient) createAppCatalogSubscription(ctx context.Context, re
 	return response, err
 }
 
-// CreateDedicatedVmHost Creates a new dedicated virtual machine (VM) host in the specified compartment and the specified availability domain.
+// CreateDedicatedVmHost Creates a new dedicated virtual machine host in the specified compartment and the specified availability domain.
+// Dedicated virtual machine hosts enable you to run your Compute virtual machine (VM) instances on dedicated servers
+// that are a single tenant and not shared with other customers.
+// For more information, see Dedicated Virtual Machine Hosts (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/dedicatedvmhosts.htm).
 func (client ComputeClient) CreateDedicatedVmHost(ctx context.Context, request CreateDedicatedVmHostRequest) (response CreateDedicatedVmHostResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -746,8 +749,9 @@ func (client ComputeClient) deleteConsoleHistory(ctx context.Context, request co
 	return response, err
 }
 
-// DeleteDedicatedVmHost Deletes the specified dedicated virtual machine (VM) host.
-// If any VM instances are assigned to the dedicated VM host, it will not be deleted and the service will return a 409 response code.
+// DeleteDedicatedVmHost Deletes the specified dedicated virtual machine host.
+// If any VM instances are assigned to the dedicated virtual machine host,
+// the delete operation will fail and the service will return a 409 response code.
 func (client ComputeClient) DeleteDedicatedVmHost(ctx context.Context, request DeleteDedicatedVmHostRequest) (response DeleteDedicatedVmHostResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1320,7 +1324,7 @@ func (client ComputeClient) getConsoleHistoryContent(ctx context.Context, reques
 	return response, err
 }
 
-// GetDedicatedVmHost Gets information about the specified dedicated virtual machine (VM) host.
+// GetDedicatedVmHost Gets information about the specified dedicated virtual machine host.
 func (client ComputeClient) GetDedicatedVmHost(ctx context.Context, request GetDedicatedVmHostRequest) (response GetDedicatedVmHostResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1952,8 +1956,8 @@ func (client ComputeClient) listConsoleHistories(ctx context.Context, request co
 	return response, err
 }
 
-// ListDedicatedVmHostInstanceShapes Lists the shapes that can be used to launch a virtual machine (VM) instance on a dedicated VM host within the specified compartment.
-// You can filter the list by compatibility with a specific dedicated VM host shape.
+// ListDedicatedVmHostInstanceShapes Lists the shapes that can be used to launch a virtual machine instance on a dedicated virtual machine host within the specified compartment.
+// You can filter the list by compatibility with a specific dedicated virtual machine host shape.
 func (client ComputeClient) ListDedicatedVmHostInstanceShapes(ctx context.Context, request ListDedicatedVmHostInstanceShapesRequest) (response ListDedicatedVmHostInstanceShapesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1995,7 +1999,7 @@ func (client ComputeClient) listDedicatedVmHostInstanceShapes(ctx context.Contex
 	return response, err
 }
 
-// ListDedicatedVmHostInstances Returns the list of instances on the dedicated virtual machine (VM) hosts that match the specified criteria.
+// ListDedicatedVmHostInstances Returns the list of instances on the dedicated virtual machine hosts that match the specified criteria.
 func (client ComputeClient) ListDedicatedVmHostInstances(ctx context.Context, request ListDedicatedVmHostInstancesRequest) (response ListDedicatedVmHostInstancesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2037,7 +2041,7 @@ func (client ComputeClient) listDedicatedVmHostInstances(ctx context.Context, re
 	return response, err
 }
 
-// ListDedicatedVmHostShapes Lists the shapes that can be used to launch a dedicated virtual machine (VM) host within the specified compartment.
+// ListDedicatedVmHostShapes Lists the shapes that can be used to launch a dedicated virtual machine host within the specified compartment.
 func (client ComputeClient) ListDedicatedVmHostShapes(ctx context.Context, request ListDedicatedVmHostShapesRequest) (response ListDedicatedVmHostShapesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2079,9 +2083,9 @@ func (client ComputeClient) listDedicatedVmHostShapes(ctx context.Context, reque
 	return response, err
 }
 
-// ListDedicatedVmHosts Returns the list of dedicated virtual machine (VM) hosts that match the specified criteria from the specified compartment.
-// You can limit the list by specifying a dedicated VM host display name. The list will include all the identically-named
-// dedicated VM hosts in the compartment.
+// ListDedicatedVmHosts Returns the list of dedicated virtual machine hosts that match the specified criteria in the specified compartment.
+// You can limit the list by specifying a dedicated virtual machine host display name. The list will include all the identically-named
+// dedicated virtual machine hosts in the compartment.
 func (client ComputeClient) ListDedicatedVmHosts(ctx context.Context, request ListDedicatedVmHostsRequest) (response ListDedicatedVmHostsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2578,7 +2582,7 @@ func (client ComputeClient) updateConsoleHistory(ctx context.Context, request co
 	return response, err
 }
 
-// UpdateDedicatedVmHost Updates the displayName, freeformTags, and definedTags attributes for the specified dedicated virtual machine (VM) host.
+// UpdateDedicatedVmHost Updates the displayName, freeformTags, and definedTags attributes for the specified dedicated virtual machine host.
 // If an attribute value is not included, it will not be updated.
 func (client ComputeClient) UpdateDedicatedVmHost(ctx context.Context, request UpdateDedicatedVmHostRequest) (response UpdateDedicatedVmHostResponse, err error) {
 	var ociResponse common.OCIResponse

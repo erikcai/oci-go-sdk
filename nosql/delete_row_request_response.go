@@ -27,8 +27,8 @@ type DeleteRowRequest struct {
 	// (ifVersion et al), then the existing row will be returned.
 	IsGetReturnRow *bool `mandatory:"false" contributesTo:"query" name:"isGetReturnRow"`
 
-	// Timeout setting for this operation, in ms.
-	Timeout *int `mandatory:"false" contributesTo:"query" name:"timeout"`
+	// Timeout setting for this operation.
+	TimeoutInMs *int `mandatory:"false" contributesTo:"query" name:"timeoutInMs"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
 	// for a resource, set the `if-match` parameter to the value of the

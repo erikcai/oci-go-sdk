@@ -37,6 +37,9 @@ type QueryDetails struct {
 
 	// A map of prepared statement variables to values.
 	Variables map[string]interface{} `mandatory:"false" json:"variables"`
+
+	// Timeout setting for the query.
+	TimeoutInMs *int `mandatory:"false" json:"timeoutInMs"`
 }
 
 func (m QueryDetails) String() string {

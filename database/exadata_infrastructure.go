@@ -98,8 +98,8 @@ const (
 	ExadataInfrastructureLifecycleStateActivationFailed   ExadataInfrastructureLifecycleStateEnum = "ACTIVATION_FAILED"
 	ExadataInfrastructureLifecycleStateFailed             ExadataInfrastructureLifecycleStateEnum = "FAILED"
 	ExadataInfrastructureLifecycleStateUpdating           ExadataInfrastructureLifecycleStateEnum = "UPDATING"
-	ExadataInfrastructureLifecycleStateTerminating        ExadataInfrastructureLifecycleStateEnum = "TERMINATING"
-	ExadataInfrastructureLifecycleStateTerminated         ExadataInfrastructureLifecycleStateEnum = "TERMINATED"
+	ExadataInfrastructureLifecycleStateDeleting           ExadataInfrastructureLifecycleStateEnum = "DELETING"
+	ExadataInfrastructureLifecycleStateDeleted            ExadataInfrastructureLifecycleStateEnum = "DELETED"
 	ExadataInfrastructureLifecycleStateOffline            ExadataInfrastructureLifecycleStateEnum = "OFFLINE"
 )
 
@@ -111,8 +111,8 @@ var mappingExadataInfrastructureLifecycleState = map[string]ExadataInfrastructur
 	"ACTIVATION_FAILED":   ExadataInfrastructureLifecycleStateActivationFailed,
 	"FAILED":              ExadataInfrastructureLifecycleStateFailed,
 	"UPDATING":            ExadataInfrastructureLifecycleStateUpdating,
-	"TERMINATING":         ExadataInfrastructureLifecycleStateTerminating,
-	"TERMINATED":          ExadataInfrastructureLifecycleStateTerminated,
+	"DELETING":            ExadataInfrastructureLifecycleStateDeleting,
+	"DELETED":             ExadataInfrastructureLifecycleStateDeleted,
 	"OFFLINE":             ExadataInfrastructureLifecycleStateOffline,
 }
 

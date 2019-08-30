@@ -3,7 +3,7 @@
 
 // OceInstance API
 //
-// A description of the OceInstance API
+// Oracle Content and Experience is a cloud-based content hub to drive omni-channel content management and accelerate experience delivery
 //
 
 package oce
@@ -24,17 +24,8 @@ type OceInstanceSummary struct {
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Type of the OceInstance.
-	OceInstanceType *string `mandatory:"true" json:"oceInstanceType"`
-
-	// Region
-	Region *string `mandatory:"true" json:"region"`
-
-	// Storage Compartment Identifier
-	StorageCompartmentId *string `mandatory:"true" json:"storageCompartmentId"`
-
-	// Service Name
-	ServiceName *string `mandatory:"true" json:"serviceName"`
+	// OceInstance Name
+	Name *string `mandatory:"true" json:"name"`
 
 	// Tenancy Identifier
 	TenancyId *string `mandatory:"true" json:"tenancyId"`
@@ -42,20 +33,17 @@ type OceInstanceSummary struct {
 	// IDCS Tenancy Identifier
 	IdcsTenancy *string `mandatory:"true" json:"idcsTenancy"`
 
-	// Namespace
-	Namespace *string `mandatory:"true" json:"namespace"`
+	// Tenancy Name
+	TenancyName *string `mandatory:"true" json:"tenancyName"`
+
+	// Object Storage Namespace of tenancy
+	ObjectStorageNamespace *string `mandatory:"true" json:"objectStorageNamespace"`
 
 	// Admin Email for Notification
 	AdminEmail *string `mandatory:"true" json:"adminEmail"`
 
-	// OceInstance Identifier, can be renamed
-	DisplayName *string `mandatory:"false" json:"displayName"`
-
 	// OceInstance description, can be updated
 	Description *string `mandatory:"false" json:"description"`
-
-	// Account Name
-	AccountName *string `mandatory:"false" json:"accountName"`
 
 	// The time the the OceInstance was created. An RFC3339 formatted datetime string
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`

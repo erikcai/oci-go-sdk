@@ -35,7 +35,7 @@ type KeyVersion struct {
 	// Example: `ENABLED`
 	LifecycleState KeyVersionLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// An optional property for the deletion time of the key version, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
+	// An optional property indicating when to delete the key version, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
 	// Example: `2019-04-03T21:10:29.600Z`
 	TimeOfDeletion *common.SDKTime `mandatory:"false" json:"timeOfDeletion"`
 }

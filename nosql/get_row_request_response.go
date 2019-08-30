@@ -26,8 +26,8 @@ type GetRowRequest struct {
 	// Consistency requirement for a read operation.
 	Consistency GetRowConsistencyEnum `mandatory:"false" contributesTo:"query" name:"consistency" omitEmpty:"true"`
 
-	// Timeout setting for this operation, in ms.
-	Timeout *int `mandatory:"false" contributesTo:"query" name:"timeout"`
+	// Timeout setting for this operation.
+	TimeoutInMs *int `mandatory:"false" contributesTo:"query" name:"timeoutInMs"`
 
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

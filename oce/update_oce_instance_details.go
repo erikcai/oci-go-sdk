@@ -3,7 +3,7 @@
 
 // OceInstance API
 //
-// A description of the OceInstance API
+// Oracle Content and Experience is a cloud-based content hub to drive omni-channel content management and accelerate experience delivery
 //
 
 package oce
@@ -14,12 +14,6 @@ import (
 
 // UpdateOceInstanceDetails The information to be updated.
 type UpdateOceInstanceDetails struct {
-
-	// OceInstance Identifier
-	OceInstanceType *string `mandatory:"true" json:"oceInstanceType"`
-
-	// OceInstance Identifier
-	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// OceInstance description
 	Description *string `mandatory:"false" json:"description"`

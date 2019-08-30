@@ -28,6 +28,12 @@ type ChangeLoadBalancerCompartmentRequest struct {
 	// may be rejected).
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
+	// For optimistic concurrency control. Set the if-match parameter to the value of the ETag from a
+	// previous GET or POST response for that resource. The resource is moved only if the ETag you
+	// provide matches the resource's current ETag value.
+	// Example: `example-etag`
+	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

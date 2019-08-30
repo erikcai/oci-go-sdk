@@ -3,7 +3,7 @@
 
 // OceInstance API
 //
-// A description of the OceInstance API
+// Oracle Content and Experience is a cloud-based content hub to drive omni-channel content management and accelerate experience delivery
 //
 
 package oce

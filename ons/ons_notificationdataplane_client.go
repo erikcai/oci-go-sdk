@@ -109,7 +109,9 @@ func (client NotificationDataPlaneClient) changeSubscriptionCompartment(ctx cont
 	return response, err
 }
 
-// CreateSubscription Creates a subscription for the specified topic.
+// CreateSubscription Creates a subscription for the specified topic and sends a subscription confirmation URL to the endpoint. The subscription remains in "Pending" status until it has been confirmed.
+// For information about confirming subscriptions, see
+// To confirm a subscription (https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#confirmSub).
 // Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 func (client NotificationDataPlaneClient) CreateSubscription(ctx context.Context, request CreateSubscriptionRequest) (response CreateSubscriptionResponse, err error) {
 	var ociResponse common.OCIResponse
