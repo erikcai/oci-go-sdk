@@ -59,6 +59,9 @@
     <datacatalog-api-spec-spec-file>datacatalog-api-spec.cond.yaml</datacatalog-api-spec-spec-file>
     <cec-public-spec-spec-file>source/api.cond.yaml</cec-public-spec-spec-file>
     <odsc-pegasus-control-plane-spec-spec-file>source/api.cond.yaml</odsc-pegasus-control-plane-spec-spec-file>
+    <hydra-pika-controlplane-api-spec-spec-file>source/public-api.cond.yaml</hydra-pika-controlplane-api-spec-spec-file>
+    <bds-cp-spec-spec-file>source/bds-cp.cond.yaml</bds-cp-spec-spec-file>
+    <analytics-control-plane-api-spec-spec-file>source/analytics-api-spec.cond.yaml</analytics-control-plane-api-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -212,6 +215,18 @@
     <dependency>
       <groupId>com.oracle.pic.odsc.pegasus</groupId>
       <artifactId>odsc-pegasus-control-plane-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.hydra.pika.controlplane</groupId>
+      <artifactId>hydra-pika-controlplane-api-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.bds</groupId>
+      <artifactId>bds-cp-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.pic.analytics</groupId>
+      <artifactId>analytics-control-plane-api-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -919,6 +934,60 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/odsc-pegasus-control-plane-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-hydra-pika-controlplane-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.hydra.pika.controlplane</groupId>
+                  <artifactId>hydra-pika-controlplane-api-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/hydra-pika-controlplane-api-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-bds-cp-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.bds</groupId>
+                  <artifactId>bds-cp-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/bds-cp-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-analytics-control-plane-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.pic.analytics</groupId>
+                  <artifactId>analytics-control-plane-api-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/analytics-control-plane-api-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1956,6 +2025,87 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-hydra-pika-controlplane-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/hydra-pika-controlplane-api-spec/source/${hydra-pika-controlplane-api-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/hydra-pika-controlplane-api-spec/${hydra-pika-controlplane-api-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/hydra-pika-controlplane-api-spec/${hydra-pika-controlplane-api-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-hydra-pika-controlplane-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/hydra-pika-controlplane-api-spec/${hydra-pika-controlplane-api-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/hydra-pika-controlplane-api-spec/${hydra-pika-controlplane-api-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-prefer-bds-cp-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/bds-cp-spec/source/${bds-cp-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/bds-cp-spec/${bds-cp-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/bds-cp-spec/${bds-cp-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-bds-cp-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/bds-cp-spec/${bds-cp-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/bds-cp-spec/${bds-cp-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-prefer-analytics-control-plane-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/analytics-control-plane-api-spec/source/${analytics-control-plane-api-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/analytics-control-plane-api-spec/${analytics-control-plane-api-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/analytics-control-plane-api-spec/${analytics-control-plane-api-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-analytics-control-plane-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/analytics-control-plane-api-spec/${analytics-control-plane-api-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/analytics-control-plane-api-spec/${analytics-control-plane-api-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2767,6 +2917,66 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-hydra-pika-controlplane-api-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/hydra-pika-controlplane-api-spec/${hydra-pika-controlplane-api-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>publiclogging</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>publiclogging</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>go-public-sdk-bds-cp-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/bds-cp-spec/${bds-cp-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>bds</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>bds</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>go-public-sdk-analytics-control-plane-api-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/analytics-control-plane-api-spec/${analytics-control-plane-api-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>analytics</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>analytics</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -3051,6 +3261,24 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/publiclogging</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
+            <fileset>
+              <directory>lib/oci/bds</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
+            <fileset>
+              <directory>lib/oci/analytics</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -3076,7 +3304,7 @@
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
         <artifactId>oralb-api-spec</artifactId>
-        <version>4.0.41</version>
+        <version>4.0.42</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
@@ -3201,7 +3429,7 @@
       <dependency>
         <groupId>com.oracle.pic.oda.cp</groupId>
         <artifactId>digital-assistant-spec</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3-20190827.195242-13</version>
       </dependency>
       <dependency>
         <groupId>dscs-cp-spec</groupId>
@@ -3221,7 +3449,7 @@
       <dependency>
         <groupId>com.oracle.pic.apigw</groupId>
         <artifactId>public-api-spec</artifactId>
-        <version>1.2.0</version>
+        <version>1.3.0</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
@@ -3247,6 +3475,21 @@
         <groupId>com.oracle.pic.odsc.pegasus</groupId>
         <artifactId>odsc-pegasus-control-plane-spec</artifactId>
         <version>0.1.97</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.hydra.pika.controlplane</groupId>
+        <artifactId>hydra-pika-controlplane-api-spec</artifactId>
+        <version>0.0.3</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.bds</groupId>
+        <artifactId>bds-cp-spec</artifactId>
+        <version>0.1.26</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.pic.analytics</groupId>
+        <artifactId>analytics-control-plane-api-spec</artifactId>
+        <version>1.0.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

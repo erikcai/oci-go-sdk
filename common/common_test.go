@@ -74,12 +74,12 @@ func TestEndpointForTemplate(t *testing.T) {
 }
 
 func TestStringToRegion(t *testing.T) {
-	region := StringToRegion("yyz");
-	assert.Equal(t, RegionCAToronto1, region);
+	region := StringToRegion("yyz")
+	assert.Equal(t, RegionCAToronto1, region)
 
-	region = StringToRegion("nrt");
-	assert.Equal(t, RegionAPTokyo1, region);
+	region = StringToRegion("nrt")
+	assert.Equal(t, RegionAPTokyo1, region)
 
-	region = StringToRegion("gru");
-	assert.Equal(t, RegionSASaopaulo1, region);
+	region = StringToRegion("gru")
+	assert.Equal(t, RegionSASaopaulo1, region)
 }

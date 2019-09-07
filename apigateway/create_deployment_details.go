@@ -15,10 +15,6 @@ import (
 // CreateDeploymentDetails The information about new Deployment.
 type CreateDeploymentDetails struct {
 
-	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Example: `My new resource`
-	DisplayName *string `mandatory:"true" json:"displayName"`
-
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
 	GatewayId *string `mandatory:"true" json:"gatewayId"`
 
@@ -31,6 +27,10 @@ type CreateDeploymentDetails struct {
 
 	// API Specification
 	Specification *ApiSpecification `mandatory:"true" json:"specification"`
+
+	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Example: `My new resource`
+	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair
 	// with no predefined name, type, or namespace. For more information, see

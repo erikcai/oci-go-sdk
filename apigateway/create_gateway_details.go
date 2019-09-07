@@ -15,10 +15,6 @@ import (
 // CreateGatewayDetails The information about new Gateway.
 type CreateGatewayDetails struct {
 
-	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Example: `My new resource`
-	DisplayName *string `mandatory:"true" json:"displayName"`
-
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which
 	// resource is created.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
@@ -29,6 +25,10 @@ type CreateGatewayDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet in which
 	// related resources are created.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
+
+	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Example: `My new resource`
+	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair
 	// with no predefined name, type, or namespace. For more information, see
