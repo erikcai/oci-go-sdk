@@ -14,15 +14,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Configuration The retention period setting, specified in days. For more information, see Setting Audit
-// Log Retention Period (https://docs.cloud.oracle.com/iaas/Content/Audit/Tasks/settingretentionperiod.htm).
-type Configuration struct {
+// StateChange The representation of StateChange
+type StateChange struct {
+	Previous map[string]interface{} `mandatory:"false" json:"previous"`
 
-	// The retention period setting, specified in days. The minimum is 90, the maximum 365.
-	// Example: `90`
-	RetentionPeriodDays *int `mandatory:"false" json:"retentionPeriodDays"`
+	Current map[string]interface{} `mandatory:"false" json:"current"`
 }
 
-func (m Configuration) String() string {
+func (m StateChange) String() string {
 	return common.PointerString(m)
 }

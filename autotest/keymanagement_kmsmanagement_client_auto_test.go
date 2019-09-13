@@ -275,6 +275,92 @@ func TestKmsManagementClientCreateKeyVersion(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsManagementClientCreateWrappingKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "CreateWrappingKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateWrappingKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsManagement", "CreateWrappingKey", createKmsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsManagementClient)
+
+	body, err := testClient.getRequests("keymanagement", "CreateWrappingKey")
+	assert.NoError(t, err)
+
+	type CreateWrappingKeyRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.CreateWrappingKeyRequest
+	}
+
+	var requests []CreateWrappingKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreateWrappingKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsManagementClientDeleteWrappingKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "DeleteWrappingKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteWrappingKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsManagement", "DeleteWrappingKey", createKmsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsManagementClient)
+
+	body, err := testClient.getRequests("keymanagement", "DeleteWrappingKey")
+	assert.NoError(t, err)
+
+	type DeleteWrappingKeyRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.DeleteWrappingKeyRequest
+	}
+
+	var requests []DeleteWrappingKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.DeleteWrappingKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
 func TestKmsManagementClientDisableKey(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -439,6 +525,135 @@ func TestKmsManagementClientGetKeyVersion(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetKeyVersion(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsManagementClientGetWrappingKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "GetWrappingKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetWrappingKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsManagement", "GetWrappingKey", createKmsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsManagementClient)
+
+	body, err := testClient.getRequests("keymanagement", "GetWrappingKey")
+	assert.NoError(t, err)
+
+	type GetWrappingKeyRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.GetWrappingKeyRequest
+	}
+
+	var requests []GetWrappingKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetWrappingKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsManagementClientImportKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "ImportKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ImportKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsManagement", "ImportKey", createKmsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsManagementClient)
+
+	body, err := testClient.getRequests("keymanagement", "ImportKey")
+	assert.NoError(t, err)
+
+	type ImportKeyRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.ImportKeyRequest
+	}
+
+	var requests []ImportKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ImportKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsManagementClientImportKeyVersion(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "ImportKeyVersion")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ImportKeyVersion is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsManagement", "ImportKeyVersion", createKmsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsManagementClient)
+
+	body, err := testClient.getRequests("keymanagement", "ImportKeyVersion")
+	assert.NoError(t, err)
+
+	type ImportKeyVersionRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.ImportKeyVersionRequest
+	}
+
+	var requests []ImportKeyVersionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ImportKeyVersion(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

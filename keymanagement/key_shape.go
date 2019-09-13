@@ -32,10 +32,12 @@ type KeyShapeAlgorithmEnum string
 // Set of constants representing the allowable values for KeyShapeAlgorithmEnum
 const (
 	KeyShapeAlgorithmAes KeyShapeAlgorithmEnum = "AES"
+	KeyShapeAlgorithmRsa KeyShapeAlgorithmEnum = "RSA"
 )
 
 var mappingKeyShapeAlgorithm = map[string]KeyShapeAlgorithmEnum{
 	"AES": KeyShapeAlgorithmAes,
+	"RSA": KeyShapeAlgorithmRsa,
 }
 
 // GetKeyShapeAlgorithmEnumValues Enumerates the set of values for KeyShapeAlgorithmEnum

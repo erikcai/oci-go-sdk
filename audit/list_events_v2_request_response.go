@@ -8,8 +8,8 @@ import (
 	"net/http"
 )
 
-// ListEventsRequest wrapper for the ListEvents operation
-type ListEventsRequest struct {
+// ListEventsV2Request wrapper for the ListEventsV2 operation
+type ListEventsV2Request struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
@@ -44,28 +44,28 @@ type ListEventsRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ListEventsRequest) String() string {
+func (request ListEventsV2Request) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ListEventsRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ListEventsV2Request) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ListEventsRequest) RetryPolicy() *common.RetryPolicy {
+func (request ListEventsV2Request) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ListEventsResponse wrapper for the ListEvents operation
-type ListEventsResponse struct {
+// ListEventsV2Response wrapper for the ListEventsV2 operation
+type ListEventsV2Response struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []AuditEvent instances
-	Items []AuditEvent `presentIn:"body"`
+	// A list of []AuditEventV2 instances
+	Items []AuditEventV2 `presentIn:"body"`
 
 	// For pagination of a list of audit events. When this header appears in the response,
 	// it means you received a partial list and there are more results. Include this value as the `page`
@@ -78,11 +78,11 @@ type ListEventsResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response ListEventsResponse) String() string {
+func (response ListEventsV2Response) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ListEventsResponse) HTTPResponse() *http.Response {
+func (response ListEventsV2Response) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

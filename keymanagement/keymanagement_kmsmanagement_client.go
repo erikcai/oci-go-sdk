@@ -354,6 +354,97 @@ func (client KmsManagementClient) createKeyVersion(ctx context.Context, request 
 	return response, err
 }
 
+// CreateWrappingKey Creates a new RSA wrapping key.
+func (client KmsManagementClient) CreateWrappingKey(ctx context.Context, request CreateWrappingKeyRequest) (response CreateWrappingKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createWrappingKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateWrappingKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateWrappingKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateWrappingKeyResponse")
+	}
+	return
+}
+
+// createWrappingKey implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) createWrappingKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/wrappingKeys")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateWrappingKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteWrappingKey Deletes the RSA wrapping key. This sets the state of the key
+// being deleted to `DELETING` and then deletes it. The terminal state of the key
+// will be `DELETED`.
+func (client KmsManagementClient) DeleteWrappingKey(ctx context.Context, request DeleteWrappingKeyRequest) (response DeleteWrappingKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteWrappingKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteWrappingKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteWrappingKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteWrappingKeyResponse")
+	}
+	return
+}
+
+// deleteWrappingKey implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) deleteWrappingKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/20180608/wrappingKeys")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteWrappingKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DisableKey Disables a master encryption key so it can no longer be used for encryption, decryption, or
 // generating new data encryption keys.
 // As a management operation, this call is subject to a Key Management limit that applies to the total number
@@ -538,6 +629,142 @@ func (client KmsManagementClient) getKeyVersion(ctx context.Context, request com
 	}
 
 	var response GetKeyVersionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetWrappingKey Returns the RSA wrapping key associated with the vault in the endpoint.
+func (client KmsManagementClient) GetWrappingKey(ctx context.Context, request GetWrappingKeyRequest) (response GetWrappingKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getWrappingKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetWrappingKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetWrappingKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetWrappingKeyResponse")
+	}
+	return
+}
+
+// getWrappingKey implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) getWrappingKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20180608/wrappingKeys")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetWrappingKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ImportKey Imports the given wrapped/encrypted AES key.
+func (client KmsManagementClient) ImportKey(ctx context.Context, request ImportKeyRequest) (response ImportKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.importKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ImportKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ImportKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ImportKeyResponse")
+	}
+	return
+}
+
+// importKey implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) importKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/keys/import")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ImportKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ImportKeyVersion Imports the given key version.
+func (client KmsManagementClient) ImportKeyVersion(ctx context.Context, request ImportKeyVersionRequest) (response ImportKeyVersionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.importKeyVersion, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ImportKeyVersionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ImportKeyVersionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ImportKeyVersionResponse")
+	}
+	return
+}
+
+// importKeyVersion implements the OCIOperation interface (enables retrying operations)
+func (client KmsManagementClient) importKeyVersion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/keys/{keyId}/keyVersions/import")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ImportKeyVersionResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

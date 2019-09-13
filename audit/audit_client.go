@@ -3,7 +3,9 @@
 
 // Audit API
 //
-// API for the Audit Service. You can use this API for queries, but not bulk-export operations.
+// API for the Audit Service. Use this API for compliance monitoring in your tenancy.
+// For more information, see Overview of Audit (https://docs.cloud.oracle.com/iaas/Content/Audit/Concepts/auditoverview.htm).
+// **Tip**: This API is good for queries, but not bulk-export operations.
 //
 
 package audit
@@ -37,7 +39,7 @@ func NewAuditClientWithConfigurationProvider(configProvider common.Configuration
 
 // SetRegion overrides the region of this client.
 func (client *AuditClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).Endpoint("audit")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("audit", "https://audit.{region}.oraclecloud.com")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -100,7 +102,8 @@ func (client AuditClient) getConfiguration(ctx context.Context, request common.O
 	return response, err
 }
 
-// ListEvents Returns all audit events for the specified compartment that were processed within the specified time range.
+// ListEvents Returns all the audit events processed for the specified compartment within the specified
+// time range.
 func (client AuditClient) ListEvents(ctx context.Context, request ListEventsRequest) (response ListEventsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -130,6 +133,49 @@ func (client AuditClient) listEvents(ctx context.Context, request common.OCIRequ
 	}
 
 	var response ListEventsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListEventsV2 Returns all the audit events processed for the specified compartment within the specified
+// time range.
+func (client AuditClient) ListEventsV2(ctx context.Context, request ListEventsV2Request) (response ListEventsV2Response, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listEventsV2, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListEventsV2Response{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListEventsV2Response); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListEventsV2Response")
+	}
+	return
+}
+
+// listEventsV2 implements the OCIOperation interface (enables retrying operations)
+func (client AuditClient) listEventsV2(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/auditEventsV2")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListEventsV2Response
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
