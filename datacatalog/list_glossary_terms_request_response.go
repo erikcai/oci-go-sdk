@@ -124,7 +124,7 @@ var mappingListGlossaryTermsFields = map[string]ListGlossaryTermsFieldsEnum{
 	"lifecycleState":        ListGlossaryTermsFieldsLifecyclestate,
 	"timeCreated":           ListGlossaryTermsFieldsTimecreated,
 	"associatedObjectCount": ListGlossaryTermsFieldsAssociatedobjectcount,
-	"uri": ListGlossaryTermsFieldsUri,
+	"uri":                   ListGlossaryTermsFieldsUri,
 }
 
 // GetListGlossaryTermsFieldsEnumValues Enumerates the set of values for ListGlossaryTermsFieldsEnum

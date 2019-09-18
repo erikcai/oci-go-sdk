@@ -46,9 +46,6 @@ type OdaInstance struct {
 	// The current state of the Digital Assistant instance.
 	LifecycleState OdaInstanceLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The current sub-state of the Digital Assistant instance.
-	LifecycleSubState OdaInstanceLifecycleSubStateEnum `mandatory:"false" json:"lifecycleSubState,omitempty"`
-
 	// A message that describes the current state in more detail.
 	// For example, actionable information about an instance that's in the `FAILED` state.
 	StateMessage *string `mandatory:"false" json:"stateMessage"`
@@ -117,31 +114,6 @@ var mappingOdaInstanceLifecycleState = map[string]OdaInstanceLifecycleStateEnum{
 func GetOdaInstanceLifecycleStateEnumValues() []OdaInstanceLifecycleStateEnum {
 	values := make([]OdaInstanceLifecycleStateEnum, 0)
 	for _, v := range mappingOdaInstanceLifecycleState {
-		values = append(values, v)
-	}
-	return values
-}
-
-// OdaInstanceLifecycleSubStateEnum Enum with underlying type: string
-type OdaInstanceLifecycleSubStateEnum string
-
-// Set of constants representing the allowable values for OdaInstanceLifecycleSubStateEnum
-const (
-	OdaInstanceLifecycleSubStateDeletePending OdaInstanceLifecycleSubStateEnum = "DELETE_PENDING"
-	OdaInstanceLifecycleSubStatePurging       OdaInstanceLifecycleSubStateEnum = "PURGING"
-	OdaInstanceLifecycleSubStateQueued        OdaInstanceLifecycleSubStateEnum = "QUEUED"
-)
-
-var mappingOdaInstanceLifecycleSubState = map[string]OdaInstanceLifecycleSubStateEnum{
-	"DELETE_PENDING": OdaInstanceLifecycleSubStateDeletePending,
-	"PURGING":        OdaInstanceLifecycleSubStatePurging,
-	"QUEUED":         OdaInstanceLifecycleSubStateQueued,
-}
-
-// GetOdaInstanceLifecycleSubStateEnumValues Enumerates the set of values for OdaInstanceLifecycleSubStateEnum
-func GetOdaInstanceLifecycleSubStateEnumValues() []OdaInstanceLifecycleSubStateEnum {
-	values := make([]OdaInstanceLifecycleSubStateEnum, 0)
-	for _, v := range mappingOdaInstanceLifecycleSubState {
 		values = append(values, v)
 	}
 	return values
