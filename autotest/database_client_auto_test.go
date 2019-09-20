@@ -570,8 +570,10 @@ func TestDatabaseClientCreateAutonomousDatabase(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
-				"DATABASE": &database.CreateAutonomousDatabaseCloneDetails{},
-				"NONE":     &database.CreateAutonomousDatabaseDetails{},
+				"DATABASE":              &database.CreateAutonomousDatabaseCloneDetails{},
+				"BACKUP_FROM_ID":        &database.CreateAutonomousDatabaseFromBackupDetails{},
+				"BACKUP_FROM_TIMESTAMP": &database.CreateAutonomousDatabaseFromBackupTimestampDetails{},
+				"NONE":                  &database.CreateAutonomousDatabaseDetails{},
 			},
 		}
 

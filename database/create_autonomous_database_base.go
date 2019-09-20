@@ -138,6 +138,14 @@ func (m *createautonomousdatabasebase) UnmarshalPolymorphicJSON(data []byte) (in
 		mm := CreateAutonomousDatabaseCloneDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "BACKUP_FROM_ID":
+		mm := CreateAutonomousDatabaseFromBackupDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "BACKUP_FROM_TIMESTAMP":
+		mm := CreateAutonomousDatabaseFromBackupTimestampDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "NONE":
 		mm := CreateAutonomousDatabaseDetails{}
 		err = json.Unmarshal(data, &mm)

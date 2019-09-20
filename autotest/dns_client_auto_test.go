@@ -217,11 +217,23 @@ func TestDnsClientCreateZone(t *testing.T) {
 	}
 
 	var requests []CreateZoneRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]CreateZoneRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateZoneBaseDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "migrationSource",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"NONE":   &dns.CreateZoneDetails{},
+				"DYNECT": &dns.CreateMigratedDynectZoneDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {

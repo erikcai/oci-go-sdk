@@ -58,6 +58,54 @@ func (client *OdaClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
 }
 
+// ChangeOdaInstanceCompartment Moves an Digital Assistant instance into a different compartment. When provided, If-Match is checked against
+// ETag values of the resource.
+func (client OdaClient) ChangeOdaInstanceCompartment(ctx context.Context, request ChangeOdaInstanceCompartmentRequest) (response ChangeOdaInstanceCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeOdaInstanceCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeOdaInstanceCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeOdaInstanceCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeOdaInstanceCompartmentResponse")
+	}
+	return
+}
+
+// changeOdaInstanceCompartment implements the OCIOperation interface (enables retrying operations)
+func (client OdaClient) changeOdaInstanceCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/odaInstances/{odaInstanceId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeOdaInstanceCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateOdaInstance Starts an asynchronous job to create a Digital Assistant instance.
 // To monitor the status of the job, take the `opc-work-request-id` response
 // header value and use it to call `GET /workRequests/{workRequestID}`.

@@ -3294,7 +3294,7 @@
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.85</version>
+        <version>0.4.86</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -3309,7 +3309,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.268</version>
+        <version>0.1.274</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -3329,7 +3329,7 @@
       <dependency>
         <groupId>com.oracle.pic.dns.pub</groupId>
         <artifactId>public-dns-api-spec</artifactId>
-        <version>2.0.32</version>
+        <version>2.0.47</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
@@ -3369,7 +3369,7 @@
       <dependency>
         <groupId>com.oracle.oci</groupId>
         <artifactId>healthchecks-api-spec</artifactId>
-        <version>1.1.1-20190516.152342-1</version>
+        <version>1.2.0-20190917.134531-2</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
@@ -3429,7 +3429,7 @@
       <dependency>
         <groupId>com.oracle.pic.oda.cp</groupId>
         <artifactId>digital-assistant-spec</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>dscs-cp-spec</groupId>

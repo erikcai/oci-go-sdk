@@ -49,17 +49,17 @@ const (
 	WorkRequestSummaryRequestActionRecoverOdaInstance         WorkRequestSummaryRequestActionEnum = "RECOVER_ODA_INSTANCE"
 	WorkRequestSummaryRequestActionCreateAssocation           WorkRequestSummaryRequestActionEnum = "CREATE_ASSOCATION"
 	WorkRequestSummaryRequestActionDeleteAssociation          WorkRequestSummaryRequestActionEnum = "DELETE_ASSOCIATION"
-	WorkRequestSummaryRequestActionLookupOdaInstancesForCacct WorkRequestSummaryRequestActionEnum = "LOOKUP_ODA_INSTANCES_FOR_CACCT"
+	WorkRequestSummaryRequestActionUpdateEntitlementsForCacct WorkRequestSummaryRequestActionEnum = "UPDATE_ENTITLEMENTS_FOR_CACCT"
 )
 
 var mappingWorkRequestSummaryRequestAction = map[string]WorkRequestSummaryRequestActionEnum{
-	"CREATE_ODA_INSTANCE":            WorkRequestSummaryRequestActionCreateOdaInstance,
-	"DELETE_ODA_INSTANCE":            WorkRequestSummaryRequestActionDeleteOdaInstance,
-	"PURGE_ODA_INSTANCE":             WorkRequestSummaryRequestActionPurgeOdaInstance,
-	"RECOVER_ODA_INSTANCE":           WorkRequestSummaryRequestActionRecoverOdaInstance,
-	"CREATE_ASSOCATION":              WorkRequestSummaryRequestActionCreateAssocation,
-	"DELETE_ASSOCIATION":             WorkRequestSummaryRequestActionDeleteAssociation,
-	"LOOKUP_ODA_INSTANCES_FOR_CACCT": WorkRequestSummaryRequestActionLookupOdaInstancesForCacct,
+	"CREATE_ODA_INSTANCE":           WorkRequestSummaryRequestActionCreateOdaInstance,
+	"DELETE_ODA_INSTANCE":           WorkRequestSummaryRequestActionDeleteOdaInstance,
+	"PURGE_ODA_INSTANCE":            WorkRequestSummaryRequestActionPurgeOdaInstance,
+	"RECOVER_ODA_INSTANCE":          WorkRequestSummaryRequestActionRecoverOdaInstance,
+	"CREATE_ASSOCATION":             WorkRequestSummaryRequestActionCreateAssocation,
+	"DELETE_ASSOCIATION":            WorkRequestSummaryRequestActionDeleteAssociation,
+	"UPDATE_ENTITLEMENTS_FOR_CACCT": WorkRequestSummaryRequestActionUpdateEntitlementsForCacct,
 }
 
 // GetWorkRequestSummaryRequestActionEnumValues Enumerates the set of values for WorkRequestSummaryRequestActionEnum

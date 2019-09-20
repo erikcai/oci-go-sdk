@@ -39,6 +39,9 @@ type OdaInstanceSummary struct {
 	// When the Digital Assistant instance was last updated. A date-time string as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
+	// The current sub-state of the Digital Assistant instance.
+	LifecycleSubState OdaInstanceSummaryLifecycleSubStateEnum `mandatory:"false" json:"lifecycleSubState,omitempty"`
+
 	// A message describing the current state in more detail. For example, actionable
 	// information about an instance that's in the `FAILED` state.
 	StateMessage *string `mandatory:"false" json:"stateMessage"`
@@ -107,6 +110,31 @@ var mappingOdaInstanceSummaryLifecycleState = map[string]OdaInstanceSummaryLifec
 func GetOdaInstanceSummaryLifecycleStateEnumValues() []OdaInstanceSummaryLifecycleStateEnum {
 	values := make([]OdaInstanceSummaryLifecycleStateEnum, 0)
 	for _, v := range mappingOdaInstanceSummaryLifecycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// OdaInstanceSummaryLifecycleSubStateEnum Enum with underlying type: string
+type OdaInstanceSummaryLifecycleSubStateEnum string
+
+// Set of constants representing the allowable values for OdaInstanceSummaryLifecycleSubStateEnum
+const (
+	OdaInstanceSummaryLifecycleSubStateDeletePending OdaInstanceSummaryLifecycleSubStateEnum = "DELETE_PENDING"
+	OdaInstanceSummaryLifecycleSubStatePurging       OdaInstanceSummaryLifecycleSubStateEnum = "PURGING"
+	OdaInstanceSummaryLifecycleSubStateQueued        OdaInstanceSummaryLifecycleSubStateEnum = "QUEUED"
+)
+
+var mappingOdaInstanceSummaryLifecycleSubState = map[string]OdaInstanceSummaryLifecycleSubStateEnum{
+	"DELETE_PENDING": OdaInstanceSummaryLifecycleSubStateDeletePending,
+	"PURGING":        OdaInstanceSummaryLifecycleSubStatePurging,
+	"QUEUED":         OdaInstanceSummaryLifecycleSubStateQueued,
+}
+
+// GetOdaInstanceSummaryLifecycleSubStateEnumValues Enumerates the set of values for OdaInstanceSummaryLifecycleSubStateEnum
+func GetOdaInstanceSummaryLifecycleSubStateEnumValues() []OdaInstanceSummaryLifecycleSubStateEnum {
+	values := make([]OdaInstanceSummaryLifecycleSubStateEnum, 0)
+	for _, v := range mappingOdaInstanceSummaryLifecycleSubState {
 		values = append(values, v)
 	}
 	return values

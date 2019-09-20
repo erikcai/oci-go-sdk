@@ -807,6 +807,53 @@ func (client IdentityClient) createNetworkSource(ctx context.Context, request co
 	return response, err
 }
 
+// CreateOAuthClientCredential Creates Oauth token for the user
+func (client IdentityClient) CreateOAuthClientCredential(ctx context.Context, request CreateOAuthClientCredentialRequest) (response CreateOAuthClientCredentialResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createOAuthClientCredential, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateOAuthClientCredentialResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateOAuthClientCredentialResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateOAuthClientCredentialResponse")
+	}
+	return
+}
+
+// createOAuthClientCredential implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) createOAuthClientCredential(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/oauth2ClientCredentials")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateOAuthClientCredentialResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateOrResetUIPassword Creates a new Console one-time password for the specified user. For more information about user
 // credentials, see User Credentials (https://docs.cloud.oracle.com/Content/Identity/Concepts/usercredentials.htm).
 // Use this operation after creating a new user, or if a user forgets their password. The new one-time
@@ -1782,6 +1829,48 @@ func (client IdentityClient) deleteNetworkSource(ctx context.Context, request co
 	}
 
 	var response DeleteNetworkSourceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteOAuthClientCredential Delete Oauth token for the user
+func (client IdentityClient) DeleteOAuthClientCredential(ctx context.Context, request DeleteOAuthClientCredentialRequest) (response DeleteOAuthClientCredentialResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteOAuthClientCredential, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteOAuthClientCredentialResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteOAuthClientCredentialResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteOAuthClientCredentialResponse")
+	}
+	return
+}
+
+// deleteOAuthClientCredential implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) deleteOAuthClientCredential(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/users/{userId}/oauth2ClientCredentials/{oauth2ClientCredentialId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteOAuthClientCredentialResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -3723,6 +3812,48 @@ func (client IdentityClient) listNetworkSources(ctx context.Context, request com
 	return response, err
 }
 
+// ListOAuthClientCredentials List of Oauth tokens for the user
+func (client IdentityClient) ListOAuthClientCredentials(ctx context.Context, request ListOAuthClientCredentialsRequest) (response ListOAuthClientCredentialsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listOAuthClientCredentials, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListOAuthClientCredentialsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListOAuthClientCredentialsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListOAuthClientCredentialsResponse")
+	}
+	return
+}
+
+// listOAuthClientCredentials implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listOAuthClientCredentials(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/oauth2ClientCredentials")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListOAuthClientCredentialsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListPolicies Lists the policies in the specified compartment (either the tenancy or another of your compartments).
 // See Where to Get the Tenancy's OCID and User's OCID (https://docs.cloud.oracle.com/Content/API/Concepts/apisigningkey.htm#five).
 // To determine which policies apply to a particular group or compartment, you must view the individual
@@ -4912,6 +5043,48 @@ func (client IdentityClient) updateNetworkSource(ctx context.Context, request co
 	}
 
 	var response UpdateNetworkSourceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateOAuthClientCredential Updates Oauth token for the user
+func (client IdentityClient) UpdateOAuthClientCredential(ctx context.Context, request UpdateOAuthClientCredentialRequest) (response UpdateOAuthClientCredentialResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateOAuthClientCredential, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateOAuthClientCredentialResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateOAuthClientCredentialResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateOAuthClientCredentialResponse")
+	}
+	return
+}
+
+// updateOAuthClientCredential implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) updateOAuthClientCredential(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/users/{userId}/oauth2ClientCredentials/{oauth2ClientCredentialId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateOAuthClientCredentialResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

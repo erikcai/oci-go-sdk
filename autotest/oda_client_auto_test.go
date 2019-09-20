@@ -23,6 +23,49 @@ func createOdaClientWithProvider(p common.ConfigurationProvider, testConfig Test
 }
 
 // IssueRoutingInfo tag="default" email="omce_devops_hybrid_us_grp@oracle.com" jiraProject="ODA" opsJiraProject="ODA"
+func TestOdaClientChangeOdaInstanceCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("oda", "ChangeOdaInstanceCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeOdaInstanceCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("oda", "Oda", "ChangeOdaInstanceCompartment", createOdaClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(oda.OdaClient)
+
+	body, err := testClient.getRequests("oda", "ChangeOdaInstanceCompartment")
+	assert.NoError(t, err)
+
+	type ChangeOdaInstanceCompartmentRequestInfo struct {
+		ContainerId string
+		Request     oda.ChangeOdaInstanceCompartmentRequest
+	}
+
+	var requests []ChangeOdaInstanceCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeOdaInstanceCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omce_devops_hybrid_us_grp@oracle.com" jiraProject="ODA" opsJiraProject="ODA"
 func TestOdaClientCreateOdaInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -68,17 +68,17 @@ const (
 	WorkRequestRequestActionRecoverOdaInstance         WorkRequestRequestActionEnum = "RECOVER_ODA_INSTANCE"
 	WorkRequestRequestActionCreateAssociation          WorkRequestRequestActionEnum = "CREATE_ASSOCIATION"
 	WorkRequestRequestActionDeleteAssociation          WorkRequestRequestActionEnum = "DELETE_ASSOCIATION"
-	WorkRequestRequestActionLookupOdaInstancesForCacct WorkRequestRequestActionEnum = "LOOKUP_ODA_INSTANCES_FOR_CACCT"
+	WorkRequestRequestActionUpdateEntitlementsForCacct WorkRequestRequestActionEnum = "UPDATE_ENTITLEMENTS_FOR_CACCT"
 )
 
 var mappingWorkRequestRequestAction = map[string]WorkRequestRequestActionEnum{
-	"CREATE_ODA_INSTANCE":            WorkRequestRequestActionCreateOdaInstance,
-	"DELETE_ODA_INSTANCE":            WorkRequestRequestActionDeleteOdaInstance,
-	"PURGE_ODA_INSTANCE":             WorkRequestRequestActionPurgeOdaInstance,
-	"RECOVER_ODA_INSTANCE":           WorkRequestRequestActionRecoverOdaInstance,
-	"CREATE_ASSOCIATION":             WorkRequestRequestActionCreateAssociation,
-	"DELETE_ASSOCIATION":             WorkRequestRequestActionDeleteAssociation,
-	"LOOKUP_ODA_INSTANCES_FOR_CACCT": WorkRequestRequestActionLookupOdaInstancesForCacct,
+	"CREATE_ODA_INSTANCE":           WorkRequestRequestActionCreateOdaInstance,
+	"DELETE_ODA_INSTANCE":           WorkRequestRequestActionDeleteOdaInstance,
+	"PURGE_ODA_INSTANCE":            WorkRequestRequestActionPurgeOdaInstance,
+	"RECOVER_ODA_INSTANCE":          WorkRequestRequestActionRecoverOdaInstance,
+	"CREATE_ASSOCIATION":            WorkRequestRequestActionCreateAssociation,
+	"DELETE_ASSOCIATION":            WorkRequestRequestActionDeleteAssociation,
+	"UPDATE_ENTITLEMENTS_FOR_CACCT": WorkRequestRequestActionUpdateEntitlementsForCacct,
 }
 
 // GetWorkRequestRequestActionEnumValues Enumerates the set of values for WorkRequestRequestActionEnum

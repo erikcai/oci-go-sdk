@@ -51,17 +51,17 @@ const (
 	WorkRequestResourceResourceActionRecover                    WorkRequestResourceResourceActionEnum = "RECOVER"
 	WorkRequestResourceResourceActionCreateAssociation          WorkRequestResourceResourceActionEnum = "CREATE_ASSOCIATION"
 	WorkRequestResourceResourceActionDeleteAssociation          WorkRequestResourceResourceActionEnum = "DELETE_ASSOCIATION"
-	WorkRequestResourceResourceActionLookupOdaInstancesForCacct WorkRequestResourceResourceActionEnum = "LOOKUP_ODA_INSTANCES_FOR_CACCT"
+	WorkRequestResourceResourceActionUpdateEntitlementsForCacct WorkRequestResourceResourceActionEnum = "UPDATE_ENTITLEMENTS_FOR_CACCT"
 )
 
 var mappingWorkRequestResourceResourceAction = map[string]WorkRequestResourceResourceActionEnum{
-	"CREATE":                         WorkRequestResourceResourceActionCreate,
-	"DELETE":                         WorkRequestResourceResourceActionDelete,
-	"PURGE":                          WorkRequestResourceResourceActionPurge,
-	"RECOVER":                        WorkRequestResourceResourceActionRecover,
-	"CREATE_ASSOCIATION":             WorkRequestResourceResourceActionCreateAssociation,
-	"DELETE_ASSOCIATION":             WorkRequestResourceResourceActionDeleteAssociation,
-	"LOOKUP_ODA_INSTANCES_FOR_CACCT": WorkRequestResourceResourceActionLookupOdaInstancesForCacct,
+	"CREATE":                        WorkRequestResourceResourceActionCreate,
+	"DELETE":                        WorkRequestResourceResourceActionDelete,
+	"PURGE":                         WorkRequestResourceResourceActionPurge,
+	"RECOVER":                       WorkRequestResourceResourceActionRecover,
+	"CREATE_ASSOCIATION":            WorkRequestResourceResourceActionCreateAssociation,
+	"DELETE_ASSOCIATION":            WorkRequestResourceResourceActionDeleteAssociation,
+	"UPDATE_ENTITLEMENTS_FOR_CACCT": WorkRequestResourceResourceActionUpdateEntitlementsForCacct,
 }
 
 // GetWorkRequestResourceResourceActionEnumValues Enumerates the set of values for WorkRequestResourceResourceActionEnum
