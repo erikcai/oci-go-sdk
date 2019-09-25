@@ -19,8 +19,6 @@ import (
 
 // ExampleDnsZone creates, gets, lists, and deletes a DNS Zone.
 // If optional TARGET_COMPARTMENT_ID env var is set, it will also move the DNS Zone to the compartment.
-/*
-Temporarily disabling due to https://jira.oci.oraclecorp.com/browse/DEXREQ-781
 func ExampleDnsZone() {
 	client, err := dns.NewDnsClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(err)
@@ -96,7 +94,7 @@ func ExampleDnsZone() {
 	// get dns zone
 	// list dns zone
 	// deleted dns zone
-}*/
+}
 
 // ExampleSteeringPolicy creates, gets, lists, and deletes a DNS Steering Policy.
 // If optional TARGET_COMPARTMENT_ID env var is set, it will also move the DNS Steering Policy to the compartment.
