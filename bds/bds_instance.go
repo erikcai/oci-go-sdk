@@ -117,13 +117,13 @@ type BdsInstanceClusterVersionEnum string
 
 // Set of constants representing the allowable values for BdsInstanceClusterVersionEnum
 const (
-	BdsInstanceClusterVersionCdh514 BdsInstanceClusterVersionEnum = "CDH5_14"
-	BdsInstanceClusterVersionCdh60  BdsInstanceClusterVersionEnum = "CDH6_0"
+	BdsInstanceClusterVersionCdh5 BdsInstanceClusterVersionEnum = "CDH5"
+	BdsInstanceClusterVersionCdh6 BdsInstanceClusterVersionEnum = "CDH6"
 )
 
 var mappingBdsInstanceClusterVersion = map[string]BdsInstanceClusterVersionEnum{
-	"CDH5_14": BdsInstanceClusterVersionCdh514,
-	"CDH6_0":  BdsInstanceClusterVersionCdh60,
+	"CDH5": BdsInstanceClusterVersionCdh5,
+	"CDH6": BdsInstanceClusterVersionCdh6,
 }
 
 // GetBdsInstanceClusterVersionEnumValues Enumerates the set of values for BdsInstanceClusterVersionEnum

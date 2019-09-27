@@ -81,6 +81,7 @@ type GetAttributeFieldsEnum string
 const (
 	GetAttributeFieldsKey               GetAttributeFieldsEnum = "key"
 	GetAttributeFieldsDisplayname       GetAttributeFieldsEnum = "displayName"
+	GetAttributeFieldsDescription       GetAttributeFieldsEnum = "description"
 	GetAttributeFieldsEntitykey         GetAttributeFieldsEnum = "entityKey"
 	GetAttributeFieldsLifecyclestate    GetAttributeFieldsEnum = "lifecycleState"
 	GetAttributeFieldsTimecreated       GetAttributeFieldsEnum = "timeCreated"
@@ -90,6 +91,7 @@ const (
 	GetAttributeFieldsExternaldatatype  GetAttributeFieldsEnum = "externalDataType"
 	GetAttributeFieldsExternalkey       GetAttributeFieldsEnum = "externalKey"
 	GetAttributeFieldsIsincrementaldata GetAttributeFieldsEnum = "isIncrementalData"
+	GetAttributeFieldsIsnullable        GetAttributeFieldsEnum = "isNullable"
 	GetAttributeFieldsLength            GetAttributeFieldsEnum = "length"
 	GetAttributeFieldsPosition          GetAttributeFieldsEnum = "position"
 	GetAttributeFieldsPrecision         GetAttributeFieldsEnum = "precision"
@@ -102,6 +104,7 @@ const (
 var mappingGetAttributeFields = map[string]GetAttributeFieldsEnum{
 	"key":               GetAttributeFieldsKey,
 	"displayName":       GetAttributeFieldsDisplayname,
+	"description":       GetAttributeFieldsDescription,
 	"entityKey":         GetAttributeFieldsEntitykey,
 	"lifecycleState":    GetAttributeFieldsLifecyclestate,
 	"timeCreated":       GetAttributeFieldsTimecreated,
@@ -111,6 +114,7 @@ var mappingGetAttributeFields = map[string]GetAttributeFieldsEnum{
 	"externalDataType":  GetAttributeFieldsExternaldatatype,
 	"externalKey":       GetAttributeFieldsExternalkey,
 	"isIncrementalData": GetAttributeFieldsIsincrementaldata,
+	"isNullable":        GetAttributeFieldsIsnullable,
 	"length":            GetAttributeFieldsLength,
 	"position":          GetAttributeFieldsPosition,
 	"precision":         GetAttributeFieldsPrecision,

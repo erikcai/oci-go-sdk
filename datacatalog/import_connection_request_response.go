@@ -62,8 +62,8 @@ type ImportConnectionResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The []ConnectionSummary instance
-	Items []ConnectionSummary `presentIn:"body"`
+	// The Connection instance
+	Connection `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`

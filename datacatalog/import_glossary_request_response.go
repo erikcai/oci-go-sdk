@@ -8,17 +8,17 @@ import (
 	"net/http"
 )
 
-// ValidateConnectionsRequest wrapper for the ValidateConnections operation
-type ValidateConnectionsRequest struct {
+// ImportGlossaryRequest wrapper for the ImportGlossary operation
+type ImportGlossaryRequest struct {
 
 	// unique Catalog identifier
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
-	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
+	// Unique Glossary key.
+	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// The information used to validate the connections.
-	ValidateConnectionsDetails `contributesTo:"body"`
+	// The file contents to import the glossary.
+	ImportGlossaryDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -35,28 +35,25 @@ type ValidateConnectionsRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ValidateConnectionsRequest) String() string {
+func (request ImportGlossaryRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ValidateConnectionsRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request ImportGlossaryRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ValidateConnectionsRequest) RetryPolicy() *common.RetryPolicy {
+func (request ImportGlossaryRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ValidateConnectionsResponse wrapper for the ValidateConnections operation
-type ValidateConnectionsResponse struct {
+// ImportGlossaryResponse wrapper for the ImportGlossary operation
+type ImportGlossaryResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
-
-	// The []ValidateConnectionResult instance
-	Items []ValidateConnectionResult `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -66,11 +63,11 @@ type ValidateConnectionsResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response ValidateConnectionsResponse) String() string {
+func (response ImportGlossaryResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ValidateConnectionsResponse) HTTPResponse() *http.Response {
+func (response ImportGlossaryResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

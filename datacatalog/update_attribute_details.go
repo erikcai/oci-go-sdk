@@ -19,11 +19,17 @@ type UpdateAttributeDetails struct {
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// Detailed description of the Attribute.
+	Description *string `mandatory:"false" json:"description"`
+
 	// Data type of the attribute as defined in the external system
 	ExternalDataType *string `mandatory:"false" json:"externalDataType"`
 
 	// Property that identifies if this attribute can be used as a watermark to extract incremental data
 	IsIncrementalData *bool `mandatory:"false" json:"isIncrementalData"`
+
+	// Property that identifies if this attribute can be assigned nullable values
+	IsNullable *bool `mandatory:"false" json:"isNullable"`
 
 	// Max allowed length of the attribute value
 	Length *int64 `mandatory:"false" json:"length"`

@@ -32,6 +32,9 @@ type JobLogSummary struct {
 
 	// Severity Level for this Log.
 	Severity *string `mandatory:"false" json:"severity"`
+
+	// Message for this Job Log
+	LogMessage *string `mandatory:"false" json:"logMessage"`
 }
 
 func (m JobLogSummary) String() string {

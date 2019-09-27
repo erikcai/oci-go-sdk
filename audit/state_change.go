@@ -14,10 +14,24 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// StateChange The representation of StateChange
+// StateChange A container object for state change attributes.
+// Example:
+//   -----
+//     {
+//       "previous": null,
+//       "current": null
+//     }
+//   -----
 type StateChange struct {
+
+	// Provides the previous state of fields that may have changed during an operation. To determine
+	// how the current operation changed a resource, compare the information in this attribute to
+	// `current`.
 	Previous map[string]interface{} `mandatory:"false" json:"previous"`
 
+	// Provides the current state of fields that may have changed during an operation. To determine
+	// how the current operation changed a resource, compare the information in this attribute to
+	// `previous`.
 	Current map[string]interface{} `mandatory:"false" json:"current"`
 }
 

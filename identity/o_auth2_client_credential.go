@@ -35,6 +35,9 @@ type OAuth2ClientCredential struct {
 	// The OCID of the compartment containing the Oauth credential.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
+	// The name of the Oauth credential.
+	Name *string `mandatory:"false" json:"name"`
+
 	// The description of the Oauth credential.
 	Description *string `mandatory:"false" json:"description"`
 

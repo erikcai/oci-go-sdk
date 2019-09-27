@@ -23,6 +23,9 @@ type Attribute struct {
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// Detailed description of the Attribute.
+	Description *string `mandatory:"false" json:"description"`
+
 	// The unique key of the parent Entity.
 	EntityKey *string `mandatory:"false" json:"entityKey"`
 
@@ -53,6 +56,9 @@ type Attribute struct {
 
 	// Property that identifies if this attribute can be used as a watermark to extract incremental data
 	IsIncrementalData *bool `mandatory:"false" json:"isIncrementalData"`
+
+	// Property that identifies if this attribute can be assigned null values
+	IsNullable *bool `mandatory:"false" json:"isNullable"`
 
 	// Max allowed length of the attribute value
 	Length *int64 `mandatory:"false" json:"length"`

@@ -823,9 +823,7 @@ func TestDatabaseClientCreateDatabase(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
-				"NONE":      &database.CreateNewDatabaseDetails{},
-				"DATABASE":  &database.CreateDatabaseFromDatabase{},
-				"DB_BACKUP": &database.CreateDatabaseFromBackup{},
+				"NONE": &database.CreateNewDatabaseDetails{},
 			},
 		}
 
@@ -882,7 +880,6 @@ func TestDatabaseClientCreateDbHome(t *testing.T) {
 				"DATABASE":            &database.CreateDbHomeWithDbSystemIdFromDatabaseDetails{},
 				"DB_BACKUP":           &database.CreateDbHomeWithDbSystemIdFromBackupDetails{},
 				"VM_CLUSTER_DATABASE": &database.CreateDbHomeWithVmClusterIdFromDatabaseDetails{},
-				"VM_CLUSTER_BACKUP":   &database.CreateDbHomeWithVmClusterIdFromBackupDetails{},
 				"NONE":                &database.CreateDbHomeWithDbSystemIdDetails{},
 				"VM_CLUSTER_NEW":      &database.CreateDbHomeWithVmClusterIdDetails{},
 			},

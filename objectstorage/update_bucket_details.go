@@ -42,15 +42,9 @@ type UpdateBucketDetails struct {
 	// property is set to `ReadWrite`, audit logs will be produced for operations such as `Put Object` and `Get Object`.
 	ObjectLevelAuditMode UpdateBucketDetailsObjectLevelAuditModeEnum `mandatory:"false" json:"objectLevelAuditMode,omitempty"`
 
-	// The type of requests for which Service Logging is be enabled on this bucket.
-	// This property is set to `Disabled` by default, so no Service-Logs will be produced at the object level for
-	// this bucket. If the property is set to `Write`, Service Logs will be produced for operations such as
-	// `Put Object`. If the property is set to `ReadWrite`, Service Logs will be produced for operations such as
-	// `Put Object` and `Get Object`.
-	ServiceLoggingStatus UpdateBucketDetailsServiceLoggingStatusEnum `mandatory:"false" json:"serviceLoggingStatus,omitempty"`
-
-	// A property that determines whether events will be generated for operations on objects in this bucket.
-	// This is false by default.
+	// Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
+	// set to `false`. Set `objectEventsEnabled` to `true` to emit events for object state changes. For more information
+	// about events, see Overview of Events (https://docs.cloud.oracle.com/Content/Events/Concepts/eventsoverview.htm).
 	ObjectEventsEnabled *bool `mandatory:"false" json:"objectEventsEnabled"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -63,10 +57,9 @@ type UpdateBucketDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// A KMS key OCID that will be associated with the given bucket. If it is empty the Update operation will
-	// actually remove the KMS key, if there is one, from the given bucket. Note that the old kms key should
-	// still be enbaled in KMS otherwise all the objects in the bucket encrypted with the old KMS key will no
-	// longer be accessible.
+	// The OCID of the Key Management master encryption key to associate with the specified bucket. If this value
+	// is empty, the Update operation will remove the associated key, if there is one, from the bucket. (The bucket
+	// will continue to be encrypted, but with an encryption key managed by Oracle.)
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
@@ -119,31 +112,6 @@ var mappingUpdateBucketDetailsObjectLevelAuditMode = map[string]UpdateBucketDeta
 func GetUpdateBucketDetailsObjectLevelAuditModeEnumValues() []UpdateBucketDetailsObjectLevelAuditModeEnum {
 	values := make([]UpdateBucketDetailsObjectLevelAuditModeEnum, 0)
 	for _, v := range mappingUpdateBucketDetailsObjectLevelAuditMode {
-		values = append(values, v)
-	}
-	return values
-}
-
-// UpdateBucketDetailsServiceLoggingStatusEnum Enum with underlying type: string
-type UpdateBucketDetailsServiceLoggingStatusEnum string
-
-// Set of constants representing the allowable values for UpdateBucketDetailsServiceLoggingStatusEnum
-const (
-	UpdateBucketDetailsServiceLoggingStatusDisabled  UpdateBucketDetailsServiceLoggingStatusEnum = "Disabled"
-	UpdateBucketDetailsServiceLoggingStatusWrite     UpdateBucketDetailsServiceLoggingStatusEnum = "Write"
-	UpdateBucketDetailsServiceLoggingStatusReadwrite UpdateBucketDetailsServiceLoggingStatusEnum = "ReadWrite"
-)
-
-var mappingUpdateBucketDetailsServiceLoggingStatus = map[string]UpdateBucketDetailsServiceLoggingStatusEnum{
-	"Disabled":  UpdateBucketDetailsServiceLoggingStatusDisabled,
-	"Write":     UpdateBucketDetailsServiceLoggingStatusWrite,
-	"ReadWrite": UpdateBucketDetailsServiceLoggingStatusReadwrite,
-}
-
-// GetUpdateBucketDetailsServiceLoggingStatusEnumValues Enumerates the set of values for UpdateBucketDetailsServiceLoggingStatusEnum
-func GetUpdateBucketDetailsServiceLoggingStatusEnumValues() []UpdateBucketDetailsServiceLoggingStatusEnum {
-	values := make([]UpdateBucketDetailsServiceLoggingStatusEnum, 0)
-	for _, v := range mappingUpdateBucketDetailsServiceLoggingStatus {
 		values = append(values, v)
 	}
 	return values

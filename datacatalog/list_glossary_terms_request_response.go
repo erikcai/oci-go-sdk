@@ -102,24 +102,26 @@ type ListGlossaryTermsFieldsEnum string
 
 // Set of constants representing the allowable values for ListGlossaryTermsFieldsEnum
 const (
-	ListGlossaryTermsFieldsKey                   ListGlossaryTermsFieldsEnum = "key"
-	ListGlossaryTermsFieldsDisplayname           ListGlossaryTermsFieldsEnum = "displayName"
-	ListGlossaryTermsFieldsDescription           ListGlossaryTermsFieldsEnum = "description"
-	ListGlossaryTermsFieldsGlossarykey           ListGlossaryTermsFieldsEnum = "glossaryKey"
-	ListGlossaryTermsFieldsParenttermkey         ListGlossaryTermsFieldsEnum = "parentTermKey"
-	ListGlossaryTermsFieldsPath                  ListGlossaryTermsFieldsEnum = "path"
-	ListGlossaryTermsFieldsLifecyclestate        ListGlossaryTermsFieldsEnum = "lifecycleState"
-	ListGlossaryTermsFieldsTimecreated           ListGlossaryTermsFieldsEnum = "timeCreated"
-	ListGlossaryTermsFieldsAssociatedobjectcount ListGlossaryTermsFieldsEnum = "associatedObjectCount"
-	ListGlossaryTermsFieldsUri                   ListGlossaryTermsFieldsEnum = "uri"
+	ListGlossaryTermsFieldsKey                       ListGlossaryTermsFieldsEnum = "key"
+	ListGlossaryTermsFieldsDisplayname               ListGlossaryTermsFieldsEnum = "displayName"
+	ListGlossaryTermsFieldsDescription               ListGlossaryTermsFieldsEnum = "description"
+	ListGlossaryTermsFieldsGlossarykey               ListGlossaryTermsFieldsEnum = "glossaryKey"
+	ListGlossaryTermsFieldsParenttermkey             ListGlossaryTermsFieldsEnum = "parentTermKey"
+	ListGlossaryTermsFieldsIsallowedtohavechildterms ListGlossaryTermsFieldsEnum = "isAllowedToHaveChildTerms"
+	ListGlossaryTermsFieldsPath                      ListGlossaryTermsFieldsEnum = "path"
+	ListGlossaryTermsFieldsLifecyclestate            ListGlossaryTermsFieldsEnum = "lifecycleState"
+	ListGlossaryTermsFieldsTimecreated               ListGlossaryTermsFieldsEnum = "timeCreated"
+	ListGlossaryTermsFieldsAssociatedobjectcount     ListGlossaryTermsFieldsEnum = "associatedObjectCount"
+	ListGlossaryTermsFieldsUri                       ListGlossaryTermsFieldsEnum = "uri"
 )
 
 var mappingListGlossaryTermsFields = map[string]ListGlossaryTermsFieldsEnum{
-	"key":                   ListGlossaryTermsFieldsKey,
-	"displayName":           ListGlossaryTermsFieldsDisplayname,
-	"description":           ListGlossaryTermsFieldsDescription,
-	"glossaryKey":           ListGlossaryTermsFieldsGlossarykey,
-	"parentTermKey":         ListGlossaryTermsFieldsParenttermkey,
+	"key":                       ListGlossaryTermsFieldsKey,
+	"displayName":               ListGlossaryTermsFieldsDisplayname,
+	"description":               ListGlossaryTermsFieldsDescription,
+	"glossaryKey":               ListGlossaryTermsFieldsGlossarykey,
+	"parentTermKey":             ListGlossaryTermsFieldsParenttermkey,
+	"isAllowedToHaveChildTerms": ListGlossaryTermsFieldsIsallowedtohavechildterms,
 	"path":                  ListGlossaryTermsFieldsPath,
 	"lifecycleState":        ListGlossaryTermsFieldsLifecyclestate,
 	"timeCreated":           ListGlossaryTermsFieldsTimecreated,

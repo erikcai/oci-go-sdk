@@ -117,25 +117,27 @@ type ListJobDefinitionsFieldsEnum string
 
 // Set of constants representing the allowable values for ListJobDefinitionsFieldsEnum
 const (
-	ListJobDefinitionsFieldsKey            ListJobDefinitionsFieldsEnum = "key"
-	ListJobDefinitionsFieldsDisplayname    ListJobDefinitionsFieldsEnum = "displayName"
-	ListJobDefinitionsFieldsDescription    ListJobDefinitionsFieldsEnum = "description"
-	ListJobDefinitionsFieldsCatalogid      ListJobDefinitionsFieldsEnum = "catalogId"
-	ListJobDefinitionsFieldsJobtype        ListJobDefinitionsFieldsEnum = "jobType"
-	ListJobDefinitionsFieldsLifecyclestate ListJobDefinitionsFieldsEnum = "lifecycleState"
-	ListJobDefinitionsFieldsTimecreated    ListJobDefinitionsFieldsEnum = "timeCreated"
-	ListJobDefinitionsFieldsUri            ListJobDefinitionsFieldsEnum = "uri"
+	ListJobDefinitionsFieldsKey                   ListJobDefinitionsFieldsEnum = "key"
+	ListJobDefinitionsFieldsDisplayname           ListJobDefinitionsFieldsEnum = "displayName"
+	ListJobDefinitionsFieldsDescription           ListJobDefinitionsFieldsEnum = "description"
+	ListJobDefinitionsFieldsCatalogid             ListJobDefinitionsFieldsEnum = "catalogId"
+	ListJobDefinitionsFieldsJobtype               ListJobDefinitionsFieldsEnum = "jobType"
+	ListJobDefinitionsFieldsLifecyclestate        ListJobDefinitionsFieldsEnum = "lifecycleState"
+	ListJobDefinitionsFieldsTimecreated           ListJobDefinitionsFieldsEnum = "timeCreated"
+	ListJobDefinitionsFieldsIssampledataextracted ListJobDefinitionsFieldsEnum = "isSampleDataExtracted"
+	ListJobDefinitionsFieldsUri                   ListJobDefinitionsFieldsEnum = "uri"
 )
 
 var mappingListJobDefinitionsFields = map[string]ListJobDefinitionsFieldsEnum{
-	"key":            ListJobDefinitionsFieldsKey,
-	"displayName":    ListJobDefinitionsFieldsDisplayname,
-	"description":    ListJobDefinitionsFieldsDescription,
-	"catalogId":      ListJobDefinitionsFieldsCatalogid,
-	"jobType":        ListJobDefinitionsFieldsJobtype,
-	"lifecycleState": ListJobDefinitionsFieldsLifecyclestate,
-	"timeCreated":    ListJobDefinitionsFieldsTimecreated,
-	"uri":            ListJobDefinitionsFieldsUri,
+	"key":                   ListJobDefinitionsFieldsKey,
+	"displayName":           ListJobDefinitionsFieldsDisplayname,
+	"description":           ListJobDefinitionsFieldsDescription,
+	"catalogId":             ListJobDefinitionsFieldsCatalogid,
+	"jobType":               ListJobDefinitionsFieldsJobtype,
+	"lifecycleState":        ListJobDefinitionsFieldsLifecyclestate,
+	"timeCreated":           ListJobDefinitionsFieldsTimecreated,
+	"isSampleDataExtracted": ListJobDefinitionsFieldsIssampledataextracted,
+	"uri": ListJobDefinitionsFieldsUri,
 }
 
 // GetListJobDefinitionsFieldsEnumValues Enumerates the set of values for ListJobDefinitionsFieldsEnum

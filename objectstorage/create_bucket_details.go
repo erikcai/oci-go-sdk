@@ -47,15 +47,9 @@ type CreateBucketDetails struct {
 	// property is set to `ReadWrite`, audit logs will be produced for operations such as `Put Object` and `Get Object`.
 	ObjectLevelAuditMode CreateBucketDetailsObjectLevelAuditModeEnum `mandatory:"false" json:"objectLevelAuditMode,omitempty"`
 
-	// The type of requests for which Service Logging is be enabled on this bucket.
-	// This property is set to `Disabled` by default, so no Service-Logs will be produced at the object level for
-	// this bucket. If the property is set to `Write`, Service Logs will be produced for operations such as
-	// `Put Object`. If the property is set to `ReadWrite`, Service Logs will be produced for operations such as
-	// `Put Object` and `Get Object`.
-	ServiceLoggingStatus CreateBucketDetailsServiceLoggingStatusEnum `mandatory:"false" json:"serviceLoggingStatus,omitempty"`
-
-	// A property that determines whether events will be generated for operations on objects in this bucket.
-	// This is false by default.
+	// Whether or not events are emitted for object state changes in this bucket. By default, `objectEventsEnabled` is
+	// set to `false`. Set `objectEventsEnabled` to `true` to emit events for object state changes. For more information
+	// about events, see Overview of Events (https://docs.cloud.oracle.com/Content/Events/Concepts/eventsoverview.htm).
 	ObjectEventsEnabled *bool `mandatory:"false" json:"objectEventsEnabled"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -68,7 +62,8 @@ type CreateBucketDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// The OCID of a KMS key id used to call KMS to generate the data key or decrypt the encrypted data key.
+	// The OCID of a master encryption key used to call the Key Management service to generate a data
+	// encryption key or to encrypt or decrypt a data encryption key.
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
@@ -144,31 +139,6 @@ var mappingCreateBucketDetailsObjectLevelAuditMode = map[string]CreateBucketDeta
 func GetCreateBucketDetailsObjectLevelAuditModeEnumValues() []CreateBucketDetailsObjectLevelAuditModeEnum {
 	values := make([]CreateBucketDetailsObjectLevelAuditModeEnum, 0)
 	for _, v := range mappingCreateBucketDetailsObjectLevelAuditMode {
-		values = append(values, v)
-	}
-	return values
-}
-
-// CreateBucketDetailsServiceLoggingStatusEnum Enum with underlying type: string
-type CreateBucketDetailsServiceLoggingStatusEnum string
-
-// Set of constants representing the allowable values for CreateBucketDetailsServiceLoggingStatusEnum
-const (
-	CreateBucketDetailsServiceLoggingStatusDisabled  CreateBucketDetailsServiceLoggingStatusEnum = "Disabled"
-	CreateBucketDetailsServiceLoggingStatusWrite     CreateBucketDetailsServiceLoggingStatusEnum = "Write"
-	CreateBucketDetailsServiceLoggingStatusReadwrite CreateBucketDetailsServiceLoggingStatusEnum = "ReadWrite"
-)
-
-var mappingCreateBucketDetailsServiceLoggingStatus = map[string]CreateBucketDetailsServiceLoggingStatusEnum{
-	"Disabled":  CreateBucketDetailsServiceLoggingStatusDisabled,
-	"Write":     CreateBucketDetailsServiceLoggingStatusWrite,
-	"ReadWrite": CreateBucketDetailsServiceLoggingStatusReadwrite,
-}
-
-// GetCreateBucketDetailsServiceLoggingStatusEnumValues Enumerates the set of values for CreateBucketDetailsServiceLoggingStatusEnum
-func GetCreateBucketDetailsServiceLoggingStatusEnumValues() []CreateBucketDetailsServiceLoggingStatusEnum {
-	values := make([]CreateBucketDetailsServiceLoggingStatusEnum, 0)
-	for _, v := range mappingCreateBucketDetailsServiceLoggingStatus {
 		values = append(values, v)
 	}
 	return values

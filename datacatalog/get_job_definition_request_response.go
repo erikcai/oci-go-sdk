@@ -73,41 +73,45 @@ type GetJobDefinitionFieldsEnum string
 
 // Set of constants representing the allowable values for GetJobDefinitionFieldsEnum
 const (
-	GetJobDefinitionFieldsKey                GetJobDefinitionFieldsEnum = "key"
-	GetJobDefinitionFieldsDisplayname        GetJobDefinitionFieldsEnum = "displayName"
-	GetJobDefinitionFieldsDescription        GetJobDefinitionFieldsEnum = "description"
-	GetJobDefinitionFieldsCatalogid          GetJobDefinitionFieldsEnum = "catalogId"
-	GetJobDefinitionFieldsJobtype            GetJobDefinitionFieldsEnum = "jobType"
-	GetJobDefinitionFieldsIsincremental      GetJobDefinitionFieldsEnum = "isIncremental"
-	GetJobDefinitionFieldsDataassetkey       GetJobDefinitionFieldsEnum = "dataAssetKey"
-	GetJobDefinitionFieldsConnectionkey      GetJobDefinitionFieldsEnum = "connectionKey"
-	GetJobDefinitionFieldsInternalversion    GetJobDefinitionFieldsEnum = "internalVersion"
-	GetJobDefinitionFieldsLifecyclestate     GetJobDefinitionFieldsEnum = "lifecycleState"
-	GetJobDefinitionFieldsTimecreated        GetJobDefinitionFieldsEnum = "timeCreated"
-	GetJobDefinitionFieldsTimeupdated        GetJobDefinitionFieldsEnum = "timeUpdated"
-	GetJobDefinitionFieldsCreatedbyid        GetJobDefinitionFieldsEnum = "createdById"
-	GetJobDefinitionFieldsUpdatedbyid        GetJobDefinitionFieldsEnum = "updatedById"
-	GetJobDefinitionFieldsUri                GetJobDefinitionFieldsEnum = "uri"
-	GetJobDefinitionFieldsJobdefinitionscope GetJobDefinitionFieldsEnum = "jobDefinitionScope"
+	GetJobDefinitionFieldsKey                   GetJobDefinitionFieldsEnum = "key"
+	GetJobDefinitionFieldsDisplayname           GetJobDefinitionFieldsEnum = "displayName"
+	GetJobDefinitionFieldsDescription           GetJobDefinitionFieldsEnum = "description"
+	GetJobDefinitionFieldsCatalogid             GetJobDefinitionFieldsEnum = "catalogId"
+	GetJobDefinitionFieldsJobtype               GetJobDefinitionFieldsEnum = "jobType"
+	GetJobDefinitionFieldsIsincremental         GetJobDefinitionFieldsEnum = "isIncremental"
+	GetJobDefinitionFieldsDataassetkey          GetJobDefinitionFieldsEnum = "dataAssetKey"
+	GetJobDefinitionFieldsConnectionkey         GetJobDefinitionFieldsEnum = "connectionKey"
+	GetJobDefinitionFieldsInternalversion       GetJobDefinitionFieldsEnum = "internalVersion"
+	GetJobDefinitionFieldsLifecyclestate        GetJobDefinitionFieldsEnum = "lifecycleState"
+	GetJobDefinitionFieldsTimecreated           GetJobDefinitionFieldsEnum = "timeCreated"
+	GetJobDefinitionFieldsTimeupdated           GetJobDefinitionFieldsEnum = "timeUpdated"
+	GetJobDefinitionFieldsCreatedbyid           GetJobDefinitionFieldsEnum = "createdById"
+	GetJobDefinitionFieldsUpdatedbyid           GetJobDefinitionFieldsEnum = "updatedById"
+	GetJobDefinitionFieldsUri                   GetJobDefinitionFieldsEnum = "uri"
+	GetJobDefinitionFieldsIssampledataextracted GetJobDefinitionFieldsEnum = "isSampleDataExtracted"
+	GetJobDefinitionFieldsSampledatasizeinmbs   GetJobDefinitionFieldsEnum = "sampleDataSizeInMBs"
+	GetJobDefinitionFieldsProperties            GetJobDefinitionFieldsEnum = "properties"
 )
 
 var mappingGetJobDefinitionFields = map[string]GetJobDefinitionFieldsEnum{
-	"key":                GetJobDefinitionFieldsKey,
-	"displayName":        GetJobDefinitionFieldsDisplayname,
-	"description":        GetJobDefinitionFieldsDescription,
-	"catalogId":          GetJobDefinitionFieldsCatalogid,
-	"jobType":            GetJobDefinitionFieldsJobtype,
-	"isIncremental":      GetJobDefinitionFieldsIsincremental,
-	"dataAssetKey":       GetJobDefinitionFieldsDataassetkey,
-	"connectionKey":      GetJobDefinitionFieldsConnectionkey,
-	"internalVersion":    GetJobDefinitionFieldsInternalversion,
-	"lifecycleState":     GetJobDefinitionFieldsLifecyclestate,
-	"timeCreated":        GetJobDefinitionFieldsTimecreated,
-	"timeUpdated":        GetJobDefinitionFieldsTimeupdated,
-	"createdById":        GetJobDefinitionFieldsCreatedbyid,
-	"updatedById":        GetJobDefinitionFieldsUpdatedbyid,
-	"uri":                GetJobDefinitionFieldsUri,
-	"jobDefinitionScope": GetJobDefinitionFieldsJobdefinitionscope,
+	"key":             GetJobDefinitionFieldsKey,
+	"displayName":     GetJobDefinitionFieldsDisplayname,
+	"description":     GetJobDefinitionFieldsDescription,
+	"catalogId":       GetJobDefinitionFieldsCatalogid,
+	"jobType":         GetJobDefinitionFieldsJobtype,
+	"isIncremental":   GetJobDefinitionFieldsIsincremental,
+	"dataAssetKey":    GetJobDefinitionFieldsDataassetkey,
+	"connectionKey":   GetJobDefinitionFieldsConnectionkey,
+	"internalVersion": GetJobDefinitionFieldsInternalversion,
+	"lifecycleState":  GetJobDefinitionFieldsLifecyclestate,
+	"timeCreated":     GetJobDefinitionFieldsTimecreated,
+	"timeUpdated":     GetJobDefinitionFieldsTimeupdated,
+	"createdById":     GetJobDefinitionFieldsCreatedbyid,
+	"updatedById":     GetJobDefinitionFieldsUpdatedbyid,
+	"uri":             GetJobDefinitionFieldsUri,
+	"isSampleDataExtracted": GetJobDefinitionFieldsIssampledataextracted,
+	"sampleDataSizeInMBs":   GetJobDefinitionFieldsSampledatasizeinmbs,
+	"properties":            GetJobDefinitionFieldsProperties,
 }
 
 // GetGetJobDefinitionFieldsEnumValues Enumerates the set of values for GetJobDefinitionFieldsEnum

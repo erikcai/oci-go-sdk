@@ -8,14 +8,14 @@ import (
 	"net/http"
 )
 
-// ListSearchResultsRequest wrapper for the ListSearchResults operation
-type ListSearchResultsRequest struct {
+// SearchCriteriaRequest wrapper for the SearchCriteria operation
+type SearchCriteriaRequest struct {
 
 	// unique Catalog identifier
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
 	// The information used to create an extended search results.
-	QuerySearchDetails SearchQuery `contributesTo:"body"`
+	SearchCriteriaDetails SearchCriteria `contributesTo:"body"`
 
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
@@ -32,14 +32,14 @@ type ListSearchResultsRequest struct {
 	Timeout *string `mandatory:"false" contributesTo:"query" name:"timeout"`
 
 	// The query string that allows the user to specify a keyword or keyword qualified by fieldname for search criteria.
-	// For example , queryString=name:first_name .
-	QueryString *string `mandatory:"false" contributesTo:"query" name:"queryString"`
+	// For example , searchCriteria=name:first_name .
+	SearchCriteria *string `mandatory:"false" contributesTo:"query" name:"searchCriteria"`
 
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
-	SortBy ListSearchResultsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
+	SortBy SearchCriteriaSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// The sort order to use, either 'asc' or 'desc'.
-	SortOrder ListSearchResultsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+	SortOrder SearchCriteriaSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
 	// The maximum number of items to return.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
@@ -55,22 +55,22 @@ type ListSearchResultsRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ListSearchResultsRequest) String() string {
+func (request SearchCriteriaRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ListSearchResultsRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request SearchCriteriaRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ListSearchResultsRequest) RetryPolicy() *common.RetryPolicy {
+func (request SearchCriteriaRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ListSearchResultsResponse wrapper for the ListSearchResults operation
-type ListSearchResultsResponse struct {
+// SearchCriteriaResponse wrapper for the SearchCriteria operation
+type SearchCriteriaResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
@@ -88,56 +88,56 @@ type ListSearchResultsResponse struct {
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 
-func (response ListSearchResultsResponse) String() string {
+func (response SearchCriteriaResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ListSearchResultsResponse) HTTPResponse() *http.Response {
+func (response SearchCriteriaResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }
 
-// ListSearchResultsSortByEnum Enum with underlying type: string
-type ListSearchResultsSortByEnum string
+// SearchCriteriaSortByEnum Enum with underlying type: string
+type SearchCriteriaSortByEnum string
 
-// Set of constants representing the allowable values for ListSearchResultsSortByEnum
+// Set of constants representing the allowable values for SearchCriteriaSortByEnum
 const (
-	ListSearchResultsSortByTimecreated ListSearchResultsSortByEnum = "TIMECREATED"
-	ListSearchResultsSortByDisplayname ListSearchResultsSortByEnum = "DISPLAYNAME"
+	SearchCriteriaSortByTimecreated SearchCriteriaSortByEnum = "TIMECREATED"
+	SearchCriteriaSortByDisplayname SearchCriteriaSortByEnum = "DISPLAYNAME"
 )
 
-var mappingListSearchResultsSortBy = map[string]ListSearchResultsSortByEnum{
-	"TIMECREATED": ListSearchResultsSortByTimecreated,
-	"DISPLAYNAME": ListSearchResultsSortByDisplayname,
+var mappingSearchCriteriaSortBy = map[string]SearchCriteriaSortByEnum{
+	"TIMECREATED": SearchCriteriaSortByTimecreated,
+	"DISPLAYNAME": SearchCriteriaSortByDisplayname,
 }
 
-// GetListSearchResultsSortByEnumValues Enumerates the set of values for ListSearchResultsSortByEnum
-func GetListSearchResultsSortByEnumValues() []ListSearchResultsSortByEnum {
-	values := make([]ListSearchResultsSortByEnum, 0)
-	for _, v := range mappingListSearchResultsSortBy {
+// GetSearchCriteriaSortByEnumValues Enumerates the set of values for SearchCriteriaSortByEnum
+func GetSearchCriteriaSortByEnumValues() []SearchCriteriaSortByEnum {
+	values := make([]SearchCriteriaSortByEnum, 0)
+	for _, v := range mappingSearchCriteriaSortBy {
 		values = append(values, v)
 	}
 	return values
 }
 
-// ListSearchResultsSortOrderEnum Enum with underlying type: string
-type ListSearchResultsSortOrderEnum string
+// SearchCriteriaSortOrderEnum Enum with underlying type: string
+type SearchCriteriaSortOrderEnum string
 
-// Set of constants representing the allowable values for ListSearchResultsSortOrderEnum
+// Set of constants representing the allowable values for SearchCriteriaSortOrderEnum
 const (
-	ListSearchResultsSortOrderAsc  ListSearchResultsSortOrderEnum = "ASC"
-	ListSearchResultsSortOrderDesc ListSearchResultsSortOrderEnum = "DESC"
+	SearchCriteriaSortOrderAsc  SearchCriteriaSortOrderEnum = "ASC"
+	SearchCriteriaSortOrderDesc SearchCriteriaSortOrderEnum = "DESC"
 )
 
-var mappingListSearchResultsSortOrder = map[string]ListSearchResultsSortOrderEnum{
-	"ASC":  ListSearchResultsSortOrderAsc,
-	"DESC": ListSearchResultsSortOrderDesc,
+var mappingSearchCriteriaSortOrder = map[string]SearchCriteriaSortOrderEnum{
+	"ASC":  SearchCriteriaSortOrderAsc,
+	"DESC": SearchCriteriaSortOrderDesc,
 }
 
-// GetListSearchResultsSortOrderEnumValues Enumerates the set of values for ListSearchResultsSortOrderEnum
-func GetListSearchResultsSortOrderEnumValues() []ListSearchResultsSortOrderEnum {
-	values := make([]ListSearchResultsSortOrderEnum, 0)
-	for _, v := range mappingListSearchResultsSortOrder {
+// GetSearchCriteriaSortOrderEnumValues Enumerates the set of values for SearchCriteriaSortOrderEnum
+func GetSearchCriteriaSortOrderEnumValues() []SearchCriteriaSortOrderEnum {
+	values := make([]SearchCriteriaSortOrderEnum, 0)
+	for _, v := range mappingSearchCriteriaSortOrder {
 		values = append(values, v)
 	}
 	return values

@@ -32,7 +32,7 @@ func NewAuditClientWithConfigurationProvider(configProvider common.Configuration
 	}
 
 	client = AuditClient{BaseClient: baseClient}
-	client.BasePath = "20160918"
+	client.BasePath = "20190901"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -133,49 +133,6 @@ func (client AuditClient) listEvents(ctx context.Context, request common.OCIRequ
 	}
 
 	var response ListEventsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListEventsV2 Returns all the audit events processed for the specified compartment within the specified
-// time range.
-func (client AuditClient) ListEventsV2(ctx context.Context, request ListEventsV2Request) (response ListEventsV2Response, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listEventsV2, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = ListEventsV2Response{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListEventsV2Response); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListEventsV2Response")
-	}
-	return
-}
-
-// listEventsV2 implements the OCIOperation interface (enables retrying operations)
-func (client AuditClient) listEventsV2(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/auditEventsV2")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListEventsV2Response
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

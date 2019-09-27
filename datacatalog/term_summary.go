@@ -36,6 +36,9 @@ type TermSummary struct {
 	// This terms parent term key. Will be null if the term has no parent term.
 	ParentTermKey *string `mandatory:"false" json:"parentTermKey"`
 
+	// Indicates whether a term may contain child terms.
+	IsAllowedToHaveChildTerms *bool `mandatory:"false" json:"isAllowedToHaveChildTerms"`
+
 	// Absolute path of the term.
 	Path *string `mandatory:"false" json:"path"`
 

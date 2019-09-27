@@ -16,8 +16,8 @@ import (
 type ParseConnectionDetails struct {
 	ConnectionDetail *Connection `mandatory:"false" json:"connectionDetail"`
 
-	// The information used to parse the connections from the wallet file payload
-	ConnectionsPayload []byte `mandatory:"false" json:"connectionsPayload"`
+	// The information used to parse the connection from the wallet file payload
+	ConnectionPayload []byte `mandatory:"false" json:"connectionPayload"`
 }
 
 func (m ParseConnectionDetails) String() string {

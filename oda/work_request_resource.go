@@ -49,6 +49,7 @@ const (
 	WorkRequestResourceResourceActionDelete                     WorkRequestResourceResourceActionEnum = "DELETE"
 	WorkRequestResourceResourceActionPurge                      WorkRequestResourceResourceActionEnum = "PURGE"
 	WorkRequestResourceResourceActionRecover                    WorkRequestResourceResourceActionEnum = "RECOVER"
+	WorkRequestResourceResourceActionChangeCompartment          WorkRequestResourceResourceActionEnum = "CHANGE_COMPARTMENT"
 	WorkRequestResourceResourceActionCreateAssociation          WorkRequestResourceResourceActionEnum = "CREATE_ASSOCIATION"
 	WorkRequestResourceResourceActionDeleteAssociation          WorkRequestResourceResourceActionEnum = "DELETE_ASSOCIATION"
 	WorkRequestResourceResourceActionUpdateEntitlementsForCacct WorkRequestResourceResourceActionEnum = "UPDATE_ENTITLEMENTS_FOR_CACCT"
@@ -59,6 +60,7 @@ var mappingWorkRequestResourceResourceAction = map[string]WorkRequestResourceRes
 	"DELETE":                        WorkRequestResourceResourceActionDelete,
 	"PURGE":                         WorkRequestResourceResourceActionPurge,
 	"RECOVER":                       WorkRequestResourceResourceActionRecover,
+	"CHANGE_COMPARTMENT":            WorkRequestResourceResourceActionChangeCompartment,
 	"CREATE_ASSOCIATION":            WorkRequestResourceResourceActionCreateAssociation,
 	"DELETE_ASSOCIATION":            WorkRequestResourceResourceActionDeleteAssociation,
 	"UPDATE_ENTITLEMENTS_FOR_CACCT": WorkRequestResourceResourceActionUpdateEntitlementsForCacct,

@@ -62,14 +62,6 @@ func (m *createdatabasebase) UnmarshalPolymorphicJSON(data []byte) (interface{},
 		mm := CreateNewDatabaseDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
-	case "DATABASE":
-		mm := CreateDatabaseFromDatabase{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
-	case "DB_BACKUP":
-		mm := CreateDatabaseFromBackup{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	default:
 		return *m, nil
 	}

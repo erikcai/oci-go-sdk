@@ -59,7 +59,7 @@ type JobSummary struct {
 	// Schedule specified in the cron expression format that has seven fields for second , minute , hour , day-of-month , month , day-of-week , year .
 	// It can also include special characters like * for all and ? for any . There are also pre-defined schedules that can be specified using
 	// special strings. For example, @hourly will run the job every hour.
-	ScheduleCronExpression *int `mandatory:"false" json:"scheduleCronExpression"`
+	ScheduleCronExpression *string `mandatory:"false" json:"scheduleCronExpression"`
 
 	// Date that the schedule should be operational. An RFC3339 formatted datetime string.
 	TimeScheduleBegin *common.SDKTime `mandatory:"false" json:"timeScheduleBegin"`

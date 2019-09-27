@@ -22,6 +22,9 @@ type CreateTermDetails struct {
 	// Detailed description of the Term.
 	Description *string `mandatory:"false" json:"description"`
 
+	// Indicates whether a term may contain child terms.
+	IsAllowedToHaveChildTerms *bool `mandatory:"false" json:"isAllowedToHaveChildTerms"`
+
 	// The terms parent term key. Will be null if the term has no parent term.
 	ParentTermKey *string `mandatory:"false" json:"parentTermKey"`
 }

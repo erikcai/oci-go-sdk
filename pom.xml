@@ -27,7 +27,7 @@
     <oralb-api-spec-spec-file>source/spec-20170115.cond.yaml</oralb-api-spec-spec-file>
     <dbaas-api-spec-spec-file>source/dbaas-api-spec-20160918.cond.yaml</dbaas-api-spec-spec-file>
     <fss-api-spec-spec-file>source/fss-api-spec-20171215.cond.yaml</fss-api-spec-spec-file>
-    <hemlock-spec-spec-file>source/hemlock-api-20160918.cond.yaml</hemlock-spec-spec-file>
+    <hemlock-spec-spec-file>source/hemlock-api-20190901.cond.yaml</hemlock-spec-spec-file>
     <email-api-spec-spec-file>source/email-api-spec.cond.yaml</email-api-spec-spec-file>
     <public-dns-api-spec-spec-file>source/public-dns-api-spec.cond.yaml</public-dns-api-spec-spec-file>
     <maestro-spec-spec-file>source/api.cond.yaml</maestro-spec-spec-file>
@@ -3294,12 +3294,12 @@
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.86</version>
+        <version>0.4.90</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.251</version>
+        <version>1.1.263</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -3309,7 +3309,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.274</version>
+        <version>0.1.283</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -3319,7 +3319,7 @@
       <dependency>
         <groupId>com.oracle.pic.sherlock</groupId>
         <artifactId>hemlock-spec</artifactId>
-        <version>0.7.4</version>
+        <version>0.8.2</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.email</groupId>
@@ -3364,7 +3364,7 @@
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
         <artifactId>ons-gateway-spec</artifactId>
-        <version>2.0.75</version>
+        <version>2.0.116</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci</groupId>
@@ -3429,7 +3429,7 @@
       <dependency>
         <groupId>com.oracle.pic.oda.cp</groupId>
         <artifactId>digital-assistant-spec</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.5</version>
       </dependency>
       <dependency>
         <groupId>dscs-cp-spec</groupId>
@@ -3464,7 +3464,7 @@
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.0.0-1908200058</version>
+        <version>1.0.0-1909242356</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -3484,7 +3484,7 @@
       <dependency>
         <groupId>com.oracle.bds</groupId>
         <artifactId>bds-cp-spec</artifactId>
-        <version>0.1.26</version>
+        <version>0.1.31</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.analytics</groupId>

@@ -118,58 +118,6 @@ func TestAuditClientListEvents(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_events_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/SA" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/SA"
-func TestAuditClientListEventsV2(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("audit", "ListEventsV2")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListEventsV2 is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("audit", "Audit", "ListEventsV2", createAuditClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(audit.AuditClient)
-
-	body, err := testClient.getRequests("audit", "ListEventsV2")
-	assert.NoError(t, err)
-
-	type ListEventsV2RequestInfo struct {
-		ContainerId string
-		Request     audit.ListEventsV2Request
-	}
-
-	var requests []ListEventsV2RequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*audit.ListEventsV2Request)
-				return c.ListEventsV2(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]audit.ListEventsV2Response, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(audit.ListEventsV2Response)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="oci_events_dev_grp@oracle.com" jiraProject="https://jira.oci.oraclecorp.com/projects/SA" opsJiraProject="https://jira-sd.mc1.oracleiaas.com/projects/SA"
 func TestAuditClientUpdateConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -30,6 +30,10 @@ type SearchResult struct {
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
+	// The date and time the result object was updated, in the format defined by RFC3339.
+	// Example: `2019-03-25T21:10:29.600Z`
+	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
+
 	// Array of the tags associated with this object
 	TagSummary []SearchTagSummary `mandatory:"false" json:"tagSummary"`
 
@@ -68,6 +72,9 @@ type SearchResult struct {
 
 	// Name of the parent term . Will be null if the term has no parent term.
 	ParentTermName *string `mandatory:"false" json:"parentTermName"`
+
+	// Id (OCID) of the user who created the Resource
+	CreatedById *string `mandatory:"false" json:"createdById"`
 }
 
 func (m SearchResult) String() string {

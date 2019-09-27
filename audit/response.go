@@ -14,7 +14,39 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Response The representation of Response
+// Response A container object for response attributes.
+// Example:
+//   -----
+//     {
+//       "status": "200",
+//       "responseTime": "2019-09-18T00:10:59.278Z",
+//       "headers": {
+//         "ETag": [
+//           "<unique_ID>"
+//         ],
+//         "Connection": [
+//           "close"
+//         ],
+//         "Content-Length": [
+//           "1828"
+//         ],
+//         "opc-request-id": [
+//           "<unique_ID>"
+//         ],
+//         "Date": [
+//           "Wed, 18 Sep 2019 00:10:59 GMT"
+//         ],
+//         "Content-Type": [
+//           "application/json"
+//         ]
+//       },
+//       "payload": {
+//         "resourceName": "my_instance",
+//         "id": "ocid1.instance.oc1.phx.<unique_ID>"
+//       },
+//       "message": null
+//     }
+//   -----
 type Response struct {
 
 	// The status code of the response.
@@ -23,44 +55,47 @@ type Response struct {
 
 	// The time of the response to the audited request, expressed in
 	// RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
-	// Example: `2018-06-14T22:24:37.713Z`
+	// Example: `2019-09-18T00:10:59.278Z`
 	ResponseTime *common.SDKTime `mandatory:"false" json:"responseTime"`
 
 	// The headers of the response.
 	// Example:
 	//   -----
 	//     {
-	//       "Access-Control-Expose-Headers": [
-	//         "opc-previous-page,opc-next-page,opc-client-info,ETag,opc-request-id,Location"
-	//         ],
-	//       "Access-Control-Allow-Origin": [
-	//         "https://console.us-phoenix-1.oraclecloud.com"
-	//         ],
-	//       "Access-Control-Allow-Credentials": [
-	//         "true"
-	//         ],
+	//       "ETag": [
+	//         "<unique_ID>"
+	//       ],
 	//       "Connection": [
 	//         "close"
-	//         ],
+	//       ],
 	//       "Content-Length": [
-	//         "3"
-	//         ],
+	//         "1828"
+	//       ],
 	//       "opc-request-id": [
-	//         "example-4092-8233-EXAMPLEB863DC6CEC1BF1CE734676108C6345FF/51FE3CACE106DD8F825508D04E91E261"
-	//         ],
+	//         "<unique_ID>"
+	//       ],
 	//       "Date": [
-	//         "Thu, 14 Jun 2018 22:24:37 GMT"
-	//         ],
+	//         "Wed, 18 Sep 2019 00:10:59 GMT"
+	//       ],
 	//       "Content-Type": [
 	//         "application/json"
-	//         ]
+	//       ]
 	//     }
 	//   -----
 	Headers map[string][]string `mandatory:"false" json:"headers"`
 
-	// Metadata of interest from the response payload.
+	// This value is included for backward compatibility with the Audit version 1 schema, where
+	// it contained metadata of interest from the response payload.
+	// Example:
+	//   -----
+	//     {
+	//       "resourceName": "my_instance",
+	//       "id": "ocid1.instance.oc1.phx.<unique_ID>"
+	//     }
+	//   -----
 	Payload map[string]interface{} `mandatory:"false" json:"payload"`
 
+	// A friendly description of what happened during the operation. Use this for troubleshooting.
 	Message *string `mandatory:"false" json:"message"`
 }
 

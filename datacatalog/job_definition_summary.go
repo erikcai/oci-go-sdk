@@ -39,6 +39,9 @@ type JobDefinitionSummary struct {
 	// Lifecycle state of the Job Definition.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
+	// Specify if sample data to be extracted as part of this harvest
+	IsSampleDataExtracted *bool `mandatory:"false" json:"isSampleDataExtracted"`
+
 	// The date and time the JobDefinition was created, in the format defined by RFC3339.
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`

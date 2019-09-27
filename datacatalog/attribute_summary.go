@@ -22,11 +22,20 @@ type AttributeSummary struct {
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// Detailed description of the Attribute.
+	Description *string `mandatory:"false" json:"description"`
+
 	// The unique key of the parent Entity.
 	EntityKey *string `mandatory:"false" json:"entityKey"`
 
 	// Unique external key of this attribute in the external source system
 	ExternalKey *string `mandatory:"false" json:"externalKey"`
+
+	// Max allowed length of the attribute value
+	Length *int64 `mandatory:"false" json:"length"`
+
+	// Property that identifies if this attribute can be assigned null values
+	IsNullable *bool `mandatory:"false" json:"isNullable"`
 
 	// URI to the Attribute instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`

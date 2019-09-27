@@ -15,6 +15,9 @@ import (
 // CreateOAuth2ClientCredentialDetails The representation of CreateOAuth2ClientCredentialDetails
 type CreateOAuth2ClientCredentialDetails struct {
 
+	// Name of the oauth credential to help user differentiate them.
+	Name *string `mandatory:"true" json:"name"`
+
 	// Description of the oauth credential to help user differentiate them.
 	Description *string `mandatory:"true" json:"description"`
 

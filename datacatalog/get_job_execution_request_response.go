@@ -93,6 +93,7 @@ const (
 	GetJobExecutionFieldsDataentitykey  GetJobExecutionFieldsEnum = "dataEntityKey"
 	GetJobExecutionFieldsCreatedbyid    GetJobExecutionFieldsEnum = "createdById"
 	GetJobExecutionFieldsUpdatedbyid    GetJobExecutionFieldsEnum = "updatedById"
+	GetJobExecutionFieldsProperties     GetJobExecutionFieldsEnum = "properties"
 	GetJobExecutionFieldsUri            GetJobExecutionFieldsEnum = "uri"
 )
 
@@ -114,6 +115,7 @@ var mappingGetJobExecutionFields = map[string]GetJobExecutionFieldsEnum{
 	"dataEntityKey":  GetJobExecutionFieldsDataentitykey,
 	"createdById":    GetJobExecutionFieldsCreatedbyid,
 	"updatedById":    GetJobExecutionFieldsUpdatedbyid,
+	"properties":     GetJobExecutionFieldsProperties,
 	"uri":            GetJobExecutionFieldsUri,
 }
 

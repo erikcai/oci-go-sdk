@@ -72,6 +72,13 @@ type JobExecution struct {
 
 	// URI to the Job Execution instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
+
+	// A map of maps which contains the execution context properties which are specific to a job execution. Each job
+	// execution may define it's set of required and optional properties. The map keys are category names and the
+	// values are maps of property name to property value. Every property is contained inside of a category. Most
+	// job executions have required properties within the "default" category.
+	// Example: `{"properties": { "default": { "host": "host1", "port": "1521", "database": "orcl"}}}`
+	Properties map[string]map[string]string `mandatory:"false" json:"properties"`
 }
 
 func (m JobExecution) String() string {

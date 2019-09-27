@@ -1427,7 +1427,7 @@ func (client DatabaseClient) deleteDatabase(ctx context.Context, request common.
 	return response, err
 }
 
-// DeleteDbHome Deletes a DB Home. The DB Home and its database data are local to the DB system and will be lost when it is deleted. Oracle recommends that you back up any data in the DB system prior to deleting it. The delete request will be rejected if more than one databases exist in the DB Home.
+// DeleteDbHome Deletes a DB home. The DB home and its database data are local to the DB system, and both will be lost when the DB home is deleted. Oracle recommends that you back up any data in the DB system prior to deleting it. The delete request will be rejected if this is a shared DB home and it contains one or more databases. You must terminate all databases in a shared DB home prior to deleting the home.
 func (client DatabaseClient) DeleteDbHome(ctx context.Context, request DeleteDbHomeRequest) (response DeleteDbHomeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4830,7 +4830,7 @@ func (client DatabaseClient) updateAutonomousDataWarehouse(ctx context.Context, 
 	return response, err
 }
 
-// UpdateAutonomousDatabase Updates the specified Autonomous Database with a new CPU core count and size.
+// UpdateAutonomousDatabase Updates one or more attributes of the specified Autonomous Database. See the UpdateAutonomousDatabaseDetails resource for a full list of attributes that can be updated.
 func (client DatabaseClient) UpdateAutonomousDatabase(ctx context.Context, request UpdateAutonomousDatabaseRequest) (response UpdateAutonomousDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -12,14 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ImportConnectionDetails Import Connections from the connection metadata and oracle wallet file
+// ImportConnectionDetails Import Connection from the connection metadata and oracle wallet file
 type ImportConnectionDetails struct {
 
-	// The information used to import the connections
-	ConnectionsPayload []byte `mandatory:"true" json:"connectionsPayload"`
+	// The information used to import the connection
+	ConnectionPayload []byte `mandatory:"true" json:"connectionPayload"`
 
-	// The connection details array that will be used to import the connections. If not , default names will be generated
-	ConnectionsDetailArray []CreateConnectionDetails `mandatory:"false" json:"connectionsDetailArray"`
+	ConnectionDetail *CreateConnectionDetails `mandatory:"false" json:"connectionDetail"`
 }
 
 func (m ImportConnectionDetails) String() string {

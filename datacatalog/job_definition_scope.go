@@ -27,13 +27,6 @@ type JobDefinitionScope struct {
 	// Filter rules with regular expression to specify entity names for this metadata harvest
 	EntityNameFilter *string `mandatory:"false" json:"entityNameFilter"`
 
-	// A map of maps which contains the properties which are specific to the job type. Each job type
-	// definition may define it's set of required and optional properties. The map keys are category names and the
-	// values are maps of property name to property value. Every property is contained inside of a category. Most
-	// job definitions have required properties within the "default" category.
-	// Example: `{"properties": { "default": { "host": "host1", "port": "1521", "database": "orcl"}}}`
-	ConfigurationProperties map[string]map[string]string `mandatory:"false" json:"configurationProperties"`
-
 	// Specify if sample data to be extracted as part of this harvest
 	IsSampleDataExtracted *bool `mandatory:"false" json:"isSampleDataExtracted"`
 

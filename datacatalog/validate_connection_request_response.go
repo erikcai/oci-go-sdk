@@ -17,8 +17,8 @@ type ValidateConnectionRequest struct {
 	// Unique Data Asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
-	// Unique connection key.
-	ConnectionKey *string `mandatory:"true" contributesTo:"path" name:"connectionKey"`
+	// The information used to validate the connections.
+	ValidateConnectionDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

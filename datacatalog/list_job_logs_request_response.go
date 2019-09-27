@@ -112,6 +112,7 @@ const (
 	ListJobLogsFieldsJobexecutionkey ListJobLogsFieldsEnum = "jobExecutionKey"
 	ListJobLogsFieldsSeverity        ListJobLogsFieldsEnum = "severity"
 	ListJobLogsFieldsTimecreated     ListJobLogsFieldsEnum = "timeCreated"
+	ListJobLogsFieldsLogmessage      ListJobLogsFieldsEnum = "logMessage"
 	ListJobLogsFieldsUri             ListJobLogsFieldsEnum = "uri"
 )
 
@@ -120,6 +121,7 @@ var mappingListJobLogsFields = map[string]ListJobLogsFieldsEnum{
 	"jobExecutionKey": ListJobLogsFieldsJobexecutionkey,
 	"severity":        ListJobLogsFieldsSeverity,
 	"timeCreated":     ListJobLogsFieldsTimecreated,
+	"logMessage":      ListJobLogsFieldsLogmessage,
 	"uri":             ListJobLogsFieldsUri,
 }
 

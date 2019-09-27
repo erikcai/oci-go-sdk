@@ -25,8 +25,14 @@ type CreateAttributeDetails struct {
 	// Last modified timestamp of this object in the external system
 	TimeExternal *common.SDKTime `mandatory:"true" json:"timeExternal"`
 
+	// Detailed description of the Attribute.
+	Description *string `mandatory:"false" json:"description"`
+
 	// Property that identifies if this attribute can be used as a watermark to extract incremental data
 	IsIncrementalData *bool `mandatory:"false" json:"isIncrementalData"`
+
+	// Property that identifies if this attribute can be assigned null values
+	IsNullable *bool `mandatory:"false" json:"isNullable"`
 
 	// Max allowed length of the attribute value
 	Length *int64 `mandatory:"false" json:"length"`

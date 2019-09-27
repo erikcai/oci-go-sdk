@@ -65,10 +65,6 @@ func (m *createdbhomebase) UnmarshalPolymorphicJSON(data []byte) (interface{}, e
 		mm := CreateDbHomeWithVmClusterIdFromDatabaseDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
-	case "VM_CLUSTER_BACKUP":
-		mm := CreateDbHomeWithVmClusterIdFromBackupDetails{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	case "NONE":
 		mm := CreateDbHomeWithDbSystemIdDetails{}
 		err = json.Unmarshal(data, &mm)

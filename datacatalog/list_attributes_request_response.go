@@ -50,6 +50,9 @@ type ListAttributesRequest struct {
 	// Identifies whether this attribute can be used as a watermark to extract incremental data.
 	IsIncrementalData *bool `mandatory:"false" contributesTo:"query" name:"isIncrementalData"`
 
+	// Identifies whether this attribute can be assigned null value.
+	IsNullable *bool `mandatory:"false" contributesTo:"query" name:"isNullable"`
+
 	// Max allowed length of the attribute value.
 	Length *int64 `mandatory:"false" contributesTo:"query" name:"length"`
 
@@ -134,22 +137,28 @@ type ListAttributesFieldsEnum string
 const (
 	ListAttributesFieldsKey              ListAttributesFieldsEnum = "key"
 	ListAttributesFieldsDisplayname      ListAttributesFieldsEnum = "displayName"
+	ListAttributesFieldsDescription      ListAttributesFieldsEnum = "description"
 	ListAttributesFieldsEntitykey        ListAttributesFieldsEnum = "entityKey"
 	ListAttributesFieldsLifecyclestate   ListAttributesFieldsEnum = "lifecycleState"
 	ListAttributesFieldsTimecreated      ListAttributesFieldsEnum = "timeCreated"
 	ListAttributesFieldsExternaldatatype ListAttributesFieldsEnum = "externalDataType"
 	ListAttributesFieldsExternalkey      ListAttributesFieldsEnum = "externalKey"
+	ListAttributesFieldsLength           ListAttributesFieldsEnum = "length"
+	ListAttributesFieldsIsnullable       ListAttributesFieldsEnum = "isNullable"
 	ListAttributesFieldsUri              ListAttributesFieldsEnum = "uri"
 )
 
 var mappingListAttributesFields = map[string]ListAttributesFieldsEnum{
 	"key":              ListAttributesFieldsKey,
 	"displayName":      ListAttributesFieldsDisplayname,
+	"description":      ListAttributesFieldsDescription,
 	"entityKey":        ListAttributesFieldsEntitykey,
 	"lifecycleState":   ListAttributesFieldsLifecyclestate,
 	"timeCreated":      ListAttributesFieldsTimecreated,
 	"externalDataType": ListAttributesFieldsExternaldatatype,
 	"externalKey":      ListAttributesFieldsExternalkey,
+	"length":           ListAttributesFieldsLength,
+	"isNullable":       ListAttributesFieldsIsnullable,
 	"uri":              ListAttributesFieldsUri,
 }
 
