@@ -8,16 +8,14 @@ import (
 	"net/http"
 )
 
-// ChangeCustomProtectionRuleCompartmentRequest wrapper for the ChangeCustomProtectionRuleCompartment operation
-type ChangeCustomProtectionRuleCompartmentRequest struct {
+// UpdateHttpRedirectRequest wrapper for the UpdateHttpRedirect operation
+type UpdateHttpRedirectRequest struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule. This number is generated when the custom protection rule is added to the compartment.
-	CustomProtectionRuleId *string `mandatory:"true" contributesTo:"path" name:"customProtectionRuleId"`
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the HTTP Redirect.
+	HttpRedirectId *string `mandatory:"true" contributesTo:"path" name:"httpRedirectId"`
 
-	ChangeCustomProtectionRuleCompartmentDetails `contributesTo:"body"`
-
-	// For optimistic concurrency control. In the `PUT` or `DELETE` call for a resource, set the `if-match` parameter to the value of the etag from a previous `GET` or `POST` response for that resource. The resource will be updated or deleted only if the etag provided matches the resource's current etag value.
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
+	// The details of the HTTP Redirect to update.
+	UpdateHttpRedirectDetails `contributesTo:"body"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -26,40 +24,46 @@ type ChangeCustomProtectionRuleCompartmentRequest struct {
 	// *Example:* If a resource has been deleted and purged from the system, then a retry of the original delete request may be rejected.
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
+	// For optimistic concurrency control. In the `PUT` or `DELETE` call for a resource, set the `if-match` parameter to the value of the etag from a previous `GET` or `POST` response for that resource. The resource will be updated or deleted only if the etag provided matches the resource's current etag value.
+	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ChangeCustomProtectionRuleCompartmentRequest) String() string {
+func (request UpdateHttpRedirectRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ChangeCustomProtectionRuleCompartmentRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request UpdateHttpRedirectRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ChangeCustomProtectionRuleCompartmentRequest) RetryPolicy() *common.RetryPolicy {
+func (request UpdateHttpRedirectRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ChangeCustomProtectionRuleCompartmentResponse wrapper for the ChangeCustomProtectionRuleCompartment operation
-type ChangeCustomProtectionRuleCompartmentResponse struct {
+// UpdateHttpRedirectResponse wrapper for the UpdateHttpRedirect operation
+type UpdateHttpRedirectResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
 	// A unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the work request.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
-func (response ChangeCustomProtectionRuleCompartmentResponse) String() string {
+func (response UpdateHttpRedirectResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ChangeCustomProtectionRuleCompartmentResponse) HTTPResponse() *http.Response {
+func (response UpdateHttpRedirectResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

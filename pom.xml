@@ -3404,7 +3404,7 @@
       <dependency>
         <groupId>com.oracle.oci.waas</groupId>
         <artifactId>oci-waas-api-spec</artifactId>
-        <version>1.1.634</version>
+        <version>1.1.772</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.obcs</groupId>

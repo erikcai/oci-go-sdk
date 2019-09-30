@@ -12,25 +12,32 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CustomProtectionRuleSummary An overview of a custom protection rule.
-type CustomProtectionRuleSummary struct {
+// HttpRedirectSummary The details of a HTTP Redirect configuration to allow redirecting HTTP traffic to allow redirecting HTTP traffic from a request domain to a new target.
+// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
+type HttpRedirectSummary struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the HTTP Redirect.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule's compartment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the HTTP Redirect's compartment.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The user-friendly name of the custom protection rule.
+	// The user-friendly name of the HTTP Redirect. The name can be changed and does not need to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The auto-generated ID for the custom protection rule. These IDs are referenced in logs.
-	ModSecurityRuleIds []string `mandatory:"false" json:"modSecurityRuleIds"`
+	// The domain from which traffic will be redirected.
+	Domain *string `mandatory:"false" json:"domain"`
 
-	// The current lifecycle state of the custom protection rule.
+	// The redirect target object including all the redirect data.
+	Target *HttpRedirectTarget `mandatory:"false" json:"target"`
+
+	// The response code returned for the redirect to the client. reference - https://tools.ietf.org/html/rfc7231#section-6.4
+	ResponseCode *int `mandatory:"false" json:"responseCode"`
+
+	// The current lifecycle state of the HTTP Redirect.
 	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The date and time the protection rule was created, expressed in RFC 3339 timestamp format.
+	// The date and time the policy was created, expressed in RFC 3339 timestamp format.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -44,6 +51,6 @@ type CustomProtectionRuleSummary struct {
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
-func (m CustomProtectionRuleSummary) String() string {
+func (m HttpRedirectSummary) String() string {
 	return common.PointerString(m)
 }

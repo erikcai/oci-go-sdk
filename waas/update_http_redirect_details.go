@@ -12,14 +12,18 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateAddressListDetails The data used to update the address list: IP addresses and CIDR notations.
-type UpdateAddressListDetails struct {
+// UpdateHttpRedirectDetails The details of a HTTP Redirect configured to redirect traffic from one hostname to another.
+// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
+type UpdateHttpRedirectDetails struct {
 
-	// A unique user-friendly name for the address list.
+	// The user-friendly name of the HTTP Redirect. The name can be changed and does not need to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// A list of IP addresses or CIDR notations.
-	Addresses []string `mandatory:"false" json:"addresses"`
+	// The redirect target object including all the redirect data.
+	Target *HttpRedirectTarget `mandatory:"false" json:"target"`
+
+	// The response code returned for the redirect to the client. reference - https://tools.ietf.org/html/rfc7231#section-6.4
+	ResponseCode *int `mandatory:"false" json:"responseCode"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -32,6 +36,6 @@ type UpdateAddressListDetails struct {
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 
-func (m UpdateAddressListDetails) String() string {
+func (m UpdateHttpRedirectDetails) String() string {
 	return common.PointerString(m)
 }
