@@ -66,6 +66,49 @@ func TestDnsClientChangeSteeringPolicyCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
+func TestDnsClientChangeTsigKeyCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dns", "ChangeTsigKeyCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeTsigKeyCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "ChangeTsigKeyCompartment", createDnsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
+
+	body, err := testClient.getRequests("dns", "ChangeTsigKeyCompartment")
+	assert.NoError(t, err)
+
+	type ChangeTsigKeyCompartmentRequestInfo struct {
+		ContainerId string
+		Request     dns.ChangeTsigKeyCompartmentRequest
+	}
+
+	var requests []ChangeTsigKeyCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ChangeTsigKeyCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientChangeZoneCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -187,6 +230,49 @@ func TestDnsClientCreateSteeringPolicyAttachment(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateSteeringPolicyAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
+func TestDnsClientCreateTsigKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dns", "CreateTsigKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateTsigKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "CreateTsigKey", createDnsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
+
+	body, err := testClient.getRequests("dns", "CreateTsigKey")
+	assert.NoError(t, err)
+
+	type CreateTsigKeyRequestInfo struct {
+		ContainerId string
+		Request     dns.CreateTsigKeyRequest
+	}
+
+	var requests []CreateTsigKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreateTsigKey(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -414,6 +500,49 @@ func TestDnsClientDeleteSteeringPolicyAttachment(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteSteeringPolicyAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
+func TestDnsClientDeleteTsigKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dns", "DeleteTsigKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteTsigKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "DeleteTsigKey", createDnsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
+
+	body, err := testClient.getRequests("dns", "DeleteTsigKey")
+	assert.NoError(t, err)
+
+	type DeleteTsigKeyRequestInfo struct {
+		ContainerId string
+		Request     dns.DeleteTsigKeyRequest
+	}
+
+	var requests []DeleteTsigKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.DeleteTsigKey(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -655,6 +784,49 @@ func TestDnsClientGetSteeringPolicyAttachment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
+func TestDnsClientGetTsigKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dns", "GetTsigKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetTsigKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "GetTsigKey", createDnsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
+
+	body, err := testClient.getRequests("dns", "GetTsigKey")
+	assert.NoError(t, err)
+
+	type GetTsigKeyRequestInfo struct {
+		ContainerId string
+		Request     dns.GetTsigKeyRequest
+	}
+
+	var requests []GetTsigKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetTsigKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
 func TestDnsClientGetZone(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -844,6 +1016,58 @@ func TestDnsClientListSteeringPolicyAttachments(t *testing.T) {
 			typedListResponses := make([]dns.ListSteeringPolicyAttachmentsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(dns.ListSteeringPolicyAttachmentsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
+func TestDnsClientListTsigKeys(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dns", "ListTsigKeys")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTsigKeys is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "ListTsigKeys", createDnsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
+
+	body, err := testClient.getRequests("dns", "ListTsigKeys")
+	assert.NoError(t, err)
+
+	type ListTsigKeysRequestInfo struct {
+		ContainerId string
+		Request     dns.ListTsigKeysRequest
+	}
+
+	var requests []ListTsigKeysRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*dns.ListTsigKeysRequest)
+				return c.ListTsigKeys(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]dns.ListTsigKeysResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(dns.ListTsigKeysResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -1199,6 +1423,49 @@ func TestDnsClientUpdateSteeringPolicyAttachment(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateSteeringPolicyAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_pubdns_dev_us_grp@oracle.com" jiraProject="PD" opsJiraProject="PUBDNS"
+func TestDnsClientUpdateTsigKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dns", "UpdateTsigKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateTsigKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dns", "Dns", "UpdateTsigKey", createDnsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dns.DnsClient)
+
+	body, err := testClient.getRequests("dns", "UpdateTsigKey")
+	assert.NoError(t, err)
+
+	type UpdateTsigKeyRequestInfo struct {
+		ContainerId string
+		Request     dns.UpdateTsigKeyRequest
+	}
+
+	var requests []UpdateTsigKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			retryPolicy = retryPolicyForTests()
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateTsigKey(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

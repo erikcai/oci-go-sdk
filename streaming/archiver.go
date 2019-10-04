@@ -36,7 +36,6 @@ type Archiver struct {
 	// The rollover time in seconds.
 	BatchRolloverTimeInSeconds *int `mandatory:"false" json:"batchRolloverTimeInSeconds"`
 
-	// If an operation failed this property contained the last error occurred.
 	Error *ArchiverError `mandatory:"false" json:"error"`
 }
 
