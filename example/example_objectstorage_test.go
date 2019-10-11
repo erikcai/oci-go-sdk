@@ -78,7 +78,7 @@ func ExampleObjectStorage_UploadManager_UploadFile() {
 			NamespaceName: common.String(namespace),
 			BucketName:    common.String(bname),
 			ObjectName:    common.String(objectName),
-			//PartSize:      common.Int(10000000),
+			//PartSize:		common.Int(10000000),
 			CallBack: callBack,
 		},
 		FilePath: filepath,
@@ -102,6 +102,9 @@ func ExampleObjectStorage_UploadManager_UploadFile() {
 	// Output:
 	// get namespace
 	// create bucket
+	// One example of progress bar could be the above comment content.
+	// One example of progress bar could be the above comment content.
+	// One example of progress bar could be the above comment content.
 	// file uploaded
 	// delete object
 	// delete bucket
@@ -109,7 +112,9 @@ func ExampleObjectStorage_UploadManager_UploadFile() {
 
 func callBack(multiPartUploadPart transfer.MultiPartUploadPart) {
 	if nil == multiPartUploadPart.Err {
-		fmt.Printf("Part: %d / %d is uploaded", multiPartUploadPart.PartNum, multiPartUploadPart.TotalParts)
+		// Please refer this as the progress bar print content.
+		// fmt.Printf("Part: %d / %d is uploaded.\n", multiPartUploadPart.PartNum, multiPartUploadPart.TotalParts)
+		fmt.Printf("One example of progress bar could be the above comment content.\n")
 	}
 }
 

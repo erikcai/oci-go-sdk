@@ -54,11 +54,12 @@ func (manifest *multipartManifest) splitFileToParts(done <-chan struct{}, partSi
 			_, err := file.ReadAt(buffer, offset)
 
 			part := uploadPart{
-				partNum:  i + 1,
-				size:     partSize,
-				offset:   offset,
-				err:      err,
-				partBody: buffer,
+				partNum:    i + 1,
+				size:       partSize,
+				offset:     offset,
+				err:        err,
+				partBody:   buffer,
+				totalParts: numberOfParts,
 			}
 
 			select {

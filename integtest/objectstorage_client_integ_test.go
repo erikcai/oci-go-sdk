@@ -442,10 +442,11 @@ func TestObjectStorage_UploadManager_UploadFile(t *testing.T) {
 
 	req := transfer.UploadFileRequest{
 		UploadRequest: transfer.UploadRequest{
-			NamespaceName: common.String(namespace),
-			BucketName:    common.String(bname),
-			ObjectName:    common.String(objectName),
-			PartSize:      common.Int64(1024 * 1000 * 1), // 1MB
+			NamespaceName:  common.String(namespace),
+			BucketName:     common.String(bname),
+			ObjectName:     common.String(objectName),
+			PartSize:       common.Int64(1024 * 1000 * 1), // 1MB
+			CallBack:       callBack,
 		},
 		FilePath: filepath,
 	}
@@ -458,6 +459,13 @@ func TestObjectStorage_UploadManager_UploadFile(t *testing.T) {
 	}
 
 	defer deleteObject(t, namespace, bname, objectName)
+}
+
+func callBack(multiPartUploadPart transfer.MultiPartUploadPart) {
+	if nil == multiPartUploadPart.Err {
+		fmt.Printf("Part: %d / %d is uploaded.\n", multiPartUploadPart.PartNum,
+			multiPartUploadPart.TotalParts)
+	}
 }
 
 func TestObjectStorage_UploadManager_ResumeUploadFile(t *testing.T) {
