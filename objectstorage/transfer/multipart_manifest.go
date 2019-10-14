@@ -37,6 +37,14 @@ func (manifest *multipartManifest) splitFileToParts(done <-chan struct{}, partSi
 	// Number of parts of the file
 	numberOfParts := int(fileSize / partSize)
 
+	// Check for any left over bytes
+	remainder := fileSize % partSize
+
+	totalParts := numberOfParts
+	if remainder != 0 {
+		totalParts = numberOfParts + 1
+	}
+
 	go func() {
 		// close the channel after splitFile returns
 		defer func() {
@@ -59,7 +67,7 @@ func (manifest *multipartManifest) splitFileToParts(done <-chan struct{}, partSi
 				offset:     offset,
 				err:        err,
 				partBody:   buffer,
-				totalParts: numberOfParts,
+				totalParts: totalParts,
 			}
 
 			select {
@@ -71,8 +79,12 @@ func (manifest *multipartManifest) splitFileToParts(done <-chan struct{}, partSi
 
 		// check for any left over bytes. Add the residual number of bytes as the
 		// the last chunk size.
-		if remainder := fileSize % int64(partSize); remainder != 0 {
-			part := uploadPart{offset: (int64(numberOfParts) * partSize), partNum: numberOfParts + 1}
+		if remainder != 0 {
+			part := uploadPart{
+				offset:     int64(numberOfParts) * partSize,
+				partNum:    numberOfParts + 1,
+				totalParts: totalParts,
+			}
 
 			part.partBody = make([]byte, remainder)
 			_, err := file.ReadAt(part.partBody, part.offset)
