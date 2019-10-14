@@ -47,6 +47,9 @@ type DbHome struct {
 
 	// The date and time the database home was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
+
+	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
 func (m DbHome) String() string {

@@ -77,6 +77,9 @@ type DbSystem struct {
 	// The time zone of the DB system. For details, see DB System Time Zones (https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
 	TimeZone *string `mandatory:"false" json:"timeZone"`
 
+	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
+
 	// The Oracle Database version of the DB system.
 	Version *string `mandatory:"false" json:"version"`
 

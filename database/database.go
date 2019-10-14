@@ -76,6 +76,9 @@ type Database struct {
 
 	// The date and time when the latest remote automatic incremental database backup was created.
 	LastRemoteBackupTimestamp *common.SDKTime `mandatory:"false" json:"lastRemoteBackupTimestamp"`
+
+	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
 func (m Database) String() string {

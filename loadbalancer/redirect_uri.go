@@ -16,7 +16,12 @@ import (
 // RedirectUri An object that defines the redirect URI applied to the original request. The object property values compose the
 // redirect URI.
 // **NOTE:** The Load Balancing service cannot automatically detect or avoid infinite redirects. Be sure to provide
-// meaningful and correct field values.
+// meaningful, complete, and correct field values. If any component field of this object has no value, the system
+// retains the value from the incoming HTTP request URI.
+// For example, if you specify only the protocol field `https`, and the incoming request URI is
+// `http://example.com:8080`, the resulting runtime redirect URI is `https://example.com:8080`. The system retains
+// the host and port from the incoming URI and does not automatically change the port setting from `8080` to `443`.
+// Be sure to configure valid percent-encoding (URL encoding) when needed.
 // In addition to static string values, you can use the following tokens to construct the redirect URI. These tokens
 // extract values from the incoming HTTP request URI.
 // *  {protocol} : The protocol from the incoming HTTP request URI.
@@ -86,10 +91,15 @@ type RedirectUri struct {
 	// The query string to use in the redirect URI.
 	// When this value is null, not set, or set to `{query}`, the service preserves the original query parameters
 	// from the incoming HTTP request URI.
-	// All RedirectUri tokens are valid for this property. You can use any token more than once.
+	// All `RedirectUri` tokens are valid for this property. You can use any token more than once.
+	// If the query string does not begin with the `{query}` token, it must begin with the question mark (?) character.
 	// You can specify multiple query parameters as a single string. Separate each query parameter with an ampersand
 	// (&) character. To omit all incoming query parameters from the redirect URI, set this value to an empty
 	// string, "".
+	// If the specified query string results in a redirect URI ending with `?` or `&`, the last character is truncated.
+	// For example, if the incoming URI is `http://host.com:8080/documents` and the query property value is
+	// `?lang=en&{query}`, the redirect URI is `http://host.com:8080/documents?lang=en`. The system
+	// truncates the final ampersand (&) because the incoming URI included no value to replace the {query} token.
 	// Examples:
 	// * **lang=en&time_zone=PST** appears as `lang=en&time_zone=PST` in the redirect URI.
 	// * **{query}** appears as `lang=en&time_zone=PST` in the redirect URI if `lang=en&time_zone=PST` is the query

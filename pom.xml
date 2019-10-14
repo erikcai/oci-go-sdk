@@ -62,6 +62,7 @@
     <hydra-pika-controlplane-api-spec-spec-file>source/public-api.cond.yaml</hydra-pika-controlplane-api-spec-spec-file>
     <bds-cp-spec-spec-file>source/bds-cp.cond.yaml</bds-cp-spec-spec-file>
     <analytics-control-plane-api-spec-spec-file>source/analytics-api-spec.cond.yaml</analytics-control-plane-api-spec-spec-file>
+    <oracle-integration-cp-apiserver-user-spec-spec-file>source/api.cond.yaml</oracle-integration-cp-apiserver-user-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -227,6 +228,10 @@
     <dependency>
       <groupId>com.oracle.pic.analytics</groupId>
       <artifactId>analytics-control-plane-api-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.oracleintegration.spec</groupId>
+      <artifactId>oracle-integration-cp-apiserver-user-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -988,6 +993,24 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/analytics-control-plane-api-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-oracle-integration-cp-apiserver-user-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.oracleintegration.spec</groupId>
+                  <artifactId>oracle-integration-cp-apiserver-user-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/oracle-integration-cp-apiserver-user-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -2106,6 +2129,33 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-oracle-integration-cp-apiserver-user-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/oracle-integration-cp-apiserver-user-spec/source/${oracle-integration-cp-apiserver-user-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/oracle-integration-cp-apiserver-user-spec/${oracle-integration-cp-apiserver-user-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/oracle-integration-cp-apiserver-user-spec/${oracle-integration-cp-apiserver-user-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-oracle-integration-cp-apiserver-user-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/oracle-integration-cp-apiserver-user-spec/${oracle-integration-cp-apiserver-user-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/oracle-integration-cp-apiserver-user-spec/${oracle-integration-cp-apiserver-user-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -2977,6 +3027,26 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-oracle-integration-cp-apiserver-user-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/oracle-integration-cp-apiserver-user-spec/${oracle-integration-cp-apiserver-user-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>integration</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>integration</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -3279,6 +3349,12 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/integration</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -3304,7 +3380,7 @@
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
         <artifactId>oralb-api-spec</artifactId>
-        <version>4.0.42</version>
+        <version>4.0.46</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
@@ -3349,7 +3425,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.1.9</version>
+        <version>1.1.10</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
@@ -3404,7 +3480,7 @@
       <dependency>
         <groupId>com.oracle.oci.waas</groupId>
         <artifactId>oci-waas-api-spec</artifactId>
-        <version>1.1.772</version>
+        <version>1.1.774</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.obcs</groupId>
@@ -3490,6 +3566,11 @@
         <groupId>com.oracle.pic.analytics</groupId>
         <artifactId>analytics-control-plane-api-spec</artifactId>
         <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.oracleintegration.spec</groupId>
+        <artifactId>oracle-integration-cp-apiserver-user-spec</artifactId>
+        <version>1.0.4</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

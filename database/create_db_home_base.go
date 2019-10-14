@@ -19,12 +19,20 @@ type CreateDbHomeBase interface {
 
 	// The user-provided name of the database home.
 	GetDisplayName() *string
+
+	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+	GetKmsKeyId() *string
+
+	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+	GetKmsKeyVersionId() *string
 }
 
 type createdbhomebase struct {
-	JsonData    []byte
-	DisplayName *string `mandatory:"false" json:"displayName"`
-	Source      string  `json:"source"`
+	JsonData        []byte
+	DisplayName     *string `mandatory:"false" json:"displayName"`
+	KmsKeyId        *string `mandatory:"false" json:"kmsKeyId"`
+	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
+	Source          string  `json:"source"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -39,6 +47,8 @@ func (m *createdbhomebase) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	m.DisplayName = s.Model.DisplayName
+	m.KmsKeyId = s.Model.KmsKeyId
+	m.KmsKeyVersionId = s.Model.KmsKeyVersionId
 	m.Source = s.Model.Source
 
 	return err
@@ -81,6 +91,16 @@ func (m *createdbhomebase) UnmarshalPolymorphicJSON(data []byte) (interface{}, e
 //GetDisplayName returns DisplayName
 func (m createdbhomebase) GetDisplayName() *string {
 	return m.DisplayName
+}
+
+//GetKmsKeyId returns KmsKeyId
+func (m createdbhomebase) GetKmsKeyId() *string {
+	return m.KmsKeyId
+}
+
+//GetKmsKeyVersionId returns KmsKeyVersionId
+func (m createdbhomebase) GetKmsKeyVersionId() *string {
+	return m.KmsKeyVersionId
 }
 
 func (m createdbhomebase) String() string {
