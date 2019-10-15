@@ -79,6 +79,21 @@ func ExampleCreateLoadbalancer() {
 					},
 					StatusCode: common.Int(403),
 				},
+				loadbalancer.RedirectRule{
+					ResponseCode: common.Int(302),
+					Conditions: []loadbalancer.RuleCondition{
+						loadbalancer.PathMatchCondition{
+							AttributeValue: common.String("/xyz"),
+							Operator:       loadbalancer.PathMatchConditionOperatorEnum("FORCE_LONGEST_PREFIX_MATCH"),
+						},
+					},
+					RedirectUri: &loadbalancer.RedirectUri{
+						Protocol: common.String("https"),
+						Host:     common.String("def.com"),
+						Port:     common.Int(8990),
+						Path:     common.String("/xxx"),
+					},
+				},
 				loadbalancer.AllowRule{
 					Description: common.String("Allow traffic from internet clients"),
 					Conditions: []loadbalancer.RuleCondition{
