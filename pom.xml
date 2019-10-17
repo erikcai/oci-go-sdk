@@ -602,7 +602,7 @@
             </configuration>
           </execution>
           <execution>
-            <id>unpack-marketplace-api-spec</id>
+            <id>unpack-marketplace-consumer-service-spec</id>
             <phase>initialize</phase>
             <goals>
               <goal>unpack</goal>
@@ -614,7 +614,7 @@
                   <artifactId>marketplace-consumer-service-spec</artifactId>
                   <type>jar</type>
                   <includes>**/*</includes>
-                  <outputDirectory>${spec-temp-dir}/marketplace-api-spec</outputDirectory>
+                  <outputDirectory>${spec-temp-dir}/marketplace-consumer-service-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1536,28 +1536,28 @@
             </configuration>
           </execution>
           <execution>
-            <id>spec-conditionals-prefer-marketplace-api-spec</id>
+            <id>spec-conditionals-prefer-marketplace-consumer-service-spec</id>
             <phase>initialize</phase>
             <goals>
               <goal>prefer</goal>
             </goals>
             <configuration>
               <inputFiles>
-                <inputFile>${spec-temp-dir}/marketplace-api-spec/source/${marketplace-consumer-service-spec-spec-file}</inputFile>
-                <inputFile>${spec-temp-dir}/marketplace-api-spec/${marketplace-consumer-service-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/marketplace-consumer-service-spec/source/${marketplace-consumer-service-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/marketplace-consumer-service-spec/${marketplace-consumer-service-spec-spec-file}</inputFile>
               </inputFiles>
-              <outputFile>${preferred-temp-dir}/marketplace-api-spec/${marketplace-consumer-service-spec-spec-file}</outputFile>
+              <outputFile>${preferred-temp-dir}/marketplace-consumer-service-spec/${marketplace-consumer-service-spec-spec-file}</outputFile>
             </configuration>
           </execution>
           <execution>
-            <id>spec-conditionals-preprocess-marketplace-api-spec</id>
+            <id>spec-conditionals-preprocess-marketplace-consumer-service-spec</id>
             <phase>initialize</phase>
             <goals>
               <goal>preprocess</goal>
             </goals>
             <configuration>
-              <inputFile>${preferred-temp-dir}/marketplace-api-spec/${marketplace-consumer-service-spec-spec-file}</inputFile>
-              <outputFile>${preprocessed-temp-dir}/marketplace-api-spec/${marketplace-consumer-service-spec-spec-file}</outputFile>
+              <inputFile>${preferred-temp-dir}/marketplace-consumer-service-spec/${marketplace-consumer-service-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/marketplace-consumer-service-spec/${marketplace-consumer-service-spec-spec-file}</outputFile>
               <groupFile>${enabled-groups-file}</groupFile>
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
@@ -2579,14 +2579,14 @@
             </configuration>
           </execution>
           <execution>
-            <id>go-public-sdk-marketplace-api-spec</id>
+            <id>go-public-sdk-marketplace-consumer-service-spec</id>
             <phase>compile</phase>
             <goals>
               <goal>generate</goal>
             </goals>
             <configuration>
               <language>oracle-go-sdk</language>
-              <specPath>${preprocessed-temp-dir}/marketplace-api-spec/${marketplace-consumer-service-spec-spec-file}</specPath>
+              <specPath>${preprocessed-temp-dir}/marketplace-consumer-service-spec/${marketplace-consumer-service-spec-spec-file}</specPath>
               <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
               <basePackage>marketplace</basePackage>
               <specGenerationType>${generationType}</specGenerationType>
