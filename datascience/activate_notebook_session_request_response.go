@@ -11,14 +11,14 @@ import (
 // ActivateNotebookSessionRequest wrapper for the ActivateNotebookSession operation
 type ActivateNotebookSessionRequest struct {
 
-	// The OCID of the notebook session.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session.
 	NotebookSessionId *string `mandatory:"true" contributesTo:"path" name:"notebookSessionId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
 	// for a resource, set the `if-match` parameter to the value of the
 	// etag from a previous GET or POST response for that resource.
-	// The resource will be updated or deleted only if the etag you
-	// provide matches the resource's current etag value.
+	// The resource will be updated or deleted only if the `etag` you
+	// provide matches the resource's current `etag` value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
@@ -49,10 +49,12 @@ type ActivateNotebookSessionResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The OCID of the work request handling the operation.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the work request. Use GetWorkRequest (https://docs.cloud.oracle.com/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest)
+	// with this ID to track the status of the request.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact
+	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

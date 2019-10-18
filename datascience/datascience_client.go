@@ -3,7 +3,7 @@
 
 // Data Science API
 //
-// The Data Science service enables data science teams to organize their work, easily access data and computing resources, and build, train, deploy, and manage ML/AI models on the Oracle Cloud.
+// Use the Data Science APIs to organize your data science work, access data and computing resources, and build, train, deploy, and manage models on Oracle Cloud.
 //
 
 package datascience
@@ -37,7 +37,7 @@ func NewDataScienceClientWithConfigurationProvider(configProvider common.Configu
 
 // SetRegion overrides the region of this client.
 func (client *DataScienceClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("datascience", "https://odsc.{region}.oci.{secondLevelDomain}")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("datascience", "https://datascience.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -58,7 +58,7 @@ func (client *DataScienceClient) ConfigurationProvider() *common.ConfigurationPr
 	return client.config
 }
 
-// ActivateModel Activate the model
+// ActivateModel Activates the model.
 func (client DataScienceClient) ActivateModel(ctx context.Context, request ActivateModelRequest) (response ActivateModelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -100,7 +100,7 @@ func (client DataScienceClient) activateModel(ctx context.Context, request commo
 	return response, err
 }
 
-// ActivateNotebookSession Activate the notebook session
+// ActivateNotebookSession Activates the notebook session.
 func (client DataScienceClient) ActivateNotebookSession(ctx context.Context, request ActivateNotebookSessionRequest) (response ActivateNotebookSessionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -142,7 +142,7 @@ func (client DataScienceClient) activateNotebookSession(ctx context.Context, req
 	return response, err
 }
 
-// CancelWorkRequest Cancel a work request that has not started.
+// CancelWorkRequest Cancels a work request that has not started.
 func (client DataScienceClient) CancelWorkRequest(ctx context.Context, request CancelWorkRequestRequest) (response CancelWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -184,7 +184,7 @@ func (client DataScienceClient) cancelWorkRequest(ctx context.Context, request c
 	return response, err
 }
 
-// ChangeModelCompartment Moves a resource into a different compartment. When provided, If-Match is checked against ETag values of the resource.
+// ChangeModelCompartment Moves a model resource into a different compartment.
 func (client DataScienceClient) ChangeModelCompartment(ctx context.Context, request ChangeModelCompartmentRequest) (response ChangeModelCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -231,7 +231,7 @@ func (client DataScienceClient) changeModelCompartment(ctx context.Context, requ
 	return response, err
 }
 
-// ChangeNotebookSessionCompartment Moves a notebook session resource into a different compartment. When provided, If-Match is checked against ETag values of the resource.
+// ChangeNotebookSessionCompartment Moves a notebook session resource into a different compartment.
 func (client DataScienceClient) ChangeNotebookSessionCompartment(ctx context.Context, request ChangeNotebookSessionCompartmentRequest) (response ChangeNotebookSessionCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -278,7 +278,7 @@ func (client DataScienceClient) changeNotebookSessionCompartment(ctx context.Con
 	return response, err
 }
 
-// ChangeProjectCompartment Moves a project resource into a different compartment. When provided, If-Match is checked against ETag values of the resource.
+// ChangeProjectCompartment Moves a project resource into a different compartment.
 func (client DataScienceClient) ChangeProjectCompartment(ctx context.Context, request ChangeProjectCompartmentRequest) (response ChangeProjectCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -372,7 +372,7 @@ func (client DataScienceClient) createModel(ctx context.Context, request common.
 	return response, err
 }
 
-// CreateModelArtifact Create model artifact for specified model.
+// CreateModelArtifact Creates model artifact for specified model.
 func (client DataScienceClient) CreateModelArtifact(ctx context.Context, request CreateModelArtifactRequest) (response CreateModelArtifactResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -408,7 +408,17 @@ func (client DataScienceClient) createModelArtifact(ctx context.Context, request
 
 	var response CreateModelArtifactResponse
 	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
+	var customSigner common.HTTPRequestSigner
+	excludeBodySigningPredicate := func(r *http.Request) bool { return false }
+	customSigner, err = common.NewSignerFromOCIRequestSigner(client.Signer, excludeBodySigningPredicate)
+
+	//if there was an error overriding the signer, then use the signer from the client itself
+	if err != nil {
+		customSigner = client.Signer
+	}
+
+	//Execute the request with a custom signer
+	httpResponse, err = client.CallWithDetails(ctx, &httpRequest, common.ClientCallDetails{Signer: customSigner})
 	defer common.CloseBodyIfValid(httpResponse)
 	response.RawResponse = httpResponse
 	if err != nil {
@@ -419,7 +429,7 @@ func (client DataScienceClient) createModelArtifact(ctx context.Context, request
 	return response, err
 }
 
-// CreateModelProvenance Create provenance information for the specified model.
+// CreateModelProvenance Creates provenance information for the specified model.
 func (client DataScienceClient) CreateModelProvenance(ctx context.Context, request CreateModelProvenanceRequest) (response CreateModelProvenanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -560,7 +570,7 @@ func (client DataScienceClient) createProject(ctx context.Context, request commo
 	return response, err
 }
 
-// DeactivateModel Deactivate the model
+// DeactivateModel Deactivates the model.
 func (client DataScienceClient) DeactivateModel(ctx context.Context, request DeactivateModelRequest) (response DeactivateModelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -602,7 +612,7 @@ func (client DataScienceClient) deactivateModel(ctx context.Context, request com
 	return response, err
 }
 
-// DeactivateNotebookSession Deactivate the notebook session
+// DeactivateNotebookSession Deactivates the notebook session.
 func (client DataScienceClient) DeactivateNotebookSession(ctx context.Context, request DeactivateNotebookSessionRequest) (response DeactivateNotebookSessionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -626,7 +636,7 @@ func (client DataScienceClient) DeactivateNotebookSession(ctx context.Context, r
 
 // deactivateNotebookSession implements the OCIOperation interface (enables retrying operations)
 func (client DataScienceClient) deactivateNotebookSession(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/notebookSession/{notebookSessionId}/actions/deactivate")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/notebookSessions/{notebookSessionId}/actions/deactivate")
 	if err != nil {
 		return nil, err
 	}
@@ -644,7 +654,7 @@ func (client DataScienceClient) deactivateNotebookSession(ctx context.Context, r
 	return response, err
 }
 
-// DeleteModel Delete a given model
+// DeleteModel Deletes the specified model.
 func (client DataScienceClient) DeleteModel(ctx context.Context, request DeleteModelRequest) (response DeleteModelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -728,7 +738,7 @@ func (client DataScienceClient) deleteNotebookSession(ctx context.Context, reque
 	return response, err
 }
 
-// DeleteProject Deletes the specified project. This operation also deletes the associated resources in the project.
+// DeleteProject Deletes the specified project. This operation will fail unless all associated resources (such as notebook sessions or models) are in a DELETED state. You must delete all associated resources before deleting a project.
 func (client DataScienceClient) DeleteProject(ctx context.Context, request DeleteProjectRequest) (response DeleteProjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -812,36 +822,36 @@ func (client DataScienceClient) getModel(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// GetModelArtifact Download model artifact for specified model.
-func (client DataScienceClient) GetModelArtifact(ctx context.Context, request GetModelArtifactRequest) (response GetModelArtifactResponse, err error) {
+// GetModelArtifactContent Downloads model artifact content for specified model.
+func (client DataScienceClient) GetModelArtifactContent(ctx context.Context, request GetModelArtifactContentRequest) (response GetModelArtifactContentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.getModelArtifact, policy)
+	ociResponse, err = common.Retry(ctx, request, client.getModelArtifactContent, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetModelArtifactResponse{RawResponse: ociResponse.HTTPResponse()}
+			response = GetModelArtifactContentResponse{RawResponse: ociResponse.HTTPResponse()}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(GetModelArtifactResponse); ok {
+	if convertedResponse, ok := ociResponse.(GetModelArtifactContentResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetModelArtifactResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into GetModelArtifactContentResponse")
 	}
 	return
 }
 
-// getModelArtifact implements the OCIOperation interface (enables retrying operations)
-func (client DataScienceClient) getModelArtifact(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+// getModelArtifactContent implements the OCIOperation interface (enables retrying operations)
+func (client DataScienceClient) getModelArtifactContent(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/models/{modelId}/artifact/content")
 	if err != nil {
 		return nil, err
 	}
 
-	var response GetModelArtifactResponse
+	var response GetModelArtifactContentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	response.RawResponse = httpResponse
@@ -853,7 +863,7 @@ func (client DataScienceClient) getModelArtifact(ctx context.Context, request co
 	return response, err
 }
 
-// GetModelProvenance Get provenance information for specified model.
+// GetModelProvenance Gets provenance information for specified model.
 func (client DataScienceClient) GetModelProvenance(ctx context.Context, request GetModelProvenanceRequest) (response GetModelProvenanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1021,7 +1031,7 @@ func (client DataScienceClient) getWorkRequest(ctx context.Context, request comm
 	return response, err
 }
 
-// HeadModelArtifact Get metadata for model artifact for specified model.
+// HeadModelArtifact Gets model artifact metadata for specified model.
 func (client DataScienceClient) HeadModelArtifact(ctx context.Context, request HeadModelArtifactRequest) (response HeadModelArtifactResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1399,7 +1409,7 @@ func (client DataScienceClient) updateModel(ctx context.Context, request common.
 	return response, err
 }
 
-// UpdateModelProvenance Update provenance information for the specified model.
+// UpdateModelProvenance Updates provenance information for the specified model.
 func (client DataScienceClient) UpdateModelProvenance(ctx context.Context, request UpdateModelProvenanceRequest) (response UpdateModelProvenanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1442,7 +1452,7 @@ func (client DataScienceClient) updateModelProvenance(ctx context.Context, reque
 }
 
 // UpdateNotebookSession Updates the properties of a notebook session. You can update the `displayName`, `freeformTags`, and `definedTags` properties.
-// When the notebook session is in the INACTIVE lifecycle state, you can update `notebookSessionConfigurationDetails` and change `shape`, `subnetId`, and the `blockStorageSizeInGBs`.
+// When the notebook session is in the INACTIVE lifecycle state, you can update `notebookSessionConfigurationDetails` and change `shape`, `subnetId`, and `blockStorageSizeInGBs`.
 // Changes to the `notebookSessionConfigurationDetails` will take effect the next time the `ActivateNotebookSession` action is invoked on the notebook session resource.
 func (client DataScienceClient) UpdateNotebookSession(ctx context.Context, request UpdateNotebookSessionRequest) (response UpdateNotebookSessionResponse, err error) {
 	var ociResponse common.OCIResponse

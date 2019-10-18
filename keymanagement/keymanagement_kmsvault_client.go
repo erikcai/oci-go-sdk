@@ -352,7 +352,8 @@ func (client KmsVaultClient) listVaults(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// RestoreVault Restore a vault from an encrypted binary backup.  If the vault with the OCID already exists, this operation will return a response with a 409 HTTP status code.
+// RestoreVault Restores a vault from an encrypted binary backup of a previous vault. If a vault with the specified OCID already
+// exists, this operation will return a response with a 409 HTTP status code.
 func (client KmsVaultClient) RestoreVault(ctx context.Context, request RestoreVaultRequest) (response RestoreVaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

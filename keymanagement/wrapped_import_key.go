@@ -31,15 +31,11 @@ type WrappedImportKeyWrappingAlgorithmEnum string
 
 // Set of constants representing the allowable values for WrappedImportKeyWrappingAlgorithmEnum
 const (
-	WrappedImportKeyWrappingAlgorithmSha1   WrappedImportKeyWrappingAlgorithmEnum = "RSA_OEAP_SHA1"
-	WrappedImportKeyWrappingAlgorithmSha256 WrappedImportKeyWrappingAlgorithmEnum = "RSA_OEAP_SHA256"
-	WrappedImportKeyWrappingAlgorithmSha512 WrappedImportKeyWrappingAlgorithmEnum = "RSA_OEAP_SHA512"
+	WrappedImportKeyWrappingAlgorithmRsaOeapSha256 WrappedImportKeyWrappingAlgorithmEnum = "RSA_OEAP_SHA256"
 )
 
 var mappingWrappedImportKeyWrappingAlgorithm = map[string]WrappedImportKeyWrappingAlgorithmEnum{
-	"RSA_OEAP_SHA1":   WrappedImportKeyWrappingAlgorithmSha1,
-	"RSA_OEAP_SHA256": WrappedImportKeyWrappingAlgorithmSha256,
-	"RSA_OEAP_SHA512": WrappedImportKeyWrappingAlgorithmSha512,
+	"RSA_OEAP_SHA256": WrappedImportKeyWrappingAlgorithmRsaOeapSha256,
 }
 
 // GetWrappedImportKeyWrappingAlgorithmEnumValues Enumerates the set of values for WrappedImportKeyWrappingAlgorithmEnum

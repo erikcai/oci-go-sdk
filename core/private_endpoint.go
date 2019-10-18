@@ -75,6 +75,8 @@ type PrivateEndpoint struct {
 
 	// The network security group OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) that this Private Endpoint is associated with.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
+
+	ReverseConnectionConfiguration *ReverseConnectionConfiguration `mandatory:"false" json:"reverseConnectionConfiguration"`
 }
 
 func (m PrivateEndpoint) String() string {

@@ -754,28 +754,28 @@ func TestDataScienceClientGetModel(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
-func TestDataScienceClientGetModelArtifact(t *testing.T) {
+func TestDataScienceClientGetModelArtifactContent(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("datascience", "GetModelArtifact")
+	enabled, err := testClient.isApiEnabled("datascience", "GetModelArtifactContent")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("GetModelArtifact is not enabled by the testing service")
+		t.Skip("GetModelArtifactContent is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("datascience", "DataScience", "GetModelArtifact", createDataScienceClientWithProvider)
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "GetModelArtifactContent", createDataScienceClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(datascience.DataScienceClient)
 
-	body, err := testClient.getRequests("datascience", "GetModelArtifact")
+	body, err := testClient.getRequests("datascience", "GetModelArtifactContent")
 	assert.NoError(t, err)
 
-	type GetModelArtifactRequestInfo struct {
+	type GetModelArtifactContentRequestInfo struct {
 		ContainerId string
-		Request     datascience.GetModelArtifactRequest
+		Request     datascience.GetModelArtifactContentRequest
 	}
 
-	var requests []GetModelArtifactRequestInfo
+	var requests []GetModelArtifactContentRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -788,7 +788,7 @@ func TestDataScienceClientGetModelArtifact(t *testing.T) {
 			retryPolicy = retryPolicyForTests()
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-			response, err := c.GetModelArtifact(context.Background(), req.Request)
+			response, err := c.GetModelArtifactContent(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

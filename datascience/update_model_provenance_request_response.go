@@ -11,11 +11,11 @@ import (
 // UpdateModelProvenanceRequest wrapper for the UpdateModelProvenance operation
 type UpdateModelProvenanceRequest struct {
 
-	// The OCID of the model.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.
 	ModelId *string `mandatory:"true" contributesTo:"path" name:"modelId"`
 
 	// Provenance information for the specified model.
-	ProvenanceDetails UpdateModelProvenanceDetails `contributesTo:"body"`
+	UpdateModelProvenanceDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -23,8 +23,8 @@ type UpdateModelProvenanceRequest struct {
 	// For optimistic concurrency control. In the PUT or DELETE call
 	// for a resource, set the `if-match` parameter to the value of the
 	// etag from a previous GET or POST response for that resource.
-	// The resource will be updated or deleted only if the etag you
-	// provide matches the resource's current etag value.
+	// The resource will be updated or deleted only if the `etag` you
+	// provide matches the resource's current `etag` value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -55,11 +55,11 @@ type UpdateModelProvenanceResponse struct {
 	// The ModelProvenance instance
 	ModelProvenance `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
-	// particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact
+	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 }
 

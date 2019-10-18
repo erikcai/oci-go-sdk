@@ -11,13 +11,13 @@ import (
 // ListModelsRequest wrapper for the ListModels operation
 type ListModelsRequest struct {
 
-	// <b>Filter</b> results by the OCID of the compartment.
+	// <b>Filter</b> results by the OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// <b>Filter</b> results by OCID. Must be an OCID of the correct type for the resource type.
+	// <b>Filter</b> results by OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm). Must be an OCID of the correct type for the resource type.
 	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
 
-	// <b>Filter</b> results by the OCID of the project.
+	// <b>Filter</b> results by the OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project.
 	ProjectId *string `mandatory:"false" contributesTo:"query" name:"projectId"`
 
 	// <b>Filter</b> results by its user-friendly name.
@@ -27,31 +27,27 @@ type ListModelsRequest struct {
 	// state for the resource type.
 	LifecycleState ListModelsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// Filters results by the OCID of the user who created the resource.
+	// <b>Filter</b> results by the OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the resource.
 	CreatedBy *string `mandatory:"false" contributesTo:"query" name:"createdBy"`
 
 	// For list pagination. The maximum number of results per page,
 	// or items to return in a paginated "List" call.
 	// 1 is the minimum, 1000 is the maximum.
-	// For important details about how pagination works,
-	// see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	// Example: `500`
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// For list pagination. The value of the `opc-next-page` response
 	// header from the previous "List" call.
-	// For important details about how pagination works,
-	// see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The sort order to use, either 'asc' or 'desc', where 'asc' is
-	// ascending and 'desc' is descending.
+	// Specifies sort order to use, either `ASC` (ascending) or `DESC` (descending).
 	SortOrder ListModelsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The field to sort by. You can provide either value, but not both.
-	// By default, when you sort by time created, results are shown
-	// in descending order. When you sort by display name, results are
-	// shown in ascending order.
+	// Specifies the field to sort by. Accepts only one field.
+	// By default, when you sort by `timeCreated`, results are shown
+	// in descending order. All other fields default to ascending order. Sort order for `displayName` field is case sensitive.
 	SortBy ListModelsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
@@ -85,18 +81,14 @@ type ListModelsResponse struct {
 	// A list of []ModelSummary instances
 	Items []ModelSummary `presentIn:"body"`
 
-	// For pagination of a list of items. When paging through a list in forward direction, if this header appears in the response,
-	// then there might be additional items still to get. Include this value as the `page` parameter for the
-	// subsequent GET request.
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
-	// For pagination of a list of items. When paging through a list in backword direction, if this header appears in the response,
-	// then there might be additional items still to get. Include this value as the `page` parameter for the
-	// subsequent GET request.
+	// Retrieves the previous page of results. When this header appears in the response, previous pages of results exist. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcPrevPage *string `presentIn:"header" name:"opc-prev-page"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
-	// particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact
+	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

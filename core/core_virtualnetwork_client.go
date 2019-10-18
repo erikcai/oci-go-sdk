@@ -3722,6 +3722,48 @@ func (client VirtualNetworkClient) deleteRemotePeeringConnection(ctx context.Con
 	return response, err
 }
 
+// DeleteReverseConnectionNatIp Deletes the Reverse Connection NAT IP for specific customer IP and Private Endpoint OCID.
+func (client VirtualNetworkClient) DeleteReverseConnectionNatIp(ctx context.Context, request DeleteReverseConnectionNatIpRequest) (response DeleteReverseConnectionNatIpResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteReverseConnectionNatIp, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteReverseConnectionNatIpResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteReverseConnectionNatIpResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteReverseConnectionNatIpResponse")
+	}
+	return
+}
+
+// deleteReverseConnectionNatIp implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteReverseConnectionNatIp(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/privateEndpoints/{privateEndpointId}/reverseConnectionNatIps/{reverseConnectionCustomerIp}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteReverseConnectionNatIpResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteRouteTable Deletes the specified route table, but only if it's not associated with a subnet. You can't delete a
 // VCN's default route table.
 // This is an asynchronous operation. The route table's `lifecycleState` will change to TERMINATING temporarily
@@ -4040,6 +4082,95 @@ func (client VirtualNetworkClient) detachServiceId(ctx context.Context, request 
 	return response, err
 }
 
+// DisableReverseConnections Disables the reverse connections support and DNS proxy for the Private Endpoint.
+func (client VirtualNetworkClient) DisableReverseConnections(ctx context.Context, request DisableReverseConnectionsRequest) (response DisableReverseConnectionsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.disableReverseConnections, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DisableReverseConnectionsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DisableReverseConnectionsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DisableReverseConnectionsResponse")
+	}
+	return
+}
+
+// disableReverseConnections implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) disableReverseConnections(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/privateEndpoints/{privateEndpointId}/actions/disableReverseConnections")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DisableReverseConnectionsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// EnableReverseConnections Enables the reverse connections support and DNS proxy for the Private Endpoint.
+func (client VirtualNetworkClient) EnableReverseConnections(ctx context.Context, request EnableReverseConnectionsRequest) (response EnableReverseConnectionsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.enableReverseConnections, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = EnableReverseConnectionsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(EnableReverseConnectionsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into EnableReverseConnectionsResponse")
+	}
+	return
+}
+
+// enableReverseConnections implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) enableReverseConnections(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/privateEndpoints/{privateEndpointId}/actions/enableReverseConnections")
+	if err != nil {
+		return nil, err
+	}
+
+	var response EnableReverseConnectionsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GenerateLocalPeeringToken Generates a token from this local peering connection. You can share this token with a
 // peer who can then accept the token. The peer will likewise generate a token that you can
 // accept. Once both sides accept one another's token, a peering is established. Note that
@@ -4115,6 +4246,53 @@ func (client VirtualNetworkClient) getCpe(ctx context.Context, request common.OC
 	}
 
 	var response GetCpeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetCreateReverseConnectionNatIp Creates the Reverse Connection NAT IP for specific customer IP address and Private Endpoint OCID if IP doesn't exist, retrieves the Reverse Connection NAT IP if the IP does exist
+func (client VirtualNetworkClient) GetCreateReverseConnectionNatIp(ctx context.Context, request GetCreateReverseConnectionNatIpRequest) (response GetCreateReverseConnectionNatIpResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.getCreateReverseConnectionNatIp, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetCreateReverseConnectionNatIpResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetCreateReverseConnectionNatIpResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetCreateReverseConnectionNatIpResponse")
+	}
+	return
+}
+
+// getCreateReverseConnectionNatIp implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getCreateReverseConnectionNatIp(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/privateEndpoints/{privateEndpointId}/reverseConnectionNatIps")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetCreateReverseConnectionNatIpResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -5456,6 +5634,48 @@ func (client VirtualNetworkClient) getRemotePeeringConnection(ctx context.Contex
 	}
 
 	var response GetRemotePeeringConnectionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetReverseConnectionNatIp Gets the Reverse Connection NAT IP for specific customer IP and Private Endpoint OCID
+func (client VirtualNetworkClient) GetReverseConnectionNatIp(ctx context.Context, request GetReverseConnectionNatIpRequest) (response GetReverseConnectionNatIpResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getReverseConnectionNatIp, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetReverseConnectionNatIpResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetReverseConnectionNatIpResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetReverseConnectionNatIpResponse")
+	}
+	return
+}
+
+// getReverseConnectionNatIp implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getReverseConnectionNatIp(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/privateEndpoints/{privateEndpointId}/reverseConnectionNatIps/{reverseConnectionCustomerIp}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetReverseConnectionNatIpResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -7117,6 +7337,48 @@ func (client VirtualNetworkClient) listRemotePeeringConnections(ctx context.Cont
 	return response, err
 }
 
+// ListReverseConnectionNatIps List the NAT IPs for specific Private Endpoint. You may filter results by NAT IP address to see customer IP for a given Reverse Connection NAT IP.
+func (client VirtualNetworkClient) ListReverseConnectionNatIps(ctx context.Context, request ListReverseConnectionNatIpsRequest) (response ListReverseConnectionNatIpsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listReverseConnectionNatIps, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListReverseConnectionNatIpsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListReverseConnectionNatIpsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListReverseConnectionNatIpsResponse")
+	}
+	return
+}
+
+// listReverseConnectionNatIps implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listReverseConnectionNatIps(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/privateEndpoints/{privateEndpointId}/reverseConnectionNatIps")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListReverseConnectionNatIpsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListRouteTables Lists the route tables in the specified VCN and specified compartment. The response
 // includes the default route table that automatically comes with each VCN, plus any route tables
 // you've created.
@@ -7488,6 +7750,48 @@ func (client VirtualNetworkClient) listVirtualCircuits(ctx context.Context, requ
 	}
 
 	var response ListVirtualCircuitsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ModifyReverseConnections Modifies the configurations for the reverse connections support and DNS proxy for the Private Endpoint.
+func (client VirtualNetworkClient) ModifyReverseConnections(ctx context.Context, request ModifyReverseConnectionsRequest) (response ModifyReverseConnectionsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.modifyReverseConnections, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ModifyReverseConnectionsResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ModifyReverseConnectionsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ModifyReverseConnectionsResponse")
+	}
+	return
+}
+
+// modifyReverseConnections implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) modifyReverseConnections(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/privateEndpoints/{privateEndpointId}/actions/modifyReverseConnections")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ModifyReverseConnectionsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

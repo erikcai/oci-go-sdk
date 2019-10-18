@@ -11,42 +11,34 @@ import (
 // ListWorkRequestsRequest wrapper for the ListWorkRequests operation
 type ListWorkRequestsRequest struct {
 
-	// <b>Filter</b> results by the OCID of the compartment.
+	// <b>Filter</b> results by the OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// <b>Filter</b> results by OCID. Must be an OCID of the correct type for the resource type.
+	// <b>Filter</b> results by OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm). Must be an OCID of the correct type for the resource type.
 	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
 
-	// Filter results by the OCID of the resource associated with the work request.
-	ResourceId *string `mandatory:"false" contributesTo:"query" name:"resourceId"`
+	// <b>Filter</b> results by the type of the operation associated with the work request.
+	OperationType ListWorkRequestsOperationTypeEnum `mandatory:"false" contributesTo:"query" name:"operationType" omitEmpty:"true"`
 
-	// Filter results by the type of the resource associated with the work request.
-	ResourceType ListWorkRequestsResourceTypeEnum `mandatory:"false" contributesTo:"query" name:"resourceType" omitEmpty:"true"`
-
-	// Filter results by work request status.
+	// <b>Filter</b> results by work request status.
 	Status ListWorkRequestsStatusEnum `mandatory:"false" contributesTo:"query" name:"status" omitEmpty:"true"`
 
 	// For list pagination. The maximum number of results per page,
 	// or items to return in a paginated "List" call.
 	// 1 is the minimum, 1000 is the maximum.
-	// For important details about how pagination works,
-	// see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	// Example: `500`
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// For list pagination. The value of the `opc-next-page` response
 	// header from the previous "List" call.
-	// For important details about how pagination works,
-	// see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The sort order to use, either 'asc' or 'desc', where 'asc' is
-	// ascending and 'desc' is descending.
+	// Specifies sort order to use, either `ASC` (ascending) or `DESC` (descending).
 	SortOrder ListWorkRequestsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The field to sort by. You can provide one value only.
-	// By default, when you sort by time fields, results are shown
-	// in descending order. All other fields default to ascending order.
+	// Specifies the field to sort by. Accepts only one field. By default, when you sort by time fields, results are shown in descending order. All other fields default to ascending order.
 	SortBy ListWorkRequestsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
@@ -80,18 +72,14 @@ type ListWorkRequestsResponse struct {
 	// A list of []WorkRequestSummary instances
 	Items []WorkRequestSummary `presentIn:"body"`
 
-	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then there might be additional items still to get. Include this value as the `page` parameter for the
-	// subsequent GET request.
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
-	// For pagination of a list of items. When paging through a list in backword direction, if this header appears in the response,
-	// then there might be additional items still to get. Include this value as the `page` parameter for the
-	// subsequent GET request.
+	// Retrieves the previous page of results. When this header appears in the response, previous pages of results exist. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcPrevPage *string `presentIn:"header" name:"opc-prev-page"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
-	// particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact
+	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
@@ -104,24 +92,32 @@ func (response ListWorkRequestsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }
 
-// ListWorkRequestsResourceTypeEnum Enum with underlying type: string
-type ListWorkRequestsResourceTypeEnum string
+// ListWorkRequestsOperationTypeEnum Enum with underlying type: string
+type ListWorkRequestsOperationTypeEnum string
 
-// Set of constants representing the allowable values for ListWorkRequestsResourceTypeEnum
+// Set of constants representing the allowable values for ListWorkRequestsOperationTypeEnum
 const (
-	ListWorkRequestsResourceTypeNotebookSession ListWorkRequestsResourceTypeEnum = "NOTEBOOK_SESSION"
-	ListWorkRequestsResourceTypeProject         ListWorkRequestsResourceTypeEnum = "PROJECT"
+	ListWorkRequestsOperationTypeNotebookSessionCreate     ListWorkRequestsOperationTypeEnum = "NOTEBOOK_SESSION_CREATE"
+	ListWorkRequestsOperationTypeNotebookSessionDelete     ListWorkRequestsOperationTypeEnum = "NOTEBOOK_SESSION_DELETE"
+	ListWorkRequestsOperationTypeNotebookSessionActivate   ListWorkRequestsOperationTypeEnum = "NOTEBOOK_SESSION_ACTIVATE"
+	ListWorkRequestsOperationTypeNotebookSessionDeactivate ListWorkRequestsOperationTypeEnum = "NOTEBOOK_SESSION_DEACTIVATE"
+	ListWorkRequestsOperationTypeProjectDelete             ListWorkRequestsOperationTypeEnum = "PROJECT_DELETE"
+	ListWorkRequestsOperationTypeWorkrequestCancel         ListWorkRequestsOperationTypeEnum = "WORKREQUEST_CANCEL"
 )
 
-var mappingListWorkRequestsResourceType = map[string]ListWorkRequestsResourceTypeEnum{
-	"NOTEBOOK_SESSION": ListWorkRequestsResourceTypeNotebookSession,
-	"PROJECT":          ListWorkRequestsResourceTypeProject,
+var mappingListWorkRequestsOperationType = map[string]ListWorkRequestsOperationTypeEnum{
+	"NOTEBOOK_SESSION_CREATE":     ListWorkRequestsOperationTypeNotebookSessionCreate,
+	"NOTEBOOK_SESSION_DELETE":     ListWorkRequestsOperationTypeNotebookSessionDelete,
+	"NOTEBOOK_SESSION_ACTIVATE":   ListWorkRequestsOperationTypeNotebookSessionActivate,
+	"NOTEBOOK_SESSION_DEACTIVATE": ListWorkRequestsOperationTypeNotebookSessionDeactivate,
+	"PROJECT_DELETE":              ListWorkRequestsOperationTypeProjectDelete,
+	"WORKREQUEST_CANCEL":          ListWorkRequestsOperationTypeWorkrequestCancel,
 }
 
-// GetListWorkRequestsResourceTypeEnumValues Enumerates the set of values for ListWorkRequestsResourceTypeEnum
-func GetListWorkRequestsResourceTypeEnumValues() []ListWorkRequestsResourceTypeEnum {
-	values := make([]ListWorkRequestsResourceTypeEnum, 0)
-	for _, v := range mappingListWorkRequestsResourceType {
+// GetListWorkRequestsOperationTypeEnumValues Enumerates the set of values for ListWorkRequestsOperationTypeEnum
+func GetListWorkRequestsOperationTypeEnumValues() []ListWorkRequestsOperationTypeEnum {
+	values := make([]ListWorkRequestsOperationTypeEnum, 0)
+	for _, v := range mappingListWorkRequestsOperationType {
 		values = append(values, v)
 	}
 	return values
@@ -186,21 +182,15 @@ type ListWorkRequestsSortByEnum string
 
 // Set of constants representing the allowable values for ListWorkRequestsSortByEnum
 const (
-	ListWorkRequestsSortById            ListWorkRequestsSortByEnum = "id"
 	ListWorkRequestsSortByOperationtype ListWorkRequestsSortByEnum = "operationType"
 	ListWorkRequestsSortByStatus        ListWorkRequestsSortByEnum = "status"
 	ListWorkRequestsSortByTimeaccepted  ListWorkRequestsSortByEnum = "timeAccepted"
-	ListWorkRequestsSortByTimestarted   ListWorkRequestsSortByEnum = "timeStarted"
-	ListWorkRequestsSortByTimefinished  ListWorkRequestsSortByEnum = "timeFinished"
 )
 
 var mappingListWorkRequestsSortBy = map[string]ListWorkRequestsSortByEnum{
-	"id":            ListWorkRequestsSortById,
 	"operationType": ListWorkRequestsSortByOperationtype,
 	"status":        ListWorkRequestsSortByStatus,
 	"timeAccepted":  ListWorkRequestsSortByTimeaccepted,
-	"timeStarted":   ListWorkRequestsSortByTimestarted,
-	"timeFinished":  ListWorkRequestsSortByTimefinished,
 }
 
 // GetListWorkRequestsSortByEnumValues Enumerates the set of values for ListWorkRequestsSortByEnum

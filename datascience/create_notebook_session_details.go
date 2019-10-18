@@ -3,7 +3,7 @@
 
 // Data Science API
 //
-// The Data Science service enables data science teams to organize their work, easily access data and computing resources, and build, train, deploy, and manage ML/AI models on the Oracle Cloud.
+// Use the Data Science APIs to organize your data science work, access data and computing resources, and build, train, deploy, and manage models on Oracle Cloud.
 //
 
 package datascience
@@ -15,25 +15,24 @@ import (
 // CreateNotebookSessionDetails Parameters needed to create a new notebook session. Notebook sessions are interactive coding environments for data scientists.
 type CreateNotebookSessionDetails struct {
 
-	// The OCID of the project to associate with the notebook session.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project to associate with the notebook session.
 	ProjectId *string `mandatory:"true" json:"projectId"`
 
-	// The OCID of the compartment to create the notebook session in.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment where you want to create the notebook session.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	NotebookSessionConfigurationDetails *NotebookSessionConfigurationDetails `mandatory:"true" json:"notebookSessionConfigurationDetails"`
 
-	// A user-friendly name. Does not have to be unique and is changeable.
-	// Avoid entering confidential information.
+	// A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
 	// Example: `My NotebookSession`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 

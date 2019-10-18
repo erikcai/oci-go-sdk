@@ -3,7 +3,7 @@
 
 // Data Science API
 //
-// The Data Science service enables data science teams to organize their work, easily access data and computing resources, and build, train, deploy, and manage ML/AI models on the Oracle Cloud.
+// Use the Data Science APIs to organize your data science work, access data and computing resources, and build, train, deploy, and manage models on Oracle Cloud.
 //
 
 package datascience
@@ -15,26 +15,25 @@ import (
 // CreateModelDetails Parameters needed to create a new model. Models are mathematical representations of the relationships between data. Models are represented by their associated metadata and artifact.
 type CreateModelDetails struct {
 
-	// The OCID of the compartment to create the model in.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment to create the model in.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID of the project to associate with the model.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project to associate with the model.
 	ProjectId *string `mandatory:"true" json:"projectId"`
 
-	// A user-friendly name. Does not have to be unique and is changeable.
-	// Avoid entering confidential information.
+	// A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
 	// Example: `My Model`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// A short blurb describing the model.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"foo-namespace": {"bar-key": "value"}}`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
 

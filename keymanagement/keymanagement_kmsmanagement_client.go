@@ -870,7 +870,9 @@ func (client KmsManagementClient) listKeys(ctx context.Context, request common.O
 	return response, err
 }
 
-// RestoreKey Restores the key to a given vault.If the vault does not exist, then this operation will return a response with a 400 HTTP status code indicating that the vault must be restored first. If the key has already been restored, then we will append the key versions that had not been restored to the key.
+// RestoreKey Restores the specified master encryption key to the specified vault. If the vault does not exist, then this
+// operation will return a response with a 400 HTTP status code indicating that you must first restore the vault.
+// If the key has already been restored, this operation appends any key versions that had not yet been restored to the key.
 func (client KmsManagementClient) RestoreKey(ctx context.Context, request RestoreKeyRequest) (response RestoreKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

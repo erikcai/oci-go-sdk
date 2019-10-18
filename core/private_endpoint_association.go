@@ -27,6 +27,8 @@ type PrivateEndpointAssociation struct {
 
 	// Service's 3 label FQDN representing the Endpoint Service.
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
+
+	ReverseConnectionConfiguration *ReverseConnectionConfiguration `mandatory:"false" json:"reverseConnectionConfiguration"`
 }
 
 func (m PrivateEndpointAssociation) String() string {

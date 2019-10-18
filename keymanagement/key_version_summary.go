@@ -24,6 +24,9 @@ type KeyVersionSummary struct {
 	// The OCID of the master encryption key associated with this key version.
 	KeyId *string `mandatory:"true" json:"keyId"`
 
+	// The source of the key material. When this value is OCI_KMS, OCI KMS created the key material. When this value is EXTERNAL, the key material was imported
+	Origin KeyVersionSummaryOriginEnum `mandatory:"true" json:"origin"`
+
 	// The date and time this key version was created, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
 	// Example: `2018-04-03T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
@@ -78,6 +81,29 @@ var mappingKeyVersionSummaryLifecycleState = map[string]KeyVersionSummaryLifecyc
 func GetKeyVersionSummaryLifecycleStateEnumValues() []KeyVersionSummaryLifecycleStateEnum {
 	values := make([]KeyVersionSummaryLifecycleStateEnum, 0)
 	for _, v := range mappingKeyVersionSummaryLifecycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// KeyVersionSummaryOriginEnum Enum with underlying type: string
+type KeyVersionSummaryOriginEnum string
+
+// Set of constants representing the allowable values for KeyVersionSummaryOriginEnum
+const (
+	KeyVersionSummaryOriginOciKms   KeyVersionSummaryOriginEnum = "OCI_KMS"
+	KeyVersionSummaryOriginExternal KeyVersionSummaryOriginEnum = "EXTERNAL"
+)
+
+var mappingKeyVersionSummaryOrigin = map[string]KeyVersionSummaryOriginEnum{
+	"OCI_KMS":  KeyVersionSummaryOriginOciKms,
+	"EXTERNAL": KeyVersionSummaryOriginExternal,
+}
+
+// GetKeyVersionSummaryOriginEnumValues Enumerates the set of values for KeyVersionSummaryOriginEnum
+func GetKeyVersionSummaryOriginEnumValues() []KeyVersionSummaryOriginEnum {
+	values := make([]KeyVersionSummaryOriginEnum, 0)
+	for _, v := range mappingKeyVersionSummaryOrigin {
 		values = append(values, v)
 	}
 	return values

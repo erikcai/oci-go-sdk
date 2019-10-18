@@ -22,6 +22,8 @@ type ImportKeyDetails struct {
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
+	KeyShape *KeyShape `mandatory:"true" json:"keyShape"`
+
 	WrappedImportKey *WrappedImportKey `mandatory:"true" json:"wrappedImportKey"`
 
 	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
@@ -32,8 +34,6 @@ type ImportKeyDetails struct {
 	// Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
-
-	KeyShape *KeyShape `mandatory:"false" json:"keyShape"`
 }
 
 func (m ImportKeyDetails) String() string {
