@@ -50,7 +50,6 @@
     <budgets-control-plane-spec-spec-file>budget.api.cond.yaml</budgets-control-plane-spec-spec-file>
     <quotas-control-plane-api-spec-spec-file>quotas-control-plane-api-spec-20181025.cond.yaml</quotas-control-plane-api-spec-spec-file>
     <digital-assistant-spec-spec-file>source/digital-assistant-api.cond.yaml</digital-assistant-spec-spec-file>
-    <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
     <csg-api-spec-spec-file>source/storage-gateway-api.cond.yaml</csg-api-spec-spec-file>
     <dts-api-spec-spec-file>datats-customer-control-plane.cond.yaml</dts-api-spec-spec-file>
     <public-api-spec-spec-file>source/api.cond.yaml</public-api-spec-spec-file>
@@ -180,10 +179,6 @@
     <dependency>
       <groupId>com.oracle.pic.oda.cp</groupId>
       <artifactId>digital-assistant-spec</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>dscs-cp-spec</groupId>
-      <artifactId>ads-control-plane-spec</artifactId>
     </dependency>
     <dependency>
       <groupId>com.oracle.oci.csg</groupId>
@@ -777,24 +772,6 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/digital-assistant-spec</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-ads-control-plane-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>dscs-cp-spec</groupId>
-                  <artifactId>ads-control-plane-spec</artifactId>
-                  <type>jar</type>
-                  <includes>**/*</includes>
-                  <outputDirectory>${spec-temp-dir}/ads-control-plane-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -1806,33 +1783,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>spec-conditionals-prefer-ads-control-plane-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>prefer</goal>
-            </goals>
-            <configuration>
-              <inputFiles>
-                <inputFile>${spec-temp-dir}/ads-control-plane-spec/source/${ads-control-plane-spec-spec-file}</inputFile>
-                <inputFile>${spec-temp-dir}/ads-control-plane-spec/${ads-control-plane-spec-spec-file}</inputFile>
-              </inputFiles>
-              <outputFile>${preferred-temp-dir}/ads-control-plane-spec/${ads-control-plane-spec-spec-file}</outputFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>spec-conditionals-preprocess-ads-control-plane-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>preprocess</goal>
-            </goals>
-            <configuration>
-              <inputFile>${preferred-temp-dir}/ads-control-plane-spec/${ads-control-plane-spec-spec-file}</inputFile>
-              <outputFile>${preprocessed-temp-dir}/ads-control-plane-spec/${ads-control-plane-spec-spec-file}</outputFile>
-              <groupFile>${enabled-groups-file}</groupFile>
-              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
-            </configuration>
-          </execution>
-          <execution>
             <id>spec-conditionals-prefer-csg-api-spec</id>
             <phase>initialize</phase>
             <goals>
@@ -2788,26 +2738,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>go-public-sdk-ads-control-plane-spec</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <language>oracle-go-sdk</language>
-              <specPath>${preprocessed-temp-dir}/ads-control-plane-spec/${ads-control-plane-spec-spec-file}</specPath>
-              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
-              <basePackage>datasafe</basePackage>
-              <specGenerationType>${generationType}</specGenerationType>
-              <additionalProperties>
-                <specName>datasafe</specName>
-                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-              </additionalProperties>
-              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
-              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
-            </configuration>
-          </execution>
-          <execution>
             <id>go-public-sdk-csg-api-spec</id>
             <phase>compile</phase>
             <goals>
@@ -3272,12 +3202,6 @@
               </includes>
             </fileset>
             <fileset>
-              <directory>lib/oci/datasafe</directory>
-              <includes>
-                <include>**/*</include>
-              </includes>
-            </fileset>
-            <fileset>
               <directory>lib/oci/storagegateway</directory>
               <includes>
                 <include>**/*</include>
@@ -3506,11 +3430,6 @@
         <groupId>com.oracle.pic.oda.cp</groupId>
         <artifactId>digital-assistant-spec</artifactId>
         <version>0.0.5</version>
-      </dependency>
-      <dependency>
-        <groupId>dscs-cp-spec</groupId>
-        <artifactId>ads-control-plane-spec</artifactId>
-        <version>19.2.2-1904260600</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.csg</groupId>

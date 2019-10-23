@@ -33,14 +33,12 @@
 ^usage/
 ^announcementsservice/
 ^waas/
-^datasafe/
 ^batch/
 ^functions/
 ^budget/
 
 ^limits/
 ^oda/
-^datasafe/
 ^storagegateway/
 ^dts/
 ^apigateway/
