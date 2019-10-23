@@ -72,3 +72,30 @@ func (m *rulecondition) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 func (m rulecondition) String() string {
 	return common.PointerString(m)
 }
+
+// RuleConditionAttributeNameEnum Enum with underlying type: string
+type RuleConditionAttributeNameEnum string
+
+// Set of constants representing the allowable values for RuleConditionAttributeNameEnum
+const (
+	RuleConditionAttributeNameSourceIpAddress    RuleConditionAttributeNameEnum = "SOURCE_IP_ADDRESS"
+	RuleConditionAttributeNameSourceVcnId        RuleConditionAttributeNameEnum = "SOURCE_VCN_ID"
+	RuleConditionAttributeNameSourceVcnIpAddress RuleConditionAttributeNameEnum = "SOURCE_VCN_IP_ADDRESS"
+	RuleConditionAttributeNamePath               RuleConditionAttributeNameEnum = "PATH"
+)
+
+var mappingRuleConditionAttributeName = map[string]RuleConditionAttributeNameEnum{
+	"SOURCE_IP_ADDRESS":     RuleConditionAttributeNameSourceIpAddress,
+	"SOURCE_VCN_ID":         RuleConditionAttributeNameSourceVcnId,
+	"SOURCE_VCN_IP_ADDRESS": RuleConditionAttributeNameSourceVcnIpAddress,
+	"PATH":                  RuleConditionAttributeNamePath,
+}
+
+// GetRuleConditionAttributeNameEnumValues Enumerates the set of values for RuleConditionAttributeNameEnum
+func GetRuleConditionAttributeNameEnumValues() []RuleConditionAttributeNameEnum {
+	values := make([]RuleConditionAttributeNameEnum, 0)
+	for _, v := range mappingRuleConditionAttributeName {
+		values = append(values, v)
+	}
+	return values
+}

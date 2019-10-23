@@ -63,3 +63,24 @@ func (m *flowlogdestination) UnmarshalPolymorphicJSON(data []byte) (interface{},
 func (m flowlogdestination) String() string {
 	return common.PointerString(m)
 }
+
+// FlowLogDestinationDestinationTypeEnum Enum with underlying type: string
+type FlowLogDestinationDestinationTypeEnum string
+
+// Set of constants representing the allowable values for FlowLogDestinationDestinationTypeEnum
+const (
+	FlowLogDestinationDestinationTypeObjectStorage FlowLogDestinationDestinationTypeEnum = "OBJECT_STORAGE"
+)
+
+var mappingFlowLogDestinationDestinationType = map[string]FlowLogDestinationDestinationTypeEnum{
+	"OBJECT_STORAGE": FlowLogDestinationDestinationTypeObjectStorage,
+}
+
+// GetFlowLogDestinationDestinationTypeEnumValues Enumerates the set of values for FlowLogDestinationDestinationTypeEnum
+func GetFlowLogDestinationDestinationTypeEnumValues() []FlowLogDestinationDestinationTypeEnum {
+	values := make([]FlowLogDestinationDestinationTypeEnum, 0)
+	for _, v := range mappingFlowLogDestinationDestinationType {
+		values = append(values, v)
+	}
+	return values
+}

@@ -67,3 +67,28 @@ func (m *apispecificationroutebackend) UnmarshalPolymorphicJSON(data []byte) (in
 func (m apispecificationroutebackend) String() string {
 	return common.PointerString(m)
 }
+
+// ApiSpecificationRouteBackendTypeEnum Enum with underlying type: string
+type ApiSpecificationRouteBackendTypeEnum string
+
+// Set of constants representing the allowable values for ApiSpecificationRouteBackendTypeEnum
+const (
+	ApiSpecificationRouteBackendTypeOracleFunctionsBackend ApiSpecificationRouteBackendTypeEnum = "ORACLE_FUNCTIONS_BACKEND"
+	ApiSpecificationRouteBackendTypeHttpBackend            ApiSpecificationRouteBackendTypeEnum = "HTTP_BACKEND"
+	ApiSpecificationRouteBackendTypeStockResponseBackend   ApiSpecificationRouteBackendTypeEnum = "STOCK_RESPONSE_BACKEND"
+)
+
+var mappingApiSpecificationRouteBackendType = map[string]ApiSpecificationRouteBackendTypeEnum{
+	"ORACLE_FUNCTIONS_BACKEND": ApiSpecificationRouteBackendTypeOracleFunctionsBackend,
+	"HTTP_BACKEND":             ApiSpecificationRouteBackendTypeHttpBackend,
+	"STOCK_RESPONSE_BACKEND":   ApiSpecificationRouteBackendTypeStockResponseBackend,
+}
+
+// GetApiSpecificationRouteBackendTypeEnumValues Enumerates the set of values for ApiSpecificationRouteBackendTypeEnum
+func GetApiSpecificationRouteBackendTypeEnumValues() []ApiSpecificationRouteBackendTypeEnum {
+	values := make([]ApiSpecificationRouteBackendTypeEnum, 0)
+	for _, v := range mappingApiSpecificationRouteBackendType {
+		values = append(values, v)
+	}
+	return values
+}

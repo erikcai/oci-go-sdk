@@ -70,3 +70,24 @@ func (m authenticationpolicy) GetIsAnonymousAccessAllowed() *bool {
 func (m authenticationpolicy) String() string {
 	return common.PointerString(m)
 }
+
+// AuthenticationPolicyTypeEnum Enum with underlying type: string
+type AuthenticationPolicyTypeEnum string
+
+// Set of constants representing the allowable values for AuthenticationPolicyTypeEnum
+const (
+	AuthenticationPolicyTypeCustomAuthentication AuthenticationPolicyTypeEnum = "CUSTOM_AUTHENTICATION"
+)
+
+var mappingAuthenticationPolicyType = map[string]AuthenticationPolicyTypeEnum{
+	"CUSTOM_AUTHENTICATION": AuthenticationPolicyTypeCustomAuthentication,
+}
+
+// GetAuthenticationPolicyTypeEnumValues Enumerates the set of values for AuthenticationPolicyTypeEnum
+func GetAuthenticationPolicyTypeEnumValues() []AuthenticationPolicyTypeEnum {
+	values := make([]AuthenticationPolicyTypeEnum, 0)
+	for _, v := range mappingAuthenticationPolicyType {
+		values = append(values, v)
+	}
+	return values
+}

@@ -100,3 +100,24 @@ func (m createdatabasebase) GetKmsKeyVersionId() *string {
 func (m createdatabasebase) String() string {
 	return common.PointerString(m)
 }
+
+// CreateDatabaseBaseSourceEnum Enum with underlying type: string
+type CreateDatabaseBaseSourceEnum string
+
+// Set of constants representing the allowable values for CreateDatabaseBaseSourceEnum
+const (
+	CreateDatabaseBaseSourceNone CreateDatabaseBaseSourceEnum = "NONE"
+)
+
+var mappingCreateDatabaseBaseSource = map[string]CreateDatabaseBaseSourceEnum{
+	"NONE": CreateDatabaseBaseSourceNone,
+}
+
+// GetCreateDatabaseBaseSourceEnumValues Enumerates the set of values for CreateDatabaseBaseSourceEnum
+func GetCreateDatabaseBaseSourceEnumValues() []CreateDatabaseBaseSourceEnum {
+	values := make([]CreateDatabaseBaseSourceEnum, 0)
+	for _, v := range mappingCreateDatabaseBaseSource {
+		values = append(values, v)
+	}
+	return values
+}

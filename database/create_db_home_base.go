@@ -106,3 +106,32 @@ func (m createdbhomebase) GetKmsKeyVersionId() *string {
 func (m createdbhomebase) String() string {
 	return common.PointerString(m)
 }
+
+// CreateDbHomeBaseSourceEnum Enum with underlying type: string
+type CreateDbHomeBaseSourceEnum string
+
+// Set of constants representing the allowable values for CreateDbHomeBaseSourceEnum
+const (
+	CreateDbHomeBaseSourceNone              CreateDbHomeBaseSourceEnum = "NONE"
+	CreateDbHomeBaseSourceDbBackup          CreateDbHomeBaseSourceEnum = "DB_BACKUP"
+	CreateDbHomeBaseSourceDatabase          CreateDbHomeBaseSourceEnum = "DATABASE"
+	CreateDbHomeBaseSourceVmClusterNew      CreateDbHomeBaseSourceEnum = "VM_CLUSTER_NEW"
+	CreateDbHomeBaseSourceVmClusterDatabase CreateDbHomeBaseSourceEnum = "VM_CLUSTER_DATABASE"
+)
+
+var mappingCreateDbHomeBaseSource = map[string]CreateDbHomeBaseSourceEnum{
+	"NONE":                CreateDbHomeBaseSourceNone,
+	"DB_BACKUP":           CreateDbHomeBaseSourceDbBackup,
+	"DATABASE":            CreateDbHomeBaseSourceDatabase,
+	"VM_CLUSTER_NEW":      CreateDbHomeBaseSourceVmClusterNew,
+	"VM_CLUSTER_DATABASE": CreateDbHomeBaseSourceVmClusterDatabase,
+}
+
+// GetCreateDbHomeBaseSourceEnumValues Enumerates the set of values for CreateDbHomeBaseSourceEnum
+func GetCreateDbHomeBaseSourceEnumValues() []CreateDbHomeBaseSourceEnum {
+	values := make([]CreateDbHomeBaseSourceEnum, 0)
+	for _, v := range mappingCreateDbHomeBaseSource {
+		values = append(values, v)
+	}
+	return values
+}

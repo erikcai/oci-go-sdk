@@ -59,3 +59,24 @@ func (m *source) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 func (m source) String() string {
 	return common.PointerString(m)
 }
+
+// SourceSourceTypeEnum Enum with underlying type: string
+type SourceSourceTypeEnum string
+
+// Set of constants representing the allowable values for SourceSourceTypeEnum
+const (
+	SourceSourceTypeOciservice SourceSourceTypeEnum = "OCISERVICE"
+)
+
+var mappingSourceSourceType = map[string]SourceSourceTypeEnum{
+	"OCISERVICE": SourceSourceTypeOciservice,
+}
+
+// GetSourceSourceTypeEnumValues Enumerates the set of values for SourceSourceTypeEnum
+func GetSourceSourceTypeEnumValues() []SourceSourceTypeEnum {
+	values := make([]SourceSourceTypeEnum, 0)
+	for _, v := range mappingSourceSourceType {
+		values = append(values, v)
+	}
+	return values
+}

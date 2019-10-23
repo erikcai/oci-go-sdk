@@ -351,3 +351,28 @@ func (m launchdbsystembase) GetDefinedTags() map[string]map[string]interface{} {
 func (m launchdbsystembase) String() string {
 	return common.PointerString(m)
 }
+
+// LaunchDbSystemBaseSourceEnum Enum with underlying type: string
+type LaunchDbSystemBaseSourceEnum string
+
+// Set of constants representing the allowable values for LaunchDbSystemBaseSourceEnum
+const (
+	LaunchDbSystemBaseSourceNone     LaunchDbSystemBaseSourceEnum = "NONE"
+	LaunchDbSystemBaseSourceDbBackup LaunchDbSystemBaseSourceEnum = "DB_BACKUP"
+	LaunchDbSystemBaseSourceDatabase LaunchDbSystemBaseSourceEnum = "DATABASE"
+)
+
+var mappingLaunchDbSystemBaseSource = map[string]LaunchDbSystemBaseSourceEnum{
+	"NONE":      LaunchDbSystemBaseSourceNone,
+	"DB_BACKUP": LaunchDbSystemBaseSourceDbBackup,
+	"DATABASE":  LaunchDbSystemBaseSourceDatabase,
+}
+
+// GetLaunchDbSystemBaseSourceEnumValues Enumerates the set of values for LaunchDbSystemBaseSourceEnum
+func GetLaunchDbSystemBaseSourceEnumValues() []LaunchDbSystemBaseSourceEnum {
+	values := make([]LaunchDbSystemBaseSourceEnum, 0)
+	for _, v := range mappingLaunchDbSystemBaseSource {
+		values = append(values, v)
+	}
+	return values
+}

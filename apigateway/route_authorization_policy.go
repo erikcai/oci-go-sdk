@@ -68,3 +68,28 @@ func (m *routeauthorizationpolicy) UnmarshalPolymorphicJSON(data []byte) (interf
 func (m routeauthorizationpolicy) String() string {
 	return common.PointerString(m)
 }
+
+// RouteAuthorizationPolicyTypeEnum Enum with underlying type: string
+type RouteAuthorizationPolicyTypeEnum string
+
+// Set of constants representing the allowable values for RouteAuthorizationPolicyTypeEnum
+const (
+	RouteAuthorizationPolicyTypeAnonymous          RouteAuthorizationPolicyTypeEnum = "ANONYMOUS"
+	RouteAuthorizationPolicyTypeAnyOf              RouteAuthorizationPolicyTypeEnum = "ANY_OF"
+	RouteAuthorizationPolicyTypeAuthenticationOnly RouteAuthorizationPolicyTypeEnum = "AUTHENTICATION_ONLY"
+)
+
+var mappingRouteAuthorizationPolicyType = map[string]RouteAuthorizationPolicyTypeEnum{
+	"ANONYMOUS":           RouteAuthorizationPolicyTypeAnonymous,
+	"ANY_OF":              RouteAuthorizationPolicyTypeAnyOf,
+	"AUTHENTICATION_ONLY": RouteAuthorizationPolicyTypeAuthenticationOnly,
+}
+
+// GetRouteAuthorizationPolicyTypeEnumValues Enumerates the set of values for RouteAuthorizationPolicyTypeEnum
+func GetRouteAuthorizationPolicyTypeEnumValues() []RouteAuthorizationPolicyTypeEnum {
+	values := make([]RouteAuthorizationPolicyTypeEnum, 0)
+	for _, v := range mappingRouteAuthorizationPolicyType {
+		values = append(values, v)
+	}
+	return values
+}
