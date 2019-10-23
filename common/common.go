@@ -18,8 +18,12 @@ const (
 	RegionAPMelbourne1 Region = "ap-melbourne-1"
 	//RegionAPMumbai1 region for mumbai
 	RegionAPMumbai1 Region = "ap-mumbai-1"
+	//RegionAPHyderabad1 region for Hyderabad
+	RegionAPHyderabad1 Region = "ap-hyderabad-1"
 	//RegionAPSeoul1 region for seoul
 	RegionAPSeoul1 Region = "ap-seoul-1"
+	//RegionAPChuncheon1 region for Chuncheon
+	RegionAPChuncheon1 Region = "ap-chuncheon-1"
 	//RegionAPSydney1 region for Sydney
 	RegionAPSydney1 Region = "ap-sydney-1"
 	//RegionAPTokyo1 region for tokyo
@@ -42,6 +46,8 @@ const (
 	RegionFRA Region = "eu-frankfurt-1"
 	//RegionLHR region London
 	RegionLHR Region = "uk-london-1"
+	//RegionUKCardiff1 region for Cardiff
+	RegionUKCardiff1 Region = "uk-cardiff-1"
 	//RegionEUAmsterdam1 region for Amsterdam
 	RegionEUAmsterdam1 Region = "eu-amsterdam-1"
 
@@ -65,6 +71,8 @@ const (
 
 	//RegionUKGovLondon1 gov region London
 	RegionUKGovLondon1 Region = "uk-gov-london-1"
+	//RegionUKGovLondon2 gov region London
+	RegionUKGovLondon2 Region = "uk-gov-london-2"
 )
 
 var realm = map[string]string{
@@ -81,12 +89,15 @@ var regionRealm = map[Region]string{
 	RegionIAD:         "oc1",
 	RegionFRA:         "oc1",
 	RegionLHR:         "oc1",
+	RegionUKCardiff1:  "oc1",
 
 	RegionSASaopaulo1: "oc1",
 
 	RegionAPMelbourne1: "oc1",
 	RegionAPMumbai1:    "oc1",
+	RegionAPHyderabad1: "oc1",
 	RegionAPSeoul1:     "oc1",
+	RegionAPChuncheon1: "oc1",
 	RegionAPSydney1:    "oc1",
 	RegionAPTokyo1:     "oc1",
 	RegionAPOsaka1:     "oc1",
@@ -104,6 +115,7 @@ var regionRealm = map[Region]string{
 	RegionUSGovPhoenix1: "oc3",
 
 	RegionUKGovLondon1: "oc4",
+	RegionUKGovLondon2: "oc4",
 }
 
 // Endpoint returns a endpoint for a service
@@ -150,6 +162,8 @@ func StringToRegion(stringRegion string) (r Region) {
 		r = RegionFRA
 	case "lhr", "uk-london-1":
 		r = RegionLHR
+	case "cwl", "uk-cardiff-1":
+		r = RegionUKCardiff1
 	case "ams", "eu-amsterdam-1":
 		r = RegionEUAmsterdam1
 	case "zrh", "eu-zurich-1":
@@ -158,10 +172,14 @@ func StringToRegion(stringRegion string) (r Region) {
 		r = RegionAPMelbourne1
 	case "bom", "ap-mumbai-1":
 		r = RegionAPMumbai1
+	case "hyd", "ap-hyderabad-1":
+		r = RegionAPHyderabad1
 	case "gru", "sa-saopaulo-1":
 		r = RegionSASaopaulo1
 	case "icn", "ap-seoul-1":
 		r = RegionAPSeoul1
+	case "yny", "ap-chuncheon-1":
+		r = RegionAPChuncheon1
 	case "nrt", "ap-tokyo-1":
 		r = RegionAPTokyo1
 	case "kix", "ap-osaka-1":
@@ -186,6 +204,8 @@ func StringToRegion(stringRegion string) (r Region) {
 		r = RegionUSGovPhoenix1
 	case "uk-gov-london-1":
 		r = RegionUKGovLondon1
+	case "uk-gov-london-2":
+		r = RegionUKGovLondon2
 	default:
 		r = Region(stringRegion)
 		Debugf("region named: %s, is not recognized", stringRegion)
