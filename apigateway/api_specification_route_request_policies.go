@@ -15,12 +15,8 @@ import (
 
 // ApiSpecificationRouteRequestPolicies Behaviour applied to any requests received by the API on this route.
 type ApiSpecificationRouteRequestPolicies struct {
-
-	// If the request has been authenticated, confirm that a valid scope
-	// is active for the request on a specific route.
 	Authorization RouteAuthorizationPolicy `mandatory:"false" json:"authorization"`
 
-	// Enable CORS (Cross-Origin-Resource-Sharing) request handling.
 	Cors *CorsPolicy `mandatory:"false" json:"cors"`
 }
 

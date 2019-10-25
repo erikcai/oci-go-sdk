@@ -19,7 +19,6 @@ type UpdateDeploymentDetails struct {
 	// Example: `My new resource`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// API Specification
 	Specification *ApiSpecification `mandatory:"false" json:"specification"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair

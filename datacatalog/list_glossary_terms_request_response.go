@@ -29,6 +29,9 @@ type ListGlossaryTermsRequest struct {
 	// Indicates whether a term may contain child terms.
 	IsAllowedToHaveChildTerms *bool `mandatory:"false" contributesTo:"query" name:"isAllowedToHaveChildTerms"`
 
+	// Status of the approval workflow for this business term in the glossary
+	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" contributesTo:"query" name:"workflowStatus" omitEmpty:"true"`
+
 	// Full path of the resource for resources that support paths.
 	Path *string `mandatory:"false" contributesTo:"query" name:"path"`
 
@@ -111,6 +114,7 @@ const (
 	ListGlossaryTermsFieldsPath                      ListGlossaryTermsFieldsEnum = "path"
 	ListGlossaryTermsFieldsLifecyclestate            ListGlossaryTermsFieldsEnum = "lifecycleState"
 	ListGlossaryTermsFieldsTimecreated               ListGlossaryTermsFieldsEnum = "timeCreated"
+	ListGlossaryTermsFieldsWorkflowstatus            ListGlossaryTermsFieldsEnum = "workflowStatus"
 	ListGlossaryTermsFieldsAssociatedobjectcount     ListGlossaryTermsFieldsEnum = "associatedObjectCount"
 	ListGlossaryTermsFieldsUri                       ListGlossaryTermsFieldsEnum = "uri"
 )
@@ -122,11 +126,12 @@ var mappingListGlossaryTermsFields = map[string]ListGlossaryTermsFieldsEnum{
 	"glossaryKey":               ListGlossaryTermsFieldsGlossarykey,
 	"parentTermKey":             ListGlossaryTermsFieldsParenttermkey,
 	"isAllowedToHaveChildTerms": ListGlossaryTermsFieldsIsallowedtohavechildterms,
-	"path":                      ListGlossaryTermsFieldsPath,
-	"lifecycleState":            ListGlossaryTermsFieldsLifecyclestate,
-	"timeCreated":               ListGlossaryTermsFieldsTimecreated,
-	"associatedObjectCount":     ListGlossaryTermsFieldsAssociatedobjectcount,
-	"uri":                       ListGlossaryTermsFieldsUri,
+	"path":                  ListGlossaryTermsFieldsPath,
+	"lifecycleState":        ListGlossaryTermsFieldsLifecyclestate,
+	"timeCreated":           ListGlossaryTermsFieldsTimecreated,
+	"workflowStatus":        ListGlossaryTermsFieldsWorkflowstatus,
+	"associatedObjectCount": ListGlossaryTermsFieldsAssociatedobjectcount,
+	"uri": ListGlossaryTermsFieldsUri,
 }
 
 // GetListGlossaryTermsFieldsEnumValues Enumerates the set of values for ListGlossaryTermsFieldsEnum

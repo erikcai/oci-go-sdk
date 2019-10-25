@@ -41,6 +41,9 @@ type FolderSummary struct {
 	// Unique external key of this object from the source systems
 	ExternalKey *string `mandatory:"false" json:"externalKey"`
 
+	// Last modified timestamp of this object in the external system
+	TimeExternal *common.SDKTime `mandatory:"false" json:"timeExternal"`
+
 	// The date and time the Folder was created, in the format defined by RFC3339.
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`

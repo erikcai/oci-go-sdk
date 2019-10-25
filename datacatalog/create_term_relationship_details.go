@@ -16,13 +16,13 @@ import (
 type CreateTermRelationshipDetails struct {
 
 	// The display name of a user-friendly name. Is changeable. The combination of displayName and parentTermKey
-	// must be unique. Avoid entering confidential information.
+	// must be unique. Avoid entering confidential information.This is the same as relationshipType for termRelationship
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// Unique id of the related term.
 	RelatedTermKey *string `mandatory:"true" json:"relatedTermKey"`
 
-	// Detailed description of the Term.
+	// Detailed description of the Term Relationship usually defined at the time of creation.
 	Description *string `mandatory:"false" json:"description"`
 }
 

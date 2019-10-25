@@ -13,21 +13,35 @@ type JobTypeEnum string
 
 // Set of constants representing the allowable values for JobTypeEnum
 const (
-	JobTypeHarvest   JobTypeEnum = "HARVEST"
-	JobTypeProfiling JobTypeEnum = "PROFILING"
-	JobTypeSampling  JobTypeEnum = "SAMPLING"
-	JobTypePreview   JobTypeEnum = "PREVIEW"
-	JobTypeImport    JobTypeEnum = "IMPORT"
-	JobTypeExport    JobTypeEnum = "EXPORT"
+	JobTypeHarvest                    JobTypeEnum = "HARVEST"
+	JobTypeProfiling                  JobTypeEnum = "PROFILING"
+	JobTypeSampling                   JobTypeEnum = "SAMPLING"
+	JobTypePreview                    JobTypeEnum = "PREVIEW"
+	JobTypeImport                     JobTypeEnum = "IMPORT"
+	JobTypeExport                     JobTypeEnum = "EXPORT"
+	JobTypeInternal                   JobTypeEnum = "INTERNAL"
+	JobTypePurge                      JobTypeEnum = "PURGE"
+	JobTypeImmediate                  JobTypeEnum = "IMMEDIATE"
+	JobTypeScheduled                  JobTypeEnum = "SCHEDULED"
+	JobTypeImmediateExecution         JobTypeEnum = "IMMEDIATE_EXECUTION"
+	JobTypeScheduledExecution         JobTypeEnum = "SCHEDULED_EXECUTION"
+	JobTypeScheduledExecutionInstance JobTypeEnum = "SCHEDULED_EXECUTION_INSTANCE"
 )
 
 var mappingJobType = map[string]JobTypeEnum{
-	"HARVEST":   JobTypeHarvest,
-	"PROFILING": JobTypeProfiling,
-	"SAMPLING":  JobTypeSampling,
-	"PREVIEW":   JobTypePreview,
-	"IMPORT":    JobTypeImport,
-	"EXPORT":    JobTypeExport,
+	"HARVEST":                      JobTypeHarvest,
+	"PROFILING":                    JobTypeProfiling,
+	"SAMPLING":                     JobTypeSampling,
+	"PREVIEW":                      JobTypePreview,
+	"IMPORT":                       JobTypeImport,
+	"EXPORT":                       JobTypeExport,
+	"INTERNAL":                     JobTypeInternal,
+	"PURGE":                        JobTypePurge,
+	"IMMEDIATE":                    JobTypeImmediate,
+	"SCHEDULED":                    JobTypeScheduled,
+	"IMMEDIATE_EXECUTION":          JobTypeImmediateExecution,
+	"SCHEDULED_EXECUTION":          JobTypeScheduledExecution,
+	"SCHEDULED_EXECUTION_INSTANCE": JobTypeScheduledExecutionInstance,
 }
 
 // GetJobTypeEnumValues Enumerates the set of values for JobTypeEnum

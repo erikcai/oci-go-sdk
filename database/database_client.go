@@ -1595,7 +1595,7 @@ func (client DatabaseClient) deleteVmClusterNetwork(ctx context.Context, request
 	return response, err
 }
 
-// DeregisterAutonomousDatabaseDataSafe Asynchronously deregisters Data Safe for this Autonomous Database.
+// DeregisterAutonomousDatabaseDataSafe Asynchronously deregisters this Autonomous Database with Data Safe.
 func (client DatabaseClient) DeregisterAutonomousDatabaseDataSafe(ctx context.Context, request DeregisterAutonomousDatabaseDataSafeRequest) (response DeregisterAutonomousDatabaseDataSafeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4156,7 +4156,7 @@ func (client DatabaseClient) listVmClusters(ctx context.Context, request common.
 	return response, err
 }
 
-// RegisterAutonomousDatabaseDataSafe Asynchronously registers Data Safe with this Autonomous Database.
+// RegisterAutonomousDatabaseDataSafe Asynchronously registers this Autonomous Database with Data Safe.
 func (client DatabaseClient) RegisterAutonomousDatabaseDataSafe(ctx context.Context, request RegisterAutonomousDatabaseDataSafeRequest) (response RegisterAutonomousDatabaseDataSafeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4746,7 +4746,7 @@ func (client DatabaseClient) terminateDbSystem(ctx context.Context, request comm
 	return response, err
 }
 
-// UpdateAutonomousContainerDatabase Updates the properties of an Autonomous Container Database, such as the CPU core count and storage size.
+// UpdateAutonomousContainerDatabase Updates the properties of an Autonomous Container Database, such as the OCPU core count and storage size.
 func (client DatabaseClient) UpdateAutonomousContainerDatabase(ctx context.Context, request UpdateAutonomousContainerDatabaseRequest) (response UpdateAutonomousContainerDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

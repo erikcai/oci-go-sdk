@@ -30,6 +30,9 @@ type JobExecution struct {
 	// The unique key of the parent execution or null if this Job Execution has no parent.
 	ParentKey *string `mandatory:"false" json:"parentKey"`
 
+	// The unique key of the triggering external scheduler resource or null if this Job Execution is not externally triggered.
+	ScheduleInstanceKey *string `mandatory:"false" json:"scheduleInstanceKey"`
+
 	// Status of the Job Execution. For eg: Running, Paused, Completed etc
 	LifecycleState JobExecutionStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 

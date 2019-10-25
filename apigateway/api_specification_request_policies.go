@@ -15,14 +15,10 @@ import (
 
 // ApiSpecificationRequestPolicies Global behaviour applied to all requests received by the API.
 type ApiSpecificationRequestPolicies struct {
-
-	// Authentication policy for the incoming API requests.
 	Authentication AuthenticationPolicy `mandatory:"false" json:"authentication"`
 
-	// Rate limiting policy for the incoming API requests.
 	RateLimiting *RateLimitingPolicy `mandatory:"false" json:"rateLimiting"`
 
-	// Enable CORS (Cross-Origin-Resource-Sharing) request handling.
 	Cors *CorsPolicy `mandatory:"false" json:"cors"`
 }
 

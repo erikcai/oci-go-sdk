@@ -51,6 +51,9 @@ type Glossary struct {
 	// Id (OCID) of the user who updated this metadata element.
 	UpdatedById *string `mandatory:"false" json:"updatedById"`
 
+	// Id (OCID) of the user who is the owner of the glossary.
+	Owner *string `mandatory:"false" json:"owner"`
+
 	// URI to the Tag instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 }

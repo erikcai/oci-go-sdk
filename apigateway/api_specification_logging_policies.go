@@ -14,11 +14,8 @@ import (
 
 // ApiSpecificationLoggingPolicies Policies controlling the pushing of logs to OCI Public Logging.
 type ApiSpecificationLoggingPolicies struct {
-
-	// Access log policy for API requests.
 	AccessLog *AccessLogPolicy `mandatory:"false" json:"accessLog"`
 
-	// Execution log policy for API requests.
 	ExecutionLog *ExecutionLogPolicy `mandatory:"false" json:"executionLog"`
 }
 

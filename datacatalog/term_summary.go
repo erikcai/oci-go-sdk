@@ -46,6 +46,9 @@ type TermSummary struct {
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
+	// Status of the approval process workflow for this business term in the glossary
+	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" json:"workflowStatus,omitempty"`
+
 	// The number of objects tagged with this term
 	AssociatedObjectCount *int `mandatory:"false" json:"associatedObjectCount"`
 

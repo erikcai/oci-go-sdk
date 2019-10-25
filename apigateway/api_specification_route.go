@@ -20,16 +20,13 @@ type ApiSpecificationRoute struct {
 	// to allow wildcard and parameterized matching.
 	Path *string `mandatory:"true" json:"path"`
 
-	// The backend of the route defined in the API.
 	Backend ApiSpecificationRouteBackend `mandatory:"true" json:"backend"`
 
 	// A list of allowed methods on this route.
 	Methods []ApiSpecificationRouteMethodsEnum `mandatory:"false" json:"methods,omitempty"`
 
-	// Policies to apply on the incoming API requests on a specific route.
 	RequestPolicies *ApiSpecificationRouteRequestPolicies `mandatory:"false" json:"requestPolicies"`
 
-	// Policies controlling the pushing of logs to OCI Public Logging.
 	LoggingPolicies *ApiSpecificationLoggingPolicies `mandatory:"false" json:"loggingPolicies"`
 }
 

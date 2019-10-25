@@ -21,6 +21,9 @@ type CreateGlossaryDetails struct {
 
 	// Detailed description of the Glossary.
 	Description *string `mandatory:"false" json:"description"`
+
+	// Id (OCID) of the user who is the owner of the glossary.
+	Owner *string `mandatory:"false" json:"owner"`
 }
 
 func (m CreateGlossaryDetails) String() string {

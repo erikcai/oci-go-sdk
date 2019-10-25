@@ -20,6 +20,9 @@ type ImportGlossaryRequest struct {
 	// The file contents to import the glossary.
 	ImportGlossaryDetails `contributesTo:"body"`
 
+	// Specify if the relationship metadata is imported for the glossary.
+	IsRelationshipImported *bool `mandatory:"false" contributesTo:"query" name:"isRelationshipImported"`
+
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 

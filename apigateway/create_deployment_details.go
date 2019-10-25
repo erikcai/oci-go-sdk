@@ -25,7 +25,6 @@ type CreateDeploymentDetails struct {
 	// Path prefix
 	PathPrefix *string `mandatory:"true" json:"pathPrefix"`
 
-	// API Specification
 	Specification *ApiSpecification `mandatory:"true" json:"specification"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.

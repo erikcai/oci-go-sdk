@@ -88,6 +88,8 @@ const (
 	GetTermFieldsTimeupdated               GetTermFieldsEnum = "timeUpdated"
 	GetTermFieldsCreatedbyid               GetTermFieldsEnum = "createdById"
 	GetTermFieldsUpdatedbyid               GetTermFieldsEnum = "updatedById"
+	GetTermFieldsOwner                     GetTermFieldsEnum = "owner"
+	GetTermFieldsWorkflowstatus            GetTermFieldsEnum = "workflowStatus"
 	GetTermFieldsUri                       GetTermFieldsEnum = "uri"
 	GetTermFieldsRelatedterms              GetTermFieldsEnum = "relatedTerms"
 	GetTermFieldsAssociatedobjectcount     GetTermFieldsEnum = "associatedObjectCount"
@@ -101,16 +103,18 @@ var mappingGetTermFields = map[string]GetTermFieldsEnum{
 	"glossaryKey":               GetTermFieldsGlossarykey,
 	"parentTermKey":             GetTermFieldsParenttermkey,
 	"isAllowedToHaveChildTerms": GetTermFieldsIsallowedtohavechildterms,
-	"path":                      GetTermFieldsPath,
-	"lifecycleState":            GetTermFieldsLifecyclestate,
-	"timeCreated":               GetTermFieldsTimecreated,
-	"timeUpdated":               GetTermFieldsTimeupdated,
-	"createdById":               GetTermFieldsCreatedbyid,
-	"updatedById":               GetTermFieldsUpdatedbyid,
-	"uri":                       GetTermFieldsUri,
-	"relatedTerms":              GetTermFieldsRelatedterms,
-	"associatedObjectCount":     GetTermFieldsAssociatedobjectcount,
-	"associatedObjects":         GetTermFieldsAssociatedobjects,
+	"path":                  GetTermFieldsPath,
+	"lifecycleState":        GetTermFieldsLifecyclestate,
+	"timeCreated":           GetTermFieldsTimecreated,
+	"timeUpdated":           GetTermFieldsTimeupdated,
+	"createdById":           GetTermFieldsCreatedbyid,
+	"updatedById":           GetTermFieldsUpdatedbyid,
+	"owner":                 GetTermFieldsOwner,
+	"workflowStatus":        GetTermFieldsWorkflowstatus,
+	"uri":                   GetTermFieldsUri,
+	"relatedTerms":          GetTermFieldsRelatedterms,
+	"associatedObjectCount": GetTermFieldsAssociatedobjectcount,
+	"associatedObjects":     GetTermFieldsAssociatedobjects,
 }
 
 // GetGetTermFieldsEnumValues Enumerates the set of values for GetTermFieldsEnum

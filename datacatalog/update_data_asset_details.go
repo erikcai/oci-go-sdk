@@ -21,6 +21,13 @@ type UpdateDataAssetDetails struct {
 
 	// Detailed description of the Data Asset.
 	Description *string `mandatory:"false" json:"description"`
+
+	// A map of maps which contains the properties which are specific to the asset type. Each Data Asset type
+	// definition defines it's set of required and optional properties. The map keys are category names and the
+	// values are maps of property name to property value. Every property is contained inside of a category. Most
+	// Data Assets have required properties within the "default" category.
+	// Example: `{"properties": { "default": { "host": "host1", "port": "1521", "database": "orcl"}}}`
+	Properties map[string]map[string]string `mandatory:"false" json:"properties"`
 }
 
 func (m UpdateDataAssetDetails) String() string {

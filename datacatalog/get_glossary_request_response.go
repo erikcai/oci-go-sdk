@@ -82,6 +82,7 @@ const (
 	GetGlossaryFieldsTimeupdated    GetGlossaryFieldsEnum = "timeUpdated"
 	GetGlossaryFieldsCreatedbyid    GetGlossaryFieldsEnum = "createdById"
 	GetGlossaryFieldsUpdatedbyid    GetGlossaryFieldsEnum = "updatedById"
+	GetGlossaryFieldsOwner          GetGlossaryFieldsEnum = "owner"
 	GetGlossaryFieldsUri            GetGlossaryFieldsEnum = "uri"
 )
 
@@ -95,6 +96,7 @@ var mappingGetGlossaryFields = map[string]GetGlossaryFieldsEnum{
 	"timeUpdated":    GetGlossaryFieldsTimeupdated,
 	"createdById":    GetGlossaryFieldsCreatedbyid,
 	"updatedById":    GetGlossaryFieldsUpdatedbyid,
+	"owner":          GetGlossaryFieldsOwner,
 	"uri":            GetGlossaryFieldsUri,
 }
 

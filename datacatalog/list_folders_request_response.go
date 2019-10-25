@@ -44,9 +44,6 @@ type ListFoldersRequest struct {
 	// Id of the user who updated the resource.
 	UpdatedById *string `mandatory:"false" contributesTo:"query" name:"updatedById"`
 
-	// Last modified timestamp of this object in the external system.
-	TimeExternal *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeExternal"`
-
 	// Harvest Status of the harvestable resource as updated by the harvest process.
 	HarvestStatus HarvestStatusEnum `mandatory:"false" contributesTo:"query" name:"harvestStatus" omitEmpty:"true"`
 
@@ -130,6 +127,7 @@ const (
 	ListFoldersFieldsPath            ListFoldersFieldsEnum = "path"
 	ListFoldersFieldsDataassetkey    ListFoldersFieldsEnum = "dataAssetKey"
 	ListFoldersFieldsExternalkey     ListFoldersFieldsEnum = "externalKey"
+	ListFoldersFieldsTimeexternal    ListFoldersFieldsEnum = "timeExternal"
 	ListFoldersFieldsTimecreated     ListFoldersFieldsEnum = "timeCreated"
 	ListFoldersFieldsLifecyclestate  ListFoldersFieldsEnum = "lifecycleState"
 	ListFoldersFieldsUri             ListFoldersFieldsEnum = "uri"
@@ -143,6 +141,7 @@ var mappingListFoldersFields = map[string]ListFoldersFieldsEnum{
 	"path":            ListFoldersFieldsPath,
 	"dataAssetKey":    ListFoldersFieldsDataassetkey,
 	"externalKey":     ListFoldersFieldsExternalkey,
+	"timeExternal":    ListFoldersFieldsTimeexternal,
 	"timeCreated":     ListFoldersFieldsTimecreated,
 	"lifecycleState":  ListFoldersFieldsLifecyclestate,
 	"uri":             ListFoldersFieldsUri,

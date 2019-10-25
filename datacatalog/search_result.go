@@ -43,6 +43,9 @@ type SearchResult struct {
 	// Name of the object type
 	TypeName *string `mandatory:"false" json:"typeName"`
 
+	// Name of the external object type in the host data asset. For example , Column , Field , Table , View , File etc.
+	ExternalTypeName *string `mandatory:"false" json:"externalTypeName"`
+
 	// Data type of the object if the object is an attribute. Null otherwise
 	ExternalDataType *string `mandatory:"false" json:"externalDataType"`
 
@@ -52,11 +55,23 @@ type SearchResult struct {
 	// Type name of the Data Asset. For example, Oracle, MySQL or Oracle Object Storage
 	DataAssetType *string `mandatory:"false" json:"dataAssetType"`
 
+	// Name of the Data Asset that is the root parent of this object
+	DataAssetName *string `mandatory:"false" json:"dataAssetName"`
+
 	// Unique key of the folder object if this object is a sub folder, entity or attribute
 	FolderKey *string `mandatory:"false" json:"folderKey"`
 
+	// Type name of the Folder. For example, Schema , Directory or Topic.
+	FolderType *string `mandatory:"false" json:"folderType"`
+
+	// Name of the parent folder object if this object is a sub folder , entity or attribute
+	FolderName *string `mandatory:"false" json:"folderName"`
+
 	// Unique key of the entity object if this object is an attribute
 	Entitykey *string `mandatory:"false" json:"entitykey"`
+
+	// Type name of the Entity. For example, Table , View , ExternalTable , File or Object.
+	EntityType *string `mandatory:"false" json:"entityType"`
 
 	// Name of the parent entity object if this object is an attribute
 	EntityName *string `mandatory:"false" json:"entityName"`
@@ -75,6 +90,12 @@ type SearchResult struct {
 
 	// Id (OCID) of the user who created the Resource
 	CreatedById *string `mandatory:"false" json:"createdById"`
+
+	// Id (OCID) of the user who updated the Resource
+	UpdatedById *string `mandatory:"false" json:"updatedById"`
+
+	// Absolute path of this resource which could be a term , folder , entity etc usually resolvable to this resource through a namespace hierarchy
+	Path *string `mandatory:"false" json:"path"`
 }
 
 func (m SearchResult) String() string {

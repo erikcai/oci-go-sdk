@@ -85,6 +85,7 @@ const (
 	GetTermRelationshipFieldsRelatedtermkey         GetTermRelationshipFieldsEnum = "relatedTermKey"
 	GetTermRelationshipFieldsRelatedtermdisplayname GetTermRelationshipFieldsEnum = "relatedTermDisplayName"
 	GetTermRelationshipFieldsParenttermkey          GetTermRelationshipFieldsEnum = "parentTermKey"
+	GetTermRelationshipFieldsParenttermdisplayname  GetTermRelationshipFieldsEnum = "parentTermDisplayName"
 	GetTermRelationshipFieldsLifecyclestate         GetTermRelationshipFieldsEnum = "lifecycleState"
 	GetTermRelationshipFieldsTimecreated            GetTermRelationshipFieldsEnum = "timeCreated"
 	GetTermRelationshipFieldsUri                    GetTermRelationshipFieldsEnum = "uri"
@@ -97,6 +98,7 @@ var mappingGetTermRelationshipFields = map[string]GetTermRelationshipFieldsEnum{
 	"relatedTermKey":         GetTermRelationshipFieldsRelatedtermkey,
 	"relatedTermDisplayName": GetTermRelationshipFieldsRelatedtermdisplayname,
 	"parentTermKey":          GetTermRelationshipFieldsParenttermkey,
+	"parentTermDisplayName":  GetTermRelationshipFieldsParenttermdisplayname,
 	"lifecycleState":         GetTermRelationshipFieldsLifecyclestate,
 	"timeCreated":            GetTermRelationshipFieldsTimecreated,
 	"uri":                    GetTermRelationshipFieldsUri,

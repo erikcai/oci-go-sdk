@@ -27,6 +27,12 @@ type CreateTermDetails struct {
 
 	// The terms parent term key. Will be null if the term has no parent term.
 	ParentTermKey *string `mandatory:"false" json:"parentTermKey"`
+
+	// Id (OCID) of the user who is the owner of this business terminology.
+	Owner *string `mandatory:"false" json:"owner"`
+
+	// Status of the approval process workflow for this business term in the glossary
+	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" json:"workflowStatus,omitempty"`
 }
 
 func (m CreateTermDetails) String() string {

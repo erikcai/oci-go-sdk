@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Deployment Description of Deployment.
+// Deployment Deploys an API on a Gateway.
 type Deployment struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
@@ -31,7 +31,6 @@ type Deployment struct {
 	// The endpoint to access this deployment on the gateway
 	Endpoint *string `mandatory:"true" json:"endpoint"`
 
-	// API Specification
 	Specification *ApiSpecification `mandatory:"true" json:"specification"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.

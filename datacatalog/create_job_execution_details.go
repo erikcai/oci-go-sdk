@@ -18,6 +18,9 @@ type CreateJobExecutionDetails struct {
 	// Sub-Type of this job execution.
 	SubType *string `mandatory:"false" json:"subType"`
 
+	// Type of the Job Execution.
+	JobType JobTypeEnum `mandatory:"false" json:"jobType,omitempty"`
+
 	// The unique key of the parent execution or null if this Job Execution has no parent.
 	ParentKey *string `mandatory:"false" json:"parentKey"`
 
@@ -36,6 +39,9 @@ type CreateJobExecutionDetails struct {
 
 	// Error message returned from the Job Execution ot null if job is still running or didn't return an error.
 	ErrorMessage *string `mandatory:"false" json:"errorMessage"`
+
+	// The unique key of the triggering external scheduler resource or null if this Job Execution is not externally triggered.
+	ScheduleInstanceKey *string `mandatory:"false" json:"scheduleInstanceKey"`
 
 	// Process identifier related to the Job Execution if the job is an external job.
 	ProcessKey *string `mandatory:"false" json:"processKey"`

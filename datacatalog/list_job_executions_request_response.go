@@ -36,7 +36,7 @@ type ListJobExecutionsRequest struct {
 	JobType JobTypeEnum `mandatory:"false" contributesTo:"query" name:"jobType" omitEmpty:"true"`
 
 	// Sub-Type of this job execution.
-	JobSubType *string `mandatory:"false" contributesTo:"query" name:"jobSubType"`
+	SubType *string `mandatory:"false" contributesTo:"query" name:"subType"`
 
 	// The unique key of the parent execution or null if this Job Execution has no parent.
 	ParentKey *string `mandatory:"false" contributesTo:"query" name:"parentKey"`
@@ -137,27 +137,29 @@ type ListJobExecutionsFieldsEnum string
 
 // Set of constants representing the allowable values for ListJobExecutionsFieldsEnum
 const (
-	ListJobExecutionsFieldsKey            ListJobExecutionsFieldsEnum = "key"
-	ListJobExecutionsFieldsJobkey         ListJobExecutionsFieldsEnum = "jobKey"
-	ListJobExecutionsFieldsJobtype        ListJobExecutionsFieldsEnum = "jobType"
-	ListJobExecutionsFieldsParentkey      ListJobExecutionsFieldsEnum = "parentKey"
-	ListJobExecutionsFieldsLifecyclestate ListJobExecutionsFieldsEnum = "lifecycleState"
-	ListJobExecutionsFieldsTimecreated    ListJobExecutionsFieldsEnum = "timeCreated"
-	ListJobExecutionsFieldsTimestarted    ListJobExecutionsFieldsEnum = "timeStarted"
-	ListJobExecutionsFieldsTimeended      ListJobExecutionsFieldsEnum = "timeEnded"
-	ListJobExecutionsFieldsUri            ListJobExecutionsFieldsEnum = "uri"
+	ListJobExecutionsFieldsKey                 ListJobExecutionsFieldsEnum = "key"
+	ListJobExecutionsFieldsJobkey              ListJobExecutionsFieldsEnum = "jobKey"
+	ListJobExecutionsFieldsJobtype             ListJobExecutionsFieldsEnum = "jobType"
+	ListJobExecutionsFieldsParentkey           ListJobExecutionsFieldsEnum = "parentKey"
+	ListJobExecutionsFieldsScheduleinstancekey ListJobExecutionsFieldsEnum = "scheduleInstanceKey"
+	ListJobExecutionsFieldsLifecyclestate      ListJobExecutionsFieldsEnum = "lifecycleState"
+	ListJobExecutionsFieldsTimecreated         ListJobExecutionsFieldsEnum = "timeCreated"
+	ListJobExecutionsFieldsTimestarted         ListJobExecutionsFieldsEnum = "timeStarted"
+	ListJobExecutionsFieldsTimeended           ListJobExecutionsFieldsEnum = "timeEnded"
+	ListJobExecutionsFieldsUri                 ListJobExecutionsFieldsEnum = "uri"
 )
 
 var mappingListJobExecutionsFields = map[string]ListJobExecutionsFieldsEnum{
-	"key":            ListJobExecutionsFieldsKey,
-	"jobKey":         ListJobExecutionsFieldsJobkey,
-	"jobType":        ListJobExecutionsFieldsJobtype,
-	"parentKey":      ListJobExecutionsFieldsParentkey,
-	"lifecycleState": ListJobExecutionsFieldsLifecyclestate,
-	"timeCreated":    ListJobExecutionsFieldsTimecreated,
-	"timeStarted":    ListJobExecutionsFieldsTimestarted,
-	"timeEnded":      ListJobExecutionsFieldsTimeended,
-	"uri":            ListJobExecutionsFieldsUri,
+	"key":                 ListJobExecutionsFieldsKey,
+	"jobKey":              ListJobExecutionsFieldsJobkey,
+	"jobType":             ListJobExecutionsFieldsJobtype,
+	"parentKey":           ListJobExecutionsFieldsParentkey,
+	"scheduleInstanceKey": ListJobExecutionsFieldsScheduleinstancekey,
+	"lifecycleState":      ListJobExecutionsFieldsLifecyclestate,
+	"timeCreated":         ListJobExecutionsFieldsTimecreated,
+	"timeStarted":         ListJobExecutionsFieldsTimestarted,
+	"timeEnded":           ListJobExecutionsFieldsTimeended,
+	"uri":                 ListJobExecutionsFieldsUri,
 }
 
 // GetListJobExecutionsFieldsEnumValues Enumerates the set of values for ListJobExecutionsFieldsEnum

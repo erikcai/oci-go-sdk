@@ -76,47 +76,49 @@ type GetJobExecutionFieldsEnum string
 
 // Set of constants representing the allowable values for GetJobExecutionFieldsEnum
 const (
-	GetJobExecutionFieldsKey            GetJobExecutionFieldsEnum = "key"
-	GetJobExecutionFieldsJobkey         GetJobExecutionFieldsEnum = "jobKey"
-	GetJobExecutionFieldsJobtype        GetJobExecutionFieldsEnum = "jobType"
-	GetJobExecutionFieldsSubtype        GetJobExecutionFieldsEnum = "subType"
-	GetJobExecutionFieldsParentkey      GetJobExecutionFieldsEnum = "parentKey"
-	GetJobExecutionFieldsLifecyclestate GetJobExecutionFieldsEnum = "lifecycleState"
-	GetJobExecutionFieldsTimecreated    GetJobExecutionFieldsEnum = "timeCreated"
-	GetJobExecutionFieldsTimestarted    GetJobExecutionFieldsEnum = "timeStarted"
-	GetJobExecutionFieldsTimeended      GetJobExecutionFieldsEnum = "timeEnded"
-	GetJobExecutionFieldsErrorcode      GetJobExecutionFieldsEnum = "errorCode"
-	GetJobExecutionFieldsErrormessage   GetJobExecutionFieldsEnum = "errorMessage"
-	GetJobExecutionFieldsProcesskey     GetJobExecutionFieldsEnum = "processKey"
-	GetJobExecutionFieldsExternalurl    GetJobExecutionFieldsEnum = "externalUrl"
-	GetJobExecutionFieldsEventkey       GetJobExecutionFieldsEnum = "eventKey"
-	GetJobExecutionFieldsDataentitykey  GetJobExecutionFieldsEnum = "dataEntityKey"
-	GetJobExecutionFieldsCreatedbyid    GetJobExecutionFieldsEnum = "createdById"
-	GetJobExecutionFieldsUpdatedbyid    GetJobExecutionFieldsEnum = "updatedById"
-	GetJobExecutionFieldsProperties     GetJobExecutionFieldsEnum = "properties"
-	GetJobExecutionFieldsUri            GetJobExecutionFieldsEnum = "uri"
+	GetJobExecutionFieldsKey                 GetJobExecutionFieldsEnum = "key"
+	GetJobExecutionFieldsJobkey              GetJobExecutionFieldsEnum = "jobKey"
+	GetJobExecutionFieldsJobtype             GetJobExecutionFieldsEnum = "jobType"
+	GetJobExecutionFieldsSubtype             GetJobExecutionFieldsEnum = "subType"
+	GetJobExecutionFieldsParentkey           GetJobExecutionFieldsEnum = "parentKey"
+	GetJobExecutionFieldsScheduleinstancekey GetJobExecutionFieldsEnum = "scheduleInstanceKey"
+	GetJobExecutionFieldsLifecyclestate      GetJobExecutionFieldsEnum = "lifecycleState"
+	GetJobExecutionFieldsTimecreated         GetJobExecutionFieldsEnum = "timeCreated"
+	GetJobExecutionFieldsTimestarted         GetJobExecutionFieldsEnum = "timeStarted"
+	GetJobExecutionFieldsTimeended           GetJobExecutionFieldsEnum = "timeEnded"
+	GetJobExecutionFieldsErrorcode           GetJobExecutionFieldsEnum = "errorCode"
+	GetJobExecutionFieldsErrormessage        GetJobExecutionFieldsEnum = "errorMessage"
+	GetJobExecutionFieldsProcesskey          GetJobExecutionFieldsEnum = "processKey"
+	GetJobExecutionFieldsExternalurl         GetJobExecutionFieldsEnum = "externalUrl"
+	GetJobExecutionFieldsEventkey            GetJobExecutionFieldsEnum = "eventKey"
+	GetJobExecutionFieldsDataentitykey       GetJobExecutionFieldsEnum = "dataEntityKey"
+	GetJobExecutionFieldsCreatedbyid         GetJobExecutionFieldsEnum = "createdById"
+	GetJobExecutionFieldsUpdatedbyid         GetJobExecutionFieldsEnum = "updatedById"
+	GetJobExecutionFieldsProperties          GetJobExecutionFieldsEnum = "properties"
+	GetJobExecutionFieldsUri                 GetJobExecutionFieldsEnum = "uri"
 )
 
 var mappingGetJobExecutionFields = map[string]GetJobExecutionFieldsEnum{
-	"key":            GetJobExecutionFieldsKey,
-	"jobKey":         GetJobExecutionFieldsJobkey,
-	"jobType":        GetJobExecutionFieldsJobtype,
-	"subType":        GetJobExecutionFieldsSubtype,
-	"parentKey":      GetJobExecutionFieldsParentkey,
-	"lifecycleState": GetJobExecutionFieldsLifecyclestate,
-	"timeCreated":    GetJobExecutionFieldsTimecreated,
-	"timeStarted":    GetJobExecutionFieldsTimestarted,
-	"timeEnded":      GetJobExecutionFieldsTimeended,
-	"errorCode":      GetJobExecutionFieldsErrorcode,
-	"errorMessage":   GetJobExecutionFieldsErrormessage,
-	"processKey":     GetJobExecutionFieldsProcesskey,
-	"externalUrl":    GetJobExecutionFieldsExternalurl,
-	"eventKey":       GetJobExecutionFieldsEventkey,
-	"dataEntityKey":  GetJobExecutionFieldsDataentitykey,
-	"createdById":    GetJobExecutionFieldsCreatedbyid,
-	"updatedById":    GetJobExecutionFieldsUpdatedbyid,
-	"properties":     GetJobExecutionFieldsProperties,
-	"uri":            GetJobExecutionFieldsUri,
+	"key":                 GetJobExecutionFieldsKey,
+	"jobKey":              GetJobExecutionFieldsJobkey,
+	"jobType":             GetJobExecutionFieldsJobtype,
+	"subType":             GetJobExecutionFieldsSubtype,
+	"parentKey":           GetJobExecutionFieldsParentkey,
+	"scheduleInstanceKey": GetJobExecutionFieldsScheduleinstancekey,
+	"lifecycleState":      GetJobExecutionFieldsLifecyclestate,
+	"timeCreated":         GetJobExecutionFieldsTimecreated,
+	"timeStarted":         GetJobExecutionFieldsTimestarted,
+	"timeEnded":           GetJobExecutionFieldsTimeended,
+	"errorCode":           GetJobExecutionFieldsErrorcode,
+	"errorMessage":        GetJobExecutionFieldsErrormessage,
+	"processKey":          GetJobExecutionFieldsProcesskey,
+	"externalUrl":         GetJobExecutionFieldsExternalurl,
+	"eventKey":            GetJobExecutionFieldsEventkey,
+	"dataEntityKey":       GetJobExecutionFieldsDataentitykey,
+	"createdById":         GetJobExecutionFieldsCreatedbyid,
+	"updatedById":         GetJobExecutionFieldsUpdatedbyid,
+	"properties":          GetJobExecutionFieldsProperties,
+	"uri":                 GetJobExecutionFieldsUri,
 }
 
 // GetGetJobExecutionFieldsEnumValues Enumerates the set of values for GetJobExecutionFieldsEnum

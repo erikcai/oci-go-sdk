@@ -55,6 +55,12 @@ type Term struct {
 	// Id (OCID) of the user who modified the Term.
 	UpdatedById *string `mandatory:"false" json:"updatedById"`
 
+	// Id (OCID) of the user who is the owner of this business terminology.
+	Owner *string `mandatory:"false" json:"owner"`
+
+	// Status of the approval process workflow for this business term in the glossary
+	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" json:"workflowStatus,omitempty"`
+
 	// URI to the Term instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 

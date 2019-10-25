@@ -14,11 +14,8 @@ import (
 
 // ApiSpecification The logical configuration of the API exposed by a deployment.
 type ApiSpecification struct {
-
-	// Policies that should be applied to the incoming API requests.
 	RequestPolicies *ApiSpecificationRequestPolicies `mandatory:"false" json:"requestPolicies"`
 
-	// Policies controlling the pushing of logs to OCI Public Logging.
 	LoggingPolicies *ApiSpecificationLoggingPolicies `mandatory:"false" json:"loggingPolicies"`
 
 	// A list of routes that this API exposes.

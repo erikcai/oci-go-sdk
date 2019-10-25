@@ -14,6 +14,9 @@ type ListWorkRequestsRequest struct {
 	// The ocid of the compartment in which to list resources.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
+	// Filter work requests by the resource ocid.
+	ResourceId *string `mandatory:"false" contributesTo:"query" name:"resourceId"`
+
 	// The client request id for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
