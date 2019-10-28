@@ -1,16 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-    <groupId>com.oracle.pic.commons</groupId>
-    <artifactId>pic-pom</artifactId>
-    <version>0.4.3</version>
-  </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.oci.sdk</groupId>
   <artifactId>go-sdk</artifactId>
   <version>0.0.1</version>
   <name>Public Go SDK</name>
   <properties>
+    <preprocessor-version>1.0.9-SNAPSHOT</preprocessor-version>
+    <oci.get.spec.artifact.plugin.version>1.0.9-SNAPSHOT</oci.get.spec.artifact.plugin.version>
     <spec-temp-dir>${project.build.directory}/swagger</spec-temp-dir>
     <preferred-temp-dir>${project.build.directory}/preferred</preferred-temp-dir>
     <preprocessed-temp-dir>${project.build.directory}/preprocessed</preprocessed-temp-dir>
@@ -260,9 +257,9 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.10</version>
+        <groupId>com.oracle.oci.sdk.utilities</groupId>
+        <artifactId>dex-get-spec-artifact-plugin</artifactId>
+        <version>${oci.get.spec.artifact.plugin.version}</version>
         <executions>
           <execution>
             <id>unpack-coreservices-api-spec</id>
@@ -1043,7 +1040,7 @@
       <plugin>
         <groupId>com.oracle.oci.sdk.utilities</groupId>
         <artifactId>spec-conditionals-preprocessor-plugin</artifactId>
-        <version>1.0.6-SNAPSHOT</version>
+        <version>${preprocessor-version}</version>
         <executions>
           <execution>
             <id>spec-conditionals-prefer-coreservices-api-spec</id>
