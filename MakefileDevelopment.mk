@@ -76,4 +76,16 @@ build: generate build-sdk build-autotest
 
 release: generate release-sdk build-autotest
 
-generate-pipeline: build-sdk build-autotest test-sdk-only
+# command used by self service pipeline to clean all generated files
+clean-pipeline:
+	@echo "Cleaning generated files"
+	@(cd $(PROJECT_PATH) && make clean-generate)
+	@echo "Cleaning autotest files"
+	@find autotest -name \*_auto_test.go|xargs rm -f
+	@(cd $(PROJECT_PATH) && rm -f $(REMOVE_AFTER_GENERATE))
+
+# doing build and lint for generated code in self-service pipeline
+lint-pipeline: build-autotest release-sdk
+
+# TODO: delete this target once self-service TC updated
+generate-pipeline: build-autotest release-sdk
