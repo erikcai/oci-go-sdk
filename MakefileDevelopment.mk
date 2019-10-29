@@ -85,7 +85,7 @@ clean-pipeline:
 	@(cd $(PROJECT_PATH) && rm -f $(REMOVE_AFTER_GENERATE))
 
 # doing build and lint for generated code in self-service pipeline
-lint-pipeline: build-autotest release-sdk
-
-# TODO: delete this target once self-service TC updated
-generate-pipeline: build-autotest release-sdk
+lint-pipeline: build-autotest test-sdk-only
+	@echo "Rendering doc server to ${DOC_SERVER_URL}"
+	find . -name \*.go |xargs sed -i 's/{{DOC_SERVER_URL}}/${DOC_SERVER_URL}/g'
+	find . -name \*.go |xargs sed -i 's/https:\/\/docs.us-phoenix-1.oraclecloud.com/${DOC_SERVER_URL}/g'
