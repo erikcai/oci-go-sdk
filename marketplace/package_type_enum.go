@@ -13,11 +13,13 @@ type PackageTypeEnumEnum string
 
 // Set of constants representing the allowable values for PackageTypeEnumEnum
 const (
-	PackageTypeEnumImage PackageTypeEnumEnum = "IMAGE"
+	PackageTypeEnumOrchestration PackageTypeEnumEnum = "ORCHESTRATION"
+	PackageTypeEnumImage         PackageTypeEnumEnum = "IMAGE"
 )
 
 var mappingPackageTypeEnum = map[string]PackageTypeEnumEnum{
-	"IMAGE": PackageTypeEnumImage,
+	"ORCHESTRATION": PackageTypeEnumOrchestration,
+	"IMAGE":         PackageTypeEnumImage,
 }
 
 // GetPackageTypeEnumEnumValues Enumerates the set of values for PackageTypeEnumEnum

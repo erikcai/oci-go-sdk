@@ -16,37 +16,69 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PrivateEndpoint A Private Endpoint is a set of private IPs in the customer VCN that act as the access point for the service that are created for.
-// Every Private Endpoint has a set of secondary IPs that correspond to the LBs of the service.
-// The customer can then communicate to the service by sending traffic to this IP on the registered port.
+// PrivateEndpoint A *private endpoint* (PE) is a way for an Oracle service to give a customer a private access point for
+// the service within the customer's VCN. The PE consists of a VNIC with a private IP
+// in the customer's VCN. The PE is associated with an
+// EndpointService
+// that the service team has previously registered. The customer accesses the service
+// by sending traffic to the PE's IP address on the registered port. That traffic is then
+// sent to the PrivateAccessGateway on the service VCN.
+// The gateway then sends the traffic to the PE's associated `EndpointService` for
+// processing.
+// **Regarding DNS for the private endpoint:** When creating a PE, the private endpoint service assigns
+// a fully qualified domain name (FQDN) to the PE and creates the related DNS zone and record in
+// the customer's VCN. This enables the customer to use the FQDN instead of the PE's private IP
+// address to access the service. Here are details about how the private endpoint service determines
+// the value to use for the PE's FQDN:
+//   * Both the EndpointService object and the
+//     CreatePrivateEndpointDetails
+//     object have an `endpointFqdn` attribute.
+//   * If you don't specify an FQDN for `CreatePrivateEndpointDetails` during PE creation, the
+//      endpoint service's `endpointFqdn` is used for the PE's `endpointFqdn`.
+//   * If you specify an FQDN for `CreatePrivateEndpointDetails` during PE creation, that value is used.
+//     It always takes precedence over any value set in the `EndpointService` object.
+//   * If the `EndpointService` object does not have an FQDN value set, and you don't provide a value
+//     in `CreatePrivateEndpointDetails` during creation, an error is returned.
+//   * **Special scenario:**  If the endpoint service allows multiple PE's to be created per customer VCN
+//     (see the `areMultiplePrivateEndpointsPerVcnAllowed` attribute in the `EndpointService`),
+//     the `EndpointService` is prohibited from also having an `endpointFqdn` value. This restriction ensures
+//     that each FQDN in the customer's VCN resolves to a single PE. Therefore, for this particular
+//     scenario, you must assign each PE a unique FQDN within the scope of the customer's VCN.
+// To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
+// talk to an administrator. If you're an administrator who needs to write policies to give users access, see
+// Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type PrivateEndpoint struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the
-	// Private Endpoint.
+	// private endpoint.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Private Endpoint.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private endpoint.
 	Id *string `mandatory:"true" json:"id"`
 
-	// Endpoint Service OCID that sits behind this Private Endpoint.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the endpoint service that is associated
+	// with the private endpoint.
 	EndpointServiceId *string `mandatory:"true" json:"endpointServiceId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the vcn the Private Endpoint
-	// belongs to.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer VCN that the private
+	// endpoint belongs to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the Private Endpoint
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet that the private endpoint
 	// belongs to.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the PE VNIC created in the consumer VCN
-	// belongs to.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private endpoint's VNIC, which
+	// resides in the customer's VCN.
 	PrivateEndpointVnicId *string `mandatory:"true" json:"privateEndpointVnicId"`
 
-	// IP which represents the access point for the associated Endpoint Service.
+	// The private IP address (in the customer's VCN) that represents the access point for the
+	// associated endpoint service.
 	PrivateEndpointIp *string `mandatory:"true" json:"privateEndpointIp"`
 
-	// The private endpoint's current state.
+	// The private endpoint's current lifecycle state.
 	LifecycleState PrivateEndpointLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
@@ -60,20 +92,28 @@ type PrivateEndpoint struct {
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// A user-friendly name. Does not have to be unique.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Description of this particular Private Endpoint.
+	// A description of this private endpoint.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The date and time the Private Endpoint was created, in the format defined by RFC3339.
+	// The date and time the private endpoint was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// Service's 3 label FQDN representing the Endpoint Service. If this value is provided, it will be chosen over the FQDN that the Endpoint Service prescribes.
+	// The three-label FQDN to use for the private endpoint. The customer VCN's DNS records are
+	// updated with this FQDN.
+	// If you provide a value for this attribute, it overrides the `endpointFqdn` in the associated
+	// EndpointService. For more information, see the discussion
+	// of DNS and FQDNs in PrivateEndpoint.
+	// You can change the PE's FQDN (see
+	// UpdatePrivateEndpointDetails).
+	// Example: `xyz.oraclecloud.com`
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
 
-	// The network security group OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) that this Private Endpoint is associated with.
+	// A list of the OCIDs of the network security groups that the private endpoint's VNIC belongs to.
+	// For more information about NSGs, see
+	// NetworkSecurityGroup.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
 
 	ReverseConnectionConfiguration *ReverseConnectionConfiguration `mandatory:"false" json:"reverseConnectionConfiguration"`

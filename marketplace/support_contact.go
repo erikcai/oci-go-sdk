@@ -24,7 +24,7 @@ type SupportContact struct {
 	// The email of the contact.
 	Email *string `mandatory:"false" json:"email"`
 
-	// The email subject for the contact.
+	// The email subject line to use when contacting support.
 	Subject *string `mandatory:"false" json:"subject"`
 }
 

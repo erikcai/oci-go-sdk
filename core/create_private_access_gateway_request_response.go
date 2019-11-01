@@ -11,7 +11,7 @@ import (
 // CreatePrivateAccessGatewayRequest wrapper for the CreatePrivateAccessGateway operation
 type CreatePrivateAccessGatewayRequest struct {
 
-	// Details for creating a Private Access Gateway.
+	// Details for creating a private access gateway (PAG).
 	CreatePrivateAccessGatewayDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

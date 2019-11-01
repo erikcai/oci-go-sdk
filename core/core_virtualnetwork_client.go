@@ -1629,12 +1629,7 @@ func (client VirtualNetworkClient) createDrgAttachment(ctx context.Context, requ
 	return response, err
 }
 
-// CreateEndpointService Creates a new Endpoint Service in the specified compartment. For more information,
-// see Managing Services (https://docs.cloud.oracle.com/Content/Network/Tasks/managingEndpointServices.htm).
-// You may optionally specify a *display name* for the Endpoint Service, otherwise a default is provided.
-// For more information about compartments and access control, see
-// Overview of the IAM Service (https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
-// For information about OCIDs, see Resource Identifiers (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+// CreateEndpointService Creates an endpoint service in the specified service VCN and specified compartment.
 func (client VirtualNetworkClient) CreateEndpointService(ctx context.Context, request CreateEndpointServiceRequest) (response CreateEndpointServiceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2146,14 +2141,9 @@ func (client VirtualNetworkClient) createNetworkSecurityGroup(ctx context.Contex
 	return response, err
 }
 
-// CreatePrivateAccessGateway Creates a new Private Access Gateway in the specified compartment. For more information,
-// see Managing Private Access Gateway (https://docs.cloud.oracle.com/Content/Network/Tasks/managingPrivateAccessGateways.htm).
-// You may optionally specify a *display name* for the private access gateway, otherwise a default is provided.
-// This api is for service provider to create a Private Access Gateway per VCN.
-// Service Provider will then create a PA GW route in relevant VCN to respond to client connections.
-// For more information about compartments and access control, see
-// Overview of the IAM Service (https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
-// For information about OCIDs, see Resource Identifiers (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+// CreatePrivateAccessGateway Creates a new private access gateway (PAG) for the specified service VCN and specified compartment.
+// After creating the gateway, update the route tables in your service VCN to send all traffic
+// destined for private endpoints to this gateway.
 func (client VirtualNetworkClient) CreatePrivateAccessGateway(ctx context.Context, request CreatePrivateAccessGatewayRequest) (response CreatePrivateAccessGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2200,9 +2190,8 @@ func (client VirtualNetworkClient) createPrivateAccessGateway(ctx context.Contex
 	return response, err
 }
 
-// CreatePrivateEndpoint Creates a new Private Endpoint in the specified compartment.
-// You may optionally specify a *display name* for the Private Endpoint, otherwise a default is provided.
-// It does not have to be unique, and you can change it. Avoid entering confidential information.
+// CreatePrivateEndpoint Creates a private endpoint in the specified subnet (in the customer's VCN) and the specified
+// compartment.
 func (client VirtualNetworkClient) CreatePrivateEndpoint(ctx context.Context, request CreatePrivateEndpointRequest) (response CreatePrivateEndpointResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3047,8 +3036,8 @@ func (client VirtualNetworkClient) deleteDrgAttachment(ctx context.Context, requ
 	return response, err
 }
 
-// DeleteEndpointService Deletes the specified Endpoint Service.
-// There must not be any Private Endpoint associated with the EndpointService. - if there are any, delete will be forbidden.
+// DeleteEndpointService Deletes the specified endpoint service.
+// There must not be any private endpoints associated with the endpoint service.
 func (client VirtualNetworkClient) DeleteEndpointService(ctx context.Context, request DeleteEndpointServiceRequest) (response DeleteEndpointServiceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3491,7 +3480,7 @@ func (client VirtualNetworkClient) deleteNetworkSecurityGroup(ctx context.Contex
 	return response, err
 }
 
-// DeletePrivateAccessGateway Deletes the specified Private Access Gateway.
+// DeletePrivateAccessGateway Deletes the specified private access gateway (PAG).
 func (client VirtualNetworkClient) DeletePrivateAccessGateway(ctx context.Context, request DeletePrivateAccessGatewayRequest) (response DeletePrivateAccessGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3533,7 +3522,7 @@ func (client VirtualNetworkClient) deletePrivateAccessGateway(ctx context.Contex
 	return response, err
 }
 
-// DeletePrivateEndpoint Delete a specifed Private Endpoint.
+// DeletePrivateEndpoint Deletes the specifed private endpoint.
 func (client VirtualNetworkClient) DeletePrivateEndpoint(ctx context.Context, request DeletePrivateEndpointRequest) (response DeletePrivateEndpointResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4599,7 +4588,7 @@ func (client VirtualNetworkClient) getDrgAttachment(ctx context.Context, request
 	return response, err
 }
 
-// GetEndpointService Gets the specified Endpoint Service's information.
+// GetEndpointService Gets the specified endpoint service's information.
 func (client VirtualNetworkClient) GetEndpointService(ctx context.Context, request GetEndpointServiceRequest) (response GetEndpointServiceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5288,7 +5277,7 @@ func (client VirtualNetworkClient) getNetworkSecurityGroup(ctx context.Context, 
 	return response, err
 }
 
-// GetPrivateAccessGateway Gets the specified Private Access Gateway's information.
+// GetPrivateAccessGateway Gets the specified private access gateway's information.
 func (client VirtualNetworkClient) GetPrivateAccessGateway(ctx context.Context, request GetPrivateAccessGatewayRequest) (response GetPrivateAccessGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5330,7 +5319,7 @@ func (client VirtualNetworkClient) getPrivateAccessGateway(ctx context.Context, 
 	return response, err
 }
 
-// GetPrivateEndpoint Get the specified Private Endpoint's information
+// GetPrivateEndpoint Get the specified private endpoint's information
 func (client VirtualNetworkClient) GetPrivateEndpoint(ctx context.Context, request GetPrivateEndpointRequest) (response GetPrivateEndpointResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5372,7 +5361,10 @@ func (client VirtualNetworkClient) getPrivateEndpoint(ctx context.Context, reque
 	return response, err
 }
 
-// GetPrivateEndpointAssociation Gets the private Endpoint association to this Endpoint Service for the specified Private Endpoint.
+// GetPrivateEndpointAssociation Gets the specified private endpoint associated with the specified endpoint service. The operation
+// returns a summary of the private endpoint
+// (PrivateEndpointAssociation),
+// and not the full PrivateEndpoint object.
 func (client VirtualNetworkClient) GetPrivateEndpointAssociation(ctx context.Context, request GetPrivateEndpointAssociationRequest) (response GetPrivateEndpointAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6413,7 +6405,8 @@ func (client VirtualNetworkClient) listDrgs(ctx context.Context, request common.
 	return response, err
 }
 
-// ListEndpointServices Lists all Endpoint Service resources filtered by service provider compartment and optionally service provider's VCN OCID.
+// ListEndpointServices Lists the endpoint services in the specified compartment. You can optionally filter the list
+// by specifying the OCID of a service VCN.
 func (client VirtualNetworkClient) ListEndpointServices(ctx context.Context, request ListEndpointServicesRequest) (response ListEndpointServicesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -7059,7 +7052,8 @@ func (client VirtualNetworkClient) listNetworkSecurityGroups(ctx context.Context
 	return response, err
 }
 
-// ListPrivateAccessGateways Lists all Private Access Gateway resources filtered by service provider compartment
+// ListPrivateAccessGateways Lists the private access gateways (PAGs) in the specified compartment. You can optionally
+// filter the list by specifying the OCID of a service VCN.
 func (client VirtualNetworkClient) ListPrivateAccessGateways(ctx context.Context, request ListPrivateAccessGatewaysRequest) (response ListPrivateAccessGatewaysResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -7101,7 +7095,10 @@ func (client VirtualNetworkClient) listPrivateAccessGateways(ctx context.Context
 	return response, err
 }
 
-// ListPrivateEndpointAssociations Gets all the Private Endpoints associations to this Endpoint Service.
+// ListPrivateEndpointAssociations Lists the private endpoints associated with the specified endpoint service. The operation
+// returns a summary of each private endpoint
+// (PrivateEndpointAssociation),
+// and not the full PrivateEndpoint object.
 func (client VirtualNetworkClient) ListPrivateEndpointAssociations(ctx context.Context, request ListPrivateEndpointAssociationsRequest) (response ListPrivateEndpointAssociationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -7143,7 +7140,8 @@ func (client VirtualNetworkClient) listPrivateEndpointAssociations(ctx context.C
 	return response, err
 }
 
-// ListPrivateEndpoints List the Private Endpoints in the specified compartment. You may optionally specify the Subnet OCID to filter the result by Subnet.
+// ListPrivateEndpoints List the private endpoints in the specified compartment. You can optionally filter the list by
+// specifying the OCID of a subnet in the customer's VCN.
 func (client VirtualNetworkClient) ListPrivateEndpoints(ctx context.Context, request ListPrivateEndpointsRequest) (response ListPrivateEndpointsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8103,7 +8101,7 @@ func (client VirtualNetworkClient) updateDrgAttachment(ctx context.Context, requ
 	return response, err
 }
 
-// UpdateEndpointService Updates the specified Endpoint Service.
+// UpdateEndpointService Updates the specified endpoint service.
 func (client VirtualNetworkClient) UpdateEndpointService(ctx context.Context, request UpdateEndpointServiceRequest) (response UpdateEndpointServiceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8678,8 +8676,7 @@ func (client VirtualNetworkClient) updateNetworkSecurityGroupSecurityRules(ctx c
 	return response, err
 }
 
-// UpdatePrivateAccessGateway Update an existing Private Access Gateway. For more information,
-// see Managing Private Access Gateway (https://docs.cloud.oracle.com/Content/Network/Tasks/managingPrivateAccessGateways.htm).
+// UpdatePrivateAccessGateway Updates the specified private access gateway (PAG).
 func (client VirtualNetworkClient) UpdatePrivateAccessGateway(ctx context.Context, request UpdatePrivateAccessGatewayRequest) (response UpdatePrivateAccessGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8721,7 +8718,7 @@ func (client VirtualNetworkClient) updatePrivateAccessGateway(ctx context.Contex
 	return response, err
 }
 
-// UpdatePrivateEndpoint Update an existing Private Endpoint.
+// UpdatePrivateEndpoint Updates the specified private endpoint.
 func (client VirtualNetworkClient) UpdatePrivateEndpoint(ctx context.Context, request UpdatePrivateEndpointRequest) (response UpdatePrivateEndpointResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

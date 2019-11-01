@@ -16,45 +16,67 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// EndpointService Information of a particular Endpoint Service that is created for the provider service.
+// EndpointService Required for Oracle services that offer customers private endpoints for private access to the
+// service.
+// An endpoint service is an object that resides in the Oracle service's VCN and represents the IP addresses
+// for accessing the service. An endpoint service can be associated with one or more private
+// endpoints, which reside in customer VCNs (see PrivateEndpoint).
+// To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
+// talk to an administrator. If you're an administrator who needs to write policies to give users access, see
+// Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type EndpointService struct {
 
-	// The Endpoint Service's Oracle ID (OCID) (/Content/General/Concepts/identifiers.htm).
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the endpoint service.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)  of the VCN to contain the Endpoint service.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the endpoint
+	// service belongs to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)  of the compartment to contain the Endpoint service.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the
+	// endpoint service.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// List of service IPs that will expose the service.
+	// List of service IP addresses (in the service VCN) that handle requests to the endpoint service.
 	ServiceIps []EndpointServiceIpDetails `mandatory:"true" json:"serviceIps"`
 
-	// The ports on this service's IPs that are open for communication via Private Endpoints associated to this Endpoint Service.
-	// If no ports are provided, all open ports are accessible on your service IPs
+	// The ports on the endpoint service IPs that are open for private endpoint traffic for this
+	// endpoint service. If you provide no ports, all open ports on the service IPs are accessible.
 	Ports []int `mandatory:"true" json:"ports"`
 
-	// Service's 3 label FQDN representing the Endpoint Service. This is the fqdn which will be updated in consumer VCN's dns whenever a Private Endpoint is created.
+	// The three-label FQDN to use for all private endpoints associated with this endpoint
+	// service. This attribute's value cannot be changed.
+	// For important information about how this attribute is used, see the discussion
+	// of DNS and FQDNs in PrivateEndpoint.
+	// Example: `xyz.oraclecloud.com`
 	EndpointFqdn *string `mandatory:"true" json:"endpointFqdn"`
 
-	// The date and time the Service was created, in the format defined by RFC3339.
+	// The date and time the endpoint service was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The endpoint service's current state.
+	// The endpoint service's current lifecycle state.
 	LifecycleState EndpointServiceLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// Description of this particular Endpoint Service, provided by the service owner.
+	// A description of the endpoint service. For Oracle services that use the "trusted" mode of the
+	// private endpoint service, customers never see this description.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Name of the Endpoint Service. This has to be unique within a VCN.
+	// A friendly name for the endpoint service. Must be unique within the VCN.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Allow multiple Private Endpoints to be created for this Endpoint Service in the same customer VCN. Defaults to false.
+	// Some Oracle services want to restrict access to the resources represented by an endpoint service so
+	// that only a single private endpoint in the customer VCN has access.
+	// For example, the endpoint service might represent a particular service resource (such as a
+	// particular database). The service might want to allow access to that particular resource
+	// from only a single private endpoint.
+	// Defaults to `false`.
+	// Example: `true`
 	AreMultiplePrivateEndpointsPerVcnAllowed *bool `mandatory:"false" json:"areMultiplePrivateEndpointsPerVcnAllowed"`
 
-	// Indicates if the incoming traffic should include VCN metadata of the source.
+	// Reserved for future use.
 	IsVcnMetadataEnabled *bool `mandatory:"false" json:"isVcnMetadataEnabled"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a

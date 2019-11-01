@@ -16,25 +16,35 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateEndpointServiceDetails Information that can be updated for a particular Endpoint Service.
+// UpdateEndpointServiceDetails Information that can be updated for an endpoint service.
 type UpdateEndpointServiceDetails struct {
 
-	// Description of this particular Endpoint Service, provided by the service owner.
+	// A description of the endpoint service. For Oracle services that use the "trusted" mode of the
+	// private endpoint service, customers never see this description. Avoid entering confidential
+	// information.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Name of the Endpoint Service.
+	// A friendly name for the endpoint service. Must be unique within the VCN. Avoid entering
+	// confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Allow multiple Private Endpoints to be created for this Endpoint Service in the same customer VCN. Defaults to false.
+	// Some services want to restrict access to the resources represented by an endpoint service so
+	// that only a single private endpoint in the customer VCN has access.
+	// For example, the endpoint service might represent a particular service resource (such as a
+	// particular database). The service might want to allow access to that particular resource
+	// from only a single private endpoint.
+	// Defaults to `false`.
+	// Example: `true`
 	AreMultiplePrivateEndpointsPerVcnAllowed *bool `mandatory:"false" json:"areMultiplePrivateEndpointsPerVcnAllowed"`
 
-	// Indicates if the incoming traffic should include VCN metadata of the source.
+	// Reserved for future use.
 	IsVcnMetadataEnabled *bool `mandatory:"false" json:"isVcnMetadataEnabled"`
 
-	// List of unique service IPs that will service the requests. If you are directly providing service IPs, then you will also have to indicate if these are public IPs.
+	// List of service IP addresses (in the service VCN) that handle requests to the endpoint service.
 	ServiceIps []EndpointServiceIpDetails `mandatory:"false" json:"serviceIps"`
 
-	// Ports that are open on the provided service IPs for the Endpoint Service.
+	// The ports on the endpoint service IPs that are open for private endpoint traffic for this
+	// endpoint service. If you provide no ports, all open ports on the service IPs are accessible.
 	Ports []int `mandatory:"false" json:"ports"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a

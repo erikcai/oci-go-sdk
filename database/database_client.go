@@ -2753,6 +2753,48 @@ func (client DatabaseClient) getExadataInfrastructure(ctx context.Context, reque
 	return response, err
 }
 
+// GetExadataInfrastructureOcpus Gets details of the available and consumed OCPUs for the specified Autonomous Exadata Infrastructure instance.
+func (client DatabaseClient) GetExadataInfrastructureOcpus(ctx context.Context, request GetExadataInfrastructureOcpusRequest) (response GetExadataInfrastructureOcpusResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getExadataInfrastructureOcpus, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetExadataInfrastructureOcpusResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetExadataInfrastructureOcpusResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetExadataInfrastructureOcpusResponse")
+	}
+	return
+}
+
+// getExadataInfrastructureOcpus implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getExadataInfrastructureOcpus(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousExadataInfrastructures/{autonomousExadataInfrastructureId}/ocpus")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetExadataInfrastructureOcpusResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetExadataIormConfig Gets `IORM` Setting for the requested Exadata DB System.
 // The default IORM Settings is pre-created in all the Exadata DB System.
 func (client DatabaseClient) GetExadataIormConfig(ctx context.Context, request GetExadataIormConfigRequest) (response GetExadataIormConfigResponse, err error) {
@@ -4144,6 +4186,53 @@ func (client DatabaseClient) listVmClusters(ctx context.Context, request common.
 	}
 
 	var response ListVmClustersResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// MoveDatabase Moves the specified database from current DB Home to target (new) DB Home.
+func (client DatabaseClient) MoveDatabase(ctx context.Context, request MoveDatabaseRequest) (response MoveDatabaseResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.moveDatabase, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = MoveDatabaseResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(MoveDatabaseResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into MoveDatabaseResponse")
+	}
+	return
+}
+
+// moveDatabase implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) moveDatabase(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/databases/{databaseId}/actions/move")
+	if err != nil {
+		return nil, err
+	}
+
+	var response MoveDatabaseResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

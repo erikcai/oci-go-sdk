@@ -16,37 +16,50 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateEndpointServiceDetails Details for creating an Endpoint Service.
+// CreateEndpointServiceDetails Details for creating an endpoint service.
 type CreateEndpointServiceDetails struct {
 
-	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)  of the VCN to contain the Endpoint service.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the endpoint
+	// service belongs to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)  of the compartment to contain the service.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the
+	// endpoint service.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// List of unique service IPs that will service the requests.
-	// If you are directly providing service IPs, then you will also have to indicate if this are public IPs.
+	// List of service IP addresses (in the service VCN) that handle requests to the endpoint service.
 	ServiceIps []EndpointServiceIpDetails `mandatory:"true" json:"serviceIps"`
 
-	// Description of the Endpoint Service.
+	// A description of the endpoint service. For Oracle services that use the "trusted" mode of the private endpoint service, customers never see this description. Avoid entering confidential information.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Name of the service. This has to be unique within a VCN.
+	// A friendly name for the endpoint service. Must be unique within the VCN.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Allow multiple Private Endpoints to be created for this Endpoint Service in the same customer VCN. Defaults to false.
+	// Some services want to restrict access to the resources represented by an endpoint service so
+	// that only a single private endpoint in the customer VCN has access.
+	// For example, the endpoint service might represent a particular service resource (such as a
+	// particular database). The service might want to allow access to that particular resource
+	// from only a single private endpoint.
+	// Defaults to `false`.
+	// **Note:** If the value is `true`, the `endpointFqdn` attribute cannot have a value. For more
+	// information, see the discussion of DNS and FQDNs in
+	// PrivateEndpoint.
+	// Example: `true`
 	AreMultiplePrivateEndpointsPerVcnAllowed *bool `mandatory:"false" json:"areMultiplePrivateEndpointsPerVcnAllowed"`
 
-	// Indicates if the incoming traffic should include VCN metadata of the source.
+	// Reserved for future use.
 	IsVcnMetadataEnabled *bool `mandatory:"false" json:"isVcnMetadataEnabled"`
 
-	// Ports that are open on the provided service IPs for the Endpoint Service.
+	// The ports on the endpoint service IPs that are open for private endpoint traffic for this
+	// endpoint service. If you provide no ports, all open ports on the service IPs are accessible.
 	Ports []int `mandatory:"false" json:"ports"`
 
-	// Service Fqdn representing the Endpoint Service. This is the fqdn which will be updated in consumer
-	// VCN's dns whenever a Private Endpoint is created.
-	// DNS will not be updated in the consumer VCN if this feild is skipped.
+	// The default three-label FQDN to use for all private endpoints associated with this endpoint
+	// service. For important information about how this attribute is used, see the discussion of DNS
+	// and FQDNs in PrivateEndpoint.
+	// If `areMultiplePrivateEndpointsPerVcnAllowed` is `true`, `endpointFqdn` cannot have a value.
+	// Example: `xyz.oraclecloud.com`
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a

@@ -11,7 +11,7 @@ import (
 // GetPrivateEndpointRequest wrapper for the GetPrivateEndpoint operation
 type GetPrivateEndpointRequest struct {
 
-	// The Private Endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The private endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	PrivateEndpointId *string `mandatory:"true" contributesTo:"path" name:"privateEndpointId"`
 
 	// Unique identifier for the request.

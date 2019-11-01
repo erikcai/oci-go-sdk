@@ -11,7 +11,7 @@ import (
 // ListReverseConnectionNatIpsRequest wrapper for the ListReverseConnectionNatIps operation
 type ListReverseConnectionNatIpsRequest struct {
 
-	// The Private Endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The private endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	PrivateEndpointId *string `mandatory:"true" contributesTo:"path" name:"privateEndpointId"`
 
 	// The Reverse Connection NAT IP address

@@ -16,17 +16,17 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PrivateEndpointSummary A summary of Private Endpoints (PE) for calls that return a list of PEs. More details about a resource
-// are returned when a request is made to retrieve that specific resource.
+// PrivateEndpointSummary A summary of private endpoint information. This object is returned when listing private endpoints.
 type PrivateEndpointSummary struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Private Endpoint.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private endpoint.
 	Id *string `mandatory:"true" json:"id"`
 
-	// A user-friendly name.
+	// The private endpoint's friendly name.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Endpoint Service OCID that sits behind this Private Endpoint.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the endpoint service that is associated
+	// with the private endpoint.
 	EndpointServiceId *string `mandatory:"true" json:"endpointServiceId"`
 }
 

@@ -11,7 +11,7 @@ import (
 // CreatePrivateEndpointRequest wrapper for the CreatePrivateEndpoint operation
 type CreatePrivateEndpointRequest struct {
 
-	// Details for creating a Private Endpoint
+	// Details for creating a private endpoint.
 	CreatePrivateEndpointDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

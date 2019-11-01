@@ -16,15 +16,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PrivateAccessGatewaySummary A summary of Private Access Gateways (PGW) for calls that return a list of PGWs. More details about a resource
-// are returned when a request is made to retrieve that specific resource.
+// PrivateAccessGatewaySummary A summary of private access gateway (PAG) information. This object is returned when listing
+// PAGs.
 type PrivateAccessGatewaySummary struct {
 
-	// The Private Access Gateway's Oracle ID (OCID) (/Content/General/Concepts/identifiers.htm).
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the PAG.
 	Id *string `mandatory:"true" json:"id"`
 
-	// A user-friendly name. Does not have to be unique.
-	// Avoid entering confidential information.
+	// The PAG's friendly name.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 }
 

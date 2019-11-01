@@ -16,7 +16,7 @@ import (
 type NetworkSourcesVirtualSourceList struct {
 	VcnId *string `mandatory:"false" json:"vcnId"`
 
-	IpRanges *string `mandatory:"false" json:"ipRanges"`
+	IpRanges []string `mandatory:"false" json:"ipRanges"`
 }
 
 func (m NetworkSourcesVirtualSourceList) String() string {

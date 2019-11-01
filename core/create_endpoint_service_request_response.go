@@ -11,7 +11,7 @@ import (
 // CreateEndpointServiceRequest wrapper for the CreateEndpointService operation
 type CreateEndpointServiceRequest struct {
 
-	// Details for creating a Service.
+	// Details for creating an endpoint service.
 	CreateEndpointServiceDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

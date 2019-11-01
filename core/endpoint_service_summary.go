@@ -16,17 +16,18 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// EndpointServiceSummary A summary of Endpoint Services (ES) for calls that return a list of ESs. More details about a resource
-// are returned when a request is made to retrieve that specific resource.
+// EndpointServiceSummary A summary of endpoint service information. This object is returned when listing endpoint
+// services.
 type EndpointServiceSummary struct {
 
-	// The Endpoint Service's Oracle ID (OCID) (/Content/General/Concepts/identifiers.htm).
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the endpoint service.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)  of the VCN to contain the Endpoint service.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the endpoint
+	// service belongs to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// Name of the Endpoint Service.
+	// The endpoint service's friendly name.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 }
 

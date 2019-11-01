@@ -16,27 +16,36 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PrivateAccessGateway A Private Access Gateway is a gateway on the service VCN that is required by the service to recieve and send the traffic from Private Endpoints. Once created, the service needs to update the route tables to send all PE traffic via this gateway.
+// PrivateAccessGateway Required for Oracle services that offer customers private endpoints for private access to the
+// service.
+// The service VCN requires a private access gateway (PAG) to handle the traffic to and from
+// private endpoints in customer VCNs (see PrivateEndpoint).
+// After creating the gateway, update the route tables in your service VCN to send all traffic
+// destined for private endpoints to this gateway.
+// To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
+// talk to an administrator. If you're an administrator who needs to write policies to give users access, see
+// Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
+// **Warning:** Oracle recommends that you avoid using any confidential information when you
+// supply string values using the API.
 type PrivateAccessGateway struct {
 
-	// The Private Access Gateway's Oracle ID (OCID) (/Content/General/Concepts/identifiers.htm).
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the PAG.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)  of the compartment to contain the Private Access Gateway.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the PAG.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)  of the VCN to contain the Private Access Gateway.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the PAG belongs to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// The date and time the Private Access Gateway was created, in the format defined by RFC3339.
+	// The date and time the PAG was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The private access gateway's current state.
+	// The PAG's current lifecycle state.
 	LifecycleState PrivateAccessGatewayLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// A user-friendly name. Does not have to be unique.
-	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a

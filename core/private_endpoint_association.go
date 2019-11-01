@@ -16,16 +16,22 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PrivateEndpointAssociation Details of a Private Endpoint using an Endpoint Service
+// PrivateEndpointAssociation A summary of private endpoint information. This object is returned when listing the private
+// endpoints associated with a given endpoint service.
 type PrivateEndpointAssociation struct {
 
-	// The Private Endpoint's Oracle ID (OCID) (/Content/General/Concepts/identifiers.htm).
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private endpoint.
 	Id *string `mandatory:"false" json:"id"`
 
-	// IP attached to the PE VNIC, this represents an access point for the Endpoint Service.
+	// The private IP address (in the customer's VCN) that represents the access point for the
+	// associated endpoint service.
 	PrivateEndpointIp *string `mandatory:"false" json:"privateEndpointIp"`
 
-	// Service's 3 label FQDN representing the Endpoint Service.
+	// The three-label FQDN to use for the private endpoint. The customer VCN's DNS records use
+	// this FQDN.
+	// For important information about how this attribute is used, see the discussion
+	// of DNS and FQDNs in PrivateEndpoint.
+	// Example: `xyz.oraclecloud.com`
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
 
 	ReverseConnectionConfiguration *ReverseConnectionConfiguration `mandatory:"false" json:"reverseConnectionConfiguration"`

@@ -11,7 +11,7 @@ import (
 // GetListingRequest wrapper for the GetListing operation
 type GetListingRequest struct {
 
-	// The unique identifier of the listing.
+	// The unique identifier for the listing.
 	ListingId *string `mandatory:"true" contributesTo:"path" name:"listingId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request,

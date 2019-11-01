@@ -37,7 +37,7 @@
     <healthchecks-api-spec-spec-file>health-checks-api-spec-20180501.cond.yaml</healthchecks-api-spec-spec-file>
     <rest-api-spec-spec-file>source/api.cond.yaml</rest-api-spec-spec-file>
     <oracache-public-api-spec-file>specs/oracache-public-api-20190501.cond.yaml</oracache-public-api-spec-file>
-    <marketplace-consumer-service-spec-spec-file>release/consumer-service-api.yaml</marketplace-consumer-service-spec-spec-file>
+    <marketplace-consumer-service-spec-spec-file>source/consumer-service-api.cond.yaml</marketplace-consumer-service-spec-spec-file>
     <autoscaling-public-api-spec-spec-file>source/autoscaling-api-spec.cond.yaml</autoscaling-public-api-spec-spec-file>
     <usage-proxy-spec-spec-file>api.yaml</usage-proxy-spec-spec-file>
     <announcements-service-spec-spec-file>source/announcement-service.cond.yaml</announcements-service-spec-spec-file>
@@ -3438,12 +3438,12 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.862</version>
+        <version>0.2.878</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.105</version>
+        <version>0.4.106</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -3458,7 +3458,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.296</version>
+        <version>0.1.299</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -3523,7 +3523,7 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.3.439</version>
+        <version>0.3.473</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracache</groupId>
@@ -3533,7 +3533,7 @@
       <dependency>
         <groupId>com.oracle.oci.marketplace</groupId>
         <artifactId>marketplace-consumer-service-spec</artifactId>
-        <version>0.1.267</version>
+        <version>0.1.773</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>

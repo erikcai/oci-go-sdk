@@ -16,10 +16,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// EndpointServiceIpDetails IP information for an Endpoint Service, this will be a part Endpoint Service object that is returned.
+// EndpointServiceIpDetails Information about an IP address (in the service VCN) that handles requests to the endpoint service.
 type EndpointServiceIpDetails struct {
 
-	// The IP of the service that was provided when creating/updating the Endpoint Service.
+	// An IP address (in the service VCN) that handles requests to the endpoint service.
 	ServiceIp *string `mandatory:"true" json:"serviceIp"`
 }
 

@@ -11,10 +11,10 @@ import (
 // GetPrivateEndpointAssociationRequest wrapper for the GetPrivateEndpointAssociation operation
 type GetPrivateEndpointAssociationRequest struct {
 
-	// The Private Access Gateway's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The endpoint service's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	EndpointServiceId *string `mandatory:"true" contributesTo:"path" name:"endpointServiceId"`
 
-	// The Private Endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The private endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	PrivateEndpointId *string `mandatory:"true" contributesTo:"path" name:"privateEndpointId"`
 
 	// Unique identifier for the request.

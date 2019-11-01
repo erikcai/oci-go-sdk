@@ -11,7 +11,7 @@ import (
 // ListPrivateEndpointAssociationsRequest wrapper for the ListPrivateEndpointAssociations operation
 type ListPrivateEndpointAssociationsRequest struct {
 
-	// The Private Access Gateway's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The endpoint service's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	EndpointServiceId *string `mandatory:"true" contributesTo:"path" name:"endpointServiceId"`
 
 	// For list pagination. The maximum number of results per page, or items to return in a paginated

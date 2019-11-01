@@ -11,7 +11,7 @@ import (
 // DeleteEndpointServiceRequest wrapper for the DeleteEndpointService operation
 type DeleteEndpointServiceRequest struct {
 
-	// The Private Access Gateway's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The endpoint service's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	EndpointServiceId *string `mandatory:"true" contributesTo:"path" name:"endpointServiceId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

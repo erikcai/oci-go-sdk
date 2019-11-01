@@ -16,13 +16,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreatePrivateAccessGatewayDetails Details to create a Private Access Gateway.
+// CreatePrivateAccessGatewayDetails Details to create a private access gateway (PAG).
 type CreatePrivateAccessGatewayDetails struct {
 
-	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)  of the compartment to contain the Private Access Gateway.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the PAG.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)  of the VCN to contain the Private Access Gateway.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the PAG belongs to.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
 	// A user-friendly name. Does not have to be unique.

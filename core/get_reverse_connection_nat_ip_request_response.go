@@ -14,7 +14,7 @@ type GetReverseConnectionNatIpRequest struct {
 	// The IP address associated with a customer
 	ReverseConnectionCustomerIp *string `mandatory:"true" contributesTo:"path" name:"reverseConnectionCustomerIp"`
 
-	// The Private Endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The private endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	PrivateEndpointId *string `mandatory:"true" contributesTo:"path" name:"privateEndpointId"`
 
 	// Unique identifier for the request.

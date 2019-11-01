@@ -92,6 +92,7 @@ const defaultOCITestingServiceEndpoint = "http://localhost:8090/SDKTestingServic
 const requestClassTemplate = "com.oracle.bmc.%s.requests.%s"
 const responseClassTemplate = "com.oracle.bmc.%s.responses.%s"
 const mockMode = "mock"
+
 var firstPageOnly = false
 
 func failIfError(t *testing.T, e error) {
@@ -171,7 +172,7 @@ type TestingConfig struct {
 	PassPhrase     string `json:"passPhrase"`
 	KeyFile        string `json:"keyFile"`
 	KeyFileContent string `json:"keyFileContent"`
-	TestMode	   string `json:"testMode"`
+	TestMode       string `json:"testMode"`
 }
 
 func (client OCITestClient) getConfiguration(serviceName, clientName, operationName string) (config TestingConfig, err error) {

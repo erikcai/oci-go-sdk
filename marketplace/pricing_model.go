@@ -12,16 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Resource The model for a package's primary resource.
-type Resource struct {
+// PricingModel The model for pricing.
+type PricingModel struct {
 
-	// The type of the service.
-	ServiceType *string `mandatory:"false" json:"serviceType"`
-
-	// The type of the resource.
-	ResourceType *string `mandatory:"false" json:"resourceType"`
+	// The pricing rate.
+	Rate *float32 `mandatory:"false" json:"rate"`
 }
 
-func (m Resource) String() string {
+func (m PricingModel) String() string {
 	return common.PointerString(m)
 }

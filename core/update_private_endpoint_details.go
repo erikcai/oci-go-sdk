@@ -16,19 +16,26 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdatePrivateEndpointDetails Information that can be updated for a particular Private Endpoint.
+// UpdatePrivateEndpointDetails Information that can be updated for a private endpoint.
 type UpdatePrivateEndpointDetails struct {
 
-	// Name of the Private Endpoint.
+	// A user-friendly name. Does not have to be unique.
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Description of this particular Private Endpoint, provided by the service owner.
+	// A description of this private endpoint.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The network security group OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) that this Private Endpoint is associated with.
+	// A list of the OCIDs of the network security groups that the private endpoint's VNIC belongs to.
+	// For more information about NSGs, see
+	// NetworkSecurityGroup.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
 
-	// Service's 3 label FQDN representing the Endpoint Service. If this value is provided, it will be chosen over the FQDN that the Endpoint Service prescribes.
+	// The three-label FQDN to use for the private endpoint. The customer VCN's DNS records are
+	// updated with this FQDN.
+	// For important information about how this attribute is used, see the discussion
+	// of DNS and FQDNs in PrivateEndpoint.
+	// Example: `xyz.oraclecloud.com`
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a

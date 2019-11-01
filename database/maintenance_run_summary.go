@@ -69,6 +69,7 @@ const (
 	MaintenanceRunSummaryLifecycleStateSucceeded  MaintenanceRunSummaryLifecycleStateEnum = "SUCCEEDED"
 	MaintenanceRunSummaryLifecycleStateSkipped    MaintenanceRunSummaryLifecycleStateEnum = "SKIPPED"
 	MaintenanceRunSummaryLifecycleStateFailed     MaintenanceRunSummaryLifecycleStateEnum = "FAILED"
+	MaintenanceRunSummaryLifecycleStateUpdating   MaintenanceRunSummaryLifecycleStateEnum = "UPDATING"
 )
 
 var mappingMaintenanceRunSummaryLifecycleState = map[string]MaintenanceRunSummaryLifecycleStateEnum{
@@ -77,6 +78,7 @@ var mappingMaintenanceRunSummaryLifecycleState = map[string]MaintenanceRunSummar
 	"SUCCEEDED":   MaintenanceRunSummaryLifecycleStateSucceeded,
 	"SKIPPED":     MaintenanceRunSummaryLifecycleStateSkipped,
 	"FAILED":      MaintenanceRunSummaryLifecycleStateFailed,
+	"UPDATING":    MaintenanceRunSummaryLifecycleStateUpdating,
 }
 
 // GetMaintenanceRunSummaryLifecycleStateEnumValues Enumerates the set of values for MaintenanceRunSummaryLifecycleStateEnum

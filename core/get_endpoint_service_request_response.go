@@ -11,7 +11,7 @@ import (
 // GetEndpointServiceRequest wrapper for the GetEndpointService operation
 type GetEndpointServiceRequest struct {
 
-	// The Private Access Gateway's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The endpoint service's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	EndpointServiceId *string `mandatory:"true" contributesTo:"path" name:"endpointServiceId"`
 
 	// Unique identifier for the request.

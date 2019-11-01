@@ -24,7 +24,7 @@ type Publisher struct {
 	// A description of the publisher.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The year the publisher was founded.
+	// The year the publisher's company or organization was founded.
 	YearFounded *int64 `mandatory:"false" json:"yearFounded"`
 
 	// The publisher's website.
@@ -39,7 +39,6 @@ type Publisher struct {
 	// The address of the publisher's headquarters.
 	HqAddress *string `mandatory:"false" json:"hqAddress"`
 
-	// The URL of the publisher's logo.
 	Logo *UploadData `mandatory:"false" json:"logo"`
 
 	// Reference links.

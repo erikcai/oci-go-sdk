@@ -14,7 +14,7 @@ type ModifyReverseConnectionsRequest struct {
 	// Details for modifying the reverse connections support for the Private Endpoint
 	ModifyReverseConnectionsDetails `contributesTo:"body"`
 
-	// The Private Endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The private endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	PrivateEndpointId *string `mandatory:"true" contributesTo:"path" name:"privateEndpointId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

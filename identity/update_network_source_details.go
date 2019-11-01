@@ -22,7 +22,7 @@ type UpdateNetworkSourceDetails struct {
 	PublicSourceList []string `mandatory:"false" json:"publicSourceList"`
 
 	// A list of allowed VCN ocid/IP range pairs
-	VirtualSourceList []CreateNetworkSourceDetailsVirtualSourceList `mandatory:"false" json:"virtualSourceList"`
+	VirtualSourceList []NetworkSourcesVirtualSourceList `mandatory:"false" json:"virtualSourceList"`
 
 	// A list of OCIservices allowed to make on behalf of requests which may have different source ips.
 	// At this time only the values of all or none are supported.

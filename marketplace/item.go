@@ -18,7 +18,7 @@ type Item struct {
 	// The name of the item.
 	Name *string `mandatory:"false" json:"name"`
 
-	// The code of the item.
+	// A code assigned to the item.
 	Code *string `mandatory:"false" json:"code"`
 }
 

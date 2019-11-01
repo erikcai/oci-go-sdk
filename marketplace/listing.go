@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Listing The model for a listing in Oracle Cloud Infrastructure Marketplace.
+// Listing The model for an Oracle Cloud Infrastructure Marketplace listing.
 type Listing struct {
 
-	// The unique identifier for the listing in the Oracle Cloud Infrastructure Marketplace.
+	// The unique identifier for the listing in Marketplace.
 	Id *string `mandatory:"false" json:"id"`
 
 	// The name of the listing.
@@ -33,7 +33,7 @@ type Listing struct {
 	// A short description of the listing.
 	ShortDescription *string `mandatory:"false" json:"shortDescription"`
 
-	// Usage Information about Listing
+	// Usage information for the listing.
 	UsageInformation *string `mandatory:"false" json:"usageInformation"`
 
 	// A long description of the listing.
@@ -48,16 +48,15 @@ type Listing struct {
 	// The release date of the listing.
 	TimeReleased *common.SDKTime `mandatory:"false" json:"timeReleased"`
 
-	// The release notes for the listing.
+	// Release notes for the listing.
 	ReleaseNotes *string `mandatory:"false" json:"releaseNotes"`
 
-	// Categories that this listing belongs to.
+	// Categories that the listing belongs to.
 	Categories []string `mandatory:"false" json:"categories"`
 
-	// The publisher of the listing.
 	Publisher *Publisher `mandatory:"false" json:"publisher"`
 
-	// The languages supported by the application.
+	// Languages supported by the listing.
 	Languages []Item `mandatory:"false" json:"languages"`
 
 	// Screenshots of the listing.
@@ -66,32 +65,33 @@ type Listing struct {
 	// Videos of the listing.
 	Videos []NamedLink `mandatory:"false" json:"videos"`
 
-	// Contact information to use to get support for the listing.
+	// Contact information to use to get support from the publisher for the listing.
 	SupportContacts []SupportContact `mandatory:"false" json:"supportContacts"`
 
 	// Links to support resources for the listing.
 	SupportLinks []NamedLink `mandatory:"false" json:"supportLinks"`
 
-	// Links to additional documentation resources for the listing.
+	// Links to additional documentation provided by the publisher specifically for the listing.
 	DocumentationLinks []DocumentationLink `mandatory:"false" json:"documentationLinks"`
 
-	// The URL of the listing icon.
 	Icon *UploadData `mandatory:"false" json:"icon"`
 
-	// The URL of the banner.
 	Banner *UploadData `mandatory:"false" json:"banner"`
 
 	// The regions where the listing is available.
 	Regions []Region `mandatory:"false" json:"regions"`
 
-	// The package type of the listing.
+	// The listing's package type.
 	PackageType PackageTypeEnumEnum `mandatory:"false" json:"packageType,omitempty"`
 
 	// The default package version.
 	DefaultPackageVersion *string `mandatory:"false" json:"defaultPackageVersion"`
 
-	// Reference links.
+	// Links to reference material.
 	Links []Link `mandatory:"false" json:"links"`
+
+	// Indicates whether the listing is included in Featured Listings.
+	IsFeatured *bool `mandatory:"false" json:"isFeatured"`
 }
 
 func (m Listing) String() string {
@@ -106,7 +106,8 @@ type ListingPackageTypeEnum = PackageTypeEnumEnum
 // Set of constants representing the allowable values for PackageTypeEnumEnum
 // Deprecated
 const (
-	ListingPackageTypeImage PackageTypeEnumEnum = "IMAGE"
+	ListingPackageTypeOrchestration PackageTypeEnumEnum = "ORCHESTRATION"
+	ListingPackageTypeImage         PackageTypeEnumEnum = "IMAGE"
 )
 
 // GetListingPackageTypeEnumValues Enumerates the set of values for PackageTypeEnumEnum

@@ -16,10 +16,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdatePrivateAccessGatewayDetails Information that can be updated for a particular Private Access Gateway.
+// UpdatePrivateAccessGatewayDetails Information that can be updated for a private access gateway (PAG).
 type UpdatePrivateAccessGatewayDetails struct {
 
-	// Name of the Private Access Gateway.
+	// A user-friendly name. Does not have to be unique.
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
