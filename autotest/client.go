@@ -94,6 +94,7 @@ const responseClassTemplate = "com.oracle.bmc.%s.responses.%s"
 const mockMode = "mock"
 
 var firstPageOnly = false
+var withRetry = true
 
 func failIfError(t *testing.T, e error) {
 	if e != nil {
@@ -205,6 +206,7 @@ func (client OCITestClient) getConfiguration(serviceName, clientName, operationN
 	// Mock mode
 	if config.TestMode == mockMode {
 		firstPageOnly = true
+		withRetry = false
 	}
 
 	client.Log.Printf("Server configuration acquired: %#v\n", config)
@@ -764,11 +766,7 @@ func omitNilFieldsInJSON(data interface{}, value reflect.Value, logger *log.Logg
 		valPtr := value.Elem()
 		return omitNilFieldsInJSON(data, valPtr, logger)
 	case reflect.Interface:
-		if rc, ok := value.Interface().(io.ReadCloser); ok {
-			data, err := ioutil.ReadAll(rc)
-			if err != nil {
-				return nil, fmt.Errorf("can not omit field of type: %s of type ReadCloser", value.Type().String())
-			}
+		if _, ok := value.Interface().(io.ReadCloser); ok {
 			return data, nil
 		}
 		valPtr := value.Elem()
