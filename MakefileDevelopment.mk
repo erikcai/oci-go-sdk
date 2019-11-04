@@ -2,6 +2,7 @@
 PROJECT_NAME=github.com/oracle/oci-go-sdk
 PROJECT_PATH=$(GOPATH)/src/$(PROJECT_NAME)
 REMOVE_AFTER_GENERATE=audit/audit_waiters.go objectstorage/objectstorage_waiters.go
+DOC_SERVER_URL_DEV=https:\/\/docs.cloud.oracle.com
 
 #### Versions
 #### If you are doing a release, do not forget to increment this versions
@@ -86,6 +87,6 @@ clean-pipeline:
 
 # doing build and lint for generated code in self-service pipeline
 lint-pipeline: build-autotest test-sdk-only
-	@echo "Rendering doc server to ${DOC_SERVER_URL}"
-	find . -name \*.go |xargs sed -i 's/{{DOC_SERVER_URL}}/${DOC_SERVER_URL}/g'
-	find . -name \*.go |xargs sed -i 's/https:\/\/docs.us-phoenix-1.oraclecloud.com/${DOC_SERVER_URL}/g'
+	@echo "Rendering doc server to ${DOC_SERVER_URL_DEV}"
+	find . -name \*.go |xargs sed -i 's/{{DOC_SERVER_URL}}/${DOC_SERVER_URL_DEV}/g'
+	find . -name \*.go |xargs sed -i 's/https:\/\/docs.us-phoenix-1.oraclecloud.com/${DOC_SERVER_URL_DEV}/g'
