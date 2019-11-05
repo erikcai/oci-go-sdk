@@ -54,7 +54,9 @@ func TestHealthChecksClientChangeHttpMonitorCompartment(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ChangeHttpMonitorCompartment(context.Background(), req.Request)
@@ -97,7 +99,9 @@ func TestHealthChecksClientChangePingMonitorCompartment(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ChangePingMonitorCompartment(context.Background(), req.Request)
@@ -140,7 +144,9 @@ func TestHealthChecksClientCreateHttpMonitor(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateHttpMonitor(context.Background(), req.Request)
@@ -183,7 +189,9 @@ func TestHealthChecksClientCreateOnDemandHttpProbe(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateOnDemandHttpProbe(context.Background(), req.Request)
@@ -226,7 +234,9 @@ func TestHealthChecksClientCreateOnDemandPingProbe(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateOnDemandPingProbe(context.Background(), req.Request)
@@ -269,7 +279,9 @@ func TestHealthChecksClientCreatePingMonitor(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreatePingMonitor(context.Background(), req.Request)
@@ -312,7 +324,9 @@ func TestHealthChecksClientDeleteHttpMonitor(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteHttpMonitor(context.Background(), req.Request)
@@ -355,7 +369,9 @@ func TestHealthChecksClientDeletePingMonitor(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeletePingMonitor(context.Background(), req.Request)
@@ -398,7 +414,9 @@ func TestHealthChecksClientGetHttpMonitor(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetHttpMonitor(context.Background(), req.Request)
@@ -441,7 +459,9 @@ func TestHealthChecksClientGetPingMonitor(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetPingMonitor(context.Background(), req.Request)
@@ -484,7 +504,9 @@ func TestHealthChecksClientListHealthChecksVantagePoints(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*healthchecks.ListHealthChecksVantagePointsRequest)
@@ -536,7 +558,9 @@ func TestHealthChecksClientListHttpMonitors(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*healthchecks.ListHttpMonitorsRequest)
@@ -588,7 +612,9 @@ func TestHealthChecksClientListHttpProbeResults(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*healthchecks.ListHttpProbeResultsRequest)
@@ -640,7 +666,9 @@ func TestHealthChecksClientListPingMonitors(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*healthchecks.ListPingMonitorsRequest)
@@ -692,7 +720,9 @@ func TestHealthChecksClientListPingProbeResults(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*healthchecks.ListPingProbeResultsRequest)
@@ -744,7 +774,9 @@ func TestHealthChecksClientUpdateHttpMonitor(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateHttpMonitor(context.Background(), req.Request)
@@ -787,7 +819,9 @@ func TestHealthChecksClientUpdatePingMonitor(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdatePingMonitor(context.Background(), req.Request)

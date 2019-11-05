@@ -54,7 +54,9 @@ func TestTransferDeviceClientCreateTransferDevice(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateTransferDevice(context.Background(), req.Request)
@@ -97,7 +99,9 @@ func TestTransferDeviceClientDeleteTransferDevice(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteTransferDevice(context.Background(), req.Request)
@@ -140,7 +144,9 @@ func TestTransferDeviceClientGetTransferDevice(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetTransferDevice(context.Background(), req.Request)
@@ -183,7 +189,9 @@ func TestTransferDeviceClientListTransferDevices(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ListTransferDevices(context.Background(), req.Request)
@@ -226,7 +234,9 @@ func TestTransferDeviceClientUpdateTransferDevice(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateTransferDevice(context.Background(), req.Request)

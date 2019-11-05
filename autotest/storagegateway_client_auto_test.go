@@ -54,7 +54,9 @@ func TestStorageGatewayClientCancelCloudSync(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CancelCloudSync(context.Background(), req.Request)
@@ -97,7 +99,9 @@ func TestStorageGatewayClientChangeStorageGatewayCompartment(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ChangeStorageGatewayCompartment(context.Background(), req.Request)
@@ -140,7 +144,9 @@ func TestStorageGatewayClientConnectFileSystem(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ConnectFileSystem(context.Background(), req.Request)
@@ -183,7 +189,9 @@ func TestStorageGatewayClientCreateCloudSync(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateCloudSync(context.Background(), req.Request)
@@ -226,7 +234,9 @@ func TestStorageGatewayClientCreateFileSystem(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateFileSystem(context.Background(), req.Request)
@@ -269,7 +279,9 @@ func TestStorageGatewayClientCreateStorageGateway(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateStorageGateway(context.Background(), req.Request)
@@ -312,7 +324,9 @@ func TestStorageGatewayClientDeleteCloudSync(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteCloudSync(context.Background(), req.Request)
@@ -355,7 +369,9 @@ func TestStorageGatewayClientDeleteFileSystem(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteFileSystem(context.Background(), req.Request)
@@ -398,7 +414,9 @@ func TestStorageGatewayClientDeleteStorageGateway(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteStorageGateway(context.Background(), req.Request)
@@ -441,7 +459,9 @@ func TestStorageGatewayClientDisconnectFileSystem(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DisconnectFileSystem(context.Background(), req.Request)
@@ -484,7 +504,9 @@ func TestStorageGatewayClientGetCloudSync(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetCloudSync(context.Background(), req.Request)
@@ -527,7 +549,9 @@ func TestStorageGatewayClientGetCloudSyncHealth(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetCloudSyncHealth(context.Background(), req.Request)
@@ -570,7 +594,9 @@ func TestStorageGatewayClientGetFileSystem(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetFileSystem(context.Background(), req.Request)
@@ -613,7 +639,9 @@ func TestStorageGatewayClientGetFileSystemHealth(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetFileSystemHealth(context.Background(), req.Request)
@@ -656,7 +684,9 @@ func TestStorageGatewayClientGetStorageGateway(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetStorageGateway(context.Background(), req.Request)
@@ -699,7 +729,9 @@ func TestStorageGatewayClientGetStorageGatewayHealth(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetStorageGatewayHealth(context.Background(), req.Request)
@@ -742,7 +774,9 @@ func TestStorageGatewayClientListCloudSyncs(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*storagegateway.ListCloudSyncsRequest)
@@ -794,7 +828,9 @@ func TestStorageGatewayClientListFileSystems(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*storagegateway.ListFileSystemsRequest)
@@ -846,7 +882,9 @@ func TestStorageGatewayClientListStorageGateways(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*storagegateway.ListStorageGatewaysRequest)
@@ -898,7 +936,9 @@ func TestStorageGatewayClientReclaimFileSystem(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ReclaimFileSystem(context.Background(), req.Request)
@@ -941,7 +981,9 @@ func TestStorageGatewayClientRefreshFileSystem(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.RefreshFileSystem(context.Background(), req.Request)
@@ -984,7 +1026,9 @@ func TestStorageGatewayClientRunCloudSync(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.RunCloudSync(context.Background(), req.Request)
@@ -1027,7 +1071,9 @@ func TestStorageGatewayClientUpdateCloudSync(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateCloudSync(context.Background(), req.Request)
@@ -1070,7 +1116,9 @@ func TestStorageGatewayClientUpdateFileSystem(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateFileSystem(context.Background(), req.Request)
@@ -1113,7 +1161,9 @@ func TestStorageGatewayClientUpdateStorageGateway(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateStorageGateway(context.Background(), req.Request)

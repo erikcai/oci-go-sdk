@@ -54,7 +54,9 @@ func TestOdaClientChangeOdaInstanceCompartment(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ChangeOdaInstanceCompartment(context.Background(), req.Request)
@@ -97,7 +99,9 @@ func TestOdaClientCreateOdaInstance(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateOdaInstance(context.Background(), req.Request)
@@ -140,7 +144,9 @@ func TestOdaClientDeleteOdaInstance(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteOdaInstance(context.Background(), req.Request)
@@ -183,7 +189,9 @@ func TestOdaClientGetOdaInstance(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetOdaInstance(context.Background(), req.Request)
@@ -226,7 +234,9 @@ func TestOdaClientGetWorkRequest(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetWorkRequest(context.Background(), req.Request)
@@ -269,7 +279,9 @@ func TestOdaClientListOdaInstances(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*oda.ListOdaInstancesRequest)
@@ -321,7 +333,9 @@ func TestOdaClientListWorkRequestErrors(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*oda.ListWorkRequestErrorsRequest)
@@ -373,7 +387,9 @@ func TestOdaClientListWorkRequestLogs(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*oda.ListWorkRequestLogsRequest)
@@ -425,7 +441,9 @@ func TestOdaClientListWorkRequests(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*oda.ListWorkRequestsRequest)
@@ -477,7 +495,9 @@ func TestOdaClientUpdateOdaInstance(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateOdaInstance(context.Background(), req.Request)

@@ -54,7 +54,9 @@ func TestBdsClientAddBlockStorage(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.AddBlockStorage(context.Background(), req.Request)
@@ -97,7 +99,9 @@ func TestBdsClientAddCloudSql(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.AddCloudSql(context.Background(), req.Request)
@@ -140,7 +144,9 @@ func TestBdsClientAddWorkerNodes(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.AddWorkerNodes(context.Background(), req.Request)
@@ -183,7 +189,9 @@ func TestBdsClientChangeBdsInstanceCompartment(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ChangeBdsInstanceCompartment(context.Background(), req.Request)
@@ -226,7 +234,9 @@ func TestBdsClientCreateBdsInstance(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateBdsInstance(context.Background(), req.Request)
@@ -269,7 +279,9 @@ func TestBdsClientDeleteBdsInstance(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteBdsInstance(context.Background(), req.Request)
@@ -312,7 +324,9 @@ func TestBdsClientGetBdsInstance(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetBdsInstance(context.Background(), req.Request)
@@ -355,7 +369,9 @@ func TestBdsClientGetWorkRequest(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetWorkRequest(context.Background(), req.Request)
@@ -398,7 +414,9 @@ func TestBdsClientListBdsInstances(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*bds.ListBdsInstancesRequest)
@@ -450,7 +468,9 @@ func TestBdsClientListWorkRequestErrors(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*bds.ListWorkRequestErrorsRequest)
@@ -502,7 +522,9 @@ func TestBdsClientListWorkRequestLogs(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*bds.ListWorkRequestLogsRequest)
@@ -554,7 +576,9 @@ func TestBdsClientListWorkRequests(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*bds.ListWorkRequestsRequest)
@@ -606,7 +630,9 @@ func TestBdsClientRemoveCloudSql(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.RemoveCloudSql(context.Background(), req.Request)
@@ -649,7 +675,9 @@ func TestBdsClientUpdateBdsInstance(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateBdsInstance(context.Background(), req.Request)

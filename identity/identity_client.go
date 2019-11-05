@@ -136,7 +136,7 @@ func (client IdentityClient) AddUserToGroup(ctx context.Context, request AddUser
 
 // addUserToGroup implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) addUserToGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/userGroupMemberships/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/userGroupMemberships")
 	if err != nil {
 		return nil, err
 	}
@@ -285,7 +285,7 @@ func (client IdentityClient) CreateAuthToken(ctx context.Context, request Create
 
 // createAuthToken implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createAuthToken(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/authTokens/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/authTokens")
 	if err != nil {
 		return nil, err
 	}
@@ -345,7 +345,7 @@ func (client IdentityClient) CreateCompartment(ctx context.Context, request Crea
 
 // createCompartment implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/compartments/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/compartments")
 	if err != nil {
 		return nil, err
 	}
@@ -400,7 +400,7 @@ func (client IdentityClient) CreateCustomerSecretKey(ctx context.Context, reques
 
 // createCustomerSecretKey implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createCustomerSecretKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/customerSecretKeys/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/customerSecretKeys")
 	if err != nil {
 		return nil, err
 	}
@@ -460,7 +460,7 @@ func (client IdentityClient) CreateDynamicGroup(ctx context.Context, request Cre
 
 // createDynamicGroup implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createDynamicGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dynamicGroups/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dynamicGroups")
 	if err != nil {
 		return nil, err
 	}
@@ -522,7 +522,7 @@ func (client IdentityClient) CreateGroup(ctx context.Context, request CreateGrou
 
 // createGroup implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/groups/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/groups")
 	if err != nil {
 		return nil, err
 	}
@@ -582,7 +582,7 @@ func (client IdentityClient) CreateIdentityProvider(ctx context.Context, request
 
 // createIdentityProvider implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createIdentityProvider(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/identityProviders/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/identityProviders")
 	if err != nil {
 		return nil, err
 	}
@@ -630,7 +630,7 @@ func (client IdentityClient) CreateIdpGroupMapping(ctx context.Context, request 
 
 // createIdpGroupMapping implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createIdpGroupMapping(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/identityProviders/{identityProviderId}/groupMappings/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/identityProviders/{identityProviderId}/groupMappings")
 	if err != nil {
 		return nil, err
 	}
@@ -682,7 +682,7 @@ func (client IdentityClient) CreateManagedCompartment(ctx context.Context, reque
 
 // createManagedCompartment implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createManagedCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managedCompartments/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managedCompartments")
 	if err != nil {
 		return nil, err
 	}
@@ -949,7 +949,7 @@ func (client IdentityClient) CreatePolicy(ctx context.Context, request CreatePol
 
 // createPolicy implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createPolicy(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/policies/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/policies")
 	if err != nil {
 		return nil, err
 	}
@@ -1046,7 +1046,7 @@ func (client IdentityClient) CreateSmtpCredential(ctx context.Context, request C
 
 // createSmtpCredential implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createSmtpCredential(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/smtpCredentials/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/smtpCredentials")
 	if err != nil {
 		return nil, err
 	}
@@ -1101,7 +1101,7 @@ func (client IdentityClient) CreateSwiftPassword(ctx context.Context, request Cr
 
 // createSwiftPassword implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createSwiftPassword(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/swiftPasswords/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/swiftPasswords")
 	if err != nil {
 		return nil, err
 	}
@@ -1328,7 +1328,7 @@ func (client IdentityClient) CreateTagRule(ctx context.Context, request CreateTa
 
 // createTagRule implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createTagRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tagRules/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tagRules")
 	if err != nil {
 		return nil, err
 	}
@@ -1403,7 +1403,7 @@ func (client IdentityClient) CreateUser(ctx context.Context, request CreateUserR
 
 // createUser implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) createUser(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users")
 	if err != nil {
 		return nil, err
 	}
@@ -3162,7 +3162,7 @@ func (client IdentityClient) ListApiKeys(ctx context.Context, request ListApiKey
 
 // listApiKeys implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listApiKeys(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/apiKeys/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/apiKeys")
 	if err != nil {
 		return nil, err
 	}
@@ -3205,7 +3205,7 @@ func (client IdentityClient) ListAuthTokens(ctx context.Context, request ListAut
 
 // listAuthTokens implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listAuthTokens(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/authTokens/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/authTokens")
 	if err != nil {
 		return nil, err
 	}
@@ -3251,7 +3251,7 @@ func (client IdentityClient) ListAvailabilityDomains(ctx context.Context, reques
 
 // listAvailabilityDomains implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listAvailabilityDomains(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/availabilityDomains/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/availabilityDomains")
 	if err != nil {
 		return nil, err
 	}
@@ -3306,7 +3306,7 @@ func (client IdentityClient) ListCompartments(ctx context.Context, request ListC
 
 // listCompartments implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listCompartments(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/compartments/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/compartments")
 	if err != nil {
 		return nil, err
 	}
@@ -3392,7 +3392,7 @@ func (client IdentityClient) ListCustomerSecretKeys(ctx context.Context, request
 
 // listCustomerSecretKeys implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listCustomerSecretKeys(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/customerSecretKeys/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/customerSecretKeys")
 	if err != nil {
 		return nil, err
 	}
@@ -3436,7 +3436,7 @@ func (client IdentityClient) ListDynamicGroups(ctx context.Context, request List
 
 // listDynamicGroups implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listDynamicGroups(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dynamicGroups/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dynamicGroups")
 	if err != nil {
 		return nil, err
 	}
@@ -3480,7 +3480,7 @@ func (client IdentityClient) ListFaultDomains(ctx context.Context, request ListF
 
 // listFaultDomains implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listFaultDomains(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/faultDomains/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/faultDomains")
 	if err != nil {
 		return nil, err
 	}
@@ -3524,7 +3524,7 @@ func (client IdentityClient) ListGroups(ctx context.Context, request ListGroupsR
 
 // listGroups implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listGroups(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/groups/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/groups")
 	if err != nil {
 		return nil, err
 	}
@@ -3566,7 +3566,7 @@ func (client IdentityClient) ListIdentityProviderGroups(ctx context.Context, req
 
 // listIdentityProviderGroups implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listIdentityProviderGroups(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/identityProviders/{identityProviderId}/groups/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/identityProviders/{identityProviderId}/groups")
 	if err != nil {
 		return nil, err
 	}
@@ -3627,7 +3627,7 @@ func (client IdentityClient) ListIdentityProviders(ctx context.Context, request 
 
 // listIdentityProviders implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listIdentityProviders(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/identityProviders/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/identityProviders")
 	if err != nil {
 		return nil, err
 	}
@@ -3669,7 +3669,7 @@ func (client IdentityClient) ListIdpGroupMappings(ctx context.Context, request L
 
 // listIdpGroupMappings implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listIdpGroupMappings(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/identityProviders/{identityProviderId}/groupMappings/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/identityProviders/{identityProviderId}/groupMappings")
 	if err != nil {
 		return nil, err
 	}
@@ -3712,7 +3712,7 @@ func (client IdentityClient) ListManagedCompartments(ctx context.Context, reques
 
 // listManagedCompartments implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listManagedCompartments(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managedCompartments/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managedCompartments")
 	if err != nil {
 		return nil, err
 	}
@@ -3886,7 +3886,7 @@ func (client IdentityClient) ListPolicies(ctx context.Context, request ListPolic
 
 // listPolicies implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listPolicies(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/policies/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/policies")
 	if err != nil {
 		return nil, err
 	}
@@ -4007,7 +4007,7 @@ func (client IdentityClient) ListSmtpCredentials(ctx context.Context, request Li
 
 // listSmtpCredentials implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listSmtpCredentials(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/smtpCredentials/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/smtpCredentials")
 	if err != nil {
 		return nil, err
 	}
@@ -4051,7 +4051,7 @@ func (client IdentityClient) ListSwiftPasswords(ctx context.Context, request Lis
 
 // listSwiftPasswords implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listSwiftPasswords(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/swiftPasswords/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/{userId}/swiftPasswords")
 	if err != nil {
 		return nil, err
 	}
@@ -4181,7 +4181,7 @@ func (client IdentityClient) ListTagRules(ctx context.Context, request ListTagRu
 
 // listTagRules implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listTagRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tagRules/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tagRules")
 	if err != nil {
 		return nil, err
 	}
@@ -4307,7 +4307,7 @@ func (client IdentityClient) ListTaggingWorkRequests(ctx context.Context, reques
 
 // listTaggingWorkRequests implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listTaggingWorkRequests(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/taggingWorkRequests/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/taggingWorkRequests")
 	if err != nil {
 		return nil, err
 	}
@@ -4391,7 +4391,7 @@ func (client IdentityClient) ListTenancies(ctx context.Context, request ListTena
 
 // listTenancies implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listTenancies(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tenancies/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tenancies")
 	if err != nil {
 		return nil, err
 	}
@@ -4441,7 +4441,7 @@ func (client IdentityClient) ListUserGroupMemberships(ctx context.Context, reque
 
 // listUserGroupMemberships implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listUserGroupMemberships(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/userGroupMemberships/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/userGroupMemberships")
 	if err != nil {
 		return nil, err
 	}
@@ -4485,7 +4485,7 @@ func (client IdentityClient) ListUsers(ctx context.Context, request ListUsersReq
 
 // listUsers implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listUsers(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/users")
 	if err != nil {
 		return nil, err
 	}
@@ -4527,7 +4527,7 @@ func (client IdentityClient) ListWorkRequests(ctx context.Context, request ListW
 
 // listWorkRequests implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) listWorkRequests(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests")
 	if err != nil {
 		return nil, err
 	}
@@ -4706,7 +4706,7 @@ func (client IdentityClient) ResetIdpScimClient(ctx context.Context, request Res
 
 // resetIdpScimClient implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) resetIdpScimClient(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/identityProviders/{identityProviderId}/actions/resetScimClient/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/identityProviders/{identityProviderId}/actions/resetScimClient")
 	if err != nil {
 		return nil, err
 	}
@@ -5524,7 +5524,7 @@ func (client IdentityClient) UpdateUserCapabilities(ctx context.Context, request
 
 // updateUserCapabilities implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) updateUserCapabilities(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/users/{userId}/capabilities/")
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/users/{userId}/capabilities")
 	if err != nil {
 		return nil, err
 	}
@@ -5566,7 +5566,7 @@ func (client IdentityClient) UpdateUserState(ctx context.Context, request Update
 
 // updateUserState implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) updateUserState(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/users/{userId}/state/")
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/users/{userId}/state")
 	if err != nil {
 		return nil, err
 	}
@@ -5624,7 +5624,7 @@ func (client IdentityClient) UploadApiKey(ctx context.Context, request UploadApi
 
 // uploadApiKey implements the OCIOperation interface (enables retrying operations)
 func (client IdentityClient) uploadApiKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/apiKeys/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/users/{userId}/apiKeys")
 	if err != nil {
 		return nil, err
 	}

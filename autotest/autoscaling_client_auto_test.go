@@ -54,7 +54,9 @@ func TestAutoScalingClientChangeAutoScalingConfigurationCompartment(t *testing.T
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ChangeAutoScalingConfigurationCompartment(context.Background(), req.Request)
@@ -97,7 +99,9 @@ func TestAutoScalingClientCreateAutoScalingConfiguration(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateAutoScalingConfiguration(context.Background(), req.Request)
@@ -151,7 +155,9 @@ func TestAutoScalingClientCreateAutoScalingPolicy(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateAutoScalingPolicy(context.Background(), req.Request)
@@ -194,7 +200,9 @@ func TestAutoScalingClientDeleteAutoScalingConfiguration(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteAutoScalingConfiguration(context.Background(), req.Request)
@@ -237,7 +245,9 @@ func TestAutoScalingClientDeleteAutoScalingPolicy(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteAutoScalingPolicy(context.Background(), req.Request)
@@ -280,7 +290,9 @@ func TestAutoScalingClientGetAutoScalingConfiguration(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetAutoScalingConfiguration(context.Background(), req.Request)
@@ -323,7 +335,9 @@ func TestAutoScalingClientGetAutoScalingPolicy(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetAutoScalingPolicy(context.Background(), req.Request)
@@ -366,7 +380,9 @@ func TestAutoScalingClientListAutoScalingConfigurations(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*autoscaling.ListAutoScalingConfigurationsRequest)
@@ -418,7 +434,9 @@ func TestAutoScalingClientListAutoScalingPolicies(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
 				r := req.(*autoscaling.ListAutoScalingPoliciesRequest)
@@ -470,7 +488,9 @@ func TestAutoScalingClientUpdateAutoScalingConfiguration(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateAutoScalingConfiguration(context.Background(), req.Request)
@@ -524,7 +544,9 @@ func TestAutoScalingClientUpdateAutoScalingPolicy(t *testing.T) {
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateAutoScalingPolicy(context.Background(), req.Request)

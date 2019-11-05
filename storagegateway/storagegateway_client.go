@@ -335,7 +335,7 @@ func (client StorageGatewayClient) CreateStorageGateway(ctx context.Context, req
 
 // createStorageGateway implements the OCIOperation interface (enables retrying operations)
 func (client StorageGatewayClient) createStorageGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/storageGateways/")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/storageGateways")
 	if err != nil {
 		return nil, err
 	}
@@ -881,7 +881,7 @@ func (client StorageGatewayClient) ListStorageGateways(ctx context.Context, requ
 
 // listStorageGateways implements the OCIOperation interface (enables retrying operations)
 func (client StorageGatewayClient) listStorageGateways(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/storageGateways/")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/storageGateways")
 	if err != nil {
 		return nil, err
 	}

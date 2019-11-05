@@ -54,7 +54,9 @@ func TestTransferApplianceEntitlementClientCreateTransferApplianceEntitlement(t 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.CreateTransferApplianceEntitlement(context.Background(), req.Request)
@@ -97,7 +99,9 @@ func TestTransferApplianceEntitlementClientGetTransferApplianceEntitlement(t *te
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetTransferApplianceEntitlement(context.Background(), req.Request)
@@ -140,7 +144,9 @@ func TestTransferApplianceEntitlementClientListTransferApplianceEntitlement(t *t
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			retryPolicy = retryPolicyForTests()
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.ListTransferApplianceEntitlement(context.Background(), req.Request)
