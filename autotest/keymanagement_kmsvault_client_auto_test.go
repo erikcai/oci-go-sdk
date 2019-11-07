@@ -347,28 +347,28 @@ func TestKmsVaultClientListVaults(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
-func TestKmsVaultClientRestoreVault(t *testing.T) {
+func TestKmsVaultClientRestoreVaultFromFile(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("keymanagement", "RestoreVault")
+	enabled, err := testClient.isApiEnabled("keymanagement", "RestoreVaultFromFile")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("RestoreVault is not enabled by the testing service")
+		t.Skip("RestoreVaultFromFile is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("keymanagement", "KmsVault", "RestoreVault", createKmsVaultClientWithProvider)
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsVault", "RestoreVaultFromFile", createKmsVaultClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(keymanagement.KmsVaultClient)
 
-	body, err := testClient.getRequests("keymanagement", "RestoreVault")
+	body, err := testClient.getRequests("keymanagement", "RestoreVaultFromFile")
 	assert.NoError(t, err)
 
-	type RestoreVaultRequestInfo struct {
+	type RestoreVaultFromFileRequestInfo struct {
 		ContainerId string
-		Request     keymanagement.RestoreVaultRequest
+		Request     keymanagement.RestoreVaultFromFileRequest
 	}
 
-	var requests []RestoreVaultRequestInfo
+	var requests []RestoreVaultFromFileRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -383,7 +383,52 @@ func TestKmsVaultClientRestoreVault(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
-			response, err := c.RestoreVault(context.Background(), req.Request)
+			response, err := c.RestoreVaultFromFile(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsVaultClientRestoreVaultFromObjectStore(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "RestoreVaultFromObjectStore")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RestoreVaultFromObjectStore is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsVault", "RestoreVaultFromObjectStore", createKmsVaultClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsVaultClient)
+
+	body, err := testClient.getRequests("keymanagement", "RestoreVaultFromObjectStore")
+	assert.NoError(t, err)
+
+	type RestoreVaultFromObjectStoreRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.RestoreVaultFromObjectStoreRequest
+	}
+
+	var requests []RestoreVaultFromObjectStoreRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.RestoreVaultFromObjectStore(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

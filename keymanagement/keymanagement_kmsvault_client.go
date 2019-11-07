@@ -58,13 +58,18 @@ func (client *KmsVaultClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
-// BackupVault Get an encrypted binary payload that contains only the metadata of the vault so it can be restored.
+// BackupVault Backup an encrypted binary payload that contains only the metadata of the vault so it can be restored.
 func (client KmsVaultClient) BackupVault(ctx context.Context, request BackupVaultRequest) (response BackupVaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
 	ociResponse, err = common.Retry(ctx, request, client.backupVault, policy)
 	if err != nil {
 		if ociResponse != nil {
@@ -82,7 +87,7 @@ func (client KmsVaultClient) BackupVault(ctx context.Context, request BackupVaul
 
 // backupVault implements the OCIOperation interface (enables retrying operations)
 func (client KmsVaultClient) backupVault(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20180608/vaults/{vaultId}/backup")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/vaults/{vaultId}/actions/backup")
 	if err != nil {
 		return nil, err
 	}
@@ -90,6 +95,7 @@ func (client KmsVaultClient) backupVault(ctx context.Context, request common.OCI
 	var response BackupVaultResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
 	response.RawResponse = httpResponse
 	if err != nil {
 		return response, err
@@ -394,9 +400,8 @@ func (client KmsVaultClient) listVaults(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// RestoreVault Restores a vault from an encrypted binary backup of a previous vault. If a vault with the specified OCID already
-// exists, this operation will return a response with a 409 HTTP status code.
-func (client KmsVaultClient) RestoreVault(ctx context.Context, request RestoreVaultRequest) (response RestoreVaultResponse, err error) {
+// RestoreVaultFromFile Restore a vault from an encrypted binary backup.  If the vault with the OCID already exists, this operation will return a response with a 409 HTTP status code.
+func (client KmsVaultClient) RestoreVaultFromFile(ctx context.Context, request RestoreVaultFromFileRequest) (response RestoreVaultFromFileResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -407,29 +412,29 @@ func (client KmsVaultClient) RestoreVault(ctx context.Context, request RestoreVa
 		request.OpcRetryToken = common.String(common.RetryToken())
 	}
 
-	ociResponse, err = common.Retry(ctx, request, client.restoreVault, policy)
+	ociResponse, err = common.Retry(ctx, request, client.restoreVaultFromFile, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = RestoreVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+			response = RestoreVaultFromFileResponse{RawResponse: ociResponse.HTTPResponse()}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(RestoreVaultResponse); ok {
+	if convertedResponse, ok := ociResponse.(RestoreVaultFromFileResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into RestoreVaultResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into RestoreVaultFromFileResponse")
 	}
 	return
 }
 
-// restoreVault implements the OCIOperation interface (enables retrying operations)
-func (client KmsVaultClient) restoreVault(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/vaults/restore")
+// restoreVaultFromFile implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) restoreVaultFromFile(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/vaults/actions/restoreFromFile")
 	if err != nil {
 		return nil, err
 	}
 
-	var response RestoreVaultResponse
+	var response RestoreVaultFromFileResponse
 	var httpResponse *http.Response
 	var customSigner common.HTTPRequestSigner
 	excludeBodySigningPredicate := func(r *http.Request) bool { return false }
@@ -442,6 +447,53 @@ func (client KmsVaultClient) restoreVault(ctx context.Context, request common.OC
 
 	//Execute the request with a custom signer
 	httpResponse, err = client.CallWithDetails(ctx, &httpRequest, common.ClientCallDetails{Signer: customSigner})
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RestoreVaultFromObjectStore Restore a vault from an encrypted binary backup stored in object store.  If the vault with the OCID already exists, this operation will return a response with a 409 HTTP status code.
+func (client KmsVaultClient) RestoreVaultFromObjectStore(ctx context.Context, request RestoreVaultFromObjectStoreRequest) (response RestoreVaultFromObjectStoreResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.restoreVaultFromObjectStore, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = RestoreVaultFromObjectStoreResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RestoreVaultFromObjectStoreResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RestoreVaultFromObjectStoreResponse")
+	}
+	return
+}
+
+// restoreVaultFromObjectStore implements the OCIOperation interface (enables retrying operations)
+func (client KmsVaultClient) restoreVaultFromObjectStore(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/vaults/actions/restoreFromObjectStore")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RestoreVaultFromObjectStoreResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
 	response.RawResponse = httpResponse
 	if err != nil {

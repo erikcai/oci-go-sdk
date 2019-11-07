@@ -428,6 +428,51 @@ func TestLoadBalancerClientCreateRuleSet(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientCreateSSLCipherSuite(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "CreateSSLCipherSuite")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateSSLCipherSuite is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "CreateSSLCipherSuite", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "CreateSSLCipherSuite")
+	assert.NoError(t, err)
+
+	type CreateSSLCipherSuiteRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.CreateSSLCipherSuiteRequest
+	}
+
+	var requests []CreateSSLCipherSuiteRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.CreateSSLCipherSuite(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
 func TestLoadBalancerClientDeleteBackend(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -780,6 +825,51 @@ func TestLoadBalancerClientDeleteRuleSet(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.DeleteRuleSet(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientDeleteSSLCipherSuite(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "DeleteSSLCipherSuite")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteSSLCipherSuite is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "DeleteSSLCipherSuite", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "DeleteSSLCipherSuite")
+	assert.NoError(t, err)
+
+	type DeleteSSLCipherSuiteRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.DeleteSSLCipherSuiteRequest
+	}
+
+	var requests []DeleteSSLCipherSuiteRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.DeleteSSLCipherSuite(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1230,6 +1320,51 @@ func TestLoadBalancerClientGetRuleSet(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.GetRuleSet(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientGetSSLCipherSuite(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "GetSSLCipherSuite")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetSSLCipherSuite is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "GetSSLCipherSuite", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "GetSSLCipherSuite")
+	assert.NoError(t, err)
+
+	type GetSSLCipherSuiteRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.GetSSLCipherSuiteRequest
+	}
+
+	var requests []GetSSLCipherSuiteRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.GetSSLCipherSuite(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1814,6 +1949,51 @@ func TestLoadBalancerClientListRuleSets(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientListSSLCipherSuites(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "ListSSLCipherSuites")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListSSLCipherSuites is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "ListSSLCipherSuites", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "ListSSLCipherSuites")
+	assert.NoError(t, err)
+
+	type ListSSLCipherSuitesRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.ListSSLCipherSuitesRequest
+	}
+
+	var requests []ListSSLCipherSuitesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.ListSSLCipherSuites(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
 func TestLoadBalancerClientListShapes(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2319,6 +2499,51 @@ func TestLoadBalancerClientUpdateRuleSet(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 
 			response, err := c.UpdateRuleSet(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientUpdateSSLCipherSuite(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "UpdateSSLCipherSuite")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateSSLCipherSuite is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "UpdateSSLCipherSuite", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "UpdateSSLCipherSuite")
+	assert.NoError(t, err)
+
+	type UpdateSSLCipherSuiteRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.UpdateSSLCipherSuiteRequest
+	}
+
+	var requests []UpdateSSLCipherSuiteRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+
+			response, err := c.UpdateSSLCipherSuite(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

@@ -9,17 +9,24 @@ import (
 	"net/http"
 )
 
-// RestoreKeyRequest wrapper for the RestoreKey operation
-type RestoreKeyRequest struct {
-
-	// The content length of the body.
-	ContentLength *int64 `mandatory:"true" contributesTo:"header" name:"Content-Length"`
+// RestoreVaultFromFileRequest wrapper for the RestoreVaultFromFile operation
+type RestoreVaultFromFileRequest struct {
 
 	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The encrypted payload to upload to restore the key and vault.
-	RestorePayload io.ReadCloser `mandatory:"true" contributesTo:"body" encoding:"binary"`
+	// The content length of the body.
+	ContentLength *int64 `mandatory:"true" contributesTo:"header" name:"Content-Length"`
+
+	// The encrypted payload to upload to restore the vault.
+	RestoreVaultFromFileDetails io.ReadCloser `mandatory:"true" contributesTo:"body" encoding:"binary"`
+
+	// For optimistic concurrency control. In the PUT or DELETE call for a
+	// resource, set the `if-match` parameter to the value of the etag from a
+	// previous GET or POST response for that resource. The resource will be
+	// updated or deleted only if the etag you provide matches the resource's
+	// current etag value.
+	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// The base-64 encoded MD5 hash of the body, as described in RFC 2616 (https://tools.ietf.org/rfc/rfc2616), section 14.15.
 	// If the Content-MD5 header is present, KMS server will performs an integrity check on the body of the HTTP request by computing the MD5
@@ -40,36 +47,36 @@ type RestoreKeyRequest struct {
 	// creation request may be rejected).
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
-	// The OCID of the key.
-	KeyId *string `mandatory:"false" contributesTo:"query" name:"keyId"`
+	// The OCID of the vault.
+	VaultId *string `mandatory:"false" contributesTo:"query" name:"vaultId"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
 }
 
-func (request RestoreKeyRequest) String() string {
+func (request RestoreVaultFromFileRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request RestoreKeyRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request RestoreVaultFromFileRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request RestoreKeyRequest) RetryPolicy() *common.RetryPolicy {
+func (request RestoreVaultFromFileRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// RestoreKeyResponse wrapper for the RestoreKey operation
-type RestoreKeyResponse struct {
+// RestoreVaultFromFileResponse wrapper for the RestoreVaultFromFile operation
+type RestoreVaultFromFileResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The Key instance
-	Key `presentIn:"body"`
+	// The Vault instance
+	Vault `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -80,13 +87,16 @@ type RestoreKeyResponse struct {
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// Work request id to track progress of the restore operation
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
-func (response RestoreKeyResponse) String() string {
+func (response RestoreVaultFromFileResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response RestoreKeyResponse) HTTPResponse() *http.Response {
+func (response RestoreVaultFromFileResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

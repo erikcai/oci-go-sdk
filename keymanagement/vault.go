@@ -77,6 +77,8 @@ const (
 	VaultLifecycleStateSchedulingDeletion VaultLifecycleStateEnum = "SCHEDULING_DELETION"
 	VaultLifecycleStateCancellingDeletion VaultLifecycleStateEnum = "CANCELLING_DELETION"
 	VaultLifecycleStateUpdating           VaultLifecycleStateEnum = "UPDATING"
+	VaultLifecycleStateBackupInProgress   VaultLifecycleStateEnum = "BACKUP_IN_PROGRESS"
+	VaultLifecycleStateRestoring          VaultLifecycleStateEnum = "RESTORING"
 )
 
 var mappingVaultLifecycleState = map[string]VaultLifecycleStateEnum{
@@ -88,6 +90,8 @@ var mappingVaultLifecycleState = map[string]VaultLifecycleStateEnum{
 	"SCHEDULING_DELETION": VaultLifecycleStateSchedulingDeletion,
 	"CANCELLING_DELETION": VaultLifecycleStateCancellingDeletion,
 	"UPDATING":            VaultLifecycleStateUpdating,
+	"BACKUP_IN_PROGRESS":  VaultLifecycleStateBackupInProgress,
+	"RESTORING":           VaultLifecycleStateRestoring,
 }
 
 // GetVaultLifecycleStateEnumValues Enumerates the set of values for VaultLifecycleStateEnum

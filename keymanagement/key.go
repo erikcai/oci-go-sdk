@@ -78,6 +78,8 @@ const (
 	KeyLifecycleStateSchedulingDeletion KeyLifecycleStateEnum = "SCHEDULING_DELETION"
 	KeyLifecycleStateCancellingDeletion KeyLifecycleStateEnum = "CANCELLING_DELETION"
 	KeyLifecycleStateUpdating           KeyLifecycleStateEnum = "UPDATING"
+	KeyLifecycleStateBackupInProgress   KeyLifecycleStateEnum = "BACKUP_IN_PROGRESS"
+	KeyLifecycleStateRestoring          KeyLifecycleStateEnum = "RESTORING"
 )
 
 var mappingKeyLifecycleState = map[string]KeyLifecycleStateEnum{
@@ -92,6 +94,8 @@ var mappingKeyLifecycleState = map[string]KeyLifecycleStateEnum{
 	"SCHEDULING_DELETION": KeyLifecycleStateSchedulingDeletion,
 	"CANCELLING_DELETION": KeyLifecycleStateCancellingDeletion,
 	"UPDATING":            KeyLifecycleStateUpdating,
+	"BACKUP_IN_PROGRESS":  KeyLifecycleStateBackupInProgress,
+	"RESTORING":           KeyLifecycleStateRestoring,
 }
 
 // GetKeyLifecycleStateEnumValues Enumerates the set of values for KeyLifecycleStateEnum
