@@ -62,6 +62,8 @@ type UpdateInstanceDetails struct {
 	// Example: `VM.Standard1.1`
 	Shape *string `mandatory:"false" json:"shape"`
 
+	ShapeConfig *UpdateInstanceShapeConfigDetails `mandatory:"false" json:"shapeConfig"`
+
 	// The preferred maintenance action for an instance. The default is LIVE_MIGRATE, if live migration is supported.
 	// * `LIVE_MIGRATE` - Run maintenance using a live migration.
 	// * `REBOOT` - Run maintenance using a reboot.

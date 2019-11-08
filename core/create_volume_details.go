@@ -45,7 +45,8 @@ type CreateVolumeDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// The OCID of the KMS key to be used as the master encryption key for the volume.
+	// The OCID of the Key Management key to assign as the master encryption key
+	// for the volume.
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 
 	// The performance tier to use for the volume.

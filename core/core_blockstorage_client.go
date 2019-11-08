@@ -910,7 +910,7 @@ func (client BlockstorageClient) deleteBootVolumeBackup(ctx context.Context, req
 	return response, err
 }
 
-// DeleteBootVolumeKmsKey Removes the KMS key for the specified boot volume.
+// DeleteBootVolumeKmsKey Removes the specified boot volume's assigned Key Management encryption key.
 func (client BlockstorageClient) DeleteBootVolumeKmsKey(ctx context.Context, request DeleteBootVolumeKmsKeyRequest) (response DeleteBootVolumeKmsKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1208,7 +1208,7 @@ func (client BlockstorageClient) deleteVolumeGroupBackup(ctx context.Context, re
 	return response, err
 }
 
-// DeleteVolumeKmsKey Removes the KMS key for the specified volume.
+// DeleteVolumeKmsKey Removes the specified volume's assigned Key Management encryption key.
 func (client BlockstorageClient) DeleteVolumeKmsKey(ctx context.Context, request DeleteVolumeKmsKeyRequest) (response DeleteVolumeKmsKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1334,7 +1334,7 @@ func (client BlockstorageClient) getBootVolumeBackup(ctx context.Context, reques
 	return response, err
 }
 
-// GetBootVolumeKmsKey Gets the KMS key ID for the specified boot volume.
+// GetBootVolumeKmsKey Gets the Key Management encryption key assigned to the specified boot volume.
 func (client BlockstorageClient) GetBootVolumeKmsKey(ctx context.Context, request GetBootVolumeKmsKeyRequest) (response GetBootVolumeKmsKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1672,7 +1672,7 @@ func (client BlockstorageClient) getVolumeGroupBackup(ctx context.Context, reque
 	return response, err
 }
 
-// GetVolumeKmsKey Gets the KMS key ID for the specified volume.
+// GetVolumeKmsKey Gets the Key Management encryption key assigned to the specified volume.
 func (client BlockstorageClient) GetVolumeKmsKey(ctx context.Context, request GetVolumeKmsKeyRequest) (response GetVolumeKmsKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2095,7 +2095,7 @@ func (client BlockstorageClient) updateBootVolumeBackup(ctx context.Context, req
 	return response, err
 }
 
-// UpdateBootVolumeKmsKey Updates the KMS key ID for the specified volume.
+// UpdateBootVolumeKmsKey Updates the specified volume with a new Key Management master encryption key.
 func (client BlockstorageClient) UpdateBootVolumeKmsKey(ctx context.Context, request UpdateBootVolumeKmsKeyRequest) (response UpdateBootVolumeKmsKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2359,7 +2359,7 @@ func (client BlockstorageClient) updateVolumeGroupBackup(ctx context.Context, re
 	return response, err
 }
 
-// UpdateVolumeKmsKey Updates the KMS key ID for the specified volume.
+// UpdateVolumeKmsKey Updates the specified volume with a new Key Management master encryption key.
 func (client BlockstorageClient) UpdateVolumeKmsKey(ctx context.Context, request UpdateVolumeKmsKeyRequest) (response UpdateVolumeKmsKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

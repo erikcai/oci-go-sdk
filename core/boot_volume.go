@@ -83,7 +83,7 @@ type BootVolume struct {
 	// The OCID of the source volume group.
 	VolumeGroupId *string `mandatory:"false" json:"volumeGroupId"`
 
-	// The OCID of the KMS key which is the master encryption key for the boot volume.
+	// The OCID of the Key Management master encryption key assigned to the boot volume.
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 

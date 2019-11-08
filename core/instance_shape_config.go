@@ -16,15 +16,17 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateVolumeKmsKeyDetails The representation of UpdateVolumeKmsKeyDetails
-type UpdateVolumeKmsKeyDetails struct {
+// InstanceShapeConfig The shape configuration for an instance. The shape configuration determines
+// the resources allocated to an instance.
+type InstanceShapeConfig struct {
 
-	// The OCID of the new Key Management key to assign to protect the specified volume.
-	// This key has to be a valid Key Management key, and policies must exist to allow the user and the Block Volume service to access this key.
-	// If you specify the same OCID as the previous key's OCID, the Block Volume service will use it to regenerate a volume encryption key.
-	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
+	// The total number of OCPUs available to the instance.
+	Ocpus *float32 `mandatory:"false" json:"ocpus"`
+
+	// The total amount of memory, in gigabytes, available to the instance.
+	MemoryInGBs *float32 `mandatory:"false" json:"memoryInGBs"`
 }
 
-func (m UpdateVolumeKmsKeyDetails) String() string {
+func (m InstanceShapeConfig) String() string {
 	return common.PointerString(m)
 }

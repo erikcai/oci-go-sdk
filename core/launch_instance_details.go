@@ -151,6 +151,8 @@ type LaunchInstanceDetails struct {
 
 	AgentConfig *LaunchInstanceAgentConfigDetails `mandatory:"false" json:"agentConfig"`
 
+	ShapeConfig *LaunchInstanceShapeConfigDetails `mandatory:"false" json:"shapeConfig"`
+
 	// Details for creating an instance.
 	// Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.
 	SourceDetails InstanceSourceDetails `mandatory:"false" json:"sourceDetails"`
@@ -195,6 +197,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		LaunchOptions                  *LaunchOptions                                      `json:"launchOptions"`
 		Metadata                       map[string]string                                   `json:"metadata"`
 		AgentConfig                    *LaunchInstanceAgentConfigDetails                   `json:"agentConfig"`
+		ShapeConfig                    *LaunchInstanceShapeConfigDetails                   `json:"shapeConfig"`
 		SourceDetails                  instancesourcedetails                               `json:"sourceDetails"`
 		SubnetId                       *string                                             `json:"subnetId"`
 		VolumeAttachments              []attachvolumedetails                               `json:"volumeAttachments"`
@@ -223,6 +226,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.LaunchOptions = model.LaunchOptions
 	m.Metadata = model.Metadata
 	m.AgentConfig = model.AgentConfig
+	m.ShapeConfig = model.ShapeConfig
 	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
 	if e != nil {
 		return

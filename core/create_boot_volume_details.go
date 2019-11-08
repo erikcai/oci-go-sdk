@@ -49,7 +49,8 @@ type CreateBootVolumeDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// The OCID of the KMS key to be used as the master encryption key for the boot volume.
+	// The OCID of the Key Management key to assign as the master encryption key
+	// for the boot volume.
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 
 	// The size of the volume in GBs.
