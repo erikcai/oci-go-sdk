@@ -501,7 +501,7 @@ func (client LoadBalancerClient) createRuleSet(ctx context.Context, request comm
 	return response, err
 }
 
-// CreateSSLCipherSuite Creates a SSL cipher suite.
+// CreateSSLCipherSuite Creates a custom SSL cipher suite.
 func (client LoadBalancerClient) CreateSSLCipherSuite(ctx context.Context, request CreateSSLCipherSuiteRequest) (response CreateSSLCipherSuiteResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1902,7 +1902,7 @@ func (client LoadBalancerClient) listRuleSets(ctx context.Context, request commo
 	return response, err
 }
 
-// ListSSLCipherSuites Lists all SSL cipher suites associated with a given load balancer.
+// ListSSLCipherSuites Lists all SSL cipher suites associated with the specified load balancer.
 func (client LoadBalancerClient) ListSSLCipherSuites(ctx context.Context, request ListSSLCipherSuitesRequest) (response ListSSLCipherSuitesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2448,7 +2448,7 @@ func (client LoadBalancerClient) updateRuleSet(ctx context.Context, request comm
 	return response, err
 }
 
-// UpdateSSLCipherSuite Updates the existing SSL cipher suite on the specified load balancer.
+// UpdateSSLCipherSuite Updates an existing SSL cipher suite for the specified load balancer.
 func (client LoadBalancerClient) UpdateSSLCipherSuite(ctx context.Context, request UpdateSSLCipherSuiteRequest) (response UpdateSSLCipherSuiteResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

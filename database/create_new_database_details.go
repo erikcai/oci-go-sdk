@@ -17,7 +17,7 @@ import (
 // **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type CreateNewDatabaseDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database home.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
 	DbHomeId *string `mandatory:"true" json:"dbHomeId"`
 
 	Database *CreateDatabaseDetails `mandatory:"true" json:"database"`

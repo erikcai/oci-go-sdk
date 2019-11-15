@@ -11,13 +11,14 @@ import (
 // UpdateSSLCipherSuiteRequest wrapper for the UpdateSSLCipherSuite operation
 type UpdateSSLCipherSuiteRequest struct {
 
-	// The configuration details to update a SSL cipher suite.
+	// The configuration details to update an SSL cipher suite.
 	UpdateSslCipherSuiteDetails `contributesTo:"body"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer associated with the SSL cipher suite to be deleted.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated load balancer.
 	LoadBalancerId *string `mandatory:"true" contributesTo:"path" name:"loadBalancerId"`
 
 	// The name of the SSL cipher suite to update.
+	// example: `example_cipher_suite`
 	Name *string `mandatory:"true" contributesTo:"path" name:"name"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about

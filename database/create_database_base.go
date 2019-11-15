@@ -17,7 +17,7 @@ import (
 // **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type CreateDatabaseBase interface {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database home.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
 	GetDbHomeId() *string
 
 	// A valid Oracle Database version. To get a list of supported versions, use the ListDbVersions operation.

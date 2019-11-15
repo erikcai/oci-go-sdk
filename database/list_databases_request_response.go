@@ -14,10 +14,10 @@ type ListDatabasesRequest struct {
 	// The compartment OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// A database home OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// A Database Home OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	DbHomeId *string `mandatory:"false" contributesTo:"query" name:"dbHomeId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a DB system or a VM cluster that you want to filter the database results by.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata DB system that you want to filter the database results by. Applies only to Exadata DB systems.
 	SystemId *string `mandatory:"false" contributesTo:"query" name:"systemId"`
 
 	// The maximum number of items to return per page.

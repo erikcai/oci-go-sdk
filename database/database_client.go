@@ -876,7 +876,7 @@ func (client DatabaseClient) createDataGuardAssociation(ctx context.Context, req
 	return response, err
 }
 
-// CreateDatabase Creates a new database in the specified DB home. The database version if provided, should match the DB home version.
+// CreateDatabase Creates a new database in the specified Database Home. If the database version is provided, it must match the version of the Database Home. Applies only to Exadata DB systems.
 func (client DatabaseClient) CreateDatabase(ctx context.Context, request CreateDatabaseRequest) (response CreateDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -923,7 +923,7 @@ func (client DatabaseClient) createDatabase(ctx context.Context, request common.
 	return response, err
 }
 
-// CreateDbHome Creates a new database home in the specified DB system based on the request parameters you provide.
+// CreateDbHome Creates a new Database Home in the specified DB system based on the request parameters you provide. Applies only to bare metal and Exadata DB systems.
 func (client DatabaseClient) CreateDbHome(ctx context.Context, request CreateDbHomeRequest) (response CreateDbHomeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1385,7 +1385,8 @@ func (client DatabaseClient) deleteBackupDestination(ctx context.Context, reques
 	return response, err
 }
 
-// DeleteDatabase Deletes the database. The data in this database is local to the DB system and will be lost when it is deleted. Oracle recommends that you back up any data in the DB system prior to deleting it.
+// DeleteDatabase Deletes the database. Applies only to Exadata DB systems.
+// The data in this database is local to the DB system and will be lost when the database is deleted. Oracle recommends that you back up any data in the DB system prior to deleting it. You can use the `performFinalBackup` parameter to have the Exadata DB system database backed up before it is deleted.
 func (client DatabaseClient) DeleteDatabase(ctx context.Context, request DeleteDatabaseRequest) (response DeleteDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1427,7 +1428,9 @@ func (client DatabaseClient) deleteDatabase(ctx context.Context, request common.
 	return response, err
 }
 
-// DeleteDbHome Deletes a DB home. The DB home and its database data are local to the DB system, and both will be lost when the DB home is deleted. Oracle recommends that you back up any data in the DB system prior to deleting it. The delete request will be rejected if this is a shared DB home and it contains one or more databases. You must terminate all databases in a shared DB home prior to deleting the home.
+// DeleteDbHome Deletes a Database Home. Applies only to bare metal and Exadata DB systems.
+// The Database Home and its database data are local to the DB system, and on a bare metal DB system, both are lost when you delete the Database Home. Oracle recommends that you back up any data on the DB system before you delete it. You can use the `performFinalBackup` parameter with this operation on bare metal DB systems.
+// On an Exadata DB system, the delete request is rejected if the Database Home is not empty. You must terminate all databases in the Database Home before you delete the home. The `performFinalBackup` parameter is not used with this operation on Exadata DB systems.
 func (client DatabaseClient) DeleteDbHome(ctx context.Context, request DeleteDbHomeRequest) (response DeleteDbHomeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2417,7 +2420,7 @@ func (client DatabaseClient) getDatabase(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// GetDbHome Gets information about the specified database home.
+// GetDbHome Gets information about the specified Database Home.
 func (client DatabaseClient) GetDbHome(ctx context.Context, request GetDbHomeRequest) (response GetDbHomeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3567,7 +3570,7 @@ func (client DatabaseClient) listDataGuardAssociations(ctx context.Context, requ
 	return response, err
 }
 
-// ListDatabases Gets a list of the databases in the specified database home.
+// ListDatabases Gets a list of the databases in the specified Database Home.
 func (client DatabaseClient) ListDatabases(ctx context.Context, request ListDatabasesRequest) (response ListDatabasesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3609,7 +3612,7 @@ func (client DatabaseClient) listDatabases(ctx context.Context, request common.O
 	return response, err
 }
 
-// ListDbHomePatchHistoryEntries Gets history of the actions taken for patches for the specified database home.
+// ListDbHomePatchHistoryEntries Gets history of the actions taken for patches for the specified Database Home.
 func (client DatabaseClient) ListDbHomePatchHistoryEntries(ctx context.Context, request ListDbHomePatchHistoryEntriesRequest) (response ListDbHomePatchHistoryEntriesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3651,7 +3654,7 @@ func (client DatabaseClient) listDbHomePatchHistoryEntries(ctx context.Context, 
 	return response, err
 }
 
-// ListDbHomePatches Lists patches applicable to the requested database home.
+// ListDbHomePatches Lists patches applicable to the requested Database Home.
 func (client DatabaseClient) ListDbHomePatches(ctx context.Context, request ListDbHomePatchesRequest) (response ListDbHomePatchesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3693,7 +3696,7 @@ func (client DatabaseClient) listDbHomePatches(ctx context.Context, request comm
 	return response, err
 }
 
-// ListDbHomes Gets a list of database homes in the specified DB system and compartment. A database home is a directory where Oracle Database software is installed.
+// ListDbHomes Gets a list of Database Homes in the specified DB system and compartment. A Database Home is a directory where Oracle Database software is installed.
 func (client DatabaseClient) ListDbHomes(ctx context.Context, request ListDbHomesRequest) (response ListDbHomesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

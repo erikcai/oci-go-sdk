@@ -63,11 +63,13 @@ type TsigKeySummaryLifecycleStateEnum string
 
 // Set of constants representing the allowable values for TsigKeySummaryLifecycleStateEnum
 const (
-	TsigKeySummaryLifecycleStateActive TsigKeySummaryLifecycleStateEnum = "ACTIVE"
+	TsigKeySummaryLifecycleStateActive   TsigKeySummaryLifecycleStateEnum = "ACTIVE"
+	TsigKeySummaryLifecycleStateCreating TsigKeySummaryLifecycleStateEnum = "CREATING"
 )
 
 var mappingTsigKeySummaryLifecycleState = map[string]TsigKeySummaryLifecycleStateEnum{
-	"ACTIVE": TsigKeySummaryLifecycleStateActive,
+	"ACTIVE":   TsigKeySummaryLifecycleStateActive,
+	"CREATING": TsigKeySummaryLifecycleStateCreating,
 }
 
 // GetTsigKeySummaryLifecycleStateEnumValues Enumerates the set of values for TsigKeySummaryLifecycleStateEnum

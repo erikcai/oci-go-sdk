@@ -36,7 +36,7 @@ type Database struct {
 	// The national character set for the database.
 	NcharacterSet *string `mandatory:"false" json:"ncharacterSet"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database home.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
 	DbHomeId *string `mandatory:"false" json:"dbHomeId"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.

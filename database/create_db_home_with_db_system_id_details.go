@@ -22,7 +22,7 @@ type CreateDbHomeWithDbSystemIdDetails struct {
 	// A valid Oracle Database version. To get a list of supported versions, use the ListDbVersions operation.
 	DbVersion *string `mandatory:"true" json:"dbVersion"`
 
-	// The user-provided name of the database home.
+	// The user-provided name of the Database Home.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
