@@ -58,7 +58,6 @@ func TestLumLoggingClientChangeLogGroupCompartment(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.ChangeLogGroupCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -103,7 +102,6 @@ func TestLumLoggingClientChangeLogLogGroup(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.ChangeLogLogGroup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -148,7 +146,6 @@ func TestLumLoggingClientCreateLog(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CreateLog(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -193,7 +190,6 @@ func TestLumLoggingClientCreateLogGroup(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CreateLogGroup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -238,7 +234,6 @@ func TestLumLoggingClientDeleteLog(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DeleteLog(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -283,7 +278,6 @@ func TestLumLoggingClientDeleteLogGroup(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DeleteLogGroup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -328,7 +322,6 @@ func TestLumLoggingClientGetLog(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetLog(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -373,7 +366,6 @@ func TestLumLoggingClientGetLogGroup(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetLogGroup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -526,7 +518,6 @@ func TestLumLoggingClientUpdateLog(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.UpdateLog(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -571,7 +562,6 @@ func TestLumLoggingClientUpdateLogGroup(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.UpdateLogGroup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)

@@ -58,7 +58,6 @@ func TestStorageGatewayClientCancelCloudSync(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CancelCloudSync(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -103,7 +102,6 @@ func TestStorageGatewayClientChangeStorageGatewayCompartment(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.ChangeStorageGatewayCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -148,7 +146,6 @@ func TestStorageGatewayClientConnectFileSystem(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.ConnectFileSystem(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -193,7 +190,6 @@ func TestStorageGatewayClientCreateCloudSync(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CreateCloudSync(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -238,7 +234,6 @@ func TestStorageGatewayClientCreateFileSystem(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CreateFileSystem(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -283,7 +278,6 @@ func TestStorageGatewayClientCreateStorageGateway(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CreateStorageGateway(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -328,7 +322,6 @@ func TestStorageGatewayClientDeleteCloudSync(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DeleteCloudSync(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -373,7 +366,6 @@ func TestStorageGatewayClientDeleteFileSystem(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DeleteFileSystem(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -418,7 +410,6 @@ func TestStorageGatewayClientDeleteStorageGateway(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DeleteStorageGateway(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -463,7 +454,6 @@ func TestStorageGatewayClientDisconnectFileSystem(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DisconnectFileSystem(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -508,7 +498,6 @@ func TestStorageGatewayClientGetCloudSync(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetCloudSync(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -553,7 +542,6 @@ func TestStorageGatewayClientGetCloudSyncHealth(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetCloudSyncHealth(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -598,7 +586,6 @@ func TestStorageGatewayClientGetFileSystem(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetFileSystem(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -643,7 +630,6 @@ func TestStorageGatewayClientGetFileSystemHealth(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetFileSystemHealth(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -688,7 +674,6 @@ func TestStorageGatewayClientGetStorageGateway(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetStorageGateway(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -733,7 +718,6 @@ func TestStorageGatewayClientGetStorageGatewayHealth(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetStorageGatewayHealth(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -940,7 +924,6 @@ func TestStorageGatewayClientReclaimFileSystem(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.ReclaimFileSystem(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -985,7 +968,6 @@ func TestStorageGatewayClientRefreshFileSystem(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.RefreshFileSystem(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1030,7 +1012,6 @@ func TestStorageGatewayClientRunCloudSync(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.RunCloudSync(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1075,7 +1056,6 @@ func TestStorageGatewayClientUpdateCloudSync(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.UpdateCloudSync(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1120,7 +1100,6 @@ func TestStorageGatewayClientUpdateFileSystem(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.UpdateFileSystem(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1165,7 +1144,6 @@ func TestStorageGatewayClientUpdateStorageGateway(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.UpdateStorageGateway(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)

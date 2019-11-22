@@ -52,7 +52,6 @@ func TestKmsCryptoClientDecrypt(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.Decrypt(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -97,7 +96,6 @@ func TestKmsCryptoClientEncrypt(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.Encrypt(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -142,7 +140,6 @@ func TestKmsCryptoClientGenerateDataEncryptionKey(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GenerateDataEncryptionKey(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)

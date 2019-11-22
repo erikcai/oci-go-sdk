@@ -58,7 +58,6 @@ func TestTransferApplianceEntitlementClientCreateTransferApplianceEntitlement(t 
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CreateTransferApplianceEntitlement(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -103,7 +102,6 @@ func TestTransferApplianceEntitlementClientGetTransferApplianceEntitlement(t *te
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetTransferApplianceEntitlement(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -148,7 +146,6 @@ func TestTransferApplianceEntitlementClientListTransferApplianceEntitlement(t *t
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.ListTransferApplianceEntitlement(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)

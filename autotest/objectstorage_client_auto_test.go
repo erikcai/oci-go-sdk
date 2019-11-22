@@ -58,7 +58,6 @@ func TestObjectStorageClientAbortMultipartUpload(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.AbortMultipartUpload(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -103,7 +102,6 @@ func TestObjectStorageClientCancelWorkRequest(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CancelWorkRequest(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -148,7 +146,6 @@ func TestObjectStorageClientCommitMultipartUpload(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CommitMultipartUpload(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -193,7 +190,6 @@ func TestObjectStorageClientCopyObject(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CopyObject(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -238,7 +234,6 @@ func TestObjectStorageClientCopyPart(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CopyPart(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -283,7 +278,6 @@ func TestObjectStorageClientCreateBucket(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CreateBucket(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -328,7 +322,6 @@ func TestObjectStorageClientCreateMultipartUpload(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CreateMultipartUpload(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -373,7 +366,6 @@ func TestObjectStorageClientCreatePreauthenticatedRequest(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.CreatePreauthenticatedRequest(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -418,7 +410,6 @@ func TestObjectStorageClientDeleteBucket(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DeleteBucket(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -463,7 +454,6 @@ func TestObjectStorageClientDeleteObject(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DeleteObject(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -508,7 +498,6 @@ func TestObjectStorageClientDeleteObjectLifecyclePolicy(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DeleteObjectLifecyclePolicy(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -553,7 +542,6 @@ func TestObjectStorageClientDeletePreauthenticatedRequest(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.DeletePreauthenticatedRequest(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -598,7 +586,6 @@ func TestObjectStorageClientGetBucket(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetBucket(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -643,7 +630,6 @@ func TestObjectStorageClientGetBucketOptions(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetBucketOptions(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -688,7 +674,6 @@ func TestObjectStorageClientGetNamespace(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetNamespace(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -733,7 +718,6 @@ func TestObjectStorageClientGetNamespaceMetadata(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetNamespaceMetadata(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -778,7 +762,6 @@ func TestObjectStorageClientGetObject(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetObject(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -823,7 +806,6 @@ func TestObjectStorageClientGetObjectLifecyclePolicy(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetObjectLifecyclePolicy(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -868,7 +850,6 @@ func TestObjectStorageClientGetPreauthenticatedRequest(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetPreauthenticatedRequest(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -913,7 +894,6 @@ func TestObjectStorageClientGetWorkRequest(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.GetWorkRequest(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -958,7 +938,6 @@ func TestObjectStorageClientHeadBucket(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.HeadBucket(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1003,7 +982,6 @@ func TestObjectStorageClientHeadObject(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.HeadObject(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1210,7 +1188,6 @@ func TestObjectStorageClientListObjects(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.ListObjects(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1471,7 +1448,6 @@ func TestObjectStorageClientMergeObjectMetadata(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.MergeObjectMetadata(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1516,7 +1492,6 @@ func TestObjectStorageClientPutObject(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.PutObject(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1561,7 +1536,6 @@ func TestObjectStorageClientPutObjectLifecyclePolicy(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.PutObjectLifecyclePolicy(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1606,7 +1580,6 @@ func TestObjectStorageClientReencryptBucket(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.ReencryptBucket(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1651,7 +1624,6 @@ func TestObjectStorageClientRenameObject(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.RenameObject(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1696,7 +1668,6 @@ func TestObjectStorageClientReplaceObjectMetadata(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.ReplaceObjectMetadata(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1741,7 +1712,6 @@ func TestObjectStorageClientRestoreObjects(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.RestoreObjects(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1786,7 +1756,6 @@ func TestObjectStorageClientUpdateBucket(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.UpdateBucket(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1831,7 +1800,6 @@ func TestObjectStorageClientUpdateBucketOptions(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.UpdateBucketOptions(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1876,7 +1844,6 @@ func TestObjectStorageClientUpdateNamespaceMetadata(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.UpdateNamespaceMetadata(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
@@ -1921,7 +1888,6 @@ func TestObjectStorageClientUploadPart(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-
 			response, err := c.UploadPart(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
