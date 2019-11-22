@@ -37,7 +37,6 @@ type ObjectLifecycleRule struct {
 	// A Boolean that determines whether this rule is currently enabled.
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
-	// A filter limiting object names that the rule will apply to.
 	ObjectNameFilter *ObjectNameFilter `mandatory:"false" json:"objectNameFilter"`
 }
 

@@ -34,7 +34,7 @@ type MultipartUpload struct {
 	// The unique identifier for the in-progress multipart upload.
 	UploadId *string `mandatory:"true" json:"uploadId"`
 
-	// The date and time the upload was created, as described in RFC 2616 (https://tools.ietf.org/rfc/rfc2616), section 14.29.
+	// The date and time the upload was created, as described in RFC 2616 (https://tools.ietf.org/html/rfc2616#section-14.29).
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 }
 

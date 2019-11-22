@@ -17,6 +17,9 @@ type UpdateMaintenanceRunDetails struct {
 
 	// If set to false, skips the Maintenance Run.
 	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
+
+	// The scheduled date and time of the Maintenance Run to update.
+	TimeScheduled *common.SDKTime `mandatory:"false" json:"timeScheduled"`
 }
 
 func (m UpdateMaintenanceRunDetails) String() string {

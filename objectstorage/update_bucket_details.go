@@ -57,9 +57,10 @@ type UpdateBucketDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// The OCID of the Key Management master encryption key to associate with the specified bucket. If this value
-	// is empty, the Update operation will remove the associated key, if there is one, from the bucket. (The bucket
-	// will continue to be encrypted, but with an encryption key managed by Oracle.)
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Key Management master encryption key to associate
+	// with the specified bucket. If this value is empty, the Update operation will remove the associated key, if
+	// there is one, from the bucket. (The bucket will continue to be encrypted, but with an encryption key managed
+	// by Oracle.)
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 

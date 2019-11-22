@@ -394,6 +394,48 @@ func (client ObjectStorageClient) createPreauthenticatedRequest(ctx context.Cont
 	return response, err
 }
 
+// CreateReplicationPolicy Creates a cross region replication policy for the specified bucket.
+func (client ObjectStorageClient) CreateReplicationPolicy(ctx context.Context, request CreateReplicationPolicyRequest) (response CreateReplicationPolicyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.createReplicationPolicy, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateReplicationPolicyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateReplicationPolicyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateReplicationPolicyResponse")
+	}
+	return
+}
+
+// createReplicationPolicy implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) createReplicationPolicy(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/n/{namespaceName}/b/{bucketName}/replicationPolicies")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateReplicationPolicyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteBucket Deletes a bucket if the bucket is already empty. If the bucket is not empty, use
 // DeleteObject first. In addition,
 // you cannot delete a bucket that has a multipart upload in progress or a pre-authenticated
@@ -553,6 +595,48 @@ func (client ObjectStorageClient) deletePreauthenticatedRequest(ctx context.Cont
 	}
 
 	var response DeletePreauthenticatedRequestResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteReplicationPolicy Deletes the cross region replication policy.
+func (client ObjectStorageClient) DeleteReplicationPolicy(ctx context.Context, request DeleteReplicationPolicyRequest) (response DeleteReplicationPolicyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteReplicationPolicy, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteReplicationPolicyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteReplicationPolicyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteReplicationPolicyResponse")
+	}
+	return
+}
+
+// deleteReplicationPolicy implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) deleteReplicationPolicy(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/n/{namespaceName}/b/{bucketName}/replicationPolicies/{replicationId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteReplicationPolicyResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -857,6 +941,48 @@ func (client ObjectStorageClient) getPreauthenticatedRequest(ctx context.Context
 	}
 
 	var response GetPreauthenticatedRequestResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetReplicationPolicy Gets the cross region replication policy.
+func (client ObjectStorageClient) GetReplicationPolicy(ctx context.Context, request GetReplicationPolicyRequest) (response GetReplicationPolicyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getReplicationPolicy, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetReplicationPolicyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetReplicationPolicyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetReplicationPolicyResponse")
+	}
+	return
+}
+
+// getReplicationPolicy implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) getReplicationPolicy(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/n/{namespaceName}/b/{bucketName}/replicationPolicies/{replicationId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetReplicationPolicyResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1212,6 +1338,90 @@ func (client ObjectStorageClient) listPreauthenticatedRequests(ctx context.Conte
 	return response, err
 }
 
+// ListReplicationPolicies List the cross region replication policies of the bucket.
+func (client ObjectStorageClient) ListReplicationPolicies(ctx context.Context, request ListReplicationPoliciesRequest) (response ListReplicationPoliciesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listReplicationPolicies, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListReplicationPoliciesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListReplicationPoliciesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListReplicationPoliciesResponse")
+	}
+	return
+}
+
+// listReplicationPolicies implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) listReplicationPolicies(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/n/{namespaceName}/b/{bucketName}/replicationPolicies")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListReplicationPoliciesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListReplicationSources List the cross region replication sources of a destination bucket.
+func (client ObjectStorageClient) ListReplicationSources(ctx context.Context, request ListReplicationSourcesRequest) (response ListReplicationSourcesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listReplicationSources, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListReplicationSourcesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListReplicationSourcesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListReplicationSourcesResponse")
+	}
+	return
+}
+
+// listReplicationSources implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) listReplicationSources(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/n/{namespaceName}/b/{bucketName}/replicationSources")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListReplicationSourcesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListWorkRequestErrors Lists the errors of the work request with the given ID.
 func (client ObjectStorageClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1338,6 +1548,49 @@ func (client ObjectStorageClient) listWorkRequests(ctx context.Context, request 
 	return response, err
 }
 
+// MakeBucketWritable This is an idempotent API to force break replication rule, from destination bucket. Removes replication options
+// associated with a bucket. This will allow user to make changes to bucket contents.
+func (client ObjectStorageClient) MakeBucketWritable(ctx context.Context, request MakeBucketWritableRequest) (response MakeBucketWritableResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.makeBucketWritable, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = MakeBucketWritableResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(MakeBucketWritableResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into MakeBucketWritableResponse")
+	}
+	return
+}
+
+// makeBucketWritable implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) makeBucketWritable(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/n/{namespaceName}/b/{bucketName}/actions/makeBucketWritable")
+	if err != nil {
+		return nil, err
+	}
+
+	var response MakeBucketWritableResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // MergeObjectMetadata Merges an Object's user-defined metadata with existing metadata.
 func (client ObjectStorageClient) MergeObjectMetadata(ctx context.Context, request MergeObjectMetadataRequest) (response MergeObjectMetadataResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1380,7 +1633,7 @@ func (client ObjectStorageClient) mergeObjectMetadata(ctx context.Context, reque
 	return response, err
 }
 
-// PutObject Creates a new object or overwrites an existing one. See Special Instructions for Object Storage
+// PutObject Creates a new object or overwrites an existing object with the same name. See Special Instructions for Object Storage
 // PUT (https://docs.cloud.oracle.com/Content/API/Concepts/signingrequests.htm#ObjectStoragePut) for request signature requirements.
 func (client ObjectStorageClient) PutObject(ctx context.Context, request PutObjectRequest) (response PutObjectResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1571,7 +1824,7 @@ func (client ObjectStorageClient) renameObject(ctx context.Context, request comm
 	return response, err
 }
 
-// ReplaceObjectMetadata Overwrites an Object's user-defined metadata.
+// ReplaceObjectMetadata Overwrites an object's user-defined metadata.
 func (client ObjectStorageClient) ReplaceObjectMetadata(ctx context.Context, request ReplaceObjectMetadataRequest) (response ReplaceObjectMetadataResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

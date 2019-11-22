@@ -27,10 +27,10 @@ type BucketSummary struct {
 	// The compartment ID in which the bucket is authorized.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID of the user who created the bucket.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the user who created the bucket.
 	CreatedBy *string `mandatory:"true" json:"createdBy"`
 
-	// The date and time the bucket was created, as described in RFC 2616 (https://tools.ietf.org/rfc/rfc2616), section 14.29.
+	// The date and time the bucket was created, as described in RFC 2616 (https://tools.ietf.org/html/rfc2616#section-14.29).
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	// The entity tag (ETag) for the bucket.

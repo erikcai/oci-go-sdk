@@ -8,8 +8,8 @@ import (
 	"net/http"
 )
 
-// DeleteObjectRequest wrapper for the DeleteObject operation
-type DeleteObjectRequest struct {
+// MakeBucketWritableRequest wrapper for the MakeBucketWritable operation
+type MakeBucketWritableRequest struct {
 
 	// The Object Storage namespace used for the request.
 	NamespaceName *string `mandatory:"true" contributesTo:"path" name:"namespaceName"`
@@ -17,14 +17,6 @@ type DeleteObjectRequest struct {
 	// The name of the bucket. Avoid entering confidential information.
 	// Example: `my-new-bucket1`
 	BucketName *string `mandatory:"true" contributesTo:"path" name:"bucketName"`
-
-	// The name of the object. Avoid entering confidential information.
-	// Example: `test/object1.log`
-	ObjectName *string `mandatory:"true" contributesTo:"path" name:"objectName"`
-
-	// The entity tag (ETag) to match. For creating and committing a multipart upload to an object, this is the entity tag of the target object.
-	// For uploading a part, this is the entity tag of the target part.
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// The client request ID for tracing.
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
@@ -34,22 +26,22 @@ type DeleteObjectRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request DeleteObjectRequest) String() string {
+func (request MakeBucketWritableRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request DeleteObjectRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request MakeBucketWritableRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request DeleteObjectRequest) RetryPolicy() *common.RetryPolicy {
+func (request MakeBucketWritableRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// DeleteObjectResponse wrapper for the DeleteObject operation
-type DeleteObjectResponse struct {
+// MakeBucketWritableResponse wrapper for the MakeBucketWritable operation
+type MakeBucketWritableResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
@@ -60,16 +52,13 @@ type DeleteObjectResponse struct {
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular
 	// request, provide this request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
-	// The time the object was deleted, as described in RFC 2616 (https://tools.ietf.org/html/rfc2616#section-14.29).
-	LastModified *common.SDKTime `presentIn:"header" name:"last-modified"`
 }
 
-func (response DeleteObjectResponse) String() string {
+func (response MakeBucketWritableResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response DeleteObjectResponse) HTTPResponse() *http.Response {
+func (response MakeBucketWritableResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

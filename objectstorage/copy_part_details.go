@@ -27,7 +27,7 @@ type CopyPartDetails struct {
 	SourceObject *string `mandatory:"true" json:"sourceObject"`
 
 	// Optional byte range to copy. Format is similar to standard range header as described in
-	// RFC 7233 (https://tools.ietf.org/rfc/rfc7233), section 2.1. Note that only a single range of bytes
+	// RFC 7233 (https://tools.ietf.org/html/rfc7233#section-2.1). Note that only a single range of bytes
 	// is supported.
 	Range *string `mandatory:"false" json:"range"`
 }

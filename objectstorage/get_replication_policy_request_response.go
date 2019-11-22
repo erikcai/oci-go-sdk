@@ -8,8 +8,8 @@ import (
 	"net/http"
 )
 
-// RenameObjectRequest wrapper for the RenameObject operation
-type RenameObjectRequest struct {
+// GetReplicationPolicyRequest wrapper for the GetReplicationPolicy operation
+type GetReplicationPolicyRequest struct {
 
 	// The Object Storage namespace used for the request.
 	NamespaceName *string `mandatory:"true" contributesTo:"path" name:"namespaceName"`
@@ -18,8 +18,8 @@ type RenameObjectRequest struct {
 	// Example: `my-new-bucket1`
 	BucketName *string `mandatory:"true" contributesTo:"path" name:"bucketName"`
 
-	// The sourceName and newName of rename operation.
-	RenameObjectDetails `contributesTo:"body"`
+	// The ID of the replication policy.
+	ReplicationId *string `mandatory:"true" contributesTo:"path" name:"replicationId"`
 
 	// The client request ID for tracing.
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
@@ -29,45 +29,42 @@ type RenameObjectRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request RenameObjectRequest) String() string {
+func (request GetReplicationPolicyRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request RenameObjectRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetReplicationPolicyRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request RenameObjectRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetReplicationPolicyRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// RenameObjectResponse wrapper for the RenameObject operation
-type RenameObjectResponse struct {
+// GetReplicationPolicyResponse wrapper for the GetReplicationPolicy operation
+type GetReplicationPolicyResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Echoes back the value passed in the opc-client-request-id header, for use by clients when debugging.
-	OpcClientRequestId *string `presentIn:"header" name:"opc-client-request-id"`
+	// The ReplicationPolicy instance
+	ReplicationPolicy `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular
-	// request, provide this request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request,
+	// provide this request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// The entity tag (ETag) for the object.
-	ETag *string `presentIn:"header" name:"etag"`
-
-	// The time the object was modified, as described in RFC 2616 (https://tools.ietf.org/html/rfc2616#section-14.29).
-	LastModified *common.SDKTime `presentIn:"header" name:"last-modified"`
+	// Echoes back the value passed in the opc-client-request-id header, for use by clients when debugging.
+	OpcClientRequestId *string `presentIn:"header" name:"opc-client-request-id"`
 }
 
-func (response RenameObjectResponse) String() string {
+func (response GetReplicationPolicyResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response RenameObjectResponse) HTTPResponse() *http.Response {
+func (response GetReplicationPolicyResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

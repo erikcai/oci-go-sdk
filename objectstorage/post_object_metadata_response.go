@@ -18,7 +18,7 @@ type PostObjectMetadataResponse struct {
 	// The new entity tag (ETag) for the object.
 	ETag *string `mandatory:"true" json:"ETag"`
 
-	// The time the object was modified, as described in RFC 2616 (https://tools.ietf.org/rfc/rfc2616), section 14.29.
+	// The time the object was modified, as described in RFC 2616 (https://tools.ietf.org/html/rfc2616#section-14.29).
 	TimeModified *common.SDKTime `mandatory:"true" json:"timeModified"`
 }
 

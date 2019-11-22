@@ -27,7 +27,7 @@ type ObjectSummary struct {
 	// Base64-encoded MD5 hash of the object data.
 	Md5 *string `mandatory:"false" json:"md5"`
 
-	// The date and time the object was created, as described in RFC 2616 (https://tools.ietf.org/rfc/rfc2616), section 14.29.
+	// The date and time the object was created, as described in RFC 2616 (https://tools.ietf.org/html/rfc2616#section-14.29).
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// The current entity tag (ETag) for the object.
