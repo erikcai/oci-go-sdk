@@ -48,14 +48,19 @@ func (m *ApiSpecificationRoute) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
+	var nn interface{}
 	m.Methods = make([]ApiSpecificationRouteMethodsEnum, len(model.Methods))
 	for i, n := range model.Methods {
 		m.Methods[i] = n
 	}
+
 	m.RequestPolicies = model.RequestPolicies
+
 	m.LoggingPolicies = model.LoggingPolicies
+
 	m.Path = model.Path
-	nn, e := model.Backend.UnmarshalPolymorphicJSON(model.Backend.JsonData)
+
+	nn, e = model.Backend.UnmarshalPolymorphicJSON(model.Backend.JsonData)
 	if e != nil {
 		return
 	}

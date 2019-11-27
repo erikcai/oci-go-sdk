@@ -16,13 +16,13 @@ import (
 type Archiver struct {
 
 	// Time when the resource was created.
-	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
+	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	// The state of the stream archiver.
-	LifecycleState ArchiverLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState ArchiverLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The name of the bucket.
-	BucketName *string `mandatory:"false" json:"bucketName"`
+	BucketName *string `mandatory:"true" json:"bucketName"`
 
 	// The flag to create a new bucket or use existing one.
 	UseExistingBucket *bool `mandatory:"false" json:"useExistingBucket"`

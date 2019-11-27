@@ -88,14 +88,22 @@ func (m *NodePoolSummary) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
+	var nn interface{}
 	m.Id = model.Id
+
 	m.CompartmentId = model.CompartmentId
+
 	m.ClusterId = model.ClusterId
+
 	m.Name = model.Name
+
 	m.KubernetesVersion = model.KubernetesVersion
+
 	m.NodeImageId = model.NodeImageId
+
 	m.NodeImageName = model.NodeImageName
-	nn, e := model.NodeSource.UnmarshalPolymorphicJSON(model.NodeSource.JsonData)
+
+	nn, e = model.NodeSource.UnmarshalPolymorphicJSON(model.NodeSource.JsonData)
 	if e != nil {
 		return
 	}
@@ -104,17 +112,23 @@ func (m *NodePoolSummary) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.NodeSource = nil
 	}
+
 	m.NodeShape = model.NodeShape
+
 	m.InitialNodeLabels = make([]KeyValue, len(model.InitialNodeLabels))
 	for i, n := range model.InitialNodeLabels {
 		m.InitialNodeLabels[i] = n
 	}
+
 	m.SshPublicKey = model.SshPublicKey
+
 	m.QuantityPerSubnet = model.QuantityPerSubnet
+
 	m.SubnetIds = make([]string, len(model.SubnetIds))
 	for i, n := range model.SubnetIds {
 		m.SubnetIds[i] = n
 	}
+
 	m.NodeConfigDetails = model.NodeConfigDetails
 	return
 }

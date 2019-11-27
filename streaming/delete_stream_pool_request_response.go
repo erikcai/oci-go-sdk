@@ -8,14 +8,11 @@ import (
 	"net/http"
 )
 
-// UpdateDefaultStreamPoolRequest wrapper for the UpdateDefaultStreamPool operation
-type UpdateDefaultStreamPoolRequest struct {
+// DeleteStreamPoolRequest wrapper for the DeleteStreamPool operation
+type DeleteStreamPoolRequest struct {
 
-	// The OCID of the default stream pool to retrieve.
-	DefaultStreamPoolId *string `mandatory:"true" contributesTo:"path" name:"defaultStreamPoolId"`
-
-	// The pool is updated with the provided fields.
-	UpdateDefaultStreamPoolDetails `contributesTo:"body"`
+	// The OCID of the stream pool.
+	StreamPoolId *string `mandatory:"true" contributesTo:"path" name:"streamPoolId"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
@@ -29,42 +26,36 @@ type UpdateDefaultStreamPoolRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request UpdateDefaultStreamPoolRequest) String() string {
+func (request DeleteStreamPoolRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request UpdateDefaultStreamPoolRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request DeleteStreamPoolRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request UpdateDefaultStreamPoolRequest) RetryPolicy() *common.RetryPolicy {
+func (request DeleteStreamPoolRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// UpdateDefaultStreamPoolResponse wrapper for the UpdateDefaultStreamPool operation
-type UpdateDefaultStreamPoolResponse struct {
+// DeleteStreamPoolResponse wrapper for the DeleteStreamPool operation
+type DeleteStreamPoolResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The DefaultStreamPool instance
-	DefaultStreamPool `presentIn:"body"`
-
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
-	// For optimistic concurrency control. See `if-match`.
-	Etag *string `presentIn:"header" name:"etag"`
 }
 
-func (response UpdateDefaultStreamPoolResponse) String() string {
+func (response DeleteStreamPoolResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response UpdateDefaultStreamPoolResponse) HTTPResponse() *http.Response {
+func (response DeleteStreamPoolResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

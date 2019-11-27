@@ -32,7 +32,8 @@ func (m *BackupKeyDetails) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
-	nn, e := model.BackupLocation.UnmarshalPolymorphicJSON(model.BackupLocation.JsonData)
+	var nn interface{}
+	nn, e = model.BackupLocation.UnmarshalPolymorphicJSON(model.BackupLocation.JsonData)
 	if e != nil {
 		return
 	}

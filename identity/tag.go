@@ -100,11 +100,16 @@ func (m *Tag) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
+	var nn interface{}
 	m.FreeformTags = model.FreeformTags
+
 	m.DefinedTags = model.DefinedTags
+
 	m.LifecycleState = model.LifecycleState
+
 	m.IsCostTracking = model.IsCostTracking
-	nn, e := model.Validator.UnmarshalPolymorphicJSON(model.Validator.JsonData)
+
+	nn, e = model.Validator.UnmarshalPolymorphicJSON(model.Validator.JsonData)
 	if e != nil {
 		return
 	}
@@ -113,13 +118,21 @@ func (m *Tag) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.Validator = nil
 	}
+
 	m.CompartmentId = model.CompartmentId
+
 	m.TagNamespaceId = model.TagNamespaceId
+
 	m.TagNamespaceName = model.TagNamespaceName
+
 	m.Id = model.Id
+
 	m.Name = model.Name
+
 	m.Description = model.Description
+
 	m.IsRetired = model.IsRetired
+
 	m.TimeCreated = model.TimeCreated
 	return
 }

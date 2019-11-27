@@ -38,7 +38,8 @@ func (m *ApiSpecificationRequestPolicies) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
-	nn, e := model.Authentication.UnmarshalPolymorphicJSON(model.Authentication.JsonData)
+	var nn interface{}
+	nn, e = model.Authentication.UnmarshalPolymorphicJSON(model.Authentication.JsonData)
 	if e != nil {
 		return
 	}
@@ -47,7 +48,9 @@ func (m *ApiSpecificationRequestPolicies) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.Authentication = nil
 	}
+
 	m.RateLimiting = model.RateLimiting
+
 	m.Cors = model.Cors
 	return
 }

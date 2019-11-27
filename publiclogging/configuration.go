@@ -35,8 +35,10 @@ func (m *Configuration) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
+	var nn interface{}
 	m.Indexing = model.Indexing
-	nn, e := model.Source.UnmarshalPolymorphicJSON(model.Source.JsonData)
+
+	nn, e = model.Source.UnmarshalPolymorphicJSON(model.Source.JsonData)
 	if e != nil {
 		return
 	}

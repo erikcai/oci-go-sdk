@@ -66,12 +66,18 @@ func (m *UpdateTagDetails) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
+	var nn interface{}
 	m.Description = model.Description
+
 	m.IsRetired = model.IsRetired
+
 	m.FreeformTags = model.FreeformTags
+
 	m.DefinedTags = model.DefinedTags
+
 	m.IsCostTracking = model.IsCostTracking
-	nn, e := model.Validator.UnmarshalPolymorphicJSON(model.Validator.JsonData)
+
+	nn, e = model.Validator.UnmarshalPolymorphicJSON(model.Validator.JsonData)
 	if e != nil {
 		return
 	}

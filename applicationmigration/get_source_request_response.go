@@ -1,20 +1,20 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-package streaming
+package applicationmigration
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 	"net/http"
 )
 
-// ListDefaultStreamPoolRequest wrapper for the ListDefaultStreamPool operation
-type ListDefaultStreamPoolRequest struct {
+// GetSourceRequest wrapper for the GetSource operation
+type GetSourceRequest struct {
 
-	// The OCID of the compartment.
-	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
+	// The source OCID
+	SourceId *string `mandatory:"true" contributesTo:"path" name:"sourceId"`
 
-	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
@@ -23,39 +23,42 @@ type ListDefaultStreamPoolRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ListDefaultStreamPoolRequest) String() string {
+func (request GetSourceRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ListDefaultStreamPoolRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetSourceRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ListDefaultStreamPoolRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetSourceRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ListDefaultStreamPoolResponse wrapper for the ListDefaultStreamPool operation
-type ListDefaultStreamPoolResponse struct {
+// GetSourceResponse wrapper for the GetSource operation
+type GetSourceResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The []DefaultStreamPoolSummary instance
-	Items []DefaultStreamPoolSummary `presentIn:"body"`
+	// The Source instance
+	Source `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
-	// a particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact
+	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 }
 
-func (response ListDefaultStreamPoolResponse) String() string {
+func (response GetSourceResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ListDefaultStreamPoolResponse) HTTPResponse() *http.Response {
+func (response GetSourceResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

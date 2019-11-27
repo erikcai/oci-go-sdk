@@ -65,12 +65,18 @@ func (m *CreateFlowLogConfigDetails) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
+	var nn interface{}
 	m.DefinedTags = model.DefinedTags
+
 	m.DisplayName = model.DisplayName
+
 	m.FreeformTags = model.FreeformTags
+
 	m.CompartmentId = model.CompartmentId
+
 	m.FlowLogType = model.FlowLogType
-	nn, e := model.Destination.UnmarshalPolymorphicJSON(model.Destination.JsonData)
+
+	nn, e = model.Destination.UnmarshalPolymorphicJSON(model.Destination.JsonData)
 	if e != nil {
 		return
 	}

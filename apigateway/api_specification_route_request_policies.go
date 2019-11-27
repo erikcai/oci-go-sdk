@@ -35,7 +35,8 @@ func (m *ApiSpecificationRouteRequestPolicies) UnmarshalJSON(data []byte) (e err
 	if e != nil {
 		return
 	}
-	nn, e := model.Authorization.UnmarshalPolymorphicJSON(model.Authorization.JsonData)
+	var nn interface{}
+	nn, e = model.Authorization.UnmarshalPolymorphicJSON(model.Authorization.JsonData)
 	if e != nil {
 		return
 	}
@@ -44,6 +45,7 @@ func (m *ApiSpecificationRouteRequestPolicies) UnmarshalJSON(data []byte) (e err
 	} else {
 		m.Authorization = nil
 	}
+
 	m.Cors = model.Cors
 	return
 }

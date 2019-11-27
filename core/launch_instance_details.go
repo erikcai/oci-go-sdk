@@ -213,21 +213,36 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
+	var nn interface{}
 	m.CreateVnicDetails = model.CreateVnicDetails
+
 	m.DedicatedVmHostId = model.DedicatedVmHostId
+
 	m.DefinedTags = model.DefinedTags
+
 	m.DisplayName = model.DisplayName
+
 	m.ExtendedMetadata = model.ExtendedMetadata
+
 	m.FaultDomain = model.FaultDomain
+
 	m.FreeformTags = model.FreeformTags
+
 	m.HostnameLabel = model.HostnameLabel
+
 	m.ImageId = model.ImageId
+
 	m.IpxeScript = model.IpxeScript
+
 	m.LaunchOptions = model.LaunchOptions
+
 	m.Metadata = model.Metadata
+
 	m.AgentConfig = model.AgentConfig
+
 	m.ShapeConfig = model.ShapeConfig
-	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
+
+	nn, e = model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
 	if e != nil {
 		return
 	}
@@ -236,12 +251,14 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.SourceDetails = nil
 	}
+
 	m.SubnetId = model.SubnetId
+
 	m.VolumeAttachments = make([]AttachVolumeDetails, len(model.VolumeAttachments))
 	for i, n := range model.VolumeAttachments {
-		nn, err := n.UnmarshalPolymorphicJSON(n.JsonData)
-		if err != nil {
-			return err
+		nn, e = n.UnmarshalPolymorphicJSON(n.JsonData)
+		if e != nil {
+			return e
 		}
 		if nn != nil {
 			m.VolumeAttachments[i] = nn.(AttachVolumeDetails)
@@ -249,14 +266,20 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 			m.VolumeAttachments[i] = nil
 		}
 	}
+
 	m.SecondaryVnicAttachments = make([]AttachVnicDetails, len(model.SecondaryVnicAttachments))
 	for i, n := range model.SecondaryVnicAttachments {
 		m.SecondaryVnicAttachments[i] = n
 	}
+
 	m.IsPvEncryptionInTransitEnabled = model.IsPvEncryptionInTransitEnabled
+
 	m.PreferredMaintenanceAction = model.PreferredMaintenanceAction
+
 	m.AvailabilityDomain = model.AvailabilityDomain
+
 	m.CompartmentId = model.CompartmentId
+
 	m.Shape = model.Shape
 	return
 }

@@ -62,6 +62,8 @@
     <kam-api-spec-spec-file>source/kam-api-spec.cond.yaml</kam-api-spec-spec-file>
     <ibex-frontend-public-spec-spec-file>source/public-api.cond.yaml</ibex-frontend-public-spec-spec-file>
     <osms-spec-spec-file>source/api.cond.yaml</osms-spec-spec-file>
+    <ams-spec-spec-file>source/ams-api.cond.yaml</ams-spec-spec-file>
+    <service_api_spec-spec-file>service_api.cond.yaml</service_api_spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -239,6 +241,14 @@
     <dependency>
       <groupId>com.oracle.osms.api</groupId>
       <artifactId>osms-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.pic.migration.application</groupId>
+      <artifactId>ams-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>oracle.dfcs.server</groupId>
+      <artifactId>service_api_spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -1054,6 +1064,42 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/osms-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-ams-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.pic.migration.application</groupId>
+                  <artifactId>ams-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/ams-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-service_api_spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>oracle.dfcs.server</groupId>
+                  <artifactId>service_api_spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/service_api_spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -2253,6 +2299,60 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-ams-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/ams-spec/source/${ams-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/ams-spec/${ams-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/ams-spec/${ams-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-ams-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/ams-spec/${ams-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/ams-spec/${ams-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-prefer-service_api_spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/service_api_spec/source/${service_api_spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/service_api_spec/${service_api_spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/service_api_spec/${service_api_spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-service_api_spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/service_api_spec/${service_api_spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/service_api_spec/${service_api_spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -3184,6 +3284,46 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-ams-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/ams-spec/${ams-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>applicationmigration</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>applicationmigration</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>go-public-sdk-service_api_spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/service_api_spec/${service_api_spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>dataflow</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>dataflow</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -3504,6 +3644,18 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/applicationmigration</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
+            <fileset>
+              <directory>lib/oci/dataflow</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -3599,7 +3751,7 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.3.473</version>
+        <version>0.3.518</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracache</groupId>
@@ -3730,6 +3882,16 @@
         <groupId>com.oracle.osms.api</groupId>
         <artifactId>osms-spec</artifactId>
         <version>0.0.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.pic.migration.application</groupId>
+        <artifactId>ams-spec</artifactId>
+        <version>0.1.26</version>
+      </dependency>
+      <dependency>
+        <groupId>oracle.dfcs.server</groupId>
+        <artifactId>service_api_spec</artifactId>
+        <version>1.0.97</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

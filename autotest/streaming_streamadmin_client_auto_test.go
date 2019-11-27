@@ -23,6 +23,50 @@ func createStreamAdminClientWithProvider(p common.ConfigurationProvider, testCon
 }
 
 // IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
+func TestStreamAdminClientChangeConnectHarnessCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "ChangeConnectHarnessCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeConnectHarnessCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "ChangeConnectHarnessCompartment", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "ChangeConnectHarnessCompartment")
+	assert.NoError(t, err)
+
+	type ChangeConnectHarnessCompartmentRequestInfo struct {
+		ContainerId string
+		Request     streaming.ChangeConnectHarnessCompartmentRequest
+	}
+
+	var requests []ChangeConnectHarnessCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeConnectHarnessCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamAdminClientChangeStreamCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -59,6 +103,50 @@ func TestStreamAdminClientChangeStreamCompartment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ChangeStreamCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
+func TestStreamAdminClientChangeStreamPoolCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "ChangeStreamPoolCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeStreamPoolCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "ChangeStreamPoolCompartment", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "ChangeStreamPoolCompartment")
+	assert.NoError(t, err)
+
+	type ChangeStreamPoolCompartmentRequestInfo struct {
+		ContainerId string
+		Request     streaming.ChangeStreamPoolCompartmentRequest
+	}
+
+	var requests []ChangeStreamPoolCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeStreamPoolCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -111,6 +199,50 @@ func TestStreamAdminClientCreateArchiver(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
+func TestStreamAdminClientCreateConnectHarness(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "CreateConnectHarness")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateConnectHarness is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "CreateConnectHarness", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "CreateConnectHarness")
+	assert.NoError(t, err)
+
+	type CreateConnectHarnessRequestInfo struct {
+		ContainerId string
+		Request     streaming.CreateConnectHarnessRequest
+	}
+
+	var requests []CreateConnectHarnessRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateConnectHarness(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamAdminClientCreateStream(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -147,6 +279,94 @@ func TestStreamAdminClientCreateStream(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateStream(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
+func TestStreamAdminClientCreateStreamPool(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "CreateStreamPool")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateStreamPool is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "CreateStreamPool", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "CreateStreamPool")
+	assert.NoError(t, err)
+
+	type CreateStreamPoolRequestInfo struct {
+		ContainerId string
+		Request     streaming.CreateStreamPoolRequest
+	}
+
+	var requests []CreateStreamPoolRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateStreamPool(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
+func TestStreamAdminClientDeleteConnectHarness(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "DeleteConnectHarness")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteConnectHarness is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "DeleteConnectHarness", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "DeleteConnectHarness")
+	assert.NoError(t, err)
+
+	type DeleteConnectHarnessRequestInfo struct {
+		ContainerId string
+		Request     streaming.DeleteConnectHarnessRequest
+	}
+
+	var requests []DeleteConnectHarnessRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteConnectHarness(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -199,6 +419,50 @@ func TestStreamAdminClientDeleteStream(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
+func TestStreamAdminClientDeleteStreamPool(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "DeleteStreamPool")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteStreamPool is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "DeleteStreamPool", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "DeleteStreamPool")
+	assert.NoError(t, err)
+
+	type DeleteStreamPoolRequestInfo struct {
+		ContainerId string
+		Request     streaming.DeleteStreamPoolRequest
+	}
+
+	var requests []DeleteStreamPoolRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteStreamPool(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
 func TestStreamAdminClientGetArchiver(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -243,28 +507,28 @@ func TestStreamAdminClientGetArchiver(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
-func TestStreamAdminClientGetDefaultStreamPool(t *testing.T) {
+func TestStreamAdminClientGetConnectHarness(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("streaming", "GetDefaultStreamPool")
+	enabled, err := testClient.isApiEnabled("streaming", "GetConnectHarness")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("GetDefaultStreamPool is not enabled by the testing service")
+		t.Skip("GetConnectHarness is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "GetDefaultStreamPool", createStreamAdminClientWithProvider)
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "GetConnectHarness", createStreamAdminClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(streaming.StreamAdminClient)
 
-	body, err := testClient.getRequests("streaming", "GetDefaultStreamPool")
+	body, err := testClient.getRequests("streaming", "GetConnectHarness")
 	assert.NoError(t, err)
 
-	type GetDefaultStreamPoolRequestInfo struct {
+	type GetConnectHarnessRequestInfo struct {
 		ContainerId string
-		Request     streaming.GetDefaultStreamPoolRequest
+		Request     streaming.GetConnectHarnessRequest
 	}
 
-	var requests []GetDefaultStreamPoolRequestInfo
+	var requests []GetConnectHarnessRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -278,7 +542,7 @@ func TestStreamAdminClientGetDefaultStreamPool(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetDefaultStreamPool(context.Background(), req.Request)
+			response, err := c.GetConnectHarness(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -331,28 +595,28 @@ func TestStreamAdminClientGetStream(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
-func TestStreamAdminClientListDefaultStreamPool(t *testing.T) {
+func TestStreamAdminClientGetStreamPool(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("streaming", "ListDefaultStreamPool")
+	enabled, err := testClient.isApiEnabled("streaming", "GetStreamPool")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ListDefaultStreamPool is not enabled by the testing service")
+		t.Skip("GetStreamPool is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "ListDefaultStreamPool", createStreamAdminClientWithProvider)
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "GetStreamPool", createStreamAdminClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(streaming.StreamAdminClient)
 
-	body, err := testClient.getRequests("streaming", "ListDefaultStreamPool")
+	body, err := testClient.getRequests("streaming", "GetStreamPool")
 	assert.NoError(t, err)
 
-	type ListDefaultStreamPoolRequestInfo struct {
+	type GetStreamPoolRequestInfo struct {
 		ContainerId string
-		Request     streaming.ListDefaultStreamPoolRequest
+		Request     streaming.GetStreamPoolRequest
 	}
 
-	var requests []ListDefaultStreamPoolRequestInfo
+	var requests []GetStreamPoolRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -366,8 +630,116 @@ func TestStreamAdminClientListDefaultStreamPool(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ListDefaultStreamPool(context.Background(), req.Request)
+			response, err := c.GetStreamPool(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
+func TestStreamAdminClientListConnectHarnesses(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "ListConnectHarnesses")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListConnectHarnesses is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "ListConnectHarnesses", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "ListConnectHarnesses")
+	assert.NoError(t, err)
+
+	type ListConnectHarnessesRequestInfo struct {
+		ContainerId string
+		Request     streaming.ListConnectHarnessesRequest
+	}
+
+	var requests []ListConnectHarnessesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*streaming.ListConnectHarnessesRequest)
+				return c.ListConnectHarnesses(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]streaming.ListConnectHarnessesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(streaming.ListConnectHarnessesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
+func TestStreamAdminClientListStreamPools(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "ListStreamPools")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListStreamPools is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "ListStreamPools", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "ListStreamPools")
+	assert.NoError(t, err)
+
+	type ListStreamPoolsRequestInfo struct {
+		ContainerId string
+		Request     streaming.ListStreamPoolsRequest
+	}
+
+	var requests []ListStreamPoolsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*streaming.ListStreamPoolsRequest)
+				return c.ListStreamPools(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]streaming.ListStreamPoolsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(streaming.ListStreamPoolsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -561,28 +933,28 @@ func TestStreamAdminClientUpdateArchiver(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
-func TestStreamAdminClientUpdateDefaultStreamPool(t *testing.T) {
+func TestStreamAdminClientUpdateConnectHarness(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("streaming", "UpdateDefaultStreamPool")
+	enabled, err := testClient.isApiEnabled("streaming", "UpdateConnectHarness")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("UpdateDefaultStreamPool is not enabled by the testing service")
+		t.Skip("UpdateConnectHarness is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "UpdateDefaultStreamPool", createStreamAdminClientWithProvider)
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "UpdateConnectHarness", createStreamAdminClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(streaming.StreamAdminClient)
 
-	body, err := testClient.getRequests("streaming", "UpdateDefaultStreamPool")
+	body, err := testClient.getRequests("streaming", "UpdateConnectHarness")
 	assert.NoError(t, err)
 
-	type UpdateDefaultStreamPoolRequestInfo struct {
+	type UpdateConnectHarnessRequestInfo struct {
 		ContainerId string
-		Request     streaming.UpdateDefaultStreamPoolRequest
+		Request     streaming.UpdateConnectHarnessRequest
 	}
 
-	var requests []UpdateDefaultStreamPoolRequestInfo
+	var requests []UpdateConnectHarnessRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -596,7 +968,7 @@ func TestStreamAdminClientUpdateDefaultStreamPool(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.UpdateDefaultStreamPool(context.Background(), req.Request)
+			response, err := c.UpdateConnectHarness(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -641,6 +1013,50 @@ func TestStreamAdminClientUpdateStream(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateStream(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="opc_streaming_us_grp@oracle.com" jiraProject="STREAMSTR" opsJiraProject="STREAMOSS"
+func TestStreamAdminClientUpdateStreamPool(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("streaming", "UpdateStreamPool")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateStreamPool is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("streaming", "StreamAdmin", "UpdateStreamPool", createStreamAdminClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(streaming.StreamAdminClient)
+
+	body, err := testClient.getRequests("streaming", "UpdateStreamPool")
+	assert.NoError(t, err)
+
+	type UpdateStreamPoolRequestInfo struct {
+		ContainerId string
+		Request     streaming.UpdateStreamPoolRequest
+	}
+
+	var requests []UpdateStreamPoolRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateStreamPool(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

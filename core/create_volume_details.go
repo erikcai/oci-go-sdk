@@ -99,16 +99,26 @@ func (m *CreateVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
+	var nn interface{}
 	m.BackupPolicyId = model.BackupPolicyId
+
 	m.DefinedTags = model.DefinedTags
+
 	m.DisplayName = model.DisplayName
+
 	m.FreeformTags = model.FreeformTags
+
 	m.KmsKeyId = model.KmsKeyId
+
 	m.PerformanceTier = model.PerformanceTier
+
 	m.VpusPerGB = model.VpusPerGB
+
 	m.SizeInGBs = model.SizeInGBs
+
 	m.SizeInMBs = model.SizeInMBs
-	nn, e := model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
+
+	nn, e = model.SourceDetails.UnmarshalPolymorphicJSON(model.SourceDetails.JsonData)
 	if e != nil {
 		return
 	}
@@ -117,8 +127,11 @@ func (m *CreateVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.SourceDetails = nil
 	}
+
 	m.VolumeBackupId = model.VolumeBackupId
+
 	m.AvailabilityDomain = model.AvailabilityDomain
+
 	m.CompartmentId = model.CompartmentId
 	return
 }

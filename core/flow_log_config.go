@@ -95,14 +95,22 @@ func (m *FlowLogConfig) UnmarshalJSON(data []byte) (e error) {
 	if e != nil {
 		return
 	}
+	var nn interface{}
 	m.DefinedTags = model.DefinedTags
+
 	m.FreeformTags = model.FreeformTags
+
 	m.CompartmentId = model.CompartmentId
+
 	m.DisplayName = model.DisplayName
+
 	m.Id = model.Id
+
 	m.LifecycleState = model.LifecycleState
+
 	m.FlowLogType = model.FlowLogType
-	nn, e := model.Destination.UnmarshalPolymorphicJSON(model.Destination.JsonData)
+
+	nn, e = model.Destination.UnmarshalPolymorphicJSON(model.Destination.JsonData)
 	if e != nil {
 		return
 	}
@@ -111,6 +119,7 @@ func (m *FlowLogConfig) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.Destination = nil
 	}
+
 	m.TimeCreated = model.TimeCreated
 	return
 }
