@@ -103,6 +103,8 @@ const (
 	EndpointServiceLifecycleStateAvailable    EndpointServiceLifecycleStateEnum = "AVAILABLE"
 	EndpointServiceLifecycleStateTerminating  EndpointServiceLifecycleStateEnum = "TERMINATING"
 	EndpointServiceLifecycleStateTerminated   EndpointServiceLifecycleStateEnum = "TERMINATED"
+	EndpointServiceLifecycleStateUpdating     EndpointServiceLifecycleStateEnum = "UPDATING"
+	EndpointServiceLifecycleStateFailed       EndpointServiceLifecycleStateEnum = "FAILED"
 )
 
 var mappingEndpointServiceLifecycleState = map[string]EndpointServiceLifecycleStateEnum{
@@ -110,6 +112,8 @@ var mappingEndpointServiceLifecycleState = map[string]EndpointServiceLifecycleSt
 	"AVAILABLE":    EndpointServiceLifecycleStateAvailable,
 	"TERMINATING":  EndpointServiceLifecycleStateTerminating,
 	"TERMINATED":   EndpointServiceLifecycleStateTerminated,
+	"UPDATING":     EndpointServiceLifecycleStateUpdating,
+	"FAILED":       EndpointServiceLifecycleStateFailed,
 }
 
 // GetEndpointServiceLifecycleStateEnumValues Enumerates the set of values for EndpointServiceLifecycleStateEnum

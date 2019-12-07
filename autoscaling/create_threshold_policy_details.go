@@ -3,8 +3,11 @@
 
 // Autoscaling API
 //
-// APIs for dynamically scaling Compute resources to meet application requirements.
-// For information about the Compute service, see Overview of the Compute Service (https://docs.cloud.oracle.com/Content/Compute/Concepts/computeoverview.htm).
+// APIs for dynamically scaling Compute resources to meet application requirements. For more information about
+// autoscaling, see Autoscaling (https://docs.cloud.oracle.com/Content/Compute/Tasks/autoscalinginstancepools.htm). For information about the
+// Compute service, see Overview of the Compute Service (https://docs.cloud.oracle.com/Content/Compute/Concepts/computeoverview.htm).
+// **Note:** Autoscaling is not available in Government Cloud tenancies. For more information, see
+// Information for Oracle Cloud Infrastructure Government Cloud Customers (https://docs.cloud.oracle.com/Content/General/Concepts/govinfo.htm).
 //
 
 package autoscaling
@@ -26,6 +29,9 @@ type CreateThresholdPolicyDetails struct {
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// Boolean field indicating whether this policy is enabled or not.
+	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
 }
 
 //GetCapacity returns Capacity
@@ -36,6 +42,11 @@ func (m CreateThresholdPolicyDetails) GetCapacity() *Capacity {
 //GetDisplayName returns DisplayName
 func (m CreateThresholdPolicyDetails) GetDisplayName() *string {
 	return m.DisplayName
+}
+
+//GetIsEnabled returns IsEnabled
+func (m CreateThresholdPolicyDetails) GetIsEnabled() *bool {
+	return m.IsEnabled
 }
 
 func (m CreateThresholdPolicyDetails) String() string {

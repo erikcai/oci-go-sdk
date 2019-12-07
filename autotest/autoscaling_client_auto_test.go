@@ -142,6 +142,7 @@ func TestAutoScalingClientCreateAutoScalingPolicy(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "policyType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"scheduled": &autoscaling.CreateScheduledPolicyDetails{},
 				"threshold": &autoscaling.CreateThresholdPolicyDetails{},
 			},
 		}
@@ -526,6 +527,7 @@ func TestAutoScalingClientUpdateAutoScalingPolicy(t *testing.T) {
 			DiscriminatorName: "policyType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"threshold": &autoscaling.UpdateThresholdPolicyDetails{},
+				"scheduled": &autoscaling.UpdateScheduledPolicyDetails{},
 			},
 		}
 

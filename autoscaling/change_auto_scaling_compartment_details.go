@@ -3,8 +3,11 @@
 
 // Autoscaling API
 //
-// APIs for dynamically scaling Compute resources to meet application requirements.
-// For information about the Compute service, see Overview of the Compute Service (https://docs.cloud.oracle.com/Content/Compute/Concepts/computeoverview.htm).
+// APIs for dynamically scaling Compute resources to meet application requirements. For more information about
+// autoscaling, see Autoscaling (https://docs.cloud.oracle.com/Content/Compute/Tasks/autoscalinginstancepools.htm). For information about the
+// Compute service, see Overview of the Compute Service (https://docs.cloud.oracle.com/Content/Compute/Concepts/computeoverview.htm).
+// **Note:** Autoscaling is not available in Government Cloud tenancies. For more information, see
+// Information for Oracle Cloud Infrastructure Government Cloud Customers (https://docs.cloud.oracle.com/Content/General/Concepts/govinfo.htm).
 //
 
 package autoscaling
@@ -13,10 +16,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeAutoScalingCompartmentDetails Contains details indicating which compartment the resource should move to
+// ChangeAutoScalingCompartmentDetails The configuration details for the move operation.
 type ChangeAutoScalingCompartmentDetails struct {
 
-	// The OCID of the new compartment
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the autoscaling configuration to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

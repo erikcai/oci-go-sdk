@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -15,11 +17,11 @@ import (
 // ExecutionLogPolicy Configures the pushing of execution logs to OCI Public Logging.
 type ExecutionLogPolicy struct {
 
-	// Enables pushing of execution logs to OCI Public logging.
+	// Enables pushing of execution logs to OCI Public Logging.
 	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
 
-	// Specifies the logging level which affects the log entries pushed to
-	// OCI Public Logging, if `isEnabled` is set to True
+	// Specifies the logging level, which affects the log entries pushed to
+	// OCI Public Logging if `isEnabled` is set to True.
 	LogLevel ExecutionLogPolicyLogLevelEnum `mandatory:"false" json:"logLevel,omitempty"`
 }
 

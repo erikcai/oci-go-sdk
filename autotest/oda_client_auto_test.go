@@ -459,6 +459,94 @@ func TestOdaClientListWorkRequests(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="omce_devops_hybrid_us_grp@oracle.com" jiraProject="ODA" opsJiraProject="ODA"
+func TestOdaClientStartOdaInstance(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("oda", "StartOdaInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("StartOdaInstance is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("oda", "Oda", "StartOdaInstance", createOdaClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(oda.OdaClient)
+
+	body, err := testClient.getRequests("oda", "StartOdaInstance")
+	assert.NoError(t, err)
+
+	type StartOdaInstanceRequestInfo struct {
+		ContainerId string
+		Request     oda.StartOdaInstanceRequest
+	}
+
+	var requests []StartOdaInstanceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.StartOdaInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omce_devops_hybrid_us_grp@oracle.com" jiraProject="ODA" opsJiraProject="ODA"
+func TestOdaClientStopOdaInstance(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("oda", "StopOdaInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("StopOdaInstance is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("oda", "Oda", "StopOdaInstance", createOdaClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(oda.OdaClient)
+
+	body, err := testClient.getRequests("oda", "StopOdaInstance")
+	assert.NoError(t, err)
+
+	type StopOdaInstanceRequestInfo struct {
+		ContainerId string
+		Request     oda.StopOdaInstanceRequest
+	}
+
+	var requests []StopOdaInstanceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.StopOdaInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omce_devops_hybrid_us_grp@oracle.com" jiraProject="ODA" opsJiraProject="ODA"
 func TestOdaClientUpdateOdaInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -13,10 +15,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// OracleFunctionBackend Send the request to an OCI function.
+// OracleFunctionBackend Send the request to an Oracle Functions function.
 type OracleFunctionBackend struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle function resource.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function resource.
 	FunctionId *string `mandatory:"true" json:"functionId"`
 }
 

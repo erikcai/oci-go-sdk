@@ -11,7 +11,7 @@ import (
 // ModifyReverseConnectionsRequest wrapper for the ModifyReverseConnections operation
 type ModifyReverseConnectionsRequest struct {
 
-	// Details for modifying the reverse connections support for the Private Endpoint
+	// Details for modifying the reverse connections configuration for the private endpoint.
 	ModifyReverseConnectionsDetails `contributesTo:"body"`
 
 	// The private endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).

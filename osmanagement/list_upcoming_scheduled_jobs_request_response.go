@@ -11,12 +11,12 @@ import (
 // ListUpcomingScheduledJobsRequest wrapper for the ListUpcomingScheduledJobs operation
 type ListUpcomingScheduledJobsRequest struct {
 
+	// The ID of the compartment in which to list resources.
+	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
+
 	// The cut-off time before which to list all upcoming schedules, in ISO 8601 format
 	// Example: 2017-07-14T02:40:00.000Z
 	TimeEnd *common.SDKTime `mandatory:"true" contributesTo:"query" name:"timeEnd"`
-
-	// The ID of the compartment in which to list resources.
-	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
 	// Example: `My new resource`

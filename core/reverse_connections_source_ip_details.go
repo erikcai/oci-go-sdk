@@ -16,10 +16,12 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReverseConnectionsSourceIpDetails IP information for Reverse Connections Configuration, this will be a part of Private Endpoint object that is returned.
+// ReverseConnectionsSourceIpDetails IP information for reverse connection configuration. Returned as part of the `PrivateEndpoint` object.
 type ReverseConnectionsSourceIpDetails struct {
 
-	// The IP that will be used as source for reverse connections.
+	// The IP address in the customer's VCN to be used as the source IP for reverse connection packets
+	// traveling from the customer's VCN to the service's VCN.
+	// Example: `10.0.4.9`
 	SourceIp *string `mandatory:"false" json:"sourceIp"`
 }
 

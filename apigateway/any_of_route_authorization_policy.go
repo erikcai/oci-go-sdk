@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -13,7 +15,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AnyOfRouteAuthorizationPolicy If authentication has been performed, validate whether the request scope, if any, applies to this route.
+// AnyOfRouteAuthorizationPolicy If authentication has been performed, validate whether the request scope (if any) applies to this route.
 type AnyOfRouteAuthorizationPolicy struct {
 
 	// A user whose scope includes any of these access ranges is allowed on

@@ -70,10 +70,13 @@ type Volume struct {
 	// The OCID of the Key Management key which is the master encryption key for the volume.
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 
-	// The performance tier of the volume.
-	PerformanceTier VolumePerformanceTierEnum `mandatory:"false" json:"performanceTier,omitempty"`
-
-	// The number of Volume Performance Units that will be applied to this volume per GB.
+	// The number of volume performance units (VPUs) that will be applied to this volume per GB,
+	// representing the Block Volume service's elastic performance options.
+	// See Block Volume Elastic Performance (https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more information.
+	// Allowed values:
+	//   * `0`: Represents Lower Cost option.
+	//   * `10`: Represents Balanced option.
+	//   * `20`: Represents Higher Performance option.
 	VpusPerGB *int64 `mandatory:"false" json:"vpusPerGB"`
 
 	// The size of the volume in GBs.
@@ -99,7 +102,6 @@ func (m *Volume) UnmarshalJSON(data []byte) (e error) {
 		SystemTags         map[string]map[string]interface{} `json:"systemTags"`
 		IsHydrated         *bool                             `json:"isHydrated"`
 		KmsKeyId           *string                           `json:"kmsKeyId"`
-		PerformanceTier    VolumePerformanceTierEnum         `json:"performanceTier"`
 		VpusPerGB          *int64                            `json:"vpusPerGB"`
 		SizeInGBs          *int64                            `json:"sizeInGBs"`
 		SourceDetails      volumesourcedetails               `json:"sourceDetails"`
@@ -127,8 +129,6 @@ func (m *Volume) UnmarshalJSON(data []byte) (e error) {
 	m.IsHydrated = model.IsHydrated
 
 	m.KmsKeyId = model.KmsKeyId
-
-	m.PerformanceTier = model.PerformanceTier
 
 	m.VpusPerGB = model.VpusPerGB
 
@@ -188,31 +188,6 @@ var mappingVolumeLifecycleState = map[string]VolumeLifecycleStateEnum{
 func GetVolumeLifecycleStateEnumValues() []VolumeLifecycleStateEnum {
 	values := make([]VolumeLifecycleStateEnum, 0)
 	for _, v := range mappingVolumeLifecycleState {
-		values = append(values, v)
-	}
-	return values
-}
-
-// VolumePerformanceTierEnum Enum with underlying type: string
-type VolumePerformanceTierEnum string
-
-// Set of constants representing the allowable values for VolumePerformanceTierEnum
-const (
-	VolumePerformanceTierOne   VolumePerformanceTierEnum = "TIER_ONE"
-	VolumePerformanceTierTwo   VolumePerformanceTierEnum = "TIER_TWO"
-	VolumePerformanceTierThree VolumePerformanceTierEnum = "TIER_THREE"
-)
-
-var mappingVolumePerformanceTier = map[string]VolumePerformanceTierEnum{
-	"TIER_ONE":   VolumePerformanceTierOne,
-	"TIER_TWO":   VolumePerformanceTierTwo,
-	"TIER_THREE": VolumePerformanceTierThree,
-}
-
-// GetVolumePerformanceTierEnumValues Enumerates the set of values for VolumePerformanceTierEnum
-func GetVolumePerformanceTierEnumValues() []VolumePerformanceTierEnum {
-	values := make([]VolumePerformanceTierEnum, 0)
-	for _, v := range mappingVolumePerformanceTier {
 		values = append(values, v)
 	}
 	return values

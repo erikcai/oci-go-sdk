@@ -11,7 +11,7 @@ import (
 // UpdateDeploymentRequest wrapper for the UpdateDeployment operation
 type UpdateDeploymentRequest struct {
 
-	// The ocid of the deployment
+	// The ocid of the deployment.
 	DeploymentId *string `mandatory:"true" contributesTo:"path" name:"deploymentId"`
 
 	// The information to be updated.

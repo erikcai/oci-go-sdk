@@ -16,10 +16,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// GetCreateReverseConnectionNatIpDetails Details for retrieving reverse connection NAT IP address
+// GetCreateReverseConnectionNatIpDetails Details for retrieving the reverse connection NAT IP address.
 type GetCreateReverseConnectionNatIpDetails struct {
 
-	// Customer's IP address to which the reverse connection is going to be established.
+	// The customer's IP address that corresponds to the reverse connection NAT IP address.
 	ReverseConnectionCustomerIp *string `mandatory:"true" json:"reverseConnectionCustomerIp"`
 }
 

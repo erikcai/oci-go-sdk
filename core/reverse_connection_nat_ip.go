@@ -16,25 +16,28 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReverseConnectionNatIp Current allocation of NAT IP address for a specific customer IP address.
-// For service providers to establish a reverse connection to a customer IP address,
-// reverse connection NAT IP address should be used as the destination.
+// ReverseConnectionNatIp The current NAT IP address that corresponds to a specific customer IP address.
+// To establish a reverse connection to a customer IP address, use the NAT IP
+// address as the destination.
 type ReverseConnectionNatIp struct {
 
-	// The Reverse Connection NAT IP's current state.
+	// The reverse connection NAT IP's current state.
 	LifecycleState ReverseConnectionNatIpLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The date and time the Reverse Connection NAT IP was created, in the format defined by RFC3339.
-	// Example: '2016-08-25T21:10:29.600Z'
+	// The date and time the reverse connection NAT IP was created, in the format defined by RFC3339.
+	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// Customer's IP address to which the reverse connection is going to be established.
+	// The customer's IP address that corresponds to the reverse connection NAT IP address.
 	ReverseConnectionCustomerIp *string `mandatory:"true" json:"reverseConnectionCustomerIp"`
 
-	// The Reverse Connection NAT IP address associated with the customer IP and peId.
+	// The reverse connection NAT IP address corresonding to the customer IP and private endpoint.
+	// Use this address as the destination when establishing a reverse connection to a customer's
+	// IP address.
 	ReverseConnectionNatIp *string `mandatory:"true" json:"reverseConnectionNatIp"`
 
-	// The OCID of the customer's Private Endpoint associated with the Reverse Connection.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private endpoint
+	// associated with the reverse connection.
 	PrivateEndpointId *string `mandatory:"true" json:"privateEndpointId"`
 }
 

@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -58,7 +60,7 @@ func (client *WorkRequestsClient) ConfigurationProvider() *common.ConfigurationP
 	return client.config
 }
 
-// CancelWorkRequest Cancel the work request
+// CancelWorkRequest Cancels the work request.
 func (client WorkRequestsClient) CancelWorkRequest(ctx context.Context, request CancelWorkRequestRequest) (response CancelWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -105,7 +107,7 @@ func (client WorkRequestsClient) cancelWorkRequest(ctx context.Context, request 
 	return response, err
 }
 
-// GetWorkRequest Gets the status of the work request by the identifier.
+// GetWorkRequest Gets the status of the work request with the given identifier.
 func (client WorkRequestsClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -147,7 +149,7 @@ func (client WorkRequestsClient) getWorkRequest(ctx context.Context, request com
 	return response, err
 }
 
-// ListWorkRequestErrors Return a (paginated) list of errors for a given work request.
+// ListWorkRequestErrors Returns a (paginated) list of errors for a given work request.
 func (client WorkRequestsClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -189,7 +191,7 @@ func (client WorkRequestsClient) listWorkRequestErrors(ctx context.Context, requ
 	return response, err
 }
 
-// ListWorkRequestLogs Return a (paginated) list of logs for a given work request.
+// ListWorkRequestLogs Returns a (paginated) list of logs for a given work request.
 func (client WorkRequestsClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -231,7 +233,7 @@ func (client WorkRequestsClient) listWorkRequestLogs(ctx context.Context, reques
 	return response, err
 }
 
-// ListWorkRequests Lists the work requests in a compartment
+// ListWorkRequests Lists the work requests in a compartment.
 func (client WorkRequestsClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

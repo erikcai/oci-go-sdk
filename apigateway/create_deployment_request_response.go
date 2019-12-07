@@ -66,7 +66,7 @@ type CreateDeploymentResponse struct {
 	// id.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// Location of the resource
+	// Location of the resource.
 	Location *string `presentIn:"header" name:"location"`
 }
 

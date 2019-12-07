@@ -16,30 +16,44 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReverseConnectionConfiguration Reverse Connections Configuration details for the Private Endpoint.
-// When reverse connections functionality is enabled, the Private Endpoint can allow reverse connections to be established to the customer VCN.
-// Reverse connections will use different source IP addresses than the Private Endpoints' IP address.
+// ReverseConnectionConfiguration Reverse connection configuration details for the private endpoint.
+// When reverse connection support is enabled, the private endpoint allows reverse connections to be
+// established to the customer VCN. The packets traveling from the service's VCN to the customer's
+// VCN in a reverse connection use a different source IP address than the private endpoint's IP address.
 type ReverseConnectionConfiguration struct {
 
-	// The Reverse Connections Configuration's current state.
+	// The reverse connection configuration's current state.
 	LifecycleState ReverseConnectionConfigurationLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// IP addresses in customer VCN which will be used as source IPs for reverse connections from the service provider's VCN to the customer VCN.
+	// The list of IP addresses in the customer VCN to be used as a source IP for reverse connection packets
+	// traveling from the service's VCN to the customer's VCN.
 	ReverseConnectionsSourceIps []ReverseConnectionsSourceIpDetails `mandatory:"false" json:"reverseConnectionsSourceIps"`
 
-	// IP address in service provider VCN that should be used as DNS proxy for resolving DNS FQDN to the destination IP addresses for reverse connections.
+	// Whether a DNS proxy is configured for the reverse connection. If the service
+	// does not intend to use DNS FQDN to communicate to customer endpoints, set this to `false`.
+	// Example: `false`
+	IsProxyEnabled *bool `mandatory:"false" json:"isProxyEnabled"`
+
+	// The IP address in the service VCN to be used to reach the DNS proxy that resolves the
+	// customer FQDN for reverse connections.
 	DnsProxyIp *string `mandatory:"false" json:"dnsProxyIp"`
 
-	// Context in which the DNS proxy will resolve the DNS queries in. The default is `SERVICE`.
+	// The context in which the DNS proxy will resolve the DNS queries. The default is `SERVICE`.
+	// For example: if the service does not know the specific DNS zones for the customer VCNs, set
+	// this to `CUSTOMER`, and set `excludedDnsZones` to the list of DNS zones in your service
+	// provider VCN.
 	// Allowed values:
-	//  * `SERVICE` : All DNS queries will be resolved within the service VCN's DNS context, unless the FQDN belongs to one of zones in the `excludedDnsZones` list.
-	//  * `CUSTOMER` : All DNS queries will be resolved within the customer VCN's DNS context, unless the FQDN belongs to one of zones in the `excludedDnsZones` list.
+	//  * `SERVICE` : All DNS queries will be resolved within the service VCN's DNS context,
+	//    unless the FQDN belongs to one of zones in the `excludedDnsZones` list.
+	//  * `CUSTOMER` : All DNS queries will be resolved within the customer VCN's DNS context,
+	//    unless the FQDN belongs to one of zones in the `excludedDnsZones` list.
 	DefaultDnsResolutionContext ReverseConnectionConfigurationDefaultDnsResolutionContextEnum `mandatory:"false" json:"defaultDnsResolutionContext,omitempty"`
 
 	// List of DNS zones to exclude from the default DNS resolution context.
 	ExcludedDnsZones []string `mandatory:"false" json:"excludedDnsZones"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service provider's subnet, in which DNS proxy endpoint will be spwaned.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service's subnet where
+	// the DNS proxy endpoint will be created.
 	ServiceSubnetId *string `mandatory:"false" json:"serviceSubnetId"`
 }
 

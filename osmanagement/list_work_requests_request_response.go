@@ -12,7 +12,7 @@ import (
 type ListWorkRequestsRequest struct {
 
 	// The ID of the compartment in which to list resources.
-	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
+	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
 	// Example: `My new resource`

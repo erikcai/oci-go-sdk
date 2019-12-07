@@ -632,7 +632,9 @@ func (client BlockstorageClient) createVolumeBackup(ctx context.Context, request
 	return response, err
 }
 
-// CreateVolumeBackupPolicy Creates a new backup policy for the caller.
+// CreateVolumeBackupPolicy Creates a new user defined backup policy.
+// For more information about Oracle defined backup policies and user defined backup policies,
+// see Policy-Based Backups (https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm).
 func (client BlockstorageClient) CreateVolumeBackupPolicy(ctx context.Context, request CreateVolumeBackupPolicyRequest) (response CreateVolumeBackupPolicyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -679,9 +681,9 @@ func (client BlockstorageClient) createVolumeBackupPolicy(ctx context.Context, r
 	return response, err
 }
 
-// CreateVolumeBackupPolicyAssignment Assigns a policy to the specified asset, such as a volume. Note that a given asset can
-// only have one policy assigned to it; if this method is called for an asset that previously
-// has a different policy assigned, the prior assignment will be silently deleted.
+// CreateVolumeBackupPolicyAssignment Assigns a volume backup policy to the specified volume. Note that a given volume can
+// only have one backup policy assigned to it. If this operation is used for a volume that already
+// has a different backup policy assigned, the prior backup policy will be silently unassigned.
 func (client BlockstorageClient) CreateVolumeBackupPolicyAssignment(ctx context.Context, request CreateVolumeBackupPolicyAssignmentRequest) (response CreateVolumeBackupPolicyAssignmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1039,7 +1041,10 @@ func (client BlockstorageClient) deleteVolumeBackup(ctx context.Context, request
 	return response, err
 }
 
-// DeleteVolumeBackupPolicy Deletes the specified scheduled backup policy.
+// DeleteVolumeBackupPolicy Deletes a user defined backup policy.
+//  For more information about user defined backup policies,
+//  see Policy-Based Backups (https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#UserDefinedBackupPolicies).
+//  Avoid entering confidential information.
 func (client BlockstorageClient) DeleteVolumeBackupPolicy(ctx context.Context, request DeleteVolumeBackupPolicyRequest) (response DeleteVolumeBackupPolicyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1081,7 +1086,7 @@ func (client BlockstorageClient) deleteVolumeBackupPolicy(ctx context.Context, r
 	return response, err
 }
 
-// DeleteVolumeBackupPolicyAssignment Deletes a volume backup policy assignment (i.e. unassigns the policy from an asset).
+// DeleteVolumeBackupPolicyAssignment Deletes a volume backup policy assignment.
 func (client BlockstorageClient) DeleteVolumeBackupPolicyAssignment(ctx context.Context, request DeleteVolumeBackupPolicyAssignmentRequest) (response DeleteVolumeBackupPolicyAssignmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1502,9 +1507,9 @@ func (client BlockstorageClient) getVolumeBackupPolicy(ctx context.Context, requ
 	return response, err
 }
 
-// GetVolumeBackupPolicyAssetAssignment Gets the volume backup policy assignment for the specified asset. Note that the
-// assetId query parameter is required, and that the returned list will contain at most
-// one item (since any given asset can only have one policy assigned to it).
+// GetVolumeBackupPolicyAssetAssignment Gets the volume backup policy assignment for the specified volume. The
+// `assetId` query parameter is required, and the returned list will contain at most
+// one item, since volume can only have one volume backup policy assigned at a time.
 func (client BlockstorageClient) GetVolumeBackupPolicyAssetAssignment(ctx context.Context, request GetVolumeBackupPolicyAssetAssignmentRequest) (response GetVolumeBackupPolicyAssetAssignmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1798,7 +1803,9 @@ func (client BlockstorageClient) listBootVolumes(ctx context.Context, request co
 	return response, err
 }
 
-// ListVolumeBackupPolicies Lists all volume backup policies available to the caller.
+// ListVolumeBackupPolicies Lists all the volume backup policies available in the specified compartment.
+// For more information about Oracle defined backup policies and user defined backup policies,
+// see Policy-Based Backups (https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm).
 func (client BlockstorageClient) ListVolumeBackupPolicies(ctx context.Context, request ListVolumeBackupPoliciesRequest) (response ListVolumeBackupPoliciesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2223,8 +2230,10 @@ func (client BlockstorageClient) updateVolumeBackup(ctx context.Context, request
 	return response, err
 }
 
-// UpdateVolumeBackupPolicy Updates a volume backup policy.
-// Avoid entering confidential information.
+// UpdateVolumeBackupPolicy Updates a user defined backup policy.
+//  For more information about user defined backup policies,
+//  see Policy-Based Backups (https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#UserDefinedBackupPolicies).
+//  Avoid entering confidential information.
 func (client BlockstorageClient) UpdateVolumeBackupPolicy(ctx context.Context, request UpdateVolumeBackupPolicyRequest) (response UpdateVolumeBackupPolicyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

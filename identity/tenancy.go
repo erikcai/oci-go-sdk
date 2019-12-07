@@ -45,6 +45,9 @@ type Tenancy struct {
 	// OracleMyServicesIdentifier is Oracle MyServices Cloud Account Identifier.
 	OracleMyServicesIdentifier *string `mandatory:"false" json:"oracleMyServicesIdentifier"`
 
+	// Url which refers to the UPI IDCS compatibility layer endpoint configured for this Tenant's home region.
+	UpiIdcsCompatibilityLayerEndpoint *string `mandatory:"false" json:"upiIdcsCompatibilityLayerEndpoint"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`

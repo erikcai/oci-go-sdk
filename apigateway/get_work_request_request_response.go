@@ -53,8 +53,8 @@ type GetWorkRequestResponse struct {
 	// id.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// some decimal number representing the number of seconds the client
-	// should wait before polling this endpoint again
+	// A decimal number representing the number of seconds the client
+	// should wait before polling this endpoint again.
 	RetryAfter *float32 `presentIn:"header" name:"retry-after"`
 }
 

@@ -11,7 +11,7 @@ import (
 // EnableReverseConnectionsRequest wrapper for the EnableReverseConnections operation
 type EnableReverseConnectionsRequest struct {
 
-	// Details for enabling the reverse connections support for the Private Endpoint
+	// Details for supporting reverse connections for the private endpoint.
 	EnableReverseConnectionsDetails `contributesTo:"body"`
 
 	// The private endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).

@@ -39,10 +39,14 @@ type CreateScheduledJobDetails struct {
 	// the value for the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
 	IntervalValue *string `mandatory:"false" json:"intervalValue"`
 
-	// the list of managed instances this scheduled job operates on (mutually exclusive with managedInstanceGroups)
+	// The list of managed instances this scheduled job operates on
+	// (mutually exclusive with managedInstanceGroups). Either this or the
+	// managedInstanceGroups must be supplied.
 	ManagedInstances []Id `mandatory:"false" json:"managedInstances"`
 
-	// the list of managed instance groups this scheduled job operates on (mutually exclusive with managedInstances)
+	// The list of managed instance groups this scheduled job operates on
+	// (mutually exclusive with managedInstances). Either this or
+	// managedInstances must be supplied.
 	ManagedInstanceGroups []Id `mandatory:"false" json:"managedInstanceGroups"`
 
 	// Type of the update (only if operation type is UPDATE_ALL_PACKAGES)

@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -13,16 +15,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// StockResponseBackend Send the request to a mocked backend
+// StockResponseBackend Send the request to a mock backend.
 type StockResponseBackend struct {
 
-	// the mocked response's status code
+	// The status code of the stock response from the mock backend.
 	Status *int `mandatory:"true" json:"status"`
 
-	// the mocked response's body
+	// The body of the stock response from the mock backend.
 	Body *string `mandatory:"false" json:"body"`
 
-	// the mocked reponse's headers
+	// The headers of the stock response from the mock backend.
 	Headers []HeaderFieldSpecification `mandatory:"false" json:"headers"`
 }
 

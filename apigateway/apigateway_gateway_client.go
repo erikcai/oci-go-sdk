@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -58,7 +60,7 @@ func (client *GatewayClient) ConfigurationProvider() *common.ConfigurationProvid
 	return client.config
 }
 
-// ChangeGatewayCompartment Change the gateway compartment.
+// ChangeGatewayCompartment Changes the gateway compartment.
 func (client GatewayClient) ChangeGatewayCompartment(ctx context.Context, request ChangeGatewayCompartmentRequest) (response ChangeGatewayCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -105,7 +107,7 @@ func (client GatewayClient) changeGatewayCompartment(ctx context.Context, reques
 	return response, err
 }
 
-// CreateGateway Creates a new Gateway.
+// CreateGateway Creates a new gateway.
 func (client GatewayClient) CreateGateway(ctx context.Context, request CreateGatewayRequest) (response CreateGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -152,7 +154,7 @@ func (client GatewayClient) createGateway(ctx context.Context, request common.OC
 	return response, err
 }
 
-// DeleteGateway Deletes a Gateway resource by identifier
+// DeleteGateway Deletes the gateway with the given identifier.
 func (client GatewayClient) DeleteGateway(ctx context.Context, request DeleteGatewayRequest) (response DeleteGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -194,7 +196,7 @@ func (client GatewayClient) deleteGateway(ctx context.Context, request common.OC
 	return response, err
 }
 
-// GetGateway Gets a Gateway by identifier
+// GetGateway Gets a gateway by identifier.
 func (client GatewayClient) GetGateway(ctx context.Context, request GetGatewayRequest) (response GetGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -236,7 +238,7 @@ func (client GatewayClient) getGateway(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// ListGateways Returns a list of Gateways.
+// ListGateways Returns a list of gateways.
 func (client GatewayClient) ListGateways(ctx context.Context, request ListGatewaysRequest) (response ListGatewaysResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -278,7 +280,7 @@ func (client GatewayClient) listGateways(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// UpdateGateway Updates the Gateway
+// UpdateGateway Updates the gateway with the given identifier.
 func (client GatewayClient) UpdateGateway(ctx context.Context, request UpdateGatewayRequest) (response UpdateGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

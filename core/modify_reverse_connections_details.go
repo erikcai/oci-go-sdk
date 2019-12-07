@@ -16,7 +16,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ModifyReverseConnectionsDetails Details for modifying reverse connections functionality on the Private Endpoint
+// ModifyReverseConnectionsDetails Details for modifying reverse connections configuration for the specified private endpoint.
 type ModifyReverseConnectionsDetails struct {
 
 	// List of DNS zones to exclude from the default DNS resolution context.

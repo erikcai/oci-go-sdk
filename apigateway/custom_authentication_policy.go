@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -17,7 +19,7 @@ import (
 // A valid policy must specify either tokenHeader or tokenQueryParam.
 type CustomAuthenticationPolicy struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle function resource.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function resource.
 	FunctionId *string `mandatory:"true" json:"functionId"`
 
 	// Whether an unauthenticated user may access the API. Must be "true" to enable ANONYMOUS

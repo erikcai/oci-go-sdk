@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -12,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RateLimitingPolicy Limit the number of requests that should be handled for the specified window using a spefic key.
+// RateLimitingPolicy Limit the number of requests that should be handled for the specified window using a specfic key.
 type RateLimitingPolicy struct {
 
 	// The maximum number of requests per second to allow.

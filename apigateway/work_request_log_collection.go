@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -12,10 +14,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestLogCollection Collection of the Work Request logs
+// WorkRequestLogCollection Collection of work request logs.
 type WorkRequestLogCollection struct {
 
-	// Work Request logs
+	// Work request logs.
 	Items []WorkRequestLog `mandatory:"true" json:"items"`
 }
 

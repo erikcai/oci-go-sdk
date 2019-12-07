@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -17,7 +19,7 @@ type CorsPolicy struct {
 
 	// The list of allowed origins that the CORS handler will use to respond to CORS requests. The gateway will
 	// send the Access-Control-Allow-Origin header with the best origin match for the circumstances. '*' will match
-	// any origins, 'null' will match queries from 'file:' origins, all other origins must be qualified with the
+	// any origins, and 'null' will match queries from 'file:' origins. All other origins must be qualified with the
 	// scheme, full hostname, and port if necessary.
 	AllowedOrigins []string `mandatory:"true" json:"allowedOrigins"`
 

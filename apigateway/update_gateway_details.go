@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -16,6 +18,7 @@ import (
 type UpdateGatewayDetails struct {
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
 	// Example: `My new resource`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 

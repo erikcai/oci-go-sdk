@@ -11,7 +11,7 @@ import (
 // GetDeploymentRequest wrapper for the GetDeployment operation
 type GetDeploymentRequest struct {
 
-	// The ocid of the deployment
+	// The ocid of the deployment.
 	DeploymentId *string `mandatory:"true" contributesTo:"path" name:"deploymentId"`
 
 	// The client request id for tracing.

@@ -11,7 +11,7 @@ import (
 // DeleteGatewayRequest wrapper for the DeleteGateway operation
 type DeleteGatewayRequest struct {
 
-	// The ocid of the gateway
+	// The ocid of the gateway.
 	GatewayId *string `mandatory:"true" contributesTo:"path" name:"gatewayId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

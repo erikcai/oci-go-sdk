@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -12,20 +14,21 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// GatewaySummary Summary of the Gateway.
+// GatewaySummary A summary of the gateway.
 type GatewaySummary struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
 	// resource is created.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Gateway Endpoint Type
+	// Gateway endpoint type.
 	EndpointType GatewayEndpointTypeEnum `mandatory:"true" json:"endpointType"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
 	// Example: `My new resource`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
@@ -33,21 +36,21 @@ type GatewaySummary struct {
 	// related resources are created.
 	SubnetId *string `mandatory:"false" json:"subnetId"`
 
-	// The time this resource was created. An RFC3339 formatted datetime string
+	// The time this resource was created. An RFC3339 formatted datetime string.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time this resource was last updated. An RFC3339 formatted datetime string
+	// The time this resource was last updated. An RFC3339 formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// The current state of the gateway.
 	LifecycleState GatewayLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// An message describing the current state in more detail.
+	// A message describing the current state in more detail.
 	// For example, can be used to provide actionable information for a
-	// resource in Failed state.
+	// resource in a Failed state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
-	// The hostname for the APIs deployed on the Gateway
+	// The hostname for the APIs deployed on the gateway.
 	Hostname *string `mandatory:"false" json:"hostname"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair

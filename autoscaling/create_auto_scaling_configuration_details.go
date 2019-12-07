@@ -3,8 +3,11 @@
 
 // Autoscaling API
 //
-// APIs for dynamically scaling Compute resources to meet application requirements.
-// For information about the Compute service, see Overview of the Compute Service (https://docs.cloud.oracle.com/Content/Compute/Concepts/computeoverview.htm).
+// APIs for dynamically scaling Compute resources to meet application requirements. For more information about
+// autoscaling, see Autoscaling (https://docs.cloud.oracle.com/Content/Compute/Tasks/autoscalinginstancepools.htm). For information about the
+// Compute service, see Overview of the Compute Service (https://docs.cloud.oracle.com/Content/Compute/Concepts/computeoverview.htm).
+// **Note:** Autoscaling is not available in Government Cloud tenancies. For more information, see
+// Information for Oracle Cloud Infrastructure Government Cloud Customers (https://docs.cloud.oracle.com/Content/General/Concepts/govinfo.htm).
 //
 
 package autoscaling
@@ -18,7 +21,6 @@ import (
 type CreateAutoScalingConfigurationDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the autoscaling configuration.
-	// The autoscaling configuration and the instance pool that it manages must be in the same compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	Policies []CreateAutoScalingPolicyDetails `mandatory:"true" json:"policies"`

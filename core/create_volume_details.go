@@ -49,10 +49,13 @@ type CreateVolumeDetails struct {
 	// for the volume.
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 
-	// The performance tier to use for the volume.
-	PerformanceTier VolumePerformanceTierEnum `mandatory:"false" json:"performanceTier,omitempty"`
-
-	// The number of Volume Performance Units that will be applied to this volume per GB.
+	// The number of volume performance units (VPUs) that will be applied to this volume per GB,
+	// representing the Block Volume service's elastic performance options.
+	// See Block Volume Elastic Performance (https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more information.
+	// Allowed values:
+	//   * `0`: Represents Lower Cost option.
+	//   * `10`: Represents Balanced option.
+	//   * `20`: Represents Higher Performance option.
 	VpusPerGB *int64 `mandatory:"false" json:"vpusPerGB"`
 
 	// The size of the volume in GBs.
@@ -85,7 +88,6 @@ func (m *CreateVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 		DisplayName        *string                           `json:"displayName"`
 		FreeformTags       map[string]string                 `json:"freeformTags"`
 		KmsKeyId           *string                           `json:"kmsKeyId"`
-		PerformanceTier    VolumePerformanceTierEnum         `json:"performanceTier"`
 		VpusPerGB          *int64                            `json:"vpusPerGB"`
 		SizeInGBs          *int64                            `json:"sizeInGBs"`
 		SizeInMBs          *int64                            `json:"sizeInMBs"`
@@ -109,8 +111,6 @@ func (m *CreateVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 	m.FreeformTags = model.FreeformTags
 
 	m.KmsKeyId = model.KmsKeyId
-
-	m.PerformanceTier = model.PerformanceTier
 
 	m.VpusPerGB = model.VpusPerGB
 

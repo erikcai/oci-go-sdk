@@ -11,7 +11,7 @@ import (
 // GetGatewayRequest wrapper for the GetGateway operation
 type GetGatewayRequest struct {
 
-	// The ocid of the gateway
+	// The ocid of the gateway.
 	GatewayId *string `mandatory:"true" contributesTo:"path" name:"gatewayId"`
 
 	// The client request id for tracing.

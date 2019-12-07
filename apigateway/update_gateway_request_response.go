@@ -11,7 +11,7 @@ import (
 // UpdateGatewayRequest wrapper for the UpdateGateway operation
 type UpdateGatewayRequest struct {
 
-	// The ocid of the gateway
+	// The ocid of the gateway.
 	GatewayId *string `mandatory:"true" contributesTo:"path" name:"gatewayId"`
 
 	// The information to be updated.

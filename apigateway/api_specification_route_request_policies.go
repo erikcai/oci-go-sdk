@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -13,7 +15,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ApiSpecificationRouteRequestPolicies Behaviour applied to any requests received by the API on this route.
+// ApiSpecificationRouteRequestPolicies Behavior applied to any requests received by the API on this route.
 type ApiSpecificationRouteRequestPolicies struct {
 	Authorization RouteAuthorizationPolicy `mandatory:"false" json:"authorization"`
 

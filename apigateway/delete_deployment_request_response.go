@@ -11,7 +11,7 @@ import (
 // DeleteDeploymentRequest wrapper for the DeleteDeployment operation
 type DeleteDeploymentRequest struct {
 
-	// The ocid of the deployment
+	// The ocid of the deployment.
 	DeploymentId *string `mandatory:"true" contributesTo:"path" name:"deploymentId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

@@ -3666,12 +3666,12 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.900</version>
+        <version>0.2.953</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.106</version>
+        <version>0.4.110</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -3686,7 +3686,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.314</version>
+        <version>0.1.331</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -3716,7 +3716,7 @@
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
         <artifactId>kms-api-spec</artifactId>
-        <version>0.3.7</version>
+        <version>0.3.12</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.query</groupId>
@@ -3751,7 +3751,7 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.3.518</version>
+        <version>0.3.541</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracache</groupId>
@@ -3766,7 +3766,7 @@
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>
         <artifactId>autoscaling-public-api-spec</artifactId>
-        <version>0.0.42</version>
+        <version>0.0.53</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.usage</groupId>
@@ -3806,7 +3806,7 @@
       <dependency>
         <groupId>com.oracle.pic.oda.cp</groupId>
         <artifactId>digital-assistant-spec</artifactId>
-        <version>0.0.5</version>
+        <version>0.0.6</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.csg</groupId>
@@ -3821,7 +3821,7 @@
       <dependency>
         <groupId>com.oracle.pic.apigw</groupId>
         <artifactId>public-api-spec</artifactId>
-        <version>1.5.0</version>
+        <version>1.6.0</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
@@ -3841,7 +3841,7 @@
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
         <artifactId>cec-public-spec</artifactId>
-        <version>19.32.36</version>
+        <version>19.43.14</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.odsc.pegasus</groupId>
@@ -3881,7 +3881,7 @@
       <dependency>
         <groupId>com.oracle.osms.api</groupId>
         <artifactId>osms-spec</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2-9</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.migration.application</groupId>

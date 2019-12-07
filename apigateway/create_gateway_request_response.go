@@ -11,7 +11,7 @@ import (
 // CreateGatewayRequest wrapper for the CreateGateway operation
 type CreateGatewayRequest struct {
 
-	// Details for the new Gateway.
+	// Details for the new gateway.
 	CreateGatewayDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
@@ -66,7 +66,7 @@ type CreateGatewayResponse struct {
 	// id.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// Location of the resource
+	// Location of the resource.
 	Location *string `presentIn:"header" name:"location"`
 }
 

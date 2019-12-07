@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -12,13 +14,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// HeaderFieldSpecification header in key/value pair
+// HeaderFieldSpecification Header in key/value pair.
 type HeaderFieldSpecification struct {
 
-	// name of the header
+	// Name of the header.
 	Name *string `mandatory:"false" json:"name"`
 
-	// value of the header
+	// Value of the header.
 	Value *string `mandatory:"false" json:"value"`
 }
 

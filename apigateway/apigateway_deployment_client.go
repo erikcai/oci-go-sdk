@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -58,7 +60,7 @@ func (client *DeploymentClient) ConfigurationProvider() *common.ConfigurationPro
 	return client.config
 }
 
-// ChangeDeploymentCompartment Change the deployment compartment.
+// ChangeDeploymentCompartment Changes the deployment compartment.
 func (client DeploymentClient) ChangeDeploymentCompartment(ctx context.Context, request ChangeDeploymentCompartmentRequest) (response ChangeDeploymentCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -105,7 +107,7 @@ func (client DeploymentClient) changeDeploymentCompartment(ctx context.Context, 
 	return response, err
 }
 
-// CreateDeployment Creates a new Deployment
+// CreateDeployment Creates a new deployment.
 func (client DeploymentClient) CreateDeployment(ctx context.Context, request CreateDeploymentRequest) (response CreateDeploymentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -152,7 +154,7 @@ func (client DeploymentClient) createDeployment(ctx context.Context, request com
 	return response, err
 }
 
-// DeleteDeployment Deletes a Deployment resource by identifier
+// DeleteDeployment Deletes the deployment with the given identifier.
 func (client DeploymentClient) DeleteDeployment(ctx context.Context, request DeleteDeploymentRequest) (response DeleteDeploymentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -194,7 +196,7 @@ func (client DeploymentClient) deleteDeployment(ctx context.Context, request com
 	return response, err
 }
 
-// GetDeployment Gets a deployment by identifier
+// GetDeployment Gets a deployment by identifier.
 func (client DeploymentClient) GetDeployment(ctx context.Context, request GetDeploymentRequest) (response GetDeploymentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -236,7 +238,7 @@ func (client DeploymentClient) getDeployment(ctx context.Context, request common
 	return response, err
 }
 
-// ListDeployments Returns a list of Deployments.
+// ListDeployments Returns a list of deployments.
 func (client DeploymentClient) ListDeployments(ctx context.Context, request ListDeploymentsRequest) (response ListDeploymentsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -278,7 +280,7 @@ func (client DeploymentClient) listDeployments(ctx context.Context, request comm
 	return response, err
 }
 
-// UpdateDeployment Updates the Deployment
+// UpdateDeployment Updates the deployment with the given identifier.
 func (client DeploymentClient) UpdateDeployment(ctx context.Context, request UpdateDeploymentRequest) (response UpdateDeploymentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

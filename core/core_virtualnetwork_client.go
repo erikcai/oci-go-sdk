@@ -3735,7 +3735,7 @@ func (client VirtualNetworkClient) deleteRemotePeeringConnection(ctx context.Con
 	return response, err
 }
 
-// DeleteReverseConnectionNatIp Deletes the Reverse Connection NAT IP for specific customer IP and Private Endpoint OCID.
+// DeleteReverseConnectionNatIp Deletes the reverse connection NAT IP address for the specified private endpoint and customer IP address.
 func (client VirtualNetworkClient) DeleteReverseConnectionNatIp(ctx context.Context, request DeleteReverseConnectionNatIpRequest) (response DeleteReverseConnectionNatIpResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4095,7 +4095,7 @@ func (client VirtualNetworkClient) detachServiceId(ctx context.Context, request 
 	return response, err
 }
 
-// DisableReverseConnections Disables the reverse connections support and DNS proxy for the Private Endpoint.
+// DisableReverseConnections Disables support for reverse connections and a DNS proxy for the specified private endpoint.
 func (client VirtualNetworkClient) DisableReverseConnections(ctx context.Context, request DisableReverseConnectionsRequest) (response DisableReverseConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4137,7 +4137,7 @@ func (client VirtualNetworkClient) disableReverseConnections(ctx context.Context
 	return response, err
 }
 
-// EnableReverseConnections Enables the reverse connections support and DNS proxy for the Private Endpoint.
+// EnableReverseConnections Enables support for reverse connections and a DNS proxy for the specified private endpoint.
 func (client VirtualNetworkClient) EnableReverseConnections(ctx context.Context, request EnableReverseConnectionsRequest) (response EnableReverseConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4271,7 +4271,11 @@ func (client VirtualNetworkClient) getCpe(ctx context.Context, request common.OC
 	return response, err
 }
 
-// GetCreateReverseConnectionNatIp Creates the Reverse Connection NAT IP for specific customer IP address and Private Endpoint OCID if IP doesn't exist, retrieves the Reverse Connection NAT IP if the IP does exist
+// GetCreateReverseConnectionNatIp Either gets (if it already exists) or creates (if it does not yet exist) a reverse connection
+// NAT IP for the specified private endpoint and customer IP address. Use the reverse connection NAT
+// IP address as the destination when initiating reverse connections to the customer's IP address.
+// A private endpoint can have multiple reverse connection NAT IPs, each corresponding to a different
+// customer VCN IP address.
 func (client VirtualNetworkClient) GetCreateReverseConnectionNatIp(ctx context.Context, request GetCreateReverseConnectionNatIpRequest) (response GetCreateReverseConnectionNatIpResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5662,7 +5666,8 @@ func (client VirtualNetworkClient) getRemotePeeringConnection(ctx context.Contex
 	return response, err
 }
 
-// GetReverseConnectionNatIp Gets the Reverse Connection NAT IP for specific customer IP and Private Endpoint OCID
+// GetReverseConnectionNatIp Gets the reverse connection NAT IP address for the specified private endpoint. This is the IP
+// address to use as the destination when initiating reverse connections to the customer's IP address.
 func (client VirtualNetworkClient) GetReverseConnectionNatIp(ctx context.Context, request GetReverseConnectionNatIpRequest) (response GetReverseConnectionNatIpResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -7359,7 +7364,8 @@ func (client VirtualNetworkClient) listRemotePeeringConnections(ctx context.Cont
 	return response, err
 }
 
-// ListReverseConnectionNatIps List the NAT IPs for specific Private Endpoint. You may filter results by NAT IP address to see customer IP for a given Reverse Connection NAT IP.
+// ListReverseConnectionNatIps Lists the reverse connection NAT IP addresses for the specified private endpoint. You can filter
+// the results by NAT IP address to get the corresponding customer IP address for that NAT IP.
 func (client VirtualNetworkClient) ListReverseConnectionNatIps(ctx context.Context, request ListReverseConnectionNatIpsRequest) (response ListReverseConnectionNatIpsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -7784,7 +7790,7 @@ func (client VirtualNetworkClient) listVirtualCircuits(ctx context.Context, requ
 	return response, err
 }
 
-// ModifyReverseConnections Modifies the configurations for the reverse connections support and DNS proxy for the Private Endpoint.
+// ModifyReverseConnections Modifies the configuration for reverse connections and the DNS proxy for the specified private endpoint.
 func (client VirtualNetworkClient) ModifyReverseConnections(ctx context.Context, request ModifyReverseConnectionsRequest) (response ModifyReverseConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

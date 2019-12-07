@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -12,22 +14,26 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateDeploymentDetails The information about new Deployment.
+// CreateDeploymentDetails Information about a new deployment.
 type CreateDeploymentDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
 	GatewayId *string `mandatory:"true" json:"gatewayId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
 	// resource is created.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Path prefix
+	// A path on which to deploy all routes contained in the API
+	// deployment specification. For more information, see
+	// Deploying an API on an API Gateway by Creating an API
+	// Deployment (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Tasks/apigatewaycreatingdeployment.htm).
 	PathPrefix *string `mandatory:"true" json:"pathPrefix"`
 
 	Specification *ApiSpecification `mandatory:"true" json:"specification"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
 	// Example: `My new resource`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 

@@ -11,10 +11,10 @@ import (
 // ChangeDeploymentCompartmentRequest wrapper for the ChangeDeploymentCompartment operation
 type ChangeDeploymentCompartmentRequest struct {
 
-	// The ocid of the deployment
+	// The ocid of the deployment.
 	DeploymentId *string `mandatory:"true" contributesTo:"path" name:"deploymentId"`
 
-	// Specifications of the target compartment.
+	// Details of the target compartment.
 	ChangeDeploymentCompartmentDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

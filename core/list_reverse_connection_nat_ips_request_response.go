@@ -14,7 +14,7 @@ type ListReverseConnectionNatIpsRequest struct {
 	// The private endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	PrivateEndpointId *string `mandatory:"true" contributesTo:"path" name:"privateEndpointId"`
 
-	// The Reverse Connection NAT IP address
+	// The reverse connection NAT IP address that corresponds to a customer's IP address.
 	ReverseConnectionNatIp *string `mandatory:"false" contributesTo:"query" name:"reverseConnectionNatIp"`
 
 	// For list pagination. The maximum number of results per page, or items to return in a paginated

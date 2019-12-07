@@ -4,6 +4,8 @@
 // API Gateway API
 //
 // API for the API Gateway service. Use this API to manage gateways, deployments, and related items.
+// For more information, see
+// Overview of API Gateway (https://docs.cloud.oracle.com/iaas/Content/APIGateway/Concepts/apigatewayoverview.htm).
 //
 
 package apigateway
@@ -12,19 +14,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestSummary A summary of the workrequest
+// WorkRequestSummary A summary of the work request.
 type WorkRequestSummary struct {
 
-	// type of the work request
+	// The type of the work request.
 	OperationType WorkRequestOperationTypeEnum `mandatory:"true" json:"operationType"`
 
-	// status of the work request.
+	// The status of the work request.
 	Status WorkRequestStatusEnum `mandatory:"true" json:"status"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
 	WorkRequestId *string `mandatory:"true" json:"workRequestId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
 	// resource is created.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
@@ -39,7 +41,7 @@ type WorkRequestSummary struct {
 	// section 14.29.
 	TimeStarted *common.SDKTime `mandatory:"false" json:"timeStarted"`
 
-	// The date and time the object was finished, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
+	// The date and time the request was finished, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
 	TimeFinished *common.SDKTime `mandatory:"false" json:"timeFinished"`
 }
 

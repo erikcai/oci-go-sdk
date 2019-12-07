@@ -72,6 +72,8 @@ const (
 	PrivateAccessGatewayLifecycleStateAvailable    PrivateAccessGatewayLifecycleStateEnum = "AVAILABLE"
 	PrivateAccessGatewayLifecycleStateTerminating  PrivateAccessGatewayLifecycleStateEnum = "TERMINATING"
 	PrivateAccessGatewayLifecycleStateTerminated   PrivateAccessGatewayLifecycleStateEnum = "TERMINATED"
+	PrivateAccessGatewayLifecycleStateUpdating     PrivateAccessGatewayLifecycleStateEnum = "UPDATING"
+	PrivateAccessGatewayLifecycleStateFailed       PrivateAccessGatewayLifecycleStateEnum = "FAILED"
 )
 
 var mappingPrivateAccessGatewayLifecycleState = map[string]PrivateAccessGatewayLifecycleStateEnum{
@@ -79,6 +81,8 @@ var mappingPrivateAccessGatewayLifecycleState = map[string]PrivateAccessGatewayL
 	"AVAILABLE":    PrivateAccessGatewayLifecycleStateAvailable,
 	"TERMINATING":  PrivateAccessGatewayLifecycleStateTerminating,
 	"TERMINATED":   PrivateAccessGatewayLifecycleStateTerminated,
+	"UPDATING":     PrivateAccessGatewayLifecycleStateUpdating,
+	"FAILED":       PrivateAccessGatewayLifecycleStateFailed,
 }
 
 // GetPrivateAccessGatewayLifecycleStateEnumValues Enumerates the set of values for PrivateAccessGatewayLifecycleStateEnum

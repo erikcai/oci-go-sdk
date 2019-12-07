@@ -51,7 +51,6 @@ type CreatePrivateEndpointDetails struct {
 	// updated with this FQDN.
 	// For important information about how this attribute is used, see the discussion
 	// of DNS and FQDNs in PrivateEndpoint.
-	// changed.
 	// Example: `xyz.oraclecloud.com`
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
 

@@ -11,10 +11,10 @@ import (
 // ChangeGatewayCompartmentRequest wrapper for the ChangeGatewayCompartment operation
 type ChangeGatewayCompartmentRequest struct {
 
-	// The ocid of the gateway
+	// The ocid of the gateway.
 	GatewayId *string `mandatory:"true" contributesTo:"path" name:"gatewayId"`
 
-	// Specifications of the target compartment.
+	// Details of the target compartment.
 	ChangeGatewayCompartmentDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

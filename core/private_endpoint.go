@@ -25,11 +25,12 @@ import (
 // sent to the PrivateAccessGateway on the service VCN.
 // The gateway then sends the traffic to the PE's associated `EndpointService` for
 // processing.
-// **Regarding DNS for the private endpoint:** When creating a PE, the private endpoint service assigns
-// a fully qualified domain name (FQDN) to the PE and creates the related DNS zone and record in
-// the customer's VCN. This enables the customer to use the FQDN instead of the PE's private IP
-// address to access the service. Here are details about how the private endpoint service determines
-// the value to use for the PE's FQDN:
+// **Regarding DNS for the private endpoint:** You may optionally have the private endpoint
+// service assign a fully qualified domain name (FQDN) to the private endpoint. If you do, the
+// private endpoint service creates the related DNS zone and record in the customer's VCN. This
+// enables the customer to use the FQDN instead of the PE's private IP address to access the
+// service. Here are details about how the private endpoint service determines the value to use
+// for the PE's FQDN:
 //   * Both the EndpointService object and the
 //     CreatePrivateEndpointDetails
 //     object have an `endpointFqdn` attribute.
@@ -38,7 +39,7 @@ import (
 //   * If you specify an FQDN for `CreatePrivateEndpointDetails` during PE creation, that value is used.
 //     It always takes precedence over any value set in the `EndpointService` object.
 //   * If the `EndpointService` object does not have an FQDN value set, and you don't provide a value
-//     in `CreatePrivateEndpointDetails` during creation, an error is returned.
+//     in `CreatePrivateEndpointDetails` during creation, the PE does not get an FQDN.
 //   * **Special scenario:**  If the endpoint service allows multiple PE's to be created per customer VCN
 //     (see the `areMultiplePrivateEndpointsPerVcnAllowed` attribute in the `EndpointService`),
 //     the `EndpointService` is prohibited from also having an `endpointFqdn` value. This restriction ensures
@@ -132,6 +133,8 @@ const (
 	PrivateEndpointLifecycleStateAvailable    PrivateEndpointLifecycleStateEnum = "AVAILABLE"
 	PrivateEndpointLifecycleStateTerminating  PrivateEndpointLifecycleStateEnum = "TERMINATING"
 	PrivateEndpointLifecycleStateTerminated   PrivateEndpointLifecycleStateEnum = "TERMINATED"
+	PrivateEndpointLifecycleStateUpdating     PrivateEndpointLifecycleStateEnum = "UPDATING"
+	PrivateEndpointLifecycleStateFailed       PrivateEndpointLifecycleStateEnum = "FAILED"
 )
 
 var mappingPrivateEndpointLifecycleState = map[string]PrivateEndpointLifecycleStateEnum{
@@ -139,6 +142,8 @@ var mappingPrivateEndpointLifecycleState = map[string]PrivateEndpointLifecycleSt
 	"AVAILABLE":    PrivateEndpointLifecycleStateAvailable,
 	"TERMINATING":  PrivateEndpointLifecycleStateTerminating,
 	"TERMINATED":   PrivateEndpointLifecycleStateTerminated,
+	"UPDATING":     PrivateEndpointLifecycleStateUpdating,
+	"FAILED":       PrivateEndpointLifecycleStateFailed,
 }
 
 // GetPrivateEndpointLifecycleStateEnumValues Enumerates the set of values for PrivateEndpointLifecycleStateEnum

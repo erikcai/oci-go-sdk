@@ -11,7 +11,7 @@ import (
 // GetReverseConnectionNatIpRequest wrapper for the GetReverseConnectionNatIp operation
 type GetReverseConnectionNatIpRequest struct {
 
-	// The IP address associated with a customer
+	// The customer's IP address that corresponds to the reverse connection NAT IP address.
 	ReverseConnectionCustomerIp *string `mandatory:"true" contributesTo:"path" name:"reverseConnectionCustomerIp"`
 
 	// The private endpoint's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
