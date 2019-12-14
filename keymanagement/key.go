@@ -56,6 +56,9 @@ type Key struct {
 	// An optional property indicating when to delete the key, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
 	// Example: `2019-04-03T21:10:29.600Z`
 	TimeOfDeletion *common.SDKTime `mandatory:"false" json:"timeOfDeletion"`
+
+	// The OCID of the key from which this key is restored.
+	RestoredFromKeyId *string `mandatory:"false" json:"restoredFromKeyId"`
 }
 
 func (m Key) String() string {

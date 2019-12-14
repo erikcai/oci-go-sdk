@@ -15,7 +15,7 @@ import (
 // AcceptedAgreementSummary The model for a summary of an accepted agreement.
 type AcceptedAgreementSummary struct {
 
-	// The unique identifier for the accepted agreement.
+	// The unique identifier for the acceptance of the agreement within a specific compartment.
 	Id *string `mandatory:"false" json:"id"`
 
 	// A display name for the accepted agreement.
@@ -30,7 +30,7 @@ type AcceptedAgreementSummary struct {
 	// The package version associated with the agreement.
 	PackageVersion *string `mandatory:"false" json:"packageVersion"`
 
-	// The agreement that was accepted.
+	// The unique identifier for the terms of use agreement itself.
 	AgreementId *string `mandatory:"false" json:"agreementId"`
 
 	// The time the agreement was accepted.

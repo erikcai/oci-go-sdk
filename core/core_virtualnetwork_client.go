@@ -4616,6 +4616,48 @@ func (client VirtualNetworkClient) getDrgAttachment(ctx context.Context, request
 	return response, err
 }
 
+// GetDrgRedundancyStatus Get redundancy status of single DRG object on Oracle side.
+func (client VirtualNetworkClient) GetDrgRedundancyStatus(ctx context.Context, request GetDrgRedundancyStatusRequest) (response GetDrgRedundancyStatusResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getDrgRedundancyStatus, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetDrgRedundancyStatusResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetDrgRedundancyStatusResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetDrgRedundancyStatusResponse")
+	}
+	return
+}
+
+// getDrgRedundancyStatus implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getDrgRedundancyStatus(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/drgs/{drgId}/redundancyStatus")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetDrgRedundancyStatusResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetEndpointService Gets the specified endpoint service's information.
 func (client VirtualNetworkClient) GetEndpointService(ctx context.Context, request GetEndpointServiceRequest) (response GetEndpointServiceResponse, err error) {
 	var ociResponse common.OCIResponse

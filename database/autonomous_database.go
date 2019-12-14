@@ -133,6 +133,18 @@ type AutonomousDatabase struct {
 
 	// The date and time when maintenance will end.
 	TimeMaintenanceEnd *common.SDKTime `mandatory:"false" json:"timeMaintenanceEnd"`
+
+	// Indicates if this is a Refreashable Clone.
+	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
+
+	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
+	LagTimeInSeconds *int `mandatory:"false" json:"lagTimeInSeconds"`
+
+	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
+	CurrentLagTimeInSeconds *int `mandatory:"false" json:"currentLagTimeInSeconds"`
+
+	// The Database Open mode type.
+	OpenMode AutonomousDatabaseOpenModeEnum `mandatory:"false" json:"openMode,omitempty"`
 }
 
 func (m AutonomousDatabase) String() string {
@@ -258,6 +270,29 @@ var mappingAutonomousDatabaseDataSafeStatus = map[string]AutonomousDatabaseDataS
 func GetAutonomousDatabaseDataSafeStatusEnumValues() []AutonomousDatabaseDataSafeStatusEnum {
 	values := make([]AutonomousDatabaseDataSafeStatusEnum, 0)
 	for _, v := range mappingAutonomousDatabaseDataSafeStatus {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabaseOpenModeEnum Enum with underlying type: string
+type AutonomousDatabaseOpenModeEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabaseOpenModeEnum
+const (
+	AutonomousDatabaseOpenModeOnly  AutonomousDatabaseOpenModeEnum = "READ_ONLY"
+	AutonomousDatabaseOpenModeWrite AutonomousDatabaseOpenModeEnum = "READ_WRITE"
+)
+
+var mappingAutonomousDatabaseOpenMode = map[string]AutonomousDatabaseOpenModeEnum{
+	"READ_ONLY":  AutonomousDatabaseOpenModeOnly,
+	"READ_WRITE": AutonomousDatabaseOpenModeWrite,
+}
+
+// GetAutonomousDatabaseOpenModeEnumValues Enumerates the set of values for AutonomousDatabaseOpenModeEnum
+func GetAutonomousDatabaseOpenModeEnumValues() []AutonomousDatabaseOpenModeEnum {
+	values := make([]AutonomousDatabaseOpenModeEnum, 0)
+	for _, v := range mappingAutonomousDatabaseOpenMode {
 		values = append(values, v)
 	}
 	return values

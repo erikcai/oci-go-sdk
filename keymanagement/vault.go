@@ -61,6 +61,9 @@ type Vault struct {
 	// An optional property to indicate when to delete the vault, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
 	// Example: `2018-04-03T21:10:29.600Z`
 	TimeOfDeletion *common.SDKTime `mandatory:"false" json:"timeOfDeletion"`
+
+	// The OCID of the vault from which this vault is restored.
+	RestoredFromVaultId *string `mandatory:"false" json:"restoredFromVaultId"`
 }
 
 func (m Vault) String() string {

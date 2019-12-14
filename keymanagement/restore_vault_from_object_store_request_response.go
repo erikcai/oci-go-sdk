@@ -34,9 +34,6 @@ type RestoreVaultFromObjectStoreRequest struct {
 	// creation request may be rejected).
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
-	// The OCID of the vault.
-	VaultId *string `mandatory:"false" contributesTo:"query" name:"vaultId"`
-
 	// RestoreVaultFromObjectStoreDetails
 	RestoreVaultFromObjectStoreDetails `contributesTo:"body"`
 

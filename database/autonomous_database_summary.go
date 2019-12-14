@@ -134,6 +134,18 @@ type AutonomousDatabaseSummary struct {
 
 	// The date and time when maintenance will end.
 	TimeMaintenanceEnd *common.SDKTime `mandatory:"false" json:"timeMaintenanceEnd"`
+
+	// Indicates if this is a Refreashable Clone.
+	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
+
+	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
+	LagTimeInSeconds *int `mandatory:"false" json:"lagTimeInSeconds"`
+
+	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
+	CurrentLagTimeInSeconds *int `mandatory:"false" json:"currentLagTimeInSeconds"`
+
+	// The Database Open mode type.
+	OpenMode AutonomousDatabaseSummaryOpenModeEnum `mandatory:"false" json:"openMode,omitempty"`
 }
 
 func (m AutonomousDatabaseSummary) String() string {
@@ -259,6 +271,29 @@ var mappingAutonomousDatabaseSummaryDataSafeStatus = map[string]AutonomousDataba
 func GetAutonomousDatabaseSummaryDataSafeStatusEnumValues() []AutonomousDatabaseSummaryDataSafeStatusEnum {
 	values := make([]AutonomousDatabaseSummaryDataSafeStatusEnum, 0)
 	for _, v := range mappingAutonomousDatabaseSummaryDataSafeStatus {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabaseSummaryOpenModeEnum Enum with underlying type: string
+type AutonomousDatabaseSummaryOpenModeEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabaseSummaryOpenModeEnum
+const (
+	AutonomousDatabaseSummaryOpenModeOnly  AutonomousDatabaseSummaryOpenModeEnum = "READ_ONLY"
+	AutonomousDatabaseSummaryOpenModeWrite AutonomousDatabaseSummaryOpenModeEnum = "READ_WRITE"
+)
+
+var mappingAutonomousDatabaseSummaryOpenMode = map[string]AutonomousDatabaseSummaryOpenModeEnum{
+	"READ_ONLY":  AutonomousDatabaseSummaryOpenModeOnly,
+	"READ_WRITE": AutonomousDatabaseSummaryOpenModeWrite,
+}
+
+// GetAutonomousDatabaseSummaryOpenModeEnumValues Enumerates the set of values for AutonomousDatabaseSummaryOpenModeEnum
+func GetAutonomousDatabaseSummaryOpenModeEnumValues() []AutonomousDatabaseSummaryOpenModeEnum {
+	values := make([]AutonomousDatabaseSummaryOpenModeEnum, 0)
+	for _, v := range mappingAutonomousDatabaseSummaryOpenMode {
 		values = append(values, v)
 	}
 	return values

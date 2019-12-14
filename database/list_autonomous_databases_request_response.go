@@ -46,6 +46,10 @@ type ListAutonomousDatabasesRequest struct {
 	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
+	// Filter on the value of the resource's 'isRefreshableClone' property. A value of `true` returns only Refreshable Clones.
+	// A value of `false` excludes Refreshable Clones from the returned results. Omitting this parameter returns both Refreshable Clones and non Refreshable Clones.
+	IsRefreshableClone *bool `mandatory:"false" contributesTo:"query" name:"isRefreshableClone"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

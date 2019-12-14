@@ -18,17 +18,17 @@ import (
 // UpdateTableDetails The information to be updated.
 type UpdateTableDetails struct {
 
-	// Complete ALTER TABLE DDL statement.
-	DdlStatement *string `mandatory:"true" json:"ddlStatement"`
-
-	TableLimits *TableLimits `mandatory:"true" json:"tableLimits"`
-
 	// The OCID of the table's current compartment.  Required
 	// if the tableNameOrId path parameter is a table name.
 	// Optional if tableNameOrId is an OCID.  If tableNameOrId
 	// is an OCID, and compartmentId is supplied, the latter
 	// must match the identified table's compartmentId.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+
+	// Complete ALTER TABLE DDL statement.
+	DdlStatement *string `mandatory:"false" json:"ddlStatement"`
+
+	TableLimits *TableLimits `mandatory:"false" json:"tableLimits"`
 
 	// Simple key-value pair that is applied without any predefined
 	// name, type or scope. Exists for cross-compatibility only.

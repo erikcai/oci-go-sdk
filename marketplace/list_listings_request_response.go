@@ -12,7 +12,7 @@ import (
 type ListListingsRequest struct {
 
 	// The name of the listing.
-	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
+	Name []string `contributesTo:"query" name:"name" collectionFormat:"multi"`
 
 	// The unique identifier for the listing.
 	ListingId *string `mandatory:"false" contributesTo:"query" name:"listingId"`

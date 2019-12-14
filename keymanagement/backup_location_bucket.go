@@ -15,9 +15,11 @@ import (
 
 // BackupLocationBucket Object storage bucket details to upload or download the backup
 type BackupLocationBucket struct {
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+	Namespace *string `mandatory:"true" json:"namespace"`
 
-	Name *string `mandatory:"true" json:"name"`
+	BucketName *string `mandatory:"true" json:"bucketName"`
+
+	ObjectName *string `mandatory:"false" json:"objectName"`
 }
 
 func (m BackupLocationBucket) String() string {

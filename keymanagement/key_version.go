@@ -41,6 +41,9 @@ type KeyVersion struct {
 	// An optional property indicating when to delete the key version, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
 	// Example: `2019-04-03T21:10:29.600Z`
 	TimeOfDeletion *common.SDKTime `mandatory:"false" json:"timeOfDeletion"`
+
+	// The OCID of the key version from which this key version is restored.
+	RestoredFromKeyVersionId *string `mandatory:"false" json:"restoredFromKeyVersionId"`
 }
 
 func (m KeyVersion) String() string {

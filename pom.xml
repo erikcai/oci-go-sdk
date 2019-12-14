@@ -41,7 +41,7 @@
     <autoscaling-public-api-spec-spec-file>source/autoscaling-api-spec.cond.yaml</autoscaling-public-api-spec-spec-file>
     <usage-proxy-spec-spec-file>api.yaml</usage-proxy-spec-spec-file>
     <announcements-service-spec-spec-file>source/announcement-service.cond.yaml</announcements-service-spec-spec-file>
-    <oci-waas-api-spec-spec-file>oci-waas-api-spec.cond.yaml</oci-waas-api-spec-spec-file>
+    <oci-waas-api-spec-spec-file>source/oci-waas-api-spec.cond.yaml</oci-waas-api-spec-spec-file>
     <batchservice-api-spec-spec-file>source/batchservice.cond.yaml</batchservice-api-spec-spec-file>
     <fn-api-spec-spec-file>source/functions-api-spec.cond.yaml</fn-api-spec-spec-file>
     <budgets-control-plane-spec-spec-file>budget.api.cond.yaml</budgets-control-plane-spec-spec-file>
@@ -3686,7 +3686,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.331</version>
+        <version>0.1.334</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -3716,7 +3716,7 @@
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
         <artifactId>kms-api-spec</artifactId>
-        <version>0.3.12</version>
+        <version>0.3.18</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.query</groupId>
@@ -3761,7 +3761,7 @@
       <dependency>
         <groupId>com.oracle.oci.marketplace</groupId>
         <artifactId>marketplace-consumer-service-spec</artifactId>
-        <version>0.1.773</version>
+        <version>0.1.825</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>
@@ -3781,7 +3781,7 @@
       <dependency>
         <groupId>com.oracle.oci.waas</groupId>
         <artifactId>oci-waas-api-spec</artifactId>
-        <version>1.1.774</version>
+        <version>1.2.886</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.obcs</groupId>
@@ -3816,7 +3816,7 @@
       <dependency>
         <groupId>com.oracle.pic.rhino</groupId>
         <artifactId>dts-api-spec</artifactId>
-        <version>1.0.011</version>
+        <version>1.0.014</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.apigw</groupId>
@@ -3831,7 +3831,7 @@
       <dependency>
         <groupId>oracle.nosql.oci.controlplane</groupId>
         <artifactId>ndcs-control-plane-spec</artifactId>
-        <version>0.1.4</version>
+        <version>0.1.5</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>

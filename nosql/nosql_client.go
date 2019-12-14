@@ -40,7 +40,7 @@ func NewNosqlClientWithConfigurationProvider(configProvider common.Configuration
 
 // SetRegion overrides the region of this client.
 func (client *NosqlClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("nosql", "https://ndcs-control-plane.{region}.oci.{secondLevelDomain}")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("nosql", "https://nosql.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

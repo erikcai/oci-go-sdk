@@ -60,6 +60,12 @@ type UpdateAutonomousDatabaseDetails struct {
 
 	// Indicates whether to enable or disable auto scaling for the Autonomous Database OCPU core count. Setting to `true` enables auto scaling. Setting to `false` disables auto scaling. The default value is true. Auto scaling is available for serverless deployments (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
 	IsAutoScalingEnabled *bool `mandatory:"false" json:"isAutoScalingEnabled"`
+
+	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
+	LagTimeInSeconds *int `mandatory:"false" json:"lagTimeInSeconds"`
+
+	// Indicates if this is a Refreashable Clone.
+	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 }
 
 func (m UpdateAutonomousDatabaseDetails) String() string {

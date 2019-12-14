@@ -27,12 +27,12 @@ type CreateAcceptedAgreementDetails struct {
 	// The agreement to accept.
 	AgreementId *string `mandatory:"true" json:"agreementId"`
 
-	// A display name for the accepted agreement.
-	DisplayName *string `mandatory:"false" json:"displayName"`
-
 	// A signature generated for the listing package agreements that you can retrieve
 	// with GetAgreement (https://docs.cloud.oracle.com/api/#/en/marketplace/20181001/Agreement/GetAgreement).
-	Signature *string `mandatory:"false" json:"signature"`
+	Signature *string `mandatory:"true" json:"signature"`
+
+	// A display name for the accepted agreement.
+	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).

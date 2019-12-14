@@ -47,9 +47,6 @@ type RestoreVaultFromFileRequest struct {
 	// creation request may be rejected).
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
-	// The OCID of the vault.
-	VaultId *string `mandatory:"false" contributesTo:"query" name:"vaultId"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
