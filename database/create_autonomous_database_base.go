@@ -336,6 +336,7 @@ const (
 	CreateAutonomousDatabaseBaseSourceDatabase            CreateAutonomousDatabaseBaseSourceEnum = "DATABASE"
 	CreateAutonomousDatabaseBaseSourceBackupFromId        CreateAutonomousDatabaseBaseSourceEnum = "BACKUP_FROM_ID"
 	CreateAutonomousDatabaseBaseSourceBackupFromTimestamp CreateAutonomousDatabaseBaseSourceEnum = "BACKUP_FROM_TIMESTAMP"
+	CreateAutonomousDatabaseBaseSourceCloneToRefreshable  CreateAutonomousDatabaseBaseSourceEnum = "CLONE_TO_REFRESHABLE"
 )
 
 var mappingCreateAutonomousDatabaseBaseSource = map[string]CreateAutonomousDatabaseBaseSourceEnum{
@@ -343,6 +344,7 @@ var mappingCreateAutonomousDatabaseBaseSource = map[string]CreateAutonomousDatab
 	"DATABASE":              CreateAutonomousDatabaseBaseSourceDatabase,
 	"BACKUP_FROM_ID":        CreateAutonomousDatabaseBaseSourceBackupFromId,
 	"BACKUP_FROM_TIMESTAMP": CreateAutonomousDatabaseBaseSourceBackupFromTimestamp,
+	"CLONE_TO_REFRESHABLE":  CreateAutonomousDatabaseBaseSourceCloneToRefreshable,
 }
 
 // GetCreateAutonomousDatabaseBaseSourceEnumValues Enumerates the set of values for CreateAutonomousDatabaseBaseSourceEnum
