@@ -42,6 +42,9 @@ type GlossarySummary struct {
 	// URI to the Glossary instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
+	// Status of the approval process workflow for this business glossary
+	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" json:"workflowStatus,omitempty"`
+
 	// State of the Glossary.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }

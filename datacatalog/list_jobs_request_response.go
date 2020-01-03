@@ -105,8 +105,8 @@ type ListJobsResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []JobSummary instances
-	Items []JobSummary `presentIn:"body"`
+	// A list of JobCollection instances
+	JobCollection `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.

@@ -22,6 +22,9 @@ type CreateGlossaryDetails struct {
 	// Detailed description of the Glossary.
 	Description *string `mandatory:"false" json:"description"`
 
+	// Status of the approval process workflow for this business glossary
+	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" json:"workflowStatus,omitempty"`
+
 	// Id (OCID) of the user who is the owner of the glossary.
 	Owner *string `mandatory:"false" json:"owner"`
 }

@@ -43,6 +43,12 @@ type EntitySummary struct {
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
+	// The last time that any change was made to the Entity. An RFC3339 formatted datetime string.
+	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
+
+	// Id (OCID) of the user who updated this object in the catalog
+	UpdatedById *string `mandatory:"false" json:"updatedById"`
+
 	// URI to the Entity instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 

@@ -23,6 +23,50 @@ func createDataCatalogClientWithProvider(p common.ConfigurationProvider, testCon
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientChangeCatalogCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ChangeCatalogCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeCatalogCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ChangeCatalogCompartment", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ChangeCatalogCompartment")
+	assert.NoError(t, err)
+
+	type ChangeCatalogCompartmentRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ChangeCatalogCompartmentRequest
+	}
+
+	var requests []ChangeCatalogCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeCatalogCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientCreateAttribute(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2551,60 +2595,6 @@ func TestDataCatalogClientListAttributes(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
-func TestDataCatalogClientListCatalogPermissions(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("datacatalog", "ListCatalogPermissions")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListCatalogPermissions is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListCatalogPermissions", createDataCatalogClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(datacatalog.DataCatalogClient)
-
-	body, err := testClient.getRequests("datacatalog", "ListCatalogPermissions")
-	assert.NoError(t, err)
-
-	type ListCatalogPermissionsRequestInfo struct {
-		ContainerId string
-		Request     datacatalog.ListCatalogPermissionsRequest
-	}
-
-	var requests []ListCatalogPermissionsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*datacatalog.ListCatalogPermissionsRequest)
-				return c.ListCatalogPermissions(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]datacatalog.ListCatalogPermissionsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(datacatalog.ListCatalogPermissionsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientListCatalogs(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2703,60 +2693,6 @@ func TestDataCatalogClientListConnections(t *testing.T) {
 			typedListResponses := make([]datacatalog.ListConnectionsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(datacatalog.ListConnectionsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
-func TestDataCatalogClientListDataAssetPermissions(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("datacatalog", "ListDataAssetPermissions")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListDataAssetPermissions is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListDataAssetPermissions", createDataCatalogClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(datacatalog.DataCatalogClient)
-
-	body, err := testClient.getRequests("datacatalog", "ListDataAssetPermissions")
-	assert.NoError(t, err)
-
-	type ListDataAssetPermissionsRequestInfo struct {
-		ContainerId string
-		Request     datacatalog.ListDataAssetPermissionsRequest
-	}
-
-	var requests []ListDataAssetPermissionsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*datacatalog.ListDataAssetPermissionsRequest)
-				return c.ListDataAssetPermissions(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]datacatalog.ListDataAssetPermissionsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(datacatalog.ListDataAssetPermissionsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -3145,60 +3081,6 @@ func TestDataCatalogClientListGlossaries(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
-func TestDataCatalogClientListGlossaryPermissions(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("datacatalog", "ListGlossaryPermissions")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListGlossaryPermissions is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListGlossaryPermissions", createDataCatalogClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(datacatalog.DataCatalogClient)
-
-	body, err := testClient.getRequests("datacatalog", "ListGlossaryPermissions")
-	assert.NoError(t, err)
-
-	type ListGlossaryPermissionsRequestInfo struct {
-		ContainerId string
-		Request     datacatalog.ListGlossaryPermissionsRequest
-	}
-
-	var requests []ListGlossaryPermissionsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*datacatalog.ListGlossaryPermissionsRequest)
-				return c.ListGlossaryPermissions(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]datacatalog.ListGlossaryPermissionsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(datacatalog.ListGlossaryPermissionsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientListGlossaryTerms(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3243,60 +3125,6 @@ func TestDataCatalogClientListGlossaryTerms(t *testing.T) {
 			typedListResponses := make([]datacatalog.ListGlossaryTermsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(datacatalog.ListGlossaryTermsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
-func TestDataCatalogClientListJobDefinitionPermissions(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("datacatalog", "ListJobDefinitionPermissions")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListJobDefinitionPermissions is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListJobDefinitionPermissions", createDataCatalogClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(datacatalog.DataCatalogClient)
-
-	body, err := testClient.getRequests("datacatalog", "ListJobDefinitionPermissions")
-	assert.NoError(t, err)
-
-	type ListJobDefinitionPermissionsRequestInfo struct {
-		ContainerId string
-		Request     datacatalog.ListJobDefinitionPermissionsRequest
-	}
-
-	var requests []ListJobDefinitionPermissionsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*datacatalog.ListJobDefinitionPermissionsRequest)
-				return c.ListJobDefinitionPermissions(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]datacatalog.ListJobDefinitionPermissionsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(datacatalog.ListJobDefinitionPermissionsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

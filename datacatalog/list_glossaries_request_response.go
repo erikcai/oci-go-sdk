@@ -75,8 +75,8 @@ type ListGlossariesResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []GlossarySummary instances
-	Items []GlossarySummary `presentIn:"body"`
+	// A list of GlossaryCollection instances
+	GlossaryCollection `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.
@@ -109,6 +109,7 @@ const (
 	ListGlossariesFieldsLifecyclestate ListGlossariesFieldsEnum = "lifecycleState"
 	ListGlossariesFieldsTimecreated    ListGlossariesFieldsEnum = "timeCreated"
 	ListGlossariesFieldsUri            ListGlossariesFieldsEnum = "uri"
+	ListGlossariesFieldsWorkflowstatus ListGlossariesFieldsEnum = "workflowStatus"
 )
 
 var mappingListGlossariesFields = map[string]ListGlossariesFieldsEnum{
@@ -119,6 +120,7 @@ var mappingListGlossariesFields = map[string]ListGlossariesFieldsEnum{
 	"lifecycleState": ListGlossariesFieldsLifecyclestate,
 	"timeCreated":    ListGlossariesFieldsTimecreated,
 	"uri":            ListGlossariesFieldsUri,
+	"workflowStatus": ListGlossariesFieldsWorkflowstatus,
 }
 
 // GetListGlossariesFieldsEnumValues Enumerates the set of values for ListGlossariesFieldsEnum

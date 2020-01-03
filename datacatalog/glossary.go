@@ -54,6 +54,9 @@ type Glossary struct {
 	// Id (OCID) of the user who is the owner of the glossary.
 	Owner *string `mandatory:"false" json:"owner"`
 
+	// Status of the approval process workflow for this business glossary
+	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" json:"workflowStatus,omitempty"`
+
 	// URI to the Tag instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 }

@@ -60,12 +60,14 @@ const (
 	WorkRequestOperationTypeCreateCatalog WorkRequestOperationTypeEnum = "CREATE_CATALOG"
 	WorkRequestOperationTypeUpdateCatalog WorkRequestOperationTypeEnum = "UPDATE_CATALOG"
 	WorkRequestOperationTypeDeleteCatalog WorkRequestOperationTypeEnum = "DELETE_CATALOG"
+	WorkRequestOperationTypeMoveCatalog   WorkRequestOperationTypeEnum = "MOVE_CATALOG"
 )
 
 var mappingWorkRequestOperationType = map[string]WorkRequestOperationTypeEnum{
 	"CREATE_CATALOG": WorkRequestOperationTypeCreateCatalog,
 	"UPDATE_CATALOG": WorkRequestOperationTypeUpdateCatalog,
 	"DELETE_CATALOG": WorkRequestOperationTypeDeleteCatalog,
+	"MOVE_CATALOG":   WorkRequestOperationTypeMoveCatalog,
 }
 
 // GetWorkRequestOperationTypeEnumValues Enumerates the set of values for WorkRequestOperationTypeEnum

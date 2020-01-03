@@ -74,6 +74,9 @@ type Entity struct {
 	// Key of the last harvest process to update this object
 	LastJobKey *string `mandatory:"false" json:"lastJobKey"`
 
+	// The type of Entity object. Type key's can be found via the '/types' endpoint.
+	TypeKey *string `mandatory:"false" json:"typeKey"`
+
 	// URI to the Entity instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 

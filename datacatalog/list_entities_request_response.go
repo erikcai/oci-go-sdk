@@ -105,8 +105,8 @@ type ListEntitiesResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []EntitySummary instances
-	Items []EntitySummary `presentIn:"body"`
+	// A list of EntityCollection instances
+	EntityCollection `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.
@@ -137,6 +137,8 @@ const (
 	ListEntitiesFieldsDescription    ListEntitiesFieldsEnum = "description"
 	ListEntitiesFieldsDataassetkey   ListEntitiesFieldsEnum = "dataAssetKey"
 	ListEntitiesFieldsTimecreated    ListEntitiesFieldsEnum = "timeCreated"
+	ListEntitiesFieldsTimeupdated    ListEntitiesFieldsEnum = "timeUpdated"
+	ListEntitiesFieldsUpdatedbyid    ListEntitiesFieldsEnum = "updatedById"
 	ListEntitiesFieldsLifecyclestate ListEntitiesFieldsEnum = "lifecycleState"
 	ListEntitiesFieldsFolderkey      ListEntitiesFieldsEnum = "folderKey"
 	ListEntitiesFieldsExternalkey    ListEntitiesFieldsEnum = "externalKey"
@@ -150,6 +152,8 @@ var mappingListEntitiesFields = map[string]ListEntitiesFieldsEnum{
 	"description":    ListEntitiesFieldsDescription,
 	"dataAssetKey":   ListEntitiesFieldsDataassetkey,
 	"timeCreated":    ListEntitiesFieldsTimecreated,
+	"timeUpdated":    ListEntitiesFieldsTimeupdated,
+	"updatedById":    ListEntitiesFieldsUpdatedbyid,
 	"lifecycleState": ListEntitiesFieldsLifecyclestate,
 	"folderKey":      ListEntitiesFieldsFolderkey,
 	"externalKey":    ListEntitiesFieldsExternalkey,

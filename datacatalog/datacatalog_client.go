@@ -58,6 +58,48 @@ func (client *DataCatalogClient) ConfigurationProvider() *common.ConfigurationPr
 	return client.config
 }
 
+// ChangeCatalogCompartment Changes the compartment for the Catalog
+func (client DataCatalogClient) ChangeCatalogCompartment(ctx context.Context, request ChangeCatalogCompartmentRequest) (response ChangeCatalogCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.changeCatalogCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeCatalogCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeCatalogCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeCatalogCompartmentResponse")
+	}
+	return
+}
+
+// changeCatalogCompartment implements the OCIOperation interface (enables retrying operations)
+func (client DataCatalogClient) changeCatalogCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/catalogs/{catalogId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeCatalogCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateAttribute Create a new Entity Attribute.
 func (client DataCatalogClient) CreateAttribute(ctx context.Context, request CreateAttributeRequest) (response CreateAttributeResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2553,48 +2595,6 @@ func (client DataCatalogClient) listAttributes(ctx context.Context, request comm
 	return response, err
 }
 
-// ListCatalogPermissions List Catalog Permissions within a data catalog for the current user.
-func (client DataCatalogClient) ListCatalogPermissions(ctx context.Context, request ListCatalogPermissionsRequest) (response ListCatalogPermissionsResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listCatalogPermissions, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = ListCatalogPermissionsResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListCatalogPermissionsResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListCatalogPermissionsResponse")
-	}
-	return
-}
-
-// listCatalogPermissions implements the OCIOperation interface (enables retrying operations)
-func (client DataCatalogClient) listCatalogPermissions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/catalogs/{catalogId}/permissions")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListCatalogPermissionsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // ListCatalogs Returns a list of Catalogs.
 func (client DataCatalogClient) ListCatalogs(ctx context.Context, request ListCatalogsRequest) (response ListCatalogsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2667,48 +2667,6 @@ func (client DataCatalogClient) listConnections(ctx context.Context, request com
 	}
 
 	var response ListConnectionsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListDataAssetPermissions Returns a list of Data Asset permissions.
-func (client DataCatalogClient) ListDataAssetPermissions(ctx context.Context, request ListDataAssetPermissionsRequest) (response ListDataAssetPermissionsResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listDataAssetPermissions, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = ListDataAssetPermissionsResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListDataAssetPermissionsResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListDataAssetPermissionsResponse")
-	}
-	return
-}
-
-// listDataAssetPermissions implements the OCIOperation interface (enables retrying operations)
-func (client DataCatalogClient) listDataAssetPermissions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/catalogs/{catalogId}/dataAssets/{dataAssetKey}/permissions")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListDataAssetPermissionsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -3015,48 +2973,6 @@ func (client DataCatalogClient) listGlossaries(ctx context.Context, request comm
 	return response, err
 }
 
-// ListGlossaryPermissions Returns a list of Glossary Permissions.
-func (client DataCatalogClient) ListGlossaryPermissions(ctx context.Context, request ListGlossaryPermissionsRequest) (response ListGlossaryPermissionsResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listGlossaryPermissions, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = ListGlossaryPermissionsResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListGlossaryPermissionsResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListGlossaryPermissionsResponse")
-	}
-	return
-}
-
-// listGlossaryPermissions implements the OCIOperation interface (enables retrying operations)
-func (client DataCatalogClient) listGlossaryPermissions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/catalogs/{catalogId}/glossaries/{glossaryKey}/permissions")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListGlossaryPermissionsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // ListGlossaryTerms Returns a list of all terms within a glossary.
 func (client DataCatalogClient) ListGlossaryTerms(ctx context.Context, request ListGlossaryTermsRequest) (response ListGlossaryTermsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3087,48 +3003,6 @@ func (client DataCatalogClient) listGlossaryTerms(ctx context.Context, request c
 	}
 
 	var response ListGlossaryTermsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListJobDefinitionPermissions Returns a list of job definition permissions.
-func (client DataCatalogClient) ListJobDefinitionPermissions(ctx context.Context, request ListJobDefinitionPermissionsRequest) (response ListJobDefinitionPermissionsResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listJobDefinitionPermissions, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = ListJobDefinitionPermissionsResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListJobDefinitionPermissionsResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListJobDefinitionPermissionsResponse")
-	}
-	return
-}
-
-// listJobDefinitionPermissions implements the OCIOperation interface (enables retrying operations)
-func (client DataCatalogClient) listJobDefinitionPermissions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/catalogs/{catalogId}/jobDefinitions/{jobDefinitionKey}/permissions")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListJobDefinitionPermissionsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

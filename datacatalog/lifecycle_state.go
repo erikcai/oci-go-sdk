@@ -20,6 +20,7 @@ const (
 	LifecycleStateDeleting LifecycleStateEnum = "DELETING"
 	LifecycleStateDeleted  LifecycleStateEnum = "DELETED"
 	LifecycleStateFailed   LifecycleStateEnum = "FAILED"
+	LifecycleStateMoving   LifecycleStateEnum = "MOVING"
 )
 
 var mappingLifecycleState = map[string]LifecycleStateEnum{
@@ -30,6 +31,7 @@ var mappingLifecycleState = map[string]LifecycleStateEnum{
 	"DELETING": LifecycleStateDeleting,
 	"DELETED":  LifecycleStateDeleted,
 	"FAILED":   LifecycleStateFailed,
+	"MOVING":   LifecycleStateMoving,
 }
 
 // GetLifecycleStateEnumValues Enumerates the set of values for LifecycleStateEnum
