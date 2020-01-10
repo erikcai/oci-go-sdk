@@ -58,7 +58,7 @@ type Run struct {
 	// array may contain zero or more placeholders that are replaced using values from the parameters
 	// map.  Each placeholder specified must be represented in the parameters map else the request
 	// (POST or PUT) will fail with a HTTP 400 status code.  Placeholders are specified as
-	// `${name}`, where `name` is the name of the parameter.
+	// `Service Api Spec`, where `name` is the name of the parameter.
 	// Example:  `[ "--input", "${input_file}", "--name", "John Doe" ]`
 	// If "input_file" has a value of "mydata.xml", then the value above will be translated to
 	// `--input mydata.xml --name "John Doe"`
@@ -80,8 +80,17 @@ type Run struct {
 	// The data written by the run in bytes.
 	DataWrittenInBytes *int64 `mandatory:"false" json:"dataWrittenInBytes"`
 
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
 	// A user-friendly name. This name is not necessarily unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// The detailed messages about the lifecycle state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
@@ -112,9 +121,6 @@ type Run struct {
 
 	// The total number of oCPU requested by the run.
 	TotalOCpu *int `mandatory:"false" json:"totalOCpu"`
-
-	// The type of application.
-	Type ApplicationTypeEnum `mandatory:"false" json:"type,omitempty"`
 
 	// An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
 	// for BATCH SQL runs.

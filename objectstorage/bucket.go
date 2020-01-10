@@ -101,6 +101,10 @@ type Bucket struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the bucket.
 	Id *string `mandatory:"false" json:"id"`
+
+	// The versioning status on the bucket. A bucket is created with versioning `Disabled` by default.
+	// For versioning `Enabled`, objects are protected from overwrites and deletes, by maintaining their version history. When versioning is `Suspended`, the previous versions will still remain but new versions will no longer be created when overwitten or deleted.
+	Versioning BucketVersioningEnum `mandatory:"false" json:"versioning,omitempty"`
 }
 
 func (m Bucket) String() string {
@@ -175,6 +179,31 @@ var mappingBucketObjectLevelAuditMode = map[string]BucketObjectLevelAuditModeEnu
 func GetBucketObjectLevelAuditModeEnumValues() []BucketObjectLevelAuditModeEnum {
 	values := make([]BucketObjectLevelAuditModeEnum, 0)
 	for _, v := range mappingBucketObjectLevelAuditMode {
+		values = append(values, v)
+	}
+	return values
+}
+
+// BucketVersioningEnum Enum with underlying type: string
+type BucketVersioningEnum string
+
+// Set of constants representing the allowable values for BucketVersioningEnum
+const (
+	BucketVersioningEnabled   BucketVersioningEnum = "Enabled"
+	BucketVersioningSuspended BucketVersioningEnum = "Suspended"
+	BucketVersioningDisabled  BucketVersioningEnum = "Disabled"
+)
+
+var mappingBucketVersioning = map[string]BucketVersioningEnum{
+	"Enabled":   BucketVersioningEnabled,
+	"Suspended": BucketVersioningSuspended,
+	"Disabled":  BucketVersioningDisabled,
+}
+
+// GetBucketVersioningEnumValues Enumerates the set of values for BucketVersioningEnum
+func GetBucketVersioningEnumValues() []BucketVersioningEnum {
+	values := make([]BucketVersioningEnum, 0)
+	for _, v := range mappingBucketVersioning {
 		values = append(values, v)
 	}
 	return values

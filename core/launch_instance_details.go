@@ -104,6 +104,8 @@ type LaunchInstanceDetails struct {
 
 	LaunchOptions *LaunchOptions `mandatory:"false" json:"launchOptions"`
 
+	InstanceOptions *InstanceOptions `mandatory:"false" json:"instanceOptions"`
+
 	// Custom metadata key/value pairs that you provide, such as the SSH public key
 	// required to connect to the instance.
 	// A metadata service runs on every launched instance. The service is an HTTP
@@ -195,6 +197,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		ImageId                        *string                                             `json:"imageId"`
 		IpxeScript                     *string                                             `json:"ipxeScript"`
 		LaunchOptions                  *LaunchOptions                                      `json:"launchOptions"`
+		InstanceOptions                *InstanceOptions                                    `json:"instanceOptions"`
 		Metadata                       map[string]string                                   `json:"metadata"`
 		AgentConfig                    *LaunchInstanceAgentConfigDetails                   `json:"agentConfig"`
 		ShapeConfig                    *LaunchInstanceShapeConfigDetails                   `json:"shapeConfig"`
@@ -235,6 +238,8 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.IpxeScript = model.IpxeScript
 
 	m.LaunchOptions = model.LaunchOptions
+
+	m.InstanceOptions = model.InstanceOptions
 
 	m.Metadata = model.Metadata
 

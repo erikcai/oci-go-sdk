@@ -23,6 +23,9 @@ type GetObjectRequest struct {
 	// Example: `test/object1.log`
 	ObjectName *string `mandatory:"true" contributesTo:"path" name:"objectName"`
 
+	// VersionId used to identify a particular version of the object
+	VersionId *string `mandatory:"false" contributesTo:"query" name:"versionId"`
+
 	// The entity tag (ETag) to match. For creating and committing a multipart upload to an object, this is the entity tag of the target object.
 	// For uploading a part, this is the entity tag of the target part.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
@@ -120,6 +123,9 @@ type GetObjectResponse struct {
 
 	// Time that the object is returned to the archived state. This field is only present for restored objects.
 	TimeOfArchival *common.SDKTime `presentIn:"header" name:"time-of-archival"`
+
+	// VersionId of the object requested
+	VersionId *string `presentIn:"header" name:"version-id"`
 
 	// Flag to indicate whether or not the object was modified.  If this is true,
 	// the getter for the object itself will return null.  Callers should check this

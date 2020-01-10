@@ -46,6 +46,9 @@ type ListObjectsRequest struct {
 	// The client request ID for tracing.
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
 
+	// Object names returned by a list query must be greater than this parameter.
+	StartAfter *string `mandatory:"false" contributesTo:"query" name:"startAfter"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

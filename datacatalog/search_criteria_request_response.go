@@ -31,10 +31,6 @@ type SearchCriteriaRequest struct {
 	// Defaults to no timeout.
 	Timeout *string `mandatory:"false" contributesTo:"query" name:"timeout"`
 
-	// The query string that allows the user to specify a keyword or keyword qualified by fieldname for search criteria.
-	// For example , searchCriteria=name:first_name .
-	SearchCriteria *string `mandatory:"false" contributesTo:"query" name:"searchCriteria"`
-
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
 	SortBy SearchCriteriaSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 

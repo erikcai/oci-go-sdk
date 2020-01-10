@@ -139,7 +139,6 @@ const (
 	ListRunsSortByTimecreated               ListRunsSortByEnum = "timeCreated"
 	ListRunsSortByDisplayname               ListRunsSortByEnum = "displayName"
 	ListRunsSortByLanguage                  ListRunsSortByEnum = "language"
-	ListRunsSortByType                      ListRunsSortByEnum = "type"
 	ListRunsSortByRundurationinmilliseconds ListRunsSortByEnum = "runDurationInMilliseconds"
 	ListRunsSortByLifecyclestate            ListRunsSortByEnum = "lifecycleState"
 	ListRunsSortByTotalocpu                 ListRunsSortByEnum = "totalOCpu"
@@ -148,10 +147,9 @@ const (
 )
 
 var mappingListRunsSortBy = map[string]ListRunsSortByEnum{
-	"timeCreated": ListRunsSortByTimecreated,
-	"displayName": ListRunsSortByDisplayname,
-	"language":    ListRunsSortByLanguage,
-	"type":        ListRunsSortByType,
+	"timeCreated":               ListRunsSortByTimecreated,
+	"displayName":               ListRunsSortByDisplayname,
+	"language":                  ListRunsSortByLanguage,
 	"runDurationInMilliseconds": ListRunsSortByRundurationinmilliseconds,
 	"lifecycleState":            ListRunsSortByLifecyclestate,
 	"totalOCpu":                 ListRunsSortByTotalocpu,

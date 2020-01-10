@@ -23,7 +23,8 @@ type UpdateBucketDetails struct {
 	// The compartmentId for the compartment to move the bucket to.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The name of the bucket. Avoid entering confidential information.
+	// The name of the bucket. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
+	// Bucket names must be unique within an Object Storage namespace. Avoid entering confidential information.
 	// Example: my-new-bucket1
 	Name *string `mandatory:"false" json:"name"`
 
@@ -62,6 +63,11 @@ type UpdateBucketDetails struct {
 	// there is one, from the bucket. (The bucket will continue to be encrypted, but with an encryption key managed
 	// by Oracle.)
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
+
+	// The versioning status on the bucket. If in state `Enabled`, multiple versions of the same object can be kept in the bucket.
+	// When the object is overwritten or deleted, previous versions will still be available. When versioning is `Suspended`, the previous versions will still remain but new versions will no longer be created when overwitten or deleted.
+	// Versioning cannot be disabled on a bucket once enabled.
+	Versioning UpdateBucketDetailsVersioningEnum `mandatory:"false" json:"versioning,omitempty"`
 }
 
 func (m UpdateBucketDetails) String() string {
@@ -113,6 +119,29 @@ var mappingUpdateBucketDetailsObjectLevelAuditMode = map[string]UpdateBucketDeta
 func GetUpdateBucketDetailsObjectLevelAuditModeEnumValues() []UpdateBucketDetailsObjectLevelAuditModeEnum {
 	values := make([]UpdateBucketDetailsObjectLevelAuditModeEnum, 0)
 	for _, v := range mappingUpdateBucketDetailsObjectLevelAuditMode {
+		values = append(values, v)
+	}
+	return values
+}
+
+// UpdateBucketDetailsVersioningEnum Enum with underlying type: string
+type UpdateBucketDetailsVersioningEnum string
+
+// Set of constants representing the allowable values for UpdateBucketDetailsVersioningEnum
+const (
+	UpdateBucketDetailsVersioningEnabled   UpdateBucketDetailsVersioningEnum = "Enabled"
+	UpdateBucketDetailsVersioningSuspended UpdateBucketDetailsVersioningEnum = "Suspended"
+)
+
+var mappingUpdateBucketDetailsVersioning = map[string]UpdateBucketDetailsVersioningEnum{
+	"Enabled":   UpdateBucketDetailsVersioningEnabled,
+	"Suspended": UpdateBucketDetailsVersioningSuspended,
+}
+
+// GetUpdateBucketDetailsVersioningEnumValues Enumerates the set of values for UpdateBucketDetailsVersioningEnum
+func GetUpdateBucketDetailsVersioningEnumValues() []UpdateBucketDetailsVersioningEnum {
+	values := make([]UpdateBucketDetailsVersioningEnum, 0)
+	for _, v := range mappingUpdateBucketDetailsVersioning {
 		values = append(values, v)
 	}
 	return values

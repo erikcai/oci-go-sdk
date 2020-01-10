@@ -12,16 +12,22 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateRunDetails The create run details. The following properies are optional and override the default values
+// CreateRunDetails The create run details. The following properties are optional and override the default values
 // set in the associated application:
 //   - arguments
 //   - configuration
+//   - definedTags
 //   - driverShape
 //   - executorShape
+//   - freeformTags
 //   - logsBucketUri
 //   - numExecutors
 //   - parameters
 //   - warehouseBucketUri
+// If the optional properties are not specified, they are copied over from the parent application.
+// Once a run is created, its properties (except for definedTags and freeformTags) cannot be changed.
+// If the parent application's properties (including definedTags and freeformTags) are updated,
+// the corresponding properties of the run will not update.
 type CreateRunDetails struct {
 
 	// The application ID.
@@ -37,7 +43,7 @@ type CreateRunDetails struct {
 	// array may contain zero or more placeholders that are replaced using values from the parameters
 	// map.  Each placeholder specified must be represented in the parameters map else the request
 	// (POST or PUT) will fail with a HTTP 400 status code.  Placeholders are specified as
-	// `${name}`, where `name` is the name of the parameter.
+	// `Service Api Spec`, where `name` is the name of the parameter.
 	// Example:  `[ "--input", "${input_file}", "--name", "John Doe" ]`
 	// If "input_file" has a value of "mydata.xml", then the value above will be translated to
 	// `--input mydata.xml --name "John Doe"`
@@ -50,11 +56,20 @@ type CreateRunDetails struct {
 	// not allowed to be overwritten will cause a 400 status to be returned.
 	Configuration map[string]string `mandatory:"false" json:"configuration"`
 
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
 	// The VM shape for the driver. Sets the driver cores and memory.
 	DriverShape *string `mandatory:"false" json:"driverShape"`
 
 	// The VM shape for the executors. Sets the executor cores and memory.
 	ExecutorShape *string `mandatory:"false" json:"executorShape"`
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
 	// See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat

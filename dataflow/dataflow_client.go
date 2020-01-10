@@ -404,52 +404,6 @@ func (client DataFlowClient) listApplications(ctx context.Context, request commo
 	return response, err
 }
 
-// ListConsumption Lists the corresponding usage for the limit group in the specified tenancy, targeting a region
-// or an availability domain. The `compartmentId` value must identify a tenancy by OCID. An
-// `availabilityDomain` value is required only if the `scope` is specified as 'AVAILABILITY_DOMAIN'.
-// This operation is primarily used for Oracle Cloud Infrastructure Limits and Oracle Cloud
-// Infrastructure Console integration.
-func (client DataFlowClient) ListConsumption(ctx context.Context, request ListConsumptionRequest) (response ListConsumptionResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listConsumption, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = ListConsumptionResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListConsumptionResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListConsumptionResponse")
-	}
-	return
-}
-
-// listConsumption implements the OCIOperation interface (enables retrying operations)
-func (client DataFlowClient) listConsumption(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/consumption")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListConsumptionResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // ListRunLogs Retrieves summaries of the run's logs.
 func (client DataFlowClient) ListRunLogs(ctx context.Context, request ListRunLogsRequest) (response ListRunLogsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -564,6 +518,48 @@ func (client DataFlowClient) updateApplication(ctx context.Context, request comm
 	}
 
 	var response UpdateApplicationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateRun Updates a run using a `runId`.
+func (client DataFlowClient) UpdateRun(ctx context.Context, request UpdateRunRequest) (response UpdateRunResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateRun, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateRunResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateRunResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateRunResponse")
+	}
+	return
+}
+
+// updateRun implements the OCIOperation interface (enables retrying operations)
+func (client DataFlowClient) updateRun(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/runs/{runId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateRunResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

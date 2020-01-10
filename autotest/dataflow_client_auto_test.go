@@ -385,50 +385,6 @@ func TestDataFlowClientListApplications(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
-func TestDataFlowClientListConsumption(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("dataflow", "ListConsumption")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListConsumption is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("dataflow", "DataFlow", "ListConsumption", createDataFlowClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(dataflow.DataFlowClient)
-
-	body, err := testClient.getRequests("dataflow", "ListConsumption")
-	assert.NoError(t, err)
-
-	type ListConsumptionRequestInfo struct {
-		ContainerId string
-		Request     dataflow.ListConsumptionRequest
-	}
-
-	var requests []ListConsumptionRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ListConsumption(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
 func TestDataFlowClientListRunLogs(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -573,6 +529,50 @@ func TestDataFlowClientUpdateApplication(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateApplication(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
+func TestDataFlowClientUpdateRun(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataflow", "UpdateRun")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateRun is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataflow", "DataFlow", "UpdateRun", createDataFlowClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataflow.DataFlowClient)
+
+	body, err := testClient.getRequests("dataflow", "UpdateRun")
+	assert.NoError(t, err)
+
+	type UpdateRunRequestInfo struct {
+		ContainerId string
+		Request     dataflow.UpdateRunRequest
+	}
+
+	var requests []UpdateRunRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateRun(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

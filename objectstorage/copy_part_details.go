@@ -30,6 +30,9 @@ type CopyPartDetails struct {
 	// RFC 7233 (https://tools.ietf.org/html/rfc7233#section-2.1). Note that only a single range of bytes
 	// is supported.
 	Range *string `mandatory:"false" json:"range"`
+
+	// VersionId of the object to copy. If not provided then current version is copied by default.
+	SourceVersionId *string `mandatory:"false" json:"sourceVersionId"`
 }
 
 func (m CopyPartDetails) String() string {

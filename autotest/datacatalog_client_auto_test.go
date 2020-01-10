@@ -3081,60 +3081,6 @@ func TestDataCatalogClientListGlossaries(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
-func TestDataCatalogClientListGlossaryTerms(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("datacatalog", "ListGlossaryTerms")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListGlossaryTerms is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListGlossaryTerms", createDataCatalogClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(datacatalog.DataCatalogClient)
-
-	body, err := testClient.getRequests("datacatalog", "ListGlossaryTerms")
-	assert.NoError(t, err)
-
-	type ListGlossaryTermsRequestInfo struct {
-		ContainerId string
-		Request     datacatalog.ListGlossaryTermsRequest
-	}
-
-	var requests []ListGlossaryTermsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*datacatalog.ListGlossaryTermsRequest)
-				return c.ListGlossaryTerms(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]datacatalog.ListGlossaryTermsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(datacatalog.ListGlossaryTermsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientListJobDefinitions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3503,6 +3449,60 @@ func TestDataCatalogClientListTermRelationships(t *testing.T) {
 			typedListResponses := make([]datacatalog.ListTermRelationshipsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(datacatalog.ListTermRelationshipsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientListTerms(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ListTerms")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTerms is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListTerms", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ListTerms")
+	assert.NoError(t, err)
+
+	type ListTermsRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ListTermsRequest
+	}
+
+	var requests []ListTermsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datacatalog.ListTermsRequest)
+				return c.ListTerms(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datacatalog.ListTermsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datacatalog.ListTermsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

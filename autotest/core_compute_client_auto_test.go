@@ -1324,6 +1324,50 @@ func TestComputeClientGetImage(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientGetImageShapeCompatibilityEntry(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetImageShapeCompatibilityEntry")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetImageShapeCompatibilityEntry is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "GetImageShapeCompatibilityEntry", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "GetImageShapeCompatibilityEntry")
+	assert.NoError(t, err)
+
+	type GetImageShapeCompatibilityEntryRequestInfo struct {
+		ContainerId string
+		Request     core.GetImageShapeCompatibilityEntryRequest
+	}
+
+	var requests []GetImageShapeCompatibilityEntryRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetImageShapeCompatibilityEntry(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientGetInstance(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2109,6 +2153,60 @@ func TestComputeClientListDedicatedVmHosts(t *testing.T) {
 			typedListResponses := make([]core.ListDedicatedVmHostsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(core.ListDedicatedVmHostsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientListImageShapeCompatibilityEntries(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListImageShapeCompatibilityEntries")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListImageShapeCompatibilityEntries is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListImageShapeCompatibilityEntries", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "ListImageShapeCompatibilityEntries")
+	assert.NoError(t, err)
+
+	type ListImageShapeCompatibilityEntriesRequestInfo struct {
+		ContainerId string
+		Request     core.ListImageShapeCompatibilityEntriesRequest
+	}
+
+	var requests []ListImageShapeCompatibilityEntriesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListImageShapeCompatibilityEntriesRequest)
+				return c.ListImageShapeCompatibilityEntries(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListImageShapeCompatibilityEntriesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListImageShapeCompatibilityEntriesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

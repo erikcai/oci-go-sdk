@@ -63,7 +63,7 @@
     <ibex-frontend-public-spec-spec-file>source/public-api.cond.yaml</ibex-frontend-public-spec-spec-file>
     <osms-spec-spec-file>source/api.cond.yaml</osms-spec-spec-file>
     <ams-spec-spec-file>source/ams-api.cond.yaml</ams-spec-spec-file>
-    <service_api_spec-spec-file>service_api.cond.yaml</service_api_spec-spec-file>
+    <service_api_spec-spec-file>specs/service_api.cond.yaml</service_api_spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -3666,7 +3666,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.953</version>
+        <version>0.2.982</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -3676,7 +3676,7 @@
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.282</version>
+        <version>1.1.295</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -3686,7 +3686,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.336</version>
+        <version>0.1.340</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -3836,7 +3836,7 @@
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.0.0-2001020016</version>
+        <version>1.0.0-2001092208</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -3891,7 +3891,7 @@
       <dependency>
         <groupId>oracle.dfcs.server</groupId>
         <artifactId>service_api_spec</artifactId>
-        <version>1.0.97</version>
+        <version>1.0.113</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

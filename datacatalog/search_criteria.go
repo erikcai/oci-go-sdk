@@ -15,9 +15,6 @@ import (
 // SearchCriteria Search Query object that allows complex search predicates that cannot be expressed through simple query params.
 type SearchCriteria struct {
 
-	// The set of attributes that is part of the search query criteria. Used along with Search Criteria query parameter.
-	Fields []string `mandatory:"false" json:"fields"`
-
 	// Search query dsl that defines the query components including fields and predicates.
 	Query *string `mandatory:"false" json:"query"`
 }

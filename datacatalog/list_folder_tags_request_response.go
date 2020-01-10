@@ -116,6 +116,7 @@ const (
 	ListFolderTagsFieldsLifecyclestate  ListFolderTagsFieldsEnum = "lifecycleState"
 	ListFolderTagsFieldsTimecreated     ListFolderTagsFieldsEnum = "timeCreated"
 	ListFolderTagsFieldsUri             ListFolderTagsFieldsEnum = "uri"
+	ListFolderTagsFieldsGlossarykey     ListFolderTagsFieldsEnum = "glossaryKey"
 	ListFolderTagsFieldsFolderkey       ListFolderTagsFieldsEnum = "folderKey"
 )
 
@@ -128,6 +129,7 @@ var mappingListFolderTagsFields = map[string]ListFolderTagsFieldsEnum{
 	"lifecycleState":  ListFolderTagsFieldsLifecyclestate,
 	"timeCreated":     ListFolderTagsFieldsTimecreated,
 	"uri":             ListFolderTagsFieldsUri,
+	"glossaryKey":     ListFolderTagsFieldsGlossarykey,
 	"folderKey":       ListFolderTagsFieldsFolderkey,
 }
 

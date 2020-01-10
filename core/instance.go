@@ -121,6 +121,8 @@ type Instance struct {
 
 	LaunchOptions *LaunchOptions `mandatory:"false" json:"launchOptions"`
 
+	InstanceOptions *InstanceOptions `mandatory:"false" json:"instanceOptions"`
+
 	// Custom metadata that you provide.
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 
@@ -164,6 +166,7 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 		IpxeScript                 *string                                `json:"ipxeScript"`
 		LaunchMode                 InstanceLaunchModeEnum                 `json:"launchMode"`
 		LaunchOptions              *LaunchOptions                         `json:"launchOptions"`
+		InstanceOptions            *InstanceOptions                       `json:"instanceOptions"`
 		Metadata                   map[string]string                      `json:"metadata"`
 		ShapeConfig                *InstanceShapeConfig                   `json:"shapeConfig"`
 		SourceDetails              instancesourcedetails                  `json:"sourceDetails"`
@@ -204,6 +207,8 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	m.LaunchMode = model.LaunchMode
 
 	m.LaunchOptions = model.LaunchOptions
+
+	m.InstanceOptions = model.InstanceOptions
 
 	m.Metadata = model.Metadata
 

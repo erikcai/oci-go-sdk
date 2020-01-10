@@ -113,6 +113,7 @@ const (
 	ListDataAssetTagsFieldsLifecyclestate  ListDataAssetTagsFieldsEnum = "lifecycleState"
 	ListDataAssetTagsFieldsTimecreated     ListDataAssetTagsFieldsEnum = "timeCreated"
 	ListDataAssetTagsFieldsUri             ListDataAssetTagsFieldsEnum = "uri"
+	ListDataAssetTagsFieldsGlossarykey     ListDataAssetTagsFieldsEnum = "glossaryKey"
 	ListDataAssetTagsFieldsDataassetkey    ListDataAssetTagsFieldsEnum = "dataAssetKey"
 )
 
@@ -125,6 +126,7 @@ var mappingListDataAssetTagsFields = map[string]ListDataAssetTagsFieldsEnum{
 	"lifecycleState":  ListDataAssetTagsFieldsLifecyclestate,
 	"timeCreated":     ListDataAssetTagsFieldsTimecreated,
 	"uri":             ListDataAssetTagsFieldsUri,
+	"glossaryKey":     ListDataAssetTagsFieldsGlossarykey,
 	"dataAssetKey":    ListDataAssetTagsFieldsDataassetkey,
 }
 

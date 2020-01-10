@@ -99,14 +99,12 @@ const (
 	ListApplicationsSortByTimecreated ListApplicationsSortByEnum = "timeCreated"
 	ListApplicationsSortByDisplayname ListApplicationsSortByEnum = "displayName"
 	ListApplicationsSortByLanguage    ListApplicationsSortByEnum = "language"
-	ListApplicationsSortByType        ListApplicationsSortByEnum = "type"
 )
 
 var mappingListApplicationsSortBy = map[string]ListApplicationsSortByEnum{
 	"timeCreated": ListApplicationsSortByTimecreated,
 	"displayName": ListApplicationsSortByDisplayname,
 	"language":    ListApplicationsSortByLanguage,
-	"type":        ListApplicationsSortByType,
 }
 
 // GetListApplicationsSortByEnumValues Enumerates the set of values for ListApplicationsSortByEnum

@@ -37,6 +37,9 @@ type EntityTagSummary struct {
 	// Description of the related term.
 	TermDescription *string `mandatory:"false" json:"termDescription"`
 
+	// Unique id of the parent Glossary of the term.
+	GlossaryKey *string `mandatory:"false" json:"glossaryKey"`
+
 	// State of the Tag.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 

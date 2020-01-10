@@ -19,7 +19,7 @@ type UpdateApplicationDetails struct {
 	// array may contain zero or more placeholders that are replaced using values from the parameters
 	// map.  Each placeholder specified must be represented in the parameters map else the request
 	// (POST or PUT) will fail with a HTTP 400 status code.  Placeholders are specified as
-	// `${name}`, where `name` is the name of the parameter.
+	// `Service Api Spec`, where `name` is the name of the parameter.
 	// Example:  `[ "--input", "${input_file}", "--name", "John Doe" ]`
 	// If "input_file" has a value of "mydata.xml", then the value above will be translated to
 	// `--input mydata.xml --name "John Doe"`
@@ -32,6 +32,10 @@ type UpdateApplicationDetails struct {
 	// not allowed to be overwritten will cause a 400 status to be returned.
 	Configuration map[string]string `mandatory:"false" json:"configuration"`
 
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
 	// A user-friendly description. Avoid entering confidential information.
 	Description *string `mandatory:"false" json:"description"`
 
@@ -43,6 +47,11 @@ type UpdateApplicationDetails struct {
 
 	// The VM shape for the executors. Sets the executor cores and memory.
 	ExecutorShape *string `mandatory:"false" json:"executorShape"`
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	// An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
 	// See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
