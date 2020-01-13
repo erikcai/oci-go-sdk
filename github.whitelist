@@ -57,3 +57,4 @@
 ^osmanagement/
 ^applicationmigration/
 ^dataflow/
+^mysql/

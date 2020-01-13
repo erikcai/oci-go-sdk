@@ -64,6 +64,7 @@
     <osms-spec-spec-file>source/api.cond.yaml</osms-spec-spec-file>
     <ams-spec-spec-file>source/ams-api.cond.yaml</ams-spec-spec-file>
     <service_api_spec-spec-file>specs/service_api.cond.yaml</service_api_spec-spec-file>
+    <mysqlaas-api-spec-spec-file>source/mysqlaas-api-spec.cond.yaml</mysqlaas-api-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -249,6 +250,10 @@
     <dependency>
       <groupId>oracle.dfcs.server</groupId>
       <artifactId>service_api_spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.oci.mysql</groupId>
+      <artifactId>mysqlaas-api-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -1100,6 +1105,24 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/service_api_spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-mysqlaas-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.oci.mysql</groupId>
+                  <artifactId>mysqlaas-api-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/mysqlaas-api-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -2353,6 +2376,33 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-mysqlaas-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/mysqlaas-api-spec/source/${mysqlaas-api-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/mysqlaas-api-spec/${mysqlaas-api-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/mysqlaas-api-spec/${mysqlaas-api-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-mysqlaas-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/mysqlaas-api-spec/${mysqlaas-api-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/mysqlaas-api-spec/${mysqlaas-api-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -3324,6 +3374,28 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-mysqlaas-api-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/mysqlaas-api-spec/${mysqlaas-api-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>mysql</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>mysql</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.analytics>false</isTagAvailable.analytics>
+                <isTagAvailable.workrequests>false</isTagAvailable.workrequests>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -3656,6 +3728,12 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/mysql</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -3892,6 +3970,11 @@
         <groupId>oracle.dfcs.server</groupId>
         <artifactId>service_api_spec</artifactId>
         <version>1.0.113</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.oci.mysql</groupId>
+        <artifactId>mysqlaas-api-spec</artifactId>
+        <version>8.0.3</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

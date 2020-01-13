@@ -1,0 +1,78 @@
+// Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
+// Code generated. DO NOT EDIT.
+
+// MySQL as a Service API
+//
+// The API for the MySQL Service
+//
+
+package mysql
+
+import (
+	"github.com/oracle/oci-go-sdk/common"
+)
+
+// CreateDbSystemDetails Details required to create a DbSystem.
+type CreateDbSystemDetails struct {
+
+	// The OCID of the compartment.
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// The shape of the MySQLaaS instance. The shape determines resources
+	// allocated to the MySQLaaS instance - CPU cores and memory for VM
+	// shapes; CPU cores, memory and storage for non-VM (or bare metal)
+	// shapes. To get a list of shapes, use (FIXME: correct link for
+	// MySQLaaS shapes) the
+	// ListShapes operation.
+	ShapeName *string `mandatory:"true" json:"shapeName"`
+
+	// The OCID of the subnet the MySQLaaS DbSystem is associated with.
+	SubnetId *string `mandatory:"true" json:"subnetId"`
+
+	// The username for the administrative user for the MySQLaaS Instance.
+	AdminUsername *string `mandatory:"true" json:"adminUsername"`
+
+	// The password for the administrative user. The password must be
+	// between 8 and 32 characters long, and must contain at least 1
+	// numeric character, 1 lowercase character, 1 uppercase character, and
+	// 1 special (nonalphanumeric) character.
+	AdminPassword *string `mandatory:"true" json:"adminPassword"`
+
+	// Initial size of the data volume in GBs that will be created and attached.
+	// Keep in mind that this only specifies the size of the database data volume, the log volume
+	// for the database will be scaled appropriately with its shape.
+	// (TODO: Include more information about db and log BVs and BVG for MySQLaaS.)
+	DataStorageSizeInGBs *int `mandatory:"true" json:"dataStorageSizeInGBs"`
+
+	Instance *CreateInstanceDetails `mandatory:"true" json:"instance"`
+
+	// The user-friendly name for the DbSystem. It does not have to be unique.
+	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// User-provided data about the DbSystem.
+	Description *string `mandatory:"false" json:"description"`
+
+	AvailabilityPolicy *DbSystemAvailabilityPolicy `mandatory:"false" json:"availabilityPolicy"`
+
+	// The OCID of the Configuration to be used for Instances in this DbSystem.
+	ConfigurationId *string `mandatory:"false" json:"configurationId"`
+
+	// The specific MySQL version identifier.
+	MysqlVersion *string `mandatory:"false" json:"mysqlVersion"`
+
+	BackupPolicy *CreateUpdateBackupPolicy `mandatory:"false" json:"backupPolicy"`
+
+	CloneFromBackup *CloneOrRestoreFromBackupDetails `mandatory:"false" json:"cloneFromBackup"`
+
+	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Example: `{"bar-key": "value"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"foo-namespace": {"bar-key": "value"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+}
+
+func (m CreateDbSystemDetails) String() string {
+	return common.PointerString(m)
+}
