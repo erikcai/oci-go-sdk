@@ -11,16 +11,16 @@ import (
 // GetTermRequest wrapper for the GetTerm operation
 type GetTermRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// Unique Glossary Term key.
+	// Unique glossary term key.
 	TermKey *string `mandatory:"true" contributesTo:"path" name:"termKey"`
 
-	// Used to control which fields are returned in a Term response.
+	// Specifies the fields to return in a term response.
 	Fields []GetTermFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The client request ID for tracing.
@@ -54,7 +54,7 @@ type GetTermResponse struct {
 	// The Term instance
 	Term `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
@@ -103,18 +103,18 @@ var mappingGetTermFields = map[string]GetTermFieldsEnum{
 	"glossaryKey":               GetTermFieldsGlossarykey,
 	"parentTermKey":             GetTermFieldsParenttermkey,
 	"isAllowedToHaveChildTerms": GetTermFieldsIsallowedtohavechildterms,
-	"path":                      GetTermFieldsPath,
-	"lifecycleState":            GetTermFieldsLifecyclestate,
-	"timeCreated":               GetTermFieldsTimecreated,
-	"timeUpdated":               GetTermFieldsTimeupdated,
-	"createdById":               GetTermFieldsCreatedbyid,
-	"updatedById":               GetTermFieldsUpdatedbyid,
-	"owner":                     GetTermFieldsOwner,
-	"workflowStatus":            GetTermFieldsWorkflowstatus,
-	"uri":                       GetTermFieldsUri,
-	"relatedTerms":              GetTermFieldsRelatedterms,
-	"associatedObjectCount":     GetTermFieldsAssociatedobjectcount,
-	"associatedObjects":         GetTermFieldsAssociatedobjects,
+	"path":                  GetTermFieldsPath,
+	"lifecycleState":        GetTermFieldsLifecyclestate,
+	"timeCreated":           GetTermFieldsTimecreated,
+	"timeUpdated":           GetTermFieldsTimeupdated,
+	"createdById":           GetTermFieldsCreatedbyid,
+	"updatedById":           GetTermFieldsUpdatedbyid,
+	"owner":                 GetTermFieldsOwner,
+	"workflowStatus":        GetTermFieldsWorkflowstatus,
+	"uri":                   GetTermFieldsUri,
+	"relatedTerms":          GetTermFieldsRelatedterms,
+	"associatedObjectCount": GetTermFieldsAssociatedobjectcount,
+	"associatedObjects":     GetTermFieldsAssociatedobjects,
 }
 
 // GetGetTermFieldsEnumValues Enumerates the set of values for GetTermFieldsEnum

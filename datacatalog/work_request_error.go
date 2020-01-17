@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -22,7 +22,7 @@ type WorkRequestError struct {
 	// A human readable description of the issue encountered.
 	Message *string `mandatory:"true" json:"message"`
 
-	// The time the error occured. An RFC3339 formatted datetime string.
+	// The time the error occured. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	Timestamp *common.SDKTime `mandatory:"true" json:"timestamp"`
 }
 

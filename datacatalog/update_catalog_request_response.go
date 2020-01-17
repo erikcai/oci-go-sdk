@@ -11,10 +11,10 @@ import (
 // UpdateCatalogRequest wrapper for the UpdateCatalog operation
 type UpdateCatalogRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// The information to be updated.
+	// The data catalog information to be updated.
 	UpdateCatalogDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -55,7 +55,7 @@ type UpdateCatalogResponse struct {
 	// The Catalog instance
 	Catalog `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

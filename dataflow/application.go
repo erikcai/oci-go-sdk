@@ -57,8 +57,8 @@ type Application struct {
 	// Example: `2018-04-03T21:10:29.600Z`
 	TimeUpdated *common.SDKTime `mandatory:"true" json:"timeUpdated"`
 
-	// The arguments passed to the running application as command line arguments.  Each string in the
-	// array may contain zero or more placeholders that are replaced using values from the parameters
+	// The arguments passed to the running application as command line arguments.  An argument is
+	// either a plain text or a placeholder. Placeholders are replaced using values from the parameters
 	// map.  Each placeholder specified must be represented in the parameters map else the request
 	// (POST or PUT) will fail with a HTTP 400 status code.  Placeholders are specified as
 	// `Service Api Spec`, where `name` is the name of the parameter.
@@ -100,7 +100,7 @@ type Application struct {
 	// An array of name/value pairs used to fill placeholders found in properties like
 	// `Application.arguments`.  The name must be a string of one or more word characters
 	// (a-z, A-Z, 0-9, _).  The value can be a string of 0 or more characters of any kind.
-	// Example:  [ { "iterations" : "10" }, { "input_file" : "mydata.xml"}, {"variable_x", "${x}" ]
+	// Example:  [ { name: "iterations", value: "10"}, { name: "input_file", value: "mydata.xml" }, { name: "variable_x", value: "${x}"} ]
 	Parameters []ApplicationParameter `mandatory:"false" json:"parameters"`
 
 	// An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory

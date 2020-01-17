@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,16 +12,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateCatalogDetails The information about a new Catalog.
+// CreateCatalogDetails The information about a new data catalog.
 type CreateCatalogDetails struct {
 
-	// Compartment Identifier
+	// Compartment identifier.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Catalog Identifier
+	// Data catalog identifier.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 

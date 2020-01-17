@@ -436,6 +436,49 @@ func (client ObjectStorageClient) createReplicationPolicy(ctx context.Context, r
 	return response, err
 }
 
+// CreateRetentionRule Creates a new retention rule in the specified bucket. The new rule will take effect typically within 30 seconds.
+// Note that a maximum of 100 rules are supported on a bucket.
+func (client ObjectStorageClient) CreateRetentionRule(ctx context.Context, request CreateRetentionRuleRequest) (response CreateRetentionRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.createRetentionRule, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateRetentionRuleResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateRetentionRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateRetentionRuleResponse")
+	}
+	return
+}
+
+// createRetentionRule implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) createRetentionRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/n/{namespaceName}/b/{bucketName}/retentionRules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateRetentionRuleResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteBucket Deletes a bucket if the bucket is already empty. If the bucket is not empty, use
 // DeleteObject first. In addition,
 // you cannot delete a bucket that has a multipart upload in progress or a pre-authenticated
@@ -637,6 +680,48 @@ func (client ObjectStorageClient) deleteReplicationPolicy(ctx context.Context, r
 	}
 
 	var response DeleteReplicationPolicyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteRetentionRule Deletes the specified rule. The deletion takes effect typically within 30 seconds.
+func (client ObjectStorageClient) DeleteRetentionRule(ctx context.Context, request DeleteRetentionRuleRequest) (response DeleteRetentionRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteRetentionRule, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteRetentionRuleResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteRetentionRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteRetentionRuleResponse")
+	}
+	return
+}
+
+// deleteRetentionRule implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) deleteRetentionRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/n/{namespaceName}/b/{bucketName}/retentionRules/{retentionRuleId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteRetentionRuleResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -983,6 +1068,48 @@ func (client ObjectStorageClient) getReplicationPolicy(ctx context.Context, requ
 	}
 
 	var response GetReplicationPolicyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetRetentionRule Get the specified retention rule.
+func (client ObjectStorageClient) GetRetentionRule(ctx context.Context, request GetRetentionRuleRequest) (response GetRetentionRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getRetentionRule, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetRetentionRuleResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetRetentionRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetRetentionRuleResponse")
+	}
+	return
+}
+
+// getRetentionRule implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) getRetentionRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/n/{namespaceName}/b/{bucketName}/retentionRules/{retentionRuleId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetRetentionRuleResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1455,6 +1582,49 @@ func (client ObjectStorageClient) listReplicationSources(ctx context.Context, re
 	}
 
 	var response ListReplicationSourcesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListRetentionRules List the retention rules for a bucket. The retention rules are sorted based on creation time,
+// with the most recently created retention rule returned first.
+func (client ObjectStorageClient) ListRetentionRules(ctx context.Context, request ListRetentionRulesRequest) (response ListRetentionRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listRetentionRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListRetentionRulesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListRetentionRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListRetentionRulesResponse")
+	}
+	return
+}
+
+// listRetentionRules implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) listRetentionRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/n/{namespaceName}/b/{bucketName}/retentionRules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListRetentionRulesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2082,6 +2252,48 @@ func (client ObjectStorageClient) updateNamespaceMetadata(ctx context.Context, r
 	}
 
 	var response UpdateNamespaceMetadataResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateRetentionRule Updates the specified retention rule. Rule changes take effect typically within 30 seconds.
+func (client ObjectStorageClient) UpdateRetentionRule(ctx context.Context, request UpdateRetentionRuleRequest) (response UpdateRetentionRuleResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateRetentionRule, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateRetentionRuleResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateRetentionRuleResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateRetentionRuleResponse")
+	}
+	return
+}
+
+// updateRetentionRule implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) updateRetentionRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/n/{namespaceName}/b/{bucketName}/retentionRules/{retentionRuleId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateRetentionRuleResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

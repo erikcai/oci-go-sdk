@@ -11,10 +11,10 @@ import (
 // ImportGlossaryRequest wrapper for the ImportGlossary operation
 type ImportGlossaryRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
 	// The file contents to import the glossary.
@@ -58,7 +58,7 @@ type ImportGlossaryResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

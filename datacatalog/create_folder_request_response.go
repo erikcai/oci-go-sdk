@@ -11,13 +11,13 @@ import (
 // CreateFolderRequest wrapper for the CreateFolder operation
 type CreateFolderRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
-	// The information used to create the Folder.
+	// The information used to create the folder.
 	CreateFolderDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
@@ -58,7 +58,7 @@ type CreateFolderResponse struct {
 	// The Folder instance
 	Folder `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

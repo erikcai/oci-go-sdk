@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,62 +12,62 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// JobSummary Details of a Job. Jobs are scheduled instances of a JobDefinition.
+// JobSummary Details of a job. Jobs are scheduled instances of a job definition.
 type JobSummary struct {
 
-	// Unique key of the Job.
+	// Unique key of the job.
 	Key *string `mandatory:"true" json:"key"`
 
-	// URI to the Job instance in the API.
+	// URI to the job instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The Catalog's Oracle ID (OCID).
+	// The data catalog's OCID.
 	CatalogId *string `mandatory:"false" json:"catalogId"`
 
-	// The unique key of the job definition resource which defined the scope of this job.
+	// The unique key of the job definition resource that defined the scope of this job.
 	JobDefinitionKey *string `mandatory:"false" json:"jobDefinitionKey"`
 
-	// Lifecycle state of the job. For eg: Running, Paused, Completed etc.
+	// Lifecycle state of the job, such as running, paused, or completed.
 	LifecycleState JobLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// Type of the Job.
+	// Type of the job.
 	JobType JobTypeEnum `mandatory:"false" json:"jobType,omitempty"`
 
-	// Type of Job Schedule which is inferred from the scheduling properties.
+	// Type of job schedule that is inferred from the scheduling properties.
 	ScheduleType *string `mandatory:"false" json:"scheduleType"`
 
-	// Detailed description of the Job.
+	// Detailed description of the job.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The date and time the Job was created, in the format defined by RFC3339.
+	// The date and time the job was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// Time that this Job was last updated. An RFC3339 formatted datetime string.
+	// Time that this job was last updated. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
-	// Id (OCID) of the user who created this job.
+	// OCID of the user who created this job.
 	CreatedById *string `mandatory:"false" json:"createdById"`
 
-	// Id (OCID) of the user who updated this job.
+	// OCID of the user who updated this job.
 	UpdatedById *string `mandatory:"false" json:"updatedById"`
 
-	// Schedule specified in the cron expression format that has seven fields for second , minute , hour , day-of-month , month , day-of-week , year .
-	// It can also include special characters like * for all and ? for any . There are also pre-defined schedules that can be specified using
+	// Schedule specified in the cron expression format that has seven fields for second, minute, hour, day-of-month, month, day-of-week, year.
+	// It can also include special characters like * for all and ? for any. There are also pre-defined schedules that can be specified using
 	// special strings. For example, @hourly will run the job every hour.
 	ScheduleCronExpression *string `mandatory:"false" json:"scheduleCronExpression"`
 
-	// Date that the schedule should be operational. An RFC3339 formatted datetime string.
+	// Date that the schedule should be operational. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeScheduleBegin *common.SDKTime `mandatory:"false" json:"timeScheduleBegin"`
 
 	// The total number of executions for this job schedule.
 	ExecutionCount *int `mandatory:"false" json:"executionCount"`
 
-	// The date and time of the most recent execution for this Job, in the format defined by RFC3339.
+	// The date and time of the most recent execution for this job, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeOfLatestExecution *common.SDKTime `mandatory:"false" json:"timeOfLatestExecution"`
 

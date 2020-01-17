@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,37 +12,37 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// JobDefinitionSummary A List of Job Definition Resources. Job Definitions define the harvest scope and includes the list of objects
+// JobDefinitionSummary A list of job definition resources. Job definitions define the harvest scope and includes the list of objects
 // to be harvested along with a schedule. The list of objects is usually specified through a combination of object
-// type, regular expressions or specific names of objects and a sample size for the data harvested.
+// type, regular expressions, or specific names of objects and a sample size for the data harvested.
 type JobDefinitionSummary struct {
 
-	// Unique key of the Job Definition resource that is immutable.
+	// Unique key of the job definition resource that is immutable.
 	Key *string `mandatory:"true" json:"key"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the Job Definition.
+	// Detailed description of the job definition.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The Catalog's Oracle ID (OCID).
+	// The data catalog's OCID.
 	CatalogId *string `mandatory:"false" json:"catalogId"`
 
-	// URI to the Job Definition instance in the API.
+	// URI to the job definition instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
-	// Type of the Job Definition.
+	// Type of the job definition.
 	JobType JobTypeEnum `mandatory:"false" json:"jobType,omitempty"`
 
-	// Lifecycle state of the Job Definition.
+	// Lifecycle state of the job definition.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// Specify if sample data to be extracted as part of this harvest
+	// Specify if sample data to be extracted as part of this harvest.
 	IsSampleDataExtracted *bool `mandatory:"false" json:"isSampleDataExtracted"`
 
-	// The date and time the JobDefinition was created, in the format defined by RFC3339.
+	// The date and time the job definition was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 }

@@ -82,6 +82,17 @@ type PutObjectRequest struct {
 	// For example, you could use this header to identify objects that require caching restrictions.
 	CacheControl *string `mandatory:"false" contributesTo:"header" name:"Cache-Control"`
 
+	// Specifies the encryption algorithm. The header value must be "AES256".
+	OpcSseCustomerAlgorithm *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-algorithm"`
+
+	// Specifies the base64-encoded 256-bit encryption key to use to encrypt or
+	// decrypt the data.
+	OpcSseCustomerKey *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-key"`
+
+	// Specifies the base64-encoded SHA256 hash of the encryption key. This
+	// value is used to check the integrity of the encryption key.
+	OpcSseCustomerKeySha256 *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-key-sha256"`
+
 	// Optional user-defined metadata key and value.
 	OpcMeta map[string]string `mandatory:"false" contributesTo:"header-collection" prefix:"opc-meta-"`
 

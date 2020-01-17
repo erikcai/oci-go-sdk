@@ -11,13 +11,13 @@ import (
 // DeleteTermRequest wrapper for the DeleteTerm operation
 type DeleteTermRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// Unique Glossary Term key.
+	// Unique glossary term key.
 	TermKey *string `mandatory:"true" contributesTo:"path" name:"termKey"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

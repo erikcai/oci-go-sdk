@@ -11,10 +11,10 @@ import (
 // TestConnectionRequest wrapper for the TestConnection operation
 type TestConnectionRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// Unique connection key.
@@ -58,7 +58,7 @@ type TestConnectionResponse struct {
 	// The ValidateConnectionResult instance
 	ValidateConnectionResult `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

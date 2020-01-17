@@ -11,57 +11,57 @@ import (
 // ListJobsRequest wrapper for the ListJobs operation
 type ListJobsRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// Job Lifecycle State.
+	// Job lifecycle state.
 	LifecycleState JobLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// Time that the Resource was created. An RFC3339 formatted datetime string.
+	// Time that the resource was created. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeCreated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeCreated"`
 
-	// Time that the Resource was updated. An RFC3339 formatted datetime string.
+	// Time that the resource was updated. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeUpdated"`
 
-	// Id (OCID) of the user who created the resource.
+	// OCID of the user who created the resource.
 	CreatedById *string `mandatory:"false" contributesTo:"query" name:"createdById"`
 
-	// Id of the user who updated the resource.
+	// OCID of the user who updated the resource.
 	UpdatedById *string `mandatory:"false" contributesTo:"query" name:"updatedById"`
 
 	// Job type.
 	JobType JobTypeEnum `mandatory:"false" contributesTo:"query" name:"jobType" omitEmpty:"true"`
 
-	// Unique Job Definition key.
+	// Unique job definition key.
 	JobDefinitionKey *string `mandatory:"false" contributesTo:"query" name:"jobDefinitionKey"`
 
-	// Schedule specified in the cron expression format that has seven fields for second , minute , hour , day-of-month , month , day-of-week , year .
-	// It can also include special characters like * for all and ? for any . There are also pre-defined schedules that can be specified using
+	// Schedule specified in the cron expression format that has seven fields for second, minute, hour, day-of-month, month, day-of-week, year.
+	// It can also include special characters like * for all and ? for any. There are also pre-defined schedules that can be specified using
 	// special strings. For example, @hourly will run the job every hour.
 	ScheduleCronExpression *string `mandatory:"false" contributesTo:"query" name:"scheduleCronExpression"`
 
-	// Date that the schedule should be operational. An RFC3339 formatted datetime string.
+	// Date that the schedule should be operational. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeScheduleBegin *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeScheduleBegin"`
 
-	// Date that the schedule should end from being operational. An RFC3339 formatted datetime string.
+	// Date that the schedule should end from being operational. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeScheduleEnd *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeScheduleEnd"`
 
-	// Type of the Job Schedule.
+	// Type of the job schedule.
 	ScheduleType JobScheduleTypeEnum `mandatory:"false" contributesTo:"query" name:"scheduleType" omitEmpty:"true"`
 
 	// Unique connection key.
 	ConnectionKey *string `mandatory:"false" contributesTo:"query" name:"connectionKey"`
 
-	// Used to control which fields are returned in a Job summary response.
+	// Specifies the fields to return in a job summary response.
 	Fields []ListJobsFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The total number of executions for this job schedule.
 	ExecutionCount *int `mandatory:"false" contributesTo:"query" name:"executionCount"`
 
-	// The date and time the most recent execution for this Job ,in the format defined by RFC3339.
+	// The date and time the most recent execution for this job ,in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeOfLatestExecution *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeOfLatestExecution"`
 
@@ -112,9 +112,7 @@ type ListJobsResponse struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For list pagination. When this header appears in the response, additional pages
-	// of results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

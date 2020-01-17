@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,37 +12,37 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Attribute Details of an Entity Attribute. An attribute of a data entity describing an item of data,
+// Attribute Details of an entity attribute. An attribute of a data entity describing an item of data,
 // with a name and data type. Synonymous with 'column' in a database.
 type Attribute struct {
 
-	// Unique Attribute key that is immutable.
+	// Unique attribute key that is immutable.
 	Key *string `mandatory:"true" json:"key"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the Attribute.
+	// Detailed description of the attribute.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The unique key of the parent Entity.
+	// The unique key of the parent entity.
 	EntityKey *string `mandatory:"false" json:"entityKey"`
 
-	// State of the Attribute.
+	// State of the attribute.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The date and time the Attribute was created, in the format defined by RFC3339.
+	// The date and time the attribute was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The last time that any change was made to the Attribute. An RFC3339 formatted datetime string.
+	// The last time that any change was made to the attribute. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
-	// Id (OCID) of the user who created this attribute in the catalog.
+	// OCID of the user who created this attribute in the data catalog.
 	CreatedById *string `mandatory:"false" json:"createdById"`
 
-	// Id (OCID) of the user who modified this attribute in the catalog.
+	// OCID of the user who modified this attribute in the data catalog.
 	UpdatedById *string `mandatory:"false" json:"updatedById"`
 
 	// Data type of the attribute as defined in the external system. Type mapping across systems can be achieved
@@ -51,37 +51,37 @@ type Attribute struct {
 	// defined types.
 	ExternalDataType *string `mandatory:"false" json:"externalDataType"`
 
-	// Unique external key of this attribute in the external source system
+	// Unique external key of this attribute in the external source system.
 	ExternalKey *string `mandatory:"false" json:"externalKey"`
 
-	// Property that identifies if this attribute can be used as a watermark to extract incremental data
+	// Property that identifies if this attribute can be used as a watermark to extract incremental data.
 	IsIncrementalData *bool `mandatory:"false" json:"isIncrementalData"`
 
-	// Property that identifies if this attribute can be assigned null values
+	// Property that identifies if this attribute can be assigned null values.
 	IsNullable *bool `mandatory:"false" json:"isNullable"`
 
-	// Max allowed length of the attribute value
+	// Max allowed length of the attribute value.
 	Length *int64 `mandatory:"false" json:"length"`
 
-	// Position of the attribute in the record definition
+	// Position of the attribute in the record definition.
 	Position *int `mandatory:"false" json:"position"`
 
-	// Precision of the attribute value usually applies to float data type
+	// Precision of the attribute value usually applies to float data type.
 	Precision *int `mandatory:"false" json:"precision"`
 
-	// Scale of the attribute value usually applies to float data type
+	// Scale of the attribute value usually applies to float data type.
 	Scale *int `mandatory:"false" json:"scale"`
 
-	// Last modified timestamp of this object in the external system
+	// Last modified timestamp of this object in the external system.
 	TimeExternal *common.SDKTime `mandatory:"false" json:"timeExternal"`
 
-	// URI to the Attribute instance in the API.
+	// URI to the attribute instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
-	// A map of maps which contains the properties which are specific to the Attribute type. Each Attribute type
+	// A map of maps that contains the properties which are specific to the attribute type. Each attribute type
 	// definition defines it's set of required and optional properties. The map keys are category names and the
 	// values are maps of property name to property value. Every property is contained inside of a category. Most
-	// Attributes have required properties within the "default" category.
+	// attributes have required properties within the "default" category.
 	// Example: `{"properties": { "default": { "key1": "value1"}}}`
 	Properties map[string]map[string]string `mandatory:"false" json:"properties"`
 }

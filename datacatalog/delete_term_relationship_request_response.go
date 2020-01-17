@@ -11,16 +11,16 @@ import (
 // DeleteTermRelationshipRequest wrapper for the DeleteTermRelationship operation
 type DeleteTermRelationshipRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// Unique Glossary Term key.
+	// Unique glossary term key.
 	TermKey *string `mandatory:"true" contributesTo:"path" name:"termKey"`
 
-	// Unique Glossary Term Relationship key.
+	// Unique glossary term relationship key.
 	TermRelationshipKey *string `mandatory:"true" contributesTo:"path" name:"termRelationshipKey"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

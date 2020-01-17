@@ -11,19 +11,19 @@ import (
 // UpdateTermRelationshipRequest wrapper for the UpdateTermRelationship operation
 type UpdateTermRelationshipRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// Unique Glossary Term key.
+	// Unique glossary term key.
 	TermKey *string `mandatory:"true" contributesTo:"path" name:"termKey"`
 
-	// Unique Glossary Term Relationship key.
+	// Unique glossary term relationship key.
 	TermRelationshipKey *string `mandatory:"true" contributesTo:"path" name:"termRelationshipKey"`
 
-	// The information to be updated in the Term Relationship.
+	// The information to be updated in the term relationship.
 	UpdateTermRelationshipDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -64,7 +64,7 @@ type UpdateTermRelationshipResponse struct {
 	// The TermRelationship instance
 	TermRelationship `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

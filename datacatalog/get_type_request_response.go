@@ -11,13 +11,13 @@ import (
 // GetTypeRequest wrapper for the GetType operation
 type GetTypeRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Type key.
+	// Unique type key.
 	TypeKey *string `mandatory:"true" contributesTo:"path" name:"typeKey"`
 
-	// Used to control which fields are returned in a Type response.
+	// Specifies the fields to return in a type response.
 	Fields []GetTypeFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The client request ID for tracing.
@@ -51,7 +51,7 @@ type GetTypeResponse struct {
 	// The ModelType instance
 	ModelType `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

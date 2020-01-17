@@ -11,7 +11,7 @@ import (
 // GetCatalogRequest wrapper for the GetCatalog operation
 type GetCatalogRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
 	// The client request ID for tracing.
@@ -45,7 +45,7 @@ type GetCatalogResponse struct {
 	// The Catalog instance
 	Catalog `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

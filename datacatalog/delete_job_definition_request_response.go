@@ -11,10 +11,10 @@ import (
 // DeleteJobDefinitionRequest wrapper for the DeleteJobDefinition operation
 type DeleteJobDefinitionRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Job Definition key.
+	// Unique job definition key.
 	JobDefinitionKey *string `mandatory:"true" contributesTo:"path" name:"jobDefinitionKey"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

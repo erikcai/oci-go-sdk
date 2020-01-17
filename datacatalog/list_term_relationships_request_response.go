@@ -11,13 +11,13 @@ import (
 // ListTermRelationshipsRequest wrapper for the ListTermRelationships operation
 type ListTermRelationshipsRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// Unique Glossary Term key.
+	// Unique glossary term key.
 	TermKey *string `mandatory:"true" contributesTo:"path" name:"termKey"`
 
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -26,7 +26,7 @@ type ListTermRelationshipsRequest struct {
 	// A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
 	LifecycleState LifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// Used to control which fields are returned in a Term Relationship summary response.
+	// Specifies the fields to return in a term relationship summary response.
 	Fields []ListTermRelationshipsFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
@@ -76,9 +76,7 @@ type ListTermRelationshipsResponse struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For list pagination. When this header appears in the response, additional pages
-	// of results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

@@ -11,63 +11,63 @@ import (
 // ListJobExecutionsRequest wrapper for the ListJobExecutions operation
 type ListJobExecutionsRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Job key.
+	// Unique job key.
 	JobKey *string `mandatory:"true" contributesTo:"path" name:"jobKey"`
 
-	// Job Execution Lifecycle State.
+	// Job execution lifecycle state.
 	LifecycleState JobExecutionStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// Time that the Resource was created. An RFC3339 formatted datetime string.
+	// Time that the resource was created. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeCreated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeCreated"`
 
-	// Time that the Resource was updated. An RFC3339 formatted datetime string.
+	// Time that the resource was updated. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeUpdated"`
 
-	// Id (OCID) of the user who created the resource.
+	// OCID of the user who created the resource.
 	CreatedById *string `mandatory:"false" contributesTo:"query" name:"createdById"`
 
-	// Id of the user who updated the resource.
+	// OCID of the user who updated the resource.
 	UpdatedById *string `mandatory:"false" contributesTo:"query" name:"updatedById"`
 
 	// Job type.
 	JobType JobTypeEnum `mandatory:"false" contributesTo:"query" name:"jobType" omitEmpty:"true"`
 
-	// Sub-Type of this job execution.
+	// Sub-type of this job execution.
 	SubType *string `mandatory:"false" contributesTo:"query" name:"subType"`
 
-	// The unique key of the parent execution or null if this Job Execution has no parent.
+	// The unique key of the parent execution or null if this job execution has no parent.
 	ParentKey *string `mandatory:"false" contributesTo:"query" name:"parentKey"`
 
-	// Time that the Job Execution was started or in the case of a future time, the time in which the job will start
-	// An RFC3339 formatted datetime string.
+	// Time that the job execution was started or in the case of a future time, the time when the job will start.
+	// An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeStart *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeStart"`
 
-	// Time that the Job Execution ended or null if the job is still running or hasn't run yet.
-	// An RFC3339 formatted datetime string.
+	// Time that the job execution ended or null if the job is still running or hasn't run yet.
+	// An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeEnd *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeEnd"`
 
-	// Error code returned from the Job Execution ot null if job is still running or didn't return an error.
+	// Error code returned from the job execution or null if job is still running or didn't return an error.
 	ErrorCode *string `mandatory:"false" contributesTo:"query" name:"errorCode"`
 
-	// Error message returned from the Job Execution ot null if job is still running or didn't return an error.
+	// Error message returned from the job execution or null if job is still running or didn't return an error.
 	ErrorMessage *string `mandatory:"false" contributesTo:"query" name:"errorMessage"`
 
-	// Process identifier related to the Job Execution.
+	// Process identifier related to the job execution.
 	ProcessKey *string `mandatory:"false" contributesTo:"query" name:"processKey"`
 
 	// The a URL of the job for accessing this resource and its status.
 	ExternalUrl *string `mandatory:"false" contributesTo:"query" name:"externalUrl"`
 
-	// Event that triggered the execution of this Job or null.
+	// Event that triggered the execution of this job or null.
 	EventKey *string `mandatory:"false" contributesTo:"query" name:"eventKey"`
 
 	// Unique entity key.
 	DataEntityKey *string `mandatory:"false" contributesTo:"query" name:"dataEntityKey"`
 
-	// Used to control which fields are returned in a Job Execution summary response.
+	// Specifies the fields to return in a job execution summary response.
 	Fields []ListJobExecutionsFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
@@ -117,9 +117,7 @@ type ListJobExecutionsResponse struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For list pagination. When this header appears in the response, additional pages
-	// of results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

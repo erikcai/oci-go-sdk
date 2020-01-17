@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DataAssetTag Represents an association of a Data Asset to a Term.
+// DataAssetTag Represents an association of a data asset to a term.
 type DataAssetTag struct {
 
 	// Unique tag key that is immutable.
@@ -30,20 +30,20 @@ type DataAssetTag struct {
 	// Description of the related term.
 	TermDescription *string `mandatory:"false" json:"termDescription"`
 
-	// The current state of the Tag.
+	// The current state of the tag.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The date and time the Tag was created, in the format defined by RFC3339.
+	// The date and time the tag was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// Id (OCID) of the user who created the Tag.
+	// OCID of the user who created the tag.
 	CreatedById *string `mandatory:"false" json:"createdById"`
 
-	// URI to the Tag instance in the API.
+	// URI to the tag instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
-	// The unique key of the parent Data Asset.
+	// The unique key of the parent data asset.
 	DataAssetKey *string `mandatory:"false" json:"dataAssetKey"`
 }
 

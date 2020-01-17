@@ -61,6 +61,9 @@ type BackupSummary struct {
 
 	// The DB system name of the source database.
 	SourceDbSystemName *string `mandatory:"false" json:"sourceDbSystemName"`
+
+	// Shape of the backup's source database.
+	Shape *string `mandatory:"false" json:"shape"`
 }
 
 func (m BackupSummary) String() string {

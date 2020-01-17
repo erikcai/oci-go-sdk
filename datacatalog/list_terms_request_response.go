@@ -11,10 +11,10 @@ import (
 // ListTermsRequest wrapper for the ListTerms operation
 type ListTermsRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -29,13 +29,13 @@ type ListTermsRequest struct {
 	// Indicates whether a term may contain child terms.
 	IsAllowedToHaveChildTerms *bool `mandatory:"false" contributesTo:"query" name:"isAllowedToHaveChildTerms"`
 
-	// Status of the approval workflow for this business term in the glossary
+	// Status of the approval workflow for this business term in the glossary.
 	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" contributesTo:"query" name:"workflowStatus" omitEmpty:"true"`
 
 	// Full path of the resource for resources that support paths.
 	Path *string `mandatory:"false" contributesTo:"query" name:"path"`
 
-	// Used to control which fields are returned in a Term summary response.
+	// Specifies the fields to return in a term summary response.
 	Fields []ListTermsFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
@@ -85,9 +85,7 @@ type ListTermsResponse struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For list pagination. When this header appears in the response, additional pages
-	// of results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 
@@ -126,12 +124,12 @@ var mappingListTermsFields = map[string]ListTermsFieldsEnum{
 	"glossaryKey":               ListTermsFieldsGlossarykey,
 	"parentTermKey":             ListTermsFieldsParenttermkey,
 	"isAllowedToHaveChildTerms": ListTermsFieldsIsallowedtohavechildterms,
-	"path":                      ListTermsFieldsPath,
-	"lifecycleState":            ListTermsFieldsLifecyclestate,
-	"timeCreated":               ListTermsFieldsTimecreated,
-	"workflowStatus":            ListTermsFieldsWorkflowstatus,
-	"associatedObjectCount":     ListTermsFieldsAssociatedobjectcount,
-	"uri":                       ListTermsFieldsUri,
+	"path":                  ListTermsFieldsPath,
+	"lifecycleState":        ListTermsFieldsLifecyclestate,
+	"timeCreated":           ListTermsFieldsTimecreated,
+	"workflowStatus":        ListTermsFieldsWorkflowstatus,
+	"associatedObjectCount": ListTermsFieldsAssociatedobjectcount,
+	"uri": ListTermsFieldsUri,
 }
 
 // GetListTermsFieldsEnumValues Enumerates the set of values for ListTermsFieldsEnum

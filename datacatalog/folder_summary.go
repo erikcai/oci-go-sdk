@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,24 +12,24 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// FolderSummary Summary of a Folder.
-// A generic term used in the Catalog for an external organization concept used for a collection of data entities
-// or processes within a Data Asset. This term is an internal term which models multiple external types of folder,
-// such as file directories, database schemas etc. Some Data Assets, such as Object Store containers,
+// FolderSummary Summary of a folder.
+// A generic term used in the data catalog for an external organization concept used for a collection of data entities
+// or processes within a data asset. This term is an internal term which models multiple external types of folder,
+// such as file directories, database schemas, and so on. Some data assets, such as Object Store containers,
 // may contain many levels of folders.
 type FolderSummary struct {
 
-	// Unique Folder key that is immutable.
+	// Unique folder key that is immutable.
 	Key *string `mandatory:"true" json:"key"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of a Folder.
+	// Detailed description of a folder.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The unique key of the parent Data Asset.
+	// The unique key of the parent data asset.
 	DataAssetKey *string `mandatory:"false" json:"dataAssetKey"`
 
 	// The key of the containing folder or null if there is no parent.
@@ -38,20 +38,20 @@ type FolderSummary struct {
 	// Full path of the folder.
 	Path *string `mandatory:"false" json:"path"`
 
-	// Unique external key of this object from the source systems
+	// Unique external key of this object from the source systems.
 	ExternalKey *string `mandatory:"false" json:"externalKey"`
 
-	// Last modified timestamp of this object in the external system
+	// Last modified timestamp of this object in the external system.
 	TimeExternal *common.SDKTime `mandatory:"false" json:"timeExternal"`
 
-	// The date and time the Folder was created, in the format defined by RFC3339.
+	// The date and time the folder was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// URI of the Folder resource within the Data Catalog API.
+	// URI of the folder resource within the data catalog API.
 	Uri *string `mandatory:"false" json:"uri"`
 
-	// State of the Folder.
+	// State of the folder.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 

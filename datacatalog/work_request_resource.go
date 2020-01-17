@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -27,7 +27,7 @@ type WorkRequestResource struct {
 	// The identifier of the resource the work request affects.
 	Identifier *string `mandatory:"true" json:"identifier"`
 
-	// The URI path that the user can do a GET on to access the resource metadata
+	// The URI path that the user can do a GET to access the resource metadata
 	EntityUri *string `mandatory:"false" json:"entityUri"`
 }
 

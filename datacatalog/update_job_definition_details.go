@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,32 +12,32 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateJobDefinitionDetails Update information for a Job Definition resource.
+// UpdateJobDefinitionDetails Update information for a job definition resource.
 type UpdateJobDefinitionDetails struct {
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Specifies if the Job Definition is incremental or full.
+	// Specifies if the job definition is incremental or full.
 	IsIncremental *bool `mandatory:"false" json:"isIncremental"`
 
-	// The key of the Data Asset for which the job is defined.
+	// The key of the data asset for which the job is defined.
 	DataAssetKey *string `mandatory:"false" json:"dataAssetKey"`
 
-	// Detailed description of the Job Definition.
+	// Detailed description of the job definition.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The key of the connection resource to be used for harvest, sampling, profiling  jobs.
+	// The key of the connection resource to be used for harvest, sampling, profiling jobs.
 	ConnectionKey *string `mandatory:"false" json:"connectionKey"`
 
-	// Specify if sample data to be extracted as part of this harvest
+	// Specify if sample data to be extracted as part of this harvest.
 	IsSampleDataExtracted *bool `mandatory:"false" json:"isSampleDataExtracted"`
 
-	// Specify the sample data size in MB, specified as number of rows, for this metadata harvest
+	// Specify the sample data size in MB, specified as number of rows, for this metadata harvest.
 	SampleDataSizeInMBs *int `mandatory:"false" json:"sampleDataSizeInMBs"`
 
-	// A map of maps which contains the properties which are specific to the job type. Each job type
+	// A map of maps that contains the properties which are specific to the job type. Each job type
 	// definition may define it's set of required and optional properties. The map keys are category names and the
 	// values are maps of property name to property value. Every property is contained inside of a category. Most
 	// job definitions have required properties within the "default" category.

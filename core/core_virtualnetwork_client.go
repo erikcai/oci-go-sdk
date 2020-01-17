@@ -4271,6 +4271,89 @@ func (client VirtualNetworkClient) getCpe(ctx context.Context, request common.OC
 	return response, err
 }
 
+// GetCpeDeviceConfigContent Render CPE device configuration for customers to configure their on premise device at CPE tunnel
+func (client VirtualNetworkClient) GetCpeDeviceConfigContent(ctx context.Context, request GetCpeDeviceConfigContentRequest) (response GetCpeDeviceConfigContentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getCpeDeviceConfigContent, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetCpeDeviceConfigContentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetCpeDeviceConfigContentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetCpeDeviceConfigContentResponse")
+	}
+	return
+}
+
+// getCpeDeviceConfigContent implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getCpeDeviceConfigContent(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cpes/{cpeId}/cpeConfigContent")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetCpeDeviceConfigContentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetCpeDeviceShape get single cpeDeviceShape object and list of the questions need to asked for that single cpeDeviceShape.
+func (client VirtualNetworkClient) GetCpeDeviceShape(ctx context.Context, request GetCpeDeviceShapeRequest) (response GetCpeDeviceShapeResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getCpeDeviceShape, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetCpeDeviceShapeResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetCpeDeviceShapeResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetCpeDeviceShapeResponse")
+	}
+	return
+}
+
+// getCpeDeviceShape implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getCpeDeviceShape(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cpeDeviceShapes/{cpeDeviceShapeId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetCpeDeviceShapeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetCreateReverseConnectionNatIp Either gets (if it already exists) or creates (if it does not yet exist) a reverse connection
 // NAT IP for the specified private endpoint and customer IP address. Use the reverse connection NAT
 // IP address as the destination when initiating reverse connections to the customer's IP address.
@@ -5130,6 +5213,47 @@ func (client VirtualNetworkClient) getInternetGateway(ctx context.Context, reque
 	return response, err
 }
 
+// GetIpsecCpeDeviceConfigContent Render CPE device configuration for customers to configure their on premise device at the IpsecConnection level
+func (client VirtualNetworkClient) GetIpsecCpeDeviceConfigContent(ctx context.Context, request GetIpsecCpeDeviceConfigContentRequest) (response GetIpsecCpeDeviceConfigContentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getIpsecCpeDeviceConfigContent, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetIpsecCpeDeviceConfigContentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetIpsecCpeDeviceConfigContentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetIpsecCpeDeviceConfigContentResponse")
+	}
+	return
+}
+
+// getIpsecCpeDeviceConfigContent implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getIpsecCpeDeviceConfigContent(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/ipsecConnections/{ipscId}/cpeConfigContent")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetIpsecCpeDeviceConfigContentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetIpv6 Gets the specified IPv6. You must specify the object's OCID.
 // Alternatively, you can get the object by using
 // ListIpv6s
@@ -5961,6 +6085,89 @@ func (client VirtualNetworkClient) getSubnet(ctx context.Context, request common
 	return response, err
 }
 
+// GetTunnelCpeDeviceConfig Retrieve the tunnel's cpe device configuration that was input by customer
+func (client VirtualNetworkClient) GetTunnelCpeDeviceConfig(ctx context.Context, request GetTunnelCpeDeviceConfigRequest) (response GetTunnelCpeDeviceConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getTunnelCpeDeviceConfig, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetTunnelCpeDeviceConfigResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetTunnelCpeDeviceConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetTunnelCpeDeviceConfigResponse")
+	}
+	return
+}
+
+// getTunnelCpeDeviceConfig implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getTunnelCpeDeviceConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/ipsecConnections/{ipscId}/tunnels/{tunnelId}/tunnelDeviceConfig")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetTunnelCpeDeviceConfigResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetTunnelCpeDeviceConfigContent Render CPE device configuration for customers to configure their on premise device at Tunnel level
+func (client VirtualNetworkClient) GetTunnelCpeDeviceConfigContent(ctx context.Context, request GetTunnelCpeDeviceConfigContentRequest) (response GetTunnelCpeDeviceConfigContentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getTunnelCpeDeviceConfigContent, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetTunnelCpeDeviceConfigContentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetTunnelCpeDeviceConfigContentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetTunnelCpeDeviceConfigContentResponse")
+	}
+	return
+}
+
+// getTunnelCpeDeviceConfigContent implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getTunnelCpeDeviceConfigContent(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/ipsecConnections/{ipscId}/tunnels/{tunnelId}/tunnelDeviceConfig/content")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetTunnelCpeDeviceConfigContentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetVcn Gets the specified VCN's information.
 func (client VirtualNetworkClient) GetVcn(ctx context.Context, request GetVcnRequest) (response GetVcnResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -6121,6 +6328,48 @@ func (client VirtualNetworkClient) listAllowedPeerRegionsForRemotePeering(ctx co
 	}
 
 	var response ListAllowedPeerRegionsForRemotePeeringResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListCpeDeviceShapes Lists the customer-premises equipment objects (CPEs)'s hardware information in the specified compartment.
+func (client VirtualNetworkClient) ListCpeDeviceShapes(ctx context.Context, request ListCpeDeviceShapesRequest) (response ListCpeDeviceShapesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listCpeDeviceShapes, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListCpeDeviceShapesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListCpeDeviceShapesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListCpeDeviceShapesResponse")
+	}
+	return
+}
+
+// listCpeDeviceShapes implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listCpeDeviceShapes(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cpeDeviceShapes")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListCpeDeviceShapesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -9158,6 +9407,53 @@ func (client VirtualNetworkClient) updateSubnet(ctx context.Context, request com
 	}
 
 	var response UpdateSubnetResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateTunnelCpeDeviceConfig create or update tunnel's cpe device configuration.
+func (client VirtualNetworkClient) UpdateTunnelCpeDeviceConfig(ctx context.Context, request UpdateTunnelCpeDeviceConfigRequest) (response UpdateTunnelCpeDeviceConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.updateTunnelCpeDeviceConfig, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateTunnelCpeDeviceConfigResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateTunnelCpeDeviceConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateTunnelCpeDeviceConfigResponse")
+	}
+	return
+}
+
+// updateTunnelCpeDeviceConfig implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateTunnelCpeDeviceConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/ipsecConnections/{ipscId}/tunnels/{tunnelId}/tunnelDeviceConfig")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateTunnelCpeDeviceConfigResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

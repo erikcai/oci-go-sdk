@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,38 +12,38 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DataAssetSummary Summary of a Data Asset. A physical store, or stream, of data known to the Catalog and containing one or
-// many Data Entities, possibly in an organized structure of Folders. A Data Asset is often synonymous with
-// a 'System', such as a Database, or may be a file container, or a message stream.
+// DataAssetSummary Summary of a data asset. A physical store, or stream, of data known to the data catalog and containing one or
+// many data entities, possibly in an organized structure of folders. A data asset is often synonymous with
+// a 'System', such as a database, or may be a file container or a message stream.
 type DataAssetSummary struct {
 
-	// Unique Data Asset key which is immutable.
+	// Unique data asset key that is immutable.
 	Key *string `mandatory:"true" json:"key"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the Data Asset.
+	// Detailed description of the data asset.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The Catalog's Oracle ID (OCID).
+	// The data catalog's OCID.
 	CatalogId *string `mandatory:"false" json:"catalogId"`
 
-	// External uri which can be used to reference the object. Format will differ based on the type of object.
+	// External URI that can be used to reference the object. Format will differ based on the type of object.
 	ExternalKey *string `mandatory:"false" json:"externalKey"`
 
-	// URI to the Data Asset instance in the API.
+	// URI to the data asset instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
-	// The date and time the DataAsset was created, in the format defined by RFC3339.
+	// The date and time the data asset was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// The key of the object type. Type keys's can be found via the '/types' endpoint.
 	TypeKey *string `mandatory:"false" json:"typeKey"`
 
-	// State of the Data Asset.
+	// State of the data asset.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 

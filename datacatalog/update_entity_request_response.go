@@ -11,16 +11,16 @@ import (
 // UpdateEntityRequest wrapper for the UpdateEntity operation
 type UpdateEntityRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// Unique entity key.
 	EntityKey *string `mandatory:"true" contributesTo:"path" name:"entityKey"`
 
-	// The information to be updated in the Entity.
+	// The information to be updated in the data entity.
 	UpdateEntityDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -61,7 +61,7 @@ type UpdateEntityResponse struct {
 	// The Entity instance
 	Entity `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

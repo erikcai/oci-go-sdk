@@ -11,13 +11,13 @@ import (
 // GetJobRequest wrapper for the GetJob operation
 type GetJobRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Job key.
+	// Unique job key.
 	JobKey *string `mandatory:"true" contributesTo:"path" name:"jobKey"`
 
-	// Used to control which fields are returned in a Job response.
+	// Specifies the fields to return in a job response.
 	Fields []GetJobFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The client request ID for tracing.
@@ -51,7 +51,7 @@ type GetJobResponse struct {
 	// The Job instance
 	Job `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

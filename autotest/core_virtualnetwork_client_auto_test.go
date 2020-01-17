@@ -3806,6 +3806,94 @@ func TestVirtualNetworkClientGetCpe(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientGetCpeDeviceConfigContent(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetCpeDeviceConfigContent")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCpeDeviceConfigContent is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetCpeDeviceConfigContent", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetCpeDeviceConfigContent")
+	assert.NoError(t, err)
+
+	type GetCpeDeviceConfigContentRequestInfo struct {
+		ContainerId string
+		Request     core.GetCpeDeviceConfigContentRequest
+	}
+
+	var requests []GetCpeDeviceConfigContentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCpeDeviceConfigContent(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientGetCpeDeviceShape(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetCpeDeviceShape")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCpeDeviceShape is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetCpeDeviceShape", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetCpeDeviceShape")
+	assert.NoError(t, err)
+
+	type GetCpeDeviceShapeRequestInfo struct {
+		ContainerId string
+		Request     core.GetCpeDeviceShapeRequest
+	}
+
+	var requests []GetCpeDeviceShapeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCpeDeviceShape(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientGetCreateReverseConnectionNatIp(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -4686,6 +4774,50 @@ func TestVirtualNetworkClientGetInternetGateway(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientGetIpsecCpeDeviceConfigContent(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetIpsecCpeDeviceConfigContent")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetIpsecCpeDeviceConfigContent is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetIpsecCpeDeviceConfigContent", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetIpsecCpeDeviceConfigContent")
+	assert.NoError(t, err)
+
+	type GetIpsecCpeDeviceConfigContentRequestInfo struct {
+		ContainerId string
+		Request     core.GetIpsecCpeDeviceConfigContentRequest
+	}
+
+	var requests []GetIpsecCpeDeviceConfigContentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetIpsecCpeDeviceConfigContent(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetIpv6(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -5522,6 +5654,94 @@ func TestVirtualNetworkClientGetSubnet(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientGetTunnelCpeDeviceConfig(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetTunnelCpeDeviceConfig")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetTunnelCpeDeviceConfig is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetTunnelCpeDeviceConfig", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetTunnelCpeDeviceConfig")
+	assert.NoError(t, err)
+
+	type GetTunnelCpeDeviceConfigRequestInfo struct {
+		ContainerId string
+		Request     core.GetTunnelCpeDeviceConfigRequest
+	}
+
+	var requests []GetTunnelCpeDeviceConfigRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetTunnelCpeDeviceConfig(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientGetTunnelCpeDeviceConfigContent(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetTunnelCpeDeviceConfigContent")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetTunnelCpeDeviceConfigContent is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetTunnelCpeDeviceConfigContent", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetTunnelCpeDeviceConfigContent")
+	assert.NoError(t, err)
+
+	type GetTunnelCpeDeviceConfigContentRequestInfo struct {
+		ContainerId string
+		Request     core.GetTunnelCpeDeviceConfigContentRequest
+	}
+
+	var requests []GetTunnelCpeDeviceConfigContentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetTunnelCpeDeviceConfigContent(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetVcn(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -5692,6 +5912,60 @@ func TestVirtualNetworkClientListAllowedPeerRegionsForRemotePeering(t *testing.T
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ListAllowedPeerRegionsForRemotePeering(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientListCpeDeviceShapes(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListCpeDeviceShapes")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCpeDeviceShapes is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListCpeDeviceShapes", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListCpeDeviceShapes")
+	assert.NoError(t, err)
+
+	type ListCpeDeviceShapesRequestInfo struct {
+		ContainerId string
+		Request     core.ListCpeDeviceShapesRequest
+	}
+
+	var requests []ListCpeDeviceShapesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListCpeDeviceShapesRequest)
+				return c.ListCpeDeviceShapes(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListCpeDeviceShapesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListCpeDeviceShapesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -9107,6 +9381,50 @@ func TestVirtualNetworkClientUpdateSubnet(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateSubnet(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientUpdateTunnelCpeDeviceConfig(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateTunnelCpeDeviceConfig")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateTunnelCpeDeviceConfig is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateTunnelCpeDeviceConfig", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateTunnelCpeDeviceConfig")
+	assert.NoError(t, err)
+
+	type UpdateTunnelCpeDeviceConfigRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateTunnelCpeDeviceConfigRequest
+	}
+
+	var requests []UpdateTunnelCpeDeviceConfigRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateTunnelCpeDeviceConfig(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

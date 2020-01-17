@@ -11,7 +11,7 @@ import (
 // ListTypesRequest wrapper for the ListTypes operation
 type ListTypesRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
 	// Immutable resource name.
@@ -29,13 +29,13 @@ type ListTypesRequest struct {
 	// Indicates whether the type is approved for use as a classifying object.
 	IsApproved *string `mandatory:"false" contributesTo:"query" name:"isApproved"`
 
-	// Data Type as defined in an external system.
+	// Data type as defined in an external system.
 	ExternalTypeName *string `mandatory:"false" contributesTo:"query" name:"externalTypeName"`
 
-	// Indicates the category of this type . For example data assets or connections.
+	// Indicates the category of this type . For example, data assets or connections.
 	TypeCategory *string `mandatory:"false" contributesTo:"query" name:"typeCategory"`
 
-	// Used to control which fields are returned in a Type summary response.
+	// Specifies the fields to return in a type summary response.
 	Fields []ListTypesFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
@@ -85,9 +85,7 @@ type ListTypesResponse struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For list pagination. When this header appears in the response, additional pages
-	// of results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

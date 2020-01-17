@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,17 +12,17 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TermRelationshipSummary Summary of a Term Relationship. Business term relationship between two terms in a business glossary.
+// TermRelationshipSummary Summary of a term relationship. Business term relationship between two terms in a business glossary.
 type TermRelationshipSummary struct {
 
-	// Unique Term Relationship key that is immutable.
+	// Unique term relationship key that is immutable.
 	Key *string `mandatory:"true" json:"key"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.This is the same as relationshipType for termRelationship
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the Term Relationship usually defined at the time of creation.
+	// Detailed description of the term relationship usually defined at the time of creation.
 	Description *string `mandatory:"false" json:"description"`
 
 	// Unique id of the related term.
@@ -34,7 +34,7 @@ type TermRelationshipSummary struct {
 	// Description of the related term.
 	RelatedTermDescription *string `mandatory:"false" json:"relatedTermDescription"`
 
-	// URI to the Term Relationship instance in the API.
+	// URI to the term relationship instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
 	// This relationships parent term key.
@@ -46,11 +46,11 @@ type TermRelationshipSummary struct {
 	// Description of the parent term.
 	ParentTermDescription *string `mandatory:"false" json:"parentTermDescription"`
 
-	// The date and time the Term Relationship was created, in the format defined by RFC3339.
+	// The date and time the term relationship was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// State of the Term Relationship.
+	// State of the term relationship.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 

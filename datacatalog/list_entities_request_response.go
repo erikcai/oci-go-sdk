@@ -11,10 +11,10 @@ import (
 // ListEntitiesRequest wrapper for the ListEntities operation
 type ListEntitiesRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -23,16 +23,16 @@ type ListEntitiesRequest struct {
 	// A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
 	LifecycleState LifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// Time that the Resource was created. An RFC3339 formatted datetime string.
+	// Time that the resource was created. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeCreated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeCreated"`
 
-	// Time that the Resource was updated. An RFC3339 formatted datetime string.
+	// Time that the resource was updated. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeUpdated"`
 
-	// Id (OCID) of the user who created the resource.
+	// OCID of the user who created the resource.
 	CreatedById *string `mandatory:"false" contributesTo:"query" name:"createdById"`
 
-	// Id of the user who updated the resource.
+	// OCID of the user who updated the resource.
 	UpdatedById *string `mandatory:"false" contributesTo:"query" name:"updatedById"`
 
 	// Unique external identifier of this resource in the external source system.
@@ -41,7 +41,7 @@ type ListEntitiesRequest struct {
 	// Last modified timestamp of this object in the external system.
 	TimeExternal *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeExternal"`
 
-	// Time that the resource's status was last updated. An RFC3339 formatted datetime string.
+	// Time that the resource's status was last updated. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeStatusUpdated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeStatusUpdated"`
 
 	// Identifies if the object is a physical object (materialized) or virtual/logical object defined on other objects.
@@ -56,13 +56,13 @@ type ListEntitiesRequest struct {
 	// Full path of the resource for resources that support paths.
 	Path *string `mandatory:"false" contributesTo:"query" name:"path"`
 
-	// Harvest Status of the harvestable resource as updated by the harvest process.
+	// Harvest status of the harvestable resource as updated by the harvest process.
 	HarvestStatus HarvestStatusEnum `mandatory:"false" contributesTo:"query" name:"harvestStatus" omitEmpty:"true"`
 
 	// Key of the last harvest process to update this resource.
 	LastJobKey *string `mandatory:"false" contributesTo:"query" name:"lastJobKey"`
 
-	// Used to control which fields are returned in an Entity summary response.
+	// Specifies the fields to return in an entity summary response.
 	Fields []ListEntitiesFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
@@ -112,9 +112,7 @@ type ListEntitiesResponse struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For list pagination. When this header appears in the response, additional pages
-	// of results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

@@ -11,34 +11,34 @@ import (
 // ListJobLogsRequest wrapper for the ListJobLogs operation
 type ListJobLogsRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Job key.
+	// Unique job key.
 	JobKey *string `mandatory:"true" contributesTo:"path" name:"jobKey"`
 
-	// The key of the Job Execution.
+	// The key of the job execution.
 	JobExecutionKey *string `mandatory:"true" contributesTo:"path" name:"jobExecutionKey"`
 
 	// A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
 	LifecycleState LifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// Severity Level for this Log.
+	// Severity level for this Log.
 	Severity *string `mandatory:"false" contributesTo:"query" name:"severity"`
 
-	// Time that the Resource was created. An RFC3339 formatted datetime string.
+	// Time that the resource was created. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeCreated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeCreated"`
 
-	// Time that the Resource was updated. An RFC3339 formatted datetime string.
+	// Time that the resource was updated. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeUpdated"`
 
-	// Id (OCID) of the user who created the resource.
+	// OCID of the user who created the resource.
 	CreatedById *string `mandatory:"false" contributesTo:"query" name:"createdById"`
 
-	// Id of the user who updated the resource.
+	// OCID of the user who updated the resource.
 	UpdatedById *string `mandatory:"false" contributesTo:"query" name:"updatedById"`
 
-	// Used to control which fields are returned in a Job Log summary response.
+	// Specifies the fields to return in a job log summary response.
 	Fields []ListJobLogsFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
@@ -88,9 +88,7 @@ type ListJobLogsResponse struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For list pagination. When this header appears in the response, additional pages
-	// of results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

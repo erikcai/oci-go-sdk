@@ -22,8 +22,6 @@ type CreateDbHomeWithVmClusterIdDetails struct {
 	// A valid Oracle Database version. To get a list of supported versions, use the ListDbVersions operation.
 	DbVersion *string `mandatory:"true" json:"dbVersion"`
 
-	Database *CreateDatabaseDetails `mandatory:"true" json:"database"`
-
 	// The user-provided name of the Database Home.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
@@ -32,6 +30,8 @@ type CreateDbHomeWithVmClusterIdDetails struct {
 
 	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
 	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
+
+	Database *CreateDatabaseDetails `mandatory:"false" json:"database"`
 }
 
 //GetDisplayName returns DisplayName

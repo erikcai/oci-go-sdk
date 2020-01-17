@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,14 +12,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateTermRelationshipDetails Properties used in Term Relationship update operations.
+// UpdateTermRelationshipDetails Properties used in term relationship update operations.
 type UpdateTermRelationshipDetails struct {
 
-	// The display name of a user-friendly name. Is changeable. The combination of displayName and parentTermKey
-	// must be unique. Avoid entering confidential information.This is the same as relationshipType for termRelationship
+	// A user-friendly display name. Is changeable. The combination of 'displayName' and 'parentTermKey'
+	// must be unique. Avoid entering confidential information. This is the same as 'relationshipType' for 'termRelationship'.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the Term Relationship usually defined at the time of creation.
+	// Detailed description of the term relationship usually defined at the time of creation.
 	Description *string `mandatory:"false" json:"description"`
 }
 

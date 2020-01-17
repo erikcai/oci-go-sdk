@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -58,7 +58,7 @@ func (client *DataCatalogClient) ConfigurationProvider() *common.ConfigurationPr
 	return client.config
 }
 
-// ChangeCatalogCompartment Changes the compartment for the Catalog
+// ChangeCatalogCompartment Moves a resource into a different compartment. When provided, 'If-Match' is checked against 'ETag' values of the resource.
 func (client DataCatalogClient) ChangeCatalogCompartment(ctx context.Context, request ChangeCatalogCompartmentRequest) (response ChangeCatalogCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -100,7 +100,7 @@ func (client DataCatalogClient) changeCatalogCompartment(ctx context.Context, re
 	return response, err
 }
 
-// CreateAttribute Create a new Entity Attribute.
+// CreateAttribute Creates a new entity attribute.
 func (client DataCatalogClient) CreateAttribute(ctx context.Context, request CreateAttributeRequest) (response CreateAttributeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -147,7 +147,7 @@ func (client DataCatalogClient) createAttribute(ctx context.Context, request com
 	return response, err
 }
 
-// CreateAttributeTag Create a new Entity Attribute Tag.
+// CreateAttributeTag Creates a new entity attribute tag.
 func (client DataCatalogClient) CreateAttributeTag(ctx context.Context, request CreateAttributeTagRequest) (response CreateAttributeTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -194,7 +194,7 @@ func (client DataCatalogClient) createAttributeTag(ctx context.Context, request 
 	return response, err
 }
 
-// CreateCatalog Creates a new Data Catalog instance which includes a console and api url for managing metadata operations.
+// CreateCatalog Creates a new data catalog instance that includes a console and an API URL for managing metadata operations.
 // For more information, please see the documentation.
 func (client DataCatalogClient) CreateCatalog(ctx context.Context, request CreateCatalogRequest) (response CreateCatalogResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -242,7 +242,7 @@ func (client DataCatalogClient) createCatalog(ctx context.Context, request commo
 	return response, err
 }
 
-// CreateConnection Create a new Connection.
+// CreateConnection Creates a new connection.
 func (client DataCatalogClient) CreateConnection(ctx context.Context, request CreateConnectionRequest) (response CreateConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -289,7 +289,7 @@ func (client DataCatalogClient) createConnection(ctx context.Context, request co
 	return response, err
 }
 
-// CreateDataAsset Create a new Data Asset.
+// CreateDataAsset Create a new data asset.
 func (client DataCatalogClient) CreateDataAsset(ctx context.Context, request CreateDataAssetRequest) (response CreateDataAssetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -336,7 +336,7 @@ func (client DataCatalogClient) createDataAsset(ctx context.Context, request com
 	return response, err
 }
 
-// CreateDataAssetTag Create a new Data Asset Tag.
+// CreateDataAssetTag Creates a new data asset tag.
 func (client DataCatalogClient) CreateDataAssetTag(ctx context.Context, request CreateDataAssetTagRequest) (response CreateDataAssetTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -383,7 +383,7 @@ func (client DataCatalogClient) createDataAssetTag(ctx context.Context, request 
 	return response, err
 }
 
-// CreateEntity Create a new Entity.
+// CreateEntity Creates a new data entity.
 func (client DataCatalogClient) CreateEntity(ctx context.Context, request CreateEntityRequest) (response CreateEntityResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -430,7 +430,7 @@ func (client DataCatalogClient) createEntity(ctx context.Context, request common
 	return response, err
 }
 
-// CreateEntityTag Create a new Entity Tag.
+// CreateEntityTag Creates a new entity tag.
 func (client DataCatalogClient) CreateEntityTag(ctx context.Context, request CreateEntityTagRequest) (response CreateEntityTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -477,7 +477,7 @@ func (client DataCatalogClient) createEntityTag(ctx context.Context, request com
 	return response, err
 }
 
-// CreateFolder Create a new Folder.
+// CreateFolder Creates a new folder.
 func (client DataCatalogClient) CreateFolder(ctx context.Context, request CreateFolderRequest) (response CreateFolderResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -524,7 +524,7 @@ func (client DataCatalogClient) createFolder(ctx context.Context, request common
 	return response, err
 }
 
-// CreateFolderTag Create a new Folder Tag.
+// CreateFolderTag Creates a new folder tag.
 func (client DataCatalogClient) CreateFolderTag(ctx context.Context, request CreateFolderTagRequest) (response CreateFolderTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -571,7 +571,7 @@ func (client DataCatalogClient) createFolderTag(ctx context.Context, request com
 	return response, err
 }
 
-// CreateGlossary Create a new Glossary.
+// CreateGlossary Creates a new glossary.
 func (client DataCatalogClient) CreateGlossary(ctx context.Context, request CreateGlossaryRequest) (response CreateGlossaryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -618,7 +618,7 @@ func (client DataCatalogClient) createGlossary(ctx context.Context, request comm
 	return response, err
 }
 
-// CreateJob Create a new job.
+// CreateJob Creates a new job.
 func (client DataCatalogClient) CreateJob(ctx context.Context, request CreateJobRequest) (response CreateJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -665,7 +665,7 @@ func (client DataCatalogClient) createJob(ctx context.Context, request common.OC
 	return response, err
 }
 
-// CreateJobDefinition Create a new job definition.
+// CreateJobDefinition Creates a new job definition.
 func (client DataCatalogClient) CreateJobDefinition(ctx context.Context, request CreateJobDefinitionRequest) (response CreateJobDefinitionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -712,7 +712,7 @@ func (client DataCatalogClient) createJobDefinition(ctx context.Context, request
 	return response, err
 }
 
-// CreateJobExecution Create a new Job Execution.
+// CreateJobExecution Creates a new job execution.
 func (client DataCatalogClient) CreateJobExecution(ctx context.Context, request CreateJobExecutionRequest) (response CreateJobExecutionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -759,7 +759,7 @@ func (client DataCatalogClient) createJobExecution(ctx context.Context, request 
 	return response, err
 }
 
-// CreateTerm Create a new Term within a Glossary.
+// CreateTerm Create a new term within a glossary.
 func (client DataCatalogClient) CreateTerm(ctx context.Context, request CreateTermRequest) (response CreateTermResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -806,7 +806,7 @@ func (client DataCatalogClient) createTerm(ctx context.Context, request common.O
 	return response, err
 }
 
-// CreateTermRelationship Create a new Term Relationship for this term within a Glossary.
+// CreateTermRelationship Creates a new term relationship for this term within a glossary.
 func (client DataCatalogClient) CreateTermRelationship(ctx context.Context, request CreateTermRelationshipRequest) (response CreateTermRelationshipResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -853,7 +853,7 @@ func (client DataCatalogClient) createTermRelationship(ctx context.Context, requ
 	return response, err
 }
 
-// DeleteAttribute Delete a specific Entity Attribute.
+// DeleteAttribute Deletes a specific entity attribute.
 func (client DataCatalogClient) DeleteAttribute(ctx context.Context, request DeleteAttributeRequest) (response DeleteAttributeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -895,7 +895,7 @@ func (client DataCatalogClient) deleteAttribute(ctx context.Context, request com
 	return response, err
 }
 
-// DeleteAttributeTag Delete a specific Entity Attribute Tag.
+// DeleteAttributeTag Deletes a specific entity attribute tag.
 func (client DataCatalogClient) DeleteAttributeTag(ctx context.Context, request DeleteAttributeTagRequest) (response DeleteAttributeTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -937,7 +937,7 @@ func (client DataCatalogClient) deleteAttributeTag(ctx context.Context, request 
 	return response, err
 }
 
-// DeleteCatalog Deletes a Catalog resource by identifier
+// DeleteCatalog Deletes a data catalog resource by identifier.
 func (client DataCatalogClient) DeleteCatalog(ctx context.Context, request DeleteCatalogRequest) (response DeleteCatalogResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -979,7 +979,7 @@ func (client DataCatalogClient) deleteCatalog(ctx context.Context, request commo
 	return response, err
 }
 
-// DeleteConnection Delete a specific Connection of a Data Asset.
+// DeleteConnection Deletes a specific connection of a data asset.
 func (client DataCatalogClient) DeleteConnection(ctx context.Context, request DeleteConnectionRequest) (response DeleteConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1021,7 +1021,7 @@ func (client DataCatalogClient) deleteConnection(ctx context.Context, request co
 	return response, err
 }
 
-// DeleteDataAsset Delete a specific Data Asset identified by it's key
+// DeleteDataAsset Deletes a specific data asset identified by it's key.
 func (client DataCatalogClient) DeleteDataAsset(ctx context.Context, request DeleteDataAssetRequest) (response DeleteDataAssetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1063,7 +1063,7 @@ func (client DataCatalogClient) deleteDataAsset(ctx context.Context, request com
 	return response, err
 }
 
-// DeleteDataAssetTag Delete a specific Data Asset Tag.
+// DeleteDataAssetTag Deletes a specific data asset tag.
 func (client DataCatalogClient) DeleteDataAssetTag(ctx context.Context, request DeleteDataAssetTagRequest) (response DeleteDataAssetTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1105,7 +1105,7 @@ func (client DataCatalogClient) deleteDataAssetTag(ctx context.Context, request 
 	return response, err
 }
 
-// DeleteEntity Delete a specific Entity.
+// DeleteEntity Deletes a specific data entity.
 func (client DataCatalogClient) DeleteEntity(ctx context.Context, request DeleteEntityRequest) (response DeleteEntityResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1147,7 +1147,7 @@ func (client DataCatalogClient) deleteEntity(ctx context.Context, request common
 	return response, err
 }
 
-// DeleteEntityTag Delete a specific Entity Tag.
+// DeleteEntityTag Deletes a specific entity tag.
 func (client DataCatalogClient) DeleteEntityTag(ctx context.Context, request DeleteEntityTagRequest) (response DeleteEntityTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1189,7 +1189,7 @@ func (client DataCatalogClient) deleteEntityTag(ctx context.Context, request com
 	return response, err
 }
 
-// DeleteFolder Delete a specific folder of a Data Asset identified by it's key
+// DeleteFolder Deletes a specific folder of a data asset identified by it's key.
 func (client DataCatalogClient) DeleteFolder(ctx context.Context, request DeleteFolderRequest) (response DeleteFolderResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1231,7 +1231,7 @@ func (client DataCatalogClient) deleteFolder(ctx context.Context, request common
 	return response, err
 }
 
-// DeleteFolderTag Delete a specific Folder Tag.
+// DeleteFolderTag Deletes a specific folder tag.
 func (client DataCatalogClient) DeleteFolderTag(ctx context.Context, request DeleteFolderTagRequest) (response DeleteFolderTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1273,7 +1273,7 @@ func (client DataCatalogClient) deleteFolderTag(ctx context.Context, request com
 	return response, err
 }
 
-// DeleteGlossary Delete a specific Glossary identified by it's key
+// DeleteGlossary Deletes a specific glossary identified by it's key.
 func (client DataCatalogClient) DeleteGlossary(ctx context.Context, request DeleteGlossaryRequest) (response DeleteGlossaryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1315,7 +1315,7 @@ func (client DataCatalogClient) deleteGlossary(ctx context.Context, request comm
 	return response, err
 }
 
-// DeleteJob Delete a specific job  identified by it's key
+// DeleteJob Deletes a specific job identified by it's key.
 func (client DataCatalogClient) DeleteJob(ctx context.Context, request DeleteJobRequest) (response DeleteJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1357,7 +1357,7 @@ func (client DataCatalogClient) deleteJob(ctx context.Context, request common.OC
 	return response, err
 }
 
-// DeleteJobDefinition Delete a specific job definition identified by it's key
+// DeleteJobDefinition Deletes a specific job definition identified by it's key.
 func (client DataCatalogClient) DeleteJobDefinition(ctx context.Context, request DeleteJobDefinitionRequest) (response DeleteJobDefinitionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1399,7 +1399,7 @@ func (client DataCatalogClient) deleteJobDefinition(ctx context.Context, request
 	return response, err
 }
 
-// DeleteTerm Delete a specific Glossary Term.
+// DeleteTerm Deletes a specific glossary term.
 func (client DataCatalogClient) DeleteTerm(ctx context.Context, request DeleteTermRequest) (response DeleteTermResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1441,7 +1441,7 @@ func (client DataCatalogClient) deleteTerm(ctx context.Context, request common.O
 	return response, err
 }
 
-// DeleteTermRelationship Delete a specific Glossary Term Relationship.
+// DeleteTermRelationship Deletes a specific glossary term relationship.
 func (client DataCatalogClient) DeleteTermRelationship(ctx context.Context, request DeleteTermRelationshipRequest) (response DeleteTermRelationshipResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1483,7 +1483,7 @@ func (client DataCatalogClient) deleteTermRelationship(ctx context.Context, requ
 	return response, err
 }
 
-// ExpandTreeForGlossary Returns the fully expanded tree hierarchy of parent and child terms in this glossary
+// ExpandTreeForGlossary Returns the fully expanded tree hierarchy of parent and child terms in this glossary.
 func (client DataCatalogClient) ExpandTreeForGlossary(ctx context.Context, request ExpandTreeForGlossaryRequest) (response ExpandTreeForGlossaryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1530,7 +1530,7 @@ func (client DataCatalogClient) expandTreeForGlossary(ctx context.Context, reque
 	return response, err
 }
 
-// ExportGlossary Export the glossary and the terms contained within and return the exported glossary as csv or json
+// ExportGlossary Export the glossary and the terms and return the exported glossary as csv or json.
 func (client DataCatalogClient) ExportGlossary(ctx context.Context, request ExportGlossaryRequest) (response ExportGlossaryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1577,7 +1577,7 @@ func (client DataCatalogClient) exportGlossary(ctx context.Context, request comm
 	return response, err
 }
 
-// GetAttribute Get a specific Entity Attribute by key.
+// GetAttribute Gets a specific entity attribute by key.
 func (client DataCatalogClient) GetAttribute(ctx context.Context, request GetAttributeRequest) (response GetAttributeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1619,7 +1619,7 @@ func (client DataCatalogClient) getAttribute(ctx context.Context, request common
 	return response, err
 }
 
-// GetAttributeTag Get a specific Entity Attribute Tag by key.
+// GetAttributeTag Gets a specific entity attribute tag by key.
 func (client DataCatalogClient) GetAttributeTag(ctx context.Context, request GetAttributeTagRequest) (response GetAttributeTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1661,7 +1661,7 @@ func (client DataCatalogClient) getAttributeTag(ctx context.Context, request com
 	return response, err
 }
 
-// GetCatalog Gets a Catalog by identifier
+// GetCatalog Gets a data catalog by identifier.
 func (client DataCatalogClient) GetCatalog(ctx context.Context, request GetCatalogRequest) (response GetCatalogResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1703,7 +1703,7 @@ func (client DataCatalogClient) getCatalog(ctx context.Context, request common.O
 	return response, err
 }
 
-// GetConnection Get a specific Data Asset Connection by key.
+// GetConnection Gets a specific data asset connection by key.
 func (client DataCatalogClient) GetConnection(ctx context.Context, request GetConnectionRequest) (response GetConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1745,7 +1745,7 @@ func (client DataCatalogClient) getConnection(ctx context.Context, request commo
 	return response, err
 }
 
-// GetDataAsset Get a specific DataAsset for the given key within a data catalog.
+// GetDataAsset Gets a specific data asset for the given key within a data catalog.
 func (client DataCatalogClient) GetDataAsset(ctx context.Context, request GetDataAssetRequest) (response GetDataAssetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1787,7 +1787,7 @@ func (client DataCatalogClient) getDataAsset(ctx context.Context, request common
 	return response, err
 }
 
-// GetDataAssetTag Get a specific Data Asset Tag by key.
+// GetDataAssetTag Gets a specific data asset tag by key.
 func (client DataCatalogClient) GetDataAssetTag(ctx context.Context, request GetDataAssetTagRequest) (response GetDataAssetTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1829,7 +1829,7 @@ func (client DataCatalogClient) getDataAssetTag(ctx context.Context, request com
 	return response, err
 }
 
-// GetEntity Get a specific Entity by key for a Data Asset.
+// GetEntity Gets a specific data entity by key for a data asset.
 func (client DataCatalogClient) GetEntity(ctx context.Context, request GetEntityRequest) (response GetEntityResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1871,7 +1871,7 @@ func (client DataCatalogClient) getEntity(ctx context.Context, request common.OC
 	return response, err
 }
 
-// GetEntityTag Get a specific Entity Tag by key.
+// GetEntityTag Gets a specific entity tag by key.
 func (client DataCatalogClient) GetEntityTag(ctx context.Context, request GetEntityTagRequest) (response GetEntityTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1913,7 +1913,7 @@ func (client DataCatalogClient) getEntityTag(ctx context.Context, request common
 	return response, err
 }
 
-// GetFolder Get a specific Data Asset Folder by key.
+// GetFolder Gets a specific data asset folder by key.
 func (client DataCatalogClient) GetFolder(ctx context.Context, request GetFolderRequest) (response GetFolderResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1955,7 +1955,7 @@ func (client DataCatalogClient) getFolder(ctx context.Context, request common.OC
 	return response, err
 }
 
-// GetFolderTag Get a specific Folder Tag by key.
+// GetFolderTag Gets a specific folder tag by key.
 func (client DataCatalogClient) GetFolderTag(ctx context.Context, request GetFolderTagRequest) (response GetFolderTagResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1997,7 +1997,7 @@ func (client DataCatalogClient) getFolderTag(ctx context.Context, request common
 	return response, err
 }
 
-// GetGlossary Get a specific Glossary by key within a data catalog.
+// GetGlossary Gets a specific glossary by key within a data catalog.
 func (client DataCatalogClient) GetGlossary(ctx context.Context, request GetGlossaryRequest) (response GetGlossaryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2039,7 +2039,7 @@ func (client DataCatalogClient) getGlossary(ctx context.Context, request common.
 	return response, err
 }
 
-// GetJob Get a specific Job by key within a data catalog.
+// GetJob Gets a specific job by key within a data catalog.
 func (client DataCatalogClient) GetJob(ctx context.Context, request GetJobRequest) (response GetJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2081,7 +2081,7 @@ func (client DataCatalogClient) getJob(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// GetJobDefinition Get a specific Job Definition by key within a data catalog.
+// GetJobDefinition Gets a specific job definition by key within a data catalog.
 func (client DataCatalogClient) GetJobDefinition(ctx context.Context, request GetJobDefinitionRequest) (response GetJobDefinitionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2123,7 +2123,7 @@ func (client DataCatalogClient) getJobDefinition(ctx context.Context, request co
 	return response, err
 }
 
-// GetJobExecution Get a specific Job Execution by key.
+// GetJobExecution Gets a specific job execution by key.
 func (client DataCatalogClient) GetJobExecution(ctx context.Context, request GetJobExecutionRequest) (response GetJobExecutionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2165,7 +2165,7 @@ func (client DataCatalogClient) getJobExecution(ctx context.Context, request com
 	return response, err
 }
 
-// GetJobLog Get a specific Job Log by key.
+// GetJobLog Gets a specific job log by key.
 func (client DataCatalogClient) GetJobLog(ctx context.Context, request GetJobLogRequest) (response GetJobLogResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2207,7 +2207,7 @@ func (client DataCatalogClient) getJobLog(ctx context.Context, request common.OC
 	return response, err
 }
 
-// GetJobMetrics Get a specific Job Metric by key.
+// GetJobMetrics Gets a specific job metric by key.
 func (client DataCatalogClient) GetJobMetrics(ctx context.Context, request GetJobMetricsRequest) (response GetJobMetricsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2249,7 +2249,7 @@ func (client DataCatalogClient) getJobMetrics(ctx context.Context, request commo
 	return response, err
 }
 
-// GetTerm Get a specific Glossary Term by key.
+// GetTerm Gets a specific glossary term by key.
 func (client DataCatalogClient) GetTerm(ctx context.Context, request GetTermRequest) (response GetTermResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2291,7 +2291,7 @@ func (client DataCatalogClient) getTerm(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// GetTermRelationship Get a specific Glossary Term Relationship by key.
+// GetTermRelationship Gets a specific glossary term relationship by key.
 func (client DataCatalogClient) GetTermRelationship(ctx context.Context, request GetTermRelationshipRequest) (response GetTermRelationshipResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2333,7 +2333,7 @@ func (client DataCatalogClient) getTermRelationship(ctx context.Context, request
 	return response, err
 }
 
-// GetType Get a specific Type by key within a data catalog.
+// GetType Gets a specific type by key within a data catalog.
 func (client DataCatalogClient) GetType(ctx context.Context, request GetTypeRequest) (response GetTypeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2417,7 +2417,7 @@ func (client DataCatalogClient) getWorkRequest(ctx context.Context, request comm
 	return response, err
 }
 
-// ImportConnection Import new connection for this Data Asset
+// ImportConnection Import new connection for this data asset.
 func (client DataCatalogClient) ImportConnection(ctx context.Context, request ImportConnectionRequest) (response ImportConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2464,7 +2464,7 @@ func (client DataCatalogClient) importConnection(ctx context.Context, request co
 	return response, err
 }
 
-// ImportGlossary Import the glossary and the terms contained within from csv or json files and return the imported glossary resource
+// ImportGlossary Import the glossary and the terms from csv or json files and return the imported glossary resource.
 func (client DataCatalogClient) ImportGlossary(ctx context.Context, request ImportGlossaryRequest) (response ImportGlossaryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2511,7 +2511,7 @@ func (client DataCatalogClient) importGlossary(ctx context.Context, request comm
 	return response, err
 }
 
-// ListAttributeTags Returns a list of all Tags for an Entity Attribute.
+// ListAttributeTags Returns a list of all tags for an entity attribute.
 func (client DataCatalogClient) ListAttributeTags(ctx context.Context, request ListAttributeTagsRequest) (response ListAttributeTagsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2553,7 +2553,7 @@ func (client DataCatalogClient) listAttributeTags(ctx context.Context, request c
 	return response, err
 }
 
-// ListAttributes Returns a list of all Attributes of an Entity.
+// ListAttributes Returns a list of all attributes of an data entity.
 func (client DataCatalogClient) ListAttributes(ctx context.Context, request ListAttributesRequest) (response ListAttributesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2595,7 +2595,7 @@ func (client DataCatalogClient) listAttributes(ctx context.Context, request comm
 	return response, err
 }
 
-// ListCatalogs Returns a list of Catalogs.
+// ListCatalogs Returns a list of all the data catalogs in the specified compartment.
 func (client DataCatalogClient) ListCatalogs(ctx context.Context, request ListCatalogsRequest) (response ListCatalogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2637,7 +2637,7 @@ func (client DataCatalogClient) listCatalogs(ctx context.Context, request common
 	return response, err
 }
 
-// ListConnections Returns a list of all Connections of a Data Asset.
+// ListConnections Returns a list of all Connections for a data asset.
 func (client DataCatalogClient) ListConnections(ctx context.Context, request ListConnectionsRequest) (response ListConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2679,7 +2679,7 @@ func (client DataCatalogClient) listConnections(ctx context.Context, request com
 	return response, err
 }
 
-// ListDataAssetTags Returns a list of all Tags for a Data Asset.
+// ListDataAssetTags Returns a list of all tags for a data asset.
 func (client DataCatalogClient) ListDataAssetTags(ctx context.Context, request ListDataAssetTagsRequest) (response ListDataAssetTagsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2721,7 +2721,7 @@ func (client DataCatalogClient) listDataAssetTags(ctx context.Context, request c
 	return response, err
 }
 
-// ListDataAssets Returns a list of Data Assets within a data catalog.
+// ListDataAssets Returns a list of data assets within a data catalog.
 func (client DataCatalogClient) ListDataAssets(ctx context.Context, request ListDataAssetsRequest) (response ListDataAssetsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2763,7 +2763,7 @@ func (client DataCatalogClient) listDataAssets(ctx context.Context, request comm
 	return response, err
 }
 
-// ListEntities Returns a list of all Entities of a Data Asset.
+// ListEntities Returns a list of all entities of a data asset.
 func (client DataCatalogClient) ListEntities(ctx context.Context, request ListEntitiesRequest) (response ListEntitiesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2805,7 +2805,7 @@ func (client DataCatalogClient) listEntities(ctx context.Context, request common
 	return response, err
 }
 
-// ListEntityTags Returns a list of all Tags for an Entity.
+// ListEntityTags Returns a list of all tags for a data entity.
 func (client DataCatalogClient) ListEntityTags(ctx context.Context, request ListEntityTagsRequest) (response ListEntityTagsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2847,7 +2847,7 @@ func (client DataCatalogClient) listEntityTags(ctx context.Context, request comm
 	return response, err
 }
 
-// ListFolderTags Returns a list of all Tags for a Folder.
+// ListFolderTags Returns a list of all tags for a folder.
 func (client DataCatalogClient) ListFolderTags(ctx context.Context, request ListFolderTagsRequest) (response ListFolderTagsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2931,7 +2931,7 @@ func (client DataCatalogClient) listFolders(ctx context.Context, request common.
 	return response, err
 }
 
-// ListGlossaries Returns a list of all Glossaries within a data catalog.
+// ListGlossaries Returns a list of all glossaries within a data catalog.
 func (client DataCatalogClient) ListGlossaries(ctx context.Context, request ListGlossariesRequest) (response ListGlossariesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2973,7 +2973,7 @@ func (client DataCatalogClient) listGlossaries(ctx context.Context, request comm
 	return response, err
 }
 
-// ListJobDefinitions Returns a list of Job Definitions within a data catalog.
+// ListJobDefinitions Returns a list of job definitions within a data catalog.
 func (client DataCatalogClient) ListJobDefinitions(ctx context.Context, request ListJobDefinitionsRequest) (response ListJobDefinitionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3015,7 +3015,7 @@ func (client DataCatalogClient) listJobDefinitions(ctx context.Context, request 
 	return response, err
 }
 
-// ListJobExecutions Returns a list of Job Executions for a Job.
+// ListJobExecutions Returns a list of job executions for a job.
 func (client DataCatalogClient) ListJobExecutions(ctx context.Context, request ListJobExecutionsRequest) (response ListJobExecutionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3141,7 +3141,7 @@ func (client DataCatalogClient) listJobMetrics(ctx context.Context, request comm
 	return response, err
 }
 
-// ListJobs Returns a list of Jobs within a data catalog.
+// ListJobs Returns a list of jobs within a data catalog.
 func (client DataCatalogClient) ListJobs(ctx context.Context, request ListJobsRequest) (response ListJobsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3309,7 +3309,7 @@ func (client DataCatalogClient) listTerms(ctx context.Context, request common.OC
 	return response, err
 }
 
-// ListTypes Returns a list of all Types within a data catalog.
+// ListTypes Returns a list of all types within a data catalog.
 func (client DataCatalogClient) ListTypes(ctx context.Context, request ListTypesRequest) (response ListTypesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3351,7 +3351,7 @@ func (client DataCatalogClient) listTypes(ctx context.Context, request common.OC
 	return response, err
 }
 
-// ListWorkRequestErrors Return a (paginated) list of errors for a given work request.
+// ListWorkRequestErrors Returns a (paginated) list of errors for a given work request.
 func (client DataCatalogClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3393,7 +3393,7 @@ func (client DataCatalogClient) listWorkRequestErrors(ctx context.Context, reque
 	return response, err
 }
 
-// ListWorkRequestLogs Return a (paginated) list of logs for a given work request.
+// ListWorkRequestLogs Returns a (paginated) list of logs for a given work request.
 func (client DataCatalogClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3519,7 +3519,7 @@ func (client DataCatalogClient) objectStats(ctx context.Context, request common.
 	return response, err
 }
 
-// ParseConnection Parse data asset references through connections from this Data Asset
+// ParseConnection Parse data asset references through connections from this data asset.
 func (client DataCatalogClient) ParseConnection(ctx context.Context, request ParseConnectionRequest) (response ParseConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3608,7 +3608,7 @@ func (client DataCatalogClient) searchCriteria(ctx context.Context, request comm
 	return response, err
 }
 
-// TestConnection test the connection by connecting to the data asset using credentials in the metadata
+// TestConnection Test the connection by connecting to the data asset using credentials in the metadata.
 func (client DataCatalogClient) TestConnection(ctx context.Context, request TestConnectionRequest) (response TestConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3655,7 +3655,7 @@ func (client DataCatalogClient) testConnection(ctx context.Context, request comm
 	return response, err
 }
 
-// UpdateAttribute Update a specific Data Asset Attribute.
+// UpdateAttribute Updates a specific data asset attribute.
 func (client DataCatalogClient) UpdateAttribute(ctx context.Context, request UpdateAttributeRequest) (response UpdateAttributeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3697,7 +3697,7 @@ func (client DataCatalogClient) updateAttribute(ctx context.Context, request com
 	return response, err
 }
 
-// UpdateCatalog Updates the Catalog
+// UpdateCatalog Updates the data catalog.
 func (client DataCatalogClient) UpdateCatalog(ctx context.Context, request UpdateCatalogRequest) (response UpdateCatalogResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3739,7 +3739,7 @@ func (client DataCatalogClient) updateCatalog(ctx context.Context, request commo
 	return response, err
 }
 
-// UpdateConnection Update a specific Connection of a Data Asset.
+// UpdateConnection Updates a specific connection of a data asset.
 func (client DataCatalogClient) UpdateConnection(ctx context.Context, request UpdateConnectionRequest) (response UpdateConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3781,7 +3781,7 @@ func (client DataCatalogClient) updateConnection(ctx context.Context, request co
 	return response, err
 }
 
-// UpdateDataAsset Update a specific Data Asset identified by the given key
+// UpdateDataAsset Updates a specific data asset identified by the given key.
 func (client DataCatalogClient) UpdateDataAsset(ctx context.Context, request UpdateDataAssetRequest) (response UpdateDataAssetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3823,7 +3823,7 @@ func (client DataCatalogClient) updateDataAsset(ctx context.Context, request com
 	return response, err
 }
 
-// UpdateEntity Update a specific entity.
+// UpdateEntity Updates a specific data entity.
 func (client DataCatalogClient) UpdateEntity(ctx context.Context, request UpdateEntityRequest) (response UpdateEntityResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3865,7 +3865,7 @@ func (client DataCatalogClient) updateEntity(ctx context.Context, request common
 	return response, err
 }
 
-// UpdateFolder Update a specific folder of a Data Asset.
+// UpdateFolder Updates a specific folder of a data asset.
 func (client DataCatalogClient) UpdateFolder(ctx context.Context, request UpdateFolderRequest) (response UpdateFolderResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3907,7 +3907,7 @@ func (client DataCatalogClient) updateFolder(ctx context.Context, request common
 	return response, err
 }
 
-// UpdateGlossary Update a specific glossary identified by the given key
+// UpdateGlossary Updates a specific glossary identified by the given key.
 func (client DataCatalogClient) UpdateGlossary(ctx context.Context, request UpdateGlossaryRequest) (response UpdateGlossaryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3949,7 +3949,7 @@ func (client DataCatalogClient) updateGlossary(ctx context.Context, request comm
 	return response, err
 }
 
-// UpdateJob Update a specific job identified by the given key
+// UpdateJob Updates a specific job identified by the given key.
 func (client DataCatalogClient) UpdateJob(ctx context.Context, request UpdateJobRequest) (response UpdateJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3991,7 +3991,7 @@ func (client DataCatalogClient) updateJob(ctx context.Context, request common.OC
 	return response, err
 }
 
-// UpdateJobDefinition Update a specific job definition identified by the given key
+// UpdateJobDefinition Update a specific job definition identified by the given key.
 func (client DataCatalogClient) UpdateJobDefinition(ctx context.Context, request UpdateJobDefinitionRequest) (response UpdateJobDefinitionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4033,7 +4033,7 @@ func (client DataCatalogClient) updateJobDefinition(ctx context.Context, request
 	return response, err
 }
 
-// UpdateTerm Update a specific Glossary Term.
+// UpdateTerm Updates a specific glossary term.
 func (client DataCatalogClient) UpdateTerm(ctx context.Context, request UpdateTermRequest) (response UpdateTermResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4075,7 +4075,7 @@ func (client DataCatalogClient) updateTerm(ctx context.Context, request common.O
 	return response, err
 }
 
-// UpdateTermRelationship Update a specific Glossary Term Relationship.
+// UpdateTermRelationship Updates a specific glossary term relationship.
 func (client DataCatalogClient) UpdateTermRelationship(ctx context.Context, request UpdateTermRelationshipRequest) (response UpdateTermRelationshipResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4117,7 +4117,7 @@ func (client DataCatalogClient) updateTermRelationship(ctx context.Context, requ
 	return response, err
 }
 
-// UploadCredentials Upload connection credentails and metadata for this Connection
+// UploadCredentials Upload connection credentails and metadata for this connection.
 func (client DataCatalogClient) UploadCredentials(ctx context.Context, request UploadCredentialsRequest) (response UploadCredentialsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4206,7 +4206,7 @@ func (client DataCatalogClient) users(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
-// ValidateConnection validate connection by connecting to the data asset using credentials in metadata
+// ValidateConnection Validate connection by connecting to the data asset using credentials in metadata.
 func (client DataCatalogClient) ValidateConnection(ctx context.Context, request ValidateConnectionRequest) (response ValidateConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

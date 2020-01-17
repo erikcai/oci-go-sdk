@@ -14,7 +14,7 @@ type ChangeCatalogCompartmentRequest struct {
 	// Details for the target compartment.
 	ChangeCatalogCompartmentDetails `contributesTo:"body"`
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

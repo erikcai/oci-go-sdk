@@ -11,10 +11,10 @@ import (
 // CreateAttributeTagRequest wrapper for the CreateAttributeTag operation
 type CreateAttributeTagRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// Unique entity key.
@@ -23,7 +23,7 @@ type CreateAttributeTagRequest struct {
 	// Unique attribute key.
 	AttributeKey *string `mandatory:"true" contributesTo:"path" name:"attributeKey"`
 
-	// The information used to create an Entity Attribute Tag.
+	// The information used to create an entity attribute tag.
 	CreateAttributeTagDetails CreateTagDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
@@ -64,7 +64,7 @@ type CreateAttributeTagResponse struct {
 	// The AttributeTag instance
 	AttributeTag `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -15,22 +15,22 @@ import (
 // JobDefinitionScope Defines the rules or criteria based on which the scope for job definition is circumscribed.
 type JobDefinitionScope struct {
 
-	// Name of the folder or schema for this metadata harvest
+	// Name of the folder or schema for this metadata harvest.
 	FolderName *string `mandatory:"false" json:"folderName"`
 
-	// Name of the entity for this metadata harvest
+	// Name of the entity for this metadata harvest.
 	EntityName *string `mandatory:"false" json:"entityName"`
 
-	// Filter rules with regular expression to specify folder names for this metadata harvest
+	// Filter rules with regular expression to specify folder names for this metadata harvest.
 	FolderNameFilter *string `mandatory:"false" json:"folderNameFilter"`
 
-	// Filter rules with regular expression to specify entity names for this metadata harvest
+	// Filter rules with regular expression to specify entity names for this metadata harvest.
 	EntityNameFilter *string `mandatory:"false" json:"entityNameFilter"`
 
-	// Specify if sample data to be extracted as part of this harvest
+	// Specify if sample data to be extracted as part of this harvest.
 	IsSampleDataExtracted *bool `mandatory:"false" json:"isSampleDataExtracted"`
 
-	// Specify the sample data size in MB, specified as number of rows, for this metadata harvest
+	// Specify the sample data size in MB, specified as number of rows, for this metadata harvest.
 	SampleDataSizeInMBs *int `mandatory:"false" json:"sampleDataSizeInMBs"`
 }
 

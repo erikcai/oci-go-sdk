@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// FolderCollection Results of a Folders Listing. Folders are external organization concept that groups entities.
+// FolderCollection Results of a folders listing. Folders are external organization concept that groups data entities.
 type FolderCollection struct {
 
-	// Collection of Folders
+	// Collection of folders.
 	Items []FolderSummary `mandatory:"true" json:"items"`
 }
 

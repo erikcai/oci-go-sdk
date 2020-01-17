@@ -11,7 +11,7 @@ import (
 // DeleteCatalogRequest wrapper for the DeleteCatalog operation
 type DeleteCatalogRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -49,8 +49,7 @@ type DeleteCatalogResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique Oracle-assigned identifier for the asynchronous request.
-	// You can use this to query status of the asynchronous operation.
+	// The OCID of the asynchronous request. Use GetWorkRequest (https://docs.cloud.oracle.com/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest) with this OCID to track the status of the asynchronous request.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

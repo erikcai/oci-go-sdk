@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,42 +12,42 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AttributeSummary Summary of an Entity Attribute.
+// AttributeSummary Summary of an entity attribute.
 type AttributeSummary struct {
 
-	// Unique Attribute key that is immutable.
+	// Unique attribute key that is immutable.
 	Key *string `mandatory:"true" json:"key"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the Attribute.
+	// Detailed description of the attribute.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The unique key of the parent Entity.
+	// The unique key of the parent entity.
 	EntityKey *string `mandatory:"false" json:"entityKey"`
 
-	// Unique external key of this attribute in the external source system
+	// Unique external key of this attribute in the external source system.
 	ExternalKey *string `mandatory:"false" json:"externalKey"`
 
-	// Max allowed length of the attribute value
+	// Max allowed length of the attribute value.
 	Length *int64 `mandatory:"false" json:"length"`
 
-	// Property that identifies if this attribute can be assigned null values
+	// Property that identifies if this attribute can be assigned null values.
 	IsNullable *bool `mandatory:"false" json:"isNullable"`
 
-	// URI to the Attribute instance in the API.
+	// URI to the attribute instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
-	// State of the Attribute.
+	// State of the attribute.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The date and time the Attribute was created, in the format defined by RFC3339.
+	// The date and time the attribute was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// Data type of the attribute as defined in the external source system
+	// Data type of the attribute as defined in the external source system.
 	ExternalDataType *string `mandatory:"false" json:"externalDataType"`
 }
 

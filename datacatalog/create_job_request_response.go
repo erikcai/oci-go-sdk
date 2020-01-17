@@ -11,10 +11,10 @@ import (
 // CreateJobRequest wrapper for the CreateJob operation
 type CreateJobRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// The information used to create the Job.
+	// The information used to create the job.
 	CreateJobDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
@@ -55,7 +55,7 @@ type CreateJobResponse struct {
 	// The Job instance
 	Job `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

@@ -40,6 +40,30 @@ type CopyPartRequest struct {
 	// part, this is the entity tag of the target part.
 	IfNoneMatch *string `mandatory:"false" contributesTo:"header" name:"if-none-match"`
 
+	// Specifies the encryption algorithm. The header value must be "AES256".
+	OpcSseCustomerAlgorithm *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-algorithm"`
+
+	// Specifies the base64-encoded 256-bit encryption key to use to encrypt or
+	// decrypt the data.
+	OpcSseCustomerKey *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-key"`
+
+	// Specifies the base64-encoded SHA256 hash of the encryption key. This
+	// value is used to check the integrity of the encryption key.
+	OpcSseCustomerKeySha256 *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-key-sha256"`
+
+	// Specifies the encryption algorithm to use to decrypt the source object.
+	// The header value must be "AES256".
+	OpcSourceSseCustomerAlgorithm *string `mandatory:"false" contributesTo:"header" name:"opc-source-sse-customer-algorithm"`
+
+	// Specifies the base64-encoded 256-bit encryption key to use to decrypt
+	// the source object.
+	OpcSourceSseCustomerKey *string `mandatory:"false" contributesTo:"header" name:"opc-source-sse-customer-key"`
+
+	// Specifies the base64-encoded SHA256 hash of the encryption key used to
+	// decrypt the source object. This value is used to check the integrity of
+	// the encryption key.
+	OpcSourceSseCustomerKeySha256 *string `mandatory:"false" contributesTo:"header" name:"opc-source-sse-customer-key-sha256"`
+
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

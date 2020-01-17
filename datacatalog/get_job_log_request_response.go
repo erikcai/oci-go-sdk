@@ -11,19 +11,19 @@ import (
 // GetJobLogRequest wrapper for the GetJobLog operation
 type GetJobLogRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Job key.
+	// Unique job key.
 	JobKey *string `mandatory:"true" contributesTo:"path" name:"jobKey"`
 
-	// The key of the Job Execution.
+	// The key of the job execution.
 	JobExecutionKey *string `mandatory:"true" contributesTo:"path" name:"jobExecutionKey"`
 
-	// Unique Job Log key.
+	// Unique job log key.
 	JobLogKey *string `mandatory:"true" contributesTo:"path" name:"jobLogKey"`
 
-	// Used to control which fields are returned in a Job Log response.
+	// Specifies the fields to return in a job log response.
 	Fields []GetJobLogFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The client request ID for tracing.
@@ -57,7 +57,7 @@ type GetJobLogResponse struct {
 	// The JobLog instance
 	JobLog `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

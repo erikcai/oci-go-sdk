@@ -3754,7 +3754,7 @@
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.295</version>
+        <version>1.1.296</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -3764,7 +3764,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.340</version>
+        <version>0.1.344</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -3914,7 +3914,7 @@
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.0.0-2001092208</version>
+        <version>1.0.0-2001160234</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -3969,7 +3969,7 @@
       <dependency>
         <groupId>oracle.dfcs.server</groupId>
         <artifactId>service_api_spec</artifactId>
-        <version>1.0.113</version>
+        <version>1.0.118</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.mysql</groupId>

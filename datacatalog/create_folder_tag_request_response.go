@@ -11,16 +11,16 @@ import (
 // CreateFolderTagRequest wrapper for the CreateFolderTag operation
 type CreateFolderTagRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// Unique folder key.
 	FolderKey *string `mandatory:"true" contributesTo:"path" name:"folderKey"`
 
-	// The information used to create the Folder Tag.
+	// The information used to create the folder tag.
 	CreateFolderTagDetails CreateTagDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
@@ -61,7 +61,7 @@ type CreateFolderTagResponse struct {
 	// The FolderTag instance
 	FolderTag `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

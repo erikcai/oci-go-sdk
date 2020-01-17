@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,13 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequest A description of workrequest status
+// WorkRequest A description of workrequest status.
 type WorkRequest struct {
 
-	// type of the work request
+	// Type of the work request.
 	OperationType WorkRequestOperationTypeEnum `mandatory:"true" json:"operationType"`
 
-	// status of current work request.
+	// Status of current work request.
 	Status WorkRequestStatusEnum `mandatory:"true" json:"status"`
 
 	// The id of the work request.
@@ -27,7 +27,7 @@ type WorkRequest struct {
 	// The ocid of the compartment that contains the work request. Work requests should be scoped to
 	// the same compartment as the resource the work request affects. If the work request affects multiple resources,
 	// and those resources are not in the same compartment, it is up to the service team to pick the primary
-	// resource whose compartment should be used
+	// resource whose compartment should be used.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The resources affected by this work request.

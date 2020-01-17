@@ -11,13 +11,13 @@ import (
 // GetJobDefinitionRequest wrapper for the GetJobDefinition operation
 type GetJobDefinitionRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Job Definition key.
+	// Unique job definition key.
 	JobDefinitionKey *string `mandatory:"true" contributesTo:"path" name:"jobDefinitionKey"`
 
-	// Used to control which fields are returned in a Job Definition response.
+	// Specifies the fields to return in a job definition response.
 	Fields []GetJobDefinitionFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The client request ID for tracing.
@@ -51,7 +51,7 @@ type GetJobDefinitionResponse struct {
 	// The JobDefinition instance
 	JobDefinition `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
@@ -94,21 +94,21 @@ const (
 )
 
 var mappingGetJobDefinitionFields = map[string]GetJobDefinitionFieldsEnum{
-	"key":                   GetJobDefinitionFieldsKey,
-	"displayName":           GetJobDefinitionFieldsDisplayname,
-	"description":           GetJobDefinitionFieldsDescription,
-	"catalogId":             GetJobDefinitionFieldsCatalogid,
-	"jobType":               GetJobDefinitionFieldsJobtype,
-	"isIncremental":         GetJobDefinitionFieldsIsincremental,
-	"dataAssetKey":          GetJobDefinitionFieldsDataassetkey,
-	"connectionKey":         GetJobDefinitionFieldsConnectionkey,
-	"internalVersion":       GetJobDefinitionFieldsInternalversion,
-	"lifecycleState":        GetJobDefinitionFieldsLifecyclestate,
-	"timeCreated":           GetJobDefinitionFieldsTimecreated,
-	"timeUpdated":           GetJobDefinitionFieldsTimeupdated,
-	"createdById":           GetJobDefinitionFieldsCreatedbyid,
-	"updatedById":           GetJobDefinitionFieldsUpdatedbyid,
-	"uri":                   GetJobDefinitionFieldsUri,
+	"key":             GetJobDefinitionFieldsKey,
+	"displayName":     GetJobDefinitionFieldsDisplayname,
+	"description":     GetJobDefinitionFieldsDescription,
+	"catalogId":       GetJobDefinitionFieldsCatalogid,
+	"jobType":         GetJobDefinitionFieldsJobtype,
+	"isIncremental":   GetJobDefinitionFieldsIsincremental,
+	"dataAssetKey":    GetJobDefinitionFieldsDataassetkey,
+	"connectionKey":   GetJobDefinitionFieldsConnectionkey,
+	"internalVersion": GetJobDefinitionFieldsInternalversion,
+	"lifecycleState":  GetJobDefinitionFieldsLifecyclestate,
+	"timeCreated":     GetJobDefinitionFieldsTimecreated,
+	"timeUpdated":     GetJobDefinitionFieldsTimeupdated,
+	"createdById":     GetJobDefinitionFieldsCreatedbyid,
+	"updatedById":     GetJobDefinitionFieldsUpdatedbyid,
+	"uri":             GetJobDefinitionFieldsUri,
 	"isSampleDataExtracted": GetJobDefinitionFieldsIssampledataextracted,
 	"sampleDataSizeInMBs":   GetJobDefinitionFieldsSampledatasizeinmbs,
 	"properties":            GetJobDefinitionFieldsProperties,

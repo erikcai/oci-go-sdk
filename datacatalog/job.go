@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,73 +12,73 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Job Details of a Job. Jobs are scheduled instances of a JobDefinition.
+// Job Details of a job. Jobs are scheduled instances of a job definition.
 type Job struct {
 
-	// Unique key of the Job resource
+	// Unique key of the job resource.
 	Key *string `mandatory:"true" json:"key"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the Job.
+	// Detailed description of the job.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The Catalog's Oracle ID (OCID).
+	// The data catalog's OCID.
 	CatalogId *string `mandatory:"false" json:"catalogId"`
 
-	// Lifecycle State for Job.
+	// Lifecycle state for job.
 	LifecycleState JobLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The date and time the Job was created, in the format defined by RFC3339.
+	// The date and time the job was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// Time that this Job was last updated. An RFC3339 formatted datetime string.
+	// Time that this job was last updated. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
-	// Type of the Job.
+	// Type of the job.
 	JobType JobTypeEnum `mandatory:"false" json:"jobType,omitempty"`
 
-	// Schedule specified in the cron expression format that has seven fields for second , minute , hour , day-of-month , month , day-of-week , year .
-	// It can also include special characters like * for all and ? for any . There are also pre-defined schedules that can be specified using
+	// Schedule specified in the cron expression format that has seven fields for second, minute, hour, day-of-month, month, day-of-week, year.
+	// It can also include special characters like * for all and ? for any. There are also pre-defined schedules that can be specified using
 	// special strings. For example, @hourly will run the job every hour.
 	ScheduleCronExpression *string `mandatory:"false" json:"scheduleCronExpression"`
 
-	// Date that the schedule should be operational. An RFC3339 formatted datetime string.
+	// Date that the schedule should be operational. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeScheduleBegin *common.SDKTime `mandatory:"false" json:"timeScheduleBegin"`
 
-	// Date that the schedule should end from being operational. An RFC3339 formatted datetime string.
+	// Date that the schedule should end from being operational. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeScheduleEnd *common.SDKTime `mandatory:"false" json:"timeScheduleEnd"`
 
-	// Type of Job Schedule which is inferred from the scheduling properties.
+	// Type of job schedule that is inferred from the scheduling properties.
 	ScheduleType JobScheduleTypeEnum `mandatory:"false" json:"scheduleType,omitempty"`
 
-	// The key of the connection used by the Job. This connection will override the default connection specified in
-	// the associated Job Definition. All executions will use this connection.
+	// The key of the connection used by the job. This connection will override the default connection specified in
+	// the associated job definition. All executions will use this connection.
 	ConnectionKey *string `mandatory:"false" json:"connectionKey"`
 
-	// The unique key of the job definition resource which defined the scope of this job.
+	// The unique key of the job definition resource that defined the scope of this job.
 	JobDefinitionKey *string `mandatory:"false" json:"jobDefinitionKey"`
 
-	// Internal Version of the Job resource
+	// Internal version of the job resource.
 	InternalVersion *string `mandatory:"false" json:"internalVersion"`
 
 	// The total number of executions for this job schedule.
 	ExecutionCount *int `mandatory:"false" json:"executionCount"`
 
-	// The date and time of the most recent execution for this Job, in the format defined by RFC3339.
+	// The date and time of the most recent execution for this Job, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeOfLatestExecution *common.SDKTime `mandatory:"false" json:"timeOfLatestExecution"`
 
-	// Id (OCID) of the user who created this job.
+	// OCID of the user who created this job.
 	CreatedById *string `mandatory:"false" json:"createdById"`
 
-	// Id (OCID) of the user who updated this job.
+	// OCID of the user who updated this job.
 	UpdatedById *string `mandatory:"false" json:"updatedById"`
 
-	// URI to the Job instance in the API.
+	// URI to the job instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 }
 

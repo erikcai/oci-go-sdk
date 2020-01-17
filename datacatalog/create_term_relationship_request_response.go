@@ -11,16 +11,16 @@ import (
 // CreateTermRelationshipRequest wrapper for the CreateTermRelationship operation
 type CreateTermRelationshipRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// Unique Glossary Term key.
+	// Unique glossary term key.
 	TermKey *string `mandatory:"true" contributesTo:"path" name:"termKey"`
 
-	// The information used to create the Term Relationship.
+	// The information used to create the term relationship.
 	CreateTermRelationshipDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
@@ -61,7 +61,7 @@ type CreateTermRelationshipResponse struct {
 	// The TermRelationship instance
 	TermRelationship `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

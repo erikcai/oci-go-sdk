@@ -11,19 +11,19 @@ import (
 // GetTermRelationshipRequest wrapper for the GetTermRelationship operation
 type GetTermRelationshipRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// Unique Glossary Term key.
+	// Unique glossary term key.
 	TermKey *string `mandatory:"true" contributesTo:"path" name:"termKey"`
 
-	// Unique Glossary Term Relationship key.
+	// Unique glossary term relationship key.
 	TermRelationshipKey *string `mandatory:"true" contributesTo:"path" name:"termRelationshipKey"`
 
-	// Used to control which fields are returned in a Term Relationship response.
+	// Specifies the fields to return in a term relationship response.
 	Fields []GetTermRelationshipFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The client request ID for tracing.
@@ -57,7 +57,7 @@ type GetTermRelationshipResponse struct {
 	// The TermRelationship instance
 	TermRelationship `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

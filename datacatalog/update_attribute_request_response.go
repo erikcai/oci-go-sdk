@@ -11,10 +11,10 @@ import (
 // UpdateAttributeRequest wrapper for the UpdateAttribute operation
 type UpdateAttributeRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// Unique entity key.
@@ -23,7 +23,7 @@ type UpdateAttributeRequest struct {
 	// Unique attribute key.
 	AttributeKey *string `mandatory:"true" contributesTo:"path" name:"attributeKey"`
 
-	// The information to be updated in the Attribute.
+	// The information to be updated in the attribute.
 	UpdateAttributeDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -64,7 +64,7 @@ type UpdateAttributeResponse struct {
 	// The Attribute instance
 	Attribute `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

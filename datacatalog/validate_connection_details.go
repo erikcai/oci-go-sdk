@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,11 +12,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ValidateConnectionDetails Validate Connection from the connection metadata or oracle wallet file
+// ValidateConnectionDetails Validate connection from the connection metadata or oracle wallet file.
 type ValidateConnectionDetails struct {
 	ConnectionDetail *CreateConnectionDetails `mandatory:"false" json:"connectionDetail"`
 
-	// The information used to validate the connection
+	// The information used to validate the connection.
 	ConnectionPayload []byte `mandatory:"false" json:"connectionPayload"`
 }
 

@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,20 +12,20 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateEntityDetails Properties used in Entity Update operations.
+// UpdateEntityDetails Properties used in entity update operations.
 type UpdateEntityDetails struct {
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of an Entity.
+	// Detailed description of a data entity.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Last modified timestamp of the object in the external system
+	// Last modified timestamp of the object in the external system.
 	TimeExternal *common.SDKTime `mandatory:"false" json:"timeExternal"`
 
-	// Property to indicate if the object is a physical materialized object or virtual . For example: view
+	// Property to indicate if the object is a physical materialized object or virtual. For example, View.
 	IsLogical *bool `mandatory:"false" json:"isLogical"`
 
 	// Property to indicate if the object is a sub object of a parent physical object.
@@ -40,14 +40,14 @@ type UpdateEntityDetails struct {
 	// This requires a harvest status indicator for catalog objects.
 	HarvestStatus HarvestStatusEnum `mandatory:"false" json:"harvestStatus,omitempty"`
 
-	// Key of the last harvest process to update this object
+	// Key of the last harvest process to update this object.
 	LastJobKey *string `mandatory:"false" json:"lastJobKey"`
 
-	// A map of maps which contains the properties which are specific to the entity type. Each entity type
+	// A map of maps that contains the properties which are specific to the entity type. Each entity type
 	// definition defines it's set of required and optional properties. The map keys are category names and the
 	// values are maps of property name to property value. Every property is contained inside of a category. Most
 	// entities have required properties within the "default" category. To determine the set of required and
-	// optional properties for an entity type, a query can be done on '/types?type=dataEntity' which returns a
+	// optional properties for an entity type, a query can be done on '/types?type=dataEntity' that returns a
 	// collection of all entity types. The appropriate entity type, which includes definitions of all of
 	// it's properties, can be identified from this collection.
 	// Example: `{"properties": { "default": { "key1": "value1"}}}`

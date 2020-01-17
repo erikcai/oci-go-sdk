@@ -11,13 +11,13 @@ import (
 // CreateTermRequest wrapper for the CreateTerm operation
 type CreateTermRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
-	// The information used to create the Term.
+	// The information used to create the term.
 	CreateTermDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
@@ -58,7 +58,7 @@ type CreateTermResponse struct {
 	// The Term instance
 	Term `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

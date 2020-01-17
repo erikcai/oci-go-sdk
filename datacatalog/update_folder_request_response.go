@@ -11,16 +11,16 @@ import (
 // UpdateFolderRequest wrapper for the UpdateFolder operation
 type UpdateFolderRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// Unique folder key.
 	FolderKey *string `mandatory:"true" contributesTo:"path" name:"folderKey"`
 
-	// The information to be updated in the Folder.
+	// The information to be updated in the folder.
 	UpdateFolderDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -61,7 +61,7 @@ type UpdateFolderResponse struct {
 	// The Folder instance
 	Folder `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

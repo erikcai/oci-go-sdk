@@ -11,7 +11,7 @@ import (
 // ListCatalogsRequest wrapper for the ListCatalogs operation
 type ListCatalogsRequest struct {
 
-	// The OCID of the compartment in which to list resources.
+	// The OCID of the compartment where you want to list resources.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -67,9 +67,7 @@ type ListCatalogsResponse struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For list pagination. When this header appears in the response, additional pages
-	// of results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

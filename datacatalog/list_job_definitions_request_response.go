@@ -11,7 +11,7 @@ import (
 // ListJobDefinitionsRequest wrapper for the ListJobDefinitions operation
 type ListJobDefinitionsRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -23,31 +23,31 @@ type ListJobDefinitionsRequest struct {
 	// Job type.
 	JobType JobTypeEnum `mandatory:"false" contributesTo:"query" name:"jobType" omitEmpty:"true"`
 
-	// Whether Job Definition is an incremental harvest (true) or a full harvest (false).
+	// Whether job definition is an incremental harvest (true) or a full harvest (false).
 	IsIncremental *bool `mandatory:"false" contributesTo:"query" name:"isIncremental"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"false" contributesTo:"query" name:"dataAssetKey"`
 
 	// Unique connection key.
 	ConnectionKey *string `mandatory:"false" contributesTo:"query" name:"connectionKey"`
 
-	// Time that the Resource was created. An RFC3339 formatted datetime string.
+	// Time that the resource was created. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeCreated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeCreated"`
 
-	// Time that the Resource was updated. An RFC3339 formatted datetime string.
+	// Time that the resource was updated. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeUpdated"`
 
-	// Id (OCID) of the user who created the resource.
+	// OCID of the user who created the resource.
 	CreatedById *string `mandatory:"false" contributesTo:"query" name:"createdById"`
 
-	// Id of the user who updated the resource.
+	// OCID of the user who updated the resource.
 	UpdatedById *string `mandatory:"false" contributesTo:"query" name:"updatedById"`
 
 	// The sample data size in MB, specified as number of rows, for a metadata harvest.
 	SampleDataSizeInMBs *string `mandatory:"false" contributesTo:"query" name:"sampleDataSizeInMBs"`
 
-	// Used to control which fields are returned in a Job Definition summary response.
+	// Specifies the fields to return in a job definition summary response.
 	Fields []ListJobDefinitionsFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
@@ -97,9 +97,7 @@ type ListJobDefinitionsResponse struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For list pagination. When this header appears in the response, additional pages
-	// of results remain. For important details about how pagination works, see
-	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 
@@ -137,7 +135,7 @@ var mappingListJobDefinitionsFields = map[string]ListJobDefinitionsFieldsEnum{
 	"lifecycleState":        ListJobDefinitionsFieldsLifecyclestate,
 	"timeCreated":           ListJobDefinitionsFieldsTimecreated,
 	"isSampleDataExtracted": ListJobDefinitionsFieldsIssampledataextracted,
-	"uri":                   ListJobDefinitionsFieldsUri,
+	"uri": ListJobDefinitionsFieldsUri,
 }
 
 // GetListJobDefinitionsFieldsEnumValues Enumerates the set of values for ListJobDefinitionsFieldsEnum

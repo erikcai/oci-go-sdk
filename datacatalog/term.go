@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,22 +12,22 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Term Full Term definition. A defined business term in a business glossary. As well as a term definition, simple format
+// Term Full term definition. A defined business term in a business glossary. As well as a term definition, simple format
 // rules for attributes mapping to the term (for example, the expected data type and length restrictions) may be
 // stated at the term level. Nesting of terms to support a hierarchy is supported by default.
 type Term struct {
 
-	// Unique Term key that is immutable.
+	// Unique term key that is immutable.
 	Key *string `mandatory:"true" json:"key"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the Term.
+	// Detailed description of the term.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Unique id of the parent Glossary.
+	// Unique id of the parent glossary.
 	GlossaryKey *string `mandatory:"false" json:"glossaryKey"`
 
 	// This terms parent term key. Will be null if the term has no parent term.
@@ -39,29 +39,29 @@ type Term struct {
 	// Absolute path of the term.
 	Path *string `mandatory:"false" json:"path"`
 
-	// The current state of the Term.
+	// The current state of the term.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The date and time the Term was created, in the format defined by RFC3339.
+	// The date and time the term was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The last time that any change was made to the Term. An RFC3339 formatted datetime string.
+	// The last time that any change was made to the term. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
-	// Id (OCID) of the user who created the Term.
+	// OCID of the user who created the term.
 	CreatedById *string `mandatory:"false" json:"createdById"`
 
-	// Id (OCID) of the user who modified the Term.
+	// OCID of the user who modified the term.
 	UpdatedById *string `mandatory:"false" json:"updatedById"`
 
-	// Id (OCID) of the user who is the owner of this business terminology.
+	// OCID of the user who is the owner of this business terminology.
 	Owner *string `mandatory:"false" json:"owner"`
 
-	// Status of the approval process workflow for this business term in the glossary
+	// Status of the approval process workflow for this business term in the glossary.
 	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" json:"workflowStatus,omitempty"`
 
-	// URI to the Term instance in the API.
+	// URI to the term instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
 	// The number of objects tagged with this term

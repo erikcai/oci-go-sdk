@@ -11,13 +11,13 @@ import (
 // CreateEntityRequest wrapper for the CreateEntity operation
 type CreateEntityRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
-	// The information used to create the Entity.
+	// The information used to create the data entity.
 	CreateEntityDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
@@ -58,7 +58,7 @@ type CreateEntityResponse struct {
 	// The Entity instance
 	Entity `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

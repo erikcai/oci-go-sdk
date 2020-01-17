@@ -11,10 +11,10 @@ import (
 // ExpandTreeForGlossaryRequest wrapper for the ExpandTreeForGlossary operation
 type ExpandTreeForGlossaryRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Glossary key.
+	// Unique glossary key.
 	GlossaryKey *string `mandatory:"true" contributesTo:"path" name:"glossaryKey"`
 
 	// The client request ID for tracing.
@@ -55,7 +55,7 @@ type ExpandTreeForGlossaryResponse struct {
 	// The []GlossaryTreeElement instance
 	Items []GlossaryTreeElement `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

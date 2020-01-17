@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// JobMetricCollection Results of a Job Metrics Listing. Job Metrics are datum about a job execution in key value pairs.
+// JobMetricCollection Results of a job metrics listing. Job metrics are datum about a job execution in key value pairs.
 type JobMetricCollection struct {
 
-	// Collection of Job Metrics
+	// Collection of job metrics.
 	Items []JobMetricSummary `mandatory:"true" json:"items"`
 }
 

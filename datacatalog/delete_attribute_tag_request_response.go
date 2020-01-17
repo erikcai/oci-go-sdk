@@ -11,10 +11,10 @@ import (
 // DeleteAttributeTagRequest wrapper for the DeleteAttributeTag operation
 type DeleteAttributeTagRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// Unique entity key.
@@ -23,7 +23,7 @@ type DeleteAttributeTagRequest struct {
 	// Unique attribute key.
 	AttributeKey *string `mandatory:"true" contributesTo:"path" name:"attributeKey"`
 
-	// Unique Tag key.
+	// Unique tag key.
 	TagKey *string `mandatory:"true" contributesTo:"path" name:"tagKey"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

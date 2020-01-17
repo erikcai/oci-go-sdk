@@ -11,13 +11,13 @@ import (
 // UpdateJobDefinitionRequest wrapper for the UpdateJobDefinition operation
 type UpdateJobDefinitionRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Job Definition key.
+	// Unique job definition key.
 	JobDefinitionKey *string `mandatory:"true" contributesTo:"path" name:"jobDefinitionKey"`
 
-	// The information to be updated in the Job Definition.
+	// The information to be updated in the job definition.
 	UpdateJobDefinitionDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -58,7 +58,7 @@ type UpdateJobDefinitionResponse struct {
 	// The JobDefinition instance
 	JobDefinition `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

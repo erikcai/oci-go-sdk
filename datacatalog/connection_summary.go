@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ConnectionSummary Summary representation of a connection to a Data Asset.
+// ConnectionSummary Summary representation of a connection to a data asset.
 type ConnectionSummary struct {
 
 	// Unique connection key that is immutable.
@@ -21,20 +21,20 @@ type ConnectionSummary struct {
 	// A description of the connection.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The unique key of the parent Data Asset.
+	// The unique key of the parent data asset.
 	DataAssetKey *string `mandatory:"false" json:"dataAssetKey"`
 
 	// The key of the object type. Type key's can be found via the '/types' endpoint.
 	TypeKey *string `mandatory:"false" json:"typeKey"`
 
-	// URI to the Connection instance in the API.
+	// URI to the connection instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
-	// Unique external key for this object as defined in the source systems
+	// Unique external key for this object as defined in the source systems.
 	ExternalKey *string `mandatory:"false" json:"externalKey"`
 
 	// The current state of the connection.
@@ -43,7 +43,7 @@ type ConnectionSummary struct {
 	// Indicates whether this connection is the default connection.
 	IsDefault *bool `mandatory:"false" json:"isDefault"`
 
-	// The date and time the Connection was created, in the format defined by RFC3339.
+	// The date and time the connection was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2019-03-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 }

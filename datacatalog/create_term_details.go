@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,14 +12,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateTermDetails Properties used in Term create operations.
+// CreateTermDetails Properties used in term create operations.
 type CreateTermDetails struct {
 
-	// The display name of a user-friendly name. Is changeable. The combination of displayName and parentTermKey
+	// A user-friendly display name. Is changeable. The combination of 'displayName' and 'parentTermKey'
 	// must be unique. Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Detailed description of the Term.
+	// Detailed description of the term.
 	Description *string `mandatory:"false" json:"description"`
 
 	// Indicates whether a term may contain child terms.
@@ -28,10 +28,10 @@ type CreateTermDetails struct {
 	// The terms parent term key. Will be null if the term has no parent term.
 	ParentTermKey *string `mandatory:"false" json:"parentTermKey"`
 
-	// Id (OCID) of the user who is the owner of this business terminology.
+	// OCID of the user who is the owner of this business terminology.
 	Owner *string `mandatory:"false" json:"owner"`
 
-	// Status of the approval process workflow for this business term in the glossary
+	// Status of the approval process workflow for this business term in the glossary.
 	WorkflowStatus TermWorkflowStatusEnum `mandatory:"false" json:"workflowStatus,omitempty"`
 }
 

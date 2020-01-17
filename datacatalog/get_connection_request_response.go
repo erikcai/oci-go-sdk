@@ -11,16 +11,16 @@ import (
 // GetConnectionRequest wrapper for the GetConnection operation
 type GetConnectionRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// Unique connection key.
 	ConnectionKey *string `mandatory:"true" contributesTo:"path" name:"connectionKey"`
 
-	// Used to control which fields are returned in a Connection response.
+	// Specifies the fields to return in a connection response.
 	Fields []GetConnectionFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The client request ID for tracing.
@@ -54,7 +54,7 @@ type GetConnectionResponse struct {
 	// The Connection instance
 	Connection `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

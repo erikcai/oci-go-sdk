@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,20 +12,20 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SearchTermSummary Summary of a Term associated with an object. This is a brief summary returned as part of the search result
+// SearchTermSummary Summary of a term associated with an object. This is a brief summary returned as part of the search result.
 type SearchTermSummary struct {
 
-	// The display name of a user-friendly name. Does not have to be unique, and it's changeable.
+	// A user-friendly display name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Unique Term key that is immutable.
+	// Unique term key that is immutable.
 	Key *string `mandatory:"false" json:"key"`
 
-	// Unique id of the parent Glossary.
+	// Unique id of the parent glossary.
 	GlossaryKey *string `mandatory:"false" json:"glossaryKey"`
 
-	// Name of the parent Glossary.
+	// Name of the parent glossary.
 	GlossaryName *string `mandatory:"false" json:"glossaryName"`
 
 	// This terms parent term key. Will be null if the term has no parent term.

@@ -51,6 +51,9 @@ type Cpe struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// The CPE device type's unique identifier.
+	CpeDeviceShapeId *string `mandatory:"false" json:"cpeDeviceShapeId"`
+
 	// The date and time the CPE was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`

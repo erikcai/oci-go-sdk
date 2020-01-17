@@ -11,13 +11,13 @@ import (
 // UpdateDataAssetRequest wrapper for the UpdateDataAsset operation
 type UpdateDataAssetRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
-	// The information to be updated in the Data Asset.
+	// The information to be updated in the data asset.
 	UpdateDataAssetDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -58,7 +58,7 @@ type UpdateDataAssetResponse struct {
 	// The DataAsset instance
 	DataAsset `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

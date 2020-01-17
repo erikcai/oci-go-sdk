@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// JobExecutionCollection Results of a Job Executions Listing. Job Executions are execution instances of a scheduled job.
+// JobExecutionCollection Results of a job executions listing. Job executions are execution instances of a scheduled job.
 type JobExecutionCollection struct {
 
-	// Collection of Job Executions
+	// Collection of job executions.
 	Items []JobExecutionSummary `mandatory:"true" json:"items"`
 }
 

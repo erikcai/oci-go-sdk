@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,29 +12,29 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TypeSummary Summary Data Catalog Type Information. All types are statically defined in the system and are immutable.
-// It isn't possible to create new types or update existing types via the api.
+// TypeSummary Summary data catalog type information. All types are statically defined in the system and are immutable.
+// It isn't possible to create new types or update existing types via the API.
 type TypeSummary struct {
 
-	// Unique Type key that is immutable.
+	// Unique type key that is immutable.
 	Key *string `mandatory:"true" json:"key"`
 
 	// The immutable name of the type.
 	Name *string `mandatory:"false" json:"name"`
 
-	// Detailed description of the Type.
+	// Detailed description of the type.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The Catalog's Oracle ID (OCID).
+	// The data catalog's OCID.
 	CatalogId *string `mandatory:"false" json:"catalogId"`
 
-	// Indicates the category this type belongs to. For instance , data assets , connections.
+	// Indicates the category this type belongs to. For instance, data assets, connections.
 	TypeCategory *string `mandatory:"false" json:"typeCategory"`
 
-	// URI to the Type instance in the API.
+	// URI to the type instance in the API.
 	Uri *string `mandatory:"false" json:"uri"`
 
-	// State of the Folder.
+	// State of the folder.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 

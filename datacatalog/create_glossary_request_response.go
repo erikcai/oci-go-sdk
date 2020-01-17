@@ -11,10 +11,10 @@ import (
 // CreateGlossaryRequest wrapper for the CreateGlossary operation
 type CreateGlossaryRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// The information used to create the Glossary.
+	// The information used to create the glossary.
 	CreateGlossaryDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
@@ -55,7 +55,7 @@ type CreateGlossaryResponse struct {
 	// The Glossary instance
 	Glossary `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

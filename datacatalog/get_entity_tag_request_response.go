@@ -11,19 +11,19 @@ import (
 // GetEntityTagRequest wrapper for the GetEntityTag operation
 type GetEntityTagRequest struct {
 
-	// unique Catalog identifier
+	// Unique catalog identifier.
 	CatalogId *string `mandatory:"true" contributesTo:"path" name:"catalogId"`
 
-	// Unique Data Asset key.
+	// Unique data asset key.
 	DataAssetKey *string `mandatory:"true" contributesTo:"path" name:"dataAssetKey"`
 
 	// Unique entity key.
 	EntityKey *string `mandatory:"true" contributesTo:"path" name:"entityKey"`
 
-	// Unique Tag key.
+	// Unique tag key.
 	TagKey *string `mandatory:"true" contributesTo:"path" name:"tagKey"`
 
-	// Used to control which fields are returned in an Entity Tag response.
+	// Specifies the fields to return in an entity tag response.
 	Fields []GetEntityTagFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The client request ID for tracing.
@@ -57,7 +57,7 @@ type GetEntityTagResponse struct {
 	// The EntityTag instance
 	EntityTag `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

@@ -841,7 +841,9 @@ func TestDatabaseClientCreateDatabase(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
-				"NONE": &database.CreateNewDatabaseDetails{},
+				"NONE":      &database.CreateNewDatabaseDetails{},
+				"DATABASE":  &database.CreateDatabaseFromDatabase{},
+				"DB_BACKUP": &database.CreateDatabaseFromBackup{},
 			},
 		}
 
@@ -4773,6 +4775,50 @@ func TestDatabaseClientRestartAutonomousContainerDatabase(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.RestartAutonomousContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientRestartAutonomousDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "RestartAutonomousDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RestartAutonomousDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "RestartAutonomousDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "RestartAutonomousDatabase")
+	assert.NoError(t, err)
+
+	type RestartAutonomousDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.RestartAutonomousDatabaseRequest
+	}
+
+	var requests []RestartAutonomousDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RestartAutonomousDatabase(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

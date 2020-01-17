@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// DataCatalog API
+// Data Catalog API
 //
-// A description of the DataCatalog API
+// Use the Data Catalog APIs to collect, organize, find, access, understand, enrich, and activate technical, business, and operational metadata.
 //
 
 package datacatalog
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PropertyDefinition Details of a single Type property.
+// PropertyDefinition Details of a single type property.
 type PropertyDefinition struct {
 
 	// Name of the property.
@@ -21,7 +21,7 @@ type PropertyDefinition struct {
 	// The properties value type.
 	Type *string `mandatory:"false" json:"type"`
 
-	// Whether instances of the Type are required to set this property.
+	// Whether instances of the type are required to set this property.
 	IsRequired *bool `mandatory:"false" json:"isRequired"`
 
 	// Indicates if this property value can be updated.
