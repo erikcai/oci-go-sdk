@@ -13,11 +13,13 @@ type SourceTypesEnum string
 
 // Set of constants representing the allowable values for SourceTypesEnum
 const (
-	SourceTypesOcic SourceTypesEnum = "OCIC"
+	SourceTypesOcic            SourceTypesEnum = "OCIC"
+	SourceTypesInternalCompute SourceTypesEnum = "INTERNAL_COMPUTE"
 )
 
 var mappingSourceTypes = map[string]SourceTypesEnum{
-	"OCIC": SourceTypesOcic,
+	"OCIC":             SourceTypesOcic,
+	"INTERNAL_COMPUTE": SourceTypesInternalCompute,
 }
 
 // GetSourceTypesEnumValues Enumerates the set of values for SourceTypesEnum

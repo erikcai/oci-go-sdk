@@ -19,6 +19,9 @@ type SourceSummary struct {
 	// Unique identifier (OCID) for the source
 	Id *string `mandatory:"false" json:"id"`
 
+	// The type of source environment
+	Type SourceTypesEnum `mandatory:"false" json:"type,omitempty"`
+
 	// Unique idenfifier (OCID) for the compartment where the Source is located.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 

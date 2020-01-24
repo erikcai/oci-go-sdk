@@ -68,7 +68,9 @@ type CreateAutonomousDatabaseCloneDetails struct {
 	// This restriction applies to both the client subnet and the backup subnet.
 	SubnetId *string `mandatory:"false" json:"subnetId"`
 
-	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+	// **NsgIds restrictions:**
+	// - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
 
 	// The private endpoint label for the resource.
@@ -89,12 +91,15 @@ type CreateAutonomousDatabaseCloneDetails struct {
 	// The Autonomous Database clone type.
 	CloneType CreateAutonomousDatabaseCloneDetailsCloneTypeEnum `mandatory:"true" json:"cloneType"`
 
-	// The Autonomous Database workload type. OLTP indicates an Autonomous Transaction Processing database and DW indicates an Autonomous Data Warehouse. The default is OLTP.
+	// The Autonomous Database workload type. OLTP indicates an Autonomous Transaction Processing database, DW indicates an Autonomous Data Warehouse database and AJD indicates an Autonomous JSON Database.
 	DbWorkload CreateAutonomousDatabaseBaseDbWorkloadEnum `mandatory:"false" json:"dbWorkload,omitempty"`
 
 	// The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on dedicated Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute is already set at the
 	// Autonomous Exadata Infrastructure level. When using shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.
 	LicenseModel CreateAutonomousDatabaseBaseLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
+
+	// The Autonomous Database Availability Type.
+	DbAvailabilityType CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
 }
 
 //GetCompartmentId returns CompartmentId
@@ -165,6 +170,11 @@ func (m CreateAutonomousDatabaseCloneDetails) GetAutonomousContainerDatabaseId()
 //GetWhitelistedIps returns WhitelistedIps
 func (m CreateAutonomousDatabaseCloneDetails) GetWhitelistedIps() []string {
 	return m.WhitelistedIps
+}
+
+//GetDbAvailabilityType returns DbAvailabilityType
+func (m CreateAutonomousDatabaseCloneDetails) GetDbAvailabilityType() CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum {
+	return m.DbAvailabilityType
 }
 
 //GetSubnetId returns SubnetId

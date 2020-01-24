@@ -24,7 +24,7 @@ type WorkRequestSummary struct {
 	// The current status of the work request.
 	Status WorkRequestStatusEnum `mandatory:"true" json:"status"`
 
-	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the work request’s compartment.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the work request's compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// Percentage of the request completed.

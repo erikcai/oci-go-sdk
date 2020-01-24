@@ -36,11 +36,8 @@ type Migration struct {
 	// Name of the application being migrated from the source.
 	ApplicationName *string `mandatory:"false" json:"applicationName"`
 
-	// Automatically start the migration if the provided configuration passes validation.
-	IsAutomaticMigration *bool `mandatory:"false" json:"isAutomaticMigration"`
-
-	// Indicates whether a new service will be provisioned to host the migrated application.
-	IsNewServiceRequired *bool `mandatory:"false" json:"isNewServiceRequired"`
+	// The type of application being migrated.
+	ApplicationType MigrationTypesEnum `mandatory:"false" json:"applicationType,omitempty"`
 
 	// Configuration required to migrate the application. In addition to the key and value, additional fields are provided to describe type type and purpose of each field. Only the value for each key is required when passing configuration to the CreateMigration operation.
 	ServiceConfig map[string]ConfigurationField `mandatory:"false" json:"serviceConfig"`

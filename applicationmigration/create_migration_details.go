@@ -33,12 +33,6 @@ type CreateMigrationDetails struct {
 	// Description of the application.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Automatically start the migration if the provided configuration passes validation.
-	IsAutomaticMigration *bool `mandatory:"false" json:"isAutomaticMigration"`
-
-	// Indicates whether a new service will be provisioned to host the migrated application.
-	IsNewServiceRequired *bool `mandatory:"false" json:"isNewServiceRequired"`
-
 	// Configuration required to migrate the application. In addition to the key and value, additional fields are provided to describe type type and purpose of each field. Only the value for each key is required when passing configuration to the CreateMigration operation.
 	ServiceConfig map[string]ConfigurationField `mandatory:"false" json:"serviceConfig"`
 
@@ -61,18 +55,16 @@ func (m CreateMigrationDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *CreateMigrationDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		DisplayName          *string                           `json:"displayName"`
-		Description          *string                           `json:"description"`
-		IsAutomaticMigration *bool                             `json:"isAutomaticMigration"`
-		IsNewServiceRequired *bool                             `json:"isNewServiceRequired"`
-		ServiceConfig        map[string]ConfigurationField     `json:"serviceConfig"`
-		ApplicationConfig    map[string]ConfigurationField     `json:"applicationConfig"`
-		FreeformTags         map[string]string                 `json:"freeformTags"`
-		DefinedTags          map[string]map[string]interface{} `json:"definedTags"`
-		CompartmentId        *string                           `json:"compartmentId"`
-		SourceId             *string                           `json:"sourceId"`
-		ApplicationName      *string                           `json:"applicationName"`
-		DiscoveryDetails     discoverydetails                  `json:"discoveryDetails"`
+		DisplayName       *string                           `json:"displayName"`
+		Description       *string                           `json:"description"`
+		ServiceConfig     map[string]ConfigurationField     `json:"serviceConfig"`
+		ApplicationConfig map[string]ConfigurationField     `json:"applicationConfig"`
+		FreeformTags      map[string]string                 `json:"freeformTags"`
+		DefinedTags       map[string]map[string]interface{} `json:"definedTags"`
+		CompartmentId     *string                           `json:"compartmentId"`
+		SourceId          *string                           `json:"sourceId"`
+		ApplicationName   *string                           `json:"applicationName"`
+		DiscoveryDetails  discoverydetails                  `json:"discoveryDetails"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -83,10 +75,6 @@ func (m *CreateMigrationDetails) UnmarshalJSON(data []byte) (e error) {
 	m.DisplayName = model.DisplayName
 
 	m.Description = model.Description
-
-	m.IsAutomaticMigration = model.IsAutomaticMigration
-
-	m.IsNewServiceRequired = model.IsNewServiceRequired
 
 	m.ServiceConfig = model.ServiceConfig
 

@@ -47,6 +47,10 @@ func (m *authorizationdetails) UnmarshalPolymorphicJSON(data []byte) (interface{
 
 	var err error
 	switch m.Type {
+	case "INTERNAL_COMPUTE":
+		mm := InternalAuthorizationDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "OCIC":
 		mm := OcicAuthorizationDetails{}
 		err = json.Unmarshal(data, &mm)

@@ -45,7 +45,9 @@ type UpdateAutonomousDatabaseDetails struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+	// **NsgIds restrictions:**
+	// - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
 
 	// The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on dedicated Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute is already set at the
@@ -66,6 +68,9 @@ type UpdateAutonomousDatabaseDetails struct {
 
 	// Indicates if this is a Refreashable Clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
+
+	// The Autonomous Database Availability Type.
+	DbAvailabilityType UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
 }
 
 func (m UpdateAutonomousDatabaseDetails) String() string {
@@ -90,6 +95,29 @@ var mappingUpdateAutonomousDatabaseDetailsLicenseModel = map[string]UpdateAutono
 func GetUpdateAutonomousDatabaseDetailsLicenseModelEnumValues() []UpdateAutonomousDatabaseDetailsLicenseModelEnum {
 	values := make([]UpdateAutonomousDatabaseDetailsLicenseModelEnum, 0)
 	for _, v := range mappingUpdateAutonomousDatabaseDetailsLicenseModel {
+		values = append(values, v)
+	}
+	return values
+}
+
+// UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum Enum with underlying type: string
+type UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum string
+
+// Set of constants representing the allowable values for UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum
+const (
+	UpdateAutonomousDatabaseDetailsDbAvailabilityTypeHighAvailability    UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum = "HIGH_AVAILABILITY"
+	UpdateAutonomousDatabaseDetailsDbAvailabilityTypeExtremeAvailability UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum = "EXTREME_AVAILABILITY"
+)
+
+var mappingUpdateAutonomousDatabaseDetailsDbAvailabilityType = map[string]UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum{
+	"HIGH_AVAILABILITY":    UpdateAutonomousDatabaseDetailsDbAvailabilityTypeHighAvailability,
+	"EXTREME_AVAILABILITY": UpdateAutonomousDatabaseDetailsDbAvailabilityTypeExtremeAvailability,
+}
+
+// GetUpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnumValues Enumerates the set of values for UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum
+func GetUpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnumValues() []UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum {
+	values := make([]UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum, 0)
+	for _, v := range mappingUpdateAutonomousDatabaseDetailsDbAvailabilityType {
 		values = append(values, v)
 	}
 	return values

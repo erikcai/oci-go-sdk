@@ -21,6 +21,9 @@ type VmClusterSummary struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as a patch operation starts.
+	LastPatchHistoryEntryId *string `mandatory:"false" json:"lastPatchHistoryEntryId"`
+
 	// The current state of the VM cluster.
 	LifecycleState VmClusterSummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 

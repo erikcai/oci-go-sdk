@@ -16,7 +16,7 @@ type CreateModelArtifactRequest struct {
 	ModelId *string `mandatory:"true" contributesTo:"path" name:"modelId"`
 
 	// The content length of the body.
-	ContentLength *int64 `mandatory:"true" contributesTo:"header" name:"Content-Length"`
+	ContentLength *int64 `mandatory:"true" contributesTo:"header" name:"content-length"`
 
 	// The model artifact to upload.
 	ModelArtifact io.ReadCloser `mandatory:"true" contributesTo:"body" encoding:"binary"`
@@ -28,7 +28,7 @@ type CreateModelArtifactRequest struct {
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
 	// The content disposition of the body.
-	ContentDisposition *string `mandatory:"false" contributesTo:"header" name:"Content-Disposition"`
+	ContentDisposition *string `mandatory:"false" contributesTo:"header" name:"content-disposition"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.

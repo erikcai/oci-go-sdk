@@ -47,6 +47,10 @@ func (m *sourcedetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 
 	var err error
 	switch m.Type {
+	case "INTERNAL_COMPUTE":
+		mm := InternalSourceDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "OCIC":
 		mm := OcicSourceDetails{}
 		err = json.Unmarshal(data, &mm)

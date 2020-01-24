@@ -20,10 +20,10 @@ import (
 type ImageOcpuConstraints struct {
 
 	// The minimum number of OCPUs supported for this image and shape.
-	Min *float32 `mandatory:"false" json:"min"`
+	Min *int `mandatory:"false" json:"min"`
 
 	// The maximum number of OCPUs supported for this image and shape.
-	Max *float32 `mandatory:"false" json:"max"`
+	Max *int `mandatory:"false" json:"max"`
 }
 
 func (m ImageOcpuConstraints) String() string {

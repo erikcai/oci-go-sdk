@@ -4699,7 +4699,8 @@ func (client VirtualNetworkClient) getDrgAttachment(ctx context.Context, request
 	return response, err
 }
 
-// GetDrgRedundancyStatus Get redundancy status of single DRG object on Oracle side.
+// GetDrgRedundancyStatus Gets the redundancy status for the specified DRG. For more information, see
+// Redundancy Remedies (https://docs.cloud.oracle.com/Content/Network/Troubleshoot/drgredundancy.htm).
 func (client VirtualNetworkClient) GetDrgRedundancyStatus(ctx context.Context, request GetDrgRedundancyStatusRequest) (response GetDrgRedundancyStatusResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

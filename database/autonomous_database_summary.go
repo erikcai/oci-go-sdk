@@ -99,7 +99,9 @@ type AutonomousDatabaseSummary struct {
 	// This restriction applies to both the client subnet and the backup subnet.
 	SubnetId *string `mandatory:"false" json:"subnetId"`
 
-	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+	// **NsgIds restrictions:**
+	// - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
 
 	// The private endpoint for the resource.
@@ -114,7 +116,7 @@ type AutonomousDatabaseSummary struct {
 	// Indicates if the Autonomous Database version is a preview version.
 	IsPreview *bool `mandatory:"false" json:"isPreview"`
 
-	// The Autonomous Database workload type. OLTP indicates an Autonomous Transaction Processing database and DW indicates an Autonomous Data Warehouse database.
+	// The Autonomous Database workload type. OLTP indicates an Autonomous Transaction Processing database, DW indicates an Autonomous Data Warehouse database and AJD indicates an Autonomous JSON Database.
 	DbWorkload AutonomousDatabaseSummaryDbWorkloadEnum `mandatory:"false" json:"dbWorkload,omitempty"`
 
 	// The client IP access control list (ACL). This feature is available for databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
@@ -146,6 +148,14 @@ type AutonomousDatabaseSummary struct {
 
 	// The Database Open mode type.
 	OpenMode AutonomousDatabaseSummaryOpenModeEnum `mandatory:"false" json:"openMode,omitempty"`
+
+	// Indicates if the database is in original pod or failover pod.
+	IsFailedOver *bool `mandatory:"false" json:"isFailedOver"`
+
+	// The Autonomous Database Availability Type.
+	DbAvailabilityType AutonomousDatabaseSummaryDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
+
+	StandbyDb *AutonomousDatabaseStandbySummary `mandatory:"false" json:"standbyDb"`
 }
 
 func (m AutonomousDatabaseSummary) String() string {
@@ -173,6 +183,7 @@ const (
 	AutonomousDatabaseSummaryLifecycleStateUpdating                AutonomousDatabaseSummaryLifecycleStateEnum = "UPDATING"
 	AutonomousDatabaseSummaryLifecycleStateMaintenanceInProgress   AutonomousDatabaseSummaryLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 	AutonomousDatabaseSummaryLifecycleStateRestarting              AutonomousDatabaseSummaryLifecycleStateEnum = "RESTARTING"
+	AutonomousDatabaseSummaryLifecycleStateRecreating              AutonomousDatabaseSummaryLifecycleStateEnum = "RECREATING"
 )
 
 var mappingAutonomousDatabaseSummaryLifecycleState = map[string]AutonomousDatabaseSummaryLifecycleStateEnum{
@@ -192,6 +203,7 @@ var mappingAutonomousDatabaseSummaryLifecycleState = map[string]AutonomousDataba
 	"UPDATING":                  AutonomousDatabaseSummaryLifecycleStateUpdating,
 	"MAINTENANCE_IN_PROGRESS":   AutonomousDatabaseSummaryLifecycleStateMaintenanceInProgress,
 	"RESTARTING":                AutonomousDatabaseSummaryLifecycleStateRestarting,
+	"RECREATING":                AutonomousDatabaseSummaryLifecycleStateRecreating,
 }
 
 // GetAutonomousDatabaseSummaryLifecycleStateEnumValues Enumerates the set of values for AutonomousDatabaseSummaryLifecycleStateEnum
@@ -296,6 +308,29 @@ var mappingAutonomousDatabaseSummaryOpenMode = map[string]AutonomousDatabaseSumm
 func GetAutonomousDatabaseSummaryOpenModeEnumValues() []AutonomousDatabaseSummaryOpenModeEnum {
 	values := make([]AutonomousDatabaseSummaryOpenModeEnum, 0)
 	for _, v := range mappingAutonomousDatabaseSummaryOpenMode {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabaseSummaryDbAvailabilityTypeEnum Enum with underlying type: string
+type AutonomousDatabaseSummaryDbAvailabilityTypeEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabaseSummaryDbAvailabilityTypeEnum
+const (
+	AutonomousDatabaseSummaryDbAvailabilityTypeHighAvailability    AutonomousDatabaseSummaryDbAvailabilityTypeEnum = "HIGH_AVAILABILITY"
+	AutonomousDatabaseSummaryDbAvailabilityTypeExtremeAvailability AutonomousDatabaseSummaryDbAvailabilityTypeEnum = "EXTREME_AVAILABILITY"
+)
+
+var mappingAutonomousDatabaseSummaryDbAvailabilityType = map[string]AutonomousDatabaseSummaryDbAvailabilityTypeEnum{
+	"HIGH_AVAILABILITY":    AutonomousDatabaseSummaryDbAvailabilityTypeHighAvailability,
+	"EXTREME_AVAILABILITY": AutonomousDatabaseSummaryDbAvailabilityTypeExtremeAvailability,
+}
+
+// GetAutonomousDatabaseSummaryDbAvailabilityTypeEnumValues Enumerates the set of values for AutonomousDatabaseSummaryDbAvailabilityTypeEnum
+func GetAutonomousDatabaseSummaryDbAvailabilityTypeEnumValues() []AutonomousDatabaseSummaryDbAvailabilityTypeEnum {
+	values := make([]AutonomousDatabaseSummaryDbAvailabilityTypeEnum, 0)
+	for _, v := range mappingAutonomousDatabaseSummaryDbAvailabilityType {
 		values = append(values, v)
 	}
 	return values

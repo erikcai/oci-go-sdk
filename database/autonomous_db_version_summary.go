@@ -18,7 +18,7 @@ type AutonomousDbVersionSummary struct {
 	// A valid Oracle Database version for Autonomous Database.
 	Version *string `mandatory:"true" json:"version"`
 
-	// The Autonomous Database workload type. OLTP indicates an Autonomous Transaction Processing database and DW indicates an Autonomous Data Warehouse database.
+	// The Autonomous Database workload type. OLTP indicates an Autonomous Transaction Processing database, DW indicates an Autonomous Data Warehouse database and AJD indicates an Autonomous JSON Database.
 	DbWorkload AutonomousDbVersionSummaryDbWorkloadEnum `mandatory:"false" json:"dbWorkload,omitempty"`
 
 	// True if the database uses dedicated Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm).

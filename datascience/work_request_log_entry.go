@@ -16,10 +16,10 @@ import (
 type WorkRequestLogEntry struct {
 
 	// The description of an action that occurred.
-	Message *string `mandatory:"false" json:"message"`
+	Message *string `mandatory:"true" json:"message"`
 
 	// The date and time the log entry occurred.
-	Timestamp *common.SDKTime `mandatory:"false" json:"timestamp"`
+	Timestamp *common.SDKTime `mandatory:"true" json:"timestamp"`
 }
 
 func (m WorkRequestLogEntry) String() string {

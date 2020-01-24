@@ -458,48 +458,6 @@ func (client ApplicationMigrationClient) getSource(ctx context.Context, request 
 	return response, err
 }
 
-// GetSourceApplication Gets details of a source application by name. The name provided must correspond to an application currently running in the source.
-func (client ApplicationMigrationClient) GetSourceApplication(ctx context.Context, request GetSourceApplicationRequest) (response GetSourceApplicationResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getSourceApplication, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = GetSourceApplicationResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetSourceApplicationResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetSourceApplicationResponse")
-	}
-	return
-}
-
-// getSourceApplication implements the OCIOperation interface (enables retrying operations)
-func (client ApplicationMigrationClient) getSourceApplication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/sources/{sourceId}/applications/{sourceApplicationName}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetSourceApplicationResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // GetWorkRequest Gets the details of a work request.
 func (client ApplicationMigrationClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse

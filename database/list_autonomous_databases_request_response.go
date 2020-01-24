@@ -53,6 +53,9 @@ type ListAutonomousDatabasesRequest struct {
 	// A value of `false` excludes Refreshable Clones from the returned results. Omitting this parameter returns both Refreshable Clones and non Refreshable Clones.
 	IsRefreshableClone *bool `mandatory:"false" contributesTo:"query" name:"isRefreshableClone"`
 
+	// A filter to return only resources that match the autonomous database Availability type given.
+	DbAvailabilityType AutonomousDatabaseSummaryDbAvailabilityTypeEnum `mandatory:"false" contributesTo:"query" name:"dbAvailabilityType" omitEmpty:"true"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

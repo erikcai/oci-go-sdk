@@ -24,6 +24,8 @@ type UpdateVmClusterDetails struct {
 	// The public key portion of one or more key pairs used for SSH access to the VM cluster.
 	SshPublicKeys []string `mandatory:"false" json:"sshPublicKeys"`
 
+	Version *PatchDetails `mandatory:"false" json:"version"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
