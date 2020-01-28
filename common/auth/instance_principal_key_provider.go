@@ -13,11 +13,11 @@ import (
 )
 
 const (
-	regionURL                            = `http://169.254.169.254/opc/v1/instance/region`
-	leafCertificateURL                   = `http://169.254.169.254/opc/v1/identity/cert.pem`
-	leafCertificateKeyURL                = `http://169.254.169.254/opc/v1/identity/key.pem`
+	regionURL                            = `http://169.254.169.254/opc/v2/instance/region`
+	leafCertificateURL                   = `http://169.254.169.254/opc/v2/identity/cert.pem`
+	leafCertificateKeyURL                = `http://169.254.169.254/opc/v2/identity/key.pem`
 	leafCertificateKeyPassphrase         = `` // No passphrase for the private key for Compute instances
-	intermediateCertificateURL           = `http://169.254.169.254/opc/v1/identity/intermediate.pem`
+	intermediateCertificateURL           = `http://169.254.169.254/opc/v2/identity/intermediate.pem`
 	intermediateCertificateKeyURL        = ``
 	intermediateCertificateKeyPassphrase = `` // No passphrase for the private key for Compute instances
 )
