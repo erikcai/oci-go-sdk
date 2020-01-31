@@ -3754,7 +3754,7 @@
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.296</version>
+        <version>1.1.307</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -3819,7 +3819,7 @@
       <dependency>
         <groupId>com.oracle.pic.ons</groupId>
         <artifactId>ons-gateway-spec</artifactId>
-        <version>2.1.238</version>
+        <version>2.1.245</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci</groupId>
@@ -3904,7 +3904,7 @@
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
         <artifactId>events-control-plane-spec</artifactId>
-        <version>0.1.25</version>
+        <version>0.1.29</version>
       </dependency>
       <dependency>
         <groupId>oracle.nosql.oci.controlplane</groupId>
@@ -3924,7 +3924,7 @@
       <dependency>
         <groupId>com.oracle.pic.odsc.pegasus</groupId>
         <artifactId>odsc-pegasus-control-plane-spec</artifactId>
-        <version>0.1.324</version>
+        <version>0.1.328</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.pika.controlplane</groupId>

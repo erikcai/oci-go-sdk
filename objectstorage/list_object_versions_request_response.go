@@ -38,9 +38,10 @@ type ListObjectVersionsRequest struct {
 	Delimiter *string `mandatory:"false" contributesTo:"query" name:"delimiter"`
 
 	// Object summary in list of objects includes the 'name' field. This parameter can also include 'size'
-	// (object size in bytes), 'etag', 'md5', and 'timeCreated' (object creation date and time) fields.
+	// (object size in bytes), 'etag', 'md5', 'timeCreated' (object creation date and time) and 'timeModified'
+	// (object modification date and time).
 	// Value of this parameter should be a comma-separated, case-insensitive list of those field names.
-	// For example 'name,etag,timeCreated,md5'.
+	// For example 'name,etag,timeCreated,md5,timeModified'
 	Fields ListObjectVersionsFieldsEnum `mandatory:"false" contributesTo:"query" name:"fields" omitEmpty:"true"`
 
 	// The client request ID for tracing.
@@ -102,19 +103,21 @@ type ListObjectVersionsFieldsEnum string
 
 // Set of constants representing the allowable values for ListObjectVersionsFieldsEnum
 const (
-	ListObjectVersionsFieldsName        ListObjectVersionsFieldsEnum = "name"
-	ListObjectVersionsFieldsSize        ListObjectVersionsFieldsEnum = "size"
-	ListObjectVersionsFieldsEtag        ListObjectVersionsFieldsEnum = "etag"
-	ListObjectVersionsFieldsTimecreated ListObjectVersionsFieldsEnum = "timeCreated"
-	ListObjectVersionsFieldsMd5         ListObjectVersionsFieldsEnum = "md5"
+	ListObjectVersionsFieldsName         ListObjectVersionsFieldsEnum = "name"
+	ListObjectVersionsFieldsSize         ListObjectVersionsFieldsEnum = "size"
+	ListObjectVersionsFieldsEtag         ListObjectVersionsFieldsEnum = "etag"
+	ListObjectVersionsFieldsTimecreated  ListObjectVersionsFieldsEnum = "timeCreated"
+	ListObjectVersionsFieldsMd5          ListObjectVersionsFieldsEnum = "md5"
+	ListObjectVersionsFieldsTimemodified ListObjectVersionsFieldsEnum = "timeModified"
 )
 
 var mappingListObjectVersionsFields = map[string]ListObjectVersionsFieldsEnum{
-	"name":        ListObjectVersionsFieldsName,
-	"size":        ListObjectVersionsFieldsSize,
-	"etag":        ListObjectVersionsFieldsEtag,
-	"timeCreated": ListObjectVersionsFieldsTimecreated,
-	"md5":         ListObjectVersionsFieldsMd5,
+	"name":         ListObjectVersionsFieldsName,
+	"size":         ListObjectVersionsFieldsSize,
+	"etag":         ListObjectVersionsFieldsEtag,
+	"timeCreated":  ListObjectVersionsFieldsTimecreated,
+	"md5":          ListObjectVersionsFieldsMd5,
+	"timeModified": ListObjectVersionsFieldsTimemodified,
 }
 
 // GetListObjectVersionsFieldsEnumValues Enumerates the set of values for ListObjectVersionsFieldsEnum

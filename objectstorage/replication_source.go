@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReplicationSource The details of a replication source using the bucket as replication target.
+// ReplicationSource The details of a replication source bucket that replicates to a target destination bucket.
 type ReplicationSource struct {
 
 	// The name of the policy.

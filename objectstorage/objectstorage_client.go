@@ -394,7 +394,7 @@ func (client ObjectStorageClient) createPreauthenticatedRequest(ctx context.Cont
 	return response, err
 }
 
-// CreateReplicationPolicy Creates a cross region replication policy for the specified bucket.
+// CreateReplicationPolicy Creates a replication policy for the specified bucket.
 func (client ObjectStorageClient) CreateReplicationPolicy(ctx context.Context, request CreateReplicationPolicyRequest) (response CreateReplicationPolicyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -650,7 +650,7 @@ func (client ObjectStorageClient) deletePreauthenticatedRequest(ctx context.Cont
 	return response, err
 }
 
-// DeleteReplicationPolicy Deletes the cross region replication policy.
+// DeleteReplicationPolicy Deletes the replication policy associated with the source bucket.
 func (client ObjectStorageClient) DeleteReplicationPolicy(ctx context.Context, request DeleteReplicationPolicyRequest) (response DeleteReplicationPolicyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1038,7 +1038,7 @@ func (client ObjectStorageClient) getPreauthenticatedRequest(ctx context.Context
 	return response, err
 }
 
-// GetReplicationPolicy Gets the cross region replication policy.
+// GetReplicationPolicy Get the replication policy.
 func (client ObjectStorageClient) GetReplicationPolicy(ctx context.Context, request GetReplicationPolicyRequest) (response GetReplicationPolicyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1510,7 +1510,7 @@ func (client ObjectStorageClient) listPreauthenticatedRequests(ctx context.Conte
 	return response, err
 }
 
-// ListReplicationPolicies List the cross region replication policies of the bucket.
+// ListReplicationPolicies List the replication policies associated with a bucket.
 func (client ObjectStorageClient) ListReplicationPolicies(ctx context.Context, request ListReplicationPoliciesRequest) (response ListReplicationPoliciesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1552,7 +1552,7 @@ func (client ObjectStorageClient) listReplicationPolicies(ctx context.Context, r
 	return response, err
 }
 
-// ListReplicationSources List the cross region replication sources of a destination bucket.
+// ListReplicationSources List the replication sources of a destination bucket.
 func (client ObjectStorageClient) ListReplicationSources(ctx context.Context, request ListReplicationSourcesRequest) (response ListReplicationSourcesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1763,8 +1763,10 @@ func (client ObjectStorageClient) listWorkRequests(ctx context.Context, request 
 	return response, err
 }
 
-// MakeBucketWritable This is an idempotent API to force break replication rule, from destination bucket. Removes replication options
-// associated with a bucket. This will allow user to make changes to bucket contents.
+// MakeBucketWritable Stops replication to the destination bucket and removes the replication policy. When the replication
+// policy was created, this destination bucket became read-only except for new and changed objects replicated
+// automatically from the source bucket. MakeBucketWritable removes the replication policy. This bucket is no
+// longer the target for replication and is now writable, allowing users to make changes to bucket contents.
 func (client ObjectStorageClient) MakeBucketWritable(ctx context.Context, request MakeBucketWritableRequest) (response MakeBucketWritableResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

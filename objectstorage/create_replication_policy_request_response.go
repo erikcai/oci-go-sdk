@@ -18,7 +18,7 @@ type CreateReplicationPolicyRequest struct {
 	// Example: `my-new-bucket1`
 	BucketName *string `mandatory:"true" contributesTo:"path" name:"bucketName"`
 
-	// The cross region replication policy.
+	// The replication policy.
 	CreateReplicationPolicyDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.

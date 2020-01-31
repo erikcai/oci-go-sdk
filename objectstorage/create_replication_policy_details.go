@@ -21,7 +21,8 @@ type CreateReplicationPolicyDetails struct {
 	// The destination region to replicate to, for example "us-ashburn-1".
 	DestinationRegionName *string `mandatory:"true" json:"destinationRegionName"`
 
-	// The bucket to replicate to in the destination region.
+	// The bucket to replicate to in the destination region. Replication policy creation does not automatically
+	// create a destination bucket. Create the destination bucket before creating the policy.
 	DestinationBucketName *string `mandatory:"true" json:"destinationBucketName"`
 }
 
