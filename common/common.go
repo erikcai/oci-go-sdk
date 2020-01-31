@@ -31,7 +31,7 @@ const (
 	//RegionAPOsaka1 region for Osaka
 	RegionAPOsaka1 Region = "ap-osaka-1"
 
-	//RegionCAMontreal1 reggion for Montreal
+	//RegionCAMontreal1 region for Montreal
 	RegionCAMontreal1 Region = "ca-montreal-1"
 	//RegionCAToronto1 region for toronto
 	RegionCAToronto1 Region = "ca-toronto-1"
@@ -39,6 +39,8 @@ const (
 	RegionPHX Region = "us-phoenix-1"
 	//RegionIAD region IAD
 	RegionIAD Region = "us-ashburn-1"
+	//RegionSJC1 region SJC
+	RegionSJC1 Region = "us-sanjose-1"
 
 	//RegionEUZurich1 region for Zurich
 	RegionEUZurich1 Region = "eu-zurich-1"
@@ -71,8 +73,8 @@ const (
 
 	//RegionUKGovLondon1 gov region London
 	RegionUKGovLondon1 Region = "uk-gov-london-1"
-	//RegionUKGovLondon2 gov region London
-	RegionUKGovLondon2 Region = "uk-gov-london-2"
+	//RegionUKGovCardiff1 gov region Cardiff
+	RegionUKGovCardiff1 Region = "uk-gov-cardiff-1"
 )
 
 var realm = map[string]string{
@@ -88,6 +90,7 @@ var regionRealm = map[Region]string{
 	RegionCAToronto1:  "oc1",
 	RegionIAD:         "oc1",
 	RegionFRA:         "oc1",
+	RegionSJC1:        "oc1",
 	RegionLHR:         "oc1",
 	RegionUKCardiff1:  "oc1",
 
@@ -114,8 +117,8 @@ var regionRealm = map[Region]string{
 	RegionUSGovChicago1: "oc3",
 	RegionUSGovPhoenix1: "oc3",
 
-	RegionUKGovLondon1: "oc4",
-	RegionUKGovLondon2: "oc4",
+	RegionUKGovLondon1:  "oc4",
+	RegionUKGovCardiff1: "oc4",
 }
 
 // Endpoint returns a endpoint for a service
@@ -158,6 +161,8 @@ func StringToRegion(stringRegion string) (r Region) {
 		r = RegionPHX
 	case "iad", "us-ashburn-1":
 		r = RegionIAD
+	case "sjc", "us-sanjose-1":
+		r = RegionSJC1
 	case "fra", "eu-frankfurt-1":
 		r = RegionFRA
 	case "lhr", "uk-london-1":
@@ -204,8 +209,8 @@ func StringToRegion(stringRegion string) (r Region) {
 		r = RegionUSGovPhoenix1
 	case "uk-gov-london-1":
 		r = RegionUKGovLondon1
-	case "uk-gov-london-2":
-		r = RegionUKGovLondon2
+	case "uk-gov-cardiff-1":
+		r = RegionUKGovCardiff1
 	default:
 		r = Region(stringRegion)
 		Debugf("region named: %s, is not recognized", stringRegion)
