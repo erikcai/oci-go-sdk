@@ -51,7 +51,11 @@ func extractTenancyIDFromCertificate(cert *x509.Certificate) string {
 	for _, nameAttr := range cert.Subject.Names {
 		value := nameAttr.Value.(string)
 		if strings.HasPrefix(value, "opc-tenant:") {
+			// instance principal cert
 			return value[len("opc-tenant:"):]
+		} else if strings.HasPrefix(value, "opc-identity:") {
+			// service principal cert
+			return value[len("opc-identity:"):]
 		}
 	}
 	return ""
