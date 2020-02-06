@@ -78,7 +78,7 @@ func ExampleObjectStorage_UploadManager_UploadFile() {
 			NamespaceName: common.String(namespace),
 			BucketName:    common.String(bname),
 			ObjectName:    common.String(objectName),
-			//PartSize:		common.Int(10000000),
+			//PartSize:     common.Int(10000000),
 			CallBack:                            callBack,
 			EnableMultipartChecksumVerification: common.Bool(true),
 		},
