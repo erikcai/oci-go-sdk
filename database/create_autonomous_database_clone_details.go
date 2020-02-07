@@ -91,7 +91,9 @@ type CreateAutonomousDatabaseCloneDetails struct {
 	// The Autonomous Database clone type.
 	CloneType CreateAutonomousDatabaseCloneDetailsCloneTypeEnum `mandatory:"true" json:"cloneType"`
 
-	// The Autonomous Database workload type. OLTP indicates an Autonomous Transaction Processing database, DW indicates an Autonomous Data Warehouse database and AJD indicates an Autonomous JSON Database.
+	// The Autonomous Database workload type. The following values are valid:
+	// - OLTP - indicates an Autonomous Transaction Processing database
+	// - DW - indicates an Autonomous Data Warehouse database
 	DbWorkload CreateAutonomousDatabaseBaseDbWorkloadEnum `mandatory:"false" json:"dbWorkload,omitempty"`
 
 	// The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on dedicated Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute is already set at the

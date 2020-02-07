@@ -1035,6 +1035,50 @@ func TestVirtualNetworkClientChangeVirtualCircuitCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientChangeVlanCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeVlanCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeVlanCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeVlanCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeVlanCompartment")
+	assert.NoError(t, err)
+
+	type ChangeVlanCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeVlanCompartmentRequest
+	}
+
+	var requests []ChangeVlanCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeVlanCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientConnectLocalPeeringConnections(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2354,6 +2398,50 @@ func TestVirtualNetworkClientCreateVirtualCircuit(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateVlan(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateVlan")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateVlan is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateVlan", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateVlan")
+	assert.NoError(t, err)
+
+	type CreateVlanRequestInfo struct {
+		ContainerId string
+		Request     core.CreateVlanRequest
+	}
+
+	var requests []CreateVlanRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateVlan(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientDeleteCpe(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -3579,6 +3667,50 @@ func TestVirtualNetworkClientDeleteVirtualCircuit(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteVirtualCircuit(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteVlan(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteVlan")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteVlan is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteVlan", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteVlan")
+	assert.NoError(t, err)
+
+	type DeleteVlanRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteVlanRequest
+	}
+
+	var requests []DeleteVlanRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteVlan(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -5831,6 +5963,50 @@ func TestVirtualNetworkClientGetVirtualCircuit(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetVlan(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetVlan")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetVlan is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetVlan", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetVlan")
+	assert.NoError(t, err)
+
+	type GetVlanRequestInfo struct {
+		ContainerId string
+		Request     core.GetVlanRequest
+	}
+
+	var requests []GetVlanRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetVlan(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetVnic(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -8068,6 +8244,60 @@ func TestVirtualNetworkClientListVirtualCircuits(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListVlans(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListVlans")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListVlans is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListVlans", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListVlans")
+	assert.NoError(t, err)
+
+	type ListVlansRequestInfo struct {
+		ContainerId string
+		Request     core.ListVlansRequest
+	}
+
+	var requests []ListVlansRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListVlansRequest)
+				return c.ListVlans(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListVlansResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListVlansResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientModifyReverseConnections(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -9513,6 +9743,50 @@ func TestVirtualNetworkClientUpdateVirtualCircuit(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateVirtualCircuit(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateVlan(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateVlan")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateVlan is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateVlan", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateVlan")
+	assert.NoError(t, err)
+
+	type UpdateVlanRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateVlanRequest
+	}
+
+	var requests []UpdateVlanRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateVlan(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

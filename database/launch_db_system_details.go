@@ -123,7 +123,7 @@ type LaunchDbSystemDetails struct {
 	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
 	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
 
-	// The number of nodes to launch for a 2-node RAC virtual machine DB system.
+	// The number of nodes to launch for a 2-node RAC virtual machine DB system. Specify either 1 or 2.
 	NodeCount *int `mandatory:"false" json:"nodeCount"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

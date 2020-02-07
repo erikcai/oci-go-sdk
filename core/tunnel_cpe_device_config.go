@@ -16,7 +16,15 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TunnelCpeDeviceConfig the parameters of each tunnel's CPE device configuration that stored by customer
+// TunnelCpeDeviceConfig The set of CPE configuration answers for the tunnel, which the customer provides in
+// UpdateTunnelCpeDeviceConfig.
+// The answers correlate to the questions that are specific to the CPE device type (see the
+// `parameters` attribute of CpeDeviceShapeDetail).
+// See these related operations:
+//   * GetTunnelCpeDeviceConfig
+//   * GetTunnelCpeDeviceConfigContent
+//   * GetIpsecCpeDeviceConfigContent
+//   * GetCpeDeviceConfigContent
 type TunnelCpeDeviceConfig struct {
 	TunnelCpeDeviceConfigParameter []CpeDeviceConfigAnswer `mandatory:"false" json:"tunnelCpeDeviceConfigParameter"`
 }

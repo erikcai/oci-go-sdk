@@ -16,10 +16,16 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CpeDeviceConfigAnswer the key and value pairs of tunnel's CPE Device config
+// CpeDeviceConfigAnswer An individual answer to a CPE device question.
+// The answers correlate to the questions that are specific to the CPE device type (see the
+// `parameters` attribute of CpeDeviceShapeDetail).
 type CpeDeviceConfigAnswer struct {
+
+	// A string that identifies the question to be answered. See the `key` attribute in
+	// CpeDeviceConfigQuestion.
 	Key *string `mandatory:"false" json:"key"`
 
+	// The answer to the question.
 	Value *string `mandatory:"false" json:"value"`
 }
 

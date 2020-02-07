@@ -16,12 +16,18 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CpeDeviceConfigQuestion questions and descriptions
+// CpeDeviceConfigQuestion An individual question that the customer can answer about the CPE device.
+// The customer provides answers to these questions in
+// UpdateTunnelCpeDeviceConfig.
 type CpeDeviceConfigQuestion struct {
+
+	// A string that identifies the question.
 	Key *string `mandatory:"false" json:"key"`
 
+	// A descriptive label for the question (for example, to display in a form in a graphical interface).
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// A description or explanation of the question, to help the customer answer accurately.
 	Explanation *string `mandatory:"false" json:"explanation"`
 }
 

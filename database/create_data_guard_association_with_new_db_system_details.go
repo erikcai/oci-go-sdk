@@ -13,8 +13,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateDataGuardAssociationWithNewDbSystemDetails The configuration details for creating a Data Guard association for a bare metal DB system or virtual machine DB system database. A new DB system will be launched to create the standby database.
-// **NOTE** - You must use this subtype to create a Data Guard association for a database in a virtual machine DB system.
+// CreateDataGuardAssociationWithNewDbSystemDetails The configuration details for creating a Data Guard association for a virtual machine DB system database. For this type of DB system database, the `creationType` should be `NewDbSystem`. A new DB system will be launched to create the standby database.
+// To create a Data Guard association for a database in a bare metal or Exadata DB system, use the CreateDataGuardAssociationToExistingDbSystemDetails subtype instead.
 type CreateDataGuardAssociationWithNewDbSystemDetails struct {
 
 	// A strong password for the `SYS`, `SYSTEM`, and `PDB Admin` users to apply during standby creation.
@@ -32,8 +32,8 @@ type CreateDataGuardAssociationWithNewDbSystemDetails struct {
 	// The name of the availability domain that the standby database DB system will be located in. For example- "Uocm:PHX-AD-1".
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
-	// The shape of the DB system to launch to set up the Data Guard association. The shape determines the number of CPU cores and the amount of memory available for the DB system.
-	// Only virtual machine shapes are valid shapes. If you do not supply this parameter, the default shape is the shape of the primary DB system.
+	// The virtual machine DB system shape to launch for the standby database in the Data Guard association. The shape determines the number of CPU cores and the amount of memory available for the DB system.
+	// Only virtual machine shapes are valid options. If you do not supply this parameter, the default shape is the shape of the primary DB system.
 	// To get a list of all shapes, use the ListDbSystemShapes operation.
 	Shape *string `mandatory:"false" json:"shape"`
 

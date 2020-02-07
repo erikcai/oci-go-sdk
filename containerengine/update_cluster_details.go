@@ -22,6 +22,9 @@ type UpdateClusterDetails struct {
 
 	// The version of Kubernetes to which the cluster masters should be upgraded.
 	KubernetesVersion *string `mandatory:"false" json:"kubernetesVersion"`
+
+	// Configurable cluster admission controllers
+	AdmissionControllerOptions *AdmissionControllerOptions `mandatory:"false" json:"admissionControllerOptions"`
 }
 
 func (m UpdateClusterDetails) String() string {

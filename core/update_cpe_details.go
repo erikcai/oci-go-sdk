@@ -33,7 +33,15 @@ type UpdateCpeDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// The CPE device type's unique identifier.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device type. You can provide
+	// a value if you want to generate CPE device configuration content for IPSec connections
+	// that use this CPE. For a list of possible values, see
+	// ListCpeDeviceShapes.
+	// For more information about generating CPE device configuration content, see:
+	//   * GetCpeDeviceConfigContent
+	//   * GetIpsecCpeDeviceConfigContent
+	//   * GetTunnelCpeDeviceConfigContent
+	//   * GetTunnelCpeDeviceConfig
 	CpeDeviceShapeId *string `mandatory:"false" json:"cpeDeviceShapeId"`
 }
 

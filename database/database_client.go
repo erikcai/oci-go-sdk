@@ -2847,6 +2847,48 @@ func (client DatabaseClient) getDbSystemPatchHistoryEntry(ctx context.Context, r
 	return response, err
 }
 
+// GetDbVersion Gets the details of the specified database version.
+func (client DatabaseClient) GetDbVersion(ctx context.Context, request GetDbVersionRequest) (response GetDbVersionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getDbVersion, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetDbVersionResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetDbVersionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetDbVersionResponse")
+	}
+	return
+}
+
+// getDbVersion implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getDbVersion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dbVersions/{dbVersionId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetDbVersionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetExadataInfrastructure Gets information about the specified Exadata infrastructure.
 func (client DatabaseClient) GetExadataInfrastructure(ctx context.Context, request GetExadataInfrastructureRequest) (response GetExadataInfrastructureResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3274,11 +3316,12 @@ func (client DatabaseClient) launchAutonomousExadataInfrastructure(ctx context.C
 	return response, err
 }
 
-// LaunchDbSystem Launches a new DB system in the specified compartment and availability domain. The Oracle
+// LaunchDbSystem Creates a new DB system in the specified compartment and availability domain. The Oracle
 // Database edition that you specify applies to all the databases on that DB system. The selected edition cannot be changed.
 // An initial database is created on the DB system based on the request parameters you provide and some default
-// options. For more information,
-// see Default Options for the Initial Database (https://docs.cloud.oracle.com/Content/Database/Tasks/launchingDB.htm#DefaultOptionsfortheInitialDatabase).
+// options. For detailed information about default options, see the following:
+// - Bare metal and virtual machine DB system default options (https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)
+// - Exadata DB system default options (https://docs.cloud.oracle.com/Content/Database/Tasks/exacreatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)
 func (client DatabaseClient) LaunchDbSystem(ctx context.Context, request LaunchDbSystemRequest) (response LaunchDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

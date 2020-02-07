@@ -22,15 +22,6 @@ import (
 // Virtual Network Interface Cards (VNICs) (https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
 type CreateVnicDetails struct {
 
-	// The OCID of the subnet to create the VNIC in. When launching an instance,
-	// use this `subnetId` instead of the deprecated `subnetId` in
-	// LaunchInstanceDetails.
-	// Alternatively, the `vlanId` can be used instead of a `subnetId`.
-	// At least one `subnetId` value is required if this field is populated; if
-	// you provide both, the values must match. If both the `vlanId` and `subnetId`
-	// fields are provided, the launch will fail.
-	SubnetId *string `mandatory:"true" json:"subnetId"`
-
 	// Whether the VNIC should be assigned a public IP address. Defaults to whether
 	// the subnet is public or private. If not set and the VNIC is being created
 	// in a private subnet (that is, where `prohibitPublicIpOnVnic` = true in the
@@ -105,6 +96,21 @@ type CreateVnicDetails struct {
 	// Using a Private IP as a Route Target (https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
 	// Example: `true`
 	SkipSourceDestCheck *bool `mandatory:"false" json:"skipSourceDestCheck"`
+
+	// The OCID of the subnet to create the VNIC in. When launching an instance,
+	// use this `subnetId` instead of the deprecated `subnetId` in
+	// LaunchInstanceDetails.
+	// Alternatively, the `vlanId` can be used instead of a `subnetId`.
+	// At least one `subnetId` value is required if this field is populated; if
+	// you provide both, the values must match. If both the `vlanId` and `subnetId`
+	// fields are provided, the launch will fail.
+	SubnetId *string `mandatory:"false" json:"subnetId"`
+
+	// The OCID of the Oracle VLAN to create the VNIC in. This field is only supported
+	// on a secondary vnic, supplying in a primary vnic is invalid. When launching an
+	// instance, use either this `vlanId` or the alternate `subnetId`. At most one of
+	// `vlanId` or `subnetId` is required; if you provide both, the launch will fail.
+	VlanId *string `mandatory:"false" json:"vlanId"`
 }
 
 func (m CreateVnicDetails) String() string {

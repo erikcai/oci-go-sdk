@@ -46,9 +46,6 @@ type Vnic struct {
 	// The current state of the VNIC.
 	LifecycleState VnicLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The OCID of the subnet the VNIC is in.
-	SubnetId *string `mandatory:"true" json:"subnetId"`
-
 	// The date and time the VNIC was created, in the format defined by RFC3339.
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
@@ -91,6 +88,9 @@ type Vnic struct {
 	// NetworkSecurityGroup.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
 
+	// The OCID of the VNIC's VLAN.
+	VlanId *string `mandatory:"false" json:"vlanId"`
+
 	// The private IP address of the primary `privateIp` object on the VNIC.
 	// The address is within the CIDR of the VNIC's subnet.
 	// Example: `10.0.3.3`
@@ -105,6 +105,9 @@ type Vnic struct {
 	// Using a Private IP as a Route Target (https://docs.cloud.oracle.com/Content/Network/Tasks/managingroutetables.htm#privateip).
 	// Example: `true`
 	SkipSourceDestCheck *bool `mandatory:"false" json:"skipSourceDestCheck"`
+
+	// The OCID of the subnet the VNIC is in.
+	SubnetId *string `mandatory:"false" json:"subnetId"`
 }
 
 func (m Vnic) String() string {

@@ -16,19 +16,30 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CpeDeviceShapeDetail The representation of CpeDeviceShapeDetail
+// CpeDeviceShapeDetail The detailed information about a particular CPE device type. Compare with
+// CpeDeviceShapeSummary.
 type CpeDeviceShapeDetail struct {
 
-	// The CPE device type's unique identifier.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device shape.
+	// This value uniquely identifies the type of CPE device.
 	CpeDeviceShapeId *string `mandatory:"false" json:"cpeDeviceShapeId"`
 
-	// customer premise equipment hardware information
+	// Basic information about this particular CPE device type.
 	CpeDeviceInfo *CpeDeviceInfo `mandatory:"false" json:"cpeDeviceInfo"`
 
-	// list of questions to ask to cusomter regarding their cpe device in order to generate their cpe device config
+	// For certain CPE devices types, the customer can provide answers to
+	// questions that are specific to the device type. This attribute contains
+	// a list of those questions. The Networking service merges the answers with
+	// other information and renders a set of CPE configuration content. To
+	// provide the answers, use
+	// UpdateTunnelCpeDeviceConfig.
 	Parameters []CpeDeviceConfigQuestion `mandatory:"false" json:"parameters"`
 
-	// the template that will be combined together with customer input to render customer cpe device configuration
+	// A template of CPE device configuration information that will be merged with the customer's
+	// answers to the questions to render the final CPE device configuration content. Also see:
+	//   * GetCpeDeviceConfigContent
+	//   * GetIpsecCpeDeviceConfigContent
+	//   * GetTunnelCpeDeviceConfigContent
 	Template *string `mandatory:"false" json:"template"`
 }
 

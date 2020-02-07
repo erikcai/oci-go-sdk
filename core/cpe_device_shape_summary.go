@@ -16,12 +16,15 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CpeDeviceShapeSummary Customer premise equipment's hardware information including platform/vendor and its version
+// CpeDeviceShapeSummary A summary of information about a particular CPE device type. Compare with
+// CpeDeviceShapeDetail.
 type CpeDeviceShapeSummary struct {
 
-	// The CPE device type's unique identifier.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE device shape.
+	// This value uniquely identifies the type of CPE device.
 	Id *string `mandatory:"false" json:"id"`
 
+	// Basic information about this particular CPE device type.
 	CpeDeviceInfo *CpeDeviceInfo `mandatory:"false" json:"cpeDeviceInfo"`
 }
 

@@ -16,13 +16,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CpeDeviceInfo The representation of CpeDeviceInfo
+// CpeDeviceInfo Basic information about a particular CPE device type.
 type CpeDeviceInfo struct {
 
-	// The CPE's hardware information
+	// The vendor that makes the CPE device.
 	Vendor *string `mandatory:"false" json:"vendor"`
 
-	// The CPE's vendor/platform version
+	// The platform or software version of the CPE device.
 	PlatformSoftwareVersion *string `mandatory:"false" json:"platformSoftwareVersion"`
 }
 

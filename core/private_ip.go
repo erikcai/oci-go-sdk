@@ -90,6 +90,9 @@ type PrivateIp struct {
 	// Example: `true`
 	IsPrimary *bool `mandatory:"false" json:"isPrimary"`
 
+	// The OCID of the VNIC's VLAN.
+	VlanId *string `mandatory:"false" json:"vlanId"`
+
 	// The OCID of the subnet the VNIC is in.
 	SubnetId *string `mandatory:"false" json:"subnetId"`
 

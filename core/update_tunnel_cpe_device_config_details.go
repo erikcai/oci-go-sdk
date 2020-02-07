@@ -19,7 +19,7 @@ import (
 // UpdateTunnelCpeDeviceConfigDetails The representation of UpdateTunnelCpeDeviceConfigDetails
 type UpdateTunnelCpeDeviceConfigDetails struct {
 
-	// The key and value pairs of tunnel's CPE device configuration.
+	// The set of configuration answers for a CPE device.
 	TunnelCpeDeviceConfig []CpeDeviceConfigAnswer `mandatory:"false" json:"tunnelCpeDeviceConfig"`
 }
 
