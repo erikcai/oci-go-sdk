@@ -138,7 +138,7 @@ type AutonomousDatabase struct {
 	// The date and time when maintenance will end.
 	TimeMaintenanceEnd *common.SDKTime `mandatory:"false" json:"timeMaintenanceEnd"`
 
-	// Indicates if this is a Refreashable Clone.
+	// Indicates whether the Autonomous Database is a refreshable clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 
 	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
@@ -150,10 +150,16 @@ type AutonomousDatabase struct {
 	// The Database Open mode type.
 	OpenMode AutonomousDatabaseOpenModeEnum `mandatory:"false" json:"openMode,omitempty"`
 
+	// The refresh status of the clone. REFRESHING indicates that the clone is currently being refreshed with data from the source Autonomous Database.
+	RefreshableStatus AutonomousDatabaseRefreshableStatusEnum `mandatory:"false" json:"refreshableStatus,omitempty"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that was cloned to create the current Autonomous Database.
+	SourceId *string `mandatory:"false" json:"sourceId"`
+
 	// Indicates if the database is in original pod or failover pod.
 	IsFailedOver *bool `mandatory:"false" json:"isFailedOver"`
 
-	// The Autonomous Database Availability Type.
+	// The Autonomous Database availability type. EXTREME_AVAILABILITY indicates that the Autonomous Database has a peer standby database for disaster recovery.
 	DbAvailabilityType AutonomousDatabaseDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
 
 	StandbyDb *AutonomousDatabaseStandbySummary `mandatory:"false" json:"standbyDb"`
@@ -309,6 +315,27 @@ var mappingAutonomousDatabaseOpenMode = map[string]AutonomousDatabaseOpenModeEnu
 func GetAutonomousDatabaseOpenModeEnumValues() []AutonomousDatabaseOpenModeEnum {
 	values := make([]AutonomousDatabaseOpenModeEnum, 0)
 	for _, v := range mappingAutonomousDatabaseOpenMode {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabaseRefreshableStatusEnum Enum with underlying type: string
+type AutonomousDatabaseRefreshableStatusEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabaseRefreshableStatusEnum
+const (
+	AutonomousDatabaseRefreshableStatusRefreshing AutonomousDatabaseRefreshableStatusEnum = "REFRESHING"
+)
+
+var mappingAutonomousDatabaseRefreshableStatus = map[string]AutonomousDatabaseRefreshableStatusEnum{
+	"REFRESHING": AutonomousDatabaseRefreshableStatusRefreshing,
+}
+
+// GetAutonomousDatabaseRefreshableStatusEnumValues Enumerates the set of values for AutonomousDatabaseRefreshableStatusEnum
+func GetAutonomousDatabaseRefreshableStatusEnumValues() []AutonomousDatabaseRefreshableStatusEnum {
+	values := make([]AutonomousDatabaseRefreshableStatusEnum, 0)
+	for _, v := range mappingAutonomousDatabaseRefreshableStatus {
 		values = append(values, v)
 	}
 	return values

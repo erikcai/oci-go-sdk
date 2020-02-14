@@ -37,7 +37,7 @@ type ExadataInfrastructureSummary struct {
 	CpusEnabled *int `mandatory:"false" json:"cpusEnabled"`
 
 	// Size, in terabytes, of the DATA disk group.
-	DataStorageSizeInTBs *int `mandatory:"false" json:"dataStorageSizeInTBs"`
+	DataStorageSizeInTBs *float64 `mandatory:"false" json:"dataStorageSizeInTBs"`
 
 	// The IP address for the first control plane server.
 	CloudControlPlaneServer1 *string `mandatory:"false" json:"cloudControlPlaneServer1"`
@@ -100,7 +100,7 @@ const (
 	ExadataInfrastructureSummaryLifecycleStateUpdating           ExadataInfrastructureSummaryLifecycleStateEnum = "UPDATING"
 	ExadataInfrastructureSummaryLifecycleStateDeleting           ExadataInfrastructureSummaryLifecycleStateEnum = "DELETING"
 	ExadataInfrastructureSummaryLifecycleStateDeleted            ExadataInfrastructureSummaryLifecycleStateEnum = "DELETED"
-	ExadataInfrastructureSummaryLifecycleStateOffline            ExadataInfrastructureSummaryLifecycleStateEnum = "OFFLINE"
+	ExadataInfrastructureSummaryLifecycleStateDisconnected       ExadataInfrastructureSummaryLifecycleStateEnum = "DISCONNECTED"
 )
 
 var mappingExadataInfrastructureSummaryLifecycleState = map[string]ExadataInfrastructureSummaryLifecycleStateEnum{
@@ -113,7 +113,7 @@ var mappingExadataInfrastructureSummaryLifecycleState = map[string]ExadataInfras
 	"UPDATING":            ExadataInfrastructureSummaryLifecycleStateUpdating,
 	"DELETING":            ExadataInfrastructureSummaryLifecycleStateDeleting,
 	"DELETED":             ExadataInfrastructureSummaryLifecycleStateDeleted,
-	"OFFLINE":             ExadataInfrastructureSummaryLifecycleStateOffline,
+	"DISCONNECTED":        ExadataInfrastructureSummaryLifecycleStateDisconnected,
 }
 
 // GetExadataInfrastructureSummaryLifecycleStateEnumValues Enumerates the set of values for ExadataInfrastructureSummaryLifecycleStateEnum

@@ -45,6 +45,13 @@ type KeySummary struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Protection mode indicates how the key is persisted and how cryptographic operations are performed using the same.
+	// Using 'HSM' indicates that the key is persisted in the 'HSM' and all cryptographic operations are performed inside
+	// the 'HSM'. Using 'SOFTWARE' indicates that the key is securely persisted in the service layer with the root key persisted
+	// in the 'HSM' and all operations using these keys are performed at the service layer. Default protection mode is 'HSM'.
+	// Once a protection mode has been selected, it cannot be modified.
+	ProtectionMode KeySummaryProtectionModeEnum `mandatory:"false" json:"protectionMode,omitempty"`
 }
 
 func (m KeySummary) String() string {
@@ -91,6 +98,29 @@ var mappingKeySummaryLifecycleState = map[string]KeySummaryLifecycleStateEnum{
 func GetKeySummaryLifecycleStateEnumValues() []KeySummaryLifecycleStateEnum {
 	values := make([]KeySummaryLifecycleStateEnum, 0)
 	for _, v := range mappingKeySummaryLifecycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// KeySummaryProtectionModeEnum Enum with underlying type: string
+type KeySummaryProtectionModeEnum string
+
+// Set of constants representing the allowable values for KeySummaryProtectionModeEnum
+const (
+	KeySummaryProtectionModeHsm      KeySummaryProtectionModeEnum = "HSM"
+	KeySummaryProtectionModeSoftware KeySummaryProtectionModeEnum = "SOFTWARE"
+)
+
+var mappingKeySummaryProtectionMode = map[string]KeySummaryProtectionModeEnum{
+	"HSM":      KeySummaryProtectionModeHsm,
+	"SOFTWARE": KeySummaryProtectionModeSoftware,
+}
+
+// GetKeySummaryProtectionModeEnumValues Enumerates the set of values for KeySummaryProtectionModeEnum
+func GetKeySummaryProtectionModeEnumValues() []KeySummaryProtectionModeEnum {
+	values := make([]KeySummaryProtectionModeEnum, 0)
+	for _, v := range mappingKeySummaryProtectionMode {
 		values = append(values, v)
 	}
 	return values

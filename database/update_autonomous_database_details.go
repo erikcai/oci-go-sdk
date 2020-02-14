@@ -66,10 +66,10 @@ type UpdateAutonomousDatabaseDetails struct {
 	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
 	LagTimeInSeconds *int `mandatory:"false" json:"lagTimeInSeconds"`
 
-	// Indicates if this is a Refreashable Clone.
+	// Indicates whether the Autonomous Database is a refreshable clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 
-	// The Autonomous Database Availability Type.
+	// The Autonomous Database availability type. EXTREME_AVAILABILITY indicates that the Autonomous Database has a peer standby database for disaster recovery.
 	DbAvailabilityType UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
 }
 

@@ -53,6 +53,13 @@ type Key struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// Protection mode indicates how the key is persisted and how cryptographic operations are performed using the same.
+	// Using 'HSM' indicates that the key is persisted in the 'HSM' and all cryptographic operations are performed inside
+	// the 'HSM'. Using 'SOFTWARE' indicates that the key is securely persisted in the service layer with the root key persisted
+	// in the 'HSM' and all operations using these keys are performed at the service layer. Default protection mode is 'HSM'.
+	// Once a protection mode has been selected, it cannot be modified.
+	ProtectionMode KeyProtectionModeEnum `mandatory:"false" json:"protectionMode,omitempty"`
+
 	// An optional property indicating when to delete the key, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
 	// Example: `2019-04-03T21:10:29.600Z`
 	TimeOfDeletion *common.SDKTime `mandatory:"false" json:"timeOfDeletion"`
@@ -63,6 +70,29 @@ type Key struct {
 
 func (m Key) String() string {
 	return common.PointerString(m)
+}
+
+// KeyProtectionModeEnum Enum with underlying type: string
+type KeyProtectionModeEnum string
+
+// Set of constants representing the allowable values for KeyProtectionModeEnum
+const (
+	KeyProtectionModeHsm      KeyProtectionModeEnum = "HSM"
+	KeyProtectionModeSoftware KeyProtectionModeEnum = "SOFTWARE"
+)
+
+var mappingKeyProtectionMode = map[string]KeyProtectionModeEnum{
+	"HSM":      KeyProtectionModeHsm,
+	"SOFTWARE": KeyProtectionModeSoftware,
+}
+
+// GetKeyProtectionModeEnumValues Enumerates the set of values for KeyProtectionModeEnum
+func GetKeyProtectionModeEnumValues() []KeyProtectionModeEnum {
+	values := make([]KeyProtectionModeEnum, 0)
+	for _, v := range mappingKeyProtectionMode {
+		values = append(values, v)
+	}
+	return values
 }
 
 // KeyLifecycleStateEnum Enum with underlying type: string

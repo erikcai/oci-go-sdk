@@ -556,7 +556,8 @@ func (client KmsManagementClient) getKeyVersion(ctx context.Context, request com
 	return response, err
 }
 
-// GetWrappingKey Returns the RSA wrapping key associated with the vault in the endpoint.
+// GetWrappingKey Gets details about the public RSA wrapping key associated with the vault in the endpoint. Each vault has an RSA key-pair that wraps and
+// unwraps AES key material for import into Key Management.
 func (client KmsManagementClient) GetWrappingKey(ctx context.Context, request GetWrappingKeyRequest) (response GetWrappingKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -598,7 +599,9 @@ func (client KmsManagementClient) getWrappingKey(ctx context.Context, request co
 	return response, err
 }
 
-// ImportKey Imports the given wrapped/encrypted AES key.
+// ImportKey Imports AES key material to create a new key with. The key material must be base64-encoded and
+// wrapped by the vault's public RSA wrapping key before you can import it. Key Management supports AES symmetric keys
+// that are exactly 16, 24, or 32 bytes. Furthermore, the key length must match what you specify at the time of import.
 func (client KmsManagementClient) ImportKey(ctx context.Context, request ImportKeyRequest) (response ImportKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -645,7 +648,11 @@ func (client KmsManagementClient) importKey(ctx context.Context, request common.
 	return response, err
 }
 
-// ImportKeyVersion Imports the given key version.
+// ImportKeyVersion Imports AES key material to create a new key version with, and then rotates the key to begin using the new
+// key version. The key material must be base64-encoded and wrapped by the vault's public RSA wrapping key
+// before you can import it. Key Management supports AES symmetric keys that are exactly 16, 24, or 32 bytes.
+// Furthermore, the key length must match the length of the specified key and what you specify as the length
+// at the time of import.
 func (client KmsManagementClient) ImportKeyVersion(ctx context.Context, request ImportKeyVersionRequest) (response ImportKeyVersionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

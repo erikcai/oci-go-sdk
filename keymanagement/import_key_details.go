@@ -34,8 +34,38 @@ type ImportKeyDetails struct {
 	// Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Protection mode indicates how the key is persisted and how cryptographic operations are performed using the same.
+	// Using 'HSM' indicates that the key is persisted in the 'HSM' and all cryptographic operations are performed inside
+	// the 'HSM'. Using 'SOFTWARE' indicates that the key is securely persisted in the service layer with the root key persisted
+	// in the 'HSM' and all operations using these keys are performed at the service layer. Default protection mode is 'HSM'.
+	// Once a protection mode has been selected, it cannot be modified.
+	ProtectionMode ImportKeyDetailsProtectionModeEnum `mandatory:"false" json:"protectionMode,omitempty"`
 }
 
 func (m ImportKeyDetails) String() string {
 	return common.PointerString(m)
+}
+
+// ImportKeyDetailsProtectionModeEnum Enum with underlying type: string
+type ImportKeyDetailsProtectionModeEnum string
+
+// Set of constants representing the allowable values for ImportKeyDetailsProtectionModeEnum
+const (
+	ImportKeyDetailsProtectionModeHsm      ImportKeyDetailsProtectionModeEnum = "HSM"
+	ImportKeyDetailsProtectionModeSoftware ImportKeyDetailsProtectionModeEnum = "SOFTWARE"
+)
+
+var mappingImportKeyDetailsProtectionMode = map[string]ImportKeyDetailsProtectionModeEnum{
+	"HSM":      ImportKeyDetailsProtectionModeHsm,
+	"SOFTWARE": ImportKeyDetailsProtectionModeSoftware,
+}
+
+// GetImportKeyDetailsProtectionModeEnumValues Enumerates the set of values for ImportKeyDetailsProtectionModeEnum
+func GetImportKeyDetailsProtectionModeEnumValues() []ImportKeyDetailsProtectionModeEnum {
+	values := make([]ImportKeyDetailsProtectionModeEnum, 0)
+	for _, v := range mappingImportKeyDetailsProtectionMode {
+		values = append(values, v)
+	}
+	return values
 }

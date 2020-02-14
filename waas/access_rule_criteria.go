@@ -16,10 +16,8 @@ import (
 type AccessRuleCriteria struct {
 
 	// The criteria the access rule and JavaScript Challenge uses to determine if action should be taken on a request.
-	// - **URL_IS:** Matches if the concatenation of request URL path and query is identical to one of contents of the `value` field. URL must start with a `/`. The `value` in this case is string with one or multiple paths separated by new line symbol \n
-	// *Example:* "/url1\n/url2"
-	// - **URL_IS_NOT:** Matches if the concatenation of request URL path and query is not identical to any of the contents of the `value` field. URL must start with a `/`. The `value` in this case is string with one or multiple paths separated by new line symbol \n
-	// *Example:* "/url1\n/url2"
+	// - **URL_IS:** Matches if the concatenation of request URL path and query is identical to the contents of the `value` field. URL must start with a `/`.
+	// - **URL_IS_NOT:** Matches if the concatenation of request URL path and query is not identical to the contents of the `value` field. URL must start with a `/`.
 	// - **URL_STARTS_WITH:** Matches if the concatenation of request URL path and query starts with the contents of the `value` field. URL must start with a `/`.
 	// - **URL_PART_ENDS_WITH:** Matches if the concatenation of request URL path and query ends with the contents of the `value` field.
 	// - **URL_PART_CONTAINS:** Matches if the concatenation of request URL path and query contains the contents of the `value` field.

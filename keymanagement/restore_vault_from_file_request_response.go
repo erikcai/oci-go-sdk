@@ -16,7 +16,7 @@ type RestoreVaultFromFileRequest struct {
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// The content length of the body.
-	ContentLength *int64 `mandatory:"true" contributesTo:"header" name:"Content-Length"`
+	ContentLength *int64 `mandatory:"true" contributesTo:"header" name:"content-length"`
 
 	// The encrypted payload to upload to restore the vault.
 	RestoreVaultFromFileDetails io.ReadCloser `mandatory:"true" contributesTo:"body" encoding:"binary"`
@@ -32,7 +32,7 @@ type RestoreVaultFromFileRequest struct {
 	// If the Content-MD5 header is present, KMS server will performs an integrity check on the body of the HTTP request by computing the MD5
 	// hash for the body and comparing it to the MD5 hash supplied in the header. If the two hashes do not match, the object is rejected and
 	// an HTTP-400 Unmatched Content MD5 error is returned with the message: "The computed MD5 of the request body (ACTUAL_MD5) does not match the Content-MD5 header (HEADER_MD5)"
-	ContentMD5 *string `mandatory:"false" contributesTo:"header" name:"Content-MD5"`
+	ContentMd5 *string `mandatory:"false" contributesTo:"header" name:"content-md5"`
 
 	// Unique identifier for the request. If provided, the returned request ID
 	// will include this value. Otherwise, a random request ID will be

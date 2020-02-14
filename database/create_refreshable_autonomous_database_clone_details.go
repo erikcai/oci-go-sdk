@@ -100,7 +100,7 @@ type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 	// Autonomous Exadata Infrastructure level. When using shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.
 	LicenseModel CreateAutonomousDatabaseBaseLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 
-	// The Autonomous Database Availability Type.
+	// The Autonomous Database availability type. EXTREME_AVAILABILITY indicates that the Autonomous Database has a peer standby database for disaster recovery.
 	DbAvailabilityType CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
 }
 

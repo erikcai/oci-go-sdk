@@ -35,7 +35,9 @@ type KeyVersion struct {
 	// Example: `ENABLED`
 	LifecycleState KeyVersionLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The source of the key material. When this value is INTERNAL, OCI KMS created the key material. When this value is EXTERNAL, the key material was imported
+	// The source of the key material. When this value is INTERNAL, Key Management
+	// created the key material. When this value is EXTERNAL, the key material
+	// was imported from an external source.
 	Origin KeyVersionOriginEnum `mandatory:"false" json:"origin,omitempty"`
 
 	// An optional property indicating when to delete the key version, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.

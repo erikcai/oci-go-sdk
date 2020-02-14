@@ -33,8 +33,38 @@ type CreateKeyDetails struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Protection mode indicates how the key is persisted and how cryptographic operations are performed using the same.
+	// Using 'HSM' indicates that the key is persisted in the 'HSM' and all cryptographic operations are performed inside
+	// the 'HSM'. Using 'SOFTWARE' indicates that the key is securely persisted in the service layer with the root key persisted
+	// in the 'HSM' and all operations using these keys are performed at the service layer. Default protection mode is 'HSM'.
+	// Once a protection mode has been selected, it cannot be modified.
+	ProtectionMode CreateKeyDetailsProtectionModeEnum `mandatory:"false" json:"protectionMode,omitempty"`
 }
 
 func (m CreateKeyDetails) String() string {
 	return common.PointerString(m)
+}
+
+// CreateKeyDetailsProtectionModeEnum Enum with underlying type: string
+type CreateKeyDetailsProtectionModeEnum string
+
+// Set of constants representing the allowable values for CreateKeyDetailsProtectionModeEnum
+const (
+	CreateKeyDetailsProtectionModeHsm      CreateKeyDetailsProtectionModeEnum = "HSM"
+	CreateKeyDetailsProtectionModeSoftware CreateKeyDetailsProtectionModeEnum = "SOFTWARE"
+)
+
+var mappingCreateKeyDetailsProtectionMode = map[string]CreateKeyDetailsProtectionModeEnum{
+	"HSM":      CreateKeyDetailsProtectionModeHsm,
+	"SOFTWARE": CreateKeyDetailsProtectionModeSoftware,
+}
+
+// GetCreateKeyDetailsProtectionModeEnumValues Enumerates the set of values for CreateKeyDetailsProtectionModeEnum
+func GetCreateKeyDetailsProtectionModeEnumValues() []CreateKeyDetailsProtectionModeEnum {
+	values := make([]CreateKeyDetailsProtectionModeEnum, 0)
+	for _, v := range mappingCreateKeyDetailsProtectionMode {
+		values = append(values, v)
+	}
+	return values
 }

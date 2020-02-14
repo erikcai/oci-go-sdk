@@ -37,7 +37,7 @@ type ExadataInfrastructure struct {
 	CpusEnabled *int `mandatory:"false" json:"cpusEnabled"`
 
 	// Size, in terabytes, of the DATA disk group.
-	DataStorageSizeInTBs *int `mandatory:"false" json:"dataStorageSizeInTBs"`
+	DataStorageSizeInTBs *float64 `mandatory:"false" json:"dataStorageSizeInTBs"`
 
 	// The IP address for the first control plane server.
 	CloudControlPlaneServer1 *string `mandatory:"false" json:"cloudControlPlaneServer1"`
@@ -100,7 +100,7 @@ const (
 	ExadataInfrastructureLifecycleStateUpdating           ExadataInfrastructureLifecycleStateEnum = "UPDATING"
 	ExadataInfrastructureLifecycleStateDeleting           ExadataInfrastructureLifecycleStateEnum = "DELETING"
 	ExadataInfrastructureLifecycleStateDeleted            ExadataInfrastructureLifecycleStateEnum = "DELETED"
-	ExadataInfrastructureLifecycleStateOffline            ExadataInfrastructureLifecycleStateEnum = "OFFLINE"
+	ExadataInfrastructureLifecycleStateDisconnected       ExadataInfrastructureLifecycleStateEnum = "DISCONNECTED"
 )
 
 var mappingExadataInfrastructureLifecycleState = map[string]ExadataInfrastructureLifecycleStateEnum{
@@ -113,7 +113,7 @@ var mappingExadataInfrastructureLifecycleState = map[string]ExadataInfrastructur
 	"UPDATING":            ExadataInfrastructureLifecycleStateUpdating,
 	"DELETING":            ExadataInfrastructureLifecycleStateDeleting,
 	"DELETED":             ExadataInfrastructureLifecycleStateDeleted,
-	"OFFLINE":             ExadataInfrastructureLifecycleStateOffline,
+	"DISCONNECTED":        ExadataInfrastructureLifecycleStateDisconnected,
 }
 
 // GetExadataInfrastructureLifecycleStateEnumValues Enumerates the set of values for ExadataInfrastructureLifecycleStateEnum

@@ -136,6 +136,48 @@ func (client KmsCryptoClient) encrypt(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
+// ExportKey Exports a specific key version of a key, encrypted using a supplied public key.
+func (client KmsCryptoClient) ExportKey(ctx context.Context, request ExportKeyRequest) (response ExportKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.exportKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ExportKeyResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ExportKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ExportKeyResponse")
+	}
+	return
+}
+
+// exportKey implements the OCIOperation interface (enables retrying operations)
+func (client KmsCryptoClient) exportKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20180608/exportKey")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ExportKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GenerateDataEncryptionKey Generates a key that you can use to encrypt or decrypt data.
 func (client KmsCryptoClient) GenerateDataEncryptionKey(ctx context.Context, request GenerateDataEncryptionKeyRequest) (response GenerateDataEncryptionKeyResponse, err error) {
 	var ociResponse common.OCIResponse

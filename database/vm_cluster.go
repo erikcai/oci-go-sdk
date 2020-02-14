@@ -55,7 +55,7 @@ type VmCluster struct {
 	CpusEnabled *int `mandatory:"false" json:"cpusEnabled"`
 
 	// Size, in terabytes, of the DATA disk group.
-	DataStorageSizeInTBs *int `mandatory:"false" json:"dataStorageSizeInTBs"`
+	DataStorageSizeInTBs *float64 `mandatory:"false" json:"dataStorageSizeInTBs"`
 
 	// The shape of the Exadata infrastructure. The shape determines the amount of CPU, storage, and memory resources allocated to the instance.
 	Shape *string `mandatory:"false" json:"shape"`
