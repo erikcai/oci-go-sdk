@@ -46,7 +46,7 @@ type Vnic struct {
 	// The current state of the VNIC.
 	LifecycleState VnicLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The date and time the VNIC was created, in the format defined by RFC3339.
+	// The date and time the VNIC was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
@@ -80,7 +80,7 @@ type Vnic struct {
 	IsPrimary *bool `mandatory:"false" json:"isPrimary"`
 
 	// The MAC address of the VNIC.
-	// Example: `00:00:17:B6:4D:DD`
+	// Example: `00:00:00:00:00:01`
 	MacAddress *string `mandatory:"false" json:"macAddress"`
 
 	// A list of the OCIDs of the network security groups that the VNIC belongs to. For more

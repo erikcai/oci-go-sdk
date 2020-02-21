@@ -24,7 +24,7 @@ type CreateVlanDetails struct {
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
 	// The CIDR IP address range of the VLAN.
-	// Example: `172.16.1.0/24`
+	// Example: `192.0.2.0/24`
 	CidrBlock *string `mandatory:"true" json:"cidrBlock"`
 
 	// The OCID of the compartment to contain the VLAN.

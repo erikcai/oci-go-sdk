@@ -118,6 +118,7 @@ type AutonomousDatabase struct {
 	// The Autonomous Database workload type. The following values are valid:
 	// - OLTP - indicates an Autonomous Transaction Processing database
 	// - DW - indicates an Autonomous Data Warehouse database
+	// - AJD - indicates an Autonomous JSON Database
 	DbWorkload AutonomousDatabaseDbWorkloadEnum `mandatory:"false" json:"dbWorkload,omitempty"`
 
 	// The client IP access control list (ACL). This feature is available for databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
@@ -147,7 +148,7 @@ type AutonomousDatabase struct {
 	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
 	CurrentLagTimeInSeconds *int `mandatory:"false" json:"currentLagTimeInSeconds"`
 
-	// The Database Open mode type.
+	// The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
 	OpenMode AutonomousDatabaseOpenModeEnum `mandatory:"false" json:"openMode,omitempty"`
 
 	// The refresh status of the clone. REFRESHING indicates that the clone is currently being refreshed with data from the source Autonomous Database.
@@ -252,11 +253,13 @@ type AutonomousDatabaseDbWorkloadEnum string
 const (
 	AutonomousDatabaseDbWorkloadOltp AutonomousDatabaseDbWorkloadEnum = "OLTP"
 	AutonomousDatabaseDbWorkloadDw   AutonomousDatabaseDbWorkloadEnum = "DW"
+	AutonomousDatabaseDbWorkloadAjd  AutonomousDatabaseDbWorkloadEnum = "AJD"
 )
 
 var mappingAutonomousDatabaseDbWorkload = map[string]AutonomousDatabaseDbWorkloadEnum{
 	"OLTP": AutonomousDatabaseDbWorkloadOltp,
 	"DW":   AutonomousDatabaseDbWorkloadDw,
+	"AJD":  AutonomousDatabaseDbWorkloadAjd,
 }
 
 // GetAutonomousDatabaseDbWorkloadEnumValues Enumerates the set of values for AutonomousDatabaseDbWorkloadEnum

@@ -33,7 +33,7 @@ type VolumeBackupPolicy struct {
 	// The collection of schedules that this policy will apply.
 	Schedules []VolumeBackupSchedule `mandatory:"true" json:"schedules"`
 
-	// The date and time the volume backup policy was created. Format defined by RFC3339.
+	// The date and time the volume backup policy was created. Format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	// The OCID of the compartment that contains the volume backup.

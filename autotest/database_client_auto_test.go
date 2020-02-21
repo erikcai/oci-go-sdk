@@ -2817,50 +2817,6 @@ func TestDatabaseClientGetDbSystemPatchHistoryEntry(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientGetDbVersion(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "GetDbVersion")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetDbVersion is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "GetDbVersion", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "GetDbVersion")
-	assert.NoError(t, err)
-
-	type GetDbVersionRequestInfo struct {
-		ContainerId string
-		Request     database.GetDbVersionRequest
-	}
-
-	var requests []GetDbVersionRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetDbVersion(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientGetExadataInfrastructure(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -6037,50 +5993,6 @@ func TestDatabaseClientUpdateBackupDestination(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateBackupDestination(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientUpdateConsoleConnection(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "UpdateConsoleConnection")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("UpdateConsoleConnection is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "UpdateConsoleConnection", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "UpdateConsoleConnection")
-	assert.NoError(t, err)
-
-	type UpdateConsoleConnectionRequestInfo struct {
-		ContainerId string
-		Request     database.UpdateConsoleConnectionRequest
-	}
-
-	var requests []UpdateConsoleConnectionRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.UpdateConsoleConnection(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

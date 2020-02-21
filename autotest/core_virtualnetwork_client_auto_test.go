@@ -682,6 +682,50 @@ func TestVirtualNetworkClientChangeNetworkSecurityGroupCompartment(t *testing.T)
 	}
 }
 
+// IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
+func TestVirtualNetworkClientChangePrivateEndpointCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangePrivateEndpointCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangePrivateEndpointCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangePrivateEndpointCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangePrivateEndpointCompartment")
+	assert.NoError(t, err)
+
+	type ChangePrivateEndpointCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangePrivateEndpointCompartmentRequest
+	}
+
+	var requests []ChangePrivateEndpointCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangePrivateEndpointCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientChangePublicIpCompartment(t *testing.T) {
 	defer failTestOnPanic(t)

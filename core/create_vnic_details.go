@@ -100,6 +100,7 @@ type CreateVnicDetails struct {
 	// The OCID of the subnet to create the VNIC in. When launching an instance,
 	// use this `subnetId` instead of the deprecated `subnetId` in
 	// LaunchInstanceDetails.
+	// At least one of them is required; if you provide both, the values must match.
 	// Alternatively, the `vlanId` can be used instead of a `subnetId`.
 	// At least one `subnetId` value is required if this field is populated; if
 	// you provide both, the values must match. If both the `vlanId` and `subnetId`

@@ -775,6 +775,55 @@ func (client VirtualNetworkClient) changeNetworkSecurityGroupCompartment(ctx con
 	return response, err
 }
 
+// ChangePrivateEndpointCompartment Moves a private endpoint into a different compartment within the same tenancy. For information
+// about moving resources between compartments, see
+// Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+func (client VirtualNetworkClient) ChangePrivateEndpointCompartment(ctx context.Context, request ChangePrivateEndpointCompartmentRequest) (response ChangePrivateEndpointCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changePrivateEndpointCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangePrivateEndpointCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangePrivateEndpointCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangePrivateEndpointCompartmentResponse")
+	}
+	return
+}
+
+// changePrivateEndpointCompartment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) changePrivateEndpointCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/privateEndpoints/{privateEndpointId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangePrivateEndpointCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ChangePublicIpCompartment Moves a public IP into a different compartment within the same tenancy. For information
 // about moving resources between compartments, see
 // Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
@@ -5824,7 +5873,7 @@ func (client VirtualNetworkClient) getPrivateIp(ctx context.Context, request com
 
 // GetPublicIp Gets the specified public IP. You must specify the object's OCID.
 // Alternatively, you can get the object by using GetPublicIpByIpAddress
-// with the public IP address (for example, 129.146.2.1).
+// with the public IP address (for example, 203.0.113.2).
 // Or you can use GetPublicIpByPrivateIpId
 // with the OCID of the private IP that the public IP is assigned to.
 // **Note:** If you're fetching a reserved public IP that is in the process of being
@@ -5871,7 +5920,7 @@ func (client VirtualNetworkClient) getPublicIp(ctx context.Context, request comm
 	return response, err
 }
 
-// GetPublicIpByIpAddress Gets the public IP based on the public IP address (for example, 129.146.2.1).
+// GetPublicIpByIpAddress Gets the public IP based on the public IP address (for example, 203.0.113.2).
 // **Note:** If you're fetching a reserved public IP that is in the process of being
 // moved to a different private IP, the service returns the public IP object with
 // `lifecycleState` = ASSIGNING and `assignedEntityId` = OCID of the target private IP.

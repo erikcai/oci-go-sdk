@@ -25,7 +25,7 @@ import (
 type Vlan struct {
 
 	// The VLAN's CIDR block.
-	// Example: `172.16.1.0/24`
+	// Example: `192.168.1.0/24`
 	CidrBlock *string `mandatory:"true" json:"cidrBlock"`
 
 	// The OCID of the compartment containing the subnet.
@@ -70,7 +70,7 @@ type Vlan struct {
 	// The OCID of the route table that the subnet uses.
 	RouteTableId *string `mandatory:"false" json:"routeTableId"`
 
-	// The date and time the subnet was created, in the format defined by RFC3339.
+	// The date and time the subnet was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 }

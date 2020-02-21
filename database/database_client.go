@@ -2847,48 +2847,6 @@ func (client DatabaseClient) getDbSystemPatchHistoryEntry(ctx context.Context, r
 	return response, err
 }
 
-// GetDbVersion Gets the details of the specified database version.
-func (client DatabaseClient) GetDbVersion(ctx context.Context, request GetDbVersionRequest) (response GetDbVersionResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getDbVersion, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = GetDbVersionResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetDbVersionResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetDbVersionResponse")
-	}
-	return
-}
-
-// getDbVersion implements the OCIOperation interface (enables retrying operations)
-func (client DatabaseClient) getDbVersion(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dbVersions/{dbVersionId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetDbVersionResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // GetExadataInfrastructure Gets information about the specified Exadata infrastructure.
 func (client DatabaseClient) GetExadataInfrastructure(ctx context.Context, request GetExadataInfrastructureRequest) (response GetExadataInfrastructureResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -5635,48 +5593,6 @@ func (client DatabaseClient) updateBackupDestination(ctx context.Context, reques
 	}
 
 	var response UpdateBackupDestinationResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// UpdateConsoleConnection Updates the defined tags and free-form tags for the specified DbNode console connection.
-func (client DatabaseClient) UpdateConsoleConnection(ctx context.Context, request UpdateConsoleConnectionRequest) (response UpdateConsoleConnectionResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.updateConsoleConnection, policy)
-	if err != nil {
-		if ociResponse != nil {
-			response = UpdateConsoleConnectionResponse{RawResponse: ociResponse.HTTPResponse()}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(UpdateConsoleConnectionResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into UpdateConsoleConnectionResponse")
-	}
-	return
-}
-
-// updateConsoleConnection implements the OCIOperation interface (enables retrying operations)
-func (client DatabaseClient) updateConsoleConnection(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/dbNodes/{dbNodeId}/consoleConnections/{consoleConnectionId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response UpdateConsoleConnectionResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
