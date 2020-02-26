@@ -534,7 +534,6 @@ func TestCustomProfileClient_CreateWithConfig(t *testing.T) {
 	dataTpl := `[DEFAULT]
 tenancy=sometenancy
 [PROFILE1]
-tenancy=sometenancy
 user=someuser
 fingerprint=somefingerprint
 key_file=%s
@@ -578,7 +577,7 @@ region=noregion
 
 func TestCustomProfileClient_CreateWithBadRegion(t *testing.T) {
 	dataTpl := `[DEFAULT]
-region=noregion
+region=someregion
 [PROFILE1]
 tenancy=sometenancy
 user=someuser
@@ -597,6 +596,8 @@ region=noregion
 	configurationProvider := CustomProfileConfigProvider(tmpConfFile, "PROFILE1")
 
 	_, err := NewClientWithConfig(configurationProvider)
+	region,_ := configurationProvider.Region()
+	assert.Equal(t,"noregion", region)
 	assert.NoError(t, err)
 }
 
@@ -627,3 +628,4 @@ func TestHomeDir(t *testing.T) {
 	_, e := os.Stat(h)
 	assert.NoError(t, e)
 }
+
