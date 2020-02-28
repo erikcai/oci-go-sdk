@@ -158,6 +158,9 @@ type AutonomousDatabaseSummary struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that was cloned to create the current Autonomous Database.
 	SourceId *string `mandatory:"false" json:"sourceId"`
 
+	// The Autonomous Database permission level. Restricted mode allows access only to admin users.
+	PermissionLevel AutonomousDatabaseSummaryPermissionLevelEnum `mandatory:"false" json:"permissionLevel,omitempty"`
+
 	// Indicates if the database is in original pod or failover pod.
 	IsFailedOver *bool `mandatory:"false" json:"isFailedOver"`
 
@@ -340,6 +343,29 @@ var mappingAutonomousDatabaseSummaryRefreshableStatus = map[string]AutonomousDat
 func GetAutonomousDatabaseSummaryRefreshableStatusEnumValues() []AutonomousDatabaseSummaryRefreshableStatusEnum {
 	values := make([]AutonomousDatabaseSummaryRefreshableStatusEnum, 0)
 	for _, v := range mappingAutonomousDatabaseSummaryRefreshableStatus {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabaseSummaryPermissionLevelEnum Enum with underlying type: string
+type AutonomousDatabaseSummaryPermissionLevelEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabaseSummaryPermissionLevelEnum
+const (
+	AutonomousDatabaseSummaryPermissionLevelRestricted   AutonomousDatabaseSummaryPermissionLevelEnum = "RESTRICTED"
+	AutonomousDatabaseSummaryPermissionLevelUnrestricted AutonomousDatabaseSummaryPermissionLevelEnum = "UNRESTRICTED"
+)
+
+var mappingAutonomousDatabaseSummaryPermissionLevel = map[string]AutonomousDatabaseSummaryPermissionLevelEnum{
+	"RESTRICTED":   AutonomousDatabaseSummaryPermissionLevelRestricted,
+	"UNRESTRICTED": AutonomousDatabaseSummaryPermissionLevelUnrestricted,
+}
+
+// GetAutonomousDatabaseSummaryPermissionLevelEnumValues Enumerates the set of values for AutonomousDatabaseSummaryPermissionLevelEnum
+func GetAutonomousDatabaseSummaryPermissionLevelEnumValues() []AutonomousDatabaseSummaryPermissionLevelEnum {
+	values := make([]AutonomousDatabaseSummaryPermissionLevelEnum, 0)
+	for _, v := range mappingAutonomousDatabaseSummaryPermissionLevel {
 		values = append(values, v)
 	}
 	return values

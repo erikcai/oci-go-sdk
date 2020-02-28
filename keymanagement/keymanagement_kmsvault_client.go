@@ -436,17 +436,7 @@ func (client KmsVaultClient) restoreVaultFromFile(ctx context.Context, request c
 
 	var response RestoreVaultFromFileResponse
 	var httpResponse *http.Response
-	var customSigner common.HTTPRequestSigner
-	excludeBodySigningPredicate := func(r *http.Request) bool { return false }
-	customSigner, err = common.NewSignerFromOCIRequestSigner(client.Signer, excludeBodySigningPredicate)
-
-	//if there was an error overriding the signer, then use the signer from the client itself
-	if err != nil {
-		customSigner = client.Signer
-	}
-
-	//Execute the request with a custom signer
-	httpResponse, err = client.CallWithDetails(ctx, &httpRequest, common.ClientCallDetails{Signer: customSigner})
+	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
 	response.RawResponse = httpResponse
 	if err != nil {
@@ -505,7 +495,7 @@ func (client KmsVaultClient) restoreVaultFromObjectStore(ctx context.Context, re
 }
 
 // ScheduleVaultDeletion Schedules the deletion of the specified vault. This sets the lifecycle state of the vault and all keys in it
-// that are not already scheduled for deletion to PENDING_DELETION and then deletes them after the
+// that are not already scheduled for deletion to `PENDING_DELETION` and then deletes them after the
 // retention period ends. The lifecycle state and time of deletion for keys already scheduled for deletion won't
 // change. If any keys in the vault are scheduled to be deleted after the specified time of
 // deletion for the vault, the call is rejected with the error code 409.

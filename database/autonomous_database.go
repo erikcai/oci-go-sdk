@@ -157,6 +157,9 @@ type AutonomousDatabase struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that was cloned to create the current Autonomous Database.
 	SourceId *string `mandatory:"false" json:"sourceId"`
 
+	// The Autonomous Database permission level. Restricted mode allows access only to admin users.
+	PermissionLevel AutonomousDatabasePermissionLevelEnum `mandatory:"false" json:"permissionLevel,omitempty"`
+
 	// Indicates if the database is in original pod or failover pod.
 	IsFailedOver *bool `mandatory:"false" json:"isFailedOver"`
 
@@ -339,6 +342,29 @@ var mappingAutonomousDatabaseRefreshableStatus = map[string]AutonomousDatabaseRe
 func GetAutonomousDatabaseRefreshableStatusEnumValues() []AutonomousDatabaseRefreshableStatusEnum {
 	values := make([]AutonomousDatabaseRefreshableStatusEnum, 0)
 	for _, v := range mappingAutonomousDatabaseRefreshableStatus {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabasePermissionLevelEnum Enum with underlying type: string
+type AutonomousDatabasePermissionLevelEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabasePermissionLevelEnum
+const (
+	AutonomousDatabasePermissionLevelRestricted   AutonomousDatabasePermissionLevelEnum = "RESTRICTED"
+	AutonomousDatabasePermissionLevelUnrestricted AutonomousDatabasePermissionLevelEnum = "UNRESTRICTED"
+)
+
+var mappingAutonomousDatabasePermissionLevel = map[string]AutonomousDatabasePermissionLevelEnum{
+	"RESTRICTED":   AutonomousDatabasePermissionLevelRestricted,
+	"UNRESTRICTED": AutonomousDatabasePermissionLevelUnrestricted,
+}
+
+// GetAutonomousDatabasePermissionLevelEnumValues Enumerates the set of values for AutonomousDatabasePermissionLevelEnum
+func GetAutonomousDatabasePermissionLevelEnumValues() []AutonomousDatabasePermissionLevelEnum {
+	values := make([]AutonomousDatabasePermissionLevelEnum, 0)
+	for _, v := range mappingAutonomousDatabasePermissionLevel {
 		values = append(values, v)
 	}
 	return values

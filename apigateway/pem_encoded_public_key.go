@@ -15,13 +15,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PemEncodedPublicKey a public key represented by its PEM encoding
+// PemEncodedPublicKey A PEM-encoded public key used for verifying the JWT signature.
 type PemEncodedPublicKey struct {
 
-	// the ID of the key
+	// A unique key ID. This key will be used to verify the signature of a
+	// JWT with matching "kid".
 	Kid *string `mandatory:"true" json:"kid"`
 
-	// pem encoded public key
+	// The content of the PEM-encoded public key.
 	Key *string `mandatory:"true" json:"key"`
 }
 

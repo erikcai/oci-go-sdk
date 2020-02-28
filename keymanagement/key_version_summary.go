@@ -34,7 +34,7 @@ type KeyVersionSummary struct {
 	// The OCID of the vault that contains this key version.
 	VaultId *string `mandatory:"true" json:"vaultId"`
 
-	// The key version's current state.
+	// The key version's current lifecycle state.
 	// Example: `ENABLED`
 	LifecycleState KeyVersionSummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 

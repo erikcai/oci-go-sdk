@@ -15,13 +15,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// JwtAuthenticationPolicy An authentication policy that allows native JWT authentication
+// JwtAuthenticationPolicy Validate a JWT token present in the header or query parameter. A valid
+// policy must specify either tokenHeader or tokenQueryParam.
 type JwtAuthenticationPolicy struct {
 
-	// party that issued the certificate
+	// A list of parties that could have issued the token.
 	Issuers []string `mandatory:"true" json:"issuers"`
 
-	// recipients that the authentication is intended for
+	// The list of intended recipients for the token.
 	Audiences []string `mandatory:"true" json:"audiences"`
 
 	PublicKeys PublicKeySet `mandatory:"true" json:"publicKeys"`
@@ -30,20 +31,21 @@ type JwtAuthenticationPolicy struct {
 	// route authorization.
 	IsAnonymousAccessAllowed *bool `mandatory:"false" json:"isAnonymousAccessAllowed"`
 
-	// the header that contains the authentication
+	// The name of the header containing the authentication token.
 	TokenHeader *string `mandatory:"false" json:"tokenHeader"`
 
-	// the query parameter that contains the authentication
+	// The name of the query parameter containing the authentication token.
 	TokenQueryParam *string `mandatory:"false" json:"tokenQueryParam"`
 
-	// scheme that is used to authenticate the token
+	// The authentication scheme that is to be used when authenticating
+	// the token. This must to be provided if "tokenHeader" is specified.
 	TokenAuthScheme *string `mandatory:"false" json:"tokenAuthScheme"`
 
-	// A list of claims which should be validated to consider the JWT valid
+	// A list of claims which should be validated to consider the token valid.
 	VerifyClaims []JsonWebTokenClaim `mandatory:"false" json:"verifyClaims"`
 
-	// Maximum expected time difference between the system clocks
-	// of the token issuer and the API Gateway
+	// The maximum expected time difference between the system clocks
+	// of the token issuer and the API Gateway.
 	MaxClockSkewInSeconds *float32 `mandatory:"false" json:"maxClockSkewInSeconds"`
 }
 

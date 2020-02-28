@@ -30,7 +30,7 @@ type Vault struct {
 	// The OCID of the vault.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The vault's current state.
+	// The vault's current lifecycle state.
 	// Example: `DELETED`
 	LifecycleState VaultLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 

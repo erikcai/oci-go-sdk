@@ -57,6 +57,10 @@ func (m *createconfigsourcedetails) UnmarshalPolymorphicJSON(data []byte) (inter
 		mm := CreateZipUploadConfigSourceDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "COMPARTMENT_CONFIG_SOURCE":
+		mm := CreateCompartmentConfigSourceDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	default:
 		return *m, nil
 	}

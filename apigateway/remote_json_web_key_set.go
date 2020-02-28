@@ -15,13 +15,17 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RemoteJsonWebKeySet a public key that is retrieved at run-time from a remote location
+// RemoteJsonWebKeySet A set of public keys that is retrieved at run-time from a remote location
+// to verify the JWT signature. The set should only contain JWK-formatted
+// keys.
 type RemoteJsonWebKeySet struct {
 
-	// The uri from which to retrieve the key.  Must be a uri accessible without authentication.
+	// The uri from which to retrieve the key. It must be accessible
+	// without authentication.
 	Uri *string `mandatory:"true" json:"uri"`
 
-	// The duration for which the JWKS should be cached before it is fetched again.
+	// The duration for which the JWKS should be cached before it is
+	// fetched again.
 	MaxCacheDurationInHours *int `mandatory:"false" json:"maxCacheDurationInHours"`
 }
 

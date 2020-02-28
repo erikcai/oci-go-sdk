@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ConfigSource Location of the Terraform configuration.
+// ConfigSource Information about the Terraform configuration.
 type ConfigSource interface {
 
 	// File path to the directory from which Terraform runs.
@@ -53,6 +53,10 @@ func (m *configsource) UnmarshalPolymorphicJSON(data []byte) (interface{}, error
 
 	var err error
 	switch m.ConfigSourceType {
+	case "COMPARTMENT_CONFIG_SOURCE":
+		mm := CompartmentConfigSource{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "ZIP_UPLOAD":
 		mm := ZipUploadConfigSource{}
 		err = json.Unmarshal(data, &mm)
@@ -76,11 +80,13 @@ type ConfigSourceConfigSourceTypeEnum string
 
 // Set of constants representing the allowable values for ConfigSourceConfigSourceTypeEnum
 const (
-	ConfigSourceConfigSourceTypeZipUpload ConfigSourceConfigSourceTypeEnum = "ZIP_UPLOAD"
+	ConfigSourceConfigSourceTypeZipUpload               ConfigSourceConfigSourceTypeEnum = "ZIP_UPLOAD"
+	ConfigSourceConfigSourceTypeCompartmentConfigSource ConfigSourceConfigSourceTypeEnum = "COMPARTMENT_CONFIG_SOURCE"
 )
 
 var mappingConfigSourceConfigSourceType = map[string]ConfigSourceConfigSourceTypeEnum{
-	"ZIP_UPLOAD": ConfigSourceConfigSourceTypeZipUpload,
+	"ZIP_UPLOAD":                ConfigSourceConfigSourceTypeZipUpload,
+	"COMPARTMENT_CONFIG_SOURCE": ConfigSourceConfigSourceTypeCompartmentConfigSource,
 }
 
 // GetConfigSourceConfigSourceTypeEnumValues Enumerates the set of values for ConfigSourceConfigSourceTypeEnum

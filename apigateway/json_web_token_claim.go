@@ -14,17 +14,20 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// JsonWebTokenClaim an individual claim represented by the token
+// JsonWebTokenClaim An individual JWT claim.
 type JsonWebTokenClaim struct {
 
-	// the type of the claim
-	Key *string `mandatory:"false" json:"key"`
+	// Name of the claim.
+	Key *string `mandatory:"true" json:"key"`
 
 	// The list of acceptable values for a given claim.
-	// If this value is null or an empty array, then validation consists of making sure this claim exists.
+	// If this value is "null" or empty and "isRequired" set to "true", then
+	// the presence of this claim in the JWT is validated.
 	Values []string `mandatory:"false" json:"values"`
 
-	// indicates whether this claim is required as part of the payload for a JWT
+	// Whether the claim is required to be present in the JWT or not. If set
+	// to "false", the claim values will be matched only if the claim is
+	// present in the JWT.
 	IsRequired *bool `mandatory:"false" json:"isRequired"`
 }
 

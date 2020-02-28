@@ -18,6 +18,15 @@ type UpdateVmClusterDetails struct {
 	// The number of CPU cores to enable for the VM cluster.
 	CpuCoreCount *int `mandatory:"false" json:"cpuCoreCount"`
 
+	// The memory to be allocated in GBs.
+	MemorySizeInGBs *int `mandatory:"false" json:"memorySizeInGBs"`
+
+	// The local node storage to be allocated in GBs.
+	DbNodeStorageSizeInGBs *int `mandatory:"false" json:"dbNodeStorageSizeInGBs"`
+
+	// The data disk group size to be allocated in TBs.
+	DataStorageSizeInTBs *float64 `mandatory:"false" json:"dataStorageSizeInTBs"`
+
 	// The Oracle license model that applies to the VM cluster. The default is BRING_YOUR_OWN_LICENSE.
 	LicenseModel UpdateVmClusterDetailsLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 

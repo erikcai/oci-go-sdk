@@ -3992,24 +3992,14 @@ func TestDatabaseClientListConsoleConnections(t *testing.T) {
 	assert.NoError(t, err)
 
 	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
+	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
 			if withRetry == true {
 				retryPolicy = retryPolicyForTests()
 			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*database.ListConsoleConnectionsRequest)
-				return c.ListConsoleConnections(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]database.ListConsoleConnectionsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(database.ListConsoleConnectionsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ListConsoleConnections(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

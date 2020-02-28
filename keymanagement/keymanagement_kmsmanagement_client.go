@@ -309,7 +309,7 @@ func (client KmsManagementClient) createKey(ctx context.Context, request common.
 }
 
 // CreateKeyVersion Generates a new KeyVersion (https://docs.cloud.oracle.com/api/#/en/key/release/KeyVersion/) resource that provides new cryptographic
-// material for a master encryption key. The key must be in an ENABLED state to be rotated.
+// material for a master encryption key. The key must be in an `ENABLED` state to be rotated.
 // As a management operation, this call is subject to a Key Management limit that applies to the total number
 // of requests across all  management write operations. Key Management might throttle this call to reject an
 // otherwise valid request when the total rate of management write operations exceeds 10 requests per second
@@ -828,17 +828,7 @@ func (client KmsManagementClient) restoreKeyFromFile(ctx context.Context, reques
 
 	var response RestoreKeyFromFileResponse
 	var httpResponse *http.Response
-	var customSigner common.HTTPRequestSigner
-	excludeBodySigningPredicate := func(r *http.Request) bool { return false }
-	customSigner, err = common.NewSignerFromOCIRequestSigner(client.Signer, excludeBodySigningPredicate)
-
-	//if there was an error overriding the signer, then use the signer from the client itself
-	if err != nil {
-		customSigner = client.Signer
-	}
-
-	//Execute the request with a custom signer
-	httpResponse, err = client.CallWithDetails(ctx, &httpRequest, common.ClientCallDetails{Signer: customSigner})
+	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
 	response.RawResponse = httpResponse
 	if err != nil {

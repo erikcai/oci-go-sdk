@@ -36,8 +36,26 @@ type ExadataInfrastructure struct {
 	// The number of enabled CPU cores.
 	CpusEnabled *int `mandatory:"false" json:"cpusEnabled"`
 
+	// The total number of CPU cores available.
+	MaxCpuCount *int `mandatory:"false" json:"maxCpuCount"`
+
+	// The memory allocated in GBs.
+	MemorySizeInGBs *int `mandatory:"false" json:"memorySizeInGBs"`
+
+	// The total memory available in GBs.
+	MaxMemoryInGBs *int `mandatory:"false" json:"maxMemoryInGBs"`
+
+	// The local node storage allocated in GBs.
+	DbNodeStorageSizeInGBs *int `mandatory:"false" json:"dbNodeStorageSizeInGBs"`
+
+	// The total local node storage available in GBs.
+	MaxDbNodeStorageInGBs *int `mandatory:"false" json:"maxDbNodeStorageInGBs"`
+
 	// Size, in terabytes, of the DATA disk group.
 	DataStorageSizeInTBs *float64 `mandatory:"false" json:"dataStorageSizeInTBs"`
+
+	// The total available DATA disk group size.
+	MaxDataStorageInTBs *int `mandatory:"false" json:"maxDataStorageInTBs"`
 
 	// The IP address for the first control plane server.
 	CloudControlPlaneServer1 *string `mandatory:"false" json:"cloudControlPlaneServer1"`

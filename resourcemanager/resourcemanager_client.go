@@ -196,7 +196,7 @@ func (client ResourceManagerClient) createJob(ctx context.Context, request commo
 	return response, err
 }
 
-// CreateStack Creates a stack in the specified comparment.
+// CreateStack Creates a stack in the specified compartment.
 // Specify the compartment using the compartment ID.
 // For more information, see Create a Stack (https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/usingconsole.htm#CreateStack).
 func (client ResourceManagerClient) CreateStack(ctx context.Context, request CreateStackRequest) (response CreateStackResponse, err error) {

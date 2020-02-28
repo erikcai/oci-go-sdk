@@ -20,7 +20,7 @@ type Key struct {
 
 	// The OCID of the key version used in cryptographic operations. During key rotation, the service might be
 	// in a transitional state where this or a newer key version are used intermittently. The `currentKeyVersion`
-	// field is updated when the service is guaranteed to use the new key version for all subsequent encryption operations.
+	// property is updated when the service is guaranteed to use the new key version for all subsequent encryption operations.
 	CurrentKeyVersion *string `mandatory:"true" json:"currentKeyVersion"`
 
 	// A user-friendly name for the key. It does not have to be unique, and it is changeable.
@@ -32,7 +32,7 @@ type Key struct {
 
 	KeyShape *KeyShape `mandatory:"true" json:"keyShape"`
 
-	// The key's current state.
+	// The key's current lifecycle state.
 	// Example: `ENABLED`
 	LifecycleState KeyLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 

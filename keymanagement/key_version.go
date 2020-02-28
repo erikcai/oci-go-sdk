@@ -31,12 +31,12 @@ type KeyVersion struct {
 	// The OCID of the vault that contains this key version.
 	VaultId *string `mandatory:"true" json:"vaultId"`
 
-	// The key version's current state.
+	// The key version's current lifecycle state.
 	// Example: `ENABLED`
 	LifecycleState KeyVersionLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The source of the key material. When this value is INTERNAL, Key Management
-	// created the key material. When this value is EXTERNAL, the key material
+	// The source of the key material. When this value is `INTERNAL`, Key Management
+	// created the key material. When this value is `EXTERNAL`, the key material
 	// was imported from an external source.
 	Origin KeyVersionOriginEnum `mandatory:"false" json:"origin,omitempty"`
 

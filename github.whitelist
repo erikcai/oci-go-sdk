@@ -58,3 +58,5 @@
 ^applicationmigration/
 ^dataflow/
 ^mysql/
+^secrets/
+^vault/

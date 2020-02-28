@@ -15,7 +15,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PublicKeySet a set of JWKs
+// PublicKeySet A set of Public Keys that will be used to verify the JWT signature.
 type PublicKeySet interface {
 }
 

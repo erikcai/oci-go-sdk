@@ -25,7 +25,7 @@ type KeySummary struct {
 	// The OCID of the key.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The key's current state.
+	// The key's current lifecycle state.
 	// Example: `ENABLED`
 	LifecycleState KeySummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 

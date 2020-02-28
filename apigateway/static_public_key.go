@@ -15,10 +15,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// StaticPublicKey a type of public key that is specified as part of the deployment.
+// StaticPublicKey A static public key which is used to verify the JWT signature.
 type StaticPublicKey interface {
 
-	// the ID of the key
+	// A unique key ID. This key will be used to verify the signature of a
+	// JWT with matching "kid".
 	GetKid() *string
 }
 
@@ -62,10 +63,6 @@ func (m *staticpublickey) UnmarshalPolymorphicJSON(data []byte) (interface{}, er
 		mm := PemEncodedPublicKey{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
-	case "X509_CERTIFICATE":
-		mm := X509Certificate{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	default:
 		return *m, nil
 	}
@@ -85,15 +82,13 @@ type StaticPublicKeyFormatEnum string
 
 // Set of constants representing the allowable values for StaticPublicKeyFormatEnum
 const (
-	StaticPublicKeyFormatJsonWebKey      StaticPublicKeyFormatEnum = "JSON_WEB_KEY"
-	StaticPublicKeyFormatPem             StaticPublicKeyFormatEnum = "PEM"
-	StaticPublicKeyFormatX509Certificate StaticPublicKeyFormatEnum = "X509_CERTIFICATE"
+	StaticPublicKeyFormatJsonWebKey StaticPublicKeyFormatEnum = "JSON_WEB_KEY"
+	StaticPublicKeyFormatPem        StaticPublicKeyFormatEnum = "PEM"
 )
 
 var mappingStaticPublicKeyFormat = map[string]StaticPublicKeyFormatEnum{
-	"JSON_WEB_KEY":     StaticPublicKeyFormatJsonWebKey,
-	"PEM":              StaticPublicKeyFormatPem,
-	"X509_CERTIFICATE": StaticPublicKeyFormatX509Certificate,
+	"JSON_WEB_KEY": StaticPublicKeyFormatJsonWebKey,
+	"PEM":          StaticPublicKeyFormatPem,
 }
 
 // GetStaticPublicKeyFormatEnumValues Enumerates the set of values for StaticPublicKeyFormatEnum

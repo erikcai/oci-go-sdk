@@ -37,15 +37,18 @@ type HeadObjectRequest struct {
 	// The client request ID for tracing.
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
 
-	// Specifies the encryption algorithm. The header value must be "AES256".
+	// The optional header that specifies "AES256" as the encryption algorithm. For more information, see
+	// Using Your Own Keys for Server-Side Encryption (https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
 	OpcSseCustomerAlgorithm *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-algorithm"`
 
-	// Specifies the base64-encoded 256-bit encryption key to use to encrypt or
-	// decrypt the data.
+	// The optional header that specifies the base64-encoded 256-bit encryption key to use to encrypt or
+	// decrypt the data. For more information, see
+	// Using Your Own Keys for Server-Side Encryption (https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
 	OpcSseCustomerKey *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-key"`
 
-	// Specifies the base64-encoded SHA256 hash of the encryption key. This
-	// value is used to check the integrity of the encryption key.
+	// The optional header that specifies the base64-encoded SHA256 hash of the encryption key. This
+	// value is used to check the integrity of the encryption key. For more information, see
+	// Using Your Own Keys for Server-Side Encryption (https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourecryptionkeys.htm).
 	OpcSseCustomerKeySha256 *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-key-sha256"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

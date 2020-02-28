@@ -19,7 +19,7 @@ type BackupLocationBucket struct {
 
 	BucketName *string `mandatory:"true" json:"bucketName"`
 
-	ObjectName *string `mandatory:"false" json:"objectName"`
+	ObjectName *string `mandatory:"true" json:"objectName"`
 }
 
 func (m BackupLocationBucket) String() string {

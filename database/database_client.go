@@ -4803,7 +4803,7 @@ func (client DatabaseClient) restartAutonomousContainerDatabase(ctx context.Cont
 	return response, err
 }
 
-// RestartAutonomousDatabase Restarts the specified Autonomous Database.
+// RestartAutonomousDatabase Restarts the specified Autonomous Database. Restart supported only for databases using dedicated Exadata infrastructure.
 func (client DatabaseClient) RestartAutonomousDatabase(ctx context.Context, request RestartAutonomousDatabaseRequest) (response RestartAutonomousDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

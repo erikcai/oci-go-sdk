@@ -18,6 +18,9 @@ type ListRetentionRulesRequest struct {
 	// Example: `my-new-bucket1`
 	BucketName *string `mandatory:"true" contributesTo:"path" name:"bucketName"`
 
+	// The page at which to start retrieving results.
+	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
+
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -47,7 +50,7 @@ type ListRetentionRulesResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The RetentionRuleCollection instance
+	// A list of RetentionRuleCollection instances
 	RetentionRuleCollection `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular
@@ -56,6 +59,13 @@ type ListRetentionRulesResponse struct {
 
 	// Echoes back the value passed in the opc-client-request-id header, for use by clients when debugging.
 	OpcClientRequestId *string `presentIn:"header" name:"opc-client-request-id"`
+
+	// Paginating a list of retention rules.
+	// If the opc-next-page header appears in the response, it indicates that this is a partial list
+	// of retention rules and there are additional rules to get. Include the value of this header as
+	// the `page` parameter in a subsequent GET request to get the next set of retention rules.
+	// Repeat this process to retrieve the entire list of retention rules.
+	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 
 func (response ListRetentionRulesResponse) String() string {

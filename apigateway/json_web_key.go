@@ -15,37 +15,31 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// JsonWebKey a key represented by a JSON structure
+// JsonWebKey A JSON Web Key that represents the public key used for verifying the JWT signature.
 type JsonWebKey struct {
 
-	// the ID of the key
+	// A unique key ID. This key will be used to verify the signature of a
+	// JWT with matching "kid".
 	Kid *string `mandatory:"true" json:"kid"`
 
-	// the algorithm intended for use with this key
-	Alg *string `mandatory:"false" json:"alg"`
+	// The algorithm intended for use with this key.
+	Alg *string `mandatory:"true" json:"alg"`
 
-	// Base64urlUint-encoded modulus for RSA public key.  Required when type is RSA.
-	N *string `mandatory:"false" json:"n"`
+	// The base64 url encoded modulus of the RSA public key represented
+	// by this key.
+	N *string `mandatory:"true" json:"n"`
 
-	// Base64urlUint-encoded exponent for RSA public key. Required when type is RSA.
-	E *string `mandatory:"false" json:"e"`
+	// The base64 url encoded exponent of the RSA public key represented
+	// by this key.
+	E *string `mandatory:"true" json:"e"`
 
-	// URI for an x.509 certificate or certificate chain
-	X5u *string `mandatory:"false" json:"x5u"`
-
-	// list of base64 encoded certificates in the certificate chain
-	X5c []string `mandatory:"false" json:"x5c"`
-
-	// thumbprint/fingerprint of the x.509 certificate
-	X5t *string `mandatory:"false" json:"x5t"`
-
-	// The type of the key
+	// The key type.
 	Kty JsonWebKeyKtyEnum `mandatory:"true" json:"kty"`
 
-	// intended use of the public key, whether for encrypting or verifying signatures
+	// The intended use of the public key.
 	Use JsonWebKeyUseEnum `mandatory:"false" json:"use,omitempty"`
 
-	// the operations for which this key is intended to be used
+	// The operations for which this key is to be used.
 	KeyOps JsonWebKeyKeyOpsEnum `mandatory:"false" json:"keyOps,omitempty"`
 }
 
@@ -78,14 +72,10 @@ type JsonWebKeyKtyEnum string
 // Set of constants representing the allowable values for JsonWebKeyKtyEnum
 const (
 	JsonWebKeyKtyRsa JsonWebKeyKtyEnum = "RSA"
-	JsonWebKeyKtyEc  JsonWebKeyKtyEnum = "EC"
-	JsonWebKeyKtyOct JsonWebKeyKtyEnum = "oct"
 )
 
 var mappingJsonWebKeyKty = map[string]JsonWebKeyKtyEnum{
 	"RSA": JsonWebKeyKtyRsa,
-	"EC":  JsonWebKeyKtyEc,
-	"oct": JsonWebKeyKtyOct,
 }
 
 // GetJsonWebKeyKtyEnumValues Enumerates the set of values for JsonWebKeyKtyEnum
@@ -103,12 +93,10 @@ type JsonWebKeyUseEnum string
 // Set of constants representing the allowable values for JsonWebKeyUseEnum
 const (
 	JsonWebKeyUseSig JsonWebKeyUseEnum = "sig"
-	JsonWebKeyUseEnc JsonWebKeyUseEnum = "enc"
 )
 
 var mappingJsonWebKeyUse = map[string]JsonWebKeyUseEnum{
 	"sig": JsonWebKeyUseSig,
-	"enc": JsonWebKeyUseEnc,
 }
 
 // GetJsonWebKeyUseEnumValues Enumerates the set of values for JsonWebKeyUseEnum

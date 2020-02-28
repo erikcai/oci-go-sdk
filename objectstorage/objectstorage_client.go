@@ -4,6 +4,8 @@
 // Object Storage Service API
 //
 // Common set of Object Storage and Archive Storage APIs for managing buckets, objects, and related resources.
+// For more information, see Overview of Object Storage (https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm) and
+// Overview of Archive Storage (https://docs.cloud.oracle.com/Content/Archive/Concepts/archivestorageoverview.htm).
 //
 
 package objectstorage
@@ -1850,8 +1852,10 @@ func (client ObjectStorageClient) mergeObjectMetadata(ctx context.Context, reque
 	return response, err
 }
 
-// PutObject Creates a new object or overwrites an existing object with the same name. See Special Instructions for Object Storage
-// PUT (https://docs.cloud.oracle.com/Content/API/Concepts/signingrequests.htm#ObjectStoragePut) for request signature requirements.
+// PutObject Creates a new object or overwrites an existing object with the same name. The maximum object size allowed by
+// PutObject is 50 GiB.
+// See Special Instructions for Object Storage PUT (https://docs.cloud.oracle.com/Content/API/Concepts/signingrequests.htm#ObjectStoragePut)
+// for request signature requirements.
 func (client ObjectStorageClient) PutObject(ctx context.Context, request PutObjectRequest) (response PutObjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

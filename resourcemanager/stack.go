@@ -32,7 +32,7 @@ type Stack struct {
 	// The date and time at which the stack was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The current lifecycle state of the stack.
+	// The current lifecycle state of the stack. For more information about stack lifecycle states, see Key Concepts (https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates).
 	LifecycleState StackLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	ConfigSource ConfigSource `mandatory:"false" json:"configSource"`
@@ -123,6 +123,7 @@ const (
 	StackLifecycleStateActive   StackLifecycleStateEnum = "ACTIVE"
 	StackLifecycleStateDeleting StackLifecycleStateEnum = "DELETING"
 	StackLifecycleStateDeleted  StackLifecycleStateEnum = "DELETED"
+	StackLifecycleStateFailed   StackLifecycleStateEnum = "FAILED"
 )
 
 var mappingStackLifecycleState = map[string]StackLifecycleStateEnum{
@@ -130,6 +131,7 @@ var mappingStackLifecycleState = map[string]StackLifecycleStateEnum{
 	"ACTIVE":   StackLifecycleStateActive,
 	"DELETING": StackLifecycleStateDeleting,
 	"DELETED":  StackLifecycleStateDeleted,
+	"FAILED":   StackLifecycleStateFailed,
 }
 
 // GetStackLifecycleStateEnumValues Enumerates the set of values for StackLifecycleStateEnum

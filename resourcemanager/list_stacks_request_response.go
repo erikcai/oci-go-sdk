@@ -23,11 +23,13 @@ type ListStacksRequest struct {
 
 	// A filter that returns only those resources that match the specified
 	// lifecycle state. The state value is case-insensitive.
+	// For more information about stack lifecycle states, see Key Concepts (https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates).
 	// Allowable values:
 	// - CREATING
 	// - ACTIVE
 	// - DELETING
 	// - DELETED
+	// - FAILED
 	LifecycleState StackLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// Display name on which to query.

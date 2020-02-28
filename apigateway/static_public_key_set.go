@@ -15,10 +15,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// StaticPublicKeySet a container for the set of public keys
+// StaticPublicKeySet A set of static public keys that will be used to verify the JWT signature.
 type StaticPublicKeySet struct {
 
-	// set of static public keys
+	// The set of static public keys.
 	Keys []StaticPublicKey `mandatory:"false" json:"keys"`
 }
 
