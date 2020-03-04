@@ -6,8 +6,8 @@
   <version>0.0.1</version>
   <name>Public Go SDK</name>
   <properties>
-    <preprocessor-version>1.0.9-SNAPSHOT</preprocessor-version>
-    <oci.get.spec.artifact.plugin.version>1.0.9-SNAPSHOT</oci.get.spec.artifact.plugin.version>
+    <preprocessor-version>1.0.12</preprocessor-version>
+    <oci.get.spec.artifact.plugin.version>1.0.12</oci.get.spec.artifact.plugin.version>
     <spec-temp-dir>${project.build.directory}/swagger</spec-temp-dir>
     <preferred-temp-dir>${project.build.directory}/preferred</preferred-temp-dir>
     <preprocessed-temp-dir>${project.build.directory}/preprocessed</preprocessed-temp-dir>
@@ -2508,7 +2508,7 @@
       <plugin>
         <groupId>com.oracle.bmc.sdk</groupId>
         <artifactId>bmc-sdk-swagger-maven-plugin</artifactId>
-        <version>1.105-SNAPSHOT</version>
+        <version>1.110-SNAPSHOT</version>
         <configuration>
           <isTestGenerationEnabled>true</isTestGenerationEnabled>
         </configuration>
