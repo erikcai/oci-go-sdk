@@ -60,3 +60,4 @@
 ^mysql/
 ^secrets/
 ^vault/
+^containerregistry/

@@ -1446,14 +1446,24 @@ func TestObjectStorageClientListObjectVersions(t *testing.T) {
 	assert.NoError(t, err)
 
 	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
+	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
 			if withRetry == true {
 				retryPolicy = retryPolicyForTests()
 			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ListObjectVersions(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*objectstorage.ListObjectVersionsRequest)
+				return c.ListObjectVersions(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]objectstorage.ListObjectVersionsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(objectstorage.ListObjectVersionsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

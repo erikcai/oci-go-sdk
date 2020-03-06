@@ -30,6 +30,22 @@ func NewStorageGatewayClientWithConfigurationProvider(configProvider common.Conf
 		return
 	}
 
+	return newStorageGatewayClientFromBaseClient(baseClient, configProvider)
+}
+
+// NewStorageGatewayClientWithOboToken Creates a new default StorageGateway client with the given configuration provider.
+// The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
+//  as well as reading the region
+func NewStorageGatewayClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client StorageGatewayClient, err error) {
+	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
+	if err != nil {
+		return
+	}
+
+	return newStorageGatewayClientFromBaseClient(baseClient, configProvider)
+}
+
+func newStorageGatewayClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client StorageGatewayClient, err error) {
 	client = StorageGatewayClient{BaseClient: baseClient}
 	client.BasePath = "20190101"
 	err = client.setConfigurationProvider(configProvider)

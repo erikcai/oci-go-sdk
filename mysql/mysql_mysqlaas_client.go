@@ -29,6 +29,22 @@ func NewMysqlaasClientWithConfigurationProvider(configProvider common.Configurat
 		return
 	}
 
+	return newMysqlaasClientFromBaseClient(baseClient, configProvider)
+}
+
+// NewMysqlaasClientWithOboToken Creates a new default Mysqlaas client with the given configuration provider.
+// The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
+//  as well as reading the region
+func NewMysqlaasClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client MysqlaasClient, err error) {
+	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
+	if err != nil {
+		return
+	}
+
+	return newMysqlaasClientFromBaseClient(baseClient, configProvider)
+}
+
+func newMysqlaasClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client MysqlaasClient, err error) {
 	client = MysqlaasClient{BaseClient: baseClient}
 	client.BasePath = "20190415"
 	err = client.setConfigurationProvider(configProvider)

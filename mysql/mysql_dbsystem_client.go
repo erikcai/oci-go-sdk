@@ -29,6 +29,22 @@ func NewDbSystemClientWithConfigurationProvider(configProvider common.Configurat
 		return
 	}
 
+	return newDbSystemClientFromBaseClient(baseClient, configProvider)
+}
+
+// NewDbSystemClientWithOboToken Creates a new default DbSystem client with the given configuration provider.
+// The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
+//  as well as reading the region
+func NewDbSystemClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client DbSystemClient, err error) {
+	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
+	if err != nil {
+		return
+	}
+
+	return newDbSystemClientFromBaseClient(baseClient, configProvider)
+}
+
+func newDbSystemClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client DbSystemClient, err error) {
 	client = DbSystemClient{BaseClient: baseClient}
 	client.BasePath = "20190415"
 	err = client.setConfigurationProvider(configProvider)

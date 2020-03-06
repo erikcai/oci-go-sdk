@@ -29,6 +29,22 @@ func NewDatabaseClientWithConfigurationProvider(configProvider common.Configurat
 		return
 	}
 
+	return newDatabaseClientFromBaseClient(baseClient, configProvider)
+}
+
+// NewDatabaseClientWithOboToken Creates a new default Database client with the given configuration provider.
+// The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
+//  as well as reading the region
+func NewDatabaseClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client DatabaseClient, err error) {
+	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
+	if err != nil {
+		return
+	}
+
+	return newDatabaseClientFromBaseClient(baseClient, configProvider)
+}
+
+func newDatabaseClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client DatabaseClient, err error) {
 	client = DatabaseClient{BaseClient: baseClient}
 	client.BasePath = "20160918"
 	err = client.setConfigurationProvider(configProvider)
@@ -240,6 +256,54 @@ func (client DatabaseClient) changeAutonomousExadataInfrastructureCompartment(ct
 	}
 
 	var response ChangeAutonomousExadataInfrastructureCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ChangeAutonomousVmClusterCompartment To move an Autonomous VM cluster and its dependent resources to another compartment, use the
+// ChangeAutonomousVmClusterCompartment operation.
+func (client DatabaseClient) ChangeAutonomousVmClusterCompartment(ctx context.Context, request ChangeAutonomousVmClusterCompartmentRequest) (response ChangeAutonomousVmClusterCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeAutonomousVmClusterCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeAutonomousVmClusterCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeAutonomousVmClusterCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeAutonomousVmClusterCompartmentResponse")
+	}
+	return
+}
+
+// changeAutonomousVmClusterCompartment implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) changeAutonomousVmClusterCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousVmClusters/{autonomousVmClusterId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeAutonomousVmClusterCompartmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -717,6 +781,53 @@ func (client DatabaseClient) createAutonomousDatabaseBackup(ctx context.Context,
 	}
 
 	var response CreateAutonomousDatabaseBackupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateAutonomousVmCluster Creates an Autonomous VM cluster.
+func (client DatabaseClient) CreateAutonomousVmCluster(ctx context.Context, request CreateAutonomousVmClusterRequest) (response CreateAutonomousVmClusterResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createAutonomousVmCluster, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateAutonomousVmClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateAutonomousVmClusterResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateAutonomousVmClusterResponse")
+	}
+	return
+}
+
+// createAutonomousVmCluster implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) createAutonomousVmCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousVmClusters")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateAutonomousVmClusterResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1338,6 +1449,48 @@ func (client DatabaseClient) deleteAutonomousDatabase(ctx context.Context, reque
 	}
 
 	var response DeleteAutonomousDatabaseResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteAutonomousVmCluster Deletes the specified Autonomous VM cluster.
+func (client DatabaseClient) DeleteAutonomousVmCluster(ctx context.Context, request DeleteAutonomousVmClusterRequest) (response DeleteAutonomousVmClusterResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteAutonomousVmCluster, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteAutonomousVmClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteAutonomousVmClusterResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteAutonomousVmClusterResponse")
+	}
+	return
+}
+
+// deleteAutonomousVmCluster implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) deleteAutonomousVmCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/autonomousVmClusters/{autonomousVmClusterId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteAutonomousVmClusterResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2343,6 +2496,48 @@ func (client DatabaseClient) getAutonomousExadataInfrastructure(ctx context.Cont
 	return response, err
 }
 
+// GetAutonomousVmCluster Gets information about the specified Autonomous VM cluster.
+func (client DatabaseClient) GetAutonomousVmCluster(ctx context.Context, request GetAutonomousVmClusterRequest) (response GetAutonomousVmClusterResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAutonomousVmCluster, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetAutonomousVmClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAutonomousVmClusterResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAutonomousVmClusterResponse")
+	}
+	return
+}
+
+// getAutonomousVmCluster implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getAutonomousVmCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousVmClusters/{autonomousVmClusterId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAutonomousVmClusterResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetBackup Gets information about the specified backup.
 func (client DatabaseClient) GetBackup(ctx context.Context, request GetBackupRequest) (response GetBackupResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3059,6 +3254,53 @@ func (client DatabaseClient) getMaintenanceRun(ctx context.Context, request comm
 	return response, err
 }
 
+// GetTargetDbHome Gets the target DB Home to which the database is being moved.
+func (client DatabaseClient) GetTargetDbHome(ctx context.Context, request GetTargetDbHomeRequest) (response GetTargetDbHomeResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.getTargetDbHome, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetTargetDbHomeResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetTargetDbHomeResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetTargetDbHomeResponse")
+	}
+	return
+}
+
+// getTargetDbHome implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getTargetDbHome(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/databases/{databaseId}/actions/getTargetDbHome")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetTargetDbHomeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetVmCluster Gets information about the specified VM cluster.
 func (client DatabaseClient) GetVmCluster(ctx context.Context, request GetVmClusterRequest) (response GetVmClusterResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3735,6 +3977,48 @@ func (client DatabaseClient) listAutonomousExadataInfrastructures(ctx context.Co
 	}
 
 	var response ListAutonomousExadataInfrastructuresResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListAutonomousVmClusters Gets a list of Autonomous VM clusters in the specified compartment.
+func (client DatabaseClient) ListAutonomousVmClusters(ctx context.Context, request ListAutonomousVmClustersRequest) (response ListAutonomousVmClustersResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listAutonomousVmClusters, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListAutonomousVmClustersResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListAutonomousVmClustersResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListAutonomousVmClustersResponse")
+	}
+	return
+}
+
+// listAutonomousVmClusters implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listAutonomousVmClusters(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousVmClusters")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListAutonomousVmClustersResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -5549,6 +5833,48 @@ func (client DatabaseClient) updateAutonomousExadataInfrastructure(ctx context.C
 	}
 
 	var response UpdateAutonomousExadataInfrastructureResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateAutonomousVmCluster Updates the specified Autonomous VM cluster.
+func (client DatabaseClient) UpdateAutonomousVmCluster(ctx context.Context, request UpdateAutonomousVmClusterRequest) (response UpdateAutonomousVmClusterResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateAutonomousVmCluster, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateAutonomousVmClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateAutonomousVmClusterResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateAutonomousVmClusterResponse")
+	}
+	return
+}
+
+// updateAutonomousVmCluster implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) updateAutonomousVmCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/autonomousVmClusters/{autonomousVmClusterId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateAutonomousVmClusterResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

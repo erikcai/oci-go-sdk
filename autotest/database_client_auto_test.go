@@ -199,6 +199,50 @@ func TestDatabaseClientChangeAutonomousExadataInfrastructureCompartment(t *testi
 }
 
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeAutonomousVmClusterCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeAutonomousVmClusterCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeAutonomousVmClusterCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeAutonomousVmClusterCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeAutonomousVmClusterCompartment")
+	assert.NoError(t, err)
+
+	type ChangeAutonomousVmClusterCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeAutonomousVmClusterCompartmentRequest
+	}
+
+	var requests []ChangeAutonomousVmClusterCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeAutonomousVmClusterCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientChangeBackupDestinationCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -646,6 +690,50 @@ func TestDatabaseClientCreateAutonomousDatabaseBackup(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateAutonomousDatabaseBackup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateAutonomousVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateAutonomousVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateAutonomousVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateAutonomousVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateAutonomousVmCluster")
+	assert.NoError(t, err)
+
+	type CreateAutonomousVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.CreateAutonomousVmClusterRequest
+	}
+
+	var requests []CreateAutonomousVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateAutonomousVmCluster(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1270,6 +1358,50 @@ func TestDatabaseClientDeleteAutonomousDatabase(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteAutonomousDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteAutonomousVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteAutonomousVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteAutonomousVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteAutonomousVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteAutonomousVmCluster")
+	assert.NoError(t, err)
+
+	type DeleteAutonomousVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteAutonomousVmClusterRequest
+	}
+
+	var requests []DeleteAutonomousVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteAutonomousVmCluster(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2289,6 +2421,50 @@ func TestDatabaseClientGetAutonomousExadataInfrastructure(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetAutonomousVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetAutonomousVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAutonomousVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetAutonomousVmCluster")
+	assert.NoError(t, err)
+
+	type GetAutonomousVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.GetAutonomousVmClusterRequest
+	}
+
+	var requests []GetAutonomousVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetAutonomousVmCluster(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientGetBackup(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -3030,6 +3206,50 @@ func TestDatabaseClientGetMaintenanceRun(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetMaintenanceRun(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetTargetDbHome(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetTargetDbHome")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetTargetDbHome is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetTargetDbHome", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetTargetDbHome")
+	assert.NoError(t, err)
+
+	type GetTargetDbHomeRequestInfo struct {
+		ContainerId string
+		Request     database.GetTargetDbHomeRequest
+	}
+
+	var requests []GetTargetDbHomeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetTargetDbHome(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3845,6 +4065,60 @@ func TestDatabaseClientListAutonomousExadataInfrastructures(t *testing.T) {
 			typedListResponses := make([]database.ListAutonomousExadataInfrastructuresResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(database.ListAutonomousExadataInfrastructuresResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListAutonomousVmClusters(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListAutonomousVmClusters")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAutonomousVmClusters is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousVmClusters", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListAutonomousVmClusters")
+	assert.NoError(t, err)
+
+	type ListAutonomousVmClustersRequestInfo struct {
+		ContainerId string
+		Request     database.ListAutonomousVmClustersRequest
+	}
+
+	var requests []ListAutonomousVmClustersRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListAutonomousVmClustersRequest)
+				return c.ListAutonomousVmClusters(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListAutonomousVmClustersResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListAutonomousVmClustersResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -5939,6 +6213,50 @@ func TestDatabaseClientUpdateAutonomousExadataInfrastructure(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateAutonomousExadataInfrastructure(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateAutonomousVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateAutonomousVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateAutonomousVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateAutonomousVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateAutonomousVmCluster")
+	assert.NoError(t, err)
+
+	type UpdateAutonomousVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateAutonomousVmClusterRequest
+	}
+
+	var requests []UpdateAutonomousVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateAutonomousVmCluster(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

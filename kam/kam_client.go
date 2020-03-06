@@ -31,6 +31,22 @@ func NewKamClientWithConfigurationProvider(configProvider common.ConfigurationPr
 		return
 	}
 
+	return newKamClientFromBaseClient(baseClient, configProvider)
+}
+
+// NewKamClientWithOboToken Creates a new default Kam client with the given configuration provider.
+// The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
+//  as well as reading the region
+func NewKamClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client KamClient, err error) {
+	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
+	if err != nil {
+		return
+	}
+
+	return newKamClientFromBaseClient(baseClient, configProvider)
+}
+
+func newKamClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client KamClient, err error) {
 	client = KamClient{BaseClient: baseClient}
 	client.BasePath = "20200204"
 	err = client.setConfigurationProvider(configProvider)

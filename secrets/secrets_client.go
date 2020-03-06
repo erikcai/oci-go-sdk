@@ -29,6 +29,22 @@ func NewSecretsClientWithConfigurationProvider(configProvider common.Configurati
 		return
 	}
 
+	return newSecretsClientFromBaseClient(baseClient, configProvider)
+}
+
+// NewSecretsClientWithOboToken Creates a new default Secrets client with the given configuration provider.
+// The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
+//  as well as reading the region
+func NewSecretsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client SecretsClient, err error) {
+	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
+	if err != nil {
+		return
+	}
+
+	return newSecretsClientFromBaseClient(baseClient, configProvider)
+}
+
+func newSecretsClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client SecretsClient, err error) {
 	client = SecretsClient{BaseClient: baseClient}
 	client.BasePath = "20190301"
 	err = client.setConfigurationProvider(configProvider)

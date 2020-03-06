@@ -27,14 +27,20 @@ type AutonomousContainerDatabase struct {
 	// The service level agreement type of the container database. The default is STANDARD.
 	ServiceLevelAgreementType AutonomousContainerDatabaseServiceLevelAgreementTypeEnum `mandatory:"true" json:"serviceLevelAgreementType"`
 
-	// The OCID of the Autonomous Exadata Infrastructure.
-	AutonomousExadataInfrastructureId *string `mandatory:"true" json:"autonomousExadataInfrastructureId"`
-
 	// The current state of the Autonomous Container Database.
 	LifecycleState AutonomousContainerDatabaseLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// Database patch model preference.
 	PatchModel AutonomousContainerDatabasePatchModelEnum `mandatory:"true" json:"patchModel"`
+
+	// The OCID of the Autonomous Exadata Infrastructure.
+	AutonomousExadataInfrastructureId *string `mandatory:"false" json:"autonomousExadataInfrastructureId"`
+
+	// The OCID of the Autonomous VM Cluster.
+	AutonomousVmClusterId *string `mandatory:"false" json:"autonomousVmClusterId"`
+
+	// The infrastructure type this resource belongs to.
+	InfrastructureType AutonomousContainerDatabaseInfrastructureTypeEnum `mandatory:"false" json:"infrastructureType,omitempty"`
 
 	// Additional information about the current lifecycleState.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
@@ -87,6 +93,29 @@ var mappingAutonomousContainerDatabaseServiceLevelAgreementType = map[string]Aut
 func GetAutonomousContainerDatabaseServiceLevelAgreementTypeEnumValues() []AutonomousContainerDatabaseServiceLevelAgreementTypeEnum {
 	values := make([]AutonomousContainerDatabaseServiceLevelAgreementTypeEnum, 0)
 	for _, v := range mappingAutonomousContainerDatabaseServiceLevelAgreementType {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousContainerDatabaseInfrastructureTypeEnum Enum with underlying type: string
+type AutonomousContainerDatabaseInfrastructureTypeEnum string
+
+// Set of constants representing the allowable values for AutonomousContainerDatabaseInfrastructureTypeEnum
+const (
+	AutonomousContainerDatabaseInfrastructureTypeCloud           AutonomousContainerDatabaseInfrastructureTypeEnum = "CLOUD"
+	AutonomousContainerDatabaseInfrastructureTypeCloudAtCustomer AutonomousContainerDatabaseInfrastructureTypeEnum = "CLOUD_AT_CUSTOMER"
+)
+
+var mappingAutonomousContainerDatabaseInfrastructureType = map[string]AutonomousContainerDatabaseInfrastructureTypeEnum{
+	"CLOUD":             AutonomousContainerDatabaseInfrastructureTypeCloud,
+	"CLOUD_AT_CUSTOMER": AutonomousContainerDatabaseInfrastructureTypeCloudAtCustomer,
+}
+
+// GetAutonomousContainerDatabaseInfrastructureTypeEnumValues Enumerates the set of values for AutonomousContainerDatabaseInfrastructureTypeEnum
+func GetAutonomousContainerDatabaseInfrastructureTypeEnumValues() []AutonomousContainerDatabaseInfrastructureTypeEnum {
+	values := make([]AutonomousContainerDatabaseInfrastructureTypeEnum, 0)
+	for _, v := range mappingAutonomousContainerDatabaseInfrastructureType {
 		values = append(values, v)
 	}
 	return values

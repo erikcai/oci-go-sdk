@@ -29,6 +29,22 @@ func NewLumLoggingClientWithConfigurationProvider(configProvider common.Configur
 		return
 	}
 
+	return newLumLoggingClientFromBaseClient(baseClient, configProvider)
+}
+
+// NewLumLoggingClientWithOboToken Creates a new default LumLogging client with the given configuration provider.
+// The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
+//  as well as reading the region
+func NewLumLoggingClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client LumLoggingClient, err error) {
+	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
+	if err != nil {
+		return
+	}
+
+	return newLumLoggingClientFromBaseClient(baseClient, configProvider)
+}
+
+func newLumLoggingClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client LumLoggingClient, err error) {
 	client = LumLoggingClient{BaseClient: baseClient}
 	client.BasePath = "20190909"
 	err = client.setConfigurationProvider(configProvider)

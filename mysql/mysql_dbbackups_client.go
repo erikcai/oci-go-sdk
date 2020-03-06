@@ -29,6 +29,22 @@ func NewDbBackupsClientWithConfigurationProvider(configProvider common.Configura
 		return
 	}
 
+	return newDbBackupsClientFromBaseClient(baseClient, configProvider)
+}
+
+// NewDbBackupsClientWithOboToken Creates a new default DbBackups client with the given configuration provider.
+// The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
+//  as well as reading the region
+func NewDbBackupsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client DbBackupsClient, err error) {
+	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
+	if err != nil {
+		return
+	}
+
+	return newDbBackupsClientFromBaseClient(baseClient, configProvider)
+}
+
+func newDbBackupsClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client DbBackupsClient, err error) {
 	client = DbBackupsClient{BaseClient: baseClient}
 	client.BasePath = "20190415"
 	err = client.setConfigurationProvider(configProvider)

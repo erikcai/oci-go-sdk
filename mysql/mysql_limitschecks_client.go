@@ -29,6 +29,22 @@ func NewLimitsChecksClientWithConfigurationProvider(configProvider common.Config
 		return
 	}
 
+	return newLimitsChecksClientFromBaseClient(baseClient, configProvider)
+}
+
+// NewLimitsChecksClientWithOboToken Creates a new default LimitsChecks client with the given configuration provider.
+// The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
+//  as well as reading the region
+func NewLimitsChecksClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client LimitsChecksClient, err error) {
+	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
+	if err != nil {
+		return
+	}
+
+	return newLimitsChecksClientFromBaseClient(baseClient, configProvider)
+}
+
+func newLimitsChecksClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client LimitsChecksClient, err error) {
 	client = LimitsChecksClient{BaseClient: baseClient}
 	client.BasePath = "20190415"
 	err = client.setConfigurationProvider(configProvider)
