@@ -19,7 +19,7 @@ import (
 // the root compartment is read from the OCI_ROOT_COMPARTMENT_ID environment variable.
 // More information on instance principals can be found here: https://docs.cloud.oracle.com/Content/Identity/Tasks/callingservicesfrominstances.htm
 func ExampleInstancePrincipals() {
-
+	fmt.Println("hello")
 	provider, err := auth.InstancePrincipalConfigurationProvider()
 	helpers.FatalIfError(err)
 
