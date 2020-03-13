@@ -3,7 +3,7 @@
 
 // Database Service API
 //
-// The API for the Database Service.
+// The API for the Database Service. Use this API to manage resources such as databases and DB Systems. For more information, see Overview of the Database Service (https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databaseoverview.htm).
 //
 
 package database
@@ -28,11 +28,11 @@ type CreateAutonomousDatabaseDetails struct {
 	// The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
 	DataStorageSizeInTBs *int `mandatory:"true" json:"dataStorageSizeInTBs"`
 
-	// The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (") or the username "admin", regardless of casing.
-	AdminPassword *string `mandatory:"true" json:"adminPassword"`
-
 	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of memory. For Always Free databases, memory and CPU cannot be scaled.
 	IsFreeTier *bool `mandatory:"false" json:"isFreeTier"`
+
+	// The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (") or the username "admin", regardless of casing.
+	AdminPassword *string `mandatory:"false" json:"adminPassword"`
 
 	// The user-friendly name for the Autonomous Database. The name does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
@@ -54,6 +54,9 @@ type CreateAutonomousDatabaseDetails struct {
 	// To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs.
 	// Example: `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16"]`
 	WhitelistedIps []string `mandatory:"false" json:"whitelistedIps"`
+
+	// Indicates whether the Autonomous Database has Data Guard enabled.
+	IsDataGuardEnabled *bool `mandatory:"false" json:"isDataGuardEnabled"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
 	// **Subnet Restrictions:**
@@ -94,9 +97,6 @@ type CreateAutonomousDatabaseDetails struct {
 	// The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on dedicated Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute is already set at the
 	// Autonomous Exadata Infrastructure level. When using shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will supply the value of `BRING_YOUR_OWN_LICENSE`.
 	LicenseModel CreateAutonomousDatabaseBaseLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
-
-	// The Autonomous Database availability type. EXTREME_AVAILABILITY indicates that the Autonomous Database has a peer standby database for disaster recovery.
-	DbAvailabilityType CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
 }
 
 //GetCompartmentId returns CompartmentId
@@ -169,9 +169,9 @@ func (m CreateAutonomousDatabaseDetails) GetWhitelistedIps() []string {
 	return m.WhitelistedIps
 }
 
-//GetDbAvailabilityType returns DbAvailabilityType
-func (m CreateAutonomousDatabaseDetails) GetDbAvailabilityType() CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum {
-	return m.DbAvailabilityType
+//GetIsDataGuardEnabled returns IsDataGuardEnabled
+func (m CreateAutonomousDatabaseDetails) GetIsDataGuardEnabled() *bool {
+	return m.IsDataGuardEnabled
 }
 
 //GetSubnetId returns SubnetId

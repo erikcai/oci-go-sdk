@@ -2020,6 +2020,52 @@ func (client ObjectStorageClient) reencryptBucket(ctx context.Context, request c
 	return response, err
 }
 
+// ReencryptObject Re-encrypts the data encryption keys that encrypts the object. By default, Object Storage service manages the master
+// encryption key used to encrypt each object's encryption keys.
+// You can alternatively employ one of these encryption strategies:
+// - You can assign a key that you created and control through the Oracle Cloud Infrastructure Key Management service.
+// - You can encrypt objects using your own encryption key. The key you supply is known as a customer-supplied encryption key.
+func (client ObjectStorageClient) ReencryptObject(ctx context.Context, request ReencryptObjectRequest) (response ReencryptObjectResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.reencryptObject, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ReencryptObjectResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ReencryptObjectResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ReencryptObjectResponse")
+	}
+	return
+}
+
+// reencryptObject implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) reencryptObject(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/n/{namespaceName}/b/{bucketName}/actions/reencrypt/{objectName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ReencryptObjectResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // RenameObject Rename an object in the given Object Storage namespace.
 func (client ObjectStorageClient) RenameObject(ctx context.Context, request RenameObjectRequest) (response RenameObjectResponse, err error) {
 	var ociResponse common.OCIResponse

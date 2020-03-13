@@ -26,6 +26,10 @@ type ClusterDetails struct {
 	// BDM version installed in the cluster
 	BdmVersion *string `mandatory:"false" json:"bdmVersion"`
 
+	// The time the BDS instance was automatically, or manually refreshed.
+	// An RFC3339 formatted datetime string
+	TimeRefreshed *common.SDKTime `mandatory:"false" json:"timeRefreshed"`
+
 	// The URL of a Cloudera Manager
 	ClouderaManagerUrl *string `mandatory:"false" json:"clouderaManagerUrl"`
 

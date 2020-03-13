@@ -3,7 +3,7 @@
 
 // Database Service API
 //
-// The API for the Database Service.
+// The API for the Database Service. Use this API to manage resources such as databases and DB Systems. For more information, see Overview of the Database Service (https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databaseoverview.htm).
 //
 
 package database
@@ -29,9 +29,6 @@ type CreateAutonomousDatabaseBase interface {
 	// The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
 	GetDataStorageSizeInTBs() *int
 
-	// The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (") or the username "admin", regardless of casing.
-	GetAdminPassword() *string
-
 	// The Autonomous Database workload type. The following values are valid:
 	// - OLTP - indicates an Autonomous Transaction Processing database
 	// - DW - indicates an Autonomous Data Warehouse database
@@ -40,6 +37,9 @@ type CreateAutonomousDatabaseBase interface {
 
 	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of memory. For Always Free databases, memory and CPU cannot be scaled.
 	GetIsFreeTier() *bool
+
+	// The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (") or the username "admin", regardless of casing.
+	GetAdminPassword() *string
 
 	// The user-friendly name for the Autonomous Database. The name does not have to be unique.
 	GetDisplayName() *string
@@ -66,8 +66,8 @@ type CreateAutonomousDatabaseBase interface {
 	// Example: `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16"]`
 	GetWhitelistedIps() []string
 
-	// The Autonomous Database availability type. EXTREME_AVAILABILITY indicates that the Autonomous Database has a peer standby database for disaster recovery.
-	GetDbAvailabilityType() CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum
+	// Indicates whether the Autonomous Database has Data Guard enabled.
+	GetIsDataGuardEnabled() *bool
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
 	// **Subnet Restrictions:**
@@ -102,28 +102,28 @@ type CreateAutonomousDatabaseBase interface {
 
 type createautonomousdatabasebase struct {
 	JsonData                                 []byte
-	CompartmentId                            *string                                            `mandatory:"true" json:"compartmentId"`
-	DbName                                   *string                                            `mandatory:"true" json:"dbName"`
-	CpuCoreCount                             *int                                               `mandatory:"true" json:"cpuCoreCount"`
-	DataStorageSizeInTBs                     *int                                               `mandatory:"true" json:"dataStorageSizeInTBs"`
-	AdminPassword                            *string                                            `mandatory:"true" json:"adminPassword"`
-	DbWorkload                               CreateAutonomousDatabaseBaseDbWorkloadEnum         `mandatory:"false" json:"dbWorkload,omitempty"`
-	IsFreeTier                               *bool                                              `mandatory:"false" json:"isFreeTier"`
-	DisplayName                              *string                                            `mandatory:"false" json:"displayName"`
-	LicenseModel                             CreateAutonomousDatabaseBaseLicenseModelEnum       `mandatory:"false" json:"licenseModel,omitempty"`
-	IsPreviewVersionWithServiceTermsAccepted *bool                                              `mandatory:"false" json:"isPreviewVersionWithServiceTermsAccepted"`
-	IsAutoScalingEnabled                     *bool                                              `mandatory:"false" json:"isAutoScalingEnabled"`
-	IsDedicated                              *bool                                              `mandatory:"false" json:"isDedicated"`
-	AutonomousContainerDatabaseId            *string                                            `mandatory:"false" json:"autonomousContainerDatabaseId"`
-	WhitelistedIps                           []string                                           `mandatory:"false" json:"whitelistedIps"`
-	DbAvailabilityType                       CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
-	SubnetId                                 *string                                            `mandatory:"false" json:"subnetId"`
-	NsgIds                                   []string                                           `mandatory:"false" json:"nsgIds"`
-	PrivateEndpointLabel                     *string                                            `mandatory:"false" json:"privateEndpointLabel"`
-	FreeformTags                             map[string]string                                  `mandatory:"false" json:"freeformTags"`
-	DefinedTags                              map[string]map[string]interface{}                  `mandatory:"false" json:"definedTags"`
-	DbVersion                                *string                                            `mandatory:"false" json:"dbVersion"`
-	Source                                   string                                             `json:"source"`
+	CompartmentId                            *string                                      `mandatory:"true" json:"compartmentId"`
+	DbName                                   *string                                      `mandatory:"true" json:"dbName"`
+	CpuCoreCount                             *int                                         `mandatory:"true" json:"cpuCoreCount"`
+	DataStorageSizeInTBs                     *int                                         `mandatory:"true" json:"dataStorageSizeInTBs"`
+	DbWorkload                               CreateAutonomousDatabaseBaseDbWorkloadEnum   `mandatory:"false" json:"dbWorkload,omitempty"`
+	IsFreeTier                               *bool                                        `mandatory:"false" json:"isFreeTier"`
+	AdminPassword                            *string                                      `mandatory:"false" json:"adminPassword"`
+	DisplayName                              *string                                      `mandatory:"false" json:"displayName"`
+	LicenseModel                             CreateAutonomousDatabaseBaseLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
+	IsPreviewVersionWithServiceTermsAccepted *bool                                        `mandatory:"false" json:"isPreviewVersionWithServiceTermsAccepted"`
+	IsAutoScalingEnabled                     *bool                                        `mandatory:"false" json:"isAutoScalingEnabled"`
+	IsDedicated                              *bool                                        `mandatory:"false" json:"isDedicated"`
+	AutonomousContainerDatabaseId            *string                                      `mandatory:"false" json:"autonomousContainerDatabaseId"`
+	WhitelistedIps                           []string                                     `mandatory:"false" json:"whitelistedIps"`
+	IsDataGuardEnabled                       *bool                                        `mandatory:"false" json:"isDataGuardEnabled"`
+	SubnetId                                 *string                                      `mandatory:"false" json:"subnetId"`
+	NsgIds                                   []string                                     `mandatory:"false" json:"nsgIds"`
+	PrivateEndpointLabel                     *string                                      `mandatory:"false" json:"privateEndpointLabel"`
+	FreeformTags                             map[string]string                            `mandatory:"false" json:"freeformTags"`
+	DefinedTags                              map[string]map[string]interface{}            `mandatory:"false" json:"definedTags"`
+	DbVersion                                *string                                      `mandatory:"false" json:"dbVersion"`
+	Source                                   string                                       `json:"source"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -141,9 +141,9 @@ func (m *createautonomousdatabasebase) UnmarshalJSON(data []byte) error {
 	m.DbName = s.Model.DbName
 	m.CpuCoreCount = s.Model.CpuCoreCount
 	m.DataStorageSizeInTBs = s.Model.DataStorageSizeInTBs
-	m.AdminPassword = s.Model.AdminPassword
 	m.DbWorkload = s.Model.DbWorkload
 	m.IsFreeTier = s.Model.IsFreeTier
+	m.AdminPassword = s.Model.AdminPassword
 	m.DisplayName = s.Model.DisplayName
 	m.LicenseModel = s.Model.LicenseModel
 	m.IsPreviewVersionWithServiceTermsAccepted = s.Model.IsPreviewVersionWithServiceTermsAccepted
@@ -151,7 +151,7 @@ func (m *createautonomousdatabasebase) UnmarshalJSON(data []byte) error {
 	m.IsDedicated = s.Model.IsDedicated
 	m.AutonomousContainerDatabaseId = s.Model.AutonomousContainerDatabaseId
 	m.WhitelistedIps = s.Model.WhitelistedIps
-	m.DbAvailabilityType = s.Model.DbAvailabilityType
+	m.IsDataGuardEnabled = s.Model.IsDataGuardEnabled
 	m.SubnetId = s.Model.SubnetId
 	m.NsgIds = s.Model.NsgIds
 	m.PrivateEndpointLabel = s.Model.PrivateEndpointLabel
@@ -217,11 +217,6 @@ func (m createautonomousdatabasebase) GetDataStorageSizeInTBs() *int {
 	return m.DataStorageSizeInTBs
 }
 
-//GetAdminPassword returns AdminPassword
-func (m createautonomousdatabasebase) GetAdminPassword() *string {
-	return m.AdminPassword
-}
-
 //GetDbWorkload returns DbWorkload
 func (m createautonomousdatabasebase) GetDbWorkload() CreateAutonomousDatabaseBaseDbWorkloadEnum {
 	return m.DbWorkload
@@ -230,6 +225,11 @@ func (m createautonomousdatabasebase) GetDbWorkload() CreateAutonomousDatabaseBa
 //GetIsFreeTier returns IsFreeTier
 func (m createautonomousdatabasebase) GetIsFreeTier() *bool {
 	return m.IsFreeTier
+}
+
+//GetAdminPassword returns AdminPassword
+func (m createautonomousdatabasebase) GetAdminPassword() *string {
+	return m.AdminPassword
 }
 
 //GetDisplayName returns DisplayName
@@ -267,9 +267,9 @@ func (m createautonomousdatabasebase) GetWhitelistedIps() []string {
 	return m.WhitelistedIps
 }
 
-//GetDbAvailabilityType returns DbAvailabilityType
-func (m createautonomousdatabasebase) GetDbAvailabilityType() CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum {
-	return m.DbAvailabilityType
+//GetIsDataGuardEnabled returns IsDataGuardEnabled
+func (m createautonomousdatabasebase) GetIsDataGuardEnabled() *bool {
+	return m.IsDataGuardEnabled
 }
 
 //GetSubnetId returns SubnetId
@@ -349,29 +349,6 @@ var mappingCreateAutonomousDatabaseBaseLicenseModel = map[string]CreateAutonomou
 func GetCreateAutonomousDatabaseBaseLicenseModelEnumValues() []CreateAutonomousDatabaseBaseLicenseModelEnum {
 	values := make([]CreateAutonomousDatabaseBaseLicenseModelEnum, 0)
 	for _, v := range mappingCreateAutonomousDatabaseBaseLicenseModel {
-		values = append(values, v)
-	}
-	return values
-}
-
-// CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum Enum with underlying type: string
-type CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum string
-
-// Set of constants representing the allowable values for CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum
-const (
-	CreateAutonomousDatabaseBaseDbAvailabilityTypeHighAvailability    CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum = "HIGH_AVAILABILITY"
-	CreateAutonomousDatabaseBaseDbAvailabilityTypeExtremeAvailability CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum = "EXTREME_AVAILABILITY"
-)
-
-var mappingCreateAutonomousDatabaseBaseDbAvailabilityType = map[string]CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum{
-	"HIGH_AVAILABILITY":    CreateAutonomousDatabaseBaseDbAvailabilityTypeHighAvailability,
-	"EXTREME_AVAILABILITY": CreateAutonomousDatabaseBaseDbAvailabilityTypeExtremeAvailability,
-}
-
-// GetCreateAutonomousDatabaseBaseDbAvailabilityTypeEnumValues Enumerates the set of values for CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum
-func GetCreateAutonomousDatabaseBaseDbAvailabilityTypeEnumValues() []CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum {
-	values := make([]CreateAutonomousDatabaseBaseDbAvailabilityTypeEnum, 0)
-	for _, v := range mappingCreateAutonomousDatabaseBaseDbAvailabilityType {
 		values = append(values, v)
 	}
 	return values

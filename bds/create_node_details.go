@@ -23,12 +23,12 @@ type CreateNodeDetails struct {
 	// Shape of the node
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// The OCID of the subnet in which the node should be created
-	SubnetId *string `mandatory:"true" json:"subnetId"`
-
 	// The size of block volume in GB that needs to be attached to a given node.
 	// All the necessary details needed for attachment are managed by service itself.
-	BlockVolumeSizeInGBs *int64 `mandatory:"false" json:"blockVolumeSizeInGBs"`
+	BlockVolumeSizeInGBs *int64 `mandatory:"true" json:"blockVolumeSizeInGBs"`
+
+	// The OCID of the subnet in which the node should be created
+	SubnetId *string `mandatory:"true" json:"subnetId"`
 }
 
 func (m CreateNodeDetails) String() string {

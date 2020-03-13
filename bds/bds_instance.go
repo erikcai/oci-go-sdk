@@ -62,6 +62,9 @@ type BdsInstance struct {
 	// The time the BDS instance was created. An RFC3339 formatted datetime string
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
+	// The time the BDS instance was updated. An RFC3339 formatted datetime string
+	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
+
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`

@@ -18,10 +18,10 @@ import (
 type NetworkConfig struct {
 
 	// A boolean flag whether to configure a NAT gateway.
-	IsNatGatewayRequired *bool `mandatory:"true" json:"isNatGatewayRequired"`
+	IsNatGatewayRequired *bool `mandatory:"false" json:"isNatGatewayRequired"`
 
 	// The CIDR IP address block of the VCN.
-	CidrBlock *string `mandatory:"true" json:"cidrBlock"`
+	CidrBlock *string `mandatory:"false" json:"cidrBlock"`
 }
 
 func (m NetworkConfig) String() string {

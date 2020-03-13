@@ -23,6 +23,94 @@ func createDataFlowClientWithProvider(p common.ConfigurationProvider, testConfig
 }
 
 // IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
+func TestDataFlowClientChangeApplicationCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataflow", "ChangeApplicationCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeApplicationCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataflow", "DataFlow", "ChangeApplicationCompartment", createDataFlowClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataflow.DataFlowClient)
+
+	body, err := testClient.getRequests("dataflow", "ChangeApplicationCompartment")
+	assert.NoError(t, err)
+
+	type ChangeApplicationCompartmentRequestInfo struct {
+		ContainerId string
+		Request     dataflow.ChangeApplicationCompartmentRequest
+	}
+
+	var requests []ChangeApplicationCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeApplicationCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
+func TestDataFlowClientChangeRunCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataflow", "ChangeRunCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeRunCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataflow", "DataFlow", "ChangeRunCompartment", createDataFlowClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataflow.DataFlowClient)
+
+	body, err := testClient.getRequests("dataflow", "ChangeRunCompartment")
+	assert.NoError(t, err)
+
+	type ChangeRunCompartmentRequestInfo struct {
+		ContainerId string
+		Request     dataflow.ChangeRunCompartmentRequest
+	}
+
+	var requests []ChangeRunCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeRunCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
 func TestDataFlowClientCreateApplication(t *testing.T) {
 	defer failTestOnPanic(t)
 

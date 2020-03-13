@@ -18,6 +18,7 @@ const (
 	OperationTypesCreateBds               OperationTypesEnum = "CREATE_BDS"
 	OperationTypesUpdateBds               OperationTypesEnum = "UPDATE_BDS"
 	OperationTypesDeleteBds               OperationTypesEnum = "DELETE_BDS"
+	OperationTypesAddBlockStorage         OperationTypesEnum = "ADD_BLOCK_STORAGE"
 	OperationTypesAddWorkerNodes          OperationTypesEnum = "ADD_WORKER_NODES"
 	OperationTypesAddCloudSql             OperationTypesEnum = "ADD_CLOUD_SQL"
 	OperationTypesRemoveCloudSql          OperationTypesEnum = "REMOVE_CLOUD_SQL"
@@ -28,6 +29,7 @@ var mappingOperationTypes = map[string]OperationTypesEnum{
 	"CREATE_BDS":                 OperationTypesCreateBds,
 	"UPDATE_BDS":                 OperationTypesUpdateBds,
 	"DELETE_BDS":                 OperationTypesDeleteBds,
+	"ADD_BLOCK_STORAGE":          OperationTypesAddBlockStorage,
 	"ADD_WORKER_NODES":           OperationTypesAddWorkerNodes,
 	"ADD_CLOUD_SQL":              OperationTypesAddCloudSql,
 	"REMOVE_CLOUD_SQL":           OperationTypesRemoveCloudSql,

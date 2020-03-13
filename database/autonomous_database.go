@@ -3,7 +3,7 @@
 
 // Database Service API
 //
-// The API for the Database Service.
+// The API for the Database Service. Use this API to manage resources such as databases and DB Systems. For more information, see Overview of the Database Service (https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databaseoverview.htm).
 //
 
 package database
@@ -145,11 +145,17 @@ type AutonomousDatabase struct {
 	// Indicates whether the Autonomous Database is a refreshable clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 
-	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
-	LagTimeInSeconds *int `mandatory:"false" json:"lagTimeInSeconds"`
+	// The refresh lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
+	RefreshLagTimeInSeconds *int `mandatory:"false" json:"refreshLagTimeInSeconds"`
 
-	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
-	CurrentLagTimeInSeconds *int `mandatory:"false" json:"currentLagTimeInSeconds"`
+	// Refresh interval decides when next refresh is going to take place. The value can vary between 1 hr and 7 days.
+	RefreshIntervalInSeconds *int `mandatory:"false" json:"refreshIntervalInSeconds"`
+
+	// The date and time when last refresh happened.
+	TimeOfLastRefresh *common.SDKTime `mandatory:"false" json:"timeOfLastRefresh"`
+
+	// The date and time of next refresh.
+	TimeOfNextRefresh *common.SDKTime `mandatory:"false" json:"timeOfNextRefresh"`
 
 	// The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
 	OpenMode AutonomousDatabaseOpenModeEnum `mandatory:"false" json:"openMode,omitempty"`
@@ -166,8 +172,14 @@ type AutonomousDatabase struct {
 	// Indicates if the database is in original pod or failover pod.
 	IsFailedOver *bool `mandatory:"false" json:"isFailedOver"`
 
-	// The Autonomous Database availability type. EXTREME_AVAILABILITY indicates that the Autonomous Database has a peer standby database for disaster recovery.
-	DbAvailabilityType AutonomousDatabaseDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
+	// Indicates if the database can be manually failed over.
+	IsFailOverEnabled *bool `mandatory:"false" json:"isFailOverEnabled"`
+
+	// Indicates whether the Autonomous Database has Data Guard enabled.
+	IsDataGuardEnabled *bool `mandatory:"false" json:"isDataGuardEnabled"`
+
+	// Indicates the number of seconds of data loss for a Data Guard failover.
+	FailedDataRecoveryInSeconds *int `mandatory:"false" json:"failedDataRecoveryInSeconds"`
 
 	StandbyDb *AutonomousDatabaseStandbySummary `mandatory:"false" json:"standbyDb"`
 }
@@ -391,29 +403,6 @@ var mappingAutonomousDatabasePermissionLevel = map[string]AutonomousDatabasePerm
 func GetAutonomousDatabasePermissionLevelEnumValues() []AutonomousDatabasePermissionLevelEnum {
 	values := make([]AutonomousDatabasePermissionLevelEnum, 0)
 	for _, v := range mappingAutonomousDatabasePermissionLevel {
-		values = append(values, v)
-	}
-	return values
-}
-
-// AutonomousDatabaseDbAvailabilityTypeEnum Enum with underlying type: string
-type AutonomousDatabaseDbAvailabilityTypeEnum string
-
-// Set of constants representing the allowable values for AutonomousDatabaseDbAvailabilityTypeEnum
-const (
-	AutonomousDatabaseDbAvailabilityTypeHighAvailability    AutonomousDatabaseDbAvailabilityTypeEnum = "HIGH_AVAILABILITY"
-	AutonomousDatabaseDbAvailabilityTypeExtremeAvailability AutonomousDatabaseDbAvailabilityTypeEnum = "EXTREME_AVAILABILITY"
-)
-
-var mappingAutonomousDatabaseDbAvailabilityType = map[string]AutonomousDatabaseDbAvailabilityTypeEnum{
-	"HIGH_AVAILABILITY":    AutonomousDatabaseDbAvailabilityTypeHighAvailability,
-	"EXTREME_AVAILABILITY": AutonomousDatabaseDbAvailabilityTypeExtremeAvailability,
-}
-
-// GetAutonomousDatabaseDbAvailabilityTypeEnumValues Enumerates the set of values for AutonomousDatabaseDbAvailabilityTypeEnum
-func GetAutonomousDatabaseDbAvailabilityTypeEnumValues() []AutonomousDatabaseDbAvailabilityTypeEnum {
-	values := make([]AutonomousDatabaseDbAvailabilityTypeEnum, 0)
-	for _, v := range mappingAutonomousDatabaseDbAvailabilityType {
 		values = append(values, v)
 	}
 	return values

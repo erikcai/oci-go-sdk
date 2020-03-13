@@ -20,6 +20,9 @@ type CreateBdsInstanceDetails struct {
 	// The OCID of the compartment
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
+	// Name of the BDS instance
+	DisplayName *string `mandatory:"true" json:"displayName"`
+
 	// Version of the Hadoop distribution
 	ClusterVersion BdsInstanceClusterVersionEnum `mandatory:"true" json:"clusterVersion"`
 
@@ -37,9 +40,6 @@ type CreateBdsInstanceDetails struct {
 
 	// The list of nodes in the BDS instance
 	Nodes []CreateNodeDetails `mandatory:"true" json:"nodes"`
-
-	// Name of the BDS instance
-	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Additional configuration of customer's network.
 	NetworkConfig *NetworkConfig `mandatory:"false" json:"networkConfig"`

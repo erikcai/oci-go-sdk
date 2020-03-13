@@ -35,6 +35,9 @@ type Node struct {
 	// The OCID of the subnet in which the node should be created
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
+	// IP address of the node
+	IpAddress *string `mandatory:"true" json:"ipAddress"`
+
 	// The fingerprint of the SSH key used for node access
 	SshFingerprint *string `mandatory:"true" json:"sshFingerprint"`
 
@@ -50,11 +53,11 @@ type Node struct {
 	// The list of block volumes attached to a given node.
 	AttachedBlockVolumes []VolumeAttachmentDetail `mandatory:"false" json:"attachedBlockVolumes"`
 
-	// IP address of the node
-	IpAddress *string `mandatory:"false" json:"ipAddress"`
-
 	// The OCID of the image from which the node was created
 	ImageId *string `mandatory:"false" json:"imageId"`
+
+	// The time the BDS instance was updated. An RFC3339 formatted datetime string
+	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 }
 
 func (m Node) String() string {

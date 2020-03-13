@@ -27,7 +27,7 @@ type AccessRule struct {
 	// - **DETECT:** Takes no action, but creates an alert for the request.
 	// - **BLOCK:** Blocks the request by returning specified response code or showing error page.
 	// - **BYPASS:** Bypasses some or all challenges.
-	// - **REDIRECT:** Redirects the request to the specified URL.
+	// - **REDIRECT:** Redirects the request to the specified URL. These fields are required when `REDIRECT` is selected: `redirectUrl`, `redirectResponseCode`.
 	// - **SHOW_CAPTCHA:** Show a CAPTCHA Challenge page instead of the requested page.
 	// Regardless of action, no further rules are processed once a rule is matched.
 	Action AccessRuleActionEnum `mandatory:"true" json:"action"`
@@ -54,7 +54,7 @@ type AccessRule struct {
 	// - **CAPTCHA:** Bypasses CAPTCHA Challenge.
 	BypassChallenges []AccessRuleBypassChallengesEnum `mandatory:"false" json:"bypassChallenges,omitempty"`
 
-	// The target to which the request should be redirected, represented as a URI reference.
+	// The target to which the request should be redirected, represented as a URI reference. Required when `action` is `REDIRECT`.
 	RedirectUrl *string `mandatory:"false" json:"redirectUrl"`
 
 	// The response status code to return when `action` is set to `REDIRECT`.

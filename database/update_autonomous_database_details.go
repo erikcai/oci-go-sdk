@@ -3,7 +3,7 @@
 
 // Database Service API
 //
-// The API for the Database Service.
+// The API for the Database Service. Use this API to manage resources such as databases and DB Systems. For more information, see Overview of the Database Service (https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databaseoverview.htm).
 //
 
 package database
@@ -69,14 +69,17 @@ type UpdateAutonomousDatabaseDetails struct {
 	// Indicates whether to enable or disable auto scaling for the Autonomous Database OCPU core count. Setting to `true` enables auto scaling. Setting to `false` disables auto scaling. The default value is true. Auto scaling is available for databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
 	IsAutoScalingEnabled *bool `mandatory:"false" json:"isAutoScalingEnabled"`
 
-	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
-	LagTimeInSeconds *int `mandatory:"false" json:"lagTimeInSeconds"`
+	// The refresh lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
+	RefreshLagTimeInSeconds *int `mandatory:"false" json:"refreshLagTimeInSeconds"`
+
+	// Refresh interval decides when next refresh is going to take place. The value can vary between 1 hr and 7 days.
+	RefreshIntervalInSeconds *int `mandatory:"false" json:"refreshIntervalInSeconds"`
 
 	// Indicates whether the Autonomous Database is a refreshable clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 
-	// The Autonomous Database availability type. EXTREME_AVAILABILITY indicates that the Autonomous Database has a peer standby database for disaster recovery.
-	DbAvailabilityType UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum `mandatory:"false" json:"dbAvailabilityType,omitempty"`
+	// Indicates whether the Autonomous Database has Data Guard enabled.
+	IsDataGuardEnabled *bool `mandatory:"false" json:"isDataGuardEnabled"`
 
 	// The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
 	OpenMode UpdateAutonomousDatabaseDetailsOpenModeEnum `mandatory:"false" json:"openMode,omitempty"`
@@ -132,29 +135,6 @@ var mappingUpdateAutonomousDatabaseDetailsLicenseModel = map[string]UpdateAutono
 func GetUpdateAutonomousDatabaseDetailsLicenseModelEnumValues() []UpdateAutonomousDatabaseDetailsLicenseModelEnum {
 	values := make([]UpdateAutonomousDatabaseDetailsLicenseModelEnum, 0)
 	for _, v := range mappingUpdateAutonomousDatabaseDetailsLicenseModel {
-		values = append(values, v)
-	}
-	return values
-}
-
-// UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum Enum with underlying type: string
-type UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum string
-
-// Set of constants representing the allowable values for UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum
-const (
-	UpdateAutonomousDatabaseDetailsDbAvailabilityTypeHighAvailability    UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum = "HIGH_AVAILABILITY"
-	UpdateAutonomousDatabaseDetailsDbAvailabilityTypeExtremeAvailability UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum = "EXTREME_AVAILABILITY"
-)
-
-var mappingUpdateAutonomousDatabaseDetailsDbAvailabilityType = map[string]UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum{
-	"HIGH_AVAILABILITY":    UpdateAutonomousDatabaseDetailsDbAvailabilityTypeHighAvailability,
-	"EXTREME_AVAILABILITY": UpdateAutonomousDatabaseDetailsDbAvailabilityTypeExtremeAvailability,
-}
-
-// GetUpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnumValues Enumerates the set of values for UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum
-func GetUpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnumValues() []UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum {
-	values := make([]UpdateAutonomousDatabaseDetailsDbAvailabilityTypeEnum, 0)
-	for _, v := range mappingUpdateAutonomousDatabaseDetailsDbAvailabilityType {
 		values = append(values, v)
 	}
 	return values
