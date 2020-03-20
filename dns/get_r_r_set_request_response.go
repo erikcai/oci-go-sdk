@@ -49,6 +49,9 @@ type GetRRSetRequest struct {
 	// The OCID of the compartment the resource belongs to.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
+	// Specifies to operate only on resources that have a matching DNS scope.
+	Scope GetRRSetScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -103,4 +106,25 @@ func (response GetRRSetResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response GetRRSetResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// GetRRSetScopeEnum Enum with underlying type: string
+type GetRRSetScopeEnum string
+
+// Set of constants representing the allowable values for GetRRSetScopeEnum
+const (
+	GetRRSetScopeGlobal GetRRSetScopeEnum = "GLOBAL"
+)
+
+var mappingGetRRSetScope = map[string]GetRRSetScopeEnum{
+	"GLOBAL": GetRRSetScopeGlobal,
+}
+
+// GetGetRRSetScopeEnumValues Enumerates the set of values for GetRRSetScopeEnum
+func GetGetRRSetScopeEnumValues() []GetRRSetScopeEnum {
+	values := make([]GetRRSetScopeEnum, 0)
+	for _, v := range mappingGetRRSetScope {
+		values = append(values, v)
+	}
+	return values
 }

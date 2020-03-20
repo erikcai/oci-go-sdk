@@ -16,17 +16,23 @@ import (
 // TsigKeySummary A TSIG key.
 type TsigKeySummary struct {
 
+	// A globally unique domain name identifying the key for a given pair of hosts.
+	Name *string `mandatory:"true" json:"name"`
+
+	// The OCID of the compartment containing the TSIG key.
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// The OCID of the resource.
+	Id *string `mandatory:"true" json:"id"`
+
+	// The current state of the resource.
+	LifecycleState TsigKeySummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+
 	// TSIG key algorithms are encoded as domain names, but most consist of only one
 	// non-empty label, which is not required to be explicitly absolute.
 	// Applicable algorithms include: hmac-sha1, hmac-sha224, hmac-sha256,
 	// hmac-sha512. For more information on these algorithms, see RFC 4635 (https://tools.ietf.org/html/rfc4635#section-2).
 	Algorithm *string `mandatory:"false" json:"algorithm"`
-
-	// A globally unique domain name identifying the key for a given pair of hosts.
-	Name *string `mandatory:"false" json:"name"`
-
-	// The OCID of the compartment containing the TSIG key.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -40,18 +46,12 @@ type TsigKeySummary struct {
 	// **Example:** `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// The OCID of the resource.
-	Id *string `mandatory:"false" json:"id"`
-
 	// The canonical absolute URL of the resource.
 	Self *string `mandatory:"false" json:"self"`
 
 	// The date and time the resource was created, expressed in RFC 3339 timestamp format.
 	// **Example:** `2016-07-22T17:23:59:60Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
-
-	// The current state of the resource.
-	LifecycleState TsigKeySummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 
 func (m TsigKeySummary) String() string {

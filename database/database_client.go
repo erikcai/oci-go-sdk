@@ -365,6 +365,102 @@ func (client DatabaseClient) changeBackupDestinationCompartment(ctx context.Cont
 	return response, err
 }
 
+// ChangeCloudExadataInfrastructureCompartment To move a cloud Exadata infrastructure and its dependent resources to another compartment, use the
+// ChangeCloudExadataInfrastructureCompartment operation.
+func (client DatabaseClient) ChangeCloudExadataInfrastructureCompartment(ctx context.Context, request ChangeCloudExadataInfrastructureCompartmentRequest) (response ChangeCloudExadataInfrastructureCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeCloudExadataInfrastructureCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeCloudExadataInfrastructureCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeCloudExadataInfrastructureCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeCloudExadataInfrastructureCompartmentResponse")
+	}
+	return
+}
+
+// changeCloudExadataInfrastructureCompartment implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) changeCloudExadataInfrastructureCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/cloudExadataInfrastructures/{cloudExadataInfrastructureId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeCloudExadataInfrastructureCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ChangeCloudVmClusterCompartment To move a cloud VM cluster and its dependent resources to another compartment, use the
+// ChangeCloudVmClusterCompartment operation.
+func (client DatabaseClient) ChangeCloudVmClusterCompartment(ctx context.Context, request ChangeCloudVmClusterCompartmentRequest) (response ChangeCloudVmClusterCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeCloudVmClusterCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ChangeCloudVmClusterCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeCloudVmClusterCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeCloudVmClusterCompartmentResponse")
+	}
+	return
+}
+
+// changeCloudVmClusterCompartment implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) changeCloudVmClusterCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/cloudVmClusters/{cloudVmClusterId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeCloudVmClusterCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ChangeDbSystemCompartment Move the DB system and its dependent resources to the specified compartment.
 // For more information about moving DB systems, see
 // Moving Database Resources to a Different Compartment (https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
@@ -922,6 +1018,100 @@ func (client DatabaseClient) createBackupDestination(ctx context.Context, reques
 	}
 
 	var response CreateBackupDestinationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateCloudExadataInfrastructure Create cloud Exadata infrastructure.
+func (client DatabaseClient) CreateCloudExadataInfrastructure(ctx context.Context, request CreateCloudExadataInfrastructureRequest) (response CreateCloudExadataInfrastructureResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createCloudExadataInfrastructure, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateCloudExadataInfrastructureResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateCloudExadataInfrastructureResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateCloudExadataInfrastructureResponse")
+	}
+	return
+}
+
+// createCloudExadataInfrastructure implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) createCloudExadataInfrastructure(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/cloudExadataInfrastructures")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateCloudExadataInfrastructureResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateCloudVmCluster Creates a cloud VM cluster.
+func (client DatabaseClient) CreateCloudVmCluster(ctx context.Context, request CreateCloudVmClusterRequest) (response CreateCloudVmClusterResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createCloudVmCluster, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = CreateCloudVmClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateCloudVmClusterResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateCloudVmClusterResponse")
+	}
+	return
+}
+
+// createCloudVmCluster implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) createCloudVmCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/cloudVmClusters")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateCloudVmClusterResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1575,6 +1765,90 @@ func (client DatabaseClient) deleteBackupDestination(ctx context.Context, reques
 	}
 
 	var response DeleteBackupDestinationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteCloudExadataInfrastructure Deletes the cloud Exadata infrastructure.
+func (client DatabaseClient) DeleteCloudExadataInfrastructure(ctx context.Context, request DeleteCloudExadataInfrastructureRequest) (response DeleteCloudExadataInfrastructureResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteCloudExadataInfrastructure, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteCloudExadataInfrastructureResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteCloudExadataInfrastructureResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteCloudExadataInfrastructureResponse")
+	}
+	return
+}
+
+// deleteCloudExadataInfrastructure implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) deleteCloudExadataInfrastructure(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/cloudExadataInfrastructures/{cloudExadataInfrastructureId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteCloudExadataInfrastructureResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteCloudVmCluster Deletes the specified cloud VM cluster.
+func (client DatabaseClient) DeleteCloudVmCluster(ctx context.Context, request DeleteCloudVmClusterRequest) (response DeleteCloudVmClusterResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteCloudVmCluster, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = DeleteCloudVmClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteCloudVmClusterResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteCloudVmClusterResponse")
+	}
+	return
+}
+
+// deleteCloudVmCluster implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) deleteCloudVmCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/cloudVmClusters/{cloudVmClusterId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteCloudVmClusterResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2657,6 +2931,217 @@ func (client DatabaseClient) getBackupDestination(ctx context.Context, request c
 	}
 
 	var response GetBackupDestinationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetCloudExadataInfrastructure Gets information about the specified cloud Exadata infrastructure.
+func (client DatabaseClient) GetCloudExadataInfrastructure(ctx context.Context, request GetCloudExadataInfrastructureRequest) (response GetCloudExadataInfrastructureResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getCloudExadataInfrastructure, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetCloudExadataInfrastructureResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetCloudExadataInfrastructureResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetCloudExadataInfrastructureResponse")
+	}
+	return
+}
+
+// getCloudExadataInfrastructure implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getCloudExadataInfrastructure(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudExadataInfrastructures/{cloudExadataInfrastructureId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetCloudExadataInfrastructureResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetCloudVmCluster Gets information about the specified cloud VM cluster.
+func (client DatabaseClient) GetCloudVmCluster(ctx context.Context, request GetCloudVmClusterRequest) (response GetCloudVmClusterResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getCloudVmCluster, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetCloudVmClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetCloudVmClusterResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetCloudVmClusterResponse")
+	}
+	return
+}
+
+// getCloudVmCluster implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getCloudVmCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetCloudVmClusterResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetCloudVmClusterIormConfig Gets `IORM` Setting for the requested cloud VM cluster.
+// The default IORM Settings is pre-created in all the cloud VM cluster.
+func (client DatabaseClient) GetCloudVmClusterIormConfig(ctx context.Context, request GetCloudVmClusterIormConfigRequest) (response GetCloudVmClusterIormConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getCloudVmClusterIormConfig, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetCloudVmClusterIormConfigResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetCloudVmClusterIormConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetCloudVmClusterIormConfigResponse")
+	}
+	return
+}
+
+// getCloudVmClusterIormConfig implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getCloudVmClusterIormConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmCluster/{cloudVmClusterId}/CloudVmClusterIormConfig")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetCloudVmClusterIormConfigResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetCloudVmClusterPatch Gets information about a specified patch package.
+func (client DatabaseClient) GetCloudVmClusterPatch(ctx context.Context, request GetCloudVmClusterPatchRequest) (response GetCloudVmClusterPatchResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getCloudVmClusterPatch, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetCloudVmClusterPatchResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetCloudVmClusterPatchResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetCloudVmClusterPatchResponse")
+	}
+	return
+}
+
+// getCloudVmClusterPatch implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getCloudVmClusterPatch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/patches/{patchId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetCloudVmClusterPatchResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetCloudVmClusterPatchHistoryEntry Gets the patch history details for the specified patchHistoryEntryId.
+func (client DatabaseClient) GetCloudVmClusterPatchHistoryEntry(ctx context.Context, request GetCloudVmClusterPatchHistoryEntryRequest) (response GetCloudVmClusterPatchHistoryEntryResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getCloudVmClusterPatchHistoryEntry, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = GetCloudVmClusterPatchHistoryEntryResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetCloudVmClusterPatchHistoryEntryResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetCloudVmClusterPatchHistoryEntryResponse")
+	}
+	return
+}
+
+// getCloudVmClusterPatchHistoryEntry implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getCloudVmClusterPatchHistoryEntry(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/patchHistoryEntries/{patchHistoryEntryId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetCloudVmClusterPatchHistoryEntryResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -4162,6 +4647,174 @@ func (client DatabaseClient) listBackups(ctx context.Context, request common.OCI
 	return response, err
 }
 
+// ListCloudExadataInfrastructures Gets a list of the cloud Exadata infrastructure in the specified compartment.
+func (client DatabaseClient) ListCloudExadataInfrastructures(ctx context.Context, request ListCloudExadataInfrastructuresRequest) (response ListCloudExadataInfrastructuresResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listCloudExadataInfrastructures, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListCloudExadataInfrastructuresResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListCloudExadataInfrastructuresResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListCloudExadataInfrastructuresResponse")
+	}
+	return
+}
+
+// listCloudExadataInfrastructures implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listCloudExadataInfrastructures(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudExadataInfrastructures")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListCloudExadataInfrastructuresResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListCloudVmClusterPatchHistoryEntries Gets the history of the patch actions performed on the specified cloud VM cluster.
+func (client DatabaseClient) ListCloudVmClusterPatchHistoryEntries(ctx context.Context, request ListCloudVmClusterPatchHistoryEntriesRequest) (response ListCloudVmClusterPatchHistoryEntriesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listCloudVmClusterPatchHistoryEntries, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListCloudVmClusterPatchHistoryEntriesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListCloudVmClusterPatchHistoryEntriesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListCloudVmClusterPatchHistoryEntriesResponse")
+	}
+	return
+}
+
+// listCloudVmClusterPatchHistoryEntries implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listCloudVmClusterPatchHistoryEntries(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/patchHistoryEntries")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListCloudVmClusterPatchHistoryEntriesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListCloudVmClusterPatches Lists the patches applicable to the requested cloud VM cluster.
+func (client DatabaseClient) ListCloudVmClusterPatches(ctx context.Context, request ListCloudVmClusterPatchesRequest) (response ListCloudVmClusterPatchesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listCloudVmClusterPatches, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListCloudVmClusterPatchesResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListCloudVmClusterPatchesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListCloudVmClusterPatchesResponse")
+	}
+	return
+}
+
+// listCloudVmClusterPatches implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listCloudVmClusterPatches(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/patches")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListCloudVmClusterPatchesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListCloudVmClusters Gets a list of the cloud VM clusters in the specified compartment.
+func (client DatabaseClient) ListCloudVmClusters(ctx context.Context, request ListCloudVmClustersRequest) (response ListCloudVmClustersResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listCloudVmClusters, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = ListCloudVmClustersResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListCloudVmClustersResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListCloudVmClustersResponse")
+	}
+	return
+}
+
+// listCloudVmClusters implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listCloudVmClusters(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListCloudVmClustersResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListConsoleConnections Lists the console connections for the specified Db node.
 func (client DatabaseClient) ListConsoleConnections(ctx context.Context, request ListConsoleConnectionsRequest) (response ListConsoleConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -4948,6 +5601,53 @@ func (client DatabaseClient) listVmClusters(ctx context.Context, request common.
 	}
 
 	var response ListVmClustersResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// MigrateExadataDbSystemResourceModel Migration Exadata dbSystem resource model to cloud Exadata infrastructure model. All related resources will be migrated.
+func (client DatabaseClient) MigrateExadataDbSystemResourceModel(ctx context.Context, request MigrateExadataDbSystemResourceModelRequest) (response MigrateExadataDbSystemResourceModelResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.migrateExadataDbSystemResourceModel, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = MigrateExadataDbSystemResourceModelResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(MigrateExadataDbSystemResourceModelResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into MigrateExadataDbSystemResourceModelResponse")
+	}
+	return
+}
+
+// migrateExadataDbSystemResourceModel implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) migrateExadataDbSystemResourceModel(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dbSystems/{dbSystemId}/actions/migration")
+	if err != nil {
+		return nil, err
+	}
+
+	var response MigrateExadataDbSystemResourceModelResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -5965,6 +6665,132 @@ func (client DatabaseClient) updateBackupDestination(ctx context.Context, reques
 	}
 
 	var response UpdateBackupDestinationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateCloudExadataInfrastructure Updates the Cloud Exadata infrastructure.
+func (client DatabaseClient) UpdateCloudExadataInfrastructure(ctx context.Context, request UpdateCloudExadataInfrastructureRequest) (response UpdateCloudExadataInfrastructureResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateCloudExadataInfrastructure, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateCloudExadataInfrastructureResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateCloudExadataInfrastructureResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateCloudExadataInfrastructureResponse")
+	}
+	return
+}
+
+// updateCloudExadataInfrastructure implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) updateCloudExadataInfrastructure(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/cloudExadataInfrastructures/{cloudExadataInfrastructureId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateCloudExadataInfrastructureResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateCloudVmCluster Updates the specified cloud VM cluster.
+func (client DatabaseClient) UpdateCloudVmCluster(ctx context.Context, request UpdateCloudVmClusterRequest) (response UpdateCloudVmClusterResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateCloudVmCluster, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateCloudVmClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateCloudVmClusterResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateCloudVmClusterResponse")
+	}
+	return
+}
+
+// updateCloudVmCluster implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) updateCloudVmCluster(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/cloudVmClusters/{cloudVmClusterId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateCloudVmClusterResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateCloudVmClusterIormConfig Update `IORM` Settings for the requested cloud VM cluster.
+func (client DatabaseClient) UpdateCloudVmClusterIormConfig(ctx context.Context, request UpdateCloudVmClusterIormConfigRequest) (response UpdateCloudVmClusterIormConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateCloudVmClusterIormConfig, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateCloudVmClusterIormConfigResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateCloudVmClusterIormConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateCloudVmClusterIormConfigResponse")
+	}
+	return
+}
+
+// updateCloudVmClusterIormConfig implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) updateCloudVmClusterIormConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/cloudVmCluster/{cloudVmClusterId}/CloudVmClusterIormConfig")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateCloudVmClusterIormConfigResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

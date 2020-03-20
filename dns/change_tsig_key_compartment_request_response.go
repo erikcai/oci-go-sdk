@@ -37,6 +37,9 @@ type ChangeTsigKeyCompartmentRequest struct {
 	// the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
+	// Specifies to operate only on resources that have a matching DNS scope.
+	Scope ChangeTsigKeyCompartmentScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -75,4 +78,25 @@ func (response ChangeTsigKeyCompartmentResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ChangeTsigKeyCompartmentResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ChangeTsigKeyCompartmentScopeEnum Enum with underlying type: string
+type ChangeTsigKeyCompartmentScopeEnum string
+
+// Set of constants representing the allowable values for ChangeTsigKeyCompartmentScopeEnum
+const (
+	ChangeTsigKeyCompartmentScopeGlobal ChangeTsigKeyCompartmentScopeEnum = "GLOBAL"
+)
+
+var mappingChangeTsigKeyCompartmentScope = map[string]ChangeTsigKeyCompartmentScopeEnum{
+	"GLOBAL": ChangeTsigKeyCompartmentScopeGlobal,
+}
+
+// GetChangeTsigKeyCompartmentScopeEnumValues Enumerates the set of values for ChangeTsigKeyCompartmentScopeEnum
+func GetChangeTsigKeyCompartmentScopeEnumValues() []ChangeTsigKeyCompartmentScopeEnum {
+	values := make([]ChangeTsigKeyCompartmentScopeEnum, 0)
+	for _, v := range mappingChangeTsigKeyCompartmentScope {
+		values = append(values, v)
+	}
+	return values
 }

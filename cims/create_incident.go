@@ -27,6 +27,9 @@ type CreateIncident struct {
     
  // Customer Support Identifier of the support account
     Csi *string `mandatory:"false" json:"csi"`
+    
+ // List of contacts
+    Contacts []Contact `mandatory:"false" json:"contacts"`
 }
 
 func (m CreateIncident) String() string {

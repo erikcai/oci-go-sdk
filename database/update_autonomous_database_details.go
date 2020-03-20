@@ -81,6 +81,9 @@ type UpdateAutonomousDatabaseDetails struct {
 	// Indicates whether the Autonomous Database has Data Guard enabled.
 	IsDataGuardEnabled *bool `mandatory:"false" json:"isDataGuardEnabled"`
 
+	// A valid Oracle Database version for Autonomous Database.
+	DbVersion *string `mandatory:"false" json:"dbVersion"`
+
 	// The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
 	OpenMode UpdateAutonomousDatabaseDetailsOpenModeEnum `mandatory:"false" json:"openMode,omitempty"`
 

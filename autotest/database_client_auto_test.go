@@ -286,6 +286,94 @@ func TestDatabaseClientChangeBackupDestinationCompartment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeCloudExadataInfrastructureCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeCloudExadataInfrastructureCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeCloudExadataInfrastructureCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeCloudExadataInfrastructureCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeCloudExadataInfrastructureCompartment")
+	assert.NoError(t, err)
+
+	type ChangeCloudExadataInfrastructureCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeCloudExadataInfrastructureCompartmentRequest
+	}
+
+	var requests []ChangeCloudExadataInfrastructureCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeCloudExadataInfrastructureCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeCloudVmClusterCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeCloudVmClusterCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeCloudVmClusterCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeCloudVmClusterCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeCloudVmClusterCompartment")
+	assert.NoError(t, err)
+
+	type ChangeCloudVmClusterCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeCloudVmClusterCompartmentRequest
+	}
+
+	var requests []ChangeCloudVmClusterCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeCloudVmClusterCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientChangeDbSystemCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -834,6 +922,94 @@ func TestDatabaseClientCreateBackupDestination(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateBackupDestination(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateCloudExadataInfrastructure(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateCloudExadataInfrastructure")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateCloudExadataInfrastructure is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateCloudExadataInfrastructure", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateCloudExadataInfrastructure")
+	assert.NoError(t, err)
+
+	type CreateCloudExadataInfrastructureRequestInfo struct {
+		ContainerId string
+		Request     database.CreateCloudExadataInfrastructureRequest
+	}
+
+	var requests []CreateCloudExadataInfrastructureRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateCloudExadataInfrastructure(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateCloudVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateCloudVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateCloudVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateCloudVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateCloudVmCluster")
+	assert.NoError(t, err)
+
+	type CreateCloudVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.CreateCloudVmClusterRequest
+	}
+
+	var requests []CreateCloudVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateCloudVmCluster(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1490,6 +1666,94 @@ func TestDatabaseClientDeleteBackupDestination(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteBackupDestination(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteCloudExadataInfrastructure(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteCloudExadataInfrastructure")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteCloudExadataInfrastructure is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteCloudExadataInfrastructure", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteCloudExadataInfrastructure")
+	assert.NoError(t, err)
+
+	type DeleteCloudExadataInfrastructureRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteCloudExadataInfrastructureRequest
+	}
+
+	var requests []DeleteCloudExadataInfrastructureRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteCloudExadataInfrastructure(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteCloudVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteCloudVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteCloudVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteCloudVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteCloudVmCluster")
+	assert.NoError(t, err)
+
+	type DeleteCloudVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteCloudVmClusterRequest
+	}
+
+	var requests []DeleteCloudVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteCloudVmCluster(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2590,6 +2854,226 @@ func TestDatabaseClientGetBackupDestination(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetBackupDestination(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetCloudExadataInfrastructure(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetCloudExadataInfrastructure")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCloudExadataInfrastructure is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudExadataInfrastructure", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetCloudExadataInfrastructure")
+	assert.NoError(t, err)
+
+	type GetCloudExadataInfrastructureRequestInfo struct {
+		ContainerId string
+		Request     database.GetCloudExadataInfrastructureRequest
+	}
+
+	var requests []GetCloudExadataInfrastructureRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCloudExadataInfrastructure(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetCloudVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetCloudVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCloudVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetCloudVmCluster")
+	assert.NoError(t, err)
+
+	type GetCloudVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.GetCloudVmClusterRequest
+	}
+
+	var requests []GetCloudVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCloudVmCluster(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetCloudVmClusterIormConfig(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetCloudVmClusterIormConfig")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCloudVmClusterIormConfig is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudVmClusterIormConfig", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetCloudVmClusterIormConfig")
+	assert.NoError(t, err)
+
+	type GetCloudVmClusterIormConfigRequestInfo struct {
+		ContainerId string
+		Request     database.GetCloudVmClusterIormConfigRequest
+	}
+
+	var requests []GetCloudVmClusterIormConfigRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCloudVmClusterIormConfig(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetCloudVmClusterPatch(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetCloudVmClusterPatch")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCloudVmClusterPatch is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudVmClusterPatch", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetCloudVmClusterPatch")
+	assert.NoError(t, err)
+
+	type GetCloudVmClusterPatchRequestInfo struct {
+		ContainerId string
+		Request     database.GetCloudVmClusterPatchRequest
+	}
+
+	var requests []GetCloudVmClusterPatchRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCloudVmClusterPatch(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetCloudVmClusterPatchHistoryEntry(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetCloudVmClusterPatchHistoryEntry")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCloudVmClusterPatchHistoryEntry is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudVmClusterPatchHistoryEntry", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetCloudVmClusterPatchHistoryEntry")
+	assert.NoError(t, err)
+
+	type GetCloudVmClusterPatchHistoryEntryRequestInfo struct {
+		ContainerId string
+		Request     database.GetCloudVmClusterPatchHistoryEntryRequest
+	}
+
+	var requests []GetCloudVmClusterPatchHistoryEntryRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCloudVmClusterPatchHistoryEntry(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -4280,6 +4764,222 @@ func TestDatabaseClientListBackups(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListCloudExadataInfrastructures(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListCloudExadataInfrastructures")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCloudExadataInfrastructures is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListCloudExadataInfrastructures", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListCloudExadataInfrastructures")
+	assert.NoError(t, err)
+
+	type ListCloudExadataInfrastructuresRequestInfo struct {
+		ContainerId string
+		Request     database.ListCloudExadataInfrastructuresRequest
+	}
+
+	var requests []ListCloudExadataInfrastructuresRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListCloudExadataInfrastructuresRequest)
+				return c.ListCloudExadataInfrastructures(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListCloudExadataInfrastructuresResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListCloudExadataInfrastructuresResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListCloudVmClusterPatchHistoryEntries(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListCloudVmClusterPatchHistoryEntries")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCloudVmClusterPatchHistoryEntries is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListCloudVmClusterPatchHistoryEntries", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListCloudVmClusterPatchHistoryEntries")
+	assert.NoError(t, err)
+
+	type ListCloudVmClusterPatchHistoryEntriesRequestInfo struct {
+		ContainerId string
+		Request     database.ListCloudVmClusterPatchHistoryEntriesRequest
+	}
+
+	var requests []ListCloudVmClusterPatchHistoryEntriesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListCloudVmClusterPatchHistoryEntriesRequest)
+				return c.ListCloudVmClusterPatchHistoryEntries(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListCloudVmClusterPatchHistoryEntriesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListCloudVmClusterPatchHistoryEntriesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListCloudVmClusterPatches(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListCloudVmClusterPatches")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCloudVmClusterPatches is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListCloudVmClusterPatches", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListCloudVmClusterPatches")
+	assert.NoError(t, err)
+
+	type ListCloudVmClusterPatchesRequestInfo struct {
+		ContainerId string
+		Request     database.ListCloudVmClusterPatchesRequest
+	}
+
+	var requests []ListCloudVmClusterPatchesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListCloudVmClusterPatchesRequest)
+				return c.ListCloudVmClusterPatches(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListCloudVmClusterPatchesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListCloudVmClusterPatchesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListCloudVmClusters(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListCloudVmClusters")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCloudVmClusters is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListCloudVmClusters", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListCloudVmClusters")
+	assert.NoError(t, err)
+
+	type ListCloudVmClustersRequestInfo struct {
+		ContainerId string
+		Request     database.ListCloudVmClustersRequest
+	}
+
+	var requests []ListCloudVmClustersRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListCloudVmClustersRequest)
+				return c.ListCloudVmClusters(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListCloudVmClustersResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListCloudVmClustersResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientListConsoleConnections(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -5290,6 +5990,50 @@ func TestDatabaseClientListVmClusters(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientMigrateExadataDbSystemResourceModel(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "MigrateExadataDbSystemResourceModel")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("MigrateExadataDbSystemResourceModel is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "MigrateExadataDbSystemResourceModel", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "MigrateExadataDbSystemResourceModel")
+	assert.NoError(t, err)
+
+	type MigrateExadataDbSystemResourceModelRequestInfo struct {
+		ContainerId string
+		Request     database.MigrateExadataDbSystemResourceModelRequest
+	}
+
+	var requests []MigrateExadataDbSystemResourceModelRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.MigrateExadataDbSystemResourceModel(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -6345,6 +7089,138 @@ func TestDatabaseClientUpdateBackupDestination(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateBackupDestination(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateCloudExadataInfrastructure(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateCloudExadataInfrastructure")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateCloudExadataInfrastructure is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateCloudExadataInfrastructure", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateCloudExadataInfrastructure")
+	assert.NoError(t, err)
+
+	type UpdateCloudExadataInfrastructureRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateCloudExadataInfrastructureRequest
+	}
+
+	var requests []UpdateCloudExadataInfrastructureRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateCloudExadataInfrastructure(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateCloudVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateCloudVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateCloudVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateCloudVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateCloudVmCluster")
+	assert.NoError(t, err)
+
+	type UpdateCloudVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateCloudVmClusterRequest
+	}
+
+	var requests []UpdateCloudVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateCloudVmCluster(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateCloudVmClusterIormConfig(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateCloudVmClusterIormConfig")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateCloudVmClusterIormConfig is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateCloudVmClusterIormConfig", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateCloudVmClusterIormConfig")
+	assert.NoError(t, err)
+
+	type UpdateCloudVmClusterIormConfigRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateCloudVmClusterIormConfigRequest
+	}
+
+	var requests []UpdateCloudVmClusterIormConfigRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateCloudVmClusterIormConfig(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

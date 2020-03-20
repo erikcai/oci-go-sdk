@@ -22,6 +22,9 @@ type CreateZoneRequest struct {
 	// The OCID of the compartment the resource belongs to.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
+	// Specifies to operate only on resources that have a matching DNS scope.
+	Scope CreateZoneScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -50,14 +53,17 @@ type CreateZoneResponse struct {
 	// The Zone instance
 	Zone `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to
-	// contact Oracle about a particular request, please provide the request ID.
-	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
 	// The current version of the zone, ending with a
 	// representation-specific suffix. This value may be used in If-Match
 	// and If-None-Match headers for later requests of the same resource.
 	ETag *string `presentIn:"header" name:"etag"`
+
+	// The full URI of the resource related to the request.
+	Location *string `presentIn:"header" name:"location"`
+
+	// Unique Oracle-assigned identifier for the request. If you need to
+	// contact Oracle about a particular request, please provide the request ID.
+	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
 func (response CreateZoneResponse) String() string {
@@ -67,4 +73,25 @@ func (response CreateZoneResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response CreateZoneResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// CreateZoneScopeEnum Enum with underlying type: string
+type CreateZoneScopeEnum string
+
+// Set of constants representing the allowable values for CreateZoneScopeEnum
+const (
+	CreateZoneScopeGlobal CreateZoneScopeEnum = "GLOBAL"
+)
+
+var mappingCreateZoneScope = map[string]CreateZoneScopeEnum{
+	"GLOBAL": CreateZoneScopeGlobal,
+}
+
+// GetCreateZoneScopeEnumValues Enumerates the set of values for CreateZoneScopeEnum
+func GetCreateZoneScopeEnumValues() []CreateZoneScopeEnum {
+	values := make([]CreateZoneScopeEnum, 0)
+	for _, v := range mappingCreateZoneScope {
+		values = append(values, v)
+	}
+	return values
 }

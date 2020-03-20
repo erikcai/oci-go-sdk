@@ -36,6 +36,9 @@ type PatchZoneRecordsRequest struct {
 	// the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
+	// Specifies to operate only on resources that have a matching DNS scope.
+	Scope PatchZoneRecordsScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
+
 	// The OCID of the compartment the resource belongs to.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
@@ -93,4 +96,25 @@ func (response PatchZoneRecordsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response PatchZoneRecordsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// PatchZoneRecordsScopeEnum Enum with underlying type: string
+type PatchZoneRecordsScopeEnum string
+
+// Set of constants representing the allowable values for PatchZoneRecordsScopeEnum
+const (
+	PatchZoneRecordsScopeGlobal PatchZoneRecordsScopeEnum = "GLOBAL"
+)
+
+var mappingPatchZoneRecordsScope = map[string]PatchZoneRecordsScopeEnum{
+	"GLOBAL": PatchZoneRecordsScopeGlobal,
+}
+
+// GetPatchZoneRecordsScopeEnumValues Enumerates the set of values for PatchZoneRecordsScopeEnum
+func GetPatchZoneRecordsScopeEnumValues() []PatchZoneRecordsScopeEnum {
+	values := make([]PatchZoneRecordsScopeEnum, 0)
+	for _, v := range mappingPatchZoneRecordsScope {
+		values = append(values, v)
+	}
+	return values
 }

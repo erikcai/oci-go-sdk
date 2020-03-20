@@ -20,6 +20,9 @@ type UpdateIncidentRequest struct {
  // Details of Resource to be updated 
         UpdateIncidentDetails UpdateIncident `contributesTo:"body"`
         
+ // User OCID for IDCS users that have a shadow in OCI 
+        Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
+        
  // Retry token 
         OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
         

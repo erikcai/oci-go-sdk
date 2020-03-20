@@ -37,6 +37,9 @@ type ChangeSteeringPolicyCompartmentRequest struct {
 	// the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
+	// Specifies to operate only on resources that have a matching DNS scope.
+	Scope ChangeSteeringPolicyCompartmentScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -75,4 +78,25 @@ func (response ChangeSteeringPolicyCompartmentResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ChangeSteeringPolicyCompartmentResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ChangeSteeringPolicyCompartmentScopeEnum Enum with underlying type: string
+type ChangeSteeringPolicyCompartmentScopeEnum string
+
+// Set of constants representing the allowable values for ChangeSteeringPolicyCompartmentScopeEnum
+const (
+	ChangeSteeringPolicyCompartmentScopeGlobal ChangeSteeringPolicyCompartmentScopeEnum = "GLOBAL"
+)
+
+var mappingChangeSteeringPolicyCompartmentScope = map[string]ChangeSteeringPolicyCompartmentScopeEnum{
+	"GLOBAL": ChangeSteeringPolicyCompartmentScopeGlobal,
+}
+
+// GetChangeSteeringPolicyCompartmentScopeEnumValues Enumerates the set of values for ChangeSteeringPolicyCompartmentScopeEnum
+func GetChangeSteeringPolicyCompartmentScopeEnumValues() []ChangeSteeringPolicyCompartmentScopeEnum {
+	values := make([]ChangeSteeringPolicyCompartmentScopeEnum, 0)
+	for _, v := range mappingChangeSteeringPolicyCompartmentScope {
+		values = append(values, v)
+	}
+	return values
 }

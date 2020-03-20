@@ -19,7 +19,13 @@ import (
 type SteeringPolicy struct {
 
 	// The OCID of the compartment containing the steering policy.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// The OCID of the resource.
+	Id *string `mandatory:"true" json:"id"`
+
+	// The current state of the resource.
+	LifecycleState SteeringPolicyLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// A user-friendly name for the steering policy. Does not have to be unique and can be changed.
 	// Avoid entering confidential information.
@@ -98,15 +104,9 @@ type SteeringPolicy struct {
 	// The canonical absolute URL of the resource.
 	Self *string `mandatory:"false" json:"self"`
 
-	// The OCID of the resource.
-	Id *string `mandatory:"false" json:"id"`
-
 	// The date and time the resource was created, expressed in RFC 3339 timestamp format.
 	// **Example:** `2016-07-22T17:23:59:60Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
-
-	// The current state of the resource.
-	LifecycleState SteeringPolicyLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 
 func (m SteeringPolicy) String() string {
@@ -116,7 +116,6 @@ func (m SteeringPolicy) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *SteeringPolicy) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		CompartmentId        *string                           `json:"compartmentId"`
 		DisplayName          *string                           `json:"displayName"`
 		Ttl                  *int                              `json:"ttl"`
 		HealthCheckMonitorId *string                           `json:"healthCheckMonitorId"`
@@ -126,8 +125,9 @@ func (m *SteeringPolicy) UnmarshalJSON(data []byte) (e error) {
 		Answers              []SteeringPolicyAnswer            `json:"answers"`
 		Rules                []steeringpolicyrule              `json:"rules"`
 		Self                 *string                           `json:"self"`
-		Id                   *string                           `json:"id"`
 		TimeCreated          *common.SDKTime                   `json:"timeCreated"`
+		CompartmentId        *string                           `json:"compartmentId"`
+		Id                   *string                           `json:"id"`
 		LifecycleState       SteeringPolicyLifecycleStateEnum  `json:"lifecycleState"`
 	}{}
 
@@ -136,8 +136,6 @@ func (m *SteeringPolicy) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	var nn interface{}
-	m.CompartmentId = model.CompartmentId
-
 	m.DisplayName = model.DisplayName
 
 	m.Ttl = model.Ttl
@@ -170,9 +168,11 @@ func (m *SteeringPolicy) UnmarshalJSON(data []byte) (e error) {
 
 	m.Self = model.Self
 
-	m.Id = model.Id
-
 	m.TimeCreated = model.TimeCreated
+
+	m.CompartmentId = model.CompartmentId
+
+	m.Id = model.Id
 
 	m.LifecycleState = model.LifecycleState
 	return

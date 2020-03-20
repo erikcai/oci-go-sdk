@@ -20,6 +20,9 @@ type ListIncidentResourceTypesRequest struct {
  // Customer Support Identifier of the support account 
         Csi *string `mandatory:"true" contributesTo:"header" name:"csi"`
         
+ // User OCID for IDCS users that have a shadow in OCI 
+        Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
+        
  // Unique Header for request id 
         OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
         

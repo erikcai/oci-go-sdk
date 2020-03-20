@@ -18,7 +18,13 @@ import (
 type SteeringPolicySummary struct {
 
 	// The OCID of the compartment containing the steering policy.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// The OCID of the resource.
+	Id *string `mandatory:"true" json:"id"`
+
+	// The current state of the resource.
+	LifecycleState SteeringPolicySummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// A user-friendly name for the steering policy. Does not have to be unique and can be changed.
 	// Avoid entering confidential information.
@@ -86,15 +92,9 @@ type SteeringPolicySummary struct {
 	// The canonical absolute URL of the resource.
 	Self *string `mandatory:"false" json:"self"`
 
-	// The OCID of the resource.
-	Id *string `mandatory:"false" json:"id"`
-
 	// The date and time the resource was created, expressed in RFC 3339 timestamp format.
 	// **Example:** `2016-07-22T17:23:59:60Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
-
-	// The current state of the resource.
-	LifecycleState SteeringPolicySummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 
 func (m SteeringPolicySummary) String() string {

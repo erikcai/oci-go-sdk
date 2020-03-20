@@ -36,6 +36,9 @@ type DeleteDomainRecordsRequest struct {
 	// the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
+	// Specifies to operate only on resources that have a matching DNS scope.
+	Scope DeleteDomainRecordsScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
+
 	// The OCID of the compartment the resource belongs to.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
@@ -77,4 +80,25 @@ func (response DeleteDomainRecordsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response DeleteDomainRecordsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// DeleteDomainRecordsScopeEnum Enum with underlying type: string
+type DeleteDomainRecordsScopeEnum string
+
+// Set of constants representing the allowable values for DeleteDomainRecordsScopeEnum
+const (
+	DeleteDomainRecordsScopeGlobal DeleteDomainRecordsScopeEnum = "GLOBAL"
+)
+
+var mappingDeleteDomainRecordsScope = map[string]DeleteDomainRecordsScopeEnum{
+	"GLOBAL": DeleteDomainRecordsScopeGlobal,
+}
+
+// GetDeleteDomainRecordsScopeEnumValues Enumerates the set of values for DeleteDomainRecordsScopeEnum
+func GetDeleteDomainRecordsScopeEnumValues() []DeleteDomainRecordsScopeEnum {
+	values := make([]DeleteDomainRecordsScopeEnum, 0)
+	for _, v := range mappingDeleteDomainRecordsScope {
+		values = append(values, v)
+	}
+	return values
 }

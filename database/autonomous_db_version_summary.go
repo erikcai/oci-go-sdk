@@ -29,6 +29,9 @@ type AutonomousDbVersionSummary struct {
 
 	// A URL that points to a detailed description of the Autonomous Database version.
 	Details *string `mandatory:"false" json:"details"`
+
+	// True if this version of the Oracle Database software can be used for Always-Free Autonomous Databases.
+	IsFreeTierEnabled *bool `mandatory:"false" json:"isFreeTierEnabled"`
 }
 
 func (m AutonomousDbVersionSummary) String() string {

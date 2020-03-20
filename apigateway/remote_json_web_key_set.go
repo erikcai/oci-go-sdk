@@ -24,6 +24,9 @@ type RemoteJsonWebKeySet struct {
 	// without authentication.
 	Uri *string `mandatory:"true" json:"uri"`
 
+	// Defines whether or not to uphold SSL verification.
+	IsSslVerifyDisabled *bool `mandatory:"false" json:"isSslVerifyDisabled"`
+
 	// The duration for which the JWKS should be cached before it is
 	// fetched again.
 	MaxCacheDurationInHours *int `mandatory:"false" json:"maxCacheDurationInHours"`

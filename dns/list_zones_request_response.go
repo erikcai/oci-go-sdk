@@ -54,6 +54,9 @@ type ListZonesRequest struct {
 	// The order to sort the resources.
 	SortOrder ListZonesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
+	// Specifies to operate only on resources that have a matching DNS scope.
+	Scope ListZonesScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -200,6 +203,27 @@ var mappingListZonesSortOrder = map[string]ListZonesSortOrderEnum{
 func GetListZonesSortOrderEnumValues() []ListZonesSortOrderEnum {
 	values := make([]ListZonesSortOrderEnum, 0)
 	for _, v := range mappingListZonesSortOrder {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListZonesScopeEnum Enum with underlying type: string
+type ListZonesScopeEnum string
+
+// Set of constants representing the allowable values for ListZonesScopeEnum
+const (
+	ListZonesScopeGlobal ListZonesScopeEnum = "GLOBAL"
+)
+
+var mappingListZonesScope = map[string]ListZonesScopeEnum{
+	"GLOBAL": ListZonesScopeGlobal,
+}
+
+// GetListZonesScopeEnumValues Enumerates the set of values for ListZonesScopeEnum
+func GetListZonesScopeEnumValues() []ListZonesScopeEnum {
+	values := make([]ListZonesScopeEnum, 0)
+	for _, v := range mappingListZonesScope {
 		values = append(values, v)
 	}
 	return values

@@ -53,6 +53,9 @@ type Node struct {
 	// The list of block volumes attached to a given node.
 	AttachedBlockVolumes []VolumeAttachmentDetail `mandatory:"false" json:"attachedBlockVolumes"`
 
+	// The fully-qualified hostname (FQDN) of the node
+	Hostname *string `mandatory:"false" json:"hostname"`
+
 	// The OCID of the image from which the node was created
 	ImageId *string `mandatory:"false" json:"imageId"`
 

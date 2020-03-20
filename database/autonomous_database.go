@@ -182,6 +182,9 @@ type AutonomousDatabase struct {
 	FailedDataRecoveryInSeconds *int `mandatory:"false" json:"failedDataRecoveryInSeconds"`
 
 	StandbyDb *AutonomousDatabaseStandbySummary `mandatory:"false" json:"standbyDb"`
+
+	// List of Oracle Database versions available for a database upgrade. If there are no version upgrades available, this list is empty.
+	AvailableUpgradeVersions []string `mandatory:"false" json:"availableUpgradeVersions"`
 }
 
 func (m AutonomousDatabase) String() string {
@@ -210,6 +213,7 @@ const (
 	AutonomousDatabaseLifecycleStateMaintenanceInProgress   AutonomousDatabaseLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 	AutonomousDatabaseLifecycleStateRestarting              AutonomousDatabaseLifecycleStateEnum = "RESTARTING"
 	AutonomousDatabaseLifecycleStateRecreating              AutonomousDatabaseLifecycleStateEnum = "RECREATING"
+	AutonomousDatabaseLifecycleStateUpgrading               AutonomousDatabaseLifecycleStateEnum = "UPGRADING"
 )
 
 var mappingAutonomousDatabaseLifecycleState = map[string]AutonomousDatabaseLifecycleStateEnum{
@@ -230,6 +234,7 @@ var mappingAutonomousDatabaseLifecycleState = map[string]AutonomousDatabaseLifec
 	"MAINTENANCE_IN_PROGRESS":   AutonomousDatabaseLifecycleStateMaintenanceInProgress,
 	"RESTARTING":                AutonomousDatabaseLifecycleStateRestarting,
 	"RECREATING":                AutonomousDatabaseLifecycleStateRecreating,
+	"UPGRADING":                 AutonomousDatabaseLifecycleStateUpgrading,
 }
 
 // GetAutonomousDatabaseLifecycleStateEnumValues Enumerates the set of values for AutonomousDatabaseLifecycleStateEnum

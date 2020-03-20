@@ -48,6 +48,7 @@ const (
 	AutonomousDatabaseStandbySummaryLifecycleStateMaintenanceInProgress   AutonomousDatabaseStandbySummaryLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 	AutonomousDatabaseStandbySummaryLifecycleStateRestarting              AutonomousDatabaseStandbySummaryLifecycleStateEnum = "RESTARTING"
 	AutonomousDatabaseStandbySummaryLifecycleStateRecreating              AutonomousDatabaseStandbySummaryLifecycleStateEnum = "RECREATING"
+	AutonomousDatabaseStandbySummaryLifecycleStateUpgrading               AutonomousDatabaseStandbySummaryLifecycleStateEnum = "UPGRADING"
 )
 
 var mappingAutonomousDatabaseStandbySummaryLifecycleState = map[string]AutonomousDatabaseStandbySummaryLifecycleStateEnum{
@@ -68,6 +69,7 @@ var mappingAutonomousDatabaseStandbySummaryLifecycleState = map[string]Autonomou
 	"MAINTENANCE_IN_PROGRESS":   AutonomousDatabaseStandbySummaryLifecycleStateMaintenanceInProgress,
 	"RESTARTING":                AutonomousDatabaseStandbySummaryLifecycleStateRestarting,
 	"RECREATING":                AutonomousDatabaseStandbySummaryLifecycleStateRecreating,
+	"UPGRADING":                 AutonomousDatabaseStandbySummaryLifecycleStateUpgrading,
 }
 
 // GetAutonomousDatabaseStandbySummaryLifecycleStateEnumValues Enumerates the set of values for AutonomousDatabaseStandbySummaryLifecycleStateEnum

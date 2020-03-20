@@ -31,6 +31,7 @@ const (
     ErrorCodeGenericException ErrorCodeEnum = "GENERIC_EXCEPTION"
     ErrorCodeExternalServiceProviderUnavailable ErrorCodeEnum = "EXTERNAL_SERVICE_PROVIDER_UNAVAILABLE"
     ErrorCodeExternalServiceProviderTimeout ErrorCodeEnum = "EXTERNAL_SERVICE_PROVIDER_TIMEOUT"
+    ErrorCodeTooManyRequests ErrorCodeEnum = "TOO_MANY_REQUESTS"
 )
 
 var mappingErrorCode = map[string]ErrorCodeEnum { 
@@ -51,6 +52,7 @@ var mappingErrorCode = map[string]ErrorCodeEnum {
     "GENERIC_EXCEPTION": ErrorCodeGenericException,
     "EXTERNAL_SERVICE_PROVIDER_UNAVAILABLE": ErrorCodeExternalServiceProviderUnavailable,
     "EXTERNAL_SERVICE_PROVIDER_TIMEOUT": ErrorCodeExternalServiceProviderTimeout,
+    "TOO_MANY_REQUESTS": ErrorCodeTooManyRequests,
 }
 
 // GetErrorCodeEnumValues Enumerates the set of values for ErrorCodeEnum

@@ -55,7 +55,7 @@ func newAuditClientFromBaseClient(baseClient common.BaseClient, configProvider c
 
 // SetRegion overrides the region of this client.
 func (client *AuditClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("audit", "https://audit.{region}.oraclecloud.com")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("audit", "https://audit.{region}.{secondLevelDomain}.com")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

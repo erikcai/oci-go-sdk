@@ -17,6 +17,9 @@ type ListIncidentsRequest struct {
  // Tenancy Ocid 
         CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
         
+ // User OCID for IDCS users that have a shadow in OCI 
+        Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
+        
  // Limit query for number of returned results 
         Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
         

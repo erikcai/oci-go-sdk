@@ -21,10 +21,16 @@ import (
 type SteeringPolicyAttachment struct {
 
 	// The OCID of the attached steering policy.
-	SteeringPolicyId *string `mandatory:"false" json:"steeringPolicyId"`
+	SteeringPolicyId *string `mandatory:"true" json:"steeringPolicyId"`
 
 	// The OCID of the attached zone.
-	ZoneId *string `mandatory:"false" json:"zoneId"`
+	ZoneId *string `mandatory:"true" json:"zoneId"`
+
+	// The OCID of the resource.
+	Id *string `mandatory:"true" json:"id"`
+
+	// The current state of the resource.
+	LifecycleState SteeringPolicyAttachmentLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The attached domain within the attached zone.
 	DomainName *string `mandatory:"false" json:"domainName"`
@@ -45,15 +51,9 @@ type SteeringPolicyAttachment struct {
 	// The canonical absolute URL of the resource.
 	Self *string `mandatory:"false" json:"self"`
 
-	// The OCID of the resource.
-	Id *string `mandatory:"false" json:"id"`
-
 	// The date and time the resource was created, expressed in RFC 3339 timestamp format.
 	// **Example:** `2016-07-22T17:23:59:60Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
-
-	// The current state of the resource.
-	LifecycleState SteeringPolicyAttachmentLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 
 func (m SteeringPolicyAttachment) String() string {

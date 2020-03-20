@@ -18,13 +18,27 @@ import (
 type Zone struct {
 
 	// The name of the zone.
-	Name *string `mandatory:"false" json:"name"`
+	Name *string `mandatory:"true" json:"name"`
 
 	// The type of the zone. Must be either `PRIMARY` or `SECONDARY`.
-	ZoneType ZoneZoneTypeEnum `mandatory:"false" json:"zoneType,omitempty"`
+	ZoneType ZoneZoneTypeEnum `mandatory:"true" json:"zoneType"`
 
 	// The OCID of the compartment containing the zone.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// The OCID of the zone.
+	Id *string `mandatory:"true" json:"id"`
+
+	// The current state of the zone resource.
+	LifecycleState ZoneLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+
+	// The OCID of the private view containing the zone. This value will
+	// be null for zones in the global DNS, which are publicly resolvable and
+	// not part of a private view.
+	ViewId *string `mandatory:"false" json:"viewId"`
+
+	// The scope of the zone.
+	Scope ScopeEnum `mandatory:"false" json:"scope,omitempty"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -45,9 +59,6 @@ type Zone struct {
 	// The canonical absolute URL of the resource.
 	Self *string `mandatory:"false" json:"self"`
 
-	// The OCID of the zone.
-	Id *string `mandatory:"false" json:"id"`
-
 	// The date and time the resource was created in "YYYY-MM-ddThh:mmZ" format
 	// with a Z offset, as defined by RFC 3339.
 	// **Example:** `2016-07-22T17:23:59:60Z`
@@ -60,9 +71,6 @@ type Zone struct {
 
 	// The current serial of the zone. As seen in the zone's SOA record.
 	Serial *int64 `mandatory:"false" json:"serial"`
-
-	// The current state of the zone resource.
-	LifecycleState ZoneLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// The authoritative nameservers for the zone.
 	Nameservers []Nameserver `mandatory:"false" json:"nameservers"`

@@ -16,6 +16,9 @@ type ListDockerRepositoriesRequest struct {
 	// Example: `ocid1.compartment.oc1..exampleuniqueID`
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
+	// When true, the list endpoint will return all repositories in the provided compartment and any of its subcompartments
+	CompartmentIdInSubtree *bool `mandatory:"false" contributesTo:"query" name:"compartmentIdInSubtree"`
+
 	// A filter for repository id.
 	// Will match the repository whose ocid matches the provided value
 	Id *string `mandatory:"false" contributesTo:"query" name:"id"`

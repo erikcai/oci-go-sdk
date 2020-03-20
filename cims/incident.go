@@ -30,6 +30,9 @@ type Incident struct {
     Ticket *Ticket `mandatory:"false" json:"ticket"`
     
     IncidentType *IncidentType `mandatory:"false" json:"incidentType"`
+    
+ // States type of incident. eg: LIMIT, TECH
+    ProblemType ProblemTypeEnum `mandatory:"false" json:"problemType,omitempty"`
 }
 
 func (m Incident) String() string {

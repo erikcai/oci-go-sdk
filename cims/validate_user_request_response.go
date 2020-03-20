@@ -14,6 +14,9 @@ type ValidateUserRequest struct {
  // Customer support identifier of the support account 
         Csi *string `mandatory:"true" contributesTo:"header" name:"csi"`
         
+ // User OCID for IDCS users that have a shadow in OCI 
+        Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
+        
  // Retry-token header 
         OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
         
