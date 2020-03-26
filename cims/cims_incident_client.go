@@ -94,7 +94,8 @@ func(client IncidentClient) CreateIncident(ctx context.Context, request CreateIn
     ociResponse, err = common.Retry(ctx, request, client.createIncident, policy)
     if err != nil {
         if ociResponse != nil {
-            response = CreateIncidentResponse{RawResponse: ociResponse.HTTPResponse()}
+            opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+            response = CreateIncidentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
         }
         return
     }
@@ -139,7 +140,8 @@ func(client IncidentClient) GetIncident(ctx context.Context, request GetIncident
     ociResponse, err = common.Retry(ctx, request, client.getIncident, policy)
     if err != nil {
         if ociResponse != nil {
-            response = GetIncidentResponse{RawResponse: ociResponse.HTTPResponse()}
+            opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+            response = GetIncidentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
         }
         return
     }
@@ -184,7 +186,8 @@ func(client IncidentClient) GetStatus(ctx context.Context, request GetStatusRequ
     ociResponse, err = common.Retry(ctx, request, client.getStatus, policy)
     if err != nil {
         if ociResponse != nil {
-            response = GetStatusResponse{RawResponse: ociResponse.HTTPResponse()}
+            opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+            response = GetStatusResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
         }
         return
     }
@@ -229,7 +232,8 @@ func(client IncidentClient) ListIncidentResourceTypes(ctx context.Context, reque
     ociResponse, err = common.Retry(ctx, request, client.listIncidentResourceTypes, policy)
     if err != nil {
         if ociResponse != nil {
-            response = ListIncidentResourceTypesResponse{RawResponse: ociResponse.HTTPResponse()}
+            opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+            response = ListIncidentResourceTypesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
         }
         return
     }
@@ -274,7 +278,8 @@ func(client IncidentClient) ListIncidents(ctx context.Context, request ListIncid
     ociResponse, err = common.Retry(ctx, request, client.listIncidents, policy)
     if err != nil {
         if ociResponse != nil {
-            response = ListIncidentsResponse{RawResponse: ociResponse.HTTPResponse()}
+            opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+            response = ListIncidentsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
         }
         return
     }
@@ -324,7 +329,8 @@ func(client IncidentClient) UpdateIncident(ctx context.Context, request UpdateIn
     ociResponse, err = common.Retry(ctx, request, client.updateIncident, policy)
     if err != nil {
         if ociResponse != nil {
-            response = UpdateIncidentResponse{RawResponse: ociResponse.HTTPResponse()}
+            opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+            response = UpdateIncidentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
         }
         return
     }
@@ -374,7 +380,8 @@ func(client IncidentClient) ValidateUser(ctx context.Context, request ValidateUs
     ociResponse, err = common.Retry(ctx, request, client.validateUser, policy)
     if err != nil {
         if ociResponse != nil {
-            response = ValidateUserResponse{RawResponse: ociResponse.HTTPResponse()}
+            opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+            response = ValidateUserResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
         }
         return
     }

@@ -85,7 +85,8 @@ func (client UsageClient) GetSubscriptionInfo(ctx context.Context, request GetSu
 	ociResponse, err = common.Retry(ctx, request, client.getSubscriptionInfo, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetSubscriptionInfoResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetSubscriptionInfoResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -131,7 +132,8 @@ func (client UsageClient) ListUsageRecords(ctx context.Context, request ListUsag
 	ociResponse, err = common.Retry(ctx, request, client.listUsageRecords, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListUsageRecordsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListUsageRecordsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

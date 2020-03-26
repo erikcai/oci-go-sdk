@@ -90,7 +90,8 @@ func (client DataFlowClient) ChangeApplicationCompartment(ctx context.Context, r
 	ociResponse, err = common.Retry(ctx, request, client.changeApplicationCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ChangeApplicationCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ChangeApplicationCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -140,7 +141,8 @@ func (client DataFlowClient) ChangeRunCompartment(ctx context.Context, request C
 	ociResponse, err = common.Retry(ctx, request, client.changeRunCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ChangeRunCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ChangeRunCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -187,7 +189,8 @@ func (client DataFlowClient) CreateApplication(ctx context.Context, request Crea
 	ociResponse, err = common.Retry(ctx, request, client.createApplication, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateApplicationResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateApplicationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -234,7 +237,8 @@ func (client DataFlowClient) CreateRun(ctx context.Context, request CreateRunReq
 	ociResponse, err = common.Retry(ctx, request, client.createRun, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateRunResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateRunResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -276,7 +280,8 @@ func (client DataFlowClient) DeleteApplication(ctx context.Context, request Dele
 	ociResponse, err = common.Retry(ctx, request, client.deleteApplication, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteApplicationResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteApplicationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -319,7 +324,8 @@ func (client DataFlowClient) DeleteRun(ctx context.Context, request DeleteRunReq
 	ociResponse, err = common.Retry(ctx, request, client.deleteRun, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteRunResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteRunResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -361,7 +367,8 @@ func (client DataFlowClient) GetApplication(ctx context.Context, request GetAppl
 	ociResponse, err = common.Retry(ctx, request, client.getApplication, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetApplicationResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetApplicationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -403,7 +410,8 @@ func (client DataFlowClient) GetRun(ctx context.Context, request GetRunRequest) 
 	ociResponse, err = common.Retry(ctx, request, client.getRun, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetRunResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetRunResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -445,7 +453,8 @@ func (client DataFlowClient) GetRunLog(ctx context.Context, request GetRunLogReq
 	ociResponse, err = common.Retry(ctx, request, client.getRunLog, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetRunLogResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetRunLogResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -486,7 +495,8 @@ func (client DataFlowClient) ListApplications(ctx context.Context, request ListA
 	ociResponse, err = common.Retry(ctx, request, client.listApplications, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListApplicationsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListApplicationsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -528,7 +538,8 @@ func (client DataFlowClient) ListRunLogs(ctx context.Context, request ListRunLog
 	ociResponse, err = common.Retry(ctx, request, client.listRunLogs, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListRunLogsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListRunLogsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -570,7 +581,8 @@ func (client DataFlowClient) ListRuns(ctx context.Context, request ListRunsReque
 	ociResponse, err = common.Retry(ctx, request, client.listRuns, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListRunsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListRunsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -612,7 +624,8 @@ func (client DataFlowClient) UpdateApplication(ctx context.Context, request Upda
 	ociResponse, err = common.Retry(ctx, request, client.updateApplication, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateApplicationResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateApplicationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -654,7 +667,8 @@ func (client DataFlowClient) UpdateRun(ctx context.Context, request UpdateRunReq
 	ociResponse, err = common.Retry(ctx, request, client.updateRun, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateRunResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateRunResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

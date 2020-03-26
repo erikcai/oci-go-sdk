@@ -89,7 +89,8 @@ func (client KmsVaultClient) BackupVault(ctx context.Context, request BackupVaul
 	ociResponse, err = common.Retry(ctx, request, client.backupVault, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = BackupVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = BackupVaultResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -143,7 +144,8 @@ func (client KmsVaultClient) CancelVaultDeletion(ctx context.Context, request Ca
 	ociResponse, err = common.Retry(ctx, request, client.cancelVaultDeletion, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CancelVaultDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CancelVaultDeletionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -196,7 +198,8 @@ func (client KmsVaultClient) ChangeVaultCompartment(ctx context.Context, request
 	ociResponse, err = common.Retry(ctx, request, client.changeVaultCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ChangeVaultCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ChangeVaultCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -250,7 +253,8 @@ func (client KmsVaultClient) CreateVault(ctx context.Context, request CreateVaul
 	ociResponse, err = common.Retry(ctx, request, client.createVault, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateVaultResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -296,7 +300,8 @@ func (client KmsVaultClient) GetVault(ctx context.Context, request GetVaultReque
 	ociResponse, err = common.Retry(ctx, request, client.getVault, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetVaultResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -338,7 +343,8 @@ func (client KmsVaultClient) GetVaultUsage(ctx context.Context, request GetVault
 	ociResponse, err = common.Retry(ctx, request, client.getVaultUsage, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetVaultUsageResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetVaultUsageResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -384,7 +390,8 @@ func (client KmsVaultClient) ListVaults(ctx context.Context, request ListVaultsR
 	ociResponse, err = common.Retry(ctx, request, client.listVaults, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListVaultsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListVaultsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -431,7 +438,8 @@ func (client KmsVaultClient) RestoreVaultFromFile(ctx context.Context, request R
 	ociResponse, err = common.Retry(ctx, request, client.restoreVaultFromFile, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = RestoreVaultFromFileResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = RestoreVaultFromFileResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -478,7 +486,8 @@ func (client KmsVaultClient) RestoreVaultFromObjectStore(ctx context.Context, re
 	ociResponse, err = common.Retry(ctx, request, client.restoreVaultFromObjectStore, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = RestoreVaultFromObjectStoreResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = RestoreVaultFromObjectStoreResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -533,7 +542,8 @@ func (client KmsVaultClient) ScheduleVaultDeletion(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.scheduleVaultDeletion, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ScheduleVaultDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ScheduleVaultDeletionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -581,7 +591,8 @@ func (client KmsVaultClient) UpdateVault(ctx context.Context, request UpdateVaul
 	ociResponse, err = common.Retry(ctx, request, client.updateVault, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateVaultResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateVaultResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

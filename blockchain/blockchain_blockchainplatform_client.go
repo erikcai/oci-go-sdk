@@ -89,7 +89,8 @@ func (client BlockchainPlatformClient) ChangeBlockchainPlatformCompartment(ctx c
 	ociResponse, err = common.Retry(ctx, request, client.changeBlockchainPlatformCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ChangeBlockchainPlatformCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ChangeBlockchainPlatformCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -136,7 +137,8 @@ func (client BlockchainPlatformClient) CreateBlockchainPlatform(ctx context.Cont
 	ociResponse, err = common.Retry(ctx, request, client.createBlockchainPlatform, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -178,7 +180,8 @@ func (client BlockchainPlatformClient) DeleteBlockchainPlatform(ctx context.Cont
 	ociResponse, err = common.Retry(ctx, request, client.deleteBlockchainPlatform, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -220,7 +223,8 @@ func (client BlockchainPlatformClient) GetBlockchainPlatform(ctx context.Context
 	ociResponse, err = common.Retry(ctx, request, client.getBlockchainPlatform, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -262,7 +266,8 @@ func (client BlockchainPlatformClient) GetWorkRequest(ctx context.Context, reque
 	ociResponse, err = common.Retry(ctx, request, client.getWorkRequest, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetWorkRequestResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetWorkRequestResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -304,7 +309,8 @@ func (client BlockchainPlatformClient) ListBlockchainPlatforms(ctx context.Conte
 	ociResponse, err = common.Retry(ctx, request, client.listBlockchainPlatforms, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListBlockchainPlatformsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListBlockchainPlatformsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -346,7 +352,8 @@ func (client BlockchainPlatformClient) ListWorkRequestErrors(ctx context.Context
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequestErrors, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListWorkRequestErrorsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListWorkRequestErrorsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -388,7 +395,8 @@ func (client BlockchainPlatformClient) ListWorkRequestLogs(ctx context.Context, 
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequestLogs, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListWorkRequestLogsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListWorkRequestLogsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -430,7 +438,8 @@ func (client BlockchainPlatformClient) ListWorkRequests(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequests, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListWorkRequestsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListWorkRequestsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -477,7 +486,8 @@ func (client BlockchainPlatformClient) ScaleBlockchainPlatform(ctx context.Conte
 	ociResponse, err = common.Retry(ctx, request, client.scaleBlockchainPlatform, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ScaleBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ScaleBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -519,7 +529,8 @@ func (client BlockchainPlatformClient) StartBlockchainPlatform(ctx context.Conte
 	ociResponse, err = common.Retry(ctx, request, client.startBlockchainPlatform, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = StartBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = StartBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -561,7 +572,8 @@ func (client BlockchainPlatformClient) StopBlockchainPlatform(ctx context.Contex
 	ociResponse, err = common.Retry(ctx, request, client.stopBlockchainPlatform, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = StopBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = StopBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -603,7 +615,8 @@ func (client BlockchainPlatformClient) UpdateBlockchainPlatform(ctx context.Cont
 	ociResponse, err = common.Retry(ctx, request, client.updateBlockchainPlatform, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateBlockchainPlatformResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

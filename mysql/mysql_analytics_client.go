@@ -89,7 +89,8 @@ func (client AnalyticsClient) CreateAnalyticsCluster(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.createAnalyticsCluster, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -131,7 +132,8 @@ func (client AnalyticsClient) DeleteAnalyticsCluster(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.deleteAnalyticsCluster, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -173,7 +175,8 @@ func (client AnalyticsClient) GetAnalyticsCluster(ctx context.Context, request G
 	ociResponse, err = common.Retry(ctx, request, client.getAnalyticsCluster, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -217,7 +220,8 @@ func (client AnalyticsClient) ListAnalyticsClusterShapes(ctx context.Context, re
 	ociResponse, err = common.Retry(ctx, request, client.listAnalyticsClusterShapes, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListAnalyticsClusterShapesResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListAnalyticsClusterShapesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -259,7 +263,8 @@ func (client AnalyticsClient) ListAnalyticsClusters(ctx context.Context, request
 	ociResponse, err = common.Retry(ctx, request, client.listAnalyticsClusters, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListAnalyticsClustersResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListAnalyticsClustersResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -306,7 +311,8 @@ func (client AnalyticsClient) StartAnalyticsCluster(ctx context.Context, request
 	ociResponse, err = common.Retry(ctx, request, client.startAnalyticsCluster, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = StartAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = StartAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -353,7 +359,8 @@ func (client AnalyticsClient) StopAnalyticsCluster(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.stopAnalyticsCluster, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = StopAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = StopAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -400,7 +407,8 @@ func (client AnalyticsClient) UpdateAnalyticsCluster(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.updateAnalyticsCluster, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateAnalyticsClusterResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

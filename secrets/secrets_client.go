@@ -84,7 +84,8 @@ func (client SecretsClient) GetSecretBundle(ctx context.Context, request GetSecr
 	ociResponse, err = common.Retry(ctx, request, client.getSecretBundle, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetSecretBundleResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetSecretBundleResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -126,7 +127,8 @@ func (client SecretsClient) ListSecretBundleVersions(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.listSecretBundleVersions, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListSecretBundleVersionsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListSecretBundleVersionsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

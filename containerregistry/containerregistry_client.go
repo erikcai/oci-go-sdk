@@ -89,7 +89,8 @@ func (client ContainerRegistryClient) ChangeDockerRepositoryCompartment(ctx cont
 	ociResponse, err = common.Retry(ctx, request, client.changeDockerRepositoryCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ChangeDockerRepositoryCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ChangeDockerRepositoryCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -136,7 +137,8 @@ func (client ContainerRegistryClient) CreateDockerRepository(ctx context.Context
 	ociResponse, err = common.Retry(ctx, request, client.createDockerRepository, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateDockerRepositoryResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateDockerRepositoryResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -178,7 +180,8 @@ func (client ContainerRegistryClient) DeleteDockerRepository(ctx context.Context
 	ociResponse, err = common.Retry(ctx, request, client.deleteDockerRepository, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteDockerRepositoryResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteDockerRepositoryResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -220,7 +223,8 @@ func (client ContainerRegistryClient) DeleteDockerRepositoryContents(ctx context
 	ociResponse, err = common.Retry(ctx, request, client.deleteDockerRepositoryContents, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteDockerRepositoryContentsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteDockerRepositoryContentsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -262,7 +266,8 @@ func (client ContainerRegistryClient) DeleteDockerTag(ctx context.Context, reque
 	ociResponse, err = common.Retry(ctx, request, client.deleteDockerTag, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteDockerTagResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteDockerTagResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -304,7 +309,8 @@ func (client ContainerRegistryClient) GetDockerImageMetadata(ctx context.Context
 	ociResponse, err = common.Retry(ctx, request, client.getDockerImageMetadata, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetDockerImageMetadataResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetDockerImageMetadataResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -346,7 +352,8 @@ func (client ContainerRegistryClient) GetDockerRepository(ctx context.Context, r
 	ociResponse, err = common.Retry(ctx, request, client.getDockerRepository, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetDockerRepositoryResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetDockerRepositoryResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -388,7 +395,8 @@ func (client ContainerRegistryClient) GetDockerToken(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.getDockerToken, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetDockerTokenResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetDockerTokenResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -430,7 +438,8 @@ func (client ContainerRegistryClient) GetDockerTokenWithOAuth(ctx context.Contex
 	ociResponse, err = common.Retry(ctx, request, client.getDockerTokenWithOAuth, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetDockerTokenWithOAuthResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetDockerTokenWithOAuthResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -472,7 +481,8 @@ func (client ContainerRegistryClient) GetNamespace(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.getNamespace, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetNamespaceResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetNamespaceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -514,7 +524,8 @@ func (client ContainerRegistryClient) ListDockerRepositories(ctx context.Context
 	ociResponse, err = common.Retry(ctx, request, client.listDockerRepositories, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListDockerRepositoriesResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListDockerRepositoriesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -556,7 +567,8 @@ func (client ContainerRegistryClient) ListDockerTags(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.listDockerTags, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListDockerTagsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListDockerTagsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -598,7 +610,8 @@ func (client ContainerRegistryClient) UndeleteManifest(ctx context.Context, requ
 	ociResponse, err = common.Retry(ctx, request, client.undeleteManifest, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UndeleteManifestResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UndeleteManifestResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -640,7 +653,8 @@ func (client ContainerRegistryClient) UpdateDockerRepository(ctx context.Context
 	ociResponse, err = common.Retry(ctx, request, client.updateDockerRepository, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateDockerRepositoryResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateDockerRepositoryResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

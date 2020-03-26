@@ -92,7 +92,8 @@ func (client KamClient) CreateKamRelease(ctx context.Context, request CreateKamR
 	ociResponse, err = common.Retry(ctx, request, client.createKamRelease, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateKamReleaseResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateKamReleaseResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -141,7 +142,8 @@ func (client KamClient) DeleteKamRelease(ctx context.Context, request DeleteKamR
 	ociResponse, err = common.Retry(ctx, request, client.deleteKamRelease, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteKamReleaseResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteKamReleaseResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -183,7 +185,8 @@ func (client KamClient) GetWorkRequest(ctx context.Context, request GetWorkReque
 	ociResponse, err = common.Retry(ctx, request, client.getWorkRequest, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetWorkRequestResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetWorkRequestResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -227,7 +230,8 @@ func (client KamClient) ListKamCharts(ctx context.Context, request ListKamCharts
 	ociResponse, err = common.Retry(ctx, request, client.listKamCharts, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListKamChartsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListKamChartsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -270,7 +274,8 @@ func (client KamClient) ListKamReleases(ctx context.Context, request ListKamRele
 	ociResponse, err = common.Retry(ctx, request, client.listKamReleases, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListKamReleasesResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListKamReleasesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -312,7 +317,8 @@ func (client KamClient) ListWorkRequestErrors(ctx context.Context, request ListW
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequestErrors, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListWorkRequestErrorsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListWorkRequestErrorsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -354,7 +360,8 @@ func (client KamClient) ListWorkRequestLogs(ctx context.Context, request ListWor
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequestLogs, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListWorkRequestLogsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListWorkRequestLogsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -397,7 +404,8 @@ func (client KamClient) ListWorkRequests(ctx context.Context, request ListWorkRe
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequests, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListWorkRequestsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListWorkRequestsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -446,7 +454,8 @@ func (client KamClient) UpdateKamRelease(ctx context.Context, request UpdateKamR
 	ociResponse, err = common.Retry(ctx, request, client.updateKamRelease, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateKamReleaseResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateKamReleaseResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

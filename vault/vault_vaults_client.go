@@ -84,7 +84,8 @@ func (client VaultsClient) CancelSecretDeletion(ctx context.Context, request Can
 	ociResponse, err = common.Retry(ctx, request, client.cancelSecretDeletion, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CancelSecretDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CancelSecretDeletionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -126,7 +127,8 @@ func (client VaultsClient) CancelSecretVersionDeletion(ctx context.Context, requ
 	ociResponse, err = common.Retry(ctx, request, client.cancelSecretVersionDeletion, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CancelSecretVersionDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CancelSecretVersionDeletionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -175,7 +177,8 @@ func (client VaultsClient) ChangeSecretCompartment(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.changeSecretCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ChangeSecretCompartmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ChangeSecretCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -222,7 +225,8 @@ func (client VaultsClient) CreateSecret(ctx context.Context, request CreateSecre
 	ociResponse, err = common.Retry(ctx, request, client.createSecret, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateSecretResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateSecretResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -264,7 +268,8 @@ func (client VaultsClient) GetSecret(ctx context.Context, request GetSecretReque
 	ociResponse, err = common.Retry(ctx, request, client.getSecret, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetSecretResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetSecretResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -306,7 +311,8 @@ func (client VaultsClient) GetSecretVersion(ctx context.Context, request GetSecr
 	ociResponse, err = common.Retry(ctx, request, client.getSecretVersion, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetSecretVersionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetSecretVersionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -348,7 +354,8 @@ func (client VaultsClient) ListSecretVersions(ctx context.Context, request ListS
 	ociResponse, err = common.Retry(ctx, request, client.listSecretVersions, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListSecretVersionsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListSecretVersionsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -390,7 +397,8 @@ func (client VaultsClient) ListSecrets(ctx context.Context, request ListSecretsR
 	ociResponse, err = common.Retry(ctx, request, client.listSecrets, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListSecretsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListSecretsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -434,7 +442,8 @@ func (client VaultsClient) ScheduleSecretDeletion(ctx context.Context, request S
 	ociResponse, err = common.Retry(ctx, request, client.scheduleSecretDeletion, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ScheduleSecretDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ScheduleSecretDeletionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -476,7 +485,8 @@ func (client VaultsClient) ScheduleSecretVersionDeletion(ctx context.Context, re
 	ociResponse, err = common.Retry(ctx, request, client.scheduleSecretVersionDeletion, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ScheduleSecretVersionDeletionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ScheduleSecretVersionDeletionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -521,7 +531,8 @@ func (client VaultsClient) UpdateSecret(ctx context.Context, request UpdateSecre
 	ociResponse, err = common.Retry(ctx, request, client.updateSecret, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateSecretResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateSecretResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

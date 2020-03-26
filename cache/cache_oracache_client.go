@@ -85,7 +85,8 @@ func (client OracacheClient) CancelWorkRequest(ctx context.Context, request Canc
 	ociResponse, err = common.Retry(ctx, request, client.cancelWorkRequest, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CancelWorkRequestResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CancelWorkRequestResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -132,7 +133,8 @@ func (client OracacheClient) CreateReplicatedCache(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.createReplicatedCache, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateReplicatedCacheResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateReplicatedCacheResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -174,7 +176,8 @@ func (client OracacheClient) DeleteReplicatedCache(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.deleteReplicatedCache, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteReplicatedCacheResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteReplicatedCacheResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -216,7 +219,8 @@ func (client OracacheClient) GetReplicatedCache(ctx context.Context, request Get
 	ociResponse, err = common.Retry(ctx, request, client.getReplicatedCache, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetReplicatedCacheResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetReplicatedCacheResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -258,7 +262,8 @@ func (client OracacheClient) GetWorkRequest(ctx context.Context, request GetWork
 	ociResponse, err = common.Retry(ctx, request, client.getWorkRequest, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetWorkRequestResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetWorkRequestResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -302,7 +307,8 @@ func (client OracacheClient) ListRedisShapes(ctx context.Context, request ListRe
 	ociResponse, err = common.Retry(ctx, request, client.listRedisShapes, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListRedisShapesResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListRedisShapesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -345,7 +351,8 @@ func (client OracacheClient) ListReplicatedCaches(ctx context.Context, request L
 	ociResponse, err = common.Retry(ctx, request, client.listReplicatedCaches, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListReplicatedCachesResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListReplicatedCachesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -387,7 +394,8 @@ func (client OracacheClient) ListVersions(ctx context.Context, request ListVersi
 	ociResponse, err = common.Retry(ctx, request, client.listVersions, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListVersionsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListVersionsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -430,7 +438,8 @@ func (client OracacheClient) ListWorkRequestErrors(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequestErrors, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListWorkRequestErrorsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListWorkRequestErrorsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -473,7 +482,8 @@ func (client OracacheClient) ListWorkRequestLogs(ctx context.Context, request Li
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequestLogs, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListWorkRequestLogsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListWorkRequestLogsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -515,7 +525,8 @@ func (client OracacheClient) ListWorkRequests(ctx context.Context, request ListW
 	ociResponse, err = common.Retry(ctx, request, client.listWorkRequests, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListWorkRequestsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListWorkRequestsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -557,7 +568,8 @@ func (client OracacheClient) UpdateReplicatedCache(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.updateReplicatedCache, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateReplicatedCacheResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateReplicatedCacheResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

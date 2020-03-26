@@ -84,7 +84,8 @@ func (client LumLogSearchClient) SearchLogs(ctx context.Context, request SearchL
 	ociResponse, err = common.Retry(ctx, request, client.searchLogs, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = SearchLogsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = SearchLogsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

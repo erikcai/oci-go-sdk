@@ -87,7 +87,8 @@ func (client LimitsChecksClient) GetMysqlaasInstanceLimitsCheck(ctx context.Cont
 	ociResponse, err = common.Retry(ctx, request, client.getMysqlaasInstanceLimitsCheck, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetMysqlaasInstanceLimitsCheckResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetMysqlaasInstanceLimitsCheckResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}

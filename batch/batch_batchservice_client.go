@@ -85,7 +85,8 @@ func (client BatchServiceClient) CancelJob(ctx context.Context, request CancelJo
 	ociResponse, err = common.Retry(ctx, request, client.cancelJob, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CancelJobResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CancelJobResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -132,7 +133,8 @@ func (client BatchServiceClient) CreateBatchInstance(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.createBatchInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -179,7 +181,8 @@ func (client BatchServiceClient) CreateComputeEnvironment(ctx context.Context, r
 	ociResponse, err = common.Retry(ctx, request, client.createComputeEnvironment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -226,7 +229,8 @@ func (client BatchServiceClient) CreateJob(ctx context.Context, request CreateJo
 	ociResponse, err = common.Retry(ctx, request, client.createJob, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateJobResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateJobResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -273,7 +277,8 @@ func (client BatchServiceClient) CreateJobDefinition(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.createJobDefinition, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = CreateJobDefinitionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CreateJobDefinitionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -315,7 +320,8 @@ func (client BatchServiceClient) DeleteBatchInstance(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.deleteBatchInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -357,7 +363,8 @@ func (client BatchServiceClient) DeleteComputeEnvironment(ctx context.Context, r
 	ociResponse, err = common.Retry(ctx, request, client.deleteComputeEnvironment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -399,7 +406,8 @@ func (client BatchServiceClient) DeleteJob(ctx context.Context, request DeleteJo
 	ociResponse, err = common.Retry(ctx, request, client.deleteJob, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteJobResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteJobResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -441,7 +449,8 @@ func (client BatchServiceClient) DeleteJobDefinition(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.deleteJobDefinition, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DeleteJobDefinitionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DeleteJobDefinitionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -483,7 +492,8 @@ func (client BatchServiceClient) DisableBatchInstance(ctx context.Context, reque
 	ociResponse, err = common.Retry(ctx, request, client.disableBatchInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DisableBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DisableBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -525,7 +535,8 @@ func (client BatchServiceClient) DisableComputeEnvironment(ctx context.Context, 
 	ociResponse, err = common.Retry(ctx, request, client.disableComputeEnvironment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = DisableComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DisableComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -567,7 +578,8 @@ func (client BatchServiceClient) EnableBatchInstance(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.enableBatchInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = EnableBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = EnableBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -609,7 +621,8 @@ func (client BatchServiceClient) EnableComputeEnvironment(ctx context.Context, r
 	ociResponse, err = common.Retry(ctx, request, client.enableComputeEnvironment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = EnableComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = EnableComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -651,7 +664,8 @@ func (client BatchServiceClient) GetBatchInstance(ctx context.Context, request G
 	ociResponse, err = common.Retry(ctx, request, client.getBatchInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -693,7 +707,8 @@ func (client BatchServiceClient) GetComputeEnvironment(ctx context.Context, requ
 	ociResponse, err = common.Retry(ctx, request, client.getComputeEnvironment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -735,7 +750,8 @@ func (client BatchServiceClient) GetJob(ctx context.Context, request GetJobReque
 	ociResponse, err = common.Retry(ctx, request, client.getJob, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetJobResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetJobResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -777,7 +793,8 @@ func (client BatchServiceClient) GetJobDefinition(ctx context.Context, request G
 	ociResponse, err = common.Retry(ctx, request, client.getJobDefinition, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetJobDefinitionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetJobDefinitionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -819,7 +836,8 @@ func (client BatchServiceClient) GetJobLog(ctx context.Context, request GetJobLo
 	ociResponse, err = common.Retry(ctx, request, client.getJobLog, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetJobLogResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetJobLogResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -861,7 +879,8 @@ func (client BatchServiceClient) GetJobLogContent(ctx context.Context, request G
 	ociResponse, err = common.Retry(ctx, request, client.getJobLogContent, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = GetJobLogContentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = GetJobLogContentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -903,7 +922,8 @@ func (client BatchServiceClient) ListBatchInstances(ctx context.Context, request
 	ociResponse, err = common.Retry(ctx, request, client.listBatchInstances, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListBatchInstancesResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListBatchInstancesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -946,7 +966,8 @@ func (client BatchServiceClient) ListComputeEnvironments(ctx context.Context, re
 	ociResponse, err = common.Retry(ctx, request, client.listComputeEnvironments, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListComputeEnvironmentsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListComputeEnvironmentsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -989,7 +1010,8 @@ func (client BatchServiceClient) ListJobDefinitions(ctx context.Context, request
 	ociResponse, err = common.Retry(ctx, request, client.listJobDefinitions, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListJobDefinitionsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListJobDefinitionsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -1031,7 +1053,8 @@ func (client BatchServiceClient) ListJobLogs(ctx context.Context, request ListJo
 	ociResponse, err = common.Retry(ctx, request, client.listJobLogs, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListJobLogsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListJobLogsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -1074,7 +1097,8 @@ func (client BatchServiceClient) ListJobs(ctx context.Context, request ListJobsR
 	ociResponse, err = common.Retry(ctx, request, client.listJobs, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = ListJobsResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListJobsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -1116,7 +1140,8 @@ func (client BatchServiceClient) UpdateBatchInstance(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.updateBatchInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateBatchInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -1158,7 +1183,8 @@ func (client BatchServiceClient) UpdateComputeEnvironment(ctx context.Context, r
 	ociResponse, err = common.Retry(ctx, request, client.updateComputeEnvironment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateComputeEnvironmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -1200,7 +1226,8 @@ func (client BatchServiceClient) UpdateJob(ctx context.Context, request UpdateJo
 	ociResponse, err = common.Retry(ctx, request, client.updateJob, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateJobResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateJobResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
@@ -1242,7 +1269,8 @@ func (client BatchServiceClient) UpdateJobDefinition(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.updateJobDefinition, policy)
 	if err != nil {
 		if ociResponse != nil {
-			response = UpdateJobDefinitionResponse{RawResponse: ociResponse.HTTPResponse()}
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = UpdateJobDefinitionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
 		}
 		return
 	}
