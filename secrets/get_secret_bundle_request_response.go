@@ -11,19 +11,19 @@ import (
 // GetSecretBundleRequest wrapper for the GetSecretBundle operation
 type GetSecretBundleRequest struct {
 
-	// Secret OCID
+	// The OCID of the secret.
 	SecretId *string `mandatory:"true" contributesTo:"path" name:"secretId"`
 
 	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The Version Number of the secret.
+	// The version number of the secret.
 	VersionNumber *int64 `mandatory:"false" contributesTo:"query" name:"versionNumber"`
 
-	// The name of the secret version.
+	// The name of the secret. (This might be referred to as the name of the secret version. Names are unique across the different versions of a secret.)
 	SecretVersionName *string `mandatory:"false" contributesTo:"query" name:"secretVersionName"`
 
-	// Secret Stage like CURRENT, PENDING etc.
+	// The rotation state of the secret version.
 	Stage GetSecretBundleStageEnum `mandatory:"false" contributesTo:"query" name:"stage" omitEmpty:"true"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

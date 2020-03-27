@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Secrets Management APIs
+// Secrets Management API
 //
-// Secrets Management APIs
+// API for managing secrets.
 //
 
 package vault
@@ -21,7 +21,7 @@ type CreateSecretDetails struct {
 
 	SecretContent SecretContentDetails `mandatory:"true" json:"secretContent"`
 
-	// A user-friendly name for the secret. Secret names should be unique within a vault. Avoid entering confidential information.
+	// A user-friendly name for the secret. Secret names should be unique within a vault. Avoid entering confidential information. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods.
 	SecretName *string `mandatory:"true" json:"secretName"`
 
 	// The OCID of the vault where you want to create the secret.
@@ -40,10 +40,10 @@ type CreateSecretDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// The OCID of the Key that is used to encrypt the secret.
+	// The OCID of the master encryption key that is used to encrypt the secret.
 	KeyId *string `mandatory:"false" json:"keyId"`
 
-	// Additional metadata that you can use to provide context about how to use the secret or during rotation or
+	// Additional metadata that you can use to provide context about how to use the secret during rotation or
 	// other administrative tasks. For example, for a secret that you use to connect to a database, the additional
 	// metadata might specify the connection endpoint and the connection string. Provide additional metadata as key-value pairs.
 	Metadata map[string]interface{} `mandatory:"false" json:"metadata"`

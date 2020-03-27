@@ -46,7 +46,7 @@ func NewIncidentClientWithOboToken(configProvider common.ConfigurationProvider, 
 
 func newIncidentClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client IncidentClient, err error) {
     client = IncidentClient{BaseClient: baseClient}
-    client.BasePath = "20200331"
+    client.BasePath = "20181231"
     err = client.setConfigurationProvider(configProvider)
     return
 }

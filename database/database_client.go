@@ -1250,7 +1250,7 @@ func (client DatabaseClient) createDataGuardAssociation(ctx context.Context, req
 	return response, err
 }
 
-// CreateDatabase Creates a new database in the specified Database Home. If the database version is provided, it must match the version of the Database Home. Applies only to Exadata DB systems.
+// CreateDatabase Creates a new database in the specified Database Home. If the database version is provided, it must match the version of the Database Home. Applies to Exadata DB systems and Exadata Cloud at Customer.
 func (client DatabaseClient) CreateDatabase(ctx context.Context, request CreateDatabaseRequest) (response CreateDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1298,7 +1298,7 @@ func (client DatabaseClient) createDatabase(ctx context.Context, request common.
 	return response, err
 }
 
-// CreateDbHome Creates a new Database Home in the specified DB system based on the request parameters you provide. Applies only to bare metal and Exadata DB systems.
+// CreateDbHome Creates a new Database Home in the specified DB system based on the request parameters you provide. Applies to bare metal DB systems, Exadata DB systems, and Exadata Cloud at Customer systems.
 func (client DatabaseClient) CreateDbHome(ctx context.Context, request CreateDbHomeRequest) (response CreateDbHomeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1986,9 +1986,8 @@ func (client DatabaseClient) deleteDatabase(ctx context.Context, request common.
 	return response, err
 }
 
-// DeleteDbHome Deletes a Database Home. Applies only to bare metal and Exadata DB systems.
-// The Database Home and its database data are local to the DB system, and on a bare metal DB system, both are lost when you delete the Database Home. Oracle recommends that you back up any data on the DB system before you delete it. You can use the `performFinalBackup` parameter with this operation on bare metal DB systems.
-// On an Exadata DB system, the delete request is rejected if the Database Home is not empty. You must terminate all databases in the Database Home before you delete the home. The `performFinalBackup` parameter is not used with this operation on Exadata DB systems.
+// DeleteDbHome Deletes a Database Home. Applies to bare metal DB systems, Exadata DB systems, and Exadata Cloud at Customer systems.
+// Oracle recommends that you use the `performFinalBackup` parameter to back up any data on a bare metal DB system before you delete a Database Home. On an Exadata Cloud at Customer system or an Exadata DB system, you can delete a Database Home only when there are no databases in it and therefore you cannot use the `performFinalBackup` parameter to back up data.
 func (client DatabaseClient) DeleteDbHome(ctx context.Context, request DeleteDbHomeRequest) (response DeleteDbHomeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3118,7 +3117,7 @@ func (client DatabaseClient) GetCloudVmClusterIormConfig(ctx context.Context, re
 
 // getCloudVmClusterIormConfig implements the OCIOperation interface (enables retrying operations)
 func (client DatabaseClient) getCloudVmClusterIormConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmCluster/{cloudVmClusterId}/CloudVmClusterIormConfig")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/CloudVmClusterIormConfig")
 	if err != nil {
 		return nil, err
 	}
@@ -6939,7 +6938,7 @@ func (client DatabaseClient) UpdateCloudVmClusterIormConfig(ctx context.Context,
 
 // updateCloudVmClusterIormConfig implements the OCIOperation interface (enables retrying operations)
 func (client DatabaseClient) updateCloudVmClusterIormConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/cloudVmCluster/{cloudVmClusterId}/CloudVmClusterIormConfig")
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/cloudVmClusters/{cloudVmClusterId}/CloudVmClusterIormConfig")
 	if err != nil {
 		return nil, err
 	}

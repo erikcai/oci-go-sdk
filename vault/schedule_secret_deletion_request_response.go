@@ -14,7 +14,7 @@ type ScheduleSecretDeletionRequest struct {
 	// The OCID of the secret.
 	SecretId *string `mandatory:"true" contributesTo:"path" name:"secretId"`
 
-	// Request to schedule deleting a secret.
+	// Request to schedule the deletion of a secret.
 	ScheduleSecretDeletionDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a

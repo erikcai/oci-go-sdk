@@ -14,7 +14,7 @@ type ChangeSecretCompartmentRequest struct {
 	// The OCID of the secret.
 	SecretId *string `mandatory:"true" contributesTo:"path" name:"secretId"`
 
-	// The updated compartment details
+	// The updated compartment details.
 	ChangeSecretCompartmentDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a

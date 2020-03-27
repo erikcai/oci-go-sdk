@@ -17,8 +17,7 @@ type ScheduleSecretVersionDeletionRequest struct {
 	// The version number of the secret.
 	SecretVersionNumber *int64 `mandatory:"true" contributesTo:"path" name:"secretVersionNumber"`
 
-	// Schedules the deletion of the specified secret version. This deletes it after the specified retention period ends. You can only
-	// delete a secret version if the secret version rotation state is marked as `DEPRECATED`.
+	// Request to delete a secret version.
 	ScheduleSecretVersionDeletionDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a

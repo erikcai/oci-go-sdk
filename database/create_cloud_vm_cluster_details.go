@@ -73,7 +73,7 @@ type CreateCloudVmClusterDetails struct {
 	Domain *string `mandatory:"false" json:"domain"`
 
 	// The Oracle license model that applies to the cloud VM cluster. The default is BRING_YOUR_OWN_LICENSE.
-	LicenseModel CloudVmClusterSummaryLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
+	LicenseModel CreateCloudVmClusterDetailsLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 
 	// If true, the sparse disk group is configured for the cloud VM cluster. If false, the sparse disk group is not created.
 	IsSparseDiskgroupEnabled *bool `mandatory:"false" json:"isSparseDiskgroupEnabled"`
@@ -107,4 +107,27 @@ type CreateCloudVmClusterDetails struct {
 
 func (m CreateCloudVmClusterDetails) String() string {
 	return common.PointerString(m)
+}
+
+// CreateCloudVmClusterDetailsLicenseModelEnum Enum with underlying type: string
+type CreateCloudVmClusterDetailsLicenseModelEnum string
+
+// Set of constants representing the allowable values for CreateCloudVmClusterDetailsLicenseModelEnum
+const (
+	CreateCloudVmClusterDetailsLicenseModelLicenseIncluded     CreateCloudVmClusterDetailsLicenseModelEnum = "LICENSE_INCLUDED"
+	CreateCloudVmClusterDetailsLicenseModelBringYourOwnLicense CreateCloudVmClusterDetailsLicenseModelEnum = "BRING_YOUR_OWN_LICENSE"
+)
+
+var mappingCreateCloudVmClusterDetailsLicenseModel = map[string]CreateCloudVmClusterDetailsLicenseModelEnum{
+	"LICENSE_INCLUDED":       CreateCloudVmClusterDetailsLicenseModelLicenseIncluded,
+	"BRING_YOUR_OWN_LICENSE": CreateCloudVmClusterDetailsLicenseModelBringYourOwnLicense,
+}
+
+// GetCreateCloudVmClusterDetailsLicenseModelEnumValues Enumerates the set of values for CreateCloudVmClusterDetailsLicenseModelEnum
+func GetCreateCloudVmClusterDetailsLicenseModelEnumValues() []CreateCloudVmClusterDetailsLicenseModelEnum {
+	values := make([]CreateCloudVmClusterDetailsLicenseModelEnum, 0)
+	for _, v := range mappingCreateCloudVmClusterDetailsLicenseModel {
+		values = append(values, v)
+	}
+	return values
 }

@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Secrets Management APIs
+// Secrets Management API
 //
-// Secrets Management APIs
+// API for managing secrets.
 //
 
 package vault
@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SecretReuseRule A rule that disallows reuse of the same secret content by the specified secret.
+// SecretReuseRule A rule that disallows reuse of previously used secret content by the specified secret.
 type SecretReuseRule struct {
 
-	// A property indicating whether the rule is applied even if
+	// A property indicating whether the rule is applied even if the secret version with the content you are trying to reuse was deleted.
 	IsEnforcedOnDeletedSecretVersions *bool `mandatory:"false" json:"isEnforcedOnDeletedSecretVersions"`
 }
 

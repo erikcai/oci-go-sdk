@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Secrets Management APIs
+// Secrets Management API
 //
-// Secrets Management APIs
+// API for managing secrets.
 //
 
 package vault
@@ -51,7 +51,7 @@ type Secret struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// The OCID of the Key that is used to encrypt the secret.
+	// The OCID of the master encryption key that is used to encrypt the secret.
 	KeyId *string `mandatory:"false" json:"keyId"`
 
 	// Additional information about the current lifecycle state of the secret.
@@ -62,7 +62,7 @@ type Secret struct {
 	// metadata might specify the connection endpoint and the connection string. Provide additional metadata as key-value pairs.
 	Metadata map[string]interface{} `mandatory:"false" json:"metadata"`
 
-	// A list of rules to control how the secret is used and managed.
+	// A list of rules that control how the secret is used and managed.
 	SecretRules []SecretRule `mandatory:"false" json:"secretRules"`
 
 	// An optional property indicating when the current secret version will expire, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.

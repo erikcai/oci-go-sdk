@@ -11,7 +11,7 @@ import (
 // ListSecretBundleVersionsRequest wrapper for the ListSecretBundleVersions operation
 type ListSecretBundleVersionsRequest struct {
 
-	// Secret OCID
+	// The OCID of the secret.
 	SecretId *string `mandatory:"true" contributesTo:"path" name:"secretId"`
 
 	// Unique identifier for the request.
@@ -25,10 +25,11 @@ type ListSecretBundleVersionsRequest struct {
 	// pagination, see List Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The field to sort by. Only one sort order may be provided. Time created is default ordered as descending. Display name is default ordered as ascending.
+	// The field to sort by. You can specify only one sort order. The default
+	// order for `VERSION_NUMBER` is ascending.
 	SortBy ListSecretBundleVersionsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either 'asc' or 'desc'
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
 	SortOrder ListSecretBundleVersionsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -62,7 +63,10 @@ type ListSecretBundleVersionsResponse struct {
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination token for the next page of items
+	// For pagination of a list of items. When paging through a list, if this header appears in the response,
+	// then there are additional items still to get. Include this value as the `page` parameter for the
+	// subsequent GET request. For information about pagination, see
+	// List Pagination (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#List_Pagination).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

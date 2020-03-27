@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Secrets Management APIs
+// Secrets Management API
 //
-// Secrets Management APIs
+// API for managing secrets.
 //
 
 package vault
@@ -15,13 +15,13 @@ import (
 // SecretVersion The details of the secret version, excluding the contents of the secret.
 type SecretVersion struct {
 
-	// The type of the content
+	// The content type of the secret version's secret contents.
 	ContentType SecretVersionContentTypeEnum `mandatory:"false" json:"contentType,omitempty"`
 
-	// The name of a secret version. A name is unique in a secret.
+	// The name of the secret version. A name is unique across versions of a secret.
 	Name *string `mandatory:"false" json:"name"`
 
-	// The OCID of the secret
+	// The OCID of the secret.
 	SecretId *string `mandatory:"false" json:"secretId"`
 
 	// A list of possible rotation states for the secret version. A secret version marked `CURRENT` is currently in use. A secret version

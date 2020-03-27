@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Secrets Management APIs
+// Secrets Management API
 //
-// Secrets Management APIs
+// API for managing secrets.
 //
 
 package vault
@@ -47,7 +47,7 @@ type SecretSummary struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// The OCID of the Key that is used to encrypt the secret.
+	// The OCID of the master encryption key that is used to encrypt the secret.
 	KeyId *string `mandatory:"false" json:"keyId"`
 
 	// Additional information about the secret's current lifecycle state.

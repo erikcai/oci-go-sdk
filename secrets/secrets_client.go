@@ -3,7 +3,7 @@
 
 // Secrets
 //
-// APIs to retrieve secrets
+// API for retrieving secrets from vaults.
 //
 
 package secrets
@@ -74,7 +74,8 @@ func (client *SecretsClient) ConfigurationProvider() *common.ConfigurationProvid
 	return client.config
 }
 
-// GetSecretBundle Returns a secret bundle. Only one of stage or secretVersionName or versionNumber should be provided. If none of these parameters are provided, the bundle for the CURRENT stage will be returned.
+// GetSecretBundle Gets a secret bundle that matches either the specified `stage`, `label`, or `versionNumber` parameter.
+// If none of these parameters are provided, the bundle for the secret version marked as `CURRENT` will be returned.
 func (client SecretsClient) GetSecretBundle(ctx context.Context, request GetSecretBundleRequest) (response GetSecretBundleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -117,7 +118,7 @@ func (client SecretsClient) getSecretBundle(ctx context.Context, request common.
 	return response, err
 }
 
-// ListSecretBundleVersions Returns a list of secret bundle versions
+// ListSecretBundleVersions Lists all secret bundle versions for the specified secret.
 func (client SecretsClient) ListSecretBundleVersions(ctx context.Context, request ListSecretBundleVersionsRequest) (response ListSecretBundleVersionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

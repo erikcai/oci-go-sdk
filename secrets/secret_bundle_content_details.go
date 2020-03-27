@@ -3,7 +3,7 @@
 
 // Secrets
 //
-// APIs to retrieve secrets
+// API for retrieving secrets from vaults.
 //
 
 package secrets
@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SecretBundleContentDetails The content of the secret
+// SecretBundleContentDetails The contents of the secret.
 type SecretBundleContentDetails interface {
 }
 

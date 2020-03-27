@@ -22,7 +22,7 @@ type UpdateCloudVmClusterDetails struct {
 	CpuCoreCount *int64 `mandatory:"false" json:"cpuCoreCount"`
 
 	// The Oracle license model that applies to the cloud VM cluster. The default is BRING_YOUR_OWN_LICENSE.
-	LicenseModel CloudVmClusterSummaryLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
+	LicenseModel UpdateCloudVmClusterDetailsLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 
 	// The public key portion of one or more key pairs used for SSH access to the cloud VM cluster.
 	SshPublicKeys []string `mandatory:"false" json:"sshPublicKeys"`
@@ -55,4 +55,27 @@ type UpdateCloudVmClusterDetails struct {
 
 func (m UpdateCloudVmClusterDetails) String() string {
 	return common.PointerString(m)
+}
+
+// UpdateCloudVmClusterDetailsLicenseModelEnum Enum with underlying type: string
+type UpdateCloudVmClusterDetailsLicenseModelEnum string
+
+// Set of constants representing the allowable values for UpdateCloudVmClusterDetailsLicenseModelEnum
+const (
+	UpdateCloudVmClusterDetailsLicenseModelLicenseIncluded     UpdateCloudVmClusterDetailsLicenseModelEnum = "LICENSE_INCLUDED"
+	UpdateCloudVmClusterDetailsLicenseModelBringYourOwnLicense UpdateCloudVmClusterDetailsLicenseModelEnum = "BRING_YOUR_OWN_LICENSE"
+)
+
+var mappingUpdateCloudVmClusterDetailsLicenseModel = map[string]UpdateCloudVmClusterDetailsLicenseModelEnum{
+	"LICENSE_INCLUDED":       UpdateCloudVmClusterDetailsLicenseModelLicenseIncluded,
+	"BRING_YOUR_OWN_LICENSE": UpdateCloudVmClusterDetailsLicenseModelBringYourOwnLicense,
+}
+
+// GetUpdateCloudVmClusterDetailsLicenseModelEnumValues Enumerates the set of values for UpdateCloudVmClusterDetailsLicenseModelEnum
+func GetUpdateCloudVmClusterDetailsLicenseModelEnumValues() []UpdateCloudVmClusterDetailsLicenseModelEnum {
+	values := make([]UpdateCloudVmClusterDetailsLicenseModelEnum, 0)
+	for _, v := range mappingUpdateCloudVmClusterDetailsLicenseModel {
+		values = append(values, v)
+	}
+	return values
 }

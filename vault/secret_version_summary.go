@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Secrets Management APIs
+// Secrets Management API
 //
-// Secrets Management APIs
+// API for managing secrets.
 //
 
 package vault
@@ -25,13 +25,18 @@ type SecretVersionSummary struct {
 	// The version number of the secret.
 	VersionNumber *int64 `mandatory:"true" json:"versionNumber"`
 
-	// The type of the content
+	// The content type of the secret version's secret contents.
 	ContentType SecretVersionSummaryContentTypeEnum `mandatory:"false" json:"contentType,omitempty"`
 
-	// The name of a secret version. A name is unique in a secret.
+	// The name of the secret version. A name is unique across versions of a secret.
 	Name *string `mandatory:"false" json:"name"`
 
-	// A list of possible rotation states for the secret version.
+	// A list of possible rotation states for the secret version. A secret version marked `CURRENT` is currently in use. A secret version
+	// marked `PENDING` is staged and available for use, but has not been applied on the target system and, therefore, has not been rotated
+	// into current, active use. The secret most recently uploaded to a vault is always marked `LATEST`. (The first version of a secret is
+	// always marked as both `CURRENT` and `LATEST`.) A secret version marked `PREVIOUS` is the secret version that was most recently marked
+	// `CURRENT`, before the last secret version rotation. A secret version marked `DEPRECATED` is neither current, pending, nor the previous
+	// one in use. Only secret versions marked `DEPRECATED` can be scheduled for deletion.
 	Stages []SecretVersionSummaryStagesEnum `mandatory:"false" json:"stages,omitempty"`
 
 	// An optional property indicating when to delete the secret version, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.

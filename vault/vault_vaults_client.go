@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Secrets Management APIs
+// Secrets Management API
 //
-// Secrets Management APIs
+// API for managing secrets.
 //
 
 package vault
@@ -74,7 +74,9 @@ func (client *VaultsClient) ConfigurationProvider() *common.ConfigurationProvide
 	return client.config
 }
 
-// CancelSecretDeletion Cancels a scheduled secret deletion
+// CancelSecretDeletion Cancels the pending deletion of the specified secret. Canceling
+// a scheduled deletion restores the secret's lifecycle state to what
+// it was before you scheduled the secret for deletion.
 func (client VaultsClient) CancelSecretDeletion(ctx context.Context, request CancelSecretDeletionRequest) (response CancelSecretDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -117,7 +119,7 @@ func (client VaultsClient) cancelSecretDeletion(ctx context.Context, request com
 	return response, err
 }
 
-// CancelSecretVersionDeletion Cancels a scheduled secret version deletion
+// CancelSecretVersionDeletion Cancels the scheduled deletion of a secret version.
 func (client VaultsClient) CancelSecretVersionDeletion(ctx context.Context, request CancelSecretVersionDeletionRequest) (response CancelSecretVersionDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -210,7 +212,8 @@ func (client VaultsClient) changeSecretCompartment(ctx context.Context, request 
 	return response, err
 }
 
-// CreateSecret Creates a new secret.
+// CreateSecret Creates a new secret according to the details of the request.
+// This operation is not supported by the Oracle Cloud Infrastructure Terraform Provider.
 func (client VaultsClient) CreateSecret(ctx context.Context, request CreateSecretRequest) (response CreateSecretResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -344,7 +347,7 @@ func (client VaultsClient) getSecretVersion(ctx context.Context, request common.
 	return response, err
 }
 
-// ListSecretVersions Returns a list of secret versions.
+// ListSecretVersions Lists all secret versions for the specified secret.
 func (client VaultsClient) ListSecretVersions(ctx context.Context, request ListSecretVersionsRequest) (response ListSecretVersionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -431,8 +434,7 @@ func (client VaultsClient) listSecrets(ctx context.Context, request common.OCIRe
 }
 
 // ScheduleSecretDeletion Schedules the deletion of the specified secret. This sets the lifecycle state of the secret
-// to `PENDING_DELETION` and then deletes it after the specified retention period ends. You can only
-// delete a secret if the secret version rotation state is marked as `DEPRECATED`.
+// to `PENDING_DELETION` and then deletes it after the specified retention period ends.
 func (client VaultsClient) ScheduleSecretDeletion(ctx context.Context, request ScheduleSecretDeletionRequest) (response ScheduleSecretDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -475,7 +477,8 @@ func (client VaultsClient) scheduleSecretDeletion(ctx context.Context, request c
 	return response, err
 }
 
-// ScheduleSecretVersionDeletion Schedules a secret version deletion
+// ScheduleSecretVersionDeletion Schedules the deletion of the specified secret version. This deletes it after the specified retention period ends. You can only
+// delete a secret version if the secret version rotation state is marked as `DEPRECATED`.
 func (client VaultsClient) ScheduleSecretVersionDeletion(ctx context.Context, request ScheduleSecretVersionDeletionRequest) (response ScheduleSecretVersionDeletionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -519,9 +522,10 @@ func (client VaultsClient) scheduleSecretVersionDeletion(ctx context.Context, re
 }
 
 // UpdateSecret Updates the properties of a secret. Specifically, you can update the version number of the secret to make
-// that version number the current version. You can also update a secret's description, its free-form or defined tags,
-// and the secret contents. You cannot, however, update the secret version number and the secret contents at the
+// that version number the current version. You can also update a secret's description, its free-form or defined tags, rules
+// and the secret contents. Updating the secret content automatically creates a new secret version. You cannot, however, update the current secret version number and the secret contents and the rules at the
 // same time. Furthermore, the secret must in an `ACTIVE` lifecycle state to be updated.
+// This operation is not supported by the Oracle Cloud Infrastructure Terraform Provider.
 func (client VaultsClient) UpdateSecret(ctx context.Context, request UpdateSecretRequest) (response UpdateSecretResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

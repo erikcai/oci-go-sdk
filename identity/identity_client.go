@@ -218,6 +218,223 @@ func (client IdentityClient) assembleEffectiveTagSet(ctx context.Context, reques
 	return response, err
 }
 
+// BulkDelete Deletes the specified tag key definitions. This operation triggers a process that removes the
+// tags from all resources in your tenancy.
+// These things happen immediately:
+//
+//   * If the tag was a cost-tracking tag, it no longer counts against your 10 cost-tracking
+//   tags limit, whether you first disabled it or not.
+//   * If the tag was used with dynamic groups, none of the rules that contain the tag will
+//   be evaluated against the tag.
+// Once you start the delete operation, the state of the tag changes to DELETING and tag removal
+// from resources begins. This can take up to 48 hours depending on the number of resources that
+// were tagged as well as the regions in which those resources reside. When all tags have been
+// removed, the state changes to DELETED. You cannot restore a deleted tag. Once the deleted tag
+// changes its state to DELETED, you can use the same tag name again.
+// To delete the tags, you must first retire them. Use UpdateTag
+// to retire a tag.
+func (client IdentityClient) BulkDelete(ctx context.Context, request BulkDeleteRequest) (response BulkDeleteResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.bulkDelete, policy)
+	if err != nil {
+		if ociResponse != nil {
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = BulkDeleteResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(BulkDeleteResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into BulkDeleteResponse")
+	}
+	return
+}
+
+// bulkDelete implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) bulkDelete(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tags/actions/bulkDelete")
+	if err != nil {
+		return nil, err
+	}
+
+	var response BulkDeleteResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// BulkDeleteResources Bulk delete resources in the compartment. All resources must be in the same compartment.
+// This API can only be invoked from tenancy's home region.
+func (client IdentityClient) BulkDeleteResources(ctx context.Context, request BulkDeleteResourcesRequest) (response BulkDeleteResourcesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.bulkDeleteResources, policy)
+	if err != nil {
+		if ociResponse != nil {
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = BulkDeleteResourcesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(BulkDeleteResourcesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into BulkDeleteResourcesResponse")
+	}
+	return
+}
+
+// bulkDeleteResources implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) bulkDeleteResources(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/compartments/{compartmentId}/actions/bulkDeleteResources")
+	if err != nil {
+		return nil, err
+	}
+
+	var response BulkDeleteResourcesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// BulkMoveResources Bulk move resources in the compartment. All resources must be in the same compartment.
+// This API can only be invoked from tenancy's home region.
+func (client IdentityClient) BulkMoveResources(ctx context.Context, request BulkMoveResourcesRequest) (response BulkMoveResourcesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.bulkMoveResources, policy)
+	if err != nil {
+		if ociResponse != nil {
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = BulkMoveResourcesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(BulkMoveResourcesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into BulkMoveResourcesResponse")
+	}
+	return
+}
+
+// bulkMoveResources implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) bulkMoveResources(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/compartments/{compartmentId}/actions/bulkMoveResources")
+	if err != nil {
+		return nil, err
+	}
+
+	var response BulkMoveResourcesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CascadeDelete Deletes the specified tag namespace. This operation triggers a process that removes all the tags
+// defined in the specified tag namespace from all resources in your tenancy.
+// Once you start the delete operation, new tag key definitions can not be created under the namespace,
+// the state of the tag namespace changes to DELETING and tag removal from the resources begin. This can
+// take up to 48 hours depending on the number of tag definitions in the namespace, number of resources
+// that were tagged as well as the regions in which those resources reside. When all tags have been removed,
+// the state changes to DELETED. You cannot restore a deleted tag namespace. Once the deleted tag namespace
+// changes its state to DELETED, you can use the same tag namespace name again.
+// To delete a tag namespace, you must first retire it. Use UpdateTagNamespace
+// to retire a tag namespace.
+func (client IdentityClient) CascadeDelete(ctx context.Context, request CascadeDeleteRequest) (response CascadeDeleteResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.cascadeDelete, policy)
+	if err != nil {
+		if ociResponse != nil {
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = CascadeDeleteResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CascadeDeleteResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CascadeDeleteResponse")
+	}
+	return
+}
+
+// cascadeDelete implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) cascadeDelete(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tagNamespaces/{tagNamespaceId}/actions/cascadeDelete")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CascadeDeleteResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ChangeTagNamespaceCompartment Moves the specified tag namespace to the specified compartment within the same tenancy.
 // To move the tag namespace, you must have the manage tag-namespaces permission on both compartments.
 // For more information about IAM policies, see Details for IAM (https://docs.cloud.oracle.com/Content/Identity/Reference/iampolicyreference.htm).
@@ -790,6 +1007,8 @@ func (client IdentityClient) createMfaTotpDevice(ctx context.Context, request co
 // have to be unique, and you can change it anytime with UpdateNetworkSource.
 // After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
 // object, first make sure its `lifecycleState` has changed to ACTIVE.
+// After your network resource is created, you can use it in policy to restrict access to only requests made from an allowed
+// IP address specified in your network source. For more information, see Managing Network Sources (https://docs.cloud.oracle.com/Content/Identity/Tasks/managingnetworksources.htm).
 func (client IdentityClient) CreateNetworkSource(ctx context.Context, request CreateNetworkSourceRequest) (response CreateNetworkSourceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3341,6 +3560,49 @@ func (client IdentityClient) listAvailabilityDomains(ctx context.Context, reques
 	}
 
 	var response ListAvailabilityDomainsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListBulkActionResourceTypes Lists the resource types supported by compartment bulk actions.
+func (client IdentityClient) ListBulkActionResourceTypes(ctx context.Context, request ListBulkActionResourceTypesRequest) (response ListBulkActionResourceTypesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listBulkActionResourceTypes, policy)
+	if err != nil {
+		if ociResponse != nil {
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListBulkActionResourceTypesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListBulkActionResourceTypesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListBulkActionResourceTypesResponse")
+	}
+	return
+}
+
+// listBulkActionResourceTypes implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listBulkActionResourceTypes(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/compartments/bulkActionResourceTypes")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListBulkActionResourceTypesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

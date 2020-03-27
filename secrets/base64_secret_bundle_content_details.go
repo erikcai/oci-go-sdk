@@ -3,7 +3,7 @@
 
 // Secrets
 //
-// APIs to retrieve secrets
+// API for retrieving secrets from vaults.
 //
 
 package secrets
@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Base64SecretBundleContentDetails Base64 Secret Content
+// Base64SecretBundleContentDetails The contents of the secret.
 type Base64SecretBundleContentDetails struct {
 
-	// The base64 encoded content of the secret.
+	// The base64-encoded content of the secret.
 	Content *string `mandatory:"false" json:"content"`
 }
 

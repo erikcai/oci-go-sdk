@@ -155,6 +155,182 @@ func TestIdentityClientAssembleEffectiveTagSet(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientBulkDelete(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "BulkDelete")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("BulkDelete is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "BulkDelete", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "BulkDelete")
+	assert.NoError(t, err)
+
+	type BulkDeleteRequestInfo struct {
+		ContainerId string
+		Request     identity.BulkDeleteRequest
+	}
+
+	var requests []BulkDeleteRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.BulkDelete(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientBulkDeleteResources(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "BulkDeleteResources")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("BulkDeleteResources is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "BulkDeleteResources", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "BulkDeleteResources")
+	assert.NoError(t, err)
+
+	type BulkDeleteResourcesRequestInfo struct {
+		ContainerId string
+		Request     identity.BulkDeleteResourcesRequest
+	}
+
+	var requests []BulkDeleteResourcesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.BulkDeleteResources(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientBulkMoveResources(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "BulkMoveResources")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("BulkMoveResources is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "BulkMoveResources", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "BulkMoveResources")
+	assert.NoError(t, err)
+
+	type BulkMoveResourcesRequestInfo struct {
+		ContainerId string
+		Request     identity.BulkMoveResourcesRequest
+	}
+
+	var requests []BulkMoveResourcesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.BulkMoveResources(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientCascadeDelete(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "CascadeDelete")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CascadeDelete is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CascadeDelete", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "CascadeDelete")
+	assert.NoError(t, err)
+
+	type CascadeDeleteRequestInfo struct {
+		ContainerId string
+		Request     identity.CascadeDeleteRequest
+	}
+
+	var requests []CascadeDeleteRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CascadeDelete(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
 func TestIdentityClientChangeTagNamespaceCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3019,6 +3195,60 @@ func TestIdentityClientListAvailabilityDomains(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ListAvailabilityDomains(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientListBulkActionResourceTypes(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "ListBulkActionResourceTypes")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListBulkActionResourceTypes is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListBulkActionResourceTypes", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "ListBulkActionResourceTypes")
+	assert.NoError(t, err)
+
+	type ListBulkActionResourceTypesRequestInfo struct {
+		ContainerId string
+		Request     identity.ListBulkActionResourceTypesRequest
+	}
+
+	var requests []ListBulkActionResourceTypesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*identity.ListBulkActionResourceTypesRequest)
+				return c.ListBulkActionResourceTypes(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]identity.ListBulkActionResourceTypesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(identity.ListBulkActionResourceTypesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

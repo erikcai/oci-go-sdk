@@ -3,7 +3,7 @@
 
 // Secrets
 //
-// APIs to retrieve secrets
+// API for retrieving secrets from vaults.
 //
 
 package secrets
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SecretBundleVersionSummary A meta-data of the secret bundle. Does not contain the actual secret content.
+// SecretBundleVersionSummary The properties of the secret bundle. (Secret bundle version summary objects do not include the actual contents of the secret.)
 type SecretBundleVersionSummary struct {
 
 	// The OCID of the secret.
@@ -24,7 +24,7 @@ type SecretBundleVersionSummary struct {
 	// The time when the secret bundle was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The name of the particular secret version.
+	// The version name of the secret bundle, as provided when the secret was created or last rotated.
 	VersionName *string `mandatory:"false" json:"versionName"`
 
 	// An optional property indicating when to delete the secret version, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -35,7 +35,7 @@ type SecretBundleVersionSummary struct {
 	// Example: `2019-04-03T21:10:29.600Z`
 	TimeOfExpiry *common.SDKTime `mandatory:"false" json:"timeOfExpiry"`
 
-	// A list of stages of the secret bundle.
+	// A list of possible rotation states for the secret bundle.
 	Stages []SecretBundleVersionSummaryStagesEnum `mandatory:"false" json:"stages,omitempty"`
 }
 

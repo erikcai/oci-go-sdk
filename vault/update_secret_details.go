@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Secrets Management APIs
+// Secrets Management API
 //
-// Secrets Management APIs
+// API for managing secrets.
 //
 
 package vault
@@ -16,8 +16,9 @@ import (
 // UpdateSecretDetails Details for updating a secret.
 type UpdateSecretDetails struct {
 
-	// Updates the current version of the secret. The secret contents
-	// and version number can't be specified at the same time.
+	// Details to update the secret version of the specified secret. The secret contents,
+	// version number, and rules can't be specified at the same time.
+	// Updating the secret contents automatically creates a new secret version.
 	CurrentVersionNumber *int64 `mandatory:"false" json:"currentVersionNumber"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.

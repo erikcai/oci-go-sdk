@@ -11,7 +11,7 @@ import (
 // CreateSecretRequest wrapper for the CreateSecret operation
 type CreateSecretRequest struct {
 
-	// Request to create a new Secret.
+	// Request to create a new secret.
 	CreateSecretDetails `contributesTo:"body"`
 
 	// Unique identifier for the request. If provided, the returned request ID
