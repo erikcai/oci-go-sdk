@@ -3757,26 +3757,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>go-public-sdk-registry-api-spec</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <language>oracle-go-sdk</language>
-              <specPath>${preprocessed-temp-dir}/registry-api-spec/${registry-api-spec-spec-file}</specPath>
-              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
-              <basePackage>containerregistry</basePackage>
-              <specGenerationType>${generationType}</specGenerationType>
-              <additionalProperties>
-                <specName>containerregistry</specName>
-                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-              </additionalProperties>
-              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
-              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
-            </configuration>
-          </execution>
-          <execution>
             <id>go-public-sdk-oracle-blockchain-platform-spec</id>
             <phase>compile</phase>
             <goals>
@@ -4162,12 +4142,6 @@
             </fileset>
             <fileset>
               <directory>lib/oci/vault</directory>
-              <includes>
-                <include>**/*</include>
-              </includes>
-            </fileset>
-            <fileset>
-              <directory>lib/oci/containerregistry</directory>
               <includes>
                 <include>**/*</include>
               </includes>
