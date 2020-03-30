@@ -79,6 +79,9 @@ const (
 	RegionUKGovLondon1 Region = "uk-gov-london-1"
 	//RegionUKGovCardiff1 gov region Cardiff
 	RegionUKGovCardiff1 Region = "uk-gov-cardiff-1"
+
+	//RegionUSTacoma1 region for us-tacoma-1
+	RegionUSTacoma1 Region = "us-tacoma-1"
 )
 
 var realm = map[string]string{
@@ -86,6 +89,7 @@ var realm = map[string]string{
 	"oc2": "oraclegovcloud.com",
 	"oc3": "oraclegovcloud.com",
 	"oc4": "oraclegovcloud.uk",
+	"oc5": "oracleonsrcloud.com",
 }
 
 var regionRealm = map[Region]string{
@@ -125,6 +129,8 @@ var regionRealm = map[Region]string{
 
 	RegionUKGovLondon1:  "oc4",
 	RegionUKGovCardiff1: "oc4",
+
+	RegionUSTacoma1: "oc5",
 }
 
 // Endpoint returns a endpoint for a service
@@ -221,6 +227,8 @@ func StringToRegion(stringRegion string) (r Region) {
 		r = RegionUKGovLondon1
 	case "uk-gov-cardiff-1":
 		r = RegionUKGovCardiff1
+	case "tiw", "us-tacoma-1":
+		r = RegionUSTacoma1
 	default:
 		r = Region(stringRegion)
 		Debugf("region named: %s, is not recognized", stringRegion)
