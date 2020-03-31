@@ -68,7 +68,6 @@
     <mysqlaas-api-spec-spec-file>source/mysqlaas-api-spec.cond.yaml</mysqlaas-api-spec-spec-file>
     <oci-sms-dp-api-spec-spec-file>source/oci-sms-dp-api-spec.cond.yaml</oci-sms-dp-api-spec-spec-file>
     <oci-sms-api-spec-spec-file>source/oci-sms-api-spec.cond.yaml</oci-sms-api-spec-spec-file>
-    <registry-api-spec-spec-file>source/registry-api-spec.cond.yaml</registry-api-spec-spec-file>
     <oracle-blockchain-platform-spec-spec-file>source/blockchain-api.cond.yaml</oracle-blockchain-platform-spec-spec-file>
     <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
   </properties>
@@ -272,10 +271,6 @@
     <dependency>
       <groupId>com.oracle.pic.ocisms.controlplane</groupId>
       <artifactId>oci-sms-api-spec</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.oracle.pic.registry</groupId>
-      <artifactId>registry-api-spec</artifactId>
     </dependency>
     <dependency>
       <groupId>com.oracle.blockchain</groupId>
@@ -1207,24 +1202,6 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/oci-sms-api-spec</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-registry-api-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.oracle.pic.registry</groupId>
-                  <artifactId>registry-api-spec</artifactId>
-                  <type>jar</type>
-                  <includes>**/*</includes>
-                  <outputDirectory>${spec-temp-dir}/registry-api-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -2618,33 +2595,6 @@
             <configuration>
               <inputFile>${preferred-temp-dir}/oci-sms-api-spec/${oci-sms-api-spec-spec-file}</inputFile>
               <outputFile>${preprocessed-temp-dir}/oci-sms-api-spec/${oci-sms-api-spec-spec-file}</outputFile>
-              <groupFile>${enabled-groups-file}</groupFile>
-              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
-            </configuration>
-          </execution>
-          <execution>
-            <id>spec-conditionals-prefer-registry-api-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>prefer</goal>
-            </goals>
-            <configuration>
-              <inputFiles>
-                <inputFile>${spec-temp-dir}/registry-api-spec/source/${registry-api-spec-spec-file}</inputFile>
-                <inputFile>${spec-temp-dir}/registry-api-spec/${registry-api-spec-spec-file}</inputFile>
-              </inputFiles>
-              <outputFile>${preferred-temp-dir}/registry-api-spec/${registry-api-spec-spec-file}</outputFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>spec-conditionals-preprocess-registry-api-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>preprocess</goal>
-            </goals>
-            <configuration>
-              <inputFile>${preferred-temp-dir}/registry-api-spec/${registry-api-spec-spec-file}</inputFile>
-              <outputFile>${preprocessed-temp-dir}/registry-api-spec/${registry-api-spec-spec-file}</outputFile>
               <groupFile>${enabled-groups-file}</groupFile>
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
@@ -4414,11 +4364,6 @@
         <groupId>com.oracle.pic.ocisms.controlplane</groupId>
         <artifactId>oci-sms-api-spec</artifactId>
         <version>0.0.16</version>
-      </dependency>
-      <dependency>
-        <groupId>com.oracle.pic.registry</groupId>
-        <artifactId>registry-api-spec</artifactId>
-        <version>0.1.5</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.blockchain</groupId>
