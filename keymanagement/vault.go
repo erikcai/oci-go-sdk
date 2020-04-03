@@ -62,7 +62,9 @@ type Vault struct {
 	// Example: `2018-04-03T21:10:29.600Z`
 	TimeOfDeletion *common.SDKTime `mandatory:"false" json:"timeOfDeletion"`
 
-	// The OCID of the vault from which this vault is restored.
+	// The OCID of the vault from which this vault was restored, if it was restored from a backup file.
+	// If you restore a vault to the same region, the vault retains the same OCID that it had when you
+	// backed up the vault.
 	RestoredFromVaultId *string `mandatory:"false" json:"restoredFromVaultId"`
 }
 

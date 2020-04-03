@@ -46,6 +46,14 @@ type Stack struct {
 	// The version of Terraform specified for the stack. Example: `0.12.x`
 	TerraformVersion *string `mandatory:"false" json:"terraformVersion"`
 
+	// Drift status of the stack.
+	// Drift refers to differences between the actual (current) state of the stack and the expected (defined) state of the stack.
+	StackDriftStatus StackStackDriftStatusEnum `mandatory:"false" json:"stackDriftStatus,omitempty"`
+
+	// Date and time when the drift detection was last executed. Format is defined by RFC3339.
+	// Example: 2020-01-25T21:10:29.600Z
+	TimeDriftLastChecked *common.SDKTime `mandatory:"false" json:"timeDriftLastChecked"`
+
 	// Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -64,17 +72,19 @@ func (m Stack) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *Stack) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		Id               *string                           `json:"id"`
-		CompartmentId    *string                           `json:"compartmentId"`
-		DisplayName      *string                           `json:"displayName"`
-		Description      *string                           `json:"description"`
-		TimeCreated      *common.SDKTime                   `json:"timeCreated"`
-		LifecycleState   StackLifecycleStateEnum           `json:"lifecycleState"`
-		ConfigSource     configsource                      `json:"configSource"`
-		Variables        map[string]string                 `json:"variables"`
-		TerraformVersion *string                           `json:"terraformVersion"`
-		FreeformTags     map[string]string                 `json:"freeformTags"`
-		DefinedTags      map[string]map[string]interface{} `json:"definedTags"`
+		Id                   *string                           `json:"id"`
+		CompartmentId        *string                           `json:"compartmentId"`
+		DisplayName          *string                           `json:"displayName"`
+		Description          *string                           `json:"description"`
+		TimeCreated          *common.SDKTime                   `json:"timeCreated"`
+		LifecycleState       StackLifecycleStateEnum           `json:"lifecycleState"`
+		ConfigSource         configsource                      `json:"configSource"`
+		Variables            map[string]string                 `json:"variables"`
+		TerraformVersion     *string                           `json:"terraformVersion"`
+		StackDriftStatus     StackStackDriftStatusEnum         `json:"stackDriftStatus"`
+		TimeDriftLastChecked *common.SDKTime                   `json:"timeDriftLastChecked"`
+		FreeformTags         map[string]string                 `json:"freeformTags"`
+		DefinedTags          map[string]map[string]interface{} `json:"definedTags"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -108,6 +118,10 @@ func (m *Stack) UnmarshalJSON(data []byte) (e error) {
 
 	m.TerraformVersion = model.TerraformVersion
 
+	m.StackDriftStatus = model.StackDriftStatus
+
+	m.TimeDriftLastChecked = model.TimeDriftLastChecked
+
 	m.FreeformTags = model.FreeformTags
 
 	m.DefinedTags = model.DefinedTags
@@ -138,6 +152,31 @@ var mappingStackLifecycleState = map[string]StackLifecycleStateEnum{
 func GetStackLifecycleStateEnumValues() []StackLifecycleStateEnum {
 	values := make([]StackLifecycleStateEnum, 0)
 	for _, v := range mappingStackLifecycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// StackStackDriftStatusEnum Enum with underlying type: string
+type StackStackDriftStatusEnum string
+
+// Set of constants representing the allowable values for StackStackDriftStatusEnum
+const (
+	StackStackDriftStatusDrifted    StackStackDriftStatusEnum = "DRIFTED"
+	StackStackDriftStatusInSync     StackStackDriftStatusEnum = "IN_SYNC"
+	StackStackDriftStatusNotChecked StackStackDriftStatusEnum = "NOT_CHECKED"
+)
+
+var mappingStackStackDriftStatus = map[string]StackStackDriftStatusEnum{
+	"DRIFTED":     StackStackDriftStatusDrifted,
+	"IN_SYNC":     StackStackDriftStatusInSync,
+	"NOT_CHECKED": StackStackDriftStatusNotChecked,
+}
+
+// GetStackStackDriftStatusEnumValues Enumerates the set of values for StackStackDriftStatusEnum
+func GetStackStackDriftStatusEnumValues() []StackStackDriftStatusEnum {
+	values := make([]StackStackDriftStatusEnum, 0)
+	for _, v := range mappingStackStackDriftStatus {
 		values = append(values, v)
 	}
 	return values

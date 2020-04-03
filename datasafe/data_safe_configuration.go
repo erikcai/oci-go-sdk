@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Data Safe APIs
+// Data Safe API
 //
-// APIs for using Data Safe
+// APIs for using Oracle Data Safe.
 //
 
 package datasafe
@@ -12,29 +12,29 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DataSafeConfiguration Object of DataSafeConfiguration
+// DataSafeConfiguration A Data Safe Configuration that allows customer to enable Data Safe in their tenancy.
 type DataSafeConfiguration struct {
 
-	// whether the configuration is enabled
+	// Indicates if Data Safe is enabled.
 	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
 
-	// Service URL of the data safe service
+	// The URL of the Data Safe service.
 	Url *string `mandatory:"false" json:"url"`
 
-	// Tenant identifier used to enable the configuration.
+	// The OCID of the tenancy used to enable Data Safe.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The time the the data safe configuration was enabled. An RFC3339 formatted datetime string
+	// The specific time when Data Safe configuration was enabled.
 	TimeEnabled *common.SDKTime `mandatory:"false" json:"timeEnabled"`
 
-	// The current state of the data safe configuration.
+	// The current state of Data Safe configuration.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
 	// Example: `{"foo-namespace": {"bar-key": "value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }

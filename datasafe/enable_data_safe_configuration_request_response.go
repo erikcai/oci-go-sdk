@@ -11,20 +11,20 @@ import (
 // EnableDataSafeConfigurationRequest wrapper for the EnableDataSafeConfiguration operation
 type EnableDataSafeConfigurationRequest struct {
 
-	// Details needed to enable data safe
+	// The details used to enable Data Safe.
 	EnableDataSafeConfigurationDetails `contributesTo:"body"`
 
-	// The ID of the compartment in which to list resources.
+	// A filter to return only resources that match the specified compartment OCID.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
-	// for a resource, set the `if-match` parameter to the value of the
+	// for a resource, set the if-match parameter to the value of the
 	// etag from a previous GET or POST response for that resource.
 	// The resource will be updated or deleted only if the etag you
 	// provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
-	// The client request ID for tracing.
+	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -52,12 +52,10 @@ type EnableDataSafeConfigurationResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
+	// The OCID of the work request. Use GetWorkRequest with this OCID to track the status of the request.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

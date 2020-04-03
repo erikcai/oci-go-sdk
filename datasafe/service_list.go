@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Data Safe APIs
+// Data Safe API
 //
-// APIs for using Data Safe
+// APIs for using Oracle Data Safe.
 //
 
 package datasafe

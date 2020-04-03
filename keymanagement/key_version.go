@@ -44,7 +44,7 @@ type KeyVersion struct {
 	// Example: `2019-04-03T21:10:29.600Z`
 	TimeOfDeletion *common.SDKTime `mandatory:"false" json:"timeOfDeletion"`
 
-	// The OCID of the key version from which this key version is restored.
+	// The OCID of the key version from which this key version was restored.
 	RestoredFromKeyVersionId *string `mandatory:"false" json:"restoredFromKeyVersionId"`
 }
 

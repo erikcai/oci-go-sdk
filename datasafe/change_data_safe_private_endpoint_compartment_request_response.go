@@ -11,17 +11,17 @@ import (
 // ChangeDataSafePrivateEndpointCompartmentRequest wrapper for the ChangeDataSafePrivateEndpointCompartment operation
 type ChangeDataSafePrivateEndpointCompartmentRequest struct {
 
-	// unique data safe private endpoint identifier
+	// The OCID of the private endpoint.
 	DataSafePrivateEndpointId *string `mandatory:"true" contributesTo:"path" name:"dataSafePrivateEndpointId"`
 
-	// The compartment to be changed to
+	// The details used to change the compartment of a Data Safe private endpoint.
 	ChangeDataSafePrivateEndpointCompartmentDetails `contributesTo:"body"`
 
-	// The client request ID for tracing.
+	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
-	// for a resource, set the `if-match` parameter to the value of the
+	// for a resource, set the if-match parameter to the value of the
 	// etag from a previous GET or POST response for that resource.
 	// The resource will be updated or deleted only if the etag you
 	// provide matches the resource's current etag value.
@@ -52,9 +52,10 @@ type ChangeDataSafePrivateEndpointCompartmentResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
+	// The OCID of the work request. Use GetWorkRequest with this OCID to track the status of the request.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
+
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

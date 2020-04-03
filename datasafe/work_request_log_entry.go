@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Data Safe APIs
+// Data Safe API
 //
-// APIs for using Data Safe
+// APIs for using Oracle Data Safe.
 //
 
 package datasafe
@@ -18,7 +18,7 @@ type WorkRequestLogEntry struct {
 	// Human-readable log message.
 	Message *string `mandatory:"true" json:"message"`
 
-	// The time the log message was written. An RFC3339 formatted datetime string
+	// The time when the log message was created, in the format defined by RFC3339.
 	Timestamp *common.SDKTime `mandatory:"true" json:"timestamp"`
 }
 

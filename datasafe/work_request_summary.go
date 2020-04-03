@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Data Safe APIs
+// Data Safe API
 //
-// APIs for using Data Safe
+// APIs for using Oracle Data Safe.
 //
 
 package datasafe
@@ -12,39 +12,34 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestSummary A description of workrequest status
+// WorkRequestSummary A summary of the work request status.
 type WorkRequestSummary struct {
 
-	// type of the work request
+	// The asynchronous operation tracked by this work request.
 	OperationType WorkRequestSummaryOperationTypeEnum `mandatory:"true" json:"operationType"`
 
-	// status of current work request.
+	// The status of the work request.
 	Status WorkRequestSummaryStatusEnum `mandatory:"true" json:"status"`
 
-	// The id of the work request.
+	// The OCID of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The ocid of the compartment that contains the work request. Work requests should be scoped to
-	// the same compartment as the resource the work request affects. If the work request affects multiple resources,
-	// and those resources are not in the same compartment, it is up to the service team to pick the primary
-	// resource whose compartment should be used
+	// The OCID of the compartment containing this work request.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The resources affected by this work request.
+	// The resources impacted by the work request.
 	Resources []WorkRequestResource `mandatory:"true" json:"resources"`
 
-	// Percentage of the request completed.
+	// Progress of the request in percentage.
 	PercentComplete *float32 `mandatory:"true" json:"percentComplete"`
 
-	// The date and time the request was created, as described in
-	// RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
+	// The date and time the work request was created, in the format defined by RFC3339.
 	TimeAccepted *common.SDKTime `mandatory:"true" json:"timeAccepted"`
 
-	// The date and time the request was started, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339),
-	// section 14.29.
+	// The date and time the work request transitioned from ACCEPTED to IN_PROGRESS, in the format defined by RFC3339.
 	TimeStarted *common.SDKTime `mandatory:"false" json:"timeStarted"`
 
-	// The date and time the object was finished, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
+	// The date and time the work request reached a terminal state, either FAILED or SUCCEEDED, in the format defined by RFC3339.
 	TimeFinished *common.SDKTime `mandatory:"false" json:"timeFinished"`
 }
 
@@ -57,17 +52,19 @@ type WorkRequestSummaryOperationTypeEnum string
 
 // Set of constants representing the allowable values for WorkRequestSummaryOperationTypeEnum
 const (
-	WorkRequestSummaryOperationTypeEnableDataSafeConfiguration WorkRequestSummaryOperationTypeEnum = "ENABLE_DATA_SAFE_CONFIGURATION"
-	WorkRequestSummaryOperationTypeCreatePrivateEndpoint       WorkRequestSummaryOperationTypeEnum = "CREATE_PRIVATE_ENDPOINT"
-	WorkRequestSummaryOperationTypeUpdatePrivateEndpoint       WorkRequestSummaryOperationTypeEnum = "UPDATE_PRIVATE_ENDPOINT"
-	WorkRequestSummaryOperationTypeDeletePrivateEndpoint       WorkRequestSummaryOperationTypeEnum = "DELETE_PRIVATE_ENDPOINT"
+	WorkRequestSummaryOperationTypeEnableDataSafeConfiguration      WorkRequestSummaryOperationTypeEnum = "ENABLE_DATA_SAFE_CONFIGURATION"
+	WorkRequestSummaryOperationTypeCreatePrivateEndpoint            WorkRequestSummaryOperationTypeEnum = "CREATE_PRIVATE_ENDPOINT"
+	WorkRequestSummaryOperationTypeUpdatePrivateEndpoint            WorkRequestSummaryOperationTypeEnum = "UPDATE_PRIVATE_ENDPOINT"
+	WorkRequestSummaryOperationTypeDeletePrivateEndpoint            WorkRequestSummaryOperationTypeEnum = "DELETE_PRIVATE_ENDPOINT"
+	WorkRequestSummaryOperationTypeChangePrivateEndpointCompartment WorkRequestSummaryOperationTypeEnum = "CHANGE_PRIVATE_ENDPOINT_COMPARTMENT"
 )
 
 var mappingWorkRequestSummaryOperationType = map[string]WorkRequestSummaryOperationTypeEnum{
-	"ENABLE_DATA_SAFE_CONFIGURATION": WorkRequestSummaryOperationTypeEnableDataSafeConfiguration,
-	"CREATE_PRIVATE_ENDPOINT":        WorkRequestSummaryOperationTypeCreatePrivateEndpoint,
-	"UPDATE_PRIVATE_ENDPOINT":        WorkRequestSummaryOperationTypeUpdatePrivateEndpoint,
-	"DELETE_PRIVATE_ENDPOINT":        WorkRequestSummaryOperationTypeDeletePrivateEndpoint,
+	"ENABLE_DATA_SAFE_CONFIGURATION":      WorkRequestSummaryOperationTypeEnableDataSafeConfiguration,
+	"CREATE_PRIVATE_ENDPOINT":             WorkRequestSummaryOperationTypeCreatePrivateEndpoint,
+	"UPDATE_PRIVATE_ENDPOINT":             WorkRequestSummaryOperationTypeUpdatePrivateEndpoint,
+	"DELETE_PRIVATE_ENDPOINT":             WorkRequestSummaryOperationTypeDeletePrivateEndpoint,
+	"CHANGE_PRIVATE_ENDPOINT_COMPARTMENT": WorkRequestSummaryOperationTypeChangePrivateEndpointCompartment,
 }
 
 // GetWorkRequestSummaryOperationTypeEnumValues Enumerates the set of values for WorkRequestSummaryOperationTypeEnum

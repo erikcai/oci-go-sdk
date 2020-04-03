@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Data Safe APIs
+// Data Safe API
 //
-// APIs for using Data Safe
+// APIs for using Oracle Data Safe.
 //
 
 package datasafe
@@ -74,7 +74,7 @@ func (client *DataSafeClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
-// ChangeDataSafePrivateEndpointCompartment Change the compartment of a data safe private endpoint
+// ChangeDataSafePrivateEndpointCompartment Moves the Data Safe private endpoint and its dependent resources to the specified compartment.
 func (client DataSafeClient) ChangeDataSafePrivateEndpointCompartment(ctx context.Context, request ChangeDataSafePrivateEndpointCompartmentRequest) (response ChangeDataSafePrivateEndpointCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -117,7 +117,7 @@ func (client DataSafeClient) changeDataSafePrivateEndpointCompartment(ctx contex
 	return response, err
 }
 
-// CreateDataSafePrivateEndpoint Creates a new data safe PrivateEndpoint.
+// CreateDataSafePrivateEndpoint Creates a new Data Safe private endpoint.
 func (client DataSafeClient) CreateDataSafePrivateEndpoint(ctx context.Context, request CreateDataSafePrivateEndpointRequest) (response CreateDataSafePrivateEndpointResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -165,7 +165,7 @@ func (client DataSafeClient) createDataSafePrivateEndpoint(ctx context.Context, 
 	return response, err
 }
 
-// DeleteDataSafePrivateEndpoint Deletes a data safe PrivateEndpoint resource by identifier
+// DeleteDataSafePrivateEndpoint Deletes the specified Data Safe private endpoint.
 func (client DataSafeClient) DeleteDataSafePrivateEndpoint(ctx context.Context, request DeleteDataSafePrivateEndpointRequest) (response DeleteDataSafePrivateEndpointResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -208,7 +208,7 @@ func (client DataSafeClient) deleteDataSafePrivateEndpoint(ctx context.Context, 
 	return response, err
 }
 
-// EnableDataSafeConfiguration Enable data safe for the tenancy and region
+// EnableDataSafeConfiguration Enables Data Safe in the tenancy and region.
 func (client DataSafeClient) EnableDataSafeConfiguration(ctx context.Context, request EnableDataSafeConfigurationRequest) (response EnableDataSafeConfigurationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -251,7 +251,7 @@ func (client DataSafeClient) enableDataSafeConfiguration(ctx context.Context, re
 	return response, err
 }
 
-// GetDataSafeConfiguration Gets a data safe configuration by tenant Id
+// GetDataSafeConfiguration Gets the details of the Data Safe configuration.
 func (client DataSafeClient) GetDataSafeConfiguration(ctx context.Context, request GetDataSafeConfigurationRequest) (response GetDataSafeConfigurationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -294,7 +294,7 @@ func (client DataSafeClient) getDataSafeConfiguration(ctx context.Context, reque
 	return response, err
 }
 
-// GetDataSafePrivateEndpoint Gets a data safe PrivateEndpoint by identifier
+// GetDataSafePrivateEndpoint Gets the details of the specified Data Safe private endpoint.
 func (client DataSafeClient) GetDataSafePrivateEndpoint(ctx context.Context, request GetDataSafePrivateEndpointRequest) (response GetDataSafePrivateEndpointResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -337,7 +337,7 @@ func (client DataSafeClient) getDataSafePrivateEndpoint(ctx context.Context, req
 	return response, err
 }
 
-// GetWorkRequest Gets the status of the work request with the given ID.
+// GetWorkRequest Gets the details of the specified work request.
 func (client DataSafeClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -380,7 +380,7 @@ func (client DataSafeClient) getWorkRequest(ctx context.Context, request common.
 	return response, err
 }
 
-// ListDataSafePrivateEndpoints Returns a list of DataSafe PrivateEndpoints (per tenant).
+// ListDataSafePrivateEndpoints Gets a list of Data Safe private endpoints.
 func (client DataSafeClient) ListDataSafePrivateEndpoints(ctx context.Context, request ListDataSafePrivateEndpointsRequest) (response ListDataSafePrivateEndpointsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -423,7 +423,7 @@ func (client DataSafeClient) listDataSafePrivateEndpoints(ctx context.Context, r
 	return response, err
 }
 
-// ListWorkRequestErrors Return a (paginated) list of errors for a given work request.
+// ListWorkRequestErrors Gets a list of errors for the specified work request.
 func (client DataSafeClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -466,7 +466,7 @@ func (client DataSafeClient) listWorkRequestErrors(ctx context.Context, request 
 	return response, err
 }
 
-// ListWorkRequestLogs Return a (paginated) list of logs for a given work request.
+// ListWorkRequestLogs Gets a list of log entries for the specified work request.
 func (client DataSafeClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -509,7 +509,7 @@ func (client DataSafeClient) listWorkRequestLogs(ctx context.Context, request co
 	return response, err
 }
 
-// ListWorkRequests Lists the work requests in a compartment.
+// ListWorkRequests Gets a list of work requests.
 func (client DataSafeClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -552,7 +552,7 @@ func (client DataSafeClient) listWorkRequests(ctx context.Context, request commo
 	return response, err
 }
 
-// UpdateDataSafePrivateEndpoint Updates the data safe PrivateEndpoint
+// UpdateDataSafePrivateEndpoint Updates one or more attributes of the specified Data Safe private endpoint.
 func (client DataSafeClient) UpdateDataSafePrivateEndpoint(ctx context.Context, request UpdateDataSafePrivateEndpointRequest) (response UpdateDataSafePrivateEndpointResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

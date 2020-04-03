@@ -64,7 +64,7 @@ type Key struct {
 	// Example: `2019-04-03T21:10:29.600Z`
 	TimeOfDeletion *common.SDKTime `mandatory:"false" json:"timeOfDeletion"`
 
-	// The OCID of the key from which this key is restored.
+	// The OCID of the key from which this key was restored.
 	RestoredFromKeyId *string `mandatory:"false" json:"restoredFromKeyId"`
 }
 

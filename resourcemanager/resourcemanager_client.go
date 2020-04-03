@@ -308,6 +308,54 @@ func (client ResourceManagerClient) deleteStack(ctx context.Context, request com
 	return response, err
 }
 
+// DetectStackDrift Checks drift status for the specified stack.
+func (client ResourceManagerClient) DetectStackDrift(ctx context.Context, request DetectStackDriftRequest) (response DetectStackDriftResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.detectStackDrift, policy)
+	if err != nil {
+		if ociResponse != nil {
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = DetectStackDriftResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DetectStackDriftResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DetectStackDriftResponse")
+	}
+	return
+}
+
+// detectStackDrift implements the OCIOperation interface (enables retrying operations)
+func (client ResourceManagerClient) detectStackDrift(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/stacks/{stackId}/actions/detectDrift")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DetectStackDriftResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetJob Returns the specified job along with the job details.
 func (client ResourceManagerClient) GetJob(ctx context.Context, request GetJobRequest) (response GetJobResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -728,6 +776,51 @@ func (client ResourceManagerClient) listJobs(ctx context.Context, request common
 	}
 
 	var response ListJobsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListStackResourceDriftDetails Lists drift status details for each resource defined in the specified stack.
+// The drift status details for a given resource indicate differences, if any, between the actual state
+// and the expected (defined) state for that resource.
+func (client ResourceManagerClient) ListStackResourceDriftDetails(ctx context.Context, request ListStackResourceDriftDetailsRequest) (response ListStackResourceDriftDetailsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listStackResourceDriftDetails, policy)
+	if err != nil {
+		if ociResponse != nil {
+			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
+			response = ListStackResourceDriftDetailsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListStackResourceDriftDetailsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListStackResourceDriftDetailsResponse")
+	}
+	return
+}
+
+// listStackResourceDriftDetails implements the OCIOperation interface (enables retrying operations)
+func (client ResourceManagerClient) listStackResourceDriftDetails(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/stacks/{stackId}/actions/listResourceDriftDetails")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListStackResourceDriftDetailsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

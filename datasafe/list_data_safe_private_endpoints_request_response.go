@@ -11,32 +11,31 @@ import (
 // ListDataSafePrivateEndpointsRequest wrapper for the ListDataSafePrivateEndpoints operation
 type ListDataSafePrivateEndpointsRequest struct {
 
-	// The ID of the compartment in which to list resources.
+	// A filter to return only resources that match the specified compartment OCID.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable.
-	// Example: `My new resource`
+	// A filter to return only resources that match the specified display name.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// The OCID of the VCN in which Data Safe Private Endpoints were provisioned.
+	// A filter to return only the private endpoints that match the specified VCN OCID.
 	VcnId *string `mandatory:"false" contributesTo:"query" name:"vcnId"`
 
-	// A filter to return only resources that match the given lifecycle state exactly.
+	// A filter to return only resources that match the specified lifecycle state.
 	LifecycleState ListDataSafePrivateEndpointsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// The maximum number of items to return.
+	// For list pagination. The maximum number of items to return per page in a paginated "List" call. For details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The page at which to start retrieving results.
+	// The beginning page from which the results start retrieving.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The sort order to use, either 'asc' or 'desc'.
+	// The sort order to use, either ascending (ASC) or descending (DESC).
 	SortOrder ListDataSafePrivateEndpointsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
+	// The field to sort by. You can specify only one sort order (sortOrder). The default order for TIMECREATED is descending. The default order for DISPLAYNAME is ascending. The DISPLAYNAME sort order is case sensitive.
 	SortBy ListDataSafePrivateEndpointsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The client request ID for tracing.
+	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -67,14 +66,10 @@ type ListDataSafePrivateEndpointsResponse struct {
 	// A list of []DataSafePrivateEndpointSummary instances
 	Items []DataSafePrivateEndpointSummary `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// For pagination of a list of `DataSafePrivateEndpoints`s. If this header appears in the response, then this
-	// is a partial list of data safe PrivateEndpoints. Include this value as the `page` parameter in a subsequent
-	// GET request to get the next batch of data safe PrivateEndpoints.
+	// For list pagination. When this header appears in the response, additional pages of results remain. Include opc-next-page value as the page parameter for the subsequent GET request to get the next batch of items. For details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 

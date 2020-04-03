@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Data Safe APIs
+// Data Safe API
 //
-// APIs for using Data Safe
+// APIs for using Oracle Data Safe.
 //
 
 package datasafe
@@ -12,55 +12,50 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DataSafePrivateEndpoint Object of DataSafePrivateEndpoint
+// DataSafePrivateEndpoint A Data Safe private endpoint that allows Data Safe to connect to databases in a customer's virtual cloud network (VCN).
 type DataSafePrivateEndpoint struct {
 
-	// Unique identifier that is immutable on creation
+	// The OCID of the Data Safe private endpoint.
 	Id *string `mandatory:"true" json:"id"`
 
-	// Data safe Private Endpoints display name, can be renamed
+	// The display name of the private endpoint.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Compartment Identifier
+	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// VCN Identifier
+	// The OCID of the VCN.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// Subnet Identifier
+	// The OCID of the subnet.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
-	// Private Endpoint Identifier
+	// The OCID of the underlying private endpoint.
 	PrivateEndpointId *string `mandatory:"true" json:"privateEndpointId"`
 
-	// The private IP address to assign to this private endpoint's reverse connection configuration.
-	// If you provide a value, it must be an available IP address in the customer's subnet.
-	// If it's not available, an error is returned.
-	// If you do not provide a value, an available IP address in the subnet is automatically chosen.
+	// The private IP address of the private endpoint.
 	PrivateEndpointIp *string `mandatory:"false" json:"privateEndpointIp"`
 
-	// The three-label FQDN to use for the private endpoint. The customer VCN's DNS records are updated with this FQDN.
+	// The three-label fully qualified domain name (FQDN) of the private endpoint. The customer VCN's DNS records are updated with this FQDN.
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
 
-	// Description of the data safe private endpoint
+	// The description of the private endpoint.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The time the the data safe PE was created. An RFC3339 formatted datetime string
+	// The date and time the private endpoint was created, in the format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The current state of the data safe private endpoint
+	// The current state of the private endpoint.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// A list of the OCIDs of the network security groups that the private endpoint's VNIC belongs to.
-	// For more information about NSGs, see
-	// NetworkSecurityGroup.
+	// The OCIDs of the network security groups that the private endpoint belongs to.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
 
-	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-	// Example: `{"bar-key": "value"}`
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
+	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
 	// Example: `{"foo-namespace": {"bar-key": "value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }

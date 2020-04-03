@@ -11,10 +11,10 @@ import (
 // GetDataSafeConfigurationRequest wrapper for the GetDataSafeConfiguration operation
 type GetDataSafeConfigurationRequest struct {
 
-	// The ID of the compartment in which to list resources.
+	// A filter to return only resources that match the specified compartment OCID.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
-	// The client request ID for tracing.
+	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -45,12 +45,10 @@ type GetDataSafeConfigurationResponse struct {
 	// The DataSafeConfiguration instance
 	DataSafeConfiguration `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven)
 	Etag *string `presentIn:"header" name:"etag"`
 
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

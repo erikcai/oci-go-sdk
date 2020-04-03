@@ -11,16 +11,16 @@ import (
 // ListWorkRequestErrorsRequest wrapper for the ListWorkRequestErrors operation
 type ListWorkRequestErrorsRequest struct {
 
-	// The ID of the asynchronous request.
+	// The OCID of the work request.
 	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
 
-	// The client request ID for tracing.
+	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The page at which to start retrieving results.
+	// The beginning page from which the results start retrieving.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return.
+	// For list pagination. The maximum number of items to return per page in a paginated "List" call. For details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -51,14 +51,11 @@ type ListWorkRequestErrorsResponse struct {
 	// A list of []WorkRequestError instances
 	Items []WorkRequestError `presentIn:"body"`
 
-	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then there might be additional items still to get. Include this value as the `page` parameter for the
-	// subsequent GET request.
-	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
-
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a
-	// particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// For list pagination. When this header appears in the response, additional pages of results remain. Include opc-next-page value as the page parameter for the subsequent GET request to get the next batch of items. For details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 
 func (response ListWorkRequestErrorsResponse) String() string {

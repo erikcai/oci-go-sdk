@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Data Safe APIs
+// Data Safe API
 //
-// APIs for using Data Safe
+// APIs for using Oracle Data Safe.
 //
 
 package datasafe
@@ -12,34 +12,34 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DataSafePrivateEndpointSummary Summary of the data safe PrivateEndpoint.
+// DataSafePrivateEndpointSummary Summary of a Data Safe private endpoint.
 type DataSafePrivateEndpointSummary struct {
 
-	// Unique identifier that is immutable on creation
+	// The OCID of the Data Safe private endpoint.
 	Id *string `mandatory:"true" json:"id"`
 
-	// Data safe private endpoint name, can be renamed
+	// The display name of the private endpoint.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Compartment Identifier
+	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// VCN Identifier
+	// The OCID of the VCN.
 	VcnId *string `mandatory:"true" json:"vcnId"`
 
-	// Subnet Identifier
+	// The OCID of the subnet.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
-	// Private Endpoint Identifier
+	// The OCID of the private endpoint.
 	PrivateEndpointId *string `mandatory:"true" json:"privateEndpointId"`
 
-	// Description of the data safe private endpoint
+	// The description of the private endpoint.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The time the the data safe private endpoint was created. An RFC3339 formatted datetime string
+	// The date and time the private endpoint was created, in the format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The current state of the data safe private endpoint
+	// The current state of the private endpoint.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 

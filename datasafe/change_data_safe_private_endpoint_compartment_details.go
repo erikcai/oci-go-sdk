@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// Data Safe APIs
+// Data Safe API
 //
-// APIs for using Data Safe
+// APIs for using Oracle Data Safe.
 //
 
 package datasafe
@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeDataSafePrivateEndpointCompartmentDetails The compartment to be changed to
+// ChangeDataSafePrivateEndpointCompartmentDetails The details used to change the compartment of a Data Safe private endpoint.
 type ChangeDataSafePrivateEndpointCompartmentDetails struct {
 
-	// The new compartment identifier for the private endpoint
+	// The OCID of the new compartment.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 }
 

@@ -18,7 +18,7 @@ type RestoreVaultFromFileRequest struct {
 	// The content length of the body.
 	ContentLength *int64 `mandatory:"true" contributesTo:"header" name:"content-length"`
 
-	// The encrypted payload to upload to restore the vault.
+	// The encrypted backup file to upload to restore the vault.
 	RestoreVaultFromFileDetails io.ReadCloser `mandatory:"true" contributesTo:"body" encoding:"binary"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a
@@ -28,10 +28,11 @@ type RestoreVaultFromFileRequest struct {
 	// current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
-	// The base-64 encoded MD5 hash of the body, as described in RFC 2616 (https://tools.ietf.org/rfc/rfc2616), section 14.15.
-	// If the Content-MD5 header is present, KMS server will performs an integrity check on the body of the HTTP request by computing the MD5
-	// hash for the body and comparing it to the MD5 hash supplied in the header. If the two hashes do not match, the object is rejected and
-	// an HTTP-400 Unmatched Content MD5 error is returned with the message: "The computed MD5 of the request body (ACTUAL_MD5) does not match the Content-MD5 header (HEADER_MD5)"
+	// The base64-encoded MD5 hash value of the body, as described in RFC 2616 (https://tools.ietf.org/rfc/rfc2616), section 14.15.
+	// If the Content-MD5 header is present, Key Management performs an integrity check on the body of the HTTP request by computing the MD5
+	// hash for the body and comparing it to the MD5 hash supplied in the header. If the two hashes don't match, the object is rejected and
+	// a response with 400 Unmatched Content MD5 error is returned, along with the message: "The computed MD5 of the request body (ACTUAL_MD5)
+	// does not match the Content-MD5 header (HEADER_MD5)."
 	ContentMd5 *string `mandatory:"false" contributesTo:"header" name:"content-md5"`
 
 	// Unique identifier for the request. If provided, the returned request ID
@@ -78,14 +79,16 @@ type RestoreVaultFromFileResponse struct {
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
 
-	// The base-64 encoded MD5 hash of the request body as computed by the server.
+	// The base64-encoded MD5 hash value of the request body, as computed
+	// by the server.
 	OpcContentMd5 *string `presentIn:"header" name:"opc-content-md5"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// Work request id to track progress of the restore operation
+	// Unique Oracle-assigned identifier for the work request, used to track the progress of the
+	// restore operation.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 

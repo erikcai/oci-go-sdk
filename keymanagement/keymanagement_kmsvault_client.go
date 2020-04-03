@@ -74,7 +74,9 @@ func (client *KmsVaultClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
-// BackupVault Backup an encrypted binary payload that contains only the metadata of the vault so it can be restored.
+// BackupVault Backs up an encrypted file that contains all the metadata of a vault so that you can restore the vault later.
+// You can backup a vault whether or not it contains keys. This operation only backs up the
+// metadata of the vault, and does not include key metadata.
 func (client KmsVaultClient) BackupVault(ctx context.Context, request BackupVaultRequest) (response BackupVaultResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -423,7 +425,9 @@ func (client KmsVaultClient) listVaults(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// RestoreVaultFromFile Restore a vault from an encrypted binary backup.  If the vault with the OCID already exists, this operation will return a response with a 409 HTTP status code.
+// RestoreVaultFromFile Restores a vault from an encrypted backup file. If a vault
+// with the same OCID already exists, this operation returns a response with a
+// 409 HTTP status error code.
 func (client KmsVaultClient) RestoreVaultFromFile(ctx context.Context, request RestoreVaultFromFileRequest) (response RestoreVaultFromFileResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -471,7 +475,9 @@ func (client KmsVaultClient) restoreVaultFromFile(ctx context.Context, request c
 	return response, err
 }
 
-// RestoreVaultFromObjectStore Restore a vault from an encrypted binary backup stored in object store.  If the vault with the OCID already exists, this operation will return a response with a 409 HTTP status code.
+// RestoreVaultFromObjectStore Restores a vault from an encrypted backup file stored in Oracle Cloud Infrastructure Object
+// Storage. If a vault with the same OCID already exists, this operation returns
+// a response with a 409 HTTP status error code.
 func (client KmsVaultClient) RestoreVaultFromObjectStore(ctx context.Context, request RestoreVaultFromObjectStoreRequest) (response RestoreVaultFromObjectStoreResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

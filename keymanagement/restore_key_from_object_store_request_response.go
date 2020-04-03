@@ -69,7 +69,8 @@ type RestoreKeyFromObjectStoreResponse struct {
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
-	// Work request id to track progress of the backup operation
+	// Unique Oracle-assigned identifier for the work request, used to track the progress of the
+	// restore operation.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 

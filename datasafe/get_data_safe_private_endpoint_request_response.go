@@ -11,10 +11,10 @@ import (
 // GetDataSafePrivateEndpointRequest wrapper for the GetDataSafePrivateEndpoint operation
 type GetDataSafePrivateEndpointRequest struct {
 
-	// unique data safe private endpoint identifier
+	// The OCID of the private endpoint.
 	DataSafePrivateEndpointId *string `mandatory:"true" contributesTo:"path" name:"dataSafePrivateEndpointId"`
 
-	// The client request ID for tracing.
+	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
@@ -45,12 +45,10 @@ type GetDataSafePrivateEndpointResponse struct {
 	// The DataSafePrivateEndpoint instance
 	DataSafePrivateEndpoint `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven)
 	Etag *string `presentIn:"header" name:"etag"`
 
-	// Unique Oracle-assigned identifier for the request. If
-	// you need to contact Oracle about a particular request,
-	// please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

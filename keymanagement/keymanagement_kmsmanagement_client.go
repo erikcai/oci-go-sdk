@@ -67,7 +67,8 @@ func (client *KmsManagementClient) ConfigurationProvider() *common.Configuration
 	return client.config
 }
 
-// BackupKey Backup an encrypted binary payload that contains all key versions and metadata of the key and vault so it can be restored.
+// BackupKey Backs up an encrypted file that contains all key versions and metadata of the specified key so that you can restore
+// the key later. The file also contains the metadata of the vault that the key belonged to.
 func (client KmsManagementClient) BackupKey(ctx context.Context, request BackupKeyRequest) (response BackupKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -823,7 +824,9 @@ func (client KmsManagementClient) listKeys(ctx context.Context, request common.O
 	return response, err
 }
 
-// RestoreKeyFromFile Restore the key to a given vault. If the vault does not exist, the user will get a 400 and the user need to restore the vault first.
+// RestoreKeyFromFile Restores the specified key to the specified vault, based on information in the backup file provided.
+// If the vault doesn't exist, the operation returns a response with a 404 HTTP status error code. You
+// need to first restore the vault associated with the key.
 func (client KmsManagementClient) RestoreKeyFromFile(ctx context.Context, request RestoreKeyFromFileRequest) (response RestoreKeyFromFileResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -871,7 +874,9 @@ func (client KmsManagementClient) restoreKeyFromFile(ctx context.Context, reques
 	return response, err
 }
 
-// RestoreKeyFromObjectStore Restore the key to a given vault from an object store location. If the vault does not exist, the user will get a 400 and the user need to restore the vault first.
+// RestoreKeyFromObjectStore Restores the specified key to the specified vault from an Oracle Cloud Infrastructure
+// Object Storage location. If the vault doesn't exist, the operation returns a response with a
+// 404 HTTP status error code. You need to first restore the vault associated with the key.
 func (client KmsManagementClient) RestoreKeyFromObjectStore(ctx context.Context, request RestoreKeyFromObjectStoreRequest) (response RestoreKeyFromObjectStoreResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -243,6 +243,50 @@ func TestResourceManagerClientDeleteStack(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientDetectStackDrift(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "DetectStackDrift")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DetectStackDrift is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "DetectStackDrift", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "DetectStackDrift")
+	assert.NoError(t, err)
+
+	type DetectStackDriftRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.DetectStackDriftRequest
+	}
+
+	var requests []DetectStackDriftRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DetectStackDrift(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
 func TestResourceManagerClientGetJob(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -693,6 +737,60 @@ func TestResourceManagerClientListJobs(t *testing.T) {
 			typedListResponses := make([]resourcemanager.ListJobsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(resourcemanager.ListJobsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientListStackResourceDriftDetails(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "ListStackResourceDriftDetails")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListStackResourceDriftDetails is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "ListStackResourceDriftDetails", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "ListStackResourceDriftDetails")
+	assert.NoError(t, err)
+
+	type ListStackResourceDriftDetailsRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.ListStackResourceDriftDetailsRequest
+	}
+
+	var requests []ListStackResourceDriftDetailsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*resourcemanager.ListStackResourceDriftDetailsRequest)
+				return c.ListStackResourceDriftDetails(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]resourcemanager.ListStackResourceDriftDetailsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(resourcemanager.ListStackResourceDriftDetailsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
