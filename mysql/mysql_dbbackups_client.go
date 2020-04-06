@@ -89,8 +89,12 @@ func (client DbBackupsClient) DbSystemBackup(ctx context.Context, request DbSyst
 	ociResponse, err = common.Retry(ctx, request, client.dbSystemBackup, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DbSystemBackupResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DbSystemBackupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DbSystemBackupResponse{}
+			}
 		}
 		return
 	}
@@ -132,8 +136,12 @@ func (client DbBackupsClient) DeleteBackup(ctx context.Context, request DeleteBa
 	ociResponse, err = common.Retry(ctx, request, client.deleteBackup, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteBackupResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteBackupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteBackupResponse{}
+			}
 		}
 		return
 	}
@@ -175,8 +183,12 @@ func (client DbBackupsClient) GetBackup(ctx context.Context, request GetBackupRe
 	ociResponse, err = common.Retry(ctx, request, client.getBackup, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetBackupResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetBackupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetBackupResponse{}
+			}
 		}
 		return
 	}
@@ -218,8 +230,12 @@ func (client DbBackupsClient) ListBackups(ctx context.Context, request ListBacku
 	ociResponse, err = common.Retry(ctx, request, client.listBackups, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListBackupsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListBackupsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListBackupsResponse{}
+			}
 		}
 		return
 	}
@@ -261,8 +277,12 @@ func (client DbBackupsClient) UpdateBackup(ctx context.Context, request UpdateBa
 	ociResponse, err = common.Retry(ctx, request, client.updateBackup, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateBackupResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateBackupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateBackupResponse{}
+			}
 		}
 		return
 	}

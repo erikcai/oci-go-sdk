@@ -85,8 +85,12 @@ func (client StorageGatewayClient) CancelCloudSync(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.cancelCloudSync, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CancelCloudSyncResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CancelCloudSyncResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CancelCloudSyncResponse{}
+			}
 		}
 		return
 	}
@@ -135,8 +139,12 @@ func (client StorageGatewayClient) ChangeStorageGatewayCompartment(ctx context.C
 	ociResponse, err = common.Retry(ctx, request, client.changeStorageGatewayCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ChangeStorageGatewayCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeStorageGatewayCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeStorageGatewayCompartmentResponse{}
+			}
 		}
 		return
 	}
@@ -178,8 +186,12 @@ func (client StorageGatewayClient) ConnectFileSystem(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.connectFileSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ConnectFileSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ConnectFileSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ConnectFileSystemResponse{}
+			}
 		}
 		return
 	}
@@ -231,8 +243,12 @@ func (client StorageGatewayClient) CreateCloudSync(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.createCloudSync, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateCloudSyncResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateCloudSyncResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateCloudSyncResponse{}
+			}
 		}
 		return
 	}
@@ -284,8 +300,12 @@ func (client StorageGatewayClient) CreateFileSystem(ctx context.Context, request
 	ociResponse, err = common.Retry(ctx, request, client.createFileSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateFileSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateFileSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateFileSystemResponse{}
+			}
 		}
 		return
 	}
@@ -342,8 +362,12 @@ func (client StorageGatewayClient) CreateStorageGateway(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.createStorageGateway, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateStorageGatewayResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateStorageGatewayResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateStorageGatewayResponse{}
+			}
 		}
 		return
 	}
@@ -385,8 +409,12 @@ func (client StorageGatewayClient) DeleteCloudSync(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.deleteCloudSync, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteCloudSyncResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteCloudSyncResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteCloudSyncResponse{}
+			}
 		}
 		return
 	}
@@ -428,8 +456,12 @@ func (client StorageGatewayClient) DeleteFileSystem(ctx context.Context, request
 	ociResponse, err = common.Retry(ctx, request, client.deleteFileSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteFileSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteFileSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteFileSystemResponse{}
+			}
 		}
 		return
 	}
@@ -471,8 +503,12 @@ func (client StorageGatewayClient) DeleteStorageGateway(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.deleteStorageGateway, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteStorageGatewayResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteStorageGatewayResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteStorageGatewayResponse{}
+			}
 		}
 		return
 	}
@@ -514,8 +550,12 @@ func (client StorageGatewayClient) DisconnectFileSystem(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.disconnectFileSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DisconnectFileSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DisconnectFileSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DisconnectFileSystemResponse{}
+			}
 		}
 		return
 	}
@@ -557,8 +597,12 @@ func (client StorageGatewayClient) GetCloudSync(ctx context.Context, request Get
 	ociResponse, err = common.Retry(ctx, request, client.getCloudSync, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetCloudSyncResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetCloudSyncResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetCloudSyncResponse{}
+			}
 		}
 		return
 	}
@@ -600,8 +644,12 @@ func (client StorageGatewayClient) GetCloudSyncHealth(ctx context.Context, reque
 	ociResponse, err = common.Retry(ctx, request, client.getCloudSyncHealth, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetCloudSyncHealthResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetCloudSyncHealthResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetCloudSyncHealthResponse{}
+			}
 		}
 		return
 	}
@@ -643,8 +691,12 @@ func (client StorageGatewayClient) GetFileSystem(ctx context.Context, request Ge
 	ociResponse, err = common.Retry(ctx, request, client.getFileSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetFileSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetFileSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetFileSystemResponse{}
+			}
 		}
 		return
 	}
@@ -686,8 +738,12 @@ func (client StorageGatewayClient) GetFileSystemHealth(ctx context.Context, requ
 	ociResponse, err = common.Retry(ctx, request, client.getFileSystemHealth, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetFileSystemHealthResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetFileSystemHealthResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetFileSystemHealthResponse{}
+			}
 		}
 		return
 	}
@@ -729,8 +785,12 @@ func (client StorageGatewayClient) GetStorageGateway(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.getStorageGateway, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetStorageGatewayResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetStorageGatewayResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetStorageGatewayResponse{}
+			}
 		}
 		return
 	}
@@ -772,8 +832,12 @@ func (client StorageGatewayClient) GetStorageGatewayHealth(ctx context.Context, 
 	ociResponse, err = common.Retry(ctx, request, client.getStorageGatewayHealth, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetStorageGatewayHealthResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetStorageGatewayHealthResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetStorageGatewayHealthResponse{}
+			}
 		}
 		return
 	}
@@ -815,8 +879,12 @@ func (client StorageGatewayClient) ListCloudSyncs(ctx context.Context, request L
 	ociResponse, err = common.Retry(ctx, request, client.listCloudSyncs, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListCloudSyncsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListCloudSyncsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListCloudSyncsResponse{}
+			}
 		}
 		return
 	}
@@ -858,8 +926,12 @@ func (client StorageGatewayClient) ListFileSystems(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.listFileSystems, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListFileSystemsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListFileSystemsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListFileSystemsResponse{}
+			}
 		}
 		return
 	}
@@ -901,8 +973,12 @@ func (client StorageGatewayClient) ListStorageGateways(ctx context.Context, requ
 	ociResponse, err = common.Retry(ctx, request, client.listStorageGateways, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListStorageGatewaysResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListStorageGatewaysResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListStorageGatewaysResponse{}
+			}
 		}
 		return
 	}
@@ -944,8 +1020,12 @@ func (client StorageGatewayClient) ReclaimFileSystem(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.reclaimFileSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ReclaimFileSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ReclaimFileSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ReclaimFileSystemResponse{}
+			}
 		}
 		return
 	}
@@ -989,8 +1069,12 @@ func (client StorageGatewayClient) RefreshFileSystem(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.refreshFileSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = RefreshFileSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RefreshFileSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RefreshFileSystemResponse{}
+			}
 		}
 		return
 	}
@@ -1032,8 +1116,12 @@ func (client StorageGatewayClient) RunCloudSync(ctx context.Context, request Run
 	ociResponse, err = common.Retry(ctx, request, client.runCloudSync, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = RunCloudSyncResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RunCloudSyncResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RunCloudSyncResponse{}
+			}
 		}
 		return
 	}
@@ -1075,8 +1163,12 @@ func (client StorageGatewayClient) UpdateCloudSync(ctx context.Context, request 
 	ociResponse, err = common.Retry(ctx, request, client.updateCloudSync, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateCloudSyncResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateCloudSyncResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateCloudSyncResponse{}
+			}
 		}
 		return
 	}
@@ -1118,8 +1210,12 @@ func (client StorageGatewayClient) UpdateFileSystem(ctx context.Context, request
 	ociResponse, err = common.Retry(ctx, request, client.updateFileSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateFileSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateFileSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateFileSystemResponse{}
+			}
 		}
 		return
 	}
@@ -1161,8 +1257,12 @@ func (client StorageGatewayClient) UpdateStorageGateway(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.updateStorageGateway, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateStorageGatewayResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateStorageGatewayResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateStorageGatewayResponse{}
+			}
 		}
 		return
 	}

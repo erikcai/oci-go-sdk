@@ -97,8 +97,12 @@ func (client AutoScalingClient) ChangeAutoScalingConfigurationCompartment(ctx co
 	ociResponse, err = common.Retry(ctx, request, client.changeAutoScalingConfigurationCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ChangeAutoScalingConfigurationCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeAutoScalingConfigurationCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeAutoScalingConfigurationCompartmentResponse{}
+			}
 		}
 		return
 	}
@@ -145,8 +149,12 @@ func (client AutoScalingClient) CreateAutoScalingConfiguration(ctx context.Conte
 	ociResponse, err = common.Retry(ctx, request, client.createAutoScalingConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateAutoScalingConfigurationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateAutoScalingConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateAutoScalingConfigurationResponse{}
+			}
 		}
 		return
 	}
@@ -193,8 +201,12 @@ func (client AutoScalingClient) CreateAutoScalingPolicy(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.createAutoScalingPolicy, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateAutoScalingPolicyResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateAutoScalingPolicyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateAutoScalingPolicyResponse{}
+			}
 		}
 		return
 	}
@@ -236,8 +248,12 @@ func (client AutoScalingClient) DeleteAutoScalingConfiguration(ctx context.Conte
 	ociResponse, err = common.Retry(ctx, request, client.deleteAutoScalingConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteAutoScalingConfigurationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteAutoScalingConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteAutoScalingConfigurationResponse{}
+			}
 		}
 		return
 	}
@@ -279,8 +295,12 @@ func (client AutoScalingClient) DeleteAutoScalingPolicy(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.deleteAutoScalingPolicy, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteAutoScalingPolicyResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteAutoScalingPolicyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteAutoScalingPolicyResponse{}
+			}
 		}
 		return
 	}
@@ -322,8 +342,12 @@ func (client AutoScalingClient) GetAutoScalingConfiguration(ctx context.Context,
 	ociResponse, err = common.Retry(ctx, request, client.getAutoScalingConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetAutoScalingConfigurationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetAutoScalingConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetAutoScalingConfigurationResponse{}
+			}
 		}
 		return
 	}
@@ -365,8 +389,12 @@ func (client AutoScalingClient) GetAutoScalingPolicy(ctx context.Context, reques
 	ociResponse, err = common.Retry(ctx, request, client.getAutoScalingPolicy, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetAutoScalingPolicyResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetAutoScalingPolicyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetAutoScalingPolicyResponse{}
+			}
 		}
 		return
 	}
@@ -408,8 +436,12 @@ func (client AutoScalingClient) ListAutoScalingConfigurations(ctx context.Contex
 	ociResponse, err = common.Retry(ctx, request, client.listAutoScalingConfigurations, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListAutoScalingConfigurationsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListAutoScalingConfigurationsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListAutoScalingConfigurationsResponse{}
+			}
 		}
 		return
 	}
@@ -451,8 +483,12 @@ func (client AutoScalingClient) ListAutoScalingPolicies(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.listAutoScalingPolicies, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListAutoScalingPoliciesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListAutoScalingPoliciesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListAutoScalingPoliciesResponse{}
+			}
 		}
 		return
 	}
@@ -500,8 +536,12 @@ func (client AutoScalingClient) UpdateAutoScalingConfiguration(ctx context.Conte
 	ociResponse, err = common.Retry(ctx, request, client.updateAutoScalingConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateAutoScalingConfigurationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateAutoScalingConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateAutoScalingConfigurationResponse{}
+			}
 		}
 		return
 	}
@@ -548,8 +588,12 @@ func (client AutoScalingClient) UpdateAutoScalingPolicy(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.updateAutoScalingPolicy, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateAutoScalingPolicyResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateAutoScalingPolicyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateAutoScalingPolicyResponse{}
+			}
 		}
 		return
 	}

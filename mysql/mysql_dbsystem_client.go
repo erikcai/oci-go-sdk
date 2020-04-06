@@ -92,8 +92,12 @@ func (client DbSystemClient) CreateDbSystem(ctx context.Context, request CreateD
 	ociResponse, err = common.Retry(ctx, request, client.createDbSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateDbSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateDbSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateDbSystemResponse{}
+			}
 		}
 		return
 	}
@@ -140,8 +144,12 @@ func (client DbSystemClient) CreateInBoundChannel(ctx context.Context, request C
 	ociResponse, err = common.Retry(ctx, request, client.createInBoundChannel, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateInBoundChannelResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateInBoundChannelResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateInBoundChannelResponse{}
+			}
 		}
 		return
 	}
@@ -184,8 +192,12 @@ func (client DbSystemClient) DeleteDbSystem(ctx context.Context, request DeleteD
 	ociResponse, err = common.Retry(ctx, request, client.deleteDbSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteDbSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteDbSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteDbSystemResponse{}
+			}
 		}
 		return
 	}
@@ -227,8 +239,12 @@ func (client DbSystemClient) DeleteInBoundChannel(ctx context.Context, request D
 	ociResponse, err = common.Retry(ctx, request, client.deleteInBoundChannel, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteInBoundChannelResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteInBoundChannelResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteInBoundChannelResponse{}
+			}
 		}
 		return
 	}
@@ -270,8 +286,12 @@ func (client DbSystemClient) GetDbSystem(ctx context.Context, request GetDbSyste
 	ociResponse, err = common.Retry(ctx, request, client.getDbSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetDbSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetDbSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetDbSystemResponse{}
+			}
 		}
 		return
 	}
@@ -313,8 +333,12 @@ func (client DbSystemClient) GetInBoundChannel(ctx context.Context, request GetI
 	ociResponse, err = common.Retry(ctx, request, client.getInBoundChannel, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetInBoundChannelResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInBoundChannelResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInBoundChannelResponse{}
+			}
 		}
 		return
 	}
@@ -357,8 +381,12 @@ func (client DbSystemClient) ListDbSystems(ctx context.Context, request ListDbSy
 	ociResponse, err = common.Retry(ctx, request, client.listDbSystems, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListDbSystemsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListDbSystemsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListDbSystemsResponse{}
+			}
 		}
 		return
 	}
@@ -400,8 +428,12 @@ func (client DbSystemClient) ListInBoundChannels(ctx context.Context, request Li
 	ociResponse, err = common.Retry(ctx, request, client.listInBoundChannels, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListInBoundChannelsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListInBoundChannelsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListInBoundChannelsResponse{}
+			}
 		}
 		return
 	}
@@ -448,8 +480,12 @@ func (client DbSystemClient) RestartDbSystem(ctx context.Context, request Restar
 	ociResponse, err = common.Retry(ctx, request, client.restartDbSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = RestartDbSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RestartDbSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RestartDbSystemResponse{}
+			}
 		}
 		return
 	}
@@ -498,8 +534,12 @@ func (client DbSystemClient) RestoreDbSystem(ctx context.Context, request Restor
 	ociResponse, err = common.Retry(ctx, request, client.restoreDbSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = RestoreDbSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RestoreDbSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RestoreDbSystemResponse{}
+			}
 		}
 		return
 	}
@@ -546,8 +586,12 @@ func (client DbSystemClient) StartDbSystem(ctx context.Context, request StartDbS
 	ociResponse, err = common.Retry(ctx, request, client.startDbSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = StartDbSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = StartDbSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = StartDbSystemResponse{}
+			}
 		}
 		return
 	}
@@ -595,8 +639,12 @@ func (client DbSystemClient) StopDbSystem(ctx context.Context, request StopDbSys
 	ociResponse, err = common.Retry(ctx, request, client.stopDbSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = StopDbSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = StopDbSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = StopDbSystemResponse{}
+			}
 		}
 		return
 	}
@@ -647,8 +695,12 @@ func (client DbSystemClient) UpdateDbSystem(ctx context.Context, request UpdateD
 	ociResponse, err = common.Retry(ctx, request, client.updateDbSystem, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateDbSystemResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateDbSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateDbSystemResponse{}
+			}
 		}
 		return
 	}

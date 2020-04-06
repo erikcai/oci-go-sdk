@@ -85,8 +85,12 @@ func (client LumLoggingClient) ChangeLogGroupCompartment(ctx context.Context, re
 	ociResponse, err = common.Retry(ctx, request, client.changeLogGroupCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ChangeLogGroupCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeLogGroupCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeLogGroupCompartmentResponse{}
+			}
 		}
 		return
 	}
@@ -128,8 +132,12 @@ func (client LumLoggingClient) ChangeLogLogGroup(ctx context.Context, request Ch
 	ociResponse, err = common.Retry(ctx, request, client.changeLogLogGroup, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ChangeLogLogGroupResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeLogLogGroupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeLogLogGroupResponse{}
+			}
 		}
 		return
 	}
@@ -177,8 +185,12 @@ func (client LumLoggingClient) CreateLog(ctx context.Context, request CreateLogR
 	ociResponse, err = common.Retry(ctx, request, client.createLog, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateLogResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateLogResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateLogResponse{}
+			}
 		}
 		return
 	}
@@ -226,8 +238,12 @@ func (client LumLoggingClient) CreateLogGroup(ctx context.Context, request Creat
 	ociResponse, err = common.Retry(ctx, request, client.createLogGroup, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateLogGroupResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateLogGroupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateLogGroupResponse{}
+			}
 		}
 		return
 	}
@@ -269,8 +285,12 @@ func (client LumLoggingClient) DeleteLog(ctx context.Context, request DeleteLogR
 	ociResponse, err = common.Retry(ctx, request, client.deleteLog, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteLogResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteLogResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteLogResponse{}
+			}
 		}
 		return
 	}
@@ -312,8 +332,12 @@ func (client LumLoggingClient) DeleteLogGroup(ctx context.Context, request Delet
 	ociResponse, err = common.Retry(ctx, request, client.deleteLogGroup, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteLogGroupResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteLogGroupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteLogGroupResponse{}
+			}
 		}
 		return
 	}
@@ -355,8 +379,12 @@ func (client LumLoggingClient) GetLog(ctx context.Context, request GetLogRequest
 	ociResponse, err = common.Retry(ctx, request, client.getLog, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetLogResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetLogResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetLogResponse{}
+			}
 		}
 		return
 	}
@@ -398,8 +426,12 @@ func (client LumLoggingClient) GetLogGroup(ctx context.Context, request GetLogGr
 	ociResponse, err = common.Retry(ctx, request, client.getLogGroup, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetLogGroupResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetLogGroupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetLogGroupResponse{}
+			}
 		}
 		return
 	}
@@ -441,8 +473,12 @@ func (client LumLoggingClient) ListLogGroups(ctx context.Context, request ListLo
 	ociResponse, err = common.Retry(ctx, request, client.listLogGroups, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListLogGroupsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListLogGroupsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListLogGroupsResponse{}
+			}
 		}
 		return
 	}
@@ -484,8 +520,12 @@ func (client LumLoggingClient) ListLogs(ctx context.Context, request ListLogsReq
 	ociResponse, err = common.Retry(ctx, request, client.listLogs, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListLogsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListLogsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListLogsResponse{}
+			}
 		}
 		return
 	}
@@ -528,8 +568,12 @@ func (client LumLoggingClient) UpdateLog(ctx context.Context, request UpdateLogR
 	ociResponse, err = common.Retry(ctx, request, client.updateLog, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateLogResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateLogResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateLogResponse{}
+			}
 		}
 		return
 	}
@@ -572,8 +616,12 @@ func (client LumLoggingClient) UpdateLogGroup(ctx context.Context, request Updat
 	ociResponse, err = common.Retry(ctx, request, client.updateLogGroup, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateLogGroupResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateLogGroupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateLogGroupResponse{}
+			}
 		}
 		return
 	}

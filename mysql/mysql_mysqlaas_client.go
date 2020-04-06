@@ -90,8 +90,12 @@ func (client MysqlaasClient) CopyConfiguration(ctx context.Context, request Copy
 	ociResponse, err = common.Retry(ctx, request, client.copyConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CopyConfigurationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CopyConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CopyConfigurationResponse{}
+			}
 		}
 		return
 	}
@@ -138,8 +142,12 @@ func (client MysqlaasClient) CreateConfiguration(ctx context.Context, request Cr
 	ociResponse, err = common.Retry(ctx, request, client.createConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateConfigurationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateConfigurationResponse{}
+			}
 		}
 		return
 	}
@@ -182,8 +190,12 @@ func (client MysqlaasClient) DeleteConfiguration(ctx context.Context, request De
 	ociResponse, err = common.Retry(ctx, request, client.deleteConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteConfigurationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteConfigurationResponse{}
+			}
 		}
 		return
 	}
@@ -227,8 +239,12 @@ func (client MysqlaasClient) DeleteInstance(ctx context.Context, request DeleteI
 	ociResponse, err = common.Retry(ctx, request, client.deleteInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteInstanceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteInstanceResponse{}
+			}
 		}
 		return
 	}
@@ -275,8 +291,12 @@ func (client MysqlaasClient) EstimateAnalyticsClusterMemory(ctx context.Context,
 	ociResponse, err = common.Retry(ctx, request, client.estimateAnalyticsClusterMemory, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = EstimateAnalyticsClusterMemoryResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = EstimateAnalyticsClusterMemoryResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = EstimateAnalyticsClusterMemoryResponse{}
+			}
 		}
 		return
 	}
@@ -318,8 +338,12 @@ func (client MysqlaasClient) GetAnalyticsClusterMemoryEstimate(ctx context.Conte
 	ociResponse, err = common.Retry(ctx, request, client.getAnalyticsClusterMemoryEstimate, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetAnalyticsClusterMemoryEstimateResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetAnalyticsClusterMemoryEstimateResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetAnalyticsClusterMemoryEstimateResponse{}
+			}
 		}
 		return
 	}
@@ -361,8 +385,12 @@ func (client MysqlaasClient) GetConfiguration(ctx context.Context, request GetCo
 	ociResponse, err = common.Retry(ctx, request, client.getConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetConfigurationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetConfigurationResponse{}
+			}
 		}
 		return
 	}
@@ -404,8 +432,12 @@ func (client MysqlaasClient) GetConfigurationRevision(ctx context.Context, reque
 	ociResponse, err = common.Retry(ctx, request, client.getConfigurationRevision, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetConfigurationRevisionResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetConfigurationRevisionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetConfigurationRevisionResponse{}
+			}
 		}
 		return
 	}
@@ -447,8 +479,12 @@ func (client MysqlaasClient) GetInstance(ctx context.Context, request GetInstanc
 	ociResponse, err = common.Retry(ctx, request, client.getInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInstanceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInstanceResponse{}
+			}
 		}
 		return
 	}
@@ -491,8 +527,12 @@ func (client MysqlaasClient) GetVersionOptionsMetadata(ctx context.Context, requ
 	ociResponse, err = common.Retry(ctx, request, client.getVersionOptionsMetadata, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetVersionOptionsMetadataResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetVersionOptionsMetadataResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetVersionOptionsMetadataResponse{}
+			}
 		}
 		return
 	}
@@ -534,8 +574,12 @@ func (client MysqlaasClient) ListConfigurationRevisions(ctx context.Context, req
 	ociResponse, err = common.Retry(ctx, request, client.listConfigurationRevisions, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListConfigurationRevisionsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListConfigurationRevisionsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListConfigurationRevisionsResponse{}
+			}
 		}
 		return
 	}
@@ -582,8 +626,12 @@ func (client MysqlaasClient) ListConfigurations(ctx context.Context, request Lis
 	ociResponse, err = common.Retry(ctx, request, client.listConfigurations, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListConfigurationsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListConfigurationsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListConfigurationsResponse{}
+			}
 		}
 		return
 	}
@@ -625,8 +673,12 @@ func (client MysqlaasClient) ListInstances(ctx context.Context, request ListInst
 	ociResponse, err = common.Retry(ctx, request, client.listInstances, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListInstancesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListInstancesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListInstancesResponse{}
+			}
 		}
 		return
 	}
@@ -671,8 +723,12 @@ func (client MysqlaasClient) ListShapes(ctx context.Context, request ListShapesR
 	ociResponse, err = common.Retry(ctx, request, client.listShapes, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListShapesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListShapesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListShapesResponse{}
+			}
 		}
 		return
 	}
@@ -715,8 +771,12 @@ func (client MysqlaasClient) ListVersions(ctx context.Context, request ListVersi
 	ociResponse, err = common.Retry(ctx, request, client.listVersions, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListVersionsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListVersionsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListVersionsResponse{}
+			}
 		}
 		return
 	}
@@ -763,8 +823,12 @@ func (client MysqlaasClient) RestartInstance(ctx context.Context, request Restar
 	ociResponse, err = common.Retry(ctx, request, client.restartInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = RestartInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RestartInstanceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RestartInstanceResponse{}
+			}
 		}
 		return
 	}
@@ -812,8 +876,12 @@ func (client MysqlaasClient) StartInstance(ctx context.Context, request StartIns
 	ociResponse, err = common.Retry(ctx, request, client.startInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = StartInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = StartInstanceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = StartInstanceResponse{}
+			}
 		}
 		return
 	}
@@ -862,8 +930,12 @@ func (client MysqlaasClient) StopInstance(ctx context.Context, request StopInsta
 	ociResponse, err = common.Retry(ctx, request, client.stopInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = StopInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = StopInstanceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = StopInstanceResponse{}
+			}
 		}
 		return
 	}
@@ -905,8 +977,12 @@ func (client MysqlaasClient) UpdateConfiguration(ctx context.Context, request Up
 	ociResponse, err = common.Retry(ctx, request, client.updateConfiguration, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateConfigurationResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateConfigurationResponse{}
+			}
 		}
 		return
 	}
@@ -956,8 +1032,12 @@ func (client MysqlaasClient) UpdateInstance(ctx context.Context, request UpdateI
 	ociResponse, err = common.Retry(ctx, request, client.updateInstance, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateInstanceResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateInstanceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateInstanceResponse{}
+			}
 		}
 		return
 	}

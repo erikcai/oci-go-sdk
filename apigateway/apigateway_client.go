@@ -91,8 +91,12 @@ func (client ApiGatewayClient) ChangeCertificateCompartment(ctx context.Context,
 	ociResponse, err = common.Retry(ctx, request, client.changeCertificateCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ChangeCertificateCompartmentResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeCertificateCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeCertificateCompartmentResponse{}
+			}
 		}
 		return
 	}
@@ -139,8 +143,12 @@ func (client ApiGatewayClient) CreateCertificate(ctx context.Context, request Cr
 	ociResponse, err = common.Retry(ctx, request, client.createCertificate, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = CreateCertificateResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateCertificateResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateCertificateResponse{}
+			}
 		}
 		return
 	}
@@ -182,8 +190,12 @@ func (client ApiGatewayClient) DeleteCertificate(ctx context.Context, request De
 	ociResponse, err = common.Retry(ctx, request, client.deleteCertificate, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = DeleteCertificateResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteCertificateResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteCertificateResponse{}
+			}
 		}
 		return
 	}
@@ -225,8 +237,12 @@ func (client ApiGatewayClient) GetCertificate(ctx context.Context, request GetCe
 	ociResponse, err = common.Retry(ctx, request, client.getCertificate, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetCertificateResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetCertificateResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetCertificateResponse{}
+			}
 		}
 		return
 	}
@@ -268,8 +284,12 @@ func (client ApiGatewayClient) ListCertificates(ctx context.Context, request Lis
 	ociResponse, err = common.Retry(ctx, request, client.listCertificates, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListCertificatesResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListCertificatesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListCertificatesResponse{}
+			}
 		}
 		return
 	}
@@ -311,8 +331,12 @@ func (client ApiGatewayClient) UpdateCertificate(ctx context.Context, request Up
 	ociResponse, err = common.Retry(ctx, request, client.updateCertificate, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = UpdateCertificateResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateCertificateResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateCertificateResponse{}
+			}
 		}
 		return
 	}

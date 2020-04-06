@@ -85,8 +85,12 @@ func (client UsageClient) GetSubscriptionInfo(ctx context.Context, request GetSu
 	ociResponse, err = common.Retry(ctx, request, client.getSubscriptionInfo, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = GetSubscriptionInfoResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetSubscriptionInfoResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetSubscriptionInfoResponse{}
+			}
 		}
 		return
 	}
@@ -132,8 +136,12 @@ func (client UsageClient) ListUsageRecords(ctx context.Context, request ListUsag
 	ociResponse, err = common.Retry(ctx, request, client.listUsageRecords, policy)
 	if err != nil {
 		if ociResponse != nil {
-			opcRequestId := ociResponse.HTTPResponse().Header.Get("opc-request-id")
-			response = ListUsageRecordsResponse{RawResponse: ociResponse.HTTPResponse(), OpcRequestId: &opcRequestId}
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListUsageRecordsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListUsageRecordsResponse{}
+			}
 		}
 		return
 	}
