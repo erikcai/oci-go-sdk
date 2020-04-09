@@ -9,6 +9,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/oracle/oci-go-sdk/common"
 	"github.com/oracle/oci-go-sdk/core"
@@ -19,7 +20,7 @@ const (
 	vcnDisplayName     = "OCI-GOSDK-Sample-VCN"
 	subnetDisplayName1 = "OCI-GOSDK-Sample-Subnet1"
 	subnetDisplayName2 = "OCI-GOSDK-Sample-Subnet2"
-	subnetDisplayName3 = "OCI-GOSDK-Sample-Subnet3"
+	instanceShape = "VM.Standard2.1"
 
 	// replace following variables with your instance info
 	// this is used by ExampleCreateImageDetails_Polymorphic
@@ -43,17 +44,15 @@ func ExampleLaunchInstance() {
 	// create a subnet or get the one already created
 	subnet := CreateOrGetSubnet()
 	fmt.Println("subnet created")
-	request.SubnetId = subnet.Id
+	request.CreateVnicDetails = &core.CreateVnicDetails{SubnetId: subnet.Id}
 
 	// get a image
-	image := listImages(ctx, c)[30]
+	image := listImages(ctx, c)[0]
 	fmt.Println("list images")
-	request.ImageId = image.Id
+	request.SourceDetails = core.InstanceSourceViaImageDetails{ImageId: image.Id}
 
-	// get all the shapes and filter the list by compatibility with the image
-	shapes := listShapes(ctx, c, request.ImageId)
-	fmt.Println("list shapes")
-	request.Shape = shapes[1].Shape
+	// use VM.Standard2.1 to create instance
+	request.Shape = common.String(instanceShape)
 
 	// default retry policy will retry on non-200 response
 	request.RequestMetadata = helpers.GetRequestMetadataWithDefaultRetryPolicy()
@@ -79,10 +78,40 @@ func ExampleLaunchInstance() {
 		RequestMetadata: helpers.GetRequestMetadataWithCustomizedRetryPolicy(shouldRetryFunc),
 	}
 
-	_, pollError := c.GetInstance(ctx, pollingGetRequest)
+	instance, pollError := c.GetInstance(ctx, pollingGetRequest)
 	helpers.FatalIfError(pollError)
 
 	fmt.Println("instance launched")
+
+	attachVnicResponse, err := c.AttachVnic(context.Background(), core.AttachVnicRequest{
+		AttachVnicDetails: core.AttachVnicDetails{
+			CreateVnicDetails: &core.CreateVnicDetails{
+				SubnetId:       subnet.Id,
+				AssignPublicIp: common.Bool(true),
+			},
+			InstanceId: instance.Id,
+		},
+	})
+
+	helpers.FatalIfError(err)
+	fmt.Println("vnic attached")
+
+	vnicState := attachVnicResponse.VnicAttachment.LifecycleState
+	for vnicState != core.VnicAttachmentLifecycleStateAttached {
+		time.Sleep(15 * time.Second)
+		getVnicAttachmentRequest, err := c.GetVnicAttachment(context.Background(), core.GetVnicAttachmentRequest{
+			VnicAttachmentId: attachVnicResponse.Id,
+		})
+		helpers.FatalIfError(err)
+		vnicState = getVnicAttachmentRequest.VnicAttachment.LifecycleState
+	}
+
+	_, err = c.DetachVnic(context.Background(), core.DetachVnicRequest{
+		VnicAttachmentId: attachVnicResponse.Id,
+	})
+
+	helpers.FatalIfError(err)
+	fmt.Println("vnic dettached")
 
 	defer func() {
 		terminateInstance(ctx, c, createResp.Id)
@@ -282,6 +311,8 @@ func listSubnets(ctx context.Context, c core.VirtualNetworkClient) []core.Subnet
 func listImages(ctx context.Context, c core.ComputeClient) []core.Image {
 	request := core.ListImagesRequest{
 		CompartmentId: helpers.CompartmentID(),
+		OperatingSystem: common.String("Oracle Linux"),
+		Shape: common.String(instanceShape),
 	}
 
 	r, err := c.ListImages(ctx, request)

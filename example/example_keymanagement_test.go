@@ -325,7 +325,7 @@ func createVault(ctx context.Context, c keymanagement.KmsVaultClient, vaultName 
 	vaultDetails := keymanagement.CreateVaultDetails{
 		CompartmentId: helpers.CompartmentID(),
 		DisplayName:   &vaultName,
-		VaultType:     keymanagement.CreateVaultDetailsVaultTypeVirtualPrivate,
+		VaultType:     keymanagement.CreateVaultDetailsVaultTypeDefault,
 	}
 	request := keymanagement.CreateVaultRequest{}
 	request.CreateVaultDetails = vaultDetails
