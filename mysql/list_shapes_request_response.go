@@ -11,9 +11,6 @@ import (
 // ListShapesRequest wrapper for the ListShapes operation
 type ListShapesRequest struct {
 
-	// The name of the Availability Domain.
-	AvailabilityDomain *string `mandatory:"true" contributesTo:"query" name:"availabilityDomain"`
-
 	// The compartment OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
@@ -21,6 +18,9 @@ type ListShapesRequest struct {
 	// contact Oracle about a specific request, please provide the request
 	// ID that you supplied in this header with the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
+
+	// The name of the Availability Domain.
+	AvailabilityDomain *string `mandatory:"false" contributesTo:"query" name:"availabilityDomain"`
 
 	// Name
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`

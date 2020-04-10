@@ -11,7 +11,7 @@ import (
 // CreateDbSystemRequest wrapper for the CreateDbSystem operation
 type CreateDbSystemRequest struct {
 
-	// Request to create a DbSystem.
+	// Request to create a DB System.
 	CreateDbSystemDetails `contributesTo:"body"`
 
 	// Customer-defined unique identifier for the request. If you need to
@@ -54,6 +54,9 @@ type CreateDbSystemResponse struct {
 
 	// The DbSystem instance
 	DbSystem `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// The URI for the entity being described in the response body.
 	Location *string `presentIn:"header" name:"location"`

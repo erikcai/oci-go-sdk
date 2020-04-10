@@ -19,30 +19,33 @@ type ListConfigurationsRequest struct {
 	// ID that you supplied in this header with the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The requested MySQLaaS Configuration types.
+	// The requested Configuration instance.
+	ConfigurationId *string `mandatory:"false" contributesTo:"query" name:"configurationId"`
+
+	// Configuration Lifecycle State
+	LifecycleState ConfigurationLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+
+	// The requested Configuration types.
 	Type []ListConfigurationsTypeEnum `contributesTo:"query" name:"type" omitEmpty:"true" collectionFormat:"multi"`
 
 	// A filter to return only the resource matching the given display name exactly.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// The requested MySQLaaS Shape name.
+	// The requested Shape name.
 	ShapeName *string `mandatory:"false" contributesTo:"query" name:"shapeName"`
-
-	// MySQLaaS Configuration Lifecycle State
-	LifecycleState ListConfigurationsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// The field to sort by. Only one sort order may be provided. Time fields are default ordered as descending. Display name is default ordered as ascending.
 	SortBy ListConfigurationsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either 'asc' or 'desc'.
+	// The sort order to use (ASC or DESC).
 	SortOrder ListConfigurationsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The maximum number of items to return in a paginated "List" call. For information about pagination, see
+	// The maximum number of items to return in a paginated list call. For information about pagination, see
 	// List Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// The value of the `opc-next-page` or `opc-prev-page` response header from
-	// the previous "List" call. For information about pagination, see List
+	// the previous list call. For information about pagination, see List
 	// Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
@@ -109,29 +112,6 @@ var mappingListConfigurationsType = map[string]ListConfigurationsTypeEnum{
 func GetListConfigurationsTypeEnumValues() []ListConfigurationsTypeEnum {
 	values := make([]ListConfigurationsTypeEnum, 0)
 	for _, v := range mappingListConfigurationsType {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListConfigurationsLifecycleStateEnum Enum with underlying type: string
-type ListConfigurationsLifecycleStateEnum string
-
-// Set of constants representing the allowable values for ListConfigurationsLifecycleStateEnum
-const (
-	ListConfigurationsLifecycleStateActive  ListConfigurationsLifecycleStateEnum = "ACTIVE"
-	ListConfigurationsLifecycleStateDeleted ListConfigurationsLifecycleStateEnum = "DELETED"
-)
-
-var mappingListConfigurationsLifecycleState = map[string]ListConfigurationsLifecycleStateEnum{
-	"ACTIVE":  ListConfigurationsLifecycleStateActive,
-	"DELETED": ListConfigurationsLifecycleStateDeleted,
-}
-
-// GetListConfigurationsLifecycleStateEnumValues Enumerates the set of values for ListConfigurationsLifecycleStateEnum
-func GetListConfigurationsLifecycleStateEnumValues() []ListConfigurationsLifecycleStateEnum {
-	values := make([]ListConfigurationsLifecycleStateEnum, 0)
-	for _, v := range mappingListConfigurationsLifecycleState {
 		values = append(values, v)
 	}
 	return values

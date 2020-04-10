@@ -12,10 +12,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ShapeSummary The shape of the MySQLaaS Instance. The shape determines resources to
-// allocate to the MySQLaaS Instance - CPU cores and memory for VM shapes;
+// ShapeSummary The shape of the Instance. The shape determines resources to
+// allocate to the Instance - CPU cores and memory for VM shapes;
 // CPU cores, memory and storage for non-VM (or bare metal) shapes.  For a
-// description of shapes, see MySQLaaS Instance Create
+// description of shapes, see Instance Create
 // Options (https://docs.cloud.oracle.com/Content/MySQL/References/launchoptions.htm).  To use any of
 // the API operations, you must be authorized in an IAM policy. If you're
 // not authorized, talk to an administrator.  If you are an administrator
@@ -23,7 +23,7 @@ import (
 // with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
 type ShapeSummary struct {
 
-	// The name of the shape used for the MySQLaaS Instance.
+	// The name of the shape used for the Instance.
 	Name *string `mandatory:"true" json:"name"`
 
 	// The number of CPU Cores the Instance provides. These are "OCPU"s.

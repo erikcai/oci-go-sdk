@@ -29,11 +29,17 @@ type CertificateSummary struct {
 	// resource is created.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
+	// The entity to be secured by the certificate and additional host names.
+	SubjectNames []string `mandatory:"true" json:"subjectNames"`
+
 	// The date and time the certificate will expire.
 	TimeNotValidAfter *common.SDKTime `mandatory:"true" json:"timeNotValidAfter"`
 
 	// The time this resource was created. An RFC3339 formatted datetime string.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// The time this resource was last updated. An RFC3339 formatted datetime string.
+	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// The current state of the certificate.
 	LifecycleState CertificateLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`

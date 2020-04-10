@@ -19,16 +19,16 @@ type ListDbSystemsRequest struct {
 	// ID that you supplied in this header with the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The DbSystem OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The DB System OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	DbSystemId *string `mandatory:"false" contributesTo:"query" name:"dbSystemId"`
 
 	// A filter to return only the resource matching the given display name exactly.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// Lifecycle State
-	LifecycleState ListDbSystemsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
+	// DbSystem Lifecycle State
+	LifecycleState DbSystemLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// The requested MySQLaaS Configuration instance.
+	// The requested Configuration instance.
 	ConfigurationId *string `mandatory:"false" contributesTo:"query" name:"configurationId"`
 
 	// Filter instances if they are using the latest revision of the
@@ -38,15 +38,15 @@ type ListDbSystemsRequest struct {
 	// The field to sort by. Only one sort order may be provided. Time fields are default ordered as descending. Display name is default ordered as ascending.
 	SortBy ListDbSystemsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either 'asc' or 'desc'.
+	// The sort order to use (ASC or DESC).
 	SortOrder ListDbSystemsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The maximum number of items to return in a paginated "List" call. For information about pagination, see
+	// The maximum number of items to return in a paginated list call. For information about pagination, see
 	// List Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// The value of the `opc-next-page` or `opc-prev-page` response header from
-	// the previous "List" call. For information about pagination, see List
+	// the previous list call. For information about pagination, see List
 	// Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
@@ -93,39 +93,6 @@ func (response ListDbSystemsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListDbSystemsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// ListDbSystemsLifecycleStateEnum Enum with underlying type: string
-type ListDbSystemsLifecycleStateEnum string
-
-// Set of constants representing the allowable values for ListDbSystemsLifecycleStateEnum
-const (
-	ListDbSystemsLifecycleStateCreating ListDbSystemsLifecycleStateEnum = "CREATING"
-	ListDbSystemsLifecycleStateActive   ListDbSystemsLifecycleStateEnum = "ACTIVE"
-	ListDbSystemsLifecycleStateInactive ListDbSystemsLifecycleStateEnum = "INACTIVE"
-	ListDbSystemsLifecycleStateUpdating ListDbSystemsLifecycleStateEnum = "UPDATING"
-	ListDbSystemsLifecycleStateDeleting ListDbSystemsLifecycleStateEnum = "DELETING"
-	ListDbSystemsLifecycleStateDeleted  ListDbSystemsLifecycleStateEnum = "DELETED"
-	ListDbSystemsLifecycleStateFailed   ListDbSystemsLifecycleStateEnum = "FAILED"
-)
-
-var mappingListDbSystemsLifecycleState = map[string]ListDbSystemsLifecycleStateEnum{
-	"CREATING": ListDbSystemsLifecycleStateCreating,
-	"ACTIVE":   ListDbSystemsLifecycleStateActive,
-	"INACTIVE": ListDbSystemsLifecycleStateInactive,
-	"UPDATING": ListDbSystemsLifecycleStateUpdating,
-	"DELETING": ListDbSystemsLifecycleStateDeleting,
-	"DELETED":  ListDbSystemsLifecycleStateDeleted,
-	"FAILED":   ListDbSystemsLifecycleStateFailed,
-}
-
-// GetListDbSystemsLifecycleStateEnumValues Enumerates the set of values for ListDbSystemsLifecycleStateEnum
-func GetListDbSystemsLifecycleStateEnumValues() []ListDbSystemsLifecycleStateEnum {
-	values := make([]ListDbSystemsLifecycleStateEnum, 0)
-	for _, v := range mappingListDbSystemsLifecycleState {
-		values = append(values, v)
-	}
-	return values
 }
 
 // ListDbSystemsSortByEnum Enum with underlying type: string

@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestSummary A summary of WorkRequest status.
+// WorkRequestSummary The status of an asynchronous task in the system.
 type WorkRequestSummary struct {
 
 	// The id of the work request.
@@ -22,21 +22,28 @@ type WorkRequestSummary struct {
 	OperationType WorkRequestOperationTypeEnum `mandatory:"true" json:"operationType"`
 
 	// Current status of the work request
-	Status WorkRequestStatusTypeEnum `mandatory:"true" json:"status"`
+	Status WorkRequestOperationStatusEnum `mandatory:"true" json:"status"`
 
-	// The ocid of the compartment that contains the work request. Work requests should be scoped to the same compartment as the resource the work request affects.
+	// The ocid of the compartment that contains the work request. Work
+	// requests should be scoped to the same compartment as the resource
+	// the work request affects. If the work request affects multiple
+	// resources, and those resources are not in the same compartment, it
+	// is up to the service team to pick the primary resource whose
+	// compartment should be used
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// How much progress the operation has made, vs the total amount of work that must be performed.
+	// Percentage of the request completed.
 	PercentComplete *float32 `mandatory:"true" json:"percentComplete"`
 
-	// The time the Work Request was accepted, as described by RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
+	// The date and time the request was created, as described in
+	// RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeAccepted *common.SDKTime `mandatory:"true" json:"timeAccepted"`
 
-	// The time the Work Request was started, as described by RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
+	// The date and time the request was started, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339),
+	// section 14.29.
 	TimeStarted *common.SDKTime `mandatory:"false" json:"timeStarted"`
 
-	// The time the Work Request was finished, as described by RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
+	// The date and time the object was finished, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
 	TimeFinished *common.SDKTime `mandatory:"false" json:"timeFinished"`
 }
 

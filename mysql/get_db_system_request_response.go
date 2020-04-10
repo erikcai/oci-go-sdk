@@ -11,7 +11,7 @@ import (
 // GetDbSystemRequest wrapper for the GetDbSystem operation
 type GetDbSystemRequest struct {
 
-	// The MySQLaaS DbSystem OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The DB System OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	DbSystemId *string `mandatory:"true" contributesTo:"path" name:"dbSystemId"`
 
 	// Customer-defined unique identifier for the request. If you need to
@@ -19,13 +19,13 @@ type GetDbSystemRequest struct {
 	// ID that you supplied in this header with the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// (FIXME: want OCI-wide consistent language.)
+	//
 	// For conditional requests. In the GET call for a resource, set the
 	// `If-None-Match` header to the value of the ETag from a previous GET (or
 	// POST or PUT) response for that resource. The server will return with
 	// either a 304 Not Modified response if the resource has not changed, or a
 	// 200 OK response with the updated representation.
-	IfNoneMatch *string `mandatory:"false" contributesTo:"header" name:"If-None-Match"`
+	IfNoneMatch *string `mandatory:"false" contributesTo:"header" name:"if-none-match"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.

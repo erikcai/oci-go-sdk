@@ -12,36 +12,41 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DbSystemSummary A summary of a DbSystem.
+// DbSystemSummary A summary of a DB System.
 type DbSystemSummary struct {
 
-	// The OCID of the DbSystem.
+	// The OCID of the DB System.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The user-friendly name for the DbSystem. It does not have to be unique.
+	// The user-friendly name for the DB System. It does not have to be unique.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	AvailabilityPolicy *DbSystemAvailabilityPolicy `mandatory:"true" json:"availabilityPolicy"`
+	// The current state of the DB System.
+	LifecycleState DbSystemLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The current state of the DbSystem.
-	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
-
-	// Name of the MySQL Version in use for the DbSystem.
+	// Name of the MySQL Version in use for the DB System.
 	MysqlVersion *string `mandatory:"true" json:"mysqlVersion"`
 
-	// The date and time the DbSystem was created.
+	// The date and time the DB System was created.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The time the DbSystem was last updated.
+	// The time the DB System was last updated.
 	TimeUpdated *common.SDKTime `mandatory:"true" json:"timeUpdated"`
 
-	// User-provided data about the DbSystem.
+	// User-provided data about the DB System.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The Oracle Cloud ID (OCID) of the compartment the DbSystem belongs in.
+	// The OCID of the compartment the DB System belongs in.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	Instances []DbSystemInstance `mandatory:"false" json:"instances"`
+	// The Availability Domain where the primary DB System should be located.
+	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
+
+	// The name of the Fault Domain the DB System is located in.
+	FaultDomain *string `mandatory:"false" json:"faultDomain"`
+
+	// The network endpoints available for this DB System.
+	Endpoints []DbSystemEndpoint `mandatory:"false" json:"endpoints"`
 
 	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

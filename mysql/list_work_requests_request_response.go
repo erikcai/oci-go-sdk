@@ -19,27 +19,18 @@ type ListWorkRequestsRequest struct {
 	// ID that you supplied in this header with the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The OCID of the resource associated with a work request
-	ResourceId *string `mandatory:"false" contributesTo:"query" name:"resourceId"`
-
-	// Type of the resource associated with a work request
-	ResourceType ListWorkRequestsResourceTypeEnum `mandatory:"false" contributesTo:"query" name:"resourceType" omitEmpty:"true"`
-
-	// MySQLaaS Work Request Status
-	WorkRequestStatus ListWorkRequestsWorkRequestStatusEnum `mandatory:"false" contributesTo:"query" name:"workRequestStatus" omitEmpty:"true"`
-
 	// The optional field to sort the results by.
 	SortBy ListWorkRequestsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either 'asc' or 'desc'.
+	// The sort order to use (ASC or DESC).
 	SortOrder ListWorkRequestsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The maximum number of items to return in a paginated "List" call. For information about pagination, see
+	// The maximum number of items to return in a paginated list call. For information about pagination, see
 	// List Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// The value of the `opc-next-page` or `opc-prev-page` response header from
-	// the previous "List" call. For information about pagination, see List
+	// the previous list call. For information about pagination, see List
 	// Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
@@ -86,60 +77,6 @@ func (response ListWorkRequestsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListWorkRequestsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// ListWorkRequestsResourceTypeEnum Enum with underlying type: string
-type ListWorkRequestsResourceTypeEnum string
-
-// Set of constants representing the allowable values for ListWorkRequestsResourceTypeEnum
-const (
-	ListWorkRequestsResourceTypeInstance      ListWorkRequestsResourceTypeEnum = "MYSQL_INSTANCE"
-	ListWorkRequestsResourceTypeConfiguration ListWorkRequestsResourceTypeEnum = "MYSQL_CONFIGURATION"
-)
-
-var mappingListWorkRequestsResourceType = map[string]ListWorkRequestsResourceTypeEnum{
-	"MYSQL_INSTANCE":      ListWorkRequestsResourceTypeInstance,
-	"MYSQL_CONFIGURATION": ListWorkRequestsResourceTypeConfiguration,
-}
-
-// GetListWorkRequestsResourceTypeEnumValues Enumerates the set of values for ListWorkRequestsResourceTypeEnum
-func GetListWorkRequestsResourceTypeEnumValues() []ListWorkRequestsResourceTypeEnum {
-	values := make([]ListWorkRequestsResourceTypeEnum, 0)
-	for _, v := range mappingListWorkRequestsResourceType {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListWorkRequestsWorkRequestStatusEnum Enum with underlying type: string
-type ListWorkRequestsWorkRequestStatusEnum string
-
-// Set of constants representing the allowable values for ListWorkRequestsWorkRequestStatusEnum
-const (
-	ListWorkRequestsWorkRequestStatusAccepted   ListWorkRequestsWorkRequestStatusEnum = "ACCEPTED"
-	ListWorkRequestsWorkRequestStatusInProgress ListWorkRequestsWorkRequestStatusEnum = "IN_PROGRESS"
-	ListWorkRequestsWorkRequestStatusFailed     ListWorkRequestsWorkRequestStatusEnum = "FAILED"
-	ListWorkRequestsWorkRequestStatusSucceeded  ListWorkRequestsWorkRequestStatusEnum = "SUCCEEDED"
-	ListWorkRequestsWorkRequestStatusCanceling  ListWorkRequestsWorkRequestStatusEnum = "CANCELING"
-	ListWorkRequestsWorkRequestStatusCanceled   ListWorkRequestsWorkRequestStatusEnum = "CANCELED"
-)
-
-var mappingListWorkRequestsWorkRequestStatus = map[string]ListWorkRequestsWorkRequestStatusEnum{
-	"ACCEPTED":    ListWorkRequestsWorkRequestStatusAccepted,
-	"IN_PROGRESS": ListWorkRequestsWorkRequestStatusInProgress,
-	"FAILED":      ListWorkRequestsWorkRequestStatusFailed,
-	"SUCCEEDED":   ListWorkRequestsWorkRequestStatusSucceeded,
-	"CANCELING":   ListWorkRequestsWorkRequestStatusCanceling,
-	"CANCELED":    ListWorkRequestsWorkRequestStatusCanceled,
-}
-
-// GetListWorkRequestsWorkRequestStatusEnumValues Enumerates the set of values for ListWorkRequestsWorkRequestStatusEnum
-func GetListWorkRequestsWorkRequestStatusEnumValues() []ListWorkRequestsWorkRequestStatusEnum {
-	values := make([]ListWorkRequestsWorkRequestStatusEnum, 0)
-	for _, v := range mappingListWorkRequestsWorkRequestStatus {
-		values = append(values, v)
-	}
-	return values
 }
 
 // ListWorkRequestsSortByEnum Enum with underlying type: string

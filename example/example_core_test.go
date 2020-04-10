@@ -20,7 +20,7 @@ const (
 	vcnDisplayName     = "OCI-GOSDK-Sample-VCN"
 	subnetDisplayName1 = "OCI-GOSDK-Sample-Subnet1"
 	subnetDisplayName2 = "OCI-GOSDK-Sample-Subnet2"
-	instanceShape = "VM.Standard2.1"
+	instanceShape      = "VM.Standard2.1"
 
 	// replace following variables with your instance info
 	// this is used by ExampleCreateImageDetails_Polymorphic
@@ -310,9 +310,9 @@ func listSubnets(ctx context.Context, c core.VirtualNetworkClient) []core.Subnet
 // ListImages lists the available images in the specified compartment.
 func listImages(ctx context.Context, c core.ComputeClient) []core.Image {
 	request := core.ListImagesRequest{
-		CompartmentId: helpers.CompartmentID(),
+		CompartmentId:   helpers.CompartmentID(),
 		OperatingSystem: common.String("Oracle Linux"),
-		Shape: common.String(instanceShape),
+		Shape:           common.String(instanceShape),
 	}
 
 	r, err := c.ListImages(ctx, request)

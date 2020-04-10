@@ -611,6 +611,114 @@ func TestMarketplaceClientListPublishers(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_marketplace_seattle_us_grp@oracle.com" jiraProject="MAR" opsJiraProject="CMP"
+func TestMarketplaceClientListReportTypes(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("marketplace", "ListReportTypes")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListReportTypes is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("marketplace", "Marketplace", "ListReportTypes", createMarketplaceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(marketplace.MarketplaceClient)
+
+	body, err := testClient.getRequests("marketplace", "ListReportTypes")
+	assert.NoError(t, err)
+
+	type ListReportTypesRequestInfo struct {
+		ContainerId string
+		Request     marketplace.ListReportTypesRequest
+	}
+
+	var requests []ListReportTypesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*marketplace.ListReportTypesRequest)
+				return c.ListReportTypes(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]marketplace.ListReportTypesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(marketplace.ListReportTypesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_marketplace_seattle_us_grp@oracle.com" jiraProject="MAR" opsJiraProject="CMP"
+func TestMarketplaceClientListReports(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("marketplace", "ListReports")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListReports is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("marketplace", "Marketplace", "ListReports", createMarketplaceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(marketplace.MarketplaceClient)
+
+	body, err := testClient.getRequests("marketplace", "ListReports")
+	assert.NoError(t, err)
+
+	type ListReportsRequestInfo struct {
+		ContainerId string
+		Request     marketplace.ListReportsRequest
+	}
+
+	var requests []ListReportsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*marketplace.ListReportsRequest)
+				return c.ListReports(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]marketplace.ListReportsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(marketplace.ListReportsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_marketplace_seattle_us_grp@oracle.com" jiraProject="MAR" opsJiraProject="CMP"
 func TestMarketplaceClientUpdateAcceptedAgreement(t *testing.T) {
 	defer failTestOnPanic(t)
 

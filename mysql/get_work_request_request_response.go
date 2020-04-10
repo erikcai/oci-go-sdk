@@ -14,13 +14,13 @@ type GetWorkRequestRequest struct {
 	// the ID of the WorkRequest
 	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
 
-	// (FIXME: want OCI-wide consistent language.)
+	//
 	// For conditional requests. In the GET call for a resource, set the
 	// `If-None-Match` header to the value of the ETag from a previous GET (or
 	// POST or PUT) response for that resource. The server will return with
 	// either a 304 Not Modified response if the resource has not changed, or a
 	// 200 OK response with the updated representation.
-	IfNoneMatch *string `mandatory:"false" contributesTo:"header" name:"If-None-Match"`
+	IfNoneMatch *string `mandatory:"false" contributesTo:"header" name:"if-none-match"`
 
 	// Customer-defined unique identifier for the request. If you need to
 	// contact Oracle about a specific request, please provide the request
@@ -55,7 +55,7 @@ type GetWorkRequestResponse struct {
 	// The WorkRequest instance
 	WorkRequest `presentIn:"body"`
 
-	// For optimistic concurrency control. See `if-match`.
+	// For optimistic concurrency control. See `If-None-Match`.
 	Etag *string `presentIn:"header" name:"etag"`
 
 	// Retry the request after the specified number of seconds.

@@ -22,6 +22,9 @@ type ValidateUserRequest struct {
         
  // Unique request id 
         OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
+        
+ // Problem Type of Taxonomy - tech/limit 
+        ProblemType *string `mandatory:"false" contributesTo:"query" name:"problemType"`
 
 
     // Metadata about the request. This information will not be transmitted to the service, but

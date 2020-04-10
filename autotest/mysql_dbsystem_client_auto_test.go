@@ -67,50 +67,6 @@ func TestDbSystemClientCreateDbSystem(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
-func TestDbSystemClientCreateInBoundChannel(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("mysql", "CreateInBoundChannel")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("CreateInBoundChannel is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("mysql", "DbSystem", "CreateInBoundChannel", createDbSystemClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(mysql.DbSystemClient)
-
-	body, err := testClient.getRequests("mysql", "CreateInBoundChannel")
-	assert.NoError(t, err)
-
-	type CreateInBoundChannelRequestInfo struct {
-		ContainerId string
-		Request     mysql.CreateInBoundChannelRequest
-	}
-
-	var requests []CreateInBoundChannelRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.CreateInBoundChannel(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
 func TestDbSystemClientDeleteDbSystem(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -155,50 +111,6 @@ func TestDbSystemClientDeleteDbSystem(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
-func TestDbSystemClientDeleteInBoundChannel(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("mysql", "DeleteInBoundChannel")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("DeleteInBoundChannel is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("mysql", "DbSystem", "DeleteInBoundChannel", createDbSystemClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(mysql.DbSystemClient)
-
-	body, err := testClient.getRequests("mysql", "DeleteInBoundChannel")
-	assert.NoError(t, err)
-
-	type DeleteInBoundChannelRequestInfo struct {
-		ContainerId string
-		Request     mysql.DeleteInBoundChannelRequest
-	}
-
-	var requests []DeleteInBoundChannelRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.DeleteInBoundChannel(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
 func TestDbSystemClientGetDbSystem(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -235,50 +147,6 @@ func TestDbSystemClientGetDbSystem(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetDbSystem(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
-func TestDbSystemClientGetInBoundChannel(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("mysql", "GetInBoundChannel")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetInBoundChannel is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("mysql", "DbSystem", "GetInBoundChannel", createDbSystemClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(mysql.DbSystemClient)
-
-	body, err := testClient.getRequests("mysql", "GetInBoundChannel")
-	assert.NoError(t, err)
-
-	type GetInBoundChannelRequestInfo struct {
-		ContainerId string
-		Request     mysql.GetInBoundChannelRequest
-	}
-
-	var requests []GetInBoundChannelRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetInBoundChannel(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -341,50 +209,6 @@ func TestDbSystemClientListDbSystems(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
-func TestDbSystemClientListInBoundChannels(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("mysql", "ListInBoundChannels")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListInBoundChannels is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("mysql", "DbSystem", "ListInBoundChannels", createDbSystemClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(mysql.DbSystemClient)
-
-	body, err := testClient.getRequests("mysql", "ListInBoundChannels")
-	assert.NoError(t, err)
-
-	type ListInBoundChannelsRequestInfo struct {
-		ContainerId string
-		Request     mysql.ListInBoundChannelsRequest
-	}
-
-	var requests []ListInBoundChannelsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ListInBoundChannels(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
 func TestDbSystemClientRestartDbSystem(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -421,50 +245,6 @@ func TestDbSystemClientRestartDbSystem(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.RestartDbSystem(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
-func TestDbSystemClientRestoreDbSystem(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("mysql", "RestoreDbSystem")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("RestoreDbSystem is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("mysql", "DbSystem", "RestoreDbSystem", createDbSystemClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(mysql.DbSystemClient)
-
-	body, err := testClient.getRequests("mysql", "RestoreDbSystem")
-	assert.NoError(t, err)
-
-	type RestoreDbSystemRequestInfo struct {
-		ContainerId string
-		Request     mysql.RestoreDbSystemRequest
-	}
-
-	var requests []RestoreDbSystemRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.RestoreDbSystem(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

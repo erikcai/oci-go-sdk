@@ -13,23 +13,21 @@ type WorkRequestOperationTypeEnum string
 
 // Set of constants representing the allowable values for WorkRequestOperationTypeEnum
 const (
-	WorkRequestOperationTypeCreateInstance           WorkRequestOperationTypeEnum = "CREATE_INSTANCE"
-	WorkRequestOperationTypeUpdateInstance           WorkRequestOperationTypeEnum = "UPDATE_INSTANCE"
-	WorkRequestOperationTypeDeleteInstance           WorkRequestOperationTypeEnum = "DELETE_INSTANCE"
-	WorkRequestOperationTypeStartInstance            WorkRequestOperationTypeEnum = "START_INSTANCE"
-	WorkRequestOperationTypeStopInstance             WorkRequestOperationTypeEnum = "STOP_INSTANCE"
-	WorkRequestOperationTypeRestartInstance          WorkRequestOperationTypeEnum = "RESTART_INSTANCE"
-	WorkRequestOperationTypeApplyConfigurationUpdate WorkRequestOperationTypeEnum = "APPLY_CONFIGURATION_UPDATE"
+	WorkRequestOperationTypeCreateDbsystem  WorkRequestOperationTypeEnum = "CREATE_DBSYSTEM"
+	WorkRequestOperationTypeUpdateDbsystem  WorkRequestOperationTypeEnum = "UPDATE_DBSYSTEM"
+	WorkRequestOperationTypeDeleteDbsystem  WorkRequestOperationTypeEnum = "DELETE_DBSYSTEM"
+	WorkRequestOperationTypeStartDbsystem   WorkRequestOperationTypeEnum = "START_DBSYSTEM"
+	WorkRequestOperationTypeStopDbsystem    WorkRequestOperationTypeEnum = "STOP_DBSYSTEM"
+	WorkRequestOperationTypeRestartDbsystem WorkRequestOperationTypeEnum = "RESTART_DBSYSTEM"
 )
 
 var mappingWorkRequestOperationType = map[string]WorkRequestOperationTypeEnum{
-	"CREATE_INSTANCE":            WorkRequestOperationTypeCreateInstance,
-	"UPDATE_INSTANCE":            WorkRequestOperationTypeUpdateInstance,
-	"DELETE_INSTANCE":            WorkRequestOperationTypeDeleteInstance,
-	"START_INSTANCE":             WorkRequestOperationTypeStartInstance,
-	"STOP_INSTANCE":              WorkRequestOperationTypeStopInstance,
-	"RESTART_INSTANCE":           WorkRequestOperationTypeRestartInstance,
-	"APPLY_CONFIGURATION_UPDATE": WorkRequestOperationTypeApplyConfigurationUpdate,
+	"CREATE_DBSYSTEM":  WorkRequestOperationTypeCreateDbsystem,
+	"UPDATE_DBSYSTEM":  WorkRequestOperationTypeUpdateDbsystem,
+	"DELETE_DBSYSTEM":  WorkRequestOperationTypeDeleteDbsystem,
+	"START_DBSYSTEM":   WorkRequestOperationTypeStartDbsystem,
+	"STOP_DBSYSTEM":    WorkRequestOperationTypeStopDbsystem,
+	"RESTART_DBSYSTEM": WorkRequestOperationTypeRestartDbsystem,
 }
 
 // GetWorkRequestOperationTypeEnumValues Enumerates the set of values for WorkRequestOperationTypeEnum

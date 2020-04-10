@@ -80,13 +80,21 @@ type CertificateLifecycleStateEnum string
 
 // Set of constants representing the allowable values for CertificateLifecycleStateEnum
 const (
-	CertificateLifecycleStateActive  CertificateLifecycleStateEnum = "ACTIVE"
-	CertificateLifecycleStateDeleted CertificateLifecycleStateEnum = "DELETED"
+	CertificateLifecycleStateCreating CertificateLifecycleStateEnum = "CREATING"
+	CertificateLifecycleStateActive   CertificateLifecycleStateEnum = "ACTIVE"
+	CertificateLifecycleStateUpdating CertificateLifecycleStateEnum = "UPDATING"
+	CertificateLifecycleStateDeleting CertificateLifecycleStateEnum = "DELETING"
+	CertificateLifecycleStateDeleted  CertificateLifecycleStateEnum = "DELETED"
+	CertificateLifecycleStateFailed   CertificateLifecycleStateEnum = "FAILED"
 )
 
 var mappingCertificateLifecycleState = map[string]CertificateLifecycleStateEnum{
-	"ACTIVE":  CertificateLifecycleStateActive,
-	"DELETED": CertificateLifecycleStateDeleted,
+	"CREATING": CertificateLifecycleStateCreating,
+	"ACTIVE":   CertificateLifecycleStateActive,
+	"UPDATING": CertificateLifecycleStateUpdating,
+	"DELETING": CertificateLifecycleStateDeleting,
+	"DELETED":  CertificateLifecycleStateDeleted,
+	"FAILED":   CertificateLifecycleStateFailed,
 }
 
 // GetCertificateLifecycleStateEnumValues Enumerates the set of values for CertificateLifecycleStateEnum

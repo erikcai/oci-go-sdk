@@ -12,25 +12,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateConfigurationDetails The details required to update a MySQLaaS Configuration.
+// UpdateConfigurationDetails The details required to update a Configuration.
 type UpdateConfigurationDetails struct {
 
-	// The OCID of the compartment to move the MySQLaaS Configuration to.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
-
-	// User-provided data about the MySQLaaS Instance.
+	// User-provided data about the Configuration.
 	Description *string `mandatory:"false" json:"description"`
 
-	// A new display name for the MySQLaaS Configuration.
+	// A new display name for the Configuration.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// The name of the shape the MySQLaaS Configuration is related to.
-	ShapeName *string `mandatory:"false" json:"shapeName"`
-
-	// The version of MySQLaaS that this Configuration and its Options are relevant to.
-	MysqlVersion *string `mandatory:"false" json:"mysqlVersion"`
-
-	Options []Option `mandatory:"false" json:"options"`
 
 	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

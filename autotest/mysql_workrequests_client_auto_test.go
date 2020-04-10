@@ -23,50 +23,6 @@ func createMysqlWorkRequestsClientWithProvider(p common.ConfigurationProvider, t
 }
 
 // IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
-func TestMysqlWorkRequestsClientDeleteWorkRequest(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("mysql", "DeleteWorkRequest")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("DeleteWorkRequest is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("mysql", "WorkRequests", "DeleteWorkRequest", createMysqlWorkRequestsClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(mysql.WorkRequestsClient)
-
-	body, err := testClient.getRequests("mysql", "DeleteWorkRequest")
-	assert.NoError(t, err)
-
-	type DeleteWorkRequestRequestInfo struct {
-		ContainerId string
-		Request     mysql.DeleteWorkRequestRequest
-	}
-
-	var requests []DeleteWorkRequestRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.DeleteWorkRequest(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
 func TestMysqlWorkRequestsClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -209,60 +165,6 @@ func TestMysqlWorkRequestsClientListWorkRequestLogs(t *testing.T) {
 			typedListResponses := make([]mysql.ListWorkRequestLogsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(mysql.ListWorkRequestLogsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="mysql-cloud-dev_ww_grp@oracle.com" jiraProject="MY" opsJiraProject="MYOPS"
-func TestMysqlWorkRequestsClientListWorkRequestResources(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("mysql", "ListWorkRequestResources")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListWorkRequestResources is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("mysql", "WorkRequests", "ListWorkRequestResources", createMysqlWorkRequestsClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(mysql.WorkRequestsClient)
-
-	body, err := testClient.getRequests("mysql", "ListWorkRequestResources")
-	assert.NoError(t, err)
-
-	type ListWorkRequestResourcesRequestInfo struct {
-		ContainerId string
-		Request     mysql.ListWorkRequestResourcesRequest
-	}
-
-	var requests []ListWorkRequestResourcesRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*mysql.ListWorkRequestResourcesRequest)
-				return c.ListWorkRequestResources(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]mysql.ListWorkRequestResourcesResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(mysql.ListWorkRequestResourcesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

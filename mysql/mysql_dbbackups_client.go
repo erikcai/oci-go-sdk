@@ -74,8 +74,8 @@ func (client *DbBackupsClient) ConfigurationProvider() *common.ConfigurationProv
 	return client.config
 }
 
-// DbSystemBackup Takes an immediate backup of the DbSystem, using the supplied parameters.
-func (client DbBackupsClient) DbSystemBackup(ctx context.Context, request DbSystemBackupRequest) (response DbSystemBackupResponse, err error) {
+// CreateBackup Create a backup of a DB System.
+func (client DbBackupsClient) CreateBackup(ctx context.Context, request CreateBackupRequest) (response CreateBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -86,34 +86,34 @@ func (client DbBackupsClient) DbSystemBackup(ctx context.Context, request DbSyst
 		request.OpcRetryToken = common.String(common.RetryToken())
 	}
 
-	ociResponse, err = common.Retry(ctx, request, client.dbSystemBackup, policy)
+	ociResponse, err = common.Retry(ctx, request, client.createBackup, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = DbSystemBackupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = CreateBackupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = DbSystemBackupResponse{}
+				response = CreateBackupResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(DbSystemBackupResponse); ok {
+	if convertedResponse, ok := ociResponse.(CreateBackupResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DbSystemBackupResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into CreateBackupResponse")
 	}
 	return
 }
 
-// dbSystemBackup implements the OCIOperation interface (enables retrying operations)
-func (client DbBackupsClient) dbSystemBackup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dbSystems/{dbSystemId}/actions/backup")
+// createBackup implements the OCIOperation interface (enables retrying operations)
+func (client DbBackupsClient) createBackup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/backups")
 	if err != nil {
 		return nil, err
 	}
 
-	var response DbSystemBackupResponse
+	var response CreateBackupResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -126,7 +126,7 @@ func (client DbBackupsClient) dbSystemBackup(ctx context.Context, request common
 	return response, err
 }
 
-// DeleteBackup Delete a MySQLaaS Backup.
+// DeleteBackup Delete a Backup.
 func (client DbBackupsClient) DeleteBackup(ctx context.Context, request DeleteBackupRequest) (response DeleteBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -173,7 +173,7 @@ func (client DbBackupsClient) deleteBackup(ctx context.Context, request common.O
 	return response, err
 }
 
-// GetBackup Get information about the specified MySQLaaS Backup
+// GetBackup Get information about the specified Backup
 func (client DbBackupsClient) GetBackup(ctx context.Context, request GetBackupRequest) (response GetBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -220,7 +220,7 @@ func (client DbBackupsClient) getBackup(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// ListBackups Get a list of DbSystem backups.
+// ListBackups Get a list of DB System backups.
 func (client DbBackupsClient) ListBackups(ctx context.Context, request ListBackupsRequest) (response ListBackupsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

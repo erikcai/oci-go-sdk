@@ -74,55 +74,7 @@ func (client *WorkRequestsClient) ConfigurationProvider() *common.ConfigurationP
 	return client.config
 }
 
-// DeleteWorkRequest A work request can be cancelled if processing has not started.
-// If processing has started, it is not possible to delete the work request.
-func (client WorkRequestsClient) DeleteWorkRequest(ctx context.Context, request DeleteWorkRequestRequest) (response DeleteWorkRequestResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.deleteWorkRequest, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = DeleteWorkRequestResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = DeleteWorkRequestResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(DeleteWorkRequestResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DeleteWorkRequestResponse")
-	}
-	return
-}
-
-// deleteWorkRequest implements the OCIOperation interface (enables retrying operations)
-func (client WorkRequestsClient) deleteWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/workRequests/{workRequestId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response DeleteWorkRequestResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// GetWorkRequest Some asynchronous task regarding an/other resource(s) in the API.
+// GetWorkRequest Gets the status of the work request with the given ID.
 func (client WorkRequestsClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -263,54 +215,7 @@ func (client WorkRequestsClient) listWorkRequestLogs(ctx context.Context, reques
 	return response, err
 }
 
-// ListWorkRequestResources Return a (paginated) list of resources for a given work request.
-func (client WorkRequestsClient) ListWorkRequestResources(ctx context.Context, request ListWorkRequestResourcesRequest) (response ListWorkRequestResourcesResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listWorkRequestResources, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ListWorkRequestResourcesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = ListWorkRequestResourcesResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListWorkRequestResourcesResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListWorkRequestResourcesResponse")
-	}
-	return
-}
-
-// listWorkRequestResources implements the OCIOperation interface (enables retrying operations)
-func (client WorkRequestsClient) listWorkRequestResources(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}/resources")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListWorkRequestResourcesResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListWorkRequests Lists the work requests in a specified compartment or resource.
+// ListWorkRequests Lists the work requests in a specified compartment.
 func (client WorkRequestsClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

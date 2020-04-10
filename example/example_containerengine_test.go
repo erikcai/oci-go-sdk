@@ -121,7 +121,7 @@ func ExampleNodePoolCRUD() {
 	createNodePoolReq.Name = common.String("GOSDK_SAMPLE_NP")
 	createNodePoolReq.ClusterId = clusterID
 	createNodePoolReq.KubernetesVersion = common.String(kubeVersion)
-	createNodePoolReq.NodeSourceDetails = containerengine.NodeSourceViaImageDetails{ImageId:image.Id}
+	createNodePoolReq.NodeSourceDetails = containerengine.NodeSourceViaImageDetails{ImageId: image.Id}
 	createNodePoolReq.NodeShape = common.String("VM.Standard1.1")
 	createNodePoolReq.InitialNodeLabels = []containerengine.KeyValue{{Key: common.String("foo"), Value: common.String("bar")}}
 	createNodePoolReq.NodeConfigDetails = &containerengine.CreateNodePoolNodeConfigDetails{
@@ -331,9 +331,9 @@ func getResourceID(resources []containerengine.WorkRequestResource, actionType c
 
 func getImageID(ctx context.Context, c core.ComputeClient) core.Image {
 	request := core.ListImagesRequest{
-		CompartmentId: helpers.CompartmentID(),
+		CompartmentId:   helpers.CompartmentID(),
 		OperatingSystem: common.String("Oracle Linux"),
-		Shape: common.String("VM.Standard1.1"),
+		Shape:           common.String("VM.Standard1.1"),
 	}
 
 	r, err := c.ListImages(ctx, request)

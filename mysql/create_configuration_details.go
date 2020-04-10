@@ -12,25 +12,25 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateConfigurationDetails The details required to create a new MySQLaaS Configuration.
+// CreateConfigurationDetails The details required to create a new Configuration.
 type CreateConfigurationDetails struct {
 
 	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The name of the associated MySQLaaS Instance Shape.
+	// The name of the associated Shape.
 	ShapeName *string `mandatory:"true" json:"shapeName"`
 
-	// The version of MySQLaaS that this Configuration and its Options are relevant to.
-	MysqlVersion *string `mandatory:"true" json:"mysqlVersion"`
+	Variables *ConfigurationVariables `mandatory:"true" json:"variables"`
 
-	// User-provided data about the MySQLaaS Instance.
+	// User-provided data about the Configuration.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The display name of the MySQLaaS Configuration.
+	// The display name of the Configuration.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	Options []Option `mandatory:"false" json:"options"`
+	// The OCID of the Configuration from which the new Configuration is derived. The values in CreateConfigurationDetails.options supersede the options of the parent Configuration.
+	ParentConfigurationId *string `mandatory:"false" json:"parentConfigurationId"`
 
 	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

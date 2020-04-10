@@ -459,6 +459,94 @@ func TestIntegrationInstanceClientListWorkRequests(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="&lt;tbd&gt;_ww@oracle.com" jiraProject="&lt;tbc&gt;" opsJiraProject="&lt;tbd&gt;"
+func TestIntegrationInstanceClientStartIntegrationInstance(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("integration", "StartIntegrationInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("StartIntegrationInstance is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("integration", "IntegrationInstance", "StartIntegrationInstance", createIntegrationInstanceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(integration.IntegrationInstanceClient)
+
+	body, err := testClient.getRequests("integration", "StartIntegrationInstance")
+	assert.NoError(t, err)
+
+	type StartIntegrationInstanceRequestInfo struct {
+		ContainerId string
+		Request     integration.StartIntegrationInstanceRequest
+	}
+
+	var requests []StartIntegrationInstanceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.StartIntegrationInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="&lt;tbd&gt;_ww@oracle.com" jiraProject="&lt;tbc&gt;" opsJiraProject="&lt;tbd&gt;"
+func TestIntegrationInstanceClientStopIntegrationInstance(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("integration", "StopIntegrationInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("StopIntegrationInstance is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("integration", "IntegrationInstance", "StopIntegrationInstance", createIntegrationInstanceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(integration.IntegrationInstanceClient)
+
+	body, err := testClient.getRequests("integration", "StopIntegrationInstance")
+	assert.NoError(t, err)
+
+	type StopIntegrationInstanceRequestInfo struct {
+		ContainerId string
+		Request     integration.StopIntegrationInstanceRequest
+	}
+
+	var requests []StopIntegrationInstanceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.StopIntegrationInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="&lt;tbd&gt;_ww@oracle.com" jiraProject="&lt;tbc&gt;" opsJiraProject="&lt;tbd&gt;"
 func TestIntegrationInstanceClientUpdateIntegrationInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 

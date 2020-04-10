@@ -12,29 +12,44 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// BackupSummary The representation of BackupSummary
+// BackupSummary Summary information for the Backups that exist.
 type BackupSummary struct {
 
-	// OCID of the backup itself
+	// OCID of the backup.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The time the backup was created.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	// The state of the backup.
-	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+	LifecycleState BackupLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The type of backup.
-	BackupType BackupTypeEnum `mandatory:"true" json:"backupType"`
+	BackupType BackupBackupTypeEnum `mandatory:"true" json:"backupType"`
 
-	// The size of the backup in base-2 (IEC) mebibytes (aka MiB).
-	SizeInMBs *int `mandatory:"true" json:"sizeInMBs"`
+	// The OCID of the DB System the Backup is associated with.
+	DbSystemId *string `mandatory:"true" json:"dbSystemId"`
 
 	// A user-supplied display name for the backup.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The OCID of the DbSystem the Backup is associated to.
-	DbSystemId *string `mandatory:"false" json:"dbSystemId"`
+	// A user-supplied description of the backup.
+	Description *string `mandatory:"false" json:"description"`
+
+	// Initial size of the data volume in GiBs.
+	DataStorageSizeInGBs *int `mandatory:"false" json:"dataStorageSizeInGBs"`
+
+	// The size of the backup in GiBs.
+	BackupSizeInGBs *int `mandatory:"false" json:"backupSizeInGBs"`
+
+	// Number of days to retain this backup.
+	RetentionInDays *int `mandatory:"false" json:"retentionInDays"`
+
+	// The MySQL server version of the Db Instance used for backup
+	MysqlVersion *string `mandatory:"false" json:"mysqlVersion"`
+
+	// The shape of the Db instance used for backup.
+	ShapeName *string `mandatory:"false" json:"shapeName"`
 
 	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

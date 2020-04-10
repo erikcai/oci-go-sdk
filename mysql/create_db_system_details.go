@@ -9,27 +9,30 @@
 package mysql
 
 import (
+	"encoding/json"
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateDbSystemDetails Details required to create a DbSystem.
+// CreateDbSystemDetails Details required to create a DB System.
 type CreateDbSystemDetails struct {
 
 	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The shape of the MySQLaaS instance. The shape determines resources
-	// allocated to the MySQLaaS instance - CPU cores and memory for VM
+	// The OCID of the Configuration to be used for this DB System.
+	ConfigurationId *string `mandatory:"true" json:"configurationId"`
+
+	// The name of the shape. The shape determines the resources
+	// allocated - CPU cores and memory for VM
 	// shapes; CPU cores, memory and storage for non-VM (or bare metal)
-	// shapes. To get a list of shapes, use (FIXME: correct link for
-	// MySQLaaS shapes) the
+	// shapes. To get a list of shapes, use the
 	// ListShapes operation.
 	ShapeName *string `mandatory:"true" json:"shapeName"`
 
-	// The OCID of the subnet the MySQLaaS DbSystem is associated with.
+	// The OCID of the subnet the DB System is associated with.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
-	// The username for the administrative user for the MySQLaaS Instance.
+	// The username for the administrative user.
 	AdminUsername *string `mandatory:"true" json:"adminUsername"`
 
 	// The password for the administrative user. The password must be
@@ -38,31 +41,50 @@ type CreateDbSystemDetails struct {
 	// 1 special (nonalphanumeric) character.
 	AdminPassword *string `mandatory:"true" json:"adminPassword"`
 
-	// Initial size of the data volume in GBs that will be created and attached.
-	// Keep in mind that this only specifies the size of the database data volume, the log volume
-	// for the database will be scaled appropriately with its shape.
-	// (TODO: Include more information about db and log BVs and BVG for MySQLaaS.)
-	DataStorageSizeInGBs *int `mandatory:"true" json:"dataStorageSizeInGBs"`
-
-	Instance *CreateInstanceDetails `mandatory:"true" json:"instance"`
-
-	// The user-friendly name for the DbSystem. It does not have to be unique.
+	// The user-friendly name for the DB System. It does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// User-provided data about the DbSystem.
+	// User-provided data about the DB System.
 	Description *string `mandatory:"false" json:"description"`
 
-	AvailabilityPolicy *DbSystemAvailabilityPolicy `mandatory:"false" json:"availabilityPolicy"`
+	// The Availability Domain where the primary instance should be located.
+	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
-	// The OCID of the Configuration to be used for Instances in this DbSystem.
-	ConfigurationId *string `mandatory:"false" json:"configurationId"`
+	// The name of the Fault Domain the DB System is located in.
+	FaultDomain *string `mandatory:"false" json:"faultDomain"`
 
 	// The specific MySQL version identifier.
 	MysqlVersion *string `mandatory:"false" json:"mysqlVersion"`
 
-	BackupPolicy *CreateUpdateBackupPolicy `mandatory:"false" json:"backupPolicy"`
+	// Initial size of the data volume in GBs that will be created and attached.
+	// Keep in mind that this only specifies the size of the database data volume, the log volume
+	// for the database will be scaled appropriately with its shape.
+	// This field is used only during the launch of a DB System. During clone, the size is taken from the backup record.
+	DataStorageSizeInGBs *int `mandatory:"false" json:"dataStorageSizeInGBs"`
 
-	CloneFromBackup *CloneOrRestoreFromBackupDetails `mandatory:"false" json:"cloneFromBackup"`
+	// The hostname for the primary endpoint of the DB System. Used for DNS.
+	// The value is the hostname portion of the primary private IP's fully qualified domain name (FQDN)
+	// (for example, bminstance-1 in FQDN bminstance-1.subnet123.vcn1.oraclevcn.com).
+	// Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123.
+	HostnameLabel *string `mandatory:"false" json:"hostnameLabel"`
+
+	// The IP address the DB System is configured to listen on.
+	// A private IP address of your choice to assign to the primary endpoint of the DB System.
+	// Must be an available IP address within the subnet's CIDR. If you don't specify a value,
+	// Oracle automatically assigns a private IP address from the subnet.
+	IpAddress *string `mandatory:"false" json:"ipAddress"`
+
+	// The port for primary endpoint of the DB System to listen on.
+	Port *int `mandatory:"false" json:"port"`
+
+	// The TCP network port on which X Plugin listens for connections. This is the X Plugin equivalent of port.
+	PortX *int `mandatory:"false" json:"portX"`
+
+	BackupPolicy *CreateBackupPolicyDetails `mandatory:"false" json:"backupPolicy"`
+
+	Source CreateDbSystemSourceDetails `mandatory:"false" json:"source"`
+
+	Maintenance *CreateMaintenanceDetails `mandatory:"false" json:"maintenance"`
 
 	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
@@ -75,4 +97,87 @@ type CreateDbSystemDetails struct {
 
 func (m CreateDbSystemDetails) String() string {
 	return common.PointerString(m)
+}
+
+// UnmarshalJSON unmarshals from json
+func (m *CreateDbSystemDetails) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		DisplayName          *string                           `json:"displayName"`
+		Description          *string                           `json:"description"`
+		AvailabilityDomain   *string                           `json:"availabilityDomain"`
+		FaultDomain          *string                           `json:"faultDomain"`
+		MysqlVersion         *string                           `json:"mysqlVersion"`
+		DataStorageSizeInGBs *int                              `json:"dataStorageSizeInGBs"`
+		HostnameLabel        *string                           `json:"hostnameLabel"`
+		IpAddress            *string                           `json:"ipAddress"`
+		Port                 *int                              `json:"port"`
+		PortX                *int                              `json:"portX"`
+		BackupPolicy         *CreateBackupPolicyDetails        `json:"backupPolicy"`
+		Source               createdbsystemsourcedetails       `json:"source"`
+		Maintenance          *CreateMaintenanceDetails         `json:"maintenance"`
+		FreeformTags         map[string]string                 `json:"freeformTags"`
+		DefinedTags          map[string]map[string]interface{} `json:"definedTags"`
+		CompartmentId        *string                           `json:"compartmentId"`
+		ConfigurationId      *string                           `json:"configurationId"`
+		ShapeName            *string                           `json:"shapeName"`
+		SubnetId             *string                           `json:"subnetId"`
+		AdminUsername        *string                           `json:"adminUsername"`
+		AdminPassword        *string                           `json:"adminPassword"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	var nn interface{}
+	m.DisplayName = model.DisplayName
+
+	m.Description = model.Description
+
+	m.AvailabilityDomain = model.AvailabilityDomain
+
+	m.FaultDomain = model.FaultDomain
+
+	m.MysqlVersion = model.MysqlVersion
+
+	m.DataStorageSizeInGBs = model.DataStorageSizeInGBs
+
+	m.HostnameLabel = model.HostnameLabel
+
+	m.IpAddress = model.IpAddress
+
+	m.Port = model.Port
+
+	m.PortX = model.PortX
+
+	m.BackupPolicy = model.BackupPolicy
+
+	nn, e = model.Source.UnmarshalPolymorphicJSON(model.Source.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.Source = nn.(CreateDbSystemSourceDetails)
+	} else {
+		m.Source = nil
+	}
+
+	m.Maintenance = model.Maintenance
+
+	m.FreeformTags = model.FreeformTags
+
+	m.DefinedTags = model.DefinedTags
+
+	m.CompartmentId = model.CompartmentId
+
+	m.ConfigurationId = model.ConfigurationId
+
+	m.ShapeName = model.ShapeName
+
+	m.SubnetId = model.SubnetId
+
+	m.AdminUsername = model.AdminUsername
+
+	m.AdminPassword = model.AdminPassword
+	return
 }

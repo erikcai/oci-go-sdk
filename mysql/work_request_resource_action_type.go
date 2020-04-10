@@ -17,7 +17,7 @@ const (
 	WorkRequestResourceActionTypeUpdated    WorkRequestResourceActionTypeEnum = "UPDATED"
 	WorkRequestResourceActionTypeDeleted    WorkRequestResourceActionTypeEnum = "DELETED"
 	WorkRequestResourceActionTypeInProgress WorkRequestResourceActionTypeEnum = "IN_PROGRESS"
-	WorkRequestResourceActionTypeFailed     WorkRequestResourceActionTypeEnum = "FAILED"
+	WorkRequestResourceActionTypeRelated    WorkRequestResourceActionTypeEnum = "RELATED"
 )
 
 var mappingWorkRequestResourceActionType = map[string]WorkRequestResourceActionTypeEnum{
@@ -25,7 +25,7 @@ var mappingWorkRequestResourceActionType = map[string]WorkRequestResourceActionT
 	"UPDATED":     WorkRequestResourceActionTypeUpdated,
 	"DELETED":     WorkRequestResourceActionTypeDeleted,
 	"IN_PROGRESS": WorkRequestResourceActionTypeInProgress,
-	"FAILED":      WorkRequestResourceActionTypeFailed,
+	"RELATED":     WorkRequestResourceActionTypeRelated,
 }
 
 // GetWorkRequestResourceActionTypeEnumValues Enumerates the set of values for WorkRequestResourceActionTypeEnum

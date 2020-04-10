@@ -25,7 +25,7 @@ type UpdateGatewayDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
 	CertificateId *string `mandatory:"false" json:"certificateId"`
 
-	// Custom DNS name to set on the gateway; used to validate against the assigned certificate.
+	// Used to validate against the assigned certificate.
 	Hostname *string `mandatory:"false" json:"hostname"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair

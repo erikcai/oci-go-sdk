@@ -11,7 +11,7 @@ import (
 // CreateConfigurationRequest wrapper for the CreateConfiguration operation
 type CreateConfigurationRequest struct {
 
-	// Request to create a MySQLaaS Configuration.
+	// Request to create a Configuration.
 	CreateConfigurationDetails `contributesTo:"body"`
 
 	// Customer-defined unique identifier for the request. If you need to
@@ -64,6 +64,9 @@ type CreateConfigurationResponse struct {
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a specific request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// OCID of the WorkRequest associated with this operation.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
 func (response CreateConfigurationResponse) String() string {

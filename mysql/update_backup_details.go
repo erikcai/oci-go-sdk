@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateBackupDetails The representation of UpdateBackupDetails
+// UpdateBackupDetails Modifications to a Backup.
 type UpdateBackupDetails struct {
 
 	// A user-supplied display name for the backup.
@@ -22,7 +22,7 @@ type UpdateBackupDetails struct {
 	Description *string `mandatory:"false" json:"description"`
 
 	// The number of days backups are retained.
-	RetentionDays *int `mandatory:"false" json:"retentionDays"`
+	RetentionInDays *int `mandatory:"false" json:"retentionInDays"`
 
 	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

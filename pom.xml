@@ -70,6 +70,8 @@
     <oci-sms-api-spec-spec-file>source/oci-sms-api-spec.cond.yaml</oci-sms-api-spec-spec-file>
     <oracle-blockchain-platform-spec-spec-file>source/blockchain-api.cond.yaml</oracle-blockchain-platform-spec-spec-file>
     <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
+    <compliance-document-service-spec-spec-file>source/api.cond.yaml</compliance-document-service-spec-spec-file>
+    <dis-sdk-spec-spec-file>source/dis-api.cond.yaml</dis-sdk-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -279,6 +281,14 @@
     <dependency>
       <groupId>com.oracle.ads.admin.cp</groupId>
       <artifactId>ads-control-plane-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.pic.compdocs</groupId>
+      <artifactId>compliance-document-service-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.dis</groupId>
+      <artifactId>dis-sdk-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -1238,6 +1248,42 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/ads-control-plane-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-compliance-document-service-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.pic.compdocs</groupId>
+                  <artifactId>compliance-document-service-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/compliance-document-service-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-dis-sdk-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.dis</groupId>
+                  <artifactId>dis-sdk-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/dis-sdk-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -2653,6 +2699,60 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-compliance-document-service-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/compliance-document-service-spec/source/${compliance-document-service-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/compliance-document-service-spec/${compliance-document-service-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/compliance-document-service-spec/${compliance-document-service-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-compliance-document-service-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/compliance-document-service-spec/${compliance-document-service-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/compliance-document-service-spec/${compliance-document-service-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-prefer-dis-sdk-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/dis-sdk-spec/source/${dis-sdk-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/dis-sdk-spec/${dis-sdk-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/dis-sdk-spec/${dis-sdk-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-dis-sdk-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/dis-sdk-spec/${dis-sdk-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/dis-sdk-spec/${dis-sdk-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -3746,6 +3846,46 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-compliance-document-service-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/compliance-document-service-spec/${compliance-document-service-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>compdocsapi</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>compdocsapi</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>go-public-sdk-dis-sdk-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/dis-sdk-spec/${dis-sdk-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>dataintegration</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>dataintegration</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -4108,6 +4248,18 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/compdocsapi</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
+            <fileset>
+              <directory>lib/oci/dataintegration</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -4203,7 +4355,7 @@
       <dependency>
         <groupId>com.oracle.pic.oss</groupId>
         <artifactId>rest-api-spec</artifactId>
-        <version>0.3.648</version>
+        <version>0.3.663</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracache</groupId>
@@ -4213,7 +4365,7 @@
       <dependency>
         <groupId>com.oracle.oci.marketplace</groupId>
         <artifactId>marketplace-consumer-service-spec</artifactId>
-        <version>0.1.897</version>
+        <version>0.1.955</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>
@@ -4273,7 +4425,7 @@
       <dependency>
         <groupId>com.oracle.pic.apigw</groupId>
         <artifactId>public-api-spec</artifactId>
-        <version>1.6.6</version>
+        <version>1.6.10</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
@@ -4283,7 +4435,7 @@
       <dependency>
         <groupId>com.oracle.custops.cims</groupId>
         <artifactId>cloud-incident-management-service-spec</artifactId>
-        <version>2.0.59</version>
+        <version>2.0.72</version>
       </dependency>
       <dependency>
         <groupId>oracle.nosql.oci.controlplane</groupId>
@@ -4323,7 +4475,7 @@
       <dependency>
         <groupId>com.oracle.oracleintegration.spec</groupId>
         <artifactId>oracle-integration-cp-apiserver-user-spec</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.8</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kam</groupId>
@@ -4353,7 +4505,7 @@
       <dependency>
         <groupId>com.oracle.oci.mysql</groupId>
         <artifactId>mysqlaas-api-spec</artifactId>
-        <version>8.0.3</version>
+        <version>10.3.1</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ocisms.dataplane</groupId>
@@ -4374,6 +4526,16 @@
         <groupId>com.oracle.ads.admin.cp</groupId>
         <artifactId>ads-control-plane-spec</artifactId>
         <version>200402.00</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.pic.compdocs</groupId>
+        <artifactId>compliance-document-service-spec</artifactId>
+        <version>0.1.173</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.dis</groupId>
+        <artifactId>dis-sdk-spec</artifactId>
+        <version>1.0.0-111</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

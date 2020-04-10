@@ -62,3 +62,5 @@
 ^vault/
 ^blockchain/
 ^datasafe/
+^compdocsapi/
+^dataintegration/

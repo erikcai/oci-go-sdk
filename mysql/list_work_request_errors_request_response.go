@@ -19,12 +19,12 @@ type ListWorkRequestErrorsRequest struct {
 	// ID that you supplied in this header with the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The maximum number of items to return in a paginated "List" call. For information about pagination, see
+	// The maximum number of items to return in a paginated list call. For information about pagination, see
 	// List Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// The value of the `opc-next-page` or `opc-prev-page` response header from
-	// the previous "List" call. For information about pagination, see List
+	// the previous list call. For information about pagination, see List
 	// Pagination (https://docs.cloud.oracle.comAPI/Concepts/usingapi.htm#List_Pagination).
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 

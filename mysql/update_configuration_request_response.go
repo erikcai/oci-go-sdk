@@ -11,19 +11,19 @@ import (
 // UpdateConfigurationRequest wrapper for the UpdateConfiguration operation
 type UpdateConfigurationRequest struct {
 
-	// The OCID of the MySQLaaS Configuration.
+	// The OCID of the Configuration.
 	ConfigurationId *string `mandatory:"true" contributesTo:"path" name:"configurationId"`
 
-	// Request to update a MySQLaaS Configuration.
+	// Request to update a Configuration.
 	UpdateConfigurationDetails `contributesTo:"body"`
 
-	// (FIXME: want OCI-wide consistent language.)
+	//
 	// For optimistic concurrency control. In the PUT or DELETE call for a
 	// resource, set the `If-Match` header to the value of the etag from a
 	// previous GET or POST response for that resource. The resource will be
 	// updated or deleted only if the etag you provide matches the resource's
 	// current etag value.
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"If-Match"`
+	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// Customer-defined unique identifier for the request. If you need to
 	// contact Oracle about a specific request, please provide the request
@@ -64,9 +64,6 @@ type UpdateConfigurationResponse struct {
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a specific request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
-	// OCID of the WorkRequest associated with this operation.
-	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
 func (response UpdateConfigurationResponse) String() string {

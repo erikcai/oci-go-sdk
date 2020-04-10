@@ -11,16 +11,19 @@ import (
 // StopDbSystemRequest wrapper for the StopDbSystem operation
 type StopDbSystemRequest struct {
 
-	// The MySQLaaS DbSystem OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The DB System OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	DbSystemId *string `mandatory:"true" contributesTo:"path" name:"dbSystemId"`
 
-	// (FIXME: want OCI-wide consistent language.)
+	// Optional parameters for the stop action.
+	StopDbSystemDetails `contributesTo:"body"`
+
+	//
 	// For optimistic concurrency control. In the PUT or DELETE call for a
 	// resource, set the `If-Match` header to the value of the etag from a
 	// previous GET or POST response for that resource. The resource will be
 	// updated or deleted only if the etag you provide matches the resource's
 	// current etag value.
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"If-Match"`
+	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// Customer-defined unique identifier for the request. If you need to
 	// contact Oracle about a specific request, please provide the request
@@ -34,9 +37,6 @@ type StopDbSystemRequest struct {
 	// deleted and purged from the system, then a retry of the original
 	// creation request may be rejected).
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
-
-	// Optional parameters for the stop action.
-	StopInstanceDetails `contributesTo:"body"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.

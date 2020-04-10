@@ -59,6 +59,15 @@ type CreateCertificateResponse struct {
 	// contact Oracle about a particular request, please provide the request
 	// id.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// The OCID of the work request. Use
+	// GetWorkRequest with
+	// this id to track the status
+	// of the request.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
+
+	// Location of the resource.
+	Location *string `presentIn:"header" name:"location"`
 }
 
 func (response CreateCertificateResponse) String() string {

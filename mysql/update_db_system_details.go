@@ -12,41 +12,41 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateDbSystemDetails Details required to create a DbSystem.
+// UpdateDbSystemDetails Details required to update a DB System.
 type UpdateDbSystemDetails struct {
 
-	// The user-friendly name for the DbSystem. It does not have to be unique.
+	// The user-friendly name for the DB System. It does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// User-provided data about the DbSystem.
+	// User-provided data about the DB System.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The OCID of the compartment.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
-
-	// The OCID of the subnet the MySQLaaS DbSystem is associated with.
+	// The OCID of the subnet the DB System is associated with.
 	SubnetId *string `mandatory:"false" json:"subnetId"`
 
-	AvailabilityPolicy *DbSystemAvailabilityPolicy `mandatory:"false" json:"availabilityPolicy"`
+	// The Availability Domain where the primary instance should be located.
+	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
-	// The shape of the MySQLaaS instance. The shape determines resources
-	// allocated to the MySQLaaS instance - CPU cores and memory for VM
+	// The name of the Fault Domain the DB System is located in.
+	FaultDomain *string `mandatory:"false" json:"faultDomain"`
+
+	// The shape of the instance. The shape determines resources
+	// allocated to the instance - CPU cores and memory for VM
 	// shapes; CPU cores, memory and storage for non-VM (or bare metal)
-	// shapes. To get a list of shapes, use (FIXME: correct link for
-	// MySQLaaS shapes) the
+	// shapes. To get a list of shapes, use the
 	// ListShapes
 	// operation.
-	// Changes in Shape will result in a downtime as the MySQLaaS instance
+	// Changes in Shape will result in a downtime as the MySQL instance
 	// is migrated to the new Compute instance.
 	ShapeName *string `mandatory:"false" json:"shapeName"`
 
 	// The specific MySQL version identifier.
 	MysqlVersion *string `mandatory:"false" json:"mysqlVersion"`
 
-	// The OCID of the Configuration to be used for Instances in this DbSystem.
+	// The OCID of the Configuration to be used for Instances in this DB System.
 	ConfigurationId *string `mandatory:"false" json:"configurationId"`
 
-	// The username for the administrative user for the MySQLaaS Instance.
+	// The username for the administrative user for the MySQL Instance.
 	AdminUsername *string `mandatory:"false" json:"adminUsername"`
 
 	// The password for the administrative user. The password must be
@@ -60,7 +60,26 @@ type UpdateDbSystemDetails struct {
 	// Decreases in data storage size are not supported.
 	DataStorageSizeInGBs *int `mandatory:"false" json:"dataStorageSizeInGBs"`
 
-	BackupPolicy *CreateUpdateBackupPolicy `mandatory:"false" json:"backupPolicy"`
+	// The hostname for the primary endpoint of the DB System. Used for DNS.
+	// The value is the hostname portion of the primary private IP's fully qualified domain name (FQDN)
+	// (for example, bminstance-1 in FQDN bminstance-1.subnet123.vcn1.oraclevcn.com).
+	// Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123.
+	HostnameLabel *string `mandatory:"false" json:"hostnameLabel"`
+
+	// The IP address the DB System should be configured to listen on the provided subnet.
+	// It must be a free private IP address within the subnet's CIDR. If you don't specify a
+	// value, Oracle automatically assigns a private IP address from the subnet.
+	IpAddress *string `mandatory:"false" json:"ipAddress"`
+
+	// The port for primary endpoint of the DB System to listen on.
+	Port *int `mandatory:"false" json:"port"`
+
+	// The TCP network port on which X Plugin listens for connections. This is the X Plugin equivalent of port.
+	PortX *int `mandatory:"false" json:"portX"`
+
+	BackupPolicy *UpdateBackupPolicyDetails `mandatory:"false" json:"backupPolicy"`
+
+	Maintenance *UpdateMaintenanceDetails `mandatory:"false" json:"maintenance"`
 
 	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

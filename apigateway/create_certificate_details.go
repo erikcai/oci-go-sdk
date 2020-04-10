@@ -27,13 +27,13 @@ type CreateCertificateDetails struct {
 	// The data of the leaf certificate in pem format.
 	Certificate *string `mandatory:"true" json:"certificate"`
 
-	// The intermediate certificate data associated with the certificate in pem format.
-	IntermediateCertificates *string `mandatory:"true" json:"intermediateCertificates"`
-
 	// A user-friendly name. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	// Example: `My new resource`
 	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// The intermediate certificate data associated with the certificate in pem format.
+	IntermediateCertificates *string `mandatory:"false" json:"intermediateCertificates"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair
 	// with no predefined name, type, or namespace. For more information, see

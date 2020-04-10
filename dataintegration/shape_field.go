@@ -1,0 +1,104 @@
+// Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
+// Code generated. DO NOT EDIT.
+
+// Data Integration Service API Specification
+//
+// Data Integration Service API Specification
+//
+
+package dataintegration
+
+import (
+	"encoding/json"
+	"github.com/oracle/oci-go-sdk/common"
+)
+
+// ShapeField The shape field object.
+type ShapeField struct {
+
+	// Object key
+	Key *string `mandatory:"false" json:"key"`
+
+	// modelVersion
+	ModelVersion *string `mandatory:"false" json:"modelVersion"`
+
+	ParentRef *ParentReference `mandatory:"false" json:"parentRef"`
+
+	ConfigValues *ConfigValues `mandatory:"false" json:"configValues"`
+
+	// Status of object, can set this to value 1 for shallow references across objects, other values reserved.
+	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
+
+	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
+	Name *string `mandatory:"false" json:"name"`
+
+	// Descriptive text for the object.
+	Description *string `mandatory:"false" json:"description"`
+
+	// The reference to the type.
+	Type *string `mandatory:"false" json:"type"`
+
+	// Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.
+	Labels []string `mandatory:"false" json:"labels"`
+
+	NativeShapeField *NativeShapeField `mandatory:"false" json:"nativeShapeField"`
+
+	// The external key for the object.
+	ExternalKey *string `mandatory:"false" json:"externalKey"`
+
+	// isPrivate
+	IsPrivate *bool `mandatory:"false" json:"isPrivate"`
+}
+
+//GetKey returns Key
+func (m ShapeField) GetKey() *string {
+	return m.Key
+}
+
+//GetModelVersion returns ModelVersion
+func (m ShapeField) GetModelVersion() *string {
+	return m.ModelVersion
+}
+
+//GetParentRef returns ParentRef
+func (m ShapeField) GetParentRef() *ParentReference {
+	return m.ParentRef
+}
+
+//GetConfigValues returns ConfigValues
+func (m ShapeField) GetConfigValues() *ConfigValues {
+	return m.ConfigValues
+}
+
+//GetObjectStatus returns ObjectStatus
+func (m ShapeField) GetObjectStatus() *int {
+	return m.ObjectStatus
+}
+
+//GetName returns Name
+func (m ShapeField) GetName() *string {
+	return m.Name
+}
+
+//GetDescription returns Description
+func (m ShapeField) GetDescription() *string {
+	return m.Description
+}
+
+func (m ShapeField) String() string {
+	return common.PointerString(m)
+}
+
+// MarshalJSON marshals to json representation
+func (m ShapeField) MarshalJSON() (buff []byte, e error) {
+	type MarshalTypeShapeField ShapeField
+	s := struct {
+		DiscriminatorParam string `json:"modelType"`
+		MarshalTypeShapeField
+	}{
+		"SHAPE_FIELD",
+		(MarshalTypeShapeField)(m),
+	}
+
+	return json.Marshal(&s)
+}

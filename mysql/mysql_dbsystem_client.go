@@ -74,10 +74,7 @@ func (client *DbSystemClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
-// CreateDbSystem Creates and launches a DbSystem.
-// A DbSystem is created with at least a single, primary Instance. If
-// `availabilityPolicy` is enabled, a secondary failover Instance is created by copying the
-// primary Instance. The copy is also managed by the Service.
+// CreateDbSystem Creates and launches a DB System.
 func (client DbSystemClient) CreateDbSystem(ctx context.Context, request CreateDbSystemRequest) (response CreateDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -129,59 +126,7 @@ func (client DbSystemClient) createDbSystem(ctx context.Context, request common.
 	return response, err
 }
 
-// CreateInBoundChannel Creates an InBoundChannel to receive a data stream.
-func (client DbSystemClient) CreateInBoundChannel(ctx context.Context, request CreateInBoundChannelRequest) (response CreateInBoundChannelResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
-	ociResponse, err = common.Retry(ctx, request, client.createInBoundChannel, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = CreateInBoundChannelResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = CreateInBoundChannelResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(CreateInBoundChannelResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into CreateInBoundChannelResponse")
-	}
-	return
-}
-
-// createInBoundChannel implements the OCIOperation interface (enables retrying operations)
-func (client DbSystemClient) createInBoundChannel(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dbSystems/{dbSystemId}/inBoundChannels")
-	if err != nil {
-		return nil, err
-	}
-
-	var response CreateInBoundChannelResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// DeleteDbSystem Delete a DbSystem, including terminating, detaching,
+// DeleteDbSystem Delete a DB System, including terminating, detaching,
 // removing, finalizing and otherwise deleting all related resources.
 func (client DbSystemClient) DeleteDbSystem(ctx context.Context, request DeleteDbSystemRequest) (response DeleteDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -229,54 +174,7 @@ func (client DbSystemClient) deleteDbSystem(ctx context.Context, request common.
 	return response, err
 }
 
-// DeleteInBoundChannel Delete an InBoundChannel.
-func (client DbSystemClient) DeleteInBoundChannel(ctx context.Context, request DeleteInBoundChannelRequest) (response DeleteInBoundChannelResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.deleteInBoundChannel, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = DeleteInBoundChannelResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = DeleteInBoundChannelResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(DeleteInBoundChannelResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DeleteInBoundChannelResponse")
-	}
-	return
-}
-
-// deleteInBoundChannel implements the OCIOperation interface (enables retrying operations)
-func (client DbSystemClient) deleteInBoundChannel(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/dbSystems/{dbSystemId}/inBoundChannels/{inBoundChannelId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response DeleteInBoundChannelResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// GetDbSystem Get information about the specified DbSystem.
+// GetDbSystem Get information about the specified DB System.
 func (client DbSystemClient) GetDbSystem(ctx context.Context, request GetDbSystemRequest) (response GetDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -323,54 +221,7 @@ func (client DbSystemClient) getDbSystem(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// GetInBoundChannel Get information about the specified InBoundChannel.
-func (client DbSystemClient) GetInBoundChannel(ctx context.Context, request GetInBoundChannelRequest) (response GetInBoundChannelResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getInBoundChannel, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetInBoundChannelResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = GetInBoundChannelResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetInBoundChannelResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetInBoundChannelResponse")
-	}
-	return
-}
-
-// getInBoundChannel implements the OCIOperation interface (enables retrying operations)
-func (client DbSystemClient) getInBoundChannel(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dbSystems/{dbSystemId}/inBoundChannels/{inBoundChannelId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetInBoundChannelResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListDbSystems Get a list of DbSystems in the specified compartment.
+// ListDbSystems Get a list of DB Systems in the specified compartment.
 // The default sort order is by timeUpdated, descending.
 func (client DbSystemClient) ListDbSystems(ctx context.Context, request ListDbSystemsRequest) (response ListDbSystemsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -418,54 +269,7 @@ func (client DbSystemClient) listDbSystems(ctx context.Context, request common.O
 	return response, err
 }
 
-// ListInBoundChannels Lists all replication channels created against external (non-MySQLaaS managed) sources.
-func (client DbSystemClient) ListInBoundChannels(ctx context.Context, request ListInBoundChannelsRequest) (response ListInBoundChannelsResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listInBoundChannels, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ListInBoundChannelsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = ListInBoundChannelsResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListInBoundChannelsResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListInBoundChannelsResponse")
-	}
-	return
-}
-
-// listInBoundChannels implements the OCIOperation interface (enables retrying operations)
-func (client DbSystemClient) listInBoundChannels(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/dbSystems/{dbSystemId}/inBoundChannels")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListInBoundChannelsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// RestartDbSystem Stops the specified DbSystem.
+// RestartDbSystem Restarts the specified DB System.
 func (client DbSystemClient) RestartDbSystem(ctx context.Context, request RestartDbSystemRequest) (response RestartDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -517,61 +321,7 @@ func (client DbSystemClient) restartDbSystem(ctx context.Context, request common
 	return response, err
 }
 
-// RestoreDbSystem Restores the dbsystem using the specified backup, and/or the
-// point-in-time specified.
-// This process involves downtime for the instance.
-func (client DbSystemClient) RestoreDbSystem(ctx context.Context, request RestoreDbSystemRequest) (response RestoreDbSystemResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
-	ociResponse, err = common.Retry(ctx, request, client.restoreDbSystem, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = RestoreDbSystemResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = RestoreDbSystemResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(RestoreDbSystemResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into RestoreDbSystemResponse")
-	}
-	return
-}
-
-// restoreDbSystem implements the OCIOperation interface (enables retrying operations)
-func (client DbSystemClient) restoreDbSystem(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/dbSystems/{dbSystemId}/actions/restoreFromBackup")
-	if err != nil {
-		return nil, err
-	}
-
-	var response RestoreDbSystemResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// StartDbSystem Start the specified DbSystem.
+// StartDbSystem Start the specified DB System.
 func (client DbSystemClient) StartDbSystem(ctx context.Context, request StartDbSystemRequest) (response StartDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -623,8 +373,8 @@ func (client DbSystemClient) startDbSystem(ctx context.Context, request common.O
 	return response, err
 }
 
-// StopDbSystem Stops the specified DbSystem.
-// A stopped DbSystem is not billed.
+// StopDbSystem Stops the specified DB System.
+// A stopped DB System is not billed.
 func (client DbSystemClient) StopDbSystem(ctx context.Context, request StopDbSystemRequest) (response StopDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -676,16 +426,13 @@ func (client DbSystemClient) stopDbSystem(ctx context.Context, request common.OC
 	return response, err
 }
 
-// UpdateDbSystem Update the configuration of a DbSystem.
-// Updating different fields in the DbSystem will have a variety
-// of different semantics with respect to the timeliness of the
-// application of the change. For instance, changing the displayName of
-// a DbSystem will take effect immediately, but changing the shape of a
-// DbSystem is an asynchronous operation that involves provisioning new
-// Compute resources, pausing the DbSystem and migrating storage
-// before making the DbSystem available again.
-// Please see the (FIXME: link) documentation for more details on what
-// changing the various fields implies.
+// UpdateDbSystem Update the configuration of a DB System.
+// Updating different fields in the DB System will have different results
+// on the uptime of the DB System. For example, changing the displayName of
+// a DB System will take effect immediately, but changing the shape of a
+// DB System is an asynchronous operation that involves provisioning new
+// Compute resources, pausing the DB System and migrating storage
+// before making the DB System available again.
 func (client DbSystemClient) UpdateDbSystem(ctx context.Context, request UpdateDbSystemRequest) (response UpdateDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
