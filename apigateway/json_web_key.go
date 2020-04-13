@@ -40,7 +40,7 @@ type JsonWebKey struct {
 	Use JsonWebKeyUseEnum `mandatory:"false" json:"use,omitempty"`
 
 	// The operations for which this key is to be used.
-	KeyOps []JsonWebKeyKeyOpsEnum `mandatory:"false" json:"keyOps,omitempty"`
+	KeyOps []JsonWebKeyKeyOpsEnum `mandatory:"false" json:"key_ops,omitempty"`
 }
 
 //GetKid returns Kid
