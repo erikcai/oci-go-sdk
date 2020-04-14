@@ -48,7 +48,6 @@
 ^datacatalog/
 ^oce/
 ^datascience/
-^publiclogging/
 ^bds/
 ^analytics/
 ^integration/
