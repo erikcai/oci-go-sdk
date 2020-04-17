@@ -14,6 +14,7 @@ import (
 
 // CreateRunDetails The create run details. The following properties are optional and override the default values
 // set in the associated application:
+//   - archiveUri
 //   - arguments
 //   - configuration
 //   - definedTags
@@ -38,6 +39,10 @@ type CreateRunDetails struct {
 
 	// A user-friendly name. It does not have to be unique. Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
+
+	// An Oracle Cloud Infrastructure URI of an archive (zip) file that may used to support the execution of the application.
+	// See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat
+	ArchiveUri *string `mandatory:"false" json:"archiveUri"`
 
 	// The arguments passed to the running application as command line arguments.  An argument is
 	// either a plain text or a placeholder. Placeholders are replaced using values from the parameters

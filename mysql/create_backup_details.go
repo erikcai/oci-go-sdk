@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -15,13 +15,7 @@ import (
 // CreateBackupDetails Complete information for a Backup.
 type CreateBackupDetails struct {
 
-	// The type of backup.
-	BackupType CreateBackupDetailsBackupTypeEnum `mandatory:"true" json:"backupType"`
-
-	// If the backup was created automatically, or by a manual request.
-	CreationType BackupCreationTypeEnum `mandatory:"true" json:"creationType"`
-
-	// The OCID of the DB System the Backup is associated to.
+	// The OCID of the DB System the Backup is associated with.
 	DbSystemId *string `mandatory:"true" json:"dbSystemId"`
 
 	// A user-supplied display name for the backup.
@@ -29,6 +23,9 @@ type CreateBackupDetails struct {
 
 	// A user-supplied description for the backup.
 	Description *string `mandatory:"false" json:"description"`
+
+	// The type of backup.
+	BackupType CreateBackupDetailsBackupTypeEnum `mandatory:"false" json:"backupType,omitempty"`
 
 	// Number of days to retain this backup.
 	RetentionInDays *int `mandatory:"false" json:"retentionInDays"`

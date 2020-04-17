@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -22,10 +22,9 @@ type CreateDbSystemDetails struct {
 	// The OCID of the Configuration to be used for this DB System.
 	ConfigurationId *string `mandatory:"true" json:"configurationId"`
 
-	// The name of the shape. The shape determines the resources
-	// allocated - CPU cores and memory for VM
-	// shapes; CPU cores, memory and storage for non-VM (or bare metal)
-	// shapes. To get a list of shapes, use the
+	// The name of the shape. The shape determines the resources allocated
+	// - CPU cores and memory for VM shapes; CPU cores, memory and storage
+	// for non-VM (or bare metal) shapes. To get a list of shapes, use the
 	// ListShapes operation.
 	ShapeName *string `mandatory:"true" json:"shapeName"`
 
@@ -57,21 +56,21 @@ type CreateDbSystemDetails struct {
 	MysqlVersion *string `mandatory:"false" json:"mysqlVersion"`
 
 	// Initial size of the data volume in GBs that will be created and attached.
-	// Keep in mind that this only specifies the size of the database data volume, the log volume
-	// for the database will be scaled appropriately with its shape.
-	// This field is used only during the launch of a DB System. During clone, the size is taken from the backup record.
+	// Keep in mind that this only specifies the size of the database data volume,
+	// the log volume for the database will be scaled appropriately with its shape.
 	DataStorageSizeInGBs *int `mandatory:"false" json:"dataStorageSizeInGBs"`
 
 	// The hostname for the primary endpoint of the DB System. Used for DNS.
 	// The value is the hostname portion of the primary private IP's fully qualified domain name (FQDN)
-	// (for example, bminstance-1 in FQDN bminstance-1.subnet123.vcn1.oraclevcn.com).
+	// (for example, "dbsystem-1" in FQDN "dbsystem-1.subnet123.vcn1.oraclevcn.com").
 	// Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123.
 	HostnameLabel *string `mandatory:"false" json:"hostnameLabel"`
 
 	// The IP address the DB System is configured to listen on.
 	// A private IP address of your choice to assign to the primary endpoint of the DB System.
 	// Must be an available IP address within the subnet's CIDR. If you don't specify a value,
-	// Oracle automatically assigns a private IP address from the subnet.
+	// Oracle automatically assigns a private IP address from the subnet. This should be a
+	// "dotted-quad" style IPv4 address.
 	IpAddress *string `mandatory:"false" json:"ipAddress"`
 
 	// The port for primary endpoint of the DB System to listen on.

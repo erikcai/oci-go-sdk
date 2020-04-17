@@ -34,12 +34,6 @@ type ListKeyVersionsRequest struct {
 	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
 	SortOrder ListKeyVersionsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// Protection mode indicates how the key is persisted and how cryptographic operations are performed using the same.
-	// 'HSM' indicates that the key is persisted in the 'HSM' and all cryptographic operations are performed inside
-	// the 'HSM'. 'SOFTWARE' indicates that the key is securely persisted in the service layer with the root key persisted
-	// in the 'HSM' and all operations using these keys are performed at the service layer.
-	ProtectionMode ListKeyVersionsProtectionModeEnum `mandatory:"false" contributesTo:"query" name:"protectionMode" omitEmpty:"true"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -129,29 +123,6 @@ var mappingListKeyVersionsSortOrder = map[string]ListKeyVersionsSortOrderEnum{
 func GetListKeyVersionsSortOrderEnumValues() []ListKeyVersionsSortOrderEnum {
 	values := make([]ListKeyVersionsSortOrderEnum, 0)
 	for _, v := range mappingListKeyVersionsSortOrder {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListKeyVersionsProtectionModeEnum Enum with underlying type: string
-type ListKeyVersionsProtectionModeEnum string
-
-// Set of constants representing the allowable values for ListKeyVersionsProtectionModeEnum
-const (
-	ListKeyVersionsProtectionModeHsm      ListKeyVersionsProtectionModeEnum = "HSM"
-	ListKeyVersionsProtectionModeSoftware ListKeyVersionsProtectionModeEnum = "SOFTWARE"
-)
-
-var mappingListKeyVersionsProtectionMode = map[string]ListKeyVersionsProtectionModeEnum{
-	"HSM":      ListKeyVersionsProtectionModeHsm,
-	"SOFTWARE": ListKeyVersionsProtectionModeSoftware,
-}
-
-// GetListKeyVersionsProtectionModeEnumValues Enumerates the set of values for ListKeyVersionsProtectionModeEnum
-func GetListKeyVersionsProtectionModeEnumValues() []ListKeyVersionsProtectionModeEnum {
-	values := make([]ListKeyVersionsProtectionModeEnum, 0)
-	for _, v := range mappingListKeyVersionsProtectionMode {
 		values = append(values, v)
 	}
 	return values

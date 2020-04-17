@@ -14,7 +14,6 @@ type StartDbSystemRequest struct {
 	// The DB System OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	DbSystemId *string `mandatory:"true" contributesTo:"path" name:"dbSystemId"`
 
-	//
 	// For optimistic concurrency control. In the PUT or DELETE call for a
 	// resource, set the `If-Match` header to the value of the etag from a
 	// previous GET or POST response for that resource. The resource will be

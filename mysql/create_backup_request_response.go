@@ -11,7 +11,7 @@ import (
 // CreateBackupRequest wrapper for the CreateBackup operation
 type CreateBackupRequest struct {
 
-	// Create a Backup for a DB System.
+	// Create a Backup of a DB System.
 	CreateBackupDetails `contributesTo:"body"`
 
 	// Customer-defined unique identifier for the request. If you need to

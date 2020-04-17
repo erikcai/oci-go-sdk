@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateRefreshableAutonomousDatabaseCloneDetails Details to create an Oracle Autonomous Database Refreshable Clone.
+// CreateRefreshableAutonomousDatabaseCloneDetails Details to create an Oracle Autonomous Database refreshable clone.
 type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment of the Autonomous Database.
@@ -31,10 +31,10 @@ type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create a new Autonomous Database.
 	SourceId *string `mandatory:"true" json:"sourceId"`
 
-	// The refresh lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
+	// The clone lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
 	RefreshLagTimeInSeconds *int `mandatory:"true" json:"refreshLagTimeInSeconds"`
 
-	// Refresh interval decides when next refresh is going to take place. The value can vary between 1 hr and 7 days.
+	// The refresh interval determines how frequently data is refreshed in the clone. Minimum 1 hour. Maximum 7 days.
 	RefreshIntervalInSeconds *int `mandatory:"true" json:"refreshIntervalInSeconds"`
 
 	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of memory. For Always Free databases, memory and CPU cannot be scaled.
@@ -82,7 +82,7 @@ type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 	// - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
 
-	// The private endpoint label for the resource.
+	// The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change the same private endpoint database to the public endpoint database.
 	PrivateEndpointLabel *string `mandatory:"false" json:"privateEndpointLabel"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

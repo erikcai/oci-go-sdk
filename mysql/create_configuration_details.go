@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -29,7 +29,7 @@ type CreateConfigurationDetails struct {
 	// The display name of the Configuration.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The OCID of the Configuration from which the new Configuration is derived. The values in CreateConfigurationDetails.options supersede the options of the parent Configuration.
+	// The OCID of the Configuration from which the new Configuration is derived. The values in CreateConfigurationDetails.variables supersede the variables of the parent Configuration.
 	ParentConfigurationId *string `mandatory:"false" json:"parentConfigurationId"`
 
 	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.

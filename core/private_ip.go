@@ -37,6 +37,10 @@ import (
 // LaunchInstance or
 // AttachVnic. To update the hostname
 // for a primary private IP, you use UpdateVnic.
+// `PrivateIp` objects that are created for use with the Oracle Cloud VMware Solution are
+// assigned to a VLAN and not a VNIC in a subnet. See the
+// descriptions of the relevant attributes in the `PrivateIp` object. Also see
+// Vlan.
 // To use any of the API operations, you must be authorized in an IAM policy. If you're not authorized,
 // talk to an administrator. If you're an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -82,6 +86,9 @@ type PrivateIp struct {
 
 	// The private IP address of the `privateIp` object. The address is within the CIDR
 	// of the VNIC's subnet.
+	// However, if the `PrivateIp` object is being used with a VLAN as part of
+	// the Oracle Cloud VMware Solution, the address is from the range specified by the
+	// `cidrBlock` attribute for the VLAN. See Vlan.
 	// Example: `10.0.3.3`
 	IpAddress *string `mandatory:"false" json:"ipAddress"`
 
@@ -90,10 +97,14 @@ type PrivateIp struct {
 	// Example: `true`
 	IsPrimary *bool `mandatory:"false" json:"isPrimary"`
 
-	// The OCID of the VNIC's VLAN.
+	// Applicable only if the `PrivateIp` object is being used with a VLAN as part of
+	// the Oracle Cloud VMware Solution. The `vlanId` is the OCID of the VLAN. See
+	// Vlan.
 	VlanId *string `mandatory:"false" json:"vlanId"`
 
 	// The OCID of the subnet the VNIC is in.
+	// However, if the `PrivateIp` object is being used with a VLAN as part of
+	// the Oracle Cloud VMware Solution, the `subnetId` is null.
 	SubnetId *string `mandatory:"false" json:"subnetId"`
 
 	// The date and time the private IP was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
@@ -102,6 +113,8 @@ type PrivateIp struct {
 
 	// The OCID of the VNIC the private IP is assigned to. The VNIC and private IP
 	// must be in the same subnet.
+	// However, if the `PrivateIp` object is being used with a VLAN as part of
+	// the Oracle Cloud VMware Solution, the `vnicId` is null.
 	VnicId *string `mandatory:"false" json:"vnicId"`
 }
 

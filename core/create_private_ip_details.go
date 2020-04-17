@@ -54,8 +54,9 @@ type CreatePrivateIpDetails struct {
 	// must be in the same subnet.
 	VnicId *string `mandatory:"false" json:"vnicId"`
 
+	// Use this attribute only with the Oracle Cloud VMware Solution.
 	// The OCID of the VLAN from which the private IP is to be drawn. The IP address,
-	// *if supplied*, must be valid for the given VLAN.
+	// *if supplied*, must be valid for the given VLAN. See Vlan.
 	VlanId *string `mandatory:"false" json:"vlanId"`
 }
 

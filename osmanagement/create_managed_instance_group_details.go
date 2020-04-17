@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// OSMS
+// OS Management API
 //
-// OS Management as a Service API definition
+// API for the OS Management service. Use these API operations for working
+// with Managed instances and Managed instance groups.
 //
 
 package osmanagement
@@ -31,6 +32,10 @@ type CreateManagedInstanceGroupDetails struct {
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// Example: `{"foo-namespace": {"bar-key": "value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// The Operating System type of the managed instance(s) on which this scheduled job will operate.
+	// If not specified, this defaults to Linux.
+	OsFamily OsFamiliesEnum `mandatory:"false" json:"osFamily,omitempty"`
 }
 
 func (m CreateManagedInstanceGroupDetails) String() string {

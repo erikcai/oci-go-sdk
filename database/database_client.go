@@ -2484,7 +2484,7 @@ func (client DatabaseClient) downloadVmClusterNetworkConfigFile(ctx context.Cont
 	return response, err
 }
 
-// FailOverAutonomousDatabase Fails over AutonomousDatabase to a Standby.
+// FailOverAutonomousDatabase Initiates a failover the specified Autonomous Database to a standby.
 func (client DatabaseClient) FailOverAutonomousDatabase(ctx context.Context, request FailOverAutonomousDatabaseRequest) (response FailOverAutonomousDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4737,7 +4737,7 @@ func (client DatabaseClient) listAutonomousDatabaseBackups(ctx context.Context, 
 	return response, err
 }
 
-// ListAutonomousDatabaseRefreshableClones Gets a list of the Autonomous Database refreashable clones for the specified Autonomous Database.
+// ListAutonomousDatabaseRefreshableClones Gets a list of the Autonomous Database refreshable clones for the specified Autonomous Database.
 func (client DatabaseClient) ListAutonomousDatabaseRefreshableClones(ctx context.Context, request ListAutonomousDatabaseRefreshableClonesRequest) (response ListAutonomousDatabaseRefreshableClonesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6487,7 +6487,7 @@ func (client DatabaseClient) restartAutonomousContainerDatabase(ctx context.Cont
 	return response, err
 }
 
-// RestartAutonomousDatabase Restarts the specified Autonomous Database. Restart supported only for databases using dedicated Exadata infrastructure.
+// RestartAutonomousDatabase Restarts the specified Autonomous Database.
 func (client DatabaseClient) RestartAutonomousDatabase(ctx context.Context, request RestartAutonomousDatabaseRequest) (response RestartAutonomousDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

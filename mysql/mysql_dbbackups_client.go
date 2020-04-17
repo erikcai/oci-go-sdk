@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -267,7 +267,7 @@ func (client DbBackupsClient) listBackups(ctx context.Context, request common.OC
 	return response, err
 }
 
-// UpdateBackup Update metadata of a Backup.
+// UpdateBackup Update the metadata of a Backup. Metadata such as the displayName or description
 func (client DbBackupsClient) UpdateBackup(ctx context.Context, request UpdateBackupRequest) (response UpdateBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

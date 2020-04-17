@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateBackupDetails Modifications to a Backup.
+// UpdateBackupDetails The Backup metadata which can be updated.
 type UpdateBackupDetails struct {
 
 	// A user-supplied display name for the backup.

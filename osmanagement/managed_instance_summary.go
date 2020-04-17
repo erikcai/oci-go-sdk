@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// OSMS
+// OS Management API
 //
-// OS Management as a Service API definition
+// API for the OS Management service. Use these API operations for working
+// with Managed instances and Managed instance groups.
 //
 
 package osmanagement
@@ -38,6 +39,12 @@ type ManagedInstanceSummary struct {
 
 	// status of the managed instance.
 	Status ManagedInstanceSummaryStatusEnum `mandatory:"false" json:"status,omitempty"`
+
+	// The Operating System type of the managed instance.
+	OsFamily OsFamiliesEnum `mandatory:"false" json:"osFamily,omitempty"`
+
+	// Indicates whether a reboot is required to complete installation of updates.
+	IsRebootRequired *bool `mandatory:"false" json:"isRebootRequired"`
 }
 
 func (m ManagedInstanceSummary) String() string {

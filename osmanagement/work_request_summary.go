@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// OSMS
+// OS Management API
 //
-// OS Management as a Service API definition
+// API for the OS Management service. Use these API operations for working
+// with Managed instances and Managed instance groups.
 //
 
 package osmanagement
@@ -42,6 +43,9 @@ type WorkRequestSummary struct {
 
 	// Percentage of the request completed.
 	PercentComplete *float32 `mandatory:"false" json:"percentComplete"`
+
+	// The Operating System type of the managed instance.
+	OsFamily OsFamiliesEnum `mandatory:"false" json:"osFamily,omitempty"`
 }
 
 func (m WorkRequestSummary) String() string {

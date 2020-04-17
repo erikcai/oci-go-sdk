@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DbSystem A DB System is a logical container for a MySQL instance.
+// DbSystem A DB System is the core logical unit of MySQL Database Service.
 type DbSystem struct {
 
 	// The OCID of the DB System.
@@ -70,14 +70,14 @@ type DbSystem struct {
 
 	// The hostname for the primary endpoint of the DB System. Used for DNS.
 	// The value is the hostname portion of the primary private IP's fully qualified domain name (FQDN)
-	// (for example, bminstance-1 in FQDN bminstance-1.subnet123.vcn1.oraclevcn.com).
+	// (for example, "dbsystem-1" in FQDN "dbsystem-1.subnet123.vcn1.oraclevcn.com").
 	// Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123.
 	HostnameLabel *string `mandatory:"false" json:"hostnameLabel"`
 
-	// The IP address the DB System is configured to listen on.
-	// A private IP address of your choice to assign to the primary endpoint of the DB System.
-	// Must be an available IP address within the subnet's CIDR. If you don't specify a value,
-	// Oracle automatically assigns a private IP address from the subnet.
+	// The IP address the DB System is configured to listen on. A private
+	// IP address of the primary endpoint of the DB System. Must be an
+	// available IP address within the subnet's CIDR. This will be a
+	// "dotted-quad" style IPv4 address.
 	IpAddress *string `mandatory:"false" json:"ipAddress"`
 
 	// The port for primary endpoint of the DB System to listen on.

@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -13,11 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateDbSystemSourceFromBackupDetails Use the backupId to specify from which backup the operation shall proceed.
+// CreateDbSystemSourceFromBackupDetails Use the backupId to specify from which backup the new DB System will be created.
 type CreateDbSystemSourceFromBackupDetails struct {
 
-	// The OCID of the backup to be used as the source for the cloning
-	// procedure.
+	// The OCID of the backup to be used as the source for the new DB System.
 	BackupId *string `mandatory:"true" json:"backupId"`
 }
 

@@ -18,8 +18,8 @@ type ReportSummary struct {
 	// The type of the report.
 	ReportType *string `mandatory:"true" json:"reportType"`
 
-	// Date in YYYYMMDD format.
-	Date *string `mandatory:"true" json:"date"`
+	// Date of the report.
+	Date *common.SDKTime `mandatory:"true" json:"date"`
 
 	// The columns in the report content.
 	Columns []string `mandatory:"true" json:"columns"`

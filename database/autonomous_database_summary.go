@@ -110,7 +110,7 @@ type AutonomousDatabaseSummary struct {
 	// The private endpoint for the resource.
 	PrivateEndpoint *string `mandatory:"false" json:"privateEndpoint"`
 
-	// The private endpoint label for the resource.
+	// The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change the same private endpoint database to the public endpoint database.
 	PrivateEndpointLabel *string `mandatory:"false" json:"privateEndpointLabel"`
 
 	// The private endpoint Ip address for the resource.
@@ -149,10 +149,10 @@ type AutonomousDatabaseSummary struct {
 	// Indicates whether the Autonomous Database is a refreshable clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 
-	// The refresh lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
+	// The clone lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
 	RefreshLagTimeInSeconds *int `mandatory:"false" json:"refreshLagTimeInSeconds"`
 
-	// Refresh interval decides when next refresh is going to take place. The value can vary between 1 hr and 7 days.
+	// The refresh interval determines how frequently data is refreshed in the clone. Minimum 1 hour. Maximum 7 days.
 	RefreshIntervalInSeconds *int `mandatory:"false" json:"refreshIntervalInSeconds"`
 
 	// The date and time when last refresh happened.
@@ -173,10 +173,10 @@ type AutonomousDatabaseSummary struct {
 	// The Autonomous Database permission level. Restricted mode allows access only to admin users.
 	PermissionLevel AutonomousDatabaseSummaryPermissionLevelEnum `mandatory:"false" json:"permissionLevel,omitempty"`
 
-	// Indicates if the database is in original pod or failover pod.
+	// Indicates if the database is in original infrastructure or failover infrastructure.
 	IsFailedOver *bool `mandatory:"false" json:"isFailedOver"`
 
-	// Indicates if the database can be manually failed over.
+	// Indicates if the Autonomous Database can be manually failed over.
 	IsFailOverEnabled *bool `mandatory:"false" json:"isFailOverEnabled"`
 
 	// Indicates whether the Autonomous Database has Data Guard enabled.

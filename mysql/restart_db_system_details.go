@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -15,7 +15,7 @@ import (
 // RestartDbSystemDetails DB System restart parameters.
 type RestartDbSystemDetails struct {
 
-	// The InnoDB shutdown mode for Instance, following the option
+	// The InnoDB shutdown mode to use, following the option
 	// "innodb_fast_shutdown (https://dev.mysql.com/doc/refman/en/innodb-parameters.html#sysvar_innodb_fast_shutdown)".
 	ShutdownType InnoDbShutdownModeEnum `mandatory:"true" json:"shutdownType"`
 }

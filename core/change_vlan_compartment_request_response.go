@@ -11,7 +11,7 @@ import (
 // ChangeVlanCompartmentRequest wrapper for the ChangeVlanCompartment operation
 type ChangeVlanCompartmentRequest struct {
 
-	// The OCID of the VLAN.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN.
 	VlanId *string `mandatory:"true" contributesTo:"path" name:"vlanId"`
 
 	// Request to change the compartment of a given VLAN.

@@ -1345,9 +1345,7 @@ func (client VirtualNetworkClient) changeVirtualCircuitCompartment(ctx context.C
 }
 
 // ChangeVlanCompartment Moves a VLAN into a different compartment within the same tenancy.
-// When provided, If-Match is checked against ETag values of the resource.
-// For information
-// about moving resources between compartments, see
+// For information about moving resources between compartments, see
 // Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 func (client VirtualNetworkClient) ChangeVlanCompartment(ctx context.Context, request ChangeVlanCompartmentRequest) (response ChangeVlanCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3176,7 +3174,7 @@ func (client VirtualNetworkClient) createVirtualCircuit(ctx context.Context, req
 	return response, err
 }
 
-// CreateVlan Creates a new VLAN in the specified VCN and the specified compartment
+// CreateVlan Creates a VLAN in the specified VCN and the specified compartment.
 func (client VirtualNetworkClient) CreateVlan(ctx context.Context, request CreateVlanRequest) (response CreateVlanResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4616,7 +4614,7 @@ func (client VirtualNetworkClient) deleteVirtualCircuit(ctx context.Context, req
 	return response, err
 }
 
-// DeleteVlan Deletes the specified VLAN, but only if there are no VNIC's in the VLAN
+// DeleteVlan Deletes the specified VLAN, but only if there are no VNICs in the VLAN.
 func (client VirtualNetworkClient) DeleteVlan(ctx context.Context, request DeleteVlanRequest) (response DeleteVlanResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8645,6 +8643,8 @@ func (client VirtualNetworkClient) listPrivateEndpoints(ctx context.Context, req
 //   requires the OCID.
 // If you're listing all the private IPs associated with a given subnet
 // or VNIC, the response includes both primary and secondary private IPs.
+// If you are an Oracle Cloud VMware Solution customer and have VLANs
+// in your VCN, you can filter the list by VLAN OCID. See Vlan.
 func (client VirtualNetworkClient) ListPrivateIps(ctx context.Context, request ListPrivateIpsRequest) (response ListPrivateIpsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -9277,7 +9277,7 @@ func (client VirtualNetworkClient) listVirtualCircuits(ctx context.Context, requ
 	return response, err
 }
 
-// ListVlans Lists the VLAN(s) in the specified VCN and the specified compartment.
+// ListVlans Lists the VLANs in the specified VCN and the specified compartment.
 func (client VirtualNetworkClient) ListVlans(ctx context.Context, request ListVlansRequest) (response ListVlansResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -10981,8 +10981,9 @@ func (client VirtualNetworkClient) updateVirtualCircuit(ctx context.Context, req
 	return response, err
 }
 
-// UpdateVlan Updates the specified VLAN with the changes specified in the request. This could result in changes to all
-// the VNIC's in the VLAN and this can take some time. During this time, the VLAN could be in updating state
+// UpdateVlan Updates the specified VLAN. This could result in changes to all
+// the VNICs in the VLAN, which can take time. During that transition
+// period, the VLAN will be in the UPDATING state.
 func (client VirtualNetworkClient) UpdateVlan(ctx context.Context, request UpdateVlanRequest) (response UpdateVlanResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

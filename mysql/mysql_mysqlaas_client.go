@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -174,7 +174,7 @@ func (client MysqlaasClient) deleteConfiguration(ctx context.Context, request co
 	return response, err
 }
 
-// GetConfiguration Get the full details of the specified Configuration, including the list of MySQL Options and their values.
+// GetConfiguration Get the full details of the specified Configuration, including the list of MySQL Variables and their values.
 func (client MysqlaasClient) GetConfiguration(ctx context.Context, request GetConfigurationRequest) (response GetConfigurationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -221,7 +221,7 @@ func (client MysqlaasClient) getConfiguration(ctx context.Context, request commo
 	return response, err
 }
 
-// ListConfigurations Lists the Configurations you can use when deploying a DB System.
+// ListConfigurations Lists the Configurations available when creating a DB System.
 // This may include DEFAULT configurations per Shape and CUSTOM configurations.
 // The default sort order is a multi-part sort by:
 //   - shapeName, ascending

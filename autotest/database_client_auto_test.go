@@ -1093,8 +1093,9 @@ func TestDatabaseClientCreateDataGuardAssociation(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "creationType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
-				"NewDbSystem":      &database.CreateDataGuardAssociationWithNewDbSystemDetails{},
-				"ExistingDbSystem": &database.CreateDataGuardAssociationToExistingDbSystemDetails{},
+				"NewDbSystem":       &database.CreateDataGuardAssociationWithNewDbSystemDetails{},
+				"ExistingVmCluster": &database.CreateDataGuardAssociationToExistingVmClusterDetails{},
+				"ExistingDbSystem":  &database.CreateDataGuardAssociationToExistingDbSystemDetails{},
 			},
 		}
 

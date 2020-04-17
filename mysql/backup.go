@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -12,7 +12,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Backup Complete information for a Backup.
+// Backup A full or incremental copy of a DB System which can be used to create a
+// new DB System or recover a DB System.
+// To use any of the API operations, you must be authorized in an IAM
+// policy. If you're not authorized, talk to an administrator. If you're an
+// administrator who needs to write policies to give users access, see
+// Getting Started with
+// Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
 type Backup struct {
 
 	// OCID of the backup itself
@@ -57,10 +63,10 @@ type Backup struct {
 	// Initial size of the data volume in GiBs.
 	DataStorageSizeInGBs *int `mandatory:"false" json:"dataStorageSizeInGBs"`
 
-	// The MySQL server version of the Db Instance used for backup
+	// The MySQL server version of the DB System used for backup.
 	MysqlVersion *string `mandatory:"false" json:"mysqlVersion"`
 
-	// The shape of the Db instance used for backup.
+	// The shape of the DB System used for backup.
 	ShapeName *string `mandatory:"false" json:"shapeName"`
 
 	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.

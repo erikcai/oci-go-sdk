@@ -1,9 +1,10 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// OSMS
+// OS Management API
 //
-// OS Management as a Service API definition
+// API for the OS Management service. Use these API operations for working
+// with Managed instances and Managed instance groups.
 //
 
 package osmanagement
@@ -16,12 +17,14 @@ const (
 	UpdateTypesSecurity    UpdateTypesEnum = "SECURITY"
 	UpdateTypesBug         UpdateTypesEnum = "BUG"
 	UpdateTypesEnhancement UpdateTypesEnum = "ENHANCEMENT"
+	UpdateTypesOther       UpdateTypesEnum = "OTHER"
 )
 
 var mappingUpdateTypes = map[string]UpdateTypesEnum{
 	"SECURITY":    UpdateTypesSecurity,
 	"BUG":         UpdateTypesBug,
 	"ENHANCEMENT": UpdateTypesEnhancement,
+	"OTHER":       UpdateTypesOther,
 }
 
 // GetUpdateTypesEnumValues Enumerates the set of values for UpdateTypesEnum

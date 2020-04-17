@@ -45,11 +45,6 @@ type UpdateAutonomousDatabaseDetails struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
-	// **NsgIds restrictions:**
-	// - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
-	NsgIds []string `mandatory:"false" json:"nsgIds"`
-
 	// The Autonomous Database workload type. The following values are valid:
 	// - OLTP - indicates an Autonomous Transaction Processing database
 	// - DW - indicates an Autonomous Data Warehouse database
@@ -69,10 +64,10 @@ type UpdateAutonomousDatabaseDetails struct {
 	// Indicates whether to enable or disable auto scaling for the Autonomous Database OCPU core count. Setting to `true` enables auto scaling. Setting to `false` disables auto scaling. The default value is true. Auto scaling is available for databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
 	IsAutoScalingEnabled *bool `mandatory:"false" json:"isAutoScalingEnabled"`
 
-	// The refresh lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
+	// The clone lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
 	RefreshLagTimeInSeconds *int `mandatory:"false" json:"refreshLagTimeInSeconds"`
 
-	// Refresh interval decides when next refresh is going to take place. The value can vary between 1 hr and 7 days.
+	// The refresh interval determines how frequently data is refreshed in the clone. Minimum 1 hour. Maximum 7 days.
 	RefreshIntervalInSeconds *int `mandatory:"false" json:"refreshIntervalInSeconds"`
 
 	// Indicates whether the Autonomous Database is a refreshable clone.
@@ -89,6 +84,24 @@ type UpdateAutonomousDatabaseDetails struct {
 
 	// The Autonomous Database permission level. Restricted mode allows access only to admin users.
 	PermissionLevel UpdateAutonomousDatabaseDetailsPermissionLevelEnum `mandatory:"false" json:"permissionLevel,omitempty"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
+	// **Subnet Restrictions:**
+	// - For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28.
+	// - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
+	// - For Autonomous Database, setting this will disable public secure access to the database.
+	// These subnets are used by the Oracle Clusterware private interconnect on the database instance.
+	// Specifying an overlapping subnet will cause the private interconnect to malfunction.
+	// This restriction applies to both the client subnet and the backup subnet.
+	SubnetId *string `mandatory:"false" json:"subnetId"`
+
+	// The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change the same private endpoint database to the public endpoint database.
+	PrivateEndpointLabel *string `mandatory:"false" json:"privateEndpointLabel"`
+
+	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+	// **NsgIds restrictions:**
+	// - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
+	NsgIds []string `mandatory:"false" json:"nsgIds"`
 }
 
 func (m UpdateAutonomousDatabaseDetails) String() string {

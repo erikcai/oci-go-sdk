@@ -991,6 +991,50 @@ func TestOsManagementClientGetSoftwareSource(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
+func TestOsManagementClientGetWindowsUpdate(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("osmanagement", "GetWindowsUpdate")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetWindowsUpdate is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("osmanagement", "OsManagement", "GetWindowsUpdate", createOsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(osmanagement.OsManagementClient)
+
+	body, err := testClient.getRequests("osmanagement", "GetWindowsUpdate")
+	assert.NoError(t, err)
+
+	type GetWindowsUpdateRequestInfo struct {
+		ContainerId string
+		Request     osmanagement.GetWindowsUpdateRequest
+	}
+
+	var requests []GetWindowsUpdateRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetWindowsUpdate(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
 func TestOsManagementClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1079,6 +1123,50 @@ func TestOsManagementClientInstallAllPackageUpdatesOnManagedInstance(t *testing.
 }
 
 // IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
+func TestOsManagementClientInstallAllWindowsUpdatesOnManagedInstance(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("osmanagement", "InstallAllWindowsUpdatesOnManagedInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("InstallAllWindowsUpdatesOnManagedInstance is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("osmanagement", "OsManagement", "InstallAllWindowsUpdatesOnManagedInstance", createOsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(osmanagement.OsManagementClient)
+
+	body, err := testClient.getRequests("osmanagement", "InstallAllWindowsUpdatesOnManagedInstance")
+	assert.NoError(t, err)
+
+	type InstallAllWindowsUpdatesOnManagedInstanceRequestInfo struct {
+		ContainerId string
+		Request     osmanagement.InstallAllWindowsUpdatesOnManagedInstanceRequest
+	}
+
+	var requests []InstallAllWindowsUpdatesOnManagedInstanceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.InstallAllWindowsUpdatesOnManagedInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
 func TestOsManagementClientInstallPackageOnManagedInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1159,6 +1247,50 @@ func TestOsManagementClientInstallPackageUpdateOnManagedInstance(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.InstallPackageUpdateOnManagedInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
+func TestOsManagementClientInstallWindowsUpdateOnManagedInstance(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("osmanagement", "InstallWindowsUpdateOnManagedInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("InstallWindowsUpdateOnManagedInstance is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("osmanagement", "OsManagement", "InstallWindowsUpdateOnManagedInstance", createOsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(osmanagement.OsManagementClient)
+
+	body, err := testClient.getRequests("osmanagement", "InstallWindowsUpdateOnManagedInstance")
+	assert.NoError(t, err)
+
+	type InstallWindowsUpdateOnManagedInstanceRequestInfo struct {
+		ContainerId string
+		Request     osmanagement.InstallWindowsUpdateOnManagedInstanceRequest
+	}
+
+	var requests []InstallWindowsUpdateOnManagedInstanceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.InstallWindowsUpdateOnManagedInstance(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1319,6 +1451,60 @@ func TestOsManagementClientListAvailableUpdatesForManagedInstance(t *testing.T) 
 			typedListResponses := make([]osmanagement.ListAvailableUpdatesForManagedInstanceResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(osmanagement.ListAvailableUpdatesForManagedInstanceResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
+func TestOsManagementClientListAvailableWindowsUpdatesForManagedInstance(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("osmanagement", "ListAvailableWindowsUpdatesForManagedInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAvailableWindowsUpdatesForManagedInstance is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("osmanagement", "OsManagement", "ListAvailableWindowsUpdatesForManagedInstance", createOsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(osmanagement.OsManagementClient)
+
+	body, err := testClient.getRequests("osmanagement", "ListAvailableWindowsUpdatesForManagedInstance")
+	assert.NoError(t, err)
+
+	type ListAvailableWindowsUpdatesForManagedInstanceRequestInfo struct {
+		ContainerId string
+		Request     osmanagement.ListAvailableWindowsUpdatesForManagedInstanceRequest
+	}
+
+	var requests []ListAvailableWindowsUpdatesForManagedInstanceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*osmanagement.ListAvailableWindowsUpdatesForManagedInstanceRequest)
+				return c.ListAvailableWindowsUpdatesForManagedInstance(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]osmanagement.ListAvailableWindowsUpdatesForManagedInstanceResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(osmanagement.ListAvailableWindowsUpdatesForManagedInstanceResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -1697,6 +1883,114 @@ func TestOsManagementClientListUpcomingScheduledJobs(t *testing.T) {
 			typedListResponses := make([]osmanagement.ListUpcomingScheduledJobsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(osmanagement.ListUpcomingScheduledJobsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
+func TestOsManagementClientListWindowsUpdates(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("osmanagement", "ListWindowsUpdates")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListWindowsUpdates is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("osmanagement", "OsManagement", "ListWindowsUpdates", createOsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(osmanagement.OsManagementClient)
+
+	body, err := testClient.getRequests("osmanagement", "ListWindowsUpdates")
+	assert.NoError(t, err)
+
+	type ListWindowsUpdatesRequestInfo struct {
+		ContainerId string
+		Request     osmanagement.ListWindowsUpdatesRequest
+	}
+
+	var requests []ListWindowsUpdatesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*osmanagement.ListWindowsUpdatesRequest)
+				return c.ListWindowsUpdates(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]osmanagement.ListWindowsUpdatesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(osmanagement.ListWindowsUpdatesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
+func TestOsManagementClientListWindowsUpdatesInstalledOnManagedInstance(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("osmanagement", "ListWindowsUpdatesInstalledOnManagedInstance")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListWindowsUpdatesInstalledOnManagedInstance is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("osmanagement", "OsManagement", "ListWindowsUpdatesInstalledOnManagedInstance", createOsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(osmanagement.OsManagementClient)
+
+	body, err := testClient.getRequests("osmanagement", "ListWindowsUpdatesInstalledOnManagedInstance")
+	assert.NoError(t, err)
+
+	type ListWindowsUpdatesInstalledOnManagedInstanceRequestInfo struct {
+		ContainerId string
+		Request     osmanagement.ListWindowsUpdatesInstalledOnManagedInstanceRequest
+	}
+
+	var requests []ListWindowsUpdatesInstalledOnManagedInstanceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*osmanagement.ListWindowsUpdatesInstalledOnManagedInstanceRequest)
+				return c.ListWindowsUpdatesInstalledOnManagedInstance(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]osmanagement.ListWindowsUpdatesInstalledOnManagedInstanceResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(osmanagement.ListWindowsUpdatesInstalledOnManagedInstanceResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

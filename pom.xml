@@ -71,6 +71,7 @@
     <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
     <compliance-document-service-spec-spec-file>source/api.cond.yaml</compliance-document-service-spec-spec-file>
     <dis-sdk-spec-spec-file>source/dis-api.cond.yaml</dis-sdk-spec-spec-file>
+    <hydra-controlplane-api-spec-spec-file>source/public-api.cond.yaml</hydra-controlplane-api-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -284,6 +285,10 @@
     <dependency>
       <groupId>com.oracle.dis</groupId>
       <artifactId>dis-sdk-spec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.hydra.controlplane</groupId>
+      <artifactId>hydra-controlplane-api-spec</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -1261,6 +1266,24 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/dis-sdk-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-hydra-controlplane-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.hydra.controlplane</groupId>
+                  <artifactId>hydra-controlplane-api-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/hydra-controlplane-api-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -2703,6 +2726,33 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-hydra-controlplane-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/hydra-controlplane-api-spec/source/${hydra-controlplane-api-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/hydra-controlplane-api-spec/${hydra-controlplane-api-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/hydra-controlplane-api-spec/${hydra-controlplane-api-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-hydra-controlplane-api-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/hydra-controlplane-api-spec/${hydra-controlplane-api-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/hydra-controlplane-api-spec/${hydra-controlplane-api-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -3816,6 +3866,26 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-hydra-controlplane-api-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/hydra-controlplane-api-spec/${hydra-controlplane-api-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>logging</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>logging</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -4184,6 +4254,12 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/logging</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -4194,7 +4270,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.1035</version>
+        <version>0.2.1172</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -4214,7 +4290,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.401</version>
+        <version>0.1.412</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -4244,7 +4320,7 @@
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
         <artifactId>kms-api-spec</artifactId>
-        <version>0.3.51</version>
+        <version>0.3.53</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.query</groupId>
@@ -4289,7 +4365,7 @@
       <dependency>
         <groupId>com.oracle.oci.marketplace</groupId>
         <artifactId>marketplace-consumer-service-spec</artifactId>
-        <version>0.1.955</version>
+        <version>0.1.993</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>
@@ -4394,7 +4470,7 @@
       <dependency>
         <groupId>com.oracle.oracleintegration.spec</groupId>
         <artifactId>oracle-integration-cp-apiserver-user-spec</artifactId>
-        <version>1.0.8</version>
+        <version>1.0.10</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kam</groupId>
@@ -4409,7 +4485,7 @@
       <dependency>
         <groupId>com.oracle.osms.api</groupId>
         <artifactId>osms-spec</artifactId>
-        <version>0.0.2-9</version>
+        <version>0.1.0-0</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.migration.application</groupId>
@@ -4419,12 +4495,12 @@
       <dependency>
         <groupId>oracle.dfcs.server</groupId>
         <artifactId>service_api_spec</artifactId>
-        <version>1.0.201-RELEASEPREVIEW</version>
+        <version>1.0.204-RELEASEPREVIEW</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.mysql</groupId>
         <artifactId>mysqlaas-api-spec</artifactId>
-        <version>10.3.1</version>
+        <version>10.3.9</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ocisms.dataplane</groupId>
@@ -4455,6 +4531,11 @@
         <groupId>com.oracle.dis</groupId>
         <artifactId>dis-sdk-spec</artifactId>
         <version>1.0.0-111</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.hydra.controlplane</groupId>
+        <artifactId>hydra-controlplane-api-spec</artifactId>
+        <version>0.0.524</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

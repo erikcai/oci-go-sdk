@@ -56,6 +56,16 @@ type EnableReverseConnectionsDetails struct {
 	// For more information about NSGs, see
 	// NetworkSecurityGroup.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
+
+	// Number of customer endpoints that the service provider expects to establish connections to using this RCE. The default is 0.
+	// When non-zero value is specified, reverse connection configuration will be allocated with a list of CIDRs, from
+	// which NAT IP addresses will be allocated. These list of CIDRs will not be shared by other reverse
+	// connection enabled private endpoints.
+	// When zero is specified, reverse connection configuration will get NAT IP addresses from common pool of CIDRs,
+	// which will be shared with other reverse connection enabled private endpoints.
+	// If the private endpoint was enabled with reverse connection with 0 already, the field is not updatable.
+	// The size may not be updated with smaller number than previously specified value, but may be increased.
+	CustomerEndpointsSize *int `mandatory:"false" json:"customerEndpointsSize"`
 }
 
 func (m EnableReverseConnectionsDetails) String() string {

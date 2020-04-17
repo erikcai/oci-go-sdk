@@ -12,7 +12,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// AutonomousDatabaseStandbySummary Autonomous Database Standby Details.
+// AutonomousDatabaseStandbySummary Autonomous Data Guard standby database details.
 type AutonomousDatabaseStandbySummary struct {
 
 	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.

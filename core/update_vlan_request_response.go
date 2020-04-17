@@ -11,7 +11,7 @@ import (
 // UpdateVlanRequest wrapper for the UpdateVlan operation
 type UpdateVlanRequest struct {
 
-	// The OCID of the VLAN.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN.
 	VlanId *string `mandatory:"true" contributesTo:"path" name:"vlanId"`
 
 	// Details object for updating a subnet.

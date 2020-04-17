@@ -17,7 +17,6 @@ type UpdateBackupRequest struct {
 	// Request to update a Backup's metadata.
 	UpdateBackupDetails `contributesTo:"body"`
 
-	//
 	// For optimistic concurrency control. In the PUT or DELETE call for a
 	// resource, set the `If-Match` header to the value of the etag from a
 	// previous GET or POST response for that resource. The resource will be

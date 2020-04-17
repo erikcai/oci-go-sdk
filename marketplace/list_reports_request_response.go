@@ -15,7 +15,7 @@ type ListReportsRequest struct {
 	ReportType *string `mandatory:"true" contributesTo:"query" name:"reportType"`
 
 	// Date in YYYYMMDD format
-	Date *string `mandatory:"true" contributesTo:"query" name:"date"`
+	Date *common.SDKTime `mandatory:"true" contributesTo:"query" name:"date"`
 
 	// The unique identifier for the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`

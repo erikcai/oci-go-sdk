@@ -1,9 +1,9 @@
 // Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
 // Code generated. DO NOT EDIT.
 
-// MySQL as a Service API
+// MySQL Database Service API
 //
-// The API for the MySQL Service
+// The API for the MySQL Database Service
 //
 
 package mysql
@@ -58,7 +58,7 @@ type ConfigurationVariables struct {
 	BinlogExpireLogsSeconds *int `mandatory:"false" json:"binlogExpireLogsSeconds"`
 
 	// ("innodb_buffer_pool_size")
-	InnodbBufferPoolSize *int `mandatory:"false" json:"innodbBufferPoolSize"`
+	InnodbBufferPoolSize *int64 `mandatory:"false" json:"innodbBufferPoolSize"`
 
 	// ("innodb_ft_result_cache_limit")
 	InnodbFtResultCacheLimit *int `mandatory:"false" json:"innodbFtResultCacheLimit"`
@@ -145,7 +145,7 @@ type ConfigurationVariables struct {
 	SqlMode *string `mandatory:"false" json:"sqlMode"`
 
 	// Set the default compression level for the deflate algorithm. ("mysqlx_deflate_default_compression_level")
-	MysqlxDefaultDefaultCompressionLevel *int `mandatory:"false" json:"mysqlxDefaultDefaultCompressionLevel"`
+	MysqlxDeflateDefaultCompressionLevel *int `mandatory:"false" json:"mysqlxDeflateDefaultCompressionLevel"`
 
 	// Limit the upper bound of accepted compression levels for the deflate algorithm. ("mysqlx_deflate_max_client_compression_level")
 	MysqlxDeflateMaxClientCompressionLevel *int `mandatory:"false" json:"mysqlxDeflateMaxClientCompressionLevel"`

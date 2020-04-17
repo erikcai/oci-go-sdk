@@ -14,7 +14,6 @@ type GetWorkRequestRequest struct {
 	// the ID of the WorkRequest
 	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
 
-	//
 	// For conditional requests. In the GET call for a resource, set the
 	// `If-None-Match` header to the value of the ETag from a previous GET (or
 	// POST or PUT) response for that resource. The server will return with

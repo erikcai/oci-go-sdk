@@ -1,0 +1,27 @@
+// Copyright (c) 2016, 2018, 2019, Oracle and/or its affiliates. All rights reserved.
+// Code generated. DO NOT EDIT.
+
+// PublicLoggingControlplane API
+//
+// PublicLoggingControlplane API specification
+//
+
+package logging
+
+import (
+	"github.com/oracle/oci-go-sdk/common"
+)
+
+// ResourceType Type of Resource that Service provides.
+type ResourceType struct {
+
+	// Resource type name.
+	Name *string `mandatory:"false" json:"name"`
+
+	// categories for resources.
+	Categories []Category `mandatory:"false" json:"categories"`
+}
+
+func (m ResourceType) String() string {
+	return common.PointerString(m)
+}
