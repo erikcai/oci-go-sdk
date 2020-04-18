@@ -2070,6 +2070,50 @@ func TestDatabaseClientDeregisterAutonomousDatabaseDataSafe(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDisableAutonomousDatabaseOperationsInsights(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DisableAutonomousDatabaseOperationsInsights")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DisableAutonomousDatabaseOperationsInsights is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DisableAutonomousDatabaseOperationsInsights", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DisableAutonomousDatabaseOperationsInsights")
+	assert.NoError(t, err)
+
+	type DisableAutonomousDatabaseOperationsInsightsRequestInfo struct {
+		ContainerId string
+		Request     database.DisableAutonomousDatabaseOperationsInsightsRequest
+	}
+
+	var requests []DisableAutonomousDatabaseOperationsInsightsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DisableAutonomousDatabaseOperationsInsights(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientDownloadExadataInfrastructureConfigFile(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2151,6 +2195,50 @@ func TestDatabaseClientDownloadVmClusterNetworkConfigFile(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DownloadVmClusterNetworkConfigFile(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientEnableAutonomousDatabaseOperationsInsights(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "EnableAutonomousDatabaseOperationsInsights")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("EnableAutonomousDatabaseOperationsInsights is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "EnableAutonomousDatabaseOperationsInsights", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "EnableAutonomousDatabaseOperationsInsights")
+	assert.NoError(t, err)
+
+	type EnableAutonomousDatabaseOperationsInsightsRequestInfo struct {
+		ContainerId string
+		Request     database.EnableAutonomousDatabaseOperationsInsightsRequest
+	}
+
+	var requests []EnableAutonomousDatabaseOperationsInsightsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.EnableAutonomousDatabaseOperationsInsights(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

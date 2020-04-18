@@ -31,6 +31,15 @@ type StackSummary struct {
 	// Date and time at which the stack was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
+	// The current lifecycle state of the stack.
+	// For more information about resource states in Resource Manager, see
+	// Key Concepts (https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts).
+	// Allowable values:
+	// - CREATING
+	// - ACTIVE
+	// - DELETING
+	// - DELETED
+	// - FAILED
 	LifecycleState StackLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// The version of Terraform specified for the stack. Example: `0.12.x`

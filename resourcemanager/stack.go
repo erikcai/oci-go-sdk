@@ -33,7 +33,9 @@ type Stack struct {
 	// The date and time at which the stack was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The current lifecycle state of the stack. For more information about stack lifecycle states, see Key Concepts (https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates).
+	// The current lifecycle state of the stack.
+	// For more information about resource states in Resource Manager, see
+	// Key Concepts (https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts).
 	LifecycleState StackLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	ConfigSource ConfigSource `mandatory:"false" json:"configSource"`
@@ -163,15 +165,15 @@ type StackStackDriftStatusEnum string
 
 // Set of constants representing the allowable values for StackStackDriftStatusEnum
 const (
-	StackStackDriftStatusDrifted    StackStackDriftStatusEnum = "DRIFTED"
-	StackStackDriftStatusInSync     StackStackDriftStatusEnum = "IN_SYNC"
 	StackStackDriftStatusNotChecked StackStackDriftStatusEnum = "NOT_CHECKED"
+	StackStackDriftStatusInSync     StackStackDriftStatusEnum = "IN_SYNC"
+	StackStackDriftStatusDrifted    StackStackDriftStatusEnum = "DRIFTED"
 )
 
 var mappingStackStackDriftStatus = map[string]StackStackDriftStatusEnum{
-	"DRIFTED":     StackStackDriftStatusDrifted,
-	"IN_SYNC":     StackStackDriftStatusInSync,
 	"NOT_CHECKED": StackStackDriftStatusNotChecked,
+	"IN_SYNC":     StackStackDriftStatusInSync,
+	"DRIFTED":     StackStackDriftStatusDrifted,
 }
 
 // GetStackStackDriftStatusEnumValues Enumerates the set of values for StackStackDriftStatusEnum

@@ -16,29 +16,29 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// NodeSourceViaImageDetails Details of the image running on the node.
-type NodeSourceViaImageDetails struct {
+// UpdateNodePoolNodeSourceViaImageDetails Details of the image running on the node.
+type UpdateNodePoolNodeSourceViaImageDetails struct {
 
-	// The OCID of the image used to boot the node.
-	ImageId *string `mandatory:"true" json:"imageId"`
+	// The OCID of the new image.
+	ImageId *string `mandatory:"false" json:"imageId"`
 
 	// The size of the boot volume in GBs. Minimum value is 50 GB. See here (https://docs.cloud.oracle.com/en-us/iaas/Content/Block/Concepts/bootvolumes.htm) for max custom boot volume sizing and OS-specific requirements.
 	BootVolumeSizeInGBs *int64 `mandatory:"false" json:"bootVolumeSizeInGBs"`
 }
 
-func (m NodeSourceViaImageDetails) String() string {
+func (m UpdateNodePoolNodeSourceViaImageDetails) String() string {
 	return common.PointerString(m)
 }
 
 // MarshalJSON marshals to json representation
-func (m NodeSourceViaImageDetails) MarshalJSON() (buff []byte, e error) {
-	type MarshalTypeNodeSourceViaImageDetails NodeSourceViaImageDetails
+func (m UpdateNodePoolNodeSourceViaImageDetails) MarshalJSON() (buff []byte, e error) {
+	type MarshalTypeUpdateNodePoolNodeSourceViaImageDetails UpdateNodePoolNodeSourceViaImageDetails
 	s := struct {
 		DiscriminatorParam string `json:"sourceType"`
-		MarshalTypeNodeSourceViaImageDetails
+		MarshalTypeUpdateNodePoolNodeSourceViaImageDetails
 	}{
 		"IMAGE",
-		(MarshalTypeNodeSourceViaImageDetails)(m),
+		(MarshalTypeUpdateNodePoolNodeSourceViaImageDetails)(m),
 	}
 
 	return json.Marshal(&s)

@@ -63,17 +63,17 @@ type StackResourceDriftSummaryResourceDriftStatusEnum string
 
 // Set of constants representing the allowable values for StackResourceDriftSummaryResourceDriftStatusEnum
 const (
+	StackResourceDriftSummaryResourceDriftStatusNotChecked StackResourceDriftSummaryResourceDriftStatusEnum = "NOT_CHECKED"
 	StackResourceDriftSummaryResourceDriftStatusInSync     StackResourceDriftSummaryResourceDriftStatusEnum = "IN_SYNC"
 	StackResourceDriftSummaryResourceDriftStatusModified   StackResourceDriftSummaryResourceDriftStatusEnum = "MODIFIED"
 	StackResourceDriftSummaryResourceDriftStatusDeleted    StackResourceDriftSummaryResourceDriftStatusEnum = "DELETED"
-	StackResourceDriftSummaryResourceDriftStatusNotChecked StackResourceDriftSummaryResourceDriftStatusEnum = "NOT_CHECKED"
 )
 
 var mappingStackResourceDriftSummaryResourceDriftStatus = map[string]StackResourceDriftSummaryResourceDriftStatusEnum{
+	"NOT_CHECKED": StackResourceDriftSummaryResourceDriftStatusNotChecked,
 	"IN_SYNC":     StackResourceDriftSummaryResourceDriftStatusInSync,
 	"MODIFIED":    StackResourceDriftSummaryResourceDriftStatusModified,
 	"DELETED":     StackResourceDriftSummaryResourceDriftStatusDeleted,
-	"NOT_CHECKED": StackResourceDriftSummaryResourceDriftStatusNotChecked,
 }
 
 // GetStackResourceDriftSummaryResourceDriftStatusEnumValues Enumerates the set of values for StackResourceDriftSummaryResourceDriftStatusEnum

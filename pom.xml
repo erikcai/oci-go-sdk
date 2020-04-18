@@ -4315,7 +4315,7 @@
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
         <artifactId>maestro-spec</artifactId>
-        <version>0.1.12</version>
+        <version>0.1.15</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
@@ -4330,7 +4330,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.1.16</version>
+        <version>1.1.17</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
@@ -4365,7 +4365,7 @@
       <dependency>
         <groupId>com.oracle.oci.marketplace</groupId>
         <artifactId>marketplace-consumer-service-spec</artifactId>
-        <version>0.1.993</version>
+        <version>0.1.994</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>

@@ -16,7 +16,7 @@ type ListStacksRequest struct {
 	// particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// The compartment OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) on which to filter.
+	// A filter to return only resources that exist in the compartment, identified by OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
 	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) on which to query for a stack.
@@ -33,15 +33,15 @@ type ListStacksRequest struct {
 	// - FAILED
 	LifecycleState StackLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// Display name on which to query.
+	// A filter to return only resources that match the specified display name.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
-	// Specifies the field on which to sort.
+	// The field to use when sorting returned resources.
 	// By default, `TIMECREATED` is ordered descending.
 	// By default, `DISPLAYNAME` is ordered ascending. Note that you can sort only on one field.
 	SortBy ListStacksSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order, either `ASC` (ascending) or `DESC` (descending).
+	// The sort order to use when sorting returned resources. Ascending (`ASC`) or descending (`DESC`).
 	SortOrder ListStacksSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
 	// The number of items returned in a paginated `List` call. For information about pagination, see

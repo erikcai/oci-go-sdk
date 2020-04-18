@@ -20,8 +20,8 @@ type CompartmentConfigSource struct {
 	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use for creating the stack. The new stack will include definitions for supported resource types in this compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// File path to the directory from which Terraform runs.
-	// If not specified, we use the root directory.
+	// File path to the directory to use for running Terraform.
+	// If not specified, the root directory is used.
 	WorkingDirectory *string `mandatory:"false" json:"workingDirectory"`
 }
 

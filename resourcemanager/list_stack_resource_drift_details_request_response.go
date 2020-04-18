@@ -21,21 +21,11 @@ type ListStackResourceDriftDetailsRequest struct {
 
 	// A filter that returns only resources that match the given drift status. The value is case-insensitive.
 	// Allowable values -
+	//   - NOT_CHECKED
 	//   - MODIFIED
 	//   - IN_SYNC
 	//   - DELETED
-	ResourceDriftStatus StackResourceDriftSummaryResourceDriftStatusEnum `mandatory:"false" contributesTo:"query" name:"resourceDriftStatus" omitEmpty:"true"`
-
-	// Display name on which to query.
-	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
-
-	// Specifies the field on which to sort.
-	// By default, `TIMECREATED` is ordered descending.
-	// By default, `DISPLAYNAME` is ordered ascending. Note that you can sort only on one field.
-	SortBy ListStackResourceDriftDetailsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
-
-	// The sort order, either `ASC` (ascending) or `DESC` (descending).
-	SortOrder ListStackResourceDriftDetailsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+	ResourceDriftStatus []StackResourceDriftSummaryResourceDriftStatusEnum `contributesTo:"query" name:"resourceDriftStatus" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The number of items returned in a paginated `List` call. For information about pagination, see
 	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
@@ -70,8 +60,8 @@ type ListStackResourceDriftDetailsResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []StackResourceDriftCollection instances
-	Items []StackResourceDriftCollection `presentIn:"body"`
+	// A list of StackResourceDriftCollection instances
+	StackResourceDriftCollection `presentIn:"body"`
 
 	// Unique identifier for the request.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
@@ -92,50 +82,4 @@ func (response ListStackResourceDriftDetailsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListStackResourceDriftDetailsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// ListStackResourceDriftDetailsSortByEnum Enum with underlying type: string
-type ListStackResourceDriftDetailsSortByEnum string
-
-// Set of constants representing the allowable values for ListStackResourceDriftDetailsSortByEnum
-const (
-	ListStackResourceDriftDetailsSortByTimecreated ListStackResourceDriftDetailsSortByEnum = "TIMECREATED"
-	ListStackResourceDriftDetailsSortByDisplayname ListStackResourceDriftDetailsSortByEnum = "DISPLAYNAME"
-)
-
-var mappingListStackResourceDriftDetailsSortBy = map[string]ListStackResourceDriftDetailsSortByEnum{
-	"TIMECREATED": ListStackResourceDriftDetailsSortByTimecreated,
-	"DISPLAYNAME": ListStackResourceDriftDetailsSortByDisplayname,
-}
-
-// GetListStackResourceDriftDetailsSortByEnumValues Enumerates the set of values for ListStackResourceDriftDetailsSortByEnum
-func GetListStackResourceDriftDetailsSortByEnumValues() []ListStackResourceDriftDetailsSortByEnum {
-	values := make([]ListStackResourceDriftDetailsSortByEnum, 0)
-	for _, v := range mappingListStackResourceDriftDetailsSortBy {
-		values = append(values, v)
-	}
-	return values
-}
-
-// ListStackResourceDriftDetailsSortOrderEnum Enum with underlying type: string
-type ListStackResourceDriftDetailsSortOrderEnum string
-
-// Set of constants representing the allowable values for ListStackResourceDriftDetailsSortOrderEnum
-const (
-	ListStackResourceDriftDetailsSortOrderAsc  ListStackResourceDriftDetailsSortOrderEnum = "ASC"
-	ListStackResourceDriftDetailsSortOrderDesc ListStackResourceDriftDetailsSortOrderEnum = "DESC"
-)
-
-var mappingListStackResourceDriftDetailsSortOrder = map[string]ListStackResourceDriftDetailsSortOrderEnum{
-	"ASC":  ListStackResourceDriftDetailsSortOrderAsc,
-	"DESC": ListStackResourceDriftDetailsSortOrderDesc,
-}
-
-// GetListStackResourceDriftDetailsSortOrderEnumValues Enumerates the set of values for ListStackResourceDriftDetailsSortOrderEnum
-func GetListStackResourceDriftDetailsSortOrderEnumValues() []ListStackResourceDriftDetailsSortOrderEnum {
-	values := make([]ListStackResourceDriftDetailsSortOrderEnum, 0)
-	for _, v := range mappingListStackResourceDriftDetailsSortOrder {
-		values = append(values, v)
-	}
-	return values
 }
