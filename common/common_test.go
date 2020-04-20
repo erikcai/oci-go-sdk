@@ -4,6 +4,7 @@
 package common
 
 import (
+	"errors"
 	"io/ioutil"
 	"os"
 	"path"
@@ -336,81 +337,52 @@ func TestSetRegionMetadataFromCfgFile(t *testing.T) {
 
 }
 
-func TestSetRegionMetadataFromEnvVar(t *testing.T) {
-	regionMetadataEnvVar := `{"realmKey":"OC0","realmDomainComponent":"testRealm.com","regionKey":"RTK","regionIdentifier":"us-testregion-1"}`
-	// test normal case
-	os.Unsetenv("OCI_REGION_METADATA")
-	os.Setenv("OCI_REGION_METADATA", regionMetadataEnvVar)
-	ok := SetRegionMetadataFromEnvVar()
-	assert.Equal(t, ok, true)
-	assert.Equal(t, regionRealm[Region("us-testregion-1")], "OC0")
-	assert.Equal(t, realm["OC0"], "testRealm.com")
-
-	// test corner case
-	os.Unsetenv("OCI_REGION_METADATA")
-	os.Setenv("OCI_REGION_METADATA", `"test": "test"`)
-	ok = SetRegionMetadataFromEnvVar()
-	assert.Equal(t, ok, false)
-
-	os.Unsetenv("OCI_REGION_METADATA")
-	os.Setenv("OCI_REGION_METADATA", `{"realmKey":"","realmDomainComponent":"testRealm.com","regionKey":"RTK","regionIdentifier":"us-testregion-1"}`)
-	ok = SetRegionMetadataFromEnvVar()
-	assert.Equal(t, ok, false)
-
-	os.Unsetenv("OCI_REGION_METADATA")
-	ok = SetRegionMetadataFromEnvVar()
-	assert.Equal(t, ok, false)
+func getRegionInfoFromInstanceMetadataServiceSucceed() ([]byte, error) {
+	contentString :=
+		`{ 
+	"realmKey" : "OC-test",
+	"realmDomainComponent" : "test.com",
+	"regionKey" : "key",
+	"regionIdentifier" : "us-test-1"
+}`
+	return []byte(contentString), nil
 }
 
-func TestSetRegionMetadataFromCfgFile(t *testing.T) {
-	// test normal case
-	fileContent :=
-		`[
-	{ 
-		"realmKey" : "",
-		"realmDomainComponent" : "oraclecloud.com",
-		"regionKey" : "ABC",
-		"regionIdentifier" : "ap-testregion-2"
-	},
-	{ 
-		"realmKey" : "OC6",
-		"realmDomainComponent" : "oraclensrcloud.com",
-		"regionKey" : "DEF",
-		"regionIdentifier" : "us-testregion-3"
- 	}
-]`
-	tmpLocation := path.Join(getHomeFolder(), ".oci", "regions-config.json")
-	tmpPath := path.Join(getHomeFolder(), ".oci11")
+func getRegionInfoFromInstanceMetadataServiceInvalidContent() ([]byte, error) {
+	contentString :=
+		`{ 
+	"realmKey" : "",
+	"realmDomainComponent" : "",
+	"regionKey" : "",
+	"regionIdentifier" : ""
+}`
+	return []byte(contentString), nil
+}
 
-	if _, err := os.Stat(tmpPath); err != nil && os.IsNotExist(err) {
-		if err := os.Mkdir(tmpPath, 0777); err != nil {
-			assert.FailNow(t, err.Error())
-		}
-	}
+func getRegionInfoFromInstanceMetadataServiceFail() ([]byte, error) {
+	return nil, errors.New("test error")
+}
 
-	if err := ioutil.WriteFile(tmpLocation, []byte(fileContent), 0644); err != nil {
-		assert.FailNow(t, err.Error())
-	}
+func TestSetRegionFromInstanceMetadataService(t *testing.T) {
+	expectedRegion := "us-test-1"
+	GetRegionInfoFromInstanceMetadataService = getRegionInfoFromInstanceMetadataServiceSucceed
+	ok := SetRegionFromInstanceMetadataService(&expectedRegion)
+	assert.Equal(t, true, ok)
+	assert.Equal(t, "oc-test", regionRealm[Region("us-test-1")])
+	assert.Equal(t, "test.com", realm["oc-test"])
 
-	ok := SetRegionMetadataFromCfgFile()
-	assert.Equal(t, ok, true)
-	assert.Equal(t, regionRealm[Region("ap-testregion-2")], "")
-	assert.Equal(t, regionRealm[Region("us-testregion-3")], "OC6")
-	assert.Equal(t, realm["OC6"], "oraclensrcloud.com")
+	shortCode := "testRegionKey"
+	GetRegionInfoFromInstanceMetadataService = getRegionInfoFromInstanceMetadataServiceSucceed
+	ok = SetRegionFromInstanceMetadataService(&shortCode)
+	assert.Equal(t, true, ok)
+	assert.Equal(t, "oc-test", regionRealm[Region("us-test-1")])
+	assert.Equal(t, "test.com", realm["oc-test"])
 
-	//corner case
-	fileContent = ""
-	if _, err := os.Stat(tmpLocation); err == nil || os.IsExist(err) {
-		os.Remove(tmpLocation)
-	}
-	ok = SetRegionMetadataFromCfgFile()
-	assert.Equal(t, ok, false)
+	GetRegionInfoFromInstanceMetadataService = getRegionInfoFromInstanceMetadataServiceInvalidContent
+	ok = SetRegionFromInstanceMetadataService(&expectedRegion)
+	assert.Equal(t, false, ok)
 
-	if err := ioutil.WriteFile(tmpLocation, []byte(fileContent), 0644); err != nil {
-		assert.FailNow(t, err.Error())
-	}
-
-	ok = SetRegionMetadataFromCfgFile()
-	assert.Equal(t, ok, false)
-
+	GetRegionInfoFromInstanceMetadataService = getRegionInfoFromInstanceMetadataServiceFail
+	ok = SetRegionFromInstanceMetadataService(&expectedRegion)
+	assert.Equal(t, false, ok)
 }

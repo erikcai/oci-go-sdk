@@ -7,16 +7,20 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"path"
 	"regexp"
 	"strings"
+	"time"
 )
 
 //Region type for regions
 type Region string
 
 const (
+	instanceMetadataRegionInfoURLV2 = "http://169.254.169.254/opc/v2/instance/regionInfo"
+
 	//RegionSEA region SEA
 	RegionSEA Region = "sea"
 	//RegionAPMelbourne1 region for Melbourne
@@ -156,6 +160,9 @@ var regionRealm = map[Region]string{
 	RegionAPChiyoda1: "oc8",
 }
 
+// GetRegionInfoFromInstanceMetadataService gets the region information
+var GetRegionInfoFromInstanceMetadataService = GetRegionInfoFromInstanceMetadataServiceProd
+
 // Endpoint returns a endpoint for a service
 func (region Region) Endpoint(service string) string {
 	return fmt.Sprintf("%s.%s.%s", service, region, region.secondLevelDomain())
@@ -288,15 +295,8 @@ func checkAndAddRegionMetadata(region string) Region {
 // SetRegionMetadataFromEnvVar checks if region metadata env variable is provided, once it's there, parse and added it to region map
 func SetRegionMetadataFromEnvVar(region *string) bool {
 	// check from env variable
-<<<<<<< HEAD
 	if jsonStr, existed := os.LookupEnv(regionMetadataEnvVarName); existed {
-=======
-	if jsonStr, existed := os.LookupEnv(regionMetadata); existed {
-<<<<<<< HEAD
->>>>>>> 6871b352... Read region/realm details from region config file and env variable.
 		Debugf("Raw content of region metadata env var:", jsonStr)
-=======
->>>>>>> 65f8569b... Read region/realm details from region config file and env variable.
 		var regionSchema map[string]string
 		if err := json.Unmarshal([]byte(jsonStr), &regionSchema); err != nil {
 			Debugf("Can't unmarshal env var, the error info is", err)
@@ -342,10 +342,7 @@ func SetRegionMetadataFromCfgFile(region *string) bool {
 func readAndParseConfigFile(configFileName *string) (fileContent []map[string]string, ok bool) {
 
 	if content, err := ioutil.ReadFile(*configFileName); err == nil {
-<<<<<<< HEAD
 		Debugf("Raw content of region metadata config file content:", string(content[:]))
-=======
->>>>>>> 65f8569b... Read region/realm details from region config file and env variable.
 		if err := json.Unmarshal(content, &fileContent); err != nil {
 			Debugf("Can't unmarshal env var, the error info is", err)
 			return
@@ -397,5 +394,67 @@ func checkSchemaItem(regionSchema map[string]string, key string) bool {
 
 // SetRegionFromInstanceMetadataService checks if region metadata can be provided from InstanceMetadataService.
 func SetRegionFromInstanceMetadataService(region *string) bool {
+	// example of content:
+	// {
+	// 	"realmKey" : "oc1",
+	// 	"realmDomainComponent" : "oraclecloud.com",
+	// 	"regionKey" : "YUL",
+	// 	"regionIdentifier" : "ca-montreal-1"
+	// }
+	content, err := GetRegionInfoFromInstanceMetadataService()
+	if err != nil {
+		Debugf("Failed to get instance metadata. Error: %v", err)
+		return false
+	}
+
+	var regionInfo map[string]string
+	err = json.Unmarshal(content, &regionInfo)
+	if err != nil {
+		Debugf("Failed to unmarshal the response content: %v \nError: %v", string(content), err)
+		return false
+	}
+
+	if checkSchemaItems(regionInfo) {
+		addRegionSchema(regionInfo)
+		if regionInfo[regionKeyPropertyName] == *region ||
+			regionInfo[regionIdentifierPropertyName] == *region {
+			*region = regionInfo[regionIdentifierPropertyName]
+		}
+	} else {
+		Debugf("Region information is not valid.")
+		return false
+	}
+
 	return true
+}
+
+// GetRegionInfoFromInstanceMetadataServiceProd calls instance metadata service and get the region information
+func GetRegionInfoFromInstanceMetadataServiceProd() ([]byte, error) {
+	request, err := http.NewRequest(http.MethodGet, instanceMetadataRegionInfoURLV2, nil)
+	request.Header.Add("Authorization", "Bearer Oracle")
+
+	client := &http.Client{
+		Timeout: time.Second * 10,
+	}
+	resp, err := client.Do(request)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to call instance metadata service. Error: %v", err)
+	}
+
+	statusCode := resp.StatusCode
+
+	defer resp.Body.Close()
+
+	content, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("Failed to get region information from response body. Error: %v", err)
+	}
+
+	if statusCode != http.StatusOK {
+		err = fmt.Errorf("HTTP Get failed: URL: %s, Status: %s, Message: %s",
+			instanceMetadataRegionInfoURLV2, resp.Status, string(content))
+		return nil, err
+	}
+
+	return content, nil
 }
