@@ -288,8 +288,15 @@ func checkAndAddRegionMetadata(region string) Region {
 // SetRegionMetadataFromEnvVar checks if region metadata env variable is provided, once it's there, parse and added it to region map
 func SetRegionMetadataFromEnvVar(region *string) bool {
 	// check from env variable
+<<<<<<< HEAD
 	if jsonStr, existed := os.LookupEnv(regionMetadataEnvVarName); existed {
+=======
+	if jsonStr, existed := os.LookupEnv(regionMetadata); existed {
+<<<<<<< HEAD
+>>>>>>> 6871b352... Read region/realm details from region config file and env variable.
 		Debugf("Raw content of region metadata env var:", jsonStr)
+=======
+>>>>>>> 65f8569b... Read region/realm details from region config file and env variable.
 		var regionSchema map[string]string
 		if err := json.Unmarshal([]byte(jsonStr), &regionSchema); err != nil {
 			Debugf("Can't unmarshal env var, the error info is", err)
@@ -335,7 +342,10 @@ func SetRegionMetadataFromCfgFile(region *string) bool {
 func readAndParseConfigFile(configFileName *string) (fileContent []map[string]string, ok bool) {
 
 	if content, err := ioutil.ReadFile(*configFileName); err == nil {
+<<<<<<< HEAD
 		Debugf("Raw content of region metadata config file content:", string(content[:]))
+=======
+>>>>>>> 65f8569b... Read region/realm details from region config file and env variable.
 		if err := json.Unmarshal(content, &fileContent); err != nil {
 			Debugf("Can't unmarshal env var, the error info is", err)
 			return

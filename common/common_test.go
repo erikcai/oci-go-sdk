@@ -335,3 +335,82 @@ func TestSetRegionMetadataFromCfgFile(t *testing.T) {
 	assert.Equal(t, false, ok)
 
 }
+
+func TestSetRegionMetadataFromEnvVar(t *testing.T) {
+	regionMetadataEnvVar := `{"realmKey":"OC0","realmDomainComponent":"testRealm.com","regionKey":"RTK","regionIdentifier":"us-testregion-1"}`
+	// test normal case
+	os.Unsetenv("OCI_REGION_METADATA")
+	os.Setenv("OCI_REGION_METADATA", regionMetadataEnvVar)
+	ok := SetRegionMetadataFromEnvVar()
+	assert.Equal(t, ok, true)
+	assert.Equal(t, regionRealm[Region("us-testregion-1")], "OC0")
+	assert.Equal(t, realm["OC0"], "testRealm.com")
+
+	// test corner case
+	os.Unsetenv("OCI_REGION_METADATA")
+	os.Setenv("OCI_REGION_METADATA", `"test": "test"`)
+	ok = SetRegionMetadataFromEnvVar()
+	assert.Equal(t, ok, false)
+
+	os.Unsetenv("OCI_REGION_METADATA")
+	os.Setenv("OCI_REGION_METADATA", `{"realmKey":"","realmDomainComponent":"testRealm.com","regionKey":"RTK","regionIdentifier":"us-testregion-1"}`)
+	ok = SetRegionMetadataFromEnvVar()
+	assert.Equal(t, ok, false)
+
+	os.Unsetenv("OCI_REGION_METADATA")
+	ok = SetRegionMetadataFromEnvVar()
+	assert.Equal(t, ok, false)
+}
+
+func TestSetRegionMetadataFromCfgFile(t *testing.T) {
+	// test normal case
+	fileContent :=
+		`[
+	{ 
+		"realmKey" : "",
+		"realmDomainComponent" : "oraclecloud.com",
+		"regionKey" : "ABC",
+		"regionIdentifier" : "ap-testregion-2"
+	},
+	{ 
+		"realmKey" : "OC6",
+		"realmDomainComponent" : "oraclensrcloud.com",
+		"regionKey" : "DEF",
+		"regionIdentifier" : "us-testregion-3"
+ 	}
+]`
+	tmpLocation := path.Join(getHomeFolder(), ".oci", "regions-config.json")
+	tmpPath := path.Join(getHomeFolder(), ".oci11")
+
+	if _, err := os.Stat(tmpPath); err != nil && os.IsNotExist(err) {
+		if err := os.Mkdir(tmpPath, 0777); err != nil {
+			assert.FailNow(t, err.Error())
+		}
+	}
+
+	if err := ioutil.WriteFile(tmpLocation, []byte(fileContent), 0644); err != nil {
+		assert.FailNow(t, err.Error())
+	}
+
+	ok := SetRegionMetadataFromCfgFile()
+	assert.Equal(t, ok, true)
+	assert.Equal(t, regionRealm[Region("ap-testregion-2")], "")
+	assert.Equal(t, regionRealm[Region("us-testregion-3")], "OC6")
+	assert.Equal(t, realm["OC6"], "oraclensrcloud.com")
+
+	//corner case
+	fileContent = ""
+	if _, err := os.Stat(tmpLocation); err == nil || os.IsExist(err) {
+		os.Remove(tmpLocation)
+	}
+	ok = SetRegionMetadataFromCfgFile()
+	assert.Equal(t, ok, false)
+
+	if err := ioutil.WriteFile(tmpLocation, []byte(fileContent), 0644); err != nil {
+		assert.FailNow(t, err.Error())
+	}
+
+	ok = SetRegionMetadataFromCfgFile()
+	assert.Equal(t, ok, false)
+
+}
