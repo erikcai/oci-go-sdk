@@ -15,7 +15,7 @@ type CreateProjectRequest struct {
 	// DIS workspace id
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
-	// A project to be created
+	// The details needed to create a project in a workspace.
 	CreateProjectDetails `contributesTo:"body"`
 
 	// Caller may provide "retry tokens" allowing them to retry an operation

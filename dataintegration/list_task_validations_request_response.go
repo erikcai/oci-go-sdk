@@ -39,9 +39,6 @@ type ListTaskValidationsRequest struct {
 	// This parameter is used to control the sort order.  Supported values are `ASC` (ascending) and `DESC` (descending).
 	SortOrder ListTaskValidationsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// This parameter can be used to pass the search queries.  Two types of searches are supported.<br> <ul> <li>An arbitrary text.  Example:- ?query=connectionA</li> <li>A field query.  Example:- ?query=(name:connectionA OR name:connectionB) AND tags:connection</li> </ul>
-	Query *string `mandatory:"false" contributesTo:"query" name:"query"`
-
 	// Unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request,
 	// please provide the request ID.

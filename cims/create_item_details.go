@@ -15,7 +15,7 @@ import (
 )
 
         
- // CreateItemDetails Details of Item
+ // CreateItemDetails Details for creating the item.
 type CreateItemDetails interface {
     
     GetCategory() *CreateCategoryDetails
@@ -24,7 +24,7 @@ type CreateItemDetails interface {
     
     GetIssueType() *CreateIssueTypeDetails
     
- // Name of the item
+ // The display name of the item.
     GetName() *string
 }
 

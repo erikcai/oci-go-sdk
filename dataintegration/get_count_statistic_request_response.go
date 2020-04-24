@@ -15,7 +15,7 @@ type GetCountStatisticRequest struct {
 	// DIS workspace id
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
-	// A unique key of the container object (workspace, project etc) to count statistics for. The statistics will be fetched for given key
+	// A unique key of the container object, such as workspace, project, and so on, to count statistics for. The statistics is fetched for the given key.
 	CountStatisticKey *string `mandatory:"true" contributesTo:"path" name:"countStatisticKey"`
 
 	// Unique Oracle-assigned identifier for the request. If

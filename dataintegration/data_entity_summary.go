@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -15,38 +15,91 @@ import (
 )
 
 // DataEntitySummary The data entity summary object.
-type DataEntitySummary struct {
-	Details DataEntityDetails `mandatory:"false" json:"details"`
-
-	Summary *MetadataObjectSummary `mandatory:"false" json:"summary"`
+type DataEntitySummary interface {
+	GetMetadata() *ObjectMetadata
 }
 
-func (m DataEntitySummary) String() string {
+type dataentitysummary struct {
+	JsonData  []byte
+	Metadata  *ObjectMetadata `mandatory:"false" json:"metadata"`
+	ModelType string          `json:"modelType"`
+}
+
+// UnmarshalJSON unmarshals json
+func (m *dataentitysummary) UnmarshalJSON(data []byte) error {
+	m.JsonData = data
+	type Unmarshalerdataentitysummary dataentitysummary
+	s := struct {
+		Model Unmarshalerdataentitysummary
+	}{}
+	err := json.Unmarshal(data, &s.Model)
+	if err != nil {
+		return err
+	}
+	m.Metadata = s.Model.Metadata
+	m.ModelType = s.Model.ModelType
+
+	return err
+}
+
+// UnmarshalPolymorphicJSON unmarshals polymorphic json
+func (m *dataentitysummary) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
+
+	if data == nil || string(data) == "null" {
+		return nil, nil
+	}
+
+	var err error
+	switch m.ModelType {
+	case "FILE_ENTITY":
+		mm := DataEntitySummaryFromFile{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "TABLE_ENTITY":
+		mm := DataEntitySummaryFromTable{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "VIEW_ENTITY":
+		mm := DataEntitySummaryFromView{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	default:
+		return *m, nil
+	}
+}
+
+//GetMetadata returns Metadata
+func (m dataentitysummary) GetMetadata() *ObjectMetadata {
+	return m.Metadata
+}
+
+func (m dataentitysummary) String() string {
 	return common.PointerString(m)
 }
 
-// UnmarshalJSON unmarshals from json
-func (m *DataEntitySummary) UnmarshalJSON(data []byte) (e error) {
-	model := struct {
-		Details dataentitydetails      `json:"details"`
-		Summary *MetadataObjectSummary `json:"summary"`
-	}{}
+// DataEntitySummaryModelTypeEnum Enum with underlying type: string
+type DataEntitySummaryModelTypeEnum string
 
-	e = json.Unmarshal(data, &model)
-	if e != nil {
-		return
-	}
-	var nn interface{}
-	nn, e = model.Details.UnmarshalPolymorphicJSON(model.Details.JsonData)
-	if e != nil {
-		return
-	}
-	if nn != nil {
-		m.Details = nn.(DataEntityDetails)
-	} else {
-		m.Details = nil
-	}
+// Set of constants representing the allowable values for DataEntitySummaryModelTypeEnum
+const (
+	DataEntitySummaryModelTypeViewEntity        DataEntitySummaryModelTypeEnum = "VIEW_ENTITY"
+	DataEntitySummaryModelTypeLogicalDataEntity DataEntitySummaryModelTypeEnum = "LOGICAL_DATA_ENTITY"
+	DataEntitySummaryModelTypeTableEntity       DataEntitySummaryModelTypeEnum = "TABLE_ENTITY"
+	DataEntitySummaryModelTypeFileEntity        DataEntitySummaryModelTypeEnum = "FILE_ENTITY"
+)
 
-	m.Summary = model.Summary
-	return
+var mappingDataEntitySummaryModelType = map[string]DataEntitySummaryModelTypeEnum{
+	"VIEW_ENTITY":         DataEntitySummaryModelTypeViewEntity,
+	"LOGICAL_DATA_ENTITY": DataEntitySummaryModelTypeLogicalDataEntity,
+	"TABLE_ENTITY":        DataEntitySummaryModelTypeTableEntity,
+	"FILE_ENTITY":         DataEntitySummaryModelTypeFileEntity,
+}
+
+// GetDataEntitySummaryModelTypeEnumValues Enumerates the set of values for DataEntitySummaryModelTypeEnum
+func GetDataEntitySummaryModelTypeEnumValues() []DataEntitySummaryModelTypeEnum {
+	values := make([]DataEntitySummaryModelTypeEnum, 0)
+	for _, v := range mappingDataEntitySummaryModelType {
+		values = append(values, v)
+	}
+	return values
 }

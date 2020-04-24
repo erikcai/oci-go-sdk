@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -13,11 +13,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SortClause auto generated description
+// SortClause The information about the sort object.
 type SortClause struct {
 	Field *ShapeField `mandatory:"false" json:"field"`
 
-	// order
+	// The sort order.
 	Order SortClauseOrderEnum `mandatory:"false" json:"order,omitempty"`
 }
 

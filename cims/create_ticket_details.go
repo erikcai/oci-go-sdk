@@ -15,19 +15,19 @@ import (
 
 
     
- // CreateTicketDetails Details of Ticket created
+ // CreateTicketDetails Details for creating the support ticket.
 type CreateTicketDetails struct {
     
- // Severity of the ticket. eg: HIGH, MEDIUM
+ // The severity of the support ticket.
     Severity CreateTicketDetailsSeverityEnum `mandatory:"true" json:"severity"`
     
- // Title of ticket
+ // The title of the support ticket.
     Title *string `mandatory:"true" json:"title"`
     
- // Details of ticket
+ // The description of the support ticket.
     Description *string `mandatory:"true" json:"description"`
     
- // List of resources
+ // The list of resources.
     ResourceList []CreateResourceDetails `mandatory:"false" json:"resourceList"`
 }
 

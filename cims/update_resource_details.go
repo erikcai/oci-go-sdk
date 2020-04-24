@@ -16,7 +16,7 @@ import (
 
 
     
- // UpdateResourceDetails Update Resource details
+ // UpdateResourceDetails Details about updates to the resource.
 type UpdateResourceDetails struct {
     
     Item UpdateItemDetails `mandatory:"false" json:"item"`

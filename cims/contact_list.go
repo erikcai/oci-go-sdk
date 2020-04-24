@@ -15,10 +15,10 @@ import (
 
 
     
- // ContactList List of contacts
+ // ContactList The list of contacts for the ticket.
 type ContactList struct {
     
- // List of contacts
+ // The list of contacts.
     ContactList []Contact `mandatory:"true" json:"contactList"`
 }
 

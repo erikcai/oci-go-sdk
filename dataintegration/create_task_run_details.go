@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -15,9 +15,31 @@ import (
 
 // CreateTaskRunDetails Properties used in task run create operations.
 type CreateTaskRunDetails struct {
-	Details *DetailsForTaskRun `mandatory:"false" json:"details"`
 
-	RegistryInfo *RegistryInfo `mandatory:"false" json:"registryInfo"`
+	// The key of the object.
+	Key *string `mandatory:"false" json:"key"`
+
+	// The type of the object.
+	ModelType *string `mandatory:"false" json:"modelType"`
+
+	// The model version of an object.
+	ModelVersion *string `mandatory:"false" json:"modelVersion"`
+
+	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
+	Name *string `mandatory:"false" json:"name"`
+
+	// Detailed description for the object.
+	Description *string `mandatory:"false" json:"description"`
+
+	ConfigProvider *CreateConfigProvider `mandatory:"false" json:"configProvider"`
+
+	// Task object key.
+	TaskKey *string `mandatory:"false" json:"taskKey"`
+
+	// Value can only contain upper case letters, underscore and numbers. It should begin with upper case letter or underscore. The value can be edited by the user.
+	Identifier *string `mandatory:"false" json:"identifier"`
+
+	RegistryMetadata *RegistryMetadata `mandatory:"false" json:"registryMetadata"`
 }
 
 func (m CreateTaskRunDetails) String() string {

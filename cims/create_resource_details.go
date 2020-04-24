@@ -16,15 +16,15 @@ import (
 
 
     
- // CreateResourceDetails Details of Ticket Item
+ // CreateResourceDetails Details for creating the support ticket item.
 type CreateResourceDetails struct {
     
     Item CreateItemDetails `mandatory:"false" json:"item"`
     
- // List of OCI regions
+ // The list of available Oracle Cloud Infrastructure regions.
     Region RegionEnum `mandatory:"false" json:"region,omitempty"`
     
- // List of OCI ADs
+ // The list of available Oracle Cloud Infrastructure availability domains.
     AvailabilityDomain AvailabilityDomainEnum `mandatory:"false" json:"availabilityDomain,omitempty"`
 }
 

@@ -24,7 +24,7 @@ type ListDataAssetsRequest struct {
 	// This parameter allows users to specify which fields to get for an object.
 	Fields []string `contributesTo:"query" name:"fields" collectionFormat:"multi"`
 
-	// Type of the data asset
+	// Type of the object to filter the results with.
 	Type *string `mandatory:"false" contributesTo:"query" name:"type"`
 
 	// This parameter allows users to specify a sort field.  Supported sort fields are `name`, `identifier`, `timeCreated`, and `timeUpdated`.  Default sort order is the descending order of `timeCreated` (most recently created objects at the top).  Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is by relevance score in descending order).

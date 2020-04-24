@@ -15,13 +15,13 @@ import (
 )
 
         
- // Item Details of Item
+ // Item Details about the item object.
 type Item interface {
     
- // Unique ID that identifies an Item
+ // Unique identifier for the item.
     GetItemKey() *string
     
- // Name of item
+ // The display name of the item.
     GetName() *string
     
     GetCategory() *Category

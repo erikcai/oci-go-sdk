@@ -18,7 +18,7 @@ type UpdateFolderRequest struct {
 	// DIS Folder key
 	FolderKey *string `mandatory:"true" contributesTo:"path" name:"folderKey"`
 
-	// The information to be updated.
+	// The details needed to update a folder.
 	UpdateFolderDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If

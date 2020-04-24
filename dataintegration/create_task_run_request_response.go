@@ -18,7 +18,7 @@ type CreateTaskRunRequest struct {
 	// DIS application key
 	ApplicationKey *string `mandatory:"true" contributesTo:"path" name:"applicationKey"`
 
-	// A workflow run to be created
+	// The details needed to create a task run.
 	CreateTaskRunDetails `contributesTo:"body"`
 
 	// Caller may provide "retry tokens" allowing them to retry an operation

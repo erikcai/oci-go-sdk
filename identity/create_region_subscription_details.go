@@ -25,6 +25,15 @@ type CreateRegionSubscriptionDetails struct {
 	// - `YYZ`
 	// - `NRT`
 	// - `ICN`
+	// - `BOM`
+	// - `ZRH`
+	// - `GRU`
+	// - `SYD`
+	// - `JED`
+	// - `AMS`
+	// - `KIX`
+	// - `MEL`
+	// - `YUL`
 	// Example: `PHX`
 	RegionKey *string `mandatory:"true" json:"regionKey"`
 }

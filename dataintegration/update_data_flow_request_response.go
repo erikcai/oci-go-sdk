@@ -18,7 +18,7 @@ type UpdateDataFlowRequest struct {
 	// DIS DataFlow key
 	DataFlowKey *string `mandatory:"true" contributesTo:"path" name:"dataFlowKey"`
 
-	// The information to be updated.
+	// The details needed to updated a data flow.
 	UpdateDataFlowDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If

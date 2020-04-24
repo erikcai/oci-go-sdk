@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -48,16 +48,12 @@ func (m *abstractformatattribute) UnmarshalPolymorphicJSON(data []byte) (interfa
 
 	var err error
 	switch m.ModelType {
-	case "AVROFORMAT":
-		mm := AvroFormatAttribute{}
+	case "JSON_FORMAT":
+		mm := JsonFormatAttribute{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
-	case "CSVFORMAT":
+	case "CSV_FORMAT":
 		mm := CsvFormatAttribute{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
-	case "TEXTFILEFORMAT":
-		mm := TextFileFormatAttribute{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:
@@ -74,15 +70,13 @@ type AbstractFormatAttributeModelTypeEnum string
 
 // Set of constants representing the allowable values for AbstractFormatAttributeModelTypeEnum
 const (
-	AbstractFormatAttributeModelTypeTextfileformat AbstractFormatAttributeModelTypeEnum = "TEXTFILEFORMAT"
-	AbstractFormatAttributeModelTypeAvroformat     AbstractFormatAttributeModelTypeEnum = "AVROFORMAT"
-	AbstractFormatAttributeModelTypeCsvformat      AbstractFormatAttributeModelTypeEnum = "CSVFORMAT"
+	AbstractFormatAttributeModelTypeJsonFormat AbstractFormatAttributeModelTypeEnum = "JSON_FORMAT"
+	AbstractFormatAttributeModelTypeCsvFormat  AbstractFormatAttributeModelTypeEnum = "CSV_FORMAT"
 )
 
 var mappingAbstractFormatAttributeModelType = map[string]AbstractFormatAttributeModelTypeEnum{
-	"TEXTFILEFORMAT": AbstractFormatAttributeModelTypeTextfileformat,
-	"AVROFORMAT":     AbstractFormatAttributeModelTypeAvroformat,
-	"CSVFORMAT":      AbstractFormatAttributeModelTypeCsvformat,
+	"JSON_FORMAT": AbstractFormatAttributeModelTypeJsonFormat,
+	"CSV_FORMAT":  AbstractFormatAttributeModelTypeCsvFormat,
 }
 
 // GetAbstractFormatAttributeModelTypeEnumValues Enumerates the set of values for AbstractFormatAttributeModelTypeEnum

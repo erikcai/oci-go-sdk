@@ -7,8 +7,8 @@
 // APIs for dynamically scaling Compute resources to meet application requirements. For more information about
 // autoscaling, see Autoscaling (https://docs.cloud.oracle.com/Content/Compute/Tasks/autoscalinginstancepools.htm). For information about the
 // Compute service, see Overview of the Compute Service (https://docs.cloud.oracle.com/Content/Compute/Concepts/computeoverview.htm).
-// **Note:** Autoscaling is not available in Government Cloud tenancies. For more information, see
-// Information for Oracle Cloud Infrastructure Government Cloud Customers (https://docs.cloud.oracle.com/Content/General/Concepts/govinfo.htm).
+// **Note:** Autoscaling is not available in US Government Cloud tenancies. For more information, see
+// Oracle Cloud Infrastructure US Government Cloud (https://docs.cloud.oracle.com/Content/General/Concepts/govoverview.htm).
 //
 
 package autoscaling
@@ -52,12 +52,6 @@ type AutoScalingConfigurationSummary struct {
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
-
-	// The maximum number of resources to scale out to.
-	MaxResourceCount *int `mandatory:"false" json:"maxResourceCount"`
-
-	// The minimum number of resources to scale in to.
-	MinResourceCount *int `mandatory:"false" json:"minResourceCount"`
 }
 
 func (m AutoScalingConfigurationSummary) String() string {
@@ -72,8 +66,6 @@ func (m *AutoScalingConfigurationSummary) UnmarshalJSON(data []byte) (e error) {
 		IsEnabled         *bool                             `json:"isEnabled"`
 		DefinedTags       map[string]map[string]interface{} `json:"definedTags"`
 		FreeformTags      map[string]string                 `json:"freeformTags"`
-		MaxResourceCount  *int                              `json:"maxResourceCount"`
-		MinResourceCount  *int                              `json:"minResourceCount"`
 		CompartmentId     *string                           `json:"compartmentId"`
 		Id                *string                           `json:"id"`
 		Resource          resource                          `json:"resource"`
@@ -94,10 +86,6 @@ func (m *AutoScalingConfigurationSummary) UnmarshalJSON(data []byte) (e error) {
 	m.DefinedTags = model.DefinedTags
 
 	m.FreeformTags = model.FreeformTags
-
-	m.MaxResourceCount = model.MaxResourceCount
-
-	m.MinResourceCount = model.MinResourceCount
 
 	m.CompartmentId = model.CompartmentId
 

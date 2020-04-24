@@ -15,13 +15,13 @@ import (
 
 
     
- // Category Details of Category of the incident
+ // Category Details about the category associated with the support ticket.
 type Category struct {
     
- // Unique ID that identifies a Category
+ // Unique identifier for the category.
     CategoryKey *string `mandatory:"false" json:"categoryKey"`
     
- // Name of category. eg: Compute, Identity
+ // The name of the category. For example, `Compute` or `Identity`.
     Name *string `mandatory:"false" json:"name"`
 }
 

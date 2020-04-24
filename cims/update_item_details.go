@@ -15,7 +15,7 @@ import (
 )
 
         
- // UpdateItemDetails Details of Item
+ // UpdateItemDetails Details about the item.
 type UpdateItemDetails interface {
 }
 

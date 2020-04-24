@@ -18,7 +18,7 @@ type UpdateTaskRequest struct {
 	// DIS Task key
 	TaskKey *string `mandatory:"true" contributesTo:"path" name:"taskKey"`
 
-	// The information to be updated.
+	// The details needed to update a task.
 	UpdateTaskDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If

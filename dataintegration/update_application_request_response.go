@@ -18,7 +18,7 @@ type UpdateApplicationRequest struct {
 	// DIS application key
 	ApplicationKey *string `mandatory:"true" contributesTo:"path" name:"applicationKey"`
 
-	// The information to be updated.
+	// The details needed to update an application.
 	UpdateApplicationDetails `contributesTo:"body"`
 
 	// Update and Delete operations should accept an optional If-Match header,

@@ -15,10 +15,10 @@ import (
 
 
     
- // CreateSubCategoryDetails Details of Sub Category of the incident
+ // CreateSubCategoryDetails Details for creating the subcategory of the support ticket.
 type CreateSubCategoryDetails struct {
     
- // Unique ID that identifies a Sub Category
+ // Unique identifier for the subcategory.
     SubCategoryKey *string `mandatory:"false" json:"subCategoryKey"`
 }
 

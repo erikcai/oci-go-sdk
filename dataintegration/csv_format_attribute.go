@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -17,20 +17,17 @@ import (
 // CsvFormatAttribute The CSV format attribute.
 type CsvFormatAttribute struct {
 
-	// encoding
+	// The encoding for the file.
 	Encoding *string `mandatory:"false" json:"encoding"`
 
-	// escapeChar
-	EscapeChar *string `mandatory:"false" json:"escapeChar"`
+	// The escape character for the CSV format.
+	EscapeCharacter *string `mandatory:"false" json:"escapeCharacter"`
 
-	// delimiter
+	// The delimiter for the CSV format.
 	Delimiter *string `mandatory:"false" json:"delimiter"`
 
-	// quoteCharacter
+	// The quote character for the CSV format.
 	QuoteCharacter *string `mandatory:"false" json:"quoteCharacter"`
-
-	// hasHeader
-	IsHasHeader *bool `mandatory:"false" json:"isHasHeader"`
 }
 
 func (m CsvFormatAttribute) String() string {
@@ -44,7 +41,7 @@ func (m CsvFormatAttribute) MarshalJSON() (buff []byte, e error) {
 		DiscriminatorParam string `json:"modelType"`
 		MarshalTypeCsvFormatAttribute
 	}{
-		"CSVFORMAT",
+		"CSV_FORMAT",
 		(MarshalTypeCsvFormatAttribute)(m),
 	}
 

@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -15,38 +15,91 @@ import (
 )
 
 // DataEntity The data entity object.
-type DataEntity struct {
-	Details DataEntityDetails `mandatory:"false" json:"details"`
-
-	Summary *MetadataObjectSummary `mandatory:"false" json:"summary"`
+type DataEntity interface {
+	GetMetadata() *ObjectMetadata
 }
 
-func (m DataEntity) String() string {
+type dataentity struct {
+	JsonData  []byte
+	Metadata  *ObjectMetadata `mandatory:"false" json:"metadata"`
+	ModelType string          `json:"modelType"`
+}
+
+// UnmarshalJSON unmarshals json
+func (m *dataentity) UnmarshalJSON(data []byte) error {
+	m.JsonData = data
+	type Unmarshalerdataentity dataentity
+	s := struct {
+		Model Unmarshalerdataentity
+	}{}
+	err := json.Unmarshal(data, &s.Model)
+	if err != nil {
+		return err
+	}
+	m.Metadata = s.Model.Metadata
+	m.ModelType = s.Model.ModelType
+
+	return err
+}
+
+// UnmarshalPolymorphicJSON unmarshals polymorphic json
+func (m *dataentity) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
+
+	if data == nil || string(data) == "null" {
+		return nil, nil
+	}
+
+	var err error
+	switch m.ModelType {
+	case "TABLE_ENTITY":
+		mm := DataEntityFromTable{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "VIEW_ENTITY":
+		mm := DataEntityFromView{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "FILE_ENTITY":
+		mm := DataEntityFromFile{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	default:
+		return *m, nil
+	}
+}
+
+//GetMetadata returns Metadata
+func (m dataentity) GetMetadata() *ObjectMetadata {
+	return m.Metadata
+}
+
+func (m dataentity) String() string {
 	return common.PointerString(m)
 }
 
-// UnmarshalJSON unmarshals from json
-func (m *DataEntity) UnmarshalJSON(data []byte) (e error) {
-	model := struct {
-		Details dataentitydetails      `json:"details"`
-		Summary *MetadataObjectSummary `json:"summary"`
-	}{}
+// DataEntityModelTypeEnum Enum with underlying type: string
+type DataEntityModelTypeEnum string
 
-	e = json.Unmarshal(data, &model)
-	if e != nil {
-		return
-	}
-	var nn interface{}
-	nn, e = model.Details.UnmarshalPolymorphicJSON(model.Details.JsonData)
-	if e != nil {
-		return
-	}
-	if nn != nil {
-		m.Details = nn.(DataEntityDetails)
-	} else {
-		m.Details = nil
-	}
+// Set of constants representing the allowable values for DataEntityModelTypeEnum
+const (
+	DataEntityModelTypeViewEntity        DataEntityModelTypeEnum = "VIEW_ENTITY"
+	DataEntityModelTypeLogicalDataEntity DataEntityModelTypeEnum = "LOGICAL_DATA_ENTITY"
+	DataEntityModelTypeTableEntity       DataEntityModelTypeEnum = "TABLE_ENTITY"
+	DataEntityModelTypeFileEntity        DataEntityModelTypeEnum = "FILE_ENTITY"
+)
 
-	m.Summary = model.Summary
-	return
+var mappingDataEntityModelType = map[string]DataEntityModelTypeEnum{
+	"VIEW_ENTITY":         DataEntityModelTypeViewEntity,
+	"LOGICAL_DATA_ENTITY": DataEntityModelTypeLogicalDataEntity,
+	"TABLE_ENTITY":        DataEntityModelTypeTableEntity,
+	"FILE_ENTITY":         DataEntityModelTypeFileEntity,
+}
+
+// GetDataEntityModelTypeEnumValues Enumerates the set of values for DataEntityModelTypeEnum
+func GetDataEntityModelTypeEnumValues() []DataEntityModelTypeEnum {
+	values := make([]DataEntityModelTypeEnum, 0)
+	for _, v := range mappingDataEntityModelType {
+		values = append(values, v)
+	}
+	return values
 }

@@ -75,6 +75,12 @@ type ListApplicationsResponse struct {
 
 	// Retrieves the next page of results. When this header appears in the response, additional pages of results remain. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
+
+	// Retrieves the previous page of results. When this header appears in the response, previous pages of results exist. See List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+	OpcPrevPage *string `presentIn:"header" name:"opc-prev-page"`
+
+	// Total items in the entire list.
+	OpcTotalItems *int `presentIn:"header" name:"opc-total-items"`
 }
 
 func (response ListApplicationsResponse) String() string {

@@ -78,6 +78,15 @@ type UpdateInstanceDetails struct {
 	PreferredMaintenanceAction UpdateInstanceDetailsPreferredMaintenanceActionEnum `mandatory:"false" json:"preferredMaintenanceAction,omitempty"`
 
 	InstanceOptions *InstanceOptions `mandatory:"false" json:"instanceOptions"`
+
+	// The fault domain for the dedicated virtual machine host's assigned instances.
+	// For more information, see Fault Domains (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#fault).
+	// To get a list of fault domains, use the `ListFaultDomains` operation in
+	// the Identity and Access Management Service API (https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/).
+	// Example: `FAULT-DOMAIN-1`
+	FaultDomain *string `mandatory:"false" json:"faultDomain"`
+
+	LaunchOptions *UpdateLaunchOptions `mandatory:"false" json:"launchOptions"`
 }
 
 func (m UpdateInstanceDetails) String() string {

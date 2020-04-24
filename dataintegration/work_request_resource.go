@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestResource A resource created or operated on by a work request.
+// WorkRequestResource The resource that is created or operated on by a work request.
 type WorkRequestResource struct {
 
 	// The resource type the work request affects.
@@ -25,10 +25,10 @@ type WorkRequestResource struct {
 	// or DELETED, respectively.
 	ActionType WorkRequestResourceActionTypeEnum `mandatory:"true" json:"actionType"`
 
-	// The identifier of the resource the work request affects.
+	// The OCID or other unique identifier of the resource the work request affects.
 	Identifier *string `mandatory:"true" json:"identifier"`
 
-	// The URI path that the user can do a GET on to access the resource metadata
+	// The URI path that is used in a GET request to access the resource metadata.
 	EntityUri *string `mandatory:"false" json:"entityUri"`
 }
 

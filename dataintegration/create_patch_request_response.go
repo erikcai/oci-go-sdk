@@ -18,7 +18,7 @@ type CreatePatchRequest struct {
 	// DIS application key
 	ApplicationKey *string `mandatory:"true" contributesTo:"path" name:"applicationKey"`
 
-	// A patch in an application to be created
+	// Detailed needed to create a patch in an application.
 	CreatePatchDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If

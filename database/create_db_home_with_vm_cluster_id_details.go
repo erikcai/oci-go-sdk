@@ -32,6 +32,15 @@ type CreateDbHomeWithVmClusterIdDetails struct {
 	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
 	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
 
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
+	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
 	Database *CreateDatabaseDetails `mandatory:"false" json:"database"`
 }
 
@@ -48,6 +57,16 @@ func (m CreateDbHomeWithVmClusterIdDetails) GetKmsKeyId() *string {
 //GetKmsKeyVersionId returns KmsKeyVersionId
 func (m CreateDbHomeWithVmClusterIdDetails) GetKmsKeyVersionId() *string {
 	return m.KmsKeyVersionId
+}
+
+//GetFreeformTags returns FreeformTags
+func (m CreateDbHomeWithVmClusterIdDetails) GetFreeformTags() map[string]string {
+	return m.FreeformTags
+}
+
+//GetDefinedTags returns DefinedTags
+func (m CreateDbHomeWithVmClusterIdDetails) GetDefinedTags() map[string]map[string]interface{} {
+	return m.DefinedTags
 }
 
 func (m CreateDbHomeWithVmClusterIdDetails) String() string {

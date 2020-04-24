@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -17,23 +17,23 @@ import (
 // TypedNamePatternRule The typed name rule for field projection.
 type TypedNamePatternRule struct {
 
-	// Object key
+	// The key of the object.
 	Key *string `mandatory:"false" json:"key"`
 
-	// modelVersion
+	// The model version of an object.
 	ModelVersion *string `mandatory:"false" json:"modelVersion"`
 
 	ParentRef *ParentReference `mandatory:"false" json:"parentRef"`
 
-	// javaRegexSyntax
+	// Specifies whether the rule uses a java regex syntax.
 	IsJavaRegexSyntax *bool `mandatory:"false" json:"isJavaRegexSyntax"`
 
 	ConfigValues *ConfigValues `mandatory:"false" json:"configValues"`
 
-	// Status of object, can set this to value 1 for shallow references across objects, other values reserved.
+	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
 
-	// Descriptive text for the object.
+	// Detailed description for the object.
 	Description *string `mandatory:"false" json:"description"`
 
 	// types
@@ -51,7 +51,7 @@ type TypedNamePatternRule struct {
 	// caseSensitive
 	IsCaseSensitive *bool `mandatory:"false" json:"isCaseSensitive"`
 
-	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
+	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
 	Names []string `mandatory:"false" json:"names"`
 
 	// matchingStrategy

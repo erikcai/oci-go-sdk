@@ -15,13 +15,13 @@ import (
 
 
     
- // TenancyInformation Details of Customer Tenant
+ // TenancyInformation Details about the customer's tenancy.
 type TenancyInformation struct {
     
- // Tenant customer support identifier
+ // The Customer Support Identifier number associated with the tenancy.
     CustomerSupportKey *string `mandatory:"true" json:"customerSupportKey"`
     
- // Tenant OCID
+ // The OCID of the tenancy.
     TenancyId *string `mandatory:"true" json:"tenancyId"`
 }
 

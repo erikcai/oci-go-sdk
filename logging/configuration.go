@@ -18,6 +18,9 @@ import (
 type Configuration struct {
 	Source Source `mandatory:"true" json:"source"`
 
+	// The OCID of the compartment that the resource belongs to.
+	CompartmentId *string `mandatory:"false" json:"compartmentId"`
+
 	Indexing *Indexing `mandatory:"false" json:"indexing"`
 }
 
@@ -28,8 +31,9 @@ func (m Configuration) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *Configuration) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		Indexing *Indexing `json:"indexing"`
-		Source   source    `json:"source"`
+		CompartmentId *string   `json:"compartmentId"`
+		Indexing      *Indexing `json:"indexing"`
+		Source        source    `json:"source"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -37,6 +41,8 @@ func (m *Configuration) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	var nn interface{}
+	m.CompartmentId = model.CompartmentId
+
 	m.Indexing = model.Indexing
 
 	nn, e = model.Source.UnmarshalPolymorphicJSON(model.Source.JsonData)

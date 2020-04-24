@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -20,21 +20,21 @@ type ConnectionDetails interface {
 	// Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.
 	GetKey() *string
 
-	// modelVersion
+	// The model version of an object.
 	GetModelVersion() *string
 
 	GetParentRef() *ParentReference
 
-	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
+	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
 	GetName() *string
 
-	// Descriptive text for the object.
+	// Detailed description for the object.
 	GetDescription() *string
 
-	// The version of the object, to track changes in the object instance
+	// The version of the object that is used to track changes in the object instance.
 	GetObjectVersion() *int
 
-	// Status of object, can set this to value 1 for shallow references across objects, other values reserved.
+	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	GetObjectStatus() *int
 
 	// Value can only contain upper case letters, underscore and numbers. It should begin with upper case letter or underscore. The value can be edited by the user.
@@ -42,7 +42,7 @@ type ConnectionDetails interface {
 
 	GetPrimarySchema() *Schema
 
-	// connectionProperties
+	// The properties for the connection.
 	GetConnectionProperties() []ConnectionProperty
 }
 
@@ -96,16 +96,16 @@ func (m *connectiondetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, 
 
 	var err error
 	switch m.ModelType {
-	case "ORACLE_ATP_CONNECTION":
-		mm := ConnectionFromOracleAtpConnectionDetails{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	case "ORACLE_OBJECT_STORAGE_CONNECTION":
-		mm := ConnectionFromOracleObjectStorageConnectionDetails{}
+		mm := ConnectionFromObjectStorageDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	case "ORACLE_ADWC_CONNECTION":
-		mm := ConnectionFromOracleAdwcConnectionDetails{}
+		mm := ConnectionFromAdwcDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "ORACLE_ATP_CONNECTION":
+		mm := ConnectionFromAtpDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	case "ORACLEDB_CONNECTION":

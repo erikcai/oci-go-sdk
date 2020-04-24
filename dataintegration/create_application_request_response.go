@@ -15,7 +15,7 @@ type CreateApplicationRequest struct {
 	// DIS workspace id
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
-	// An application to be created
+	// The details needed to create an application.
 	CreateApplicationDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If

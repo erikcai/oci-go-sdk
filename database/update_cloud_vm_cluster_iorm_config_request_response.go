@@ -16,7 +16,7 @@ type UpdateCloudVmClusterIormConfigRequest struct {
 	CloudVmClusterId *string `mandatory:"true" contributesTo:"path" name:"cloudVmClusterId"`
 
 	// Request to perform database update.
-	CloudVmClusterIormConfigUpdateDetails `contributesTo:"body"`
+	CloudVmClusterIormConfigUpdateDetails ExadataIormConfigUpdateDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -51,8 +51,8 @@ type UpdateCloudVmClusterIormConfigResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The CloudVmClusterDbIormConfig instance
-	CloudVmClusterDbIormConfig `presentIn:"body"`
+	// The ExadataIormConfig instance
+	ExadataIormConfig `presentIn:"body"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the work request. Multiple OCID values are returned in a comma-separated list. Use GetWorkRequest with a work request OCID to track the status of the request.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`

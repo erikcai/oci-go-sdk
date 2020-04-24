@@ -21,7 +21,7 @@ type UpdateTaskRunRequest struct {
 	// DIS taskRun key
 	TaskRunKey *string `mandatory:"true" contributesTo:"path" name:"taskRunKey"`
 
-	// The information to be updated.
+	// The details needed to update the status of a task run.
 	UpdateTaskRunDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If

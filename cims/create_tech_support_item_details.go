@@ -15,7 +15,7 @@ import (
 )
 
         
- // CreateTechSupportItemDetails Details of TechSupport Item
+ // CreateTechSupportItemDetails Details for creating the technical support item.
 type CreateTechSupportItemDetails struct {
         
         Category *CreateCategoryDetails `mandatory:"false" json:"category"`
@@ -24,7 +24,7 @@ type CreateTechSupportItemDetails struct {
         
         IssueType *CreateIssueTypeDetails `mandatory:"false" json:"issueType"`
         
- // Name of the item
+ // The display name of the item.
         Name *string `mandatory:"false" json:"name"`
 }
         //GetCategory returns Category

@@ -29,6 +29,9 @@ type LogGroup struct {
 	// Description for this resource.
 	Description *string `mandatory:"false" json:"description"`
 
+	// The state of the log group object.
+	LifecycleState LogGroupLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`

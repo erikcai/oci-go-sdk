@@ -18,7 +18,7 @@ type UpdateProjectRequest struct {
 	// DIS Project key
 	ProjectKey *string `mandatory:"true" contributesTo:"path" name:"projectKey"`
 
-	// The information to be updated.
+	// The details needed to update a project.
 	UpdateProjectDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If

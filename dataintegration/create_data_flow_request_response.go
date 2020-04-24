@@ -15,7 +15,7 @@ type CreateDataFlowRequest struct {
 	// DIS workspace id
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
-	// Details for the new DataFlow object.
+	// The details needed to create a new data flow.
 	CreateDataFlowDetails `contributesTo:"body"`
 
 	// Caller may provide "retry tokens" allowing them to retry an operation

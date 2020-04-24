@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -13,13 +13,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestLogEntry A log message from the execution of a work request.
+// WorkRequestLogEntry The log message from executing an operation that is tracked by a work request.
 type WorkRequestLogEntry struct {
 
-	// Human-readable log message.
+	// A user friendly log message.
 	Message *string `mandatory:"true" json:"message"`
 
-	// The time the log message was written. An RFC3339 formatted datetime string
+	// The date and time the log message was written, in the timestamp format defined by RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
 	Timestamp *common.SDKTime `mandatory:"true" json:"timestamp"`
 }
 

@@ -15,13 +15,13 @@ import (
 )
 
         
- // UpdateActivityItemDetails Details of Activity Item
+ // UpdateActivityItemDetails Details about the ticket activity.
 type UpdateActivityItemDetails struct {
         
- // Comments to update as part of Activity
+ // Comments updated at the time that the activity occurs.
         Comments *string `mandatory:"false" json:"comments"`
        
- // Type of activity. eg: NOTES, UPDATE
+ // The type of activity occurring.
        ActivityType UpdateActivityItemDetailsActivityTypeEnum `mandatory:"false" json:"activityType,omitempty"`
 }
 

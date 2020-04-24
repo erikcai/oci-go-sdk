@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -16,30 +16,25 @@ import (
 // TaskRunDetails The task run object provides information on the execution of a task.
 type TaskRunDetails struct {
 
-	// Object key
+	// The key of the object.
 	Key *string `mandatory:"false" json:"key"`
 
 	// The type of the object.
 	ModelType *string `mandatory:"false" json:"modelType"`
 
-	// modelVersion
+	// The model version of an object.
 	ModelVersion *string `mandatory:"false" json:"modelVersion"`
 
 	ParentRef *ParentReference `mandatory:"false" json:"parentRef"`
 
-	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
+	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
 	Name *string `mandatory:"false" json:"name"`
 
-	// Descriptive text for the object.
+	// Detailed description for the object.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The version of the object, to track changes in the object instance
+	// The version of the object that is used to track changes in the object instance.
 	ObjectVersion *int `mandatory:"false" json:"objectVersion"`
-
-	TaskRef *Task `mandatory:"false" json:"taskRef"`
-
-	// taskType
-	TaskType *string `mandatory:"false" json:"taskType"`
 
 	// status
 	Status TaskRunDetailsStatusEnum `mandatory:"false" json:"status,omitempty"`
@@ -53,17 +48,22 @@ type TaskRunDetails struct {
 	// lastUpdated
 	LastUpdated *int `mandatory:"false" json:"lastUpdated"`
 
-	// recordsWritten
+	// Number of records processed in task run.
 	RecordsWritten *int `mandatory:"false" json:"recordsWritten"`
 
-	// logs
-	Logs *string `mandatory:"false" json:"logs"`
+	// Number of bytes processed in task run.
+	BytesProcessed *int `mandatory:"false" json:"bytesProcessed"`
 
-	// Status of object, can set this to value 1 for shallow references across objects, other values reserved.
+	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
+
+	// The type of the task for the run.
+	TaskType TaskRunDetailsTaskTypeEnum `mandatory:"false" json:"taskType,omitempty"`
 
 	// Value can only contain upper case letters, underscore and numbers. It should begin with upper case letter or underscore. The value can be edited by the user.
 	Identifier *string `mandatory:"false" json:"identifier"`
+
+	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
 }
 
 func (m TaskRunDetails) String() string {
@@ -98,6 +98,29 @@ var mappingTaskRunDetailsStatus = map[string]TaskRunDetailsStatusEnum{
 func GetTaskRunDetailsStatusEnumValues() []TaskRunDetailsStatusEnum {
 	values := make([]TaskRunDetailsStatusEnum, 0)
 	for _, v := range mappingTaskRunDetailsStatus {
+		values = append(values, v)
+	}
+	return values
+}
+
+// TaskRunDetailsTaskTypeEnum Enum with underlying type: string
+type TaskRunDetailsTaskTypeEnum string
+
+// Set of constants representing the allowable values for TaskRunDetailsTaskTypeEnum
+const (
+	TaskRunDetailsTaskTypeIntegrationTask TaskRunDetailsTaskTypeEnum = "INTEGRATION_TASK"
+	TaskRunDetailsTaskTypeDataLoaderTask  TaskRunDetailsTaskTypeEnum = "DATA_LOADER_TASK"
+)
+
+var mappingTaskRunDetailsTaskType = map[string]TaskRunDetailsTaskTypeEnum{
+	"INTEGRATION_TASK": TaskRunDetailsTaskTypeIntegrationTask,
+	"DATA_LOADER_TASK": TaskRunDetailsTaskTypeDataLoaderTask,
+}
+
+// GetTaskRunDetailsTaskTypeEnumValues Enumerates the set of values for TaskRunDetailsTaskTypeEnum
+func GetTaskRunDetailsTaskTypeEnumValues() []TaskRunDetailsTaskTypeEnum {
+	values := make([]TaskRunDetailsTaskTypeEnum, 0)
+	for _, v := range mappingTaskRunDetailsTaskType {
 		values = append(values, v)
 	}
 	return values

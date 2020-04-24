@@ -16,15 +16,15 @@ import (
 
 
     
- // Resource Details of Ticket Item
+ // Resource Details about the ticket item object.
 type Resource struct {
     
     Item Item `mandatory:"false" json:"item"`
     
- // List of OCI regions
+ // The list of available Oracle Cloud Infrastructure regions.
     Region RegionEnum `mandatory:"false" json:"region,omitempty"`
     
- // List of OCI ADs
+ // The list of available Oracle Cloud Infrastructure availability domains.
     AvailabilityDomain AvailabilityDomainEnum `mandatory:"false" json:"availabilityDomain,omitempty"`
 }
 

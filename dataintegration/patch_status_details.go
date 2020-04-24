@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -13,58 +13,60 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// PatchStatusDetails auto generated description
+// PatchStatusDetails The information about the patch status.
 type PatchStatusDetails struct {
 
-	// Object key
+	// The key of the object.
 	Key *string `mandatory:"false" json:"key"`
 
 	// The type of the object.
 	ModelType *string `mandatory:"false" json:"modelType"`
 
-	// modelVersion
+	// The model version of an object.
 	ModelVersion *string `mandatory:"false" json:"modelVersion"`
 
 	ParentRef *ParentReference `mandatory:"false" json:"parentRef"`
 
-	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
+	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
 	Name *string `mandatory:"false" json:"name"`
 
-	// Descriptive text for the object.
+	// Detailed description for the object.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The version of the object, to track changes in the object instance
+	// The version of the object that is used to track changes in the object instance.
 	ObjectVersion *int `mandatory:"false" json:"objectVersion"`
 
 	// version
 	Version *int `mandatory:"false" json:"version"`
 
-	// Status of object, can set this to value 1 for shallow references across objects, other values reserved.
+	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
 
 	// Value can only contain upper case letters, underscore and numbers. It should begin with upper case letter or underscore. The value can be edited by the user.
 	Identifier *string `mandatory:"false" json:"identifier"`
 
-	// timePatched
+	// The date and time the patch was applied, in the timestamp format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	TimePatched *common.SDKTime `mandatory:"false" json:"timePatched"`
 
-	// Error encountered while applying the patch, if any
+	// The error encountered while applying the patch, if any.
 	ErrorMessage *string `mandatory:"false" json:"errorMessage"`
 
-	// application version of the patch
-	ApplicationVersion *string `mandatory:"false" json:"applicationVersion"`
+	// The application version of the patch.
+	ApplicationVersion *int `mandatory:"false" json:"applicationVersion"`
 
-	// patchType
+	// The type of the patch applied or being applied on the application.
 	PatchType PatchStatusDetailsPatchTypeEnum `mandatory:"false" json:"patchType,omitempty"`
 
 	// Status of the patch applied or being applied on the application
 	PatchStatus PatchStatusDetailsPatchStatusEnum `mandatory:"false" json:"patchStatus,omitempty"`
 
 	// List of dependent objects in this patch.
-	DependentObjects []MetadataObjectSummary `mandatory:"false" json:"dependentObjects"`
+	DependentObjects []ObjectMetadata `mandatory:"false" json:"dependentObjects"`
 
 	// List of objects that are published / unpublished in this patch.
-	Objects []MetadataObjectSummary `mandatory:"false" json:"objects"`
+	PatchObjectMetadata []PatchObjectMetadata `mandatory:"false" json:"patchObjectMetadata"`
+
+	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
 }
 
 func (m PatchStatusDetails) String() string {

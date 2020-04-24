@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -16,19 +16,22 @@ import (
 // CreateWorkspaceDetails The information about new Workspace.
 type CreateWorkspaceDetails struct {
 
-	// Data Integration Workspace display name, workspaces can be renamed
+	// A user-friendly display name for the workspace. Does not have to be unique, and can be modified. Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// VCN Identifier where the subnet resides.
+	// The OCID of the compartment containing the workspace.
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// The OCID of the VCN the subnet is in.
 	VcnId *string `mandatory:"false" json:"vcnId"`
 
-	// Subnet Identifier for customer connected databases
+	// The OCID of the subnet for customer connected databases.
 	SubnetId *string `mandatory:"false" json:"subnetId"`
 
-	// IP of the custom DNS server
+	// The IP of the custom DNS.
 	DnsServerIp *string `mandatory:"false" json:"dnsServerIp"`
 
-	// DNS Zone of the custom DNS to use to resolve names.
+	// The DNS zone of the custom DNS to use to resolve names.
 	DnsServerZone *string `mandatory:"false" json:"dnsServerZone"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -39,13 +42,10 @@ type CreateWorkspaceDetails struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Data Integration Workspace description
+	// A detailed description for the workspace.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Compartment Identifier
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
-
-	// Enable/disable private network connection.
+	// Whether the private network connection is enabled or disabled.
 	IsPrivateNetworkEnabled *bool `mandatory:"false" json:"isPrivateNetworkEnabled"`
 }
 

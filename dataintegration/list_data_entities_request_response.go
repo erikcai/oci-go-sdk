@@ -19,7 +19,7 @@ type ListDataEntitiesRequest struct {
 	ConnectionKey *string `mandatory:"true" contributesTo:"path" name:"connectionKey"`
 
 	// Name of the schema
-	SchemaName *string `mandatory:"true" contributesTo:"path" name:"schemaName"`
+	SchemaKey *string `mandatory:"true" contributesTo:"path" name:"schemaKey"`
 
 	// This filter parameter can be used to filter by the name of the object.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
@@ -27,8 +27,14 @@ type ListDataEntitiesRequest struct {
 	// This parameter will control pagination.  Values for the parameter should come from the `opc-next-page` or `opc-prev-page` header in previous response.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
+	// Type of the object to filter the results with.
+	Type *string `mandatory:"false" contributesTo:"query" name:"type"`
+
 	// This parameter allows users to set the maximum number of items to return per page.  The value must be between 1 and 100 (inclusive).  Default value is 100.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
+
+	// This parameter allows users to specify which fields to get for an object.
+	Fields []string `contributesTo:"query" name:"fields" collectionFormat:"multi"`
 
 	// This parameter allows users to specify a sort field.  Supported sort fields are `name`, `identifier`, `timeCreated`, and `timeUpdated`.  Default sort order is the descending order of `timeCreated` (most recently created objects at the top).  Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is by relevance score in descending order).
 	SortBy ListDataEntitiesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`

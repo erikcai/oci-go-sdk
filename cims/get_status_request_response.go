@@ -12,13 +12,13 @@ import (
 // GetStatusRequest wrapper for the GetStatus operation
 type GetStatusRequest struct {
         
- // Source is a downstream system. Eg: JIRA or MOS or any other source in future. 
+ // The system that generated the support ticket, such as My Oracle Support. 
         Source *string `mandatory:"true" contributesTo:"path" name:"source"`
         
- // User OCID for IDCS users that have a shadow in OCI 
+ // User OCID for Oracle Identity Cloud Service (IDCS) users who also have a federated Oracle Cloud Infrastructure account. 
         Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
         
- // Unique Header for request id 
+ // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID. 
         OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 
@@ -51,10 +51,10 @@ type GetStatusResponse struct {
      Status `presentIn:"body"`
 
     
- // OPC Request Id
+ // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
     OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
     
- // e-Tag
+ // The entity tag that allows optimistic concurrency control. For more information, see REST APIs (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#eleven).
     Etag *string `presentIn:"header" name:"etag"`
 
 

@@ -15,10 +15,10 @@ import (
 
 
     
- // CreateCategoryDetails Details of Category of the incident
+ // CreateCategoryDetails Details for creating the category of the support ticket.
 type CreateCategoryDetails struct {
     
- // Unique ID that identifies a Category
+ // Unique identifier for the category.
     CategoryKey *string `mandatory:"false" json:"categoryKey"`
 }
 

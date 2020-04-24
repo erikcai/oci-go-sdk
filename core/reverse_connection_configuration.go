@@ -77,6 +77,9 @@ type ReverseConnectionConfiguration struct {
 	// When not specified, reverse connection configuration will get NAT IP addresses from common pool of CIDRs,
 	// which will be shared with other reverse connection enabled private endpoints.
 	ReverseConnectionNatIpCidrs []string `mandatory:"false" json:"reverseConnectionNatIpCidrs"`
+
+	// Layer 4 transport protocol to be used when resolving DNS queries within the default DNS resolution context.
+	DefaultDnsContextTransport ReverseConnectionConfigurationDefaultDnsContextTransportEnum `mandatory:"false" json:"defaultDnsContextTransport,omitempty"`
 }
 
 func (m ReverseConnectionConfiguration) String() string {
@@ -132,6 +135,29 @@ var mappingReverseConnectionConfigurationDefaultDnsResolutionContext = map[strin
 func GetReverseConnectionConfigurationDefaultDnsResolutionContextEnumValues() []ReverseConnectionConfigurationDefaultDnsResolutionContextEnum {
 	values := make([]ReverseConnectionConfigurationDefaultDnsResolutionContextEnum, 0)
 	for _, v := range mappingReverseConnectionConfigurationDefaultDnsResolutionContext {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ReverseConnectionConfigurationDefaultDnsContextTransportEnum Enum with underlying type: string
+type ReverseConnectionConfigurationDefaultDnsContextTransportEnum string
+
+// Set of constants representing the allowable values for ReverseConnectionConfigurationDefaultDnsContextTransportEnum
+const (
+	ReverseConnectionConfigurationDefaultDnsContextTransportTcp ReverseConnectionConfigurationDefaultDnsContextTransportEnum = "TCP"
+	ReverseConnectionConfigurationDefaultDnsContextTransportUdp ReverseConnectionConfigurationDefaultDnsContextTransportEnum = "UDP"
+)
+
+var mappingReverseConnectionConfigurationDefaultDnsContextTransport = map[string]ReverseConnectionConfigurationDefaultDnsContextTransportEnum{
+	"TCP": ReverseConnectionConfigurationDefaultDnsContextTransportTcp,
+	"UDP": ReverseConnectionConfigurationDefaultDnsContextTransportUdp,
+}
+
+// GetReverseConnectionConfigurationDefaultDnsContextTransportEnumValues Enumerates the set of values for ReverseConnectionConfigurationDefaultDnsContextTransportEnum
+func GetReverseConnectionConfigurationDefaultDnsContextTransportEnumValues() []ReverseConnectionConfigurationDefaultDnsContextTransportEnum {
+	values := make([]ReverseConnectionConfigurationDefaultDnsContextTransportEnum, 0)
+	for _, v := range mappingReverseConnectionConfigurationDefaultDnsContextTransport {
 		values = append(values, v)
 	}
 	return values

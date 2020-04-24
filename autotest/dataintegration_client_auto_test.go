@@ -133,11 +133,25 @@ func TestDataIntegrationClientCreateConnection(t *testing.T) {
 	}
 
 	var requests []CreateConnectionRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]CreateConnectionRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateConnectionDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "modelType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"ORACLE_ATP_CONNECTION":            &dataintegration.CreateConnectionFromAtp{},
+				"ORACLE_ADWC_CONNECTION":           &dataintegration.CreateConnectionFromAdwc{},
+				"ORACLEDB_CONNECTION":              &dataintegration.CreateConnectionFromOracle{},
+				"ORACLE_OBJECT_STORAGE_CONNECTION": &dataintegration.CreateConnectionFromObjectStorage{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
@@ -221,11 +235,25 @@ func TestDataIntegrationClientCreateDataAsset(t *testing.T) {
 	}
 
 	var requests []CreateDataAssetRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]CreateDataAssetRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateDataAssetDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "modelType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"ORACLE_DATA_ASSET":                &dataintegration.CreateDataAssetFromOracle{},
+				"ORACLE_ADWC_DATA_ASSET":           &dataintegration.CreateDataAssetFromAdwc{},
+				"ORACLE_ATP_DATA_ASSET":            &dataintegration.CreateDataAssetFromAtp{},
+				"ORACLE_OBJECT_STORAGE_DATA_ASSET": &dataintegration.CreateDataAssetFromObjectStorage{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
@@ -235,50 +263,6 @@ func TestDataIntegrationClientCreateDataAsset(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateDataAsset(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
-func TestDataIntegrationClientCreateDataEntityShape(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("dataintegration", "CreateDataEntityShape")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("CreateDataEntityShape is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "CreateDataEntityShape", createDataIntegrationClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(dataintegration.DataIntegrationClient)
-
-	body, err := testClient.getRequests("dataintegration", "CreateDataEntityShape")
-	assert.NoError(t, err)
-
-	type CreateDataEntityShapeRequestInfo struct {
-		ContainerId string
-		Request     dataintegration.CreateDataEntityShapeRequest
-	}
-
-	var requests []CreateDataEntityShapeRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.CreateDataEntityShape(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -367,6 +351,61 @@ func TestDataIntegrationClientCreateDataFlowValidation(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateDataFlowValidation(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientCreateEntityShape(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "CreateEntityShape")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateEntityShape is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "CreateEntityShape", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "CreateEntityShape")
+	assert.NoError(t, err)
+
+	type CreateEntityShapeRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.CreateEntityShapeRequest
+	}
+
+	var requests []CreateEntityShapeRequestInfo
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
+	assert.NoError(t, err)
+	requests = make([]CreateEntityShapeRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateEntityShapeDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "modelType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"FILE_ENTITY": &dataintegration.CreateDataShapeFromFile{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateEntityShape(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -529,11 +568,23 @@ func TestDataIntegrationClientCreateTask(t *testing.T) {
 	}
 
 	var requests []CreateTaskRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]CreateTaskRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateTaskDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "modelType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"INTEGRATION_TASK": &dataintegration.CreateTaskFromIntegrationTask{},
+				"DATA_LOADER_TASK": &dataintegration.CreateTaskFromDataLoaderTask{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
@@ -617,11 +668,23 @@ func TestDataIntegrationClientCreateTaskValidation(t *testing.T) {
 	}
 
 	var requests []CreateTaskValidationRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]CreateTaskValidationRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateTaskValidationDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "modelType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"DATA_LOADER_TASK": &dataintegration.CreateTaskValidationFromDataLoaderTask{},
+				"INTEGRATION_TASK": &dataintegration.CreateTaskValidationFromIntegrationTask{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
@@ -2749,6 +2812,60 @@ func TestDataIntegrationClientListSchemas(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientListTaskRunLogs(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "ListTaskRunLogs")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTaskRunLogs is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "ListTaskRunLogs", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "ListTaskRunLogs")
+	assert.NoError(t, err)
+
+	type ListTaskRunLogsRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.ListTaskRunLogsRequest
+	}
+
+	var requests []ListTaskRunLogsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*dataintegration.ListTaskRunLogsRequest)
+				return c.ListTaskRunLogs(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]dataintegration.ListTaskRunLogsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(dataintegration.ListTaskRunLogsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
 func TestDataIntegrationClientListTaskRuns(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3193,11 +3310,25 @@ func TestDataIntegrationClientUpdateConnection(t *testing.T) {
 	}
 
 	var requests []UpdateConnectionRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]UpdateConnectionRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["UpdateConnectionDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "modelType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"ORACLE_OBJECT_STORAGE_CONNECTION": &dataintegration.UpdateConnectionFromObjectStorage{},
+				"ORACLE_ATP_CONNECTION":            &dataintegration.UpdateConnectionFromAtp{},
+				"ORACLEDB_CONNECTION":              &dataintegration.UpdateConnectionFromOracle{},
+				"ORACLE_ADWC_CONNECTION":           &dataintegration.UpdateConnectionFromAdwc{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
@@ -3237,11 +3368,25 @@ func TestDataIntegrationClientUpdateDataAsset(t *testing.T) {
 	}
 
 	var requests []UpdateDataAssetRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]UpdateDataAssetRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["UpdateDataAssetDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "modelType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"ORACLE_ATP_DATA_ASSET":            &dataintegration.UpdateDataAssetFromAtp{},
+				"ORACLE_ADWC_DATA_ASSET":           &dataintegration.UpdateDataAssetFromAdwc{},
+				"ORACLE_OBJECT_STORAGE_DATA_ASSET": &dataintegration.UpdateDataAssetFromObjectStorage{},
+				"ORACLE_DATA_ASSET":                &dataintegration.UpdateDataAssetFromOracle{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
@@ -3413,11 +3558,22 @@ func TestDataIntegrationClientUpdateTask(t *testing.T) {
 	}
 
 	var requests []UpdateTaskRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]UpdateTaskRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["UpdateTaskDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "modelType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"INTEGRATION_TASK": &dataintegration.UpdateTaskFromIntegrationTask{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {

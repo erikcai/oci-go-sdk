@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -60,7 +60,6 @@ const (
 	DataFormatTypeXml     DataFormatTypeEnum = "XML"
 	DataFormatTypeJson    DataFormatTypeEnum = "JSON"
 	DataFormatTypeCsv     DataFormatTypeEnum = "CSV"
-	DataFormatTypeAvro    DataFormatTypeEnum = "AVRO"
 	DataFormatTypeOrc     DataFormatTypeEnum = "ORC"
 	DataFormatTypeParquet DataFormatTypeEnum = "PARQUET"
 )
@@ -69,7 +68,6 @@ var mappingDataFormatType = map[string]DataFormatTypeEnum{
 	"XML":     DataFormatTypeXml,
 	"JSON":    DataFormatTypeJson,
 	"CSV":     DataFormatTypeCsv,
-	"AVRO":    DataFormatTypeAvro,
 	"ORC":     DataFormatTypeOrc,
 	"PARQUET": DataFormatTypeParquet,
 }

@@ -15,7 +15,7 @@ type CreateTaskRequest struct {
 	// DIS workspace id
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
-	// Details for the new Task object.
+	// The details needed to create a new task.
 	CreateTaskDetails `contributesTo:"body"`
 
 	// Caller may provide "retry tokens" allowing them to retry an operation

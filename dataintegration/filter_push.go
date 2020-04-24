@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -14,10 +14,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// FilterPush auto generated description
+// FilterPush The information about a filter operator. The filter operator lets you select certain attributes from the inbound port to continue downstream to the outbound port.
 type FilterPush struct {
 
-	// filterCondition
+	// The filter condition.
 	FilterCondition *string `mandatory:"false" json:"filterCondition"`
 }
 

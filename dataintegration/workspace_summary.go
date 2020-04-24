@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -16,28 +16,28 @@ import (
 // WorkspaceSummary Summary of a Workspace.
 type WorkspaceSummary struct {
 
-	// Unique identifier that is immutable on creation
+	// Unique identifier that is immutable.
 	Id *string `mandatory:"false" json:"id"`
 
-	// Workspace description
+	// A detailed description of the workspace.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Data Integration Workspace display name, workspaces can be renamed
+	// A user-friendly display name that is changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Compartment Identifier
+	// The OCID of the compartment that contains the workspace.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The time the Data Integration Workspace was created. An RFC3339 formatted datetime string
+	// The date and time the workspace was created, in the timestamp format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the Data Integration Workspace was updated. An RFC3339 formatted datetime string
+	// The date and time the workspace was updated, in the timestamp format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// The current state of the workspace.
 	LifecycleState WorkspaceLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
+	// A detailed description about the current state of the workspace. Used to provide actionable information if the workspace is in a failed state.
 	StateMessage *string `mandatory:"false" json:"stateMessage"`
 }
 

@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -16,25 +16,25 @@ import (
 // Workspace A workspace is an organizational construct to keep multiple data integration solutions and their resources (data assets, data flows, tasks, and so on) separate from each other, helping you to stay organized. For example, you could have separate workspaces for development, testing, and production.
 type Workspace struct {
 
-	// VCN OCID where the subnet resides.
-	VcnId *string `mandatory:"true" json:"vcnId"`
-
-	// Subnet OCID for the customer connected network where databases for example reside.
-	SubnetId *string `mandatory:"true" json:"subnetId"`
-
-	// Data Integration Workspace display name, workspaces can be renamed
+	// A user-friendly display name for the workspace. Does not have to be unique, and can be modified. Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// Unique identifier that is immutable on creation
 	Id *string `mandatory:"true" json:"id"`
 
-	// IP of the custom DNS server
+	// The OCID of the VCN the subnet is in.
+	VcnId *string `mandatory:"false" json:"vcnId"`
+
+	// The OCID of the subnet for customer connected databases.
+	SubnetId *string `mandatory:"false" json:"subnetId"`
+
+	// The IP of the custom DNS.
 	DnsServerIp *string `mandatory:"false" json:"dnsServerIp"`
 
-	// DNS Zone of the custom DNS to use to resolve names.
+	// The DNS zone of the custom DNS to use to resolve names.
 	DnsServerZone *string `mandatory:"false" json:"dnsServerZone"`
 
-	// Enable/disable private network connection.
+	// Whether the private network connection is enabled or disabled.
 	IsPrivateNetworkEnabled *bool `mandatory:"false" json:"isPrivateNetworkEnabled"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -45,16 +45,16 @@ type Workspace struct {
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// Workspace description
+	// A detailed description for the workspace.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Compartment Identifier
+	// The OCID of the compartment containing the workspace.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The time the Data Integration Workspace was created. An RFC3339 formatted datetime string
+	// The date and time the workspace was created, in the timestamp format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the Data Integration Workspace was updated. An RFC3339 formatted datetime string
+	// The date and time the workspace was updated, in the timestamp format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// Lifecycle states for workspaces in Data Integration Service

@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -54,7 +54,7 @@ func newDataIntegrationClientFromBaseClient(baseClient common.BaseClient, config
 
 // SetRegion overrides the region of this client.
 func (client *DataIntegrationClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("dataintegration", "http://144.25.83.25")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("dataintegration", "https://dataintegration.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -127,7 +127,7 @@ func (client DataIntegrationClient) changeCompartment(ctx context.Context, reque
 	return response, err
 }
 
-// CreateApplication This endpoint can be used for creating an application.
+// CreateApplication Creates an application.
 func (client DataIntegrationClient) CreateApplication(ctx context.Context, request CreateApplicationRequest) (response CreateApplicationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -179,7 +179,7 @@ func (client DataIntegrationClient) createApplication(ctx context.Context, reque
 	return response, err
 }
 
-// CreateConnection This endpoint is used to create a connection under existing DataAsset
+// CreateConnection Creates a connection under an existing data asset.
 func (client DataIntegrationClient) CreateConnection(ctx context.Context, request CreateConnectionRequest) (response CreateConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -227,11 +227,11 @@ func (client DataIntegrationClient) createConnection(ctx context.Context, reques
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &connection{})
 	return response, err
 }
 
-// CreateConnectionValidation This endpoint is used to create a connection validation.
+// CreateConnectionValidation Creates a connection validation.
 func (client DataIntegrationClient) CreateConnectionValidation(ctx context.Context, request CreateConnectionValidationRequest) (response CreateConnectionValidationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -283,7 +283,7 @@ func (client DataIntegrationClient) createConnectionValidation(ctx context.Conte
 	return response, err
 }
 
-// CreateDataAsset This endpoint can be used to create Data Asset with default connection
+// CreateDataAsset Creates a data asset with default connection.
 func (client DataIntegrationClient) CreateDataAsset(ctx context.Context, request CreateDataAssetRequest) (response CreateDataAssetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -331,63 +331,11 @@ func (client DataIntegrationClient) createDataAsset(ctx context.Context, request
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &dataasset{})
 	return response, err
 }
 
-// CreateDataEntityShape Get the data entity shape from the end data system. The input can specify the data entity to get the shape for, for databases this can be retrieved from the database data dictionary, for files some hints as to the file properties can also be supplied in the input.
-func (client DataIntegrationClient) CreateDataEntityShape(ctx context.Context, request CreateDataEntityShapeRequest) (response CreateDataEntityShapeResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
-	ociResponse, err = common.Retry(ctx, request, client.createDataEntityShape, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = CreateDataEntityShapeResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = CreateDataEntityShapeResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(CreateDataEntityShapeResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into CreateDataEntityShapeResponse")
-	}
-	return
-}
-
-// createDataEntityShape implements the OCIOperation interface (enables retrying operations)
-func (client DataIntegrationClient) createDataEntityShape(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaName}/dataEntityShapes")
-	if err != nil {
-		return nil, err
-	}
-
-	var response CreateDataEntityShapeResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// CreateDataFlow Creates a new DataFlow object ready for performing database integrations.
+// CreateDataFlow Creates a new data flow in a project or folder ready for performing data integrations.
 func (client DataIntegrationClient) CreateDataFlow(ctx context.Context, request CreateDataFlowRequest) (response CreateDataFlowResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -491,7 +439,60 @@ func (client DataIntegrationClient) createDataFlowValidation(ctx context.Context
 	return response, err
 }
 
-// CreateFolder This endpoint can be used for creating a folder.
+// CreateEntityShape Retrieves the data entity shape from the end data system. The input can specify the data entity to get the shape for. For databases, this can be retrieved from the database data dictionary. For files, some hints as to the file properties can also be supplied in the input.
+func (client DataIntegrationClient) CreateEntityShape(ctx context.Context, request CreateEntityShapeRequest) (response CreateEntityShapeResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createEntityShape, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateEntityShapeResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateEntityShapeResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateEntityShapeResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateEntityShapeResponse")
+	}
+	return
+}
+
+// createEntityShape implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) createEntityShape(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaKey}/entityShapes")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateEntityShapeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &entityshape{})
+	return response, err
+}
+
+// CreateFolder Creates a folder in a project or in another folder, limited to two levels of folders. |
+// Folders are used to organize your design-time resources, such as tasks or data flows.
 func (client DataIntegrationClient) CreateFolder(ctx context.Context, request CreateFolderRequest) (response CreateFolderResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -543,7 +544,7 @@ func (client DataIntegrationClient) createFolder(ctx context.Context, request co
 	return response, err
 }
 
-// CreatePatch This endpoint can be used for creating a patch in an application.
+// CreatePatch Creates a patch in an application.
 func (client DataIntegrationClient) CreatePatch(ctx context.Context, request CreatePatchRequest) (response CreatePatchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -595,7 +596,7 @@ func (client DataIntegrationClient) createPatch(ctx context.Context, request com
 	return response, err
 }
 
-// CreateProject This endpoint can be used for creating a project.
+// CreateProject Creates a project. Projects are organizational constructs within a workspace that you use to organize your design-time resources, such as tasks or data flows. Projects can be organized into folders.
 func (client DataIntegrationClient) CreateProject(ctx context.Context, request CreateProjectRequest) (response CreateProjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -647,7 +648,7 @@ func (client DataIntegrationClient) createProject(ctx context.Context, request c
 	return response, err
 }
 
-// CreateTask Creates a new task object ready for performing database integrations, there are specialized types of tasks including data loader and integration tasks.
+// CreateTask Creates a new task ready for performing data integrations. There are specialized types of tasks that include data loader and integration tasks.
 func (client DataIntegrationClient) CreateTask(ctx context.Context, request CreateTaskRequest) (response CreateTaskResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -695,11 +696,11 @@ func (client DataIntegrationClient) createTask(ctx context.Context, request comm
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &task{})
 	return response, err
 }
 
-// CreateTaskRun This endpoint can be used for running a data integration workflow, the workflow can be based on a dataflow design or a task.
+// CreateTaskRun Creates a data integration task or task run. The task can be based on a dataflow design or a task.
 func (client DataIntegrationClient) CreateTaskRun(ctx context.Context, request CreateTaskRunRequest) (response CreateTaskRunResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -751,7 +752,7 @@ func (client DataIntegrationClient) createTaskRun(ctx context.Context, request c
 	return response, err
 }
 
-// CreateTaskValidation Validate Task object
+// CreateTaskValidation Validates a specific task.
 func (client DataIntegrationClient) CreateTaskValidation(ctx context.Context, request CreateTaskValidationRequest) (response CreateTaskValidationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -855,7 +856,7 @@ func (client DataIntegrationClient) createWorkspace(ctx context.Context, request
 	return response, err
 }
 
-// DeleteApplication This endpoint can be used to delete an application
+// DeleteApplication Removes an application using the specified identifier.
 func (client DataIntegrationClient) DeleteApplication(ctx context.Context, request DeleteApplicationRequest) (response DeleteApplicationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -902,7 +903,7 @@ func (client DataIntegrationClient) deleteApplication(ctx context.Context, reque
 	return response, err
 }
 
-// DeleteConnection This endpoint is use for deleting a connection by its id
+// DeleteConnection Removes a connection using the specified identifier.
 func (client DataIntegrationClient) DeleteConnection(ctx context.Context, request DeleteConnectionRequest) (response DeleteConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -949,7 +950,7 @@ func (client DataIntegrationClient) deleteConnection(ctx context.Context, reques
 	return response, err
 }
 
-// DeleteConnectionValidation This endpoint deletes a connection validation given its key.
+// DeleteConnectionValidation Successfully accepted the delete request. The connection validation will be deleted.
 func (client DataIntegrationClient) DeleteConnectionValidation(ctx context.Context, request DeleteConnectionValidationRequest) (response DeleteConnectionValidationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -996,7 +997,7 @@ func (client DataIntegrationClient) deleteConnectionValidation(ctx context.Conte
 	return response, err
 }
 
-// DeleteDataAsset This endpoint is used to delete a dataAsset by key
+// DeleteDataAsset Removes a data asset using the specified identifier.
 func (client DataIntegrationClient) DeleteDataAsset(ctx context.Context, request DeleteDataAssetRequest) (response DeleteDataAssetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1043,7 +1044,7 @@ func (client DataIntegrationClient) deleteDataAsset(ctx context.Context, request
 	return response, err
 }
 
-// DeleteDataFlow Deletes a DataFlow object resource by key
+// DeleteDataFlow Removes a data flow from a project or folder using the specified identifier.
 func (client DataIntegrationClient) DeleteDataFlow(ctx context.Context, request DeleteDataFlowRequest) (response DeleteDataFlowResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1090,7 +1091,7 @@ func (client DataIntegrationClient) deleteDataFlow(ctx context.Context, request 
 	return response, err
 }
 
-// DeleteDataFlowValidation This endpoint deletes a dataflow validation given its key.
+// DeleteDataFlowValidation Removes a data flow validation using the specified identifier.
 func (client DataIntegrationClient) DeleteDataFlowValidation(ctx context.Context, request DeleteDataFlowValidationRequest) (response DeleteDataFlowValidationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1137,7 +1138,7 @@ func (client DataIntegrationClient) deleteDataFlowValidation(ctx context.Context
 	return response, err
 }
 
-// DeleteFolder Deletes a folder object resource by key
+// DeleteFolder Removes a folder from a project using the specified identifier.
 func (client DataIntegrationClient) DeleteFolder(ctx context.Context, request DeleteFolderRequest) (response DeleteFolderResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1184,7 +1185,7 @@ func (client DataIntegrationClient) deleteFolder(ctx context.Context, request co
 	return response, err
 }
 
-// DeletePatch Deletes a patch object resource by key
+// DeletePatch Removes a patch using the specified identifier.
 func (client DataIntegrationClient) DeletePatch(ctx context.Context, request DeletePatchRequest) (response DeletePatchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1231,7 +1232,7 @@ func (client DataIntegrationClient) deletePatch(ctx context.Context, request com
 	return response, err
 }
 
-// DeleteProject Deletes a project object resource by key
+// DeleteProject Removes a project from the workspace using the specified identifier.
 func (client DataIntegrationClient) DeleteProject(ctx context.Context, request DeleteProjectRequest) (response DeleteProjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1278,7 +1279,7 @@ func (client DataIntegrationClient) deleteProject(ctx context.Context, request c
 	return response, err
 }
 
-// DeleteTask Deletes a Task object resource by key
+// DeleteTask Removes a task using the specified identifier.
 func (client DataIntegrationClient) DeleteTask(ctx context.Context, request DeleteTaskRequest) (response DeleteTaskResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1325,7 +1326,7 @@ func (client DataIntegrationClient) deleteTask(ctx context.Context, request comm
 	return response, err
 }
 
-// DeleteTaskRun Deletes a workflow run object resource by key
+// DeleteTaskRun Deletes a task run using the specified identifier.
 func (client DataIntegrationClient) DeleteTaskRun(ctx context.Context, request DeleteTaskRunRequest) (response DeleteTaskRunResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1372,7 +1373,7 @@ func (client DataIntegrationClient) deleteTaskRun(ctx context.Context, request c
 	return response, err
 }
 
-// DeleteTaskValidation This endpoint deletes a task validation given its key.
+// DeleteTaskValidation Removes a task validation using the specified identifier.
 func (client DataIntegrationClient) DeleteTaskValidation(ctx context.Context, request DeleteTaskValidationRequest) (response DeleteTaskValidationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1466,7 +1467,7 @@ func (client DataIntegrationClient) deleteWorkspace(ctx context.Context, request
 	return response, err
 }
 
-// GetApplication This endpoint can be used to get an application using a key
+// GetApplication Retrieves an application using the specified identifier.
 func (client DataIntegrationClient) GetApplication(ctx context.Context, request GetApplicationRequest) (response GetApplicationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1513,7 +1514,7 @@ func (client DataIntegrationClient) getApplication(ctx context.Context, request 
 	return response, err
 }
 
-// GetConnection This endpoint is used to get connection details by its id
+// GetConnection Retrieves the connection details using the specified identifier.
 func (client DataIntegrationClient) GetConnection(ctx context.Context, request GetConnectionRequest) (response GetConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1556,11 +1557,11 @@ func (client DataIntegrationClient) getConnection(ctx context.Context, request c
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &connection{})
 	return response, err
 }
 
-// GetConnectionValidation This endpoint retrieves a connection validation based on its id.
+// GetConnectionValidation Retrieves a connection validation using the specified identifier.
 func (client DataIntegrationClient) GetConnectionValidation(ctx context.Context, request GetConnectionValidationRequest) (response GetConnectionValidationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1607,8 +1608,8 @@ func (client DataIntegrationClient) getConnectionValidation(ctx context.Context,
 	return response, err
 }
 
-// GetCountStatistic List statistics on the workspace, this returns an object with an array of property values, such as the number of projects, |
-//        applications, data assets and so on
+// GetCountStatistic Retrieves statistics on a workspace. It returns an object with an array of property values, such as the number of projects, |
+//        applications, data assets, and so on.
 func (client DataIntegrationClient) GetCountStatistic(ctx context.Context, request GetCountStatisticRequest) (response GetCountStatisticResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1655,7 +1656,7 @@ func (client DataIntegrationClient) getCountStatistic(ctx context.Context, reque
 	return response, err
 }
 
-// GetDataAsset This endpoint is used to get details of specific data asset based on data asset key
+// GetDataAsset Retrieves details of a data asset using the specified identifier.
 func (client DataIntegrationClient) GetDataAsset(ctx context.Context, request GetDataAssetRequest) (response GetDataAssetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1698,11 +1699,11 @@ func (client DataIntegrationClient) getDataAsset(ctx context.Context, request co
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &dataasset{})
 	return response, err
 }
 
-// GetDataEntity Get the dataEntity details with the given name from live schema
+// GetDataEntity Retrieves the data entity details with the given name from live schema.
 func (client DataIntegrationClient) GetDataEntity(ctx context.Context, request GetDataEntityRequest) (response GetDataEntityResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1731,7 +1732,7 @@ func (client DataIntegrationClient) GetDataEntity(ctx context.Context, request G
 
 // getDataEntity implements the OCIOperation interface (enables retrying operations)
 func (client DataIntegrationClient) getDataEntity(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaName}/dataEntities/{dataEntityName}")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaKey}/dataEntities/{dataEntityKey}")
 	if err != nil {
 		return nil, err
 	}
@@ -1745,11 +1746,11 @@ func (client DataIntegrationClient) getDataEntity(ctx context.Context, request c
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &dataentity{})
 	return response, err
 }
 
-// GetDataFlow Gets a DataFlow object by key
+// GetDataFlow Retrieves a data flow using the specified identifier.
 func (client DataIntegrationClient) GetDataFlow(ctx context.Context, request GetDataFlowRequest) (response GetDataFlowResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1796,7 +1797,7 @@ func (client DataIntegrationClient) getDataFlow(ctx context.Context, request com
 	return response, err
 }
 
-// GetDataFlowValidation This endpoint retrieves a dataflow validation based on its id.
+// GetDataFlowValidation Retrieves a data flow validation using the specified identifier.
 func (client DataIntegrationClient) GetDataFlowValidation(ctx context.Context, request GetDataFlowValidationRequest) (response GetDataFlowValidationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1843,7 +1844,7 @@ func (client DataIntegrationClient) getDataFlowValidation(ctx context.Context, r
 	return response, err
 }
 
-// GetDependentObject This endpoint can be used to fetch the details of a depenent object from an application
+// GetDependentObject Retrieves the details of a dependent object from an application.
 func (client DataIntegrationClient) GetDependentObject(ctx context.Context, request GetDependentObjectRequest) (response GetDependentObjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1890,7 +1891,7 @@ func (client DataIntegrationClient) getDependentObject(ctx context.Context, requ
 	return response, err
 }
 
-// GetFolder Gets a folder object by key
+// GetFolder Retrieves a folder using the specified identifier.
 func (client DataIntegrationClient) GetFolder(ctx context.Context, request GetFolderRequest) (response GetFolderResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1937,7 +1938,7 @@ func (client DataIntegrationClient) getFolder(ctx context.Context, request commo
 	return response, err
 }
 
-// GetPatch This endpoint can be used to get a patch in an application using a key
+// GetPatch Retrieves a patch in an application using the specified identifier.
 func (client DataIntegrationClient) GetPatch(ctx context.Context, request GetPatchRequest) (response GetPatchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1984,7 +1985,7 @@ func (client DataIntegrationClient) getPatch(ctx context.Context, request common
 	return response, err
 }
 
-// GetProject Gets a Project object by key
+// GetProject Retrieves a project using the specified identifier.
 func (client DataIntegrationClient) GetProject(ctx context.Context, request GetProjectRequest) (response GetProjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2031,7 +2032,7 @@ func (client DataIntegrationClient) getProject(ctx context.Context, request comm
 	return response, err
 }
 
-// GetPublishedObject This endpoint can be used to fetch the details of a published object from an application
+// GetPublishedObject Retrieves the details of a published object from an application.
 func (client DataIntegrationClient) GetPublishedObject(ctx context.Context, request GetPublishedObjectRequest) (response GetPublishedObjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2074,11 +2075,11 @@ func (client DataIntegrationClient) getPublishedObject(ctx context.Context, requ
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &publishedobject{})
 	return response, err
 }
 
-// GetTask Gets a Task object by key
+// GetTask Retrieves a task using the specified identifier.
 func (client DataIntegrationClient) GetTask(ctx context.Context, request GetTaskRequest) (response GetTaskResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2121,11 +2122,11 @@ func (client DataIntegrationClient) getTask(ctx context.Context, request common.
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &task{})
 	return response, err
 }
 
-// GetTaskRun Gets a TaskRun object by key
+// GetTaskRun Retrieves a task run using the specified identifier.
 func (client DataIntegrationClient) GetTaskRun(ctx context.Context, request GetTaskRunRequest) (response GetTaskRunResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2172,7 +2173,7 @@ func (client DataIntegrationClient) getTaskRun(ctx context.Context, request comm
 	return response, err
 }
 
-// GetTaskValidation This endpoint retrieves a task validation based on its id.
+// GetTaskValidation Retrieves a task validation using the specified identifier.
 func (client DataIntegrationClient) GetTaskValidation(ctx context.Context, request GetTaskValidationRequest) (response GetTaskValidationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2313,7 +2314,7 @@ func (client DataIntegrationClient) getWorkspace(ctx context.Context, request co
 	return response, err
 }
 
-// ListApplications This endpoint can be used to list applications with filtering options
+// ListApplications Retrieves a list of applications and provides options to filter the list.
 func (client DataIntegrationClient) ListApplications(ctx context.Context, request ListApplicationsRequest) (response ListApplicationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2360,7 +2361,7 @@ func (client DataIntegrationClient) listApplications(ctx context.Context, reques
 	return response, err
 }
 
-// ListConnectionValidations This endpoint returns the list of connection validations within the specified workspace.
+// ListConnectionValidations Retrieves a list of connection validations within the specified workspace.
 func (client DataIntegrationClient) ListConnectionValidations(ctx context.Context, request ListConnectionValidationsRequest) (response ListConnectionValidationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2407,7 +2408,7 @@ func (client DataIntegrationClient) listConnectionValidations(ctx context.Contex
 	return response, err
 }
 
-// ListConnections This endpoint can be used to list all connections
+// ListConnections Retrieves a list of all connections.
 func (client DataIntegrationClient) ListConnections(ctx context.Context, request ListConnectionsRequest) (response ListConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2501,7 +2502,8 @@ func (client DataIntegrationClient) listDataAssets(ctx context.Context, request 
 	return response, err
 }
 
-// ListDataEntities This endpoint is used to list the summaries of data entities present in the schema identified by schema name. This will do a live query to the data asset identified via the connection specified.
+// ListDataEntities Retrieves a list of summaries of data entities present in the schema identified by schema name. |
+// A live query is run on the data asset identified via the connection specified.
 func (client DataIntegrationClient) ListDataEntities(ctx context.Context, request ListDataEntitiesRequest) (response ListDataEntitiesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2530,7 +2532,7 @@ func (client DataIntegrationClient) ListDataEntities(ctx context.Context, reques
 
 // listDataEntities implements the OCIOperation interface (enables retrying operations)
 func (client DataIntegrationClient) listDataEntities(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaName}/dataEntities")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaKey}/dataEntities")
 	if err != nil {
 		return nil, err
 	}
@@ -2548,7 +2550,7 @@ func (client DataIntegrationClient) listDataEntities(ctx context.Context, reques
 	return response, err
 }
 
-// ListDataFlowValidations This endpoint returns the list of dataflow validations within the specified workspace.
+// ListDataFlowValidations Retrieves a list of data flow validations within the specified workspace
 func (client DataIntegrationClient) ListDataFlowValidations(ctx context.Context, request ListDataFlowValidationsRequest) (response ListDataFlowValidationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2595,7 +2597,7 @@ func (client DataIntegrationClient) listDataFlowValidations(ctx context.Context,
 	return response, err
 }
 
-// ListDataFlows Returns a list of DataFlow objects.
+// ListDataFlows Retrieves a list of data flows in a project or folder.
 func (client DataIntegrationClient) ListDataFlows(ctx context.Context, request ListDataFlowsRequest) (response ListDataFlowsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2642,7 +2644,7 @@ func (client DataIntegrationClient) listDataFlows(ctx context.Context, request c
 	return response, err
 }
 
-// ListDependentObjects This endpoint is used to list all dependent objects for an application for a particular application id
+// ListDependentObjects Retrieves a list of all dependent objects for a specific application.
 func (client DataIntegrationClient) ListDependentObjects(ctx context.Context, request ListDependentObjectsRequest) (response ListDependentObjectsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2689,7 +2691,7 @@ func (client DataIntegrationClient) listDependentObjects(ctx context.Context, re
 	return response, err
 }
 
-// ListFolders This endpoint can be used to list folders in project with filtering options
+// ListFolders Retrieves a list of folders in a project and provides options to filter the list.
 func (client DataIntegrationClient) ListFolders(ctx context.Context, request ListFoldersRequest) (response ListFoldersResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2736,7 +2738,7 @@ func (client DataIntegrationClient) listFolders(ctx context.Context, request com
 	return response, err
 }
 
-// ListPatches This endpoint can be used to list patches with filtering options
+// ListPatches Retrieves a list of patches in an application and provides options to filter the list.
 func (client DataIntegrationClient) ListPatches(ctx context.Context, request ListPatchesRequest) (response ListPatchesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2783,7 +2785,7 @@ func (client DataIntegrationClient) listPatches(ctx context.Context, request com
 	return response, err
 }
 
-// ListProjects This endpoint can be used to list projects with filtering options
+// ListProjects Retrieves a lists of projects in a workspace and provides options to filter the list.
 func (client DataIntegrationClient) ListProjects(ctx context.Context, request ListProjectsRequest) (response ListProjectsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2830,7 +2832,7 @@ func (client DataIntegrationClient) listProjects(ctx context.Context, request co
 	return response, err
 }
 
-// ListPublishedObjects This endpoint is used to list all objects for an application for a particular application id
+// ListPublishedObjects Retrieves a list of all the published objects for a specified application.
 func (client DataIntegrationClient) ListPublishedObjects(ctx context.Context, request ListPublishedObjectsRequest) (response ListPublishedObjectsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2877,7 +2879,7 @@ func (client DataIntegrationClient) listPublishedObjects(ctx context.Context, re
 	return response, err
 }
 
-// ListSchemas This endpoint is used to get all the schemas that can be accessed using the specified connection
+// ListSchemas Retrieves a list of all the schemas that can be accessed using the specified connection.
 func (client DataIntegrationClient) ListSchemas(ctx context.Context, request ListSchemasRequest) (response ListSchemasResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2924,7 +2926,54 @@ func (client DataIntegrationClient) listSchemas(ctx context.Context, request com
 	return response, err
 }
 
-// ListTaskRuns This endpoint can be used to list task runs with filtering options
+// ListTaskRunLogs Get log entries for task runs using its key
+func (client DataIntegrationClient) ListTaskRunLogs(ctx context.Context, request ListTaskRunLogsRequest) (response ListTaskRunLogsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listTaskRunLogs, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListTaskRunLogsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListTaskRunLogsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListTaskRunLogsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListTaskRunLogsResponse")
+	}
+	return
+}
+
+// listTaskRunLogs implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) listTaskRunLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/applications/{applicationKey}/taskRuns/{taskRunKey}/logs")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListTaskRunLogsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListTaskRuns Retrieves a list of task runs and provides options to filter the list.
 func (client DataIntegrationClient) ListTaskRuns(ctx context.Context, request ListTaskRunsRequest) (response ListTaskRunsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2971,7 +3020,7 @@ func (client DataIntegrationClient) listTaskRuns(ctx context.Context, request co
 	return response, err
 }
 
-// ListTaskValidations This endpoint returns the list of task validations within the specified workspace.
+// ListTaskValidations Retrieves a list of task validations within the specified workspace.
 func (client DataIntegrationClient) ListTaskValidations(ctx context.Context, request ListTaskValidationsRequest) (response ListTaskValidationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3018,7 +3067,7 @@ func (client DataIntegrationClient) listTaskValidations(ctx context.Context, req
 	return response, err
 }
 
-// ListTasks Returns a list of Task objects.
+// ListTasks Retrieves a list of all tasks in a specified project or folder.
 func (client DataIntegrationClient) ListTasks(ctx context.Context, request ListTasksRequest) (response ListTasksResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3253,7 +3302,7 @@ func (client DataIntegrationClient) listWorkspaces(ctx context.Context, request 
 	return response, err
 }
 
-// UpdateApplication This endpoint can be used to update an application
+// UpdateApplication Updates an application.
 func (client DataIntegrationClient) UpdateApplication(ctx context.Context, request UpdateApplicationRequest) (response UpdateApplicationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3300,7 +3349,7 @@ func (client DataIntegrationClient) updateApplication(ctx context.Context, reque
 	return response, err
 }
 
-// UpdateConnection This endpoint is used to update a connection
+// UpdateConnection Updates a connection under a data asset.
 func (client DataIntegrationClient) UpdateConnection(ctx context.Context, request UpdateConnectionRequest) (response UpdateConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3343,11 +3392,11 @@ func (client DataIntegrationClient) updateConnection(ctx context.Context, reques
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &connection{})
 	return response, err
 }
 
-// UpdateDataAsset This endpoint is used to update a particular Data Asset with default connection
+// UpdateDataAsset Updates a specific data asset with default connection.
 func (client DataIntegrationClient) UpdateDataAsset(ctx context.Context, request UpdateDataAssetRequest) (response UpdateDataAssetResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3390,11 +3439,11 @@ func (client DataIntegrationClient) updateDataAsset(ctx context.Context, request
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &dataasset{})
 	return response, err
 }
 
-// UpdateDataFlow Updates the DataFlow object
+// UpdateDataFlow Updates a specific data flow.
 func (client DataIntegrationClient) UpdateDataFlow(ctx context.Context, request UpdateDataFlowRequest) (response UpdateDataFlowResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3441,7 +3490,7 @@ func (client DataIntegrationClient) updateDataFlow(ctx context.Context, request 
 	return response, err
 }
 
-// UpdateFolder Updates the Folder object
+// UpdateFolder Updates a specific folder.
 func (client DataIntegrationClient) UpdateFolder(ctx context.Context, request UpdateFolderRequest) (response UpdateFolderResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3488,7 +3537,7 @@ func (client DataIntegrationClient) updateFolder(ctx context.Context, request co
 	return response, err
 }
 
-// UpdateProject Updates the Project object
+// UpdateProject Updates a specific project.
 func (client DataIntegrationClient) UpdateProject(ctx context.Context, request UpdateProjectRequest) (response UpdateProjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3535,7 +3584,7 @@ func (client DataIntegrationClient) updateProject(ctx context.Context, request c
 	return response, err
 }
 
-// UpdateTask Update the task object, for example you can update the description or move the task to a different folder by changing the aggregatorKey to a different folder in the registry.
+// UpdateTask Updates a specific task. For example, you can update the task description or move the task to a different folder by changing the `aggregatorKey` to a different folder in the registry.
 func (client DataIntegrationClient) UpdateTask(ctx context.Context, request UpdateTaskRequest) (response UpdateTaskResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3578,11 +3627,11 @@ func (client DataIntegrationClient) updateTask(ctx context.Context, request comm
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &task{})
 	return response, err
 }
 
-// UpdateTaskRun Use this operation to change the status of the taskRun, for example to abort the taskRun.
+// UpdateTaskRun Updates the status of the task run. For example, aborts a task run.
 func (client DataIntegrationClient) UpdateTaskRun(ctx context.Context, request UpdateTaskRunRequest) (response UpdateTaskRunResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

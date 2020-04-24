@@ -67,6 +67,9 @@ type EnableReverseConnectionsDetails struct {
 	// If the private endpoint was enabled with reverse connection with 0 already, the field is not updatable.
 	// The size may not be updated with smaller number than previously specified value, but may be increased.
 	CustomerEndpointsSize *int `mandatory:"false" json:"customerEndpointsSize"`
+
+	// Layer 4 transport protocol to be used when resolving DNS queries within the default DNS resolution context.
+	DefaultDnsContextTransport EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum `mandatory:"false" json:"defaultDnsContextTransport,omitempty"`
 }
 
 func (m EnableReverseConnectionsDetails) String() string {
@@ -91,6 +94,29 @@ var mappingEnableReverseConnectionsDetailsDefaultDnsResolutionContext = map[stri
 func GetEnableReverseConnectionsDetailsDefaultDnsResolutionContextEnumValues() []EnableReverseConnectionsDetailsDefaultDnsResolutionContextEnum {
 	values := make([]EnableReverseConnectionsDetailsDefaultDnsResolutionContextEnum, 0)
 	for _, v := range mappingEnableReverseConnectionsDetailsDefaultDnsResolutionContext {
+		values = append(values, v)
+	}
+	return values
+}
+
+// EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum Enum with underlying type: string
+type EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum string
+
+// Set of constants representing the allowable values for EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum
+const (
+	EnableReverseConnectionsDetailsDefaultDnsContextTransportTcp EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum = "TCP"
+	EnableReverseConnectionsDetailsDefaultDnsContextTransportUdp EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum = "UDP"
+)
+
+var mappingEnableReverseConnectionsDetailsDefaultDnsContextTransport = map[string]EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum{
+	"TCP": EnableReverseConnectionsDetailsDefaultDnsContextTransportTcp,
+	"UDP": EnableReverseConnectionsDetailsDefaultDnsContextTransportUdp,
+}
+
+// GetEnableReverseConnectionsDetailsDefaultDnsContextTransportEnumValues Enumerates the set of values for EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum
+func GetEnableReverseConnectionsDetailsDefaultDnsContextTransportEnumValues() []EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum {
+	values := make([]EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum, 0)
+	for _, v := range mappingEnableReverseConnectionsDetailsDefaultDnsContextTransport {
 		values = append(values, v)
 	}
 	return values

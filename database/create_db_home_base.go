@@ -26,14 +26,25 @@ type CreateDbHomeBase interface {
 
 	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
 	GetKmsKeyVersionId() *string
+
+	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Department": "Finance"}`
+	GetFreeformTags() map[string]string
+
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	GetDefinedTags() map[string]map[string]interface{}
 }
 
 type createdbhomebase struct {
 	JsonData        []byte
-	DisplayName     *string `mandatory:"false" json:"displayName"`
-	KmsKeyId        *string `mandatory:"false" json:"kmsKeyId"`
-	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
-	Source          string  `json:"source"`
+	DisplayName     *string                           `mandatory:"false" json:"displayName"`
+	KmsKeyId        *string                           `mandatory:"false" json:"kmsKeyId"`
+	KmsKeyVersionId *string                           `mandatory:"false" json:"kmsKeyVersionId"`
+	FreeformTags    map[string]string                 `mandatory:"false" json:"freeformTags"`
+	DefinedTags     map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+	Source          string                            `json:"source"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -50,6 +61,8 @@ func (m *createdbhomebase) UnmarshalJSON(data []byte) error {
 	m.DisplayName = s.Model.DisplayName
 	m.KmsKeyId = s.Model.KmsKeyId
 	m.KmsKeyVersionId = s.Model.KmsKeyVersionId
+	m.FreeformTags = s.Model.FreeformTags
+	m.DefinedTags = s.Model.DefinedTags
 	m.Source = s.Model.Source
 
 	return err
@@ -102,6 +115,16 @@ func (m createdbhomebase) GetKmsKeyId() *string {
 //GetKmsKeyVersionId returns KmsKeyVersionId
 func (m createdbhomebase) GetKmsKeyVersionId() *string {
 	return m.KmsKeyVersionId
+}
+
+//GetFreeformTags returns FreeformTags
+func (m createdbhomebase) GetFreeformTags() map[string]string {
+	return m.FreeformTags
+}
+
+//GetDefinedTags returns DefinedTags
+func (m createdbhomebase) GetDefinedTags() map[string]map[string]interface{} {
+	return m.DefinedTags
 }
 
 func (m createdbhomebase) String() string {

@@ -19,10 +19,10 @@ type GetDataEntityRequest struct {
 	ConnectionKey *string `mandatory:"true" contributesTo:"path" name:"connectionKey"`
 
 	// Name of the schema
-	SchemaName *string `mandatory:"true" contributesTo:"path" name:"schemaName"`
+	SchemaKey *string `mandatory:"true" contributesTo:"path" name:"schemaKey"`
 
 	// Name of the data entity
-	DataEntityName *string `mandatory:"true" contributesTo:"path" name:"dataEntityName"`
+	DataEntityKey *string `mandatory:"true" contributesTo:"path" name:"dataEntityKey"`
 
 	// Unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request,

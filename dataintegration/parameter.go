@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Data Integration Service API Specification
+// Data Integration API
 //
-// Data Integration Service API Specification
+// Use the Data Integration Service APIs to perform common extract, load, and transform (ETL) tasks.
 //
 
 package dataintegration
@@ -14,46 +14,46 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Parameter Parameters can be created and assigned values, these can be deferred to execution/runtime.
+// Parameter Parameters are created and assigned values that can be deferred to execution/runtime.
 type Parameter struct {
 
-	// Object key
+	// The key of the object.
 	Key *string `mandatory:"false" json:"key"`
 
-	// modelVersion
+	// The model version of an object.
 	ModelVersion *string `mandatory:"false" json:"modelVersion"`
 
 	ParentRef *ParentReference `mandatory:"false" json:"parentRef"`
 
 	ConfigValues *ConfigValues `mandatory:"false" json:"configValues"`
 
-	// Status of object, can set this to value 1 for shallow references across objects, other values reserved.
+	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
 
-	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
+	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
 	Name *string `mandatory:"false" json:"name"`
 
-	// Descriptive text for the object.
+	// Detailed description for the object.
 	Description *string `mandatory:"false" json:"description"`
 
 	Type BaseType `mandatory:"false" json:"type"`
 
-	// auto generated description
+	// The default value of the parameter.
 	DefaultValue *interface{} `mandatory:"false" json:"defaultValue"`
 
-	RootObjDefaultValue *RootObject `mandatory:"false" json:"rootObjDefaultValue"`
+	RootObjectDefaultValue *RootObject `mandatory:"false" json:"rootObjectDefaultValue"`
 
-	// isInput
+	// Whether the parameter is input value.
 	IsInput *bool `mandatory:"false" json:"isInput"`
 
-	// isOutput
+	// Whether the parameter is output value.
 	IsOutput *bool `mandatory:"false" json:"isOutput"`
 
-	// typeName
+	// The name of the object type.
 	TypeName *string `mandatory:"false" json:"typeName"`
 
-	// outputAggType
-	OutputAggType ParameterOutputAggTypeEnum `mandatory:"false" json:"outputAggType,omitempty"`
+	// The output aggregation type
+	OutputAggregationType ParameterOutputAggregationTypeEnum `mandatory:"false" json:"outputAggregationType,omitempty"`
 }
 
 //GetKey returns Key
@@ -112,20 +112,20 @@ func (m Parameter) MarshalJSON() (buff []byte, e error) {
 // UnmarshalJSON unmarshals from json
 func (m *Parameter) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		Key                 *string                    `json:"key"`
-		ModelVersion        *string                    `json:"modelVersion"`
-		ParentRef           *ParentReference           `json:"parentRef"`
-		ConfigValues        *ConfigValues              `json:"configValues"`
-		ObjectStatus        *int                       `json:"objectStatus"`
-		Name                *string                    `json:"name"`
-		Description         *string                    `json:"description"`
-		Type                basetype                   `json:"type"`
-		DefaultValue        *interface{}               `json:"defaultValue"`
-		RootObjDefaultValue *RootObject                `json:"rootObjDefaultValue"`
-		IsInput             *bool                      `json:"isInput"`
-		IsOutput            *bool                      `json:"isOutput"`
-		OutputAggType       ParameterOutputAggTypeEnum `json:"outputAggType"`
-		TypeName            *string                    `json:"typeName"`
+		Key                    *string                            `json:"key"`
+		ModelVersion           *string                            `json:"modelVersion"`
+		ParentRef              *ParentReference                   `json:"parentRef"`
+		ConfigValues           *ConfigValues                      `json:"configValues"`
+		ObjectStatus           *int                               `json:"objectStatus"`
+		Name                   *string                            `json:"name"`
+		Description            *string                            `json:"description"`
+		Type                   basetype                           `json:"type"`
+		DefaultValue           *interface{}                       `json:"defaultValue"`
+		RootObjectDefaultValue *RootObject                        `json:"rootObjectDefaultValue"`
+		IsInput                *bool                              `json:"isInput"`
+		IsOutput               *bool                              `json:"isOutput"`
+		OutputAggregationType  ParameterOutputAggregationTypeEnum `json:"outputAggregationType"`
+		TypeName               *string                            `json:"typeName"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -159,40 +159,40 @@ func (m *Parameter) UnmarshalJSON(data []byte) (e error) {
 
 	m.DefaultValue = model.DefaultValue
 
-	m.RootObjDefaultValue = model.RootObjDefaultValue
+	m.RootObjectDefaultValue = model.RootObjectDefaultValue
 
 	m.IsInput = model.IsInput
 
 	m.IsOutput = model.IsOutput
 
-	m.OutputAggType = model.OutputAggType
+	m.OutputAggregationType = model.OutputAggregationType
 
 	m.TypeName = model.TypeName
 	return
 }
 
-// ParameterOutputAggTypeEnum Enum with underlying type: string
-type ParameterOutputAggTypeEnum string
+// ParameterOutputAggregationTypeEnum Enum with underlying type: string
+type ParameterOutputAggregationTypeEnum string
 
-// Set of constants representing the allowable values for ParameterOutputAggTypeEnum
+// Set of constants representing the allowable values for ParameterOutputAggregationTypeEnum
 const (
-	ParameterOutputAggTypeMin   ParameterOutputAggTypeEnum = "MIN"
-	ParameterOutputAggTypeMax   ParameterOutputAggTypeEnum = "MAX"
-	ParameterOutputAggTypeCount ParameterOutputAggTypeEnum = "COUNT"
-	ParameterOutputAggTypeSum   ParameterOutputAggTypeEnum = "SUM"
+	ParameterOutputAggregationTypeMin   ParameterOutputAggregationTypeEnum = "MIN"
+	ParameterOutputAggregationTypeMax   ParameterOutputAggregationTypeEnum = "MAX"
+	ParameterOutputAggregationTypeCount ParameterOutputAggregationTypeEnum = "COUNT"
+	ParameterOutputAggregationTypeSum   ParameterOutputAggregationTypeEnum = "SUM"
 )
 
-var mappingParameterOutputAggType = map[string]ParameterOutputAggTypeEnum{
-	"MIN":   ParameterOutputAggTypeMin,
-	"MAX":   ParameterOutputAggTypeMax,
-	"COUNT": ParameterOutputAggTypeCount,
-	"SUM":   ParameterOutputAggTypeSum,
+var mappingParameterOutputAggregationType = map[string]ParameterOutputAggregationTypeEnum{
+	"MIN":   ParameterOutputAggregationTypeMin,
+	"MAX":   ParameterOutputAggregationTypeMax,
+	"COUNT": ParameterOutputAggregationTypeCount,
+	"SUM":   ParameterOutputAggregationTypeSum,
 }
 
-// GetParameterOutputAggTypeEnumValues Enumerates the set of values for ParameterOutputAggTypeEnum
-func GetParameterOutputAggTypeEnumValues() []ParameterOutputAggTypeEnum {
-	values := make([]ParameterOutputAggTypeEnum, 0)
-	for _, v := range mappingParameterOutputAggType {
+// GetParameterOutputAggregationTypeEnumValues Enumerates the set of values for ParameterOutputAggregationTypeEnum
+func GetParameterOutputAggregationTypeEnumValues() []ParameterOutputAggregationTypeEnum {
+	values := make([]ParameterOutputAggregationTypeEnum, 0)
+	for _, v := range mappingParameterOutputAggregationType {
 		values = append(values, v)
 	}
 	return values

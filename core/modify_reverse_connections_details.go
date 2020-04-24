@@ -37,8 +37,34 @@ type ModifyReverseConnectionsDetails struct {
 	// If the private endpoint was enabled with reverse connection with 0 already, the field is not updatable.
 	// The size may not be updated with smaller number than previously specified value, but may be increased.
 	CustomerEndpointsSize *int `mandatory:"false" json:"customerEndpointsSize"`
+
+	// Layer 4 transport protocol to be used when resolving DNS queries within the default DNS resolution context.
+	DefaultDnsContextTransport ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum `mandatory:"false" json:"defaultDnsContextTransport,omitempty"`
 }
 
 func (m ModifyReverseConnectionsDetails) String() string {
 	return common.PointerString(m)
+}
+
+// ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum Enum with underlying type: string
+type ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum string
+
+// Set of constants representing the allowable values for ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum
+const (
+	ModifyReverseConnectionsDetailsDefaultDnsContextTransportTcp ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum = "TCP"
+	ModifyReverseConnectionsDetailsDefaultDnsContextTransportUdp ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum = "UDP"
+)
+
+var mappingModifyReverseConnectionsDetailsDefaultDnsContextTransport = map[string]ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum{
+	"TCP": ModifyReverseConnectionsDetailsDefaultDnsContextTransportTcp,
+	"UDP": ModifyReverseConnectionsDetailsDefaultDnsContextTransportUdp,
+}
+
+// GetModifyReverseConnectionsDetailsDefaultDnsContextTransportEnumValues Enumerates the set of values for ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum
+func GetModifyReverseConnectionsDetailsDefaultDnsContextTransportEnumValues() []ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum {
+	values := make([]ModifyReverseConnectionsDetailsDefaultDnsContextTransportEnum, 0)
+	for _, v := range mappingModifyReverseConnectionsDetailsDefaultDnsContextTransport {
+		values = append(values, v)
+	}
+	return values
 }

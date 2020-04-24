@@ -12,31 +12,31 @@ import (
 // ListIncidentsRequest wrapper for the ListIncidents operation
 type ListIncidentsRequest struct {
         
- // Customer Support Identifier of the support account 
+ // The Customer Support Identifier associated with the support account. 
         Csi *string `mandatory:"true" contributesTo:"header" name:"csi"`
         
- // Tenancy Ocid 
+ // The OCID of the tenancy. 
         CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
         
- // User OCID for IDCS users that have a shadow in OCI 
+ // User OCID for Oracle Identity Cloud Service (IDCS) users who also have a federated Oracle Cloud Infrastructure account. 
         Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
         
- // Limit query for number of returned results 
+ // The maximum number of returned results in a call. 
         Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
         
- // The key to sort the returned items by 
+ // The key to use to sort the returned items. 
         SortBy ListIncidentsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
         
- // The order in which to sort the results 
+ // The order to sort the results in. 
         SortOrder ListIncidentsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
         
- // The order in which to sort the results 
+ // The current state of the ticket. 
         LifecycleState ListIncidentsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
         
- // Pagination for Incident list 
+ // The pagination for the support ticket list. 
         Page *string `mandatory:"false" contributesTo:"query" name:"page"`
         
- // Unique Header for request id 
+ // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID. 
         OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 
@@ -69,13 +69,13 @@ type ListIncidentsResponse struct {
     Items []IncidentSummary `presentIn:"body"`
 
     
- // OPC Request Id
+ // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
     OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
     
- // OPC next page
+ // For list pagination. When this header appears in the response, additional pages of results remain. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#nine).
     OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
     
- // e-Tag
+ // The entity tag that allows optimistic concurrency control. For more information, see REST APIs (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#eleven).
     Etag *string `presentIn:"header" name:"etag"`
 
 
