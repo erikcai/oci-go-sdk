@@ -4572,7 +4572,7 @@
       <dependency>
         <groupId>oracle.dfcs.server</groupId>
         <artifactId>service_api_spec</artifactId>
-        <version>1.0.204-RELEASEPREVIEW</version>
+        <version>1.0.205-RELEASEPREVIEW</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.mysql</groupId>
