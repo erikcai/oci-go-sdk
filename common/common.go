@@ -33,6 +33,8 @@ const (
 	RegionAPOsaka1 Region = "ap-osaka-1"
 	//RegionAPSingapore1 region for Singapore
 	RegionAPSingapore1 Region = "ap-singapore-1"
+	//RegionAPChiyoda1 region for Chiyoda
+	RegionAPChiyoda1 Region = "ap-chiyoda-1"
 
 	//RegionCAMontreal1 region for Montreal
 	RegionCAMontreal1 Region = "ca-montreal-1"
@@ -91,6 +93,7 @@ var realm = map[string]string{
 	"oc3": "oraclegovcloud.com",
 	"oc4": "oraclegovcloud.uk",
 	"oc5": "oracleonsrcloud.com",
+	"oc8": "oraclecloud8.com",
 }
 
 var regionRealm = map[Region]string{
@@ -132,6 +135,8 @@ var regionRealm = map[Region]string{
 	RegionUKGovCardiff1: "oc4",
 
 	RegionUSTacoma1: "oc5",
+
+	RegionAPChiyoda1: "oc8",
 }
 
 // Endpoint returns a endpoint for a service
@@ -204,6 +209,8 @@ func StringToRegion(stringRegion string) (r Region) {
 		r = RegionAPOsaka1
 	case "sin", "ap-singapore-1":
 		r = RegionAPSingapore1
+	case "nja", "ap-chiyoda-1":
+		r = RegionAPChiyoda1
 	case "yul", "ca-montreal-1":
 		r = RegionCAMontreal1
 	case "yyz", "ca-toronto-1":
