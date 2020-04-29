@@ -2808,7 +2808,7 @@
       <plugin>
         <groupId>com.oracle.bmc.sdk</groupId>
         <artifactId>bmc-sdk-swagger-maven-plugin</artifactId>
-        <version>1.118-SNAPSHOT</version>
+        <version>1.120-SNAPSHOT</version>
         <configuration>
           <isTestGenerationEnabled>true</isTestGenerationEnabled>
         </configuration>
@@ -2829,6 +2829,7 @@
                 <specName>identity</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>identity</serviceHostName>
+                <isTagAvailable.identity>true</isTagAvailable.identity>
               </additionalProperties>
               <featureIdConfigFile>${project.basedir}/featureId.yaml</featureIdConfigFile>
               <featureIdConfigDir>${project.basedir}/codegenConfig/featureIds</featureIdConfigDir>
@@ -2850,6 +2851,10 @@
                 <specName>core</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>iaas</serviceHostName>
+                <isTagAvailable.blockstorage>true</isTagAvailable.blockstorage>
+                <isTagAvailable.compute>true</isTagAvailable.compute>
+                <isTagAvailable.computemanagement>true</isTagAvailable.computemanagement>
+                <isTagAvailable.virtualnetwork>true</isTagAvailable.virtualnetwork>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -2872,6 +2877,7 @@
                 <specName>objectstorage</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>objectstorage</serviceHostName>
+                <isTagAvailable.objectstorage>true</isTagAvailable.objectstorage>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -2894,6 +2900,7 @@
                 <specName>loadbalancer</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>iaas</serviceHostName>
+                <isTagAvailable.loadbalancer>true</isTagAvailable.loadbalancer>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -2916,6 +2923,7 @@
                 <specName>database</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>database</serviceHostName>
+                <isTagAvailable.database>true</isTagAvailable.database>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -2937,6 +2945,7 @@
                 <specName>filestorage</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>filestorage</serviceHostName>
+                <isTagAvailable.filestorage>true</isTagAvailable.filestorage>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -2959,6 +2968,7 @@
                 <specName>audit</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>audit</serviceHostName>
+                <isTagAvailable.audit>true</isTagAvailable.audit>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -2980,6 +2990,7 @@
                 <specName>email</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>email</serviceHostName>
+                <isTagAvailable.email>true</isTagAvailable.email>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3002,6 +3013,7 @@
                 <specName>dns</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>dns</serviceHostName>
+                <isTagAvailable.dns>true</isTagAvailable.dns>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3023,6 +3035,7 @@
                 <specName>resourcemanager</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>resourcemanager</serviceHostName>
+                <isTagAvailable.resourcemanager>true</isTagAvailable.resourcemanager>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3046,6 +3059,9 @@
                 <serviceHostName>kms</serviceHostName>
                 <isRegionalClient.kmscrypto>false</isRegionalClient.kmscrypto>
                 <isRegionalClient.kmsmanagement>false</isRegionalClient.kmsmanagement>
+                <isTagAvailable.kmscrypto>true</isTagAvailable.kmscrypto>
+                <isTagAvailable.kmsmanagement>true</isTagAvailable.kmsmanagement>
+                <isTagAvailable.kmsvault>true</isTagAvailable.kmsvault>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3067,6 +3083,7 @@
                 <specName>resourcesearch</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>query</serviceHostName>
+                <isTagAvailable.resourcesearch>true</isTagAvailable.resourcesearch>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3090,6 +3107,7 @@
                 <specName>containerengine</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>containerengine</serviceHostName>
+                <isTagAvailable.containerengine>true</isTagAvailable.containerengine>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3112,6 +3130,7 @@
                 <specName>monitoring</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>telemetry</serviceHostName>
+                <isTagAvailable.monitoring>true</isTagAvailable.monitoring>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3134,6 +3153,7 @@
                 <specName>workrequests</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>iaas</serviceHostName>
+                <isTagAvailable.workrequest>true</isTagAvailable.workrequest>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3156,6 +3176,8 @@
                 <specName>ons</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>notification</serviceHostName>
+                <isTagAvailable.notificationcontrolplane>true</isTagAvailable.notificationcontrolplane>
+                <isTagAvailable.notificationdataplane>true</isTagAvailable.notificationdataplane>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3177,6 +3199,7 @@
                 <specName>healthchecks</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>healthchecks</serviceHostName>
+                <isTagAvailable.healthchecks>true</isTagAvailable.healthchecks>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3199,6 +3222,8 @@
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>streams</serviceHostName>
                 <isRegionalClient.stream>false</isRegionalClient.stream>
+                <isTagAvailable.stream>true</isTagAvailable.stream>
+                <isTagAvailable.streamadmin>true</isTagAvailable.streamadmin>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3220,6 +3245,7 @@
                 <specName>cache</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>caching</serviceHostName>
+                <isTagAvailable.oracache>true</isTagAvailable.oracache>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3241,6 +3267,7 @@
                 <specName>marketplace</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>marketplace</serviceHostName>
+                <isTagAvailable.marketplace>true</isTagAvailable.marketplace>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3262,6 +3289,7 @@
                 <specName>autoscaling</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>autoscaling</serviceHostName>
+                <isTagAvailable.autoscaling>true</isTagAvailable.autoscaling>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3283,6 +3311,7 @@
                 <specName>usage</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>identity</serviceHostName>
+                <isTagAvailable.usage>true</isTagAvailable.usage>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3304,6 +3333,7 @@
                 <specName>announcementsservice</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>announcements</serviceHostName>
+                <isTagAvailable.announcement>true</isTagAvailable.announcement>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3325,6 +3355,8 @@
                 <specName>waas</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>waas</serviceHostName>
+                <isTagAvailable.redirect>true</isTagAvailable.redirect>
+                <isTagAvailable.waas>true</isTagAvailable.waas>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3346,6 +3378,7 @@
                 <specName>batch</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>batch</serviceHostName>
+                <isTagAvailable.batchservice>true</isTagAvailable.batchservice>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3368,6 +3401,8 @@
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>functions</serviceHostName>
                 <isRegionalClient.functionsinvoke>false</isRegionalClient.functionsinvoke>
+                <isTagAvailable.functionsinvoke>true</isTagAvailable.functionsinvoke>
+                <isTagAvailable.functionsmanagement>true</isTagAvailable.functionsmanagement>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3389,6 +3424,7 @@
                 <specName>budget</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
                 <serviceHostName>None</serviceHostName>
+                <isTagAvailable.budget>true</isTagAvailable.budget>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3409,6 +3445,8 @@
               <additionalProperties>
                 <specName>limits</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.limits>true</isTagAvailable.limits>
+                <isTagAvailable.quotas>true</isTagAvailable.quotas>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3429,6 +3467,7 @@
               <additionalProperties>
                 <specName>oda</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.oda>true</isTagAvailable.oda>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3449,6 +3488,7 @@
               <additionalProperties>
                 <specName>storagegateway</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.storagegateway>true</isTagAvailable.storagegateway>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3469,6 +3509,13 @@
               <additionalProperties>
                 <specName>dts</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.applianceexportjob>true</isTagAvailable.applianceexportjob>
+                <isTagAvailable.shippingvendors>true</isTagAvailable.shippingvendors>
+                <isTagAvailable.transferappliance>true</isTagAvailable.transferappliance>
+                <isTagAvailable.transferapplianceentitlement>true</isTagAvailable.transferapplianceentitlement>
+                <isTagAvailable.transferdevice>true</isTagAvailable.transferdevice>
+                <isTagAvailable.transferjob>true</isTagAvailable.transferjob>
+                <isTagAvailable.transferpackage>true</isTagAvailable.transferpackage>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3489,6 +3536,10 @@
               <additionalProperties>
                 <specName>apigateway</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.apigateway>true</isTagAvailable.apigateway>
+                <isTagAvailable.deployment>true</isTagAvailable.deployment>
+                <isTagAvailable.gateway>true</isTagAvailable.gateway>
+                <isTagAvailable.workrequests>true</isTagAvailable.workrequests>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3509,6 +3560,7 @@
               <additionalProperties>
                 <specName>events</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.events>true</isTagAvailable.events>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3529,6 +3581,7 @@
               <additionalProperties>
                 <specName>cims</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.incident>true</isTagAvailable.incident>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3549,6 +3602,7 @@
               <additionalProperties>
                 <specName>nosql</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.nosql>true</isTagAvailable.nosql>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3569,6 +3623,7 @@
               <additionalProperties>
                 <specName>datacatalog</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.datacatalog>true</isTagAvailable.datacatalog>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3589,6 +3644,7 @@
               <additionalProperties>
                 <specName>oce</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.oceinstance>true</isTagAvailable.oceinstance>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3609,6 +3665,7 @@
               <additionalProperties>
                 <specName>datascience</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.datascience>true</isTagAvailable.datascience>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3629,6 +3686,7 @@
               <additionalProperties>
                 <specName>bds</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.bds>true</isTagAvailable.bds>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3649,6 +3707,7 @@
               <additionalProperties>
                 <specName>analytics</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.analytics>true</isTagAvailable.analytics>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3669,6 +3728,7 @@
               <additionalProperties>
                 <specName>integration</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.integrationinstance>true</isTagAvailable.integrationinstance>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3689,6 +3749,7 @@
               <additionalProperties>
                 <specName>kam</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.kam>true</isTagAvailable.kam>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3709,6 +3770,7 @@
               <additionalProperties>
                 <specName>publicloggingsearch</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.lumlogsearch>true</isTagAvailable.lumlogsearch>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3729,6 +3791,7 @@
               <additionalProperties>
                 <specName>osmanagement</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.osmanagement>true</isTagAvailable.osmanagement>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3749,6 +3812,7 @@
               <additionalProperties>
                 <specName>applicationmigration</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.applicationmigration>true</isTagAvailable.applicationmigration>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3769,6 +3833,7 @@
               <additionalProperties>
                 <specName>dataflow</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.dataflow>true</isTagAvailable.dataflow>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3789,8 +3854,9 @@
               <additionalProperties>
                 <specName>mysql</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-                <isTagAvailable.analytics>false</isTagAvailable.analytics>
-                <isTagAvailable.workrequests>false</isTagAvailable.workrequests>
+                <isTagAvailable.dbbackups>true</isTagAvailable.dbbackups>
+                <isTagAvailable.dbsystem>true</isTagAvailable.dbsystem>
+                <isTagAvailable.mysqlaas>true</isTagAvailable.mysqlaas>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3811,6 +3877,7 @@
               <additionalProperties>
                 <specName>secrets</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.secrets>true</isTagAvailable.secrets>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3831,6 +3898,7 @@
               <additionalProperties>
                 <specName>vault</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.vaults>true</isTagAvailable.vaults>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3851,6 +3919,7 @@
               <additionalProperties>
                 <specName>blockchain</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.blockchainplatform>true</isTagAvailable.blockchainplatform>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3871,6 +3940,7 @@
               <additionalProperties>
                 <specName>datasafe</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.datasafe>true</isTagAvailable.datasafe>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3891,6 +3961,7 @@
               <additionalProperties>
                 <specName>compdocsapi</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.compliancedoc>true</isTagAvailable.compliancedoc>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3911,6 +3982,7 @@
               <additionalProperties>
                 <specName>dataintegration</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.dataintegration>true</isTagAvailable.dataintegration>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3931,6 +4003,7 @@
               <additionalProperties>
                 <specName>logging</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+                <isTagAvailable.publiclogging>true</isTagAvailable.publiclogging>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
@@ -3951,7 +4024,8 @@
               <additionalProperties>
                 <specName>ocvp</specName>
                 <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-                <isTagAvailable.workrequest>false</isTagAvailable.workrequest>
+                <isTagAvailable.esxihost>true</isTagAvailable.esxihost>
+                <isTagAvailable.sddc>true</isTagAvailable.sddc>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
