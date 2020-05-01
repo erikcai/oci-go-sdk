@@ -29,7 +29,7 @@ type DataFlowValidationSummary struct {
 	InfoMessageCount *int `mandatory:"false" json:"infoMessageCount"`
 
 	// Detailed information of the DataFlow object validation.
-	ValidationMessages map[string]ValidationMessage `mandatory:"false" json:"validationMessages"`
+	ValidationMessages map[string][]ValidationMessage `mandatory:"false" json:"validationMessages"`
 
 	// Objects will use a 36 character key as unique ID. It is system generated and cannot be edited by user
 	Key *string `mandatory:"false" json:"key"`

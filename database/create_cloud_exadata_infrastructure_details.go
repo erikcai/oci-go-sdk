@@ -28,11 +28,11 @@ type CreateCloudExadataInfrastructureDetails struct {
 	// The shape of the cloud Exadata infrastructure.
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// The additional number of compute servers for the cloud Exadata infrastructure.
-	AdditionalComputeCount *int64 `mandatory:"false" json:"additionalComputeCount"`
+	// The number of compute servers for the cloud Exadata infrastructure.
+	ComputeCount *int `mandatory:"false" json:"computeCount"`
 
-	// The additional number of storage servers for the cloud Exadata infrastructure.
-	AdditionalStorageCount *int64 `mandatory:"false" json:"additionalStorageCount"`
+	// The number of storage servers for the cloud Exadata infrastructure.
+	StorageCount *int `mandatory:"false" json:"storageCount"`
 
 	MaintenanceWindow *MaintenanceWindow `mandatory:"false" json:"maintenanceWindow"`
 

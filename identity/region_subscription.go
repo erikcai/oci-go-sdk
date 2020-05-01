@@ -20,44 +20,14 @@ import (
 // see Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
 type RegionSubscription struct {
 
-	// The region's key.
-	// Allowed values are:
-	// - `PHX`
-	// - `IAD`
-	// - `FRA`
-	// - `LHR`
-	// - `YYZ`
-	// - `NRT`
-	// - `ICN`
-	// - `BOM`
-	// - `ZRH`
-	// - `GRU`
-	// - `SYD`
-	// - `JED`
-	// - `AMS`
-	// - `KIX`
-	// - `MEL`
-	// - `YUL`
+	// The region's key. See Regions and Availability Domains (https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
+	// for the full list of supported 3-letter region codes.
+	// Example: `PHX`
 	RegionKey *string `mandatory:"true" json:"regionKey"`
 
-	// The region's name.
-	// Allowed values are:
-	// - `us-phoenix-1`
-	// - `us-ashburn-1`
-	// - `eu-frankfurt-1`
-	// - `uk-london-1`
-	// - `ca-toronto-1`
-	// - `ap-tokyo-1`
-	// - `ap-seoul-1`
-	// - `ap-mumbai-1`
-	// - `eu-zurich-1`
-	// - `sa-saopaulo-1`
-	// - `ap-sydney-1`
-	// - `me-jeddah-1`
-	// - `eu-amsterdam-1`
-	// - `ap-osaka-1`
-	// - `ap-melbourne-1`
-	// - `ca-montreal-1`
+	// The region's name. See Regions and Availability Domains (https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
+	// for the full list of supported region names.
+	// Example: `us-phoenix-1`
 	RegionName *string `mandatory:"true" json:"regionName"`
 
 	// The region subscription status.

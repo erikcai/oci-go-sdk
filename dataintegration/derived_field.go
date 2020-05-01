@@ -38,7 +38,8 @@ type DerivedField struct {
 
 	Expr *Expression `mandatory:"false" json:"expr"`
 
-	Type BaseType `mandatory:"false" json:"type"`
+	// The type of the field.
+	Type *string `mandatory:"false" json:"type"`
 
 	// Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.
 	Labels []string `mandatory:"false" json:"labels"`
@@ -95,57 +96,4 @@ func (m DerivedField) MarshalJSON() (buff []byte, e error) {
 	}
 
 	return json.Marshal(&s)
-}
-
-// UnmarshalJSON unmarshals from json
-func (m *DerivedField) UnmarshalJSON(data []byte) (e error) {
-	model := struct {
-		Key          *string          `json:"key"`
-		ModelVersion *string          `json:"modelVersion"`
-		ParentRef    *ParentReference `json:"parentRef"`
-		ConfigValues *ConfigValues    `json:"configValues"`
-		ObjectStatus *int             `json:"objectStatus"`
-		Name         *string          `json:"name"`
-		Description  *string          `json:"description"`
-		Expr         *Expression      `json:"expr"`
-		Type         basetype         `json:"type"`
-		Labels       []string         `json:"labels"`
-	}{}
-
-	e = json.Unmarshal(data, &model)
-	if e != nil {
-		return
-	}
-	var nn interface{}
-	m.Key = model.Key
-
-	m.ModelVersion = model.ModelVersion
-
-	m.ParentRef = model.ParentRef
-
-	m.ConfigValues = model.ConfigValues
-
-	m.ObjectStatus = model.ObjectStatus
-
-	m.Name = model.Name
-
-	m.Description = model.Description
-
-	m.Expr = model.Expr
-
-	nn, e = model.Type.UnmarshalPolymorphicJSON(model.Type.JsonData)
-	if e != nil {
-		return
-	}
-	if nn != nil {
-		m.Type = nn.(BaseType)
-	} else {
-		m.Type = nil
-	}
-
-	m.Labels = make([]string, len(model.Labels))
-	for i, n := range model.Labels {
-		m.Labels[i] = n
-	}
-	return
 }

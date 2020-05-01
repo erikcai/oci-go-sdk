@@ -3494,41 +3494,41 @@ func (client DatabaseClient) getCloudVmClusterIormConfig(ctx context.Context, re
 	return response, err
 }
 
-// GetCloudVmClusterPatch Gets information about a specified patch package.
-func (client DatabaseClient) GetCloudVmClusterPatch(ctx context.Context, request GetCloudVmClusterPatchRequest) (response GetCloudVmClusterPatchResponse, err error) {
+// GetCloudVmClusterUpdate Gets information about a specified maintenance update package.
+func (client DatabaseClient) GetCloudVmClusterUpdate(ctx context.Context, request GetCloudVmClusterUpdateRequest) (response GetCloudVmClusterUpdateResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.getCloudVmClusterPatch, policy)
+	ociResponse, err = common.Retry(ctx, request, client.getCloudVmClusterUpdate, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetCloudVmClusterPatchResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = GetCloudVmClusterUpdateResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = GetCloudVmClusterPatchResponse{}
+				response = GetCloudVmClusterUpdateResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(GetCloudVmClusterPatchResponse); ok {
+	if convertedResponse, ok := ociResponse.(GetCloudVmClusterUpdateResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetCloudVmClusterPatchResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into GetCloudVmClusterUpdateResponse")
 	}
 	return
 }
 
-// getCloudVmClusterPatch implements the OCIOperation interface (enables retrying operations)
-func (client DatabaseClient) getCloudVmClusterPatch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/patches/{patchId}")
+// getCloudVmClusterUpdate implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getCloudVmClusterUpdate(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/updates/{updateId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response GetCloudVmClusterPatchResponse
+	var response GetCloudVmClusterUpdateResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -3541,41 +3541,41 @@ func (client DatabaseClient) getCloudVmClusterPatch(ctx context.Context, request
 	return response, err
 }
 
-// GetCloudVmClusterPatchHistoryEntry Gets the patch history details for the specified patchHistoryEntryId.
-func (client DatabaseClient) GetCloudVmClusterPatchHistoryEntry(ctx context.Context, request GetCloudVmClusterPatchHistoryEntryRequest) (response GetCloudVmClusterPatchHistoryEntryResponse, err error) {
+// GetCloudVmClusterUpdateHistoryEntry Gets the maintenance update history details for the specified 'updateHistoryEntryId'.
+func (client DatabaseClient) GetCloudVmClusterUpdateHistoryEntry(ctx context.Context, request GetCloudVmClusterUpdateHistoryEntryRequest) (response GetCloudVmClusterUpdateHistoryEntryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.getCloudVmClusterPatchHistoryEntry, policy)
+	ociResponse, err = common.Retry(ctx, request, client.getCloudVmClusterUpdateHistoryEntry, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetCloudVmClusterPatchHistoryEntryResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = GetCloudVmClusterUpdateHistoryEntryResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = GetCloudVmClusterPatchHistoryEntryResponse{}
+				response = GetCloudVmClusterUpdateHistoryEntryResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(GetCloudVmClusterPatchHistoryEntryResponse); ok {
+	if convertedResponse, ok := ociResponse.(GetCloudVmClusterUpdateHistoryEntryResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetCloudVmClusterPatchHistoryEntryResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into GetCloudVmClusterUpdateHistoryEntryResponse")
 	}
 	return
 }
 
-// getCloudVmClusterPatchHistoryEntry implements the OCIOperation interface (enables retrying operations)
-func (client DatabaseClient) getCloudVmClusterPatchHistoryEntry(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/patchHistoryEntries/{patchHistoryEntryId}")
+// getCloudVmClusterUpdateHistoryEntry implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) getCloudVmClusterUpdateHistoryEntry(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/updateHistoryEntries/{updateHistoryEntryId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response GetCloudVmClusterPatchHistoryEntryResponse
+	var response GetCloudVmClusterUpdateHistoryEntryResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -5303,41 +5303,41 @@ func (client DatabaseClient) listCloudExadataInfrastructures(ctx context.Context
 	return response, err
 }
 
-// ListCloudVmClusterPatchHistoryEntries Gets the history of the patch actions performed on the specified cloud VM cluster.
-func (client DatabaseClient) ListCloudVmClusterPatchHistoryEntries(ctx context.Context, request ListCloudVmClusterPatchHistoryEntriesRequest) (response ListCloudVmClusterPatchHistoryEntriesResponse, err error) {
+// ListCloudVmClusterUpdateHistoryEntries Gets the history of the update actions performed on the specified cloud VM cluster.
+func (client DatabaseClient) ListCloudVmClusterUpdateHistoryEntries(ctx context.Context, request ListCloudVmClusterUpdateHistoryEntriesRequest) (response ListCloudVmClusterUpdateHistoryEntriesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.listCloudVmClusterPatchHistoryEntries, policy)
+	ociResponse, err = common.Retry(ctx, request, client.listCloudVmClusterUpdateHistoryEntries, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ListCloudVmClusterPatchHistoryEntriesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = ListCloudVmClusterUpdateHistoryEntriesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = ListCloudVmClusterPatchHistoryEntriesResponse{}
+				response = ListCloudVmClusterUpdateHistoryEntriesResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(ListCloudVmClusterPatchHistoryEntriesResponse); ok {
+	if convertedResponse, ok := ociResponse.(ListCloudVmClusterUpdateHistoryEntriesResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListCloudVmClusterPatchHistoryEntriesResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ListCloudVmClusterUpdateHistoryEntriesResponse")
 	}
 	return
 }
 
-// listCloudVmClusterPatchHistoryEntries implements the OCIOperation interface (enables retrying operations)
-func (client DatabaseClient) listCloudVmClusterPatchHistoryEntries(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/patchHistoryEntries")
+// listCloudVmClusterUpdateHistoryEntries implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listCloudVmClusterUpdateHistoryEntries(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/updateHistoryEntries")
 	if err != nil {
 		return nil, err
 	}
 
-	var response ListCloudVmClusterPatchHistoryEntriesResponse
+	var response ListCloudVmClusterUpdateHistoryEntriesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -5350,41 +5350,41 @@ func (client DatabaseClient) listCloudVmClusterPatchHistoryEntries(ctx context.C
 	return response, err
 }
 
-// ListCloudVmClusterPatches Lists the patches applicable to the requested cloud VM cluster.
-func (client DatabaseClient) ListCloudVmClusterPatches(ctx context.Context, request ListCloudVmClusterPatchesRequest) (response ListCloudVmClusterPatchesResponse, err error) {
+// ListCloudVmClusterUpdates Lists the updates applicable to the requested cloud VM cluster.
+func (client DatabaseClient) ListCloudVmClusterUpdates(ctx context.Context, request ListCloudVmClusterUpdatesRequest) (response ListCloudVmClusterUpdatesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.listCloudVmClusterPatches, policy)
+	ociResponse, err = common.Retry(ctx, request, client.listCloudVmClusterUpdates, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ListCloudVmClusterPatchesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = ListCloudVmClusterUpdatesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = ListCloudVmClusterPatchesResponse{}
+				response = ListCloudVmClusterUpdatesResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(ListCloudVmClusterPatchesResponse); ok {
+	if convertedResponse, ok := ociResponse.(ListCloudVmClusterUpdatesResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListCloudVmClusterPatchesResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ListCloudVmClusterUpdatesResponse")
 	}
 	return
 }
 
-// listCloudVmClusterPatches implements the OCIOperation interface (enables retrying operations)
-func (client DatabaseClient) listCloudVmClusterPatches(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/patches")
+// listCloudVmClusterUpdates implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listCloudVmClusterUpdates(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/cloudVmClusters/{cloudVmClusterId}/updates")
 	if err != nil {
 		return nil, err
 	}
 
-	var response ListCloudVmClusterPatchesResponse
+	var response ListCloudVmClusterUpdatesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

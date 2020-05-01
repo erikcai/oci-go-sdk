@@ -205,8 +205,6 @@ type OperatorModelTypeEnum string
 // Set of constants representing the allowable values for OperatorModelTypeEnum
 const (
 	OperatorModelTypeSourceOperator     OperatorModelTypeEnum = "SOURCE_OPERATOR"
-	OperatorModelTypeSubworkflow        OperatorModelTypeEnum = "SUBWORKFLOW"
-	OperatorModelTypeMerge              OperatorModelTypeEnum = "MERGE"
 	OperatorModelTypeFilterOperator     OperatorModelTypeEnum = "FILTER_OPERATOR"
 	OperatorModelTypeJoinerOperator     OperatorModelTypeEnum = "JOINER_OPERATOR"
 	OperatorModelTypeAggregatorOperator OperatorModelTypeEnum = "AGGREGATOR_OPERATOR"
@@ -216,8 +214,6 @@ const (
 
 var mappingOperatorModelType = map[string]OperatorModelTypeEnum{
 	"SOURCE_OPERATOR":     OperatorModelTypeSourceOperator,
-	"SUBWORKFLOW":         OperatorModelTypeSubworkflow,
-	"MERGE":               OperatorModelTypeMerge,
 	"FILTER_OPERATOR":     OperatorModelTypeFilterOperator,
 	"JOINER_OPERATOR":     OperatorModelTypeJoinerOperator,
 	"AGGREGATOR_OPERATOR": OperatorModelTypeAggregatorOperator,

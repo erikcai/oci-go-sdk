@@ -43,9 +43,6 @@ type ShapeField struct {
 	Labels []string `mandatory:"false" json:"labels"`
 
 	NativeShapeField *NativeShapeField `mandatory:"false" json:"nativeShapeField"`
-
-	// The external key for the object.
-	ExternalKey *string `mandatory:"false" json:"externalKey"`
 }
 
 //GetKey returns Key

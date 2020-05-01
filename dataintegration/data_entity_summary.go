@@ -82,17 +82,15 @@ type DataEntitySummaryModelTypeEnum string
 
 // Set of constants representing the allowable values for DataEntitySummaryModelTypeEnum
 const (
-	DataEntitySummaryModelTypeViewEntity        DataEntitySummaryModelTypeEnum = "VIEW_ENTITY"
-	DataEntitySummaryModelTypeLogicalDataEntity DataEntitySummaryModelTypeEnum = "LOGICAL_DATA_ENTITY"
-	DataEntitySummaryModelTypeTableEntity       DataEntitySummaryModelTypeEnum = "TABLE_ENTITY"
-	DataEntitySummaryModelTypeFileEntity        DataEntitySummaryModelTypeEnum = "FILE_ENTITY"
+	DataEntitySummaryModelTypeViewEntity  DataEntitySummaryModelTypeEnum = "VIEW_ENTITY"
+	DataEntitySummaryModelTypeTableEntity DataEntitySummaryModelTypeEnum = "TABLE_ENTITY"
+	DataEntitySummaryModelTypeFileEntity  DataEntitySummaryModelTypeEnum = "FILE_ENTITY"
 )
 
 var mappingDataEntitySummaryModelType = map[string]DataEntitySummaryModelTypeEnum{
-	"VIEW_ENTITY":         DataEntitySummaryModelTypeViewEntity,
-	"LOGICAL_DATA_ENTITY": DataEntitySummaryModelTypeLogicalDataEntity,
-	"TABLE_ENTITY":        DataEntitySummaryModelTypeTableEntity,
-	"FILE_ENTITY":         DataEntitySummaryModelTypeFileEntity,
+	"VIEW_ENTITY":  DataEntitySummaryModelTypeViewEntity,
+	"TABLE_ENTITY": DataEntitySummaryModelTypeTableEntity,
+	"FILE_ENTITY":  DataEntitySummaryModelTypeFileEntity,
 }
 
 // GetDataEntitySummaryModelTypeEnumValues Enumerates the set of values for DataEntitySummaryModelTypeEnum

@@ -33,9 +33,6 @@ type CreateTaskRunDetails struct {
 
 	ConfigProvider *CreateConfigProvider `mandatory:"false" json:"configProvider"`
 
-	// Task object key.
-	TaskKey *string `mandatory:"false" json:"taskKey"`
-
 	// Value can only contain upper case letters, underscore and numbers. It should begin with upper case letter or underscore. The value can be edited by the user.
 	Identifier *string `mandatory:"false" json:"identifier"`
 

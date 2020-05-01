@@ -23,7 +23,8 @@ type UpdateAutonomousDatabaseDetails struct {
 	// The size, in terabytes, of the data volume that will be attached to the database.
 	DataStorageSizeInTBs *int `mandatory:"false" json:"dataStorageSizeInTBs"`
 
-	// The user-friendly name for the Autonomous Database. The name does not have to be unique.
+	// The user-friendly name for the Autonomous Database. The name does not have to be unique. Can only be updated for Autonomous Databases
+	// using dedicated Exadata infrastructure.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of memory. For Always Free databases, memory and CPU cannot be scaled.

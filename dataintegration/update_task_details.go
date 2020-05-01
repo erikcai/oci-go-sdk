@@ -114,6 +114,10 @@ func (m *updatetaskdetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, 
 
 	var err error
 	switch m.ModelType {
+	case "DATA_LOADER_TASK":
+		mm := UpdateTaskFromDataLoaderTask{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "INTEGRATION_TASK":
 		mm := UpdateTaskFromIntegrationTask{}
 		err = json.Unmarshal(data, &mm)

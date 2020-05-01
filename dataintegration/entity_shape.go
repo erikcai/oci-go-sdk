@@ -52,7 +52,7 @@ func (m *entityshape) UnmarshalPolymorphicJSON(data []byte) (interface{}, error)
 	var err error
 	switch m.ModelType {
 	case "FILE_ENTITY":
-		mm := DataShapeFromFile{}
+		mm := EntityShapeFromFile{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:

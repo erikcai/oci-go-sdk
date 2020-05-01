@@ -21,11 +21,11 @@ type UpdateCloudExadataInfrastructureDetails struct {
 
 	MaintenanceWindow *MaintenanceWindow `mandatory:"false" json:"maintenanceWindow"`
 
-	// The additional number of compute servers for the cloud Exadata infrastructure.
-	AdditionalComputeCount *int64 `mandatory:"false" json:"additionalComputeCount"`
+	// The number of compute servers for the cloud Exadata infrastructure.
+	ComputeCount *int `mandatory:"false" json:"computeCount"`
 
-	// The additional number of storage servers for the cloud Exadata infrastructure.
-	AdditionalStorageCount *int64 `mandatory:"false" json:"additionalStorageCount"`
+	// The number of storage servers for the cloud Exadata infrastructure.
+	StorageCount *int `mandatory:"false" json:"storageCount"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).

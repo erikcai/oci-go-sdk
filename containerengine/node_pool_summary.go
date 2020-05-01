@@ -52,7 +52,7 @@ type NodePoolSummary struct {
 	// A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
 	InitialNodeLabels []KeyValue `mandatory:"false" json:"initialNodeLabels"`
 
-	// The SSH public key on each node in the node pool.
+	// The SSH public key on each node in the node pool on launch.
 	SshPublicKey *string `mandatory:"false" json:"sshPublicKey"`
 
 	// The number of nodes in each subnet.

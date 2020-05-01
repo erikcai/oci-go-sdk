@@ -16,24 +16,8 @@ import (
 // CreateRegionSubscriptionDetails The representation of CreateRegionSubscriptionDetails
 type CreateRegionSubscriptionDetails struct {
 
-	// The regions's key.
-	// Allowed values are:
-	// - `PHX`
-	// - `IAD`
-	// - `FRA`
-	// - `LHR`
-	// - `YYZ`
-	// - `NRT`
-	// - `ICN`
-	// - `BOM`
-	// - `ZRH`
-	// - `GRU`
-	// - `SYD`
-	// - `JED`
-	// - `AMS`
-	// - `KIX`
-	// - `MEL`
-	// - `YUL`
+	// The regions's key. See Regions and Availability Domains (https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm) for
+	// the full list of supported 3-letter region codes.
 	// Example: `PHX`
 	RegionKey *string `mandatory:"true" json:"regionKey"`
 }

@@ -9,17 +9,14 @@ import (
 	"net/http"
 )
 
-// ListCloudVmClusterPatchHistoryEntriesRequest wrapper for the ListCloudVmClusterPatchHistoryEntries operation
-type ListCloudVmClusterPatchHistoryEntriesRequest struct {
+// GetCloudVmClusterUpdateRequest wrapper for the GetCloudVmClusterUpdate operation
+type GetCloudVmClusterUpdateRequest struct {
 
 	// The Cloud VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CloudVmClusterId *string `mandatory:"true" contributesTo:"path" name:"cloudVmClusterId"`
 
-	// The maximum number of items to return per page.
-	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
-
-	// The pagination token to continue listing from.
-	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance update.
+	UpdateId *string `mandatory:"true" contributesTo:"path" name:"updateId"`
 
 	// Unique identifier for the request.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -29,45 +26,39 @@ type ListCloudVmClusterPatchHistoryEntriesRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request ListCloudVmClusterPatchHistoryEntriesRequest) String() string {
+func (request GetCloudVmClusterUpdateRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request ListCloudVmClusterPatchHistoryEntriesRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetCloudVmClusterUpdateRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request ListCloudVmClusterPatchHistoryEntriesRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetCloudVmClusterUpdateRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// ListCloudVmClusterPatchHistoryEntriesResponse wrapper for the ListCloudVmClusterPatchHistoryEntries operation
-type ListCloudVmClusterPatchHistoryEntriesResponse struct {
+// GetCloudVmClusterUpdateResponse wrapper for the GetCloudVmClusterUpdate operation
+type GetCloudVmClusterUpdateResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []PatchHistoryEntrySummary instances
-	Items []PatchHistoryEntrySummary `presentIn:"body"`
+	// The Update instance
+	Update `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
-	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then there are additional items still to get. Include this value as the `page` parameter for the
-	// subsequent GET request. For information about pagination, see
-	// List Pagination (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#nine).
-	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 }
 
-func (response ListCloudVmClusterPatchHistoryEntriesResponse) String() string {
+func (response GetCloudVmClusterUpdateResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response ListCloudVmClusterPatchHistoryEntriesResponse) HTTPResponse() *http.Response {
+func (response GetCloudVmClusterUpdateResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

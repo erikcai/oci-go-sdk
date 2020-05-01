@@ -25,7 +25,8 @@ type ConfigParameterValue struct {
 	// The root object reference value.
 	RefValue *interface{} `mandatory:"false" json:"refValue"`
 
-	ParameterValue *Parameter `mandatory:"false" json:"parameterValue"`
+	// Reference to the parameter by its key.
+	ParameterValue *string `mandatory:"false" json:"parameterValue"`
 }
 
 func (m ConfigParameterValue) String() string {

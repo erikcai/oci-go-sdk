@@ -359,19 +359,21 @@ type AutonomousDatabaseSummaryOperationsInsightsStatusEnum string
 
 // Set of constants representing the allowable values for AutonomousDatabaseSummaryOperationsInsightsStatusEnum
 const (
-	AutonomousDatabaseSummaryOperationsInsightsStatusEnabling   AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "ENABLING"
-	AutonomousDatabaseSummaryOperationsInsightsStatusEnabled    AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "ENABLED"
-	AutonomousDatabaseSummaryOperationsInsightsStatusDisabling  AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "DISABLING"
-	AutonomousDatabaseSummaryOperationsInsightsStatusNotEnabled AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "NOT_ENABLED"
-	AutonomousDatabaseSummaryOperationsInsightsStatusFailed     AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "FAILED"
+	AutonomousDatabaseSummaryOperationsInsightsStatusEnabling        AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "ENABLING"
+	AutonomousDatabaseSummaryOperationsInsightsStatusEnabled         AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "ENABLED"
+	AutonomousDatabaseSummaryOperationsInsightsStatusDisabling       AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "DISABLING"
+	AutonomousDatabaseSummaryOperationsInsightsStatusNotEnabled      AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "NOT_ENABLED"
+	AutonomousDatabaseSummaryOperationsInsightsStatusFailedEnabling  AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "FAILED_ENABLING"
+	AutonomousDatabaseSummaryOperationsInsightsStatusFailedDisabling AutonomousDatabaseSummaryOperationsInsightsStatusEnum = "FAILED_DISABLING"
 )
 
 var mappingAutonomousDatabaseSummaryOperationsInsightsStatus = map[string]AutonomousDatabaseSummaryOperationsInsightsStatusEnum{
-	"ENABLING":    AutonomousDatabaseSummaryOperationsInsightsStatusEnabling,
-	"ENABLED":     AutonomousDatabaseSummaryOperationsInsightsStatusEnabled,
-	"DISABLING":   AutonomousDatabaseSummaryOperationsInsightsStatusDisabling,
-	"NOT_ENABLED": AutonomousDatabaseSummaryOperationsInsightsStatusNotEnabled,
-	"FAILED":      AutonomousDatabaseSummaryOperationsInsightsStatusFailed,
+	"ENABLING":         AutonomousDatabaseSummaryOperationsInsightsStatusEnabling,
+	"ENABLED":          AutonomousDatabaseSummaryOperationsInsightsStatusEnabled,
+	"DISABLING":        AutonomousDatabaseSummaryOperationsInsightsStatusDisabling,
+	"NOT_ENABLED":      AutonomousDatabaseSummaryOperationsInsightsStatusNotEnabled,
+	"FAILED_ENABLING":  AutonomousDatabaseSummaryOperationsInsightsStatusFailedEnabling,
+	"FAILED_DISABLING": AutonomousDatabaseSummaryOperationsInsightsStatusFailedDisabling,
 }
 
 // GetAutonomousDatabaseSummaryOperationsInsightsStatusEnumValues Enumerates the set of values for AutonomousDatabaseSummaryOperationsInsightsStatusEnum

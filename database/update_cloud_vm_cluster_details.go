@@ -20,7 +20,7 @@ type UpdateCloudVmClusterDetails struct {
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The number of CPU cores to enable for the cloud VM cluster.
-	CpuCoreCount *int64 `mandatory:"false" json:"cpuCoreCount"`
+	CpuCoreCount *int `mandatory:"false" json:"cpuCoreCount"`
 
 	// The Oracle license model that applies to the cloud VM cluster. The default is BRING_YOUR_OWN_LICENSE.
 	LicenseModel UpdateCloudVmClusterDetailsLicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
@@ -28,7 +28,7 @@ type UpdateCloudVmClusterDetails struct {
 	// The public key portion of one or more key pairs used for SSH access to the cloud VM cluster.
 	SshPublicKeys []string `mandatory:"false" json:"sshPublicKeys"`
 
-	PatchDetails *PatchDetails `mandatory:"false" json:"patchDetails"`
+	UpdateDetails *UpdateDetails `mandatory:"false" json:"updateDetails"`
 
 	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
 	// **NsgIds restrictions:**
@@ -37,12 +37,6 @@ type UpdateCloudVmClusterDetails struct {
 
 	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.
 	BackupNetworkNsgIds []string `mandatory:"false" json:"backupNetworkNsgIds"`
-
-	// A valid Oracle Grid Infrastructure (GI) software version.
-	GiVersion *string `mandatory:"false" json:"giVersion"`
-
-	// Operating system version of the image.
-	SystemVersion *string `mandatory:"false" json:"systemVersion"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).

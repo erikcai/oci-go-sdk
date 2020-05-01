@@ -29,21 +29,6 @@ type UpdateWorkspaceDetails struct {
 
 	// A user-friendly display name for the workspace. Does not have to be unique, and can be modified. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// Whether the private network connection is enabled or disabled.
-	IsPrivateNetworkEnabled *bool `mandatory:"false" json:"isPrivateNetworkEnabled"`
-
-	// The OCID of the VCN the subnet is in.
-	VcnId *string `mandatory:"false" json:"vcnId"`
-
-	// The OCID of the subnet for customer connected databases.
-	SubnetId *string `mandatory:"false" json:"subnetId"`
-
-	// The IP of the custom DNS.
-	DnsServerIp *string `mandatory:"false" json:"dnsServerIp"`
-
-	// The DNS zone of the custom DNS to use to resolve names.
-	DnsServerZone *string `mandatory:"false" json:"dnsServerZone"`
 }
 
 func (m UpdateWorkspaceDetails) String() string {

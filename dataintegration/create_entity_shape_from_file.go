@@ -14,9 +14,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DataShapeFromFile The file data entity details.
-type DataShapeFromFile struct {
-	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
+// CreateEntityShapeFromFile The file data entity details.
+type CreateEntityShapeFromFile struct {
 
 	// The key of the object.
 	Key *string `mandatory:"false" json:"key"`
@@ -66,58 +65,53 @@ type DataShapeFromFile struct {
 	Identifier *string `mandatory:"false" json:"identifier"`
 
 	// The entity type.
-	EntityType DataShapeFromFileEntityTypeEnum `mandatory:"false" json:"entityType,omitempty"`
+	EntityType CreateEntityShapeFromFileEntityTypeEnum `mandatory:"false" json:"entityType,omitempty"`
 }
 
-//GetMetadata returns Metadata
-func (m DataShapeFromFile) GetMetadata() *ObjectMetadata {
-	return m.Metadata
-}
-
-func (m DataShapeFromFile) String() string {
+func (m CreateEntityShapeFromFile) String() string {
 	return common.PointerString(m)
 }
 
 // MarshalJSON marshals to json representation
-func (m DataShapeFromFile) MarshalJSON() (buff []byte, e error) {
-	type MarshalTypeDataShapeFromFile DataShapeFromFile
+func (m CreateEntityShapeFromFile) MarshalJSON() (buff []byte, e error) {
+	type MarshalTypeCreateEntityShapeFromFile CreateEntityShapeFromFile
 	s := struct {
 		DiscriminatorParam string `json:"modelType"`
-		MarshalTypeDataShapeFromFile
+		MarshalTypeCreateEntityShapeFromFile
 	}{
 		"FILE_ENTITY",
-		(MarshalTypeDataShapeFromFile)(m),
+		(MarshalTypeCreateEntityShapeFromFile)(m),
 	}
 
 	return json.Marshal(&s)
 }
 
-// DataShapeFromFileEntityTypeEnum Enum with underlying type: string
-type DataShapeFromFileEntityTypeEnum string
+// CreateEntityShapeFromFileEntityTypeEnum Enum with underlying type: string
+type CreateEntityShapeFromFileEntityTypeEnum string
 
-// Set of constants representing the allowable values for DataShapeFromFileEntityTypeEnum
+// Set of constants representing the allowable values for CreateEntityShapeFromFileEntityTypeEnum
 const (
-	DataShapeFromFileEntityTypeTable  DataShapeFromFileEntityTypeEnum = "TABLE"
-	DataShapeFromFileEntityTypeView   DataShapeFromFileEntityTypeEnum = "VIEW"
-	DataShapeFromFileEntityTypeFile   DataShapeFromFileEntityTypeEnum = "FILE"
-	DataShapeFromFileEntityTypeQueue  DataShapeFromFileEntityTypeEnum = "QUEUE"
-	DataShapeFromFileEntityTypeStream DataShapeFromFileEntityTypeEnum = "STREAM"
-	DataShapeFromFileEntityTypeOther  DataShapeFromFileEntityTypeEnum = "OTHER"
+	CreateEntityShapeFromFileEntityTypeTable  CreateEntityShapeFromFileEntityTypeEnum = "TABLE"
+	CreateEntityShapeFromFileEntityTypeView   CreateEntityShapeFromFileEntityTypeEnum = "VIEW"
+	CreateEntityShapeFromFileEntityTypeFile   CreateEntityShapeFromFileEntityTypeEnum = "FILE"
+	CreateEntityShapeFromFileEntityTypeQueue  CreateEntityShapeFromFileEntityTypeEnum = "QUEUE"
+	CreateEntityShapeFromFileEntityTypeStream CreateEntityShapeFromFileEntityTypeEnum = "STREAM"
+	CreateEntityShapeFromFileEntityTypeOther  CreateEntityShapeFromFileEntityTypeEnum = "OTHER"
 )
 
-var mappingDataShapeFromFileEntityType = map[string]DataShapeFromFileEntityTypeEnum{
-	"TABLE":  DataShapeFromFileEntityTypeTable,
-	"VIEW":   DataShapeFromFileEntityTypeView,
-	"FILE":   DataShapeFromFileEntityTypeFile,
-	"QUEUE":  DataShapeFromFileEntityTypeQueue,
-	"STREAM": DataShapeFromFileEntityTypeStream,
-	"OTHER":  DataShapeFromFileEntityTypeOther,
+var mappingCreateEntityShapeFromFileEntityType = map[string]CreateEntityShapeFromFileEntityTypeEnum{
+	"TABLE":  CreateEntityShapeFromFileEntityTypeTable,
+	"VIEW":   CreateEntityShapeFromFileEntityTypeView,
+	"FILE":   CreateEntityShapeFromFileEntityTypeFile,
+	"QUEUE":  CreateEntityShapeFromFileEntityTypeQueue,
+	"STREAM": CreateEntityShapeFromFileEntityTypeStream,
+	"OTHER":  CreateEntityShapeFromFileEntityTypeOther,
 }
 
-// GetDataShapeFromFileEntityTypeEnumValues Enumerates the set of values for DataShapeFromFileEntityTypeEnum
-func GetDataShapeFromFileEntityTypeEnumValues() []DataShapeFromFileEntityTypeEnum {
-	values := make([]DataShapeFromFileEntityTypeEnum, 0)
-	for _, v := range mappingDataShapeFromFileEntityType {
+// GetCreateEntityShapeFromFileEntityTypeEnumValues Enumerates the set of values for CreateEntityShapeFromFileEntityTypeEnum
+func GetCreateEntityShapeFromFileEntityTypeEnumValues() []CreateEntityShapeFromFileEntityTypeEnum {
+	values := make([]CreateEntityShapeFromFileEntityTypeEnum, 0)
+	for _, v := range mappingCreateEntityShapeFromFileEntityType {
 		values = append(values, v)
 	}
 	return values

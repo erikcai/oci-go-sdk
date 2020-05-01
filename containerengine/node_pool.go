@@ -34,7 +34,7 @@ type NodePool struct {
 	// The version of Kubernetes running on the nodes in the node pool.
 	KubernetesVersion *string `mandatory:"false" json:"kubernetesVersion"`
 
-	// A list of key/value pairs to add to each underlying OCI instance in the node pool.
+	// A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.
 	NodeMetadata map[string]string `mandatory:"false" json:"nodeMetadata"`
 
 	// Deprecated. see `nodeSource`. The OCID of the image running on the nodes in the node pool.
@@ -55,7 +55,7 @@ type NodePool struct {
 	// A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
 	InitialNodeLabels []KeyValue `mandatory:"false" json:"initialNodeLabels"`
 
-	// The SSH public key on each node in the node pool.
+	// The SSH public key on each node in the node pool on launch.
 	SshPublicKey *string `mandatory:"false" json:"sshPublicKey"`
 
 	// The number of nodes in each subnet.

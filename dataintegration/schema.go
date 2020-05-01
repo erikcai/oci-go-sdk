@@ -39,8 +39,6 @@ type Schema struct {
 	// The external key for the object.
 	ExternalKey *string `mandatory:"false" json:"externalKey"`
 
-	Binding *SchemaBinding `mandatory:"false" json:"binding"`
-
 	// hasContainers
 	IsHasContainers *bool `mandatory:"false" json:"isHasContainers"`
 

@@ -48,9 +48,6 @@ type FlowNode struct {
 
 	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
-
-	// classType
-	ClassType *string `mandatory:"false" json:"classType"`
 }
 
 func (m FlowNode) String() string {
@@ -72,7 +69,6 @@ func (m *FlowNode) UnmarshalJSON(data []byte) (e error) {
 		UiProperties           *UiProperties    `json:"uiProperties"`
 		ConfigProviderDelegate *ConfigProvider  `json:"configProviderDelegate"`
 		ObjectStatus           *int             `json:"objectStatus"`
-		ClassType              *string          `json:"classType"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -117,7 +113,5 @@ func (m *FlowNode) UnmarshalJSON(data []byte) (e error) {
 	m.ConfigProviderDelegate = model.ConfigProviderDelegate
 
 	m.ObjectStatus = model.ObjectStatus
-
-	m.ClassType = model.ClassType
 	return
 }

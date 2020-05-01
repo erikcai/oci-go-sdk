@@ -28,6 +28,12 @@ type CsvFormatAttribute struct {
 
 	// The quote character for the CSV format.
 	QuoteCharacter *string `mandatory:"false" json:"quoteCharacter"`
+
+	// Defines whether the file has a header row.
+	HasHeader *bool `mandatory:"false" json:"hasHeader"`
+
+	// Format for timestamp data.
+	TimestampFormat *string `mandatory:"false" json:"timestampFormat"`
 }
 
 func (m CsvFormatAttribute) String() string {

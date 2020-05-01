@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TaskFromDataLoaderTaskDetails The information about a data flow task.
+// TaskFromDataLoaderTaskDetails The information about a data loader task.
 type TaskFromDataLoaderTaskDetails struct {
 
 	// Generated key that can be used in API calls to identify task. On scenarios where reference to the task is needed, a value can be passed in create.

@@ -31,25 +31,9 @@ type Tenancy struct {
 	// The description of the tenancy.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The region key for the tenancy's home region. For more information about regions, see
+	// The region key for the tenancy's home region. For the full list of supported regions, see
 	// Regions and Availability Domains (https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm).
-	// Allowed values are:
-	// - `PHX`
-	// - `IAD`
-	// - `FRA`
-	// - `LHR`
-	// - `YYZ`
-	// - `NRT`
-	// - `ICN`
-	// - `BOM`
-	// - `ZRH`
-	// - `GRU`
-	// - `SYD`
-	// - `JED`
-	// - `AMS`
-	// - `KIX`
-	// - `MEL`
-	// - `YUL`
+	// Example: `PHX`
 	HomeRegionKey *string `mandatory:"false" json:"homeRegionKey"`
 
 	// OracleMyServicesIdentifier is Oracle MyServices Cloud Account Identifier.

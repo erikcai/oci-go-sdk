@@ -20,6 +20,9 @@ type GetStatusRequest struct {
         
  // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID. 
         OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
+        
+ // The region of the tenancy. 
+        Homeregion *string `mandatory:"false" contributesTo:"header" name:"homeregion"`
 
 
     // Metadata about the request. This information will not be transmitted to the service, but

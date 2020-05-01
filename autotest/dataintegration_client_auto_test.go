@@ -390,7 +390,7 @@ func TestDataIntegrationClientCreateEntityShape(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "modelType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
-				"FILE_ENTITY": &dataintegration.CreateDataShapeFromFile{},
+				"FILE_ENTITY": &dataintegration.CreateEntityShapeFromFile{},
 			},
 		}
 
@@ -3567,6 +3567,7 @@ func TestDataIntegrationClientUpdateTask(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "modelType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"DATA_LOADER_TASK": &dataintegration.UpdateTaskFromDataLoaderTask{},
 				"INTEGRATION_TASK": &dataintegration.UpdateTaskFromIntegrationTask{},
 			},
 		}

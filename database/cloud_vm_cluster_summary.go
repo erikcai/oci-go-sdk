@@ -46,7 +46,10 @@ type CloudVmClusterSummary struct {
 	Domain *string `mandatory:"true" json:"domain"`
 
 	// The number of CPU cores enabled on the cloud VM cluster.
-	CpuCoreCount *int64 `mandatory:"true" json:"cpuCoreCount"`
+	CpuCoreCount *int `mandatory:"true" json:"cpuCoreCount"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
+	CloudExadataInfrastructureId *string `mandatory:"true" json:"cloudExadataInfrastructureId"`
 
 	// The public key portion of one or more key pairs used for SSH access to the cloud VM cluster.
 	SshPublicKeys []string `mandatory:"true" json:"sshPublicKeys"`
@@ -63,14 +66,14 @@ type CloudVmClusterSummary struct {
 	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.
 	BackupNetworkNsgIds []string `mandatory:"false" json:"backupNetworkNsgIds"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as a patch operation starts.
-	LastPatchHistoryEntryId *string `mandatory:"false" json:"lastPatchHistoryEntryId"`
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance update history. This value is updated when a maintenance update starts.
+	LastUpdateHistoryEntryId *string `mandatory:"false" json:"lastUpdateHistoryEntryId"`
 
 	// The port number configured for the listener on the cloud VM cluster.
 	ListenerPort *int64 `mandatory:"false" json:"listenerPort"`
 
 	// The number of nodes in the cloud VM cluster.
-	NodeCount *int64 `mandatory:"false" json:"nodeCount"`
+	NodeCount *int `mandatory:"false" json:"nodeCount"`
 
 	// The date and time that the cloud VM cluster was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
@@ -91,14 +94,11 @@ type CloudVmClusterSummary struct {
 	ClusterName *string `mandatory:"false" json:"clusterName"`
 
 	// The percentage assigned to DATA storage (user data and database files).
-	// The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups). Accepted values are 40 and 80. The default is 80 percent assigned to DATA storage.
-	DataStoragePercentage *int64 `mandatory:"false" json:"dataStoragePercentage"`
+	// The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups). Accepted values are 35, 40, 60 and 80. The default is 80 percent assigned to DATA storage. Please see https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/exaoverview.htm for details of Impact of Configuration Settings on Storage.
+	DataStoragePercentage *int `mandatory:"false" json:"dataStoragePercentage"`
 
 	// If true, database backup on local Exadata storage is configured for the cloud VM cluster. If false, database backup on local Exadata storage is not available in the cloud VM cluster.
 	IsLocalBackupEnabled *bool `mandatory:"false" json:"isLocalBackupEnabled"`
-
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
-	CloudExadataInfrastructureId *string `mandatory:"false" json:"cloudExadataInfrastructureId"`
 
 	// If true, sparse disk group is configured for the cloud VM cluster. If false, sparse disk group is not created.
 	IsSparseDiskgroupEnabled *bool `mandatory:"false" json:"isSparseDiskgroupEnabled"`

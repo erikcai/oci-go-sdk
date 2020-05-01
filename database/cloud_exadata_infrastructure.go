@@ -34,11 +34,11 @@ type CloudExadataInfrastructure struct {
 	// The name of the availability domain that the cloud Exadata infrastructure is located in.
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
-	// The additional number of compute servers for the cloud Exadata infrastructure.
-	AdditionalComputeCount *int64 `mandatory:"false" json:"additionalComputeCount"`
+	// The number of compute servers for the cloud Exadata infrastructure.
+	ComputeCount *int `mandatory:"false" json:"computeCount"`
 
-	// The additional number of storage servers for the cloud Exadata infrastructure.
-	AdditionalStorageCount *int64 `mandatory:"false" json:"additionalStorageCount"`
+	// The number of storage servers for the cloud Exadata infrastructure.
+	StorageCount *int `mandatory:"false" json:"storageCount"`
 
 	// The date and time the cloud Exadata infrastructure was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`

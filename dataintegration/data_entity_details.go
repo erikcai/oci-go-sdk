@@ -74,17 +74,15 @@ type DataEntityDetailsModelTypeEnum string
 
 // Set of constants representing the allowable values for DataEntityDetailsModelTypeEnum
 const (
-	DataEntityDetailsModelTypeViewEntity        DataEntityDetailsModelTypeEnum = "VIEW_ENTITY"
-	DataEntityDetailsModelTypeLogicalDataEntity DataEntityDetailsModelTypeEnum = "LOGICAL_DATA_ENTITY"
-	DataEntityDetailsModelTypeTableEntity       DataEntityDetailsModelTypeEnum = "TABLE_ENTITY"
-	DataEntityDetailsModelTypeFileEntity        DataEntityDetailsModelTypeEnum = "FILE_ENTITY"
+	DataEntityDetailsModelTypeViewEntity  DataEntityDetailsModelTypeEnum = "VIEW_ENTITY"
+	DataEntityDetailsModelTypeTableEntity DataEntityDetailsModelTypeEnum = "TABLE_ENTITY"
+	DataEntityDetailsModelTypeFileEntity  DataEntityDetailsModelTypeEnum = "FILE_ENTITY"
 )
 
 var mappingDataEntityDetailsModelType = map[string]DataEntityDetailsModelTypeEnum{
-	"VIEW_ENTITY":         DataEntityDetailsModelTypeViewEntity,
-	"LOGICAL_DATA_ENTITY": DataEntityDetailsModelTypeLogicalDataEntity,
-	"TABLE_ENTITY":        DataEntityDetailsModelTypeTableEntity,
-	"FILE_ENTITY":         DataEntityDetailsModelTypeFileEntity,
+	"VIEW_ENTITY":  DataEntityDetailsModelTypeViewEntity,
+	"TABLE_ENTITY": DataEntityDetailsModelTypeTableEntity,
+	"FILE_ENTITY":  DataEntityDetailsModelTypeFileEntity,
 }
 
 // GetDataEntityDetailsModelTypeEnumValues Enumerates the set of values for DataEntityDetailsModelTypeEnum

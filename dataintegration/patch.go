@@ -25,8 +25,6 @@ type Patch struct {
 	// The model version of an object.
 	ModelVersion *string `mandatory:"false" json:"modelVersion"`
 
-	ParentRef *ParentReference `mandatory:"false" json:"parentRef"`
-
 	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
 	Name *string `mandatory:"false" json:"name"`
 
@@ -35,9 +33,6 @@ type Patch struct {
 
 	// The version of the object that is used to track changes in the object instance.
 	ObjectVersion *int `mandatory:"false" json:"objectVersion"`
-
-	// version
-	Version *int `mandatory:"false" json:"version"`
 
 	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
@@ -48,8 +43,8 @@ type Patch struct {
 	// The date and time the patch was applied, in the timestamp format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	TimePatched *common.SDKTime `mandatory:"false" json:"timePatched"`
 
-	// The error encountered while applying the patch, if any.
-	ErrorMessage *string `mandatory:"false" json:"errorMessage"`
+	// The errors encountered while applying the patch, if any.
+	ErrorMessages map[string]string `mandatory:"false" json:"errorMessages"`
 
 	// The application version of the patch.
 	ApplicationVersion *int `mandatory:"false" json:"applicationVersion"`
@@ -61,7 +56,7 @@ type Patch struct {
 	PatchStatus PatchPatchStatusEnum `mandatory:"false" json:"patchStatus,omitempty"`
 
 	// List of dependent objects in this patch.
-	DependentObjects []ObjectMetadata `mandatory:"false" json:"dependentObjects"`
+	DependentObjectMetadata []PatchObjectMetadata `mandatory:"false" json:"dependentObjectMetadata"`
 
 	// List of objects that are published / unpublished in this patch.
 	PatchObjectMetadata []PatchObjectMetadata `mandatory:"false" json:"patchObjectMetadata"`

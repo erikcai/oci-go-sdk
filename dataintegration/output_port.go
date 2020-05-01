@@ -36,8 +36,6 @@ type OutputPort struct {
 	// Detailed description for the object.
 	Description *string `mandatory:"false" json:"description"`
 
-	Type BaseType `mandatory:"false" json:"type"`
-
 	// fields
 	Fields []TypedObject `mandatory:"false" json:"fields"`
 
@@ -108,7 +106,6 @@ func (m *OutputPort) UnmarshalJSON(data []byte) (e error) {
 		ObjectStatus *int                   `json:"objectStatus"`
 		Name         *string                `json:"name"`
 		Description  *string                `json:"description"`
-		Type         basetype               `json:"type"`
 		PortType     OutputPortPortTypeEnum `json:"portType"`
 		Fields       []typedobject          `json:"fields"`
 	}{}
@@ -131,16 +128,6 @@ func (m *OutputPort) UnmarshalJSON(data []byte) (e error) {
 	m.Name = model.Name
 
 	m.Description = model.Description
-
-	nn, e = model.Type.UnmarshalPolymorphicJSON(model.Type.JsonData)
-	if e != nil {
-		return
-	}
-	if nn != nil {
-		m.Type = nn.(BaseType)
-	} else {
-		m.Type = nil
-	}
 
 	m.PortType = model.PortType
 

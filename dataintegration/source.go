@@ -51,10 +51,8 @@ type Source struct {
 
 	OpConfigValues *ConfigValues `mandatory:"false" json:"opConfigValues"`
 
-	// The referenced data entity
+	// Specifies the referenced data entity key.
 	Entity *string `mandatory:"false" json:"entity"`
-
-	Binding DataEntityBinding `mandatory:"false" json:"binding"`
 
 	// Specifies the read access.
 	IsReadAccess *bool `mandatory:"false" json:"isReadAccess"`
@@ -64,6 +62,8 @@ type Source struct {
 
 	// Specifies if this uses a predefined shape.
 	IsPredefinedShape *bool `mandatory:"false" json:"isPredefinedShape"`
+
+	ReadOperationConfig *ReadOperationConfig `mandatory:"false" json:"readOperationConfig"`
 }
 
 //GetKey returns Key
@@ -142,84 +142,4 @@ func (m Source) MarshalJSON() (buff []byte, e error) {
 	}
 
 	return json.Marshal(&s)
-}
-
-// UnmarshalJSON unmarshals from json
-func (m *Source) UnmarshalJSON(data []byte) (e error) {
-	model := struct {
-		Key               *string           `json:"key"`
-		ModelVersion      *string           `json:"modelVersion"`
-		ParentRef         *ParentReference  `json:"parentRef"`
-		Name              *string           `json:"name"`
-		Description       *string           `json:"description"`
-		ObjectVersion     *int              `json:"objectVersion"`
-		InputPorts        []InputPort       `json:"inputPorts"`
-		OutputPorts       []OutputPort      `json:"outputPorts"`
-		ObjectStatus      *int              `json:"objectStatus"`
-		Identifier        *string           `json:"identifier"`
-		Parameters        []Parameter       `json:"parameters"`
-		OpConfigValues    *ConfigValues     `json:"opConfigValues"`
-		Entity            *string           `json:"entity"`
-		Binding           dataentitybinding `json:"binding"`
-		IsReadAccess      *bool             `json:"isReadAccess"`
-		IsCopyFields      *bool             `json:"isCopyFields"`
-		IsPredefinedShape *bool             `json:"isPredefinedShape"`
-	}{}
-
-	e = json.Unmarshal(data, &model)
-	if e != nil {
-		return
-	}
-	var nn interface{}
-	m.Key = model.Key
-
-	m.ModelVersion = model.ModelVersion
-
-	m.ParentRef = model.ParentRef
-
-	m.Name = model.Name
-
-	m.Description = model.Description
-
-	m.ObjectVersion = model.ObjectVersion
-
-	m.InputPorts = make([]InputPort, len(model.InputPorts))
-	for i, n := range model.InputPorts {
-		m.InputPorts[i] = n
-	}
-
-	m.OutputPorts = make([]OutputPort, len(model.OutputPorts))
-	for i, n := range model.OutputPorts {
-		m.OutputPorts[i] = n
-	}
-
-	m.ObjectStatus = model.ObjectStatus
-
-	m.Identifier = model.Identifier
-
-	m.Parameters = make([]Parameter, len(model.Parameters))
-	for i, n := range model.Parameters {
-		m.Parameters[i] = n
-	}
-
-	m.OpConfigValues = model.OpConfigValues
-
-	m.Entity = model.Entity
-
-	nn, e = model.Binding.UnmarshalPolymorphicJSON(model.Binding.JsonData)
-	if e != nil {
-		return
-	}
-	if nn != nil {
-		m.Binding = nn.(DataEntityBinding)
-	} else {
-		m.Binding = nil
-	}
-
-	m.IsReadAccess = model.IsReadAccess
-
-	m.IsCopyFields = model.IsCopyFields
-
-	m.IsPredefinedShape = model.IsPredefinedShape
-	return
 }

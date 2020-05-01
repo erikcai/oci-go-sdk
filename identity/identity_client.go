@@ -231,72 +231,6 @@ func (client IdentityClient) assembleEffectiveTagSet(ctx context.Context, reques
 	return response, err
 }
 
-// BulkDelete Deletes the specified tag key definitions. This operation triggers a process that removes the
-// tags from all resources in your tenancy.
-// These things happen immediately:
-//
-//   * If the tag was a cost-tracking tag, it no longer counts against your 10 cost-tracking
-//   tags limit, whether you first disabled it or not.
-//   * If the tag was used with dynamic groups, none of the rules that contain the tag will
-//   be evaluated against the tag.
-// Once you start the delete operation, the state of the tag changes to DELETING and tag removal
-// from resources begins. This can take up to 48 hours depending on the number of resources that
-// were tagged as well as the regions in which those resources reside. When all tags have been
-// removed, the state changes to DELETED. You cannot restore a deleted tag. Once the deleted tag
-// changes its state to DELETED, you can use the same tag name again.
-// To delete the tags, you must first retire them. Use UpdateTag
-// to retire a tag.
-func (client IdentityClient) BulkDelete(ctx context.Context, request BulkDeleteRequest) (response BulkDeleteResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
-	ociResponse, err = common.Retry(ctx, request, client.bulkDelete, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = BulkDeleteResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = BulkDeleteResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(BulkDeleteResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into BulkDeleteResponse")
-	}
-	return
-}
-
-// bulkDelete implements the OCIOperation interface (enables retrying operations)
-func (client IdentityClient) bulkDelete(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tags/actions/bulkDelete")
-	if err != nil {
-		return nil, err
-	}
-
-	var response BulkDeleteResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // BulkDeleteResources Bulk delete resources in the compartment. All resources must be in the same compartment.
 // This API can only be invoked from tenancy's home region.
 func (client IdentityClient) BulkDeleteResources(ctx context.Context, request BulkDeleteResourcesRequest) (response BulkDeleteResourcesResponse, err error) {
@@ -338,6 +272,73 @@ func (client IdentityClient) bulkDeleteResources(ctx context.Context, request co
 	}
 
 	var response BulkDeleteResourcesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// BulkDeleteTags Deletes the specified tag key definitions. This operation triggers a process that removes the
+// tags from all resources in your tenancy.
+// The following actions happen immediately:
+//
+//   * If the tag is a cost-tracking tag, the tag no longer counts against your
+//   10 cost-tracking tags limit, even if you do not disable the tag before running this operation.
+//   * If the tag is used with dynamic groups, the rules that contain the tag are no longer
+//   evaluated against the tag.
+// After you start this operation, the state of the tag changes to DELETING, and tag removal
+// from resources begins. This process can take up to 48 hours depending on the number of resources that
+// are tagged and the regions in which those resources reside.
+// When all tags have been removed, the state changes to DELETED. You cannot restore a deleted tag. After the tag state
+// changes to DELETED, you can use the same tag name again.
+// After you start this operation, you cannot start either the DeleteTag or the CascadeDeleteTagNamespace operation until this process completes.
+// In order to delete tags, you must first retire the tags. Use UpdateTag
+// to retire a tag.
+func (client IdentityClient) BulkDeleteTags(ctx context.Context, request BulkDeleteTagsRequest) (response BulkDeleteTagsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.bulkDeleteTags, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = BulkDeleteTagsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = BulkDeleteTagsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(BulkDeleteTagsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into BulkDeleteTagsResponse")
+	}
+	return
+}
+
+// bulkDeleteTags implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) bulkDeleteTags(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tags/actions/bulkDelete")
+	if err != nil {
+		return nil, err
+	}
+
+	var response BulkDeleteTagsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -403,17 +404,20 @@ func (client IdentityClient) bulkMoveResources(ctx context.Context, request comm
 	return response, err
 }
 
-// CascadeDelete Deletes the specified tag namespace. This operation triggers a process that removes all the tags
-// defined in the specified tag namespace from all resources in your tenancy.
-// Once you start the delete operation, new tag key definitions can not be created under the namespace,
-// the state of the tag namespace changes to DELETING and tag removal from the resources begin. This can
-// take up to 48 hours depending on the number of tag definitions in the namespace, number of resources
-// that were tagged as well as the regions in which those resources reside. When all tags have been removed,
-// the state changes to DELETED. You cannot restore a deleted tag namespace. Once the deleted tag namespace
-// changes its state to DELETED, you can use the same tag namespace name again.
+// CascadeDeleteTagNamespace Deletes the specified tag namespace. This operation triggers a process that removes all of the tags
+// defined in the specified tag namespace from all resources in your tenancy and then deletes the tag namespace.
+// After you start the delete operation:
+//   * New tag key definitions cannot be created under the namespace.
+//   * The state of the tag namespace changes to DELETING.
+//   * Tag removal from the resources begins.
+// This process can take up to 48 hours depending on the number of tag definitions in the namespace, the number of resources
+// that are tagged, and the locations of the regions in which those resources reside.
+// After all tags are removed, the state changes to DELETED. You cannot restore a deleted tag namespace. After the deleted tag namespace
+// changes its state to DELETED, you can use the name of the deleted tag namespace again.
+// After you start this operation, you cannot start either the DeleteTag or the BulkDeleteTags operation until this process completes.
 // To delete a tag namespace, you must first retire it. Use UpdateTagNamespace
 // to retire a tag namespace.
-func (client IdentityClient) CascadeDelete(ctx context.Context, request CascadeDeleteRequest) (response CascadeDeleteResponse, err error) {
+func (client IdentityClient) CascadeDeleteTagNamespace(ctx context.Context, request CascadeDeleteTagNamespaceRequest) (response CascadeDeleteTagNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -424,34 +428,34 @@ func (client IdentityClient) CascadeDelete(ctx context.Context, request CascadeD
 		request.OpcRetryToken = common.String(common.RetryToken())
 	}
 
-	ociResponse, err = common.Retry(ctx, request, client.cascadeDelete, policy)
+	ociResponse, err = common.Retry(ctx, request, client.cascadeDeleteTagNamespace, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = CascadeDeleteResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = CascadeDeleteTagNamespaceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = CascadeDeleteResponse{}
+				response = CascadeDeleteTagNamespaceResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(CascadeDeleteResponse); ok {
+	if convertedResponse, ok := ociResponse.(CascadeDeleteTagNamespaceResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into CascadeDeleteResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into CascadeDeleteTagNamespaceResponse")
 	}
 	return
 }
 
-// cascadeDelete implements the OCIOperation interface (enables retrying operations)
-func (client IdentityClient) cascadeDelete(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+// cascadeDeleteTagNamespace implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) cascadeDeleteTagNamespace(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tagNamespaces/{tagNamespaceId}/actions/cascadeDelete")
 	if err != nil {
 		return nil, err
 	}
 
-	var response CascadeDeleteResponse
+	var response CascadeDeleteTagNamespaceResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2470,11 +2474,12 @@ func (client IdentityClient) deleteSwiftPassword(ctx context.Context, request co
 //   tags limit, whether you first disabled it or not.
 //   * If the tag was used with dynamic groups, none of the rules that contain the tag will
 //   be evaluated against the tag.
-// Once you start the delete operation, the state of the tag changes to DELETING and tag removal
+// When you start the delete operation, the state of the tag changes to DELETING and tag removal
 // from resources begins. This can take up to 48 hours depending on the number of resources that
-// were tagged as well as the regions in which those resources reside. When all tags have been
-// removed, the state changes to DELETED. You cannot restore a deleted tag. Once the deleted tag
+// were tagged as well as the regions in which those resources reside.
+// When all tags have been removed, the state changes to DELETED. You cannot restore a deleted tag. Once the deleted tag
 // changes its state to DELETED, you can use the same tag name again.
+// After you start this operation, you cannot start either the BulkDeleteTags or the CascadeDeleteTagNamespace operation until this process completes.
 // To delete a tag, you must first retire it. Use UpdateTag
 // to retire a tag.
 func (client IdentityClient) DeleteTag(ctx context.Context, request DeleteTagRequest) (response DeleteTagResponse, err error) {
@@ -2570,8 +2575,10 @@ func (client IdentityClient) deleteTagDefault(ctx context.Context, request commo
 	return response, err
 }
 
-// DeleteTagNamespace Deletes the specified tag namespace. Only an empty tag namespace can be deleted. To delete
-// a tag namespace, first delete all its tag definitions.
+// DeleteTagNamespace Deletes the specified tag namespace. Only an empty tag namespace can be deleted with this operation. To use this operation
+// to delete a tag namespace that contains tag definitions, first delete all of its tag definitions.
+// Use CascadeDeleteTagNamespace to delete a tag namespace along with all of
+// the tag definitions contained within that namespace.
 // Use DeleteTag to delete a tag definition.
 func (client IdentityClient) DeleteTagNamespace(ctx context.Context, request DeleteTagNamespaceRequest) (response DeleteTagNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse

@@ -37,14 +37,8 @@ type CreatePatchDetails struct {
 	// Detailed description for the object.
 	Description *string `mandatory:"false" json:"description"`
 
-	// version
-	Version *int `mandatory:"false" json:"version"`
-
 	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
-
-	// serialVersionUID
-	SerialVersionUID *int `mandatory:"false" json:"serialVersionUID"`
 
 	RegistryMetadata *RegistryMetadata `mandatory:"false" json:"registryMetadata"`
 }

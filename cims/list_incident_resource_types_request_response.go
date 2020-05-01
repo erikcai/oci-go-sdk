@@ -41,6 +41,9 @@ type ListIncidentResourceTypesRequest struct {
         
  // The user-friendly name of the incident type. 
         Name *string `mandatory:"false" contributesTo:"query" name:"name"`
+        
+ // The region of the tenancy. 
+        Homeregion *string `mandatory:"false" contributesTo:"header" name:"homeregion"`
 
 
     // Metadata about the request. This information will not be transmitted to the service, but

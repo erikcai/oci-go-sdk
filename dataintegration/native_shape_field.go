@@ -19,6 +19,9 @@ type NativeShapeField struct {
 	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
 	Name *string `mandatory:"false" json:"name"`
 
+	// The model type reference.
+	ModelType *string `mandatory:"false" json:"modelType"`
+
 	// The type reference.
 	Type *string `mandatory:"false" json:"type"`
 

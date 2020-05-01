@@ -33,7 +33,7 @@ type CreateCloudVmClusterDetails struct {
 	// - Exadata.Quarter2.92 - Specify a multiple of 2, from 0 to 92.
 	// - Exadata.Half2.184 - Specify a multiple of 4, from 0 to 184.
 	// - Exadata.Full2.368 - Specify a multiple of 8, from 0 to 368.
-	CpuCoreCount *int64 `mandatory:"true" json:"cpuCoreCount"`
+	CpuCoreCount *int `mandatory:"true" json:"cpuCoreCount"`
 
 	// The user-friendly name for the cloud VM cluster. The name does not need to be unique.
 	DisplayName *string `mandatory:"true" json:"displayName"`
@@ -64,9 +64,8 @@ type CreateCloudVmClusterDetails struct {
 	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
 
 	// The percentage assigned to DATA storage (user data and database files).
-	// The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups).
-	// Specify 80 or 40. The default is 80 percent assigned to DATA storage.
-	DataStoragePercentage *int64 `mandatory:"false" json:"dataStoragePercentage"`
+	// The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups). Accepted values are 35, 40, 60 and 80. The default is 80 percent assigned to DATA storage. Please see https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/exaoverview.htm for details of Impact of Configuration Settings on Storage.
+	DataStoragePercentage *int `mandatory:"false" json:"dataStoragePercentage"`
 
 	// A domain name used for the cloud Vm cluster. If the Oracle-provided Internet and VCN
 	// Resolver is enabled for the specified subnet, the domain name for the subnet is used

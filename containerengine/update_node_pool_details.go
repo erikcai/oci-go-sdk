@@ -46,11 +46,14 @@ type UpdateNodePoolDetails struct {
 	// you must first scale the node pool to 0 nodes using quantityPerSubnet.
 	NodeConfigDetails *UpdateNodePoolNodeConfigDetails `mandatory:"false" json:"nodeConfigDetails"`
 
-	// A list of key/value pairs to add to each underlying OCI instance in the node pool.
+	// A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.
 	NodeMetadata map[string]string `mandatory:"false" json:"nodeMetadata"`
 
 	// Specify the source to use to launch nodes in the node pool. Currently, image is the only supported source.
 	NodeSourceDetails UpdateNodePoolNodeSourceDetails `mandatory:"false" json:"nodeSourceDetails"`
+
+	// The SSH public key to add to each node in the node pool on launch.
+	SshPublicKey *string `mandatory:"false" json:"sshPublicKey"`
 }
 
 func (m UpdateNodePoolDetails) String() string {
@@ -68,6 +71,7 @@ func (m *UpdateNodePoolDetails) UnmarshalJSON(data []byte) (e error) {
 		NodeConfigDetails *UpdateNodePoolNodeConfigDetails `json:"nodeConfigDetails"`
 		NodeMetadata      map[string]string                `json:"nodeMetadata"`
 		NodeSourceDetails updatenodepoolnodesourcedetails  `json:"nodeSourceDetails"`
+		SshPublicKey      *string                          `json:"sshPublicKey"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -104,5 +108,7 @@ func (m *UpdateNodePoolDetails) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.NodeSourceDetails = nil
 	}
+
+	m.SshPublicKey = model.SshPublicKey
 	return
 }

@@ -34,9 +34,6 @@ type CreateApplicationDetails struct {
 	// Detailed description for the object.
 	Description *string `mandatory:"false" json:"description"`
 
-	// version
-	Version *int `mandatory:"false" json:"version"`
-
 	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
 

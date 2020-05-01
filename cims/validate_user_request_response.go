@@ -26,6 +26,9 @@ type ValidateUserRequest struct {
         
  // The kind of support request. 
         ProblemType *string `mandatory:"false" contributesTo:"query" name:"problemType"`
+        
+ // The region of the tenancy. 
+        Homeregion *string `mandatory:"false" contributesTo:"header" name:"homeregion"`
 
 
     // Metadata about the request. This information will not be transmitted to the service, but

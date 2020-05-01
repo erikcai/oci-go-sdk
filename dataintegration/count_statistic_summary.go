@@ -32,23 +32,23 @@ type CountStatisticSummaryObjectTypeEnum string
 
 // Set of constants representing the allowable values for CountStatisticSummaryObjectTypeEnum
 const (
-	CountStatisticSummaryObjectTypeProjects     CountStatisticSummaryObjectTypeEnum = "PROJECTS"
-	CountStatisticSummaryObjectTypeFolders      CountStatisticSummaryObjectTypeEnum = "FOLDERS"
-	CountStatisticSummaryObjectTypeDataflows    CountStatisticSummaryObjectTypeEnum = "DATAFLOWS"
-	CountStatisticSummaryObjectTypeDataassets   CountStatisticSummaryObjectTypeEnum = "DATAASSETS"
-	CountStatisticSummaryObjectTypeConnections  CountStatisticSummaryObjectTypeEnum = "CONNECTIONS"
-	CountStatisticSummaryObjectTypeTasks        CountStatisticSummaryObjectTypeEnum = "TASKS"
-	CountStatisticSummaryObjectTypeApplications CountStatisticSummaryObjectTypeEnum = "APPLICATIONS"
+	CountStatisticSummaryObjectTypeProject     CountStatisticSummaryObjectTypeEnum = "PROJECT"
+	CountStatisticSummaryObjectTypeFolder      CountStatisticSummaryObjectTypeEnum = "FOLDER"
+	CountStatisticSummaryObjectTypeDataFlow    CountStatisticSummaryObjectTypeEnum = "DATA_FLOW"
+	CountStatisticSummaryObjectTypeDataAsset   CountStatisticSummaryObjectTypeEnum = "DATA_ASSET"
+	CountStatisticSummaryObjectTypeConnection  CountStatisticSummaryObjectTypeEnum = "CONNECTION"
+	CountStatisticSummaryObjectTypeTask        CountStatisticSummaryObjectTypeEnum = "TASK"
+	CountStatisticSummaryObjectTypeApplication CountStatisticSummaryObjectTypeEnum = "APPLICATION"
 )
 
 var mappingCountStatisticSummaryObjectType = map[string]CountStatisticSummaryObjectTypeEnum{
-	"PROJECTS":     CountStatisticSummaryObjectTypeProjects,
-	"FOLDERS":      CountStatisticSummaryObjectTypeFolders,
-	"DATAFLOWS":    CountStatisticSummaryObjectTypeDataflows,
-	"DATAASSETS":   CountStatisticSummaryObjectTypeDataassets,
-	"CONNECTIONS":  CountStatisticSummaryObjectTypeConnections,
-	"TASKS":        CountStatisticSummaryObjectTypeTasks,
-	"APPLICATIONS": CountStatisticSummaryObjectTypeApplications,
+	"PROJECT":     CountStatisticSummaryObjectTypeProject,
+	"FOLDER":      CountStatisticSummaryObjectTypeFolder,
+	"DATA_FLOW":   CountStatisticSummaryObjectTypeDataFlow,
+	"DATA_ASSET":  CountStatisticSummaryObjectTypeDataAsset,
+	"CONNECTION":  CountStatisticSummaryObjectTypeConnection,
+	"TASK":        CountStatisticSummaryObjectTypeTask,
+	"APPLICATION": CountStatisticSummaryObjectTypeApplication,
 }
 
 // GetCountStatisticSummaryObjectTypeEnumValues Enumerates the set of values for CountStatisticSummaryObjectTypeEnum

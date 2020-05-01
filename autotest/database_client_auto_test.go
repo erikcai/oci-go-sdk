@@ -3083,28 +3083,28 @@ func TestDatabaseClientGetCloudVmClusterIormConfig(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientGetCloudVmClusterPatch(t *testing.T) {
+func TestDatabaseClientGetCloudVmClusterUpdate(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("database", "GetCloudVmClusterPatch")
+	enabled, err := testClient.isApiEnabled("database", "GetCloudVmClusterUpdate")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("GetCloudVmClusterPatch is not enabled by the testing service")
+		t.Skip("GetCloudVmClusterUpdate is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudVmClusterPatch", createDatabaseClientWithProvider)
+	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudVmClusterUpdate", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(database.DatabaseClient)
 
-	body, err := testClient.getRequests("database", "GetCloudVmClusterPatch")
+	body, err := testClient.getRequests("database", "GetCloudVmClusterUpdate")
 	assert.NoError(t, err)
 
-	type GetCloudVmClusterPatchRequestInfo struct {
+	type GetCloudVmClusterUpdateRequestInfo struct {
 		ContainerId string
-		Request     database.GetCloudVmClusterPatchRequest
+		Request     database.GetCloudVmClusterUpdateRequest
 	}
 
-	var requests []GetCloudVmClusterPatchRequestInfo
+	var requests []GetCloudVmClusterUpdateRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -3118,7 +3118,7 @@ func TestDatabaseClientGetCloudVmClusterPatch(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetCloudVmClusterPatch(context.Background(), req.Request)
+			response, err := c.GetCloudVmClusterUpdate(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3127,28 +3127,28 @@ func TestDatabaseClientGetCloudVmClusterPatch(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientGetCloudVmClusterPatchHistoryEntry(t *testing.T) {
+func TestDatabaseClientGetCloudVmClusterUpdateHistoryEntry(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("database", "GetCloudVmClusterPatchHistoryEntry")
+	enabled, err := testClient.isApiEnabled("database", "GetCloudVmClusterUpdateHistoryEntry")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("GetCloudVmClusterPatchHistoryEntry is not enabled by the testing service")
+		t.Skip("GetCloudVmClusterUpdateHistoryEntry is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudVmClusterPatchHistoryEntry", createDatabaseClientWithProvider)
+	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudVmClusterUpdateHistoryEntry", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(database.DatabaseClient)
 
-	body, err := testClient.getRequests("database", "GetCloudVmClusterPatchHistoryEntry")
+	body, err := testClient.getRequests("database", "GetCloudVmClusterUpdateHistoryEntry")
 	assert.NoError(t, err)
 
-	type GetCloudVmClusterPatchHistoryEntryRequestInfo struct {
+	type GetCloudVmClusterUpdateHistoryEntryRequestInfo struct {
 		ContainerId string
-		Request     database.GetCloudVmClusterPatchHistoryEntryRequest
+		Request     database.GetCloudVmClusterUpdateHistoryEntryRequest
 	}
 
-	var requests []GetCloudVmClusterPatchHistoryEntryRequestInfo
+	var requests []GetCloudVmClusterUpdateHistoryEntryRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -3162,7 +3162,7 @@ func TestDatabaseClientGetCloudVmClusterPatchHistoryEntry(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetCloudVmClusterPatchHistoryEntry(context.Background(), req.Request)
+			response, err := c.GetCloudVmClusterUpdateHistoryEntry(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -4908,28 +4908,28 @@ func TestDatabaseClientListCloudExadataInfrastructures(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientListCloudVmClusterPatchHistoryEntries(t *testing.T) {
+func TestDatabaseClientListCloudVmClusterUpdateHistoryEntries(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("database", "ListCloudVmClusterPatchHistoryEntries")
+	enabled, err := testClient.isApiEnabled("database", "ListCloudVmClusterUpdateHistoryEntries")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ListCloudVmClusterPatchHistoryEntries is not enabled by the testing service")
+		t.Skip("ListCloudVmClusterUpdateHistoryEntries is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("database", "Database", "ListCloudVmClusterPatchHistoryEntries", createDatabaseClientWithProvider)
+	cc, err := testClient.createClientForOperation("database", "Database", "ListCloudVmClusterUpdateHistoryEntries", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(database.DatabaseClient)
 
-	body, err := testClient.getRequests("database", "ListCloudVmClusterPatchHistoryEntries")
+	body, err := testClient.getRequests("database", "ListCloudVmClusterUpdateHistoryEntries")
 	assert.NoError(t, err)
 
-	type ListCloudVmClusterPatchHistoryEntriesRequestInfo struct {
+	type ListCloudVmClusterUpdateHistoryEntriesRequestInfo struct {
 		ContainerId string
-		Request     database.ListCloudVmClusterPatchHistoryEntriesRequest
+		Request     database.ListCloudVmClusterUpdateHistoryEntriesRequest
 	}
 
-	var requests []ListCloudVmClusterPatchHistoryEntriesRequestInfo
+	var requests []ListCloudVmClusterUpdateHistoryEntriesRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -4944,14 +4944,14 @@ func TestDatabaseClientListCloudVmClusterPatchHistoryEntries(t *testing.T) {
 			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*database.ListCloudVmClusterPatchHistoryEntriesRequest)
-				return c.ListCloudVmClusterPatchHistoryEntries(context.Background(), *r)
+				r := req.(*database.ListCloudVmClusterUpdateHistoryEntriesRequest)
+				return c.ListCloudVmClusterUpdateHistoryEntries(context.Background(), *r)
 			}
 
 			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]database.ListCloudVmClusterPatchHistoryEntriesResponse, len(listResponses))
+			typedListResponses := make([]database.ListCloudVmClusterUpdateHistoryEntriesResponse, len(listResponses))
 			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(database.ListCloudVmClusterPatchHistoryEntriesResponse)
+				typedListResponses[i] = lr.(database.ListCloudVmClusterUpdateHistoryEntriesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -4962,28 +4962,28 @@ func TestDatabaseClientListCloudVmClusterPatchHistoryEntries(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientListCloudVmClusterPatches(t *testing.T) {
+func TestDatabaseClientListCloudVmClusterUpdates(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("database", "ListCloudVmClusterPatches")
+	enabled, err := testClient.isApiEnabled("database", "ListCloudVmClusterUpdates")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ListCloudVmClusterPatches is not enabled by the testing service")
+		t.Skip("ListCloudVmClusterUpdates is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("database", "Database", "ListCloudVmClusterPatches", createDatabaseClientWithProvider)
+	cc, err := testClient.createClientForOperation("database", "Database", "ListCloudVmClusterUpdates", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(database.DatabaseClient)
 
-	body, err := testClient.getRequests("database", "ListCloudVmClusterPatches")
+	body, err := testClient.getRequests("database", "ListCloudVmClusterUpdates")
 	assert.NoError(t, err)
 
-	type ListCloudVmClusterPatchesRequestInfo struct {
+	type ListCloudVmClusterUpdatesRequestInfo struct {
 		ContainerId string
-		Request     database.ListCloudVmClusterPatchesRequest
+		Request     database.ListCloudVmClusterUpdatesRequest
 	}
 
-	var requests []ListCloudVmClusterPatchesRequestInfo
+	var requests []ListCloudVmClusterUpdatesRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -4998,14 +4998,14 @@ func TestDatabaseClientListCloudVmClusterPatches(t *testing.T) {
 			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*database.ListCloudVmClusterPatchesRequest)
-				return c.ListCloudVmClusterPatches(context.Background(), *r)
+				r := req.(*database.ListCloudVmClusterUpdatesRequest)
+				return c.ListCloudVmClusterUpdates(context.Background(), *r)
 			}
 
 			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]database.ListCloudVmClusterPatchesResponse, len(listResponses))
+			typedListResponses := make([]database.ListCloudVmClusterUpdatesResponse, len(listResponses))
 			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(database.ListCloudVmClusterPatchesResponse)
+				typedListResponses[i] = lr.(database.ListCloudVmClusterUpdatesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

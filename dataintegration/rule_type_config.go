@@ -38,9 +38,6 @@ type RuleTypeConfig struct {
 
 	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
-
-	// classType
-	ClassType *string `mandatory:"false" json:"classType"`
 }
 
 func (m RuleTypeConfig) String() string {
@@ -72,7 +69,6 @@ func (m *RuleTypeConfig) UnmarshalJSON(data []byte) (e error) {
 		ProjectionRules []projectionrule `json:"projectionRules"`
 		ConfigValues    *ConfigValues    `json:"configValues"`
 		ObjectStatus    *int             `json:"objectStatus"`
-		ClassType       *string          `json:"classType"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -106,7 +102,5 @@ func (m *RuleTypeConfig) UnmarshalJSON(data []byte) (e error) {
 	m.ConfigValues = model.ConfigValues
 
 	m.ObjectStatus = model.ObjectStatus
-
-	m.ClassType = model.ClassType
 	return
 }

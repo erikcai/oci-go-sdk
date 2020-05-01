@@ -32,6 +32,9 @@ type UpdateIncidentRequest struct {
         
  // For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match` parameter to the value of the etag from a previous GET or POST response for that resource. The resource will be updated or deleted only if the etag you provide matches the resource's current etag value. 
         IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
+        
+ // The region of the tenancy. 
+        Homeregion *string `mandatory:"false" contributesTo:"header" name:"homeregion"`
 
 
     // Metadata about the request. This information will not be transmitted to the service, but

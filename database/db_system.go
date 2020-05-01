@@ -202,6 +202,7 @@ const (
 	DbSystemLifecycleStateTerminating  DbSystemLifecycleStateEnum = "TERMINATING"
 	DbSystemLifecycleStateTerminated   DbSystemLifecycleStateEnum = "TERMINATED"
 	DbSystemLifecycleStateFailed       DbSystemLifecycleStateEnum = "FAILED"
+	DbSystemLifecycleStateMigrated     DbSystemLifecycleStateEnum = "MIGRATED"
 )
 
 var mappingDbSystemLifecycleState = map[string]DbSystemLifecycleStateEnum{
@@ -211,6 +212,7 @@ var mappingDbSystemLifecycleState = map[string]DbSystemLifecycleStateEnum{
 	"TERMINATING":  DbSystemLifecycleStateTerminating,
 	"TERMINATED":   DbSystemLifecycleStateTerminated,
 	"FAILED":       DbSystemLifecycleStateFailed,
+	"MIGRATED":     DbSystemLifecycleStateMigrated,
 }
 
 // GetDbSystemLifecycleStateEnumValues Enumerates the set of values for DbSystemLifecycleStateEnum
