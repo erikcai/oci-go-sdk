@@ -72,7 +72,8 @@ type CreateSddcDetails struct {
 	// Uplink 2 component of the VMware environment.
 	NsxEdgeUplink2VlanId *string `mandatory:"true" json:"nsxEdgeUplink2VlanId"`
 
-	// A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits, whitespaces, dashes and underscores.
+	// A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits,
+	// whitespaces, dashes and underscores.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 

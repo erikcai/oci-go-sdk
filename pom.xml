@@ -71,8 +71,8 @@
     <ads-control-plane-spec-spec-file>api.cond.yaml</ads-control-plane-spec-spec-file>
     <compliance-document-service-spec-spec-file>source/api.cond.yaml</compliance-document-service-spec-spec-file>
     <dis-sdk-spec-spec-file>source/dis-api.cond.yaml</dis-sdk-spec-spec-file>
-    <hydra-controlplane-api-spec-spec-file>source/public-api-20200531.yaml</hydra-controlplane-api-spec-spec-file>
-    <vmware-provision-service-spec-spec-file>source/api.cond.yaml</vmware-provision-service-spec-spec-file>
+    <hydra-controlplane-api-spec-spec-file>source/public-api-20200531.cond.yaml</hydra-controlplane-api-spec-spec-file>
+    <vmware-provision-service-spec-spec-file>release/api.yaml</vmware-provision-service-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -4441,17 +4441,17 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.421</version>
+        <version>0.1.426</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
         <artifactId>fss-api-spec</artifactId>
-        <version>0.0.26</version>
+        <version>0.0.30</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.sherlock</groupId>
         <artifactId>hemlock-spec</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.email</groupId>
@@ -4481,7 +4481,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.1.18</version>
+        <version>1.1.19</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
@@ -4516,7 +4516,7 @@
       <dependency>
         <groupId>com.oracle.oci.marketplace</groupId>
         <artifactId>marketplace-consumer-service-spec</artifactId>
-        <version>0.1.1011</version>
+        <version>0.1.1061</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>
@@ -4681,17 +4681,17 @@
       <dependency>
         <groupId>com.oracle.dis</groupId>
         <artifactId>dis-sdk-spec</artifactId>
-        <version>1.0.0-119</version>
+        <version>1.0.0-121</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.controlplane</groupId>
         <artifactId>hydra-controlplane-api-spec</artifactId>
-        <version>0.0.565</version>
+        <version>0.0.617</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.vmware.ocvp</groupId>
         <artifactId>vmware-provision-service-spec</artifactId>
-        <version>0.1.283</version>
+        <version>0.1.370</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

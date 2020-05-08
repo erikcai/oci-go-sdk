@@ -23,7 +23,8 @@ type SddcSummary struct {
 	// The availability domain that the SDDC's ESXi hosts are running in.
 	ComputeAvailabilityDomain *string `mandatory:"true" json:"computeAvailabilityDomain"`
 
-	// A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits, whitespaces, dashes and underscores.
+	// A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits,
+	// whitespaces, dashes and underscores.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 

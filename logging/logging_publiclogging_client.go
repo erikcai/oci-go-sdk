@@ -54,7 +54,7 @@ func newPublicLoggingClientFromBaseClient(baseClient common.BaseClient, configPr
 
 // SetRegion overrides the region of this client.
 func (client *PublicLoggingClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("logging", "https://logging.{region}.oci.{secondLevelDomain}")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("logging", "https://logging-cp.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

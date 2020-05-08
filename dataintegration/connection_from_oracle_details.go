@@ -45,6 +45,11 @@ type ConnectionFromOracleDetails struct {
 	// The properties for the connection.
 	ConnectionProperties []ConnectionProperty `mandatory:"false" json:"connectionProperties"`
 
+	// The default property for the connection.
+	IsDefault *bool `mandatory:"false" json:"isDefault"`
+
+	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
+
 	// The user name for the connection.
 	Username *string `mandatory:"false" json:"username"`
 
@@ -100,6 +105,16 @@ func (m ConnectionFromOracleDetails) GetPrimarySchema() *Schema {
 //GetConnectionProperties returns ConnectionProperties
 func (m ConnectionFromOracleDetails) GetConnectionProperties() []ConnectionProperty {
 	return m.ConnectionProperties
+}
+
+//GetIsDefault returns IsDefault
+func (m ConnectionFromOracleDetails) GetIsDefault() *bool {
+	return m.IsDefault
+}
+
+//GetMetadata returns Metadata
+func (m ConnectionFromOracleDetails) GetMetadata() *ObjectMetadata {
+	return m.Metadata
 }
 
 func (m ConnectionFromOracleDetails) String() string {

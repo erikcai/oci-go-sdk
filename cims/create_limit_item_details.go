@@ -41,19 +41,19 @@ type CreateLimitItemDetails struct {
 }
         //GetCategory returns Category
         func (m CreateLimitItemDetails) GetCategory() *CreateCategoryDetails {
-        return m.Category
+            return m.Category
         }
         //GetSubCategory returns SubCategory
         func (m CreateLimitItemDetails) GetSubCategory() *CreateSubCategoryDetails {
-        return m.SubCategory
+            return m.SubCategory
         }
         //GetIssueType returns IssueType
         func (m CreateLimitItemDetails) GetIssueType() *CreateIssueTypeDetails {
-        return m.IssueType
+            return m.IssueType
         }
         //GetName returns Name
         func (m CreateLimitItemDetails) GetName() *string {
-        return m.Name
+            return m.Name
         }
 
 func (m CreateLimitItemDetails) String() string {

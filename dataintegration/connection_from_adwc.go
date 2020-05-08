@@ -45,6 +45,9 @@ type ConnectionFromAdwc struct {
 	// The properties for the connection.
 	ConnectionProperties []ConnectionProperty `mandatory:"false" json:"connectionProperties"`
 
+	// The default property for the connection.
+	IsDefault *bool `mandatory:"false" json:"isDefault"`
+
 	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
 
 	// A map, if provided key is replaced with generated key, this structure provides mapping between user provided key and generated key
@@ -105,6 +108,11 @@ func (m ConnectionFromAdwc) GetPrimarySchema() *Schema {
 //GetConnectionProperties returns ConnectionProperties
 func (m ConnectionFromAdwc) GetConnectionProperties() []ConnectionProperty {
 	return m.ConnectionProperties
+}
+
+//GetIsDefault returns IsDefault
+func (m ConnectionFromAdwc) GetIsDefault() *bool {
+	return m.IsDefault
 }
 
 //GetMetadata returns Metadata

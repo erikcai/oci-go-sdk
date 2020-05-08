@@ -32,23 +32,23 @@ type TechSupportItem struct {
 }
         //GetItemKey returns ItemKey
         func (m TechSupportItem) GetItemKey() *string {
-        return m.ItemKey
+            return m.ItemKey
         }
         //GetName returns Name
         func (m TechSupportItem) GetName() *string {
-        return m.Name
+            return m.Name
         }
         //GetCategory returns Category
         func (m TechSupportItem) GetCategory() *Category {
-        return m.Category
+            return m.Category
         }
         //GetSubCategory returns SubCategory
         func (m TechSupportItem) GetSubCategory() *SubCategory {
-        return m.SubCategory
+            return m.SubCategory
         }
         //GetIssueType returns IssueType
         func (m TechSupportItem) GetIssueType() *IssueType {
-        return m.IssueType
+            return m.IssueType
         }
 
 func (m TechSupportItem) String() string {

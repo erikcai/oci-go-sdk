@@ -45,6 +45,12 @@ type DependentObject struct {
 	// The version of the object that is used to track changes in the object instance.
 	ObjectVersion *int `mandatory:"false" json:"objectVersion"`
 
+	// List of dependent objects in this patch.
+	DependentObjectMetadata []PatchObjectMetadata `mandatory:"false" json:"dependentObjectMetadata"`
+
+	// List of objects that are published / unpublished in this patch.
+	PublishedObjectMetadata map[string]PatchObjectMetadata `mandatory:"false" json:"publishedObjectMetadata"`
+
 	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
 
 	// A map, if provided key is replaced with generated key, this structure provides mapping between user provided key and generated key

@@ -45,6 +45,9 @@ type Connection interface {
 	// The properties for the connection.
 	GetConnectionProperties() []ConnectionProperty
 
+	// The default property for the connection.
+	GetIsDefault() *bool
+
 	GetMetadata() *ObjectMetadata
 
 	// A map, if provided key is replaced with generated key, this structure provides mapping between user provided key and generated key
@@ -63,6 +66,7 @@ type connection struct {
 	Identifier           *string              `mandatory:"false" json:"identifier"`
 	PrimarySchema        *Schema              `mandatory:"false" json:"primarySchema"`
 	ConnectionProperties []ConnectionProperty `mandatory:"false" json:"connectionProperties"`
+	IsDefault            *bool                `mandatory:"false" json:"isDefault"`
 	Metadata             *ObjectMetadata      `mandatory:"false" json:"metadata"`
 	KeyMap               map[string]string    `mandatory:"false" json:"keyMap"`
 	ModelType            string               `json:"modelType"`
@@ -89,6 +93,7 @@ func (m *connection) UnmarshalJSON(data []byte) error {
 	m.Identifier = s.Model.Identifier
 	m.PrimarySchema = s.Model.PrimarySchema
 	m.ConnectionProperties = s.Model.ConnectionProperties
+	m.IsDefault = s.Model.IsDefault
 	m.Metadata = s.Model.Metadata
 	m.KeyMap = s.Model.KeyMap
 	m.ModelType = s.Model.ModelType
@@ -174,6 +179,11 @@ func (m connection) GetPrimarySchema() *Schema {
 //GetConnectionProperties returns ConnectionProperties
 func (m connection) GetConnectionProperties() []ConnectionProperty {
 	return m.ConnectionProperties
+}
+
+//GetIsDefault returns IsDefault
+func (m connection) GetIsDefault() *bool {
+	return m.IsDefault
 }
 
 //GetMetadata returns Metadata

@@ -16,7 +16,8 @@ import (
 // ChangeSddcCompartmentDetails The configuration details for the move operation.
 type ChangeSddcCompartmentDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the SDDC to.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move
+	// the SDDC to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

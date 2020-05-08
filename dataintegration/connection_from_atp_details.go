@@ -45,6 +45,11 @@ type ConnectionFromAtpDetails struct {
 	// The properties for the connection.
 	ConnectionProperties []ConnectionProperty `mandatory:"false" json:"connectionProperties"`
 
+	// The default property for the connection.
+	IsDefault *bool `mandatory:"false" json:"isDefault"`
+
+	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
+
 	// The user name for the connection.
 	Username *string `mandatory:"false" json:"username"`
 
@@ -100,6 +105,16 @@ func (m ConnectionFromAtpDetails) GetPrimarySchema() *Schema {
 //GetConnectionProperties returns ConnectionProperties
 func (m ConnectionFromAtpDetails) GetConnectionProperties() []ConnectionProperty {
 	return m.ConnectionProperties
+}
+
+//GetIsDefault returns IsDefault
+func (m ConnectionFromAtpDetails) GetIsDefault() *bool {
+	return m.IsDefault
+}
+
+//GetMetadata returns Metadata
+func (m ConnectionFromAtpDetails) GetMetadata() *ObjectMetadata {
+	return m.Metadata
 }
 
 func (m ConnectionFromAtpDetails) String() string {

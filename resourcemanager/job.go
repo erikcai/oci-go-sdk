@@ -77,6 +77,8 @@ type Job struct {
 	// Example: `{"CompartmentId": "compartment-id-value"}`
 	Variables map[string]string `mandatory:"false" json:"variables"`
 
+	ConfigSource ConfigSourceRecord `mandatory:"false" json:"configSource"`
+
 	// Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -109,6 +111,7 @@ func (m *Job) UnmarshalJSON(data []byte) (e error) {
 		FailureDetails         *FailureDetails                   `json:"failureDetails"`
 		WorkingDirectory       *string                           `json:"workingDirectory"`
 		Variables              map[string]string                 `json:"variables"`
+		ConfigSource           configsourcerecord                `json:"configSource"`
 		FreeformTags           map[string]string                 `json:"freeformTags"`
 		DefinedTags            map[string]map[string]interface{} `json:"definedTags"`
 	}{}
@@ -153,6 +156,16 @@ func (m *Job) UnmarshalJSON(data []byte) (e error) {
 	m.WorkingDirectory = model.WorkingDirectory
 
 	m.Variables = model.Variables
+
+	nn, e = model.ConfigSource.UnmarshalPolymorphicJSON(model.ConfigSource.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.ConfigSource = nn.(ConfigSourceRecord)
+	} else {
+		m.ConfigSource = nil
+	}
 
 	m.FreeformTags = model.FreeformTags
 

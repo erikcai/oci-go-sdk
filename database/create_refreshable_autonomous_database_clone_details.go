@@ -32,12 +32,6 @@ type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create a new Autonomous Database.
 	SourceId *string `mandatory:"true" json:"sourceId"`
 
-	// The clone lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
-	RefreshLagTimeInSeconds *int `mandatory:"true" json:"refreshLagTimeInSeconds"`
-
-	// The refresh interval determines how frequently data is refreshed in the clone. Minimum 1 hour. Maximum 7 days.
-	RefreshIntervalInSeconds *int `mandatory:"true" json:"refreshIntervalInSeconds"`
-
 	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of memory. For Always Free databases, memory and CPU cannot be scaled.
 	IsFreeTier *bool `mandatory:"false" json:"isFreeTier"`
 
@@ -97,6 +91,9 @@ type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 
 	// A valid Oracle Database version for Autonomous Database.
 	DbVersion *string `mandatory:"false" json:"dbVersion"`
+
+	// The refresh mode of the clone. AUTOMATIC indicates that the clone is automatically being refreshed with data from the source Autonomous Database.
+	RefreshableMode CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum `mandatory:"false" json:"refreshableMode,omitempty"`
 
 	// The Autonomous Database workload type. The following values are valid:
 	// - OLTP - indicates an Autonomous Transaction Processing database
@@ -230,4 +227,27 @@ func (m CreateRefreshableAutonomousDatabaseCloneDetails) MarshalJSON() (buff []b
 	}
 
 	return json.Marshal(&s)
+}
+
+// CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum Enum with underlying type: string
+type CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum string
+
+// Set of constants representing the allowable values for CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum
+const (
+	CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeAutomatic CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum = "AUTOMATIC"
+	CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeManual    CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum = "MANUAL"
+)
+
+var mappingCreateRefreshableAutonomousDatabaseCloneDetailsRefreshableMode = map[string]CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum{
+	"AUTOMATIC": CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeAutomatic,
+	"MANUAL":    CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeManual,
+}
+
+// GetCreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnumValues Enumerates the set of values for CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum
+func GetCreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnumValues() []CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum {
+	values := make([]CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum, 0)
+	for _, v := range mappingCreateRefreshableAutonomousDatabaseCloneDetailsRefreshableMode {
+		values = append(values, v)
+	}
+	return values
 }

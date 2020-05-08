@@ -55,6 +55,9 @@ type TaskFromIntegrationTaskDetails struct {
 
 	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
 
+	// A map, if provided key is replaced with generated key, this structure provides mapping between user provided key and generated key
+	KeyMap map[string]string `mandatory:"false" json:"keyMap"`
+
 	DataFlow *DataFlow `mandatory:"false" json:"dataFlow"`
 }
 
@@ -126,6 +129,11 @@ func (m TaskFromIntegrationTaskDetails) GetConfigProviderDelegate() *ConfigProvi
 //GetMetadata returns Metadata
 func (m TaskFromIntegrationTaskDetails) GetMetadata() *ObjectMetadata {
 	return m.Metadata
+}
+
+//GetKeyMap returns KeyMap
+func (m TaskFromIntegrationTaskDetails) GetKeyMap() map[string]string {
+	return m.KeyMap
 }
 
 func (m TaskFromIntegrationTaskDetails) String() string {

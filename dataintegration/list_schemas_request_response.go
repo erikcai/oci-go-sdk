@@ -33,6 +33,9 @@ type ListSchemasRequest struct {
 	// This parameter is used to control the sort order.  Supported values are `ASC` (ascending) and `DESC` (descending).
 	SortOrder ListSchemasSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
+	// This filter parameter can be used to filter by the external key of the object.
+	ExternalKey *string `mandatory:"false" contributesTo:"query" name:"externalKey"`
+
 	// This filter parameter can be used to filter by the name of the object.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
 

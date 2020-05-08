@@ -44,23 +44,23 @@ type LimitItem struct {
 }
         //GetItemKey returns ItemKey
         func (m LimitItem) GetItemKey() *string {
-        return m.ItemKey
+            return m.ItemKey
         }
         //GetName returns Name
         func (m LimitItem) GetName() *string {
-        return m.Name
+            return m.Name
         }
         //GetCategory returns Category
         func (m LimitItem) GetCategory() *Category {
-        return m.Category
+            return m.Category
         }
         //GetSubCategory returns SubCategory
         func (m LimitItem) GetSubCategory() *SubCategory {
-        return m.SubCategory
+            return m.SubCategory
         }
         //GetIssueType returns IssueType
         func (m LimitItem) GetIssueType() *IssueType {
-        return m.IssueType
+            return m.IssueType
         }
 
 func (m LimitItem) String() string {

@@ -30,7 +30,8 @@ type Sddc struct {
 	// Example: `Uocm:PHX-AD-1`
 	ComputeAvailabilityDomain *string `mandatory:"true" json:"computeAvailabilityDomain"`
 
-	// A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits, whitespaces, dashes and underscores.
+	// A descriptive name for the SDDC. It must be unique, start with a letter, and contain only letters, digits,
+	// whitespaces, dashes and underscores.
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 

@@ -66,6 +66,50 @@ func TestDatabaseClientActivateExadataInfrastructure(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientAutonomousDatabaseManualRefresh(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "AutonomousDatabaseManualRefresh")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AutonomousDatabaseManualRefresh is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "AutonomousDatabaseManualRefresh", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "AutonomousDatabaseManualRefresh")
+	assert.NoError(t, err)
+
+	type AutonomousDatabaseManualRefreshRequestInfo struct {
+		ContainerId string
+		Request     database.AutonomousDatabaseManualRefreshRequest
+	}
+
+	var requests []AutonomousDatabaseManualRefreshRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AutonomousDatabaseManualRefresh(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientChangeAutonomousContainerDatabaseCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -1151,7 +1195,6 @@ func TestDatabaseClientCreateDatabase(t *testing.T) {
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"NONE":      &database.CreateNewDatabaseDetails{},
-				"DATABASE":  &database.CreateDatabaseFromDatabase{},
 				"DB_BACKUP": &database.CreateDatabaseFromBackup{},
 			},
 		}
@@ -1207,11 +1250,10 @@ func TestDatabaseClientCreateDbHome(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
-				"DATABASE":            &database.CreateDbHomeWithDbSystemIdFromDatabaseDetails{},
-				"DB_BACKUP":           &database.CreateDbHomeWithDbSystemIdFromBackupDetails{},
-				"VM_CLUSTER_DATABASE": &database.CreateDbHomeWithVmClusterIdFromDatabaseDetails{},
-				"NONE":                &database.CreateDbHomeWithDbSystemIdDetails{},
-				"VM_CLUSTER_NEW":      &database.CreateDbHomeWithVmClusterIdDetails{},
+				"DATABASE":       &database.CreateDbHomeWithDbSystemIdFromDatabaseDetails{},
+				"DB_BACKUP":      &database.CreateDbHomeWithDbSystemIdFromBackupDetails{},
+				"NONE":           &database.CreateDbHomeWithDbSystemIdDetails{},
+				"VM_CLUSTER_NEW": &database.CreateDbHomeWithVmClusterIdDetails{},
 			},
 		}
 

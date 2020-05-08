@@ -33,6 +33,9 @@ type UpdateLogDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// Log retention duration in days.
+	RetentionDuration *int `mandatory:"false" json:"retentionDuration"`
+
 	Configuration *UpdateConfigurationDetails `mandatory:"false" json:"configuration"`
 }
 

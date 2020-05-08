@@ -67,6 +67,50 @@ func TestResourceManagerClientCancelJob(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientChangeConfigurationSourceProviderCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "ChangeConfigurationSourceProviderCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeConfigurationSourceProviderCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "ChangeConfigurationSourceProviderCompartment", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "ChangeConfigurationSourceProviderCompartment")
+	assert.NoError(t, err)
+
+	type ChangeConfigurationSourceProviderCompartmentRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.ChangeConfigurationSourceProviderCompartmentRequest
+	}
+
+	var requests []ChangeConfigurationSourceProviderCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeConfigurationSourceProviderCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
 func TestResourceManagerClientChangeStackCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -103,6 +147,61 @@ func TestResourceManagerClientChangeStackCompartment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ChangeStackCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientCreateConfigurationSourceProvider(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "CreateConfigurationSourceProvider")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateConfigurationSourceProvider is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "CreateConfigurationSourceProvider", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "CreateConfigurationSourceProvider")
+	assert.NoError(t, err)
+
+	type CreateConfigurationSourceProviderRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.CreateConfigurationSourceProviderRequest
+	}
+
+	var requests []CreateConfigurationSourceProviderRequestInfo
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
+	assert.NoError(t, err)
+	requests = make([]CreateConfigurationSourceProviderRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateConfigurationSourceProviderDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "configSourceProviderType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"GITLAB_ACCESS_TOKEN": &resourcemanager.CreateGitlabAccessTokenConfigurationSourceProviderDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateConfigurationSourceProvider(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -199,6 +298,50 @@ func TestResourceManagerClientCreateStack(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientDeleteConfigurationSourceProvider(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "DeleteConfigurationSourceProvider")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteConfigurationSourceProvider is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "DeleteConfigurationSourceProvider", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "DeleteConfigurationSourceProvider")
+	assert.NoError(t, err)
+
+	type DeleteConfigurationSourceProviderRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.DeleteConfigurationSourceProviderRequest
+	}
+
+	var requests []DeleteConfigurationSourceProviderRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteConfigurationSourceProvider(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
 func TestResourceManagerClientDeleteStack(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -279,6 +422,50 @@ func TestResourceManagerClientDetectStackDrift(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DetectStackDrift(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientGetConfigurationSourceProvider(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "GetConfigurationSourceProvider")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetConfigurationSourceProvider is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetConfigurationSourceProvider", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "GetConfigurationSourceProvider")
+	assert.NoError(t, err)
+
+	type GetConfigurationSourceProviderRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.GetConfigurationSourceProviderRequest
+	}
+
+	var requests []GetConfigurationSourceProviderRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetConfigurationSourceProvider(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -693,6 +880,60 @@ func TestResourceManagerClientGetWorkRequest(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientListConfigurationSourceProviders(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "ListConfigurationSourceProviders")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListConfigurationSourceProviders is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "ListConfigurationSourceProviders", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "ListConfigurationSourceProviders")
+	assert.NoError(t, err)
+
+	type ListConfigurationSourceProvidersRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.ListConfigurationSourceProvidersRequest
+	}
+
+	var requests []ListConfigurationSourceProvidersRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*resourcemanager.ListConfigurationSourceProvidersRequest)
+				return c.ListConfigurationSourceProviders(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]resourcemanager.ListConfigurationSourceProvidersResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(resourcemanager.ListConfigurationSourceProvidersResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
 func TestResourceManagerClientListJobs(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1054,6 +1295,61 @@ func TestResourceManagerClientListWorkRequests(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientUpdateConfigurationSourceProvider(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "UpdateConfigurationSourceProvider")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateConfigurationSourceProvider is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "UpdateConfigurationSourceProvider", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "UpdateConfigurationSourceProvider")
+	assert.NoError(t, err)
+
+	type UpdateConfigurationSourceProviderRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.UpdateConfigurationSourceProviderRequest
+	}
+
+	var requests []UpdateConfigurationSourceProviderRequestInfo
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
+	assert.NoError(t, err)
+	requests = make([]UpdateConfigurationSourceProviderRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["UpdateConfigurationSourceProviderDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "configSourceProviderType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"GITLAB_ACCESS_TOKEN": &resourcemanager.UpdateGitlabAccessTokenConfigurationSourceProviderDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateConfigurationSourceProvider(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

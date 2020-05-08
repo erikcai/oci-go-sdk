@@ -55,6 +55,9 @@ type Log struct {
 
 	// Time the resource was last modified.
 	TimeLastModified *common.SDKTime `mandatory:"false" json:"timeLastModified"`
+
+	// Log retention duration in days.
+	RetentionDuration *int `mandatory:"false" json:"retentionDuration"`
 }
 
 func (m Log) String() string {

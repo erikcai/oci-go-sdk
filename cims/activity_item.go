@@ -47,23 +47,23 @@ type ActivityItem struct {
 }
         //GetItemKey returns ItemKey
         func (m ActivityItem) GetItemKey() *string {
-        return m.ItemKey
+            return m.ItemKey
         }
         //GetName returns Name
         func (m ActivityItem) GetName() *string {
-        return m.Name
+            return m.Name
         }
         //GetCategory returns Category
         func (m ActivityItem) GetCategory() *Category {
-        return m.Category
+            return m.Category
         }
         //GetSubCategory returns SubCategory
         func (m ActivityItem) GetSubCategory() *SubCategory {
-        return m.SubCategory
+            return m.SubCategory
         }
         //GetIssueType returns IssueType
         func (m ActivityItem) GetIssueType() *IssueType {
-        return m.IssueType
+            return m.IssueType
         }
 
 func (m ActivityItem) String() string {

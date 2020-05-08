@@ -61,6 +61,8 @@ type Patch struct {
 	// List of objects that are published / unpublished in this patch.
 	PatchObjectMetadata []PatchObjectMetadata `mandatory:"false" json:"patchObjectMetadata"`
 
+	ParentRef *ParentReference `mandatory:"false" json:"parentRef"`
+
 	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
 
 	// A map, if provided key is replaced with generated key, this structure provides mapping between user provided key and generated key

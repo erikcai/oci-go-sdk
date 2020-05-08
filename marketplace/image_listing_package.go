@@ -45,7 +45,7 @@ type ImageListingPackage struct {
 	// The id of the image corresponding to the package.
 	ImageId *string `mandatory:"false" json:"imageId"`
 
-	// The regions where the listing is available.
+	// List of regions in which this ListingPackage is available.
 	Regions []Region `mandatory:"false" json:"regions"`
 }
 

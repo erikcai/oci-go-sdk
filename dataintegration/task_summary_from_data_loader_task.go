@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TaskSummaryFromDataLoaderTask The information about a data loader task.
+// TaskSummaryFromDataLoaderTask The information about a data flow task.
 type TaskSummaryFromDataLoaderTask struct {
 
 	// Generated key that can be used in API calls to identify task. On scenarios where reference to the task is needed, a value can be passed in create.
@@ -54,6 +54,9 @@ type TaskSummaryFromDataLoaderTask struct {
 	ConfigProviderDelegate *ConfigProvider `mandatory:"false" json:"configProviderDelegate"`
 
 	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
+
+	// A map, if provided key is replaced with generated key, this structure provides mapping between user provided key and generated key
+	KeyMap map[string]string `mandatory:"false" json:"keyMap"`
 
 	DataFlow *DataFlow `mandatory:"false" json:"dataFlow"`
 }
@@ -126,6 +129,11 @@ func (m TaskSummaryFromDataLoaderTask) GetConfigProviderDelegate() *ConfigProvid
 //GetMetadata returns Metadata
 func (m TaskSummaryFromDataLoaderTask) GetMetadata() *ObjectMetadata {
 	return m.Metadata
+}
+
+//GetKeyMap returns KeyMap
+func (m TaskSummaryFromDataLoaderTask) GetKeyMap() map[string]string {
+	return m.KeyMap
 }
 
 func (m TaskSummaryFromDataLoaderTask) String() string {

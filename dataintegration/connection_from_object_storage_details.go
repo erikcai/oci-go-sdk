@@ -45,6 +45,11 @@ type ConnectionFromObjectStorageDetails struct {
 	// The properties for the connection.
 	ConnectionProperties []ConnectionProperty `mandatory:"false" json:"connectionProperties"`
 
+	// The default property for the connection.
+	IsDefault *bool `mandatory:"false" json:"isDefault"`
+
+	Metadata *ObjectMetadata `mandatory:"false" json:"metadata"`
+
 	// The credential file content from a wallet for the data asset.
 	CredentialFileContent *string `mandatory:"false" json:"credentialFileContent"`
 
@@ -106,6 +111,16 @@ func (m ConnectionFromObjectStorageDetails) GetPrimarySchema() *Schema {
 //GetConnectionProperties returns ConnectionProperties
 func (m ConnectionFromObjectStorageDetails) GetConnectionProperties() []ConnectionProperty {
 	return m.ConnectionProperties
+}
+
+//GetIsDefault returns IsDefault
+func (m ConnectionFromObjectStorageDetails) GetIsDefault() *bool {
+	return m.IsDefault
+}
+
+//GetMetadata returns Metadata
+func (m ConnectionFromObjectStorageDetails) GetMetadata() *ObjectMetadata {
+	return m.Metadata
 }
 
 func (m ConnectionFromObjectStorageDetails) String() string {

@@ -85,10 +85,6 @@ func (m *createdbhomebase) UnmarshalPolymorphicJSON(data []byte) (interface{}, e
 		mm := CreateDbHomeWithDbSystemIdFromBackupDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
-	case "VM_CLUSTER_DATABASE":
-		mm := CreateDbHomeWithVmClusterIdFromDatabaseDetails{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	case "NONE":
 		mm := CreateDbHomeWithDbSystemIdDetails{}
 		err = json.Unmarshal(data, &mm)
@@ -136,19 +132,17 @@ type CreateDbHomeBaseSourceEnum string
 
 // Set of constants representing the allowable values for CreateDbHomeBaseSourceEnum
 const (
-	CreateDbHomeBaseSourceNone              CreateDbHomeBaseSourceEnum = "NONE"
-	CreateDbHomeBaseSourceDbBackup          CreateDbHomeBaseSourceEnum = "DB_BACKUP"
-	CreateDbHomeBaseSourceDatabase          CreateDbHomeBaseSourceEnum = "DATABASE"
-	CreateDbHomeBaseSourceVmClusterNew      CreateDbHomeBaseSourceEnum = "VM_CLUSTER_NEW"
-	CreateDbHomeBaseSourceVmClusterDatabase CreateDbHomeBaseSourceEnum = "VM_CLUSTER_DATABASE"
+	CreateDbHomeBaseSourceNone         CreateDbHomeBaseSourceEnum = "NONE"
+	CreateDbHomeBaseSourceDbBackup     CreateDbHomeBaseSourceEnum = "DB_BACKUP"
+	CreateDbHomeBaseSourceDatabase     CreateDbHomeBaseSourceEnum = "DATABASE"
+	CreateDbHomeBaseSourceVmClusterNew CreateDbHomeBaseSourceEnum = "VM_CLUSTER_NEW"
 )
 
 var mappingCreateDbHomeBaseSource = map[string]CreateDbHomeBaseSourceEnum{
-	"NONE":                CreateDbHomeBaseSourceNone,
-	"DB_BACKUP":           CreateDbHomeBaseSourceDbBackup,
-	"DATABASE":            CreateDbHomeBaseSourceDatabase,
-	"VM_CLUSTER_NEW":      CreateDbHomeBaseSourceVmClusterNew,
-	"VM_CLUSTER_DATABASE": CreateDbHomeBaseSourceVmClusterDatabase,
+	"NONE":           CreateDbHomeBaseSourceNone,
+	"DB_BACKUP":      CreateDbHomeBaseSourceDbBackup,
+	"DATABASE":       CreateDbHomeBaseSourceDatabase,
+	"VM_CLUSTER_NEW": CreateDbHomeBaseSourceVmClusterNew,
 }
 
 // GetCreateDbHomeBaseSourceEnumValues Enumerates the set of values for CreateDbHomeBaseSourceEnum

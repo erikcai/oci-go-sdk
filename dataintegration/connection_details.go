@@ -44,6 +44,11 @@ type ConnectionDetails interface {
 
 	// The properties for the connection.
 	GetConnectionProperties() []ConnectionProperty
+
+	// The default property for the connection.
+	GetIsDefault() *bool
+
+	GetMetadata() *ObjectMetadata
 }
 
 type connectiondetails struct {
@@ -58,6 +63,8 @@ type connectiondetails struct {
 	Identifier           *string              `mandatory:"false" json:"identifier"`
 	PrimarySchema        *Schema              `mandatory:"false" json:"primarySchema"`
 	ConnectionProperties []ConnectionProperty `mandatory:"false" json:"connectionProperties"`
+	IsDefault            *bool                `mandatory:"false" json:"isDefault"`
+	Metadata             *ObjectMetadata      `mandatory:"false" json:"metadata"`
 	ModelType            string               `json:"modelType"`
 }
 
@@ -82,6 +89,8 @@ func (m *connectiondetails) UnmarshalJSON(data []byte) error {
 	m.Identifier = s.Model.Identifier
 	m.PrimarySchema = s.Model.PrimarySchema
 	m.ConnectionProperties = s.Model.ConnectionProperties
+	m.IsDefault = s.Model.IsDefault
+	m.Metadata = s.Model.Metadata
 	m.ModelType = s.Model.ModelType
 
 	return err
@@ -165,6 +174,16 @@ func (m connectiondetails) GetPrimarySchema() *Schema {
 //GetConnectionProperties returns ConnectionProperties
 func (m connectiondetails) GetConnectionProperties() []ConnectionProperty {
 	return m.ConnectionProperties
+}
+
+//GetIsDefault returns IsDefault
+func (m connectiondetails) GetIsDefault() *bool {
+	return m.IsDefault
+}
+
+//GetMetadata returns Metadata
+func (m connectiondetails) GetMetadata() *ObjectMetadata {
+	return m.Metadata
 }
 
 func (m connectiondetails) String() string {

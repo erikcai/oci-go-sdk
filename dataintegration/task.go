@@ -54,25 +54,29 @@ type Task interface {
 	GetConfigProviderDelegate() *ConfigProvider
 
 	GetMetadata() *ObjectMetadata
+
+	// A map, if provided key is replaced with generated key, this structure provides mapping between user provided key and generated key
+	GetKeyMap() map[string]string
 }
 
 type task struct {
 	JsonData               []byte
-	Key                    *string          `mandatory:"false" json:"key"`
-	ModelVersion           *string          `mandatory:"false" json:"modelVersion"`
-	ParentRef              *ParentReference `mandatory:"false" json:"parentRef"`
-	Name                   *string          `mandatory:"false" json:"name"`
-	Description            *string          `mandatory:"false" json:"description"`
-	ObjectVersion          *int             `mandatory:"false" json:"objectVersion"`
-	ObjectStatus           *int             `mandatory:"false" json:"objectStatus"`
-	Identifier             *string          `mandatory:"false" json:"identifier"`
-	InputPorts             []InputPort      `mandatory:"false" json:"inputPorts"`
-	OutputPorts            []OutputPort     `mandatory:"false" json:"outputPorts"`
-	Parameters             []Parameter      `mandatory:"false" json:"parameters"`
-	OpConfigValues         *ConfigValues    `mandatory:"false" json:"opConfigValues"`
-	ConfigProviderDelegate *ConfigProvider  `mandatory:"false" json:"configProviderDelegate"`
-	Metadata               *ObjectMetadata  `mandatory:"false" json:"metadata"`
-	ModelType              string           `json:"modelType"`
+	Key                    *string           `mandatory:"false" json:"key"`
+	ModelVersion           *string           `mandatory:"false" json:"modelVersion"`
+	ParentRef              *ParentReference  `mandatory:"false" json:"parentRef"`
+	Name                   *string           `mandatory:"false" json:"name"`
+	Description            *string           `mandatory:"false" json:"description"`
+	ObjectVersion          *int              `mandatory:"false" json:"objectVersion"`
+	ObjectStatus           *int              `mandatory:"false" json:"objectStatus"`
+	Identifier             *string           `mandatory:"false" json:"identifier"`
+	InputPorts             []InputPort       `mandatory:"false" json:"inputPorts"`
+	OutputPorts            []OutputPort      `mandatory:"false" json:"outputPorts"`
+	Parameters             []Parameter       `mandatory:"false" json:"parameters"`
+	OpConfigValues         *ConfigValues     `mandatory:"false" json:"opConfigValues"`
+	ConfigProviderDelegate *ConfigProvider   `mandatory:"false" json:"configProviderDelegate"`
+	Metadata               *ObjectMetadata   `mandatory:"false" json:"metadata"`
+	KeyMap                 map[string]string `mandatory:"false" json:"keyMap"`
+	ModelType              string            `json:"modelType"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -100,6 +104,7 @@ func (m *task) UnmarshalJSON(data []byte) error {
 	m.OpConfigValues = s.Model.OpConfigValues
 	m.ConfigProviderDelegate = s.Model.ConfigProviderDelegate
 	m.Metadata = s.Model.Metadata
+	m.KeyMap = s.Model.KeyMap
 	m.ModelType = s.Model.ModelType
 
 	return err
@@ -195,6 +200,11 @@ func (m task) GetConfigProviderDelegate() *ConfigProvider {
 //GetMetadata returns Metadata
 func (m task) GetMetadata() *ObjectMetadata {
 	return m.Metadata
+}
+
+//GetKeyMap returns KeyMap
+func (m task) GetKeyMap() map[string]string {
+	return m.KeyMap
 }
 
 func (m task) String() string {

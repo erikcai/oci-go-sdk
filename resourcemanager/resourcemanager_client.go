@@ -127,6 +127,60 @@ func (client ResourceManagerClient) cancelJob(ctx context.Context, request commo
 	return response, err
 }
 
+// ChangeConfigurationSourceProviderCompartment Moves a configuration source provider into a different compartment within the same tenancy.
+// For information about moving resources between compartments, see
+// Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+func (client ResourceManagerClient) ChangeConfigurationSourceProviderCompartment(ctx context.Context, request ChangeConfigurationSourceProviderCompartmentRequest) (response ChangeConfigurationSourceProviderCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeConfigurationSourceProviderCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeConfigurationSourceProviderCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeConfigurationSourceProviderCompartmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeConfigurationSourceProviderCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeConfigurationSourceProviderCompartmentResponse")
+	}
+	return
+}
+
+// changeConfigurationSourceProviderCompartment implements the OCIOperation interface (enables retrying operations)
+func (client ResourceManagerClient) changeConfigurationSourceProviderCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/configurationSourceProviders/{configurationSourceProviderId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeConfigurationSourceProviderCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ChangeStackCompartment Moves a Stack and it's associated Jobs into a different compartment.
 func (client ResourceManagerClient) ChangeStackCompartment(ctx context.Context, request ChangeStackCompartmentRequest) (response ChangeStackCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -176,6 +230,60 @@ func (client ResourceManagerClient) changeStackCompartment(ctx context.Context, 
 	}
 
 	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateConfigurationSourceProvider Creates a configuration source provider in the specified compartment.
+// For more information, see
+// To create a configuration source provider (https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateConfigurationSourceProvider).
+func (client ResourceManagerClient) CreateConfigurationSourceProvider(ctx context.Context, request CreateConfigurationSourceProviderRequest) (response CreateConfigurationSourceProviderResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createConfigurationSourceProvider, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateConfigurationSourceProviderResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateConfigurationSourceProviderResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateConfigurationSourceProviderResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateConfigurationSourceProviderResponse")
+	}
+	return
+}
+
+// createConfigurationSourceProvider implements the OCIOperation interface (enables retrying operations)
+func (client ResourceManagerClient) createConfigurationSourceProvider(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/configurationSourceProviders")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateConfigurationSourceProviderResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &configurationsourceprovider{})
 	return response, err
 }
 
@@ -286,6 +394,53 @@ func (client ResourceManagerClient) createStack(ctx context.Context, request com
 	return response, err
 }
 
+// DeleteConfigurationSourceProvider Deletes the specified configuration source provider.
+func (client ResourceManagerClient) DeleteConfigurationSourceProvider(ctx context.Context, request DeleteConfigurationSourceProviderRequest) (response DeleteConfigurationSourceProviderResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteConfigurationSourceProvider, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteConfigurationSourceProviderResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteConfigurationSourceProviderResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteConfigurationSourceProviderResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteConfigurationSourceProviderResponse")
+	}
+	return
+}
+
+// deleteConfigurationSourceProvider implements the OCIOperation interface (enables retrying operations)
+func (client ResourceManagerClient) deleteConfigurationSourceProvider(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/configurationSourceProviders/{configurationSourceProviderId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteConfigurationSourceProviderResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteStack Deletes the specified stack object.
 func (client ResourceManagerClient) DeleteStack(ctx context.Context, request DeleteStackRequest) (response DeleteStackResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -382,6 +537,53 @@ func (client ResourceManagerClient) detectStackDrift(ctx context.Context, reques
 	}
 
 	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetConfigurationSourceProvider Gets the properties of the specified configuration source provider.
+func (client ResourceManagerClient) GetConfigurationSourceProvider(ctx context.Context, request GetConfigurationSourceProviderRequest) (response GetConfigurationSourceProviderResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getConfigurationSourceProvider, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetConfigurationSourceProviderResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetConfigurationSourceProviderResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetConfigurationSourceProviderResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetConfigurationSourceProviderResponse")
+	}
+	return
+}
+
+// getConfigurationSourceProvider implements the OCIOperation interface (enables retrying operations)
+func (client ResourceManagerClient) getConfigurationSourceProvider(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/configurationSourceProviders/{configurationSourceProviderId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetConfigurationSourceProviderResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &configurationsourceprovider{})
 	return response, err
 }
 
@@ -807,6 +1009,55 @@ func (client ResourceManagerClient) getWorkRequest(ctx context.Context, request 
 	return response, err
 }
 
+// ListConfigurationSourceProviders Lists configuration source providers according to the specified filter.
+// - For `compartmentId`, lists all configuration source providers in the matching compartment.
+// - For `configurationSourceProviderId`, lists the matching configuration source provider.
+func (client ResourceManagerClient) ListConfigurationSourceProviders(ctx context.Context, request ListConfigurationSourceProvidersRequest) (response ListConfigurationSourceProvidersResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listConfigurationSourceProviders, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListConfigurationSourceProvidersResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListConfigurationSourceProvidersResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListConfigurationSourceProvidersResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListConfigurationSourceProvidersResponse")
+	}
+	return
+}
+
+// listConfigurationSourceProviders implements the OCIOperation interface (enables retrying operations)
+func (client ResourceManagerClient) listConfigurationSourceProviders(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/configurationSourceProviders")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListConfigurationSourceProvidersResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListJobs Returns a list of jobs in a stack or compartment, ordered by time created.
 // - To list all jobs in a stack, provide the stack OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
 // - To list all jobs in a compartment, provide the compartment OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -1140,6 +1391,55 @@ func (client ResourceManagerClient) listWorkRequests(ctx context.Context, reques
 	}
 
 	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateConfigurationSourceProvider Updates the properties of the specified configuration source provider.
+// For more information, see
+// To update a configuration source provider (https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#UpdateConfigurationSourceProvider).
+func (client ResourceManagerClient) UpdateConfigurationSourceProvider(ctx context.Context, request UpdateConfigurationSourceProviderRequest) (response UpdateConfigurationSourceProviderResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateConfigurationSourceProvider, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateConfigurationSourceProviderResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateConfigurationSourceProviderResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateConfigurationSourceProviderResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateConfigurationSourceProviderResponse")
+	}
+	return
+}
+
+// updateConfigurationSourceProvider implements the OCIOperation interface (enables retrying operations)
+func (client ResourceManagerClient) updateConfigurationSourceProvider(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/configurationSourceProviders/{configurationSourceProviderId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateConfigurationSourceProviderResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &configurationsourceprovider{})
 	return response, err
 }
 

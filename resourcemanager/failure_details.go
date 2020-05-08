@@ -35,21 +35,25 @@ type FailureDetailsCodeEnum string
 
 // Set of constants representing the allowable values for FailureDetailsCodeEnum
 const (
-	FailureDetailsCodeInternalServiceError       FailureDetailsCodeEnum = "INTERNAL_SERVICE_ERROR"
-	FailureDetailsCodeTerraformExecutionError    FailureDetailsCodeEnum = "TERRAFORM_EXECUTION_ERROR"
-	FailureDetailsCodeTerraformConfigUnzipFailed FailureDetailsCodeEnum = "TERRAFORM_CONFIG_UNZIP_FAILED"
-	FailureDetailsCodeInvalidWorkingDirectory    FailureDetailsCodeEnum = "INVALID_WORKING_DIRECTORY"
-	FailureDetailsCodeJobTimeout                 FailureDetailsCodeEnum = "JOB_TIMEOUT"
-	FailureDetailsCodeTerraformConfigVirusFound  FailureDetailsCodeEnum = "TERRAFORM_CONFIG_VIRUS_FOUND"
+	FailureDetailsCodeInternalServiceError        FailureDetailsCodeEnum = "INTERNAL_SERVICE_ERROR"
+	FailureDetailsCodeTerraformExecutionError     FailureDetailsCodeEnum = "TERRAFORM_EXECUTION_ERROR"
+	FailureDetailsCodeTerraformConfigUnzipFailed  FailureDetailsCodeEnum = "TERRAFORM_CONFIG_UNZIP_FAILED"
+	FailureDetailsCodeInvalidWorkingDirectory     FailureDetailsCodeEnum = "INVALID_WORKING_DIRECTORY"
+	FailureDetailsCodeJobTimeout                  FailureDetailsCodeEnum = "JOB_TIMEOUT"
+	FailureDetailsCodeTerraformConfigVirusFound   FailureDetailsCodeEnum = "TERRAFORM_CONFIG_VIRUS_FOUND"
+	FailureDetailsCodeTerraformGitCloneFailure    FailureDetailsCodeEnum = "TERRAFORM_GIT_CLONE_FAILURE"
+	FailureDetailsCodeTerraformGitCheckoutFailure FailureDetailsCodeEnum = "TERRAFORM_GIT_CHECKOUT_FAILURE"
 )
 
 var mappingFailureDetailsCode = map[string]FailureDetailsCodeEnum{
-	"INTERNAL_SERVICE_ERROR":        FailureDetailsCodeInternalServiceError,
-	"TERRAFORM_EXECUTION_ERROR":     FailureDetailsCodeTerraformExecutionError,
-	"TERRAFORM_CONFIG_UNZIP_FAILED": FailureDetailsCodeTerraformConfigUnzipFailed,
-	"INVALID_WORKING_DIRECTORY":     FailureDetailsCodeInvalidWorkingDirectory,
-	"JOB_TIMEOUT":                   FailureDetailsCodeJobTimeout,
-	"TERRAFORM_CONFIG_VIRUS_FOUND":  FailureDetailsCodeTerraformConfigVirusFound,
+	"INTERNAL_SERVICE_ERROR":         FailureDetailsCodeInternalServiceError,
+	"TERRAFORM_EXECUTION_ERROR":      FailureDetailsCodeTerraformExecutionError,
+	"TERRAFORM_CONFIG_UNZIP_FAILED":  FailureDetailsCodeTerraformConfigUnzipFailed,
+	"INVALID_WORKING_DIRECTORY":      FailureDetailsCodeInvalidWorkingDirectory,
+	"JOB_TIMEOUT":                    FailureDetailsCodeJobTimeout,
+	"TERRAFORM_CONFIG_VIRUS_FOUND":   FailureDetailsCodeTerraformConfigVirusFound,
+	"TERRAFORM_GIT_CLONE_FAILURE":    FailureDetailsCodeTerraformGitCloneFailure,
+	"TERRAFORM_GIT_CHECKOUT_FAILURE": FailureDetailsCodeTerraformGitCheckoutFailure,
 }
 
 // GetFailureDetailsCodeEnumValues Enumerates the set of values for FailureDetailsCodeEnum

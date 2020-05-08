@@ -57,6 +57,10 @@ func (m *configsource) UnmarshalPolymorphicJSON(data []byte) (interface{}, error
 
 	var err error
 	switch m.ConfigSourceType {
+	case "GIT_CONFIG_SOURCE":
+		mm := GitConfigSource{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "COMPARTMENT_CONFIG_SOURCE":
 		mm := CompartmentConfigSource{}
 		err = json.Unmarshal(data, &mm)
@@ -85,11 +89,13 @@ type ConfigSourceConfigSourceTypeEnum string
 // Set of constants representing the allowable values for ConfigSourceConfigSourceTypeEnum
 const (
 	ConfigSourceConfigSourceTypeZipUpload               ConfigSourceConfigSourceTypeEnum = "ZIP_UPLOAD"
+	ConfigSourceConfigSourceTypeGitConfigSource         ConfigSourceConfigSourceTypeEnum = "GIT_CONFIG_SOURCE"
 	ConfigSourceConfigSourceTypeCompartmentConfigSource ConfigSourceConfigSourceTypeEnum = "COMPARTMENT_CONFIG_SOURCE"
 )
 
 var mappingConfigSourceConfigSourceType = map[string]ConfigSourceConfigSourceTypeEnum{
 	"ZIP_UPLOAD":                ConfigSourceConfigSourceTypeZipUpload,
+	"GIT_CONFIG_SOURCE":         ConfigSourceConfigSourceTypeGitConfigSource,
 	"COMPARTMENT_CONFIG_SOURCE": ConfigSourceConfigSourceTypeCompartmentConfigSource,
 }
 

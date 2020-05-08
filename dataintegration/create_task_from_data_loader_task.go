@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateTaskFromDataLoaderTask The information about a data loader task.
+// CreateTaskFromDataLoaderTask The information about a data flow task.
 type CreateTaskFromDataLoaderTask struct {
 
 	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters

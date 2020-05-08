@@ -152,7 +152,7 @@ type AutonomousDatabase struct {
 	// Indicates whether the Autonomous Database is a refreshable clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 
-	// The clone lag time set between data on the source database and data on the cloned database. From 0 mins to 7 days.
+	// The specified lag time, in seconds, between data in the source database and data in the refreshable clone database at the time of the data refresh. Actual lag for the data in the refreshable clone increases with time after each refresh until the next refresh.
 	RefreshLagTimeInSeconds *int `mandatory:"false" json:"refreshLagTimeInSeconds"`
 
 	// The refresh interval determines how frequently data is refreshed in the clone. Minimum 1 hour. Maximum 7 days.
@@ -170,6 +170,9 @@ type AutonomousDatabase struct {
 	// The refresh status of the clone. REFRESHING indicates that the clone is currently being refreshed with data from the source Autonomous Database.
 	RefreshableStatus AutonomousDatabaseRefreshableStatusEnum `mandatory:"false" json:"refreshableStatus,omitempty"`
 
+	// The refresh mode of the clone. AUTOMATIC indicates that the clone is automatically being refreshed with data from the source Autonomous Database.
+	RefreshableMode AutonomousDatabaseRefreshableModeEnum `mandatory:"false" json:"refreshableMode,omitempty"`
+
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that was cloned to create the current Autonomous Database.
 	SourceId *string `mandatory:"false" json:"sourceId"`
 
@@ -180,7 +183,7 @@ type AutonomousDatabase struct {
 	IsFailedOver *bool `mandatory:"false" json:"isFailedOver"`
 
 	// Indicates if the Autonomous Database can be manually failed over.
-	IsFailOverEnabled *bool `mandatory:"false" json:"isFailOverEnabled"`
+	IsFailoverEnabled *bool `mandatory:"false" json:"isFailoverEnabled"`
 
 	// Indicates whether the Autonomous Database has Data Guard enabled.
 	IsDataGuardEnabled *bool `mandatory:"false" json:"isDataGuardEnabled"`
@@ -412,17 +415,42 @@ type AutonomousDatabaseRefreshableStatusEnum string
 
 // Set of constants representing the allowable values for AutonomousDatabaseRefreshableStatusEnum
 const (
-	AutonomousDatabaseRefreshableStatusRefreshing AutonomousDatabaseRefreshableStatusEnum = "REFRESHING"
+	AutonomousDatabaseRefreshableStatusRefreshing    AutonomousDatabaseRefreshableStatusEnum = "REFRESHING"
+	AutonomousDatabaseRefreshableStatusNotRefreshing AutonomousDatabaseRefreshableStatusEnum = "NOT_REFRESHING"
 )
 
 var mappingAutonomousDatabaseRefreshableStatus = map[string]AutonomousDatabaseRefreshableStatusEnum{
-	"REFRESHING": AutonomousDatabaseRefreshableStatusRefreshing,
+	"REFRESHING":     AutonomousDatabaseRefreshableStatusRefreshing,
+	"NOT_REFRESHING": AutonomousDatabaseRefreshableStatusNotRefreshing,
 }
 
 // GetAutonomousDatabaseRefreshableStatusEnumValues Enumerates the set of values for AutonomousDatabaseRefreshableStatusEnum
 func GetAutonomousDatabaseRefreshableStatusEnumValues() []AutonomousDatabaseRefreshableStatusEnum {
 	values := make([]AutonomousDatabaseRefreshableStatusEnum, 0)
 	for _, v := range mappingAutonomousDatabaseRefreshableStatus {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabaseRefreshableModeEnum Enum with underlying type: string
+type AutonomousDatabaseRefreshableModeEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabaseRefreshableModeEnum
+const (
+	AutonomousDatabaseRefreshableModeAutomatic AutonomousDatabaseRefreshableModeEnum = "AUTOMATIC"
+	AutonomousDatabaseRefreshableModeManual    AutonomousDatabaseRefreshableModeEnum = "MANUAL"
+)
+
+var mappingAutonomousDatabaseRefreshableMode = map[string]AutonomousDatabaseRefreshableModeEnum{
+	"AUTOMATIC": AutonomousDatabaseRefreshableModeAutomatic,
+	"MANUAL":    AutonomousDatabaseRefreshableModeManual,
+}
+
+// GetAutonomousDatabaseRefreshableModeEnumValues Enumerates the set of values for AutonomousDatabaseRefreshableModeEnum
+func GetAutonomousDatabaseRefreshableModeEnumValues() []AutonomousDatabaseRefreshableModeEnum {
+	values := make([]AutonomousDatabaseRefreshableModeEnum, 0)
+	for _, v := range mappingAutonomousDatabaseRefreshableMode {
 		values = append(values, v)
 	}
 	return values

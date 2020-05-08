@@ -29,19 +29,19 @@ type CreateTechSupportItemDetails struct {
 }
         //GetCategory returns Category
         func (m CreateTechSupportItemDetails) GetCategory() *CreateCategoryDetails {
-        return m.Category
+            return m.Category
         }
         //GetSubCategory returns SubCategory
         func (m CreateTechSupportItemDetails) GetSubCategory() *CreateSubCategoryDetails {
-        return m.SubCategory
+            return m.SubCategory
         }
         //GetIssueType returns IssueType
         func (m CreateTechSupportItemDetails) GetIssueType() *CreateIssueTypeDetails {
-        return m.IssueType
+            return m.IssueType
         }
         //GetName returns Name
         func (m CreateTechSupportItemDetails) GetName() *string {
-        return m.Name
+            return m.Name
         }
 
 func (m CreateTechSupportItemDetails) String() string {

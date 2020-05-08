@@ -50,10 +50,13 @@ type UpdateNodePoolDetails struct {
 	NodeMetadata map[string]string `mandatory:"false" json:"nodeMetadata"`
 
 	// Specify the source to use to launch nodes in the node pool. Currently, image is the only supported source.
-	NodeSourceDetails UpdateNodePoolNodeSourceDetails `mandatory:"false" json:"nodeSourceDetails"`
+	NodeSourceDetails NodeSourceDetails `mandatory:"false" json:"nodeSourceDetails"`
 
 	// The SSH public key to add to each node in the node pool on launch.
 	SshPublicKey *string `mandatory:"false" json:"sshPublicKey"`
+
+	// The name of the node shape of the nodes in the node pool used on launch.
+	NodeShape *string `mandatory:"false" json:"nodeShape"`
 }
 
 func (m UpdateNodePoolDetails) String() string {
@@ -70,8 +73,9 @@ func (m *UpdateNodePoolDetails) UnmarshalJSON(data []byte) (e error) {
 		SubnetIds         []string                         `json:"subnetIds"`
 		NodeConfigDetails *UpdateNodePoolNodeConfigDetails `json:"nodeConfigDetails"`
 		NodeMetadata      map[string]string                `json:"nodeMetadata"`
-		NodeSourceDetails updatenodepoolnodesourcedetails  `json:"nodeSourceDetails"`
+		NodeSourceDetails nodesourcedetails                `json:"nodeSourceDetails"`
 		SshPublicKey      *string                          `json:"sshPublicKey"`
+		NodeShape         *string                          `json:"nodeShape"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -104,11 +108,13 @@ func (m *UpdateNodePoolDetails) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	if nn != nil {
-		m.NodeSourceDetails = nn.(UpdateNodePoolNodeSourceDetails)
+		m.NodeSourceDetails = nn.(NodeSourceDetails)
 	} else {
 		m.NodeSourceDetails = nil
 	}
 
 	m.SshPublicKey = model.SshPublicKey
+
+	m.NodeShape = model.NodeShape
 	return
 }
