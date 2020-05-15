@@ -125,10 +125,6 @@ func (m *typedobject) UnmarshalPolymorphicJSON(data []byte) (interface{}, error)
 		mm := OutputField{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
-	case "MACRO_FIELD":
-		mm := MacroField{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	case "DERIVED_FIELD":
 		mm := DerivedField{}
 		err = json.Unmarshal(data, &mm)
@@ -193,7 +189,6 @@ const (
 	TypedObjectModelTypeDerivedField      TypedObjectModelTypeEnum = "DERIVED_FIELD"
 	TypedObjectModelTypeOutputField       TypedObjectModelTypeEnum = "OUTPUT_FIELD"
 	TypedObjectModelTypeDynamicProxyField TypedObjectModelTypeEnum = "DYNAMIC_PROXY_FIELD"
-	TypedObjectModelTypeMacroField        TypedObjectModelTypeEnum = "MACRO_FIELD"
 	TypedObjectModelTypeOutputPort        TypedObjectModelTypeEnum = "OUTPUT_PORT"
 	TypedObjectModelTypeDynamicInputField TypedObjectModelTypeEnum = "DYNAMIC_INPUT_FIELD"
 	TypedObjectModelTypeProxyField        TypedObjectModelTypeEnum = "PROXY_FIELD"
@@ -208,7 +203,6 @@ var mappingTypedObjectModelType = map[string]TypedObjectModelTypeEnum{
 	"DERIVED_FIELD":       TypedObjectModelTypeDerivedField,
 	"OUTPUT_FIELD":        TypedObjectModelTypeOutputField,
 	"DYNAMIC_PROXY_FIELD": TypedObjectModelTypeDynamicProxyField,
-	"MACRO_FIELD":         TypedObjectModelTypeMacroField,
 	"OUTPUT_PORT":         TypedObjectModelTypeOutputPort,
 	"DYNAMIC_INPUT_FIELD": TypedObjectModelTypeDynamicInputField,
 	"PROXY_FIELD":         TypedObjectModelTypeProxyField,

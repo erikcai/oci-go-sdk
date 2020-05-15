@@ -9,64 +9,65 @@ import (
 	"net/http"
 )
 
-// GetDataEntityRequest wrapper for the GetDataEntity operation
-type GetDataEntityRequest struct {
+// StartWorkspaceRequest wrapper for the StartWorkspace operation
+type StartWorkspaceRequest struct {
 
 	// DIS workspace id
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
-	// The connection key
-	ConnectionKey *string `mandatory:"true" contributesTo:"path" name:"connectionKey"`
-
-	// Schema resource name used for retrieving schemas
-	SchemaResourceName *string `mandatory:"true" contributesTo:"path" name:"schemaResourceName"`
-
-	// Name of the data entity
-	DataEntityKey *string `mandatory:"true" contributesTo:"path" name:"dataEntityKey"`
+	// Update and Delete operations should accept an optional If-Match header,
+	// in which clients can send a previously-received ETag. When If-Match is
+	// provided and its value does not exactly match the ETag of the resource
+	// on the server, the request should fail with HTTP response status code 412
+	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// Unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request,
 	// please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
+	// Caller may provide "retry tokens" allowing them to retry an operation
+	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GetDataEntityRequest) String() string {
+func (request StartWorkspaceRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GetDataEntityRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request StartWorkspaceRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GetDataEntityRequest) RetryPolicy() *common.RetryPolicy {
+func (request StartWorkspaceRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GetDataEntityResponse wrapper for the GetDataEntity operation
-type GetDataEntityResponse struct {
+// StartWorkspaceResponse wrapper for the StartWorkspace operation
+type StartWorkspaceResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The DataEntity instance
-	DataEntity `presentIn:"body"`
-
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the work request. Use GetWorkRequest (https://docs.cloud.oracle.com/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest)
+	// with this ID to track the status of the request.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
-func (response GetDataEntityResponse) String() string {
+func (response StartWorkspaceResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GetDataEntityResponse) HTTPResponse() *http.Response {
+func (response StartWorkspaceResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

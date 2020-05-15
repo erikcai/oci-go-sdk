@@ -9,20 +9,23 @@ import (
 	"net/http"
 )
 
-// CreateEntityShapeRequest wrapper for the CreateEntityShape operation
-type CreateEntityShapeRequest struct {
+// StopWorkspaceRequest wrapper for the StopWorkspace operation
+type StopWorkspaceRequest struct {
 
 	// DIS workspace id
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
-	// The connection key
-	ConnectionKey *string `mandatory:"true" contributesTo:"path" name:"connectionKey"`
+	// This parameter allows users to set the timeout for DIS to gracefully close down any running jobs before stopping the workspace.
+	QuiescenceTimeout *int `mandatory:"false" contributesTo:"query" name:"quiescenceTimeout"`
 
-	// Schema resource name used for retrieving schemas
-	SchemaKey *string `mandatory:"true" contributesTo:"path" name:"schemaKey"`
+	// This parameter allows users to force close down the workspace.
+	IsForceOperation *bool `mandatory:"false" contributesTo:"query" name:"isForceOperation"`
 
-	// The details of the data entity to use to infer the data entity shape.
-	CreateEntityShapeDetails `contributesTo:"body"`
+	// Update and Delete operations should accept an optional If-Match header,
+	// in which clients can send a previously-received ETag. When If-Match is
+	// provided and its value does not exactly match the ETag of the resource
+	// on the server, the request should fail with HTTP response status code 412
+	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// Unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request,
@@ -32,50 +35,45 @@ type CreateEntityShapeRequest struct {
 	// Caller may provide "retry tokens" allowing them to retry an operation
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
-	// Update and Delete operations should accept an optional If-Match header,
-	// in which clients can send a previously-received ETag. When If-Match is
-	// provided and its value does not exactly match the ETag of the resource
-	// on the server, the request should fail with HTTP response status code 412
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
 }
 
-func (request CreateEntityShapeRequest) String() string {
+func (request StopWorkspaceRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request CreateEntityShapeRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request StopWorkspaceRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request CreateEntityShapeRequest) RetryPolicy() *common.RetryPolicy {
+func (request StopWorkspaceRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// CreateEntityShapeResponse wrapper for the CreateEntityShape operation
-type CreateEntityShapeResponse struct {
+// StopWorkspaceResponse wrapper for the StopWorkspace operation
+type StopWorkspaceResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The EntityShape instance
-	EntityShape `presentIn:"body"`
-
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the work request. Use GetWorkRequest (https://docs.cloud.oracle.com/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest)
+	// with this ID to track the status of the request.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
-func (response CreateEntityShapeResponse) String() string {
+func (response StopWorkspaceResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response CreateEntityShapeResponse) HTTPResponse() *http.Response {
+func (response StopWorkspaceResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

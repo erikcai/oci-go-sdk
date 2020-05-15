@@ -16,7 +16,7 @@ import (
 // AutonomousDatabaseStandbySummary Autonomous Data Guard standby database details.
 type AutonomousDatabaseStandbySummary struct {
 
-	// The lag time set between data on the source database and data on the cloned database. From 5 mins to 7 days.
+	// The amount of time, in seconds, that the data of the standby database lags the data of the primary database. Can be used to determine the potential data loss in the event of a failover.
 	LagTimeInSeconds *int `mandatory:"false" json:"lagTimeInSeconds"`
 
 	// The current state of the Autonomous Database.

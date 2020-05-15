@@ -20,6 +20,9 @@ type ListWorkRequestsRequest struct {
 	// please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
+	// Work Request status.
+	WorkRequestStatus ListWorkRequestsWorkRequestStatusEnum `mandatory:"false" contributesTo:"query" name:"workRequestStatus" omitEmpty:"true"`
+
 	// This parameter will control pagination.  Values for the parameter should come from the `opc-next-page` or `opc-prev-page` header in previous response.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
@@ -75,6 +78,37 @@ func (response ListWorkRequestsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListWorkRequestsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ListWorkRequestsWorkRequestStatusEnum Enum with underlying type: string
+type ListWorkRequestsWorkRequestStatusEnum string
+
+// Set of constants representing the allowable values for ListWorkRequestsWorkRequestStatusEnum
+const (
+	ListWorkRequestsWorkRequestStatusAccepted   ListWorkRequestsWorkRequestStatusEnum = "ACCEPTED"
+	ListWorkRequestsWorkRequestStatusInProgress ListWorkRequestsWorkRequestStatusEnum = "IN_PROGRESS"
+	ListWorkRequestsWorkRequestStatusFailed     ListWorkRequestsWorkRequestStatusEnum = "FAILED"
+	ListWorkRequestsWorkRequestStatusSucceeded  ListWorkRequestsWorkRequestStatusEnum = "SUCCEEDED"
+	ListWorkRequestsWorkRequestStatusCanceling  ListWorkRequestsWorkRequestStatusEnum = "CANCELING"
+	ListWorkRequestsWorkRequestStatusCanceled   ListWorkRequestsWorkRequestStatusEnum = "CANCELED"
+)
+
+var mappingListWorkRequestsWorkRequestStatus = map[string]ListWorkRequestsWorkRequestStatusEnum{
+	"ACCEPTED":    ListWorkRequestsWorkRequestStatusAccepted,
+	"IN_PROGRESS": ListWorkRequestsWorkRequestStatusInProgress,
+	"FAILED":      ListWorkRequestsWorkRequestStatusFailed,
+	"SUCCEEDED":   ListWorkRequestsWorkRequestStatusSucceeded,
+	"CANCELING":   ListWorkRequestsWorkRequestStatusCanceling,
+	"CANCELED":    ListWorkRequestsWorkRequestStatusCanceled,
+}
+
+// GetListWorkRequestsWorkRequestStatusEnumValues Enumerates the set of values for ListWorkRequestsWorkRequestStatusEnum
+func GetListWorkRequestsWorkRequestStatusEnumValues() []ListWorkRequestsWorkRequestStatusEnum {
+	values := make([]ListWorkRequestsWorkRequestStatusEnum, 0)
+	for _, v := range mappingListWorkRequestsWorkRequestStatus {
+		values = append(values, v)
+	}
+	return values
 }
 
 // ListWorkRequestsSortOrderEnum Enum with underlying type: string

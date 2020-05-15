@@ -1890,6 +1890,50 @@ func TestDataIntegrationClientGetPublishedObject(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientGetSchema(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "GetSchema")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetSchema is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "GetSchema", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "GetSchema")
+	assert.NoError(t, err)
+
+	type GetSchemaRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.GetSchemaRequest
+	}
+
+	var requests []GetSchemaRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetSchema(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
 func TestDataIntegrationClientGetTask(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3237,6 +3281,94 @@ func TestDataIntegrationClientListWorkspaces(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientStartWorkspace(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "StartWorkspace")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("StartWorkspace is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "StartWorkspace", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "StartWorkspace")
+	assert.NoError(t, err)
+
+	type StartWorkspaceRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.StartWorkspaceRequest
+	}
+
+	var requests []StartWorkspaceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.StartWorkspace(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientStopWorkspace(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "StopWorkspace")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("StopWorkspace is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "StopWorkspace", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "StopWorkspace")
+	assert.NoError(t, err)
+
+	type StopWorkspaceRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.StopWorkspaceRequest
+	}
+
+	var requests []StopWorkspaceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.StopWorkspace(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

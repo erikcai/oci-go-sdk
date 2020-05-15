@@ -16,11 +16,11 @@ import (
 // UiProperties The UI properties of the object.
 type UiProperties struct {
 
-	// xCoordinate
-	XCoordinate *float32 `mandatory:"false" json:"xCoordinate"`
+	// coordinateX
+	CoordinateX *float32 `mandatory:"false" json:"coordinateX"`
 
-	// yCoordinate
-	YCoordinate *float32 `mandatory:"false" json:"yCoordinate"`
+	// coordinateY
+	CoordinateY *float32 `mandatory:"false" json:"coordinateY"`
 }
 
 func (m UiProperties) String() string {

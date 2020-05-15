@@ -4169,6 +4169,7 @@ func TestDatabaseClientLaunchDbSystem(t *testing.T) {
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"NONE":      &database.LaunchDbSystemDetails{},
+				"DB_SYSTEM": &database.LaunchDbSystemFromDbSystemDetails{},
 				"DATABASE":  &database.LaunchDbSystemFromDatabaseDetails{},
 				"DB_BACKUP": &database.LaunchDbSystemFromBackupDetails{},
 			},

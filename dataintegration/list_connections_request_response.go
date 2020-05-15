@@ -16,7 +16,7 @@ type ListConnectionsRequest struct {
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
 	// This filter parameter can be used to filter by the data asset key of the object.
-	DataAssetKey *string `mandatory:"false" contributesTo:"query" name:"dataAssetKey"`
+	DataAssetKey *string `mandatory:"true" contributesTo:"query" name:"dataAssetKey"`
 
 	// This filter parameter can be used to filter by the name of the object.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`

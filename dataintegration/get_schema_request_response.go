@@ -9,8 +9,8 @@ import (
 	"net/http"
 )
 
-// GetDataEntityRequest wrapper for the GetDataEntity operation
-type GetDataEntityRequest struct {
+// GetSchemaRequest wrapper for the GetSchema operation
+type GetSchemaRequest struct {
 
 	// DIS workspace id
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
@@ -20,9 +20,6 @@ type GetDataEntityRequest struct {
 
 	// Schema resource name used for retrieving schemas
 	SchemaResourceName *string `mandatory:"true" contributesTo:"path" name:"schemaResourceName"`
-
-	// Name of the data entity
-	DataEntityKey *string `mandatory:"true" contributesTo:"path" name:"dataEntityKey"`
 
 	// Unique Oracle-assigned identifier for the request. If
 	// you need to contact Oracle about a particular request,
@@ -34,39 +31,39 @@ type GetDataEntityRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request GetDataEntityRequest) String() string {
+func (request GetSchemaRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request GetDataEntityRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request GetSchemaRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request GetDataEntityRequest) RetryPolicy() *common.RetryPolicy {
+func (request GetSchemaRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// GetDataEntityResponse wrapper for the GetDataEntity operation
-type GetDataEntityResponse struct {
+// GetSchemaResponse wrapper for the GetSchema operation
+type GetSchemaResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The DataEntity instance
-	DataEntity `presentIn:"body"`
+	// The Schema instance
+	Schema `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response GetDataEntityResponse) String() string {
+func (response GetSchemaResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response GetDataEntityResponse) HTTPResponse() *http.Response {
+func (response GetSchemaResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

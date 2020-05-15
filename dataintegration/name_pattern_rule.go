@@ -39,8 +39,7 @@ type NamePatternRule struct {
 	// skipRemainingRulesOnMatch
 	IsSkipRemainingRulesOnMatch *bool `mandatory:"false" json:"isSkipRemainingRulesOnMatch"`
 
-	// Reference to a typed object.
-	Scope *string `mandatory:"false" json:"scope"`
+	Scope TypedObject `mandatory:"false" json:"scope"`
 
 	// cascade
 	IsCascade *bool `mandatory:"false" json:"isCascade"`
@@ -109,6 +108,68 @@ func (m NamePatternRule) MarshalJSON() (buff []byte, e error) {
 	}
 
 	return json.Marshal(&s)
+}
+
+// UnmarshalJSON unmarshals from json
+func (m *NamePatternRule) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		Key                         *string                             `json:"key"`
+		ModelVersion                *string                             `json:"modelVersion"`
+		ParentRef                   *ParentReference                    `json:"parentRef"`
+		IsJavaRegexSyntax           *bool                               `json:"isJavaRegexSyntax"`
+		ConfigValues                *ConfigValues                       `json:"configValues"`
+		ObjectStatus                *int                                `json:"objectStatus"`
+		Description                 *string                             `json:"description"`
+		IsSkipRemainingRulesOnMatch *bool                               `json:"isSkipRemainingRulesOnMatch"`
+		Scope                       typedobject                         `json:"scope"`
+		IsCascade                   *bool                               `json:"isCascade"`
+		MatchingStrategy            NamePatternRuleMatchingStrategyEnum `json:"matchingStrategy"`
+		IsCaseSensitive             *bool                               `json:"isCaseSensitive"`
+		RuleType                    NamePatternRuleRuleTypeEnum         `json:"ruleType"`
+		Pattern                     *string                             `json:"pattern"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	var nn interface{}
+	m.Key = model.Key
+
+	m.ModelVersion = model.ModelVersion
+
+	m.ParentRef = model.ParentRef
+
+	m.IsJavaRegexSyntax = model.IsJavaRegexSyntax
+
+	m.ConfigValues = model.ConfigValues
+
+	m.ObjectStatus = model.ObjectStatus
+
+	m.Description = model.Description
+
+	m.IsSkipRemainingRulesOnMatch = model.IsSkipRemainingRulesOnMatch
+
+	nn, e = model.Scope.UnmarshalPolymorphicJSON(model.Scope.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.Scope = nn.(TypedObject)
+	} else {
+		m.Scope = nil
+	}
+
+	m.IsCascade = model.IsCascade
+
+	m.MatchingStrategy = model.MatchingStrategy
+
+	m.IsCaseSensitive = model.IsCaseSensitive
+
+	m.RuleType = model.RuleType
+
+	m.Pattern = model.Pattern
+	return
 }
 
 // NamePatternRuleMatchingStrategyEnum Enum with underlying type: string

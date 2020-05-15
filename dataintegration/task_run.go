@@ -42,19 +42,19 @@ type TaskRun struct {
 	Status TaskRunStatusEnum `mandatory:"false" json:"status,omitempty"`
 
 	// startTimeMillis
-	StartTimeMillis *int `mandatory:"false" json:"startTimeMillis"`
+	StartTimeMillis *int64 `mandatory:"false" json:"startTimeMillis"`
 
 	// endTimeMillis
-	EndTimeMillis *int `mandatory:"false" json:"endTimeMillis"`
+	EndTimeMillis *int64 `mandatory:"false" json:"endTimeMillis"`
 
 	// lastUpdated
-	LastUpdated *int `mandatory:"false" json:"lastUpdated"`
+	LastUpdated *int64 `mandatory:"false" json:"lastUpdated"`
 
 	// Number of records processed in task run.
-	RecordsWritten *int `mandatory:"false" json:"recordsWritten"`
+	RecordsWritten *int64 `mandatory:"false" json:"recordsWritten"`
 
 	// Number of bytes processed in task run.
-	BytesProcessed *int `mandatory:"false" json:"bytesProcessed"`
+	BytesProcessed *int64 `mandatory:"false" json:"bytesProcessed"`
 
 	// Error message if status is ERROR
 	ErrorMessage *string `mandatory:"false" json:"errorMessage"`

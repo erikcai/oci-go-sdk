@@ -72,7 +72,7 @@
     <compliance-document-service-spec-spec-file>source/api.cond.yaml</compliance-document-service-spec-spec-file>
     <dis-sdk-spec-spec-file>source/dis-api.cond.yaml</dis-sdk-spec-spec-file>
     <hydra-controlplane-api-spec-spec-file>source/public-api-20200531.cond.yaml</hydra-controlplane-api-spec-spec-file>
-    <vmware-provision-service-spec-spec-file>release/api.yaml</vmware-provision-service-spec-spec-file>
+    <vmware-provision-service-spec-spec-file>source/api.cond.yaml</vmware-provision-service-spec-spec-file>
   </properties>
   <dependencies>
     <dependency>
@@ -4426,7 +4426,7 @@
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.133</version>
+        <version>0.4.138</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -4441,7 +4441,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.426</version>
+        <version>0.1.436</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -4516,7 +4516,7 @@
       <dependency>
         <groupId>com.oracle.oci.marketplace</groupId>
         <artifactId>marketplace-consumer-service-spec</artifactId>
-        <version>0.1.1061</version>
+        <version>0.1.1079</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.autoscaling.api</groupId>
@@ -4681,7 +4681,7 @@
       <dependency>
         <groupId>com.oracle.dis</groupId>
         <artifactId>dis-sdk-spec</artifactId>
-        <version>1.0.0-121</version>
+        <version>1.0.0-126</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.controlplane</groupId>

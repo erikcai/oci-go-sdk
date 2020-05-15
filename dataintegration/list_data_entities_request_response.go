@@ -18,8 +18,8 @@ type ListDataEntitiesRequest struct {
 	// The connection key
 	ConnectionKey *string `mandatory:"true" contributesTo:"path" name:"connectionKey"`
 
-	// Name of the schema
-	SchemaKey *string `mandatory:"true" contributesTo:"path" name:"schemaKey"`
+	// Schema resource name used for retrieving schemas
+	SchemaResourceName *string `mandatory:"true" contributesTo:"path" name:"schemaResourceName"`
 
 	// This filter parameter can be used to filter by the name of the object.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`

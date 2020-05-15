@@ -25,8 +25,8 @@ type RuleTypeConfig struct {
 
 	ParentRef *ParentReference `mandatory:"false" json:"parentRef"`
 
-	// reference to a typed object
-	Scope *string `mandatory:"false" json:"scope"`
+	// Reference to a typed object, this can be either a key value to an object within the document, a shall referenced to a TypedObject or a full TypedObject definition.
+	Scope *interface{} `mandatory:"false" json:"scope"`
 
 	// orderByRule
 	IsOrderByRule *bool `mandatory:"false" json:"isOrderByRule"`
@@ -64,7 +64,7 @@ func (m *RuleTypeConfig) UnmarshalJSON(data []byte) (e error) {
 		Key             *string          `json:"key"`
 		ModelVersion    *string          `json:"modelVersion"`
 		ParentRef       *ParentReference `json:"parentRef"`
-		Scope           *string          `json:"scope"`
+		Scope           *interface{}     `json:"scope"`
 		IsOrderByRule   *bool            `json:"isOrderByRule"`
 		ProjectionRules []projectionrule `json:"projectionRules"`
 		ConfigValues    *ConfigValues    `json:"configValues"`

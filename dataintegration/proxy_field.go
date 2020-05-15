@@ -36,8 +36,8 @@ type ProxyField struct {
 	// Detailed description for the object.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Reference to a typed object
-	Scope *string `mandatory:"false" json:"scope"`
+	// Reference to a typed object, this can be either a key value to an object within the document, a shall referenced to a TypedObject or a full TypedObject definition.
+	Scope *interface{} `mandatory:"false" json:"scope"`
 
 	Type BaseType `mandatory:"false" json:"type"`
 
@@ -108,7 +108,7 @@ func (m *ProxyField) UnmarshalJSON(data []byte) (e error) {
 		ObjectStatus *int             `json:"objectStatus"`
 		Name         *string          `json:"name"`
 		Description  *string          `json:"description"`
-		Scope        *string          `json:"scope"`
+		Scope        *interface{}     `json:"scope"`
 		Type         basetype         `json:"type"`
 		Labels       []string         `json:"labels"`
 	}{}

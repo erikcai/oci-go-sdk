@@ -1732,7 +1732,7 @@ func (client DataIntegrationClient) GetDataEntity(ctx context.Context, request G
 
 // getDataEntity implements the OCIOperation interface (enables retrying operations)
 func (client DataIntegrationClient) getDataEntity(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaKey}/dataEntities/{dataEntityKey}")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaResourceName}/dataEntities/{dataEntityKey}")
 	if err != nil {
 		return nil, err
 	}
@@ -2076,6 +2076,53 @@ func (client DataIntegrationClient) getPublishedObject(ctx context.Context, requ
 	}
 
 	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &publishedobject{})
+	return response, err
+}
+
+// GetSchema Retrieves a schema that can be accessed using the specified connection.
+func (client DataIntegrationClient) GetSchema(ctx context.Context, request GetSchemaRequest) (response GetSchemaResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getSchema, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetSchemaResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetSchemaResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetSchemaResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetSchemaResponse")
+	}
+	return
+}
+
+// getSchema implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) getSchema(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaResourceName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetSchemaResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
 	return response, err
 }
 
@@ -2532,7 +2579,7 @@ func (client DataIntegrationClient) ListDataEntities(ctx context.Context, reques
 
 // listDataEntities implements the OCIOperation interface (enables retrying operations)
 func (client DataIntegrationClient) listDataEntities(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaKey}/dataEntities")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaResourceName}/dataEntities")
 	if err != nil {
 		return nil, err
 	}
@@ -3290,6 +3337,110 @@ func (client DataIntegrationClient) listWorkspaces(ctx context.Context, request 
 	}
 
 	var response ListWorkspacesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// StartWorkspace The workspace will be started.
+func (client DataIntegrationClient) StartWorkspace(ctx context.Context, request StartWorkspaceRequest) (response StartWorkspaceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.startWorkspace, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = StartWorkspaceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = StartWorkspaceResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(StartWorkspaceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into StartWorkspaceResponse")
+	}
+	return
+}
+
+// startWorkspace implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) startWorkspace(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/workspaces/{workspaceId}/actions/start")
+	if err != nil {
+		return nil, err
+	}
+
+	var response StartWorkspaceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// StopWorkspace The workspace will be stopped.
+func (client DataIntegrationClient) StopWorkspace(ctx context.Context, request StopWorkspaceRequest) (response StopWorkspaceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.stopWorkspace, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = StopWorkspaceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = StopWorkspaceResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(StopWorkspaceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into StopWorkspaceResponse")
+	}
+	return
+}
+
+// stopWorkspace implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) stopWorkspace(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/workspaces/{workspaceId}/actions/stop")
+	if err != nil {
+		return nil, err
+	}
+
+	var response StopWorkspaceResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

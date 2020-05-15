@@ -42,8 +42,7 @@ type TypedNamePatternRule struct {
 	// skipRemainingRulesOnMatch
 	IsSkipRemainingRulesOnMatch *bool `mandatory:"false" json:"isSkipRemainingRulesOnMatch"`
 
-	// Reference to a typed object.
-	Scope *string `mandatory:"false" json:"scope"`
+	Scope TypedObject `mandatory:"false" json:"scope"`
 
 	// cascade
 	IsCascade *bool `mandatory:"false" json:"isCascade"`
@@ -126,7 +125,7 @@ func (m *TypedNamePatternRule) UnmarshalJSON(data []byte) (e error) {
 		Description                 *string                                  `json:"description"`
 		Types                       []basetype                               `json:"types"`
 		IsSkipRemainingRulesOnMatch *bool                                    `json:"isSkipRemainingRulesOnMatch"`
-		Scope                       *string                                  `json:"scope"`
+		Scope                       typedobject                              `json:"scope"`
 		IsCascade                   *bool                                    `json:"isCascade"`
 		MatchingStrategy            TypedNamePatternRuleMatchingStrategyEnum `json:"matchingStrategy"`
 		IsCaseSensitive             *bool                                    `json:"isCaseSensitive"`
@@ -168,7 +167,15 @@ func (m *TypedNamePatternRule) UnmarshalJSON(data []byte) (e error) {
 
 	m.IsSkipRemainingRulesOnMatch = model.IsSkipRemainingRulesOnMatch
 
-	m.Scope = model.Scope
+	nn, e = model.Scope.UnmarshalPolymorphicJSON(model.Scope.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.Scope = nn.(TypedObject)
+	} else {
+		m.Scope = nil
+	}
 
 	m.IsCascade = model.IsCascade
 

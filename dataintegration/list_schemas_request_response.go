@@ -18,6 +18,9 @@ type ListSchemasRequest struct {
 	// The connection key
 	ConnectionKey *string `mandatory:"true" contributesTo:"path" name:"connectionKey"`
 
+	// Schema resource name used for retrieving schemas
+	SchemaResourceName *string `mandatory:"true" contributesTo:"query" name:"schemaResourceName"`
+
 	// This parameter will control pagination.  Values for the parameter should come from the `opc-next-page` or `opc-prev-page` header in previous response.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
@@ -32,9 +35,6 @@ type ListSchemasRequest struct {
 
 	// This parameter is used to control the sort order.  Supported values are `ASC` (ascending) and `DESC` (descending).
 	SortOrder ListSchemasSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-
-	// This filter parameter can be used to filter by the external key of the object.
-	ExternalKey *string `mandatory:"false" contributesTo:"query" name:"externalKey"`
 
 	// This filter parameter can be used to filter by the name of the object.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
