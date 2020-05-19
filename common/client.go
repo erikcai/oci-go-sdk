@@ -67,6 +67,7 @@ const (
 	defaultTimeout           = 60 * time.Second
 	defaultConfigFileName    = "config"
 	defaultConfigDirName     = ".oci"
+	configFilePathEnvVarName = "OCI_CONFIG_FILE"
 	secondaryConfigDirName   = ".oraclebmc"
 	maxBodyLenForDebug       = 1024 * 1000
 )
@@ -193,9 +194,11 @@ func getHomeFolder() string {
 // will look for configurations in 3 places: file in $HOME/.oci/config, HOME/.obmcs/config and
 // variables names starting with the string TF_VAR. If the same configuration is found in multiple
 // places the provider will prefer the first one.
+// Cloud shell is an exception that the config file is not placed in the usual default location,
+// need to read from environment variable OCI_CONFIG_FILE
 func DefaultConfigProvider() ConfigurationProvider {
+	defaultConfigFile := getDefaultConfigFilePath()
 	homeFolder := getHomeFolder()
-	defaultConfigFile := path.Join(homeFolder, defaultConfigDirName, defaultConfigFileName)
 	secondaryConfigFile := path.Join(homeFolder, secondaryConfigDirName, defaultConfigFileName)
 
 	defaultFileProvider, _ := ConfigurationProviderFromFile(defaultConfigFile, "")
@@ -205,6 +208,26 @@ func DefaultConfigProvider() ConfigurationProvider {
 	provider, _ := ComposingConfigurationProvider([]ConfigurationProvider{defaultFileProvider, secondaryFileProvider, environmentProvider})
 	Debugf("Configuration provided by: %s", provider)
 	return provider
+}
+
+func getDefaultConfigFilePath() string {
+	homeFolder := getHomeFolder()
+	defaultConfigFile := path.Join(homeFolder, defaultConfigDirName, defaultConfigFileName)
+	if _, err := os.Stat(defaultConfigFile); os.IsNotExist(err) {
+		Debugf("The /.oci/config is invalid, will check env var OCI_CONFIG_FILE file path.")
+		// Read configuration file path from OCI_CONFIG_FILE env var
+		fallbackConfigFile, existed := os.LookupEnv(configFilePathEnvVarName)
+		if !existed {
+			Debugf("The env var OCI_CONFIG_FILE does not exist...")
+			return defaultConfigFile
+		}
+		if _, err := os.Stat(fallbackConfigFile); os.IsNotExist(err) {
+			Debugf("The specified cfg file path in OCI_CONFIG_FILE is invalid: %s", fallbackConfigFile)
+			return fallbackConfigFile
+		}
+		defaultConfigFile = fallbackConfigFile
+	}
+	return defaultConfigFile
 }
 
 // CustomProfileConfigProvider returns the config provider of given profile. The custom profile config provider
