@@ -16,6 +16,7 @@
 ^CHANGELOG\.md$
 ^CONTRIBUTING\.md$
 ^LICENSE\.txt$
+^NOTICE\.txt$
 ^README\.md$
 ^wercker\.yml$
 ^Makefile$
