@@ -194,8 +194,8 @@ func getHomeFolder() string {
 // will look for configurations in 3 places: file in $HOME/.oci/config, HOME/.obmcs/config and
 // variables names starting with the string TF_VAR. If the same configuration is found in multiple
 // places the provider will prefer the first one.
-// Cloud shell is an exception that the config file is not placed in the usual default location,
-// need to read from environment variable OCI_CONFIG_FILE
+// If the config file is not placed in the default location, the environment variable
+// OCI_CONFIG_FILE can provide the config file location.
 func DefaultConfigProvider() ConfigurationProvider {
 	defaultConfigFile := getDefaultConfigFilePath()
 	homeFolder := getHomeFolder()
@@ -213,21 +213,21 @@ func DefaultConfigProvider() ConfigurationProvider {
 func getDefaultConfigFilePath() string {
 	homeFolder := getHomeFolder()
 	defaultConfigFile := path.Join(homeFolder, defaultConfigDirName, defaultConfigFileName)
-	if _, err := os.Stat(defaultConfigFile); os.IsNotExist(err) {
-		Debugf("The /.oci/config is invalid, will check env var OCI_CONFIG_FILE file path.")
-		// Read configuration file path from OCI_CONFIG_FILE env var
-		fallbackConfigFile, existed := os.LookupEnv(configFilePathEnvVarName)
-		if !existed {
-			Debugf("The env var OCI_CONFIG_FILE does not exist...")
-			return defaultConfigFile
-		}
-		if _, err := os.Stat(fallbackConfigFile); os.IsNotExist(err) {
-			Debugf("The specified cfg file path in OCI_CONFIG_FILE is invalid: %s", fallbackConfigFile)
-			return fallbackConfigFile
-		}
-		defaultConfigFile = fallbackConfigFile
+	if _, err := os.Stat(defaultConfigFile); err == nil {
+		return defaultConfigFile
 	}
-	return defaultConfigFile
+	Debugf("The %s does not exist, will check env var %s for file path.", defaultConfigFile, configFilePathEnvVarName)
+	// Read configuration file path from OCI_CONFIG_FILE env var
+	fallbackConfigFile, existed := os.LookupEnv(configFilePathEnvVarName)
+	if !existed {
+		Debugf("The env var %s does not exist...", configFilePathEnvVarName)
+		return defaultConfigFile
+	}
+	if _, err := os.Stat(fallbackConfigFile); os.IsNotExist(err) {
+		Debugf("The specified cfg file path in the env var %s does not exist: %s", configFilePathEnvVarName, fallbackConfigFile)
+		return defaultConfigFile
+	}
+	return fallbackConfigFile
 }
 
 // CustomProfileConfigProvider returns the config provider of given profile. The custom profile config provider
