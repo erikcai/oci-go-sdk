@@ -66,6 +66,9 @@ type Workspace struct {
 	//          administrative reasons
 	// DELETED  - The resource has been deleted and isn't available
 	// FAILED   - The resource is in a failed state due to validation or other errors
+	// STARTING - The resource is being started and may not be usable until becomes ACTIVE again
+	// STOPPING - The resource is in the process of Stopping and may not be usable until it Stops or fails
+	// STOPPED  - The resource is in Stopped state due to stop operation.
 	LifecycleState WorkspaceLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
@@ -88,6 +91,9 @@ const (
 	WorkspaceLifecycleStateDeleting WorkspaceLifecycleStateEnum = "DELETING"
 	WorkspaceLifecycleStateDeleted  WorkspaceLifecycleStateEnum = "DELETED"
 	WorkspaceLifecycleStateFailed   WorkspaceLifecycleStateEnum = "FAILED"
+	WorkspaceLifecycleStateStarting WorkspaceLifecycleStateEnum = "STARTING"
+	WorkspaceLifecycleStateStopping WorkspaceLifecycleStateEnum = "STOPPING"
+	WorkspaceLifecycleStateStopped  WorkspaceLifecycleStateEnum = "STOPPED"
 )
 
 var mappingWorkspaceLifecycleState = map[string]WorkspaceLifecycleStateEnum{
@@ -98,6 +104,9 @@ var mappingWorkspaceLifecycleState = map[string]WorkspaceLifecycleStateEnum{
 	"DELETING": WorkspaceLifecycleStateDeleting,
 	"DELETED":  WorkspaceLifecycleStateDeleted,
 	"FAILED":   WorkspaceLifecycleStateFailed,
+	"STARTING": WorkspaceLifecycleStateStarting,
+	"STOPPING": WorkspaceLifecycleStateStopping,
+	"STOPPED":  WorkspaceLifecycleStateStopped,
 }
 
 // GetWorkspaceLifecycleStateEnumValues Enumerates the set of values for WorkspaceLifecycleStateEnum

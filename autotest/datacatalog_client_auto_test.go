@@ -23,6 +23,50 @@ func createDataCatalogClientWithProvider(p common.ConfigurationProvider, testCon
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientAttachCatalogPrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "AttachCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AttachCatalogPrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "AttachCatalogPrivateEndpoint", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "AttachCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+
+	type AttachCatalogPrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.AttachCatalogPrivateEndpointRequest
+	}
+
+	var requests []AttachCatalogPrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AttachCatalogPrivateEndpoint(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientChangeCatalogCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -59,6 +103,50 @@ func TestDataCatalogClientChangeCatalogCompartment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ChangeCatalogCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientChangeCatalogPrivateEndpointCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ChangeCatalogPrivateEndpointCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeCatalogPrivateEndpointCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ChangeCatalogPrivateEndpointCompartment", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ChangeCatalogPrivateEndpointCompartment")
+	assert.NoError(t, err)
+
+	type ChangeCatalogPrivateEndpointCompartmentRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ChangeCatalogPrivateEndpointCompartmentRequest
+	}
+
+	var requests []ChangeCatalogPrivateEndpointCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeCatalogPrivateEndpointCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -191,6 +279,50 @@ func TestDataCatalogClientCreateCatalog(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateCatalog(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientCreateCatalogPrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "CreateCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateCatalogPrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "CreateCatalogPrivateEndpoint", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "CreateCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+
+	type CreateCatalogPrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.CreateCatalogPrivateEndpointRequest
+	}
+
+	var requests []CreateCatalogPrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateCatalogPrivateEndpoint(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -903,6 +1035,50 @@ func TestDataCatalogClientDeleteCatalog(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientDeleteCatalogPrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "DeleteCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteCatalogPrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "DeleteCatalogPrivateEndpoint", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "DeleteCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+
+	type DeleteCatalogPrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.DeleteCatalogPrivateEndpointRequest
+	}
+
+	var requests []DeleteCatalogPrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteCatalogPrivateEndpoint(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientDeleteConnection(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1431,6 +1607,50 @@ func TestDataCatalogClientDeleteTermRelationship(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientDetachCatalogPrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "DetachCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DetachCatalogPrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "DetachCatalogPrivateEndpoint", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "DetachCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+
+	type DetachCatalogPrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.DetachCatalogPrivateEndpointRequest
+	}
+
+	var requests []DetachCatalogPrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DetachCatalogPrivateEndpoint(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientExpandTreeForGlossary(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1643,6 +1863,50 @@ func TestDataCatalogClientGetCatalog(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetCatalog(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientGetCatalogPrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "GetCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCatalogPrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "GetCatalogPrivateEndpoint", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "GetCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+
+	type GetCatalogPrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.GetCatalogPrivateEndpointRequest
+	}
+
+	var requests []GetCatalogPrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCatalogPrivateEndpoint(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2585,6 +2849,60 @@ func TestDataCatalogClientListAttributes(t *testing.T) {
 			typedListResponses := make([]datacatalog.ListAttributesResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(datacatalog.ListAttributesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientListCatalogPrivateEndpoints(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ListCatalogPrivateEndpoints")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCatalogPrivateEndpoints is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListCatalogPrivateEndpoints", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ListCatalogPrivateEndpoints")
+	assert.NoError(t, err)
+
+	type ListCatalogPrivateEndpointsRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ListCatalogPrivateEndpointsRequest
+	}
+
+	var requests []ListCatalogPrivateEndpointsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datacatalog.ListCatalogPrivateEndpointsRequest)
+				return c.ListCatalogPrivateEndpoints(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datacatalog.ListCatalogPrivateEndpointsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datacatalog.ListCatalogPrivateEndpointsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -4005,6 +4323,50 @@ func TestDataCatalogClientUpdateCatalog(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateCatalog(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientUpdateCatalogPrivateEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "UpdateCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateCatalogPrivateEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "UpdateCatalogPrivateEndpoint", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "UpdateCatalogPrivateEndpoint")
+	assert.NoError(t, err)
+
+	type UpdateCatalogPrivateEndpointRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.UpdateCatalogPrivateEndpointRequest
+	}
+
+	var requests []UpdateCatalogPrivateEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateCatalogPrivateEndpoint(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

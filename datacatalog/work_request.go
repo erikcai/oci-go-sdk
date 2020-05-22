@@ -58,17 +58,29 @@ type WorkRequestOperationTypeEnum string
 
 // Set of constants representing the allowable values for WorkRequestOperationTypeEnum
 const (
-	WorkRequestOperationTypeCreateCatalog WorkRequestOperationTypeEnum = "CREATE_CATALOG"
-	WorkRequestOperationTypeUpdateCatalog WorkRequestOperationTypeEnum = "UPDATE_CATALOG"
-	WorkRequestOperationTypeDeleteCatalog WorkRequestOperationTypeEnum = "DELETE_CATALOG"
-	WorkRequestOperationTypeMoveCatalog   WorkRequestOperationTypeEnum = "MOVE_CATALOG"
+	WorkRequestOperationTypeCreateCatalog                WorkRequestOperationTypeEnum = "CREATE_CATALOG"
+	WorkRequestOperationTypeUpdateCatalog                WorkRequestOperationTypeEnum = "UPDATE_CATALOG"
+	WorkRequestOperationTypeDeleteCatalog                WorkRequestOperationTypeEnum = "DELETE_CATALOG"
+	WorkRequestOperationTypeMoveCatalog                  WorkRequestOperationTypeEnum = "MOVE_CATALOG"
+	WorkRequestOperationTypeCreateCatalogPrivateEndpoint WorkRequestOperationTypeEnum = "CREATE_CATALOG_PRIVATE_ENDPOINT"
+	WorkRequestOperationTypeDeleteCatalogPrivateEndpoint WorkRequestOperationTypeEnum = "DELETE_CATALOG_PRIVATE_ENDPOINT"
+	WorkRequestOperationTypeUpdateCatalogPrivateEndpoint WorkRequestOperationTypeEnum = "UPDATE_CATALOG_PRIVATE_ENDPOINT"
+	WorkRequestOperationTypeMoveCatalogPrivateEndpoint   WorkRequestOperationTypeEnum = "MOVE_CATALOG_PRIVATE_ENDPOINT"
+	WorkRequestOperationTypeAttachPrivateEndpoint        WorkRequestOperationTypeEnum = "ATTACH_PRIVATE_ENDPOINT"
+	WorkRequestOperationTypeDetachPrivateEndpoint        WorkRequestOperationTypeEnum = "DETACH_PRIVATE_ENDPOINT"
 )
 
 var mappingWorkRequestOperationType = map[string]WorkRequestOperationTypeEnum{
-	"CREATE_CATALOG": WorkRequestOperationTypeCreateCatalog,
-	"UPDATE_CATALOG": WorkRequestOperationTypeUpdateCatalog,
-	"DELETE_CATALOG": WorkRequestOperationTypeDeleteCatalog,
-	"MOVE_CATALOG":   WorkRequestOperationTypeMoveCatalog,
+	"CREATE_CATALOG":                  WorkRequestOperationTypeCreateCatalog,
+	"UPDATE_CATALOG":                  WorkRequestOperationTypeUpdateCatalog,
+	"DELETE_CATALOG":                  WorkRequestOperationTypeDeleteCatalog,
+	"MOVE_CATALOG":                    WorkRequestOperationTypeMoveCatalog,
+	"CREATE_CATALOG_PRIVATE_ENDPOINT": WorkRequestOperationTypeCreateCatalogPrivateEndpoint,
+	"DELETE_CATALOG_PRIVATE_ENDPOINT": WorkRequestOperationTypeDeleteCatalogPrivateEndpoint,
+	"UPDATE_CATALOG_PRIVATE_ENDPOINT": WorkRequestOperationTypeUpdateCatalogPrivateEndpoint,
+	"MOVE_CATALOG_PRIVATE_ENDPOINT":   WorkRequestOperationTypeMoveCatalogPrivateEndpoint,
+	"ATTACH_PRIVATE_ENDPOINT":         WorkRequestOperationTypeAttachPrivateEndpoint,
+	"DETACH_PRIVATE_ENDPOINT":         WorkRequestOperationTypeDetachPrivateEndpoint,
 }
 
 // GetWorkRequestOperationTypeEnumValues Enumerates the set of values for WorkRequestOperationTypeEnum

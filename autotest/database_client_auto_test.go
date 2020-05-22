@@ -1250,10 +1250,11 @@ func TestDatabaseClientCreateDbHome(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
-				"DATABASE":       &database.CreateDbHomeWithDbSystemIdFromDatabaseDetails{},
-				"DB_BACKUP":      &database.CreateDbHomeWithDbSystemIdFromBackupDetails{},
-				"NONE":           &database.CreateDbHomeWithDbSystemIdDetails{},
-				"VM_CLUSTER_NEW": &database.CreateDbHomeWithVmClusterIdDetails{},
+				"DATABASE":          &database.CreateDbHomeWithDbSystemIdFromDatabaseDetails{},
+				"DB_BACKUP":         &database.CreateDbHomeWithDbSystemIdFromBackupDetails{},
+				"VM_CLUSTER_BACKUP": &database.CreateDbHomeWithVmClusterIdFromBackupDetails{},
+				"NONE":              &database.CreateDbHomeWithDbSystemIdDetails{},
+				"VM_CLUSTER_NEW":    &database.CreateDbHomeWithVmClusterIdDetails{},
 			},
 		}
 

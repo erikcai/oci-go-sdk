@@ -25,9 +25,6 @@ type WriteOperationConfig struct {
 
 	ParentRef *ParentReference `mandatory:"false" json:"parentRef"`
 
-	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value can be edited by the user and it is restricted to 1000 characters
-	Name *string `mandatory:"false" json:"name"`
-
 	// An array of operations.
 	Operations []PushDownOperation `mandatory:"false" json:"operations"`
 
@@ -68,7 +65,6 @@ func (m *WriteOperationConfig) UnmarshalJSON(data []byte) (e error) {
 		Key             *string                           `json:"key"`
 		ModelVersion    *string                           `json:"modelVersion"`
 		ParentRef       *ParentReference                  `json:"parentRef"`
-		Name            *string                           `json:"name"`
 		Operations      []pushdownoperation               `json:"operations"`
 		DataFormat      *DataFormat                       `json:"dataFormat"`
 		PartitionConfig partitionconfig                   `json:"partitionConfig"`
@@ -87,8 +83,6 @@ func (m *WriteOperationConfig) UnmarshalJSON(data []byte) (e error) {
 	m.ModelVersion = model.ModelVersion
 
 	m.ParentRef = model.ParentRef
-
-	m.Name = model.Name
 
 	m.Operations = make([]PushDownOperation, len(model.Operations))
 	for i, n := range model.Operations {

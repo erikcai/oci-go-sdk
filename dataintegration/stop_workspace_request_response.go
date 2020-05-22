@@ -16,7 +16,7 @@ type StopWorkspaceRequest struct {
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
 	// This parameter allows users to set the timeout for DIS to gracefully close down any running jobs before stopping the workspace.
-	QuiescenceTimeout *int `mandatory:"false" contributesTo:"query" name:"quiescenceTimeout"`
+	QuiesceTimeout *int64 `mandatory:"false" contributesTo:"query" name:"quiesceTimeout"`
 
 	// This parameter allows users to force close down the workspace.
 	IsForceOperation *bool `mandatory:"false" contributesTo:"query" name:"isForceOperation"`

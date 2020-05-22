@@ -20,7 +20,7 @@ type CountStatisticSummary struct {
 	ObjectType CountStatisticSummaryObjectTypeEnum `mandatory:"false" json:"objectType,omitempty"`
 
 	// the value for the object count statistic.
-	ObjectCount *string `mandatory:"false" json:"objectCount"`
+	ObjectCount *int64 `mandatory:"false" json:"objectCount"`
 }
 
 func (m CountStatisticSummary) String() string {

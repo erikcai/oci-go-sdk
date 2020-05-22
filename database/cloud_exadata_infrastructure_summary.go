@@ -40,6 +40,12 @@ type CloudExadataInfrastructureSummary struct {
 	// The number of storage servers for the cloud Exadata infrastructure.
 	StorageCount *int `mandatory:"false" json:"storageCount"`
 
+	// The total storage allocated to the Exadata infrastructure instance, in gigabytes (GB).
+	TotalStorageSizeInGBs *int `mandatory:"false" json:"totalStorageSizeInGBs"`
+
+	// The available storage can be allocated to the Exadata infrastructure instance, in gigabytes (GB).
+	AvailableStorageSizeInGBs *int `mandatory:"false" json:"availableStorageSizeInGBs"`
+
 	// The date and time the cloud Exadata infrastructure was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 

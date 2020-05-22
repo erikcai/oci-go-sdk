@@ -38,6 +38,12 @@ type UpdateCloudVmClusterDetails struct {
 	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.
 	BackupNetworkNsgIds []string `mandatory:"false" json:"backupNetworkNsgIds"`
 
+	// The list of compute servers to be added to the cloud VM cluster.
+	ComputeNodes []string `mandatory:"false" json:"computeNodes"`
+
+	// The disk group size to be allocated in GBs.
+	StorageSizeInGBs *int `mandatory:"false" json:"storageSizeInGBs"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`

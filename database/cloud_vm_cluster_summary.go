@@ -75,6 +75,9 @@ type CloudVmClusterSummary struct {
 	// The number of nodes in the cloud VM cluster.
 	NodeCount *int `mandatory:"false" json:"nodeCount"`
 
+	// The storage allocation for the disk group, in gigabytes (GB).
+	StorageSizeInGBs *int `mandatory:"false" json:"storageSizeInGBs"`
+
 	// The date and time that the cloud VM cluster was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 

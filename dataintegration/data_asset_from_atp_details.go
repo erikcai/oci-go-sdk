@@ -56,11 +56,11 @@ type DataAssetFromAtpDetails struct {
 	// The service name for the data asset.
 	ServiceName *string `mandatory:"false" json:"serviceName"`
 
+	// Array of service names that are available for selection in the serviceName property.
+	ServiceNames []string `mandatory:"false" json:"serviceNames"`
+
 	// The driver class for the data asset.
 	DriverClass *string `mandatory:"false" json:"driverClass"`
-
-	// The credential file content from a wallet for the data asset.
-	CredentialFileContent *string `mandatory:"false" json:"credentialFileContent"`
 
 	DefaultConnection *ConnectionFromAtpDetails `mandatory:"false" json:"defaultConnection"`
 }
