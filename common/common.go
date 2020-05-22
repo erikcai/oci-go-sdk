@@ -91,9 +91,6 @@ const (
 	//RegionUKGovCardiff1 gov region Cardiff
 	RegionUKGovCardiff1 Region = "uk-gov-cardiff-1"
 
-	//RegionUSTacoma1 region for us-tacoma-1
-	RegionUSTacoma1 Region = "us-tacoma-1"
-
 	// Region Metadata Configuration File
 	regionMetadataCfgDirName  = ".oci"
 	regionMetadataCfgFileName = "regions-config.json"
@@ -113,7 +110,6 @@ var realm = map[string]string{
 	"oc2": "oraclegovcloud.com",
 	"oc3": "oraclegovcloud.com",
 	"oc4": "oraclegovcloud.uk",
-	"oc5": "oracleonsrcloud.com",
 	"oc8": "oraclecloud8.com",
 }
 
@@ -154,8 +150,6 @@ var regionRealm = map[Region]string{
 
 	RegionUKGovLondon1:  "oc4",
 	RegionUKGovCardiff1: "oc4",
-
-	RegionUSTacoma1: "oc5",
 
 	RegionAPChiyoda1: "oc8",
 }
@@ -259,8 +253,6 @@ func StringToRegion(stringRegion string) (r Region) {
 		r = RegionUKGovLondon1
 	case "uk-gov-cardiff-1":
 		r = RegionUKGovCardiff1
-	case "tiw", "us-tacoma-1":
-		r = RegionUSTacoma1
 	default:
 		Debugf("region named: %s, is not recognized", stringRegion)
 		r = checkAndAddRegionMetadata(stringRegion)
