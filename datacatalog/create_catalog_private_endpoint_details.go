@@ -36,9 +36,6 @@ type CreateCatalogPrivateEndpointDetails struct {
 
 	// Display name of the private endpoint resource being created.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// Detailed description of the private endpoint.
-	Description *string `mandatory:"false" json:"description"`
 }
 
 func (m CreateCatalogPrivateEndpointDetails) String() string {

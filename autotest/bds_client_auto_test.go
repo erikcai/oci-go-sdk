@@ -199,6 +199,50 @@ func TestBdsClientChangeBdsInstanceCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
+func TestBdsClientChangeShape(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("bds", "ChangeShape")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeShape is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("bds", "Bds", "ChangeShape", createBdsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(bds.BdsClient)
+
+	body, err := testClient.getRequests("bds", "ChangeShape")
+	assert.NoError(t, err)
+
+	type ChangeShapeRequestInfo struct {
+		ContainerId string
+		Request     bds.ChangeShapeRequest
+	}
+
+	var requests []ChangeShapeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeShape(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
 func TestBdsClientCreateBdsInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -627,6 +671,50 @@ func TestBdsClientRemoveCloudSql(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.RemoveCloudSql(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
+func TestBdsClientRestartNode(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("bds", "RestartNode")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RestartNode is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("bds", "Bds", "RestartNode", createBdsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(bds.BdsClient)
+
+	body, err := testClient.getRequests("bds", "RestartNode")
+	assert.NoError(t, err)
+
+	type RestartNodeRequestInfo struct {
+		ContainerId string
+		Request     bds.RestartNodeRequest
+	}
+
+	var requests []RestartNodeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RestartNode(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

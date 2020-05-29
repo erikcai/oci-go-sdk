@@ -473,7 +473,7 @@ func (client DataIntegrationClient) CreateEntityShape(ctx context.Context, reque
 
 // createEntityShape implements the OCIOperation interface (enables retrying operations)
 func (client DataIntegrationClient) createEntityShape(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaKey}/entityShapes")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/workspaces/{workspaceId}/connections/{connectionKey}/schemas/{schemaResourceName}/entityShapes")
 	if err != nil {
 		return nil, err
 	}

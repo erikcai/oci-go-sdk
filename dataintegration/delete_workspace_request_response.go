@@ -15,6 +15,12 @@ type DeleteWorkspaceRequest struct {
 	// DIS workspace id
 	WorkspaceId *string `mandatory:"true" contributesTo:"path" name:"workspaceId"`
 
+	// This parameter allows users to set the timeout for DIS to gracefully close down any running jobs before stopping the workspace.
+	QuiesceTimeout *int64 `mandatory:"false" contributesTo:"query" name:"quiesceTimeout"`
+
+	// This parameter allows users to force close down the workspace.
+	IsForceOperation *bool `mandatory:"false" contributesTo:"query" name:"isForceOperation"`
+
 	// Update and Delete operations should accept an optional If-Match header,
 	// in which clients can send a previously-received ETag. When If-Match is
 	// provided and its value does not exactly match the ETag of the resource

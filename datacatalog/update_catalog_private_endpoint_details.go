@@ -30,9 +30,6 @@ type UpdateCatalogPrivateEndpointDetails struct {
 
 	// Display name of the private endpoint resource.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// Detailed description of the private endpoint.
-	Description *string `mandatory:"false" json:"description"`
 }
 
 func (m UpdateCatalogPrivateEndpointDetails) String() string {

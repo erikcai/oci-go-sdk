@@ -29,6 +29,9 @@ type ListDataFlowsRequest struct {
 	// This filter parameter can be used to filter by the name of the object.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
 
+	// This filter parameter can be used to filter by the identifier of the object.
+	Identifier []string `contributesTo:"query" name:"identifier" collectionFormat:"multi"`
+
 	// This parameter allows users to set the maximum number of items to return per page.  The value must be between 1 and 100 (inclusive).  Default value is 100.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 

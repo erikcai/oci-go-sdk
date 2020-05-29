@@ -32,9 +32,6 @@ type CatalogPrivateEndpoint struct {
 	// Private Reverse Connection Endpoint display name
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the private endpoint.
-	Description *string `mandatory:"false" json:"description"`
-
 	// The time the private endpoint was created. An RFC3339 (https://tools.ietf.org/html/rfc3339) formatted datetime string.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 

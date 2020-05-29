@@ -29,7 +29,7 @@ type UpdateBackupDestinationDetails struct {
 	// NFS Mount type for backup destination.
 	NfsMountType UpdateBackupDestinationDetailsNfsMountTypeEnum `mandatory:"false" json:"nfsMountType,omitempty"`
 
-	// Host names or IP addresses for NFS Auto mount.
+	// IP addresses for NFS Auto mount.
 	NfsServer []string `mandatory:"false" json:"nfsServer"`
 
 	// Specifies the directory on which to mount the file system

@@ -19,7 +19,7 @@ type CreateEntityShapeRequest struct {
 	ConnectionKey *string `mandatory:"true" contributesTo:"path" name:"connectionKey"`
 
 	// Schema resource name used for retrieving schemas
-	SchemaKey *string `mandatory:"true" contributesTo:"path" name:"schemaKey"`
+	SchemaResourceName *string `mandatory:"true" contributesTo:"path" name:"schemaResourceName"`
 
 	// The details of the data entity to use to infer the data entity shape.
 	CreateEntityShapeDetails `contributesTo:"body"`

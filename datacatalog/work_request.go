@@ -66,8 +66,8 @@ const (
 	WorkRequestOperationTypeDeleteCatalogPrivateEndpoint WorkRequestOperationTypeEnum = "DELETE_CATALOG_PRIVATE_ENDPOINT"
 	WorkRequestOperationTypeUpdateCatalogPrivateEndpoint WorkRequestOperationTypeEnum = "UPDATE_CATALOG_PRIVATE_ENDPOINT"
 	WorkRequestOperationTypeMoveCatalogPrivateEndpoint   WorkRequestOperationTypeEnum = "MOVE_CATALOG_PRIVATE_ENDPOINT"
-	WorkRequestOperationTypeAttachPrivateEndpoint        WorkRequestOperationTypeEnum = "ATTACH_PRIVATE_ENDPOINT"
-	WorkRequestOperationTypeDetachPrivateEndpoint        WorkRequestOperationTypeEnum = "DETACH_PRIVATE_ENDPOINT"
+	WorkRequestOperationTypeAttachCatalogPrivateEndpoint WorkRequestOperationTypeEnum = "ATTACH_CATALOG_PRIVATE_ENDPOINT"
+	WorkRequestOperationTypeDetachCatalogPrivateEndpoint WorkRequestOperationTypeEnum = "DETACH_CATALOG_PRIVATE_ENDPOINT"
 )
 
 var mappingWorkRequestOperationType = map[string]WorkRequestOperationTypeEnum{
@@ -79,8 +79,8 @@ var mappingWorkRequestOperationType = map[string]WorkRequestOperationTypeEnum{
 	"DELETE_CATALOG_PRIVATE_ENDPOINT": WorkRequestOperationTypeDeleteCatalogPrivateEndpoint,
 	"UPDATE_CATALOG_PRIVATE_ENDPOINT": WorkRequestOperationTypeUpdateCatalogPrivateEndpoint,
 	"MOVE_CATALOG_PRIVATE_ENDPOINT":   WorkRequestOperationTypeMoveCatalogPrivateEndpoint,
-	"ATTACH_PRIVATE_ENDPOINT":         WorkRequestOperationTypeAttachPrivateEndpoint,
-	"DETACH_PRIVATE_ENDPOINT":         WorkRequestOperationTypeDetachPrivateEndpoint,
+	"ATTACH_CATALOG_PRIVATE_ENDPOINT": WorkRequestOperationTypeAttachCatalogPrivateEndpoint,
+	"DETACH_CATALOG_PRIVATE_ENDPOINT": WorkRequestOperationTypeDetachCatalogPrivateEndpoint,
 }
 
 // GetWorkRequestOperationTypeEnumValues Enumerates the set of values for WorkRequestOperationTypeEnum

@@ -38,9 +38,6 @@ type CatalogPrivateEndpointSummary struct {
 	// Mutable name of the Private Reverse Connection Endpoint
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Detailed description of the private endpoint.
-	Description *string `mandatory:"false" json:"description"`
-
 	// An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in 'Failed' state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 

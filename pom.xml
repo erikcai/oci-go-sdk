@@ -4441,7 +4441,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.443</version>
+        <version>0.1.453</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -4596,7 +4596,7 @@
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.1.0-2005202254</version>
+        <version>1.1.0-2005281803</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -4611,7 +4611,7 @@
       <dependency>
         <groupId>com.oracle.bds</groupId>
         <artifactId>bds-cp-spec</artifactId>
-        <version>0.1.34</version>
+        <version>1.0.41</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.analytics</groupId>
@@ -4681,7 +4681,7 @@
       <dependency>
         <groupId>com.oracle.dis</groupId>
         <artifactId>dis-sdk-spec</artifactId>
-        <version>1.0.0-127</version>
+        <version>1.0.0-128</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.controlplane</groupId>

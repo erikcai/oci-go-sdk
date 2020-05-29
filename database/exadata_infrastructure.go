@@ -56,7 +56,7 @@ type ExadataInfrastructure struct {
 	DataStorageSizeInTBs *float64 `mandatory:"false" json:"dataStorageSizeInTBs"`
 
 	// The total available DATA disk group size.
-	MaxDataStorageInTBs *int `mandatory:"false" json:"maxDataStorageInTBs"`
+	MaxDataStorageInTBs *float64 `mandatory:"false" json:"maxDataStorageInTBs"`
 
 	// The IP address for the first control plane server.
 	CloudControlPlaneServer1 *string `mandatory:"false" json:"cloudControlPlaneServer1"`

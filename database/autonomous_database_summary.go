@@ -153,9 +153,6 @@ type AutonomousDatabaseSummary struct {
 	// Indicates whether the Autonomous Database is a refreshable clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 
-	// The specified lag time, in seconds, between data in the source database and data in the refreshable clone database at the time of the data refresh. Actual lag for the data in the refreshable clone increases with time after each refresh until the next refresh.
-	RefreshLagTimeInSeconds *int `mandatory:"false" json:"refreshLagTimeInSeconds"`
-
 	// The refresh interval determines how frequently data is refreshed in the clone. Minimum 1 hour. Maximum 7 days.
 	RefreshIntervalInSeconds *int `mandatory:"false" json:"refreshIntervalInSeconds"`
 

@@ -17,7 +17,7 @@ import (
 // AutomatedMountDetails Used for creating NFS Auto Mount backup destinations for autonomous on ExaCC.
 type AutomatedMountDetails struct {
 
-	// Host names or IP addresses for NFS Auto mount.
+	// IP addresses for NFS Auto mount.
 	NfsServer []string `mandatory:"true" json:"nfsServer"`
 
 	// Specifies the directory on which to mount the file system
