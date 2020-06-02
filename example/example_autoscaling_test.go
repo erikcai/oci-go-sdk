@@ -1,19 +1,13 @@
-// Copyright (c) 2019, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
-//
-// Example code for Autoscaling Services API
-//
-//
 
-/**
- * This class provides an example of how you can create an AutoScalingConfiguration and use that with a InstancePools. It will:
- * <ul>
- * <li>Create the InstanceConfiguration</li>
- * <li>Create a pool based off that configuration.</li>
- * <li>Create an AutoScalingConfiguration for that pool.</li>
- * <li>Clean everything up.</li>
- * </ul>
- */
+// Example code for Autoscaling Services API
+// This class provides an example of how you can create an AutoScalingConfiguration and use that with a InstancePools. It will:
+//
+//   * Create the InstanceConfiguration
+//   * Create a pool based off that configuration
+//   * Create an AutoScalingConfiguration for that pool
+//   * Clean everything up
 
 package example
 

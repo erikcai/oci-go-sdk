@@ -4414,6 +4414,42 @@
           </filesets>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>3.0</version>
+        <inherited>false</inherited>
+        <configuration>
+          <headerDefinitions>
+            <headerDefinition>${project.basedir}/license_header_definition.xml</headerDefinition>
+          </headerDefinitions>
+          <header>${project.basedir}/licenseheader.txt</header>
+          <mapping>
+            <go>DOUBLESLASH_STYLE</go>
+          </mapping>
+          <includes>
+            <include>common/*.go</include>
+            <include>common/auth/*.go</include>
+            <include>example/*.go</include>
+            <include>example/*/*.go</include>
+          </includes>
+          <excludes>
+            <exclude>common/version.go</exclude>
+          </excludes>
+          <properties>
+            <current.year>${current.year}</current.year>
+          </properties>
+        </configuration>
+        <executions>
+          <execution>
+            <id>oci-go-sdk</id>
+            <phase>package</phase>
+            <goals>
+              <goal>format</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <dependencyManagement>
