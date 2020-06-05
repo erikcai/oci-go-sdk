@@ -66,3 +66,5 @@
 ^dataintegration/
 ^logging/
 ^ocvp/
+^usageapi/
+^cloudguard/

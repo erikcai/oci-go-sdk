@@ -41,7 +41,8 @@ type Parameter struct {
 	// The default value of the parameter.
 	DefaultValue *interface{} `mandatory:"false" json:"defaultValue"`
 
-	RootObjectDefaultValue *RootObject `mandatory:"false" json:"rootObjectDefaultValue"`
+	// The default value of the parameter which can be an object in DIS, such as a data entity.
+	RootObjectDefaultValue *interface{} `mandatory:"false" json:"rootObjectDefaultValue"`
 
 	// Whether the parameter is input value.
 	IsInput *bool `mandatory:"false" json:"isInput"`
@@ -121,7 +122,7 @@ func (m *Parameter) UnmarshalJSON(data []byte) (e error) {
 		Description            *string                            `json:"description"`
 		Type                   basetype                           `json:"type"`
 		DefaultValue           *interface{}                       `json:"defaultValue"`
-		RootObjectDefaultValue *RootObject                        `json:"rootObjectDefaultValue"`
+		RootObjectDefaultValue *interface{}                       `json:"rootObjectDefaultValue"`
 		IsInput                *bool                              `json:"isInput"`
 		IsOutput               *bool                              `json:"isOutput"`
 		OutputAggregationType  ParameterOutputAggregationTypeEnum `json:"outputAggregationType"`

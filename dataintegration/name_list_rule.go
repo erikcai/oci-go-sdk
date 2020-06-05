@@ -39,7 +39,8 @@ type NameListRule struct {
 	// skipRemainingRulesOnMatch
 	IsSkipRemainingRulesOnMatch *bool `mandatory:"false" json:"isSkipRemainingRulesOnMatch"`
 
-	Scope TypedObject `mandatory:"false" json:"scope"`
+	// Reference to a typed object, this can be either a key value to an object within the document, a shall referenced to a TypedObject or a full TypedObject definition.
+	Scope *interface{} `mandatory:"false" json:"scope"`
 
 	// cascade
 	IsCascade *bool `mandatory:"false" json:"isCascade"`
@@ -108,71 +109,6 @@ func (m NameListRule) MarshalJSON() (buff []byte, e error) {
 	}
 
 	return json.Marshal(&s)
-}
-
-// UnmarshalJSON unmarshals from json
-func (m *NameListRule) UnmarshalJSON(data []byte) (e error) {
-	model := struct {
-		Key                         *string                          `json:"key"`
-		ModelVersion                *string                          `json:"modelVersion"`
-		ParentRef                   *ParentReference                 `json:"parentRef"`
-		IsJavaRegexSyntax           *bool                            `json:"isJavaRegexSyntax"`
-		ConfigValues                *ConfigValues                    `json:"configValues"`
-		ObjectStatus                *int                             `json:"objectStatus"`
-		Description                 *string                          `json:"description"`
-		IsSkipRemainingRulesOnMatch *bool                            `json:"isSkipRemainingRulesOnMatch"`
-		Scope                       typedobject                      `json:"scope"`
-		IsCascade                   *bool                            `json:"isCascade"`
-		MatchingStrategy            NameListRuleMatchingStrategyEnum `json:"matchingStrategy"`
-		IsCaseSensitive             *bool                            `json:"isCaseSensitive"`
-		RuleType                    NameListRuleRuleTypeEnum         `json:"ruleType"`
-		Names                       []string                         `json:"names"`
-	}{}
-
-	e = json.Unmarshal(data, &model)
-	if e != nil {
-		return
-	}
-	var nn interface{}
-	m.Key = model.Key
-
-	m.ModelVersion = model.ModelVersion
-
-	m.ParentRef = model.ParentRef
-
-	m.IsJavaRegexSyntax = model.IsJavaRegexSyntax
-
-	m.ConfigValues = model.ConfigValues
-
-	m.ObjectStatus = model.ObjectStatus
-
-	m.Description = model.Description
-
-	m.IsSkipRemainingRulesOnMatch = model.IsSkipRemainingRulesOnMatch
-
-	nn, e = model.Scope.UnmarshalPolymorphicJSON(model.Scope.JsonData)
-	if e != nil {
-		return
-	}
-	if nn != nil {
-		m.Scope = nn.(TypedObject)
-	} else {
-		m.Scope = nil
-	}
-
-	m.IsCascade = model.IsCascade
-
-	m.MatchingStrategy = model.MatchingStrategy
-
-	m.IsCaseSensitive = model.IsCaseSensitive
-
-	m.RuleType = model.RuleType
-
-	m.Names = make([]string, len(model.Names))
-	for i, n := range model.Names {
-		m.Names[i] = n
-	}
-	return
 }
 
 // NameListRuleMatchingStrategyEnum Enum with underlying type: string

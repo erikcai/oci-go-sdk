@@ -26,9 +26,6 @@ type CreateDataAssetDetails struct {
 	// Detailed description of the data asset.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Indicates whether this Data Asset can only be accessed through private endpoints.
-	IsUsingPrivateEndpoint *bool `mandatory:"false" json:"isUsingPrivateEndpoint"`
-
 	// A map of maps that contains the properties which are specific to the data asset type. Each data asset type
 	// definition defines it's set of required and optional properties. The map keys are category names and the
 	// values are maps of property name to property value. Every property is contained inside of a category. Most

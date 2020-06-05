@@ -44,9 +44,6 @@ type DataAssetSummary struct {
 	// The key of the object type. Type keys's can be found via the '/types' endpoint.
 	TypeKey *string `mandatory:"false" json:"typeKey"`
 
-	// Indicates whether this Data Asset can only be accessed through private endpoints.
-	IsUsingPrivateEndpoint *bool `mandatory:"false" json:"isUsingPrivateEndpoint"`
-
 	// State of the data asset.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }

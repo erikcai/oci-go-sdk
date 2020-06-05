@@ -57,12 +57,6 @@ type CreateCloudVmClusterDetails struct {
 	// The cluster name for cloud Vm cluster. The cluster name must begin with an an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.
 	ClusterName *string `mandatory:"false" json:"clusterName"`
 
-	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
-	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
-
-	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
-	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
-
 	// The percentage assigned to DATA storage (user data and database files).
 	// The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups). Accepted values are 35, 40, 60 and 80. The default is 80 percent assigned to DATA storage. Please see https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/exaoverview.htm for details of Impact of Configuration Settings on Storage.
 	DataStoragePercentage *int `mandatory:"false" json:"dataStoragePercentage"`

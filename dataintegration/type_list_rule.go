@@ -39,7 +39,8 @@ type TypeListRule struct {
 	// skipRemainingRulesOnMatch
 	IsSkipRemainingRulesOnMatch *bool `mandatory:"false" json:"isSkipRemainingRulesOnMatch"`
 
-	Scope TypedObject `mandatory:"false" json:"scope"`
+	// Reference to a typed object, this can be either a key value to an object within the document, a shall referenced to a TypedObject or a full TypedObject definition.
+	Scope *interface{} `mandatory:"false" json:"scope"`
 
 	// cascade
 	IsCascade *bool `mandatory:"false" json:"isCascade"`
@@ -121,7 +122,7 @@ func (m *TypeListRule) UnmarshalJSON(data []byte) (e error) {
 		ObjectStatus                *int                             `json:"objectStatus"`
 		Description                 *string                          `json:"description"`
 		IsSkipRemainingRulesOnMatch *bool                            `json:"isSkipRemainingRulesOnMatch"`
-		Scope                       typedobject                      `json:"scope"`
+		Scope                       *interface{}                     `json:"scope"`
 		IsCascade                   *bool                            `json:"isCascade"`
 		MatchingStrategy            TypeListRuleMatchingStrategyEnum `json:"matchingStrategy"`
 		IsCaseSensitive             *bool                            `json:"isCaseSensitive"`
@@ -150,15 +151,7 @@ func (m *TypeListRule) UnmarshalJSON(data []byte) (e error) {
 
 	m.IsSkipRemainingRulesOnMatch = model.IsSkipRemainingRulesOnMatch
 
-	nn, e = model.Scope.UnmarshalPolymorphicJSON(model.Scope.JsonData)
-	if e != nil {
-		return
-	}
-	if nn != nil {
-		m.Scope = nn.(TypedObject)
-	} else {
-		m.Scope = nil
-	}
+	m.Scope = model.Scope
 
 	m.IsCascade = model.IsCascade
 

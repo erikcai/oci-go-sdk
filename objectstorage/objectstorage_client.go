@@ -217,6 +217,63 @@ func (client ObjectStorageClient) cancelWorkRequest(ctx context.Context, request
 	return response, err
 }
 
+// CheckObject Retrieve an object's stored and calculated digests, specifically:
+//   - The content MD5;
+//   - The SHA-256 of each chunk on each storage server.
+// If the MD5 digest calculated from the decrypted object data
+// does not match the MD5 digest stored in the object's metadata,
+// or any chunk's' SHA-256 does not match the one stored for it,
+// this API will signal an error.  The stored and calculated
+// digests are always included in the response.
+// This internal API allows Object Storage tooling to verify the
+// correctness of stored data.  Any tenancy's objects can be
+// verified with this API, so it must only protected by BOAT AAA.
+func (client ObjectStorageClient) CheckObject(ctx context.Context, request CheckObjectRequest) (response CheckObjectResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.checkObject, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CheckObjectResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CheckObjectResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CheckObjectResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CheckObjectResponse")
+	}
+	return
+}
+
+// checkObject implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) checkObject(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/n/{namespaceName}/b/{bucketName}/actions/checkObject/{objectName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CheckObjectResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CommitMultipartUpload Commits a multipart upload, which involves checking part numbers and entity tags (ETags) of the parts, to create an aggregate object.
 func (client ObjectStorageClient) CommitMultipartUpload(ctx context.Context, request CommitMultipartUploadRequest) (response CommitMultipartUploadResponse, err error) {
 	var ociResponse common.OCIResponse
