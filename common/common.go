@@ -105,6 +105,33 @@ const (
 	regionKeyPropertyName            = "regionKey"            // e.g. "SYD"
 )
 
+var shortNameRegion = map[string]Region{
+	"sea": RegionSEA,
+	"phx": RegionPHX,
+	"iad": RegionIAD,
+	"sjc": RegionSJC1,
+	"fra": RegionFRA,
+	"lhr": RegionLHR,
+	"cwl": RegionUKCardiff1,
+	"ams": RegionEUAmsterdam1,
+	"zrh": RegionEUZurich1,
+	"mel": RegionAPMelbourne1,
+	"bom": RegionAPMumbai1,
+	"hyd": RegionAPHyderabad1,
+	"gru": RegionSASaopaulo1,
+	"icn": RegionAPSeoul1,
+	"yny": RegionAPChuncheon1,
+	"nrt": RegionAPTokyo1,
+	"kix": RegionAPOsaka1,
+	"sin": RegionAPSingapore1,
+	"nja": RegionAPChiyoda1,
+	"yul": RegionCAMontreal1,
+	"yyz": RegionCAToronto1,
+	"jed": RegionMEJeddah1,
+	"dxb": RegionMEDubai1,
+	"syd": RegionAPSydney1,
+}
+
 var realm = map[string]string{
 	"oc1": "oraclecloud.com",
 	"oc2": "oraclegovcloud.com",
@@ -154,8 +181,11 @@ var regionRealm = map[Region]string{
 	RegionAPChiyoda1: "oc8",
 }
 
-// GetRegionInfoFromInstanceMetadataService gets the region information
-var GetRegionInfoFromInstanceMetadataService = GetRegionInfoFromInstanceMetadataServiceProd
+// External region metadata info flag, used to control adding these metadata region info only once.
+var readCfgFile, readEnvVar, visitIMDS bool = true, true, false
+
+// getRegionInfoFromInstanceMetadataService gets the region information
+var getRegionInfoFromInstanceMetadataService = getRegionInfoFromInstanceMetadataServiceProd
 
 // Endpoint returns a endpoint for a service
 func (region Region) Endpoint(service string) string {
@@ -190,73 +220,22 @@ func (region Region) secondLevelDomain() string {
 
 //StringToRegion convert a string to Region type
 func StringToRegion(stringRegion string) (r Region) {
-	switch strings.ToLower(stringRegion) {
-	case "sea":
-		r = RegionSEA
-	case "phx", "us-phoenix-1":
-		r = RegionPHX
-	case "iad", "us-ashburn-1":
-		r = RegionIAD
-	case "sjc", "us-sanjose-1":
-		r = RegionSJC1
-	case "fra", "eu-frankfurt-1":
-		r = RegionFRA
-	case "lhr", "uk-london-1":
-		r = RegionLHR
-	case "cwl", "uk-cardiff-1":
-		r = RegionUKCardiff1
-	case "ams", "eu-amsterdam-1":
-		r = RegionEUAmsterdam1
-	case "zrh", "eu-zurich-1":
-		r = RegionEUZurich1
-	case "mel", "ap-melbourne-1":
-		r = RegionAPMelbourne1
-	case "bom", "ap-mumbai-1":
-		r = RegionAPMumbai1
-	case "hyd", "ap-hyderabad-1":
-		r = RegionAPHyderabad1
-	case "gru", "sa-saopaulo-1":
-		r = RegionSASaopaulo1
-	case "icn", "ap-seoul-1":
-		r = RegionAPSeoul1
-	case "yny", "ap-chuncheon-1":
-		r = RegionAPChuncheon1
-	case "nrt", "ap-tokyo-1":
-		r = RegionAPTokyo1
-	case "kix", "ap-osaka-1":
-		r = RegionAPOsaka1
-	case "sin", "ap-singapore-1":
-		r = RegionAPSingapore1
-	case "nja", "ap-chiyoda-1":
-		r = RegionAPChiyoda1
-	case "yul", "ca-montreal-1":
-		r = RegionCAMontreal1
-	case "yyz", "ca-toronto-1":
-		r = RegionCAToronto1
-	case "jed", "me-jeddah-1":
-		r = RegionMEJeddah1
-	case "dxb", "me-dubai-1":
-		r = RegionMEDubai1
-	case "syd", "ap-sydney-1":
-		r = RegionAPSydney1
-	case "us-langley-1":
-		r = RegionUSLangley1
-	case "us-luke-1":
-		r = RegionUSLuke1
-	case "us-gov-ashburn-1":
-		r = RegionUSGovAshburn1
-	case "us-gov-chicago-1":
-		r = RegionUSGovChicago1
-	case "us-gov-phoenix-1":
-		r = RegionUSGovPhoenix1
-	case "uk-gov-london-1":
-		r = RegionUKGovLondon1
-	case "uk-gov-cardiff-1":
-		r = RegionUKGovCardiff1
-	default:
-		Debugf("region named: %s, is not recognized", stringRegion)
-		r = checkAndAddRegionMetadata(stringRegion)
+	regionStr := strings.ToLower(stringRegion)
+	// check if short region name provided
+	if region, ok := shortNameRegion[regionStr]; ok {
+		r = region
+		return
 	}
+	// check if normal region name provided
+	potentialRegion := Region(regionStr)
+	if _, ok := regionRealm[potentialRegion]; ok {
+		r = potentialRegion
+		return
+	}
+
+	Debugf("region named: %s, is not recognized from hard-coded region list, will check Region metadata info", stringRegion)
+	r = checkAndAddRegionMetadata(stringRegion)
+
 	return
 }
 
@@ -274,9 +253,9 @@ func canStringBeRegion(stringRegion string) (region string, err error) {
 // check region info from original map
 func checkAndAddRegionMetadata(region string) Region {
 	switch {
-	case SetRegionMetadataFromCfgFile(&region):
-	case SetRegionMetadataFromEnvVar(&region):
-	case SetRegionFromInstanceMetadataService(&region):
+	case setRegionMetadataFromCfgFile(&region):
+	case setRegionMetadataFromEnvVar(&region):
+	case setRegionFromInstanceMetadataService(&region):
 	default:
 		//err := fmt.Errorf("failed to get region metadata information.")
 		return Region(region)
@@ -284,8 +263,23 @@ func checkAndAddRegionMetadata(region string) Region {
 	return Region(region)
 }
 
-// SetRegionMetadataFromEnvVar checks if region metadata env variable is provided, once it's there, parse and added it to region map
-func SetRegionMetadataFromEnvVar(region *string) bool {
+// EnableInstanceMetadataServiceLookup provides the interface to lookup IMDS region info
+func EnableInstanceMetadataServiceLookup() {
+	Debugf("Set visitIMDS 'true' to enable IMDS Lookup.")
+	visitIMDS = true
+}
+
+// setRegionMetadataFromEnvVar checks if region metadata env variable is provided, once it's there, parse and added it
+// to region map, and it can make sure the env var can only be visited once.
+// Once successfully find the expected region(region name or short code), return true, region name will be stored in
+// the input pointer.
+func setRegionMetadataFromEnvVar(region *string) bool {
+	if readEnvVar == false {
+		Debugf("metadata region env variable had already been checked, no need to check again.")
+		return false //no need to check it again.
+	}
+	// Mark readEnvVar Flag as false since it has already been visited.
+	readEnvVar = false
 	// check from env variable
 	if jsonStr, existed := os.LookupEnv(regionMetadataEnvVarName); existed {
 		Debugf("Raw content of region metadata env var:", jsonStr)
@@ -310,8 +304,17 @@ func SetRegionMetadataFromEnvVar(region *string) bool {
 	return false
 }
 
-// SetRegionMetadataFromCfgFile checks if region metadata config file is provided, once it's there, parse and added it to region map
-func SetRegionMetadataFromCfgFile(region *string) bool {
+// setRegionMetadataFromCfgFile checks if region metadata config file is provided, once it's there, parse and add all
+// the valid regions to region map, the configuration file can only be visited once.
+// Once successfully find the expected region(region name or short code), return true, region name will be stored in
+// the input pointer.
+func setRegionMetadataFromCfgFile(region *string) bool {
+	if readCfgFile == false {
+		Debugf("metadata region config file had already been checked, no need to check again.")
+		return false //no need to check it again.
+	}
+	// Mark readCfgFile Flag as false since it has already been visited.
+	readCfgFile = false
 	homeFolder := getHomeFolder()
 	configFile := path.Join(homeFolder, regionMetadataCfgDirName, regionMetadataCfgFileName)
 	if jsonArr, ok := readAndParseConfigFile(&configFile); ok {
@@ -352,6 +355,7 @@ func addRegionSchema(regionSchema map[string]string) {
 	r := Region(strings.ToLower(regionSchema[regionIdentifierPropertyName]))
 	if _, ok := regionRealm[r]; !ok {
 		// set mapping table
+		shortNameRegion[regionSchema[regionKeyPropertyName]] = r
 		realm[regionSchema[realmKeyPropertyName]] = regionSchema[realmDomainComponentPropertyName]
 		regionRealm[r] = regionSchema[realmKeyPropertyName]
 		return
@@ -384,8 +388,12 @@ func checkSchemaItem(regionSchema map[string]string, key string) bool {
 	return false
 }
 
-// SetRegionFromInstanceMetadataService checks if region metadata can be provided from InstanceMetadataService.
-func SetRegionFromInstanceMetadataService(region *string) bool {
+// setRegionFromInstanceMetadataService checks if region metadata can be provided from InstanceMetadataService.
+// Once successfully find the expected region(region name or short code), return true, region name will be stored in
+// the input pointer.
+// setRegionFromInstanceMetadataService will only be checked on the instance, by default it will not be enabled unless
+// user explicitly enable it.
+func setRegionFromInstanceMetadataService(region *string) bool {
 	// example of content:
 	// {
 	// 	"realmKey" : "oc1",
@@ -393,11 +401,19 @@ func SetRegionFromInstanceMetadataService(region *string) bool {
 	// 	"regionKey" : "YUL",
 	// 	"regionIdentifier" : "ca-montreal-1"
 	// }
-	content, err := GetRegionInfoFromInstanceMetadataService()
+	// Mark visitIMDS Flag as false since it has already been visited.
+	if visitIMDS == false {
+		Debugf("check from IMDS is disabled or IMDS had already been successfully visited, no need to check again.")
+		return false
+	}
+	content, err := getRegionInfoFromInstanceMetadataService()
 	if err != nil {
 		Debugf("Failed to get instance metadata. Error: %v", err)
 		return false
 	}
+
+	// Mark visitIMDS Flag as false since we have already successfully get the region info from IMDS.
+	visitIMDS = false
 
 	var regionInfo map[string]string
 	err = json.Unmarshal(content, &regionInfo)
@@ -420,8 +436,8 @@ func SetRegionFromInstanceMetadataService(region *string) bool {
 	return true
 }
 
-// GetRegionInfoFromInstanceMetadataServiceProd calls instance metadata service and get the region information
-func GetRegionInfoFromInstanceMetadataServiceProd() ([]byte, error) {
+// getRegionInfoFromInstanceMetadataServiceProd calls instance metadata service and get the region information
+func getRegionInfoFromInstanceMetadataServiceProd() ([]byte, error) {
 	request, err := http.NewRequest(http.MethodGet, instanceMetadataRegionInfoURLV2, nil)
 	request.Header.Add("Authorization", "Bearer Oracle")
 
