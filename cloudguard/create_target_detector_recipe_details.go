@@ -17,13 +17,7 @@ import (
 type CreateTargetDetectorRecipeDetails struct {
 
 	// DetectorRecipe Identifier
-	Id *string `mandatory:"true" json:"id"`
-
-	// Compartment Identifier
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
-
-	// Overrides to be applied to Detector Rule associated with the target
-	DetectorRules []TargetDetectorRecipeDetectorRule `mandatory:"false" json:"detectorRules"`
+	DetectorRecipeId *string `mandatory:"true" json:"detectorRecipeId"`
 }
 
 func (m CreateTargetDetectorRecipeDetails) String() string {

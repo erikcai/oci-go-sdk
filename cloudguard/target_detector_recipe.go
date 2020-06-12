@@ -40,14 +40,14 @@ type TargetDetectorRecipe struct {
 	// List of detetor rules for the detector type for recipe
 	DetectorRules []TargetDetectorRecipeDetectorRule `mandatory:"false" json:"detectorRules"`
 
-	// The time that the resource was created. An RFC3339 formatted datetime string
+	// The date and time the target detector recipe was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the resource was updated. An RFC3339 formatted datetime string
+	// The date and time the target detector recipe was updated. Format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// The current state of the resource.
-	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 
 func (m TargetDetectorRecipe) String() string {

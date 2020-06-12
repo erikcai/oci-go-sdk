@@ -7622,6 +7622,7 @@ func (client VirtualNetworkClient) listCrossconnectPortSpeedShapes(ctx context.C
 }
 
 // ListDhcpOptions Lists the sets of DHCP options in the specified VCN and specified compartment.
+// If Vcn ID is not provided, then it will list all sets of DHCP options in all the VCNs that are in the specified compartment.
 // The response includes the default set of options that automatically comes with each VCN,
 // plus any other sets you've created.
 func (client VirtualNetworkClient) ListDhcpOptions(ctx context.Context, request ListDhcpOptionsRequest) (response ListDhcpOptionsResponse, err error) {
@@ -8104,6 +8105,7 @@ func (client VirtualNetworkClient) listIPSecConnections(ctx context.Context, req
 }
 
 // ListInternetGateways Lists the internet gateways in the specified VCN and the specified compartment.
+// If Vcn ID is not provided, then it will list all of the internet gateways in all the VCNs that are in the specified compartment.
 func (client VirtualNetworkClient) ListInternetGateways(ctx context.Context, request ListInternetGatewaysRequest) (response ListInternetGatewaysResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8250,8 +8252,8 @@ func (client VirtualNetworkClient) listLocalPeeringConnections(ctx context.Conte
 	return response, err
 }
 
-// ListLocalPeeringGateways Lists the local peering gateways (LPGs) for the specified VCN and compartment
-// (the LPG's compartment).
+// ListLocalPeeringGateways Lists the local peering gateways (LPGs) for the specified VCN and specified compartment.
+// If Vcn ID is not provided, then it will list all of the local peering gateways (LPGs) in all the VCNs that are in the specified compartment.
 func (client VirtualNetworkClient) ListLocalPeeringGateways(ctx context.Context, request ListLocalPeeringGatewaysRequest) (response ListLocalPeeringGatewaysResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8850,9 +8852,10 @@ func (client VirtualNetworkClient) listReverseConnectionNatIps(ctx context.Conte
 	return response, err
 }
 
-// ListRouteTables Lists the route tables in the specified VCN and specified compartment. The response
-// includes the default route table that automatically comes with each VCN, plus any route tables
-// you've created.
+// ListRouteTables Lists the route tables in the specified VCN and specified compartment.
+// If Vcn ID is not provided, then it will list all of the route tables in all the VCNs that are in the specified compartment.
+// The response includes the default route table that automatically comes with
+// each VCN in the specified compartment, plus any route tables you've created.
 func (client VirtualNetworkClient) ListRouteTables(ctx context.Context, request ListRouteTablesRequest) (response ListRouteTablesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8900,6 +8903,7 @@ func (client VirtualNetworkClient) listRouteTables(ctx context.Context, request 
 }
 
 // ListSecurityLists Lists the security lists in the specified VCN and compartment.
+// If Vcn ID is not provided, then it will list all of the security lists in all the VCNs that are in the specified compartment.
 func (client VirtualNetworkClient) ListSecurityLists(ctx context.Context, request ListSecurityListsRequest) (response ListSecurityListsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -9043,6 +9047,7 @@ func (client VirtualNetworkClient) listServices(ctx context.Context, request com
 }
 
 // ListSubnets Lists the subnets in the specified VCN and the specified compartment.
+// If Vcn ID is not provided, then it will list all of the subnets in all the VCNs that are in the specified compartment.
 func (client VirtualNetworkClient) ListSubnets(ctx context.Context, request ListSubnetsRequest) (response ListSubnetsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

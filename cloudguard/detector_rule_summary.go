@@ -16,7 +16,7 @@ import (
 // DetectorRuleSummary Summary of the Detector Rules.
 type DetectorRuleSummary struct {
 
-	// The Unique identifier of the detector rule
+	// The unique identifier of the detector rule
 	Id *string `mandatory:"true" json:"id"`
 
 	// possible type of detectors
@@ -40,22 +40,22 @@ type DetectorRuleSummary struct {
 	// List of cloudguard managed list types related to this rule
 	ManagedListTypes []DetectorRuleSummaryManagedListTypesEnum `mandatory:"false" json:"managedListTypes,omitempty"`
 
+	// List of CandidateResponderRule
+	CandidateResponderRules []CandidateResponderRule `mandatory:"false" json:"candidateResponderRules"`
+
 	DetectorDetails *DetectorDetails `mandatory:"false" json:"detectorDetails"`
 
-	// The time the the DetectorTemplate was created. An RFC3339 formatted datetime string
+	// The date and time the detector rule was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the DetectorTemplate was updated. An RFC3339 formatted datetime string
+	// The date and time the detector rule was updated. Format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
-	// possible type of lifecycle state
-	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	// The current state of the detector rule
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
-
-	// List of CandidateResponderRule
-	CandidateResponderRules []CandidateResponderRule `mandatory:"false" json:"candidateResponderRules"`
 }
 
 func (m DetectorRuleSummary) String() string {

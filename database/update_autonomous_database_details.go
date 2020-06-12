@@ -66,9 +66,6 @@ type UpdateAutonomousDatabaseDetails struct {
 	// Indicates whether to enable or disable auto scaling for the Autonomous Database OCPU core count. Setting to `true` enables auto scaling. Setting to `false` disables auto scaling. The default value is true. Auto scaling is available for databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
 	IsAutoScalingEnabled *bool `mandatory:"false" json:"isAutoScalingEnabled"`
 
-	// The refresh interval determines how frequently data is refreshed in the clone. Minimum 1 hour. Maximum 7 days.
-	RefreshIntervalInSeconds *int `mandatory:"false" json:"refreshIntervalInSeconds"`
-
 	// Indicates whether the Autonomous Database is a refreshable clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 

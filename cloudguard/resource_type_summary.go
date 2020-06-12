@@ -23,7 +23,7 @@ type ResourceTypeSummary struct {
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// List of rules
-	Rules []RuleSummary `mandatory:"true" json:"rules"`
+	Rules []RuleSummary `mandatory:"false" json:"rules"`
 }
 
 func (m ResourceTypeSummary) String() string {

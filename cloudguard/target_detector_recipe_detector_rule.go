@@ -16,7 +16,7 @@ import (
 // TargetDetectorRecipeDetectorRule Detector Recipe Rule
 type TargetDetectorRecipeDetectorRule struct {
 
-	// The Unique identifier of the detector rule
+	// The unique identifier of the detector rule
 	Id *string `mandatory:"true" json:"id"`
 
 	// detector for the rule
@@ -42,14 +42,14 @@ type TargetDetectorRecipeDetectorRule struct {
 	// List of cloudguard managed list types related to this rule
 	ManagedListTypes []TargetDetectorRecipeDetectorRuleManagedListTypesEnum `mandatory:"false" json:"managedListTypes,omitempty"`
 
-	// The time the the DetectorRule was created. An RFC3339 formatted datetime string
+	// The date and time the target detector recipe rule was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the DetectorRule was updated. An RFC3339 formatted datetime string
+	// The date and time the target detector recipe rule was updated. Format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// The current state of the DetectorRule.
-	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`

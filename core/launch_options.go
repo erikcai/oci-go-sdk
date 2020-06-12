@@ -17,17 +17,18 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// LaunchOptions Options for tuning compatibility and performance of VM shapes.
+// LaunchOptions Options for tuning the compatibility and performance of VM shapes. The values that you specify override any
+// default values.
 type LaunchOptions struct {
 
 	// Emulation type for volume.
-	// * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-	// Storage volumes on Oracle provided images.
+	// * `ISCSI` - ISCSI attached block storage device.
 	// * `SCSI` - Emulated SCSI disk.
 	// * `IDE` - Emulated IDE disk.
 	// * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
 	// volumes on Oracle provided images.
-	// * `PARAVIRTUALIZED` - Paravirtualized disk.
+	// * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for Boot Volumes and Remote Block
+	// Storage volumes on Oracle provided images.
 	BootVolumeType LaunchOptionsBootVolumeTypeEnum `mandatory:"false" json:"bootVolumeType,omitempty"`
 
 	// Firmware used to boot VM.  Select the option that matches your operating system.
@@ -45,16 +46,17 @@ type LaunchOptions struct {
 	NetworkType LaunchOptionsNetworkTypeEnum `mandatory:"false" json:"networkType,omitempty"`
 
 	// Emulation type for volume.
-	// * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
-	// Storage volumes on Oracle provided images.
+	// * `ISCSI` - ISCSI attached block storage device.
 	// * `SCSI` - Emulated SCSI disk.
 	// * `IDE` - Emulated IDE disk.
 	// * `VFIO` - Direct attached Virtual Function storage.  This is the default option for Local data
 	// volumes on Oracle provided images.
-	// * `PARAVIRTUALIZED` - Paravirtualized disk.
+	// * `PARAVIRTUALIZED` - Paravirtualized disk.This is the default for Boot Volumes and Remote Block
+	// Storage volumes on Oracle provided images.
 	RemoteDataVolumeType LaunchOptionsRemoteDataVolumeTypeEnum `mandatory:"false" json:"remoteDataVolumeType,omitempty"`
 
-	// Whether to enable in-transit encryption for the boot volume's paravirtualized attachment. The default value is false.
+	// Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
+	// LaunchInstanceDetails.
 	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 
 	// Whether to enable consistent volume naming feature. Defaults to false.

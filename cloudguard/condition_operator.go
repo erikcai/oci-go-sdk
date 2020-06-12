@@ -17,7 +17,7 @@ import (
 type ConditionOperator struct {
 
 	// operator name
-	Name *string `mandatory:"true" json:"name"`
+	Name ConditionOperatorNameEnum `mandatory:"true" json:"name"`
 
 	// display name of the operator
 	DisplayName *string `mandatory:"true" json:"displayName"`

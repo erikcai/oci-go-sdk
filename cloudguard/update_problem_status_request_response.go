@@ -18,6 +18,9 @@ type UpdateProblemStatusRequest struct {
 	// Action taken by user
 	Status UpdateProblemStatusStatusEnum `mandatory:"true" contributesTo:"path" name:"status"`
 
+	// The additional details for the problem.
+	UpdateProblemStatusDetails `contributesTo:"body"`
+
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
 	// server error without risk of executing that same action again. Retry tokens expire after 24
 	// hours, but can be invalidated before then due to conflicting operations. For example, if a resource

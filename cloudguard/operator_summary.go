@@ -33,6 +33,9 @@ type OperatorSummary struct {
 
 	// List of parameters
 	Operators []ConditionOperator `mandatory:"true" json:"operators"`
+
+	// configuration value type list for multilist data type
+	MultiListTypes []string `mandatory:"false" json:"multiListTypes"`
 }
 
 func (m OperatorSummary) String() string {

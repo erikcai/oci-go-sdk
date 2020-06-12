@@ -20,11 +20,11 @@ type RequestSummarizedResponderExecutionsRequest struct {
 
 	// The possible filters for Responder Type Dimension to distinguish Responder Executions.
 	// If no values are passed, the metric for responder executions of all reponder types are returned
-	ResponderTypeFilterQueryParam []RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum `contributesTo:"query" name:"responderTypeFilterQueryParam" omitEmpty:"true" collectionFormat:"multi"`
+	ResponderTypeFilter []RequestSummarizedResponderExecutionsResponderTypeFilterEnum `contributesTo:"query" name:"responderTypeFilter" omitEmpty:"true" collectionFormat:"multi"`
 
 	// The possible filters for Responder Type Dimension to distinguish Responder Executions.
 	// If no values are passed, the metric for responder executions of all status are returned
-	ResponderExecutionStatusFilterQueryParam []RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum `contributesTo:"query" name:"responderExecutionStatusFilterQueryParam" omitEmpty:"true" collectionFormat:"multi"`
+	ResponderExecutionStatusFilter []RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum `contributesTo:"query" name:"responderExecutionStatusFilter" omitEmpty:"true" collectionFormat:"multi"`
 
 	// Default is false.
 	// When set to true, the hierarchy of compartments is traversed
@@ -118,53 +118,53 @@ func GetRequestSummarizedResponderExecutionsResponderExecutionsDimensionsEnumVal
 	return values
 }
 
-// RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum Enum with underlying type: string
-type RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum string
+// RequestSummarizedResponderExecutionsResponderTypeFilterEnum Enum with underlying type: string
+type RequestSummarizedResponderExecutionsResponderTypeFilterEnum string
 
-// Set of constants representing the allowable values for RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum
+// Set of constants representing the allowable values for RequestSummarizedResponderExecutionsResponderTypeFilterEnum
 const (
-	RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamRemediation  RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum = "REMEDIATION"
-	RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamNotification RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum = "NOTIFICATION"
+	RequestSummarizedResponderExecutionsResponderTypeFilterRemediation  RequestSummarizedResponderExecutionsResponderTypeFilterEnum = "REMEDIATION"
+	RequestSummarizedResponderExecutionsResponderTypeFilterNotification RequestSummarizedResponderExecutionsResponderTypeFilterEnum = "NOTIFICATION"
 )
 
-var mappingRequestSummarizedResponderExecutionsResponderTypeFilterQueryParam = map[string]RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum{
-	"REMEDIATION":  RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamRemediation,
-	"NOTIFICATION": RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamNotification,
+var mappingRequestSummarizedResponderExecutionsResponderTypeFilter = map[string]RequestSummarizedResponderExecutionsResponderTypeFilterEnum{
+	"REMEDIATION":  RequestSummarizedResponderExecutionsResponderTypeFilterRemediation,
+	"NOTIFICATION": RequestSummarizedResponderExecutionsResponderTypeFilterNotification,
 }
 
-// GetRequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnumValues Enumerates the set of values for RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum
-func GetRequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnumValues() []RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum {
-	values := make([]RequestSummarizedResponderExecutionsResponderTypeFilterQueryParamEnum, 0)
-	for _, v := range mappingRequestSummarizedResponderExecutionsResponderTypeFilterQueryParam {
+// GetRequestSummarizedResponderExecutionsResponderTypeFilterEnumValues Enumerates the set of values for RequestSummarizedResponderExecutionsResponderTypeFilterEnum
+func GetRequestSummarizedResponderExecutionsResponderTypeFilterEnumValues() []RequestSummarizedResponderExecutionsResponderTypeFilterEnum {
+	values := make([]RequestSummarizedResponderExecutionsResponderTypeFilterEnum, 0)
+	for _, v := range mappingRequestSummarizedResponderExecutionsResponderTypeFilter {
 		values = append(values, v)
 	}
 	return values
 }
 
-// RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum Enum with underlying type: string
-type RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum string
+// RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum Enum with underlying type: string
+type RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum string
 
-// Set of constants representing the allowable values for RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum
+// Set of constants representing the allowable values for RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum
 const (
-	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamStarted              RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum = "STARTED"
-	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamAwaitingConfirmation RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum = "AWAITING_CONFIRMATION"
-	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamSucceeded            RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum = "SUCCEEDED"
-	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamFailed               RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum = "FAILED"
-	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamSkipped              RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum = "SKIPPED"
+	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterStarted              RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum = "STARTED"
+	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterAwaitingConfirmation RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum = "AWAITING_CONFIRMATION"
+	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterSucceeded            RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum = "SUCCEEDED"
+	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterFailed               RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum = "FAILED"
+	RequestSummarizedResponderExecutionsResponderExecutionStatusFilterSkipped              RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum = "SKIPPED"
 )
 
-var mappingRequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParam = map[string]RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum{
-	"STARTED":               RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamStarted,
-	"AWAITING_CONFIRMATION": RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamAwaitingConfirmation,
-	"SUCCEEDED":             RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamSucceeded,
-	"FAILED":                RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamFailed,
-	"SKIPPED":               RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamSkipped,
+var mappingRequestSummarizedResponderExecutionsResponderExecutionStatusFilter = map[string]RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum{
+	"STARTED":               RequestSummarizedResponderExecutionsResponderExecutionStatusFilterStarted,
+	"AWAITING_CONFIRMATION": RequestSummarizedResponderExecutionsResponderExecutionStatusFilterAwaitingConfirmation,
+	"SUCCEEDED":             RequestSummarizedResponderExecutionsResponderExecutionStatusFilterSucceeded,
+	"FAILED":                RequestSummarizedResponderExecutionsResponderExecutionStatusFilterFailed,
+	"SKIPPED":               RequestSummarizedResponderExecutionsResponderExecutionStatusFilterSkipped,
 }
 
-// GetRequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnumValues Enumerates the set of values for RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum
-func GetRequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnumValues() []RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum {
-	values := make([]RequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParamEnum, 0)
-	for _, v := range mappingRequestSummarizedResponderExecutionsResponderExecutionStatusFilterQueryParam {
+// GetRequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnumValues Enumerates the set of values for RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum
+func GetRequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnumValues() []RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum {
+	values := make([]RequestSummarizedResponderExecutionsResponderExecutionStatusFilterEnum, 0)
+	for _, v := range mappingRequestSummarizedResponderExecutionsResponderExecutionStatusFilter {
 		values = append(values, v)
 	}
 	return values

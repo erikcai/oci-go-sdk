@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ProblemHistorySummary Problem History Defination.
+// ProblemHistorySummary Problem History Definition.
 type ProblemHistorySummary struct {
 
 	// Unique identifier for the history record
@@ -28,16 +28,16 @@ type ProblemHistorySummary struct {
 	// Resource Name who performed activity
 	ActorName *string `mandatory:"true" json:"actorName"`
 
-	// Acivity explanation details
+	// Activity explanation details
 	Explanation *string `mandatory:"true" json:"explanation"`
 
-	// Problem LifeCycle Detail Status
-	LifecycleDetail ProblemLifecycleStatesEnum `mandatory:"true" json:"lifecycleDetail"`
+	// Problem Lifecycle Detail Status
+	LifecycleDetail ProblemLifecycleDetailEnum `mandatory:"true" json:"lifecycleDetail"`
 
 	// Type of the Entity
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// Impacted Resource Names
+	// Impacted Resource Names in a comma-separated string.
 	Delta *string `mandatory:"true" json:"delta"`
 
 	// Event status

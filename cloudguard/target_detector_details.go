@@ -13,11 +13,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TargetDetectorDetails A single configuration applied on target that overrides a Detector rule
+// TargetDetectorDetails Overriden settings of a Detector Rule applied on target
 type TargetDetectorDetails struct {
-
-	// detector key
-	DetectorRuleId *string `mandatory:"true" json:"detectorRuleId"`
 
 	// Enables the control
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`

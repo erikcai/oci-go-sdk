@@ -37,14 +37,14 @@ type ResponderRecipe struct {
 	// The id of the source responder recipe.
 	SourceResponderRecipeId *string `mandatory:"false" json:"sourceResponderRecipeId"`
 
-	// The time the ResponderRecipe was created. An RFC3339 formatted datetime string
+	// The date and time the responder recipe was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the ResponderRecipe was updated. An RFC3339 formatted datetime string
+	// The date and time the responder recipe was updated. Format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// The current state of the Example.
-	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
@@ -56,6 +56,12 @@ type ResponderRecipe struct {
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// Example: `{"foo-namespace": {"bar-key": "value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// System tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// System tags can be viewed by users, but can only be created by the system.
+	// Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+	SystemTags map[string]map[string]interface{} `mandatory:"false" json:"systemTags"`
 }
 
 func (m ResponderRecipe) String() string {

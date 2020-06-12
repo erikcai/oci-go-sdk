@@ -22,11 +22,11 @@ type ResponderActivitySummary struct {
 	// problemId for which Responder activity is associated to.
 	ProblemId *string `mandatory:"true" json:"problemId"`
 
-	// responderRuleId for which responder rule is choosen for the problem
+	// Id of the responder rule for the problem
 	ResponderRuleId *string `mandatory:"true" json:"responderRuleId"`
 
 	// responder rule type for performing the operation
-	ResponderType ResponderTypesEnum `mandatory:"true" json:"responderType"`
+	ResponderType ResponderTypeEnum `mandatory:"true" json:"responderType"`
 
 	// responder rule name
 	ResponderRuleName *string `mandatory:"true" json:"responderRuleName"`

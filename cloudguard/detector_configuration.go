@@ -23,7 +23,13 @@ type DetectorConfiguration struct {
 	Name *string `mandatory:"true" json:"name"`
 
 	// configuration value
-	Value *string `mandatory:"true" json:"value"`
+	Value *string `mandatory:"false" json:"value"`
+
+	// configuration data type
+	DataType *string `mandatory:"false" json:"dataType"`
+
+	// multi list value list
+	Values []ConfigValue `mandatory:"false" json:"values"`
 }
 
 func (m DetectorConfiguration) String() string {

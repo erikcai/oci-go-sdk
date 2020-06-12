@@ -23,7 +23,7 @@ type Detector struct {
 	Description *string `mandatory:"true" json:"description"`
 
 	// The current state of the resource.
-	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 }
 
 func (m Detector) String() string {

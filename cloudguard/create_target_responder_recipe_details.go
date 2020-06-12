@@ -18,12 +18,6 @@ type CreateTargetResponderRecipeDetails struct {
 
 	// ResponderRecipe Identifier
 	ResponderRecipeId *string `mandatory:"true" json:"responderRecipeId"`
-
-	// Compartment Identifier
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
-
-	// Responder Rule associated with the target.
-	ResponderRules []TargetResponderRecipeResponderRule `mandatory:"false" json:"responderRules"`
 }
 
 func (m CreateTargetResponderRecipeDetails) String() string {

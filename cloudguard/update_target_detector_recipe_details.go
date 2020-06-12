@@ -17,7 +17,7 @@ import (
 type UpdateTargetDetectorRecipeDetails struct {
 
 	// Overrides to be applied to Detector Rule associated with the target
-	DetectorRules []TargetDetectorRecipeDetectorRule `mandatory:"true" json:"detectorRules"`
+	DetectorRules []UpdateTargetRecipeDetectorRuleDetails `mandatory:"true" json:"detectorRules"`
 }
 
 func (m UpdateTargetDetectorRecipeDetails) String() string {

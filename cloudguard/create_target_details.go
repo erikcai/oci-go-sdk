@@ -38,7 +38,7 @@ type CreateTargetDetails struct {
 	ResponderRecipes []string `mandatory:"false" json:"responderRecipes"`
 
 	// The current state of the DetectorRule.
-	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

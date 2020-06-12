@@ -6404,6 +6404,50 @@ func TestDatabaseClientMigrateExadataDbSystemResourceModel(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientMigrateVaultKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "MigrateVaultKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("MigrateVaultKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "MigrateVaultKey", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "MigrateVaultKey")
+	assert.NoError(t, err)
+
+	type MigrateVaultKeyRequestInfo struct {
+		ContainerId string
+		Request     database.MigrateVaultKeyRequest
+	}
+
+	var requests []MigrateVaultKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.MigrateVaultKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientMoveDatabase(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6756,6 +6800,50 @@ func TestDatabaseClientRestoreDatabase(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientRotateVaultKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "RotateVaultKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RotateVaultKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "RotateVaultKey", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "RotateVaultKey")
+	assert.NoError(t, err)
+
+	type RotateVaultKeyRequestInfo struct {
+		ContainerId string
+		Request     database.RotateVaultKeyRequest
+	}
+
+	var requests []RotateVaultKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RotateVaultKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientStartAutonomousDataWarehouse(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -6924,6 +7012,50 @@ func TestDatabaseClientStopAutonomousDatabase(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.StopAutonomousDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientSwitchoverAutonomousDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "SwitchoverAutonomousDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("SwitchoverAutonomousDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "SwitchoverAutonomousDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "SwitchoverAutonomousDatabase")
+	assert.NoError(t, err)
+
+	type SwitchoverAutonomousDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.SwitchoverAutonomousDatabaseRequest
+	}
+
+	var requests []SwitchoverAutonomousDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.SwitchoverAutonomousDatabase(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

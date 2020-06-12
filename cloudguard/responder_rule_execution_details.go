@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ResponderRuleExecutionDetails Details of ResponderRuleExecution.
+// ResponderRuleExecutionDetails Details of ResponderRuleExecution. A Responder Rule Execution is the entity that captures the execution of a Responder Rule for a given Problem.
 type ResponderRuleExecutionDetails struct {
 	Condition Condition `mandatory:"false" json:"condition"`
 

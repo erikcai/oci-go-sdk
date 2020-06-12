@@ -29,7 +29,7 @@ type ResponderRecipeResponderRule struct {
 	Description *string `mandatory:"false" json:"description"`
 
 	// Type of Responder
-	Type ResponderTypesEnum `mandatory:"false" json:"type,omitempty"`
+	Type ResponderTypeEnum `mandatory:"false" json:"type,omitempty"`
 
 	// List of Policy
 	Policies []string `mandatory:"false" json:"policies"`
@@ -39,14 +39,14 @@ type ResponderRecipeResponderRule struct {
 
 	Details *ResponderRuleDetails `mandatory:"false" json:"details"`
 
-	// The time the ResponderRule was created. An RFC3339 formatted datetime string
+	// The date and time the responder recipe rule was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the ResponderRule was updated. An RFC3339 formatted datetime string
+	// The date and time the responder recipe rule was updated. Format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// The current state of the ResponderRule.
-	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`

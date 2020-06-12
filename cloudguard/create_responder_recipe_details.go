@@ -28,18 +28,6 @@ type CreateResponderRecipeDetails struct {
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The time the ResponderRecipe was created. An RFC3339 formatted datetime string
-	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
-
-	// The time the ResponderRecipe was updated. An RFC3339 formatted datetime string
-	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
-
-	// The current state of the Example.
-	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
-
-	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
-	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
-
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`

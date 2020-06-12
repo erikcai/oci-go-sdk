@@ -16,16 +16,16 @@ type ListProblemsRequest struct {
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// Start time for a filter
-	TimeLastDetectedGreaterThanOrEqualToQueryParam *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeLastDetectedGreaterThanOrEqualToQueryParam"`
+	TimeLastDetectedGreaterThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeLastDetectedGreaterThanOrEqualTo"`
 
 	// End time for a filter
-	TimeLastDetectedLessThanOrEqualToQueryParam *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeLastDetectedLessThanOrEqualToQueryParam"`
+	TimeLastDetectedLessThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeLastDetectedLessThanOrEqualTo"`
 
 	// Start time for a filter
-	TimeFirstDetectedGreaterThanOrEqualToQueryParam *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeFirstDetectedGreaterThanOrEqualToQueryParam"`
+	TimeFirstDetectedGreaterThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeFirstDetectedGreaterThanOrEqualTo"`
 
 	// End time for a filter
-	TimeFirstDetectedLessThanOrEqualToQueryParam *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeFirstDetectedLessThanOrEqualToQueryParam"`
+	TimeFirstDetectedLessThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeFirstDetectedLessThanOrEqualTo"`
 
 	// The field life cycle state. Only one state can be provided. Default order for state is active. If no value is specified state is active.
 	LifecycleDetail ListProblemsLifecycleDetailEnum `mandatory:"false" contributesTo:"query" name:"lifecycleDetail" omitEmpty:"true"`
@@ -41,6 +41,15 @@ type ListProblemsRequest struct {
 
 	// Resource Type associated with the resource.
 	ResourceType *string `mandatory:"false" contributesTo:"query" name:"resourceType"`
+
+	// City of the problem.
+	City *string `mandatory:"false" contributesTo:"query" name:"city"`
+
+	// State of the problem.
+	State *string `mandatory:"false" contributesTo:"query" name:"state"`
+
+	// Country of the problem.
+	Country *string `mandatory:"false" contributesTo:"query" name:"country"`
 
 	// Label associated with the Problem.
 	Label *string `mandatory:"false" contributesTo:"query" name:"label"`
@@ -110,8 +119,8 @@ type ListProblemsResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []ProblemSummary instances
-	Items []ProblemSummary `presentIn:"body"`
+	// A list of ProblemCollection instances
+	ProblemCollection `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.

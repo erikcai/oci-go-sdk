@@ -21,9 +21,9 @@ import (
 type UpdateLaunchOptions struct {
 
 	// Emulation type for volume.
-	// * `ISCSI` - ISCSI attached block storage device. This is the default for Boot Volumes and Remote Block
+	// * `ISCSI` - ISCSI attached block storage device.
+	// * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for Boot Volumes and Remote Block
 	// Storage volumes on Oracle provided images.
-	// * `PARAVIRTUALIZED` - Paravirtualized disk.
 	BootVolumeType UpdateLaunchOptionsBootVolumeTypeEnum `mandatory:"false" json:"bootVolumeType,omitempty"`
 
 	// Emulation type for the physical network interface card (NIC).

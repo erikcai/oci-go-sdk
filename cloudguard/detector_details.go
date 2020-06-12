@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DetectorDetails A single configuration applied on target that overrides a Detector rule
+// DetectorDetails Details of a Detector Rule
 type DetectorDetails struct {
 
 	// detector key

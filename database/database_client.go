@@ -6688,6 +6688,58 @@ func (client DatabaseClient) migrateExadataDbSystemResourceModel(ctx context.Con
 	return response, err
 }
 
+// MigrateVaultKey Changes encryption key management from customer-managed, using the Vault service (https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm), to Oracle-managed.
+func (client DatabaseClient) MigrateVaultKey(ctx context.Context, request MigrateVaultKeyRequest) (response MigrateVaultKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.migrateVaultKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = MigrateVaultKeyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = MigrateVaultKeyResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(MigrateVaultKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into MigrateVaultKeyResponse")
+	}
+	return
+}
+
+// migrateVaultKey implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) migrateVaultKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/databases/{databaseId}/actions/migrateKey")
+	if err != nil {
+		return nil, err
+	}
+
+	var response MigrateVaultKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // MoveDatabase Moves the specified database from current DB Home to target (new) DB Home.
 func (client DatabaseClient) MoveDatabase(ctx context.Context, request MoveDatabaseRequest) (response MoveDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -7069,6 +7121,58 @@ func (client DatabaseClient) restoreDatabase(ctx context.Context, request common
 	return response, err
 }
 
+// RotateVaultKey Creates a new version of an existing Vault service (https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
+func (client DatabaseClient) RotateVaultKey(ctx context.Context, request RotateVaultKeyRequest) (response RotateVaultKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.rotateVaultKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RotateVaultKeyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RotateVaultKeyResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RotateVaultKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RotateVaultKeyResponse")
+	}
+	return
+}
+
+// rotateVaultKey implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) rotateVaultKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/databases/{databaseId}/actions/rotateKey")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RotateVaultKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // StartAutonomousDataWarehouse **Deprecated.** To start an Autonomous Data Warehouse, use the StartAutonomousDatabase operation.
 func (client DatabaseClient) StartAutonomousDataWarehouse(ctx context.Context, request StartAutonomousDataWarehouseRequest) (response StartAutonomousDataWarehouseResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -7245,6 +7349,58 @@ func (client DatabaseClient) stopAutonomousDatabase(ctx context.Context, request
 	}
 
 	var response StopAutonomousDatabaseResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// SwitchoverAutonomousDatabase Initiates a switchover of the specified Autonomous Database to the associated standby database. Applicable only to databases with Autonomous Data Guard enabled.
+func (client DatabaseClient) SwitchoverAutonomousDatabase(ctx context.Context, request SwitchoverAutonomousDatabaseRequest) (response SwitchoverAutonomousDatabaseResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.switchoverAutonomousDatabase, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = SwitchoverAutonomousDatabaseResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = SwitchoverAutonomousDatabaseResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(SwitchoverAutonomousDatabaseResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into SwitchoverAutonomousDatabaseResponse")
+	}
+	return
+}
+
+// switchoverAutonomousDatabase implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) switchoverAutonomousDatabase(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousDatabases/{autonomousDatabaseId}/actions/switchover")
+	if err != nil {
+		return nil, err
+	}
+
+	var response SwitchoverAutonomousDatabaseResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

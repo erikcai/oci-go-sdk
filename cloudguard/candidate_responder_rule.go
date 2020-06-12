@@ -16,7 +16,7 @@ import (
 // CandidateResponderRule Candidate Responder Rule list in Detector rule
 type CandidateResponderRule struct {
 
-	// The Unique identifier of the Responder rule
+	// The unique identifier of the Responder rule
 	Id *string `mandatory:"false" json:"id"`
 
 	// Preferred state

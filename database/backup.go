@@ -66,6 +66,9 @@ type Backup struct {
 
 	// Version of the backup's source database
 	Version *string `mandatory:"false" json:"version"`
+
+	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 }
 
 func (m Backup) String() string {

@@ -17,10 +17,10 @@ import (
 type UpdateConfigurationDetails struct {
 
 	// The reporting region value
-	ReportingRegion *string `mandatory:"false" json:"reportingRegion"`
+	ReportingRegion *string `mandatory:"true" json:"reportingRegion"`
 
 	// Status of Cloud Guard Tenant
-	Status CloudGuardStatusEnum `mandatory:"false" json:"status,omitempty"`
+	Status CloudGuardStatusEnum `mandatory:"true" json:"status"`
 }
 
 func (m UpdateConfigurationDetails) String() string {

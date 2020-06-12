@@ -32,10 +32,10 @@ type RecommendationSummary struct {
 	ProblemCount *int64 `mandatory:"true" json:"problemCount"`
 
 	// The current state of the Recommendation.
-	LifecycleState LifecycleStatesEnum `mandatory:"true" json:"lifecycleState"`
+	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The lifecycleDetail will give more detail on the substate of the lifecycleState.
-	LifecycleDetail LifecycleDetailsEnum `mandatory:"true" json:"lifecycleDetail"`
+	LifecycleDetail RecommendationLifecycleDetailEnum `mandatory:"true" json:"lifecycleDetail"`
 
 	// recommendation string showing on UX
 	Name *string `mandatory:"true" json:"name"`

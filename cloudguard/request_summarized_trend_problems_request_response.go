@@ -16,10 +16,10 @@ type RequestSummarizedTrendProblemsRequest struct {
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// Start time for a filter
-	TimeFirstDetectedGreaterThanOrEqualToQueryParam *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeFirstDetectedGreaterThanOrEqualToQueryParam"`
+	TimeFirstDetectedGreaterThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeFirstDetectedGreaterThanOrEqualTo"`
 
 	// End time for a filter
-	TimeFirstDetectedLessThanOrEqualToQueryParam *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeFirstDetectedLessThanOrEqualToQueryParam"`
+	TimeFirstDetectedLessThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeFirstDetectedLessThanOrEqualTo"`
 
 	// Default is false.
 	// When set to true, the hierarchy of compartments is traversed

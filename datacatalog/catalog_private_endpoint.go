@@ -49,6 +49,9 @@ type CatalogPrivateEndpoint struct {
 	// The current state of the private endpoint resource.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
+	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in 'Failed' state.
+	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
+
 	// The list of catalogs using the private reverse connection endpoint
 	AttachedCatalogs []string `mandatory:"false" json:"attachedCatalogs"`
 }

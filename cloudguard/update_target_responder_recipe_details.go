@@ -16,8 +16,8 @@ import (
 // UpdateTargetResponderRecipeDetails The information to be updated in ResponderRecipe.
 type UpdateTargetResponderRecipeDetails struct {
 
-	// Update ResponderRecipe associated with target.
-	ResponderRules []TargetResponderRecipeResponderRule `mandatory:"true" json:"responderRules"`
+	// Update responder rules associated with reponder recipe in a target.
+	ResponderRules []UpdateTargetRecipeResponderRuleDetails `mandatory:"true" json:"responderRules"`
 }
 
 func (m UpdateTargetResponderRecipeDetails) String() string {

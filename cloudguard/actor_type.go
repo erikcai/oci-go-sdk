@@ -16,12 +16,14 @@ type ActorTypeEnum string
 const (
 	ActorTypeCloudGuardService ActorTypeEnum = "CLOUD_GUARD_SERVICE"
 	ActorTypeCorrelation       ActorTypeEnum = "CORRELATION"
+	ActorTypeResponder         ActorTypeEnum = "RESPONDER"
 	ActorTypeUser              ActorTypeEnum = "USER"
 )
 
 var mappingActorType = map[string]ActorTypeEnum{
 	"CLOUD_GUARD_SERVICE": ActorTypeCloudGuardService,
 	"CORRELATION":         ActorTypeCorrelation,
+	"RESPONDER":           ActorTypeResponder,
 	"USER":                ActorTypeUser,
 }
 

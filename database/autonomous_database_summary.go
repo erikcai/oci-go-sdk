@@ -153,9 +153,6 @@ type AutonomousDatabaseSummary struct {
 	// Indicates whether the Autonomous Database is a refreshable clone.
 	IsRefreshableClone *bool `mandatory:"false" json:"isRefreshableClone"`
 
-	// The refresh interval determines how frequently data is refreshed in the clone. Minimum 1 hour. Maximum 7 days.
-	RefreshIntervalInSeconds *int `mandatory:"false" json:"refreshIntervalInSeconds"`
-
 	// The date and time when last refresh happened.
 	TimeOfLastRefresh *common.SDKTime `mandatory:"false" json:"timeOfLastRefresh"`
 
@@ -177,11 +174,11 @@ type AutonomousDatabaseSummary struct {
 	// The Autonomous Database permission level. Restricted mode allows access only to admin users.
 	PermissionLevel AutonomousDatabaseSummaryPermissionLevelEnum `mandatory:"false" json:"permissionLevel,omitempty"`
 
-	// Indicates if the database is in original infrastructure or failover infrastructure.
-	IsFailedOver *bool `mandatory:"false" json:"isFailedOver"`
+	// The timestamp of the last switchover operation for the Autonomous Database.
+	TimeOfLastSwitchover *common.SDKTime `mandatory:"false" json:"timeOfLastSwitchover"`
 
-	// Indicates if the Autonomous Database can be manually failed over.
-	IsFailoverEnabled *bool `mandatory:"false" json:"isFailoverEnabled"`
+	// The timestamp of the last failover operation.
+	TimeOfLastFailover *common.SDKTime `mandatory:"false" json:"timeOfLastFailover"`
 
 	// Indicates whether the Autonomous Database has Data Guard enabled.
 	IsDataGuardEnabled *bool `mandatory:"false" json:"isDataGuardEnabled"`
@@ -221,6 +218,7 @@ const (
 	AutonomousDatabaseSummaryLifecycleStateMaintenanceInProgress   AutonomousDatabaseSummaryLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 	AutonomousDatabaseSummaryLifecycleStateRestarting              AutonomousDatabaseSummaryLifecycleStateEnum = "RESTARTING"
 	AutonomousDatabaseSummaryLifecycleStateRecreating              AutonomousDatabaseSummaryLifecycleStateEnum = "RECREATING"
+	AutonomousDatabaseSummaryLifecycleStateRoleChangeInProgress    AutonomousDatabaseSummaryLifecycleStateEnum = "ROLE_CHANGE_IN_PROGRESS"
 	AutonomousDatabaseSummaryLifecycleStateUpgrading               AutonomousDatabaseSummaryLifecycleStateEnum = "UPGRADING"
 )
 
@@ -242,6 +240,7 @@ var mappingAutonomousDatabaseSummaryLifecycleState = map[string]AutonomousDataba
 	"MAINTENANCE_IN_PROGRESS":   AutonomousDatabaseSummaryLifecycleStateMaintenanceInProgress,
 	"RESTARTING":                AutonomousDatabaseSummaryLifecycleStateRestarting,
 	"RECREATING":                AutonomousDatabaseSummaryLifecycleStateRecreating,
+	"ROLE_CHANGE_IN_PROGRESS":   AutonomousDatabaseSummaryLifecycleStateRoleChangeInProgress,
 	"UPGRADING":                 AutonomousDatabaseSummaryLifecycleStateUpgrading,
 }
 

@@ -1485,6 +1485,50 @@ func TestCloudguardCloudGuardClientGetTargetResponderRecipeResponderRule(t *test
 }
 
 // IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
+func TestCloudguardCloudGuardClientGetUserPreference(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("cloudguard", "GetUserPreference")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetUserPreference is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("cloudguard", "CloudGuard", "GetUserPreference", createCloudguardCloudGuardClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(cloudguard.CloudGuardClient)
+
+	body, err := testClient.getRequests("cloudguard", "GetUserPreference")
+	assert.NoError(t, err)
+
+	type GetUserPreferenceRequestInfo struct {
+		ContainerId string
+		Request     cloudguard.GetUserPreferenceRequest
+	}
+
+	var requests []GetUserPreferenceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetUserPreference(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
 func TestCloudguardCloudGuardClientListConditionMetadataTypes(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2673,6 +2717,104 @@ func TestCloudguardCloudGuardClientListTargets(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
+func TestCloudguardCloudGuardClientReplaceUserPreference(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("cloudguard", "ReplaceUserPreference")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ReplaceUserPreference is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("cloudguard", "CloudGuard", "ReplaceUserPreference", createCloudguardCloudGuardClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(cloudguard.CloudGuardClient)
+
+	body, err := testClient.getRequests("cloudguard", "ReplaceUserPreference")
+	assert.NoError(t, err)
+
+	type ReplaceUserPreferenceRequestInfo struct {
+		ContainerId string
+		Request     cloudguard.ReplaceUserPreferenceRequest
+	}
+
+	var requests []ReplaceUserPreferenceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ReplaceUserPreference(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
+func TestCloudguardCloudGuardClientRequestSummarizedActivityProblems(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("cloudguard", "RequestSummarizedActivityProblems")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RequestSummarizedActivityProblems is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("cloudguard", "CloudGuard", "RequestSummarizedActivityProblems", createCloudguardCloudGuardClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(cloudguard.CloudGuardClient)
+
+	body, err := testClient.getRequests("cloudguard", "RequestSummarizedActivityProblems")
+	assert.NoError(t, err)
+
+	type RequestSummarizedActivityProblemsRequestInfo struct {
+		ContainerId string
+		Request     cloudguard.RequestSummarizedActivityProblemsRequest
+	}
+
+	var requests []RequestSummarizedActivityProblemsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*cloudguard.RequestSummarizedActivityProblemsRequest)
+				return c.RequestSummarizedActivityProblems(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]cloudguard.RequestSummarizedActivityProblemsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(cloudguard.RequestSummarizedActivityProblemsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
 func TestCloudguardCloudGuardClientRequestSummarizedProblems(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2771,6 +2913,114 @@ func TestCloudguardCloudGuardClientRequestSummarizedResponderExecutions(t *testi
 			typedListResponses := make([]cloudguard.RequestSummarizedResponderExecutionsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(cloudguard.RequestSummarizedResponderExecutionsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
+func TestCloudguardCloudGuardClientRequestSummarizedRiskScores(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("cloudguard", "RequestSummarizedRiskScores")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RequestSummarizedRiskScores is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("cloudguard", "CloudGuard", "RequestSummarizedRiskScores", createCloudguardCloudGuardClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(cloudguard.CloudGuardClient)
+
+	body, err := testClient.getRequests("cloudguard", "RequestSummarizedRiskScores")
+	assert.NoError(t, err)
+
+	type RequestSummarizedRiskScoresRequestInfo struct {
+		ContainerId string
+		Request     cloudguard.RequestSummarizedRiskScoresRequest
+	}
+
+	var requests []RequestSummarizedRiskScoresRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*cloudguard.RequestSummarizedRiskScoresRequest)
+				return c.RequestSummarizedRiskScores(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]cloudguard.RequestSummarizedRiskScoresResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(cloudguard.RequestSummarizedRiskScoresResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
+func TestCloudguardCloudGuardClientRequestSummarizedSecurityScores(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("cloudguard", "RequestSummarizedSecurityScores")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RequestSummarizedSecurityScores is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("cloudguard", "CloudGuard", "RequestSummarizedSecurityScores", createCloudguardCloudGuardClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(cloudguard.CloudGuardClient)
+
+	body, err := testClient.getRequests("cloudguard", "RequestSummarizedSecurityScores")
+	assert.NoError(t, err)
+
+	type RequestSummarizedSecurityScoresRequestInfo struct {
+		ContainerId string
+		Request     cloudguard.RequestSummarizedSecurityScoresRequest
+	}
+
+	var requests []RequestSummarizedSecurityScoresRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*cloudguard.RequestSummarizedSecurityScoresRequest)
+				return c.RequestSummarizedSecurityScores(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]cloudguard.RequestSummarizedSecurityScoresResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(cloudguard.RequestSummarizedSecurityScoresResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -2882,6 +3132,104 @@ func TestCloudguardCloudGuardClientRequestSummarizedTrendResponderExecutions(t *
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
+func TestCloudguardCloudGuardClientRequestSummarizedTrendSecurityScores(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("cloudguard", "RequestSummarizedTrendSecurityScores")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RequestSummarizedTrendSecurityScores is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("cloudguard", "CloudGuard", "RequestSummarizedTrendSecurityScores", createCloudguardCloudGuardClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(cloudguard.CloudGuardClient)
+
+	body, err := testClient.getRequests("cloudguard", "RequestSummarizedTrendSecurityScores")
+	assert.NoError(t, err)
+
+	type RequestSummarizedTrendSecurityScoresRequestInfo struct {
+		ContainerId string
+		Request     cloudguard.RequestSummarizedTrendSecurityScoresRequest
+	}
+
+	var requests []RequestSummarizedTrendSecurityScoresRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*cloudguard.RequestSummarizedTrendSecurityScoresRequest)
+				return c.RequestSummarizedTrendSecurityScores(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]cloudguard.RequestSummarizedTrendSecurityScoresResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(cloudguard.RequestSummarizedTrendSecurityScoresResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
+func TestCloudguardCloudGuardClientSkipBulkResponderExecution(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("cloudguard", "SkipBulkResponderExecution")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("SkipBulkResponderExecution is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("cloudguard", "CloudGuard", "SkipBulkResponderExecution", createCloudguardCloudGuardClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(cloudguard.CloudGuardClient)
+
+	body, err := testClient.getRequests("cloudguard", "SkipBulkResponderExecution")
+	assert.NoError(t, err)
+
+	type SkipBulkResponderExecutionRequestInfo struct {
+		ContainerId string
+		Request     cloudguard.SkipBulkResponderExecutionRequest
+	}
+
+	var requests []SkipBulkResponderExecutionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.SkipBulkResponderExecution(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

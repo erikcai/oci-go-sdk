@@ -20,7 +20,7 @@ type UpdateTargetDetails struct {
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The current state of the Target.
-	LifecycleState LifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

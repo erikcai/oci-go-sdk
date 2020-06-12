@@ -16,14 +16,14 @@ import (
 // ResponderExecution Responder Execution Object.
 type ResponderExecution struct {
 
-	// The Unique identifier of the responder execution
+	// The unique identifier of the responder execution
 	Id *string `mandatory:"true" json:"id"`
 
 	// Responder Rule id for the responder execution
 	ResponderRuleId *string `mandatory:"true" json:"responderRuleId"`
 
 	// Rule Type for the responder execution
-	ResponderRuleType *string `mandatory:"true" json:"responderRuleType"`
+	ResponderRuleType ResponderTypeEnum `mandatory:"true" json:"responderRuleType"`
 
 	// Rule name for the responder execution
 	ResponderRuleName *string `mandatory:"true" json:"responderRuleName"`
@@ -37,28 +37,25 @@ type ResponderExecution struct {
 	// targetId of the problem for the responder execution
 	TargetId *string `mandatory:"true" json:"targetId"`
 
-	// tenant id of the problem for the responder execution
-	TenantId *string `mandatory:"true" json:"tenantId"`
-
-	// compartment id of the problem for the responder execution
+	// compartment id of the responder execution for the problem
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// resource type of the problem for the responder execution
 	ResourceType *string `mandatory:"true" json:"resourceType"`
 
-	// resource name of the problem for the responder execution
+	// resource name of the problem for the responder execution. TODO-DOC link to resource definition doc
 	ResourceName *string `mandatory:"true" json:"resourceName"`
 
-	// The time at which responder execution was created. An RFC3339 formatted datetime string
+	// The date and time the responder execution was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// possible type of responder execution states
+	// current execution status of the responder
 	ResponderExecutionStatus ResponderExecutionStatesEnum `mandatory:"true" json:"responderExecutionStatus"`
 
-	// possible type of responder execution modes
+	// execution mode of the responder
 	ResponderExecutionMode ResponderExecutionModesEnum `mandatory:"true" json:"responderExecutionMode"`
 
-	// The time at which responder execution was updated. An RFC3339 formatted datetime string
+	// The date and time the responder execution was updated. Format defined by RFC3339.
 	TimeCompleted *common.SDKTime `mandatory:"false" json:"timeCompleted"`
 
 	// Message about the responder execution.

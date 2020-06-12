@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Problem Problem Defination.
+// Problem Problem Definition.
 type Problem struct {
 
 	// Unique identifier that is immutable on creation
@@ -25,13 +25,16 @@ type Problem struct {
 	// Identifier of the rule
 	DetectorRuleId *string `mandatory:"false" json:"detectorRuleId"`
 
+	// Region where the problem is found
+	Region *string `mandatory:"false" json:"region"`
+
 	// The Risk Level
 	RiskLevel RiskLevelEnum `mandatory:"false" json:"riskLevel,omitempty"`
 
 	// Identifier of the Resource
 	ResourceId *string `mandatory:"false" json:"resourceId"`
 
-	// DisplayName of the Identifier
+	// DisplayName of the Resource
 	ResourceName *string `mandatory:"false" json:"resourceName"`
 
 	// Type of the Resource
@@ -40,23 +43,26 @@ type Problem struct {
 	// user defined labels on the problem
 	Labels []string `mandatory:"false" json:"labels"`
 
-	// The time the Problem was last detected. An RFC3339 formatted datetime string
+	// The date and time the problem was last detected. Format defined by RFC3339.
 	TimeLastDetected *common.SDKTime `mandatory:"false" json:"timeLastDetected"`
 
-	// The time the Problem was last detected. An RFC3339 formatted datetime string
+	// The date and time the problem was first detected. Format defined by RFC3339.
 	TimeFirstDetected *common.SDKTime `mandatory:"false" json:"timeFirstDetected"`
 
 	// The current state of the Problem.
-	LifecycleState ProblemLifecycleStatesEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState ProblemLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	// The lifecycleDetail will give more detail on the substate of the lifecycleState.
-	LifecycleDetail ProblemLifecycleDetailsEnum `mandatory:"false" json:"lifecycleDetail,omitempty"`
+	LifecycleDetail ProblemLifecycleDetailEnum `mandatory:"false" json:"lifecycleDetail,omitempty"`
 
-	// possible type of detectors(activity/configuration/ERPCloud) associated with the Problem.
+	// Id of the detector associated with the Problem.
 	DetectorId DetectorEnumEnum `mandatory:"false" json:"detectorId,omitempty"`
 
 	// targetId of the problem
 	TargetId *string `mandatory:"false" json:"targetId"`
+
+	// User Comments
+	Comment *string `mandatory:"false" json:"comment"`
 }
 
 func (m Problem) String() string {

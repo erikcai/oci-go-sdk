@@ -34,10 +34,10 @@ type TargetResponderRecipe struct {
 	// Owner of ResponderRecipe
 	Owner OwnerTypeEnum `mandatory:"true" json:"owner"`
 
-	// The time the TargetResponderRecipe was created. An RFC3339 formatted datetime string
+	// The date and time the target responder recipe rule was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// The time the TargetResponderRecipe was updated. An RFC3339 formatted datetime string
+	// The date and time the target responder recipe rule was updated. Format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// List of responder rules associated with the recipe

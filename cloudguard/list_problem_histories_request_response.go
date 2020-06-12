@@ -58,8 +58,8 @@ type ListProblemHistoriesResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []ProblemHistorySummary instances
-	Items []ProblemHistorySummary `presentIn:"body"`
+	// A list of ProblemHistoryCollection instances
+	ProblemHistoryCollection `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.

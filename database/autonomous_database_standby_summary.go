@@ -21,6 +21,9 @@ type AutonomousDatabaseStandbySummary struct {
 
 	// The current state of the Autonomous Database.
 	LifecycleState AutonomousDatabaseStandbySummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+
+	// Additional information about the current lifecycle state.
+	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 }
 
 func (m AutonomousDatabaseStandbySummary) String() string {
@@ -49,6 +52,7 @@ const (
 	AutonomousDatabaseStandbySummaryLifecycleStateMaintenanceInProgress   AutonomousDatabaseStandbySummaryLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 	AutonomousDatabaseStandbySummaryLifecycleStateRestarting              AutonomousDatabaseStandbySummaryLifecycleStateEnum = "RESTARTING"
 	AutonomousDatabaseStandbySummaryLifecycleStateRecreating              AutonomousDatabaseStandbySummaryLifecycleStateEnum = "RECREATING"
+	AutonomousDatabaseStandbySummaryLifecycleStateRoleChangeInProgress    AutonomousDatabaseStandbySummaryLifecycleStateEnum = "ROLE_CHANGE_IN_PROGRESS"
 	AutonomousDatabaseStandbySummaryLifecycleStateUpgrading               AutonomousDatabaseStandbySummaryLifecycleStateEnum = "UPGRADING"
 )
 
@@ -70,6 +74,7 @@ var mappingAutonomousDatabaseStandbySummaryLifecycleState = map[string]Autonomou
 	"MAINTENANCE_IN_PROGRESS":   AutonomousDatabaseStandbySummaryLifecycleStateMaintenanceInProgress,
 	"RESTARTING":                AutonomousDatabaseStandbySummaryLifecycleStateRestarting,
 	"RECREATING":                AutonomousDatabaseStandbySummaryLifecycleStateRecreating,
+	"ROLE_CHANGE_IN_PROGRESS":   AutonomousDatabaseStandbySummaryLifecycleStateRoleChangeInProgress,
 	"UPGRADING":                 AutonomousDatabaseStandbySummaryLifecycleStateUpgrading,
 }
 

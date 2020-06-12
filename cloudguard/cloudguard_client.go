@@ -1686,6 +1686,53 @@ func (client CloudGuardClient) getTargetResponderRecipeResponderRule(ctx context
 	return response, err
 }
 
+// GetUserPreference Returns the preference of the user
+func (client CloudGuardClient) GetUserPreference(ctx context.Context, request GetUserPreferenceRequest) (response GetUserPreferenceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getUserPreference, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetUserPreferenceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetUserPreferenceResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetUserPreferenceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetUserPreferenceResponse")
+	}
+	return
+}
+
+// getUserPreference implements the OCIOperation interface (enables retrying operations)
+func (client CloudGuardClient) getUserPreference(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/userPreferences/{principalId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetUserPreferenceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListConditionMetadataTypes Returns a list of condition types.
 func (client CloudGuardClient) ListConditionMetadataTypes(ctx context.Context, request ListConditionMetadataTypesRequest) (response ListConditionMetadataTypesResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2113,7 +2160,7 @@ func (client CloudGuardClient) ListProblemHistories(ctx context.Context, request
 
 // listProblemHistories implements the OCIOperation interface (enables retrying operations)
 func (client CloudGuardClient) listProblemHistories(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/problems/{problemId}/problemHistory")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/problems/{problemId}/histories")
 	if err != nil {
 		return nil, err
 	}
@@ -2330,7 +2377,7 @@ func (client CloudGuardClient) listResponderActivities(ctx context.Context, requ
 	return response, err
 }
 
-// ListResponderExecutions Returns a list of Responder Executions.
+// ListResponderExecutions Returns a list of Responder Executions. A Responder Execution is an entity that tracks the collective execution of multiple Responder Rule Executions for a given Problem.
 func (client CloudGuardClient) ListResponderExecutions(ctx context.Context, request ListResponderExecutionsRequest) (response ListResponderExecutionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2775,6 +2822,116 @@ func (client CloudGuardClient) listTargets(ctx context.Context, request common.O
 	return response, err
 }
 
+// ReplaceUserPreference Create or Update the user preference
+func (client CloudGuardClient) ReplaceUserPreference(ctx context.Context, request ReplaceUserPreferenceRequest) (response ReplaceUserPreferenceResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.replaceUserPreference, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ReplaceUserPreferenceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ReplaceUserPreferenceResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ReplaceUserPreferenceResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ReplaceUserPreferenceResponse")
+	}
+	return
+}
+
+// replaceUserPreference implements the OCIOperation interface (enables retrying operations)
+func (client CloudGuardClient) replaceUserPreference(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/userPreferences/{principalId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ReplaceUserPreferenceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RequestSummarizedActivityProblems Returns the summary of Activity type problems identified by cloud guard, for a given set of dimensions.
+// The parameter `accessLevel` specifies whether to return only those compartments for which the
+// requestor has INSPECT permissions on at least one resource directly
+// or indirectly (ACCESSIBLE) (the resource can be in a subcompartment) or to return Not Authorized if
+// Principal doesn't have access to even one of the child compartments. This is valid only when
+// `compartmentIdInSubtree` is set to `true`.
+// The parameter `compartmentIdInSubtree` applies when you perform summarize API on the
+// `compartmentId` passed and when it is set to true, the entire hierarchy of compartments can be returned.
+// To get a full list of all compartments and subcompartments in the tenancy (root compartment),
+// set the parameter `compartmentIdInSubtree` to true and `accessLevel` to ACCESSIBLE.
+// The compartmentId to be passed with `accessLevel` and `compartmentIdInSubtree` params has to be the root
+// compartment id (tenant-id) only.
+func (client CloudGuardClient) RequestSummarizedActivityProblems(ctx context.Context, request RequestSummarizedActivityProblemsRequest) (response RequestSummarizedActivityProblemsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.requestSummarizedActivityProblems, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RequestSummarizedActivityProblemsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RequestSummarizedActivityProblemsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RequestSummarizedActivityProblemsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RequestSummarizedActivityProblemsResponse")
+	}
+	return
+}
+
+// requestSummarizedActivityProblems implements the OCIOperation interface (enables retrying operations)
+func (client CloudGuardClient) requestSummarizedActivityProblems(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/problems/actions/summarizeActivityProblems")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RequestSummarizedActivityProblemsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // RequestSummarizedProblems Returns the number of problems identified by cloud guard, for a given set of dimensions.
 // The parameter `accessLevel` specifies whether to return only those compartments for which the
 // requestor has INSPECT permissions on at least one resource directly
@@ -2887,6 +3044,118 @@ func (client CloudGuardClient) requestSummarizedResponderExecutions(ctx context.
 	return response, err
 }
 
+// RequestSummarizedRiskScores Examines the number of problems related to the resource and the relative severity of those problems.
+// The parameter `accessLevel` specifies whether to return only those compartments for which the
+// requestor has INSPECT permissions on at least one resource directly
+// or indirectly (ACCESSIBLE) (the resource can be in a subcompartment) or to return Not Authorized if
+// Principal doesn't have access to even one of the child compartments. This is valid only when
+// `compartmentIdInSubtree` is set to `true`.
+// The parameter `compartmentIdInSubtree` applies when you perform summarize API on the
+// `compartmentId` passed and when it is set to true, the entire hierarchy of compartments can be returned.
+// To get a full list of all compartments and subcompartments in the tenancy (root compartment),
+// set the parameter `compartmentIdInSubtree` to true and `accessLevel` to ACCESSIBLE.
+func (client CloudGuardClient) RequestSummarizedRiskScores(ctx context.Context, request RequestSummarizedRiskScoresRequest) (response RequestSummarizedRiskScoresResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.requestSummarizedRiskScores, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RequestSummarizedRiskScoresResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RequestSummarizedRiskScoresResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RequestSummarizedRiskScoresResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RequestSummarizedRiskScoresResponse")
+	}
+	return
+}
+
+// requestSummarizedRiskScores implements the OCIOperation interface (enables retrying operations)
+func (client CloudGuardClient) requestSummarizedRiskScores(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/problems/actions/summarizeRiskScore")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RequestSummarizedRiskScoresResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RequestSummarizedSecurityScores Measures the number of resources examined across all regions and compares it with the number of problems detected.
+// The parameter `accessLevel` specifies whether to return only those compartments for which the
+// requestor has INSPECT permissions on at least one resource directly
+// or indirectly (ACCESSIBLE) (the resource can be in a subcompartment) or to return Not Authorized if
+// Principal doesn't have access to even one of the child compartments. This is valid only when
+// `compartmentIdInSubtree` is set to `true`.
+// The parameter `compartmentIdInSubtree` applies when you perform summarize API on the
+// `compartmentId` passed and when it is set to true, the entire hierarchy of compartments can be returned.
+// To get a full list of all compartments and subcompartments in the tenancy (root compartment),
+// set the parameter `compartmentIdInSubtree` to true and `accessLevel` to ACCESSIBLE.
+func (client CloudGuardClient) RequestSummarizedSecurityScores(ctx context.Context, request RequestSummarizedSecurityScoresRequest) (response RequestSummarizedSecurityScoresResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.requestSummarizedSecurityScores, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RequestSummarizedSecurityScoresResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RequestSummarizedSecurityScoresResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RequestSummarizedSecurityScoresResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RequestSummarizedSecurityScoresResponse")
+	}
+	return
+}
+
+// requestSummarizedSecurityScores implements the OCIOperation interface (enables retrying operations)
+func (client CloudGuardClient) requestSummarizedSecurityScores(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/problems/actions/summarizeSecurityScore")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RequestSummarizedSecurityScoresResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // RequestSummarizedTrendProblems Returns the number of problems identified by cloud guard, for a given time period.
 // The parameter `accessLevel` specifies whether to return only those compartments for which the
 // requestor has INSPECT permissions on at least one resource directly
@@ -2987,6 +3256,111 @@ func (client CloudGuardClient) requestSummarizedTrendResponderExecutions(ctx con
 	}
 
 	var response RequestSummarizedTrendResponderExecutionsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RequestSummarizedTrendSecurityScores Measures the number of resources examined across all regions and compares it with the
+// number of problems detected, for a given time period.
+// The parameter `accessLevel` specifies whether to return only those compartments for which the
+// requestor has INSPECT permissions on at least one resource directly
+// or indirectly (ACCESSIBLE) (the resource can be in a subcompartment) or to return Not Authorized if
+// Principal doesn't have access to even one of the child compartments. This is valid only when
+// `compartmentIdInSubtree` is set to `true`.
+// The parameter `compartmentIdInSubtree` applies when you perform summarize API on the
+// `compartmentId` passed and when it is set to true, the entire hierarchy of compartments can be returned.
+// To get a full list of all compartments and subcompartments in the tenancy (root compartment),
+// set the parameter `compartmentIdInSubtree` to true and `accessLevel` to ACCESSIBLE.
+func (client CloudGuardClient) RequestSummarizedTrendSecurityScores(ctx context.Context, request RequestSummarizedTrendSecurityScoresRequest) (response RequestSummarizedTrendSecurityScoresResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.requestSummarizedTrendSecurityScores, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RequestSummarizedTrendSecurityScoresResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RequestSummarizedTrendSecurityScoresResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RequestSummarizedTrendSecurityScoresResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RequestSummarizedTrendSecurityScoresResponse")
+	}
+	return
+}
+
+// requestSummarizedTrendSecurityScores implements the OCIOperation interface (enables retrying operations)
+func (client CloudGuardClient) requestSummarizedTrendSecurityScores(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/problems/actions/summarizeSecurityScoreTrend")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RequestSummarizedTrendSecurityScoresResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// SkipBulkResponderExecution Skips the execution for a bulk of responder executions
+// The operation is atomic in nature
+func (client CloudGuardClient) SkipBulkResponderExecution(ctx context.Context, request SkipBulkResponderExecutionRequest) (response SkipBulkResponderExecutionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.skipBulkResponderExecution, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = SkipBulkResponderExecutionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = SkipBulkResponderExecutionResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(SkipBulkResponderExecutionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into SkipBulkResponderExecutionResponse")
+	}
+	return
+}
+
+// skipBulkResponderExecution implements the OCIOperation interface (enables retrying operations)
+func (client CloudGuardClient) skipBulkResponderExecution(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/responderExecutions/actions/bulkSkip")
+	if err != nil {
+		return nil, err
+	}
+
+	var response SkipBulkResponderExecutionResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
