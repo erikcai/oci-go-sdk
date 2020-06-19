@@ -243,6 +243,7 @@ func (m *InstanceConfigurationLaunchInstanceDetails) UnmarshalJSON(data []byte) 
 	m.PreferredMaintenanceAction = model.PreferredMaintenanceAction
 
 	m.InstanceOptions = model.InstanceOptions
+
 	return
 }
 

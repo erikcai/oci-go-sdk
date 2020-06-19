@@ -58,17 +58,23 @@ type WorkRequestOperationTypeEnum string
 
 // Set of constants representing the allowable values for WorkRequestOperationTypeEnum
 const (
-	WorkRequestOperationTypeCreatePlatform WorkRequestOperationTypeEnum = "CREATE_PLATFORM"
-	WorkRequestOperationTypeUpdatePlatform WorkRequestOperationTypeEnum = "UPDATE_PLATFORM"
-	WorkRequestOperationTypeDeletePlatform WorkRequestOperationTypeEnum = "DELETE_PLATFORM"
-	WorkRequestOperationTypeScalePlatform  WorkRequestOperationTypeEnum = "SCALE_PLATFORM"
+	WorkRequestOperationTypeCreatePlatform    WorkRequestOperationTypeEnum = "CREATE_PLATFORM"
+	WorkRequestOperationTypeUpdatePlatform    WorkRequestOperationTypeEnum = "UPDATE_PLATFORM"
+	WorkRequestOperationTypeDeletePlatform    WorkRequestOperationTypeEnum = "DELETE_PLATFORM"
+	WorkRequestOperationTypeScalePlatform     WorkRequestOperationTypeEnum = "SCALE_PLATFORM"
+	WorkRequestOperationTypeStartPlatform     WorkRequestOperationTypeEnum = "START_PLATFORM"
+	WorkRequestOperationTypeStopPlatform      WorkRequestOperationTypeEnum = "STOP_PLATFORM"
+	WorkRequestOperationTypeCustomizePlatform WorkRequestOperationTypeEnum = "CUSTOMIZE_PLATFORM"
 )
 
 var mappingWorkRequestOperationType = map[string]WorkRequestOperationTypeEnum{
-	"CREATE_PLATFORM": WorkRequestOperationTypeCreatePlatform,
-	"UPDATE_PLATFORM": WorkRequestOperationTypeUpdatePlatform,
-	"DELETE_PLATFORM": WorkRequestOperationTypeDeletePlatform,
-	"SCALE_PLATFORM":  WorkRequestOperationTypeScalePlatform,
+	"CREATE_PLATFORM":    WorkRequestOperationTypeCreatePlatform,
+	"UPDATE_PLATFORM":    WorkRequestOperationTypeUpdatePlatform,
+	"DELETE_PLATFORM":    WorkRequestOperationTypeDeletePlatform,
+	"SCALE_PLATFORM":     WorkRequestOperationTypeScalePlatform,
+	"START_PLATFORM":     WorkRequestOperationTypeStartPlatform,
+	"STOP_PLATFORM":      WorkRequestOperationTypeStopPlatform,
+	"CUSTOMIZE_PLATFORM": WorkRequestOperationTypeCustomizePlatform,
 }
 
 // GetWorkRequestOperationTypeEnumValues Enumerates the set of values for WorkRequestOperationTypeEnum

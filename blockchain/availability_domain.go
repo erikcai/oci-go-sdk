@@ -15,6 +15,8 @@ import (
 
 // AvailabilityDomain Availability Domains
 type AvailabilityDomain struct {
+
+	// Availability Domain Identifiers
 	Ads AvailabilityDomainAdsEnum `mandatory:"false" json:"ads,omitempty"`
 }
 

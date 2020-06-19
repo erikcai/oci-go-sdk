@@ -43,5 +43,6 @@ func (m *ChangeAnalyticsInstanceNetworkEndpointDetails) UnmarshalJSON(data []byt
 	} else {
 		m.NetworkEndpointDetails = nil
 	}
+
 	return
 }

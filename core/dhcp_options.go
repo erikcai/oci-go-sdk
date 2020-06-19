@@ -118,6 +118,7 @@ func (m *DhcpOptions) UnmarshalJSON(data []byte) (e error) {
 	m.TimeCreated = model.TimeCreated
 
 	m.VcnId = model.VcnId
+
 	return
 }
 

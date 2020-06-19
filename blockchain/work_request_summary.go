@@ -38,6 +38,9 @@ type WorkRequestSummary struct {
 	// RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
 	TimeAccepted *common.SDKTime `mandatory:"true" json:"timeAccepted"`
 
+	// status of current work request.
+	Status WorkRequestStatusEnum `mandatory:"false" json:"status,omitempty"`
+
 	// The date and time the request was started, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339),
 	// section 14.29.
 	TimeStarted *common.SDKTime `mandatory:"false" json:"timeStarted"`
@@ -55,17 +58,23 @@ type WorkRequestSummaryOperationTypeEnum string
 
 // Set of constants representing the allowable values for WorkRequestSummaryOperationTypeEnum
 const (
-	WorkRequestSummaryOperationTypeCreatePlatform WorkRequestSummaryOperationTypeEnum = "CREATE_PLATFORM"
-	WorkRequestSummaryOperationTypeUpdatePlatform WorkRequestSummaryOperationTypeEnum = "UPDATE_PLATFORM"
-	WorkRequestSummaryOperationTypeDeletePlatform WorkRequestSummaryOperationTypeEnum = "DELETE_PLATFORM"
-	WorkRequestSummaryOperationTypeScalePlatform  WorkRequestSummaryOperationTypeEnum = "SCALE_PLATFORM"
+	WorkRequestSummaryOperationTypeCreatePlatform    WorkRequestSummaryOperationTypeEnum = "CREATE_PLATFORM"
+	WorkRequestSummaryOperationTypeUpdatePlatform    WorkRequestSummaryOperationTypeEnum = "UPDATE_PLATFORM"
+	WorkRequestSummaryOperationTypeDeletePlatform    WorkRequestSummaryOperationTypeEnum = "DELETE_PLATFORM"
+	WorkRequestSummaryOperationTypeScalePlatform     WorkRequestSummaryOperationTypeEnum = "SCALE_PLATFORM"
+	WorkRequestSummaryOperationTypeStartPlatform     WorkRequestSummaryOperationTypeEnum = "START_PLATFORM"
+	WorkRequestSummaryOperationTypeStopPlatform      WorkRequestSummaryOperationTypeEnum = "STOP_PLATFORM"
+	WorkRequestSummaryOperationTypeCustomizePlatform WorkRequestSummaryOperationTypeEnum = "CUSTOMIZE_PLATFORM"
 )
 
 var mappingWorkRequestSummaryOperationType = map[string]WorkRequestSummaryOperationTypeEnum{
-	"CREATE_PLATFORM": WorkRequestSummaryOperationTypeCreatePlatform,
-	"UPDATE_PLATFORM": WorkRequestSummaryOperationTypeUpdatePlatform,
-	"DELETE_PLATFORM": WorkRequestSummaryOperationTypeDeletePlatform,
-	"SCALE_PLATFORM":  WorkRequestSummaryOperationTypeScalePlatform,
+	"CREATE_PLATFORM":    WorkRequestSummaryOperationTypeCreatePlatform,
+	"UPDATE_PLATFORM":    WorkRequestSummaryOperationTypeUpdatePlatform,
+	"DELETE_PLATFORM":    WorkRequestSummaryOperationTypeDeletePlatform,
+	"SCALE_PLATFORM":     WorkRequestSummaryOperationTypeScalePlatform,
+	"START_PLATFORM":     WorkRequestSummaryOperationTypeStartPlatform,
+	"STOP_PLATFORM":      WorkRequestSummaryOperationTypeStopPlatform,
+	"CUSTOMIZE_PLATFORM": WorkRequestSummaryOperationTypeCustomizePlatform,
 }
 
 // GetWorkRequestSummaryOperationTypeEnumValues Enumerates the set of values for WorkRequestSummaryOperationTypeEnum

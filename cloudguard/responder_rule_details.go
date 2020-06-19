@@ -65,5 +65,6 @@ func (m *ResponderRuleDetails) UnmarshalJSON(data []byte) (e error) {
 	m.Mode = model.Mode
 
 	m.IsEnabled = model.IsEnabled
+
 	return
 }

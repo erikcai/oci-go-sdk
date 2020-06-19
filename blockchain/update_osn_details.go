@@ -13,19 +13,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ScaleReplicaInfoDetails Number of replicas of service components like Rest Proxy, CA and Console
-type ScaleReplicaInfoDetails struct {
-
-	// Number of REST proxy replicas
-	ProxyCount *int `mandatory:"false" json:"proxyCount"`
-
-	// Number of CA replicas
-	CaCount *int `mandatory:"false" json:"caCount"`
-
-	// Number of console replicas
-	ConsoleCount *int `mandatory:"false" json:"consoleCount"`
+// UpdateOsnDetails OSN attributes that can be updated.
+type UpdateOsnDetails struct {
+	OcpuAllocationParam *OcpuAllocationNumberParam `mandatory:"true" json:"ocpuAllocationParam"`
 }
 
-func (m ScaleReplicaInfoDetails) String() string {
+func (m UpdateOsnDetails) String() string {
 	return common.PointerString(m)
 }

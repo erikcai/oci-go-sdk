@@ -54,5 +54,6 @@ func (m *Configuration) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.Source = nil
 	}
+
 	return
 }

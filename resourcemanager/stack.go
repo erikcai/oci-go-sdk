@@ -134,6 +134,7 @@ func (m *Stack) UnmarshalJSON(data []byte) (e error) {
 	m.FreeformTags = model.FreeformTags
 
 	m.DefinedTags = model.DefinedTags
+
 	return
 }
 

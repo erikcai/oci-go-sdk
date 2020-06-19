@@ -17,7 +17,7 @@ import (
 type ScaleStorageDetails struct {
 
 	// Storage size in TBs
-	StorageSizeInTBs *int `mandatory:"false" json:"storageSizeInTBs"`
+	StorageSizeInTBs *int `mandatory:"true" json:"storageSizeInTBs"`
 }
 
 func (m ScaleStorageDetails) String() string {

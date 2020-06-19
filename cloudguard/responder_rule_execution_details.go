@@ -52,5 +52,6 @@ func (m *ResponderRuleExecutionDetails) UnmarshalJSON(data []byte) (e error) {
 	for i, n := range model.Configurations {
 		m.Configurations[i] = n
 	}
+
 	return
 }

@@ -13,27 +13,21 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ScaleOutPeerDetails The Peer details to be added
-type ScaleOutPeerDetails struct {
-
-	// organization name
-	Organization *string `mandatory:"false" json:"organization"`
+// CreatePeerDetails The Peer details to be added
+type CreatePeerDetails struct {
 
 	// Peer role
-	Role PeerRoleRoleEnum `mandatory:"false" json:"role,omitempty"`
+	Role PeerRoleRoleEnum `mandatory:"true" json:"role"`
 
-	// Peer Log level
-	LogLevel CommonLogLevelLogLevelEnum `mandatory:"false" json:"logLevel,omitempty"`
+	OcpuAllocationParam *OcpuAllocationNumberParam `mandatory:"true" json:"ocpuAllocationParam"`
+
+	// Availability Domain to place new peer
+	Ad AvailabilityDomainAdsEnum `mandatory:"true" json:"ad"`
 
 	// peer alias
 	Alias *string `mandatory:"false" json:"alias"`
-
-	OcpuAllocationParam *OcpuAllocationNumberParam `mandatory:"false" json:"ocpuAllocationParam"`
-
-	// Availability Domain to place new peer
-	Ad AvailabilityDomainAdsEnum `mandatory:"false" json:"ad,omitempty"`
 }
 
-func (m ScaleOutPeerDetails) String() string {
+func (m CreatePeerDetails) String() string {
 	return common.PointerString(m)
 }

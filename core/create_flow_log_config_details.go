@@ -86,6 +86,7 @@ func (m *CreateFlowLogConfigDetails) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.Destination = nil
 	}
+
 	return
 }
 

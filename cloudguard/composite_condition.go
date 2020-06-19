@@ -75,6 +75,7 @@ func (m *CompositeCondition) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.RightOperand = nil
 	}
+
 	return
 }
 

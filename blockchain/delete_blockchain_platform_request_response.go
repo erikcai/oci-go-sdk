@@ -12,7 +12,7 @@ import (
 // DeleteBlockchainPlatformRequest wrapper for the DeleteBlockchainPlatform operation
 type DeleteBlockchainPlatformRequest struct {
 
-	// unique service identifier
+	// Unique service identifier.
 	BlockchainPlatformId *string `mandatory:"true" contributesTo:"path" name:"blockchainPlatformId"`
 
 	// The client request ID for tracing.

@@ -17,9 +17,9 @@ import (
 type ModifyPeerDetails struct {
 
 	// peer identifier
-	PeerName *string `mandatory:"false" json:"peerName"`
+	PeerName *string `mandatory:"true" json:"peerName"`
 
-	OcpuAllocationParam *OcpuAllocationNumberParam `mandatory:"false" json:"ocpuAllocationParam"`
+	OcpuAllocationParam *OcpuAllocationNumberParam `mandatory:"true" json:"ocpuAllocationParam"`
 }
 
 func (m ModifyPeerDetails) String() string {

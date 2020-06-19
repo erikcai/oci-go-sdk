@@ -16,11 +16,16 @@ import (
 // UpdateBlockchainPlatformDetails Blockchain Platform details for updating a service.
 type UpdateBlockchainPlatformDetails struct {
 
-	// Platform Display name, can be renamed
-	DisplayName *string `mandatory:"false" json:"displayName"`
-
 	// Platform Description
 	Description *string `mandatory:"false" json:"description"`
+
+	// Storage size in TBs
+	StorageSizeInTBs *float64 `mandatory:"false" json:"storageSizeInTBs"`
+
+	Replicas *ReplicaDetails `mandatory:"false" json:"replicas"`
+
+	// Number of total OCPUs to allocate
+	TotalOcpuCapacity *int `mandatory:"false" json:"totalOcpuCapacity"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

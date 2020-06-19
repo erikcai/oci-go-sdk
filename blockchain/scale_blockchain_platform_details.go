@@ -26,19 +26,19 @@ import (
 type ScaleBlockchainPlatformDetails struct {
 
 	// new OSNs to add
-	AddOsns []ScaleOutOsnDetails `mandatory:"false" json:"addOsns"`
+	AddOsns []CreateOsnDetails `mandatory:"false" json:"addOsns"`
 
-	AddReplicas *ScaleReplicaInfoDetails `mandatory:"false" json:"addReplicas"`
+	AddReplicas *ReplicaDetails `mandatory:"false" json:"addReplicas"`
 
 	// new Peers to add
-	AddPeers []ScaleOutPeerDetails `mandatory:"false" json:"addPeers"`
+	AddPeers []CreatePeerDetails `mandatory:"false" json:"addPeers"`
 
 	AddStorage *ScaleStorageDetails `mandatory:"false" json:"addStorage"`
 
 	// modify ocpu allocation to existing Peers
 	ModifyPeers []ModifyPeerDetails `mandatory:"false" json:"modifyPeers"`
 
-	RemoveReplicas *ScaleReplicaInfoDetails `mandatory:"false" json:"removeReplicas"`
+	RemoveReplicas *ReplicaDetails `mandatory:"false" json:"removeReplicas"`
 
 	// OSN id list to remove
 	RemoveOsns []string `mandatory:"false" json:"removeOsns"`

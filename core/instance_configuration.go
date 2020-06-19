@@ -103,5 +103,6 @@ func (m *InstanceConfiguration) UnmarshalJSON(data []byte) (e error) {
 	m.Id = model.Id
 
 	m.TimeCreated = model.TimeCreated
+
 	return
 }

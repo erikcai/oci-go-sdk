@@ -44,7 +44,7 @@ func (m CreateResourceDetails) String() string {
         if e != nil {
             return
         }
-            var nn interface{}
+        var nn interface{}
         nn, e = model.Item.UnmarshalPolymorphicJSON(model.Item.JsonData)
         if e != nil {
             return
@@ -54,11 +54,12 @@ func (m CreateResourceDetails) String() string {
         } else {
             m.Item = nil
         }
-            
+
         m.Region = model.Region
-            
+
         m.AvailabilityDomain = model.AvailabilityDomain
-    return
+
+        return
     }
 
 

@@ -118,5 +118,6 @@ func (m *AnalyticsInstanceSummary) UnmarshalJSON(data []byte) (e error) {
 	}
 
 	m.TimeCreated = model.TimeCreated
+
 	return
 }

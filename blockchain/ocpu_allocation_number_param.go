@@ -17,7 +17,7 @@ import (
 type OcpuAllocationNumberParam struct {
 
 	// Number of OCPU allocation
-	OcpuAllocationNumber *float32 `mandatory:"false" json:"ocpuAllocationNumber"`
+	OcpuAllocationNumber *float32 `mandatory:"true" json:"ocpuAllocationNumber"`
 }
 
 func (m OcpuAllocationNumberParam) String() string {

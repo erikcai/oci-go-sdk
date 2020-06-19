@@ -12,7 +12,7 @@ import (
 // StartBlockchainPlatformRequest wrapper for the StartBlockchainPlatform operation
 type StartBlockchainPlatformRequest struct {
 
-	// unique service identifier
+	// Unique service identifier.
 	BlockchainPlatformId *string `mandatory:"true" contributesTo:"path" name:"blockchainPlatformId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

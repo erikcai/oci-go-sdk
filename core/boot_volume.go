@@ -166,6 +166,7 @@ func (m *BootVolume) UnmarshalJSON(data []byte) (e error) {
 	m.SizeInMBs = model.SizeInMBs
 
 	m.TimeCreated = model.TimeCreated
+
 	return
 }
 

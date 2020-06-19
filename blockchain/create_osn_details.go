@@ -13,19 +13,15 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReplicaInfo Replica numbers of service components like Rest Proxy, CA and console
-type ReplicaInfo struct {
+// CreateOsnDetails The Ordering Service Node details to be added
+type CreateOsnDetails struct {
 
-	// Number of REST proxy replicas
-	ProxyCount *int `mandatory:"false" json:"proxyCount"`
+	// Availability Domain to place new OSN
+	Ad AvailabilityDomainAdsEnum `mandatory:"true" json:"ad"`
 
-	// Number of CA replicas
-	CaCount *int `mandatory:"false" json:"caCount"`
-
-	// Number of console replicas
-	ConsoleCount *int `mandatory:"false" json:"consoleCount"`
+	OcpuAllocationParam *OcpuAllocationNumberParam `mandatory:"false" json:"ocpuAllocationParam"`
 }
 
-func (m ReplicaInfo) String() string {
+func (m CreateOsnDetails) String() string {
 	return common.PointerString(m)
 }

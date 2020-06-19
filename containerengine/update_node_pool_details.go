@@ -116,5 +116,6 @@ func (m *UpdateNodePoolDetails) UnmarshalJSON(data []byte) (e error) {
 	m.SshPublicKey = model.SshPublicKey
 
 	m.NodeShape = model.NodeShape
+
 	return
 }

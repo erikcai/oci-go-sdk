@@ -132,6 +132,7 @@ func (m *VolumeGroup) UnmarshalJSON(data []byte) (e error) {
 	for i, n := range model.VolumeIds {
 		m.VolumeIds[i] = n
 	}
+
 	return
 }
 

@@ -43,6 +43,9 @@ type BlockchainPlatform struct {
 	// The time the Platform Instance was updated. An RFC3339 formatted datetime string
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
+	// The version of the Platform Instance.
+	ServiceVersion *string `mandatory:"false" json:"serviceVersion"`
+
 	// Service endpoint URL, valid post-provisioning
 	ServiceEndpoint *string `mandatory:"false" json:"serviceEndpoint"`
 
@@ -53,9 +56,20 @@ type BlockchainPlatform struct {
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
 	// Storage size in TBs
-	StorageSizeInTBs *float32 `mandatory:"false" json:"storageSizeInTBs"`
+	StorageSizeInTBs *float64 `mandatory:"false" json:"storageSizeInTBs"`
+
+	// Storage used in TBs
+	StorageUsedInTBs *float64 `mandatory:"false" json:"storageUsedInTBs"`
+
+	// True for multi-AD blockchain plaforms, false for single-AD
+	IsMultiAD *bool `mandatory:"false" json:"isMultiAD"`
+
+	// Number of total OCPUs allocated to the platform cluster
+	TotalOcpuCapacity *int `mandatory:"false" json:"totalOcpuCapacity"`
 
 	ComponentDetails *BlockchainPlatformComponentDetails `mandatory:"false" json:"componentDetails"`
+
+	Replicas *ReplicaDetails `mandatory:"false" json:"replicas"`
 
 	// List of OcpuUtilization for all hosts
 	HostOcpuUtilizationInfo []OcpuUtilizationInfo `mandatory:"false" json:"hostOcpuUtilizationInfo"`
@@ -106,6 +120,7 @@ const (
 	BlockchainPlatformComputeShapeEnterpriseMedium     BlockchainPlatformComputeShapeEnum = "ENTERPRISE_MEDIUM"
 	BlockchainPlatformComputeShapeEnterpriseLarge      BlockchainPlatformComputeShapeEnum = "ENTERPRISE_LARGE"
 	BlockchainPlatformComputeShapeEnterpriseExtraLarge BlockchainPlatformComputeShapeEnum = "ENTERPRISE_EXTRA_LARGE"
+	BlockchainPlatformComputeShapeEnterpriseCustom     BlockchainPlatformComputeShapeEnum = "ENTERPRISE_CUSTOM"
 )
 
 var mappingBlockchainPlatformComputeShape = map[string]BlockchainPlatformComputeShapeEnum{
@@ -114,6 +129,7 @@ var mappingBlockchainPlatformComputeShape = map[string]BlockchainPlatformCompute
 	"ENTERPRISE_MEDIUM":      BlockchainPlatformComputeShapeEnterpriseMedium,
 	"ENTERPRISE_LARGE":       BlockchainPlatformComputeShapeEnterpriseLarge,
 	"ENTERPRISE_EXTRA_LARGE": BlockchainPlatformComputeShapeEnterpriseExtraLarge,
+	"ENTERPRISE_CUSTOM":      BlockchainPlatformComputeShapeEnterpriseCustom,
 }
 
 // GetBlockchainPlatformComputeShapeEnumValues Enumerates the set of values for BlockchainPlatformComputeShapeEnum

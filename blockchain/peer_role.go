@@ -15,6 +15,8 @@ import (
 
 // PeerRole Peer role
 type PeerRole struct {
+
+	// Peer role names
 	Role PeerRoleRoleEnum `mandatory:"false" json:"role,omitempty"`
 }
 

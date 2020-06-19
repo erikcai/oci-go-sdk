@@ -12,7 +12,7 @@ import (
 // ScaleBlockchainPlatformRequest wrapper for the ScaleBlockchainPlatform operation
 type ScaleBlockchainPlatformRequest struct {
 
-	// unique service identifier
+	// Unique service identifier.
 	BlockchainPlatformId *string `mandatory:"true" contributesTo:"path" name:"blockchainPlatformId"`
 
 	// Input payload to scaleout blockchain platform. The payload cannot be empty.

@@ -280,6 +280,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.CompartmentId = model.CompartmentId
 
 	m.Shape = model.Shape
+
 	return
 }
 

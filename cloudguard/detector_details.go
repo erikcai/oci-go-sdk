@@ -86,5 +86,6 @@ func (m *DetectorDetails) UnmarshalJSON(data []byte) (e error) {
 	m.IsEnabled = model.IsEnabled
 
 	m.RiskLevel = model.RiskLevel
+
 	return
 }

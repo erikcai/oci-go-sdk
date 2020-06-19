@@ -34,6 +34,12 @@ type UsageSummary struct {
 	// The name of the service that is incurring the cost.
 	Service *string `mandatory:"false" json:"service"`
 
+	// The name of the resource that is incurring the cost.
+	ResourceName *string `mandatory:"false" json:"resourceName"`
+
+	// The Ocid of the resource that is incurring the cost.
+	ResourceId *string `mandatory:"false" json:"resourceId"`
+
 	// The region of the usage.
 	Region *string `mandatory:"false" json:"region"`
 

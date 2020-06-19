@@ -107,5 +107,6 @@ func (m *CreateAnalyticsInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.Capacity = model.Capacity
 
 	m.LicenseType = model.LicenseType
+
 	return
 }

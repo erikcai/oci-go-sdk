@@ -12,7 +12,7 @@ import (
 // ChangeBlockchainPlatformCompartmentRequest wrapper for the ChangeBlockchainPlatformCompartment operation
 type ChangeBlockchainPlatformCompartmentRequest struct {
 
-	// unique service identifier
+	// Unique service identifier.
 	BlockchainPlatformId *string `mandatory:"true" contributesTo:"path" name:"blockchainPlatformId"`
 
 	// Input payload to move the resource to a different compartment.

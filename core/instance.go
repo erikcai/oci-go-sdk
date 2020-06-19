@@ -247,6 +247,7 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	m.Shape = model.Shape
 
 	m.TimeCreated = model.TimeCreated
+
 	return
 }
 

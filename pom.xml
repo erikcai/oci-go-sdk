@@ -4685,12 +4685,12 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.1253</version>
+        <version>0.2.1279</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.138</version>
+        <version>0.4.142</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -4930,7 +4930,7 @@
       <dependency>
         <groupId>com.oracle.blockchain</groupId>
         <artifactId>oracle-blockchain-platform-spec</artifactId>
-        <version>20.2.1</version>
+        <version>20.3.1</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.ads.admin.cp</groupId>
@@ -4960,7 +4960,7 @@
       <dependency>
         <groupId>com.oracle.pic.metering.usagestore.api</groupId>
         <artifactId>usage-api-spec</artifactId>
-        <version>0.1</version>
+        <version>0.4</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.cloudguard</groupId>

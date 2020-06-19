@@ -17,12 +17,10 @@ import (
 type BlockchainPlatformComponentDetails struct {
 
 	// List of OSNs
-	Osns []OsnDetails `mandatory:"false" json:"osns"`
-
-	Replicas *ReplicaInfo `mandatory:"false" json:"replicas"`
+	Osns []Osn `mandatory:"false" json:"osns"`
 
 	// List of Peers
-	Peers []PeerDetails `mandatory:"false" json:"peers"`
+	Peers []Peer `mandatory:"false" json:"peers"`
 }
 
 func (m BlockchainPlatformComponentDetails) String() string {

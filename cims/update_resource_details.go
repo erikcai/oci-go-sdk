@@ -36,7 +36,7 @@ func (m UpdateResourceDetails) String() string {
         if e != nil {
             return
         }
-            var nn interface{}
+        var nn interface{}
         nn, e = model.Item.UnmarshalPolymorphicJSON(model.Item.JsonData)
         if e != nil {
             return
@@ -46,7 +46,8 @@ func (m UpdateResourceDetails) String() string {
         } else {
             m.Item = nil
         }
-    return
+
+        return
     }
 
 

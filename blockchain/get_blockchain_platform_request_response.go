@@ -12,7 +12,7 @@ import (
 // GetBlockchainPlatformRequest wrapper for the GetBlockchainPlatform operation
 type GetBlockchainPlatformRequest struct {
 
-	// unique service identifier
+	// Unique service identifier.
 	BlockchainPlatformId *string `mandatory:"true" contributesTo:"path" name:"blockchainPlatformId"`
 
 	// The client request ID for tracing.

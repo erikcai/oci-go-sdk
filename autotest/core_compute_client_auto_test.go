@@ -256,6 +256,50 @@ func TestComputeClientCaptureConsoleHistory(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientChangeComputeImageCapabilitySchemaCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeComputeImageCapabilitySchemaCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeComputeImageCapabilitySchemaCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ChangeComputeImageCapabilitySchemaCompartment", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "ChangeComputeImageCapabilitySchemaCompartment")
+	assert.NoError(t, err)
+
+	type ChangeComputeImageCapabilitySchemaCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeComputeImageCapabilitySchemaCompartmentRequest
+	}
+
+	var requests []ChangeComputeImageCapabilitySchemaCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeComputeImageCapabilitySchemaCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
 func TestComputeClientChangeDedicatedVmHostCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -432,6 +476,50 @@ func TestComputeClientCreateAppCatalogSubscription(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientCreateComputeImageCapabilitySchema(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateComputeImageCapabilitySchema")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateComputeImageCapabilitySchema is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "CreateComputeImageCapabilitySchema", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "CreateComputeImageCapabilitySchema")
+	assert.NoError(t, err)
+
+	type CreateComputeImageCapabilitySchemaRequestInfo struct {
+		ContainerId string
+		Request     core.CreateComputeImageCapabilitySchemaRequest
+	}
+
+	var requests []CreateComputeImageCapabilitySchemaRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateComputeImageCapabilitySchema(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
 func TestComputeClientCreateDedicatedVmHost(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -601,6 +689,50 @@ func TestComputeClientDeleteAppCatalogSubscription(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteAppCatalogSubscription(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientDeleteComputeImageCapabilitySchema(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteComputeImageCapabilitySchema")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteComputeImageCapabilitySchema is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "DeleteComputeImageCapabilitySchema", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "DeleteComputeImageCapabilitySchema")
+	assert.NoError(t, err)
+
+	type DeleteComputeImageCapabilitySchemaRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteComputeImageCapabilitySchemaRequest
+	}
+
+	var requests []DeleteComputeImageCapabilitySchemaRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteComputeImageCapabilitySchema(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1141,6 +1273,138 @@ func TestComputeClientGetBootVolumeAttachment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetBootVolumeAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientGetComputeGlobalImageCapabilitySchema(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetComputeGlobalImageCapabilitySchema")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetComputeGlobalImageCapabilitySchema is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "GetComputeGlobalImageCapabilitySchema", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "GetComputeGlobalImageCapabilitySchema")
+	assert.NoError(t, err)
+
+	type GetComputeGlobalImageCapabilitySchemaRequestInfo struct {
+		ContainerId string
+		Request     core.GetComputeGlobalImageCapabilitySchemaRequest
+	}
+
+	var requests []GetComputeGlobalImageCapabilitySchemaRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetComputeGlobalImageCapabilitySchema(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientGetComputeGlobalImageCapabilitySchemaVersion(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetComputeGlobalImageCapabilitySchemaVersion")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetComputeGlobalImageCapabilitySchemaVersion is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "GetComputeGlobalImageCapabilitySchemaVersion", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "GetComputeGlobalImageCapabilitySchemaVersion")
+	assert.NoError(t, err)
+
+	type GetComputeGlobalImageCapabilitySchemaVersionRequestInfo struct {
+		ContainerId string
+		Request     core.GetComputeGlobalImageCapabilitySchemaVersionRequest
+	}
+
+	var requests []GetComputeGlobalImageCapabilitySchemaVersionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetComputeGlobalImageCapabilitySchemaVersion(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientGetComputeImageCapabilitySchema(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetComputeImageCapabilitySchema")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetComputeImageCapabilitySchema is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "GetComputeImageCapabilitySchema", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "GetComputeImageCapabilitySchema")
+	assert.NoError(t, err)
+
+	type GetComputeImageCapabilitySchemaRequestInfo struct {
+		ContainerId string
+		Request     core.GetComputeImageCapabilitySchemaRequest
+	}
+
+	var requests []GetComputeImageCapabilitySchemaRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetComputeImageCapabilitySchema(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1883,6 +2147,168 @@ func TestComputeClientListBootVolumeAttachments(t *testing.T) {
 			typedListResponses := make([]core.ListBootVolumeAttachmentsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(core.ListBootVolumeAttachmentsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientListComputeGlobalImageCapabilitySchemaVersions(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListComputeGlobalImageCapabilitySchemaVersions")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListComputeGlobalImageCapabilitySchemaVersions is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListComputeGlobalImageCapabilitySchemaVersions", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "ListComputeGlobalImageCapabilitySchemaVersions")
+	assert.NoError(t, err)
+
+	type ListComputeGlobalImageCapabilitySchemaVersionsRequestInfo struct {
+		ContainerId string
+		Request     core.ListComputeGlobalImageCapabilitySchemaVersionsRequest
+	}
+
+	var requests []ListComputeGlobalImageCapabilitySchemaVersionsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListComputeGlobalImageCapabilitySchemaVersionsRequest)
+				return c.ListComputeGlobalImageCapabilitySchemaVersions(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListComputeGlobalImageCapabilitySchemaVersionsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListComputeGlobalImageCapabilitySchemaVersionsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientListComputeGlobalImageCapabilitySchemas(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListComputeGlobalImageCapabilitySchemas")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListComputeGlobalImageCapabilitySchemas is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListComputeGlobalImageCapabilitySchemas", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "ListComputeGlobalImageCapabilitySchemas")
+	assert.NoError(t, err)
+
+	type ListComputeGlobalImageCapabilitySchemasRequestInfo struct {
+		ContainerId string
+		Request     core.ListComputeGlobalImageCapabilitySchemasRequest
+	}
+
+	var requests []ListComputeGlobalImageCapabilitySchemasRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListComputeGlobalImageCapabilitySchemasRequest)
+				return c.ListComputeGlobalImageCapabilitySchemas(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListComputeGlobalImageCapabilitySchemasResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListComputeGlobalImageCapabilitySchemasResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientListComputeImageCapabilitySchemas(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListComputeImageCapabilitySchemas")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListComputeImageCapabilitySchemas is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListComputeImageCapabilitySchemas", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "ListComputeImageCapabilitySchemas")
+	assert.NoError(t, err)
+
+	type ListComputeImageCapabilitySchemasRequestInfo struct {
+		ContainerId string
+		Request     core.ListComputeImageCapabilitySchemasRequest
+	}
+
+	var requests []ListComputeImageCapabilitySchemasRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListComputeImageCapabilitySchemasRequest)
+				return c.ListComputeImageCapabilitySchemas(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListComputeImageCapabilitySchemasResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListComputeImageCapabilitySchemasResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -2675,6 +3101,50 @@ func TestComputeClientTerminateInstance(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.TerminateInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
+func TestComputeClientUpdateComputeImageCapabilitySchema(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateComputeImageCapabilitySchema")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateComputeImageCapabilitySchema is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "UpdateComputeImageCapabilitySchema", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "UpdateComputeImageCapabilitySchema")
+	assert.NoError(t, err)
+
+	type UpdateComputeImageCapabilitySchemaRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateComputeImageCapabilitySchemaRequest
+	}
+
+	var requests []UpdateComputeImageCapabilitySchemaRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateComputeImageCapabilitySchema(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

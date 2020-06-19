@@ -176,6 +176,7 @@ func (m *SteeringPolicy) UnmarshalJSON(data []byte) (e error) {
 	m.Id = model.Id
 
 	m.LifecycleState = model.LifecycleState
+
 	return
 }
 

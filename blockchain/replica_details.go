@@ -13,22 +13,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ScaleOutOsnDetails The Ordering Service Node details to be added
-type ScaleOutOsnDetails struct {
+// ReplicaDetails Number of replicas of service components like Rest Proxy, CA and Console
+type ReplicaDetails struct {
 
-	// organization name
-	Organization *string `mandatory:"false" json:"organization"`
+	// Number of REST proxy replicas
+	ProxyCount *int `mandatory:"false" json:"proxyCount"`
 
-	// Ordering Service Log level
-	LogLevel CommonLogLevelLogLevelEnum `mandatory:"false" json:"logLevel,omitempty"`
+	// Number of CA replicas
+	CaCount *int `mandatory:"false" json:"caCount"`
 
-	// port number
-	Port *int `mandatory:"false" json:"port"`
-
-	// Availability Domain to place new OSN
-	Ad AvailabilityDomainAdsEnum `mandatory:"false" json:"ad,omitempty"`
+	// Number of console replicas
+	ConsoleCount *int `mandatory:"false" json:"consoleCount"`
 }
 
-func (m ScaleOutOsnDetails) String() string {
+func (m ReplicaDetails) String() string {
 	return common.PointerString(m)
 }

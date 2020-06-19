@@ -44,5 +44,6 @@ func (m *BackupKeyDetails) UnmarshalJSON(data []byte) (e error) {
 	} else {
 		m.BackupLocation = nil
 	}
+
 	return
 }

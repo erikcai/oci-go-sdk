@@ -13,25 +13,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// OsnDetails An Ordering Service Node details
-type OsnDetails struct {
+// MetadataDetails Metadata parameter details
+type MetadataDetails struct {
 
-	// Ordering Service Log level
-	LogLevel CommonLogLevelLogLevelEnum `mandatory:"false" json:"logLevel,omitempty"`
+	// Metadata param name
+	ParamName *string `mandatory:"true" json:"paramName"`
 
-	// OSN identifier
-	OrdererName *string `mandatory:"false" json:"ordererName"`
+	// Metadata param value. Complex value will be a JSON string.
+	ParamValue *string `mandatory:"true" json:"paramValue"`
 
-	// organization name
-	Organization *string `mandatory:"false" json:"organization"`
-
-	// port numbers
-	Port []int `mandatory:"false" json:"port"`
-
-	// Availability Domain of OSN
-	Ad AvailabilityDomainAdsEnum `mandatory:"false" json:"ad,omitempty"`
+	// Indicates if the value is a JSON string
+	IsJsonValue *bool `mandatory:"true" json:"isJsonValue"`
 }
 
-func (m OsnDetails) String() string {
+func (m MetadataDetails) String() string {
 	return common.PointerString(m)
 }

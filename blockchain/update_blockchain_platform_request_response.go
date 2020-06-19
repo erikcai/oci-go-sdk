@@ -15,7 +15,7 @@ type UpdateBlockchainPlatformRequest struct {
 	// The Blockchain Platform fields to update. Fields that are not provided will not be updated.
 	UpdateBlockchainPlatformDetails `contributesTo:"body"`
 
-	// unique service identifier
+	// Unique service identifier.
 	BlockchainPlatformId *string `mandatory:"true" contributesTo:"path" name:"blockchainPlatformId"`
 
 	// The client request ID for tracing.
@@ -56,6 +56,9 @@ type UpdateBlockchainPlatformResponse struct {
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
 func (response UpdateBlockchainPlatformResponse) String() string {

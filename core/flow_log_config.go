@@ -122,6 +122,7 @@ func (m *FlowLogConfig) UnmarshalJSON(data []byte) (e error) {
 	}
 
 	m.TimeCreated = model.TimeCreated
+
 	return
 }
 
