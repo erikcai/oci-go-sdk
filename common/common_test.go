@@ -184,6 +184,15 @@ func TestStringToRegion(t *testing.T) {
 	region = StringToRegion("nja")
 	assert.Equal(t, RegionAPChiyoda1, region)
 
+	region = StringToRegion("auh")
+	assert.Equal(t, RegionMEAbudhabi1, region)
+
+	region = StringToRegion("vcp")
+	assert.Equal(t, RegionSAVinhedo1, region)
+
+	region = StringToRegion("scl")
+	assert.Equal(t, RegionSASantiago1, region)
+
 	regionMetadataEnvVar := `{"realmKey":"OC0","realmDomainComponent":"testRealm.com","regionKey":"RTK","regionIdentifier":"us-testregion-1"}`
 	os.Unsetenv("OCI_REGION_METADATA")
 	os.Setenv("OCI_REGION_METADATA", regionMetadataEnvVar)

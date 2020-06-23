@@ -70,9 +70,15 @@ const (
 	RegionMEJeddah1 Region = "me-jeddah-1"
 	//RegionMEDubai1 region for Dubai
 	RegionMEDubai1 Region = "me-dubai-1"
+	//RegionMEAbudhabi1 region for Abudhabi
+	RegionMEAbudhabi1 Region = "me-abudhabi-1"
 
 	//RegionSASaopaulo1 region for saopaulo
 	RegionSASaopaulo1 Region = "sa-saopaulo-1"
+	//RegionSAVinhedo1 region for vinhedo
+	RegionSAVinhedo1 Region = "sa-vinhedo-1"
+	//RegionSASantiago1 region for santiago
+	RegionSASantiago1 Region = "sa-santiago-1"
 
 	//RegionUSLangley1 region for langley
 	RegionUSLangley1 Region = "us-langley-1"
@@ -130,6 +136,9 @@ var shortNameRegion = map[string]Region{
 	"jed": RegionMEJeddah1,
 	"dxb": RegionMEDubai1,
 	"syd": RegionAPSydney1,
+	"auh": RegionMEAbudhabi1,
+	"vcp": RegionSAVinhedo1,
+	"scl": RegionSASantiago1,
 }
 
 var realm = map[string]string{
@@ -151,6 +160,8 @@ var regionRealm = map[Region]string{
 	RegionUKCardiff1:  "oc1",
 
 	RegionSASaopaulo1: "oc1",
+	RegionSAVinhedo1:  "oc1",
+	RegionSASantiago1: "oc1",
 
 	RegionAPMelbourne1: "oc1",
 	RegionAPMumbai1:    "oc1",
@@ -165,8 +176,9 @@ var regionRealm = map[Region]string{
 	RegionEUZurich1:    "oc1",
 	RegionEUAmsterdam1: "oc1",
 
-	RegionMEJeddah1: "oc1",
-	RegionMEDubai1:  "oc1",
+	RegionMEJeddah1:   "oc1",
+	RegionMEDubai1:    "oc1",
+	RegionMEAbudhabi1: "oc1",
 
 	RegionUSLangley1: "oc2",
 	RegionUSLuke1:    "oc2",
