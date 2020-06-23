@@ -78,6 +78,13 @@ type KVRequest struct {
 	KVList `contributesTo:"body"`
 }
 
+type UniqueHeader struct {
+	Namespace            string `mandatory:"true" contributesTo:"body"`
+	Bucket               string `mandatory:"true" contributesTo:"body"`
+	Content              string `mandatory:"true" contributesTo:"body"`
+	UniqueHeaderValueOne string `mandatory:"false" contributesTo:"header" name:"Content-Type"`
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 func TestHttpMarshallerInvalidStruct(t *testing.T) {
@@ -120,6 +127,19 @@ func TestHttpMarshallerSimpleHeader(t *testing.T) {
 	assert.True(t, len(listInHeader) == 2)
 	hone, htwo := listInHeader[0], listInHeader[1]
 	assert.True(t, hone == "1" && htwo == "2")
+}
+
+func TestHttpMarshallerDuplicateOnUniqueHeader(t *testing.T) {
+	s := UniqueHeader{
+		Namespace:            "bmcinfrachef",
+		Bucket:               "stack-deployments",
+		Content:              "Hello World!",
+		UniqueHeaderValueOne: "application/json_1",
+	}
+	request := MakeDefaultHTTPRequest(http.MethodPost, "/random")
+	HTTPRequestMarshaller(s, &request)
+	header := request.Header
+	assert.True(t, header.Get(requestHeaderContentType) == "application/json_1")
 }
 
 func TestHttpMarshallerSimpleStruct(t *testing.T) {
