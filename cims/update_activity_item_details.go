@@ -15,7 +15,8 @@ import (
 )
 
         
- // UpdateActivityItemDetails Details about the ticket activity.
+ // UpdateActivityItemDetails Details for udpating the support ticket activity.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type UpdateActivityItemDetails struct {
         
  // Comments updated at the time that the activity occurs.

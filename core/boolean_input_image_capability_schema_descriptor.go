@@ -21,9 +21,6 @@ import (
 // BooleanInputImageCapabilitySchemaDescriptor Boolean type ImageCapabilitySchemaDescriptor
 type BooleanInputImageCapabilitySchemaDescriptor struct {
 
-	// A literal value. Any attempt to use a value that does not match will result in a validation error.
-	LiteralValue *bool `mandatory:"false" json:"literalValue"`
-
 	// the default value
 	DefaultValue *bool `mandatory:"false" json:"defaultValue"`
 }

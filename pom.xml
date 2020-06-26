@@ -51,7 +51,7 @@
     <dts-api-spec-spec-file>datats-customer-control-plane.cond.yaml</dts-api-spec-spec-file>
     <public-api-spec-spec-file>source/api.cond.yaml</public-api-spec-spec-file>
     <events-control-plane-spec-spec-file>source/events-control-plane-spec.cond.yaml</events-control-plane-spec-spec-file>
-    <cloud-incident-management-service-spec-spec-file>api.yaml</cloud-incident-management-service-spec-spec-file>
+    <cloud-incident-management-service-spec-spec-file>api.cond.yaml</cloud-incident-management-service-spec-spec-file>
     <ndcs-control-plane-spec-spec-file>source/api.cond.yaml</ndcs-control-plane-spec-spec-file>
     <datacatalog-api-spec-spec-file>datacatalog-api-spec.cond.yaml</datacatalog-api-spec-spec-file>
     <cec-public-spec-spec-file>source/api.cond.yaml</cec-public-spec-spec-file>
@@ -4451,7 +4451,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.1279</version>
+        <version>0.2.1299</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -4471,7 +4471,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.471</version>
+        <version>0.1.482</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -4616,7 +4616,7 @@
       <dependency>
         <groupId>com.oracle.custops.cims</groupId>
         <artifactId>cloud-incident-management-service-spec</artifactId>
-        <version>2.0.92</version>
+        <version>2.0.241</version>
       </dependency>
       <dependency>
         <groupId>oracle.nosql.oci.controlplane</groupId>
@@ -4641,7 +4641,7 @@
       <dependency>
         <groupId>com.oracle.bds</groupId>
         <artifactId>bds-cp-spec</artifactId>
-        <version>1.0.41</version>
+        <version>1.0.42</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.analytics</groupId>
@@ -4726,12 +4726,12 @@
       <dependency>
         <groupId>com.oracle.pic.metering.usagestore.api</groupId>
         <artifactId>usage-api-spec</artifactId>
-        <version>0.4</version>
+        <version>0.5</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.cloudguard</groupId>
         <artifactId>cloudguard-cp-api-spec</artifactId>
-        <version>0.1.250</version>
+        <version>0.1.257</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.opsi.api</groupId>

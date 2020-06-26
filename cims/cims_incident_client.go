@@ -87,11 +87,6 @@ func(client IncidentClient) CreateIncident(ctx context.Context, request CreateIn
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
-
-    if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-        request.OpcRetryToken = common.String(common.RetryToken())
-    }
-
     ociResponse, err = common.Retry(ctx, request, client.createIncident, policy)
     if err != nil {
         if ociResponse != nil {
@@ -342,11 +337,6 @@ func(client IncidentClient) UpdateIncident(ctx context.Context, request UpdateIn
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
-
-    if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-        request.OpcRetryToken = common.String(common.RetryToken())
-    }
-
     ociResponse, err = common.Retry(ctx, request, client.updateIncident, policy)
     if err != nil {
         if ociResponse != nil {
@@ -397,11 +387,6 @@ func(client IncidentClient) ValidateUser(ctx context.Context, request ValidateUs
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
-
-    if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-        request.OpcRetryToken = common.String(common.RetryToken())
-    }
-
     ociResponse, err = common.Retry(ctx, request, client.validateUser, policy)
     if err != nil {
         if ociResponse != nil {

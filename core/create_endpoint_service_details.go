@@ -20,16 +20,16 @@ import (
 // CreateEndpointServiceDetails Details for creating an endpoint service.
 type CreateEndpointServiceDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the endpoint
-	// service belongs to.
-	VcnId *string `mandatory:"true" json:"vcnId"`
-
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the
 	// endpoint service.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// List of service IP addresses (in the service VCN) that handle requests to the endpoint service.
 	ServiceIps []EndpointServiceIpDetails `mandatory:"true" json:"serviceIps"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the endpoint
+	// service belongs to.
+	VcnId *string `mandatory:"false" json:"vcnId"`
 
 	// A description of the endpoint service. For Oracle services that use the "trusted" mode of the private endpoint service, customers never see this description. Avoid entering confidential information.
 	Description *string `mandatory:"false" json:"description"`

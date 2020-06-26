@@ -32,10 +32,6 @@ type EndpointService struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the endpoint service.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the endpoint
-	// service belongs to.
-	VcnId *string `mandatory:"true" json:"vcnId"`
-
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the
 	// endpoint service.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
@@ -60,6 +56,10 @@ type EndpointService struct {
 
 	// The endpoint service's current lifecycle state.
 	LifecycleState EndpointServiceLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the endpoint
+	// service belongs to.
+	VcnId *string `mandatory:"false" json:"vcnId"`
 
 	// A description of the endpoint service. For Oracle services that use the "trusted" mode of the
 	// private endpoint service, customers never see this description.

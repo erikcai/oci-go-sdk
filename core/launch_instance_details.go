@@ -51,8 +51,12 @@ type LaunchInstanceDetails struct {
 	// Example: `My bare metal instance`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the 'metadata' object.
-	// They are distinguished from 'metadata' fields in that these can be nested JSON objects (whereas 'metadata' fields are string/string maps only).
+	// Additional metadata key/value pairs that you provide. They serve the same purpose and
+	// functionality as fields in the `metadata` object.
+	// They are distinguished from `metadata` fields in that these can be nested JSON objects
+	// (whereas `metadata` fields are string/string maps only).
+	// The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of
+	// 32,000 bytes.
 	ExtendedMetadata map[string]interface{} `mandatory:"false" json:"extendedMetadata"`
 
 	// A fault domain is a grouping of hardware and infrastructure within an availability domain.
@@ -143,6 +147,7 @@ type LaunchInstanceDetails struct {
 	//      curl -H "Authorization: Bearer Oracle" http://169.254.169.254/opc/v2/instance/metadata/<any-key-name>
 	//  You'll get back a response that includes all the instance information; only the metadata information; or
 	//  the metadata information for the specified key name, respectively.
+	//  The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of 32,000 bytes.
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 
 	AgentConfig *LaunchInstanceAgentConfigDetails `mandatory:"false" json:"agentConfig"`

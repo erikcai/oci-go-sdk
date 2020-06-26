@@ -26,14 +26,9 @@ const (
     RegionLhr RegionEnum = "LHR"
     RegionYyz RegionEnum = "YYZ"
     RegionNrt RegionEnum = "NRT"
-    RegionUsLangley1 RegionEnum = "US_LANGLEY_1"
-    RegionUsLuke1 RegionEnum = "US_LUKE_1"
     RegionIcn RegionEnum = "ICN"
     RegionBom RegionEnum = "BOM"
     RegionGru RegionEnum = "GRU"
-    RegionUsGovAshburn1 RegionEnum = "US_GOV_ASHBURN_1"
-    RegionUsGovPhoenix1 RegionEnum = "US_GOV_PHOENIX_1"
-    RegionUsGovChicago1 RegionEnum = "US_GOV_CHICAGO_1"
     RegionSyd RegionEnum = "SYD"
     RegionZrh RegionEnum = "ZRH"
     RegionJed RegionEnum = "JED"
@@ -43,7 +38,6 @@ const (
     RegionYul RegionEnum = "YUL"
     RegionHyd RegionEnum = "HYD"
     RegionYny RegionEnum = "YNY"
-    RegionTiw RegionEnum = "TIW"
 )
 
 var mappingRegion = map[string]RegionEnum { 
@@ -58,14 +52,9 @@ var mappingRegion = map[string]RegionEnum {
     "LHR": RegionLhr,
     "YYZ": RegionYyz,
     "NRT": RegionNrt,
-    "US_LANGLEY_1": RegionUsLangley1,
-    "US_LUKE_1": RegionUsLuke1,
     "ICN": RegionIcn,
     "BOM": RegionBom,
     "GRU": RegionGru,
-    "US_GOV_ASHBURN_1": RegionUsGovAshburn1,
-    "US_GOV_PHOENIX_1": RegionUsGovPhoenix1,
-    "US_GOV_CHICAGO_1": RegionUsGovChicago1,
     "SYD": RegionSyd,
     "ZRH": RegionZrh,
     "JED": RegionJed,
@@ -75,7 +64,6 @@ var mappingRegion = map[string]RegionEnum {
     "YUL": RegionYul,
     "HYD": RegionHyd,
     "YNY": RegionYny,
-    "TIW": RegionTiw,
 }
 
 // GetRegionEnumValues Enumerates the set of values for RegionEnum

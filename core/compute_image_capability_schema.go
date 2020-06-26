@@ -25,9 +25,6 @@ type ComputeImageCapabilitySchema struct {
 	// The id of the compute global image capability schema version
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID of the compartment that contains the resource.
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
-
 	// The name of the compute global image capability schema version
 	ComputeGlobalImageCapabilitySchemaVersionName *string `mandatory:"true" json:"computeGlobalImageCapabilitySchemaVersionName"`
 
@@ -41,6 +38,9 @@ type ComputeImageCapabilitySchema struct {
 	// RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// The OCID of the compartment that contains the resource.
+	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -60,10 +60,10 @@ func (m ComputeImageCapabilitySchema) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *ComputeImageCapabilitySchema) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
+		CompartmentId                                 *string                                    `json:"compartmentId"`
 		DefinedTags                                   map[string]map[string]interface{}          `json:"definedTags"`
 		FreeformTags                                  map[string]string                          `json:"freeformTags"`
 		Id                                            *string                                    `json:"id"`
-		CompartmentId                                 *string                                    `json:"compartmentId"`
 		ComputeGlobalImageCapabilitySchemaVersionName *string                                    `json:"computeGlobalImageCapabilitySchemaVersionName"`
 		DisplayName                                   *string                                    `json:"displayName"`
 		SchemaData                                    map[string]imagecapabilityschemadescriptor `json:"schemaData"`
@@ -75,13 +75,13 @@ func (m *ComputeImageCapabilitySchema) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	var nn interface{}
+	m.CompartmentId = model.CompartmentId
+
 	m.DefinedTags = model.DefinedTags
 
 	m.FreeformTags = model.FreeformTags
 
 	m.Id = model.Id
-
-	m.CompartmentId = model.CompartmentId
 
 	m.ComputeGlobalImageCapabilitySchemaVersionName = model.ComputeGlobalImageCapabilitySchemaVersionName
 

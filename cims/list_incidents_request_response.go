@@ -21,7 +21,7 @@ type ListIncidentsRequest struct {
  // User OCID for Oracle Identity Cloud Service (IDCS) users who also have a federated Oracle Cloud Infrastructure account. 
         Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
         
- // The maximum number of returned results in a call. 
+ // For list pagination. The maximum number of results per page, or items to return in a paginated "List" call. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine). 
         Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
         
  // The key to use to sort the returned items. 
@@ -33,7 +33,7 @@ type ListIncidentsRequest struct {
  // The current state of the ticket. 
         LifecycleState ListIncidentsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
         
- // The pagination for the support ticket list. 
+ // For list pagination. The value of the `opc-next-page` response header from the previous "List" call. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine). 
         Page *string `mandatory:"false" contributesTo:"query" name:"page"`
         
  // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID. 
@@ -41,6 +41,9 @@ type ListIncidentsRequest struct {
         
  // The region of the tenancy. 
         Homeregion *string `mandatory:"false" contributesTo:"header" name:"homeregion"`
+        
+ // The kind of support request. 
+        ProblemType *string `mandatory:"false" contributesTo:"query" name:"problemType"`
 
 
     // Metadata about the request. This information will not be transmitted to the service, but
@@ -77,9 +80,6 @@ type ListIncidentsResponse struct {
     
  // For list pagination. When this header appears in the response, additional pages of results remain. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#nine).
     OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
-    
- // The entity tag that allows optimistic concurrency control. For more information, see REST APIs (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#eleven).
-    Etag *string `presentIn:"header" name:"etag"`
 
 
 }

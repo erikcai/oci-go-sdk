@@ -15,7 +15,8 @@ import (
 
 
     
- // CreateTicketDetails Details for creating the support ticket.
+ // CreateTicketDetails Details relevant to the support ticket.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type CreateTicketDetails struct {
     
  // The severity of the support ticket.
@@ -29,6 +30,9 @@ type CreateTicketDetails struct {
     
  // The list of resources.
     ResourceList []CreateResourceDetails `mandatory:"false" json:"resourceList"`
+    
+ // The context from where the ticket is getting created.
+    ContextualData *ContextualData `mandatory:"false" json:"contextualData"`
 }
 
 func (m CreateTicketDetails) String() string {

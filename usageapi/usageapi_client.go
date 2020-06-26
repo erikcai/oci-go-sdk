@@ -54,7 +54,7 @@ func newUsageapiClientFromBaseClient(baseClient common.BaseClient, configProvide
 
 // SetRegion overrides the region of this client.
 func (client *UsageapiClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("usageapi", "https://usage-api.{region}.oci.{secondLevelDomain}")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("usageapi", "https://usageapi.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid

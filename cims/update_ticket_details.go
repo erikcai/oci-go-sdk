@@ -16,6 +16,7 @@ import (
 
     
  // UpdateTicketDetails Details about the ticket updated.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type UpdateTicketDetails struct {
     
  // The list of resources.

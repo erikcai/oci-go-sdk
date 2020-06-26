@@ -34,11 +34,17 @@ type Target struct {
 	// possible type of targets
 	TargetResourceType TargetResourceTypeEnum `mandatory:"false" json:"targetResourceType,omitempty"`
 
-	// List of detector recipes associated with target
+	// DEPRECATED
 	DetectorRecipes []TargetDetectorRecipe `mandatory:"false" json:"detectorRecipes"`
 
-	// List of responder recipes associated with target
+	// DEPRECATED
 	ResponderRecipes []TargetResponderRecipe `mandatory:"false" json:"responderRecipes"`
+
+	// List of detector recipes associated with target
+	TargetDetectorRecipes []TargetDetectorRecipe `mandatory:"false" json:"targetDetectorRecipes"`
+
+	// List of responder recipes associated with target
+	TargetResponderRecipes []TargetResponderRecipe `mandatory:"false" json:"targetResponderRecipes"`
 
 	// List of inherited compartments
 	InheritedByCompartments []string `mandatory:"false" json:"inheritedByCompartments"`

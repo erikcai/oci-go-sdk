@@ -24,7 +24,7 @@ type IncidentSummary struct {
  // The kind of support ticket, such as a technical support request.
     ProblemType ProblemTypeEnum `mandatory:"true" json:"problemType"`
     
- // The OCID of the tenacy.
+ // The OCID of the tenancy.
     CompartmentId *string `mandatory:"false" json:"compartmentId"`
     
     ContactList *ContactList `mandatory:"false" json:"contactList"`

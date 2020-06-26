@@ -13,13 +13,15 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ResponderRecipeRuleDetails Details of ResponderRecipeRuleDetails.
-type ResponderRecipeRuleDetails struct {
+// UpdateTargetDetectorRecipe The information to be updated in attached Target DetectorRecipe
+type UpdateTargetDetectorRecipe struct {
 
-	// Identifies state for ResponderRule
-	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
+	// Identifier for DetectorRecipe.
+	TargetDetectorRecipeId *string `mandatory:"true" json:"targetDetectorRecipeId"`
+
+	TargetDetectorRecipeDetails *UpdateTargetDetectorRecipeDetails `mandatory:"true" json:"targetDetectorRecipeDetails"`
 }
 
-func (m ResponderRecipeRuleDetails) String() string {
+func (m UpdateTargetDetectorRecipe) String() string {
 	return common.PointerString(m)
 }

@@ -31,6 +31,11 @@ type RequestSummarizedActivityProblemsRequest struct {
 	// The maximum number of items to return.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
+	// Default is false.
+	// When set to true, the summary of activity problems that has unknown values for
+	// city, state or country will be included.
+	IncludeUnknownLocations *bool `mandatory:"false" contributesTo:"query" name:"includeUnknownLocations"`
+
 	// The page token representing the page at which to start retrieving results. This is usually retrieved from a previous list call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 

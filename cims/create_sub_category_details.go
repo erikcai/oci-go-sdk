@@ -16,6 +16,7 @@ import (
 
     
  // CreateSubCategoryDetails Details for creating the subcategory of the support ticket.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type CreateSubCategoryDetails struct {
     
  // Unique identifier for the subcategory.

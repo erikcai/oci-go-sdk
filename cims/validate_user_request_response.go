@@ -18,9 +18,6 @@ type ValidateUserRequest struct {
  // User OCID for Oracle Identity Cloud Service (IDCS) users who also have a federated Oracle Cloud Infrastructure account. 
         Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
         
- // A token that uniquely identifies a request so it can be retried in case of a timeout or server error without risk of executing that same action again. Retry tokens expire after 24 hours, but can be invalidated before then due to conflicting operations. For example, if a resource has been deleted and purged from the system, then a retry of the original creation request might be rejected. 
-        OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
-        
  // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID. 
         OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
         
@@ -62,9 +59,6 @@ type ValidateUserResponse struct {
     
  // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
     OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-    
- // The entity tag that allows optimistic concurrency control. For more information, see REST APIs (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#eleven).
-    Etag *string `presentIn:"header" name:"etag"`
 
 
 }

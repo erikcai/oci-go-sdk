@@ -22,6 +22,12 @@ type UpdateTargetDetails struct {
 	// The current state of the Target.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
+	// The details of target detector recipes to be updated.
+	TargetDetectorRecipes []UpdateTargetDetectorRecipe `mandatory:"false" json:"targetDetectorRecipes"`
+
+	// The details of target responder recipes to be updated.
+	TargetResponderRecipes []UpdateTargetResponderRecipe `mandatory:"false" json:"targetResponderRecipes"`
+
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`

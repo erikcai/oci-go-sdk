@@ -15,7 +15,8 @@ import (
 
 
     
- // CreateIncident Details about the creation of the support ticket.
+ // CreateIncident Details gathered during the creation of the support ticket.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type CreateIncident struct {
     
  // The OCID of the tenancy.

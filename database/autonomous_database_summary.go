@@ -156,6 +156,9 @@ type AutonomousDatabaseSummary struct {
 	// The date and time when last refresh happened.
 	TimeOfLastRefresh *common.SDKTime `mandatory:"false" json:"timeOfLastRefresh"`
 
+	// The refresh point timestamp (UTC). The refresh point is the time to which the database was most recently refreshed. Data created after the refresh point is not included in the refresh.
+	TimeOfLastRefreshPoint *common.SDKTime `mandatory:"false" json:"timeOfLastRefreshPoint"`
+
 	// The date and time of next refresh.
 	TimeOfNextRefresh *common.SDKTime `mandatory:"false" json:"timeOfNextRefresh"`
 

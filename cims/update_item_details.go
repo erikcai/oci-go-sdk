@@ -15,7 +15,8 @@ import (
 )
 
         
- // UpdateItemDetails Details about the item.
+ // UpdateItemDetails Details for udpating an item.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type UpdateItemDetails interface {
 }
 

@@ -39,22 +39,26 @@ type UpdateInstanceDetails struct {
 	AgentConfig *UpdateInstanceAgentConfigDetails `mandatory:"false" json:"agentConfig"`
 
 	// Custom metadata key/value string pairs that you provide. Any set of key/value pairs
-	// provided here will completely replace the current set of key/value pairs in the 'metadata'
+	// provided here will completely replace the current set of key/value pairs in the `metadata`
 	// field on the instance.
-	// Both the 'user_data' and 'ssh_authorized_keys' fields cannot be changed after an instance
-	// has launched. Any request which updates, removes, or adds either of these fields will be
-	// rejected. You must provide the same values for 'user_data' and 'ssh_authorized_keys' that
+	// The "user_data" field and the "ssh_authorized_keys" field cannot be changed after an instance
+	// has launched. Any request that updates, removes, or adds either of these fields will be
+	// rejected. You must provide the same values for "user_data" and "ssh_authorized_keys" that
 	// already exist on the instance.
+	// The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of
+	// 32,000 bytes.
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 
 	// Additional metadata key/value pairs that you provide. They serve the same purpose and
-	// functionality as fields in the 'metadata' object.
-	// They are distinguished from 'metadata' fields in that these can be nested JSON objects
-	// (whereas 'metadata' fields are string/string maps only).
-	// Both the 'user_data' and 'ssh_authorized_keys' fields cannot be changed after an instance
-	// has launched. Any request which updates, removes, or adds either of these fields will be
-	// rejected. You must provide the same values for 'user_data' and 'ssh_authorized_keys' that
+	// functionality as fields in the `metadata` object.
+	// They are distinguished from `metadata` fields in that these can be nested JSON objects
+	// (whereas `metadata` fields are string/string maps only).
+	// The "user_data" field and the "ssh_authorized_keys" field cannot be changed after an instance
+	// has launched. Any request that updates, removes, or adds either of these fields will be
+	// rejected. You must provide the same values for "user_data" and "ssh_authorized_keys" that
 	// already exist on the instance.
+	// The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of
+	// 32,000 bytes.
 	ExtendedMetadata map[string]interface{} `mandatory:"false" json:"extendedMetadata"`
 
 	// The shape of the instance. The shape determines the number of CPUs and the amount of memory

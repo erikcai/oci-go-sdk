@@ -70,8 +70,10 @@ type Instance struct {
 	// Example: `My bare metal instance`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the 'metadata' object.
-	// They are distinguished from 'metadata' fields in that these can be nested JSON objects (whereas 'metadata' fields are string/string maps only).
+	// Additional metadata key/value pairs that you provide. They serve the same purpose and functionality
+	// as fields in the `metadata` object.
+	// They are distinguished from `metadata` fields in that these can be nested JSON objects (whereas `metadata`
+	// fields are string/string maps only).
 	ExtendedMetadata map[string]interface{} `mandatory:"false" json:"extendedMetadata"`
 
 	// The name of the fault domain the instance is running in.

@@ -17,6 +17,7 @@ import (
 
     
  // UpdateResourceDetails Details about updates to the resource.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type UpdateResourceDetails struct {
     
     Item UpdateItemDetails `mandatory:"false" json:"item"`

@@ -28,6 +28,9 @@ type CreateDetectorRecipeDetails struct {
 	// DetectorRecipe Description
 	Description *string `mandatory:"false" json:"description"`
 
+	// Detector Rules to override from source detector recipe
+	DetectorRules []UpdateDetectorRecipeDetectorRuleDetails `mandatory:"false" json:"detectorRules"`
+
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`

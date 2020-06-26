@@ -21,7 +21,7 @@ type Incident struct {
  // Unique identifier for the support ticket.
     Key *string `mandatory:"true" json:"key"`
     
- // The OCID of the tenacy.
+ // The OCID of the tenancy.
     CompartmentId *string `mandatory:"false" json:"compartmentId"`
     
     ContactList *ContactList `mandatory:"false" json:"contactList"`

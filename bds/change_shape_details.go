@@ -15,8 +15,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeShapeInstanceDetails The information about additionaly added nodes
-type ChangeShapeInstanceDetails struct {
+// ChangeShapeDetails The information about additionaly added nodes
+type ChangeShapeDetails struct {
 
 	// Base-64 encoded password for Cloudera Manager admin user
 	ClusterAdminPassword *string `mandatory:"true" json:"clusterAdminPassword"`
@@ -25,6 +25,6 @@ type ChangeShapeInstanceDetails struct {
 	Nodes *ChangeShapeNodes `mandatory:"true" json:"nodes"`
 }
 
-func (m ChangeShapeInstanceDetails) String() string {
+func (m ChangeShapeDetails) String() string {
 	return common.PointerString(m)
 }

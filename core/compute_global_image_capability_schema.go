@@ -23,9 +23,6 @@ type ComputeGlobalImageCapabilitySchema struct {
 	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute global image capability schema
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID of the compartment that contains the resource.
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
-
 	// A user-friendly name for the compute global image capability schema
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
@@ -33,6 +30,9 @@ type ComputeGlobalImageCapabilitySchema struct {
 	// RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// The OCID of the compartment that contains the resource.
+	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// The id of the global capabilities version resource that is considered the current version.
 	CurrentVersionId *string `mandatory:"false" json:"currentVersionId"`

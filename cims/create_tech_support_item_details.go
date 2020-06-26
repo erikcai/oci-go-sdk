@@ -15,7 +15,8 @@ import (
 )
 
         
- // CreateTechSupportItemDetails Details for creating the technical support item.
+ // CreateTechSupportItemDetails Details about the issue that the technical support request relates to.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type CreateTechSupportItemDetails struct {
         
         Category *CreateCategoryDetails `mandatory:"false" json:"category"`

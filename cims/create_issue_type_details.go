@@ -16,6 +16,7 @@ import (
 
     
  // CreateIssueTypeDetails Details for creating the issue type of the support ticket.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type CreateIssueTypeDetails struct {
     
  // Unique identifier for the issue type.

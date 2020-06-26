@@ -31,11 +31,17 @@ type CreateTargetDetails struct {
 	// Resource ID which the target uses to monitor
 	TargetResourceId *string `mandatory:"false" json:"targetResourceId"`
 
-	// List of detector recipes associated with target
+	// DEPRECATED
 	DetectorRecipes []string `mandatory:"false" json:"detectorRecipes"`
 
-	// List of responder recipe OCID associated with target
+	// DEPRECATED
 	ResponderRecipes []string `mandatory:"false" json:"responderRecipes"`
+
+	// List of detector recipes to associate with target
+	TargetDetectorRecipes []CreateTargetDetectorRecipe `mandatory:"false" json:"targetDetectorRecipes"`
+
+	// List of responder recipes to associate with target
+	TargetResponderRecipes []CreateTargetResponderRecipe `mandatory:"false" json:"targetResponderRecipes"`
 
 	// The current state of the DetectorRule.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`

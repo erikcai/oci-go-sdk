@@ -16,7 +16,8 @@ import (
 
 
     
- // CreateResourceDetails Details for creating the support ticket item.
+ // CreateResourceDetails Details about the resource that the support ticket relates to.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type CreateResourceDetails struct {
     
     Item CreateItemDetails `mandatory:"false" json:"item"`

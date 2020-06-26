@@ -15,7 +15,8 @@ import (
 )
 
         
- // CreateItemDetails Details for creating the item.
+ // CreateItemDetails Details gathered during item creation.
+ // **Caution:** Avoid using any confidential information when you supply string values using the API.
 type CreateItemDetails interface {
     
     GetCategory() *CreateCategoryDetails

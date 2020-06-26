@@ -16,8 +16,11 @@ import (
 // MigrateVaultKeyDetails Details for replacing existing Oracle-managed keys with customer-managed Vault service (https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) keys and vice-versa is not supported.
 type MigrateVaultKeyDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Vault service (https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) master encryption key, which is required to start using the Vault service for key management.
-	PrimaryKey *string `mandatory:"true" json:"primaryKey"`
+	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+	KmsKeyId *string `mandatory:"true" json:"kmsKeyId"`
+
+	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
 }
 
 func (m MigrateVaultKeyDetails) String() string {

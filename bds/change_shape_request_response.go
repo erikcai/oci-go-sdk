@@ -16,7 +16,7 @@ type ChangeShapeRequest struct {
 	BdsInstanceId *string `mandatory:"true" contributesTo:"path" name:"bdsInstanceId"`
 
 	// Details for the changed nodes nodes
-	ChangeShapeDetails ChangeShapeInstanceDetails `contributesTo:"body"`
+	ChangeShapeDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

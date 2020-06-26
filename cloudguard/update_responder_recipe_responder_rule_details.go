@@ -15,7 +15,7 @@ import (
 
 // UpdateResponderRecipeResponderRuleDetails The details to be updated in ResponderRule
 type UpdateResponderRecipeResponderRuleDetails struct {
-	Details *ResponderRecipeRuleDetails `mandatory:"true" json:"details"`
+	Details *UpdateResponderRuleDetails `mandatory:"true" json:"details"`
 }
 
 func (m UpdateResponderRecipeResponderRuleDetails) String() string {

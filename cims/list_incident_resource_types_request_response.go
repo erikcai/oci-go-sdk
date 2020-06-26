@@ -27,10 +27,10 @@ type ListIncidentResourceTypesRequest struct {
  // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID. 
         OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
         
- // The maximum number of returned results in a call. 
+ // For list pagination. The maximum number of results per page, or items to return in a paginated "List" call. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine). 
         Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
         
- // The pagination for the support ticket list. 
+ // For list pagination. The value of the `opc-next-page` response header from the previous "List" call. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine). 
         Page *string `mandatory:"false" contributesTo:"query" name:"page"`
         
  // The key to use to sort the returned items. 
@@ -80,9 +80,6 @@ type ListIncidentResourceTypesResponse struct {
     
  // For list pagination. When this header appears in the response, additional pages of results remain. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#nine).
     OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
-    
- // The entity tag that allows optimistic concurrency control. For more information, see REST APIs (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#eleven).
-    Etag *string `presentIn:"header" name:"etag"`
 
 
 }
