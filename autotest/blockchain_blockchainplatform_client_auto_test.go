@@ -419,50 +419,6 @@ func TestBlockchainPlatformClientGetBlockchainPlatform(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="bcs_devops_ww_grp@oracle.com" jiraProject="OBP" opsJiraProject="OBP"
-func TestBlockchainPlatformClientGetBlockchainPlatformByHostname(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("blockchain", "GetBlockchainPlatformByHostname")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetBlockchainPlatformByHostname is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("blockchain", "BlockchainPlatform", "GetBlockchainPlatformByHostname", createBlockchainPlatformClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(blockchain.BlockchainPlatformClient)
-
-	body, err := testClient.getRequests("blockchain", "GetBlockchainPlatformByHostname")
-	assert.NoError(t, err)
-
-	type GetBlockchainPlatformByHostnameRequestInfo struct {
-		ContainerId string
-		Request     blockchain.GetBlockchainPlatformByHostnameRequest
-	}
-
-	var requests []GetBlockchainPlatformByHostnameRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetBlockchainPlatformByHostname(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="bcs_devops_ww_grp@oracle.com" jiraProject="OBP" opsJiraProject="OBP"
 func TestBlockchainPlatformClientGetOsn(t *testing.T) {
 	defer failTestOnPanic(t)
 

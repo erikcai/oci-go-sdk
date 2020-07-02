@@ -31,6 +31,17 @@ type CreateAutonomousContainerDatabaseDetails struct {
 	// The OCID of the Autonomous Exadata Infrastructure.
 	AutonomousExadataInfrastructureId *string `mandatory:"false" json:"autonomousExadataInfrastructureId"`
 
+	// The OCID of the peer Autonomous Exadata Infrastructure for autonomous dataguard.
+	PeerAutonomousExadataInfrastructureId *string `mandatory:"false" json:"peerAutonomousExadataInfrastructureId"`
+
+	// The display name for the peer Autonomous Container Database.
+	PeerAutonomousContainerDatabaseDisplayName *string `mandatory:"false" json:"peerAutonomousContainerDatabaseDisplayName"`
+
+	// The protection mode of this Data Guard association. For more information, see
+	// Oracle Data Guard Protection Modes (http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
+	// in the Oracle Data Guard documentation.
+	ProtectionMode CreateAutonomousContainerDatabaseDetailsProtectionModeEnum `mandatory:"false" json:"protectionMode,omitempty"`
+
 	// The OCID of the Autonomous VM Cluster.
 	AutonomousVmClusterId *string `mandatory:"false" json:"autonomousVmClusterId"`
 
@@ -60,17 +71,42 @@ type CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum strin
 
 // Set of constants representing the allowable values for CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum
 const (
-	CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeStandard CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum = "STANDARD"
+	CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeStandard            CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum = "STANDARD"
+	CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeAutonomousDataguard CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum = "AUTONOMOUS_DATAGUARD"
 )
 
 var mappingCreateAutonomousContainerDatabaseDetailsServiceLevelAgreementType = map[string]CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum{
-	"STANDARD": CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeStandard,
+	"STANDARD":             CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeStandard,
+	"AUTONOMOUS_DATAGUARD": CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeAutonomousDataguard,
 }
 
 // GetCreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnumValues Enumerates the set of values for CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum
 func GetCreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnumValues() []CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum {
 	values := make([]CreateAutonomousContainerDatabaseDetailsServiceLevelAgreementTypeEnum, 0)
 	for _, v := range mappingCreateAutonomousContainerDatabaseDetailsServiceLevelAgreementType {
+		values = append(values, v)
+	}
+	return values
+}
+
+// CreateAutonomousContainerDatabaseDetailsProtectionModeEnum Enum with underlying type: string
+type CreateAutonomousContainerDatabaseDetailsProtectionModeEnum string
+
+// Set of constants representing the allowable values for CreateAutonomousContainerDatabaseDetailsProtectionModeEnum
+const (
+	CreateAutonomousContainerDatabaseDetailsProtectionModeAvailability CreateAutonomousContainerDatabaseDetailsProtectionModeEnum = "MAXIMUM_AVAILABILITY"
+	CreateAutonomousContainerDatabaseDetailsProtectionModePerformance  CreateAutonomousContainerDatabaseDetailsProtectionModeEnum = "MAXIMUM_PERFORMANCE"
+)
+
+var mappingCreateAutonomousContainerDatabaseDetailsProtectionMode = map[string]CreateAutonomousContainerDatabaseDetailsProtectionModeEnum{
+	"MAXIMUM_AVAILABILITY": CreateAutonomousContainerDatabaseDetailsProtectionModeAvailability,
+	"MAXIMUM_PERFORMANCE":  CreateAutonomousContainerDatabaseDetailsProtectionModePerformance,
+}
+
+// GetCreateAutonomousContainerDatabaseDetailsProtectionModeEnumValues Enumerates the set of values for CreateAutonomousContainerDatabaseDetailsProtectionModeEnum
+func GetCreateAutonomousContainerDatabaseDetailsProtectionModeEnumValues() []CreateAutonomousContainerDatabaseDetailsProtectionModeEnum {
+	values := make([]CreateAutonomousContainerDatabaseDetailsProtectionModeEnum, 0)
+	for _, v := range mappingCreateAutonomousContainerDatabaseDetailsProtectionMode {
 		values = append(values, v)
 	}
 	return values

@@ -15,7 +15,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SseCustomerKeyDetails Specifies the details of the customer-provided key associated with an object.
+// SseCustomerKeyDetails Specifies the details of the customer-provided encryption key (SSE-C) associated with an object.
 type SseCustomerKeyDetails struct {
 
 	// Specifies the encryption algorithm. The only supported value is "AES256".

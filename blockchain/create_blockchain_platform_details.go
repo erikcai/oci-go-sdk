@@ -28,14 +28,17 @@ type CreateBlockchainPlatformDetails struct {
 	// Type of compute shape - one of Standard, (Enterprise) Small, Medium, Large or Extra Large
 	ComputeShape BlockchainPlatformComputeShapeEnum `mandatory:"true" json:"computeShape"`
 
-	// IDCS access token
-	IdcsAccessToken *string `mandatory:"true" json:"idcsAccessToken"`
-
 	// Platform Instance Description
 	Description *string `mandatory:"false" json:"description"`
 
 	// Bring your own license
 	IsByol *bool `mandatory:"false" json:"isByol"`
+
+	// IDCS access token
+	IdcsAccessToken *string `mandatory:"false" json:"idcsAccessToken"`
+
+	// Identifier for a federated user
+	FederatedUserId *string `mandatory:"false" json:"federatedUserId"`
 
 	// Base64 encoded text in ASCII character set of a Thirdparty CA Certificates archive file.
 	// The Archive file is a zip file containing third part CA Certificates,
@@ -45,14 +48,6 @@ type CreateBlockchainPlatformDetails struct {
 	// the 1st in the chain is always the root CA certificate.
 	// File list in zip file [ca-cert.pem,ca-key.pem,ca-chain.pem(optional)].
 	CaCertArchiveText *string `mandatory:"false" json:"caCertArchiveText"`
-
-	// Number of total OCPUs to allocate
-	TotalOcpuCapacity *int `mandatory:"false" json:"totalOcpuCapacity"`
-
-	// Storage size in TBs
-	StorageSizeInTBs *float64 `mandatory:"false" json:"storageSizeInTBs"`
-
-	Replicas *ReplicaDetails `mandatory:"false" json:"replicas"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

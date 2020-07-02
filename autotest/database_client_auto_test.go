@@ -2465,6 +2465,50 @@ func TestDatabaseClientFailOverAutonomousDatabase(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientFailoverAutonomousContainerDatabaseDataguardAssociation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "FailoverAutonomousContainerDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("FailoverAutonomousContainerDatabaseDataguardAssociation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "FailoverAutonomousContainerDatabaseDataguardAssociation", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "FailoverAutonomousContainerDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+
+	type FailoverAutonomousContainerDatabaseDataguardAssociationRequestInfo struct {
+		ContainerId string
+		Request     database.FailoverAutonomousContainerDatabaseDataguardAssociationRequest
+	}
+
+	var requests []FailoverAutonomousContainerDatabaseDataguardAssociationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.FailoverAutonomousContainerDatabaseDataguardAssociation(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientFailoverDataGuardAssociation(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2685,6 +2729,50 @@ func TestDatabaseClientGetAutonomousContainerDatabase(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetAutonomousContainerDatabaseDataguardAssociation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetAutonomousContainerDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAutonomousContainerDatabaseDataguardAssociation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousContainerDatabaseDataguardAssociation", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetAutonomousContainerDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+
+	type GetAutonomousContainerDatabaseDataguardAssociationRequestInfo struct {
+		ContainerId string
+		Request     database.GetAutonomousContainerDatabaseDataguardAssociationRequest
+	}
+
+	var requests []GetAutonomousContainerDatabaseDataguardAssociationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetAutonomousContainerDatabaseDataguardAssociation(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientGetAutonomousDataWarehouse(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2854,6 +2942,50 @@ func TestDatabaseClientGetAutonomousDatabaseBackup(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetAutonomousDatabaseBackup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetAutonomousDatabaseDataguardAssociation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetAutonomousDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAutonomousDatabaseDataguardAssociation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousDatabaseDataguardAssociation", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetAutonomousDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+
+	type GetAutonomousDatabaseDataguardAssociationRequestInfo struct {
+		ContainerId string
+		Request     database.GetAutonomousDatabaseDataguardAssociationRequest
+	}
+
+	var requests []GetAutonomousDatabaseDataguardAssociationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetAutonomousDatabaseDataguardAssociation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -4372,6 +4504,60 @@ func TestDatabaseClientLaunchDbSystem(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListAutonomousContainerDatabaseDataguardAssociations(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListAutonomousContainerDatabaseDataguardAssociations")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAutonomousContainerDatabaseDataguardAssociations is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousContainerDatabaseDataguardAssociations", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListAutonomousContainerDatabaseDataguardAssociations")
+	assert.NoError(t, err)
+
+	type ListAutonomousContainerDatabaseDataguardAssociationsRequestInfo struct {
+		ContainerId string
+		Request     database.ListAutonomousContainerDatabaseDataguardAssociationsRequest
+	}
+
+	var requests []ListAutonomousContainerDatabaseDataguardAssociationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListAutonomousContainerDatabaseDataguardAssociationsRequest)
+				return c.ListAutonomousContainerDatabaseDataguardAssociations(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListAutonomousContainerDatabaseDataguardAssociationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListAutonomousContainerDatabaseDataguardAssociationsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientListAutonomousContainerDatabases(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4578,6 +4764,60 @@ func TestDatabaseClientListAutonomousDatabaseBackups(t *testing.T) {
 			typedListResponses := make([]database.ListAutonomousDatabaseBackupsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(database.ListAutonomousDatabaseBackupsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListAutonomousDatabaseDataguardAssociations(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListAutonomousDatabaseDataguardAssociations")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAutonomousDatabaseDataguardAssociations is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDatabaseDataguardAssociations", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListAutonomousDatabaseDataguardAssociations")
+	assert.NoError(t, err)
+
+	type ListAutonomousDatabaseDataguardAssociationsRequestInfo struct {
+		ContainerId string
+		Request     database.ListAutonomousDatabaseDataguardAssociationsRequest
+	}
+
+	var requests []ListAutonomousDatabaseDataguardAssociationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListAutonomousDatabaseDataguardAssociationsRequest)
+				return c.ListAutonomousDatabaseDataguardAssociations(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListAutonomousDatabaseDataguardAssociationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListAutonomousDatabaseDataguardAssociationsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -6535,6 +6775,50 @@ func TestDatabaseClientRegisterAutonomousDatabaseDataSafe(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientReinstateAutonomousContainerDatabaseDataguardAssociation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ReinstateAutonomousContainerDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ReinstateAutonomousContainerDatabaseDataguardAssociation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ReinstateAutonomousContainerDatabaseDataguardAssociation", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ReinstateAutonomousContainerDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+
+	type ReinstateAutonomousContainerDatabaseDataguardAssociationRequestInfo struct {
+		ContainerId string
+		Request     database.ReinstateAutonomousContainerDatabaseDataguardAssociationRequest
+	}
+
+	var requests []ReinstateAutonomousContainerDatabaseDataguardAssociationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ReinstateAutonomousContainerDatabaseDataguardAssociation(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientReinstateDataGuardAssociation(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -7012,6 +7296,50 @@ func TestDatabaseClientStopAutonomousDatabase(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.StopAutonomousDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientSwitchoverAutonomousContainerDatabaseDataguardAssociation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "SwitchoverAutonomousContainerDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("SwitchoverAutonomousContainerDatabaseDataguardAssociation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "SwitchoverAutonomousContainerDatabaseDataguardAssociation", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "SwitchoverAutonomousContainerDatabaseDataguardAssociation")
+	assert.NoError(t, err)
+
+	type SwitchoverAutonomousContainerDatabaseDataguardAssociationRequestInfo struct {
+		ContainerId string
+		Request     database.SwitchoverAutonomousContainerDatabaseDataguardAssociationRequest
+	}
+
+	var requests []SwitchoverAutonomousContainerDatabaseDataguardAssociationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.SwitchoverAutonomousContainerDatabaseDataguardAssociation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

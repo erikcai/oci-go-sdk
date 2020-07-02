@@ -518,53 +518,6 @@ func (client BlockchainPlatformClient) getBlockchainPlatform(ctx context.Context
 	return response, err
 }
 
-// GetBlockchainPlatformByHostname Gets information about a Blockchain Platform identified by the hostname
-func (client BlockchainPlatformClient) GetBlockchainPlatformByHostname(ctx context.Context, request GetBlockchainPlatformByHostnameRequest) (response GetBlockchainPlatformByHostnameResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getBlockchainPlatformByHostname, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetBlockchainPlatformByHostnameResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = GetBlockchainPlatformByHostnameResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetBlockchainPlatformByHostnameResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetBlockchainPlatformByHostnameResponse")
-	}
-	return
-}
-
-// getBlockchainPlatformByHostname implements the OCIOperation interface (enables retrying operations)
-func (client BlockchainPlatformClient) getBlockchainPlatformByHostname(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/blockchainPlatforms/hostnames/{hostname}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetBlockchainPlatformByHostnameResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // GetOsn Gets information about an OSN identified by the specific id
 func (client BlockchainPlatformClient) GetOsn(ctx context.Context, request GetOsnRequest) (response GetOsnResponse, err error) {
 	var ociResponse common.OCIResponse

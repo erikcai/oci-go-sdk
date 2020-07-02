@@ -15,21 +15,21 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReencryptObjectDetails This reference describes the information used to re-encrypt the encryption keys associated with an object.
-// You can only specify either a kmsKeyId or an sseCustomerKey in the request payload (not both).
-// If the request payload is empty, the object is encrypted using the encryption mechanism specified for the
-// bucket. The encryption mechanism can either be a master encryption key managed by Oracle or the Key Management service.
-// - The sseCustomerKey field specifies the customer-provided encryption key that will be used to re-encrypt the
+// ReencryptObjectDetails The details used to re-encrypt the data encryption keys associated with an object.
+// You can only specify either a kmsKeyId or an sseCustomerKey in the request payload, not both.
+// If the request payload is empty, the object is encrypted using the encryption key assigned to the
+// bucket. The bucket encryption mechanism can either be a master encryption key managed by Oracle or the Vault service.
+// - The sseCustomerKey field specifies the customer-provided encryption key (SSE-C) that will be used to re-encrypt the data encryption keys of the
 //   object and its chunks.
 // - The sourceSSECustomerKey field specifies information about the customer-provided encryption key that is currently
 //   associated with the object source. Specify a value for the sourceSSECustomerKey only if the object
 //   is encrypted with a customer-provided encryption key.
 type ReencryptObjectDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the master encryption key used to call the Key Management
-	// service to re-encrypt the data encryption key associated with the object and its chunks. If the kmsKeyId value is
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the master encryption key used to call the Vault
+	// service to re-encrypt the data encryption keys associated with the object and its chunks. If the kmsKeyId value is
 	// empty, whether null or an empty string, the API will perform re-encryption by using the kmsKeyId associated with the
-	// bucket.
+	// bucket or the master encryption key managed by Oracle, depending on the bucket encryption mechanism.
 	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
 
 	SseCustomerKey *SseCustomerKeyDetails `mandatory:"false" json:"sseCustomerKey"`

@@ -2345,11 +2345,12 @@ func (client ObjectStorageClient) reencryptBucket(ctx context.Context, request c
 	return response, err
 }
 
-// ReencryptObject Re-encrypts the data encryption keys that encrypts the object. By default, Object Storage service manages the master
-// encryption key used to encrypt each object's encryption keys.
-// You can alternatively employ one of these encryption strategies:
-// - You can assign a key that you created and control through the Oracle Cloud Infrastructure Key Management service.
-// - You can encrypt objects using your own encryption key. The key you supply is known as a customer-supplied encryption key.
+// ReencryptObject Re-encrypts the data encryption keys that encrypt the object and its chunks. By default, when you create a bucket, the Object Storage
+// service manages the master encryption key used to encrypt each object's data encryption keys. The encryption mechanism that you specify for
+// the bucket applies to the objects it contains.
+// You can alternatively employ one of these encryption strategies for an object:
+// - You can assign a key that you created and control through the Oracle Cloud Infrastructure Vault service.
+// - You can encrypt an object using your own encryption key. The key you supply is known as a customer-provided encryption key (SSE-C).
 func (client ObjectStorageClient) ReencryptObject(ctx context.Context, request ReencryptObjectRequest) (response ReencryptObjectResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
