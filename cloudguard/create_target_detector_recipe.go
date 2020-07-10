@@ -18,6 +18,8 @@ type CreateTargetDetectorRecipe struct {
 
 	// Identifier for DetectorRecipe.
 	DetectorRecipeId *string `mandatory:"true" json:"detectorRecipeId"`
+
+	TargetDetectorRecipeDetails *UpdateTargetDetectorRecipeDetails `mandatory:"true" json:"targetDetectorRecipeDetails"`
 }
 
 func (m CreateTargetDetectorRecipe) String() string {

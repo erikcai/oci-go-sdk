@@ -28,6 +28,9 @@ type ComputeImageCapabilitySchema struct {
 	// The name of the compute global image capability schema version
 	ComputeGlobalImageCapabilitySchemaVersionName *string `mandatory:"true" json:"computeGlobalImageCapabilitySchemaVersionName"`
 
+	// The OCID of the image associated with this compute image capability schema
+	ImageId *string `mandatory:"true" json:"imageId"`
+
 	// A user-friendly name for the compute global image capability schema
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
@@ -65,6 +68,7 @@ func (m *ComputeImageCapabilitySchema) UnmarshalJSON(data []byte) (e error) {
 		FreeformTags                                  map[string]string                          `json:"freeformTags"`
 		Id                                            *string                                    `json:"id"`
 		ComputeGlobalImageCapabilitySchemaVersionName *string                                    `json:"computeGlobalImageCapabilitySchemaVersionName"`
+		ImageId                                       *string                                    `json:"imageId"`
 		DisplayName                                   *string                                    `json:"displayName"`
 		SchemaData                                    map[string]imagecapabilityschemadescriptor `json:"schemaData"`
 		TimeCreated                                   *common.SDKTime                            `json:"timeCreated"`
@@ -84,6 +88,8 @@ func (m *ComputeImageCapabilitySchema) UnmarshalJSON(data []byte) (e error) {
 	m.Id = model.Id
 
 	m.ComputeGlobalImageCapabilitySchemaVersionName = model.ComputeGlobalImageCapabilitySchemaVersionName
+
+	m.ImageId = model.ImageId
 
 	m.DisplayName = model.DisplayName
 

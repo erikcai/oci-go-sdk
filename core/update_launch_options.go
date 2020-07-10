@@ -17,22 +17,42 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateLaunchOptions Options for tuning compatibility and performance of VM shapes.
+// UpdateLaunchOptions Options for tuning the compatibility and performance of VM shapes.
 type UpdateLaunchOptions struct {
 
-	// Emulation type for volume.
+	// Emulation type for the boot volume.
 	// * `ISCSI` - ISCSI attached block storage device.
-	// * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for Boot Volumes and Remote Block
-	// Storage volumes on Oracle provided images.
+	// * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+	// storage volumes on Oracle-provided plaform images.
+	// Before you change the boot volume attachment type, detach all block volumes and VNICs except for
+	// the boot volume and the primary VNIC.
+	// If the instance is running when you change the boot volume attachment type, it will be rebooted.
+	// **Note:** Some instances might not function properly if you change the boot volume attachment type. After
+	// the instance reboots and is running, connect to it. If the connection fails or the OS doesn't behave
+	// as expected, the changes are not supported. Revert the instance to the original boot volume attachment type.
 	BootVolumeType UpdateLaunchOptionsBootVolumeTypeEnum `mandatory:"false" json:"bootVolumeType,omitempty"`
 
 	// Emulation type for the physical network interface card (NIC).
 	// * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
 	// when you launch an instance using hardware-assisted (SR-IOV) networking.
-	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
+	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
+	// Before you change the networking type, detach all VNICs and block volumes except for the primary
+	// VNIC and the boot volume.
+	// The image must have paravirtualized drivers installed. For more information, see
+	// Editing an Instance (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/resizinginstances.htm).
+	// If the instance is running when you change the network type, it will be rebooted.
+	// **Note:** Some instances might not function properly if you change the networking type. After
+	// the instance reboots and is running, connect to it. If the connection fails or the OS doesn't behave
+	// as expected, the changes are not supported. Revert the instance to the original networking type.
 	NetworkType UpdateLaunchOptionsNetworkTypeEnum `mandatory:"false" json:"networkType,omitempty"`
 
-	// Whether to enable in-transit encryption for the boot volume's paravirtualized attachment. The default value is false.
+	// Whether to enable in-transit encryption for the boot volume's paravirtualized attachment.
+	// Data in transit is transferred over an internal and highly secure network. If you have specific
+	// compliance requirements related to the encryption of the data while it is moving between the
+	// instance and the boot volume, you can enable in-transit encryption. In-transit encryption is
+	// not enabled by default.
+	// All boot volumes are encrypted at rest.
+	// For more information, see Block Volume Encryption (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm#Encrypti).
 	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 }
 

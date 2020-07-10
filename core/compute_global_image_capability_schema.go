@@ -34,8 +34,8 @@ type ComputeGlobalImageCapabilitySchema struct {
 	// The OCID of the compartment that contains the resource.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The id of the global capabilities version resource that is considered the current version.
-	CurrentVersionId *string `mandatory:"false" json:"currentVersionId"`
+	// The name of the global capabilities version resource that is considered the current version.
+	CurrentVersionName *string `mandatory:"false" json:"currentVersionName"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).

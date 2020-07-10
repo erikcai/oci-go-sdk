@@ -64,7 +64,7 @@ type UpdateInstanceDetails struct {
 	// The shape of the instance. The shape determines the number of CPUs and the amount of memory
 	// allocated to the instance. For more information about how to change shapes, and a list of
 	// shapes that are supported, see
-	// Changing the Shape of an Instance (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/resizinginstances.htm).
+	// Editing an Instance (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/resizinginstances.htm).
 	// For details about the CPUs, memory, and other properties of each shape, see
 	// Compute Shapes (https://docs.cloud.oracle.com/iaas/Content/Compute/References/computeshapes.htm).
 	// The new shape must be compatible with the image that was used to launch the instance. You
@@ -83,14 +83,21 @@ type UpdateInstanceDetails struct {
 
 	InstanceOptions *InstanceOptions `mandatory:"false" json:"instanceOptions"`
 
-	// The fault domain for the dedicated virtual machine host's assigned instances.
-	// For more information, see Fault Domains (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#fault).
-	// To get a list of fault domains, use the `ListFaultDomains` operation in
-	// the Identity and Access Management Service API (https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/).
+	// A fault domain is a grouping of hardware and infrastructure within an availability domain.
+	// Each availability domain contains three fault domains. Fault domains let you distribute your
+	// instances so that they are not on the same physical hardware within a single availability domain.
+	// A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
+	// instances in other fault domains.
+	// To get a list of fault domains, use the
+	// ListFaultDomains operation in the
+	// Identity and Access Management Service API.
 	// Example: `FAULT-DOMAIN-1`
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`
 
+	// Options for tuning the compatibility and performance of VM shapes.
 	LaunchOptions *UpdateLaunchOptions `mandatory:"false" json:"launchOptions"`
+
+	AvailabilityConfig *UpdateInstanceAvailabilityConfigDetails `mandatory:"false" json:"availabilityConfig"`
 }
 
 func (m UpdateInstanceDetails) String() string {

@@ -73,9 +73,7 @@ type ReverseConnectionConfiguration struct {
 	CustomerEndpointsSize *int `mandatory:"false" json:"customerEndpointsSize"`
 
 	// List of CIDRs that this reverse connection configuration will allocate the NAT IP addresses from.
-	// CIDRs on this list will not be shared by other reverse connection enabled private endpoints.
-	// When not specified, reverse connection configuration will get NAT IP addresses from common pool of CIDRs,
-	// which will be shared with other reverse connection enabled private endpoints.
+	// CIDRs on this list is guaranteed to be not shared by other reverse connection enabled private endpoints.
 	ReverseConnectionNatIpCidrs []string `mandatory:"false" json:"reverseConnectionNatIpCidrs"`
 
 	// Layer 4 transport protocol to be used when resolving DNS queries within the default DNS resolution context.

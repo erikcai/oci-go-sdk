@@ -131,8 +131,8 @@ type InstanceConfigurationLaunchInstanceDetails struct {
 	// instances so that they are not on the same physical hardware within a single availability domain.
 	// A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
 	// instances in other fault domains.
-	// If you do not specify the fault domain, the system selects one for you. To change the fault
-	// domain for an instance, terminate it and launch a new instance in the preferred fault domain.
+	// If you do not specify the fault domain, the system selects one for you.
+	//
 	// To get a list of fault domains, use the
 	// ListFaultDomains operation in the
 	// Identity and Access Management Service API.
@@ -147,7 +147,7 @@ type InstanceConfigurationLaunchInstanceDetails struct {
 	// Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
 	// * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
 	// * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
-	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
+	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
 	// * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter.
 	LaunchMode InstanceConfigurationLaunchInstanceDetailsLaunchModeEnum `mandatory:"false" json:"launchMode,omitempty"`
 
@@ -165,6 +165,8 @@ type InstanceConfigurationLaunchInstanceDetails struct {
 	PreferredMaintenanceAction InstanceConfigurationLaunchInstanceDetailsPreferredMaintenanceActionEnum `mandatory:"false" json:"preferredMaintenanceAction,omitempty"`
 
 	InstanceOptions *InstanceConfigurationInstanceOptions `mandatory:"false" json:"instanceOptions"`
+
+	AvailabilityConfig *InstanceConfigurationAvailabilityConfig `mandatory:"false" json:"availabilityConfig"`
 }
 
 func (m InstanceConfigurationLaunchInstanceDetails) String() string {
@@ -194,6 +196,7 @@ func (m *InstanceConfigurationLaunchInstanceDetails) UnmarshalJSON(data []byte) 
 		IsPvEncryptionInTransitEnabled *bool                                                                    `json:"isPvEncryptionInTransitEnabled"`
 		PreferredMaintenanceAction     InstanceConfigurationLaunchInstanceDetailsPreferredMaintenanceActionEnum `json:"preferredMaintenanceAction"`
 		InstanceOptions                *InstanceConfigurationInstanceOptions                                    `json:"instanceOptions"`
+		AvailabilityConfig             *InstanceConfigurationAvailabilityConfig                                 `json:"availabilityConfig"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -248,6 +251,8 @@ func (m *InstanceConfigurationLaunchInstanceDetails) UnmarshalJSON(data []byte) 
 	m.PreferredMaintenanceAction = model.PreferredMaintenanceAction
 
 	m.InstanceOptions = model.InstanceOptions
+
+	m.AvailabilityConfig = model.AvailabilityConfig
 
 	return
 }

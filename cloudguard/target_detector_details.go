@@ -20,7 +20,7 @@ type TargetDetectorDetails struct {
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
 	// The Risk Level
-	RiskLevel *string `mandatory:"true" json:"riskLevel"`
+	RiskLevel RiskLevelEnum `mandatory:"true" json:"riskLevel"`
 
 	// Configuration details
 	Configurations []DetectorConfiguration `mandatory:"false" json:"configurations"`

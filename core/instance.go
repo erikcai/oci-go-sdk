@@ -82,8 +82,7 @@ type Instance struct {
 	// instances so that they are not on the same physical hardware within a single availability domain.
 	// A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
 	// instances in other fault domains.
-	// If you do not specify the fault domain, the system selects one for you. To change the fault
-	// domain for an instance, terminate it and launch a new instance in the preferred fault domain.
+	// If you do not specify the fault domain, the system selects one for you.
 	// Example: `FAULT-DOMAIN-1`
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`
 
@@ -118,7 +117,7 @@ type Instance struct {
 	// Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
 	// * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
 	// * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
-	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using virtio drivers.
+	// * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
 	// * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter.
 	LaunchMode InstanceLaunchModeEnum `mandatory:"false" json:"launchMode,omitempty"`
 
@@ -126,6 +125,8 @@ type Instance struct {
 	LaunchOptions *LaunchOptions `mandatory:"false" json:"launchOptions"`
 
 	InstanceOptions *InstanceOptions `mandatory:"false" json:"instanceOptions"`
+
+	AvailabilityConfig *InstanceAvailabilityConfig `mandatory:"false" json:"availabilityConfig"`
 
 	// Custom metadata that you provide.
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
@@ -171,6 +172,7 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 		LaunchMode                 InstanceLaunchModeEnum                 `json:"launchMode"`
 		LaunchOptions              *LaunchOptions                         `json:"launchOptions"`
 		InstanceOptions            *InstanceOptions                       `json:"instanceOptions"`
+		AvailabilityConfig         *InstanceAvailabilityConfig            `json:"availabilityConfig"`
 		Metadata                   map[string]string                      `json:"metadata"`
 		ShapeConfig                *InstanceShapeConfig                   `json:"shapeConfig"`
 		SourceDetails              instancesourcedetails                  `json:"sourceDetails"`
@@ -213,6 +215,8 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	m.LaunchOptions = model.LaunchOptions
 
 	m.InstanceOptions = model.InstanceOptions
+
+	m.AvailabilityConfig = model.AvailabilityConfig
 
 	m.Metadata = model.Metadata
 

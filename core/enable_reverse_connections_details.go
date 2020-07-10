@@ -70,6 +70,13 @@ type EnableReverseConnectionsDetails struct {
 
 	// Layer 4 transport protocol to be used when resolving DNS queries within the default DNS resolution context.
 	DefaultDnsContextTransport EnableReverseConnectionsDetailsDefaultDnsContextTransportEnum `mandatory:"false" json:"defaultDnsContextTransport,omitempty"`
+
+	// List of CIDRs that this reverse connection configuration will allocate the NAT IP addresses from.
+	// CIDRs on this list should not be shared by other reverse connection enabled private endpoints.
+	// When not specified, if the customerEndpointSize is non null, reverse connection configuration will get
+	// NAT IP addresses from the dedicated pool of CIDRs, else will get specified from the common pool of CIDRs.
+	// This field cannot be specified if the customerEndpointsSize field is non null and vice versa.
+	ReverseConnectionNatIpCidrs []string `mandatory:"false" json:"reverseConnectionNatIpCidrs"`
 }
 
 func (m EnableReverseConnectionsDetails) String() string {

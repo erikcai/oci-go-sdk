@@ -36,7 +36,7 @@ type ListTargetResponderRecipeResponderRulesRequest struct {
 	// The sort order to use, either 'asc' or 'desc'.
 	SortOrder ListTargetResponderRecipeResponderRulesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is ascending. If no value is specified timeCreated is default.
+	// The field to sort by. Only one sort order may be provided. Default order for displayName is ascending. If no value is specified displayName is default.
 	SortBy ListTargetResponderRecipeResponderRulesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// The client request ID for tracing.
@@ -150,12 +150,10 @@ type ListTargetResponderRecipeResponderRulesSortByEnum string
 
 // Set of constants representing the allowable values for ListTargetResponderRecipeResponderRulesSortByEnum
 const (
-	ListTargetResponderRecipeResponderRulesSortByTimecreated ListTargetResponderRecipeResponderRulesSortByEnum = "timeCreated"
 	ListTargetResponderRecipeResponderRulesSortByDisplayname ListTargetResponderRecipeResponderRulesSortByEnum = "displayName"
 )
 
 var mappingListTargetResponderRecipeResponderRulesSortBy = map[string]ListTargetResponderRecipeResponderRulesSortByEnum{
-	"timeCreated": ListTargetResponderRecipeResponderRulesSortByTimecreated,
 	"displayName": ListTargetResponderRecipeResponderRulesSortByDisplayname,
 }
 

@@ -27,6 +27,9 @@ type CreateDbHomeBase interface {
 	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
 	GetKmsKeyVersionId() *string
 
+	// The database software image OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+	GetDatabaseSoftwareImageId() *string
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -38,13 +41,14 @@ type CreateDbHomeBase interface {
 }
 
 type createdbhomebase struct {
-	JsonData        []byte
-	DisplayName     *string                           `mandatory:"false" json:"displayName"`
-	KmsKeyId        *string                           `mandatory:"false" json:"kmsKeyId"`
-	KmsKeyVersionId *string                           `mandatory:"false" json:"kmsKeyVersionId"`
-	FreeformTags    map[string]string                 `mandatory:"false" json:"freeformTags"`
-	DefinedTags     map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
-	Source          string                            `json:"source"`
+	JsonData                []byte
+	DisplayName             *string                           `mandatory:"false" json:"displayName"`
+	KmsKeyId                *string                           `mandatory:"false" json:"kmsKeyId"`
+	KmsKeyVersionId         *string                           `mandatory:"false" json:"kmsKeyVersionId"`
+	DatabaseSoftwareImageId *string                           `mandatory:"false" json:"databaseSoftwareImageId"`
+	FreeformTags            map[string]string                 `mandatory:"false" json:"freeformTags"`
+	DefinedTags             map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+	Source                  string                            `json:"source"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -61,6 +65,7 @@ func (m *createdbhomebase) UnmarshalJSON(data []byte) error {
 	m.DisplayName = s.Model.DisplayName
 	m.KmsKeyId = s.Model.KmsKeyId
 	m.KmsKeyVersionId = s.Model.KmsKeyVersionId
+	m.DatabaseSoftwareImageId = s.Model.DatabaseSoftwareImageId
 	m.FreeformTags = s.Model.FreeformTags
 	m.DefinedTags = s.Model.DefinedTags
 	m.Source = s.Model.Source
@@ -115,6 +120,11 @@ func (m createdbhomebase) GetKmsKeyId() *string {
 //GetKmsKeyVersionId returns KmsKeyVersionId
 func (m createdbhomebase) GetKmsKeyVersionId() *string {
 	return m.KmsKeyVersionId
+}
+
+//GetDatabaseSoftwareImageId returns DatabaseSoftwareImageId
+func (m createdbhomebase) GetDatabaseSoftwareImageId() *string {
+	return m.DatabaseSoftwareImageId
 }
 
 //GetFreeformTags returns FreeformTags

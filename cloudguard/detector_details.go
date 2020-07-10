@@ -24,7 +24,7 @@ type DetectorDetails struct {
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
 	// The Risk Level
-	RiskLevel *string `mandatory:"true" json:"riskLevel"`
+	RiskLevel RiskLevelEnum `mandatory:"true" json:"riskLevel"`
 
 	// Configuration details
 	Configurations []DetectorConfiguration `mandatory:"false" json:"configurations"`
@@ -51,7 +51,7 @@ func (m *DetectorDetails) UnmarshalJSON(data []byte) (e error) {
 		IsConfigurationAllowed *bool                   `json:"isConfigurationAllowed"`
 		DetectorRuleId         *string                 `json:"detectorRuleId"`
 		IsEnabled              *bool                   `json:"isEnabled"`
-		RiskLevel              *string                 `json:"riskLevel"`
+		RiskLevel              RiskLevelEnum           `json:"riskLevel"`
 	}{}
 
 	e = json.Unmarshal(data, &model)

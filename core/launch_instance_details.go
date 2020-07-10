@@ -64,8 +64,8 @@ type LaunchInstanceDetails struct {
 	// instances so that they are not on the same physical hardware within a single availability domain.
 	// A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
 	// instances in other fault domains.
-	// If you do not specify the fault domain, the system selects one for you. To change the fault
-	// domain for an instance, terminate it and launch a new instance in the preferred fault domain.
+	// If you do not specify the fault domain, the system selects one for you.
+	//
 	// To get a list of fault domains, use the
 	// ListFaultDomains operation in the
 	// Identity and Access Management Service API.
@@ -112,6 +112,8 @@ type LaunchInstanceDetails struct {
 	LaunchOptions *LaunchOptions `mandatory:"false" json:"launchOptions"`
 
 	InstanceOptions *InstanceOptions `mandatory:"false" json:"instanceOptions"`
+
+	AvailabilityConfig *LaunchInstanceAvailabilityConfigDetails `mandatory:"false" json:"availabilityConfig"`
 
 	// Custom metadata key/value pairs that you provide, such as the SSH public key
 	// required to connect to the instance.
@@ -197,6 +199,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		IpxeScript                     *string                                             `json:"ipxeScript"`
 		LaunchOptions                  *LaunchOptions                                      `json:"launchOptions"`
 		InstanceOptions                *InstanceOptions                                    `json:"instanceOptions"`
+		AvailabilityConfig             *LaunchInstanceAvailabilityConfigDetails            `json:"availabilityConfig"`
 		Metadata                       map[string]string                                   `json:"metadata"`
 		AgentConfig                    *LaunchInstanceAgentConfigDetails                   `json:"agentConfig"`
 		ShapeConfig                    *LaunchInstanceShapeConfigDetails                   `json:"shapeConfig"`
@@ -239,6 +242,8 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.LaunchOptions = model.LaunchOptions
 
 	m.InstanceOptions = model.InstanceOptions
+
+	m.AvailabilityConfig = model.AvailabilityConfig
 
 	m.Metadata = model.Metadata
 

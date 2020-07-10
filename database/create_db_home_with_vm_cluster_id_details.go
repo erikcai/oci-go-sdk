@@ -32,6 +32,9 @@ type CreateDbHomeWithVmClusterIdDetails struct {
 	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
 	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
 
+	// The database software image OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+	DatabaseSoftwareImageId *string `mandatory:"false" json:"databaseSoftwareImageId"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -57,6 +60,11 @@ func (m CreateDbHomeWithVmClusterIdDetails) GetKmsKeyId() *string {
 //GetKmsKeyVersionId returns KmsKeyVersionId
 func (m CreateDbHomeWithVmClusterIdDetails) GetKmsKeyVersionId() *string {
 	return m.KmsKeyVersionId
+}
+
+//GetDatabaseSoftwareImageId returns DatabaseSoftwareImageId
+func (m CreateDbHomeWithVmClusterIdDetails) GetDatabaseSoftwareImageId() *string {
+	return m.DatabaseSoftwareImageId
 }
 
 //GetFreeformTags returns FreeformTags

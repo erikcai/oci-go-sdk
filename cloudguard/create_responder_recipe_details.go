@@ -29,7 +29,7 @@ type CreateResponderRecipeDetails struct {
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// Responder Rules to override from source responder recipe
-	ResponderRules []UpdateResponderRecipeResponderRuleDetails `mandatory:"false" json:"responderRules"`
+	ResponderRules []UpdateResponderRecipeResponderRule `mandatory:"false" json:"responderRules"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

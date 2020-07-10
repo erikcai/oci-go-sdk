@@ -27,7 +27,7 @@ type ListManagedListTypesRequest struct {
 	// The sort order to use, either 'asc' or 'desc'.
 	SortOrder ListManagedListTypesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is ascending. If no value is specified timeCreated is default.
+	// The field to sort by. Only one sort order may be provided. Default order for displayName is ascending. If no value is specified displayName is default.
 	SortBy ListManagedListTypesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// The client request ID for tracing.
@@ -141,12 +141,10 @@ type ListManagedListTypesSortByEnum string
 
 // Set of constants representing the allowable values for ListManagedListTypesSortByEnum
 const (
-	ListManagedListTypesSortByTimecreated ListManagedListTypesSortByEnum = "timeCreated"
 	ListManagedListTypesSortByDisplayname ListManagedListTypesSortByEnum = "displayName"
 )
 
 var mappingListManagedListTypesSortBy = map[string]ListManagedListTypesSortByEnum{
-	"timeCreated": ListManagedListTypesSortByTimecreated,
 	"displayName": ListManagedListTypesSortByDisplayname,
 }
 

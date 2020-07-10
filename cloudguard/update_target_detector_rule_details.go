@@ -20,7 +20,7 @@ type UpdateTargetDetectorRuleDetails struct {
 	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
 
 	// DEPRECATED
-	RiskLevel *string `mandatory:"false" json:"riskLevel"`
+	RiskLevel RiskLevelEnum `mandatory:"false" json:"riskLevel,omitempty"`
 
 	// DEPRECATED
 	Configurations []DetectorConfiguration `mandatory:"false" json:"configurations"`
