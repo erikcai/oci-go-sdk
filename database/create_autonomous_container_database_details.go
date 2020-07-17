@@ -60,6 +60,12 @@ type CreateAutonomousContainerDatabaseDetails struct {
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	BackupConfig *AutonomousContainerDatabaseBackupConfig `mandatory:"false" json:"backupConfig"`
+
+	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
+
+	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
 }
 
 func (m CreateAutonomousContainerDatabaseDetails) String() string {

@@ -15,9 +15,6 @@ type RotateVaultKeyRequest struct {
 	// The database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	DatabaseId *string `mandatory:"true" contributesTo:"path" name:"databaseId"`
 
-	// Request to rotate the master key for the database.
-	RotateVaultKeyDetails `contributesTo:"body"`
-
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
 	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
@@ -57,6 +54,15 @@ type RotateVaultKeyResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
+
+	// The Database instance
+	Database `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the work request. Multiple OCID values are returned in a comma-separated list. Use GetWorkRequest with a work request OCID to track the status of the request.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
 	// a particular request, please provide the request ID.

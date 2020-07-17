@@ -21,6 +21,12 @@ type ApiSpecificationRouteRequestPolicies struct {
 	Authorization RouteAuthorizationPolicy `mandatory:"false" json:"authorization"`
 
 	Cors *CorsPolicy `mandatory:"false" json:"cors"`
+
+	// Perform these transformations on the HTTP request headers in the order listed.
+	HeaderTransformations []HeaderTransformation `mandatory:"false" json:"headerTransformations"`
+
+	// Perform these transformations on the HTTP path query parameters in the order listed.
+	QueryParameterTransformations []QueryParameterTransformation `mandatory:"false" json:"queryParameterTransformations"`
 }
 
 func (m ApiSpecificationRouteRequestPolicies) String() string {
@@ -30,8 +36,10 @@ func (m ApiSpecificationRouteRequestPolicies) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *ApiSpecificationRouteRequestPolicies) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		Authorization routeauthorizationpolicy `json:"authorization"`
-		Cors          *CorsPolicy              `json:"cors"`
+		Authorization                 routeauthorizationpolicy       `json:"authorization"`
+		Cors                          *CorsPolicy                    `json:"cors"`
+		HeaderTransformations         []HeaderTransformation         `json:"headerTransformations"`
+		QueryParameterTransformations []QueryParameterTransformation `json:"queryParameterTransformations"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -50,6 +58,16 @@ func (m *ApiSpecificationRouteRequestPolicies) UnmarshalJSON(data []byte) (e err
 	}
 
 	m.Cors = model.Cors
+
+	m.HeaderTransformations = make([]HeaderTransformation, len(model.HeaderTransformations))
+	for i, n := range model.HeaderTransformations {
+		m.HeaderTransformations[i] = n
+	}
+
+	m.QueryParameterTransformations = make([]QueryParameterTransformation, len(model.QueryParameterTransformations))
+	for i, n := range model.QueryParameterTransformations {
+		m.QueryParameterTransformations[i] = n
+	}
 
 	return
 }

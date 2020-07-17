@@ -4615,7 +4615,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.490</version>
+        <version>0.1.502</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -4655,7 +4655,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.1.19</version>
+        <version>1.1.21</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
@@ -4750,7 +4750,7 @@
       <dependency>
         <groupId>com.oracle.pic.apigw</groupId>
         <artifactId>public-api-spec</artifactId>
-        <version>1.6.10</version>
+        <version>1.8.14</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.events</groupId>
@@ -4770,7 +4770,7 @@
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.1.0-2006110254</version>
+        <version>1.2.0-2007162026</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -4820,7 +4820,7 @@
       <dependency>
         <groupId>oracle.dfcs.server</groupId>
         <artifactId>service_api_spec</artifactId>
-        <version>1.0.205-RELEASEPREVIEW</version>
+        <version>1.0.207-RELEASEPREVIEW</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.mysql</groupId>
@@ -4840,7 +4840,7 @@
       <dependency>
         <groupId>com.oracle.blockchain</groupId>
         <artifactId>oracle-blockchain-platform-spec</artifactId>
-        <version>20.7.1</version>
+        <version>20.7.2</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.ads.admin.cp</groupId>
@@ -4890,7 +4890,7 @@
       <dependency>
         <groupId>com.oracle.pic.connectors</groupId>
         <artifactId>connectors-spec</artifactId>
-        <version>0.2.1</version>
+        <version>0.2.6</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

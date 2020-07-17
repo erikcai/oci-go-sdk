@@ -18,6 +18,11 @@ type ListJobDefinitionsRequest struct {
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
+	// A filter to return only resources that match display name pattern given. The match is not case sensitive.
+	// For Example : /folders?displayNameContains=Cu.*
+	// The above would match all folders with display name that starts with "Cu".
+	DisplayNameContains *string `mandatory:"false" contributesTo:"query" name:"displayNameContains"`
+
 	// A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
 	LifecycleState ListJobDefinitionsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
@@ -157,6 +162,8 @@ const (
 	ListJobDefinitionsJobTypePreview                    ListJobDefinitionsJobTypeEnum = "PREVIEW"
 	ListJobDefinitionsJobTypeImport                     ListJobDefinitionsJobTypeEnum = "IMPORT"
 	ListJobDefinitionsJobTypeExport                     ListJobDefinitionsJobTypeEnum = "EXPORT"
+	ListJobDefinitionsJobTypeImportGlossary             ListJobDefinitionsJobTypeEnum = "IMPORT_GLOSSARY"
+	ListJobDefinitionsJobTypeExportGlossary             ListJobDefinitionsJobTypeEnum = "EXPORT_GLOSSARY"
 	ListJobDefinitionsJobTypeInternal                   ListJobDefinitionsJobTypeEnum = "INTERNAL"
 	ListJobDefinitionsJobTypePurge                      ListJobDefinitionsJobTypeEnum = "PURGE"
 	ListJobDefinitionsJobTypeImmediate                  ListJobDefinitionsJobTypeEnum = "IMMEDIATE"
@@ -173,6 +180,8 @@ var mappingListJobDefinitionsJobType = map[string]ListJobDefinitionsJobTypeEnum{
 	"PREVIEW":                      ListJobDefinitionsJobTypePreview,
 	"IMPORT":                       ListJobDefinitionsJobTypeImport,
 	"EXPORT":                       ListJobDefinitionsJobTypeExport,
+	"IMPORT_GLOSSARY":              ListJobDefinitionsJobTypeImportGlossary,
+	"EXPORT_GLOSSARY":              ListJobDefinitionsJobTypeExportGlossary,
 	"INTERNAL":                     ListJobDefinitionsJobTypeInternal,
 	"PURGE":                        ListJobDefinitionsJobTypePurge,
 	"IMMEDIATE":                    ListJobDefinitionsJobTypeImmediate,
@@ -196,15 +205,20 @@ type ListJobDefinitionsFieldsEnum string
 
 // Set of constants representing the allowable values for ListJobDefinitionsFieldsEnum
 const (
-	ListJobDefinitionsFieldsKey                   ListJobDefinitionsFieldsEnum = "key"
-	ListJobDefinitionsFieldsDisplayname           ListJobDefinitionsFieldsEnum = "displayName"
-	ListJobDefinitionsFieldsDescription           ListJobDefinitionsFieldsEnum = "description"
-	ListJobDefinitionsFieldsCatalogid             ListJobDefinitionsFieldsEnum = "catalogId"
-	ListJobDefinitionsFieldsJobtype               ListJobDefinitionsFieldsEnum = "jobType"
-	ListJobDefinitionsFieldsLifecyclestate        ListJobDefinitionsFieldsEnum = "lifecycleState"
-	ListJobDefinitionsFieldsTimecreated           ListJobDefinitionsFieldsEnum = "timeCreated"
-	ListJobDefinitionsFieldsIssampledataextracted ListJobDefinitionsFieldsEnum = "isSampleDataExtracted"
-	ListJobDefinitionsFieldsUri                   ListJobDefinitionsFieldsEnum = "uri"
+	ListJobDefinitionsFieldsKey                        ListJobDefinitionsFieldsEnum = "key"
+	ListJobDefinitionsFieldsDisplayname                ListJobDefinitionsFieldsEnum = "displayName"
+	ListJobDefinitionsFieldsDescription                ListJobDefinitionsFieldsEnum = "description"
+	ListJobDefinitionsFieldsCatalogid                  ListJobDefinitionsFieldsEnum = "catalogId"
+	ListJobDefinitionsFieldsJobtype                    ListJobDefinitionsFieldsEnum = "jobType"
+	ListJobDefinitionsFieldsConnectionkey              ListJobDefinitionsFieldsEnum = "connectionKey"
+	ListJobDefinitionsFieldsLifecyclestate             ListJobDefinitionsFieldsEnum = "lifecycleState"
+	ListJobDefinitionsFieldsTimecreated                ListJobDefinitionsFieldsEnum = "timeCreated"
+	ListJobDefinitionsFieldsIssampledataextracted      ListJobDefinitionsFieldsEnum = "isSampleDataExtracted"
+	ListJobDefinitionsFieldsUri                        ListJobDefinitionsFieldsEnum = "uri"
+	ListJobDefinitionsFieldsTimelatestexecutionstarted ListJobDefinitionsFieldsEnum = "timeLatestExecutionStarted"
+	ListJobDefinitionsFieldsTimelatestexecutionended   ListJobDefinitionsFieldsEnum = "timeLatestExecutionEnded"
+	ListJobDefinitionsFieldsJobexecutionstate          ListJobDefinitionsFieldsEnum = "jobExecutionState"
+	ListJobDefinitionsFieldsScheduletype               ListJobDefinitionsFieldsEnum = "scheduleType"
 )
 
 var mappingListJobDefinitionsFields = map[string]ListJobDefinitionsFieldsEnum{
@@ -213,10 +227,15 @@ var mappingListJobDefinitionsFields = map[string]ListJobDefinitionsFieldsEnum{
 	"description":           ListJobDefinitionsFieldsDescription,
 	"catalogId":             ListJobDefinitionsFieldsCatalogid,
 	"jobType":               ListJobDefinitionsFieldsJobtype,
+	"connectionKey":         ListJobDefinitionsFieldsConnectionkey,
 	"lifecycleState":        ListJobDefinitionsFieldsLifecyclestate,
 	"timeCreated":           ListJobDefinitionsFieldsTimecreated,
 	"isSampleDataExtracted": ListJobDefinitionsFieldsIssampledataextracted,
 	"uri": ListJobDefinitionsFieldsUri,
+	"timeLatestExecutionStarted": ListJobDefinitionsFieldsTimelatestexecutionstarted,
+	"timeLatestExecutionEnded":   ListJobDefinitionsFieldsTimelatestexecutionended,
+	"jobExecutionState":          ListJobDefinitionsFieldsJobexecutionstate,
+	"scheduleType":               ListJobDefinitionsFieldsScheduletype,
 }
 
 // GetListJobDefinitionsFieldsEnumValues Enumerates the set of values for ListJobDefinitionsFieldsEnum

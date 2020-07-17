@@ -34,7 +34,6 @@ type DatabaseSoftwareImage struct {
 	// The date and time the Database Software Image was created.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// List of the Fault Domains in which this DB system is provisioned.
 	ImageType DatabaseSoftwareImageImageTypeEnum `mandatory:"true" json:"imageType"`
 
 	// To what shape the image is meant for.
@@ -45,15 +44,6 @@ type DatabaseSoftwareImage struct {
 
 	// Detailed message for the lifecycle state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
-
-	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-	// Example: `{"Department": "Finance"}`
-	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
-
-	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
-	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// List of one-off patches for Database Homes.
 	DatabaseSoftwareImageIncludedPatches []string `mandatory:"false" json:"databaseSoftwareImageIncludedPatches"`

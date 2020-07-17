@@ -5979,6 +5979,53 @@ func (client DatabaseClient) listConsoleConnections(ctx context.Context, request
 	return response, err
 }
 
+// ListContainerDatabasePatches Lists the patches applicable to the requested container database.
+func (client DatabaseClient) ListContainerDatabasePatches(ctx context.Context, request ListContainerDatabasePatchesRequest) (response ListContainerDatabasePatchesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listContainerDatabasePatches, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListContainerDatabasePatchesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListContainerDatabasePatchesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListContainerDatabasePatchesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListContainerDatabasePatchesResponse")
+	}
+	return
+}
+
+// listContainerDatabasePatches implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listContainerDatabasePatches(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}/patches")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListContainerDatabasePatchesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListDataGuardAssociations Lists all Data Guard associations for the specified database.
 func (client DatabaseClient) ListDataGuardAssociations(ctx context.Context, request ListDataGuardAssociationsRequest) (response ListDataGuardAssociationsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -7392,6 +7439,58 @@ func (client DatabaseClient) restoreDatabase(ctx context.Context, request common
 	}
 
 	var response RestoreDatabaseResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RotateAutonomousContainerDatabaseVaultKey Creates a new version of an existing Vault service (https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
+func (client DatabaseClient) RotateAutonomousContainerDatabaseVaultKey(ctx context.Context, request RotateAutonomousContainerDatabaseVaultKeyRequest) (response RotateAutonomousContainerDatabaseVaultKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.rotateAutonomousContainerDatabaseVaultKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RotateAutonomousContainerDatabaseVaultKeyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RotateAutonomousContainerDatabaseVaultKeyResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RotateAutonomousContainerDatabaseVaultKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RotateAutonomousContainerDatabaseVaultKeyResponse")
+	}
+	return
+}
+
+// rotateAutonomousContainerDatabaseVaultKey implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) rotateAutonomousContainerDatabaseVaultKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}/actions/rotateKey")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RotateAutonomousContainerDatabaseVaultKeyResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
