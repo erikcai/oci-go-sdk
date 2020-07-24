@@ -17,7 +17,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CompartmentConfigSource Compartment to use for creating the stack. The new stack will include definitions for supported resource types in this compartment.
+// CompartmentConfigSource Compartment to use for creating the stack.
+// The new stack will include definitions for supported resource types in this compartment.
 type CompartmentConfigSource struct {
 
 	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
@@ -25,12 +26,20 @@ type CompartmentConfigSource struct {
 	// resource types in this compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The region to use for creating the stack. The resources belonging to this region will be included.
+	// The region to use for creating the stack. The new stack will include definitions for
+	// supported resource types in this region.
 	Region *string `mandatory:"true" json:"region"`
 
 	// File path to the directory to use for running Terraform.
 	// If not specified, the root directory is used.
+	// This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
 	WorkingDirectory *string `mandatory:"false" json:"workingDirectory"`
+
+	// Filter for services to use with Resource Discovery (https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
+	// For example, "database" limits resource discovery to resource types within the Database service.
+	// The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level otherwise).
+	// If not specified, then all services at the scope of the given compartment OCID are used.
+	ServicesToDiscover []string `mandatory:"false" json:"servicesToDiscover"`
 }
 
 //GetWorkingDirectory returns WorkingDirectory

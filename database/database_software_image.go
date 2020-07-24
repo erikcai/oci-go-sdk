@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DatabaseSoftwareImage The Database Software Image is created using the patch set, one-off patches and patches for the database home listed by lsiventory.
+// DatabaseSoftwareImage Database software images are created by specifying a patch set, one-off patches and patches for the database home (listed by `ls inventory`).
 type DatabaseSoftwareImage struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database software image.
@@ -28,10 +28,10 @@ type DatabaseSoftwareImage struct {
 	// The user-friendly name for the database software image. The name does not have to be unique.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The current state of the Database Software Image.
+	// The current state of the database software image.
 	LifecycleState DatabaseSoftwareImageLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The date and time the Database Software Image was created.
+	// The date and time the database software image was created.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	ImageType DatabaseSoftwareImageImageTypeEnum `mandatory:"true" json:"imageType"`

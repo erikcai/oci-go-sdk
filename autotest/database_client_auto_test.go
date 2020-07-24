@@ -4773,6 +4773,60 @@ func TestDatabaseClientListAutonomousDatabaseBackups(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListAutonomousDatabaseClones(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListAutonomousDatabaseClones")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAutonomousDatabaseClones is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDatabaseClones", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListAutonomousDatabaseClones")
+	assert.NoError(t, err)
+
+	type ListAutonomousDatabaseClonesRequestInfo struct {
+		ContainerId string
+		Request     database.ListAutonomousDatabaseClonesRequest
+	}
+
+	var requests []ListAutonomousDatabaseClonesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListAutonomousDatabaseClonesRequest)
+				return c.ListAutonomousDatabaseClones(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListAutonomousDatabaseClonesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListAutonomousDatabaseClonesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientListAutonomousDatabaseDataguardAssociations(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -4818,60 +4872,6 @@ func TestDatabaseClientListAutonomousDatabaseDataguardAssociations(t *testing.T)
 			typedListResponses := make([]database.ListAutonomousDatabaseDataguardAssociationsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(database.ListAutonomousDatabaseDataguardAssociationsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientListAutonomousDatabaseRefreshableClones(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "ListAutonomousDatabaseRefreshableClones")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListAutonomousDatabaseRefreshableClones is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDatabaseRefreshableClones", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "ListAutonomousDatabaseRefreshableClones")
-	assert.NoError(t, err)
-
-	type ListAutonomousDatabaseRefreshableClonesRequestInfo struct {
-		ContainerId string
-		Request     database.ListAutonomousDatabaseRefreshableClonesRequest
-	}
-
-	var requests []ListAutonomousDatabaseRefreshableClonesRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*database.ListAutonomousDatabaseRefreshableClonesRequest)
-				return c.ListAutonomousDatabaseRefreshableClones(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]database.ListAutonomousDatabaseRefreshableClonesResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(database.ListAutonomousDatabaseRefreshableClonesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

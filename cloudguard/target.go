@@ -22,6 +22,9 @@ type Target struct {
 	// Compartment Identifier where the resource is created
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
+	// possible type of targets
+	TargetResourceType TargetResourceTypeEnum `mandatory:"true" json:"targetResourceType"`
+
 	// Resource ID which the target uses to monitor
 	TargetResourceId *string `mandatory:"true" json:"targetResourceId"`
 
@@ -30,15 +33,6 @@ type Target struct {
 
 	// The target description.
 	Description *string `mandatory:"false" json:"description"`
-
-	// possible type of targets
-	TargetResourceType TargetResourceTypeEnum `mandatory:"false" json:"targetResourceType,omitempty"`
-
-	// DEPRECATED
-	DetectorRecipes []TargetDetectorRecipe `mandatory:"false" json:"detectorRecipes"`
-
-	// DEPRECATED
-	ResponderRecipes []TargetResponderRecipe `mandatory:"false" json:"responderRecipes"`
 
 	// List of detector recipes associated with target
 	TargetDetectorRecipes []TargetDetectorRecipe `mandatory:"false" json:"targetDetectorRecipes"`

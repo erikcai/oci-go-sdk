@@ -110,6 +110,94 @@ func TestVirtualNetworkClientAddNetworkSecurityGroupSecurityRules(t *testing.T) 
 	}
 }
 
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientAddPublicIpPoolCapacity(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "AddPublicIpPoolCapacity")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AddPublicIpPoolCapacity is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "AddPublicIpPoolCapacity", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "AddPublicIpPoolCapacity")
+	assert.NoError(t, err)
+
+	type AddPublicIpPoolCapacityRequestInfo struct {
+		ContainerId string
+		Request     core.AddPublicIpPoolCapacityRequest
+	}
+
+	var requests []AddPublicIpPoolCapacityRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AddPublicIpPoolCapacity(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientAdvertiseByoipRange(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "AdvertiseByoipRange")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AdvertiseByoipRange is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "AdvertiseByoipRange", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "AdvertiseByoipRange")
+	assert.NoError(t, err)
+
+	type AdvertiseByoipRangeRequestInfo struct {
+		ContainerId string
+		Request     core.AdvertiseByoipRangeRequest
+	}
+
+	var requests []AdvertiseByoipRangeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AdvertiseByoipRange(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientAttachServiceId(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -235,6 +323,50 @@ func TestVirtualNetworkClientBulkDeleteVirtualCircuitPublicPrefixes(t *testing.T
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.BulkDeleteVirtualCircuitPublicPrefixes(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientChangeByoipRangeCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeByoipRangeCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeByoipRangeCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeByoipRangeCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeByoipRangeCompartment")
+	assert.NoError(t, err)
+
+	type ChangeByoipRangeCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeByoipRangeCompartmentRequest
+	}
+
+	var requests []ChangeByoipRangeCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeByoipRangeCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -770,6 +902,50 @@ func TestVirtualNetworkClientChangePublicIpCompartment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientChangePublicIpPoolCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangePublicIpPoolCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangePublicIpPoolCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangePublicIpPoolCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangePublicIpPoolCompartment")
+	assert.NoError(t, err)
+
+	type ChangePublicIpPoolCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangePublicIpPoolCompartmentRequest
+	}
+
+	var requests []ChangePublicIpPoolCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangePublicIpPoolCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientChangeRemotePeeringConnectionCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -1247,6 +1423,50 @@ func TestVirtualNetworkClientConnectRemotePeeringConnections(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ConnectRemotePeeringConnections(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientCreateByoipRange(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateByoipRange")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateByoipRange is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateByoipRange", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateByoipRange")
+	assert.NoError(t, err)
+
+	type CreateByoipRangeRequestInfo struct {
+		ContainerId string
+		Request     core.CreateByoipRangeRequest
+	}
+
+	var requests []CreateByoipRangeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateByoipRange(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2134,6 +2354,50 @@ func TestVirtualNetworkClientCreatePublicIp(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientCreatePublicIpPool(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreatePublicIpPool")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreatePublicIpPool is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreatePublicIpPool", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreatePublicIpPool")
+	assert.NoError(t, err)
+
+	type CreatePublicIpPoolRequestInfo struct {
+		ContainerId string
+		Request     core.CreatePublicIpPoolRequest
+	}
+
+	var requests []CreatePublicIpPoolRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreatePublicIpPool(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientCreateRemotePeeringConnection(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2479,6 +2743,50 @@ func TestVirtualNetworkClientCreateVlan(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateVlan(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientDeleteByoipRange(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteByoipRange")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteByoipRange is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteByoipRange", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteByoipRange")
+	assert.NoError(t, err)
+
+	type DeleteByoipRangeRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteByoipRangeRequest
+	}
+
+	var requests []DeleteByoipRangeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteByoipRange(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3366,6 +3674,50 @@ func TestVirtualNetworkClientDeletePublicIp(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientDeletePublicIpPool(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeletePublicIpPool")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeletePublicIpPool is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeletePublicIpPool", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeletePublicIpPool")
+	assert.NoError(t, err)
+
+	type DeletePublicIpPoolRequestInfo struct {
+		ContainerId string
+		Request     core.DeletePublicIpPoolRequest
+	}
+
+	var requests []DeletePublicIpPoolRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeletePublicIpPool(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientDeleteRemotePeeringConnection(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -3931,6 +4283,50 @@ func TestVirtualNetworkClientGenerateLocalPeeringToken(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GenerateLocalPeeringToken(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientGetByoipRange(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetByoipRange")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetByoipRange is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetByoipRange", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetByoipRange")
+	assert.NoError(t, err)
+
+	type GetByoipRangeRequestInfo struct {
+		ContainerId string
+		Request     core.GetByoipRangeRequest
+	}
+
+	var requests []GetByoipRangeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetByoipRange(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -5522,6 +5918,50 @@ func TestVirtualNetworkClientGetPublicIpByPrivateIpId(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientGetPublicIpPool(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetPublicIpPool")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPublicIpPool is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetPublicIpPool", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetPublicIpPool")
+	assert.NoError(t, err)
+
+	type GetPublicIpPoolRequestInfo struct {
+		ContainerId string
+		Request     core.GetPublicIpPoolRequest
+	}
+
+	var requests []GetPublicIpPoolRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetPublicIpPool(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientGetRemotePeeringConnection(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -6132,6 +6572,60 @@ func TestVirtualNetworkClientListAllowedPeerRegionsForRemotePeering(t *testing.T
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ListAllowedPeerRegionsForRemotePeering(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientListByoipRanges(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListByoipRanges")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListByoipRanges is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListByoipRanges", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListByoipRanges")
+	assert.NoError(t, err)
+
+	type ListByoipRangesRequestInfo struct {
+		ContainerId string
+		Request     core.ListByoipRangesRequest
+	}
+
+	var requests []ListByoipRangesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListByoipRangesRequest)
+				return c.ListByoipRanges(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListByoipRangesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListByoipRangesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -7650,6 +8144,60 @@ func TestVirtualNetworkClientListPrivateIps(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientListPublicIpPools(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListPublicIpPools")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListPublicIpPools is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListPublicIpPools", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListPublicIpPools")
+	assert.NoError(t, err)
+
+	type ListPublicIpPoolsRequestInfo struct {
+		ContainerId string
+		Request     core.ListPublicIpPoolsRequest
+	}
+
+	var requests []ListPublicIpPoolsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListPublicIpPoolsRequest)
+				return c.ListPublicIpPools(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListPublicIpPoolsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListPublicIpPoolsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientListPublicIps(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -7752,6 +8300,50 @@ func TestVirtualNetworkClientListRemotePeeringConnections(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestVirtualNetworkClientListReverseConnectionNatIpCidrs(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListReverseConnectionNatIpCidrs")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListReverseConnectionNatIpCidrs is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListReverseConnectionNatIpCidrs", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListReverseConnectionNatIpCidrs")
+	assert.NoError(t, err)
+
+	type ListReverseConnectionNatIpCidrsRequestInfo struct {
+		ContainerId string
+		Request     core.ListReverseConnectionNatIpCidrsRequest
+	}
+
+	var requests []ListReverseConnectionNatIpCidrsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ListReverseConnectionNatIpCidrs(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -8423,6 +9015,94 @@ func TestVirtualNetworkClientRemoveNetworkSecurityGroupSecurityRules(t *testing.
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.RemoveNetworkSecurityGroupSecurityRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientRemovePublicIpPoolCapacity(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "RemovePublicIpPoolCapacity")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RemovePublicIpPoolCapacity is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "RemovePublicIpPoolCapacity", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "RemovePublicIpPoolCapacity")
+	assert.NoError(t, err)
+
+	type RemovePublicIpPoolCapacityRequestInfo struct {
+		ContainerId string
+		Request     core.RemovePublicIpPoolCapacityRequest
+	}
+
+	var requests []RemovePublicIpPoolCapacityRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RemovePublicIpPoolCapacity(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientUpdateByoipRange(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateByoipRange")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateByoipRange is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateByoipRange", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateByoipRange")
+	assert.NoError(t, err)
+
+	type UpdateByoipRangeRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateByoipRangeRequest
+	}
+
+	var requests []UpdateByoipRangeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateByoipRange(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -9442,6 +10122,50 @@ func TestVirtualNetworkClientUpdatePublicIp(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientUpdatePublicIpPool(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdatePublicIpPool")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdatePublicIpPool is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdatePublicIpPool", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdatePublicIpPool")
+	assert.NoError(t, err)
+
+	type UpdatePublicIpPoolRequestInfo struct {
+		ContainerId string
+		Request     core.UpdatePublicIpPoolRequest
+	}
+
+	var requests []UpdatePublicIpPoolRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdatePublicIpPool(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientUpdateRemotePeeringConnection(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -9875,6 +10599,94 @@ func TestVirtualNetworkClientUpdateVnic(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateVnic(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientValidateByoipRange(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ValidateByoipRange")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ValidateByoipRange is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ValidateByoipRange", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ValidateByoipRange")
+	assert.NoError(t, err)
+
+	type ValidateByoipRangeRequestInfo struct {
+		ContainerId string
+		Request     core.ValidateByoipRangeRequest
+	}
+
+	var requests []ValidateByoipRangeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ValidateByoipRange(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientWithdrawByoipRange(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "WithdrawByoipRange")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("WithdrawByoipRange is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "WithdrawByoipRange", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "WithdrawByoipRange")
+	assert.NoError(t, err)
+
+	type WithdrawByoipRangeRequestInfo struct {
+		ContainerId string
+		Request     core.WithdrawByoipRangeRequest
+	}
+
+	var requests []WithdrawByoipRangeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.WithdrawByoipRange(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

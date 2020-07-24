@@ -34,6 +34,9 @@ type ResponderRecipe struct {
 	// List of responder rules associated with the recipe
 	ResponderRules []ResponderRecipeResponderRule `mandatory:"false" json:"responderRules"`
 
+	// List of responder rules associated with the recipe
+	EffectiveResponderRules []ResponderRecipeResponderRule `mandatory:"false" json:"effectiveResponderRules"`
+
 	// The id of the source responder recipe.
 	SourceResponderRecipeId *string `mandatory:"false" json:"sourceResponderRecipeId"`
 

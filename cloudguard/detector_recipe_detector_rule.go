@@ -17,7 +17,7 @@ import (
 type DetectorRecipeDetectorRule struct {
 
 	// The unique identifier of the detector rule
-	Id *string `mandatory:"true" json:"id"`
+	DetectorRuleId *string `mandatory:"true" json:"detectorRuleId"`
 
 	// detector for the rule
 	Detector DetectorEnumEnum `mandatory:"true" json:"detector"`
@@ -37,7 +37,7 @@ type DetectorRecipeDetectorRule struct {
 	// Recommendation for DetectorRecipeDetectorRule
 	Recommendation *string `mandatory:"false" json:"recommendation"`
 
-	DetectorDetails *DetectorDetails `mandatory:"false" json:"detectorDetails"`
+	Details *DetectorDetails `mandatory:"false" json:"details"`
 
 	// List of cloudguard managed list types related to this rule
 	ManagedListTypes []DetectorRecipeDetectorRuleManagedListTypesEnum `mandatory:"false" json:"managedListTypes,omitempty"`

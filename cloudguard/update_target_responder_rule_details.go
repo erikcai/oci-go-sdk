@@ -18,11 +18,8 @@ import (
 type UpdateTargetResponderRuleDetails struct {
 	Condition Condition `mandatory:"false" json:"condition"`
 
-	// DEPRECATED
+	// Configurations associated with the ResponderRule
 	Configurations []ResponderConfiguration `mandatory:"false" json:"configurations"`
-
-	// DEPRECATED
-	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
 
 	// Execution Mode for ResponderRule
 	Mode ResponderModeTypesEnum `mandatory:"false" json:"mode,omitempty"`
@@ -37,7 +34,6 @@ func (m *UpdateTargetResponderRuleDetails) UnmarshalJSON(data []byte) (e error) 
 	model := struct {
 		Condition      condition                `json:"condition"`
 		Configurations []ResponderConfiguration `json:"configurations"`
-		IsEnabled      *bool                    `json:"isEnabled"`
 		Mode           ResponderModeTypesEnum   `json:"mode"`
 	}{}
 
@@ -60,8 +56,6 @@ func (m *UpdateTargetResponderRuleDetails) UnmarshalJSON(data []byte) (e error) 
 	for i, n := range model.Configurations {
 		m.Configurations[i] = n
 	}
-
-	m.IsEnabled = model.IsEnabled
 
 	m.Mode = model.Mode
 

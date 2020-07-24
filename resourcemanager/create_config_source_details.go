@@ -17,11 +17,12 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateConfigSourceDetails Property details for the configuration source.
+// CreateConfigSourceDetails Property details for the configuration source used for the stack.
 type CreateConfigSourceDetails interface {
 
 	// File path to the directory from which Terraform runs.
 	// If not specified, the root directory is used.
+	// This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
 	GetWorkingDirectory() *string
 }
 

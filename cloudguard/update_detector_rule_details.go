@@ -23,9 +23,6 @@ type UpdateDetectorRuleDetails struct {
 	// The Risk Level
 	RiskLevel RiskLevelEnum `mandatory:"true" json:"riskLevel"`
 
-	// DEPRECATED
-	DetectorRuleId *string `mandatory:"false" json:"detectorRuleId"`
-
 	// Configuration details
 	Configurations []DetectorConfiguration `mandatory:"false" json:"configurations"`
 
@@ -33,9 +30,6 @@ type UpdateDetectorRuleDetails struct {
 
 	// user defined labels for a detector rule
 	Labels []string `mandatory:"false" json:"labels"`
-
-	// DEPRECATED
-	IsConfigurationAllowed *bool `mandatory:"false" json:"isConfigurationAllowed"`
 }
 
 func (m UpdateDetectorRuleDetails) String() string {
@@ -45,13 +39,11 @@ func (m UpdateDetectorRuleDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *UpdateDetectorRuleDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		DetectorRuleId         *string                 `json:"detectorRuleId"`
-		Configurations         []DetectorConfiguration `json:"configurations"`
-		Condition              condition               `json:"condition"`
-		Labels                 []string                `json:"labels"`
-		IsConfigurationAllowed *bool                   `json:"isConfigurationAllowed"`
-		IsEnabled              *bool                   `json:"isEnabled"`
-		RiskLevel              RiskLevelEnum           `json:"riskLevel"`
+		Configurations []DetectorConfiguration `json:"configurations"`
+		Condition      condition               `json:"condition"`
+		Labels         []string                `json:"labels"`
+		IsEnabled      *bool                   `json:"isEnabled"`
+		RiskLevel      RiskLevelEnum           `json:"riskLevel"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -59,8 +51,6 @@ func (m *UpdateDetectorRuleDetails) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	var nn interface{}
-	m.DetectorRuleId = model.DetectorRuleId
-
 	m.Configurations = make([]DetectorConfiguration, len(model.Configurations))
 	for i, n := range model.Configurations {
 		m.Configurations[i] = n
@@ -80,8 +70,6 @@ func (m *UpdateDetectorRuleDetails) UnmarshalJSON(data []byte) (e error) {
 	for i, n := range model.Labels {
 		m.Labels[i] = n
 	}
-
-	m.IsConfigurationAllowed = model.IsConfigurationAllowed
 
 	m.IsEnabled = model.IsEnabled
 

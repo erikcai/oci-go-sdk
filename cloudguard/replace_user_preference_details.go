@@ -18,9 +18,6 @@ type ReplaceUserPreferenceDetails struct {
 
 	// Preference of the user if the guided tour has to be shown
 	IsShowGuidedTour *bool `mandatory:"false" json:"isShowGuidedTour"`
-
-	// Tenant OCID
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 }
 
 func (m ReplaceUserPreferenceDetails) String() string {

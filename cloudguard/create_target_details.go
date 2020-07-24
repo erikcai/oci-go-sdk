@@ -22,20 +22,14 @@ type CreateTargetDetails struct {
 	// Compartment Identifier where the resource is created
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The target description.
-	Description *string `mandatory:"false" json:"description"`
-
 	// possible type of targets(compartment/HCMCloud/ERPCloud)
-	TargetResourceType TargetResourceTypeEnum `mandatory:"false" json:"targetResourceType,omitempty"`
+	TargetResourceType TargetResourceTypeEnum `mandatory:"true" json:"targetResourceType"`
 
 	// Resource ID which the target uses to monitor
-	TargetResourceId *string `mandatory:"false" json:"targetResourceId"`
+	TargetResourceId *string `mandatory:"true" json:"targetResourceId"`
 
-	// DEPRECATED
-	DetectorRecipes []string `mandatory:"false" json:"detectorRecipes"`
-
-	// DEPRECATED
-	ResponderRecipes []string `mandatory:"false" json:"responderRecipes"`
+	// The target description.
+	Description *string `mandatory:"false" json:"description"`
 
 	// List of detector recipes to associate with target
 	TargetDetectorRecipes []CreateTargetDetectorRecipe `mandatory:"false" json:"targetDetectorRecipes"`

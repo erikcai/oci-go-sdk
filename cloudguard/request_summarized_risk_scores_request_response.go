@@ -15,19 +15,6 @@ type RequestSummarizedRiskScoresRequest struct {
 	// The ID of the compartment in which to list resources.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// Default is false.
-	// When set to true, the hierarchy of compartments is traversed
-	// and all compartments and subcompartments in the tenancy are
-	// returned depending on the the setting of `accessLevel`.
-	CompartmentIdInSubtree *bool `mandatory:"false" contributesTo:"query" name:"compartmentIdInSubtree"`
-
-	// Valid values are `RESTRICTED` and `ACCESSIBLE`. Default is `RESTRICTED`.
-	// Setting this to `ACCESSIBLE` returns only those compartments for which the
-	// user has INSPECT permissions directly or indirectly (permissions can be on a
-	// resource in a subcompartment).
-	// When set to `RESTRICTED` permissions are checked and no partial results are displayed.
-	AccessLevel RequestSummarizedRiskScoresAccessLevelEnum `mandatory:"false" contributesTo:"query" name:"accessLevel" omitEmpty:"true"`
-
 	// The maximum number of items to return.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
@@ -82,27 +69,4 @@ func (response RequestSummarizedRiskScoresResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response RequestSummarizedRiskScoresResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// RequestSummarizedRiskScoresAccessLevelEnum Enum with underlying type: string
-type RequestSummarizedRiskScoresAccessLevelEnum string
-
-// Set of constants representing the allowable values for RequestSummarizedRiskScoresAccessLevelEnum
-const (
-	RequestSummarizedRiskScoresAccessLevelRestricted RequestSummarizedRiskScoresAccessLevelEnum = "RESTRICTED"
-	RequestSummarizedRiskScoresAccessLevelAccessible RequestSummarizedRiskScoresAccessLevelEnum = "ACCESSIBLE"
-)
-
-var mappingRequestSummarizedRiskScoresAccessLevel = map[string]RequestSummarizedRiskScoresAccessLevelEnum{
-	"RESTRICTED": RequestSummarizedRiskScoresAccessLevelRestricted,
-	"ACCESSIBLE": RequestSummarizedRiskScoresAccessLevelAccessible,
-}
-
-// GetRequestSummarizedRiskScoresAccessLevelEnumValues Enumerates the set of values for RequestSummarizedRiskScoresAccessLevelEnum
-func GetRequestSummarizedRiskScoresAccessLevelEnumValues() []RequestSummarizedRiskScoresAccessLevelEnum {
-	values := make([]RequestSummarizedRiskScoresAccessLevelEnum, 0)
-	for _, v := range mappingRequestSummarizedRiskScoresAccessLevel {
-		values = append(values, v)
-	}
-	return values
 }

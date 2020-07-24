@@ -19,7 +19,8 @@ type CreateTargetResponderRecipe struct {
 	// Identifier for ResponderRecipe.
 	ResponderRecipeId *string `mandatory:"true" json:"responderRecipeId"`
 
-	TargetResponderRecipeDetails *UpdateTargetResponderRecipeDetails `mandatory:"true" json:"targetResponderRecipeDetails"`
+	// Override responder rules associated with reponder recipe in a target.
+	ResponderRules []UpdateTargetRecipeResponderRuleDetails `mandatory:"true" json:"responderRules"`
 }
 
 func (m CreateTargetResponderRecipe) String() string {

@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// Dimension The dimension used for filtering.
+// Dimension The dimension used for filtering. availabe dimension are "service", "skuName", "skuPartNumber", "unit", "compartmentName", "compartmentPath", "compartmentId", "platform", "region", "logicalAd", "resourceId", "tenantId", "tenantName"
 // example:
 // `[{value: "COMPUTE", key: "service"}]`
 type Dimension struct {

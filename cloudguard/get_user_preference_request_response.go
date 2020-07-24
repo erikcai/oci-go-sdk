@@ -15,6 +15,9 @@ type GetUserPreferenceRequest struct {
 	// The OCID of the Principal
 	PrincipalId *string `mandatory:"true" contributesTo:"path" name:"principalId"`
 
+	// The ID of the compartment in which to list resources.
+	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
+
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 

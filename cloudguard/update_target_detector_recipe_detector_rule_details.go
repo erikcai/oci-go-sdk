@@ -15,7 +15,7 @@ import (
 
 // UpdateTargetDetectorRecipeDetectorRuleDetails The details to be updated in DetectorRule
 type UpdateTargetDetectorRecipeDetectorRuleDetails struct {
-	DetectorDetails *UpdateTargetDetectorRuleDetails `mandatory:"true" json:"detectorDetails"`
+	Details *UpdateTargetDetectorRuleDetails `mandatory:"true" json:"details"`
 }
 
 func (m UpdateTargetDetectorRecipeDetectorRuleDetails) String() string {

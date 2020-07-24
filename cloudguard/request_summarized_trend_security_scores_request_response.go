@@ -15,24 +15,11 @@ type RequestSummarizedTrendSecurityScoresRequest struct {
 	// The ID of the compartment in which to list resources.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// Start time for a filter
+	// Start time for a filter. If no time range is specified, the trendline is returned for 30 days
 	TimeScoreComputedGreaterThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeScoreComputedGreaterThanOrEqualTo"`
 
-	// End time for a filter
+	// End time for a filter. If no time range is specified, the trendline is returned for 30 days
 	TimeScoreComputedLessThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeScoreComputedLessThanOrEqualTo"`
-
-	// Default is false.
-	// When set to true, the hierarchy of compartments is traversed
-	// and all compartments and subcompartments in the tenancy are
-	// returned depending on the the setting of `accessLevel`.
-	CompartmentIdInSubtree *bool `mandatory:"false" contributesTo:"query" name:"compartmentIdInSubtree"`
-
-	// Valid values are `RESTRICTED` and `ACCESSIBLE`. Default is `RESTRICTED`.
-	// Setting this to `ACCESSIBLE` returns only those compartments for which the
-	// user has INSPECT permissions directly or indirectly (permissions can be on a
-	// resource in a subcompartment).
-	// When set to `RESTRICTED` permissions are checked and no partial results are displayed.
-	AccessLevel RequestSummarizedTrendSecurityScoresAccessLevelEnum `mandatory:"false" contributesTo:"query" name:"accessLevel" omitEmpty:"true"`
 
 	// The maximum number of items to return.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
@@ -88,27 +75,4 @@ func (response RequestSummarizedTrendSecurityScoresResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response RequestSummarizedTrendSecurityScoresResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// RequestSummarizedTrendSecurityScoresAccessLevelEnum Enum with underlying type: string
-type RequestSummarizedTrendSecurityScoresAccessLevelEnum string
-
-// Set of constants representing the allowable values for RequestSummarizedTrendSecurityScoresAccessLevelEnum
-const (
-	RequestSummarizedTrendSecurityScoresAccessLevelRestricted RequestSummarizedTrendSecurityScoresAccessLevelEnum = "RESTRICTED"
-	RequestSummarizedTrendSecurityScoresAccessLevelAccessible RequestSummarizedTrendSecurityScoresAccessLevelEnum = "ACCESSIBLE"
-)
-
-var mappingRequestSummarizedTrendSecurityScoresAccessLevel = map[string]RequestSummarizedTrendSecurityScoresAccessLevelEnum{
-	"RESTRICTED": RequestSummarizedTrendSecurityScoresAccessLevelRestricted,
-	"ACCESSIBLE": RequestSummarizedTrendSecurityScoresAccessLevelAccessible,
-}
-
-// GetRequestSummarizedTrendSecurityScoresAccessLevelEnumValues Enumerates the set of values for RequestSummarizedTrendSecurityScoresAccessLevelEnum
-func GetRequestSummarizedTrendSecurityScoresAccessLevelEnumValues() []RequestSummarizedTrendSecurityScoresAccessLevelEnum {
-	values := make([]RequestSummarizedTrendSecurityScoresAccessLevelEnum, 0)
-	for _, v := range mappingRequestSummarizedTrendSecurityScoresAccessLevel {
-		values = append(values, v)
-	}
-	return values
 }

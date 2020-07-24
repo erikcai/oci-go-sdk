@@ -17,7 +17,7 @@ import (
 type TargetResponderRecipeResponderRule struct {
 
 	// Identifier for ResponderRule.
-	Id *string `mandatory:"true" json:"id"`
+	ResponderRuleId *string `mandatory:"true" json:"responderRuleId"`
 
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`

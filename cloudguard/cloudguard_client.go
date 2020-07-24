@@ -3045,15 +3045,6 @@ func (client CloudGuardClient) requestSummarizedResponderExecutions(ctx context.
 }
 
 // RequestSummarizedRiskScores Examines the number of problems related to the resource and the relative severity of those problems.
-// The parameter `accessLevel` specifies whether to return only those compartments for which the
-// requestor has INSPECT permissions on at least one resource directly
-// or indirectly (ACCESSIBLE) (the resource can be in a subcompartment) or to return Not Authorized if
-// Principal doesn't have access to even one of the child compartments. This is valid only when
-// `compartmentIdInSubtree` is set to `true`.
-// The parameter `compartmentIdInSubtree` applies when you perform summarize API on the
-// `compartmentId` passed and when it is set to true, the entire hierarchy of compartments can be returned.
-// To get a full list of all compartments and subcompartments in the tenancy (root compartment),
-// set the parameter `compartmentIdInSubtree` to true and `accessLevel` to ACCESSIBLE.
 func (client CloudGuardClient) RequestSummarizedRiskScores(ctx context.Context, request RequestSummarizedRiskScoresRequest) (response RequestSummarizedRiskScoresResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3101,15 +3092,6 @@ func (client CloudGuardClient) requestSummarizedRiskScores(ctx context.Context, 
 }
 
 // RequestSummarizedSecurityScores Measures the number of resources examined across all regions and compares it with the number of problems detected.
-// The parameter `accessLevel` specifies whether to return only those compartments for which the
-// requestor has INSPECT permissions on at least one resource directly
-// or indirectly (ACCESSIBLE) (the resource can be in a subcompartment) or to return Not Authorized if
-// Principal doesn't have access to even one of the child compartments. This is valid only when
-// `compartmentIdInSubtree` is set to `true`.
-// The parameter `compartmentIdInSubtree` applies when you perform summarize API on the
-// `compartmentId` passed and when it is set to true, the entire hierarchy of compartments can be returned.
-// To get a full list of all compartments and subcompartments in the tenancy (root compartment),
-// set the parameter `compartmentIdInSubtree` to true and `accessLevel` to ACCESSIBLE.
 func (client CloudGuardClient) RequestSummarizedSecurityScores(ctx context.Context, request RequestSummarizedSecurityScoresRequest) (response RequestSummarizedSecurityScoresResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3270,15 +3252,6 @@ func (client CloudGuardClient) requestSummarizedTrendResponderExecutions(ctx con
 
 // RequestSummarizedTrendSecurityScores Measures the number of resources examined across all regions and compares it with the
 // number of problems detected, for a given time period.
-// The parameter `accessLevel` specifies whether to return only those compartments for which the
-// requestor has INSPECT permissions on at least one resource directly
-// or indirectly (ACCESSIBLE) (the resource can be in a subcompartment) or to return Not Authorized if
-// Principal doesn't have access to even one of the child compartments. This is valid only when
-// `compartmentIdInSubtree` is set to `true`.
-// The parameter `compartmentIdInSubtree` applies when you perform summarize API on the
-// `compartmentId` passed and when it is set to true, the entire hierarchy of compartments can be returned.
-// To get a full list of all compartments and subcompartments in the tenancy (root compartment),
-// set the parameter `compartmentIdInSubtree` to true and `accessLevel` to ACCESSIBLE.
 func (client CloudGuardClient) RequestSummarizedTrendSecurityScores(ctx context.Context, request RequestSummarizedTrendSecurityScoresRequest) (response RequestSummarizedTrendSecurityScoresResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

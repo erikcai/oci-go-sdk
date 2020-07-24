@@ -19,6 +19,9 @@ type CandidateResponderRule struct {
 	// The unique identifier of the Responder rule
 	Id *string `mandatory:"false" json:"id"`
 
+	// The display name of the Responder rule
+	DisplayName *string `mandatory:"false" json:"displayName"`
+
 	// Preferred state
 	IsPreferred *bool `mandatory:"false" json:"isPreferred"`
 }

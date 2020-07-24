@@ -5273,6 +5273,53 @@ func (client DatabaseClient) listAutonomousDatabaseBackups(ctx context.Context, 
 	return response, err
 }
 
+// ListAutonomousDatabaseClones Gets a list of the Autonomous Database clones for the specified Autonomous Database.
+func (client DatabaseClient) ListAutonomousDatabaseClones(ctx context.Context, request ListAutonomousDatabaseClonesRequest) (response ListAutonomousDatabaseClonesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listAutonomousDatabaseClones, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListAutonomousDatabaseClonesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListAutonomousDatabaseClonesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListAutonomousDatabaseClonesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListAutonomousDatabaseClonesResponse")
+	}
+	return
+}
+
+// listAutonomousDatabaseClones implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) listAutonomousDatabaseClones(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousDatabases/{autonomousDatabaseId}/clones")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListAutonomousDatabaseClonesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListAutonomousDatabaseDataguardAssociations Gets a list of the Autonomous Database Dataguard assocations for the specified Autonomous Database.
 func (client DatabaseClient) ListAutonomousDatabaseDataguardAssociations(ctx context.Context, request ListAutonomousDatabaseDataguardAssociationsRequest) (response ListAutonomousDatabaseDataguardAssociationsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -5308,53 +5355,6 @@ func (client DatabaseClient) listAutonomousDatabaseDataguardAssociations(ctx con
 	}
 
 	var response ListAutonomousDatabaseDataguardAssociationsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListAutonomousDatabaseRefreshableClones Gets a list of the Autonomous Database refreshable clones for the specified Autonomous Database.
-func (client DatabaseClient) ListAutonomousDatabaseRefreshableClones(ctx context.Context, request ListAutonomousDatabaseRefreshableClonesRequest) (response ListAutonomousDatabaseRefreshableClonesResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listAutonomousDatabaseRefreshableClones, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ListAutonomousDatabaseRefreshableClonesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = ListAutonomousDatabaseRefreshableClonesResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListAutonomousDatabaseRefreshableClonesResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListAutonomousDatabaseRefreshableClonesResponse")
-	}
-	return
-}
-
-// listAutonomousDatabaseRefreshableClones implements the OCIOperation interface (enables retrying operations)
-func (client DatabaseClient) listAutonomousDatabaseRefreshableClones(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/autonomousDatabases/{autonomousDatabaseId}/clones")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListAutonomousDatabaseRefreshableClonesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

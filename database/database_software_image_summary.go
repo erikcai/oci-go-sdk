@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// DatabaseSoftwareImageSummary The Database Service supports creation of database software images and perform operations like launching a new DB System, patching an existing Database etc.
+// DatabaseSoftwareImageSummary The Database service supports the creation of database software images for use in creating and patching DB systems and databases.
 // To use any of the API operations, you must be authorized in an IAM policy. If you are not authorized, talk to an administrator. If you are an administrator who needs to write policies to give users access, see Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
 // For information about access control and compartments, see
 // Overview of the Identity Service (https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
@@ -32,10 +32,10 @@ type DatabaseSoftwareImageSummary struct {
 	// The user-friendly name for the database software image. The name does not have to be unique.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The current state of the Database Software Image.
+	// The current state of the database software image.
 	LifecycleState DatabaseSoftwareImageSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The date and time the Database Software Image was created.
+	// The date and time the database software image was created.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	ImageType DatabaseSoftwareImageSummaryImageTypeEnum `mandatory:"true" json:"imageType"`

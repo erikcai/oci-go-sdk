@@ -16,23 +16,8 @@ import (
 // UpdateTargetDetectorRuleDetails Overriden settings of a Detector Rule applied on target
 type UpdateTargetDetectorRuleDetails struct {
 
-	// DEPRECATED
-	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
-
-	// DEPRECATED
-	RiskLevel RiskLevelEnum `mandatory:"false" json:"riskLevel,omitempty"`
-
-	// DEPRECATED
-	Configurations []DetectorConfiguration `mandatory:"false" json:"configurations"`
-
 	// Condition group corresponding to each compartment
 	ConditionGroups []ConditionGroup `mandatory:"false" json:"conditionGroups"`
-
-	// DEPRECATED
-	Labels []string `mandatory:"false" json:"labels"`
-
-	// DEPRECATED
-	IsConfigurationAllowed *bool `mandatory:"false" json:"isConfigurationAllowed"`
 }
 
 func (m UpdateTargetDetectorRuleDetails) String() string {

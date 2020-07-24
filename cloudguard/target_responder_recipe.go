@@ -16,14 +16,14 @@ import (
 // TargetResponderRecipe Details of Target ResponderRecipe
 type TargetResponderRecipe struct {
 
-	// Unique identifier that is immutable on creation
+	// Unique identifier of TargetResponderRecipe that is immutable on creation
 	Id *string `mandatory:"true" json:"id"`
-
-	// Compartment Identifier
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// Unique identifier for Responder Recipe of which this is an extension
 	ResponderRecipeId *string `mandatory:"true" json:"responderRecipeId"`
+
+	// Compartment Identifier
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// ResponderRecipe Identifier Name
 	DisplayName *string `mandatory:"true" json:"displayName"`
@@ -40,8 +40,11 @@ type TargetResponderRecipe struct {
 	// The date and time the target responder recipe rule was updated. Format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
-	// List of responder rules associated with the recipe
+	// List of responder rules associated with the recipe - user input
 	ResponderRules []TargetResponderRecipeResponderRule `mandatory:"false" json:"responderRules"`
+
+	// List of responder rules associated with the recipe after applying all defaults
+	EffectiveResponderRules []TargetResponderRecipeResponderRule `mandatory:"false" json:"effectiveResponderRules"`
 }
 
 func (m TargetResponderRecipe) String() string {

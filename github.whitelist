@@ -71,3 +71,6 @@
 ^operationsinsights/
 ^managementdashboard/
 ^sch/
+^optimizer/
+^bastions/
+^managementagent/

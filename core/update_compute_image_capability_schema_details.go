@@ -29,8 +29,8 @@ type UpdateComputeImageCapabilitySchemaDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// The map of each capability name to its InputImageCapabilityDescriptor.
-	SchemaData map[string]InputImageCapabilitySchemaDescriptor `mandatory:"false" json:"schemaData"`
+	// The map of each capability name to its ImageCapabilitySchemaDescriptor.
+	SchemaData map[string]ImageCapabilitySchemaDescriptor `mandatory:"false" json:"schemaData"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -45,10 +45,10 @@ func (m UpdateComputeImageCapabilitySchemaDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *UpdateComputeImageCapabilitySchemaDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		DisplayName  *string                                         `json:"displayName"`
-		FreeformTags map[string]string                               `json:"freeformTags"`
-		SchemaData   map[string]inputimagecapabilityschemadescriptor `json:"schemaData"`
-		DefinedTags  map[string]map[string]interface{}               `json:"definedTags"`
+		DisplayName  *string                                    `json:"displayName"`
+		FreeformTags map[string]string                          `json:"freeformTags"`
+		SchemaData   map[string]imagecapabilityschemadescriptor `json:"schemaData"`
+		DefinedTags  map[string]map[string]interface{}          `json:"definedTags"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -60,14 +60,14 @@ func (m *UpdateComputeImageCapabilitySchemaDetails) UnmarshalJSON(data []byte) (
 
 	m.FreeformTags = model.FreeformTags
 
-	m.SchemaData = make(map[string]InputImageCapabilitySchemaDescriptor)
+	m.SchemaData = make(map[string]ImageCapabilitySchemaDescriptor)
 	for k, v := range model.SchemaData {
 		nn, e = v.UnmarshalPolymorphicJSON(v.JsonData)
 		if e != nil {
 			return e
 		}
 		if nn != nil {
-			m.SchemaData[k] = nn.(InputImageCapabilitySchemaDescriptor)
+			m.SchemaData[k] = nn.(ImageCapabilitySchemaDescriptor)
 		} else {
 			m.SchemaData[k] = nil
 		}

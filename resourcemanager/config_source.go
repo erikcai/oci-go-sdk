@@ -22,6 +22,7 @@ type ConfigSource interface {
 
 	// File path to the directory to use for running Terraform.
 	// If not specified, the root directory is used.
+	// This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
 	GetWorkingDirectory() *string
 }
 

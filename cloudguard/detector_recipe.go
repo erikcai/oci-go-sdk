@@ -40,6 +40,9 @@ type DetectorRecipe struct {
 	// List of detetor rules for the detector type for recipe
 	DetectorRules []DetectorRecipeDetectorRule `mandatory:"false" json:"detectorRules"`
 
+	// List of detetor rules for the detector type for recipe
+	EffectiveDetectorRules []DetectorRecipeDetectorRule `mandatory:"false" json:"effectiveDetectorRules"`
+
 	// The date and time the detector recipe was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
