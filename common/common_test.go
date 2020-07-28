@@ -210,8 +210,8 @@ func TestStringToRegion(t *testing.T) {
 		"regionIdentifier" : "ap-testregion-2"
 	},
 	{
-		"realmKey" : "OC6",
-		"realmDomainComponent" : "oraclensrcloud.com",
+		"realmKey" : "OC100",
+		"realmDomainComponent" : "oraclefoobar.com",
 		"regionKey" : "DEF",
 		"regionIdentifier" : "us-testregion-3"
 	}
@@ -316,8 +316,8 @@ func TestSetRegionMetadataFromCfgFileWithNormalRegionName(t *testing.T) {
 		"regionIdentifier" : "ap-testregion-2"
 	},
 	{
-		"realmKey" : "OC6",
-		"realmDomainComponent" : "oraclensrcloud.com",
+		"realmKey" : "OC100",
+		"realmDomainComponent" : "oraclefoobar.com",
 		"regionKey" : "DEF",
 		"regionIdentifier" : "us-testregion-3"
 	}
@@ -341,8 +341,8 @@ func TestSetRegionMetadataFromCfgFileWithNormalRegionName(t *testing.T) {
 	ok := setRegionMetadataFromCfgFile(&expectedRegion)
 	assert.Equal(t, true, ok)
 	assert.Equal(t, "", regionRealm[Region("us-testregion-2")])
-	assert.Equal(t, "oc6", regionRealm[Region("us-testregion-3")])
-	assert.Equal(t, "oraclensrcloud.com", realm["oc6"])
+	assert.Equal(t, "oc100", regionRealm[Region("us-testregion-3")])
+	assert.Equal(t, "oraclefoobar.com", realm["oc100"])
 
 	ok = setRegionMetadataFromCfgFile(&expectedRegion)
 	assert.Equal(t, false, ok)
@@ -361,8 +361,8 @@ func TestSetRegionMetadataFromCfgFileWithShortRegionName(t *testing.T) {
 		"regionIdentifier" : "ap-testregion-2"
 	},
 	{
-		"realmKey" : "OC6",
-		"realmDomainComponent" : "oraclensrcloud.com",
+		"realmKey" : "OC100",
+		"realmDomainComponent" : "oraclefoobar.com",
 		"regionKey" : "DEF",
 		"regionIdentifier" : "us-testregion-3"
 	}
@@ -387,8 +387,8 @@ func TestSetRegionMetadataFromCfgFileWithShortRegionName(t *testing.T) {
 	assert.Equal(t, true, ok)
 	assert.Equal(t, "us-testregion-3", shortCode)
 	assert.Equal(t, "", regionRealm[Region("us-testregion-2")])
-	assert.Equal(t, "oc6", regionRealm[Region("us-testregion-3")])
-	assert.Equal(t, "oraclensrcloud.com", realm["oc6"])
+	assert.Equal(t, "oc100", regionRealm[Region("us-testregion-3")])
+	assert.Equal(t, "oraclefoobar.com", realm["oc100"])
 
 	ok = setRegionMetadataFromCfgFile(&shortCode)
 	assert.Equal(t, false, ok)
