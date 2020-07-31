@@ -12,7 +12,7 @@ import (
 // DeleteDetectorRecipeRequest wrapper for the DeleteDetectorRecipe operation
 type DeleteDetectorRecipeRequest struct {
 
-	// The DetectorRecipeId OCID to be passed in the request.
+	// DetectorRecipe OCID
 	DetectorRecipeId *string `mandatory:"true" contributesTo:"path" name:"detectorRecipeId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

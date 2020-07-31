@@ -16,7 +16,7 @@ import (
 // SummarizeDatabaseInsightResourceForecastTrendAggregation Forecast results from the selected time period.
 type SummarizeDatabaseInsightResourceForecastTrendAggregation struct {
 
-	// Defines the type of resource metric (CPU, STORAGE, IO, MEMORY)
+	// Defines the type of resource metric (CPU, STORAGE)
 	ResourceMetric SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricEnum `mandatory:"true" json:"resourceMetric"`
 
 	// Displays usage unit ( CORES, GB)
@@ -43,15 +43,11 @@ type SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricEnum 
 const (
 	SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricCpu     SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricEnum = "CPU"
 	SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricStorage SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricEnum = "STORAGE"
-	SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricIo      SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricEnum = "IO"
-	SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricMemory  SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricEnum = "MEMORY"
 )
 
 var mappingSummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetric = map[string]SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricEnum{
 	"CPU":     SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricCpu,
 	"STORAGE": SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricStorage,
-	"IO":      SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricIo,
-	"MEMORY":  SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricMemory,
 }
 
 // GetSummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricEnumValues Enumerates the set of values for SummarizeDatabaseInsightResourceForecastTrendAggregationResourceMetricEnum

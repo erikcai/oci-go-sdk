@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Connectors API
+// Service Connector Hub API
 //
-// A description of the Connectors API
+// Use the Service Connector Hub API to transfer data between services in Oracle Cloud Infrastructure.
+// For more information about Service Connector Hub, see
+// Service Connector Hub Overview (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 //
 
 package sch
@@ -13,11 +15,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeServiceConnectorCompartmentDetails The information to be updated.
+// ChangeServiceConnectorCompartmentDetails The configuration details for moving a service connector to a different compartment.
 type ChangeServiceConnectorCompartmentDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
-	// into which the resource should be moved.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
+	// to move the service connector to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

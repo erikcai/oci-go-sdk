@@ -12,10 +12,10 @@ import (
 // ChangeServiceConnectorCompartmentRequest wrapper for the ChangeServiceConnectorCompartment operation
 type ChangeServiceConnectorCompartmentRequest struct {
 
-	// unique ServiceConnector identifier
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service connector.
 	ServiceConnectorId *string `mandatory:"true" contributesTo:"path" name:"serviceConnectorId"`
 
-	// The information to be updated.
+	// The configuration details for moving a service connector to a different compartment.
 	ChangeServiceConnectorCompartmentDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -25,7 +25,8 @@ type ChangeServiceConnectorCompartmentRequest struct {
 	// provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
-	// The client request ID for tracing.
+	// The unique Oracle-assigned identifier for the request.
+	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

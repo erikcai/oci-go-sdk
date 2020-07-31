@@ -16,16 +16,16 @@ import (
 // SummarizeDatabaseInsightResourceUsageAggregation Resource usage summation for the current time period
 type SummarizeDatabaseInsightResourceUsageAggregation struct {
 
-	// Defines the type of resource metric (CPU, STORAGE, IO, MEMORY)
+	// Defines the type of resource metric (CPU, STORAGE)
 	ResourceMetric SummarizeDatabaseInsightResourceUsageAggregationResourceMetricEnum `mandatory:"true" json:"resourceMetric"`
 
 	// Displays usage unit (CORES, GB)
 	UsageUnit UsageUnitEnum `mandatory:"true" json:"usageUnit"`
 
-	// Total amount used of the resource metric type (CPU, STORAGE, etc).
+	// Total amount used of the resource metric type (CPU, STORAGE).
 	Usage *float64 `mandatory:"true" json:"usage"`
 
-	// The maximum allocated amount of the resource metric type  (CPU, STORAGE, etc).
+	// The maximum allocated amount of the resource metric type  (CPU, STORAGE).
 	Capacity *float64 `mandatory:"true" json:"capacity"`
 
 	// Percentage change in resource usage during the current period calculated using linear regression functions
@@ -43,15 +43,11 @@ type SummarizeDatabaseInsightResourceUsageAggregationResourceMetricEnum string
 const (
 	SummarizeDatabaseInsightResourceUsageAggregationResourceMetricCpu     SummarizeDatabaseInsightResourceUsageAggregationResourceMetricEnum = "CPU"
 	SummarizeDatabaseInsightResourceUsageAggregationResourceMetricStorage SummarizeDatabaseInsightResourceUsageAggregationResourceMetricEnum = "STORAGE"
-	SummarizeDatabaseInsightResourceUsageAggregationResourceMetricIo      SummarizeDatabaseInsightResourceUsageAggregationResourceMetricEnum = "IO"
-	SummarizeDatabaseInsightResourceUsageAggregationResourceMetricMemory  SummarizeDatabaseInsightResourceUsageAggregationResourceMetricEnum = "MEMORY"
 )
 
 var mappingSummarizeDatabaseInsightResourceUsageAggregationResourceMetric = map[string]SummarizeDatabaseInsightResourceUsageAggregationResourceMetricEnum{
 	"CPU":     SummarizeDatabaseInsightResourceUsageAggregationResourceMetricCpu,
 	"STORAGE": SummarizeDatabaseInsightResourceUsageAggregationResourceMetricStorage,
-	"IO":      SummarizeDatabaseInsightResourceUsageAggregationResourceMetricIo,
-	"MEMORY":  SummarizeDatabaseInsightResourceUsageAggregationResourceMetricMemory,
 }
 
 // GetSummarizeDatabaseInsightResourceUsageAggregationResourceMetricEnumValues Enumerates the set of values for SummarizeDatabaseInsightResourceUsageAggregationResourceMetricEnum

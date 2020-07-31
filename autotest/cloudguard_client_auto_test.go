@@ -1475,50 +1475,6 @@ func TestCloudguardCloudGuardClientGetTargetResponderRecipeResponderRule(t *test
 }
 
 // IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
-func TestCloudguardCloudGuardClientGetUserPreference(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("cloudguard", "GetUserPreference")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetUserPreference is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("cloudguard", "CloudGuard", "GetUserPreference", createCloudguardCloudGuardClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(cloudguard.CloudGuardClient)
-
-	body, err := testClient.getRequests("cloudguard", "GetUserPreference")
-	assert.NoError(t, err)
-
-	type GetUserPreferenceRequestInfo struct {
-		ContainerId string
-		Request     cloudguard.GetUserPreferenceRequest
-	}
-
-	var requests []GetUserPreferenceRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetUserPreference(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
 func TestCloudguardCloudGuardClientListConditionMetadataTypes(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2700,50 +2656,6 @@ func TestCloudguardCloudGuardClientListTargets(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="seccen-engg_ww_grp@oracle.com" jiraProject="SECCEN" opsJiraProject="SECCEN-OPS"
-func TestCloudguardCloudGuardClientReplaceUserPreference(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("cloudguard", "ReplaceUserPreference")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ReplaceUserPreference is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("cloudguard", "CloudGuard", "ReplaceUserPreference", createCloudguardCloudGuardClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(cloudguard.CloudGuardClient)
-
-	body, err := testClient.getRequests("cloudguard", "ReplaceUserPreference")
-	assert.NoError(t, err)
-
-	type ReplaceUserPreferenceRequestInfo struct {
-		ContainerId string
-		Request     cloudguard.ReplaceUserPreferenceRequest
-	}
-
-	var requests []ReplaceUserPreferenceRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ReplaceUserPreference(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

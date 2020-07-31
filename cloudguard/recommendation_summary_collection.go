@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RecommendationSummaryCollection Summary of the Recommendations
+// RecommendationSummaryCollection Collection of the RecommendationSummary
 type RecommendationSummaryCollection struct {
 
 	// List of Recommendation

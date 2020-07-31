@@ -49,9 +49,6 @@ type SummarizeSqlStatisticsTimeSeriesRequest struct {
 	// Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// SQL performance statistic name
-	Statistic *string `mandatory:"false" contributesTo:"query" name:"statistic"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

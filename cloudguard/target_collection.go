@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TargetCollection Summary of the Target.
+// TargetCollection Collection of Target
 type TargetCollection struct {
 
 	// List of TargetSummary

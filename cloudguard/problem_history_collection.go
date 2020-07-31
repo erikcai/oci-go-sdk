@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ProblemHistoryCollection Summary of the Problem History
+// ProblemHistoryCollection Collection of Problem History
 type ProblemHistoryCollection struct {
 
 	// List of ProblemHistorySummary

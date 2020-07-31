@@ -22,17 +22,17 @@ type TargetSummary struct {
 	// Compartment Identifier where the resource is created
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// DetectorTemplate Identifier, can be renamed
-	DisplayName *string `mandatory:"false" json:"displayName"`
-
 	// possible type of targets(compartment/HCMCloud/ERPCloud)
-	TargetResourceType TargetResourceTypeEnum `mandatory:"false" json:"targetResourceType,omitempty"`
+	TargetResourceType TargetResourceTypeEnum `mandatory:"true" json:"targetResourceType"`
 
 	// Resource ID which the target uses to monitor
-	TargetResourceId *string `mandatory:"false" json:"targetResourceId"`
+	TargetResourceId *string `mandatory:"true" json:"targetResourceId"`
 
 	// Total number of recipes attached to target
-	RecipeCount *int `mandatory:"false" json:"recipeCount"`
+	RecipeCount *int `mandatory:"true" json:"recipeCount"`
+
+	// DetectorTemplate Identifier, can be renamed
+	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The date and time the target was created. Format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`

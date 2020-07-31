@@ -23,7 +23,7 @@ type SummarizeSqlInsightsRequest struct {
 	DatabaseId []string `contributesTo:"query" name:"databaseId" collectionFormat:"multi"`
 
 	// Filter sqls by percentage of db time.
-	DatabaseTimePctGreaterThan *int `mandatory:"false" contributesTo:"query" name:"databaseTimePctGreaterThan"`
+	DatabaseTimePctGreaterThan *float64 `mandatory:"false" contributesTo:"query" name:"databaseTimePctGreaterThan"`
 
 	// Specify time period in ISO 8601 format with respect to current time.
 	// Default is last 30 days represented by P30D.

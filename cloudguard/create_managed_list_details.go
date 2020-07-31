@@ -28,9 +28,6 @@ type CreateManagedListDetails struct {
 	// List of ManagedListItem
 	ListItems []string `mandatory:"true" json:"listItems"`
 
-	// provider of the feed
-	FeedProvider FeedProviderTypeEnum `mandatory:"true" json:"feedProvider"`
-
 	// ManagedList description
 	Description *string `mandatory:"false" json:"description"`
 

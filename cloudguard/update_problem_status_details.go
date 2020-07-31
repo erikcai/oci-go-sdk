@@ -16,6 +16,9 @@ import (
 // UpdateProblemStatusDetails The additional details for the problem
 type UpdateProblemStatusDetails struct {
 
+	// Action taken by user
+	Status ProblemLifecycleDetailEnum `mandatory:"true" json:"status"`
+
 	// User Comments
 	Comment *string `mandatory:"false" json:"comment"`
 }

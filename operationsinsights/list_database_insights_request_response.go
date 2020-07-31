@@ -38,7 +38,6 @@ type ListDatabaseInsightsRequest struct {
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
 	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
-	// The DISPLAYNAME sort order is case sensitive.
 	SortOrder ListDatabaseInsightsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
 	// Database insight list sort options. If `fields` parameter is selected, the `sortBy` parameter must be one of the fields specified.

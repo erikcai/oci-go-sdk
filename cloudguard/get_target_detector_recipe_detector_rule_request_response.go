@@ -18,7 +18,7 @@ type GetTargetDetectorRecipeDetectorRuleRequest struct {
 	// OCID of TargetDetectorRecipe
 	TargetDetectorRecipeId *string `mandatory:"true" contributesTo:"path" name:"targetDetectorRecipeId"`
 
-	// OCID of DetectorRule
+	// The id of DetectorRule
 	DetectorRuleId *string `mandatory:"true" contributesTo:"path" name:"detectorRuleId"`
 
 	// The client request ID for tracing.

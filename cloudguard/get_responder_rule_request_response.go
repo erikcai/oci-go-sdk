@@ -12,7 +12,7 @@ import (
 // GetResponderRuleRequest wrapper for the GetResponderRule operation
 type GetResponderRuleRequest struct {
 
-	// OCID of ResponderRule
+	// The id of ResponderRule
 	ResponderRuleId *string `mandatory:"true" contributesTo:"path" name:"responderRuleId"`
 
 	// The client request ID for tracing.

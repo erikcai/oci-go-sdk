@@ -13,16 +13,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateTargetDetectorRecipe The information required to create TargetDetectorRecipe
-type CreateTargetDetectorRecipe struct {
+// AttachTargetDetectorRecipeDetails The information required to create TargetDetectorRecipe
+type AttachTargetDetectorRecipeDetails struct {
 
-	// Identifier for DetectorRecipe.
+	// DetectorRecipe Identifier
 	DetectorRecipeId *string `mandatory:"true" json:"detectorRecipeId"`
-
-	// Overrides to be applied to Detector Rule associated with the target
-	DetectorRules []UpdateTargetRecipeDetectorRuleDetails `mandatory:"true" json:"detectorRules"`
 }
 
-func (m CreateTargetDetectorRecipe) String() string {
+func (m AttachTargetDetectorRecipeDetails) String() string {
 	return common.PointerString(m)
 }

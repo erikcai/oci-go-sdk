@@ -372,7 +372,7 @@ func (client OperationsInsightsClient) listSqlSearches(ctx context.Context, requ
 	return response, err
 }
 
-// ListSqlTexts Query SQL Warehouse to list the SQL Text for one or more SQLs across one or more databases.
+// ListSqlTexts Query SQL Warehouse to get the SQL Text for a SQL across one or more databases.
 func (client OperationsInsightsClient) ListSqlTexts(ctx context.Context, request ListSqlTextsRequest) (response ListSqlTextsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -16,7 +16,7 @@ type SummarizeDatabaseInsightResourceStatisticsRequest struct {
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// Filter by resource metric.
-	// Possible values are CPU, MEM, STORAGE, and IO.
+	// Supported values are CPU and STORAGE.
 	ResourceMetric *string `mandatory:"true" contributesTo:"query" name:"resourceMetric"`
 
 	// Specify time period in ISO 8601 format with respect to current time.
@@ -69,7 +69,6 @@ type SummarizeDatabaseInsightResourceStatisticsRequest struct {
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
 	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
-	// The DISPLAYNAME sort order is case sensitive.
 	SortOrder SummarizeDatabaseInsightResourceStatisticsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
 	// The order in which resource statistics records are listed

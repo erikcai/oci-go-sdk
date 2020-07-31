@@ -12,7 +12,7 @@ import (
 // GetDetectorRecipeRequest wrapper for the GetDetectorRecipe operation
 type GetDetectorRecipeRequest struct {
 
-	// The DetectorRecipeId OCID to be passed in the request.
+	// DetectorRecipe OCID
 	DetectorRecipeId *string `mandatory:"true" contributesTo:"path" name:"detectorRecipeId"`
 
 	// The client request ID for tracing.

@@ -17,9 +17,6 @@ import (
 // DetectorDetails Details of a Detector Rule
 type DetectorDetails struct {
 
-	// detector key
-	DetectorRuleId *string `mandatory:"true" json:"detectorRuleId"`
-
 	// Enables the control
 	IsEnabled *bool `mandatory:"true" json:"isEnabled"`
 
@@ -49,7 +46,6 @@ func (m *DetectorDetails) UnmarshalJSON(data []byte) (e error) {
 		Condition              condition               `json:"condition"`
 		Labels                 []string                `json:"labels"`
 		IsConfigurationAllowed *bool                   `json:"isConfigurationAllowed"`
-		DetectorRuleId         *string                 `json:"detectorRuleId"`
 		IsEnabled              *bool                   `json:"isEnabled"`
 		RiskLevel              RiskLevelEnum           `json:"riskLevel"`
 	}{}
@@ -80,8 +76,6 @@ func (m *DetectorDetails) UnmarshalJSON(data []byte) (e error) {
 	}
 
 	m.IsConfigurationAllowed = model.IsConfigurationAllowed
-
-	m.DetectorRuleId = model.DetectorRuleId
 
 	m.IsEnabled = model.IsEnabled
 

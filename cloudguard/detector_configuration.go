@@ -28,7 +28,7 @@ type DetectorConfiguration struct {
 	// configuration data type
 	DataType *string `mandatory:"false" json:"dataType"`
 
-	// multi list value list
+	// List of configuration values
 	Values []ConfigValue `mandatory:"false" json:"values"`
 }
 

@@ -16,7 +16,7 @@ import (
 // SummarizeDatabaseInsightResourceUsageTrendAggregationCollection Top level response object.
 type SummarizeDatabaseInsightResourceUsageTrendAggregationCollection struct {
 
-	// Defines the type of resource metric (CPU, STORAGE, IO, MEMORY)
+	// Defines the type of resource metric (CPU, STORAGE)
 	ResourceMetric SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricEnum `mandatory:"true" json:"resourceMetric"`
 
 	// Displays usage unit ( CORES, GB)
@@ -46,15 +46,11 @@ type SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetr
 const (
 	SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricCpu     SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricEnum = "CPU"
 	SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricStorage SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricEnum = "STORAGE"
-	SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricIo      SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricEnum = "IO"
-	SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricMemory  SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricEnum = "MEMORY"
 )
 
 var mappingSummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetric = map[string]SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricEnum{
 	"CPU":     SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricCpu,
 	"STORAGE": SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricStorage,
-	"IO":      SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricIo,
-	"MEMORY":  SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricMemory,
 }
 
 // GetSummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricEnumValues Enumerates the set of values for SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricEnum

@@ -12,9 +12,6 @@ import (
 // UpdateBulkProblemStatusRequest wrapper for the UpdateBulkProblemStatus operation
 type UpdateBulkProblemStatusRequest struct {
 
-	// Action taken by user
-	Status UpdateBulkProblemStatusStatusEnum `mandatory:"true" contributesTo:"path" name:"status"`
-
 	// A list of problem ids to be passed in to update the Problem status
 	UpdateBulkProblemStatusDetails `contributesTo:"body"`
 
@@ -58,29 +55,4 @@ func (response UpdateBulkProblemStatusResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response UpdateBulkProblemStatusResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// UpdateBulkProblemStatusStatusEnum Enum with underlying type: string
-type UpdateBulkProblemStatusStatusEnum string
-
-// Set of constants representing the allowable values for UpdateBulkProblemStatusStatusEnum
-const (
-	UpdateBulkProblemStatusStatusOpen      UpdateBulkProblemStatusStatusEnum = "OPEN"
-	UpdateBulkProblemStatusStatusResolved  UpdateBulkProblemStatusStatusEnum = "RESOLVED"
-	UpdateBulkProblemStatusStatusDismissed UpdateBulkProblemStatusStatusEnum = "DISMISSED"
-)
-
-var mappingUpdateBulkProblemStatusStatus = map[string]UpdateBulkProblemStatusStatusEnum{
-	"OPEN":      UpdateBulkProblemStatusStatusOpen,
-	"RESOLVED":  UpdateBulkProblemStatusStatusResolved,
-	"DISMISSED": UpdateBulkProblemStatusStatusDismissed,
-}
-
-// GetUpdateBulkProblemStatusStatusEnumValues Enumerates the set of values for UpdateBulkProblemStatusStatusEnum
-func GetUpdateBulkProblemStatusStatusEnumValues() []UpdateBulkProblemStatusStatusEnum {
-	values := make([]UpdateBulkProblemStatusStatusEnum, 0)
-	for _, v := range mappingUpdateBulkProblemStatusStatus {
-		values = append(values, v)
-	}
-	return values
 }

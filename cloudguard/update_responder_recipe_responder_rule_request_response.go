@@ -15,7 +15,7 @@ type UpdateResponderRecipeResponderRuleRequest struct {
 	// OCID of ResponderRecipe
 	ResponderRecipeId *string `mandatory:"true" contributesTo:"path" name:"responderRecipeId"`
 
-	// OCID of ResponderRule
+	// The id of ResponderRule
 	ResponderRuleId *string `mandatory:"true" contributesTo:"path" name:"responderRuleId"`
 
 	// The details to be updated for ResponderRule.

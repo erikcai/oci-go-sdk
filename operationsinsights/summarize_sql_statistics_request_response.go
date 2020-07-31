@@ -23,7 +23,7 @@ type SummarizeSqlStatisticsRequest struct {
 	DatabaseId []string `contributesTo:"query" name:"databaseId" collectionFormat:"multi"`
 
 	// Filter sqls by percentage of db time.
-	DatabaseTimePctGreaterThan *int `mandatory:"false" contributesTo:"query" name:"databaseTimePctGreaterThan"`
+	DatabaseTimePctGreaterThan *float64 `mandatory:"false" contributesTo:"query" name:"databaseTimePctGreaterThan"`
 
 	// One or more unique SQL_IDs for a SQL Statement.
 	SqlIdentifier []string `contributesTo:"query" name:"sqlIdentifier" collectionFormat:"multi"`
@@ -64,7 +64,6 @@ type SummarizeSqlStatisticsRequest struct {
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
-	// The DISPLAYNAME sort order is case sensitive.
 	SortOrder SummarizeSqlStatisticsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
 	// The field to use when sorting SQL statistics.

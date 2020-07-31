@@ -17,10 +17,10 @@ import (
 type ProblemAggregation struct {
 
 	// The key-value pairs of dimensions and their names.
-	DimensionsMap map[string]string `mandatory:"false" json:"dimensionsMap"`
+	DimensionsMap map[string]string `mandatory:"true" json:"dimensionsMap"`
 
 	// The number of occurences with given dimension/s
-	Count *int `mandatory:"false" json:"count"`
+	Count *int `mandatory:"true" json:"count"`
 }
 
 func (m ProblemAggregation) String() string {

@@ -12,7 +12,7 @@ import (
 // CreateServiceConnectorRequest wrapper for the CreateServiceConnector operation
 type CreateServiceConnectorRequest struct {
 
-	// Details for the new ServiceConnector.
+	// Configuration details for the new service connector.
 	CreateServiceConnectorDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
@@ -22,7 +22,8 @@ type CreateServiceConnectorRequest struct {
 	// might be rejected.
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
-	// The client request ID for tracing.
+	// The unique Oracle-assigned identifier for the request.
+	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

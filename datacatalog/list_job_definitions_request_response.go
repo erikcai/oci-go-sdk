@@ -23,6 +23,9 @@ type ListJobDefinitionsRequest struct {
 	// The above would match all folders with display name that starts with "Cu".
 	DisplayNameContains *string `mandatory:"false" contributesTo:"query" name:"displayNameContains"`
 
+	// Job execution state.
+	JobExecutionState ListJobDefinitionsJobExecutionStateEnum `mandatory:"false" contributesTo:"query" name:"jobExecutionState" omitEmpty:"true"`
+
 	// A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
 	LifecycleState ListJobDefinitionsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
@@ -56,7 +59,7 @@ type ListJobDefinitionsRequest struct {
 	// Specifies the fields to return in a job definition summary response.
 	Fields []ListJobDefinitionsFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
-	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
+	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. Default order for TIMELATESTEXECUTIONSTARTED is descending. If no value is specified TIMECREATED is default.
 	SortBy ListJobDefinitionsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
 	// The sort order to use, either 'asc' or 'desc'.
@@ -114,6 +117,37 @@ func (response ListJobDefinitionsResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response ListJobDefinitionsResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
+}
+
+// ListJobDefinitionsJobExecutionStateEnum Enum with underlying type: string
+type ListJobDefinitionsJobExecutionStateEnum string
+
+// Set of constants representing the allowable values for ListJobDefinitionsJobExecutionStateEnum
+const (
+	ListJobDefinitionsJobExecutionStateCreated    ListJobDefinitionsJobExecutionStateEnum = "CREATED"
+	ListJobDefinitionsJobExecutionStateInProgress ListJobDefinitionsJobExecutionStateEnum = "IN_PROGRESS"
+	ListJobDefinitionsJobExecutionStateInactive   ListJobDefinitionsJobExecutionStateEnum = "INACTIVE"
+	ListJobDefinitionsJobExecutionStateFailed     ListJobDefinitionsJobExecutionStateEnum = "FAILED"
+	ListJobDefinitionsJobExecutionStateSucceeded  ListJobDefinitionsJobExecutionStateEnum = "SUCCEEDED"
+	ListJobDefinitionsJobExecutionStateCanceled   ListJobDefinitionsJobExecutionStateEnum = "CANCELED"
+)
+
+var mappingListJobDefinitionsJobExecutionState = map[string]ListJobDefinitionsJobExecutionStateEnum{
+	"CREATED":     ListJobDefinitionsJobExecutionStateCreated,
+	"IN_PROGRESS": ListJobDefinitionsJobExecutionStateInProgress,
+	"INACTIVE":    ListJobDefinitionsJobExecutionStateInactive,
+	"FAILED":      ListJobDefinitionsJobExecutionStateFailed,
+	"SUCCEEDED":   ListJobDefinitionsJobExecutionStateSucceeded,
+	"CANCELED":    ListJobDefinitionsJobExecutionStateCanceled,
+}
+
+// GetListJobDefinitionsJobExecutionStateEnumValues Enumerates the set of values for ListJobDefinitionsJobExecutionStateEnum
+func GetListJobDefinitionsJobExecutionStateEnumValues() []ListJobDefinitionsJobExecutionStateEnum {
+	values := make([]ListJobDefinitionsJobExecutionStateEnum, 0)
+	for _, v := range mappingListJobDefinitionsJobExecutionState {
+		values = append(values, v)
+	}
+	return values
 }
 
 // ListJobDefinitionsLifecycleStateEnum Enum with underlying type: string
@@ -252,13 +286,15 @@ type ListJobDefinitionsSortByEnum string
 
 // Set of constants representing the allowable values for ListJobDefinitionsSortByEnum
 const (
-	ListJobDefinitionsSortByTimecreated ListJobDefinitionsSortByEnum = "TIMECREATED"
-	ListJobDefinitionsSortByDisplayname ListJobDefinitionsSortByEnum = "DISPLAYNAME"
+	ListJobDefinitionsSortByTimecreated                ListJobDefinitionsSortByEnum = "TIMECREATED"
+	ListJobDefinitionsSortByDisplayname                ListJobDefinitionsSortByEnum = "DISPLAYNAME"
+	ListJobDefinitionsSortByTimelatestexecutionstarted ListJobDefinitionsSortByEnum = "TIMELATESTEXECUTIONSTARTED"
 )
 
 var mappingListJobDefinitionsSortBy = map[string]ListJobDefinitionsSortByEnum{
-	"TIMECREATED": ListJobDefinitionsSortByTimecreated,
-	"DISPLAYNAME": ListJobDefinitionsSortByDisplayname,
+	"TIMECREATED":                ListJobDefinitionsSortByTimecreated,
+	"DISPLAYNAME":                ListJobDefinitionsSortByDisplayname,
+	"TIMELATESTEXECUTIONSTARTED": ListJobDefinitionsSortByTimelatestexecutionstarted,
 }
 
 // GetListJobDefinitionsSortByEnumValues Enumerates the set of values for ListJobDefinitionsSortByEnum

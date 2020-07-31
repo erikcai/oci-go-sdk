@@ -46,6 +46,17 @@ type TransferAppliance struct {
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
 	UploadStatusLogUri *string `mandatory:"false" json:"uploadStatusLogUri"`
+
+	ReturnShippingLabelUri *string `mandatory:"false" json:"returnShippingLabelUri"`
+
+	// Expected return date from customer for the device, time portion should be zero.
+	ExpectedReturnDate *common.SDKTime `mandatory:"false" json:"expectedReturnDate"`
+
+	// Start time for the window to pickup the device from customer.
+	PickupWindowStartTime *common.SDKTime `mandatory:"false" json:"pickupWindowStartTime"`
+
+	// End time for the window to pickup the device from customer.
+	PickupWindowEndTime *common.SDKTime `mandatory:"false" json:"pickupWindowEndTime"`
 }
 
 func (m TransferAppliance) String() string {
@@ -63,6 +74,9 @@ const (
 	TransferApplianceLifecycleStateDelivered               TransferApplianceLifecycleStateEnum = "DELIVERED"
 	TransferApplianceLifecycleStatePreparing               TransferApplianceLifecycleStateEnum = "PREPARING"
 	TransferApplianceLifecycleStateFinalized               TransferApplianceLifecycleStateEnum = "FINALIZED"
+	TransferApplianceLifecycleStateReturnLabelRequested    TransferApplianceLifecycleStateEnum = "RETURN_LABEL_REQUESTED"
+	TransferApplianceLifecycleStateReturnLabelGenerating   TransferApplianceLifecycleStateEnum = "RETURN_LABEL_GENERATING"
+	TransferApplianceLifecycleStateReturnLabelAvailable    TransferApplianceLifecycleStateEnum = "RETURN_LABEL_AVAILABLE"
 	TransferApplianceLifecycleStateReturnDelayed           TransferApplianceLifecycleStateEnum = "RETURN_DELAYED"
 	TransferApplianceLifecycleStateReturnShipped           TransferApplianceLifecycleStateEnum = "RETURN_SHIPPED"
 	TransferApplianceLifecycleStateReturnShippedCancelled  TransferApplianceLifecycleStateEnum = "RETURN_SHIPPED_CANCELLED"
@@ -86,6 +100,9 @@ var mappingTransferApplianceLifecycleState = map[string]TransferApplianceLifecyc
 	"DELIVERED":                 TransferApplianceLifecycleStateDelivered,
 	"PREPARING":                 TransferApplianceLifecycleStatePreparing,
 	"FINALIZED":                 TransferApplianceLifecycleStateFinalized,
+	"RETURN_LABEL_REQUESTED":    TransferApplianceLifecycleStateReturnLabelRequested,
+	"RETURN_LABEL_GENERATING":   TransferApplianceLifecycleStateReturnLabelGenerating,
+	"RETURN_LABEL_AVAILABLE":    TransferApplianceLifecycleStateReturnLabelAvailable,
 	"RETURN_DELAYED":            TransferApplianceLifecycleStateReturnDelayed,
 	"RETURN_SHIPPED":            TransferApplianceLifecycleStateReturnShipped,
 	"RETURN_SHIPPED_CANCELLED":  TransferApplianceLifecycleStateReturnShippedCancelled,

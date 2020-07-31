@@ -18,7 +18,7 @@ type ListDetectorsRequest struct {
 	// The maximum number of items to return.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The field life cycle state. Only one state can be provided. Default order for state is active. If no value is specified state is active.
+	// The field life cycle state. Only one state can be provided. Default value for state is active. If no value is specified state is active.
 	LifecycleState ListDetectorsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// The page token representing the page at which to start retrieving results. This is usually retrieved from a previous list call.

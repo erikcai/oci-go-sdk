@@ -16,6 +16,9 @@ import (
 // UpdateBulkProblemStatusDetails List of problem ids to be passed in to update the Problem status.
 type UpdateBulkProblemStatusDetails struct {
 
+	// Action taken by user
+	Status ProblemLifecycleDetailEnum `mandatory:"true" json:"status"`
+
 	// List of ProblemIds to be passed in to update the Problem status.
 	ProblemIds []string `mandatory:"true" json:"problemIds"`
 }

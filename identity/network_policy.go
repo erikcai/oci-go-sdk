@@ -2,24 +2,24 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Cloud Guard APIs
+// Identity and Access Management Service API
 //
-// A description of the Cloud Guard APIs
+// APIs for managing users, groups, compartments, and policies.
 //
 
-package cloudguard
+package identity
 
 import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ReplaceUserPreferenceDetails The user preference details to be replaced.
-type ReplaceUserPreferenceDetails struct {
+// NetworkPolicy Network policy, Consists of a list of Network Source ids.
+type NetworkPolicy struct {
 
-	// Preference of the user if the guided tour has to be shown
-	IsShowGuidedTour *bool `mandatory:"false" json:"isShowGuidedTour"`
+	// Network Source ids
+	NetworkSourceIds []string `mandatory:"false" json:"networkSourceIds"`
 }
 
-func (m ReplaceUserPreferenceDetails) String() string {
+func (m NetworkPolicy) String() string {
 	return common.PointerString(m)
 }

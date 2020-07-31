@@ -37,10 +37,10 @@ type ListRecommendationsRequest struct {
 	// When set to `RESTRICTED` permissions are checked and no partial results are displayed.
 	AccessLevel ListRecommendationsAccessLevelEnum `mandatory:"false" contributesTo:"query" name:"accessLevel" omitEmpty:"true"`
 
-	// The field life cycle state. Only one state can be provided. Default order for state is active. If no value is specified state is active.
+	// The field life cycle state. Only one state can be provided. Default value for state is active. If no value is specified state is active.
 	LifecycleState ListRecommendationsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// The field life cycle state. Only one state can be provided.
+	// The field life cycle state. Only one state can be provided. Default value for state is active. If no value is specified state is active.
 	LifecycleDetail ListRecommendationsLifecycleDetailEnum `mandatory:"false" contributesTo:"query" name:"lifecycleDetail" omitEmpty:"true"`
 
 	// The maximum number of items to return.

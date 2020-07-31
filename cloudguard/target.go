@@ -28,6 +28,9 @@ type Target struct {
 	// Resource ID which the target uses to monitor
 	TargetResourceId *string `mandatory:"true" json:"targetResourceId"`
 
+	// Total number of recipes attached to target
+	RecipeCount *int `mandatory:"true" json:"recipeCount"`
+
 	// Target Identifier, can be renamed
 	DisplayName *string `mandatory:"false" json:"displayName"`
 

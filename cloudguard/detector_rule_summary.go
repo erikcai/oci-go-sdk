@@ -40,7 +40,7 @@ type DetectorRuleSummary struct {
 	// List of cloudguard managed list types related to this rule
 	ManagedListTypes []DetectorRuleSummaryManagedListTypesEnum `mandatory:"false" json:"managedListTypes,omitempty"`
 
-	// List of CandidateResponderRule
+	// List of CandidateResponderRule related to this rule
 	CandidateResponderRules []CandidateResponderRule `mandatory:"false" json:"candidateResponderRules"`
 
 	DetectorDetails *DetectorDetails `mandatory:"false" json:"detectorDetails"`

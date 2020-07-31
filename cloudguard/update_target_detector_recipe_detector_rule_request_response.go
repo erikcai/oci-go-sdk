@@ -18,7 +18,7 @@ type UpdateTargetDetectorRecipeDetectorRuleRequest struct {
 	// OCID of TargetDetectorRecipe
 	TargetDetectorRecipeId *string `mandatory:"true" contributesTo:"path" name:"targetDetectorRecipeId"`
 
-	// OCID of DetectorRule
+	// The id of DetectorRule
 	DetectorRuleId *string `mandatory:"true" contributesTo:"path" name:"detectorRuleId"`
 
 	// The details to be updated for DetectorRule.

@@ -18,6 +18,15 @@ type UpdateTransferApplianceDetails struct {
 	LifecycleState UpdateTransferApplianceDetailsLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
+
+	// Expected return date from customer for the device, time portion should be zero.
+	ExpectedReturnDate *common.SDKTime `mandatory:"false" json:"expectedReturnDate"`
+
+	// Start time for the window to pickup the device from customer.
+	PickupWindowStartTime *common.SDKTime `mandatory:"false" json:"pickupWindowStartTime"`
+
+	// End time for the window to pickup the device from customer.
+	PickupWindowEndTime *common.SDKTime `mandatory:"false" json:"pickupWindowEndTime"`
 }
 
 func (m UpdateTransferApplianceDetails) String() string {
@@ -31,6 +40,9 @@ type UpdateTransferApplianceDetailsLifecycleStateEnum string
 const (
 	UpdateTransferApplianceDetailsLifecycleStatePreparing             UpdateTransferApplianceDetailsLifecycleStateEnum = "PREPARING"
 	UpdateTransferApplianceDetailsLifecycleStateFinalized             UpdateTransferApplianceDetailsLifecycleStateEnum = "FINALIZED"
+	UpdateTransferApplianceDetailsLifecycleStateReturnLabelRequested  UpdateTransferApplianceDetailsLifecycleStateEnum = "RETURN_LABEL_REQUESTED"
+	UpdateTransferApplianceDetailsLifecycleStateReturnLabelGenerating UpdateTransferApplianceDetailsLifecycleStateEnum = "RETURN_LABEL_GENERATING"
+	UpdateTransferApplianceDetailsLifecycleStateReturnLabelAvailable  UpdateTransferApplianceDetailsLifecycleStateEnum = "RETURN_LABEL_AVAILABLE"
 	UpdateTransferApplianceDetailsLifecycleStateDeleted               UpdateTransferApplianceDetailsLifecycleStateEnum = "DELETED"
 	UpdateTransferApplianceDetailsLifecycleStateCustomerNeverReceived UpdateTransferApplianceDetailsLifecycleStateEnum = "CUSTOMER_NEVER_RECEIVED"
 	UpdateTransferApplianceDetailsLifecycleStateCancelled             UpdateTransferApplianceDetailsLifecycleStateEnum = "CANCELLED"
@@ -39,6 +51,9 @@ const (
 var mappingUpdateTransferApplianceDetailsLifecycleState = map[string]UpdateTransferApplianceDetailsLifecycleStateEnum{
 	"PREPARING":               UpdateTransferApplianceDetailsLifecycleStatePreparing,
 	"FINALIZED":               UpdateTransferApplianceDetailsLifecycleStateFinalized,
+	"RETURN_LABEL_REQUESTED":  UpdateTransferApplianceDetailsLifecycleStateReturnLabelRequested,
+	"RETURN_LABEL_GENERATING": UpdateTransferApplianceDetailsLifecycleStateReturnLabelGenerating,
+	"RETURN_LABEL_AVAILABLE":  UpdateTransferApplianceDetailsLifecycleStateReturnLabelAvailable,
 	"DELETED":                 UpdateTransferApplianceDetailsLifecycleStateDeleted,
 	"CUSTOMER_NEVER_RECEIVED": UpdateTransferApplianceDetailsLifecycleStateCustomerNeverReceived,
 	"CANCELLED":               UpdateTransferApplianceDetailsLifecycleStateCancelled,

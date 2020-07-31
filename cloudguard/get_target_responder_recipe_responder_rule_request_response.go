@@ -18,7 +18,7 @@ type GetTargetResponderRecipeResponderRuleRequest struct {
 	// OCID of TargetResponderRecipe
 	TargetResponderRecipeId *string `mandatory:"true" contributesTo:"path" name:"targetResponderRecipeId"`
 
-	// OCID of ResponderRule
+	// The id of ResponderRule
 	ResponderRuleId *string `mandatory:"true" contributesTo:"path" name:"responderRuleId"`
 
 	// The client request ID for tracing.

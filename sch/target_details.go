@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Connectors API
+// Service Connector Hub API
 //
-// A description of the Connectors API
+// Use the Service Connector Hub API to transfer data between services in Oracle Cloud Infrastructure.
+// For more information about Service Connector Hub, see
+// Service Connector Hub Overview (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 //
 
 package sch
@@ -14,7 +16,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TargetDetails The flow target.
+// TargetDetails An object that represents the target of the flow defined by the service connector.
+// An example target is a stream.
+// For more information about flows defined by service connectors, see
+// Service Connector Hub Overview (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 type TargetDetails interface {
 }
 
@@ -56,16 +61,16 @@ func (m *targetdetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 		mm := ObjectStorageTargetDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "monitoring":
+		mm := MonitoringTargetDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "functions":
 		mm := FunctionsTargetDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	case "streaming":
 		mm := StreamingTargetDetails{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
-	case "metrics":
-		mm := MetricsTargetDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	default:
@@ -84,7 +89,7 @@ type TargetDetailsKindEnum string
 const (
 	TargetDetailsKindStreaming     TargetDetailsKindEnum = "streaming"
 	TargetDetailsKindObjectstorage TargetDetailsKindEnum = "objectStorage"
-	TargetDetailsKindMetrics       TargetDetailsKindEnum = "metrics"
+	TargetDetailsKindMonitoring    TargetDetailsKindEnum = "monitoring"
 	TargetDetailsKindFunctions     TargetDetailsKindEnum = "functions"
 	TargetDetailsKindNotifications TargetDetailsKindEnum = "notifications"
 )
@@ -92,7 +97,7 @@ const (
 var mappingTargetDetailsKind = map[string]TargetDetailsKindEnum{
 	"streaming":     TargetDetailsKindStreaming,
 	"objectStorage": TargetDetailsKindObjectstorage,
-	"metrics":       TargetDetailsKindMetrics,
+	"monitoring":    TargetDetailsKindMonitoring,
 	"functions":     TargetDetailsKindFunctions,
 	"notifications": TargetDetailsKindNotifications,
 }

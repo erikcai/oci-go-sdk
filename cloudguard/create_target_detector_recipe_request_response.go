@@ -16,7 +16,7 @@ type CreateTargetDetectorRecipeRequest struct {
 	TargetId *string `mandatory:"true" contributesTo:"path" name:"targetId"`
 
 	// Details for associating DetectorRecipe to Target
-	CreateTargetDetectorRecipeDetails `contributesTo:"body"`
+	AttachTargetDetectorRecipeDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
 	// server error without risk of executing that same action again. Retry tokens expire after 24

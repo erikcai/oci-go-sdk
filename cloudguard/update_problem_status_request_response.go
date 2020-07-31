@@ -15,9 +15,6 @@ type UpdateProblemStatusRequest struct {
 	// OCId of the problem.
 	ProblemId *string `mandatory:"true" contributesTo:"path" name:"problemId"`
 
-	// Action taken by user
-	Status UpdateProblemStatusStatusEnum `mandatory:"true" contributesTo:"path" name:"status"`
-
 	// The additional details for the problem.
 	UpdateProblemStatusDetails `contributesTo:"body"`
 
@@ -81,29 +78,4 @@ func (response UpdateProblemStatusResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response UpdateProblemStatusResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// UpdateProblemStatusStatusEnum Enum with underlying type: string
-type UpdateProblemStatusStatusEnum string
-
-// Set of constants representing the allowable values for UpdateProblemStatusStatusEnum
-const (
-	UpdateProblemStatusStatusOpen      UpdateProblemStatusStatusEnum = "OPEN"
-	UpdateProblemStatusStatusResolved  UpdateProblemStatusStatusEnum = "RESOLVED"
-	UpdateProblemStatusStatusDismissed UpdateProblemStatusStatusEnum = "DISMISSED"
-)
-
-var mappingUpdateProblemStatusStatus = map[string]UpdateProblemStatusStatusEnum{
-	"OPEN":      UpdateProblemStatusStatusOpen,
-	"RESOLVED":  UpdateProblemStatusStatusResolved,
-	"DISMISSED": UpdateProblemStatusStatusDismissed,
-}
-
-// GetUpdateProblemStatusStatusEnumValues Enumerates the set of values for UpdateProblemStatusStatusEnum
-func GetUpdateProblemStatusStatusEnumValues() []UpdateProblemStatusStatusEnum {
-	values := make([]UpdateProblemStatusStatusEnum, 0)
-	for _, v := range mappingUpdateProblemStatusStatus {
-		values = append(values, v)
-	}
-	return values
 }

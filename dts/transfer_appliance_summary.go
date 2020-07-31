@@ -39,6 +39,9 @@ const (
 	TransferApplianceSummaryLifecycleStateDelivered               TransferApplianceSummaryLifecycleStateEnum = "DELIVERED"
 	TransferApplianceSummaryLifecycleStatePreparing               TransferApplianceSummaryLifecycleStateEnum = "PREPARING"
 	TransferApplianceSummaryLifecycleStateFinalized               TransferApplianceSummaryLifecycleStateEnum = "FINALIZED"
+	TransferApplianceSummaryLifecycleStateReturnLabelRequested    TransferApplianceSummaryLifecycleStateEnum = "RETURN_LABEL_REQUESTED"
+	TransferApplianceSummaryLifecycleStateReturnLabelGenerating   TransferApplianceSummaryLifecycleStateEnum = "RETURN_LABEL_GENERATING"
+	TransferApplianceSummaryLifecycleStateReturnLabelAvailable    TransferApplianceSummaryLifecycleStateEnum = "RETURN_LABEL_AVAILABLE"
 	TransferApplianceSummaryLifecycleStateReturnDelayed           TransferApplianceSummaryLifecycleStateEnum = "RETURN_DELAYED"
 	TransferApplianceSummaryLifecycleStateReturnShipped           TransferApplianceSummaryLifecycleStateEnum = "RETURN_SHIPPED"
 	TransferApplianceSummaryLifecycleStateReturnShippedCancelled  TransferApplianceSummaryLifecycleStateEnum = "RETURN_SHIPPED_CANCELLED"
@@ -62,6 +65,9 @@ var mappingTransferApplianceSummaryLifecycleState = map[string]TransferAppliance
 	"DELIVERED":                 TransferApplianceSummaryLifecycleStateDelivered,
 	"PREPARING":                 TransferApplianceSummaryLifecycleStatePreparing,
 	"FINALIZED":                 TransferApplianceSummaryLifecycleStateFinalized,
+	"RETURN_LABEL_REQUESTED":    TransferApplianceSummaryLifecycleStateReturnLabelRequested,
+	"RETURN_LABEL_GENERATING":   TransferApplianceSummaryLifecycleStateReturnLabelGenerating,
+	"RETURN_LABEL_AVAILABLE":    TransferApplianceSummaryLifecycleStateReturnLabelAvailable,
 	"RETURN_DELAYED":            TransferApplianceSummaryLifecycleStateReturnDelayed,
 	"RETURN_SHIPPED":            TransferApplianceSummaryLifecycleStateReturnShipped,
 	"RETURN_SHIPPED_CANCELLED":  TransferApplianceSummaryLifecycleStateReturnShippedCancelled,

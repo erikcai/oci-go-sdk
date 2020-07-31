@@ -16,7 +16,7 @@ import (
 // UpdateTargetResponderRecipeDetails The information to be updated in ResponderRecipe.
 type UpdateTargetResponderRecipeDetails struct {
 
-	// Update responder rules associated with reponder recipe in a target.
+	// Update responder rules associated with responder recipe in a target.
 	ResponderRules []UpdateTargetRecipeResponderRuleDetails `mandatory:"true" json:"responderRules"`
 }
 

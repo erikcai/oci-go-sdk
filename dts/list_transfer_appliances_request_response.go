@@ -73,6 +73,9 @@ const (
 	ListTransferAppliancesLifecycleStateDelivered               ListTransferAppliancesLifecycleStateEnum = "DELIVERED"
 	ListTransferAppliancesLifecycleStatePreparing               ListTransferAppliancesLifecycleStateEnum = "PREPARING"
 	ListTransferAppliancesLifecycleStateFinalized               ListTransferAppliancesLifecycleStateEnum = "FINALIZED"
+	ListTransferAppliancesLifecycleStateReturnLabelRequested    ListTransferAppliancesLifecycleStateEnum = "RETURN_LABEL_REQUESTED"
+	ListTransferAppliancesLifecycleStateReturnLabelGenerating   ListTransferAppliancesLifecycleStateEnum = "RETURN_LABEL_GENERATING"
+	ListTransferAppliancesLifecycleStateReturnLabelAvailable    ListTransferAppliancesLifecycleStateEnum = "RETURN_LABEL_AVAILABLE"
 	ListTransferAppliancesLifecycleStateReturnDelayed           ListTransferAppliancesLifecycleStateEnum = "RETURN_DELAYED"
 	ListTransferAppliancesLifecycleStateReturnShipped           ListTransferAppliancesLifecycleStateEnum = "RETURN_SHIPPED"
 	ListTransferAppliancesLifecycleStateReturnShippedCancelled  ListTransferAppliancesLifecycleStateEnum = "RETURN_SHIPPED_CANCELLED"
@@ -96,6 +99,9 @@ var mappingListTransferAppliancesLifecycleState = map[string]ListTransferApplian
 	"DELIVERED":                 ListTransferAppliancesLifecycleStateDelivered,
 	"PREPARING":                 ListTransferAppliancesLifecycleStatePreparing,
 	"FINALIZED":                 ListTransferAppliancesLifecycleStateFinalized,
+	"RETURN_LABEL_REQUESTED":    ListTransferAppliancesLifecycleStateReturnLabelRequested,
+	"RETURN_LABEL_GENERATING":   ListTransferAppliancesLifecycleStateReturnLabelGenerating,
+	"RETURN_LABEL_AVAILABLE":    ListTransferAppliancesLifecycleStateReturnLabelAvailable,
 	"RETURN_DELAYED":            ListTransferAppliancesLifecycleStateReturnDelayed,
 	"RETURN_SHIPPED":            ListTransferAppliancesLifecycleStateReturnShipped,
 	"RETURN_SHIPPED_CANCELLED":  ListTransferAppliancesLifecycleStateReturnShippedCancelled,

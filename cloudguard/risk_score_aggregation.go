@@ -17,10 +17,10 @@ import (
 type RiskScoreAggregation struct {
 
 	// The key-value pairs of dimensions and their names.
-	DimensionsMap map[string]string `mandatory:"false" json:"dimensionsMap"`
+	DimensionsMap map[string]string `mandatory:"true" json:"dimensionsMap"`
 
 	// The risk score with given dimensions
-	RiskScore *int `mandatory:"false" json:"riskScore"`
+	RiskScore *int `mandatory:"true" json:"riskScore"`
 }
 
 func (m RiskScoreAggregation) String() string {

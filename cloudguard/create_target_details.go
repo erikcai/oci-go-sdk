@@ -32,10 +32,10 @@ type CreateTargetDetails struct {
 	Description *string `mandatory:"false" json:"description"`
 
 	// List of detector recipes to associate with target
-	TargetDetectorRecipes []CreateTargetDetectorRecipe `mandatory:"false" json:"targetDetectorRecipes"`
+	TargetDetectorRecipes []CreateTargetDetectorRecipeDetails `mandatory:"false" json:"targetDetectorRecipes"`
 
 	// List of responder recipes to associate with target
-	TargetResponderRecipes []CreateTargetResponderRecipe `mandatory:"false" json:"targetResponderRecipes"`
+	TargetResponderRecipes []CreateTargetResponderRecipeDetails `mandatory:"false" json:"targetResponderRecipes"`
 
 	// The current state of the DetectorRule.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`

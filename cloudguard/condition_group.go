@@ -21,9 +21,6 @@ type ConditionGroup struct {
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	Condition Condition `mandatory:"true" json:"condition"`
-
-	// List of Inherited compartments
-	InheritedByCompartments []string `mandatory:"false" json:"inheritedByCompartments"`
 }
 
 func (m ConditionGroup) String() string {
@@ -33,9 +30,8 @@ func (m ConditionGroup) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *ConditionGroup) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		InheritedByCompartments []string  `json:"inheritedByCompartments"`
-		CompartmentId           *string   `json:"compartmentId"`
-		Condition               condition `json:"condition"`
+		CompartmentId *string   `json:"compartmentId"`
+		Condition     condition `json:"condition"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -43,11 +39,6 @@ func (m *ConditionGroup) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	var nn interface{}
-	m.InheritedByCompartments = make([]string, len(model.InheritedByCompartments))
-	for i, n := range model.InheritedByCompartments {
-		m.InheritedByCompartments[i] = n
-	}
-
 	m.CompartmentId = model.CompartmentId
 
 	nn, e = model.Condition.UnmarshalPolymorphicJSON(model.Condition.JsonData)

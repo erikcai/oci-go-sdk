@@ -1686,53 +1686,6 @@ func (client CloudGuardClient) getTargetResponderRecipeResponderRule(ctx context
 	return response, err
 }
 
-// GetUserPreference Returns the preference of the user
-func (client CloudGuardClient) GetUserPreference(ctx context.Context, request GetUserPreferenceRequest) (response GetUserPreferenceResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getUserPreference, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetUserPreferenceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = GetUserPreferenceResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetUserPreferenceResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetUserPreferenceResponse")
-	}
-	return
-}
-
-// getUserPreference implements the OCIOperation interface (enables retrying operations)
-func (client CloudGuardClient) getUserPreference(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/userPreferences/{principalId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetUserPreferenceResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // ListConditionMetadataTypes Returns a list of condition types.
 func (client CloudGuardClient) ListConditionMetadataTypes(ctx context.Context, request ListConditionMetadataTypesRequest) (response ListConditionMetadataTypesResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2076,8 +2029,8 @@ func (client CloudGuardClient) listManagedListTypes(ctx context.Context, request
 // ListManagedLists Returns a list of ListManagedLists.
 // The ListManagedLists operation returns only the managed lists in `compartmentId` passed.
 // The list does not include any subcompartments of the compartmentId passed.
-// The parameter `accessLevel` specifies whether to return only those compartments for which the
-// requestor has INSPECT permissions on at least one resource directly
+// The parameter `accessLevel` specifies whether to return ManagedLists in only
+// those compartments for which the requestor has INSPECT permissions on at least one resource directly
 // or indirectly (ACCESSIBLE) (the resource can be in a subcompartment) or to return Not Authorized if
 // Principal doesn't have access to even one of the child compartments. This is valid only when
 // `compartmentIdInSubtree` is set to `true`.
@@ -2131,7 +2084,7 @@ func (client CloudGuardClient) listManagedLists(ctx context.Context, request com
 	return response, err
 }
 
-// ListProblemHistories Returns a list Actions done on  Problem
+// ListProblemHistories Returns a list of Actions done on CloudGuard Problem
 func (client CloudGuardClient) ListProblemHistories(ctx context.Context, request ListProblemHistoriesRequest) (response ListProblemHistoriesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2822,58 +2775,6 @@ func (client CloudGuardClient) listTargets(ctx context.Context, request common.O
 	return response, err
 }
 
-// ReplaceUserPreference Create or Update the user preference
-func (client CloudGuardClient) ReplaceUserPreference(ctx context.Context, request ReplaceUserPreferenceRequest) (response ReplaceUserPreferenceResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
-	ociResponse, err = common.Retry(ctx, request, client.replaceUserPreference, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ReplaceUserPreferenceResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = ReplaceUserPreferenceResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ReplaceUserPreferenceResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ReplaceUserPreferenceResponse")
-	}
-	return
-}
-
-// replaceUserPreference implements the OCIOperation interface (enables retrying operations)
-func (client CloudGuardClient) replaceUserPreference(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/userPreferences/{principalId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ReplaceUserPreferenceResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // RequestSummarizedActivityProblems Returns the summary of Activity type problems identified by cloud guard, for a given set of dimensions.
 // The parameter `accessLevel` specifies whether to return only those compartments for which the
 // requestor has INSPECT permissions on at least one resource directly
@@ -3480,7 +3381,7 @@ func (client CloudGuardClient) UpdateBulkProblemStatus(ctx context.Context, requ
 
 // updateBulkProblemStatus implements the OCIOperation interface (enables retrying operations)
 func (client CloudGuardClient) updateBulkProblemStatus(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/problems/actions/bulkUpdateStatus/{status}")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/problems/actions/bulkUpdateStatus")
 	if err != nil {
 		return nil, err
 	}
@@ -3735,7 +3636,7 @@ func (client CloudGuardClient) UpdateProblemStatus(ctx context.Context, request 
 
 // updateProblemStatus implements the OCIOperation interface (enables retrying operations)
 func (client CloudGuardClient) updateProblemStatus(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/problems/{problemId}/actions/updateStatus/{status}")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/problems/{problemId}/actions/updateStatus")
 	if err != nil {
 		return nil, err
 	}

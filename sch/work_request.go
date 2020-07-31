@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Connectors API
+// Service Connector Hub API
 //
-// A description of the Connectors API
+// Use the Service Connector Hub API to transfer data between services in Oracle Cloud Infrastructure.
+// For more information about Service Connector Hub, see
+// Service Connector Hub Overview (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 //
 
 package sch
@@ -13,22 +15,27 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequest A description of workrequest status
+// WorkRequest An object representing an asynchronous work flow.
+// Many of the API requests you use to create and configure
+// service connectors do not take effect immediately. In these
+// cases, the request spawns an asynchronous work flow to fulfill
+// the request. WorkRequest objects provide visibility for
+// in-progress work flows. For more information about work
+// requests, see
+// Viewing the State of a Work Request (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 type WorkRequest struct {
 
-	// Type of the work request
+	// The type of action the work request represents.
 	OperationType OperationTypeEnum `mandatory:"true" json:"operationType"`
 
 	// Status of current work request.
 	Status OperationStatusEnum `mandatory:"true" json:"status"`
 
-	// The id of the work request.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The ocid of the compartment that contains the work request. Work requests should be scoped to
-	// the same compartment as the resource the work request affects. If the work request affects multiple resources,
-	// and those resources are not in the same compartment, it is up to the service team to pick the primary
-	// resource whose compartment should be used
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
+	// containing the work request.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The resources affected by this work request.
@@ -37,15 +44,19 @@ type WorkRequest struct {
 	// Percentage of the request completed.
 	PercentComplete *float32 `mandatory:"true" json:"percentComplete"`
 
-	// The date and time the request was created, as described in
-	// RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
+	// The date and time when the request was created.
+	// Format is defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
+	// Example: `2020-01-25T21:10:29.600Z`
 	TimeAccepted *common.SDKTime `mandatory:"true" json:"timeAccepted"`
 
-	// The date and time the request was started, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339),
-	// section 14.29.
+	// The date and time when the request was started.
+	// Format is defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
+	// Example: `2020-01-25T21:10:29.600Z`
 	TimeStarted *common.SDKTime `mandatory:"false" json:"timeStarted"`
 
-	// The date and time the object was finished, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
+	// The date and time when the object finished.
+	// Format is defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
+	// Example: `2020-01-25T21:10:29.600Z`
 	TimeFinished *common.SDKTime `mandatory:"false" json:"timeFinished"`
 }
 

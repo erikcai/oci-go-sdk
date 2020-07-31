@@ -12,7 +12,7 @@ import (
 // ChangeDetectorRecipeCompartmentRequest wrapper for the ChangeDetectorRecipeCompartment operation
 type ChangeDetectorRecipeCompartmentRequest struct {
 
-	// The DetectorRecipeId OCID to be passed in the request.
+	// DetectorRecipe OCID
 	DetectorRecipeId *string `mandatory:"true" contributesTo:"path" name:"detectorRecipeId"`
 
 	// The target compartment id.

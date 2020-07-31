@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Connectors API
+// Service Connector Hub API
 //
-// A description of the Connectors API
+// Use the Service Connector Hub API to transfer data between services in Oracle Cloud Infrastructure.
+// For more information about Service Connector Hub, see
+// Service Connector Hub Overview (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 //
 
 package sch
@@ -14,23 +16,25 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateServiceConnectorDetails The information about new ServiceConnector.
+// CreateServiceConnectorDetails The configuration details for creating a service connector.
 type CreateServiceConnectorDetails struct {
 
-	// The ServiceConnector name.
+	// A user-friendly name. It does not have to be unique, and it is changeable.
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Compartment Identifier
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+	// comparment to create the service connector in.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	Source SourceDetails `mandatory:"true" json:"source"`
 
 	Target TargetDetails `mandatory:"true" json:"target"`
 
-	// The description of the resource.
+	// The description of the resource. Avoid entering confidential information.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The list of the tasks.
+	// The list of tasks.
 	Tasks []TaskDetails `mandatory:"false" json:"tasks"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.

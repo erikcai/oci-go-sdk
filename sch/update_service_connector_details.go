@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Connectors API
+// Service Connector Hub API
 //
-// A description of the Connectors API
+// Use the Service Connector Hub API to transfer data between services in Oracle Cloud Infrastructure.
+// For more information about Service Connector Hub, see
+// Service Connector Hub Overview (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 //
 
 package sch
@@ -14,13 +16,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateServiceConnectorDetails The information to be updated.
+// UpdateServiceConnectorDetails The configuration details for updating a service connector.
 type UpdateServiceConnectorDetails struct {
 
-	// The ServiceConnector name
+	// A user-friendly name. It does not have to be unique, and it is changeable.
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	// The description of the resource.
+	// The description of the resource. Avoid entering confidential information.
 	Description *string `mandatory:"false" json:"description"`
 
 	Source SourceDetails `mandatory:"false" json:"source"`

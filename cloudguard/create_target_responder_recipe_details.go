@@ -13,11 +13,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateTargetResponderRecipeDetails Details of ResponderRecipe associated with the Target
+// CreateTargetResponderRecipeDetails The information required to create TargetResponderRecipe
 type CreateTargetResponderRecipeDetails struct {
 
-	// ResponderRecipe Identifier
+	// Identifier for ResponderRecipe.
 	ResponderRecipeId *string `mandatory:"true" json:"responderRecipeId"`
+
+	// Override responder rules associated with reponder recipe in a target.
+	ResponderRules []UpdateTargetRecipeResponderRuleDetails `mandatory:"false" json:"responderRules"`
 }
 
 func (m CreateTargetResponderRecipeDetails) String() string {

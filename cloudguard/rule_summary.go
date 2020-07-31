@@ -23,7 +23,7 @@ type RuleSummary struct {
 	Description *string `mandatory:"true" json:"description"`
 
 	// List of parameters applicable for rule
-	Properties []OperatorSummary `mandatory:"true" json:"properties"`
+	Parameters []OperatorSummary `mandatory:"true" json:"parameters"`
 }
 
 func (m RuleSummary) String() string {

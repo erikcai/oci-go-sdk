@@ -19,7 +19,7 @@ type HistoricalDataItem struct {
 	// The timestamp in which the current sampling period ends in RFC 3339 format.
 	EndTimestamp *common.SDKTime `mandatory:"true" json:"endTimestamp"`
 
-	// Total amount used of the resource metric type (CPU, STORAGE, etc).
+	// Total amount used of the resource metric type (CPU, STORAGE).
 	Usage *float64 `mandatory:"true" json:"usage"`
 }
 

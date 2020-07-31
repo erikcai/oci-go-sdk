@@ -13,13 +13,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateTargetRecipeResponderRuleDetails The details to be updated in Responder Recipe
+// UpdateTargetRecipeResponderRuleDetails The details to be updated in TargetResponderRecipeResponderRule
 type UpdateTargetRecipeResponderRuleDetails struct {
 
 	// Identifier for ResponderRule.
 	ResponderRuleId *string `mandatory:"true" json:"responderRuleId"`
 
-	Details *ResponderRuleDetails `mandatory:"true" json:"details"`
+	Details *UpdateTargetResponderRuleDetails `mandatory:"true" json:"details"`
 }
 
 func (m UpdateTargetRecipeResponderRuleDetails) String() string {

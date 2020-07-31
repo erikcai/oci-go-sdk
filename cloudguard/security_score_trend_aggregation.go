@@ -17,19 +17,19 @@ import (
 type SecurityScoreTrendAggregation struct {
 
 	// The key-value pairs of dimensions and their names.
-	DimensionsMap map[string]string `mandatory:"false" json:"dimensionsMap"`
+	DimensionsMap map[string]string `mandatory:"true" json:"dimensionsMap"`
 
-	// Start Time
-	StartTimestamp *float32 `mandatory:"false" json:"startTimestamp"`
+	// Start Time in epoch seconds
+	StartTimestamp *float32 `mandatory:"true" json:"startTimestamp"`
 
 	// Duration
-	DurationInSeconds *int `mandatory:"false" json:"durationInSeconds"`
+	DurationInSeconds *int `mandatory:"true" json:"durationInSeconds"`
 
 	// The security rating with given dimensions and time range
-	SecurityRating SecurityRatingEnum `mandatory:"false" json:"securityRating,omitempty"`
+	SecurityRating SecurityRatingEnum `mandatory:"true" json:"securityRating"`
 
 	// The security score with given dimensions and time range
-	SecurityScore *int `mandatory:"false" json:"securityScore"`
+	SecurityScore *int `mandatory:"true" json:"securityScore"`
 }
 
 func (m SecurityScoreTrendAggregation) String() string {

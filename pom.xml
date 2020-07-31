@@ -4811,17 +4811,17 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.1325</version>
+        <version>0.2.1331</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.142</version>
+        <version>0.4.158</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.347</version>
+        <version>1.1.349</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -4961,7 +4961,7 @@
       <dependency>
         <groupId>com.oracle.pic.rhino</groupId>
         <artifactId>dts-api-spec</artifactId>
-        <version>1.0.015</version>
+        <version>1.0.017</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.apigw</groupId>
@@ -4981,12 +4981,12 @@
       <dependency>
         <groupId>oracle.nosql.oci.controlplane</groupId>
         <artifactId>ndcs-control-plane-spec</artifactId>
-        <version>0.1.5</version>
+        <version>0.1.9</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.2.0-2007162026</version>
+        <version>1.2.0-2007291849</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -5091,12 +5091,12 @@
       <dependency>
         <groupId>com.oracle.oci.cloudguard</groupId>
         <artifactId>cloudguard-cp-api-spec</artifactId>
-        <version>0.1.278</version>
+        <version>0.1.281</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.opsi.api</groupId>
         <artifactId>opsi-api-spec</artifactId>
-        <version>1.1.0</version>
+        <version>1.5.3</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dashx</groupId>
@@ -5106,7 +5106,7 @@
       <dependency>
         <groupId>com.oracle.pic.connectors</groupId>
         <artifactId>connectors-spec</artifactId>
-        <version>0.2.9</version>
+        <version>0.2.14</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.optimizer</groupId>

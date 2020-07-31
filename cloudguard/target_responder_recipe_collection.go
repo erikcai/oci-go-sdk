@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// TargetResponderRecipeCollection Summary of the Target ResponderRecipe.
+// TargetResponderRecipeCollection Collection of TargetResponderRecipe
 type TargetResponderRecipeCollection struct {
 
 	// List of TargetResponderRecipeSummary

@@ -16,7 +16,7 @@ type SummarizeDatabaseInsightResourceForecastTrendRequest struct {
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// Filter by resource metric.
-	// Possible values are CPU, MEM, STORAGE, and IO.
+	// Supported values are CPU and STORAGE.
 	ResourceMetric *string `mandatory:"true" contributesTo:"query" name:"resourceMetric"`
 
 	// Specify time period in ISO 8601 format with respect to current time.
@@ -51,7 +51,11 @@ type SummarizeDatabaseInsightResourceForecastTrendRequest struct {
 	// Number of days used for utilization forecast analysis.
 	ForecastDays *int `mandatory:"false" contributesTo:"query" name:"forecastDays"`
 
-	// Choose between AUTO mode or other algorithm model for the forecasting.
+	// Choose algorithm model for the forecasting.
+	// Possible values:
+	//   - LINEAR: Uses linear regression algorithm for forecasting.
+	//   - ML_AUTO: Automatically detects best algorithm to use for forecasting.
+	//   - ML_NO_AUTO: Automatically detects seasonality of the data for forecasting using linear or seasonal algorithm.
 	ForecastModel SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum `mandatory:"false" contributesTo:"query" name:"forecastModel" omitEmpty:"true"`
 
 	// Filter by utilization level by the following buckets:
@@ -179,13 +183,15 @@ type SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum string
 
 // Set of constants representing the allowable values for SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum
 const (
-	SummarizeDatabaseInsightResourceForecastTrendForecastModelAuto   SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum = "AUTO"
-	SummarizeDatabaseInsightResourceForecastTrendForecastModelLinear SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum = "LINEAR"
+	SummarizeDatabaseInsightResourceForecastTrendForecastModelLinear   SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum = "LINEAR"
+	SummarizeDatabaseInsightResourceForecastTrendForecastModelMlAuto   SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum = "ML_AUTO"
+	SummarizeDatabaseInsightResourceForecastTrendForecastModelMlNoAuto SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum = "ML_NO_AUTO"
 )
 
 var mappingSummarizeDatabaseInsightResourceForecastTrendForecastModel = map[string]SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum{
-	"AUTO":   SummarizeDatabaseInsightResourceForecastTrendForecastModelAuto,
-	"LINEAR": SummarizeDatabaseInsightResourceForecastTrendForecastModelLinear,
+	"LINEAR":     SummarizeDatabaseInsightResourceForecastTrendForecastModelLinear,
+	"ML_AUTO":    SummarizeDatabaseInsightResourceForecastTrendForecastModelMlAuto,
+	"ML_NO_AUTO": SummarizeDatabaseInsightResourceForecastTrendForecastModelMlNoAuto,
 }
 
 // GetSummarizeDatabaseInsightResourceForecastTrendForecastModelEnumValues Enumerates the set of values for SummarizeDatabaseInsightResourceForecastTrendForecastModelEnum

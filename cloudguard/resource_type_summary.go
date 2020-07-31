@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ResourceTypeSummary Summary of Resource
+// ResourceTypeSummary Summary of ResourceType
 type ResourceTypeSummary struct {
 
 	// name of the resource

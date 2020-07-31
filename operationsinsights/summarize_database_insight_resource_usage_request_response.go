@@ -16,7 +16,7 @@ type SummarizeDatabaseInsightResourceUsageRequest struct {
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// Filter by resource metric.
-	// Possible values are CPU, MEM, STORAGE, and IO.
+	// Supported values are CPU and STORAGE.
 	ResourceMetric *string `mandatory:"true" contributesTo:"query" name:"resourceMetric"`
 
 	// Specify time period in ISO 8601 format with respect to current time.

@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Connectors API
+// Service Connector Hub API
 //
-// A description of the Connectors API
+// Use the Service Connector Hub API to transfer data between services in Oracle Cloud Infrastructure.
+// For more information about Service Connector Hub, see
+// Service Connector Hub Overview (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 //
 
 package sch
@@ -75,7 +77,12 @@ func (client *ServiceConnectorClient) ConfigurationProvider() *common.Configurat
 	return client.config
 }
 
-// ActivateServiceConnector Activate the ServiceConnector
+// ActivateServiceConnector Activates the specified service connector.
+// After you send your request, the service connector's state is temporarily
+// UPDATING. When the state changes to ACTIVE, data begins transferring from the
+// source service to the target service. For instructions on deactivating and
+// activating service connectors, see
+// To activate or deactivate a service connector (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 func (client ServiceConnectorClient) ActivateServiceConnector(ctx context.Context, request ActivateServiceConnectorRequest) (response ActivateServiceConnectorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -127,7 +134,10 @@ func (client ServiceConnectorClient) activateServiceConnector(ctx context.Contex
 	return response, err
 }
 
-// ChangeServiceConnectorCompartment Moves a ServiceConnector resource from one compartment identifier to another. When provided, If-Match is checked against ETag values of the resource.
+// ChangeServiceConnectorCompartment Moves a service connector into a different compartment within the same tenancy.
+// For information about moving resources between compartments, see
+// Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+// When provided, If-Match is checked against ETag values of the resource.
 func (client ServiceConnectorClient) ChangeServiceConnectorCompartment(ctx context.Context, request ChangeServiceConnectorCompartmentRequest) (response ChangeServiceConnectorCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -174,7 +184,22 @@ func (client ServiceConnectorClient) changeServiceConnectorCompartment(ctx conte
 	return response, err
 }
 
-// CreateServiceConnector Creates a new ServiceConnector.
+// CreateServiceConnector Creates a new service connector in the specified compartment.
+// A service connector is a logically defined flow for moving data from
+// a source service to a destination service in Oracle Cloud Infrastructure.
+// For general information about service connectors, see
+// Service Connector Hub Overview (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
+// For purposes of access control, you must provide the
+// OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where
+// you want the service connector to reside. Notice that the service connector
+// doesn't have to be in the same compartment as the source or target services.
+// For information about access control and compartments, see
+// Overview of the IAM Service (https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
+// After you send your request, the new service connector's state is temporarily
+// CREATING. When the state changes to ACTIVE, data begins transferring from the
+// source service to the target service. For instructions on deactivating and
+// activating service connectors, see
+// To activate or deactivate a service connector (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 func (client ServiceConnectorClient) CreateServiceConnector(ctx context.Context, request CreateServiceConnectorRequest) (response CreateServiceConnectorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -226,7 +251,11 @@ func (client ServiceConnectorClient) createServiceConnector(ctx context.Context,
 	return response, err
 }
 
-// DeactivateServiceConnector Deactivate the ServiceConnector
+// DeactivateServiceConnector Deactivates the specified service connector.
+// After you send your request, the service connector's state is temporarily
+// UPDATING and any data transfer stops. The state then changes to INACTIVE.
+// For instructions on deactivating and activating service connectors, see
+// To activate or deactivate a service connector (https://docs.cloud.oracle.com/iaas/service-connector-hub/using/index.htm).
 func (client ServiceConnectorClient) DeactivateServiceConnector(ctx context.Context, request DeactivateServiceConnectorRequest) (response DeactivateServiceConnectorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -278,7 +307,9 @@ func (client ServiceConnectorClient) deactivateServiceConnector(ctx context.Cont
 	return response, err
 }
 
-// DeleteServiceConnector Deletes a ServiceConnector resource by identifier
+// DeleteServiceConnector Deletes the specified service connector.
+// After you send your request, the service connector's state is temporarily
+// DELETING and any data transfer stops. The state then changes to DELETED.
 func (client ServiceConnectorClient) DeleteServiceConnector(ctx context.Context, request DeleteServiceConnectorRequest) (response DeleteServiceConnectorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -325,7 +356,7 @@ func (client ServiceConnectorClient) deleteServiceConnector(ctx context.Context,
 	return response, err
 }
 
-// GetServiceConnector Gets a ServiceConnector by identifier
+// GetServiceConnector Gets the specified service connector's configuration information.
 func (client ServiceConnectorClient) GetServiceConnector(ctx context.Context, request GetServiceConnectorRequest) (response GetServiceConnectorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -372,7 +403,7 @@ func (client ServiceConnectorClient) getServiceConnector(ctx context.Context, re
 	return response, err
 }
 
-// GetWorkRequest Gets the status of the work request with the given ID.
+// GetWorkRequest Gets the details of the specified work request.
 func (client ServiceConnectorClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -419,7 +450,7 @@ func (client ServiceConnectorClient) getWorkRequest(ctx context.Context, request
 	return response, err
 }
 
-// ListServiceConnectors Returns a list of ServiceConnectors.
+// ListServiceConnectors Lists service connectors in the specified compartment.
 func (client ServiceConnectorClient) ListServiceConnectors(ctx context.Context, request ListServiceConnectorsRequest) (response ListServiceConnectorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -466,7 +497,7 @@ func (client ServiceConnectorClient) listServiceConnectors(ctx context.Context, 
 	return response, err
 }
 
-// ListWorkRequestErrors Return a (paginated) list of errors for a given work request.
+// ListWorkRequestErrors Lists work request errors for the specified work request. Results are paginated.
 func (client ServiceConnectorClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -513,7 +544,7 @@ func (client ServiceConnectorClient) listWorkRequestErrors(ctx context.Context, 
 	return response, err
 }
 
-// ListWorkRequestLogs Return a (paginated) list of logs for a given work request.
+// ListWorkRequestLogs Lists logs for the specified work request. Results are paginated.
 func (client ServiceConnectorClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -560,7 +591,7 @@ func (client ServiceConnectorClient) listWorkRequestLogs(ctx context.Context, re
 	return response, err
 }
 
-// ListWorkRequests Lists the work requests in a compartment.
+// ListWorkRequests Lists the work requests in the specified compartment.
 func (client ServiceConnectorClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -607,7 +638,10 @@ func (client ServiceConnectorClient) listWorkRequests(ctx context.Context, reque
 	return response, err
 }
 
-// UpdateServiceConnector Updates the ServiceConnector
+// UpdateServiceConnector Updates the configuration information for the specified service connector.
+// After you send your request, the service connector's state is temporarily
+// UPDATING and any data transfer pauses. The state then changes back to its
+// original value: if ACTIVE, then data transfer resumes.
 func (client ServiceConnectorClient) UpdateServiceConnector(ctx context.Context, request UpdateServiceConnectorRequest) (response UpdateServiceConnectorResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -12,7 +12,7 @@ import (
 // GetDetectorRecipeDetectorRuleRequest wrapper for the GetDetectorRecipeDetectorRule operation
 type GetDetectorRecipeDetectorRuleRequest struct {
 
-	// The DetectorRecipeId OCID to be passed in the request.
+	// DetectorRecipe OCID
 	DetectorRecipeId *string `mandatory:"true" contributesTo:"path" name:"detectorRecipeId"`
 
 	// The key of Detector Rule.

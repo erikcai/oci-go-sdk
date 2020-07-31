@@ -16,7 +16,7 @@ import (
 // UpdateTargetDetectorRecipeDetails The information to be updated in DetectorRecipe
 type UpdateTargetDetectorRecipeDetails struct {
 
-	// Overrides to be applied to Detector Rule associated with the target
+	// Update detector rules associated with detector recipe in a target.
 	DetectorRules []UpdateTargetRecipeDetectorRuleDetails `mandatory:"true" json:"detectorRules"`
 }
 

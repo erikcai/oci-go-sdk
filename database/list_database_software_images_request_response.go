@@ -33,6 +33,12 @@ type ListDatabaseSoftwareImagesRequest struct {
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
+	// A filter to return only resources that match the given image type exactly.
+	ImageType DatabaseSoftwareImageSummaryImageTypeEnum `mandatory:"false" contributesTo:"query" name:"imageType" omitEmpty:"true"`
+
+	// A filter to return only resources that match the given image shape family exactly.
+	ImageShapeFamily DatabaseSoftwareImageSummaryImageShapeFamilyEnum `mandatory:"false" contributesTo:"query" name:"imageShapeFamily" omitEmpty:"true"`
+
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

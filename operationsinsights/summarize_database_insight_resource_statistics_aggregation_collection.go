@@ -16,7 +16,7 @@ import (
 // SummarizeDatabaseInsightResourceStatisticsAggregationCollection Returns list of the Databases with resource statistics like usage,capacity,utilization and usage change percent.
 type SummarizeDatabaseInsightResourceStatisticsAggregationCollection struct {
 
-	// Defines the type of resource metric (CPU, STORAGE, IO, MEMORY)
+	// Defines the type of resource metric (CPU, STORAGE)
 	ResourceMetric SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricEnum `mandatory:"true" json:"resourceMetric"`
 
 	// Displays usage unit ( CORES, GB)
@@ -37,15 +37,11 @@ type SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetr
 const (
 	SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricCpu     SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricEnum = "CPU"
 	SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricStorage SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricEnum = "STORAGE"
-	SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricIo      SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricEnum = "IO"
-	SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricMemory  SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricEnum = "MEMORY"
 )
 
 var mappingSummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetric = map[string]SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricEnum{
 	"CPU":     SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricCpu,
 	"STORAGE": SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricStorage,
-	"IO":      SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricIo,
-	"MEMORY":  SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricMemory,
 }
 
 // GetSummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricEnumValues Enumerates the set of values for SummarizeDatabaseInsightResourceStatisticsAggregationCollectionResourceMetricEnum

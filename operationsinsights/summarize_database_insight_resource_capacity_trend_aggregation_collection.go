@@ -16,10 +16,10 @@ import (
 // SummarizeDatabaseInsightResourceCapacityTrendAggregationCollection Collection of resource capacity trend.
 type SummarizeDatabaseInsightResourceCapacityTrendAggregationCollection struct {
 
-	// Defines the type of resource metric (CPU, STORAGE, IO, MEMORY)
+	// Defines the type of resource metric (CPU, STORAGE)
 	ResourceMetric SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricEnum `mandatory:"true" json:"resourceMetric"`
 
-	// Identifies the units of the current resource metric (CORES, GB, etc).
+	// Identifies the units of the current resource metric (CORES, GB).
 	UsageUnit UsageUnitEnum `mandatory:"true" json:"usageUnit"`
 
 	// Time duration in milliseconds between data points (one hour or one day).
@@ -40,15 +40,11 @@ type SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceM
 const (
 	SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricCpu     SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricEnum = "CPU"
 	SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricStorage SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricEnum = "STORAGE"
-	SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricIo      SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricEnum = "IO"
-	SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricMemory  SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricEnum = "MEMORY"
 )
 
 var mappingSummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetric = map[string]SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricEnum{
 	"CPU":     SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricCpu,
 	"STORAGE": SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricStorage,
-	"IO":      SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricIo,
-	"MEMORY":  SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricMemory,
 }
 
 // GetSummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricEnumValues Enumerates the set of values for SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricEnum
