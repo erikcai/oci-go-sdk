@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestErrorCollection Results of a work request error search. Returns the WorkRequestError items. Can be used to return additional data.
+// WorkRequestErrorCollection A list of work request errors that match filter criteria, if any. Results contain `WorkRequestError` objects.
 type WorkRequestErrorCollection struct {
 
-	// The array of WorkRequestError objects.
+	// A collection of work request errors.
 	Items []WorkRequestError `mandatory:"true" json:"items"`
 }
 

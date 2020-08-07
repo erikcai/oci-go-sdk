@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,14 +13,15 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateResourceActionDetails Object used to update the resource action details
+// UpdateResourceActionDetails The request object for updating the resource action details.
 type UpdateResourceActionDetails struct {
 
-	// The resource action status.
+	// The status of the resource action.
 	Status StatusEnum `mandatory:"true" json:"status"`
 
-	// The date and time the current status will end. The format is defined by RFC3339.
-	// For example `The current status of resource action 'postponed' will end on this date and would change to 'pending'.`
+	// The date and time the current status will change. The format is defined by RFC3339.
+	// For example, "The current `postponed` status of the resource action will end and change to `pending` on this
+	// date and time."
 	TimeStatusEnd *common.SDKTime `mandatory:"false" json:"timeStatusEnd"`
 }
 

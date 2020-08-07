@@ -12,7 +12,7 @@ import (
 // GetEnrollmentStatusRequest wrapper for the GetEnrollmentStatus operation
 type GetEnrollmentStatusRequest struct {
 
-	// The resource action unique OCID.
+	// The unique OCID associated with the enrollment status.
 	EnrollmentStatusId *string `mandatory:"true" contributesTo:"path" name:"enrollmentStatusId"`
 
 	// Unique Oracle-assigned identifier for the request.

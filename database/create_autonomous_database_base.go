@@ -52,7 +52,7 @@ type CreateAutonomousDatabaseBase interface {
 	// If set to `TRUE`, indicates that an Autonomous Database preview version is being provisioned, and that the preview version's terms of service have been accepted. Note that preview version software is only available for databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI).
 	GetIsPreviewVersionWithServiceTermsAccepted() *bool
 
-	// Indicates if auto scaling is enabled for the Autonomous Database OCPU core count. The default value is `FALSE`. Note that auto scaling is available for databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
+	// Indicates if auto scaling is enabled for the Autonomous Database OCPU core count. The default value is `FALSE`.
 	GetIsAutoScalingEnabled() *bool
 
 	// True if the database is on dedicated Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm).
@@ -61,10 +61,22 @@ type CreateAutonomousDatabaseBase interface {
 	// The Autonomous Container Database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	GetAutonomousContainerDatabaseId() *string
 
-	// The client IP access control list (ACL). This feature is available for databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) only.
-	// Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
+	// Indicates if the database-level access control is enabled.
+	// If disabled, database access is defined by the network security rules.
+	// If enabled, database access is restricted to the IP addresses defined by the rules specified with the `whitelistedIps` property. While specifying `whitelistedIps` rules is optional,
+	//  if database-level access control is enabled and no rules are specified, the database will become inaccessible. The rules can be added later using the `UpdateAutonomousDatabase` API operation or edit option in console.
+	// When creating a database clone, the desired access control setting should be specified. By default, database-level access control will be disabled for the clone.
+	// This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform.
+	GetIsAccessControlEnabled() *bool
+
+	// The client IP access control list (ACL). This feature is available for autonomous databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and that on Exadata Cloud at Customer.
+	// Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
+	// For Shared Exadata Infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
 	// To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs.
 	// Example: `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16"]`
+	// For Exadata Cloud at Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
+	// Example: `["1.1.1.1","1.1.1.0/24","1.1.2.25"]`
+	// For update operation, if you wish to delete all the existing whitelisted IP’s, use an array with a single empty string entry.
 	GetWhitelistedIps() []string
 
 	// Indicates whether the Autonomous Database has Data Guard enabled.
@@ -116,6 +128,7 @@ type createautonomousdatabasebase struct {
 	IsAutoScalingEnabled                     *bool                                        `mandatory:"false" json:"isAutoScalingEnabled"`
 	IsDedicated                              *bool                                        `mandatory:"false" json:"isDedicated"`
 	AutonomousContainerDatabaseId            *string                                      `mandatory:"false" json:"autonomousContainerDatabaseId"`
+	IsAccessControlEnabled                   *bool                                        `mandatory:"false" json:"isAccessControlEnabled"`
 	WhitelistedIps                           []string                                     `mandatory:"false" json:"whitelistedIps"`
 	IsDataGuardEnabled                       *bool                                        `mandatory:"false" json:"isDataGuardEnabled"`
 	SubnetId                                 *string                                      `mandatory:"false" json:"subnetId"`
@@ -151,6 +164,7 @@ func (m *createautonomousdatabasebase) UnmarshalJSON(data []byte) error {
 	m.IsAutoScalingEnabled = s.Model.IsAutoScalingEnabled
 	m.IsDedicated = s.Model.IsDedicated
 	m.AutonomousContainerDatabaseId = s.Model.AutonomousContainerDatabaseId
+	m.IsAccessControlEnabled = s.Model.IsAccessControlEnabled
 	m.WhitelistedIps = s.Model.WhitelistedIps
 	m.IsDataGuardEnabled = s.Model.IsDataGuardEnabled
 	m.SubnetId = s.Model.SubnetId
@@ -261,6 +275,11 @@ func (m createautonomousdatabasebase) GetIsDedicated() *bool {
 //GetAutonomousContainerDatabaseId returns AutonomousContainerDatabaseId
 func (m createautonomousdatabasebase) GetAutonomousContainerDatabaseId() *string {
 	return m.AutonomousContainerDatabaseId
+}
+
+//GetIsAccessControlEnabled returns IsAccessControlEnabled
+func (m createautonomousdatabasebase) GetIsAccessControlEnabled() *bool {
+	return m.IsAccessControlEnabled
 }
 
 //GetWhitelistedIps returns WhitelistedIps

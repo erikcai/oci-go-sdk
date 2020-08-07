@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// PublicLoggingControlplane API
+// loggingManagementControlplane API
 //
-// PublicLoggingControlplane API specification
+// loggingManagementControlplane API specification
 //
 
 package logging
@@ -22,6 +22,8 @@ type Configuration struct {
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	Indexing *Indexing `mandatory:"false" json:"indexing"`
+
+	Archiving *Archiving `mandatory:"false" json:"archiving"`
 }
 
 func (m Configuration) String() string {
@@ -31,9 +33,10 @@ func (m Configuration) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *Configuration) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		CompartmentId *string   `json:"compartmentId"`
-		Indexing      *Indexing `json:"indexing"`
-		Source        source    `json:"source"`
+		CompartmentId *string    `json:"compartmentId"`
+		Indexing      *Indexing  `json:"indexing"`
+		Archiving     *Archiving `json:"archiving"`
+		Source        source     `json:"source"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -44,6 +47,8 @@ func (m *Configuration) UnmarshalJSON(data []byte) (e error) {
 	m.CompartmentId = model.CompartmentId
 
 	m.Indexing = model.Indexing
+
+	m.Archiving = model.Archiving
 
 	nn, e = model.Source.UnmarshalPolymorphicJSON(model.Source.JsonData)
 	if e != nil {

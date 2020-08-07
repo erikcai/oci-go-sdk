@@ -12,14 +12,13 @@ import (
 // ListWorkRequestsRequest wrapper for the ListWorkRequests operation
 type ListWorkRequestsRequest struct {
 
-	// The OCID of the compartment. For this release, only the root compartment Id/tenancy Id is supported.
+	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The page token representing the page at which to start retrieving results.
-	// This is usually retrieved from a previous list call.
+	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return.
+	// The maximum number of items to return in a paginated "List" call.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// Unique Oracle-assigned identifier for the request.

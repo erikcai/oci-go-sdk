@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,19 +13,19 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequestResource A resource created or operated on by a work request.
+// WorkRequestResource Details about the resource entity.
 type WorkRequestResource struct {
 
 	// The resource type the work request affects.
 	EntityType *string `mandatory:"true" json:"entityType"`
 
-	// The way in which this resource is affected by the work tracked in the work request.
-	// A resource being created, updated, or deleted will remain in the IN_PROGRESS state until
-	// work is complete for that resource at which point it will transition to CREATED, UPDATED,
-	// or DELETED, respectively.
+	// The way in which this resource was affected by the work tracked by the work request.
+	// A resource being created, updated, or deleted remains in the `IN_PROGRESS` state until
+	// work is complete for that resource. At that point, the resource transitions to the `CREATED`, `UPDATED`,
+	// or `DELETED` state.
 	ActionType WorkRequestActionTypeEnum `mandatory:"true" json:"actionType"`
 
-	// The identifier of the resource the work request affects.
+	// The resource identifier the work request affects.
 	Identifier *string `mandatory:"true" json:"identifier"`
 
 	// The URI path that the user can do a GET on to access the resource metadata

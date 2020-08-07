@@ -12,26 +12,25 @@ import (
 // ListEnrollmentStatusesRequest wrapper for the ListEnrollmentStatuses operation
 type ListEnrollmentStatusesRequest struct {
 
-	// The OCID of the compartment. For this release, only the root compartment Id/tenancy Id is supported.
+	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// The maximum number of items to return.
+	// The maximum number of items to return in a paginated "List" call.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The page token representing the page at which to start retrieving results.
-	// This is usually retrieved from a previous list call.
+	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The sort order to use, either 'asc' or 'desc'.
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
 	SortOrder ListEnrollmentStatusesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The field to sort by. You can provide no more than one sort order. By default, `TIMECREATED` sorts results in descending order and `NAME` sorts results in ascending order.
+	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for TIMECREATED is descending. Default order for NAME is ascending. The NAME sort order is case sensitive.
 	SortBy ListEnrollmentStatusesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// A filter to only return entries that match the given lifecycle state.
+	// A filter that returns results that match the lifecycle state specified.
 	LifecycleState ListEnrollmentStatusesLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// A filter to only return results that match the given optimizer enrollment status.
+	// A filter that returns results that match the Cloud Advisor enrollment status specified.
 	Status ListEnrollmentStatusesStatusEnum `mandatory:"false" contributesTo:"query" name:"status" omitEmpty:"true"`
 
 	// Unique Oracle-assigned identifier for the request.

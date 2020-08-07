@@ -12,7 +12,7 @@ import (
 // GetRecommendationRequest wrapper for the GetRecommendation operation
 type GetRecommendationRequest struct {
 
-	// The OCID of the recommendation.
+	// The unique OCID associated with the recommendation.
 	RecommendationId *string `mandatory:"true" contributesTo:"path" name:"recommendationId"`
 
 	// Unique Oracle-assigned identifier for the request.

@@ -7643,6 +7643,53 @@ func (client VirtualNetworkClient) getVcn(ctx context.Context, request common.OC
 	return response, err
 }
 
+// GetVcnDnsResolverAssociation Get the associated DNS resolver information with a vcn
+func (client VirtualNetworkClient) GetVcnDnsResolverAssociation(ctx context.Context, request GetVcnDnsResolverAssociationRequest) (response GetVcnDnsResolverAssociationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getVcnDnsResolverAssociation, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetVcnDnsResolverAssociationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetVcnDnsResolverAssociationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetVcnDnsResolverAssociationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetVcnDnsResolverAssociationResponse")
+	}
+	return
+}
+
+// getVcnDnsResolverAssociation implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getVcnDnsResolverAssociation(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/vcns/{vcnId}/dnsResolverAssociation")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetVcnDnsResolverAssociationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetVirtualCircuit Gets the specified virtual circuit's information.
 func (client VirtualNetworkClient) GetVirtualCircuit(ctx context.Context, request GetVirtualCircuitRequest) (response GetVirtualCircuitResponse, err error) {
 	var ociResponse common.OCIResponse

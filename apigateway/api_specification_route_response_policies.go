@@ -17,9 +17,7 @@ import (
 
 // ApiSpecificationRouteResponsePolicies Behavior applied to any responses sent by the API for requests on this route.
 type ApiSpecificationRouteResponsePolicies struct {
-
-	// Perform these transformations on the HTTP response headers in the order listed.
-	HeaderTransformations []HeaderTransformation `mandatory:"false" json:"headerTransformations"`
+	HeaderTransformations *HeaderTransformationPolicy `mandatory:"false" json:"headerTransformations"`
 }
 
 func (m ApiSpecificationRouteResponsePolicies) String() string {

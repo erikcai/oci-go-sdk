@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,37 +13,38 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CategorySummary The metadata specific to the category summary.
+// CategorySummary The metadata associated with the category summary.
+// **Caution:** Avoid using any confidential information when you supply string values using the API.
 type CategorySummary struct {
 
-	// The category unique OCID.
+	// The unique OCID of the category.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID of root compartment.
+	// The OCID of the tenancy. The tenancy is the root compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The name of the category.
+	// The name assigned to the category.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The description of the category.
+	// Text describing the category.
 	Description *string `mandatory:"true" json:"description"`
 
-	// An array of RecommendationCount grouped by the importance of the recommendation.
+	// An array of `RecommendationCount` objects grouped by the level of importance assigned to each recommendation.
 	RecommendationCounts []RecommendationCount `mandatory:"true" json:"recommendationCounts"`
 
-	// An array of ResourceCount grouped by the status of the recommendation.
+	// An array of `ResourceCount` objects grouped by the status of each recommendation.
 	ResourceCounts []ResourceCount `mandatory:"true" json:"resourceCounts"`
 
-	// The lifecycleState of the category.
+	// The category's current state.
 	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The estimated cost saving in dollars for the category.
+	// The estimated cost savings, in dollars, for the category.
 	EstimatedCostSaving *float64 `mandatory:"true" json:"estimatedCostSaving"`
 
-	// Date and time the category details was created, in the format defined by RFC3339.
+	// The date and time the category details were created, in the format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// Date and time the category details was last updated, in the format defined by RFC3339.
+	// The date and time the category details were last updated, in the format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"true" json:"timeUpdated"`
 }
 

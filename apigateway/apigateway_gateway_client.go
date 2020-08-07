@@ -49,7 +49,7 @@ func NewGatewayClientWithOboToken(configProvider common.ConfigurationProvider, o
 
 func newGatewayClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client GatewayClient, err error) {
 	client = GatewayClient{BaseClient: baseClient}
-	client.BasePath = "20190501"
+	client.BasePath = ""
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -111,7 +111,7 @@ func (client GatewayClient) ChangeGatewayCompartment(ctx context.Context, reques
 
 // changeGatewayCompartment implements the OCIOperation interface (enables retrying operations)
 func (client GatewayClient) changeGatewayCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/gateways/{gatewayId}/actions/changeCompartment")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20190501/gateways/{gatewayId}/actions/changeCompartment")
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +163,7 @@ func (client GatewayClient) CreateGateway(ctx context.Context, request CreateGat
 
 // createGateway implements the OCIOperation interface (enables retrying operations)
 func (client GatewayClient) createGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/gateways")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20190501/gateways")
 	if err != nil {
 		return nil, err
 	}
@@ -210,7 +210,7 @@ func (client GatewayClient) DeleteGateway(ctx context.Context, request DeleteGat
 
 // deleteGateway implements the OCIOperation interface (enables retrying operations)
 func (client GatewayClient) deleteGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/gateways/{gatewayId}")
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/20190501/gateways/{gatewayId}")
 	if err != nil {
 		return nil, err
 	}
@@ -257,7 +257,7 @@ func (client GatewayClient) GetGateway(ctx context.Context, request GetGatewayRe
 
 // getGateway implements the OCIOperation interface (enables retrying operations)
 func (client GatewayClient) getGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/gateways/{gatewayId}")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20190501/gateways/{gatewayId}")
 	if err != nil {
 		return nil, err
 	}
@@ -304,7 +304,7 @@ func (client GatewayClient) ListGateways(ctx context.Context, request ListGatewa
 
 // listGateways implements the OCIOperation interface (enables retrying operations)
 func (client GatewayClient) listGateways(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/gateways")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20190501/gateways")
 	if err != nil {
 		return nil, err
 	}
@@ -351,7 +351,7 @@ func (client GatewayClient) UpdateGateway(ctx context.Context, request UpdateGat
 
 // updateGateway implements the OCIOperation interface (enables retrying operations)
 func (client GatewayClient) updateGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/gateways/{gatewayId}")
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/20190501/gateways/{gatewayId}")
 	if err != nil {
 		return nil, err
 	}

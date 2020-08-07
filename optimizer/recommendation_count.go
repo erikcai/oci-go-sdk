@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,13 +13,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// RecommendationCount Recommendation counts for a given category grouped by the importance.
+// RecommendationCount The count of recommendations in a category, grouped by importance.
 type RecommendationCount struct {
 
-	// The Importance of the recommendation.
+	// The level of importance assigned to the recommendation.
 	Importance ImportanceEnum `mandatory:"true" json:"importance"`
 
-	// Count of recommendations.
+	// The count of recommendations.
 	Count *int `mandatory:"true" json:"count"`
 }
 

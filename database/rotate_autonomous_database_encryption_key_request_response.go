@@ -9,11 +9,11 @@ import (
 	"net/http"
 )
 
-// RotateAutonomousContainerDatabaseVaultKeyRequest wrapper for the RotateAutonomousContainerDatabaseVaultKey operation
-type RotateAutonomousContainerDatabaseVaultKeyRequest struct {
+// RotateAutonomousDatabaseEncryptionKeyRequest wrapper for the RotateAutonomousDatabaseEncryptionKey operation
+type RotateAutonomousDatabaseEncryptionKeyRequest struct {
 
-	// The Autonomous Container Database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-	AutonomousContainerDatabaseId *string `mandatory:"true" contributesTo:"path" name:"autonomousContainerDatabaseId"`
+	// The database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	AutonomousDatabaseId *string `mandatory:"true" contributesTo:"path" name:"autonomousDatabaseId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
 	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
@@ -35,28 +35,28 @@ type RotateAutonomousContainerDatabaseVaultKeyRequest struct {
 	RequestMetadata common.RequestMetadata
 }
 
-func (request RotateAutonomousContainerDatabaseVaultKeyRequest) String() string {
+func (request RotateAutonomousDatabaseEncryptionKeyRequest) String() string {
 	return common.PointerString(request)
 }
 
 // HTTPRequest implements the OCIRequest interface
-func (request RotateAutonomousContainerDatabaseVaultKeyRequest) HTTPRequest(method, path string) (http.Request, error) {
+func (request RotateAutonomousDatabaseEncryptionKeyRequest) HTTPRequest(method, path string) (http.Request, error) {
 	return common.MakeDefaultHTTPRequestWithTaggedStruct(method, path, request)
 }
 
 // RetryPolicy implements the OCIRetryableRequest interface. This retrieves the specified retry policy.
-func (request RotateAutonomousContainerDatabaseVaultKeyRequest) RetryPolicy() *common.RetryPolicy {
+func (request RotateAutonomousDatabaseEncryptionKeyRequest) RetryPolicy() *common.RetryPolicy {
 	return request.RequestMetadata.RetryPolicy
 }
 
-// RotateAutonomousContainerDatabaseVaultKeyResponse wrapper for the RotateAutonomousContainerDatabaseVaultKey operation
-type RotateAutonomousContainerDatabaseVaultKeyResponse struct {
+// RotateAutonomousDatabaseEncryptionKeyResponse wrapper for the RotateAutonomousDatabaseEncryptionKey operation
+type RotateAutonomousDatabaseEncryptionKeyResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The AutonomousContainerDatabase instance
-	AutonomousContainerDatabase `presentIn:"body"`
+	// The AutonomousDatabase instance
+	AutonomousDatabase `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
@@ -69,11 +69,11 @@ type RotateAutonomousContainerDatabaseVaultKeyResponse struct {
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 
-func (response RotateAutonomousContainerDatabaseVaultKeyResponse) String() string {
+func (response RotateAutonomousDatabaseEncryptionKeyResponse) String() string {
 	return common.PointerString(response)
 }
 
 // HTTPResponse implements the OCIResponse interface
-func (response RotateAutonomousContainerDatabaseVaultKeyResponse) HTTPResponse() *http.Response {
+func (response RotateAutonomousDatabaseEncryptionKeyResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
 }

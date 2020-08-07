@@ -12,7 +12,7 @@ import (
 // DeleteProfileRequest wrapper for the DeleteProfile operation
 type DeleteProfileRequest struct {
 
-	// The OCID of the profile.
+	// The unique OCID of the profile.
 	ProfileId *string `mandatory:"true" contributesTo:"path" name:"profileId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

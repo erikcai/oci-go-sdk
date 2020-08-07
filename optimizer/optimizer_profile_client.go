@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -75,7 +75,7 @@ func (client *ProfileClient) ConfigurationProvider() *common.ConfigurationProvid
 	return client.config
 }
 
-// CreateProfile Create a new profile.
+// CreateProfile Creates a new profile.
 func (client ProfileClient) CreateProfile(ctx context.Context, request CreateProfileRequest) (response CreateProfileResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -127,7 +127,7 @@ func (client ProfileClient) createProfile(ctx context.Context, request common.OC
 	return response, err
 }
 
-// DeleteProfile Delete an existing profile by its unique OCID.
+// DeleteProfile Deletes the specified profile. Uses the profile's OCID to determine which profile to delete.
 func (client ProfileClient) DeleteProfile(ctx context.Context, request DeleteProfileRequest) (response DeleteProfileResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -174,7 +174,7 @@ func (client ProfileClient) deleteProfile(ctx context.Context, request common.OC
 	return response, err
 }
 
-// GetProfile Get an existing profile by its unique OCID.
+// GetProfile Gets the specified profile's information. Uses the profile's OCID to determine which profile to retrieve.
 func (client ProfileClient) GetProfile(ctx context.Context, request GetProfileRequest) (response GetProfileResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -221,7 +221,7 @@ func (client ProfileClient) getProfile(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// ListProfiles List existing profiles.
+// ListProfiles Lists the existing profiles.
 func (client ProfileClient) ListProfiles(ctx context.Context, request ListProfilesRequest) (response ListProfilesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -268,7 +268,7 @@ func (client ProfileClient) listProfiles(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// UpdateProfile Update an existing profile by its unique OCID.
+// UpdateProfile Updates the specified profile. Uses the profile's OCID to determine which profile to update.
 func (client ProfileClient) UpdateProfile(ctx context.Context, request UpdateProfileRequest) (response UpdateProfileResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

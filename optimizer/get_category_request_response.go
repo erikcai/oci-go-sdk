@@ -12,7 +12,7 @@ import (
 // GetCategoryRequest wrapper for the GetCategory operation
 type GetCategoryRequest struct {
 
-	// The OCID of the category.
+	// The unique OCID associated with the category.
 	CategoryId *string `mandatory:"true" contributesTo:"path" name:"categoryId"`
 
 	// Unique Oracle-assigned identifier for the request.

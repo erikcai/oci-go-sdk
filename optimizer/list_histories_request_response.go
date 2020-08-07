@@ -12,40 +12,38 @@ import (
 // ListHistoriesRequest wrapper for the ListHistories operation
 type ListHistoriesRequest struct {
 
-	// The OCID of the compartment. For this release, only the root compartment Id/tenancy Id is supported.
+	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// When true, returns data from all compartments and subcompartments.
-	// The parameter can only be set to true when compartmentId is the tenancy OCID (the tenancy is the root compartment).
-	// Will be used in future to support list retrieval from all subcompartments.
+	// When set to true, the hierarchy of compartments is traversed and all compartments and subcompartments in the tenancy are returned depending on the the setting of `accessLevel`.
+	// Can only be set to true when performing ListCompartments on the tenancy (root compartment).
 	CompartmentIdInSubtree *bool `mandatory:"true" contributesTo:"query" name:"compartmentIdInSubtree"`
 
-	// Optional field, used to filter by specific name
+	// Optional. A filter that returns results that match the name specified.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
 
-	// The recommendation unique OCID.
+	// The unique OCID associated with the recommendation.
 	RecommendationId *string `mandatory:"false" contributesTo:"query" name:"recommendationId"`
 
-	// Optional field, used to filter by specific resource type.
+	// Optional. A filter that returns results that match the resource type specified.
 	ResourceType *string `mandatory:"false" contributesTo:"query" name:"resourceType"`
 
-	// The maximum number of items to return.
+	// The maximum number of items to return in a paginated "List" call.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The page token representing the page at which to start retrieving results.
-	// This is usually retrieved from a previous list call.
+	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The sort order to use, either 'asc' or 'desc'.
+	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
 	SortOrder ListHistoriesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// The field to sort by. You can provide no more than one sort order. By default, `TIMECREATED` sorts results in descending order and `NAME` sorts results in ascending order.
+	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for TIMECREATED is descending. Default order for NAME is ascending. The NAME sort order is case sensitive.
 	SortBy ListHistoriesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// A filter to only return entries that match the given lifecycle state.
+	// A filter that returns results that match the lifecycle state specified.
 	LifecycleState ListHistoriesLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
-	// A filter to only return recommendations that match the given status.
+	// A filter that returns recommendations that match the status specified.
 	Status ListHistoriesStatusEnum `mandatory:"false" contributesTo:"query" name:"status" omitEmpty:"true"`
 
 	// Unique Oracle-assigned identifier for the request.

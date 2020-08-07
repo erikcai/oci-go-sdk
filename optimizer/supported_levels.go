@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,11 +13,12 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// SupportedLevels A system defined list of constants that represent the profile levels supported by this recommendation.
-// For example, this could be Low, Medium and High. This field is optional and not all recommendations support it.
+// SupportedLevels Optional. The profile levels supported by a recommendation.
+// For example, profile level values could be `Low`, `Medium`, and `High`.
+// Not all recommendations support this field.
 type SupportedLevels struct {
 
-	// The list of supported profile levels.
+	// The list of supported levels.
 	Items []string `mandatory:"false" json:"items"`
 }
 

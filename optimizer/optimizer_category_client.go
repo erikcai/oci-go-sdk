@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -75,7 +75,7 @@ func (client *CategoryClient) ConfigurationProvider() *common.ConfigurationProvi
 	return client.config
 }
 
-// GetCategory Get the category for the OCID specified.
+// GetCategory Gets the category that corresponds to the specified OCID.
 func (client CategoryClient) GetCategory(ctx context.Context, request GetCategoryRequest) (response GetCategoryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -122,7 +122,7 @@ func (client CategoryClient) getCategory(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// ListCategories Included a list of optimizer categories that are currently supported.
+// ListCategories Lists the supported Cloud Advisor categories.
 func (client CategoryClient) ListCategories(ctx context.Context, request ListCategoriesRequest) (response ListCategoriesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// PublicLoggingControlplane API
+// loggingManagementControlplane API
 //
-// PublicLoggingControlplane API specification
+// loggingManagementControlplane API specification
 //
 
 package logging
@@ -16,49 +16,49 @@ import (
 	"net/http"
 )
 
-//PublicLoggingClient a client for PublicLogging
-type PublicLoggingClient struct {
+//LoggingManagementClient a client for LoggingManagement
+type LoggingManagementClient struct {
 	common.BaseClient
 	config *common.ConfigurationProvider
 }
 
-// NewPublicLoggingClientWithConfigurationProvider Creates a new default PublicLogging client with the given configuration provider.
+// NewLoggingManagementClientWithConfigurationProvider Creates a new default LoggingManagement client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
-func NewPublicLoggingClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client PublicLoggingClient, err error) {
+func NewLoggingManagementClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client LoggingManagementClient, err error) {
 	baseClient, err := common.NewClientWithConfig(configProvider)
 	if err != nil {
 		return
 	}
 
-	return newPublicLoggingClientFromBaseClient(baseClient, configProvider)
+	return newLoggingManagementClientFromBaseClient(baseClient, configProvider)
 }
 
-// NewPublicLoggingClientWithOboToken Creates a new default PublicLogging client with the given configuration provider.
+// NewLoggingManagementClientWithOboToken Creates a new default LoggingManagement client with the given configuration provider.
 // The obotoken will be added to default headers and signed; the configuration provider will be used for the signer
 //  as well as reading the region
-func NewPublicLoggingClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client PublicLoggingClient, err error) {
+func NewLoggingManagementClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client LoggingManagementClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
 		return
 	}
 
-	return newPublicLoggingClientFromBaseClient(baseClient, configProvider)
+	return newLoggingManagementClientFromBaseClient(baseClient, configProvider)
 }
 
-func newPublicLoggingClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client PublicLoggingClient, err error) {
-	client = PublicLoggingClient{BaseClient: baseClient}
+func newLoggingManagementClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client LoggingManagementClient, err error) {
+	client = LoggingManagementClient{BaseClient: baseClient}
 	client.BasePath = "20200531"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
 
 // SetRegion overrides the region of this client.
-func (client *PublicLoggingClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("logging", "https://logging-cp.{region}.oci.{secondLevelDomain}")
+func (client *LoggingManagementClient) SetRegion(region string) {
+	client.Host = common.StringToRegion(region).EndpointForTemplate("logging", "https://logging.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
-func (client *PublicLoggingClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
+func (client *LoggingManagementClient) setConfigurationProvider(configProvider common.ConfigurationProvider) error {
 	if ok, err := common.IsConfigurationProviderValid(configProvider); !ok {
 		return err
 	}
@@ -71,13 +71,13 @@ func (client *PublicLoggingClient) setConfigurationProvider(configProvider commo
 }
 
 // ConfigurationProvider the ConfigurationProvider used in this client, or null if none set
-func (client *PublicLoggingClient) ConfigurationProvider() *common.ConfigurationProvider {
+func (client *LoggingManagementClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
 }
 
 // ChangeLogGroupCompartment Moves a log group into a different compartment within the same tenancy.  When provided, If-Match is checked against ETag values of the resource.
 // For information about moving resources between compartments, see Moving Resources Between Compartments (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-func (client PublicLoggingClient) ChangeLogGroupCompartment(ctx context.Context, request ChangeLogGroupCompartmentRequest) (response ChangeLogGroupCompartmentResponse, err error) {
+func (client LoggingManagementClient) ChangeLogGroupCompartment(ctx context.Context, request ChangeLogGroupCompartmentRequest) (response ChangeLogGroupCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -104,7 +104,7 @@ func (client PublicLoggingClient) ChangeLogGroupCompartment(ctx context.Context,
 }
 
 // changeLogGroupCompartment implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) changeLogGroupCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) changeLogGroupCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logGroups/{logGroupId}/actions/changeCompartment")
 	if err != nil {
 		return nil, err
@@ -124,7 +124,7 @@ func (client PublicLoggingClient) changeLogGroupCompartment(ctx context.Context,
 }
 
 // ChangeLogLogGroup Moves a log into a different log group within the same tenancy.  When provided, If-Match is checked against ETag values of the resource.
-func (client PublicLoggingClient) ChangeLogLogGroup(ctx context.Context, request ChangeLogLogGroupRequest) (response ChangeLogLogGroupResponse, err error) {
+func (client LoggingManagementClient) ChangeLogLogGroup(ctx context.Context, request ChangeLogLogGroupRequest) (response ChangeLogLogGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -151,7 +151,7 @@ func (client PublicLoggingClient) ChangeLogLogGroup(ctx context.Context, request
 }
 
 // changeLogLogGroup implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) changeLogLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) changeLogLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logGroups/{logGroupId}/logs/{logId}/actions/changeLogGroup")
 	if err != nil {
 		return nil, err
@@ -172,7 +172,7 @@ func (client PublicLoggingClient) changeLogLogGroup(ctx context.Context, request
 
 // ChangeLogRuleCompartment Moves a rule into a different compartment within the same tenancy. For information about moving
 // resources between compartments, see Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-func (client PublicLoggingClient) ChangeLogRuleCompartment(ctx context.Context, request ChangeLogRuleCompartmentRequest) (response ChangeLogRuleCompartmentResponse, err error) {
+func (client LoggingManagementClient) ChangeLogRuleCompartment(ctx context.Context, request ChangeLogRuleCompartmentRequest) (response ChangeLogRuleCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -199,7 +199,7 @@ func (client PublicLoggingClient) ChangeLogRuleCompartment(ctx context.Context, 
 }
 
 // changeLogRuleCompartment implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) changeLogRuleCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) changeLogRuleCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logRules/{logRuleId}/actions/changeCompartment")
 	if err != nil {
 		return nil, err
@@ -220,7 +220,7 @@ func (client PublicLoggingClient) changeLogRuleCompartment(ctx context.Context, 
 
 // CreateLog Creates a log within specified log group. This call fails if log group is already created
 // with same displayName or (service, resource, category) triplet.
-func (client PublicLoggingClient) CreateLog(ctx context.Context, request CreateLogRequest) (response CreateLogResponse, err error) {
+func (client LoggingManagementClient) CreateLog(ctx context.Context, request CreateLogRequest) (response CreateLogResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -252,7 +252,7 @@ func (client PublicLoggingClient) CreateLog(ctx context.Context, request CreateL
 }
 
 // createLog implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) createLog(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) createLog(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logGroups/{logGroupId}/logs")
 	if err != nil {
 		return nil, err
@@ -273,7 +273,7 @@ func (client PublicLoggingClient) createLog(ctx context.Context, request common.
 
 // CreateLogGroup Create new log group with unique display name. This call fails
 // if log group is already created with same displayName in the compartment.
-func (client PublicLoggingClient) CreateLogGroup(ctx context.Context, request CreateLogGroupRequest) (response CreateLogGroupResponse, err error) {
+func (client LoggingManagementClient) CreateLogGroup(ctx context.Context, request CreateLogGroupRequest) (response CreateLogGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -305,7 +305,7 @@ func (client PublicLoggingClient) CreateLogGroup(ctx context.Context, request Cr
 }
 
 // createLogGroup implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) createLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) createLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logGroups")
 	if err != nil {
 		return nil, err
@@ -326,7 +326,7 @@ func (client PublicLoggingClient) createLogGroup(ctx context.Context, request co
 
 // CreateLogRule Create new log rule with unique display name. This call fails
 // if log rule is already created with same displayName in the compartment.
-func (client PublicLoggingClient) CreateLogRule(ctx context.Context, request CreateLogRuleRequest) (response CreateLogRuleResponse, err error) {
+func (client LoggingManagementClient) CreateLogRule(ctx context.Context, request CreateLogRuleRequest) (response CreateLogRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -358,7 +358,7 @@ func (client PublicLoggingClient) CreateLogRule(ctx context.Context, request Cre
 }
 
 // createLogRule implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) createLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) createLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logRules")
 	if err != nil {
 		return nil, err
@@ -378,7 +378,7 @@ func (client PublicLoggingClient) createLogRule(ctx context.Context, request com
 }
 
 // DeleteLog Deletes the log object in a log group.
-func (client PublicLoggingClient) DeleteLog(ctx context.Context, request DeleteLogRequest) (response DeleteLogResponse, err error) {
+func (client LoggingManagementClient) DeleteLog(ctx context.Context, request DeleteLogRequest) (response DeleteLogResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -405,7 +405,7 @@ func (client PublicLoggingClient) DeleteLog(ctx context.Context, request DeleteL
 }
 
 // deleteLog implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) deleteLog(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) deleteLog(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/logGroups/{logGroupId}/logs/{logId}")
 	if err != nil {
 		return nil, err
@@ -425,7 +425,7 @@ func (client PublicLoggingClient) deleteLog(ctx context.Context, request common.
 }
 
 // DeleteLogGroup Deletes the specified log group.
-func (client PublicLoggingClient) DeleteLogGroup(ctx context.Context, request DeleteLogGroupRequest) (response DeleteLogGroupResponse, err error) {
+func (client LoggingManagementClient) DeleteLogGroup(ctx context.Context, request DeleteLogGroupRequest) (response DeleteLogGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -452,7 +452,7 @@ func (client PublicLoggingClient) DeleteLogGroup(ctx context.Context, request De
 }
 
 // deleteLogGroup implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) deleteLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) deleteLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/logGroups/{logGroupId}")
 	if err != nil {
 		return nil, err
@@ -472,7 +472,7 @@ func (client PublicLoggingClient) deleteLogGroup(ctx context.Context, request co
 }
 
 // DeleteLogRule Deletes the specified log rule.
-func (client PublicLoggingClient) DeleteLogRule(ctx context.Context, request DeleteLogRuleRequest) (response DeleteLogRuleResponse, err error) {
+func (client LoggingManagementClient) DeleteLogRule(ctx context.Context, request DeleteLogRuleRequest) (response DeleteLogRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -499,7 +499,7 @@ func (client PublicLoggingClient) DeleteLogRule(ctx context.Context, request Del
 }
 
 // deleteLogRule implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) deleteLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) deleteLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/logRules/{logRuleId}")
 	if err != nil {
 		return nil, err
@@ -519,7 +519,7 @@ func (client PublicLoggingClient) deleteLogRule(ctx context.Context, request com
 }
 
 // DeleteWorkRequest Cancel a work request that has not started yet.
-func (client PublicLoggingClient) DeleteWorkRequest(ctx context.Context, request DeleteWorkRequestRequest) (response DeleteWorkRequestResponse, err error) {
+func (client LoggingManagementClient) DeleteWorkRequest(ctx context.Context, request DeleteWorkRequestRequest) (response DeleteWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -546,7 +546,7 @@ func (client PublicLoggingClient) DeleteWorkRequest(ctx context.Context, request
 }
 
 // deleteWorkRequest implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) deleteWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) deleteWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/workRequests/{workRequestId}")
 	if err != nil {
 		return nil, err
@@ -566,7 +566,7 @@ func (client PublicLoggingClient) deleteWorkRequest(ctx context.Context, request
 }
 
 // GetLog Gets the log object config for log object OCID.
-func (client PublicLoggingClient) GetLog(ctx context.Context, request GetLogRequest) (response GetLogResponse, err error) {
+func (client LoggingManagementClient) GetLog(ctx context.Context, request GetLogRequest) (response GetLogResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -593,7 +593,7 @@ func (client PublicLoggingClient) GetLog(ctx context.Context, request GetLogRequ
 }
 
 // getLog implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) getLog(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) getLog(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logGroups/{logGroupId}/logs/{logId}")
 	if err != nil {
 		return nil, err
@@ -613,7 +613,7 @@ func (client PublicLoggingClient) getLog(ctx context.Context, request common.OCI
 }
 
 // GetLogGroup Get the specified log group's information.
-func (client PublicLoggingClient) GetLogGroup(ctx context.Context, request GetLogGroupRequest) (response GetLogGroupResponse, err error) {
+func (client LoggingManagementClient) GetLogGroup(ctx context.Context, request GetLogGroupRequest) (response GetLogGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -640,7 +640,7 @@ func (client PublicLoggingClient) GetLogGroup(ctx context.Context, request GetLo
 }
 
 // getLogGroup implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) getLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) getLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logGroups/{logGroupId}")
 	if err != nil {
 		return nil, err
@@ -660,7 +660,7 @@ func (client PublicLoggingClient) getLogGroup(ctx context.Context, request commo
 }
 
 // GetLogRule Retrieves a log rule.
-func (client PublicLoggingClient) GetLogRule(ctx context.Context, request GetLogRuleRequest) (response GetLogRuleResponse, err error) {
+func (client LoggingManagementClient) GetLogRule(ctx context.Context, request GetLogRuleRequest) (response GetLogRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -687,7 +687,7 @@ func (client PublicLoggingClient) GetLogRule(ctx context.Context, request GetLog
 }
 
 // getLogRule implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) getLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) getLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logRules/{logRuleId}")
 	if err != nil {
 		return nil, err
@@ -707,7 +707,7 @@ func (client PublicLoggingClient) getLogRule(ctx context.Context, request common
 }
 
 // GetWorkRequest Gets the details of the work request with the given ID.
-func (client PublicLoggingClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
+func (client LoggingManagementClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -734,7 +734,7 @@ func (client PublicLoggingClient) GetWorkRequest(ctx context.Context, request Ge
 }
 
 // getWorkRequest implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) getWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) getWorkRequest(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}")
 	if err != nil {
 		return nil, err
@@ -754,7 +754,7 @@ func (client PublicLoggingClient) getWorkRequest(ctx context.Context, request co
 }
 
 // ListLogGroups Lists all log groups for the specified compartment or tenancy.
-func (client PublicLoggingClient) ListLogGroups(ctx context.Context, request ListLogGroupsRequest) (response ListLogGroupsResponse, err error) {
+func (client LoggingManagementClient) ListLogGroups(ctx context.Context, request ListLogGroupsRequest) (response ListLogGroupsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -781,7 +781,7 @@ func (client PublicLoggingClient) ListLogGroups(ctx context.Context, request Lis
 }
 
 // listLogGroups implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) listLogGroups(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) listLogGroups(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logGroups")
 	if err != nil {
 		return nil, err
@@ -801,7 +801,7 @@ func (client PublicLoggingClient) listLogGroups(ctx context.Context, request com
 }
 
 // ListLogRules Lists log rules for this compartment.
-func (client PublicLoggingClient) ListLogRules(ctx context.Context, request ListLogRulesRequest) (response ListLogRulesResponse, err error) {
+func (client LoggingManagementClient) ListLogRules(ctx context.Context, request ListLogRulesRequest) (response ListLogRulesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -828,7 +828,7 @@ func (client PublicLoggingClient) ListLogRules(ctx context.Context, request List
 }
 
 // listLogRules implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) listLogRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) listLogRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logRules")
 	if err != nil {
 		return nil, err
@@ -848,7 +848,7 @@ func (client PublicLoggingClient) listLogRules(ctx context.Context, request comm
 }
 
 // ListLogs Lists the specified log group's log objects.
-func (client PublicLoggingClient) ListLogs(ctx context.Context, request ListLogsRequest) (response ListLogsResponse, err error) {
+func (client LoggingManagementClient) ListLogs(ctx context.Context, request ListLogsRequest) (response ListLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -875,7 +875,7 @@ func (client PublicLoggingClient) ListLogs(ctx context.Context, request ListLogs
 }
 
 // listLogs implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) listLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) listLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logGroups/{logGroupId}/logs")
 	if err != nil {
 		return nil, err
@@ -895,7 +895,7 @@ func (client PublicLoggingClient) listLogs(ctx context.Context, request common.O
 }
 
 // ListServices Lists all services supporting logging.
-func (client PublicLoggingClient) ListServices(ctx context.Context, request ListServicesRequest) (response ListServicesResponse, err error) {
+func (client LoggingManagementClient) ListServices(ctx context.Context, request ListServicesRequest) (response ListServicesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -922,7 +922,7 @@ func (client PublicLoggingClient) ListServices(ctx context.Context, request List
 }
 
 // listServices implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) listServices(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) listServices(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/v2/registry/services")
 	if err != nil {
 		return nil, err
@@ -942,7 +942,7 @@ func (client PublicLoggingClient) listServices(ctx context.Context, request comm
 }
 
 // ListWorkRequestErrors Return a list of errors for a given work request.
-func (client PublicLoggingClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
+func (client LoggingManagementClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -969,7 +969,7 @@ func (client PublicLoggingClient) ListWorkRequestErrors(ctx context.Context, req
 }
 
 // listWorkRequestErrors implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) listWorkRequestErrors(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) listWorkRequestErrors(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}/errors")
 	if err != nil {
 		return nil, err
@@ -989,7 +989,7 @@ func (client PublicLoggingClient) listWorkRequestErrors(ctx context.Context, req
 }
 
 // ListWorkRequestLogs Return a list of logs for a given work request.
-func (client PublicLoggingClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
+func (client LoggingManagementClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -1016,7 +1016,7 @@ func (client PublicLoggingClient) ListWorkRequestLogs(ctx context.Context, reque
 }
 
 // listWorkRequestLogs implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) listWorkRequestLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) listWorkRequestLogs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests/{workRequestId}/logs")
 	if err != nil {
 		return nil, err
@@ -1036,7 +1036,7 @@ func (client PublicLoggingClient) listWorkRequestLogs(ctx context.Context, reque
 }
 
 // ListWorkRequests Lists the work requests in a compartment.
-func (client PublicLoggingClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
+func (client LoggingManagementClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -1063,7 +1063,7 @@ func (client PublicLoggingClient) ListWorkRequests(ctx context.Context, request 
 }
 
 // listWorkRequests implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) listWorkRequests(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) listWorkRequests(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workRequests")
 	if err != nil {
 		return nil, err
@@ -1084,7 +1084,7 @@ func (client PublicLoggingClient) listWorkRequests(ctx context.Context, request 
 
 // UpdateLog Updates existing log object with the associated config. This call
 //       fails if log object does not exist.
-func (client PublicLoggingClient) UpdateLog(ctx context.Context, request UpdateLogRequest) (response UpdateLogResponse, err error) {
+func (client LoggingManagementClient) UpdateLog(ctx context.Context, request UpdateLogRequest) (response UpdateLogResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -1111,7 +1111,7 @@ func (client PublicLoggingClient) UpdateLog(ctx context.Context, request UpdateL
 }
 
 // updateLog implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) updateLog(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) updateLog(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/logGroups/{logGroupId}/logs/{logId}")
 	if err != nil {
 		return nil, err
@@ -1132,7 +1132,7 @@ func (client PublicLoggingClient) updateLog(ctx context.Context, request common.
 
 // UpdateLogGroup Updates existing log group with the associated config. This call
 //       fails if log group does not exist.
-func (client PublicLoggingClient) UpdateLogGroup(ctx context.Context, request UpdateLogGroupRequest) (response UpdateLogGroupResponse, err error) {
+func (client LoggingManagementClient) UpdateLogGroup(ctx context.Context, request UpdateLogGroupRequest) (response UpdateLogGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -1159,7 +1159,7 @@ func (client PublicLoggingClient) UpdateLogGroup(ctx context.Context, request Up
 }
 
 // updateLogGroup implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) updateLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) updateLogGroup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/logGroups/{logGroupId}")
 	if err != nil {
 		return nil, err
@@ -1179,7 +1179,7 @@ func (client PublicLoggingClient) updateLogGroup(ctx context.Context, request co
 }
 
 // UpdateLogRule Updates an  existing log rule.
-func (client PublicLoggingClient) UpdateLogRule(ctx context.Context, request UpdateLogRuleRequest) (response UpdateLogRuleResponse, err error) {
+func (client LoggingManagementClient) UpdateLogRule(ctx context.Context, request UpdateLogRuleRequest) (response UpdateLogRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -1206,7 +1206,7 @@ func (client PublicLoggingClient) UpdateLogRule(ctx context.Context, request Upd
 }
 
 // updateLogRule implements the OCIOperation interface (enables retrying operations)
-func (client PublicLoggingClient) updateLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+func (client LoggingManagementClient) updateLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPut, "/logRules/{logRuleId}")
 	if err != nil {
 		return nil, err

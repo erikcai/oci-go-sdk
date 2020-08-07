@@ -12,10 +12,10 @@ import (
 // UpdateResourceActionRequest wrapper for the UpdateResourceAction operation
 type UpdateResourceActionRequest struct {
 
-	// The resource action unique OCID.
+	// The unique OCID associated with the resource action.
 	ResourceActionId *string `mandatory:"true" contributesTo:"path" name:"resourceActionId"`
 
-	// Provides the resource action information to be updated.
+	// The resource action information to be updated.
 	UpdateResourceActionDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request.

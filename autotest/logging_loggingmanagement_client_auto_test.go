@@ -11,9 +11,9 @@ import (
 	"testing"
 )
 
-func createPublicLoggingClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
+func createLoggingLoggingManagementClientWithProvider(p common.ConfigurationProvider, testConfig TestingConfig) (interface{}, error) {
 
-	client, err := logging.NewPublicLoggingClientWithConfigurationProvider(p)
+	client, err := logging.NewLoggingManagementClientWithConfigurationProvider(p)
 	if testConfig.Endpoint != "" {
 		client.Host = testConfig.Endpoint
 	} else {
@@ -23,7 +23,7 @@ func createPublicLoggingClientWithProvider(p common.ConfigurationProvider, testC
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientChangeLogGroupCompartment(t *testing.T) {
+func TestLoggingLoggingManagementClientChangeLogGroupCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ChangeLogGroupCompartment")
@@ -32,9 +32,9 @@ func TestPublicLoggingClientChangeLogGroupCompartment(t *testing.T) {
 		t.Skip("ChangeLogGroupCompartment is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ChangeLogGroupCompartment", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ChangeLogGroupCompartment", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ChangeLogGroupCompartment")
 	assert.NoError(t, err)
@@ -67,7 +67,7 @@ func TestPublicLoggingClientChangeLogGroupCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientChangeLogLogGroup(t *testing.T) {
+func TestLoggingLoggingManagementClientChangeLogLogGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ChangeLogLogGroup")
@@ -76,9 +76,9 @@ func TestPublicLoggingClientChangeLogLogGroup(t *testing.T) {
 		t.Skip("ChangeLogLogGroup is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ChangeLogLogGroup", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ChangeLogLogGroup", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ChangeLogLogGroup")
 	assert.NoError(t, err)
@@ -111,7 +111,7 @@ func TestPublicLoggingClientChangeLogLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientChangeLogRuleCompartment(t *testing.T) {
+func TestLoggingLoggingManagementClientChangeLogRuleCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ChangeLogRuleCompartment")
@@ -120,9 +120,9 @@ func TestPublicLoggingClientChangeLogRuleCompartment(t *testing.T) {
 		t.Skip("ChangeLogRuleCompartment is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ChangeLogRuleCompartment", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ChangeLogRuleCompartment", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ChangeLogRuleCompartment")
 	assert.NoError(t, err)
@@ -155,7 +155,7 @@ func TestPublicLoggingClientChangeLogRuleCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientCreateLog(t *testing.T) {
+func TestLoggingLoggingManagementClientCreateLog(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "CreateLog")
@@ -164,9 +164,9 @@ func TestPublicLoggingClientCreateLog(t *testing.T) {
 		t.Skip("CreateLog is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "CreateLog", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "CreateLog", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "CreateLog")
 	assert.NoError(t, err)
@@ -199,7 +199,7 @@ func TestPublicLoggingClientCreateLog(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientCreateLogGroup(t *testing.T) {
+func TestLoggingLoggingManagementClientCreateLogGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "CreateLogGroup")
@@ -208,9 +208,9 @@ func TestPublicLoggingClientCreateLogGroup(t *testing.T) {
 		t.Skip("CreateLogGroup is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "CreateLogGroup", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "CreateLogGroup", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "CreateLogGroup")
 	assert.NoError(t, err)
@@ -243,7 +243,7 @@ func TestPublicLoggingClientCreateLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientCreateLogRule(t *testing.T) {
+func TestLoggingLoggingManagementClientCreateLogRule(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "CreateLogRule")
@@ -252,9 +252,9 @@ func TestPublicLoggingClientCreateLogRule(t *testing.T) {
 		t.Skip("CreateLogRule is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "CreateLogRule", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "CreateLogRule", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "CreateLogRule")
 	assert.NoError(t, err)
@@ -287,7 +287,7 @@ func TestPublicLoggingClientCreateLogRule(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientDeleteLog(t *testing.T) {
+func TestLoggingLoggingManagementClientDeleteLog(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "DeleteLog")
@@ -296,9 +296,9 @@ func TestPublicLoggingClientDeleteLog(t *testing.T) {
 		t.Skip("DeleteLog is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "DeleteLog", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "DeleteLog", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "DeleteLog")
 	assert.NoError(t, err)
@@ -331,7 +331,7 @@ func TestPublicLoggingClientDeleteLog(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientDeleteLogGroup(t *testing.T) {
+func TestLoggingLoggingManagementClientDeleteLogGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "DeleteLogGroup")
@@ -340,9 +340,9 @@ func TestPublicLoggingClientDeleteLogGroup(t *testing.T) {
 		t.Skip("DeleteLogGroup is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "DeleteLogGroup", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "DeleteLogGroup", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "DeleteLogGroup")
 	assert.NoError(t, err)
@@ -375,7 +375,7 @@ func TestPublicLoggingClientDeleteLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientDeleteLogRule(t *testing.T) {
+func TestLoggingLoggingManagementClientDeleteLogRule(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "DeleteLogRule")
@@ -384,9 +384,9 @@ func TestPublicLoggingClientDeleteLogRule(t *testing.T) {
 		t.Skip("DeleteLogRule is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "DeleteLogRule", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "DeleteLogRule", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "DeleteLogRule")
 	assert.NoError(t, err)
@@ -419,7 +419,7 @@ func TestPublicLoggingClientDeleteLogRule(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientDeleteWorkRequest(t *testing.T) {
+func TestLoggingLoggingManagementClientDeleteWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "DeleteWorkRequest")
@@ -428,9 +428,9 @@ func TestPublicLoggingClientDeleteWorkRequest(t *testing.T) {
 		t.Skip("DeleteWorkRequest is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "DeleteWorkRequest", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "DeleteWorkRequest", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "DeleteWorkRequest")
 	assert.NoError(t, err)
@@ -463,7 +463,7 @@ func TestPublicLoggingClientDeleteWorkRequest(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientGetLog(t *testing.T) {
+func TestLoggingLoggingManagementClientGetLog(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "GetLog")
@@ -472,9 +472,9 @@ func TestPublicLoggingClientGetLog(t *testing.T) {
 		t.Skip("GetLog is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "GetLog", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "GetLog", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "GetLog")
 	assert.NoError(t, err)
@@ -507,7 +507,7 @@ func TestPublicLoggingClientGetLog(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientGetLogGroup(t *testing.T) {
+func TestLoggingLoggingManagementClientGetLogGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "GetLogGroup")
@@ -516,9 +516,9 @@ func TestPublicLoggingClientGetLogGroup(t *testing.T) {
 		t.Skip("GetLogGroup is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "GetLogGroup", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "GetLogGroup", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "GetLogGroup")
 	assert.NoError(t, err)
@@ -551,7 +551,7 @@ func TestPublicLoggingClientGetLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientGetLogRule(t *testing.T) {
+func TestLoggingLoggingManagementClientGetLogRule(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "GetLogRule")
@@ -560,9 +560,9 @@ func TestPublicLoggingClientGetLogRule(t *testing.T) {
 		t.Skip("GetLogRule is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "GetLogRule", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "GetLogRule", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "GetLogRule")
 	assert.NoError(t, err)
@@ -595,7 +595,7 @@ func TestPublicLoggingClientGetLogRule(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientGetWorkRequest(t *testing.T) {
+func TestLoggingLoggingManagementClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "GetWorkRequest")
@@ -604,9 +604,9 @@ func TestPublicLoggingClientGetWorkRequest(t *testing.T) {
 		t.Skip("GetWorkRequest is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "GetWorkRequest", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "GetWorkRequest", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "GetWorkRequest")
 	assert.NoError(t, err)
@@ -639,7 +639,7 @@ func TestPublicLoggingClientGetWorkRequest(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientListLogGroups(t *testing.T) {
+func TestLoggingLoggingManagementClientListLogGroups(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ListLogGroups")
@@ -648,9 +648,9 @@ func TestPublicLoggingClientListLogGroups(t *testing.T) {
 		t.Skip("ListLogGroups is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ListLogGroups", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListLogGroups", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ListLogGroups")
 	assert.NoError(t, err)
@@ -693,7 +693,7 @@ func TestPublicLoggingClientListLogGroups(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientListLogRules(t *testing.T) {
+func TestLoggingLoggingManagementClientListLogRules(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ListLogRules")
@@ -702,9 +702,9 @@ func TestPublicLoggingClientListLogRules(t *testing.T) {
 		t.Skip("ListLogRules is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ListLogRules", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListLogRules", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ListLogRules")
 	assert.NoError(t, err)
@@ -747,7 +747,7 @@ func TestPublicLoggingClientListLogRules(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientListLogs(t *testing.T) {
+func TestLoggingLoggingManagementClientListLogs(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ListLogs")
@@ -756,9 +756,9 @@ func TestPublicLoggingClientListLogs(t *testing.T) {
 		t.Skip("ListLogs is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ListLogs", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListLogs", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ListLogs")
 	assert.NoError(t, err)
@@ -801,7 +801,7 @@ func TestPublicLoggingClientListLogs(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientListServices(t *testing.T) {
+func TestLoggingLoggingManagementClientListServices(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ListServices")
@@ -810,9 +810,9 @@ func TestPublicLoggingClientListServices(t *testing.T) {
 		t.Skip("ListServices is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ListServices", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListServices", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ListServices")
 	assert.NoError(t, err)
@@ -845,7 +845,7 @@ func TestPublicLoggingClientListServices(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientListWorkRequestErrors(t *testing.T) {
+func TestLoggingLoggingManagementClientListWorkRequestErrors(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ListWorkRequestErrors")
@@ -854,9 +854,9 @@ func TestPublicLoggingClientListWorkRequestErrors(t *testing.T) {
 		t.Skip("ListWorkRequestErrors is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ListWorkRequestErrors", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListWorkRequestErrors", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ListWorkRequestErrors")
 	assert.NoError(t, err)
@@ -899,7 +899,7 @@ func TestPublicLoggingClientListWorkRequestErrors(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientListWorkRequestLogs(t *testing.T) {
+func TestLoggingLoggingManagementClientListWorkRequestLogs(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ListWorkRequestLogs")
@@ -908,9 +908,9 @@ func TestPublicLoggingClientListWorkRequestLogs(t *testing.T) {
 		t.Skip("ListWorkRequestLogs is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ListWorkRequestLogs", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListWorkRequestLogs", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ListWorkRequestLogs")
 	assert.NoError(t, err)
@@ -953,7 +953,7 @@ func TestPublicLoggingClientListWorkRequestLogs(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientListWorkRequests(t *testing.T) {
+func TestLoggingLoggingManagementClientListWorkRequests(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "ListWorkRequests")
@@ -962,9 +962,9 @@ func TestPublicLoggingClientListWorkRequests(t *testing.T) {
 		t.Skip("ListWorkRequests is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "ListWorkRequests", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListWorkRequests", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "ListWorkRequests")
 	assert.NoError(t, err)
@@ -1007,7 +1007,7 @@ func TestPublicLoggingClientListWorkRequests(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientUpdateLog(t *testing.T) {
+func TestLoggingLoggingManagementClientUpdateLog(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "UpdateLog")
@@ -1016,9 +1016,9 @@ func TestPublicLoggingClientUpdateLog(t *testing.T) {
 		t.Skip("UpdateLog is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "UpdateLog", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "UpdateLog", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "UpdateLog")
 	assert.NoError(t, err)
@@ -1051,7 +1051,7 @@ func TestPublicLoggingClientUpdateLog(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientUpdateLogGroup(t *testing.T) {
+func TestLoggingLoggingManagementClientUpdateLogGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "UpdateLogGroup")
@@ -1060,9 +1060,9 @@ func TestPublicLoggingClientUpdateLogGroup(t *testing.T) {
 		t.Skip("UpdateLogGroup is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "UpdateLogGroup", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "UpdateLogGroup", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "UpdateLogGroup")
 	assert.NoError(t, err)
@@ -1095,7 +1095,7 @@ func TestPublicLoggingClientUpdateLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestPublicLoggingClientUpdateLogRule(t *testing.T) {
+func TestLoggingLoggingManagementClientUpdateLogRule(t *testing.T) {
 	defer failTestOnPanic(t)
 
 	enabled, err := testClient.isApiEnabled("logging", "UpdateLogRule")
@@ -1104,9 +1104,9 @@ func TestPublicLoggingClientUpdateLogRule(t *testing.T) {
 		t.Skip("UpdateLogRule is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "PublicLogging", "UpdateLogRule", createPublicLoggingClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "UpdateLogRule", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
-	c := cc.(logging.PublicLoggingClient)
+	c := cc.(logging.LoggingManagementClient)
 
 	body, err := testClient.getRequests("logging", "UpdateLogRule")
 	assert.NoError(t, err)

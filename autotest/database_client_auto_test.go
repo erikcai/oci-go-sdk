@@ -7138,28 +7138,28 @@ func TestDatabaseClientRestoreDatabase(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientRotateAutonomousContainerDatabaseVaultKey(t *testing.T) {
+func TestDatabaseClientRotateAutonomousContainerDatabaseEncryptionKey(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("database", "RotateAutonomousContainerDatabaseVaultKey")
+	enabled, err := testClient.isApiEnabled("database", "RotateAutonomousContainerDatabaseEncryptionKey")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("RotateAutonomousContainerDatabaseVaultKey is not enabled by the testing service")
+		t.Skip("RotateAutonomousContainerDatabaseEncryptionKey is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("database", "Database", "RotateAutonomousContainerDatabaseVaultKey", createDatabaseClientWithProvider)
+	cc, err := testClient.createClientForOperation("database", "Database", "RotateAutonomousContainerDatabaseEncryptionKey", createDatabaseClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(database.DatabaseClient)
 
-	body, err := testClient.getRequests("database", "RotateAutonomousContainerDatabaseVaultKey")
+	body, err := testClient.getRequests("database", "RotateAutonomousContainerDatabaseEncryptionKey")
 	assert.NoError(t, err)
 
-	type RotateAutonomousContainerDatabaseVaultKeyRequestInfo struct {
+	type RotateAutonomousContainerDatabaseEncryptionKeyRequestInfo struct {
 		ContainerId string
-		Request     database.RotateAutonomousContainerDatabaseVaultKeyRequest
+		Request     database.RotateAutonomousContainerDatabaseEncryptionKeyRequest
 	}
 
-	var requests []RotateAutonomousContainerDatabaseVaultKeyRequestInfo
+	var requests []RotateAutonomousContainerDatabaseEncryptionKeyRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -7173,7 +7173,51 @@ func TestDatabaseClientRotateAutonomousContainerDatabaseVaultKey(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.RotateAutonomousContainerDatabaseVaultKey(context.Background(), req.Request)
+			response, err := c.RotateAutonomousContainerDatabaseEncryptionKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientRotateAutonomousDatabaseEncryptionKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "RotateAutonomousDatabaseEncryptionKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RotateAutonomousDatabaseEncryptionKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "RotateAutonomousDatabaseEncryptionKey", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "RotateAutonomousDatabaseEncryptionKey")
+	assert.NoError(t, err)
+
+	type RotateAutonomousDatabaseEncryptionKeyRequestInfo struct {
+		ContainerId string
+		Request     database.RotateAutonomousDatabaseEncryptionKeyRequest
+	}
+
+	var requests []RotateAutonomousDatabaseEncryptionKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RotateAutonomousDatabaseEncryptionKey(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -75,7 +75,7 @@ func (client *ResourceActionClient) ConfigurationProvider() *common.Configuratio
 	return client.config
 }
 
-// GetResourceAction Get the resource action for the OCID specified.
+// GetResourceAction Gets the resource action that corresponds to the specified OCID.
 func (client ResourceActionClient) GetResourceAction(ctx context.Context, request GetResourceActionRequest) (response GetResourceActionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -169,11 +169,11 @@ func (client ResourceActionClient) listResourceActions(ctx context.Context, requ
 	return response, err
 }
 
-// UpdateResourceAction Updates the resource action with the given OCID. We can use this API to implement the following operations
-// Postpone resourceAction
-// UnPostpone resourceAction
-// Ignore resourceAction
-// UnIgnore resourceAction
+// UpdateResourceAction Updates the resource action that corresponds to the specified OCID.
+// Use this operation to implement the following actions:
+//   * Postpone resource action
+//   * Ignore resource action
+//   * Reactivate resource action
 func (client ResourceActionClient) UpdateResourceAction(ctx context.Context, request UpdateResourceActionRequest) (response UpdateResourceActionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

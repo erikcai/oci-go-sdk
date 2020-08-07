@@ -12,7 +12,7 @@ import (
 // GetResourceActionRequest wrapper for the GetResourceAction operation
 type GetResourceActionRequest struct {
 
-	// The resource action unique OCID.
+	// The unique OCID associated with the resource action.
 	ResourceActionId *string `mandatory:"true" contributesTo:"path" name:"resourceActionId"`
 
 	// Unique Oracle-assigned identifier for the request.

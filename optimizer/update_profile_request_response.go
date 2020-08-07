@@ -12,10 +12,10 @@ import (
 // UpdateProfileRequest wrapper for the UpdateProfile operation
 type UpdateProfileRequest struct {
 
-	// The OCID of the profile.
+	// The unique OCID of the profile.
 	ProfileId *string `mandatory:"true" contributesTo:"path" name:"profileId"`
 
-	// Provides the profile information to be updated.
+	// The profile information to use for the update.
 	UpdateProfileDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

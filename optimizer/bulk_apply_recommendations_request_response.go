@@ -12,10 +12,10 @@ import (
 // BulkApplyRecommendationsRequest wrapper for the BulkApplyRecommendations operation
 type BulkApplyRecommendationsRequest struct {
 
-	// The OCID of the recommendation.
+	// The unique OCID associated with the recommendation.
 	RecommendationId *string `mandatory:"true" contributesTo:"path" name:"recommendationId"`
 
-	// Properties for optimizer resource recommendation actions in bulk.
+	// Details about bulk recommendation actions.
 	BulkApplyRecommendationsDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request.
@@ -24,7 +24,7 @@ type BulkApplyRecommendationsRequest struct {
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
 	// server error without risk of executing that same action again. Retry tokens expire after 24
-	// hours, but can be invalidated before then due to conflicting operations (e.g., if a resource
+	// hours, but can be invalidated before then due to conflicting operations (for example, if a resource
 	// has been deleted and purged from the system, then a retry of the original creation request
 	// may be rejected).
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`

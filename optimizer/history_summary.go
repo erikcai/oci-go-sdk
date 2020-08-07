@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,28 +13,29 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// HistorySummary The metadata specific to the recommendation history for all the resources inside it.
+// HistorySummary The metadata associated with the recommendation history and its related resources.
+// **Caution:** Avoid using any confidential information when you use the API to supply string values.
 type HistorySummary struct {
 
-	// The recommendation history unique OCID.
+	// The unique OCID associated with the recommendation history.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The name of the resource.
+	// The name assigned to the resource.
 	Name *string `mandatory:"true" json:"name"`
 
-	// The type of the resource.
+	// The kind of resource.
 	ResourceType *string `mandatory:"true" json:"resourceType"`
 
-	// The category unique OCID.
+	// The unique OCID associated with the category.
 	CategoryId *string `mandatory:"true" json:"categoryId"`
 
-	// The recommendation unique OCID.
+	// The unique OCID associated with the recommendation.
 	RecommendationId *string `mandatory:"true" json:"recommendationId"`
 
-	// The resource unique OCID.
+	// The unique OCID associated with the resource.
 	ResourceId *string `mandatory:"true" json:"resourceId"`
 
-	// The resource action unique OCID.
+	// The unique OCID associated with the resource action.
 	ResourceActionId *string `mandatory:"true" json:"resourceActionId"`
 
 	Action *Action `mandatory:"true" json:"action"`
@@ -42,16 +43,16 @@ type HistorySummary struct {
 	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The name of the compartment.
+	// The name assigned to the compartment.
 	CompartmentName *string `mandatory:"true" json:"compartmentName"`
 
-	// The lifecycleState of the recommendation history.
+	// The recommendation history's current state.
 	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The status of the associated resource action.
+	// The current status of the resource action.
 	Status StatusEnum `mandatory:"true" json:"status"`
 
-	// Date and time the recommendation history was created, in the format defined by RFC3339.
+	// The date and time the recommendation history was created, in the format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 }
 

@@ -19,8 +19,6 @@ import (
 type ApiSpecification struct {
 	RequestPolicies *ApiSpecificationRequestPolicies `mandatory:"false" json:"requestPolicies"`
 
-	ResponsePolicies *ApiSpecificationResponsePolicies `mandatory:"false" json:"responsePolicies"`
-
 	LoggingPolicies *ApiSpecificationLoggingPolicies `mandatory:"false" json:"loggingPolicies"`
 
 	// A list of routes that this API exposes.

@@ -12,14 +12,13 @@ import (
 // ListWorkRequestErrorsRequest wrapper for the ListWorkRequestErrors operation
 type ListWorkRequestErrorsRequest struct {
 
-	// The ID of the asynchronous request.
+	// The OCID of the work request.
 	WorkRequestId *string `mandatory:"true" contributesTo:"path" name:"workRequestId"`
 
-	// The page token representing the page at which to start retrieving results.
-	// This is usually retrieved from a previous list call.
+	// The value of the `opc-next-page` response header from the previous "List" call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return.
+	// The maximum number of items to return in a paginated "List" call.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// Unique Oracle-assigned identifier for the request.

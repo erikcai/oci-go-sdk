@@ -49,7 +49,7 @@ func NewApiGatewayClientWithOboToken(configProvider common.ConfigurationProvider
 
 func newApiGatewayClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client ApiGatewayClient, err error) {
 	client = ApiGatewayClient{BaseClient: baseClient}
-	client.BasePath = "20190501"
+	client.BasePath = ""
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -111,7 +111,7 @@ func (client ApiGatewayClient) ChangeCertificateCompartment(ctx context.Context,
 
 // changeCertificateCompartment implements the OCIOperation interface (enables retrying operations)
 func (client ApiGatewayClient) changeCertificateCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/certificates/{certificateId}/actions/changeCompartment")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20190501/certificates/{certificateId}/actions/changeCompartment")
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +163,7 @@ func (client ApiGatewayClient) CreateCertificate(ctx context.Context, request Cr
 
 // createCertificate implements the OCIOperation interface (enables retrying operations)
 func (client ApiGatewayClient) createCertificate(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/certificates")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20190501/certificates")
 	if err != nil {
 		return nil, err
 	}
@@ -210,7 +210,7 @@ func (client ApiGatewayClient) DeleteCertificate(ctx context.Context, request De
 
 // deleteCertificate implements the OCIOperation interface (enables retrying operations)
 func (client ApiGatewayClient) deleteCertificate(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/certificates/{certificateId}")
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/20190501/certificates/{certificateId}")
 	if err != nil {
 		return nil, err
 	}
@@ -257,7 +257,7 @@ func (client ApiGatewayClient) GetCertificate(ctx context.Context, request GetCe
 
 // getCertificate implements the OCIOperation interface (enables retrying operations)
 func (client ApiGatewayClient) getCertificate(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/certificates/{certificateId}")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20190501/certificates/{certificateId}")
 	if err != nil {
 		return nil, err
 	}
@@ -304,7 +304,7 @@ func (client ApiGatewayClient) ListCertificates(ctx context.Context, request Lis
 
 // listCertificates implements the OCIOperation interface (enables retrying operations)
 func (client ApiGatewayClient) listCertificates(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/certificates")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20190501/certificates")
 	if err != nil {
 		return nil, err
 	}
@@ -351,7 +351,7 @@ func (client ApiGatewayClient) UpdateCertificate(ctx context.Context, request Up
 
 // updateCertificate implements the OCIOperation interface (enables retrying operations)
 func (client ApiGatewayClient) updateCertificate(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/certificates/{certificateId}")
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/20190501/certificates/{certificateId}")
 	if err != nil {
 		return nil, err
 	}

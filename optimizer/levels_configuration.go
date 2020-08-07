@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// LevelsConfiguration An array of configuration levels for each recommendation.
+// LevelsConfiguration A list of configuration levels for each recommendation.
 type LevelsConfiguration struct {
 
-	// The array of configuration level.
+	// The array of configuration levels.
 	Items []LevelConfiguration `mandatory:"false" json:"items"`
 }
 

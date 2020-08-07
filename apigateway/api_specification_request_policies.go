@@ -23,12 +23,6 @@ type ApiSpecificationRequestPolicies struct {
 	RateLimiting *RateLimitingPolicy `mandatory:"false" json:"rateLimiting"`
 
 	Cors *CorsPolicy `mandatory:"false" json:"cors"`
-
-	// Perform these transformations on the HTTP request headers in the order listed.
-	HeaderTransformations []HeaderTransformation `mandatory:"false" json:"headerTransformations"`
-
-	// Perform these transformations on the HTTP path query parameters in the order listed.
-	QueryParameterTransformations []QueryParameterTransformation `mandatory:"false" json:"queryParameterTransformations"`
 }
 
 func (m ApiSpecificationRequestPolicies) String() string {
@@ -38,11 +32,9 @@ func (m ApiSpecificationRequestPolicies) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *ApiSpecificationRequestPolicies) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		Authentication                authenticationpolicy           `json:"authentication"`
-		RateLimiting                  *RateLimitingPolicy            `json:"rateLimiting"`
-		Cors                          *CorsPolicy                    `json:"cors"`
-		HeaderTransformations         []HeaderTransformation         `json:"headerTransformations"`
-		QueryParameterTransformations []QueryParameterTransformation `json:"queryParameterTransformations"`
+		Authentication authenticationpolicy `json:"authentication"`
+		RateLimiting   *RateLimitingPolicy  `json:"rateLimiting"`
+		Cors           *CorsPolicy          `json:"cors"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -63,16 +55,6 @@ func (m *ApiSpecificationRequestPolicies) UnmarshalJSON(data []byte) (e error) {
 	m.RateLimiting = model.RateLimiting
 
 	m.Cors = model.Cors
-
-	m.HeaderTransformations = make([]HeaderTransformation, len(model.HeaderTransformations))
-	for i, n := range model.HeaderTransformations {
-		m.HeaderTransformations[i] = n
-	}
-
-	m.QueryParameterTransformations = make([]QueryParameterTransformation, len(model.QueryParameterTransformations))
-	for i, n := range model.QueryParameterTransformations {
-		m.QueryParameterTransformations[i] = n
-	}
 
 	return
 }

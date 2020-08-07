@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,7 +13,8 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// EnrollmentStatus The metadata specific to the enrollment status.
+// EnrollmentStatus The metadata associated with the enrollment status.
+// **Caution:** Avoid using any confidential information when you use the API to supply string values.
 type EnrollmentStatus struct {
 
 	// The OCID of the enrollment status.
@@ -22,19 +23,19 @@ type EnrollmentStatus struct {
 	// The OCID of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The lifecycleState of the enrollment status.
+	// The enrollment status' current state.
 	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The optimizer enrollment status.
+	// The current Cloud Advisor enrollment status.
 	Status OptimizerEnrollmentStatusEnum `mandatory:"true" json:"status"`
 
 	// The reason for the enrollment status of the tenancy.
 	StatusReason *string `mandatory:"false" json:"statusReason"`
 
-	// Date and time the enrollment status was created, in the format defined by RFC3339.
+	// The date and time the enrollment status was created, in the format defined by RFC3339.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// Date and time the enrollment status was last updated, in the format defined by RFC3339.
+	// The date and time the enrollment status was last updated, in the format defined by RFC3339.
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 }
 

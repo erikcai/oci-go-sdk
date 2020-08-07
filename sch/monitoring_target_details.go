@@ -28,7 +28,7 @@ type MonitoringTargetDetails struct {
 
 	// The name of the metric.
 	// Example: `CpuUtilization`
-	MetricName *string `mandatory:"true" json:"metricName"`
+	Metric *string `mandatory:"true" json:"metric"`
 }
 
 func (m MonitoringTargetDetails) String() string {

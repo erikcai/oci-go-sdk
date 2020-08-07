@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,10 +13,11 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateEnrollmentStatusDetails Object used to update the enrollment status details
+// UpdateEnrollmentStatusDetails The request object for updating the enrollment status details.
+// **Caution:** Avoid using any confidential information when you use the API to supply string values.
 type UpdateEnrollmentStatusDetails struct {
 
-	// The optimizer enrollment status.
+	// The Cloud Advisor enrollment status.
 	Status OptimizerEnrollmentStatusEnum `mandatory:"true" json:"status"`
 }
 

@@ -12,10 +12,10 @@ import (
 // UpdateEnrollmentStatusRequest wrapper for the UpdateEnrollmentStatus operation
 type UpdateEnrollmentStatusRequest struct {
 
-	// The resource action unique OCID.
+	// The unique OCID associated with the enrollment status.
 	EnrollmentStatusId *string `mandatory:"true" contributesTo:"path" name:"enrollmentStatusId"`
 
-	// Provides the enrollment status information to be updated.
+	// The request object for updating the enrollment status.
 	UpdateEnrollmentStatusDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request.

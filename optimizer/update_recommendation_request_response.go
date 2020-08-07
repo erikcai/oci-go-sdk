@@ -12,10 +12,10 @@ import (
 // UpdateRecommendationRequest wrapper for the UpdateRecommendation operation
 type UpdateRecommendationRequest struct {
 
-	// The OCID of the recommendation.
+	// The unique OCID associated with the recommendation.
 	RecommendationId *string `mandatory:"true" contributesTo:"path" name:"recommendationId"`
 
-	// Provides the recommendation information to be updated.
+	// The request object for udpating the recommendation details.
 	UpdateRecommendationDetails `contributesTo:"body"`
 
 	// Unique Oracle-assigned identifier for the request.

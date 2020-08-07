@@ -7451,8 +7451,8 @@ func (client DatabaseClient) restoreDatabase(ctx context.Context, request common
 	return response, err
 }
 
-// RotateAutonomousContainerDatabaseVaultKey Creates a new version of an existing Vault service (https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
-func (client DatabaseClient) RotateAutonomousContainerDatabaseVaultKey(ctx context.Context, request RotateAutonomousContainerDatabaseVaultKeyRequest) (response RotateAutonomousContainerDatabaseVaultKeyResponse, err error) {
+// RotateAutonomousContainerDatabaseEncryptionKey Creates a new version of an existing Vault service (https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
+func (client DatabaseClient) RotateAutonomousContainerDatabaseEncryptionKey(ctx context.Context, request RotateAutonomousContainerDatabaseEncryptionKeyRequest) (response RotateAutonomousContainerDatabaseEncryptionKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -7463,34 +7463,86 @@ func (client DatabaseClient) RotateAutonomousContainerDatabaseVaultKey(ctx conte
 		request.OpcRetryToken = common.String(common.RetryToken())
 	}
 
-	ociResponse, err = common.Retry(ctx, request, client.rotateAutonomousContainerDatabaseVaultKey, policy)
+	ociResponse, err = common.Retry(ctx, request, client.rotateAutonomousContainerDatabaseEncryptionKey, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = RotateAutonomousContainerDatabaseVaultKeyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = RotateAutonomousContainerDatabaseEncryptionKeyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = RotateAutonomousContainerDatabaseVaultKeyResponse{}
+				response = RotateAutonomousContainerDatabaseEncryptionKeyResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(RotateAutonomousContainerDatabaseVaultKeyResponse); ok {
+	if convertedResponse, ok := ociResponse.(RotateAutonomousContainerDatabaseEncryptionKeyResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into RotateAutonomousContainerDatabaseVaultKeyResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into RotateAutonomousContainerDatabaseEncryptionKeyResponse")
 	}
 	return
 }
 
-// rotateAutonomousContainerDatabaseVaultKey implements the OCIOperation interface (enables retrying operations)
-func (client DatabaseClient) rotateAutonomousContainerDatabaseVaultKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+// rotateAutonomousContainerDatabaseEncryptionKey implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) rotateAutonomousContainerDatabaseEncryptionKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousContainerDatabases/{autonomousContainerDatabaseId}/actions/rotateKey")
 	if err != nil {
 		return nil, err
 	}
 
-	var response RotateAutonomousContainerDatabaseVaultKeyResponse
+	var response RotateAutonomousContainerDatabaseEncryptionKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RotateAutonomousDatabaseEncryptionKey Rotate existing AutonomousDatabase Vault service (https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
+func (client DatabaseClient) RotateAutonomousDatabaseEncryptionKey(ctx context.Context, request RotateAutonomousDatabaseEncryptionKeyRequest) (response RotateAutonomousDatabaseEncryptionKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.rotateAutonomousDatabaseEncryptionKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RotateAutonomousDatabaseEncryptionKeyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RotateAutonomousDatabaseEncryptionKeyResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RotateAutonomousDatabaseEncryptionKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RotateAutonomousDatabaseEncryptionKeyResponse")
+	}
+	return
+}
+
+// rotateAutonomousDatabaseEncryptionKey implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) rotateAutonomousDatabaseEncryptionKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousDatabases/{autonomousDatabaseId}/actions/rotateKey")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RotateAutonomousDatabaseEncryptionKeyResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

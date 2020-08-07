@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// HistoryCollection Results of a history search. Returns the HistorySummary items. Can be used to return additional data.
+// HistoryCollection A list containing the recommendation history items that match filter criteria, if any. Results contain `HistorySummary` objects.
 type HistoryCollection struct {
 
-	// The array of HistorySummary objects.
+	// A collection of history summaries.
 	Items []HistorySummary `mandatory:"true" json:"items"`
 }
 

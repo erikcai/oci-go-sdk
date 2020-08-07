@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// PublicLoggingControlplane API
+// loggingManagementControlplane API
 //
-// PublicLoggingControlplane API specification
+// loggingManagementControlplane API specification
 //
 
 package logging
@@ -29,8 +29,6 @@ type Log struct {
 	// The logType that the log object is for, custom or service.
 	LogType LogLogTypeEnum `mandatory:"true" json:"logType"`
 
-	Configuration *Configuration `mandatory:"true" json:"configuration"`
-
 	// The state of an pipeline.
 	LifecycleState LogLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
@@ -50,6 +48,8 @@ type Log struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	Configuration *Configuration `mandatory:"false" json:"configuration"`
+
 	// Time the resource was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
@@ -58,6 +58,9 @@ type Log struct {
 
 	// Log retention duration in days.
 	RetentionDuration *int `mandatory:"false" json:"retentionDuration"`
+
+	// The OCID of the compartment that the resource belongs to.
+	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 }
 
 func (m Log) String() string {

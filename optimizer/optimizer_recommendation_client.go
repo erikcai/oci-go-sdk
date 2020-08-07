@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -75,7 +75,7 @@ func (client *RecommendationClient) ConfigurationProvider() *common.Configuratio
 	return client.config
 }
 
-// BulkApplyRecommendations Apply the specified optimizer recommendations to the resources.
+// BulkApplyRecommendations Applies the specified recommendations to the resources.
 func (client RecommendationClient) BulkApplyRecommendations(ctx context.Context, request BulkApplyRecommendationsRequest) (response BulkApplyRecommendationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -127,7 +127,7 @@ func (client RecommendationClient) bulkApplyRecommendations(ctx context.Context,
 	return response, err
 }
 
-// GetRecommendation Get the recommendation for the OCID specified.
+// GetRecommendation Gets the recommendation for the specified OCID.
 func (client RecommendationClient) GetRecommendation(ctx context.Context, request GetRecommendationRequest) (response GetRecommendationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -174,7 +174,7 @@ func (client RecommendationClient) getRecommendation(ctx context.Context, reques
 	return response, err
 }
 
-// ListRecommendations Included a list of optimizer recommendations that are currently supported in the given category.
+// ListRecommendations Lists the Cloud Advisor recommendations that are currently supported in the specified category.
 func (client RecommendationClient) ListRecommendations(ctx context.Context, request ListRecommendationsRequest) (response ListRecommendationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -221,11 +221,11 @@ func (client RecommendationClient) listRecommendations(ctx context.Context, requ
 	return response, err
 }
 
-// UpdateRecommendation Updates the recommendation with the given OCID. We can use this API to implement the following operations
-// Postpone recommendation
-// UnPostpone recommendation
-// Ignore recommendation
-// UnIgnore recommendation
+// UpdateRecommendation Updates the recommendation that corresponds to the specified OCID.
+// Use this operation to implement the following actions:
+//   * Postpone recommendation
+//   * Dismiss recommendation
+//   * Reactivate recommendation
 func (client RecommendationClient) UpdateRecommendation(ctx context.Context, request UpdateRecommendationRequest) (response UpdateRecommendationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

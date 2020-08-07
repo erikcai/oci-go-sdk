@@ -15,13 +15,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ApiSpecificationResponsePolicies Global behavior applied to all responses sent by the API.
-type ApiSpecificationResponsePolicies struct {
+// SetHeaderPolicy Set HTTP headers as they pass through the gateway.
+type SetHeaderPolicy struct {
 
-	// Perform these transformations on the HTTP response headers in the order listed.
-	HeaderTransformations []HeaderTransformation `mandatory:"false" json:"headerTransformations"`
+	// The list of headers.
+	Items []SetHeaderPolicyItem `mandatory:"true" json:"items"`
 }
 
-func (m ApiSpecificationResponsePolicies) String() string {
+func (m SetHeaderPolicy) String() string {
 	return common.PointerString(m)
 }

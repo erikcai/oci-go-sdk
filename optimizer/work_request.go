@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OCI Optimizer API
+// Cloud Advisor API
 //
-// The API for the OCI Optimizer
+// APIs for managing Cloud Advisor. Cloud Advisor provides recommendations that help you maximize cost savings and improve the security posture of your tenancy.
 //
 
 package optimizer
@@ -13,39 +13,34 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// WorkRequest A description of workrequest status
+// WorkRequest The asynchronous API request does not take effect immediately. This request spawns an asynchronous workflow to fulfill the request. WorkRequest objects provide visibility for in-progress workflows.
 type WorkRequest struct {
 
-	// Type of the work request
+	// An enum-like description of the type of work the work request is doing.
 	OperationType OperationTypeEnum `mandatory:"true" json:"operationType"`
 
-	// Status of current work request.
+	// The current status of the work request.
 	Status OperationStatusEnum `mandatory:"true" json:"status"`
 
-	// The id of the work request.
+	// The OCID of the work request.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The ocid of the compartment that contains the work request. Work requests should be scoped to
-	// the same compartment as the resource the work request affects. If the work request affects multiple resources,
-	// and those resources are not in the same compartment, it is up to the service team to pick the primary
-	// resource whose compartment should be used
+	// The OCID of the compartment that contains the work request.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The resources affected by this work request.
+	// The resources this work request affects.
 	Resources []WorkRequestResource `mandatory:"true" json:"resources"`
 
-	// Percentage of the request completed.
+	// How much progress the operation has made.
 	PercentComplete *float32 `mandatory:"true" json:"percentComplete"`
 
-	// The date and time the request was created, as described in
-	// RFC 3339 (https://tools.ietf.org/rfc/rfc3339), section 14.29.
+	// Date and time the work was accepted, in the format defined by RFC3339. Example: `2016-08-25T21:10:29.600Z`
 	TimeAccepted *common.SDKTime `mandatory:"true" json:"timeAccepted"`
 
-	// The date and time the request was started, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339),
-	// section 14.29.
+	// Date and time the work started, in the format defined by RFC3339. Example: `2016-08-25T21:10:29.600Z`
 	TimeStarted *common.SDKTime `mandatory:"false" json:"timeStarted"`
 
-	// The date and time the object was finished, as described in RFC 3339 (https://tools.ietf.org/rfc/rfc3339).
+	// Date and time the work completed, in the format defined by RFC3339. Example: `2016-08-25T21:10:29.600Z`
 	TimeFinished *common.SDKTime `mandatory:"false" json:"timeFinished"`
 }
 

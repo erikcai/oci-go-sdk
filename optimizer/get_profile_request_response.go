@@ -12,7 +12,7 @@ import (
 // GetProfileRequest wrapper for the GetProfile operation
 type GetProfileRequest struct {
 
-	// The OCID of the profile.
+	// The unique OCID of the profile.
 	ProfileId *string `mandatory:"true" contributesTo:"path" name:"profileId"`
 
 	// Unique Oracle-assigned identifier for the request.
