@@ -40,6 +40,9 @@ type UpdateZoneRecordsRequest struct {
 	// Specifies to operate only on resources that have a matching DNS scope.
 	Scope UpdateZoneRecordsScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
+	// The OCID of the view the resource is associated with.
+	ViewId *string `mandatory:"false" contributesTo:"query" name:"viewId"`
+
 	// The OCID of the compartment the resource belongs to.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
@@ -104,11 +107,13 @@ type UpdateZoneRecordsScopeEnum string
 
 // Set of constants representing the allowable values for UpdateZoneRecordsScopeEnum
 const (
-	UpdateZoneRecordsScopeGlobal UpdateZoneRecordsScopeEnum = "GLOBAL"
+	UpdateZoneRecordsScopeGlobal  UpdateZoneRecordsScopeEnum = "GLOBAL"
+	UpdateZoneRecordsScopePrivate UpdateZoneRecordsScopeEnum = "PRIVATE"
 )
 
 var mappingUpdateZoneRecordsScope = map[string]UpdateZoneRecordsScopeEnum{
-	"GLOBAL": UpdateZoneRecordsScopeGlobal,
+	"GLOBAL":  UpdateZoneRecordsScopeGlobal,
+	"PRIVATE": UpdateZoneRecordsScopePrivate,
 }
 
 // GetUpdateZoneRecordsScopeEnumValues Enumerates the set of values for UpdateZoneRecordsScopeEnum

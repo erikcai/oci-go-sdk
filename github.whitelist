@@ -74,3 +74,4 @@
 ^optimizer/
 ^bastions/
 ^managementagent/
+^computeinstanceagent/

@@ -51,6 +51,9 @@ type GetDomainRecordsRequest struct {
 	// Specifies to operate only on resources that have a matching DNS scope.
 	Scope GetDomainRecordsScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
+	// The OCID of the view the resource is associated with.
+	ViewId *string `mandatory:"false" contributesTo:"query" name:"viewId"`
+
 	// The field by which to sort records.
 	SortBy GetDomainRecordsSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
@@ -121,11 +124,13 @@ type GetDomainRecordsScopeEnum string
 
 // Set of constants representing the allowable values for GetDomainRecordsScopeEnum
 const (
-	GetDomainRecordsScopeGlobal GetDomainRecordsScopeEnum = "GLOBAL"
+	GetDomainRecordsScopeGlobal  GetDomainRecordsScopeEnum = "GLOBAL"
+	GetDomainRecordsScopePrivate GetDomainRecordsScopeEnum = "PRIVATE"
 )
 
 var mappingGetDomainRecordsScope = map[string]GetDomainRecordsScopeEnum{
-	"GLOBAL": GetDomainRecordsScopeGlobal,
+	"GLOBAL":  GetDomainRecordsScopeGlobal,
+	"PRIVATE": GetDomainRecordsScopePrivate,
 }
 
 // GetGetDomainRecordsScopeEnumValues Enumerates the set of values for GetDomainRecordsScopeEnum

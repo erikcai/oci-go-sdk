@@ -19,7 +19,7 @@ import (
 type SupportedLevels struct {
 
 	// The list of supported levels.
-	Items []string `mandatory:"false" json:"items"`
+	Items []SupportedLevel `mandatory:"false" json:"items"`
 }
 
 func (m SupportedLevels) String() string {

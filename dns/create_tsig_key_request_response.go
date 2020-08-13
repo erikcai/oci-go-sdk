@@ -83,11 +83,13 @@ type CreateTsigKeyScopeEnum string
 
 // Set of constants representing the allowable values for CreateTsigKeyScopeEnum
 const (
-	CreateTsigKeyScopeGlobal CreateTsigKeyScopeEnum = "GLOBAL"
+	CreateTsigKeyScopeGlobal  CreateTsigKeyScopeEnum = "GLOBAL"
+	CreateTsigKeyScopePrivate CreateTsigKeyScopeEnum = "PRIVATE"
 )
 
 var mappingCreateTsigKeyScope = map[string]CreateTsigKeyScopeEnum{
-	"GLOBAL": CreateTsigKeyScopeGlobal,
+	"GLOBAL":  CreateTsigKeyScopeGlobal,
+	"PRIVATE": CreateTsigKeyScopePrivate,
 }
 
 // GetCreateTsigKeyScopeEnumValues Enumerates the set of values for CreateTsigKeyScopeEnum

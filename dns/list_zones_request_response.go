@@ -58,6 +58,9 @@ type ListZonesRequest struct {
 	// Specifies to operate only on resources that have a matching DNS scope.
 	Scope ListZonesScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
+	// The OCID of the view the resource is associated with.
+	ViewId *string `mandatory:"false" contributesTo:"query" name:"viewId"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -214,11 +217,13 @@ type ListZonesScopeEnum string
 
 // Set of constants representing the allowable values for ListZonesScopeEnum
 const (
-	ListZonesScopeGlobal ListZonesScopeEnum = "GLOBAL"
+	ListZonesScopeGlobal  ListZonesScopeEnum = "GLOBAL"
+	ListZonesScopePrivate ListZonesScopeEnum = "PRIVATE"
 )
 
 var mappingListZonesScope = map[string]ListZonesScopeEnum{
-	"GLOBAL": ListZonesScopeGlobal,
+	"GLOBAL":  ListZonesScopeGlobal,
+	"PRIVATE": ListZonesScopePrivate,
 }
 
 // GetListZonesScopeEnumValues Enumerates the set of values for ListZonesScopeEnum

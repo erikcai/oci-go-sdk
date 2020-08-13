@@ -14,13 +14,13 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ExportedKeyData Response of export Key query
+// ExportedKeyData The response to a request to export key material.
 type ExportedKeyData struct {
 
 	// The OCID of the key version.
 	KeyVersionId *string `mandatory:"true" json:"keyVersionId"`
 
-	// The OCID of the key associated with this key version.
+	// The OCID of the master encryption key associated with this key version.
 	KeyId *string `mandatory:"true" json:"keyId"`
 
 	// The date and time this key version was created, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -29,12 +29,16 @@ type ExportedKeyData struct {
 	// The OCID of the vault that contains this key version.
 	VaultId *string `mandatory:"true" json:"vaultId"`
 
-	// The wrapped/encrypted key in Base64 format. It is encrypted using RSA wrapped key based on algorithm provided in request.
+	// The base64-encoded exported key material, which is encrypted by using the public RSA wrapping key specified in the export request.
 	EncryptedKey *string `mandatory:"true" json:"encryptedKey"`
 
-	// Encryption algorithm to be used to encrypt the software key. RSA_OAEP_AES_SHA256 will generate a temporary AES key
-	// which is wrapped by RSA key provided in input. And the AES key would be used to wrap the actual software key.
-	// In RSA_OAEP_SHA256, the software key will be wrapped using RSA key provided in input.
+	// The encryption algorithm to use to encrypt exportable key material from a key that persists on the server (as opposed to a key that
+	// persists on a hardware security module and, therefore, cannot be exported). Specifying `RSA_OAEP_AES_SHA256` invokes the RSA AES key
+	// wrap mechanism, which generates a temporary AES key. The temporary AES key is wrapped by the RSA public wrapping key provided along
+	// with the request, creating a wrapped temporary AES key. The temporary AES key is also used to wrap the exportable key material. The
+	// wrapped temporary AES key and the wrapped exportable key material are concatenated, producing concatenated blob output that jointly
+	// represents them. Specifying `RSA_OAEP_SHA256` means that the exportable key material is wrapped by the RSA public wrapping key provided
+	// along with the request.
 	Algorithm ExportedKeyDataAlgorithmEnum `mandatory:"true" json:"algorithm"`
 }
 

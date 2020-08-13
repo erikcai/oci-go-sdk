@@ -27,7 +27,7 @@ type WrappingKey struct {
 	// Example: `ENABLED`
 	LifecycleState WrappingKeyLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The public key in PEM format to encrypt the key material before importing it with ImportKey/ImportKeyVersion.
+	// The public key, in PEM format, to use to wrap the key material before importing it.
 	PublicKey *string `mandatory:"true" json:"publicKey"`
 
 	// The date and time the key was created, expressed in RFC 3339 (https://tools.ietf.org/html/rfc3339) timestamp format.

@@ -111,6 +111,50 @@ func TestFileStorageClientChangeMountTargetCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientChangeOutboundConnectorCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "ChangeOutboundConnectorCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeOutboundConnectorCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "ChangeOutboundConnectorCompartment", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "ChangeOutboundConnectorCompartment")
+	assert.NoError(t, err)
+
+	type ChangeOutboundConnectorCompartmentRequestInfo struct {
+		ContainerId string
+		Request     filestorage.ChangeOutboundConnectorCompartmentRequest
+	}
+
+	var requests []ChangeOutboundConnectorCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeOutboundConnectorCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientCreateExport(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -235,6 +279,61 @@ func TestFileStorageClientCreateMountTarget(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateMountTarget(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientCreateOutboundConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "CreateOutboundConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateOutboundConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "CreateOutboundConnector", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "CreateOutboundConnector")
+	assert.NoError(t, err)
+
+	type CreateOutboundConnectorRequestInfo struct {
+		ContainerId string
+		Request     filestorage.CreateOutboundConnectorRequest
+	}
+
+	var requests []CreateOutboundConnectorRequestInfo
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
+	assert.NoError(t, err)
+	requests = make([]CreateOutboundConnectorRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateOutboundConnectorDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "connectorType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"LDAPBIND": &filestorage.CreateLdapBindAccountDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateOutboundConnector(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -419,6 +518,50 @@ func TestFileStorageClientDeleteMountTarget(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientDeleteOutboundConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "DeleteOutboundConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteOutboundConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "DeleteOutboundConnector", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "DeleteOutboundConnector")
+	assert.NoError(t, err)
+
+	type DeleteOutboundConnectorRequestInfo struct {
+		ContainerId string
+		Request     filestorage.DeleteOutboundConnectorRequest
+	}
+
+	var requests []DeleteOutboundConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteOutboundConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientDeleteSnapshot(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -455,6 +598,50 @@ func TestFileStorageClientDeleteSnapshot(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteSnapshot(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientDiscardKerberosKeytab(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "DiscardKerberosKeytab")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DiscardKerberosKeytab is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "DiscardKerberosKeytab", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "DiscardKerberosKeytab")
+	assert.NoError(t, err)
+
+	type DiscardKerberosKeytabRequestInfo struct {
+		ContainerId string
+		Request     filestorage.DiscardKerberosKeytabRequest
+	}
+
+	var requests []DiscardKerberosKeytabRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DiscardKerberosKeytab(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -631,6 +818,50 @@ func TestFileStorageClientGetMountTarget(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetMountTarget(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientGetOutboundConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "GetOutboundConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetOutboundConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "GetOutboundConnector", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "GetOutboundConnector")
+	assert.NoError(t, err)
+
+	type GetOutboundConnectorRequestInfo struct {
+		ContainerId string
+		Request     filestorage.GetOutboundConnectorRequest
+	}
+
+	var requests []GetOutboundConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetOutboundConnector(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -899,6 +1130,60 @@ func TestFileStorageClientListMountTargets(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientListOutboundConnectors(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "ListOutboundConnectors")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListOutboundConnectors is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "ListOutboundConnectors", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "ListOutboundConnectors")
+	assert.NoError(t, err)
+
+	type ListOutboundConnectorsRequestInfo struct {
+		ContainerId string
+		Request     filestorage.ListOutboundConnectorsRequest
+	}
+
+	var requests []ListOutboundConnectorsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*filestorage.ListOutboundConnectorsRequest)
+				return c.ListOutboundConnectors(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]filestorage.ListOutboundConnectorsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(filestorage.ListOutboundConnectorsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientListSnapshots(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -946,6 +1231,94 @@ func TestFileStorageClientListSnapshots(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientModifyRootdirAttributes(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "ModifyRootdirAttributes")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ModifyRootdirAttributes is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "ModifyRootdirAttributes", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "ModifyRootdirAttributes")
+	assert.NoError(t, err)
+
+	type ModifyRootdirAttributesRequestInfo struct {
+		ContainerId string
+		Request     filestorage.ModifyRootdirAttributesRequest
+	}
+
+	var requests []ModifyRootdirAttributesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ModifyRootdirAttributes(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientTestOutboundConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "TestOutboundConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("TestOutboundConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "TestOutboundConnector", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "TestOutboundConnector")
+	assert.NoError(t, err)
+
+	type TestOutboundConnectorRequestInfo struct {
+		ContainerId string
+		Request     filestorage.TestOutboundConnectorRequest
+	}
+
+	var requests []TestOutboundConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.TestOutboundConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -1129,6 +1502,50 @@ func TestFileStorageClientUpdateMountTarget(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientUpdateOutboundConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "UpdateOutboundConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateOutboundConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "UpdateOutboundConnector", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "UpdateOutboundConnector")
+	assert.NoError(t, err)
+
+	type UpdateOutboundConnectorRequestInfo struct {
+		ContainerId string
+		Request     filestorage.UpdateOutboundConnectorRequest
+	}
+
+	var requests []UpdateOutboundConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateOutboundConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
 func TestFileStorageClientUpdateSnapshot(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1165,6 +1582,50 @@ func TestFileStorageClientUpdateSnapshot(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateSnapshot(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_ffsw_us_grp@oracle.com" jiraProject="FFSW" opsJiraProject="FSS"
+func TestFileStorageClientUploadKerberosKeytab(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("filestorage", "UploadKerberosKeytab")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UploadKerberosKeytab is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("filestorage", "FileStorage", "UploadKerberosKeytab", createFileStorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(filestorage.FileStorageClient)
+
+	body, err := testClient.getRequests("filestorage", "UploadKerberosKeytab")
+	assert.NoError(t, err)
+
+	type UploadKerberosKeytabRequestInfo struct {
+		ContainerId string
+		Request     filestorage.UploadKerberosKeytabRequest
+	}
+
+	var requests []UploadKerberosKeytabRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UploadKerberosKeytab(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

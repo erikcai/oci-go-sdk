@@ -33,6 +33,9 @@ type CloudVmClusterSummary struct {
 	// This restriction applies to both the client subnet and backup subnet.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
+	// The model name of the cloud VM cluster.
+	Shape *string `mandatory:"true" json:"shape"`
+
 	// The current state of the cloud VM cluster.
 	LifecycleState CloudVmClusterSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 

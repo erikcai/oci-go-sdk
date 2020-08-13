@@ -57,11 +57,18 @@ type MountTarget struct {
 	// mount target.
 	ExportSetId *string `mandatory:"false" json:"exportSetId"`
 
+	// Describes whether Idmapping is turned on or off. If on, describes method used to perform ID Mapping
+	IdmapType MountTargetIdmapTypeEnum `mandatory:"false" json:"idmapType,omitempty"`
+
+	LdapIdmap *LdapIdmap `mandatory:"false" json:"ldapIdmap"`
+
 	// A list of Network Security Group OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount target.
 	// A maximum of 5 is allowed.
 	// Setting this to an empty array after the list is created removes the mount target from all NSGs.
 	// For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
+
+	Kerberos *Kerberos `mandatory:"false" json:"kerberos"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair
 	//  with no predefined name, type, or namespace.
@@ -103,6 +110,29 @@ var mappingMountTargetLifecycleState = map[string]MountTargetLifecycleStateEnum{
 func GetMountTargetLifecycleStateEnumValues() []MountTargetLifecycleStateEnum {
 	values := make([]MountTargetLifecycleStateEnum, 0)
 	for _, v := range mappingMountTargetLifecycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// MountTargetIdmapTypeEnum Enum with underlying type: string
+type MountTargetIdmapTypeEnum string
+
+// Set of constants representing the allowable values for MountTargetIdmapTypeEnum
+const (
+	MountTargetIdmapTypeLdap MountTargetIdmapTypeEnum = "LDAP"
+	MountTargetIdmapTypeNone MountTargetIdmapTypeEnum = "NONE"
+)
+
+var mappingMountTargetIdmapType = map[string]MountTargetIdmapTypeEnum{
+	"LDAP": MountTargetIdmapTypeLdap,
+	"NONE": MountTargetIdmapTypeNone,
+}
+
+// GetMountTargetIdmapTypeEnumValues Enumerates the set of values for MountTargetIdmapTypeEnum
+func GetMountTargetIdmapTypeEnumValues() []MountTargetIdmapTypeEnum {
+	values := make([]MountTargetIdmapTypeEnum, 0)
+	for _, v := range mappingMountTargetIdmapType {
 		values = append(values, v)
 	}
 	return values

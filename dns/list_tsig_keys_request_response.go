@@ -143,11 +143,13 @@ type ListTsigKeysScopeEnum string
 
 // Set of constants representing the allowable values for ListTsigKeysScopeEnum
 const (
-	ListTsigKeysScopeGlobal ListTsigKeysScopeEnum = "GLOBAL"
+	ListTsigKeysScopeGlobal  ListTsigKeysScopeEnum = "GLOBAL"
+	ListTsigKeysScopePrivate ListTsigKeysScopeEnum = "PRIVATE"
 )
 
 var mappingListTsigKeysScope = map[string]ListTsigKeysScopeEnum{
-	"GLOBAL": ListTsigKeysScopeGlobal,
+	"GLOBAL":  ListTsigKeysScopeGlobal,
+	"PRIVATE": ListTsigKeysScopePrivate,
 }
 
 // GetListTsigKeysScopeEnumValues Enumerates the set of values for ListTsigKeysScopeEnum

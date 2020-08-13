@@ -49,7 +49,7 @@ func NewDeploymentClientWithOboToken(configProvider common.ConfigurationProvider
 
 func newDeploymentClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client DeploymentClient, err error) {
 	client = DeploymentClient{BaseClient: baseClient}
-	client.BasePath = ""
+	client.BasePath = "20190501"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -111,7 +111,7 @@ func (client DeploymentClient) ChangeDeploymentCompartment(ctx context.Context, 
 
 // changeDeploymentCompartment implements the OCIOperation interface (enables retrying operations)
 func (client DeploymentClient) changeDeploymentCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20190501/deployments/{deploymentId}/actions/changeCompartment")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/deployments/{deploymentId}/actions/changeCompartment")
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +163,7 @@ func (client DeploymentClient) CreateDeployment(ctx context.Context, request Cre
 
 // createDeployment implements the OCIOperation interface (enables retrying operations)
 func (client DeploymentClient) createDeployment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/20190501/deployments")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/deployments")
 	if err != nil {
 		return nil, err
 	}
@@ -210,7 +210,7 @@ func (client DeploymentClient) DeleteDeployment(ctx context.Context, request Del
 
 // deleteDeployment implements the OCIOperation interface (enables retrying operations)
 func (client DeploymentClient) deleteDeployment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/20190501/deployments/{deploymentId}")
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/deployments/{deploymentId}")
 	if err != nil {
 		return nil, err
 	}
@@ -257,7 +257,7 @@ func (client DeploymentClient) GetDeployment(ctx context.Context, request GetDep
 
 // getDeployment implements the OCIOperation interface (enables retrying operations)
 func (client DeploymentClient) getDeployment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20190501/deployments/{deploymentId}")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/deployments/{deploymentId}")
 	if err != nil {
 		return nil, err
 	}
@@ -304,7 +304,7 @@ func (client DeploymentClient) ListDeployments(ctx context.Context, request List
 
 // listDeployments implements the OCIOperation interface (enables retrying operations)
 func (client DeploymentClient) listDeployments(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/20190501/deployments")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/deployments")
 	if err != nil {
 		return nil, err
 	}
@@ -351,7 +351,7 @@ func (client DeploymentClient) UpdateDeployment(ctx context.Context, request Upd
 
 // updateDeployment implements the OCIOperation interface (enables retrying operations)
 func (client DeploymentClient) updateDeployment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/20190501/deployments/{deploymentId}")
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/deployments/{deploymentId}")
 	if err != nil {
 		return nil, err
 	}

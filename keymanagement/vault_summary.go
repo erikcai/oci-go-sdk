@@ -21,8 +21,8 @@ type VaultSummary struct {
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The service endpoint to perform cryptographic operations against. Cryptographic operations include
-	// Encrypt (https://docs.cloud.oracle.com/api/#/en/key/release/EncryptedData/Encrypt), Decrypt (https://docs.cloud.oracle.com/api/#/en/key/release/DecryptedData/Decrypt),
-	// and GenerateDataEncryptionKey (https://docs.cloud.oracle.com/api/#/en/key/release/GeneratedKey/GenerateDataEncryptionKey) operations.
+	// Encrypt (https://docs.cloud.oracle.com/api/#/en/key/latest/EncryptedData/Encrypt), Decrypt (https://docs.cloud.oracle.com/api/#/en/key/latest/DecryptedData/Decrypt),
+	// and GenerateDataEncryptionKey (https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey) operations.
 	CryptoEndpoint *string `mandatory:"true" json:"cryptoEndpoint"`
 
 	// A user-friendly name for a vault. It does not have to be unique, and it is changeable.

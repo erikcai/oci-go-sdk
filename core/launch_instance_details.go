@@ -113,6 +113,7 @@ type LaunchInstanceDetails struct {
 
 	InstanceOptions *InstanceOptions `mandatory:"false" json:"instanceOptions"`
 
+	// Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
 	AvailabilityConfig *LaunchInstanceAvailabilityConfigDetails `mandatory:"false" json:"availabilityConfig"`
 
 	// Custom metadata key/value pairs that you provide, such as the SSH public key

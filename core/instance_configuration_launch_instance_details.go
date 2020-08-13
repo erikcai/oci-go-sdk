@@ -166,6 +166,7 @@ type InstanceConfigurationLaunchInstanceDetails struct {
 
 	InstanceOptions *InstanceConfigurationInstanceOptions `mandatory:"false" json:"instanceOptions"`
 
+	// Options for defining the availabiity of a VM instance after a maintenance event that impacts the underlying hardware.
 	AvailabilityConfig *InstanceConfigurationAvailabilityConfig `mandatory:"false" json:"availabilityConfig"`
 }
 

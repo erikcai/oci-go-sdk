@@ -46,6 +46,9 @@ type UpdateRRSetRequest struct {
 	// Specifies to operate only on resources that have a matching DNS scope.
 	Scope UpdateRRSetScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
+	// The OCID of the view the resource is associated with.
+	ViewId *string `mandatory:"false" contributesTo:"query" name:"viewId"`
+
 	// The OCID of the compartment the resource belongs to.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
@@ -110,11 +113,13 @@ type UpdateRRSetScopeEnum string
 
 // Set of constants representing the allowable values for UpdateRRSetScopeEnum
 const (
-	UpdateRRSetScopeGlobal UpdateRRSetScopeEnum = "GLOBAL"
+	UpdateRRSetScopeGlobal  UpdateRRSetScopeEnum = "GLOBAL"
+	UpdateRRSetScopePrivate UpdateRRSetScopeEnum = "PRIVATE"
 )
 
 var mappingUpdateRRSetScope = map[string]UpdateRRSetScopeEnum{
-	"GLOBAL": UpdateRRSetScopeGlobal,
+	"GLOBAL":  UpdateRRSetScopeGlobal,
+	"PRIVATE": UpdateRRSetScopePrivate,
 }
 
 // GetUpdateRRSetScopeEnumValues Enumerates the set of values for UpdateRRSetScopeEnum

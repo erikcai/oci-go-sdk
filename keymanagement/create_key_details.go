@@ -36,11 +36,11 @@ type CreateKeyDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Protection mode indicates how the key is persisted and how cryptographic operations are performed using the same.
-	// Using 'HSM' indicates that the key is persisted in the 'HSM' and all cryptographic operations are performed inside
-	// the 'HSM'. Using 'SOFTWARE' indicates that the key is securely persisted in the service layer with the root key persisted
-	// in the 'HSM' and all operations using these keys are performed at the service layer. Default protection mode is 'HSM'.
-	// Once a protection mode has been selected, it cannot be modified.
+	// The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
+	// A protection mode of `HSM` means that the key persists on a hardware security module (HSM) and all cryptographic operations are performed inside
+	// the HSM. A protection mode of `SOFTWARE` means that the key persists on the server, protected by the vault's RSA wrapping key which persists
+	// on the HSM. All cryptographic operations that use a key with a protection mode of `SOFTWARE` are performed on the server. By default,
+	// a key's protection mode is set to `HSM`. You can't change a key's protection mode after the key is created or imported.
 	ProtectionMode CreateKeyDetailsProtectionModeEnum `mandatory:"false" json:"protectionMode,omitempty"`
 }
 

@@ -46,6 +46,9 @@ type DeleteRRSetRequest struct {
 	// Specifies to operate only on resources that have a matching DNS scope.
 	Scope DeleteRRSetScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
+	// The OCID of the view the resource is associated with.
+	ViewId *string `mandatory:"false" contributesTo:"query" name:"viewId"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -91,11 +94,13 @@ type DeleteRRSetScopeEnum string
 
 // Set of constants representing the allowable values for DeleteRRSetScopeEnum
 const (
-	DeleteRRSetScopeGlobal DeleteRRSetScopeEnum = "GLOBAL"
+	DeleteRRSetScopeGlobal  DeleteRRSetScopeEnum = "GLOBAL"
+	DeleteRRSetScopePrivate DeleteRRSetScopeEnum = "PRIVATE"
 )
 
 var mappingDeleteRRSetScope = map[string]DeleteRRSetScopeEnum{
-	"GLOBAL": DeleteRRSetScopeGlobal,
+	"GLOBAL":  DeleteRRSetScopeGlobal,
+	"PRIVATE": DeleteRRSetScopePrivate,
 }
 
 // GetDeleteRRSetScopeEnumValues Enumerates the set of values for DeleteRRSetScopeEnum

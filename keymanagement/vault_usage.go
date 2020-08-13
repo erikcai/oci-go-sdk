@@ -17,16 +17,16 @@ import (
 // VaultUsage The representation of VaultUsage
 type VaultUsage struct {
 
-	// The number of 'HSM' keys in this vault, across all compartments, excluding keys in a `DELETED` state.
+	// The number of keys in this vault that persist on a hardware security module (HSM), across all compartments, excluding keys in a `DELETED` state.
 	KeyCount *int `mandatory:"true" json:"keyCount"`
 
-	// The number of 'HSM' key versions in this vault, across all compartments, excluding key versions in a `DELETED` state.
+	// The number of key versions in this vault that persist on a hardware security module (HSM), across all compartments, excluding key versions in a `DELETED` state.
 	KeyVersionCount *int `mandatory:"true" json:"keyVersionCount"`
 
-	// The number of 'SOFTWARE' keys in this vault, across all compartments, excluding keys in a `DELETED` state.
+	// The number of keys in this vault that persist on the server, across all compartments, excluding keys in a `DELETED` state.
 	SoftwareKeyCount *int `mandatory:"false" json:"softwareKeyCount"`
 
-	// The number of 'SOFTWARE' key versions in this vault, across all compartments, excluding key versions in a `DELETED` state.
+	// The number of key versions in this vault that persist on the server, across all compartments, excluding key versions in a `DELETED` state.
 	SoftwareKeyVersionCount *int `mandatory:"false" json:"softwareKeyVersionCount"`
 }
 

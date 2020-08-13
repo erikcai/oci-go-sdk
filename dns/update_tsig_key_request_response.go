@@ -93,11 +93,13 @@ type UpdateTsigKeyScopeEnum string
 
 // Set of constants representing the allowable values for UpdateTsigKeyScopeEnum
 const (
-	UpdateTsigKeyScopeGlobal UpdateTsigKeyScopeEnum = "GLOBAL"
+	UpdateTsigKeyScopeGlobal  UpdateTsigKeyScopeEnum = "GLOBAL"
+	UpdateTsigKeyScopePrivate UpdateTsigKeyScopeEnum = "PRIVATE"
 )
 
 var mappingUpdateTsigKeyScope = map[string]UpdateTsigKeyScopeEnum{
-	"GLOBAL": UpdateTsigKeyScopeGlobal,
+	"GLOBAL":  UpdateTsigKeyScopeGlobal,
+	"PRIVATE": UpdateTsigKeyScopePrivate,
 }
 
 // GetUpdateTsigKeyScopeEnumValues Enumerates the set of values for UpdateTsigKeyScopeEnum

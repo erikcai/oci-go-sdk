@@ -86,11 +86,13 @@ type DeleteTsigKeyScopeEnum string
 
 // Set of constants representing the allowable values for DeleteTsigKeyScopeEnum
 const (
-	DeleteTsigKeyScopeGlobal DeleteTsigKeyScopeEnum = "GLOBAL"
+	DeleteTsigKeyScopeGlobal  DeleteTsigKeyScopeEnum = "GLOBAL"
+	DeleteTsigKeyScopePrivate DeleteTsigKeyScopeEnum = "PRIVATE"
 )
 
 var mappingDeleteTsigKeyScope = map[string]DeleteTsigKeyScopeEnum{
-	"GLOBAL": DeleteTsigKeyScopeGlobal,
+	"GLOBAL":  DeleteTsigKeyScopeGlobal,
+	"PRIVATE": DeleteTsigKeyScopePrivate,
 }
 
 // GetDeleteTsigKeyScopeEnumValues Enumerates the set of values for DeleteTsigKeyScopeEnum

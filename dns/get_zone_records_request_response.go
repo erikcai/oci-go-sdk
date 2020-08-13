@@ -65,6 +65,9 @@ type GetZoneRecordsRequest struct {
 	// Specifies to operate only on resources that have a matching DNS scope.
 	Scope GetZoneRecordsScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
+	// The OCID of the view the resource is associated with.
+	ViewId *string `mandatory:"false" contributesTo:"query" name:"viewId"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
@@ -174,11 +177,13 @@ type GetZoneRecordsScopeEnum string
 
 // Set of constants representing the allowable values for GetZoneRecordsScopeEnum
 const (
-	GetZoneRecordsScopeGlobal GetZoneRecordsScopeEnum = "GLOBAL"
+	GetZoneRecordsScopeGlobal  GetZoneRecordsScopeEnum = "GLOBAL"
+	GetZoneRecordsScopePrivate GetZoneRecordsScopeEnum = "PRIVATE"
 )
 
 var mappingGetZoneRecordsScope = map[string]GetZoneRecordsScopeEnum{
-	"GLOBAL": GetZoneRecordsScopeGlobal,
+	"GLOBAL":  GetZoneRecordsScopeGlobal,
+	"PRIVATE": GetZoneRecordsScopePrivate,
 }
 
 // GetGetZoneRecordsScopeEnumValues Enumerates the set of values for GetZoneRecordsScopeEnum

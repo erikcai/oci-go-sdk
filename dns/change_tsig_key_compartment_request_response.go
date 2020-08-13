@@ -86,11 +86,13 @@ type ChangeTsigKeyCompartmentScopeEnum string
 
 // Set of constants representing the allowable values for ChangeTsigKeyCompartmentScopeEnum
 const (
-	ChangeTsigKeyCompartmentScopeGlobal ChangeTsigKeyCompartmentScopeEnum = "GLOBAL"
+	ChangeTsigKeyCompartmentScopeGlobal  ChangeTsigKeyCompartmentScopeEnum = "GLOBAL"
+	ChangeTsigKeyCompartmentScopePrivate ChangeTsigKeyCompartmentScopeEnum = "PRIVATE"
 )
 
 var mappingChangeTsigKeyCompartmentScope = map[string]ChangeTsigKeyCompartmentScopeEnum{
-	"GLOBAL": ChangeTsigKeyCompartmentScopeGlobal,
+	"GLOBAL":  ChangeTsigKeyCompartmentScopeGlobal,
+	"PRIVATE": ChangeTsigKeyCompartmentScopePrivate,
 }
 
 // GetChangeTsigKeyCompartmentScopeEnumValues Enumerates the set of values for ChangeTsigKeyCompartmentScopeEnum

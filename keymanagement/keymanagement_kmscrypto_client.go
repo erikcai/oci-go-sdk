@@ -69,7 +69,7 @@ func (client *KmsCryptoClient) ConfigurationProvider() *common.ConfigurationProv
 	return client.config
 }
 
-// Decrypt Decrypts data using the given DecryptDataDetails (https://docs.cloud.oracle.com/api/#/en/key/release/datatypes/DecryptDataDetails) resource.
+// Decrypt Decrypts data using the given DecryptDataDetails (https://docs.cloud.oracle.com/api/#/en/key/latest/datatypes/DecryptDataDetails) resource.
 func (client KmsCryptoClient) Decrypt(ctx context.Context, request DecryptRequest) (response DecryptResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -116,7 +116,7 @@ func (client KmsCryptoClient) decrypt(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
-// Encrypt Encrypts data using the given EncryptDataDetails (https://docs.cloud.oracle.com/api/#/en/key/release/datatypes/EncryptDataDetails) resource.
+// Encrypt Encrypts data using the given EncryptDataDetails (https://docs.cloud.oracle.com/api/#/en/key/latest/datatypes/EncryptDataDetails) resource.
 // Plaintext included in the example request is a base64-encoded value of a UTF-8 string.
 func (client KmsCryptoClient) Encrypt(ctx context.Context, request EncryptRequest) (response EncryptResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -164,7 +164,9 @@ func (client KmsCryptoClient) encrypt(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
-// ExportKey Exports a specific key version of a key, encrypted using a supplied public key.
+// ExportKey Exports a specific version of a master encryption key according to the details of the request. For their protection,
+// keys that you create and store on a hardware security module (HSM) can never leave the HSM. You can only export keys
+// stored on the server. For export, the key version is encrypted by an RSA public key that you provide.
 func (client KmsCryptoClient) ExportKey(ctx context.Context, request ExportKeyRequest) (response ExportKeyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

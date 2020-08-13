@@ -90,6 +90,9 @@ type DbSystem struct {
 	// The network endpoints available for this DB System.
 	Endpoints []DbSystemEndpoint `mandatory:"false" json:"endpoints"`
 
+	// A list with a summary of all the Channels attached to the DB System.
+	Channels []ChannelSummary `mandatory:"false" json:"channels"`
+
 	// Additional information about the current lifecycleState.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
@@ -121,6 +124,7 @@ func (m *DbSystem) UnmarshalJSON(data []byte) (e error) {
 		Port                 *int                              `json:"port"`
 		PortX                *int                              `json:"portX"`
 		Endpoints            []DbSystemEndpoint                `json:"endpoints"`
+		Channels             []ChannelSummary                  `json:"channels"`
 		LifecycleDetails     *string                           `json:"lifecycleDetails"`
 		FreeformTags         map[string]string                 `json:"freeformTags"`
 		DefinedTags          map[string]map[string]interface{} `json:"definedTags"`
@@ -174,6 +178,11 @@ func (m *DbSystem) UnmarshalJSON(data []byte) (e error) {
 	m.Endpoints = make([]DbSystemEndpoint, len(model.Endpoints))
 	for i, n := range model.Endpoints {
 		m.Endpoints[i] = n
+	}
+
+	m.Channels = make([]ChannelSummary, len(model.Channels))
+	for i, n := range model.Channels {
+		m.Channels[i] = n
 	}
 
 	m.LifecycleDetails = model.LifecycleDetails

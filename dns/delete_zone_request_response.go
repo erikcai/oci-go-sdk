@@ -37,6 +37,9 @@ type DeleteZoneRequest struct {
 	// Specifies to operate only on resources that have a matching DNS scope.
 	Scope DeleteZoneScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
+	// The OCID of the view the resource is associated with.
+	ViewId *string `mandatory:"false" contributesTo:"query" name:"viewId"`
+
 	// The OCID of the compartment the resource belongs to.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
@@ -69,6 +72,10 @@ type DeleteZoneResponse struct {
 	// to contact Oracle about a particular request, please provide
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// Unique Oracle-assigned identifier for the asynchronous request.
+	// You can use this to query status of the asynchronous operation.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
 func (response DeleteZoneResponse) String() string {
@@ -85,11 +92,13 @@ type DeleteZoneScopeEnum string
 
 // Set of constants representing the allowable values for DeleteZoneScopeEnum
 const (
-	DeleteZoneScopeGlobal DeleteZoneScopeEnum = "GLOBAL"
+	DeleteZoneScopeGlobal  DeleteZoneScopeEnum = "GLOBAL"
+	DeleteZoneScopePrivate DeleteZoneScopeEnum = "PRIVATE"
 )
 
 var mappingDeleteZoneScope = map[string]DeleteZoneScopeEnum{
-	"GLOBAL": DeleteZoneScopeGlobal,
+	"GLOBAL":  DeleteZoneScopeGlobal,
+	"PRIVATE": DeleteZoneScopePrivate,
 }
 
 // GetDeleteZoneScopeEnumValues Enumerates the set of values for DeleteZoneScopeEnum

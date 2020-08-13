@@ -17,7 +17,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateInstanceConsoleConnectionDetails The details for updating the tags for an existing instance console connection.
+// UpdateInstanceConsoleConnectionDetails Specifies the properties for updating tags for an instance console connection.
 type UpdateInstanceConsoleConnectionDetails struct {
 
 	// Defined tags for this resource. Each key is predefined and scoped to a

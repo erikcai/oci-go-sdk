@@ -14,22 +14,24 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ExportKeyDetails Parameters to fetch encrypted Key.
+// ExportKeyDetails The details of the key that you want to wrap and export.
 type ExportKeyDetails struct {
 
-	// The OCID of the key associated with key version.
+	// The OCID of the master encryption key associated with the key version you want to export.
 	KeyId *string `mandatory:"true" json:"keyId"`
 
-	// Encryption algorithm to be used to encrypt the software key. RSA_OAEP_AES_SHA256 will generate a temporary AES key
-	// which is wrapped by RSA key provided in input. And the AES key would be used to wrap the actual software key.
-	// In RSA_OAEP_SHA256, the software key will be wrapped using RSA key provided in input.
+	// The encryption algorithm to use to encrypt exportable key material from a software-backed key. Specifying `RSA_OAEP_AES_SHA256`
+	// invokes the RSA AES key wrap mechanism, which generates a temporary AES key. The temporary AES key is wrapped by the RSA public
+	// wrapping key provided along with the request, creating a wrapped temporary AES key. The temporary AES key is also used to wrap
+	// the exportable key material. The wrapped temporary AES key and the wrapped exportable key material are concatenated, producing
+	// concatenated blob output that jointly represents them. Specifying `RSA_OAEP_SHA256` means that the software key is wrapped by
+	// the RSA public wrapping key provided along with the request.
 	Algorithm ExportKeyDetailsAlgorithmEnum `mandatory:"true" json:"algorithm"`
 
-	// PEM format of RSA2048/RSA3072/RSA4096 Public Key, to be used to encrypt the key.
+	// The PEM format of the 2048-bit, 3072-bit, or 4096-bit RSA wrapping key in your possession that you want to use to encrypt the key.
 	PublicKey *string `mandatory:"true" json:"publicKey"`
 
-	// The OCID of the key version that has to be exported. If not supplied, the current key version
-	// would be considered for export.
+	// The OCID of the specific key version to export. If not specified, the service exports the current key version.
 	KeyVersionId *string `mandatory:"false" json:"keyVersionId"`
 
 	// Information that provides context for audit logging. You can provide this additional

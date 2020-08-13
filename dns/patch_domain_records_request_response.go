@@ -43,6 +43,9 @@ type PatchDomainRecordsRequest struct {
 	// Specifies to operate only on resources that have a matching DNS scope.
 	Scope PatchDomainRecordsScopeEnum `mandatory:"false" contributesTo:"query" name:"scope" omitEmpty:"true"`
 
+	// The OCID of the view the resource is associated with.
+	ViewId *string `mandatory:"false" contributesTo:"query" name:"viewId"`
+
 	// The OCID of the compartment the resource belongs to.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
@@ -107,11 +110,13 @@ type PatchDomainRecordsScopeEnum string
 
 // Set of constants representing the allowable values for PatchDomainRecordsScopeEnum
 const (
-	PatchDomainRecordsScopeGlobal PatchDomainRecordsScopeEnum = "GLOBAL"
+	PatchDomainRecordsScopeGlobal  PatchDomainRecordsScopeEnum = "GLOBAL"
+	PatchDomainRecordsScopePrivate PatchDomainRecordsScopeEnum = "PRIVATE"
 )
 
 var mappingPatchDomainRecordsScope = map[string]PatchDomainRecordsScopeEnum{
-	"GLOBAL": PatchDomainRecordsScopeGlobal,
+	"GLOBAL":  PatchDomainRecordsScopeGlobal,
+	"PRIVATE": PatchDomainRecordsScopePrivate,
 }
 
 // GetPatchDomainRecordsScopeEnumValues Enumerates the set of values for PatchDomainRecordsScopeEnum

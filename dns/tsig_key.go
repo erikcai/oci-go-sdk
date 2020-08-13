@@ -18,45 +18,45 @@ import (
 // **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type TsigKey struct {
 
+	// TSIG key algorithms are encoded as domain names, but most consist of only one
+	// non-empty label, which is not required to be explicitly absolute.
+	// Applicable algorithms include: hmac-sha1, hmac-sha224, hmac-sha256,
+	// hmac-sha512. For more information on these algorithms, see RFC 4635 (https://tools.ietf.org/html/rfc4635#section-2).
+	Algorithm *string `mandatory:"true" json:"algorithm"`
+
 	// A globally unique domain name identifying the key for a given pair of hosts.
 	Name *string `mandatory:"true" json:"name"`
 
 	// The OCID of the compartment containing the TSIG key.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID of the resource.
-	Id *string `mandatory:"true" json:"id"`
-
-	// The current state of the resource.
-	LifecycleState TsigKeyLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
-
-	// TSIG key algorithms are encoded as domain names, but most consist of only one
-	// non-empty label, which is not required to be explicitly absolute.
-	// Applicable algorithms include: hmac-sha1, hmac-sha224, hmac-sha256,
-	// hmac-sha512. For more information on these algorithms, see RFC 4635 (https://tools.ietf.org/html/rfc4635#section-2).
-	Algorithm *string `mandatory:"false" json:"algorithm"`
-
 	// A base64 string encoding the binary shared secret.
-	Secret *string `mandatory:"false" json:"secret"`
+	Secret *string `mandatory:"true" json:"secret"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	//
 	// **Example:** `{"Department": "Finance"}`
-	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+	FreeformTags map[string]string `mandatory:"true" json:"freeformTags"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	//
 	// **Example:** `{"Operations": {"CostCenter": "42"}}`
-	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+	DefinedTags map[string]map[string]interface{} `mandatory:"true" json:"definedTags"`
+
+	// The OCID of the resource.
+	Id *string `mandatory:"true" json:"id"`
 
 	// The canonical absolute URL of the resource.
-	Self *string `mandatory:"false" json:"self"`
+	Self *string `mandatory:"true" json:"self"`
 
 	// The date and time the resource was created, expressed in RFC 3339 timestamp format.
 	// **Example:** `2016-07-22T17:23:59:60Z`
-	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
+	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// The current state of the resource.
+	LifecycleState TsigKeyLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The date and time the resource was last updated, expressed in RFC 3339 timestamp format.
 	// **Example:** `2016-07-22T17:23:59:60Z`

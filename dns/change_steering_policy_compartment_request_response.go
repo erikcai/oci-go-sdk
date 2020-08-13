@@ -86,11 +86,13 @@ type ChangeSteeringPolicyCompartmentScopeEnum string
 
 // Set of constants representing the allowable values for ChangeSteeringPolicyCompartmentScopeEnum
 const (
-	ChangeSteeringPolicyCompartmentScopeGlobal ChangeSteeringPolicyCompartmentScopeEnum = "GLOBAL"
+	ChangeSteeringPolicyCompartmentScopeGlobal  ChangeSteeringPolicyCompartmentScopeEnum = "GLOBAL"
+	ChangeSteeringPolicyCompartmentScopePrivate ChangeSteeringPolicyCompartmentScopeEnum = "PRIVATE"
 )
 
 var mappingChangeSteeringPolicyCompartmentScope = map[string]ChangeSteeringPolicyCompartmentScopeEnum{
-	"GLOBAL": ChangeSteeringPolicyCompartmentScopeGlobal,
+	"GLOBAL":  ChangeSteeringPolicyCompartmentScopeGlobal,
+	"PRIVATE": ChangeSteeringPolicyCompartmentScopePrivate,
 }
 
 // GetChangeSteeringPolicyCompartmentScopeEnumValues Enumerates the set of values for ChangeSteeringPolicyCompartmentScopeEnum

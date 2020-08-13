@@ -20,7 +20,7 @@ import (
 type FilterQueryParameterPolicy struct {
 
 	// BLOCK drops any query parameters that are in the list of items, so it acts as an exclusion list.  ALLOW
-	// permits only the paramters in the list and removes all others, so it acts as an inclusion list.
+	// permits only the parameters in the list and removes all others, so it acts as an inclusion list.
 	Type FilterQueryParameterPolicyTypeEnum `mandatory:"true" json:"type"`
 
 	// The list of query parameters.

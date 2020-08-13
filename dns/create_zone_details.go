@@ -44,7 +44,8 @@ type CreateZoneDetails struct {
 	// required parameter when the `zoneType` value is `SECONDARY`.
 	ExternalMasters []ExternalMaster `mandatory:"false" json:"externalMasters"`
 
-	// The type of the zone. Must be either `PRIMARY` or `SECONDARY`.
+	// The type of the zone. Must be either `PRIMARY` or `SECONDARY`. `SECONDARY` is only supported for GLOBAL
+	// zones.
 	ZoneType CreateZoneDetailsZoneTypeEnum `mandatory:"false" json:"zoneType,omitempty"`
 
 	// The scope of the zone.

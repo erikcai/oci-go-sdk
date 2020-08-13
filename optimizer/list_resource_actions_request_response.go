@@ -25,6 +25,9 @@ type ListResourceActionsRequest struct {
 	// Optional. A filter that returns results that match the name specified.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
 
+	// Optional. A filter that returns results that match the resource type specified.
+	ResourceType *string `mandatory:"false" contributesTo:"query" name:"resourceType"`
+
 	// The maximum number of items to return in a paginated "List" call.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 

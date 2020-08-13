@@ -71,9 +71,6 @@ type NatGateway struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Public IP associated with the NAT gateway.
 	PublicIpId *string `mandatory:"false" json:"publicIpId"`
-
-	// The name of the Oracle managed public IP Pool from which the IP address associated with the NAT gateway is allocated.
-	InternalPublicIpPoolName NatGatewayInternalPublicIpPoolNameEnum `mandatory:"false" json:"internalPublicIpPoolName,omitempty"`
 }
 
 func (m NatGateway) String() string {
@@ -102,29 +99,6 @@ var mappingNatGatewayLifecycleState = map[string]NatGatewayLifecycleStateEnum{
 func GetNatGatewayLifecycleStateEnumValues() []NatGatewayLifecycleStateEnum {
 	values := make([]NatGatewayLifecycleStateEnum, 0)
 	for _, v := range mappingNatGatewayLifecycleState {
-		values = append(values, v)
-	}
-	return values
-}
-
-// NatGatewayInternalPublicIpPoolNameEnum Enum with underlying type: string
-type NatGatewayInternalPublicIpPoolNameEnum string
-
-// Set of constants representing the allowable values for NatGatewayInternalPublicIpPoolNameEnum
-const (
-	NatGatewayInternalPublicIpPoolNameExternal   NatGatewayInternalPublicIpPoolNameEnum = "EXTERNAL"
-	NatGatewayInternalPublicIpPoolNameSociEgress NatGatewayInternalPublicIpPoolNameEnum = "SOCI_EGRESS"
-)
-
-var mappingNatGatewayInternalPublicIpPoolName = map[string]NatGatewayInternalPublicIpPoolNameEnum{
-	"EXTERNAL":    NatGatewayInternalPublicIpPoolNameExternal,
-	"SOCI_EGRESS": NatGatewayInternalPublicIpPoolNameSociEgress,
-}
-
-// GetNatGatewayInternalPublicIpPoolNameEnumValues Enumerates the set of values for NatGatewayInternalPublicIpPoolNameEnum
-func GetNatGatewayInternalPublicIpPoolNameEnumValues() []NatGatewayInternalPublicIpPoolNameEnum {
-	values := make([]NatGatewayInternalPublicIpPoolNameEnum, 0)
-	for _, v := range mappingNatGatewayInternalPublicIpPoolName {
 		values = append(values, v)
 	}
 	return values

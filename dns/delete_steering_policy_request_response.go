@@ -82,11 +82,13 @@ type DeleteSteeringPolicyScopeEnum string
 
 // Set of constants representing the allowable values for DeleteSteeringPolicyScopeEnum
 const (
-	DeleteSteeringPolicyScopeGlobal DeleteSteeringPolicyScopeEnum = "GLOBAL"
+	DeleteSteeringPolicyScopeGlobal  DeleteSteeringPolicyScopeEnum = "GLOBAL"
+	DeleteSteeringPolicyScopePrivate DeleteSteeringPolicyScopeEnum = "PRIVATE"
 )
 
 var mappingDeleteSteeringPolicyScope = map[string]DeleteSteeringPolicyScopeEnum{
-	"GLOBAL": DeleteSteeringPolicyScopeGlobal,
+	"GLOBAL":  DeleteSteeringPolicyScopeGlobal,
+	"PRIVATE": DeleteSteeringPolicyScopePrivate,
 }
 
 // GetDeleteSteeringPolicyScopeEnumValues Enumerates the set of values for DeleteSteeringPolicyScopeEnum

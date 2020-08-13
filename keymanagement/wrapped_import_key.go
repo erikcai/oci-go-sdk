@@ -17,10 +17,10 @@ import (
 // WrappedImportKey The representation of WrappedImportKey
 type WrappedImportKey struct {
 
-	// The wrapped/encrypted key material to import. It is encrypted using RSA wrapped key and Base64 encoded.
+	// The key material to import, wrapped by the vault's public RSA wrapping key and base64-encoded.
 	KeyMaterial *string `mandatory:"true" json:"keyMaterial"`
 
-	// The wrapping mechanism to be used during key import
+	// The wrapping mechanism to use during key import.
 	WrappingAlgorithm WrappedImportKeyWrappingAlgorithmEnum `mandatory:"true" json:"wrappingAlgorithm"`
 }
 

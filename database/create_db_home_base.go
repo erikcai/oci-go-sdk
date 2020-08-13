@@ -146,17 +146,19 @@ type CreateDbHomeBaseSourceEnum string
 
 // Set of constants representing the allowable values for CreateDbHomeBaseSourceEnum
 const (
-	CreateDbHomeBaseSourceNone         CreateDbHomeBaseSourceEnum = "NONE"
-	CreateDbHomeBaseSourceDbBackup     CreateDbHomeBaseSourceEnum = "DB_BACKUP"
-	CreateDbHomeBaseSourceDatabase     CreateDbHomeBaseSourceEnum = "DATABASE"
-	CreateDbHomeBaseSourceVmClusterNew CreateDbHomeBaseSourceEnum = "VM_CLUSTER_NEW"
+	CreateDbHomeBaseSourceNone            CreateDbHomeBaseSourceEnum = "NONE"
+	CreateDbHomeBaseSourceDbBackup        CreateDbHomeBaseSourceEnum = "DB_BACKUP"
+	CreateDbHomeBaseSourceDatabase        CreateDbHomeBaseSourceEnum = "DATABASE"
+	CreateDbHomeBaseSourceVmClusterBackup CreateDbHomeBaseSourceEnum = "VM_CLUSTER_BACKUP"
+	CreateDbHomeBaseSourceVmClusterNew    CreateDbHomeBaseSourceEnum = "VM_CLUSTER_NEW"
 )
 
 var mappingCreateDbHomeBaseSource = map[string]CreateDbHomeBaseSourceEnum{
-	"NONE":           CreateDbHomeBaseSourceNone,
-	"DB_BACKUP":      CreateDbHomeBaseSourceDbBackup,
-	"DATABASE":       CreateDbHomeBaseSourceDatabase,
-	"VM_CLUSTER_NEW": CreateDbHomeBaseSourceVmClusterNew,
+	"NONE":              CreateDbHomeBaseSourceNone,
+	"DB_BACKUP":         CreateDbHomeBaseSourceDbBackup,
+	"DATABASE":          CreateDbHomeBaseSourceDatabase,
+	"VM_CLUSTER_BACKUP": CreateDbHomeBaseSourceVmClusterBackup,
+	"VM_CLUSTER_NEW":    CreateDbHomeBaseSourceVmClusterNew,
 }
 
 // GetCreateDbHomeBaseSourceEnumValues Enumerates the set of values for CreateDbHomeBaseSourceEnum

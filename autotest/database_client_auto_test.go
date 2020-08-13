@@ -3125,6 +3125,50 @@ func TestDatabaseClientGetAutonomousExadataInfrastructure(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetAutonomousPatch(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetAutonomousPatch")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAutonomousPatch is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousPatch", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetAutonomousPatch")
+	assert.NoError(t, err)
+
+	type GetAutonomousPatchRequestInfo struct {
+		ContainerId string
+		Request     database.GetAutonomousPatchRequest
+	}
+
+	var requests []GetAutonomousPatchRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetAutonomousPatch(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientGetAutonomousVmCluster(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -7181,7 +7225,7 @@ func TestDatabaseClientRotateAutonomousContainerDatabaseEncryptionKey(t *testing
 	}
 }
 
-// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientRotateAutonomousDatabaseEncryptionKey(t *testing.T) {
 	defer failTestOnPanic(t)
 

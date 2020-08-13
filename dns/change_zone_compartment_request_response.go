@@ -70,6 +70,10 @@ type ChangeZoneCompartmentResponse struct {
 	// to contact Oracle about a particular request, please provide
 	// the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// Unique Oracle-assigned identifier for the asynchronous request.
+	// You can use this to query status of the asynchronous operation.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
 func (response ChangeZoneCompartmentResponse) String() string {
@@ -86,11 +90,13 @@ type ChangeZoneCompartmentScopeEnum string
 
 // Set of constants representing the allowable values for ChangeZoneCompartmentScopeEnum
 const (
-	ChangeZoneCompartmentScopeGlobal ChangeZoneCompartmentScopeEnum = "GLOBAL"
+	ChangeZoneCompartmentScopeGlobal  ChangeZoneCompartmentScopeEnum = "GLOBAL"
+	ChangeZoneCompartmentScopePrivate ChangeZoneCompartmentScopeEnum = "PRIVATE"
 )
 
 var mappingChangeZoneCompartmentScope = map[string]ChangeZoneCompartmentScopeEnum{
-	"GLOBAL": ChangeZoneCompartmentScopeGlobal,
+	"GLOBAL":  ChangeZoneCompartmentScopeGlobal,
+	"PRIVATE": ChangeZoneCompartmentScopePrivate,
 }
 
 // GetChangeZoneCompartmentScopeEnumValues Enumerates the set of values for ChangeZoneCompartmentScopeEnum

@@ -15,11 +15,13 @@ type ScopeEnum string
 
 // Set of constants representing the allowable values for ScopeEnum
 const (
-	ScopeGlobal ScopeEnum = "GLOBAL"
+	ScopeGlobal  ScopeEnum = "GLOBAL"
+	ScopePrivate ScopeEnum = "PRIVATE"
 )
 
 var mappingScope = map[string]ScopeEnum{
-	"GLOBAL": ScopeGlobal,
+	"GLOBAL":  ScopeGlobal,
+	"PRIVATE": ScopePrivate,
 }
 
 // GetScopeEnumValues Enumerates the set of values for ScopeEnum

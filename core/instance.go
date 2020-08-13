@@ -126,6 +126,7 @@ type Instance struct {
 
 	InstanceOptions *InstanceOptions `mandatory:"false" json:"instanceOptions"`
 
+	// Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
 	AvailabilityConfig *InstanceAvailabilityConfig `mandatory:"false" json:"availabilityConfig"`
 
 	// Custom metadata that you provide.

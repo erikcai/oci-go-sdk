@@ -168,11 +168,13 @@ type ListSteeringPoliciesScopeEnum string
 
 // Set of constants representing the allowable values for ListSteeringPoliciesScopeEnum
 const (
-	ListSteeringPoliciesScopeGlobal ListSteeringPoliciesScopeEnum = "GLOBAL"
+	ListSteeringPoliciesScopeGlobal  ListSteeringPoliciesScopeEnum = "GLOBAL"
+	ListSteeringPoliciesScopePrivate ListSteeringPoliciesScopeEnum = "PRIVATE"
 )
 
 var mappingListSteeringPoliciesScope = map[string]ListSteeringPoliciesScopeEnum{
-	"GLOBAL": ListSteeringPoliciesScopeGlobal,
+	"GLOBAL":  ListSteeringPoliciesScopeGlobal,
+	"PRIVATE": ListSteeringPoliciesScopePrivate,
 }
 
 // GetListSteeringPoliciesScopeEnumValues Enumerates the set of values for ListSteeringPoliciesScopeEnum

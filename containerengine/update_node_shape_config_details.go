@@ -19,6 +19,7 @@ import (
 type UpdateNodeShapeConfigDetails struct {
 
 	// The total number of OCPUs available to each node in the node pool.
+	// See here (https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
 	Ocpus *float32 `mandatory:"false" json:"ocpus"`
 }
 

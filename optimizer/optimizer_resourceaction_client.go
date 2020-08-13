@@ -54,7 +54,7 @@ func newResourceActionClientFromBaseClient(baseClient common.BaseClient, configP
 
 // SetRegion overrides the region of this client.
 func (client *ResourceActionClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("optimizer", "https://optimizer-api.{region}.oci.{secondLevelDomain}")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("optimizer", "https://optimizer.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -122,7 +122,7 @@ func (client ResourceActionClient) getResourceAction(ctx context.Context, reques
 	return response, err
 }
 
-// ListResourceActions Included a list of resource actions that belong to the given recommendation.
+// ListResourceActions Lists the Cloud Advisor resource actions that are currently supported in the specified recommendation.
 func (client ResourceActionClient) ListResourceActions(ctx context.Context, request ListResourceActionsRequest) (response ListResourceActionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

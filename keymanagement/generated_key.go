@@ -21,12 +21,12 @@ type GeneratedKey struct {
 	Ciphertext *string `mandatory:"true" json:"ciphertext"`
 
 	// The plaintext data encryption key, a base64-encoded sequence of random bytes, which is
-	// included if the GenerateDataEncryptionKey (https://docs.cloud.oracle.com/api/#/en/key/release/GeneratedKey/GenerateDataEncryptionKey)
+	// included if the GenerateDataEncryptionKey (https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey)
 	// request includes the `includePlaintextKey` parameter and sets its value to "true".
 	Plaintext *string `mandatory:"false" json:"plaintext"`
 
 	// The checksum of the plaintext data encryption key, which is included if the
-	// GenerateDataEncryptionKey (https://docs.cloud.oracle.com/api/#/en/key/release/GeneratedKey/GenerateDataEncryptionKey)
+	// GenerateDataEncryptionKey (https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey)
 	// request includes the `includePlaintextKey` parameter and sets its value to "true".
 	PlaintextChecksum *string `mandatory:"false" json:"plaintextChecksum"`
 }

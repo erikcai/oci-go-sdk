@@ -94,11 +94,13 @@ type GetSteeringPolicyAttachmentScopeEnum string
 
 // Set of constants representing the allowable values for GetSteeringPolicyAttachmentScopeEnum
 const (
-	GetSteeringPolicyAttachmentScopeGlobal GetSteeringPolicyAttachmentScopeEnum = "GLOBAL"
+	GetSteeringPolicyAttachmentScopeGlobal  GetSteeringPolicyAttachmentScopeEnum = "GLOBAL"
+	GetSteeringPolicyAttachmentScopePrivate GetSteeringPolicyAttachmentScopeEnum = "PRIVATE"
 )
 
 var mappingGetSteeringPolicyAttachmentScope = map[string]GetSteeringPolicyAttachmentScopeEnum{
-	"GLOBAL": GetSteeringPolicyAttachmentScopeGlobal,
+	"GLOBAL":  GetSteeringPolicyAttachmentScopeGlobal,
+	"PRIVATE": GetSteeringPolicyAttachmentScopePrivate,
 }
 
 // GetGetSteeringPolicyAttachmentScopeEnumValues Enumerates the set of values for GetSteeringPolicyAttachmentScopeEnum

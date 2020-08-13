@@ -51,6 +51,11 @@ type MountTargetSummary struct {
 	// this mount target.
 	ExportSetId *string `mandatory:"false" json:"exportSetId"`
 
+	// Describes whether Idmapping is turned on or off. If on, describes method used to perform ID Mapping
+	IdmapType MountTargetIdmapTypeEnum `mandatory:"false" json:"idmapType,omitempty"`
+
+	LdapIdmap *LdapIdmap `mandatory:"false" json:"ldapIdmap"`
+
 	// A list of Network Security Group OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount target.
 	// A maximum of 5 is allowed.
 	// Setting this to an empty array after the list is created removes the mount target from all NSGs.
