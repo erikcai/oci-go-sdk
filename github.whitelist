@@ -72,6 +72,5 @@
 ^managementdashboard/
 ^sch/
 ^optimizer/
-^bastions/
 ^managementagent/
 ^computeinstanceagent/

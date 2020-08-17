@@ -79,7 +79,6 @@
     <management-dashboard-spec-spec-file>source/api.cond.yaml</management-dashboard-spec-spec-file>
     <connectors-spec-spec-file>source/api.cond.yaml</connectors-spec-spec-file>
     <optimizer-spec-spec-file>source/api.cond.yaml</optimizer-spec-spec-file>
-    <oci-bastions-spec-spec-file>source/api.cond.yaml</oci-bastions-spec-spec-file>
     <mgmtagent-cloud-services-spec-spec-file>source/api.cond.yaml</mgmtagent-cloud-services-spec-spec-file>
     <instance-agent-service-api-spec-spec-file>source/api.cond.yaml</instance-agent-service-api-spec-spec-file>
   </properties>
@@ -1202,24 +1201,6 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/optimizer-spec</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-oci-bastions-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.oracle.pic.ocibstn.controlplane.resources</groupId>
-                  <artifactId>oci-bastions-spec</artifactId>
-                  <type>jar</type>
-                  <includes>**/*</includes>
-                  <outputDirectory>${spec-temp-dir}/oci-bastions-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -2915,33 +2896,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>spec-conditionals-prefer-oci-bastions-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>prefer</goal>
-            </goals>
-            <configuration>
-              <inputFiles>
-                <inputFile>${spec-temp-dir}/oci-bastions-spec/source/${oci-bastions-spec-spec-file}</inputFile>
-                <inputFile>${spec-temp-dir}/oci-bastions-spec/${oci-bastions-spec-spec-file}</inputFile>
-              </inputFiles>
-              <outputFile>${preferred-temp-dir}/oci-bastions-spec/${oci-bastions-spec-spec-file}</outputFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>spec-conditionals-preprocess-oci-bastions-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>preprocess</goal>
-            </goals>
-            <configuration>
-              <inputFile>${preferred-temp-dir}/oci-bastions-spec/${oci-bastions-spec-spec-file}</inputFile>
-              <outputFile>${preprocessed-temp-dir}/oci-bastions-spec/${oci-bastions-spec-spec-file}</outputFile>
-              <groupFile>${enabled-groups-file}</groupFile>
-              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
-            </configuration>
-          </execution>
-          <execution>
             <id>spec-conditionals-prefer-mgmtagent-cloud-services-spec</id>
             <phase>initialize</phase>
             <goals>
@@ -4344,26 +4298,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>go-public-sdk-oci-bastions-spec</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <language>oracle-go-sdk</language>
-              <specPath>${preprocessed-temp-dir}/oci-bastions-spec/${oci-bastions-spec-spec-file}</specPath>
-              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
-              <basePackage>bastions</basePackage>
-              <specGenerationType>${generationType}</specGenerationType>
-              <additionalProperties>
-                <specName>bastions</specName>
-                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-              </additionalProperties>
-              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
-              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
-            </configuration>
-          </execution>
-          <execution>
             <id>go-public-sdk-mgmtagent-cloud-services-spec</id>
             <phase>compile</phase>
             <goals>
@@ -4820,12 +4754,6 @@
               </includes>
             </fileset>
             <fileset>
-              <directory>lib/oci/bastions</directory>
-              <includes>
-                <include>**/*</include>
-              </includes>
-            </fileset>
-            <fileset>
               <directory>lib/oci/managementagent</directory>
               <includes>
                 <include>**/*</include>
@@ -5184,11 +5112,6 @@
         <groupId>com.oracle.oci.optimizer</groupId>
         <artifactId>optimizer-spec</artifactId>
         <version>0.1.191</version>
-      </dependency>
-      <dependency>
-        <groupId>com.oracle.pic.ocibstn.controlplane.resources</groupId>
-        <artifactId>oci-bastions-spec</artifactId>
-        <version>0.1.228</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.macs</groupId>
