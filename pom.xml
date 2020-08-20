@@ -60,7 +60,6 @@
     <analytics-control-plane-api-spec-spec-file>source/analytics-api-spec.cond.yaml</analytics-control-plane-api-spec-spec-file>
     <oracle-integration-cp-apiserver-user-spec-spec-file>source/api.cond.yaml</oracle-integration-cp-apiserver-user-spec-spec-file>
     <kam-api-spec-spec-file>source/kam-api-spec.cond.yaml</kam-api-spec-spec-file>
-    <ibex-frontend-public-spec-spec-file>source/public-api.cond.yaml</ibex-frontend-public-spec-spec-file>
     <osms-spec-spec-file>source/api.cond.yaml</osms-spec-spec-file>
     <ams-spec-spec-file>source/ams-api.cond.yaml</ams-spec-spec-file>
     <service_api_spec-spec-file>specs/service_api.cond.yaml</service_api_spec-spec-file>
@@ -859,24 +858,6 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/kam-api-spec</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-ibex-frontend-public-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.oracle.oci.hydra.ibex</groupId>
-                  <artifactId>ibex-frontend-public-spec</artifactId>
-                  <type>jar</type>
-                  <includes>**/*</includes>
-                  <outputDirectory>${spec-temp-dir}/ibex-frontend-public-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -2383,33 +2364,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>spec-conditionals-prefer-ibex-frontend-public-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>prefer</goal>
-            </goals>
-            <configuration>
-              <inputFiles>
-                <inputFile>${spec-temp-dir}/ibex-frontend-public-spec/source/${ibex-frontend-public-spec-spec-file}</inputFile>
-                <inputFile>${spec-temp-dir}/ibex-frontend-public-spec/${ibex-frontend-public-spec-spec-file}</inputFile>
-              </inputFiles>
-              <outputFile>${preferred-temp-dir}/ibex-frontend-public-spec/${ibex-frontend-public-spec-spec-file}</outputFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>spec-conditionals-preprocess-ibex-frontend-public-spec</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>preprocess</goal>
-            </goals>
-            <configuration>
-              <inputFile>${preferred-temp-dir}/ibex-frontend-public-spec/${ibex-frontend-public-spec-spec-file}</inputFile>
-              <outputFile>${preprocessed-temp-dir}/ibex-frontend-public-spec/${ibex-frontend-public-spec-spec-file}</outputFile>
-              <groupFile>${enabled-groups-file}</groupFile>
-              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
-            </configuration>
-          </execution>
-          <execution>
             <id>spec-conditionals-prefer-osms-spec</id>
             <phase>initialize</phase>
             <goals>
@@ -3902,27 +3856,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>go-public-sdk-ibex-frontend-public-spec</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <language>oracle-go-sdk</language>
-              <specPath>${preprocessed-temp-dir}/ibex-frontend-public-spec/${ibex-frontend-public-spec-spec-file}</specPath>
-              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
-              <basePackage>publicloggingsearch</basePackage>
-              <specGenerationType>${generationType}</specGenerationType>
-              <additionalProperties>
-                <specName>publicloggingsearch</specName>
-                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
-                <isTagAvailable.lumlogsearch>true</isTagAvailable.lumlogsearch>
-              </additionalProperties>
-              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
-              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
-            </configuration>
-          </execution>
-          <execution>
             <id>go-public-sdk-osms-spec</id>
             <phase>compile</phase>
             <goals>
@@ -4640,12 +4573,6 @@
               </includes>
             </fileset>
             <fileset>
-              <directory>lib/oci/publicloggingsearch</directory>
-              <includes>
-                <include>**/*</include>
-              </includes>
-            </fileset>
-            <fileset>
               <directory>lib/oci/osmanagement</directory>
               <includes>
                 <include>**/*</include>
@@ -5017,11 +4944,6 @@
         <groupId>com.oracle.pic.kam</groupId>
         <artifactId>kam-api-spec</artifactId>
         <version>0.0.1-20191023.164232-5</version>
-      </dependency>
-      <dependency>
-        <groupId>com.oracle.oci.hydra.ibex</groupId>
-        <artifactId>ibex-frontend-public-spec</artifactId>
-        <version>1.0.1334</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.osms.api</groupId>
