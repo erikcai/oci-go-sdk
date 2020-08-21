@@ -55,8 +55,11 @@ type ProblemSummary struct {
 	// Id of detector associated with the Problem.
 	DetectorId DetectorEnumEnum `mandatory:"false" json:"detectorId,omitempty"`
 
-	// region where the problem is found
+	// DEPRECATED
 	Region *string `mandatory:"false" json:"region"`
+
+	// Regions where the problem is found
+	Regions []string `mandatory:"false" json:"regions"`
 
 	// targetId associated with the problem.
 	TargetId *string `mandatory:"false" json:"targetId"`

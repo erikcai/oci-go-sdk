@@ -15,10 +15,10 @@ type RequestSummarizedTrendSecurityScoresRequest struct {
 	// The ID of the compartment in which to list resources.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// Start time for a filter. If no time range is specified, the trendline is returned for 30 days
+	// Start time for a filter. If start time is not specified, start time will be set to today's current time - 30 days.
 	TimeScoreComputedGreaterThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeScoreComputedGreaterThanOrEqualTo"`
 
-	// End time for a filter. If no time range is specified, the trendline is returned for 30 days
+	// End time for a filter. If end time is not specified, end time will be set to today's current time.
 	TimeScoreComputedLessThanOrEqualTo *common.SDKTime `mandatory:"false" contributesTo:"query" name:"timeScoreComputedLessThanOrEqualTo"`
 
 	// The maximum number of items to return.

@@ -16,6 +16,12 @@ import (
 // SummarizeDatabaseInsightResourceUtilizationInsightAggregation Insights response containing current/projected groups for storage or CPU.
 type SummarizeDatabaseInsightResourceUtilizationInsightAggregation struct {
 
+	// The start timestamp that was passed into the request.
+	TimeIntervalStart *common.SDKTime `mandatory:"true" json:"timeIntervalStart"`
+
+	// The end timestamp that was passed into the request.
+	TimeIntervalEnd *common.SDKTime `mandatory:"true" json:"timeIntervalEnd"`
+
 	// Defines the type of resource metric (CPU, STORAGE)
 	ResourceMetric SummarizeDatabaseInsightResourceUtilizationInsightAggregationResourceMetricEnum `mandatory:"true" json:"resourceMetric"`
 

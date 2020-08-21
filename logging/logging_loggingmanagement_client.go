@@ -170,42 +170,100 @@ func (client LoggingManagementClient) changeLogLogGroup(ctx context.Context, req
 	return response, err
 }
 
-// ChangeLogRuleCompartment Moves a rule into a different compartment within the same tenancy. For information about moving
+// ChangeLogSavedSearchCompartment Moves a saved search into a different compartment within the same tenancy. For information about moving
 // resources between compartments, see Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-func (client LoggingManagementClient) ChangeLogRuleCompartment(ctx context.Context, request ChangeLogRuleCompartmentRequest) (response ChangeLogRuleCompartmentResponse, err error) {
+func (client LoggingManagementClient) ChangeLogSavedSearchCompartment(ctx context.Context, request ChangeLogSavedSearchCompartmentRequest) (response ChangeLogSavedSearchCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.changeLogRuleCompartment, policy)
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeLogSavedSearchCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ChangeLogRuleCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = ChangeLogSavedSearchCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = ChangeLogRuleCompartmentResponse{}
+				response = ChangeLogSavedSearchCompartmentResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(ChangeLogRuleCompartmentResponse); ok {
+	if convertedResponse, ok := ociResponse.(ChangeLogSavedSearchCompartmentResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ChangeLogRuleCompartmentResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeLogSavedSearchCompartmentResponse")
 	}
 	return
 }
 
-// changeLogRuleCompartment implements the OCIOperation interface (enables retrying operations)
-func (client LoggingManagementClient) changeLogRuleCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logRules/{logRuleId}/actions/changeCompartment")
+// changeLogSavedSearchCompartment implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) changeLogSavedSearchCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logSavedSearches/{logSavedSearchId}/actions/changeCompartment")
 	if err != nil {
 		return nil, err
 	}
 
-	var response ChangeLogRuleCompartmentResponse
+	var response ChangeLogSavedSearchCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ChangeUnifiedAgentConfigurationCompartment Moves unified agent configuration into a different compartment within the same tenancy.  When provided, If-Match is checked against ETag values of the resource.
+// For information about moving resources between compartments, see Moving Resources Between Compartments (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+func (client LoggingManagementClient) ChangeUnifiedAgentConfigurationCompartment(ctx context.Context, request ChangeUnifiedAgentConfigurationCompartmentRequest) (response ChangeUnifiedAgentConfigurationCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeUnifiedAgentConfigurationCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeUnifiedAgentConfigurationCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeUnifiedAgentConfigurationCompartmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeUnifiedAgentConfigurationCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeUnifiedAgentConfigurationCompartmentResponse")
+	}
+	return
+}
+
+// changeUnifiedAgentConfigurationCompartment implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) changeUnifiedAgentConfigurationCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/unifiedAgentConfigurations/{unifiedAgentConfigurationId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeUnifiedAgentConfigurationCompartmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -324,9 +382,8 @@ func (client LoggingManagementClient) createLogGroup(ctx context.Context, reques
 	return response, err
 }
 
-// CreateLogRule Create new log rule with unique display name. This call fails
-// if log rule is already created with same displayName in the compartment.
-func (client LoggingManagementClient) CreateLogRule(ctx context.Context, request CreateLogRuleRequest) (response CreateLogRuleResponse, err error) {
+// CreateLogSavedSearch Creates a new LogSavedSearch.
+func (client LoggingManagementClient) CreateLogSavedSearch(ctx context.Context, request CreateLogSavedSearchRequest) (response CreateLogSavedSearchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -337,34 +394,86 @@ func (client LoggingManagementClient) CreateLogRule(ctx context.Context, request
 		request.OpcRetryToken = common.String(common.RetryToken())
 	}
 
-	ociResponse, err = common.Retry(ctx, request, client.createLogRule, policy)
+	ociResponse, err = common.Retry(ctx, request, client.createLogSavedSearch, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = CreateLogRuleResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = CreateLogSavedSearchResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = CreateLogRuleResponse{}
+				response = CreateLogSavedSearchResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(CreateLogRuleResponse); ok {
+	if convertedResponse, ok := ociResponse.(CreateLogSavedSearchResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into CreateLogRuleResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into CreateLogSavedSearchResponse")
 	}
 	return
 }
 
-// createLogRule implements the OCIOperation interface (enables retrying operations)
-func (client LoggingManagementClient) createLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logRules")
+// createLogSavedSearch implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) createLogSavedSearch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/logSavedSearches")
 	if err != nil {
 		return nil, err
 	}
 
-	var response CreateLogRuleResponse
+	var response CreateLogSavedSearchResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateUnifiedAgentConfiguration Create unified agent config registration
+func (client LoggingManagementClient) CreateUnifiedAgentConfiguration(ctx context.Context, request CreateUnifiedAgentConfigurationRequest) (response CreateUnifiedAgentConfigurationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createUnifiedAgentConfiguration, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateUnifiedAgentConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateUnifiedAgentConfigurationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateUnifiedAgentConfigurationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateUnifiedAgentConfigurationResponse")
+	}
+	return
+}
+
+// createUnifiedAgentConfiguration implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) createUnifiedAgentConfiguration(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/unifiedAgentConfigurations")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateUnifiedAgentConfigurationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -471,41 +580,88 @@ func (client LoggingManagementClient) deleteLogGroup(ctx context.Context, reques
 	return response, err
 }
 
-// DeleteLogRule Deletes the specified log rule.
-func (client LoggingManagementClient) DeleteLogRule(ctx context.Context, request DeleteLogRuleRequest) (response DeleteLogRuleResponse, err error) {
+// DeleteLogSavedSearch Deletes the specified log saved search.
+func (client LoggingManagementClient) DeleteLogSavedSearch(ctx context.Context, request DeleteLogSavedSearchRequest) (response DeleteLogSavedSearchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.deleteLogRule, policy)
+	ociResponse, err = common.Retry(ctx, request, client.deleteLogSavedSearch, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = DeleteLogRuleResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = DeleteLogSavedSearchResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = DeleteLogRuleResponse{}
+				response = DeleteLogSavedSearchResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(DeleteLogRuleResponse); ok {
+	if convertedResponse, ok := ociResponse.(DeleteLogSavedSearchResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DeleteLogRuleResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteLogSavedSearchResponse")
 	}
 	return
 }
 
-// deleteLogRule implements the OCIOperation interface (enables retrying operations)
-func (client LoggingManagementClient) deleteLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/logRules/{logRuleId}")
+// deleteLogSavedSearch implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) deleteLogSavedSearch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/logSavedSearches/{logSavedSearchId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response DeleteLogRuleResponse
+	var response DeleteLogSavedSearchResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteUnifiedAgentConfiguration Delete unified agent configuration
+func (client LoggingManagementClient) DeleteUnifiedAgentConfiguration(ctx context.Context, request DeleteUnifiedAgentConfigurationRequest) (response DeleteUnifiedAgentConfigurationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteUnifiedAgentConfiguration, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteUnifiedAgentConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteUnifiedAgentConfigurationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteUnifiedAgentConfigurationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteUnifiedAgentConfigurationResponse")
+	}
+	return
+}
+
+// deleteUnifiedAgentConfiguration implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) deleteUnifiedAgentConfiguration(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/unifiedAgentConfigurations/{unifiedAgentConfigurationId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteUnifiedAgentConfigurationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -659,41 +815,135 @@ func (client LoggingManagementClient) getLogGroup(ctx context.Context, request c
 	return response, err
 }
 
-// GetLogRule Retrieves a log rule.
-func (client LoggingManagementClient) GetLogRule(ctx context.Context, request GetLogRuleRequest) (response GetLogRuleResponse, err error) {
+// GetLogIncludedSearch Retrieves a LogIncludedSearch.
+func (client LoggingManagementClient) GetLogIncludedSearch(ctx context.Context, request GetLogIncludedSearchRequest) (response GetLogIncludedSearchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.getLogRule, policy)
+	ociResponse, err = common.Retry(ctx, request, client.getLogIncludedSearch, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetLogRuleResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = GetLogIncludedSearchResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = GetLogRuleResponse{}
+				response = GetLogIncludedSearchResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(GetLogRuleResponse); ok {
+	if convertedResponse, ok := ociResponse.(GetLogIncludedSearchResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetLogRuleResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into GetLogIncludedSearchResponse")
 	}
 	return
 }
 
-// getLogRule implements the OCIOperation interface (enables retrying operations)
-func (client LoggingManagementClient) getLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logRules/{logRuleId}")
+// getLogIncludedSearch implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) getLogIncludedSearch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logIncludedSearch/{logIncludedSearchId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response GetLogRuleResponse
+	var response GetLogIncludedSearchResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetLogSavedSearch Retrieves a log saved search.
+func (client LoggingManagementClient) GetLogSavedSearch(ctx context.Context, request GetLogSavedSearchRequest) (response GetLogSavedSearchResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getLogSavedSearch, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetLogSavedSearchResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetLogSavedSearchResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetLogSavedSearchResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetLogSavedSearchResponse")
+	}
+	return
+}
+
+// getLogSavedSearch implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) getLogSavedSearch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logSavedSearches/{logSavedSearchId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetLogSavedSearchResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetUnifiedAgentConfiguration Get unified agent configuration for an id
+func (client LoggingManagementClient) GetUnifiedAgentConfiguration(ctx context.Context, request GetUnifiedAgentConfigurationRequest) (response GetUnifiedAgentConfigurationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getUnifiedAgentConfiguration, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetUnifiedAgentConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetUnifiedAgentConfigurationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetUnifiedAgentConfigurationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetUnifiedAgentConfigurationResponse")
+	}
+	return
+}
+
+// getUnifiedAgentConfiguration implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) getUnifiedAgentConfiguration(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/unifiedAgentConfigurations/{unifiedAgentConfigurationId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetUnifiedAgentConfigurationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -800,41 +1050,88 @@ func (client LoggingManagementClient) listLogGroups(ctx context.Context, request
 	return response, err
 }
 
-// ListLogRules Lists log rules for this compartment.
-func (client LoggingManagementClient) ListLogRules(ctx context.Context, request ListLogRulesRequest) (response ListLogRulesResponse, err error) {
+// ListLogIncludedSearches Lists Logging Included Searches for this compartment.
+func (client LoggingManagementClient) ListLogIncludedSearches(ctx context.Context, request ListLogIncludedSearchesRequest) (response ListLogIncludedSearchesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.listLogRules, policy)
+	ociResponse, err = common.Retry(ctx, request, client.listLogIncludedSearches, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ListLogRulesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = ListLogIncludedSearchesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = ListLogRulesResponse{}
+				response = ListLogIncludedSearchesResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(ListLogRulesResponse); ok {
+	if convertedResponse, ok := ociResponse.(ListLogIncludedSearchesResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListLogRulesResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ListLogIncludedSearchesResponse")
 	}
 	return
 }
 
-// listLogRules implements the OCIOperation interface (enables retrying operations)
-func (client LoggingManagementClient) listLogRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logRules")
+// listLogIncludedSearches implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) listLogIncludedSearches(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logIncludedSearches")
 	if err != nil {
 		return nil, err
 	}
 
-	var response ListLogRulesResponse
+	var response ListLogIncludedSearchesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListLogSavedSearches Lists Logging Saved Searches for this compartment.
+func (client LoggingManagementClient) ListLogSavedSearches(ctx context.Context, request ListLogSavedSearchesRequest) (response ListLogSavedSearchesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listLogSavedSearches, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListLogSavedSearchesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListLogSavedSearchesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListLogSavedSearchesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListLogSavedSearchesResponse")
+	}
+	return
+}
+
+// listLogSavedSearches implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) listLogSavedSearches(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/logSavedSearches")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListLogSavedSearchesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -929,6 +1226,53 @@ func (client LoggingManagementClient) listServices(ctx context.Context, request 
 	}
 
 	var response ListServicesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListUnifiedAgentConfigurations Lists all unified agent configurations in the specified compartment
+func (client LoggingManagementClient) ListUnifiedAgentConfigurations(ctx context.Context, request ListUnifiedAgentConfigurationsRequest) (response ListUnifiedAgentConfigurationsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listUnifiedAgentConfigurations, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListUnifiedAgentConfigurationsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListUnifiedAgentConfigurationsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListUnifiedAgentConfigurationsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListUnifiedAgentConfigurationsResponse")
+	}
+	return
+}
+
+// listUnifiedAgentConfigurations implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) listUnifiedAgentConfigurations(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/unifiedAgentConfigurations")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListUnifiedAgentConfigurationsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1178,41 +1522,89 @@ func (client LoggingManagementClient) updateLogGroup(ctx context.Context, reques
 	return response, err
 }
 
-// UpdateLogRule Updates an  existing log rule.
-func (client LoggingManagementClient) UpdateLogRule(ctx context.Context, request UpdateLogRuleRequest) (response UpdateLogRuleResponse, err error) {
+// UpdateLogSavedSearch Updates an  existing log saved search.
+func (client LoggingManagementClient) UpdateLogSavedSearch(ctx context.Context, request UpdateLogSavedSearchRequest) (response UpdateLogSavedSearchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.updateLogRule, policy)
+	ociResponse, err = common.Retry(ctx, request, client.updateLogSavedSearch, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = UpdateLogRuleResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = UpdateLogSavedSearchResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = UpdateLogRuleResponse{}
+				response = UpdateLogSavedSearchResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(UpdateLogRuleResponse); ok {
+	if convertedResponse, ok := ociResponse.(UpdateLogSavedSearchResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into UpdateLogRuleResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateLogSavedSearchResponse")
 	}
 	return
 }
 
-// updateLogRule implements the OCIOperation interface (enables retrying operations)
-func (client LoggingManagementClient) updateLogRule(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/logRules/{logRuleId}")
+// updateLogSavedSearch implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) updateLogSavedSearch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/logSavedSearches/{logSavedSearchId}")
 	if err != nil {
 		return nil, err
 	}
 
-	var response UpdateLogRuleResponse
+	var response UpdateLogSavedSearchResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateUnifiedAgentConfiguration Update an existing unified agent configuration. This call
+//       fails if log group does not exist.
+func (client LoggingManagementClient) UpdateUnifiedAgentConfiguration(ctx context.Context, request UpdateUnifiedAgentConfigurationRequest) (response UpdateUnifiedAgentConfigurationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateUnifiedAgentConfiguration, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateUnifiedAgentConfigurationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateUnifiedAgentConfigurationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateUnifiedAgentConfigurationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateUnifiedAgentConfigurationResponse")
+	}
+	return
+}
+
+// updateUnifiedAgentConfiguration implements the OCIOperation interface (enables retrying operations)
+func (client LoggingManagementClient) updateUnifiedAgentConfiguration(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/unifiedAgentConfigurations/{unifiedAgentConfigurationId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateUnifiedAgentConfigurationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

@@ -63,6 +63,9 @@ type CreateEndpointServiceDetails struct {
 	// Example: `xyz.oraclecloud.com`
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
 
+	// The Endpoint Service belong to a substrate or not
+	IsSubstrate *bool `mandatory:"false" json:"isSubstrate"`
+
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`

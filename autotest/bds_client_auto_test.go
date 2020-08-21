@@ -23,6 +23,50 @@ func createBdsClientWithProvider(p common.ConfigurationProvider, testConfig Test
 }
 
 // IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
+func TestBdsClientAddAutoScalingConfiguration(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("bds", "AddAutoScalingConfiguration")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AddAutoScalingConfiguration is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("bds", "Bds", "AddAutoScalingConfiguration", createBdsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(bds.BdsClient)
+
+	body, err := testClient.getRequests("bds", "AddAutoScalingConfiguration")
+	assert.NoError(t, err)
+
+	type AddAutoScalingConfigurationRequestInfo struct {
+		ContainerId string
+		Request     bds.AddAutoScalingConfigurationRequest
+	}
+
+	var requests []AddAutoScalingConfigurationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AddAutoScalingConfiguration(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
 func TestBdsClientAddBlockStorage(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -331,6 +375,50 @@ func TestBdsClientDeleteBdsInstance(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
+func TestBdsClientGetAutoScalingConfiguration(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("bds", "GetAutoScalingConfiguration")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAutoScalingConfiguration is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("bds", "Bds", "GetAutoScalingConfiguration", createBdsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(bds.BdsClient)
+
+	body, err := testClient.getRequests("bds", "GetAutoScalingConfiguration")
+	assert.NoError(t, err)
+
+	type GetAutoScalingConfigurationRequestInfo struct {
+		ContainerId string
+		Request     bds.GetAutoScalingConfigurationRequest
+	}
+
+	var requests []GetAutoScalingConfigurationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetAutoScalingConfiguration(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
 func TestBdsClientGetBdsInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -412,6 +500,60 @@ func TestBdsClientGetWorkRequest(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetWorkRequest(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
+func TestBdsClientListAutoScalingConfigurations(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("bds", "ListAutoScalingConfigurations")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAutoScalingConfigurations is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("bds", "Bds", "ListAutoScalingConfigurations", createBdsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(bds.BdsClient)
+
+	body, err := testClient.getRequests("bds", "ListAutoScalingConfigurations")
+	assert.NoError(t, err)
+
+	type ListAutoScalingConfigurationsRequestInfo struct {
+		ContainerId string
+		Request     bds.ListAutoScalingConfigurationsRequest
+	}
+
+	var requests []ListAutoScalingConfigurationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*bds.ListAutoScalingConfigurationsRequest)
+				return c.ListAutoScalingConfigurations(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]bds.ListAutoScalingConfigurationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(bds.ListAutoScalingConfigurationsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -635,6 +777,50 @@ func TestBdsClientListWorkRequests(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
+func TestBdsClientRemoveAutoScalingConfiguration(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("bds", "RemoveAutoScalingConfiguration")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RemoveAutoScalingConfiguration is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("bds", "Bds", "RemoveAutoScalingConfiguration", createBdsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(bds.BdsClient)
+
+	body, err := testClient.getRequests("bds", "RemoveAutoScalingConfiguration")
+	assert.NoError(t, err)
+
+	type RemoveAutoScalingConfigurationRequestInfo struct {
+		ContainerId string
+		Request     bds.RemoveAutoScalingConfigurationRequest
+	}
+
+	var requests []RemoveAutoScalingConfigurationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RemoveAutoScalingConfiguration(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
 func TestBdsClientRemoveCloudSql(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -715,6 +901,50 @@ func TestBdsClientRestartNode(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.RestartNode(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="bdcs_dev_ww_grp@oracle.com" jiraProject="BDCS" opsJiraProject="OBDS"
+func TestBdsClientUpdateAutoScalingConfiguration(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("bds", "UpdateAutoScalingConfiguration")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateAutoScalingConfiguration is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("bds", "Bds", "UpdateAutoScalingConfiguration", createBdsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(bds.BdsClient)
+
+	body, err := testClient.getRequests("bds", "UpdateAutoScalingConfiguration")
+	assert.NoError(t, err)
+
+	type UpdateAutoScalingConfigurationRequestInfo struct {
+		ContainerId string
+		Request     bds.UpdateAutoScalingConfigurationRequest
+	}
+
+	var requests []UpdateAutoScalingConfigurationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateAutoScalingConfiguration(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

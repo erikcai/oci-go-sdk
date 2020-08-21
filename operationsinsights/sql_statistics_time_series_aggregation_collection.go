@@ -19,6 +19,12 @@ type SqlStatisticsTimeSeriesAggregationCollection struct {
 	// Unique SQL_ID for a SQL Statement.
 	SqlIdentifier *string `mandatory:"true" json:"sqlIdentifier"`
 
+	// The start timestamp that was passed into the request.
+	TimeIntervalStart *common.SDKTime `mandatory:"true" json:"timeIntervalStart"`
+
+	// The end timestamp that was passed into the request.
+	TimeIntervalEnd *common.SDKTime `mandatory:"true" json:"timeIntervalEnd"`
+
 	// Time duration in milliseconds between data points (one hour or one day).
 	ItemDurationInMs *int64 `mandatory:"true" json:"itemDurationInMs"`
 

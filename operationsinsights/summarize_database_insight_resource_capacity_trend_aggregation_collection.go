@@ -16,6 +16,12 @@ import (
 // SummarizeDatabaseInsightResourceCapacityTrendAggregationCollection Collection of resource capacity trend.
 type SummarizeDatabaseInsightResourceCapacityTrendAggregationCollection struct {
 
+	// The start timestamp that was passed into the request.
+	TimeIntervalStart *common.SDKTime `mandatory:"true" json:"timeIntervalStart"`
+
+	// The end timestamp that was passed into the request.
+	TimeIntervalEnd *common.SDKTime `mandatory:"true" json:"timeIntervalEnd"`
+
 	// Defines the type of resource metric (CPU, STORAGE)
 	ResourceMetric SummarizeDatabaseInsightResourceCapacityTrendAggregationCollectionResourceMetricEnum `mandatory:"true" json:"resourceMetric"`
 

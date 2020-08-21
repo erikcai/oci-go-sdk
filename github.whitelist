@@ -73,3 +73,6 @@
 ^optimizer/
 ^managementagent/
 ^computeinstanceagent/
+^loggingingestion/
+^bastion/
+^loggingsearch/

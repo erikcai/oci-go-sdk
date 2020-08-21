@@ -142,10 +142,12 @@ type ListManagedListTypesSortByEnum string
 // Set of constants representing the allowable values for ListManagedListTypesSortByEnum
 const (
 	ListManagedListTypesSortByDisplayname ListManagedListTypesSortByEnum = "displayName"
+	ListManagedListTypesSortByRisklevel   ListManagedListTypesSortByEnum = "riskLevel"
 )
 
 var mappingListManagedListTypesSortBy = map[string]ListManagedListTypesSortByEnum{
 	"displayName": ListManagedListTypesSortByDisplayname,
+	"riskLevel":   ListManagedListTypesSortByRisklevel,
 }
 
 // GetListManagedListTypesSortByEnumValues Enumerates the set of values for ListManagedListTypesSortByEnum

@@ -67,6 +67,50 @@ func TestDataSafeClientChangeDataSafePrivateEndpointCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientChangeOnPremConnectorCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datasafe", "ChangeOnPremConnectorCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeOnPremConnectorCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "ChangeOnPremConnectorCompartment", createDataSafeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datasafe.DataSafeClient)
+
+	body, err := testClient.getRequests("datasafe", "ChangeOnPremConnectorCompartment")
+	assert.NoError(t, err)
+
+	type ChangeOnPremConnectorCompartmentRequestInfo struct {
+		ContainerId string
+		Request     datasafe.ChangeOnPremConnectorCompartmentRequest
+	}
+
+	var requests []ChangeOnPremConnectorCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeOnPremConnectorCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
 func TestDataSafeClientCreateDataSafePrivateEndpoint(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -103,6 +147,50 @@ func TestDataSafeClientCreateDataSafePrivateEndpoint(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateDataSafePrivateEndpoint(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientCreateOnPremConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datasafe", "CreateOnPremConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateOnPremConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "CreateOnPremConnector", createDataSafeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datasafe.DataSafeClient)
+
+	body, err := testClient.getRequests("datasafe", "CreateOnPremConnector")
+	assert.NoError(t, err)
+
+	type CreateOnPremConnectorRequestInfo struct {
+		ContainerId string
+		Request     datasafe.CreateOnPremConnectorRequest
+	}
+
+	var requests []CreateOnPremConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateOnPremConnector(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -155,6 +243,50 @@ func TestDataSafeClientDeleteDataSafePrivateEndpoint(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientDeleteOnPremConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datasafe", "DeleteOnPremConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteOnPremConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "DeleteOnPremConnector", createDataSafeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datasafe.DataSafeClient)
+
+	body, err := testClient.getRequests("datasafe", "DeleteOnPremConnector")
+	assert.NoError(t, err)
+
+	type DeleteOnPremConnectorRequestInfo struct {
+		ContainerId string
+		Request     datasafe.DeleteOnPremConnectorRequest
+	}
+
+	var requests []DeleteOnPremConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteOnPremConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
 func TestDataSafeClientEnableDataSafeConfiguration(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -191,6 +323,50 @@ func TestDataSafeClientEnableDataSafeConfiguration(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.EnableDataSafeConfiguration(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientGenerateOnPremConnectorConfiguration(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datasafe", "GenerateOnPremConnectorConfiguration")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GenerateOnPremConnectorConfiguration is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "GenerateOnPremConnectorConfiguration", createDataSafeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datasafe.DataSafeClient)
+
+	body, err := testClient.getRequests("datasafe", "GenerateOnPremConnectorConfiguration")
+	assert.NoError(t, err)
+
+	type GenerateOnPremConnectorConfigurationRequestInfo struct {
+		ContainerId string
+		Request     datasafe.GenerateOnPremConnectorConfigurationRequest
+	}
+
+	var requests []GenerateOnPremConnectorConfigurationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GenerateOnPremConnectorConfiguration(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -287,6 +463,50 @@ func TestDataSafeClientGetDataSafePrivateEndpoint(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientGetOnPremConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datasafe", "GetOnPremConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetOnPremConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "GetOnPremConnector", createDataSafeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datasafe.DataSafeClient)
+
+	body, err := testClient.getRequests("datasafe", "GetOnPremConnector")
+	assert.NoError(t, err)
+
+	type GetOnPremConnectorRequestInfo struct {
+		ContainerId string
+		Request     datasafe.GetOnPremConnectorRequest
+	}
+
+	var requests []GetOnPremConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetOnPremConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
 func TestDataSafeClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -375,6 +595,60 @@ func TestDataSafeClientListDataSafePrivateEndpoints(t *testing.T) {
 			typedListResponses := make([]datasafe.ListDataSafePrivateEndpointsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(datasafe.ListDataSafePrivateEndpointsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientListOnPremConnectors(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datasafe", "ListOnPremConnectors")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListOnPremConnectors is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "ListOnPremConnectors", createDataSafeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datasafe.DataSafeClient)
+
+	body, err := testClient.getRequests("datasafe", "ListOnPremConnectors")
+	assert.NoError(t, err)
+
+	type ListOnPremConnectorsRequestInfo struct {
+		ContainerId string
+		Request     datasafe.ListOnPremConnectorsRequest
+	}
+
+	var requests []ListOnPremConnectorsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datasafe.ListOnPremConnectorsRequest)
+				return c.ListOnPremConnectors(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datasafe.ListOnPremConnectorsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datasafe.ListOnPremConnectorsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -583,6 +857,94 @@ func TestDataSafeClientUpdateDataSafePrivateEndpoint(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateDataSafePrivateEndpoint(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientUpdateOnPremConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datasafe", "UpdateOnPremConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateOnPremConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "UpdateOnPremConnector", createDataSafeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datasafe.DataSafeClient)
+
+	body, err := testClient.getRequests("datasafe", "UpdateOnPremConnector")
+	assert.NoError(t, err)
+
+	type UpdateOnPremConnectorRequestInfo struct {
+		ContainerId string
+		Request     datasafe.UpdateOnPremConnectorRequest
+	}
+
+	var requests []UpdateOnPremConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateOnPremConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datasafe_dex_ww_grp@oracle.com" jiraProject="DS" opsJiraProject="ADS"
+func TestDataSafeClientUpdateOnPremConnectorWallet(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datasafe", "UpdateOnPremConnectorWallet")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateOnPremConnectorWallet is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datasafe", "DataSafe", "UpdateOnPremConnectorWallet", createDataSafeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datasafe.DataSafeClient)
+
+	body, err := testClient.getRequests("datasafe", "UpdateOnPremConnectorWallet")
+	assert.NoError(t, err)
+
+	type UpdateOnPremConnectorWalletRequestInfo struct {
+		ContainerId string
+		Request     datasafe.UpdateOnPremConnectorWalletRequest
+	}
+
+	var requests []UpdateOnPremConnectorWalletRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateOnPremConnectorWallet(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

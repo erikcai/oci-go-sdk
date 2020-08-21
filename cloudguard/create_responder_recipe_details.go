@@ -19,14 +19,14 @@ type CreateResponderRecipeDetails struct {
 	// ResponderRecipe Display Name
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// ResponderRecipe Description
-	Description *string `mandatory:"true" json:"description"`
-
 	// The id of the source responder recipe.
 	SourceResponderRecipeId *string `mandatory:"true" json:"sourceResponderRecipeId"`
 
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// ResponderRecipe Description
+	Description *string `mandatory:"false" json:"description"`
 
 	// Responder Rules to override from source responder recipe
 	ResponderRules []UpdateResponderRecipeResponderRule `mandatory:"false" json:"responderRules"`

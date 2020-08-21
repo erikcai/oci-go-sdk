@@ -39,9 +39,6 @@ type CreateGatewayDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
 	CertificateId *string `mandatory:"false" json:"certificateId"`
 
-	// Used to validate against the assigned certificate.
-	Hostname *string `mandatory:"false" json:"hostname"`
-
 	// Free-form tags for this resource. Each tag is a simple key-value pair
 	// with no predefined name, type, or namespace. For more information, see
 	// Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).

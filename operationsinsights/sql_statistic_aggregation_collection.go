@@ -16,6 +16,12 @@ import (
 // SqlStatisticAggregationCollection SQL statistics response.
 type SqlStatisticAggregationCollection struct {
 
+	// The start timestamp that was passed into the request.
+	TimeIntervalStart *common.SDKTime `mandatory:"true" json:"timeIntervalStart"`
+
+	// The end timestamp that was passed into the request.
+	TimeIntervalEnd *common.SDKTime `mandatory:"true" json:"timeIntervalEnd"`
+
 	// Array of SQLs along with its statistics statisfying the query criteria.
 	Items []SqlStatisticAggregation `mandatory:"true" json:"items"`
 }

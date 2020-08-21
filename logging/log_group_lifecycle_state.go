@@ -19,6 +19,7 @@ const (
 	LogGroupLifecycleStateUpdating LogGroupLifecycleStateEnum = "UPDATING"
 	LogGroupLifecycleStateInactive LogGroupLifecycleStateEnum = "INACTIVE"
 	LogGroupLifecycleStateDeleting LogGroupLifecycleStateEnum = "DELETING"
+	LogGroupLifecycleStateFailed   LogGroupLifecycleStateEnum = "FAILED"
 )
 
 var mappingLogGroupLifecycleState = map[string]LogGroupLifecycleStateEnum{
@@ -27,6 +28,7 @@ var mappingLogGroupLifecycleState = map[string]LogGroupLifecycleStateEnum{
 	"UPDATING": LogGroupLifecycleStateUpdating,
 	"INACTIVE": LogGroupLifecycleStateInactive,
 	"DELETING": LogGroupLifecycleStateDeleting,
+	"FAILED":   LogGroupLifecycleStateFailed,
 }
 
 // GetLogGroupLifecycleStateEnumValues Enumerates the set of values for LogGroupLifecycleStateEnum

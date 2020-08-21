@@ -153,21 +153,23 @@ type CloudVmClusterLifecycleStateEnum string
 
 // Set of constants representing the allowable values for CloudVmClusterLifecycleStateEnum
 const (
-	CloudVmClusterLifecycleStateProvisioning CloudVmClusterLifecycleStateEnum = "PROVISIONING"
-	CloudVmClusterLifecycleStateAvailable    CloudVmClusterLifecycleStateEnum = "AVAILABLE"
-	CloudVmClusterLifecycleStateUpdating     CloudVmClusterLifecycleStateEnum = "UPDATING"
-	CloudVmClusterLifecycleStateTerminating  CloudVmClusterLifecycleStateEnum = "TERMINATING"
-	CloudVmClusterLifecycleStateTerminated   CloudVmClusterLifecycleStateEnum = "TERMINATED"
-	CloudVmClusterLifecycleStateFailed       CloudVmClusterLifecycleStateEnum = "FAILED"
+	CloudVmClusterLifecycleStateProvisioning          CloudVmClusterLifecycleStateEnum = "PROVISIONING"
+	CloudVmClusterLifecycleStateAvailable             CloudVmClusterLifecycleStateEnum = "AVAILABLE"
+	CloudVmClusterLifecycleStateUpdating              CloudVmClusterLifecycleStateEnum = "UPDATING"
+	CloudVmClusterLifecycleStateTerminating           CloudVmClusterLifecycleStateEnum = "TERMINATING"
+	CloudVmClusterLifecycleStateTerminated            CloudVmClusterLifecycleStateEnum = "TERMINATED"
+	CloudVmClusterLifecycleStateFailed                CloudVmClusterLifecycleStateEnum = "FAILED"
+	CloudVmClusterLifecycleStateMaintenanceInProgress CloudVmClusterLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 )
 
 var mappingCloudVmClusterLifecycleState = map[string]CloudVmClusterLifecycleStateEnum{
-	"PROVISIONING": CloudVmClusterLifecycleStateProvisioning,
-	"AVAILABLE":    CloudVmClusterLifecycleStateAvailable,
-	"UPDATING":     CloudVmClusterLifecycleStateUpdating,
-	"TERMINATING":  CloudVmClusterLifecycleStateTerminating,
-	"TERMINATED":   CloudVmClusterLifecycleStateTerminated,
-	"FAILED":       CloudVmClusterLifecycleStateFailed,
+	"PROVISIONING":            CloudVmClusterLifecycleStateProvisioning,
+	"AVAILABLE":               CloudVmClusterLifecycleStateAvailable,
+	"UPDATING":                CloudVmClusterLifecycleStateUpdating,
+	"TERMINATING":             CloudVmClusterLifecycleStateTerminating,
+	"TERMINATED":              CloudVmClusterLifecycleStateTerminated,
+	"FAILED":                  CloudVmClusterLifecycleStateFailed,
+	"MAINTENANCE_IN_PROGRESS": CloudVmClusterLifecycleStateMaintenanceInProgress,
 }
 
 // GetCloudVmClusterLifecycleStateEnumValues Enumerates the set of values for CloudVmClusterLifecycleStateEnum

@@ -15,6 +15,11 @@ type ListResponderRecipesRequest struct {
 	// The ID of the compartment in which to list resources.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
+	// Default is false.
+	// When set to true, the list of all Oracle Managed Resources
+	// Metadata supported by Cloud Guard is returned.
+	ResourceMetadataOnly *bool `mandatory:"false" contributesTo:"query" name:"resourceMetadataOnly"`
+
 	// A filter to return only resources that match the entire display name given.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 

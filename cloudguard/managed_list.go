@@ -31,6 +31,9 @@ type ManagedList struct {
 	// ManagedList description
 	Description *string `mandatory:"false" json:"description"`
 
+	// OCID of the Source ManagedList
+	SourceManagedListId *string `mandatory:"false" json:"sourceManagedListId"`
+
 	// List of ManagedListItem
 	ListItems []string `mandatory:"false" json:"listItems"`
 

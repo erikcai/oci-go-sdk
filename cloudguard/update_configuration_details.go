@@ -21,6 +21,10 @@ type UpdateConfigurationDetails struct {
 
 	// Status of Cloud Guard Tenant
 	Status CloudGuardStatusEnum `mandatory:"true" json:"status"`
+
+	// Identifies if Oracle managed resources will be created by customers.
+	// If no value is specified false is the default.
+	SelfManageResources *bool `mandatory:"false" json:"selfManageResources"`
 }
 
 func (m UpdateConfigurationDetails) String() string {

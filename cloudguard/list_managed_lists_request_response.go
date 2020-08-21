@@ -18,6 +18,11 @@ type ListManagedListsRequest struct {
 	// A filter to return only resources that match the entire display name given.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 
+	// Default is false.
+	// When set to true, the list of all Oracle Managed Resources
+	// Metadata supported by Cloud Guard is returned.
+	ResourceMetadataOnly *bool `mandatory:"false" contributesTo:"query" name:"resourceMetadataOnly"`
+
 	// The field life cycle state. Only one state can be provided. Default value for state is active. If no value is specified state is active.
 	LifecycleState ListManagedListsLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 

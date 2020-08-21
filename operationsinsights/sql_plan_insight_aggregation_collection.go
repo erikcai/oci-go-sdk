@@ -22,6 +22,12 @@ type SqlPlanInsightAggregationCollection struct {
 	// The OCID  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
 	DatabaseId *string `mandatory:"true" json:"databaseId"`
 
+	// The start timestamp that was passed into the request.
+	TimeIntervalStart *common.SDKTime `mandatory:"true" json:"timeIntervalStart"`
+
+	// The end timestamp that was passed into the request.
+	TimeIntervalEnd *common.SDKTime `mandatory:"true" json:"timeIntervalEnd"`
+
 	// List of SQL plan insights.
 	Insights []SqlPlanInsights `mandatory:"true" json:"insights"`
 

@@ -5971,6 +5971,53 @@ func (client VirtualNetworkClient) getEndpointService(ctx context.Context, reque
 	return response, err
 }
 
+// GetEndpointServiceNextHop Gets the specified Next Hops's information.
+func (client VirtualNetworkClient) GetEndpointServiceNextHop(ctx context.Context, request GetEndpointServiceNextHopRequest) (response GetEndpointServiceNextHopResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getEndpointServiceNextHop, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetEndpointServiceNextHopResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetEndpointServiceNextHopResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetEndpointServiceNextHopResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetEndpointServiceNextHopResponse")
+	}
+	return
+}
+
+// getEndpointServiceNextHop implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getEndpointServiceNextHop(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/endpointServices/{endpointServiceId}/nextHops/{serviceIp}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetEndpointServiceNextHopResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetFastConnectProviderService Gets the specified provider service.
 // For more information, see FastConnect Overview (https://docs.cloud.oracle.com/Content/Network/Concepts/fastconnect.htm).
 func (client VirtualNetworkClient) GetFastConnectProviderService(ctx context.Context, request GetFastConnectProviderServiceRequest) (response GetFastConnectProviderServiceResponse, err error) {
@@ -9093,6 +9140,53 @@ func (client VirtualNetworkClient) listNetworkSecurityGroups(ctx context.Context
 	return response, err
 }
 
+// ListNextHops Lists the next hops configured in the specified endpointServiceId.
+func (client VirtualNetworkClient) ListNextHops(ctx context.Context, request ListNextHopsRequest) (response ListNextHopsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listNextHops, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListNextHopsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListNextHopsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListNextHopsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListNextHopsResponse")
+	}
+	return
+}
+
+// listNextHops implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listNextHops(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/endpointServices/{endpointServiceId}/nextHops")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListNextHopsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListPrivateAccessGateways Lists the private access gateways (PAGs) in the specified compartment. You can optionally
 // filter the list by specifying the OCID of a service VCN.
 func (client VirtualNetworkClient) ListPrivateAccessGateways(ctx context.Context, request ListPrivateAccessGatewaysRequest) (response ListPrivateAccessGatewaysResponse, err error) {
@@ -10544,6 +10638,58 @@ func (client VirtualNetworkClient) updateEndpointService(ctx context.Context, re
 	}
 
 	var response UpdateEndpointServiceResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateEndpointServiceNextHop Adds backend next hop details OR Updates existing next hop details OR Removes next hop details (empty string for nextHopIp and -1 for nextHopSlotId) for a given substrate endpoint service and service ip
+func (client VirtualNetworkClient) UpdateEndpointServiceNextHop(ctx context.Context, request UpdateEndpointServiceNextHopRequest) (response UpdateEndpointServiceNextHopResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.updateEndpointServiceNextHop, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateEndpointServiceNextHopResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateEndpointServiceNextHopResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateEndpointServiceNextHopResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateEndpointServiceNextHopResponse")
+	}
+	return
+}
+
+// updateEndpointServiceNextHop implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateEndpointServiceNextHop(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/endpointServices/{endpointServiceId}/nextHops/{serviceIp}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateEndpointServiceNextHopResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

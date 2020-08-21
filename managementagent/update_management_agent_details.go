@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// ManagementAgentCloudServices Agent API
+// Management Agent API
 //
-// ManagementAgentCloudServices Agent API
+// API for Management Agent Cloud Service
 //
 
 package managementagent
@@ -16,7 +16,7 @@ import (
 // UpdateManagementAgentDetails Details required to update console-managed properties of the Management Agent.
 type UpdateManagementAgentDetails struct {
 
-	// if set to true then, agent can be upgraded automatically else needs to be upgraded manually.
+	// true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.
 	IsAgentAutoUpgradable *bool `mandatory:"false" json:"isAgentAutoUpgradable"`
 
 	// New displayName of Agent.

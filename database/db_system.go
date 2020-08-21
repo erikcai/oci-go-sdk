@@ -202,23 +202,25 @@ type DbSystemLifecycleStateEnum string
 
 // Set of constants representing the allowable values for DbSystemLifecycleStateEnum
 const (
-	DbSystemLifecycleStateProvisioning DbSystemLifecycleStateEnum = "PROVISIONING"
-	DbSystemLifecycleStateAvailable    DbSystemLifecycleStateEnum = "AVAILABLE"
-	DbSystemLifecycleStateUpdating     DbSystemLifecycleStateEnum = "UPDATING"
-	DbSystemLifecycleStateTerminating  DbSystemLifecycleStateEnum = "TERMINATING"
-	DbSystemLifecycleStateTerminated   DbSystemLifecycleStateEnum = "TERMINATED"
-	DbSystemLifecycleStateFailed       DbSystemLifecycleStateEnum = "FAILED"
-	DbSystemLifecycleStateMigrated     DbSystemLifecycleStateEnum = "MIGRATED"
+	DbSystemLifecycleStateProvisioning          DbSystemLifecycleStateEnum = "PROVISIONING"
+	DbSystemLifecycleStateAvailable             DbSystemLifecycleStateEnum = "AVAILABLE"
+	DbSystemLifecycleStateUpdating              DbSystemLifecycleStateEnum = "UPDATING"
+	DbSystemLifecycleStateTerminating           DbSystemLifecycleStateEnum = "TERMINATING"
+	DbSystemLifecycleStateTerminated            DbSystemLifecycleStateEnum = "TERMINATED"
+	DbSystemLifecycleStateFailed                DbSystemLifecycleStateEnum = "FAILED"
+	DbSystemLifecycleStateMigrated              DbSystemLifecycleStateEnum = "MIGRATED"
+	DbSystemLifecycleStateMaintenanceInProgress DbSystemLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 )
 
 var mappingDbSystemLifecycleState = map[string]DbSystemLifecycleStateEnum{
-	"PROVISIONING": DbSystemLifecycleStateProvisioning,
-	"AVAILABLE":    DbSystemLifecycleStateAvailable,
-	"UPDATING":     DbSystemLifecycleStateUpdating,
-	"TERMINATING":  DbSystemLifecycleStateTerminating,
-	"TERMINATED":   DbSystemLifecycleStateTerminated,
-	"FAILED":       DbSystemLifecycleStateFailed,
-	"MIGRATED":     DbSystemLifecycleStateMigrated,
+	"PROVISIONING":            DbSystemLifecycleStateProvisioning,
+	"AVAILABLE":               DbSystemLifecycleStateAvailable,
+	"UPDATING":                DbSystemLifecycleStateUpdating,
+	"TERMINATING":             DbSystemLifecycleStateTerminating,
+	"TERMINATED":              DbSystemLifecycleStateTerminated,
+	"FAILED":                  DbSystemLifecycleStateFailed,
+	"MIGRATED":                DbSystemLifecycleStateMigrated,
+	"MAINTENANCE_IN_PROGRESS": DbSystemLifecycleStateMaintenanceInProgress,
 }
 
 // GetDbSystemLifecycleStateEnumValues Enumerates the set of values for DbSystemLifecycleStateEnum

@@ -15,6 +15,13 @@ import (
 
 // SqlInsightAggregationCollection SQL Insights response.
 type SqlInsightAggregationCollection struct {
+
+	// The start timestamp that was passed into the request.
+	TimeIntervalStart *common.SDKTime `mandatory:"true" json:"timeIntervalStart"`
+
+	// The end timestamp that was passed into the request.
+	TimeIntervalEnd *common.SDKTime `mandatory:"true" json:"timeIntervalEnd"`
+
 	Inventory *SqlInventory `mandatory:"true" json:"inventory"`
 
 	// List of insights.

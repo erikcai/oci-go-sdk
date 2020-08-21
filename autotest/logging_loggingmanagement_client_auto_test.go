@@ -111,28 +111,28 @@ func TestLoggingLoggingManagementClientChangeLogLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestLoggingLoggingManagementClientChangeLogRuleCompartment(t *testing.T) {
+func TestLoggingLoggingManagementClientChangeLogSavedSearchCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("logging", "ChangeLogRuleCompartment")
+	enabled, err := testClient.isApiEnabled("logging", "ChangeLogSavedSearchCompartment")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ChangeLogRuleCompartment is not enabled by the testing service")
+		t.Skip("ChangeLogSavedSearchCompartment is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ChangeLogRuleCompartment", createLoggingLoggingManagementClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ChangeLogSavedSearchCompartment", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(logging.LoggingManagementClient)
 
-	body, err := testClient.getRequests("logging", "ChangeLogRuleCompartment")
+	body, err := testClient.getRequests("logging", "ChangeLogSavedSearchCompartment")
 	assert.NoError(t, err)
 
-	type ChangeLogRuleCompartmentRequestInfo struct {
+	type ChangeLogSavedSearchCompartmentRequestInfo struct {
 		ContainerId string
-		Request     logging.ChangeLogRuleCompartmentRequest
+		Request     logging.ChangeLogSavedSearchCompartmentRequest
 	}
 
-	var requests []ChangeLogRuleCompartmentRequestInfo
+	var requests []ChangeLogSavedSearchCompartmentRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -146,7 +146,51 @@ func TestLoggingLoggingManagementClientChangeLogRuleCompartment(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ChangeLogRuleCompartment(context.Background(), req.Request)
+			response, err := c.ChangeLogSavedSearchCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
+func TestLoggingLoggingManagementClientChangeUnifiedAgentConfigurationCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("logging", "ChangeUnifiedAgentConfigurationCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeUnifiedAgentConfigurationCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ChangeUnifiedAgentConfigurationCompartment", createLoggingLoggingManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(logging.LoggingManagementClient)
+
+	body, err := testClient.getRequests("logging", "ChangeUnifiedAgentConfigurationCompartment")
+	assert.NoError(t, err)
+
+	type ChangeUnifiedAgentConfigurationCompartmentRequestInfo struct {
+		ContainerId string
+		Request     logging.ChangeUnifiedAgentConfigurationCompartmentRequest
+	}
+
+	var requests []ChangeUnifiedAgentConfigurationCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeUnifiedAgentConfigurationCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -243,28 +287,28 @@ func TestLoggingLoggingManagementClientCreateLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestLoggingLoggingManagementClientCreateLogRule(t *testing.T) {
+func TestLoggingLoggingManagementClientCreateLogSavedSearch(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("logging", "CreateLogRule")
+	enabled, err := testClient.isApiEnabled("logging", "CreateLogSavedSearch")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("CreateLogRule is not enabled by the testing service")
+		t.Skip("CreateLogSavedSearch is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "CreateLogRule", createLoggingLoggingManagementClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "CreateLogSavedSearch", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(logging.LoggingManagementClient)
 
-	body, err := testClient.getRequests("logging", "CreateLogRule")
+	body, err := testClient.getRequests("logging", "CreateLogSavedSearch")
 	assert.NoError(t, err)
 
-	type CreateLogRuleRequestInfo struct {
+	type CreateLogSavedSearchRequestInfo struct {
 		ContainerId string
-		Request     logging.CreateLogRuleRequest
+		Request     logging.CreateLogSavedSearchRequest
 	}
 
-	var requests []CreateLogRuleRequestInfo
+	var requests []CreateLogSavedSearchRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -278,7 +322,51 @@ func TestLoggingLoggingManagementClientCreateLogRule(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.CreateLogRule(context.Background(), req.Request)
+			response, err := c.CreateLogSavedSearch(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
+func TestLoggingLoggingManagementClientCreateUnifiedAgentConfiguration(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("logging", "CreateUnifiedAgentConfiguration")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateUnifiedAgentConfiguration is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "CreateUnifiedAgentConfiguration", createLoggingLoggingManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(logging.LoggingManagementClient)
+
+	body, err := testClient.getRequests("logging", "CreateUnifiedAgentConfiguration")
+	assert.NoError(t, err)
+
+	type CreateUnifiedAgentConfigurationRequestInfo struct {
+		ContainerId string
+		Request     logging.CreateUnifiedAgentConfigurationRequest
+	}
+
+	var requests []CreateUnifiedAgentConfigurationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateUnifiedAgentConfiguration(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -375,28 +463,28 @@ func TestLoggingLoggingManagementClientDeleteLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestLoggingLoggingManagementClientDeleteLogRule(t *testing.T) {
+func TestLoggingLoggingManagementClientDeleteLogSavedSearch(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("logging", "DeleteLogRule")
+	enabled, err := testClient.isApiEnabled("logging", "DeleteLogSavedSearch")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("DeleteLogRule is not enabled by the testing service")
+		t.Skip("DeleteLogSavedSearch is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "DeleteLogRule", createLoggingLoggingManagementClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "DeleteLogSavedSearch", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(logging.LoggingManagementClient)
 
-	body, err := testClient.getRequests("logging", "DeleteLogRule")
+	body, err := testClient.getRequests("logging", "DeleteLogSavedSearch")
 	assert.NoError(t, err)
 
-	type DeleteLogRuleRequestInfo struct {
+	type DeleteLogSavedSearchRequestInfo struct {
 		ContainerId string
-		Request     logging.DeleteLogRuleRequest
+		Request     logging.DeleteLogSavedSearchRequest
 	}
 
-	var requests []DeleteLogRuleRequestInfo
+	var requests []DeleteLogSavedSearchRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -410,7 +498,51 @@ func TestLoggingLoggingManagementClientDeleteLogRule(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.DeleteLogRule(context.Background(), req.Request)
+			response, err := c.DeleteLogSavedSearch(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
+func TestLoggingLoggingManagementClientDeleteUnifiedAgentConfiguration(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("logging", "DeleteUnifiedAgentConfiguration")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteUnifiedAgentConfiguration is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "DeleteUnifiedAgentConfiguration", createLoggingLoggingManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(logging.LoggingManagementClient)
+
+	body, err := testClient.getRequests("logging", "DeleteUnifiedAgentConfiguration")
+	assert.NoError(t, err)
+
+	type DeleteUnifiedAgentConfigurationRequestInfo struct {
+		ContainerId string
+		Request     logging.DeleteUnifiedAgentConfigurationRequest
+	}
+
+	var requests []DeleteUnifiedAgentConfigurationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteUnifiedAgentConfiguration(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -551,28 +683,28 @@ func TestLoggingLoggingManagementClientGetLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestLoggingLoggingManagementClientGetLogRule(t *testing.T) {
+func TestLoggingLoggingManagementClientGetLogIncludedSearch(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("logging", "GetLogRule")
+	enabled, err := testClient.isApiEnabled("logging", "GetLogIncludedSearch")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("GetLogRule is not enabled by the testing service")
+		t.Skip("GetLogIncludedSearch is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "GetLogRule", createLoggingLoggingManagementClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "GetLogIncludedSearch", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(logging.LoggingManagementClient)
 
-	body, err := testClient.getRequests("logging", "GetLogRule")
+	body, err := testClient.getRequests("logging", "GetLogIncludedSearch")
 	assert.NoError(t, err)
 
-	type GetLogRuleRequestInfo struct {
+	type GetLogIncludedSearchRequestInfo struct {
 		ContainerId string
-		Request     logging.GetLogRuleRequest
+		Request     logging.GetLogIncludedSearchRequest
 	}
 
-	var requests []GetLogRuleRequestInfo
+	var requests []GetLogIncludedSearchRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -586,7 +718,95 @@ func TestLoggingLoggingManagementClientGetLogRule(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetLogRule(context.Background(), req.Request)
+			response, err := c.GetLogIncludedSearch(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
+func TestLoggingLoggingManagementClientGetLogSavedSearch(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("logging", "GetLogSavedSearch")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetLogSavedSearch is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "GetLogSavedSearch", createLoggingLoggingManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(logging.LoggingManagementClient)
+
+	body, err := testClient.getRequests("logging", "GetLogSavedSearch")
+	assert.NoError(t, err)
+
+	type GetLogSavedSearchRequestInfo struct {
+		ContainerId string
+		Request     logging.GetLogSavedSearchRequest
+	}
+
+	var requests []GetLogSavedSearchRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetLogSavedSearch(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
+func TestLoggingLoggingManagementClientGetUnifiedAgentConfiguration(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("logging", "GetUnifiedAgentConfiguration")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetUnifiedAgentConfiguration is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "GetUnifiedAgentConfiguration", createLoggingLoggingManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(logging.LoggingManagementClient)
+
+	body, err := testClient.getRequests("logging", "GetUnifiedAgentConfiguration")
+	assert.NoError(t, err)
+
+	type GetUnifiedAgentConfigurationRequestInfo struct {
+		ContainerId string
+		Request     logging.GetUnifiedAgentConfigurationRequest
+	}
+
+	var requests []GetUnifiedAgentConfigurationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetUnifiedAgentConfiguration(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -693,28 +913,28 @@ func TestLoggingLoggingManagementClientListLogGroups(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestLoggingLoggingManagementClientListLogRules(t *testing.T) {
+func TestLoggingLoggingManagementClientListLogIncludedSearches(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("logging", "ListLogRules")
+	enabled, err := testClient.isApiEnabled("logging", "ListLogIncludedSearches")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ListLogRules is not enabled by the testing service")
+		t.Skip("ListLogIncludedSearches is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListLogRules", createLoggingLoggingManagementClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListLogIncludedSearches", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(logging.LoggingManagementClient)
 
-	body, err := testClient.getRequests("logging", "ListLogRules")
+	body, err := testClient.getRequests("logging", "ListLogIncludedSearches")
 	assert.NoError(t, err)
 
-	type ListLogRulesRequestInfo struct {
+	type ListLogIncludedSearchesRequestInfo struct {
 		ContainerId string
-		Request     logging.ListLogRulesRequest
+		Request     logging.ListLogIncludedSearchesRequest
 	}
 
-	var requests []ListLogRulesRequestInfo
+	var requests []ListLogIncludedSearchesRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -729,14 +949,68 @@ func TestLoggingLoggingManagementClientListLogRules(t *testing.T) {
 			}
 			request.Request.RequestMetadata.RetryPolicy = retryPolicy
 			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*logging.ListLogRulesRequest)
-				return c.ListLogRules(context.Background(), *r)
+				r := req.(*logging.ListLogIncludedSearchesRequest)
+				return c.ListLogIncludedSearches(context.Background(), *r)
 			}
 
 			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]logging.ListLogRulesResponse, len(listResponses))
+			typedListResponses := make([]logging.ListLogIncludedSearchesResponse, len(listResponses))
 			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(logging.ListLogRulesResponse)
+				typedListResponses[i] = lr.(logging.ListLogIncludedSearchesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
+func TestLoggingLoggingManagementClientListLogSavedSearches(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("logging", "ListLogSavedSearches")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListLogSavedSearches is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListLogSavedSearches", createLoggingLoggingManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(logging.LoggingManagementClient)
+
+	body, err := testClient.getRequests("logging", "ListLogSavedSearches")
+	assert.NoError(t, err)
+
+	type ListLogSavedSearchesRequestInfo struct {
+		ContainerId string
+		Request     logging.ListLogSavedSearchesRequest
+	}
+
+	var requests []ListLogSavedSearchesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*logging.ListLogSavedSearchesRequest)
+				return c.ListLogSavedSearches(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]logging.ListLogSavedSearchesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(logging.ListLogSavedSearchesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -838,6 +1112,60 @@ func TestLoggingLoggingManagementClientListServices(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ListServices(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
+func TestLoggingLoggingManagementClientListUnifiedAgentConfigurations(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("logging", "ListUnifiedAgentConfigurations")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListUnifiedAgentConfigurations is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListUnifiedAgentConfigurations", createLoggingLoggingManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(logging.LoggingManagementClient)
+
+	body, err := testClient.getRequests("logging", "ListUnifiedAgentConfigurations")
+	assert.NoError(t, err)
+
+	type ListUnifiedAgentConfigurationsRequestInfo struct {
+		ContainerId string
+		Request     logging.ListUnifiedAgentConfigurationsRequest
+	}
+
+	var requests []ListUnifiedAgentConfigurationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*logging.ListUnifiedAgentConfigurationsRequest)
+				return c.ListUnifiedAgentConfigurations(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]logging.ListUnifiedAgentConfigurationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(logging.ListUnifiedAgentConfigurationsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -1095,28 +1423,28 @@ func TestLoggingLoggingManagementClientUpdateLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestLoggingLoggingManagementClientUpdateLogRule(t *testing.T) {
+func TestLoggingLoggingManagementClientUpdateLogSavedSearch(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("logging", "UpdateLogRule")
+	enabled, err := testClient.isApiEnabled("logging", "UpdateLogSavedSearch")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("UpdateLogRule is not enabled by the testing service")
+		t.Skip("UpdateLogSavedSearch is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "UpdateLogRule", createLoggingLoggingManagementClientWithProvider)
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "UpdateLogSavedSearch", createLoggingLoggingManagementClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(logging.LoggingManagementClient)
 
-	body, err := testClient.getRequests("logging", "UpdateLogRule")
+	body, err := testClient.getRequests("logging", "UpdateLogSavedSearch")
 	assert.NoError(t, err)
 
-	type UpdateLogRuleRequestInfo struct {
+	type UpdateLogSavedSearchRequestInfo struct {
 		ContainerId string
-		Request     logging.UpdateLogRuleRequest
+		Request     logging.UpdateLogSavedSearchRequest
 	}
 
-	var requests []UpdateLogRuleRequestInfo
+	var requests []UpdateLogSavedSearchRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -1130,7 +1458,51 @@ func TestLoggingLoggingManagementClientUpdateLogRule(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.UpdateLogRule(context.Background(), req.Request)
+			response, err := c.UpdateLogSavedSearch(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
+func TestLoggingLoggingManagementClientUpdateUnifiedAgentConfiguration(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("logging", "UpdateUnifiedAgentConfiguration")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateUnifiedAgentConfiguration is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "UpdateUnifiedAgentConfiguration", createLoggingLoggingManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(logging.LoggingManagementClient)
+
+	body, err := testClient.getRequests("logging", "UpdateUnifiedAgentConfiguration")
+	assert.NoError(t, err)
+
+	type UpdateUnifiedAgentConfigurationRequestInfo struct {
+		ContainerId string
+		Request     logging.UpdateUnifiedAgentConfigurationRequest
+	}
+
+	var requests []UpdateUnifiedAgentConfigurationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateUnifiedAgentConfiguration(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

@@ -17,25 +17,25 @@ import (
 type WorkRequestSummary struct {
 
 	// The OCID of the work request.
-	Id *string `mandatory:"true" json:"id"`
+	Id *string `mandatory:"false" json:"id"`
 
 	// The type of work the work request is doing.
-	OperationType OperationTypesEnum `mandatory:"true" json:"operationType"`
+	OperationType OperationTypesEnum `mandatory:"false" json:"operationType,omitempty"`
 
 	// The current status of the work request.
-	Status OperationStatusEnum `mandatory:"true" json:"status"`
+	Status OperationStatusEnum `mandatory:"false" json:"status,omitempty"`
 
 	// The OCID of the work request’s compartment.
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// The resources this work request affects.
-	Resources []WorkRequestResource `mandatory:"true" json:"resources"`
+	Resources []WorkRequestResource `mandatory:"false" json:"resources"`
 
 	// Percentage of the request completed.
-	PercentComplete *float32 `mandatory:"true" json:"percentComplete"`
+	PercentComplete *float32 `mandatory:"false" json:"percentComplete"`
 
 	// The time the work request was accepted.
-	TimeAccepted *common.SDKTime `mandatory:"true" json:"timeAccepted"`
+	TimeAccepted *common.SDKTime `mandatory:"false" json:"timeAccepted"`
 
 	// The time the work request was started.
 	TimeStarted *common.SDKTime `mandatory:"false" json:"timeStarted"`

@@ -25,8 +25,11 @@ type Problem struct {
 	// Identifier of the rule
 	DetectorRuleId *string `mandatory:"false" json:"detectorRuleId"`
 
-	// Region where the problem is found
+	// DEPRECATED
 	Region *string `mandatory:"false" json:"region"`
+
+	// Regions where the problem is found
+	Regions []string `mandatory:"false" json:"regions"`
 
 	// The Risk Level
 	RiskLevel RiskLevelEnum `mandatory:"false" json:"riskLevel,omitempty"`

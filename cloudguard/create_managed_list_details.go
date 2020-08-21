@@ -22,14 +22,17 @@ type CreateManagedListDetails struct {
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// type of the list
-	ListType ManagedListTypeEnum `mandatory:"true" json:"listType"`
-
-	// List of ManagedListItem
-	ListItems []string `mandatory:"true" json:"listItems"`
+	// OCID of the Source ManagedList
+	SourceManagedListId *string `mandatory:"false" json:"sourceManagedListId"`
 
 	// ManagedList description
 	Description *string `mandatory:"false" json:"description"`
+
+	// type of the list
+	ListType ManagedListTypeEnum `mandatory:"false" json:"listType,omitempty"`
+
+	// List of ManagedListItem
+	ListItems []string `mandatory:"false" json:"listItems"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

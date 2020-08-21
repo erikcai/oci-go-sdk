@@ -142,10 +142,12 @@ type ListResourceTypesSortByEnum string
 // Set of constants representing the allowable values for ListResourceTypesSortByEnum
 const (
 	ListResourceTypesSortByDisplayname ListResourceTypesSortByEnum = "displayName"
+	ListResourceTypesSortByRisklevel   ListResourceTypesSortByEnum = "riskLevel"
 )
 
 var mappingListResourceTypesSortBy = map[string]ListResourceTypesSortByEnum{
 	"displayName": ListResourceTypesSortByDisplayname,
+	"riskLevel":   ListResourceTypesSortByRisklevel,
 }
 
 // GetListResourceTypesSortByEnumValues Enumerates the set of values for ListResourceTypesSortByEnum

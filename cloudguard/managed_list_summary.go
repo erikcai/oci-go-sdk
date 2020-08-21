@@ -37,6 +37,9 @@ type ManagedListSummary struct {
 	// ManagedList description
 	Description *string `mandatory:"false" json:"description"`
 
+	// OCID of the Source ManagedList
+	SourceManagedListId *string `mandatory:"false" json:"sourceManagedListId"`
+
 	// If this list is editable or not
 	IsEditable *bool `mandatory:"false" json:"isEditable"`
 

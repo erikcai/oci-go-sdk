@@ -16,6 +16,12 @@ import (
 // SummarizeDatabaseInsightResourceUsageTrendAggregationCollection Top level response object.
 type SummarizeDatabaseInsightResourceUsageTrendAggregationCollection struct {
 
+	// The start timestamp that was passed into the request.
+	TimeIntervalStart *common.SDKTime `mandatory:"true" json:"timeIntervalStart"`
+
+	// The end timestamp that was passed into the request.
+	TimeIntervalEnd *common.SDKTime `mandatory:"true" json:"timeIntervalEnd"`
+
 	// Defines the type of resource metric (CPU, STORAGE)
 	ResourceMetric SummarizeDatabaseInsightResourceUsageTrendAggregationCollectionResourceMetricEnum `mandatory:"true" json:"resourceMetric"`
 
@@ -27,12 +33,6 @@ type SummarizeDatabaseInsightResourceUsageTrendAggregationCollection struct {
 
 	// Usage Data with time stamps
 	UsageData []ResourceUsageTrendAggregation `mandatory:"true" json:"usageData"`
-
-	// The start timestamp that was passed into the request.
-	TimeIntervalStart *common.SDKTime `mandatory:"false" json:"timeIntervalStart"`
-
-	// The end timestamp that was passed into the request.
-	TimeIntervalEnd *common.SDKTime `mandatory:"false" json:"timeIntervalEnd"`
 }
 
 func (m SummarizeDatabaseInsightResourceUsageTrendAggregationCollection) String() string {

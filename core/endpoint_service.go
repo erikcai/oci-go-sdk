@@ -80,6 +80,15 @@ type EndpointService struct {
 	// Reserved for future use.
 	IsVcnMetadataEnabled *bool `mandatory:"false" json:"isVcnMetadataEnabled"`
 
+	// ES from substrate or not
+	IsSubstrate *bool `mandatory:"false" json:"isSubstrate"`
+
+	// RCE substrate anycast IP
+	ReverseConnectionAnycastIp *string `mandatory:"false" json:"reverseConnectionAnycastIp"`
+
+	// MPLS label that identifies the substrate endpoint service
+	ReverseConnectionMplsLabel *int `mandatory:"false" json:"reverseConnectionMplsLabel"`
+
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`

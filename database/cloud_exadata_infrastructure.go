@@ -79,21 +79,23 @@ type CloudExadataInfrastructureLifecycleStateEnum string
 
 // Set of constants representing the allowable values for CloudExadataInfrastructureLifecycleStateEnum
 const (
-	CloudExadataInfrastructureLifecycleStateProvisioning CloudExadataInfrastructureLifecycleStateEnum = "PROVISIONING"
-	CloudExadataInfrastructureLifecycleStateAvailable    CloudExadataInfrastructureLifecycleStateEnum = "AVAILABLE"
-	CloudExadataInfrastructureLifecycleStateUpdating     CloudExadataInfrastructureLifecycleStateEnum = "UPDATING"
-	CloudExadataInfrastructureLifecycleStateTerminating  CloudExadataInfrastructureLifecycleStateEnum = "TERMINATING"
-	CloudExadataInfrastructureLifecycleStateTerminated   CloudExadataInfrastructureLifecycleStateEnum = "TERMINATED"
-	CloudExadataInfrastructureLifecycleStateFailed       CloudExadataInfrastructureLifecycleStateEnum = "FAILED"
+	CloudExadataInfrastructureLifecycleStateProvisioning          CloudExadataInfrastructureLifecycleStateEnum = "PROVISIONING"
+	CloudExadataInfrastructureLifecycleStateAvailable             CloudExadataInfrastructureLifecycleStateEnum = "AVAILABLE"
+	CloudExadataInfrastructureLifecycleStateUpdating              CloudExadataInfrastructureLifecycleStateEnum = "UPDATING"
+	CloudExadataInfrastructureLifecycleStateTerminating           CloudExadataInfrastructureLifecycleStateEnum = "TERMINATING"
+	CloudExadataInfrastructureLifecycleStateTerminated            CloudExadataInfrastructureLifecycleStateEnum = "TERMINATED"
+	CloudExadataInfrastructureLifecycleStateFailed                CloudExadataInfrastructureLifecycleStateEnum = "FAILED"
+	CloudExadataInfrastructureLifecycleStateMaintenanceInProgress CloudExadataInfrastructureLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 )
 
 var mappingCloudExadataInfrastructureLifecycleState = map[string]CloudExadataInfrastructureLifecycleStateEnum{
-	"PROVISIONING": CloudExadataInfrastructureLifecycleStateProvisioning,
-	"AVAILABLE":    CloudExadataInfrastructureLifecycleStateAvailable,
-	"UPDATING":     CloudExadataInfrastructureLifecycleStateUpdating,
-	"TERMINATING":  CloudExadataInfrastructureLifecycleStateTerminating,
-	"TERMINATED":   CloudExadataInfrastructureLifecycleStateTerminated,
-	"FAILED":       CloudExadataInfrastructureLifecycleStateFailed,
+	"PROVISIONING":            CloudExadataInfrastructureLifecycleStateProvisioning,
+	"AVAILABLE":               CloudExadataInfrastructureLifecycleStateAvailable,
+	"UPDATING":                CloudExadataInfrastructureLifecycleStateUpdating,
+	"TERMINATING":             CloudExadataInfrastructureLifecycleStateTerminating,
+	"TERMINATED":              CloudExadataInfrastructureLifecycleStateTerminated,
+	"FAILED":                  CloudExadataInfrastructureLifecycleStateFailed,
+	"MAINTENANCE_IN_PROGRESS": CloudExadataInfrastructureLifecycleStateMaintenanceInProgress,
 }
 
 // GetCloudExadataInfrastructureLifecycleStateEnumValues Enumerates the set of values for CloudExadataInfrastructureLifecycleStateEnum

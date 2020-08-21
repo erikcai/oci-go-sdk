@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// ManagementAgentCloudServices Agent API
+// Management Agent API
 //
-// ManagementAgentCloudServices Agent API
+// API for Management Agent Cloud Service
 //
 
 package managementagent
@@ -16,11 +16,11 @@ import (
 // CreateManagementAgentInstallKeyDetails The information about new Management Agent install Key.
 type CreateManagementAgentInstallKeyDetails struct {
 
+	// Management Agent install Key Name
+	DisplayName *string `mandatory:"true" json:"displayName"`
+
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
-
-	// Management Agent install Key Name
-	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Total number of install for this keys
 	AllowedKeyInstallCount *int `mandatory:"false" json:"allowedKeyInstallCount"`

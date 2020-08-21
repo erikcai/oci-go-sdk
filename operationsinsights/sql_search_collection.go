@@ -16,6 +16,12 @@ import (
 // SqlSearchCollection Search SQL response.
 type SqlSearchCollection struct {
 
+	// The start timestamp that was passed into the request.
+	TimeIntervalStart *common.SDKTime `mandatory:"true" json:"timeIntervalStart"`
+
+	// The end timestamp that was passed into the request.
+	TimeIntervalEnd *common.SDKTime `mandatory:"true" json:"timeIntervalEnd"`
+
 	// List of Databases executing the sql.
 	Items []SqlSearchSummary `mandatory:"true" json:"items"`
 

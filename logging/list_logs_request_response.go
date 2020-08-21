@@ -133,6 +133,7 @@ const (
 	ListLogsLifecycleStateUpdating ListLogsLifecycleStateEnum = "UPDATING"
 	ListLogsLifecycleStateInactive ListLogsLifecycleStateEnum = "INACTIVE"
 	ListLogsLifecycleStateDeleting ListLogsLifecycleStateEnum = "DELETING"
+	ListLogsLifecycleStateFailed   ListLogsLifecycleStateEnum = "FAILED"
 )
 
 var mappingListLogsLifecycleState = map[string]ListLogsLifecycleStateEnum{
@@ -141,6 +142,7 @@ var mappingListLogsLifecycleState = map[string]ListLogsLifecycleStateEnum{
 	"UPDATING": ListLogsLifecycleStateUpdating,
 	"INACTIVE": ListLogsLifecycleStateInactive,
 	"DELETING": ListLogsLifecycleStateDeleting,
+	"FAILED":   ListLogsLifecycleStateFailed,
 }
 
 // GetListLogsLifecycleStateEnumValues Enumerates the set of values for ListLogsLifecycleStateEnum

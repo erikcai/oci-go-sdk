@@ -21,6 +21,9 @@ type Configuration struct {
 
 	// Status of Cloud Guard Tenant
 	Status CloudGuardStatusEnum `mandatory:"false" json:"status,omitempty"`
+
+	// Identifies if Oracle managed resources were created by customers
+	SelfManageResources *bool `mandatory:"false" json:"selfManageResources"`
 }
 
 func (m Configuration) String() string {

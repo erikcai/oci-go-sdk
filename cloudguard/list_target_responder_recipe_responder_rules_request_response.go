@@ -151,10 +151,12 @@ type ListTargetResponderRecipeResponderRulesSortByEnum string
 // Set of constants representing the allowable values for ListTargetResponderRecipeResponderRulesSortByEnum
 const (
 	ListTargetResponderRecipeResponderRulesSortByDisplayname ListTargetResponderRecipeResponderRulesSortByEnum = "displayName"
+	ListTargetResponderRecipeResponderRulesSortByRisklevel   ListTargetResponderRecipeResponderRulesSortByEnum = "riskLevel"
 )
 
 var mappingListTargetResponderRecipeResponderRulesSortBy = map[string]ListTargetResponderRecipeResponderRulesSortByEnum{
 	"displayName": ListTargetResponderRecipeResponderRulesSortByDisplayname,
+	"riskLevel":   ListTargetResponderRecipeResponderRulesSortByRisklevel,
 }
 
 // GetListTargetResponderRecipeResponderRulesSortByEnumValues Enumerates the set of values for ListTargetResponderRecipeResponderRulesSortByEnum
