@@ -17,8 +17,6 @@ import (
 type UpdateConfigurationDetails struct {
 	Source *SourceUpdateDetails `mandatory:"true" json:"source"`
 
-	Indexing *Indexing `mandatory:"false" json:"indexing"`
-
 	Archiving *Archiving `mandatory:"false" json:"archiving"`
 }
 

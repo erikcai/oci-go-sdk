@@ -4,7 +4,9 @@
 
 // ManagementDashboard API
 //
-// Management Dashboard micro-service provides APIs to support dashboard and saved search metadata preservation, as follows 1) Save and retrieve metadata to support UI activities (Create an empty dashboard, open a saved search, etc.). 2) Check authority for each CRUD operation. 3) Validate input: Are all properties present?  Any empty values?  Are all saved searches OOB when dashboard is OOB?  Etc. 4) Import and export dashboards.
+// Management Dashboard micro-service provides a set of CRUD, import, export, and compartment related APIs (such as change compartment)   to support dashboard and saved search metadata preservation.  These APIs are mainly for client UIs, for various UI activities such as get list of all saved searches in a compartment, create a dashboard, open a saved search, etc.  Use export to retrieve  dashboards and their saved searches, then edit the Json if necessary (for example change compartmentIds), then import the result to  destination dashboard service.
+// APIs validate all required properties to ensure properties are present and have correct type and values.
+//
 //
 
 package managementdashboard
@@ -47,14 +49,14 @@ func NewDashxApisClientWithOboToken(configProvider common.ConfigurationProvider,
 
 func newDashxApisClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client DashxApisClient, err error) {
 	client = DashxApisClient{BaseClient: baseClient}
-	client.BasePath = "20180828"
+	client.BasePath = "20200901"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
 
 // SetRegion overrides the region of this client.
 func (client *DashxApisClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("managementdashboard", "https://managementdashboard.{region}.oci.{secondLevelDomain}")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("managementdashboard", "https://managementdashboards.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -75,8 +77,8 @@ func (client *DashxApisClient) ConfigurationProvider() *common.ConfigurationProv
 	return client.config
 }
 
-// ChangeManagementDashboardCompartment Move the dashboard data from  existing compartment to a new compartment provided as input.
-func (client DashxApisClient) ChangeManagementDashboardCompartment(ctx context.Context, request ChangeManagementDashboardCompartmentRequest) (response ChangeManagementDashboardCompartmentResponse, err error) {
+// ChangeManagementDashboardsCompartment Move the dashboard from existing compartment to a new compartment.
+func (client DashxApisClient) ChangeManagementDashboardsCompartment(ctx context.Context, request ChangeManagementDashboardsCompartmentRequest) (response ChangeManagementDashboardsCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -87,34 +89,34 @@ func (client DashxApisClient) ChangeManagementDashboardCompartment(ctx context.C
 		request.OpcRetryToken = common.String(common.RetryToken())
 	}
 
-	ociResponse, err = common.Retry(ctx, request, client.changeManagementDashboardCompartment, policy)
+	ociResponse, err = common.Retry(ctx, request, client.changeManagementDashboardsCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ChangeManagementDashboardCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = ChangeManagementDashboardsCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = ChangeManagementDashboardCompartmentResponse{}
+				response = ChangeManagementDashboardsCompartmentResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(ChangeManagementDashboardCompartmentResponse); ok {
+	if convertedResponse, ok := ociResponse.(ChangeManagementDashboardsCompartmentResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ChangeManagementDashboardCompartmentResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeManagementDashboardsCompartmentResponse")
 	}
 	return
 }
 
-// changeManagementDashboardCompartment implements the OCIOperation interface (enables retrying operations)
-func (client DashxApisClient) changeManagementDashboardCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementDashboard/{managementDashboardId}/actions/changeCompartment")
+// changeManagementDashboardsCompartment implements the OCIOperation interface (enables retrying operations)
+func (client DashxApisClient) changeManagementDashboardsCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementDashboards/{managementDashboardId}/actions/changeCompartment")
 	if err != nil {
 		return nil, err
 	}
 
-	var response ChangeManagementDashboardCompartmentResponse
+	var response ChangeManagementDashboardsCompartmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -127,8 +129,8 @@ func (client DashxApisClient) changeManagementDashboardCompartment(ctx context.C
 	return response, err
 }
 
-// ChangeManagementSavedSearchCompartment Move the saved search data from  existing compartment to a new compartment provided as input.
-func (client DashxApisClient) ChangeManagementSavedSearchCompartment(ctx context.Context, request ChangeManagementSavedSearchCompartmentRequest) (response ChangeManagementSavedSearchCompartmentResponse, err error) {
+// ChangeManagementSavedSearchesCompartment Move the saved search from existing compartment to a new compartment.
+func (client DashxApisClient) ChangeManagementSavedSearchesCompartment(ctx context.Context, request ChangeManagementSavedSearchesCompartmentRequest) (response ChangeManagementSavedSearchesCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if request.RetryPolicy() != nil {
@@ -139,34 +141,34 @@ func (client DashxApisClient) ChangeManagementSavedSearchCompartment(ctx context
 		request.OpcRetryToken = common.String(common.RetryToken())
 	}
 
-	ociResponse, err = common.Retry(ctx, request, client.changeManagementSavedSearchCompartment, policy)
+	ociResponse, err = common.Retry(ctx, request, client.changeManagementSavedSearchesCompartment, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ChangeManagementSavedSearchCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = ChangeManagementSavedSearchesCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = ChangeManagementSavedSearchCompartmentResponse{}
+				response = ChangeManagementSavedSearchesCompartmentResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(ChangeManagementSavedSearchCompartmentResponse); ok {
+	if convertedResponse, ok := ociResponse.(ChangeManagementSavedSearchesCompartmentResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ChangeManagementSavedSearchCompartmentResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeManagementSavedSearchesCompartmentResponse")
 	}
 	return
 }
 
-// changeManagementSavedSearchCompartment implements the OCIOperation interface (enables retrying operations)
-func (client DashxApisClient) changeManagementSavedSearchCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementSavedSearch/{managementSavedSearchId}/actions/changeCompartment")
+// changeManagementSavedSearchesCompartment implements the OCIOperation interface (enables retrying operations)
+func (client DashxApisClient) changeManagementSavedSearchesCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementSavedSearches/{managementSavedSearchId}/actions/changeCompartment")
 	if err != nil {
 		return nil, err
 	}
 
-	var response ChangeManagementSavedSearchCompartmentResponse
+	var response ChangeManagementSavedSearchesCompartmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -179,7 +181,7 @@ func (client DashxApisClient) changeManagementSavedSearchCompartment(ctx context
 	return response, err
 }
 
-// CreateManagementDashboard Create a new Dashboard.
+// CreateManagementDashboard Creates a new dashboard.  Limit for number of saved searches in a dashboard is 20.
 func (client DashxApisClient) CreateManagementDashboard(ctx context.Context, request CreateManagementDashboardRequest) (response CreateManagementDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -213,7 +215,7 @@ func (client DashxApisClient) CreateManagementDashboard(ctx context.Context, req
 
 // createManagementDashboard implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) createManagementDashboard(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementDashboard")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementDashboards")
 	if err != nil {
 		return nil, err
 	}
@@ -265,7 +267,7 @@ func (client DashxApisClient) CreateManagementSavedSearch(ctx context.Context, r
 
 // createManagementSavedSearch implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) createManagementSavedSearch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementSavedSearch")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementSavedSearches")
 	if err != nil {
 		return nil, err
 	}
@@ -283,7 +285,7 @@ func (client DashxApisClient) createManagementSavedSearch(ctx context.Context, r
 	return response, err
 }
 
-// DeleteManagementDashboard Deletes a Dashboard by identifier
+// DeleteManagementDashboard Deletes a Dashboard by id.
 func (client DashxApisClient) DeleteManagementDashboard(ctx context.Context, request DeleteManagementDashboardRequest) (response DeleteManagementDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -312,7 +314,7 @@ func (client DashxApisClient) DeleteManagementDashboard(ctx context.Context, req
 
 // deleteManagementDashboard implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) deleteManagementDashboard(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/managementDashboard/{managementDashboardId}")
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/managementDashboards/{managementDashboardId}")
 	if err != nil {
 		return nil, err
 	}
@@ -359,7 +361,7 @@ func (client DashxApisClient) DeleteManagementSavedSearch(ctx context.Context, r
 
 // deleteManagementSavedSearch implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) deleteManagementSavedSearch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/managementSavedSearch/{managementSavedSearchId}")
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/managementSavedSearches/{managementSavedSearchId}")
 	if err != nil {
 		return nil, err
 	}
@@ -377,7 +379,7 @@ func (client DashxApisClient) deleteManagementSavedSearch(ctx context.Context, r
 	return response, err
 }
 
-// ExportDashboard Export an array of dashboards by dashboard ids.
+// ExportDashboard Exports an array of dashboards and their saved searches.
 func (client DashxApisClient) ExportDashboard(ctx context.Context, request ExportDashboardRequest) (response ExportDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -411,7 +413,7 @@ func (client DashxApisClient) ExportDashboard(ctx context.Context, request Expor
 
 // exportDashboard implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) exportDashboard(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementDashboard/actions/exportDashboard/{exportDashboardId}")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementDashboards/actions/exportDashboard/{exportDashboardId}")
 	if err != nil {
 		return nil, err
 	}
@@ -429,7 +431,7 @@ func (client DashxApisClient) exportDashboard(ctx context.Context, request commo
 	return response, err
 }
 
-// GetManagementDashboard Get a Dashboard by Id
+// GetManagementDashboard Get a Dashboard and its saved searches by id.  Deleted or unauthorized saved searches are marked by tile's state property.
 func (client DashxApisClient) GetManagementDashboard(ctx context.Context, request GetManagementDashboardRequest) (response GetManagementDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -463,7 +465,7 @@ func (client DashxApisClient) GetManagementDashboard(ctx context.Context, reques
 
 // getManagementDashboard implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) getManagementDashboard(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementDashboard/{managementDashboardId}")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementDashboards/{managementDashboardId}")
 	if err != nil {
 		return nil, err
 	}
@@ -481,54 +483,7 @@ func (client DashxApisClient) getManagementDashboard(ctx context.Context, reques
 	return response, err
 }
 
-// GetManagementDashboardCompartment Get compartmentId given a dashboard Id.
-func (client DashxApisClient) GetManagementDashboardCompartment(ctx context.Context, request GetManagementDashboardCompartmentRequest) (response GetManagementDashboardCompartmentResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getManagementDashboardCompartment, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetManagementDashboardCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = GetManagementDashboardCompartmentResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetManagementDashboardCompartmentResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetManagementDashboardCompartmentResponse")
-	}
-	return
-}
-
-// getManagementDashboardCompartment implements the OCIOperation interface (enables retrying operations)
-func (client DashxApisClient) getManagementDashboardCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementDashboardCompartment/{managementDashboardId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetManagementDashboardCompartmentResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// GetManagementSavedSearch Get a saved search.
+// GetManagementSavedSearch Get a saved search by Id.
 func (client DashxApisClient) GetManagementSavedSearch(ctx context.Context, request GetManagementSavedSearchRequest) (response GetManagementSavedSearchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -562,7 +517,7 @@ func (client DashxApisClient) GetManagementSavedSearch(ctx context.Context, requ
 
 // getManagementSavedSearch implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) getManagementSavedSearch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementSavedSearch/{managementSavedSearchId}")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementSavedSearches/{managementSavedSearchId}")
 	if err != nil {
 		return nil, err
 	}
@@ -580,54 +535,7 @@ func (client DashxApisClient) getManagementSavedSearch(ctx context.Context, requ
 	return response, err
 }
 
-// GetManagementSavedSearchCompartment Get compartmentId given a saved search Id.
-func (client DashxApisClient) GetManagementSavedSearchCompartment(ctx context.Context, request GetManagementSavedSearchCompartmentRequest) (response GetManagementSavedSearchCompartmentResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getManagementSavedSearchCompartment, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetManagementSavedSearchCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = GetManagementSavedSearchCompartmentResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetManagementSavedSearchCompartmentResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetManagementSavedSearchCompartmentResponse")
-	}
-	return
-}
-
-// getManagementSavedSearchCompartment implements the OCIOperation interface (enables retrying operations)
-func (client DashxApisClient) getManagementSavedSearchCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementSavedSearchCompartment/{managementSavedSearchId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetManagementSavedSearchCompartmentResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ImportDashboard Import an array of dashboards into saved dashboards
+// ImportDashboard Import an array of dashboards and their saved searches.
 func (client DashxApisClient) ImportDashboard(ctx context.Context, request ImportDashboardRequest) (response ImportDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -661,7 +569,7 @@ func (client DashxApisClient) ImportDashboard(ctx context.Context, request Impor
 
 // importDashboard implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) importDashboard(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementDashboard/actions/importDashboard")
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/managementDashboards/actions/importDashboard")
 	if err != nil {
 		return nil, err
 	}
@@ -679,7 +587,7 @@ func (client DashxApisClient) importDashboard(ctx context.Context, request commo
 	return response, err
 }
 
-// ListManagementDashboards Gets list of dashboards for compartment with pagination
+// ListManagementDashboards Gets list of dashboards and their saved searches for compartment with pagination.  Returned properties are a summary.
 func (client DashxApisClient) ListManagementDashboards(ctx context.Context, request ListManagementDashboardsRequest) (response ListManagementDashboardsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -708,7 +616,7 @@ func (client DashxApisClient) ListManagementDashboards(ctx context.Context, requ
 
 // listManagementDashboards implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) listManagementDashboards(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementDashboard")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementDashboards")
 	if err != nil {
 		return nil, err
 	}
@@ -726,7 +634,7 @@ func (client DashxApisClient) listManagementDashboards(ctx context.Context, requ
 	return response, err
 }
 
-// ListManagementSavedSearches Gets list of saved searches with pagination
+// ListManagementSavedSearches Gets list of saved searches with pagination.  Returned properties are a summary.
 func (client DashxApisClient) ListManagementSavedSearches(ctx context.Context, request ListManagementSavedSearchesRequest) (response ListManagementSavedSearchesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -755,7 +663,7 @@ func (client DashxApisClient) ListManagementSavedSearches(ctx context.Context, r
 
 // listManagementSavedSearches implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) listManagementSavedSearches(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementSavedSearch")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/managementSavedSearches")
 	if err != nil {
 		return nil, err
 	}
@@ -773,7 +681,7 @@ func (client DashxApisClient) listManagementSavedSearches(ctx context.Context, r
 	return response, err
 }
 
-// UpdateManagementDashboard Update an existing Dashboard identified by id path parameter.
+// UpdateManagementDashboard Updates an existing dashboard identified by id path parameter.  Limit for number of saved searches in a dashboard is 20.
 func (client DashxApisClient) UpdateManagementDashboard(ctx context.Context, request UpdateManagementDashboardRequest) (response UpdateManagementDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -807,7 +715,7 @@ func (client DashxApisClient) UpdateManagementDashboard(ctx context.Context, req
 
 // updateManagementDashboard implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) updateManagementDashboard(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/managementDashboard/{managementDashboardId}")
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/managementDashboards/{managementDashboardId}")
 	if err != nil {
 		return nil, err
 	}
@@ -825,7 +733,7 @@ func (client DashxApisClient) updateManagementDashboard(ctx context.Context, req
 	return response, err
 }
 
-// UpdateManagementSavedSearch Update an existing saved search identified by id.
+// UpdateManagementSavedSearch Update an existing saved search.  Id cannot be updated.
 func (client DashxApisClient) UpdateManagementSavedSearch(ctx context.Context, request UpdateManagementSavedSearchRequest) (response UpdateManagementSavedSearchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -859,7 +767,7 @@ func (client DashxApisClient) UpdateManagementSavedSearch(ctx context.Context, r
 
 // updateManagementSavedSearch implements the OCIOperation interface (enables retrying operations)
 func (client DashxApisClient) updateManagementSavedSearch(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/managementSavedSearch/{managementSavedSearchId}")
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/managementSavedSearches/{managementSavedSearchId}")
 	if err != nil {
 		return nil, err
 	}

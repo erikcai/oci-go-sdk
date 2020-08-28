@@ -21,8 +21,6 @@ type Configuration struct {
 	// The OCID of the compartment that the resource belongs to.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	Indexing *Indexing `mandatory:"false" json:"indexing"`
-
 	Archiving *Archiving `mandatory:"false" json:"archiving"`
 }
 
@@ -34,7 +32,6 @@ func (m Configuration) String() string {
 func (m *Configuration) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
 		CompartmentId *string    `json:"compartmentId"`
-		Indexing      *Indexing  `json:"indexing"`
 		Archiving     *Archiving `json:"archiving"`
 		Source        source     `json:"source"`
 	}{}
@@ -45,8 +42,6 @@ func (m *Configuration) UnmarshalJSON(data []byte) (e error) {
 	}
 	var nn interface{}
 	m.CompartmentId = model.CompartmentId
-
-	m.Indexing = model.Indexing
 
 	m.Archiving = model.Archiving
 

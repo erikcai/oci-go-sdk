@@ -20,8 +20,8 @@ type InstanceAgentCommandSourceViaTextDetails struct {
 	// The plain text command.
 	Text *string `mandatory:"true" json:"text"`
 
-	// MD5 checksum value of the text content
-	Md5 *string `mandatory:"false" json:"md5"`
+	// Sha256 checksum value of the text content
+	TextSha256 *string `mandatory:"false" json:"textSha256"`
 }
 
 func (m InstanceAgentCommandSourceViaTextDetails) String() string {

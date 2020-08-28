@@ -36,10 +36,22 @@ type InstanceAgentCommandExecutionSummary struct {
 	// * `CANCELED` - The command execution has canceled.
 	LifecycleState InstanceAgentCommandExecutionSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
+	// The command creation date
+	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// The command last updated at date.
+	TimeUpdated *common.SDKTime `mandatory:"true" json:"timeUpdated"`
+
+	// The large non-consecutive number that Run Command Service assigns to each created command.
+	SequenceNumber *int64 `mandatory:"true" json:"sequenceNumber"`
+
 	Content InstanceAgentCommandExecutionOutputContent `mandatory:"true" json:"content"`
 
 	// The OCID of the command
 	InstanceAgentCommandId *string `mandatory:"false" json:"instanceAgentCommandId"`
+
+	// The user friendly display name of the command.
+	DisplayName *string `mandatory:"false" json:"displayName"`
 }
 
 func (m InstanceAgentCommandExecutionSummary) String() string {
@@ -50,9 +62,13 @@ func (m InstanceAgentCommandExecutionSummary) String() string {
 func (m *InstanceAgentCommandExecutionSummary) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
 		InstanceAgentCommandId *string                                                `json:"instanceAgentCommandId"`
+		DisplayName            *string                                                `json:"displayName"`
 		InstanceId             *string                                                `json:"instanceId"`
 		DeliveryState          InstanceAgentCommandExecutionSummaryDeliveryStateEnum  `json:"deliveryState"`
 		LifecycleState         InstanceAgentCommandExecutionSummaryLifecycleStateEnum `json:"lifecycleState"`
+		TimeCreated            *common.SDKTime                                        `json:"timeCreated"`
+		TimeUpdated            *common.SDKTime                                        `json:"timeUpdated"`
+		SequenceNumber         *int64                                                 `json:"sequenceNumber"`
 		Content                instanceagentcommandexecutionoutputcontent             `json:"content"`
 	}{}
 
@@ -63,11 +79,19 @@ func (m *InstanceAgentCommandExecutionSummary) UnmarshalJSON(data []byte) (e err
 	var nn interface{}
 	m.InstanceAgentCommandId = model.InstanceAgentCommandId
 
+	m.DisplayName = model.DisplayName
+
 	m.InstanceId = model.InstanceId
 
 	m.DeliveryState = model.DeliveryState
 
 	m.LifecycleState = model.LifecycleState
+
+	m.TimeCreated = model.TimeCreated
+
+	m.TimeUpdated = model.TimeUpdated
+
+	m.SequenceNumber = model.SequenceNumber
 
 	nn, e = model.Content.UnmarshalPolymorphicJSON(model.Content.JsonData)
 	if e != nil {

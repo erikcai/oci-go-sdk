@@ -60,14 +60,16 @@ type PublicIpPoolLifecycleStateEnum string
 
 // Set of constants representing the allowable values for PublicIpPoolLifecycleStateEnum
 const (
-	PublicIpPoolLifecycleStateCreating PublicIpPoolLifecycleStateEnum = "CREATING"
+	PublicIpPoolLifecycleStateInactive PublicIpPoolLifecycleStateEnum = "INACTIVE"
+	PublicIpPoolLifecycleStateUpdating PublicIpPoolLifecycleStateEnum = "UPDATING"
 	PublicIpPoolLifecycleStateActive   PublicIpPoolLifecycleStateEnum = "ACTIVE"
 	PublicIpPoolLifecycleStateDeleting PublicIpPoolLifecycleStateEnum = "DELETING"
 	PublicIpPoolLifecycleStateDeleted  PublicIpPoolLifecycleStateEnum = "DELETED"
 )
 
 var mappingPublicIpPoolLifecycleState = map[string]PublicIpPoolLifecycleStateEnum{
-	"CREATING": PublicIpPoolLifecycleStateCreating,
+	"INACTIVE": PublicIpPoolLifecycleStateInactive,
+	"UPDATING": PublicIpPoolLifecycleStateUpdating,
 	"ACTIVE":   PublicIpPoolLifecycleStateActive,
 	"DELETING": PublicIpPoolLifecycleStateDeleting,
 	"DELETED":  PublicIpPoolLifecycleStateDeleted,

@@ -15,7 +15,7 @@ type UpdateManagementSavedSearchRequest struct {
 	// unique saved search identifier
 	ManagementSavedSearchId *string `mandatory:"true" contributesTo:"path" name:"managementSavedSearchId"`
 
-	// Details for updating an existing saved search.
+	// Json metadata for changed properties in existing saved search.
 	UpdateManagementSavedSearchDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -59,6 +59,12 @@ type UpdateManagementSavedSearchResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
+
+	// The ManagementSavedSearch instance
+	ManagementSavedSearch `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`

@@ -57,6 +57,8 @@ type MaintenanceRun struct {
 
 	// Maintenance sub-type.
 	MaintenanceSubtype MaintenanceRunMaintenanceSubtypeEnum `mandatory:"false" json:"maintenanceSubtype,omitempty"`
+
+	PeerMaintenanceRunSummary *PeerMaintenanceRunSummary `mandatory:"false" json:"peerMaintenanceRunSummary"`
 }
 
 func (m MaintenanceRun) String() string {

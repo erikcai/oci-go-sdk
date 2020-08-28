@@ -4,7 +4,9 @@
 
 // ManagementDashboard API
 //
-// Management Dashboard micro-service provides APIs to support dashboard and saved search metadata preservation, as follows 1) Save and retrieve metadata to support UI activities (Create an empty dashboard, open a saved search, etc.). 2) Check authority for each CRUD operation. 3) Validate input: Are all properties present?  Any empty values?  Are all saved searches OOB when dashboard is OOB?  Etc. 4) Import and export dashboards.
+// Management Dashboard micro-service provides a set of CRUD, import, export, and compartment related APIs (such as change compartment)   to support dashboard and saved search metadata preservation.  These APIs are mainly for client UIs, for various UI activities such as get list of all saved searches in a compartment, create a dashboard, open a saved search, etc.  Use export to retrieve  dashboards and their saved searches, then edit the Json if necessary (for example change compartmentIds), then import the result to  destination dashboard service.
+// APIs validate all required properties to ensure properties are present and have correct type and values.
+//
 //
 
 package managementdashboard
@@ -13,7 +15,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// CreateManagementDashboardDetails Properties for a dashboard.
+// CreateManagementDashboardDetails Properties for a dashboard.  Id is not required if not Out Of the Box dashboard.
 type CreateManagementDashboardDetails struct {
 
 	// Provider Id.
@@ -25,40 +27,43 @@ type CreateManagementDashboardDetails struct {
 	// Provider version.
 	ProviderVersion *string `mandatory:"true" json:"providerVersion"`
 
+	// Dashboard tiles array.
+	Tiles []ManagementDashboardTileDetails `mandatory:"true" json:"tiles"`
+
 	// Display name for dashboard.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// Dashboard's description.
 	Description *string `mandatory:"true" json:"description"`
 
-	// Enable filtering.
-	IsFilteringEnabled *bool `mandatory:"true" json:"isFilteringEnabled"`
-
-	// The ocid of the tenant that owns the dashboard.
-	TenantId *string `mandatory:"true" json:"tenantId"`
-
 	// The ocid of the compartment that owns the dashboard.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// String boolean ("true" or "false").  OOB dashboards are only provided by Oracle.  They cannot be modified by non-Oracle.
-	IsOOBDashboard *bool `mandatory:"true" json:"isOOBDashboard"`
-
-	// String boolean ("true" or "false").  When false, description is not shown.
-	IsDescriptionEnabled *bool `mandatory:"true" json:"isDescriptionEnabled"`
-
-	// String boolean ("true" or "false").  When false, time range is disabled.
-	IsTimeRangeEnabled *bool `mandatory:"true" json:"isTimeRangeEnabled"`
-
-	// String boolean ("true" or "false").  When false, dashboard is not automatically refreshed in intervals.
-	IsRefreshEnabled *bool `mandatory:"true" json:"isRefreshEnabled"`
+	// String boolean ("true" or "false").  OOB (Out of the Box) dashboards are only provided by Oracle.  They cannot be modified by non-Oracle.
+	IsOobDashboard *bool `mandatory:"true" json:"isOobDashboard"`
 
 	// String boolean ("true" or "false").  When false, dashboard is not shown in dashboard home.
 	IsShowInHome *bool `mandatory:"true" json:"isShowInHome"`
 
-	// Screenshot.
-	ScreenShot *string `mandatory:"true" json:"screenShot"`
+	// Version of the metadata.
+	MetadataVersion *string `mandatory:"true" json:"metadataVersion"`
 
-	// NORMAL means single dashboard, or SET means dashboard set
+	// String boolean ("true" or "false").  Whether to show the dashboard description.
+	IsShowDescription *bool `mandatory:"true" json:"isShowDescription"`
+
+	// screen image.
+	ScreenImage *string `mandatory:"true" json:"screenImage"`
+
+	// Json for internationalization.
+	Nls *interface{} `mandatory:"true" json:"nls"`
+
+	// Json to contain options for UI.
+	UiConfig *interface{} `mandatory:"true" json:"uiConfig"`
+
+	// Array of Json to contain options for source of data.
+	DataConfig []interface{} `mandatory:"true" json:"dataConfig"`
+
+	// NORMAL means single dashboard, or SET means dashboard set.
 	Type *string `mandatory:"true" json:"type"`
 
 	// String boolean ("true" or "false").

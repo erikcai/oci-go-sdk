@@ -50,8 +50,8 @@ type ExportDashboardResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The ManagementDashboardImportExportDetails instance
-	ManagementDashboardImportExportDetails `presentIn:"body"`
+	// The ManagementDashboardExportDetails instance
+	ManagementDashboardExportDetails `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`

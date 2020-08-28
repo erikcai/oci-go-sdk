@@ -58,8 +58,8 @@ type ListManagementSavedSearchesResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of []ManagementSavedSearchSummary instances
-	Items []ManagementSavedSearchSummary `presentIn:"body"`
+	// A list of ManagementSavedSearchCollection instances
+	ManagementSavedSearchCollection `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, please provide the request ID.

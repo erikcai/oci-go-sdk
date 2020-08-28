@@ -719,6 +719,50 @@ func TestMarketplaceClientListReports(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_marketplace_seattle_us_grp@oracle.com" jiraProject="MAR" opsJiraProject="CMP"
+func TestMarketplaceClientListTaxes(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("marketplace", "ListTaxes")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTaxes is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("marketplace", "Marketplace", "ListTaxes", createMarketplaceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(marketplace.MarketplaceClient)
+
+	body, err := testClient.getRequests("marketplace", "ListTaxes")
+	assert.NoError(t, err)
+
+	type ListTaxesRequestInfo struct {
+		ContainerId string
+		Request     marketplace.ListTaxesRequest
+	}
+
+	var requests []ListTaxesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ListTaxes(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_marketplace_seattle_us_grp@oracle.com" jiraProject="MAR" opsJiraProject="CMP"
 func TestMarketplaceClientUpdateAcceptedAgreement(t *testing.T) {
 	defer failTestOnPanic(t)
 

@@ -4,7 +4,9 @@
 
 // ManagementDashboard API
 //
-// Management Dashboard micro-service provides APIs to support dashboard and saved search metadata preservation, as follows 1) Save and retrieve metadata to support UI activities (Create an empty dashboard, open a saved search, etc.). 2) Check authority for each CRUD operation. 3) Validate input: Are all properties present?  Any empty values?  Are all saved searches OOB when dashboard is OOB?  Etc. 4) Import and export dashboards.
+// Management Dashboard micro-service provides a set of CRUD, import, export, and compartment related APIs (such as change compartment)   to support dashboard and saved search metadata preservation.  These APIs are mainly for client UIs, for various UI activities such as get list of all saved searches in a compartment, create a dashboard, open a saved search, etc.  Use export to retrieve  dashboards and their saved searches, then edit the Json if necessary (for example change compartmentIds), then import the result to  destination dashboard service.
+// APIs validate all required properties to ensure properties are present and have correct type and values.
+//
 //
 
 package managementdashboard
@@ -31,29 +33,50 @@ type ManagementSavedSearch struct {
 	// Name for application (LA, APM, etc.) that owners this saved search.
 	ProviderName *string `mandatory:"true" json:"providerName"`
 
-	// String boolean ("true" or "false").
-	IsWidget *bool `mandatory:"true" json:"isWidget"`
-
-	// String boolean ("true" or "false").
-	IsDashboardIneligible *bool `mandatory:"true" json:"isDashboardIneligible"`
-
 	// The ocid of the compartment that owns the saved search.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// String boolean ("true" or "false") to indicate Out Of the Box saved search.
-	IsOOBSavedSearch *bool `mandatory:"true" json:"isOOBSavedSearch"`
+	IsOobSavedSearch *bool `mandatory:"true" json:"isOobSavedSearch"`
 
 	// Description.
 	Description *string `mandatory:"true" json:"description"`
+
+	// Json for internationalization.
+	Nls *interface{} `mandatory:"true" json:"nls"`
+
+	// How to show the saved search.
+	Type SavedSearchTypesEnum `mandatory:"true" json:"type"`
+
+	// Json to contain options for UI.
+	UiConfig *interface{} `mandatory:"true" json:"uiConfig"`
+
+	// Array of Json to contain options for source of data.
+	DataConfig []interface{} `mandatory:"true" json:"dataConfig"`
+
+	// Created by which user.
+	CreatedBy *string `mandatory:"true" json:"createdBy"`
+
+	// Updated by which user.
+	UpdatedBy *string `mandatory:"true" json:"updatedBy"`
+
+	// Time created.  Passed in to keep UI cache valid (operation is synchronous).
+	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
+	// Time updated.
+	TimeUpdated *common.SDKTime `mandatory:"true" json:"timeUpdated"`
+
+	// Screenshot.
+	ScreenImage *string `mandatory:"true" json:"screenImage"`
+
+	// Version of the metadata.
+	MetadataVersion *string `mandatory:"true" json:"metadataVersion"`
 
 	// Template.
 	WidgetTemplate *string `mandatory:"true" json:"widgetTemplate"`
 
 	// View Model
 	WidgetVM *string `mandatory:"true" json:"widgetVM"`
-
-	// Dashboard JSON
-	WidgetOption *interface{} `mandatory:"true" json:"widgetOption"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

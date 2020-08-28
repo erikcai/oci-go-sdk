@@ -66,6 +66,10 @@ type AutonomousContainerDatabase struct {
 
 	MaintenanceWindow *MaintenanceWindow `mandatory:"false" json:"maintenanceWindow"`
 
+	// The scheduling detail for the quarterly maintenance window of standby Autonomous Container Database.
+	// This value represents the number of days before the primary database maintenance schedule.
+	StandbyMaintenanceBufferInDays *int `mandatory:"false" json:"standbyMaintenanceBufferInDays"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -85,6 +89,12 @@ type AutonomousContainerDatabase struct {
 	DbVersion *string `mandatory:"false" json:"dbVersion"`
 
 	BackupConfig *AutonomousContainerDatabaseBackupConfig `mandatory:"false" json:"backupConfig"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+	KeyStoreId *string `mandatory:"false" json:"keyStoreId"`
+
+	// The wallet name for Oracle Key Vault.
+	KeyStoreWalletName *string `mandatory:"false" json:"keyStoreWalletName"`
 }
 
 func (m AutonomousContainerDatabase) String() string {

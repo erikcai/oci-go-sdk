@@ -12,8 +12,8 @@ import (
 // ImportDashboardRequest wrapper for the ImportDashboard operation
 type ImportDashboardRequest struct {
 
-	// Import an array of dashboards.
-	ManagementDashboardImportExportDetails `contributesTo:"body"`
+	// Json metadata for dashboards and their saved searches to import.
+	ManagementDashboardImportDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
 	// for a resource, set the `if-match` parameter to the value of the

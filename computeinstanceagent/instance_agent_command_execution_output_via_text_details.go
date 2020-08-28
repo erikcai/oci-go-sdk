@@ -26,8 +26,8 @@ type InstanceAgentCommandExecutionOutputViaTextDetails struct {
 	// The command response output.
 	Text *string `mandatory:"false" json:"text"`
 
-	// MD5 checksum value of the text content
-	TextMD5 *string `mandatory:"false" json:"textMD5"`
+	// Sha256 checksum value of the text content
+	TextSha256 *string `mandatory:"false" json:"textSha256"`
 }
 
 //GetExitCode returns ExitCode

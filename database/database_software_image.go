@@ -60,6 +60,12 @@ type DatabaseSoftwareImage struct {
 
 	// The patches included in the image and the version of the image
 	IncludedPatchesSummary *string `mandatory:"false" json:"includedPatchesSummary"`
+
+	// List of one-off patches for Database Homes.
+	DatabaseSoftwareImageOneOffPatches []string `mandatory:"false" json:"databaseSoftwareImageOneOffPatches"`
+
+	// output from lsinventory which will get passed as a string
+	LsInventory *string `mandatory:"false" json:"lsInventory"`
 }
 
 func (m DatabaseSoftwareImage) String() string {
@@ -76,8 +82,6 @@ const (
 	DatabaseSoftwareImageLifecycleStateDeleting     DatabaseSoftwareImageLifecycleStateEnum = "DELETING"
 	DatabaseSoftwareImageLifecycleStateDeleted      DatabaseSoftwareImageLifecycleStateEnum = "DELETED"
 	DatabaseSoftwareImageLifecycleStateFailed       DatabaseSoftwareImageLifecycleStateEnum = "FAILED"
-	DatabaseSoftwareImageLifecycleStateTerminating  DatabaseSoftwareImageLifecycleStateEnum = "TERMINATING"
-	DatabaseSoftwareImageLifecycleStateTerminated   DatabaseSoftwareImageLifecycleStateEnum = "TERMINATED"
 	DatabaseSoftwareImageLifecycleStateUpdating     DatabaseSoftwareImageLifecycleStateEnum = "UPDATING"
 )
 
@@ -87,8 +91,6 @@ var mappingDatabaseSoftwareImageLifecycleState = map[string]DatabaseSoftwareImag
 	"DELETING":     DatabaseSoftwareImageLifecycleStateDeleting,
 	"DELETED":      DatabaseSoftwareImageLifecycleStateDeleted,
 	"FAILED":       DatabaseSoftwareImageLifecycleStateFailed,
-	"TERMINATING":  DatabaseSoftwareImageLifecycleStateTerminating,
-	"TERMINATED":   DatabaseSoftwareImageLifecycleStateTerminated,
 	"UPDATING":     DatabaseSoftwareImageLifecycleStateUpdating,
 }
 

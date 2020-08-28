@@ -12,7 +12,7 @@ import (
 // CreateManagementDashboardRequest wrapper for the CreateManagementDashboard operation
 type CreateManagementDashboardRequest struct {
 
-	// Details for creating a new dashboard using DashxApi.
+	// Json metadata for creating a new dashboard.
 	CreateManagementDashboardDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
@@ -49,6 +49,12 @@ type CreateManagementDashboardResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
+
+	// The ManagementDashboard instance
+	ManagementDashboard `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`

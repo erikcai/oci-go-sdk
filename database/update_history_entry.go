@@ -75,13 +75,15 @@ type UpdateHistoryEntryUpdateTypeEnum string
 
 // Set of constants representing the allowable values for UpdateHistoryEntryUpdateTypeEnum
 const (
-	UpdateHistoryEntryUpdateTypeUpgrade UpdateHistoryEntryUpdateTypeEnum = "GI_UPGRADE"
-	UpdateHistoryEntryUpdateTypePatch   UpdateHistoryEntryUpdateTypeEnum = "GI_PATCH"
+	UpdateHistoryEntryUpdateTypeGiUpgrade UpdateHistoryEntryUpdateTypeEnum = "GI_UPGRADE"
+	UpdateHistoryEntryUpdateTypeGiPatch   UpdateHistoryEntryUpdateTypeEnum = "GI_PATCH"
+	UpdateHistoryEntryUpdateTypeOsUpdate  UpdateHistoryEntryUpdateTypeEnum = "OS_UPDATE"
 )
 
 var mappingUpdateHistoryEntryUpdateType = map[string]UpdateHistoryEntryUpdateTypeEnum{
-	"GI_UPGRADE": UpdateHistoryEntryUpdateTypeUpgrade,
-	"GI_PATCH":   UpdateHistoryEntryUpdateTypePatch,
+	"GI_UPGRADE": UpdateHistoryEntryUpdateTypeGiUpgrade,
+	"GI_PATCH":   UpdateHistoryEntryUpdateTypeGiPatch,
+	"OS_UPDATE":  UpdateHistoryEntryUpdateTypeOsUpdate,
 }
 
 // GetUpdateHistoryEntryUpdateTypeEnumValues Enumerates the set of values for UpdateHistoryEntryUpdateTypeEnum

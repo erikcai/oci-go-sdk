@@ -12,7 +12,7 @@ import (
 // CreateManagementSavedSearchRequest wrapper for the CreateManagementSavedSearch operation
 type CreateManagementSavedSearchRequest struct {
 
-	// Details for creating a new saved search using DashxApi.
+	// Json metadata for the saved search.
 	CreateManagementSavedSearchDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
@@ -49,6 +49,12 @@ type CreateManagementSavedSearchResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
+
+	// The ManagementSavedSearch instance
+	ManagementSavedSearch `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`

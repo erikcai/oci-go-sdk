@@ -76,3 +76,5 @@
 ^loggingingestion/
 ^bastion/
 ^loggingsearch/
+^rover/
+^loganalytics/

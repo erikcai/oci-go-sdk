@@ -639,6 +639,94 @@ func TestVirtualNetworkClientChangeIPSecConnectionCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientChangeInternalDrgCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeInternalDrgCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeInternalDrgCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeInternalDrgCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeInternalDrgCompartment")
+	assert.NoError(t, err)
+
+	type ChangeInternalDrgCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeInternalDrgCompartmentRequest
+	}
+
+	var requests []ChangeInternalDrgCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeInternalDrgCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientChangeInternalGenericGatewayCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeInternalGenericGatewayCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeInternalGenericGatewayCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeInternalGenericGatewayCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeInternalGenericGatewayCompartment")
+	assert.NoError(t, err)
+
+	type ChangeInternalGenericGatewayCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeInternalGenericGatewayCompartmentRequest
+	}
+
+	var requests []ChangeInternalGenericGatewayCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeInternalGenericGatewayCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientChangeInternetGatewayCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1915,6 +2003,314 @@ func TestVirtualNetworkClientCreateIPSecConnection(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateInternalDnsRecord(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateInternalDnsRecord")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateInternalDnsRecord is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateInternalDnsRecord", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateInternalDnsRecord")
+	assert.NoError(t, err)
+
+	type CreateInternalDnsRecordRequestInfo struct {
+		ContainerId string
+		Request     core.CreateInternalDnsRecordRequest
+	}
+
+	var requests []CreateInternalDnsRecordRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateInternalDnsRecord(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateInternalDrg(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateInternalDrg")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateInternalDrg is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateInternalDrg", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateInternalDrg")
+	assert.NoError(t, err)
+
+	type CreateInternalDrgRequestInfo struct {
+		ContainerId string
+		Request     core.CreateInternalDrgRequest
+	}
+
+	var requests []CreateInternalDrgRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateInternalDrg(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateInternalDrgAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateInternalDrgAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateInternalDrgAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateInternalDrgAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateInternalDrgAttachment")
+	assert.NoError(t, err)
+
+	type CreateInternalDrgAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.CreateInternalDrgAttachmentRequest
+	}
+
+	var requests []CreateInternalDrgAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateInternalDrgAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateInternalGenericGateway(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateInternalGenericGateway")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateInternalGenericGateway is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateInternalGenericGateway", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateInternalGenericGateway")
+	assert.NoError(t, err)
+
+	type CreateInternalGenericGatewayRequestInfo struct {
+		ContainerId string
+		Request     core.CreateInternalGenericGatewayRequest
+	}
+
+	var requests []CreateInternalGenericGatewayRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateInternalGenericGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateInternalPublicIp(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateInternalPublicIp")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateInternalPublicIp is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateInternalPublicIp", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateInternalPublicIp")
+	assert.NoError(t, err)
+
+	type CreateInternalPublicIpRequestInfo struct {
+		ContainerId string
+		Request     core.CreateInternalPublicIpRequest
+	}
+
+	var requests []CreateInternalPublicIpRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateInternalPublicIp(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateInternalVnic(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateInternalVnic")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateInternalVnic is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateInternalVnic", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateInternalVnic")
+	assert.NoError(t, err)
+
+	type CreateInternalVnicRequestInfo struct {
+		ContainerId string
+		Request     core.CreateInternalVnicRequest
+	}
+
+	var requests []CreateInternalVnicRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateInternalVnic(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateInternalVnicAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateInternalVnicAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateInternalVnicAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateInternalVnicAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateInternalVnicAttachment")
+	assert.NoError(t, err)
+
+	type CreateInternalVnicAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.CreateInternalVnicAttachmentRequest
+	}
+
+	var requests []CreateInternalVnicAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateInternalVnicAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientCreateInternetGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2303,6 +2699,50 @@ func TestVirtualNetworkClientCreatePrivateIp(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreatePrivateIp(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreatePrivateIpNextHop(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreatePrivateIpNextHop")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreatePrivateIpNextHop is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreatePrivateIpNextHop", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreatePrivateIpNextHop")
+	assert.NoError(t, err)
+
+	type CreatePrivateIpNextHopRequestInfo struct {
+		ContainerId string
+		Request     core.CreatePrivateIpNextHopRequest
+	}
+
+	var requests []CreatePrivateIpNextHopRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreatePrivateIpNextHop(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2743,6 +3183,50 @@ func TestVirtualNetworkClientCreateVlan(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateVlan(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientCreateVnicWorker(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateVnicWorker")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateVnicWorker is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateVnicWorker", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateVnicWorker")
+	assert.NoError(t, err)
+
+	type CreateVnicWorkerRequestInfo struct {
+		ContainerId string
+		Request     core.CreateVnicWorkerRequest
+	}
+
+	var requests []CreateVnicWorkerRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateVnicWorker(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3235,6 +3719,314 @@ func TestVirtualNetworkClientDeleteIPSecConnection(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteInternalDnsRecord(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteInternalDnsRecord")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteInternalDnsRecord is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteInternalDnsRecord", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteInternalDnsRecord")
+	assert.NoError(t, err)
+
+	type DeleteInternalDnsRecordRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteInternalDnsRecordRequest
+	}
+
+	var requests []DeleteInternalDnsRecordRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteInternalDnsRecord(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteInternalDrg(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteInternalDrg")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteInternalDrg is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteInternalDrg", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteInternalDrg")
+	assert.NoError(t, err)
+
+	type DeleteInternalDrgRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteInternalDrgRequest
+	}
+
+	var requests []DeleteInternalDrgRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteInternalDrg(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteInternalDrgAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteInternalDrgAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteInternalDrgAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteInternalDrgAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteInternalDrgAttachment")
+	assert.NoError(t, err)
+
+	type DeleteInternalDrgAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteInternalDrgAttachmentRequest
+	}
+
+	var requests []DeleteInternalDrgAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteInternalDrgAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteInternalGenericGateway(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteInternalGenericGateway")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteInternalGenericGateway is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteInternalGenericGateway", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteInternalGenericGateway")
+	assert.NoError(t, err)
+
+	type DeleteInternalGenericGatewayRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteInternalGenericGatewayRequest
+	}
+
+	var requests []DeleteInternalGenericGatewayRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteInternalGenericGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteInternalPublicIp(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteInternalPublicIp")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteInternalPublicIp is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteInternalPublicIp", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteInternalPublicIp")
+	assert.NoError(t, err)
+
+	type DeleteInternalPublicIpRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteInternalPublicIpRequest
+	}
+
+	var requests []DeleteInternalPublicIpRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteInternalPublicIp(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteInternalVnic(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteInternalVnic")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteInternalVnic is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteInternalVnic", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteInternalVnic")
+	assert.NoError(t, err)
+
+	type DeleteInternalVnicRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteInternalVnicRequest
+	}
+
+	var requests []DeleteInternalVnicRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteInternalVnic(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteInternalVnicAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteInternalVnicAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteInternalVnicAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteInternalVnicAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteInternalVnicAttachment")
+	assert.NoError(t, err)
+
+	type DeleteInternalVnicAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteInternalVnicAttachmentRequest
+	}
+
+	var requests []DeleteInternalVnicAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteInternalVnicAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientDeleteInternetGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3623,6 +4415,50 @@ func TestVirtualNetworkClientDeletePrivateIp(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeletePrivateIp(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeletePrivateIpNextHop(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeletePrivateIpNextHop")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeletePrivateIpNextHop is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeletePrivateIpNextHop", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeletePrivateIpNextHop")
+	assert.NoError(t, err)
+
+	type DeletePrivateIpNextHopRequestInfo struct {
+		ContainerId string
+		Request     core.DeletePrivateIpNextHopRequest
+	}
+
+	var requests []DeletePrivateIpNextHopRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeletePrivateIpNextHop(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -4114,6 +4950,50 @@ func TestVirtualNetworkClientDeleteVlan(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDeleteVnicWorker(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteVnicWorker")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteVnicWorker is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteVnicWorker", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteVnicWorker")
+	assert.NoError(t, err)
+
+	type DeleteVnicWorkerRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteVnicWorkerRequest
+	}
+
+	var requests []DeleteVnicWorkerRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteVnicWorker(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="serviceGateway" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientDetachServiceId(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -4202,6 +5082,50 @@ func TestVirtualNetworkClientDisableReverseConnections(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientDisableVnicWorker(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DisableVnicWorker")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DisableVnicWorker is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DisableVnicWorker", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DisableVnicWorker")
+	assert.NoError(t, err)
+
+	type DisableVnicWorkerRequestInfo struct {
+		ContainerId string
+		Request     core.DisableVnicWorkerRequest
+	}
+
+	var requests []DisableVnicWorkerRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DisableVnicWorker(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientEnableReverseConnections(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -4239,6 +5163,50 @@ func TestVirtualNetworkClientEnableReverseConnections(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.EnableReverseConnections(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientEnableVnicWorker(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "EnableVnicWorker")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("EnableVnicWorker is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "EnableVnicWorker", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "EnableVnicWorker")
+	assert.NoError(t, err)
+
+	type EnableVnicWorkerRequestInfo struct {
+		ContainerId string
+		Request     core.EnableVnicWorkerRequest
+	}
+
+	var requests []EnableVnicWorkerRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.EnableVnicWorker(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -5347,6 +6315,402 @@ func TestVirtualNetworkClientGetIPSecConnectionTunnelSharedSecret(t *testing.T) 
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetInternalDnsRecord(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInternalDnsRecord")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInternalDnsRecord is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetInternalDnsRecord", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetInternalDnsRecord")
+	assert.NoError(t, err)
+
+	type GetInternalDnsRecordRequestInfo struct {
+		ContainerId string
+		Request     core.GetInternalDnsRecordRequest
+	}
+
+	var requests []GetInternalDnsRecordRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInternalDnsRecord(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetInternalDrg(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInternalDrg")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInternalDrg is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetInternalDrg", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetInternalDrg")
+	assert.NoError(t, err)
+
+	type GetInternalDrgRequestInfo struct {
+		ContainerId string
+		Request     core.GetInternalDrgRequest
+	}
+
+	var requests []GetInternalDrgRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInternalDrg(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetInternalDrgAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInternalDrgAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInternalDrgAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetInternalDrgAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetInternalDrgAttachment")
+	assert.NoError(t, err)
+
+	type GetInternalDrgAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.GetInternalDrgAttachmentRequest
+	}
+
+	var requests []GetInternalDrgAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInternalDrgAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetInternalGenericGateway(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInternalGenericGateway")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInternalGenericGateway is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetInternalGenericGateway", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetInternalGenericGateway")
+	assert.NoError(t, err)
+
+	type GetInternalGenericGatewayRequestInfo struct {
+		ContainerId string
+		Request     core.GetInternalGenericGatewayRequest
+	}
+
+	var requests []GetInternalGenericGatewayRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInternalGenericGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetInternalGenericGatewayByGatewayId(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInternalGenericGatewayByGatewayId")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInternalGenericGatewayByGatewayId is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetInternalGenericGatewayByGatewayId", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetInternalGenericGatewayByGatewayId")
+	assert.NoError(t, err)
+
+	type GetInternalGenericGatewayByGatewayIdRequestInfo struct {
+		ContainerId string
+		Request     core.GetInternalGenericGatewayByGatewayIdRequest
+	}
+
+	var requests []GetInternalGenericGatewayByGatewayIdRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInternalGenericGatewayByGatewayId(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetInternalPublicIp(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInternalPublicIp")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInternalPublicIp is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetInternalPublicIp", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetInternalPublicIp")
+	assert.NoError(t, err)
+
+	type GetInternalPublicIpRequestInfo struct {
+		ContainerId string
+		Request     core.GetInternalPublicIpRequest
+	}
+
+	var requests []GetInternalPublicIpRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInternalPublicIp(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetInternalSubnet(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInternalSubnet")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInternalSubnet is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetInternalSubnet", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetInternalSubnet")
+	assert.NoError(t, err)
+
+	type GetInternalSubnetRequestInfo struct {
+		ContainerId string
+		Request     core.GetInternalSubnetRequest
+	}
+
+	var requests []GetInternalSubnetRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInternalSubnet(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetInternalVnic(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInternalVnic")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInternalVnic is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetInternalVnic", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetInternalVnic")
+	assert.NoError(t, err)
+
+	type GetInternalVnicRequestInfo struct {
+		ContainerId string
+		Request     core.GetInternalVnicRequest
+	}
+
+	var requests []GetInternalVnicRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInternalVnic(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetInternalVnicAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetInternalVnicAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInternalVnicAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetInternalVnicAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetInternalVnicAttachment")
+	assert.NoError(t, err)
+
+	type GetInternalVnicAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.GetInternalVnicAttachmentRequest
+	}
+
+	var requests []GetInternalVnicAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInternalVnicAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientGetInternetGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5823,6 +7187,50 @@ func TestVirtualNetworkClientGetPrivateIp(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetPrivateIp(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetPrivateIpNextHop(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetPrivateIpNextHop")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPrivateIpNextHop is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetPrivateIpNextHop", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetPrivateIpNextHop")
+	assert.NoError(t, err)
+
+	type GetPrivateIpNextHopRequestInfo struct {
+		ContainerId string
+		Request     core.GetPrivateIpNextHopRequest
+	}
+
+	var requests []GetPrivateIpNextHopRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetPrivateIpNextHop(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -6622,6 +8030,50 @@ func TestVirtualNetworkClientGetVnic(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientGetVnicWorker(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetVnicWorker")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetVnicWorker is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetVnicWorker", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetVnicWorker")
+	assert.NoError(t, err)
+
+	type GetVnicWorkerRequestInfo struct {
+		ContainerId string
+		Request     core.GetVnicWorkerRequest
+	}
+
+	var requests []GetVnicWorkerRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetVnicWorker(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientListAllowedPeerRegionsForRemotePeering(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -6660,6 +8112,60 @@ func TestVirtualNetworkClientListAllowedPeerRegionsForRemotePeering(t *testing.T
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ListAllowedPeerRegionsForRemotePeering(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
+func TestVirtualNetworkClientListByoipAllocatedRanges(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListByoipAllocatedRanges")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListByoipAllocatedRanges is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListByoipAllocatedRanges", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListByoipAllocatedRanges")
+	assert.NoError(t, err)
+
+	type ListByoipAllocatedRangesRequestInfo struct {
+		ContainerId string
+		Request     core.ListByoipAllocatedRangesRequest
+	}
+
+	var requests []ListByoipAllocatedRangesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListByoipAllocatedRangesRequest)
+				return c.ListByoipAllocatedRanges(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListByoipAllocatedRangesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListByoipAllocatedRangesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -7575,6 +9081,330 @@ func TestVirtualNetworkClientListIPSecConnections(t *testing.T) {
 			typedListResponses := make([]core.ListIPSecConnectionsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(core.ListIPSecConnectionsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListInternalDnsRecords(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListInternalDnsRecords")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListInternalDnsRecords is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListInternalDnsRecords", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListInternalDnsRecords")
+	assert.NoError(t, err)
+
+	type ListInternalDnsRecordsRequestInfo struct {
+		ContainerId string
+		Request     core.ListInternalDnsRecordsRequest
+	}
+
+	var requests []ListInternalDnsRecordsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListInternalDnsRecordsRequest)
+				return c.ListInternalDnsRecords(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListInternalDnsRecordsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListInternalDnsRecordsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListInternalDrgAttachments(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListInternalDrgAttachments")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListInternalDrgAttachments is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListInternalDrgAttachments", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListInternalDrgAttachments")
+	assert.NoError(t, err)
+
+	type ListInternalDrgAttachmentsRequestInfo struct {
+		ContainerId string
+		Request     core.ListInternalDrgAttachmentsRequest
+	}
+
+	var requests []ListInternalDrgAttachmentsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListInternalDrgAttachmentsRequest)
+				return c.ListInternalDrgAttachments(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListInternalDrgAttachmentsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListInternalDrgAttachmentsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListInternalDrgs(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListInternalDrgs")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListInternalDrgs is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListInternalDrgs", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListInternalDrgs")
+	assert.NoError(t, err)
+
+	type ListInternalDrgsRequestInfo struct {
+		ContainerId string
+		Request     core.ListInternalDrgsRequest
+	}
+
+	var requests []ListInternalDrgsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListInternalDrgsRequest)
+				return c.ListInternalDrgs(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListInternalDrgsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListInternalDrgsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListInternalGenericGateways(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListInternalGenericGateways")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListInternalGenericGateways is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListInternalGenericGateways", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListInternalGenericGateways")
+	assert.NoError(t, err)
+
+	type ListInternalGenericGatewaysRequestInfo struct {
+		ContainerId string
+		Request     core.ListInternalGenericGatewaysRequest
+	}
+
+	var requests []ListInternalGenericGatewaysRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListInternalGenericGatewaysRequest)
+				return c.ListInternalGenericGateways(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListInternalGenericGatewaysResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListInternalGenericGatewaysResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListInternalPublicIps(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListInternalPublicIps")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListInternalPublicIps is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListInternalPublicIps", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListInternalPublicIps")
+	assert.NoError(t, err)
+
+	type ListInternalPublicIpsRequestInfo struct {
+		ContainerId string
+		Request     core.ListInternalPublicIpsRequest
+	}
+
+	var requests []ListInternalPublicIpsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListInternalPublicIpsRequest)
+				return c.ListInternalPublicIps(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListInternalPublicIpsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListInternalPublicIpsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListInternalVnics(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListInternalVnics")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListInternalVnics is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListInternalVnics", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListInternalVnics")
+	assert.NoError(t, err)
+
+	type ListInternalVnicsRequestInfo struct {
+		ContainerId string
+		Request     core.ListInternalVnicsRequest
+	}
+
+	var requests []ListInternalVnicsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListInternalVnicsRequest)
+				return c.ListInternalVnics(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListInternalVnicsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListInternalVnicsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -9066,6 +10896,60 @@ func TestVirtualNetworkClientListVlans(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListVnicWorkers(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListVnicWorkers")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListVnicWorkers is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListVnicWorkers", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListVnicWorkers")
+	assert.NoError(t, err)
+
+	type ListVnicWorkersRequestInfo struct {
+		ContainerId string
+		Request     core.ListVnicWorkersRequest
+	}
+
+	var requests []ListVnicWorkersRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListVnicWorkersRequest)
+				return c.ListVnicWorkers(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListVnicWorkersResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListVnicWorkersResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="privateEndpoint" email="oci_sgw_ops_us_grp@oracle.com" jiraProject="SG" opsJiraProject="SGW"
 func TestVirtualNetworkClientModifyReverseConnections(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -9815,6 +11699,270 @@ func TestVirtualNetworkClientUpdateIPSecConnectionTunnelSharedSecret(t *testing.
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateInternalDnsRecord(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateInternalDnsRecord")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateInternalDnsRecord is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateInternalDnsRecord", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateInternalDnsRecord")
+	assert.NoError(t, err)
+
+	type UpdateInternalDnsRecordRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateInternalDnsRecordRequest
+	}
+
+	var requests []UpdateInternalDnsRecordRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateInternalDnsRecord(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateInternalDrg(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateInternalDrg")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateInternalDrg is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateInternalDrg", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateInternalDrg")
+	assert.NoError(t, err)
+
+	type UpdateInternalDrgRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateInternalDrgRequest
+	}
+
+	var requests []UpdateInternalDrgRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateInternalDrg(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateInternalDrgAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateInternalDrgAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateInternalDrgAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateInternalDrgAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateInternalDrgAttachment")
+	assert.NoError(t, err)
+
+	type UpdateInternalDrgAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateInternalDrgAttachmentRequest
+	}
+
+	var requests []UpdateInternalDrgAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateInternalDrgAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateInternalGenericGateway(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateInternalGenericGateway")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateInternalGenericGateway is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateInternalGenericGateway", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateInternalGenericGateway")
+	assert.NoError(t, err)
+
+	type UpdateInternalGenericGatewayRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateInternalGenericGatewayRequest
+	}
+
+	var requests []UpdateInternalGenericGatewayRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateInternalGenericGateway(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateInternalPublicIp(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateInternalPublicIp")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateInternalPublicIp is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateInternalPublicIp", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateInternalPublicIp")
+	assert.NoError(t, err)
+
+	type UpdateInternalPublicIpRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateInternalPublicIpRequest
+	}
+
+	var requests []UpdateInternalPublicIpRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateInternalPublicIp(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateInternalVnic(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateInternalVnic")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateInternalVnic is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateInternalVnic", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateInternalVnic")
+	assert.NoError(t, err)
+
+	type UpdateInternalVnicRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateInternalVnicRequest
+	}
+
+	var requests []UpdateInternalVnicRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateInternalVnic(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientUpdateInternetGateway(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -10247,6 +12395,50 @@ func TestVirtualNetworkClientUpdatePrivateIp(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdatePrivateIp(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdatePrivateIpNextHop(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdatePrivateIpNextHop")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdatePrivateIpNextHop is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdatePrivateIpNextHop", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdatePrivateIpNextHop")
+	assert.NoError(t, err)
+
+	type UpdatePrivateIpNextHopRequestInfo struct {
+		ContainerId string
+		Request     core.UpdatePrivateIpNextHopRequest
+	}
+
+	var requests []UpdatePrivateIpNextHopRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdatePrivateIpNextHop(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -10775,6 +12967,50 @@ func TestVirtualNetworkClientUpdateVnic(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateVnic(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientUpdateVnicWorker(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateVnicWorker")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateVnicWorker is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateVnicWorker", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateVnicWorker")
+	assert.NoError(t, err)
+
+	type UpdateVnicWorkerRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateVnicWorkerRequest
+	}
+
+	var requests []UpdateVnicWorkerRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateVnicWorker(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

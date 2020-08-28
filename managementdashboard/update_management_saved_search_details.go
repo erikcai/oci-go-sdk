@@ -4,7 +4,9 @@
 
 // ManagementDashboard API
 //
-// Management Dashboard micro-service provides APIs to support dashboard and saved search metadata preservation, as follows 1) Save and retrieve metadata to support UI activities (Create an empty dashboard, open a saved search, etc.). 2) Check authority for each CRUD operation. 3) Validate input: Are all properties present?  Any empty values?  Are all saved searches OOB when dashboard is OOB?  Etc. 4) Import and export dashboards.
+// Management Dashboard micro-service provides a set of CRUD, import, export, and compartment related APIs (such as change compartment)   to support dashboard and saved search metadata preservation.  These APIs are mainly for client UIs, for various UI activities such as get list of all saved searches in a compartment, create a dashboard, open a saved search, etc.  Use export to retrieve  dashboards and their saved searches, then edit the Json if necessary (for example change compartmentIds), then import the result to  destination dashboard service.
+// APIs validate all required properties to ensure properties are present and have correct type and values.
+//
 //
 
 package managementdashboard
@@ -13,44 +15,53 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// UpdateManagementSavedSearchDetails Properties of a saved search.
+// UpdateManagementSavedSearchDetails Properties of a saved search.  Saved search id must not be provided.
 type UpdateManagementSavedSearchDetails struct {
 
 	// Display name for saved search.
-	DisplayName *string `mandatory:"true" json:"displayName"`
+	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Id for application (LA, APM, etc.) that owners this saved search.  Each owner has a unique Id.
-	ProviderId *string `mandatory:"true" json:"providerId"`
+	ProviderId *string `mandatory:"false" json:"providerId"`
 
 	// Version.
-	ProviderVersion *string `mandatory:"true" json:"providerVersion"`
+	ProviderVersion *string `mandatory:"false" json:"providerVersion"`
 
 	// Name for application (LA, APM, etc.) that owners this saved search.
-	ProviderName *string `mandatory:"true" json:"providerName"`
-
-	// String boolean ("true" or "false").
-	IsWidget *bool `mandatory:"true" json:"isWidget"`
-
-	// String boolean ("true" or "false").
-	IsDashboardIneligible *bool `mandatory:"true" json:"isDashboardIneligible"`
+	ProviderName *string `mandatory:"false" json:"providerName"`
 
 	// The ocid of the compartment that owns the saved search.
-	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// String boolean ("true" or "false") to indicate Out Of the Box saved search.
-	IsOOBSavedSearch *bool `mandatory:"true" json:"isOOBSavedSearch"`
+	IsOobSavedSearch *bool `mandatory:"false" json:"isOobSavedSearch"`
 
 	// Description.
-	Description *string `mandatory:"true" json:"description"`
+	Description *string `mandatory:"false" json:"description"`
+
+	// Json for internationalization.
+	Nls *interface{} `mandatory:"false" json:"nls"`
+
+	// How to show the saved search.
+	Type SavedSearchTypesEnum `mandatory:"false" json:"type,omitempty"`
+
+	// Json to contain options for UI.
+	UiConfig *interface{} `mandatory:"false" json:"uiConfig"`
+
+	// Array of Json to contain options for source of data.
+	DataConfig []interface{} `mandatory:"false" json:"dataConfig"`
+
+	// Screenshot.
+	ScreenImage *string `mandatory:"false" json:"screenImage"`
+
+	// Version of the metadata.
+	MetadataVersion *string `mandatory:"false" json:"metadataVersion"`
 
 	// Template.
-	WidgetTemplate *string `mandatory:"true" json:"widgetTemplate"`
+	WidgetTemplate *string `mandatory:"false" json:"widgetTemplate"`
 
 	// View Model
-	WidgetVM *string `mandatory:"true" json:"widgetVM"`
-
-	// Dashboard JSON
-	WidgetOption *interface{} `mandatory:"true" json:"widgetOption"`
+	WidgetVM *string `mandatory:"false" json:"widgetVM"`
 
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`

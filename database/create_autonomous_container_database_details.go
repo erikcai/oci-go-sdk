@@ -50,6 +50,10 @@ type CreateAutonomousContainerDatabaseDetails struct {
 
 	MaintenanceWindowDetails *MaintenanceWindow `mandatory:"false" json:"maintenanceWindowDetails"`
 
+	// The scheduling detail for the quarterly maintenance window of standby Autonomous Container Database.
+	// This value represents the number of days before the primary database maintenance schedule.
+	StandbyMaintenanceBufferInDays *int `mandatory:"false" json:"standbyMaintenanceBufferInDays"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -66,6 +70,9 @@ type CreateAutonomousContainerDatabaseDetails struct {
 
 	// The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
 	KmsKeyVersionId *string `mandatory:"false" json:"kmsKeyVersionId"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+	KeyStoreId *string `mandatory:"false" json:"keyStoreId"`
 }
 
 func (m CreateAutonomousContainerDatabaseDetails) String() string {

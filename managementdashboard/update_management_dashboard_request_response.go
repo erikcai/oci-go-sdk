@@ -15,7 +15,7 @@ type UpdateManagementDashboardRequest struct {
 	// unique dashboard identifier
 	ManagementDashboardId *string `mandatory:"true" contributesTo:"path" name:"managementDashboardId"`
 
-	// Details for updating an existing dashboard.
+	// Json Metadata for changed dashboard properties.
 	UpdateManagementDashboardDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -59,6 +59,12 @@ type UpdateManagementDashboardResponse struct {
 
 	// The underlying http response
 	RawResponse *http.Response
+
+	// The ManagementDashboard instance
+	ManagementDashboard `presentIn:"body"`
+
+	// For optimistic concurrency control. See `if-match`.
+	Etag *string `presentIn:"header" name:"etag"`
 
 	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`

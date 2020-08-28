@@ -23,28 +23,28 @@ func createManagementdashboardDashxApisClientWithProvider(p common.Configuration
 }
 
 // IssueRoutingInfo tag="default" email="em_target_analytics_grp@oracle.com" jiraProject="MGMTUI" opsJiraProject="LOGAN"
-func TestManagementdashboardDashxApisClientChangeManagementDashboardCompartment(t *testing.T) {
+func TestManagementdashboardDashxApisClientChangeManagementDashboardsCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("managementdashboard", "ChangeManagementDashboardCompartment")
+	enabled, err := testClient.isApiEnabled("managementdashboard", "ChangeManagementDashboardsCompartment")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ChangeManagementDashboardCompartment is not enabled by the testing service")
+		t.Skip("ChangeManagementDashboardsCompartment is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("managementdashboard", "DashxApis", "ChangeManagementDashboardCompartment", createManagementdashboardDashxApisClientWithProvider)
+	cc, err := testClient.createClientForOperation("managementdashboard", "DashxApis", "ChangeManagementDashboardsCompartment", createManagementdashboardDashxApisClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(managementdashboard.DashxApisClient)
 
-	body, err := testClient.getRequests("managementdashboard", "ChangeManagementDashboardCompartment")
+	body, err := testClient.getRequests("managementdashboard", "ChangeManagementDashboardsCompartment")
 	assert.NoError(t, err)
 
-	type ChangeManagementDashboardCompartmentRequestInfo struct {
+	type ChangeManagementDashboardsCompartmentRequestInfo struct {
 		ContainerId string
-		Request     managementdashboard.ChangeManagementDashboardCompartmentRequest
+		Request     managementdashboard.ChangeManagementDashboardsCompartmentRequest
 	}
 
-	var requests []ChangeManagementDashboardCompartmentRequestInfo
+	var requests []ChangeManagementDashboardsCompartmentRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -58,7 +58,7 @@ func TestManagementdashboardDashxApisClientChangeManagementDashboardCompartment(
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ChangeManagementDashboardCompartment(context.Background(), req.Request)
+			response, err := c.ChangeManagementDashboardsCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -67,28 +67,28 @@ func TestManagementdashboardDashxApisClientChangeManagementDashboardCompartment(
 }
 
 // IssueRoutingInfo tag="default" email="em_target_analytics_grp@oracle.com" jiraProject="MGMTUI" opsJiraProject="LOGAN"
-func TestManagementdashboardDashxApisClientChangeManagementSavedSearchCompartment(t *testing.T) {
+func TestManagementdashboardDashxApisClientChangeManagementSavedSearchesCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("managementdashboard", "ChangeManagementSavedSearchCompartment")
+	enabled, err := testClient.isApiEnabled("managementdashboard", "ChangeManagementSavedSearchesCompartment")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("ChangeManagementSavedSearchCompartment is not enabled by the testing service")
+		t.Skip("ChangeManagementSavedSearchesCompartment is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("managementdashboard", "DashxApis", "ChangeManagementSavedSearchCompartment", createManagementdashboardDashxApisClientWithProvider)
+	cc, err := testClient.createClientForOperation("managementdashboard", "DashxApis", "ChangeManagementSavedSearchesCompartment", createManagementdashboardDashxApisClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(managementdashboard.DashxApisClient)
 
-	body, err := testClient.getRequests("managementdashboard", "ChangeManagementSavedSearchCompartment")
+	body, err := testClient.getRequests("managementdashboard", "ChangeManagementSavedSearchesCompartment")
 	assert.NoError(t, err)
 
-	type ChangeManagementSavedSearchCompartmentRequestInfo struct {
+	type ChangeManagementSavedSearchesCompartmentRequestInfo struct {
 		ContainerId string
-		Request     managementdashboard.ChangeManagementSavedSearchCompartmentRequest
+		Request     managementdashboard.ChangeManagementSavedSearchesCompartmentRequest
 	}
 
-	var requests []ChangeManagementSavedSearchCompartmentRequestInfo
+	var requests []ChangeManagementSavedSearchesCompartmentRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -102,7 +102,7 @@ func TestManagementdashboardDashxApisClientChangeManagementSavedSearchCompartmen
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ChangeManagementSavedSearchCompartment(context.Background(), req.Request)
+			response, err := c.ChangeManagementSavedSearchesCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -375,50 +375,6 @@ func TestManagementdashboardDashxApisClientGetManagementDashboard(t *testing.T) 
 }
 
 // IssueRoutingInfo tag="default" email="em_target_analytics_grp@oracle.com" jiraProject="MGMTUI" opsJiraProject="LOGAN"
-func TestManagementdashboardDashxApisClientGetManagementDashboardCompartment(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("managementdashboard", "GetManagementDashboardCompartment")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetManagementDashboardCompartment is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("managementdashboard", "DashxApis", "GetManagementDashboardCompartment", createManagementdashboardDashxApisClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(managementdashboard.DashxApisClient)
-
-	body, err := testClient.getRequests("managementdashboard", "GetManagementDashboardCompartment")
-	assert.NoError(t, err)
-
-	type GetManagementDashboardCompartmentRequestInfo struct {
-		ContainerId string
-		Request     managementdashboard.GetManagementDashboardCompartmentRequest
-	}
-
-	var requests []GetManagementDashboardCompartmentRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetManagementDashboardCompartment(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="em_target_analytics_grp@oracle.com" jiraProject="MGMTUI" opsJiraProject="LOGAN"
 func TestManagementdashboardDashxApisClientGetManagementSavedSearch(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -455,50 +411,6 @@ func TestManagementdashboardDashxApisClientGetManagementSavedSearch(t *testing.T
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetManagementSavedSearch(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="em_target_analytics_grp@oracle.com" jiraProject="MGMTUI" opsJiraProject="LOGAN"
-func TestManagementdashboardDashxApisClientGetManagementSavedSearchCompartment(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("managementdashboard", "GetManagementSavedSearchCompartment")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetManagementSavedSearchCompartment is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("managementdashboard", "DashxApis", "GetManagementSavedSearchCompartment", createManagementdashboardDashxApisClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(managementdashboard.DashxApisClient)
-
-	body, err := testClient.getRequests("managementdashboard", "GetManagementSavedSearchCompartment")
-	assert.NoError(t, err)
-
-	type GetManagementSavedSearchCompartmentRequestInfo struct {
-		ContainerId string
-		Request     managementdashboard.GetManagementSavedSearchCompartmentRequest
-	}
-
-	var requests []GetManagementSavedSearchCompartmentRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetManagementSavedSearchCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

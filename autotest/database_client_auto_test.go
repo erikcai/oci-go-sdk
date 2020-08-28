@@ -551,6 +551,50 @@ func TestDatabaseClientChangeExadataInfrastructureCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeKeyStoreCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeKeyStoreCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeKeyStoreCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeKeyStoreCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeKeyStoreCompartment")
+	assert.NoError(t, err)
+
+	type ChangeKeyStoreCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeKeyStoreCompartmentRequest
+	}
+
+	var requests []ChangeKeyStoreCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeKeyStoreCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientChangeVmClusterCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1454,6 +1498,50 @@ func TestDatabaseClientCreateExternalBackupJob(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateKeyStore(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateKeyStore")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateKeyStore is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateKeyStore", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateKeyStore")
+	assert.NoError(t, err)
+
+	type CreateKeyStoreRequestInfo struct {
+		ContainerId string
+		Request     database.CreateKeyStoreRequest
+	}
+
+	var requests []CreateKeyStoreRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateKeyStore(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientCreateVmCluster(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2106,6 +2194,50 @@ func TestDatabaseClientDeleteExadataInfrastructure(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteExadataInfrastructure(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteKeyStore(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteKeyStore")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteKeyStore is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteKeyStore", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteKeyStore")
+	assert.NoError(t, err)
+
+	type DeleteKeyStoreRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteKeyStoreRequest
+	}
+
+	var requests []DeleteKeyStoreRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteKeyStore(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -4174,6 +4306,50 @@ func TestDatabaseClientGetExternalBackupJob(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetExternalBackupJob(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetKeyStore(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetKeyStore")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetKeyStore is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetKeyStore", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetKeyStore")
+	assert.NoError(t, err)
+
+	type GetKeyStoreRequestInfo struct {
+		ContainerId string
+		Request     database.GetKeyStoreRequest
+	}
+
+	var requests []GetKeyStoreRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetKeyStore(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -6427,6 +6603,60 @@ func TestDatabaseClientListGiVersions(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListKeyStores(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListKeyStores")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListKeyStores is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListKeyStores", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListKeyStores")
+	assert.NoError(t, err)
+
+	type ListKeyStoresRequestInfo struct {
+		ContainerId string
+		Request     database.ListKeyStoresRequest
+	}
+
+	var requests []ListKeyStoresRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListKeyStoresRequest)
+				return c.ListKeyStores(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListKeyStoresResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListKeyStoresResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientListMaintenanceRuns(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -8494,6 +8724,50 @@ func TestDatabaseClientUpdateExadataIormConfig(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateExadataIormConfig(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateKeyStore(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateKeyStore")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateKeyStore is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateKeyStore", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateKeyStore")
+	assert.NoError(t, err)
+
+	type UpdateKeyStoreRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateKeyStoreRequest
+	}
+
+	var requests []UpdateKeyStoreRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateKeyStore(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

@@ -2157,9 +2157,15 @@ func (client ComputeClient) getWindowsInstanceInitialCredentials(ctx context.Con
 // instance.
 // - **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system, and
 // then powers the instance back on.
+// - **SENDDIAGNOSTICINTERRUPT** - For advanced users. Sends a diagnostic interrupt that causes the instance's
+// OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a
+// crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of
+// the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see
+// Sending a Diagnostic Interrupt (https://docs.cloud.oracle.com/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm).
 // - **VALIDATELIVEMIGRATE** - Live migrate the instance to validate impact on the customer workload.
 //                             Live migrating an instance moves it to a different physical host while the instance is running.
-// For more information, see Stopping and Starting an Instance (https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm).
+// For more information about managing instance lifecycle states, see
+// Stopping and Starting an Instance (https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm).
 func (client ComputeClient) InstanceAction(ctx context.Context, request InstanceActionRequest) (response InstanceActionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

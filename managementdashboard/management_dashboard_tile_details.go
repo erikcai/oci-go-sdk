@@ -4,7 +4,9 @@
 
 // ManagementDashboard API
 //
-// Management Dashboard micro-service provides APIs to support dashboard and saved search metadata preservation, as follows 1) Save and retrieve metadata to support UI activities (Create an empty dashboard, open a saved search, etc.). 2) Check authority for each CRUD operation. 3) Validate input: Are all properties present?  Any empty values?  Are all saved searches OOB when dashboard is OOB?  Etc. 4) Import and export dashboards.
+// Management Dashboard micro-service provides a set of CRUD, import, export, and compartment related APIs (such as change compartment)   to support dashboard and saved search metadata preservation.  These APIs are mainly for client UIs, for various UI activities such as get list of all saved searches in a compartment, create a dashboard, open a saved search, etc.  Use export to retrieve  dashboards and their saved searches, then edit the Json if necessary (for example change compartmentIds), then import the result to  destination dashboard service.
+// APIs validate all required properties to ensure properties are present and have correct type and values.
+//
 //
 
 package managementdashboard
@@ -13,23 +15,14 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ManagementDashboardTileDetails Properties of tile for a saved search.  Tile is a UI rendition of a saved search.
+// ManagementDashboardTileDetails Properties of dashboard tile representing a saved search.
 type ManagementDashboardTileDetails struct {
 
 	// Display name for saved search.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Title of saved search.
-	Title *string `mandatory:"true" json:"title"`
-
-	// Description for saved search.
-	Description *string `mandatory:"true" json:"description"`
-
 	// Id of saved search.
 	SavedSearchId *string `mandatory:"true" json:"savedSearchId"`
-
-	// Description
-	Type *string `mandatory:"true" json:"type"`
 
 	// Row, Y position
 	Row *int `mandatory:"true" json:"row"`
@@ -43,13 +36,47 @@ type ManagementDashboardTileDetails struct {
 	// Width position
 	Width *int `mandatory:"true" json:"width"`
 
-	// Drill down configuration
-	DrillConfig *interface{} `mandatory:"true" json:"drillConfig"`
+	// Json for internationalization.
+	Nls *interface{} `mandatory:"true" json:"nls"`
 
-	// Tile parameters that override certain saved search properties.
-	TileParameters *interface{} `mandatory:"true" json:"tileParameters"`
+	// Json to contain options for UI.
+	UiConfig *interface{} `mandatory:"true" json:"uiConfig"`
+
+	// Array of Json to contain options for source of data.
+	DataConfig []interface{} `mandatory:"true" json:"dataConfig"`
+
+	// State of saved search.
+	State ManagementDashboardTileDetailsStateEnum `mandatory:"true" json:"state"`
+
+	// Drill down configuration
+	DrilldownConfig *interface{} `mandatory:"true" json:"drilldownConfig"`
 }
 
 func (m ManagementDashboardTileDetails) String() string {
 	return common.PointerString(m)
+}
+
+// ManagementDashboardTileDetailsStateEnum Enum with underlying type: string
+type ManagementDashboardTileDetailsStateEnum string
+
+// Set of constants representing the allowable values for ManagementDashboardTileDetailsStateEnum
+const (
+	ManagementDashboardTileDetailsStateDeleted      ManagementDashboardTileDetailsStateEnum = "DELETED"
+	ManagementDashboardTileDetailsStateUnauthorized ManagementDashboardTileDetailsStateEnum = "UNAUTHORIZED"
+	ManagementDashboardTileDetailsStateDefault      ManagementDashboardTileDetailsStateEnum = "DEFAULT"
+)
+
+var mappingManagementDashboardTileDetailsState = map[string]ManagementDashboardTileDetailsStateEnum{
+	"DELETED":      ManagementDashboardTileDetailsStateDeleted,
+	"UNAUTHORIZED": ManagementDashboardTileDetailsStateUnauthorized,
+	"DEFAULT":      ManagementDashboardTileDetailsStateDefault,
+}
+
+// GetManagementDashboardTileDetailsStateEnumValues Enumerates the set of values for ManagementDashboardTileDetailsStateEnum
+func GetManagementDashboardTileDetailsStateEnumValues() []ManagementDashboardTileDetailsStateEnum {
+	values := make([]ManagementDashboardTileDetailsStateEnum, 0)
+	for _, v := range mappingManagementDashboardTileDetailsState {
+		values = append(values, v)
+	}
+	return values
 }

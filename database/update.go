@@ -103,13 +103,15 @@ type UpdateUpdateTypeEnum string
 
 // Set of constants representing the allowable values for UpdateUpdateTypeEnum
 const (
-	UpdateUpdateTypeUpgrade UpdateUpdateTypeEnum = "GI_UPGRADE"
-	UpdateUpdateTypePatch   UpdateUpdateTypeEnum = "GI_PATCH"
+	UpdateUpdateTypeGiUpgrade UpdateUpdateTypeEnum = "GI_UPGRADE"
+	UpdateUpdateTypeGiPatch   UpdateUpdateTypeEnum = "GI_PATCH"
+	UpdateUpdateTypeOsUpdate  UpdateUpdateTypeEnum = "OS_UPDATE"
 )
 
 var mappingUpdateUpdateType = map[string]UpdateUpdateTypeEnum{
-	"GI_UPGRADE": UpdateUpdateTypeUpgrade,
-	"GI_PATCH":   UpdateUpdateTypePatch,
+	"GI_UPGRADE": UpdateUpdateTypeGiUpgrade,
+	"GI_PATCH":   UpdateUpdateTypeGiPatch,
+	"OS_UPDATE":  UpdateUpdateTypeOsUpdate,
 }
 
 // GetUpdateUpdateTypeEnumValues Enumerates the set of values for UpdateUpdateTypeEnum

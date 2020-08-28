@@ -205,8 +205,17 @@ type AutonomousDatabaseSummary struct {
 
 	StandbyDb *AutonomousDatabaseStandbySummary `mandatory:"false" json:"standbyDb"`
 
+	// The role of the Autonomous Dataguard enabled Autonomous Container Database.
+	Role AutonomousDatabaseSummaryRoleEnum `mandatory:"false" json:"role,omitempty"`
+
 	// List of Oracle Database versions available for a database upgrade. If there are no version upgrades available, this list is empty.
 	AvailableUpgradeVersions []string `mandatory:"false" json:"availableUpgradeVersions"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
+	KeyStoreId *string `mandatory:"false" json:"keyStoreId"`
+
+	// The wallet name for Oracle Key Vault.
+	KeyStoreWalletName *string `mandatory:"false" json:"keyStoreWalletName"`
 }
 
 func (m AutonomousDatabaseSummary) String() string {
@@ -488,6 +497,31 @@ var mappingAutonomousDatabaseSummaryPermissionLevel = map[string]AutonomousDatab
 func GetAutonomousDatabaseSummaryPermissionLevelEnumValues() []AutonomousDatabaseSummaryPermissionLevelEnum {
 	values := make([]AutonomousDatabaseSummaryPermissionLevelEnum, 0)
 	for _, v := range mappingAutonomousDatabaseSummaryPermissionLevel {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabaseSummaryRoleEnum Enum with underlying type: string
+type AutonomousDatabaseSummaryRoleEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabaseSummaryRoleEnum
+const (
+	AutonomousDatabaseSummaryRolePrimary         AutonomousDatabaseSummaryRoleEnum = "PRIMARY"
+	AutonomousDatabaseSummaryRoleStandby         AutonomousDatabaseSummaryRoleEnum = "STANDBY"
+	AutonomousDatabaseSummaryRoleDisabledStandby AutonomousDatabaseSummaryRoleEnum = "DISABLED_STANDBY"
+)
+
+var mappingAutonomousDatabaseSummaryRole = map[string]AutonomousDatabaseSummaryRoleEnum{
+	"PRIMARY":          AutonomousDatabaseSummaryRolePrimary,
+	"STANDBY":          AutonomousDatabaseSummaryRoleStandby,
+	"DISABLED_STANDBY": AutonomousDatabaseSummaryRoleDisabledStandby,
+}
+
+// GetAutonomousDatabaseSummaryRoleEnumValues Enumerates the set of values for AutonomousDatabaseSummaryRoleEnum
+func GetAutonomousDatabaseSummaryRoleEnumValues() []AutonomousDatabaseSummaryRoleEnum {
+	values := make([]AutonomousDatabaseSummaryRoleEnum, 0)
+	for _, v := range mappingAutonomousDatabaseSummaryRole {
 		values = append(values, v)
 	}
 	return values

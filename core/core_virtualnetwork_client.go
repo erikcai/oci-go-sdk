@@ -799,6 +799,107 @@ func (client VirtualNetworkClient) changeIPSecConnectionCompartment(ctx context.
 	return response, err
 }
 
+// ChangeInternalDrgCompartment Moves a DRG into a different compartment within the same tenancy. For information
+// about moving resources between compartments, see
+// Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+func (client VirtualNetworkClient) ChangeInternalDrgCompartment(ctx context.Context, request ChangeInternalDrgCompartmentRequest) (response ChangeInternalDrgCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.changeInternalDrgCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeInternalDrgCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeInternalDrgCompartmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeInternalDrgCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeInternalDrgCompartmentResponse")
+	}
+	return
+}
+
+// changeInternalDrgCompartment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) changeInternalDrgCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalDrgs/{internalDrgId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeInternalDrgCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ChangeInternalGenericGatewayCompartment Change the compartment of the specified internal generic gateway
+func (client VirtualNetworkClient) ChangeInternalGenericGatewayCompartment(ctx context.Context, request ChangeInternalGenericGatewayCompartmentRequest) (response ChangeInternalGenericGatewayCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeInternalGenericGatewayCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeInternalGenericGatewayCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeInternalGenericGatewayCompartmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeInternalGenericGatewayCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeInternalGenericGatewayCompartmentResponse")
+	}
+	return
+}
+
+// changeInternalGenericGatewayCompartment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) changeInternalGenericGatewayCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalGenericGateways/{internalGenericGatewayId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeInternalGenericGatewayCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ChangeInternetGatewayCompartment Moves an internet gateway into a different compartment within the same tenancy. For information
 // about moving resources between compartments, see
 // Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
@@ -2424,6 +2525,404 @@ func (client VirtualNetworkClient) createIPSecConnection(ctx context.Context, re
 	return response, err
 }
 
+// CreateInternalDnsRecord Creates a new Dns Record.
+func (client VirtualNetworkClient) CreateInternalDnsRecord(ctx context.Context, request CreateInternalDnsRecordRequest) (response CreateInternalDnsRecordResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createInternalDnsRecord, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateInternalDnsRecordResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateInternalDnsRecordResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateInternalDnsRecordResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateInternalDnsRecordResponse")
+	}
+	return
+}
+
+// createInternalDnsRecord implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createInternalDnsRecord(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalDnsRecords")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateInternalDnsRecordResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateInternalDrg This is only used for internal operations to support TRANSIT  HUB. Creates a new dynamic routing gateway (DRG)
+// of type DRG_TRANSIT_HUB in the specified compartment. Creates a new dynamic routing gateway (DRG) in the specified
+// compartment. For more information, see Dynamic Routing Gateways (DRGs) (https://docs.cloud.oracle.com/Content/Network/Tasks/managingDRGs.htm).
+// For the purposes of access control, you must provide the OCID of the compartment where you want
+// the DRG to reside. Notice that the DRG doesn't have to be in the same compartment as the VCN,
+// the DRG attachment, or other Networking Service components. If you're not sure which compartment
+// to use, put the DRG in the same compartment as the VCN. For more information about compartments
+// and access control, see Overview of the IAM Service (https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+// For information about OCIDs, see Resource Identifiers (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+// You may optionally specify a *display name* for the DRG, otherwise a default is provided.
+// It does not have to be unique, and you can change it. Avoid entering confidential information.
+func (client VirtualNetworkClient) CreateInternalDrg(ctx context.Context, request CreateInternalDrgRequest) (response CreateInternalDrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createInternalDrg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateInternalDrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateInternalDrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateInternalDrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateInternalDrgResponse")
+	}
+	return
+}
+
+// createInternalDrg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createInternalDrg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalDrgs")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateInternalDrgResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateInternalDrgAttachment Attaches the specified DRG to the specified VCN. A VCN can be attached to only one DRG at a time,
+// and vice versa. The response includes a `DrgAttachment` object with its own OCID. For more
+// information about DRGs, see
+// Dynamic Routing Gateways (DRGs) (https://docs.cloud.oracle.com/Content/Network/Tasks/managingDRGs.htm).
+// You may optionally specify a *display name* for the attachment, otherwise a default is provided.
+// It does not have to be unique, and you can change it. Avoid entering confidential information.
+// For the purposes of access control, the DRG attachment is automatically placed into the same compartment
+// as the VCN. For more information about compartments and access control, see
+// Overview of the IAM Service (https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+func (client VirtualNetworkClient) CreateInternalDrgAttachment(ctx context.Context, request CreateInternalDrgAttachmentRequest) (response CreateInternalDrgAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createInternalDrgAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateInternalDrgAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateInternalDrgAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateInternalDrgAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateInternalDrgAttachmentResponse")
+	}
+	return
+}
+
+// createInternalDrgAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createInternalDrgAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalDrgAttachments")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateInternalDrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateInternalGenericGateway Request to create an internal generic gateway
+func (client VirtualNetworkClient) CreateInternalGenericGateway(ctx context.Context, request CreateInternalGenericGatewayRequest) (response CreateInternalGenericGatewayResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createInternalGenericGateway, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateInternalGenericGatewayResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateInternalGenericGatewayResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateInternalGenericGatewayResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateInternalGenericGatewayResponse")
+	}
+	return
+}
+
+// createInternalGenericGateway implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createInternalGenericGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalGenericGateways")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateInternalGenericGatewayResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateInternalPublicIp Creates an internal public IP. Use the `lifetime` property to specify whether it's an ephemeral or
+// reserved public IP. For information about limits on how many you can create, see
+// Public IP Addresses (https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm).
+// * **For an ephemeral public IP assigned to a private IP:** You must also specify a `privateIpId`
+// with the OCID of the primary private IP you want to assign the public IP to. The public IP is
+// created in the same availability domain as the private IP. An ephemeral public IP must always be
+// assigned to a private IP, and only to the *primary* private IP on a VNIC, not a secondary
+// private IP. Exception: If you create a NatGateway, Oracle
+// automatically assigns the NAT gateway a regional ephemeral public IP that you cannot remove.
+// * **For a reserved public IP:** You may also optionally assign the public IP to a private
+// IP by specifying `privateIpId`. Or you can later assign the public IP with
+// UpdatePublicIp.
+// **Note:** When assigning a public IP to a private IP, the private IP must not already have
+// a public IP with `lifecycleState` = ASSIGNING or ASSIGNED. If it does, an error is returned.
+// Also, for reserved public IPs, the optional assignment part of this operation is
+// asynchronous. Poll the public IP's `lifecycleState` to determine if the assignment
+// succeeded.
+func (client VirtualNetworkClient) CreateInternalPublicIp(ctx context.Context, request CreateInternalPublicIpRequest) (response CreateInternalPublicIpResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createInternalPublicIp, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateInternalPublicIpResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateInternalPublicIpResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateInternalPublicIpResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateInternalPublicIpResponse")
+	}
+	return
+}
+
+// createInternalPublicIp implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createInternalPublicIp(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalPublicIps")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateInternalPublicIpResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateInternalVnic Create a new VNIC.
+func (client VirtualNetworkClient) CreateInternalVnic(ctx context.Context, request CreateInternalVnicRequest) (response CreateInternalVnicResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createInternalVnic, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateInternalVnicResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateInternalVnicResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateInternalVnicResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateInternalVnicResponse")
+	}
+	return
+}
+
+// createInternalVnic implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createInternalVnic(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalVnics")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateInternalVnicResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateInternalVnicAttachment Attaches the specified service VNIC.
+func (client VirtualNetworkClient) CreateInternalVnicAttachment(ctx context.Context, request CreateInternalVnicAttachmentRequest) (response CreateInternalVnicAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createInternalVnicAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateInternalVnicAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateInternalVnicAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateInternalVnicAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateInternalVnicAttachmentResponse")
+	}
+	return
+}
+
+// createInternalVnicAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createInternalVnicAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalVnics/{internalVnicId}/attachment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateInternalVnicAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateInternetGateway Creates a new internet gateway for the specified VCN. For more information, see
 // Access to the Internet (https://docs.cloud.oracle.com/Content/Network/Tasks/managingIGs.htm).
 // For the purposes of access control, you must provide the OCID of the compartment where you want the Internet
@@ -2902,6 +3401,58 @@ func (client VirtualNetworkClient) createPrivateIp(ctx context.Context, request 
 	}
 
 	var response CreatePrivateIpResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreatePrivateIpNextHop Creates the nextHop configuration for the specified private IP.
+func (client VirtualNetworkClient) CreatePrivateIpNextHop(ctx context.Context, request CreatePrivateIpNextHopRequest) (response CreatePrivateIpNextHopResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createPrivateIpNextHop, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreatePrivateIpNextHopResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreatePrivateIpNextHopResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreatePrivateIpNextHopResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreatePrivateIpNextHopResponse")
+	}
+	return
+}
+
+// createPrivateIpNextHop implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createPrivateIpNextHop(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/privateIps/{privateIpId}/nextHop")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreatePrivateIpNextHopResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -3542,6 +4093,58 @@ func (client VirtualNetworkClient) createVlan(ctx context.Context, request commo
 	return response, err
 }
 
+// CreateVnicWorker Creates a vnicWorker for the specified service VNIC.
+func (client VirtualNetworkClient) CreateVnicWorker(ctx context.Context, request CreateVnicWorkerRequest) (response CreateVnicWorkerResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createVnicWorker, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateVnicWorkerResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateVnicWorkerResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateVnicWorkerResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateVnicWorkerResponse")
+	}
+	return
+}
+
+// createVnicWorker implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createVnicWorker(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/vnicWorkers")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateVnicWorkerResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteByoipRange Deletes the specified Byoip Range prefix.
 // The prefix must be in CREATING, PROVISIONED or FAILED state.
 // It must not have any subranges allocated to a Public Ip Pool object.
@@ -4084,6 +4687,345 @@ func (client VirtualNetworkClient) deleteIPSecConnection(ctx context.Context, re
 	return response, err
 }
 
+// DeleteInternalDnsRecord Deletes a DnsRecord.
+func (client VirtualNetworkClient) DeleteInternalDnsRecord(ctx context.Context, request DeleteInternalDnsRecordRequest) (response DeleteInternalDnsRecordResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteInternalDnsRecord, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteInternalDnsRecordResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteInternalDnsRecordResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteInternalDnsRecordResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteInternalDnsRecordResponse")
+	}
+	return
+}
+
+// deleteInternalDnsRecord implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteInternalDnsRecord(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/internalDnsRecords/{internalDnsRecordId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteInternalDnsRecordResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteInternalDrg Deletes the specified DRG. The DRG must not be attached to a VCN or be connected to your on-premise
+// network. Also, there must not be a route table that lists the DRG as a target. This is an asynchronous
+// operation. The DRG's `lifecycleState` will change to TERMINATING temporarily until the DRG is completely
+// removed.
+func (client VirtualNetworkClient) DeleteInternalDrg(ctx context.Context, request DeleteInternalDrgRequest) (response DeleteInternalDrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteInternalDrg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteInternalDrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteInternalDrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteInternalDrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteInternalDrgResponse")
+	}
+	return
+}
+
+// deleteInternalDrg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteInternalDrg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/internalDrgs/{internalDrgId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteInternalDrgResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteInternalDrgAttachment Detaches a DRG from a VCN by deleting the corresponding `DrgAttachment`.
+func (client VirtualNetworkClient) DeleteInternalDrgAttachment(ctx context.Context, request DeleteInternalDrgAttachmentRequest) (response DeleteInternalDrgAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteInternalDrgAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteInternalDrgAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteInternalDrgAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteInternalDrgAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteInternalDrgAttachmentResponse")
+	}
+	return
+}
+
+// deleteInternalDrgAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteInternalDrgAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/internalDrgAttachments/{internalDrgAttachmentId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteInternalDrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteInternalGenericGateway Deletes an internal generic gateway.
+func (client VirtualNetworkClient) DeleteInternalGenericGateway(ctx context.Context, request DeleteInternalGenericGatewayRequest) (response DeleteInternalGenericGatewayResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteInternalGenericGateway, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteInternalGenericGatewayResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteInternalGenericGatewayResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteInternalGenericGatewayResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteInternalGenericGatewayResponse")
+	}
+	return
+}
+
+// deleteInternalGenericGateway implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteInternalGenericGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/internalGenericGateways/{internalGenericGatewayId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteInternalGenericGatewayResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteInternalPublicIp Unassigns and deletes the specified internal public IP (either ephemeral or reserved).
+// You must specify the object's OCID. The public IP address is returned to the
+// Oracle Cloud Infrastructure public IP pool.
+// For an assigned reserved public IP, the initial unassignment portion of this operation
+// is asynchronous. Poll the public IP's `lifecycleState` to determine
+// if the operation succeeded.
+// If you want to simply unassign a reserved public IP and return it to your pool
+// of reserved public IPs, instead use UpdateInternalPublicIp
+func (client VirtualNetworkClient) DeleteInternalPublicIp(ctx context.Context, request DeleteInternalPublicIpRequest) (response DeleteInternalPublicIpResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteInternalPublicIp, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteInternalPublicIpResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteInternalPublicIpResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteInternalPublicIpResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteInternalPublicIpResponse")
+	}
+	return
+}
+
+// deleteInternalPublicIp implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteInternalPublicIp(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/internalPublicIps/{internalPublicIpId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteInternalPublicIpResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteInternalVnic Deletes specified internal Vnic
+func (client VirtualNetworkClient) DeleteInternalVnic(ctx context.Context, request DeleteInternalVnicRequest) (response DeleteInternalVnicResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteInternalVnic, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteInternalVnicResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteInternalVnicResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteInternalVnicResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteInternalVnicResponse")
+	}
+	return
+}
+
+// deleteInternalVnic implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteInternalVnic(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/internalVnics/{internalVnicId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteInternalVnicResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteInternalVnicAttachment Deletes the specified service VNIC attachment.
+func (client VirtualNetworkClient) DeleteInternalVnicAttachment(ctx context.Context, request DeleteInternalVnicAttachmentRequest) (response DeleteInternalVnicAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteInternalVnicAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteInternalVnicAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteInternalVnicAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteInternalVnicAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteInternalVnicAttachmentResponse")
+	}
+	return
+}
+
+// deleteInternalVnicAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteInternalVnicAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/internalVnics/{internalVnicId}/attachment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteInternalVnicAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteInternetGateway Deletes the specified internet gateway. The internet gateway does not have to be disabled, but
 // there must not be a route table that lists it as a target.
 // This is an asynchronous operation. The gateway's `lifecycleState` will change to TERMINATING temporarily
@@ -4519,6 +5461,53 @@ func (client VirtualNetworkClient) deletePrivateIp(ctx context.Context, request 
 	}
 
 	var response DeletePrivateIpResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeletePrivateIpNextHop Deletes nextHop configuration for the specified private IP.
+func (client VirtualNetworkClient) DeletePrivateIpNextHop(ctx context.Context, request DeletePrivateIpNextHopRequest) (response DeletePrivateIpNextHopResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deletePrivateIpNextHop, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeletePrivateIpNextHopResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeletePrivateIpNextHopResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeletePrivateIpNextHopResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeletePrivateIpNextHopResponse")
+	}
+	return
+}
+
+// deletePrivateIpNextHop implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deletePrivateIpNextHop(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/privateIps/{privateIpId}/nextHop")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeletePrivateIpNextHopResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -5077,6 +6066,53 @@ func (client VirtualNetworkClient) deleteVlan(ctx context.Context, request commo
 	return response, err
 }
 
+// DeleteVnicWorker Deletes specified vnicWorker.
+func (client VirtualNetworkClient) DeleteVnicWorker(ctx context.Context, request DeleteVnicWorkerRequest) (response DeleteVnicWorkerResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteVnicWorker, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteVnicWorkerResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteVnicWorkerResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteVnicWorkerResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteVnicWorkerResponse")
+	}
+	return
+}
+
+// deleteVnicWorker implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteVnicWorker(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/vnicWorkers/{vnicWorkerId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteVnicWorkerResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DetachServiceId Removes the specified Service from the list of enabled
 // `Service` objects for the specified gateway. You do not need to remove any route
 // rules that specify this `Service` object's `cidrBlock` as the destination CIDR. However, consider
@@ -5181,6 +6217,53 @@ func (client VirtualNetworkClient) disableReverseConnections(ctx context.Context
 	return response, err
 }
 
+// DisableVnicWorker Disables traffic to specified vnicWorker.
+func (client VirtualNetworkClient) DisableVnicWorker(ctx context.Context, request DisableVnicWorkerRequest) (response DisableVnicWorkerResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.disableVnicWorker, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DisableVnicWorkerResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DisableVnicWorkerResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DisableVnicWorkerResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DisableVnicWorkerResponse")
+	}
+	return
+}
+
+// disableVnicWorker implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) disableVnicWorker(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/vnicWorkers/{vnicWorkerId}/actions/disableVnicWorker")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DisableVnicWorkerResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // EnableReverseConnections Enables support for reverse connections and a DNS proxy for the specified private endpoint.
 func (client VirtualNetworkClient) EnableReverseConnections(ctx context.Context, request EnableReverseConnectionsRequest) (response EnableReverseConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -5221,6 +6304,53 @@ func (client VirtualNetworkClient) enableReverseConnections(ctx context.Context,
 	}
 
 	var response EnableReverseConnectionsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// EnableVnicWorker Enables traffic to specified vnicWorker.
+func (client VirtualNetworkClient) EnableVnicWorker(ctx context.Context, request EnableVnicWorkerRequest) (response EnableVnicWorkerResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.enableVnicWorker, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = EnableVnicWorkerResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = EnableVnicWorkerResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(EnableVnicWorkerResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into EnableVnicWorkerResponse")
+	}
+	return
+}
+
+// enableVnicWorker implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) enableVnicWorker(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/vnicWorkers/{vnicWorkerId}/actions/enableVnicWorker")
+	if err != nil {
+		return nil, err
+	}
+
+	var response EnableVnicWorkerResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -6451,6 +7581,437 @@ func (client VirtualNetworkClient) getIPSecConnectionTunnelSharedSecret(ctx cont
 	return response, err
 }
 
+// GetInternalDnsRecord Gets the information for the specified `DnsRecord`.
+func (client VirtualNetworkClient) GetInternalDnsRecord(ctx context.Context, request GetInternalDnsRecordRequest) (response GetInternalDnsRecordResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInternalDnsRecord, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInternalDnsRecordResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInternalDnsRecordResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInternalDnsRecordResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInternalDnsRecordResponse")
+	}
+	return
+}
+
+// getInternalDnsRecord implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getInternalDnsRecord(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalDnsRecords/{internalDnsRecordId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInternalDnsRecordResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetInternalDrg Gets the specified DRG's information.
+func (client VirtualNetworkClient) GetInternalDrg(ctx context.Context, request GetInternalDrgRequest) (response GetInternalDrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInternalDrg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInternalDrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInternalDrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInternalDrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInternalDrgResponse")
+	}
+	return
+}
+
+// getInternalDrg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getInternalDrg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalDrgs/{internalDrgId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInternalDrgResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetInternalDrgAttachment Gets the information for the specified `DrgAttachment`.
+func (client VirtualNetworkClient) GetInternalDrgAttachment(ctx context.Context, request GetInternalDrgAttachmentRequest) (response GetInternalDrgAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInternalDrgAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInternalDrgAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInternalDrgAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInternalDrgAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInternalDrgAttachmentResponse")
+	}
+	return
+}
+
+// getInternalDrgAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getInternalDrgAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalDrgAttachments/{internalDrgAttachmentId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInternalDrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetInternalGenericGateway Get an internal generic gateway.
+func (client VirtualNetworkClient) GetInternalGenericGateway(ctx context.Context, request GetInternalGenericGatewayRequest) (response GetInternalGenericGatewayResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInternalGenericGateway, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInternalGenericGatewayResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInternalGenericGatewayResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInternalGenericGatewayResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInternalGenericGatewayResponse")
+	}
+	return
+}
+
+// getInternalGenericGateway implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getInternalGenericGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalGenericGateways/{internalGenericGatewayId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInternalGenericGatewayResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetInternalGenericGatewayByGatewayId Get an internal generic gateway based on the real gateway id.
+func (client VirtualNetworkClient) GetInternalGenericGatewayByGatewayId(ctx context.Context, request GetInternalGenericGatewayByGatewayIdRequest) (response GetInternalGenericGatewayByGatewayIdResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.getInternalGenericGatewayByGatewayId, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInternalGenericGatewayByGatewayIdResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInternalGenericGatewayByGatewayIdResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInternalGenericGatewayByGatewayIdResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInternalGenericGatewayByGatewayIdResponse")
+	}
+	return
+}
+
+// getInternalGenericGatewayByGatewayId implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getInternalGenericGatewayByGatewayId(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/internalGenericGateways/actions/getByGatewayId")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInternalGenericGatewayByGatewayIdResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetInternalPublicIp Gets the specified internal public IP. You must specify the object's OCID.
+// **Note:** If you're fetching a reserved public IP that is in the process of being
+// moved to a different private IP, the service returns the public IP object with
+// `lifecycleState` = ASSIGNING and `assignedEntityId` = OCID of the target private IP.
+func (client VirtualNetworkClient) GetInternalPublicIp(ctx context.Context, request GetInternalPublicIpRequest) (response GetInternalPublicIpResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInternalPublicIp, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInternalPublicIpResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInternalPublicIpResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInternalPublicIpResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInternalPublicIpResponse")
+	}
+	return
+}
+
+// getInternalPublicIp implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getInternalPublicIp(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalPublicIps/{internalPublicIpId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInternalPublicIpResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetInternalSubnet Gets the specified subnet's information.
+func (client VirtualNetworkClient) GetInternalSubnet(ctx context.Context, request GetInternalSubnetRequest) (response GetInternalSubnetResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInternalSubnet, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInternalSubnetResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInternalSubnetResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInternalSubnetResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInternalSubnetResponse")
+	}
+	return
+}
+
+// getInternalSubnet implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getInternalSubnet(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalSubnets/{internalSubnetId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInternalSubnetResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetInternalVnic Gets the information for the specified internal vnic.
+func (client VirtualNetworkClient) GetInternalVnic(ctx context.Context, request GetInternalVnicRequest) (response GetInternalVnicResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInternalVnic, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInternalVnicResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInternalVnicResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInternalVnicResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInternalVnicResponse")
+	}
+	return
+}
+
+// getInternalVnic implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getInternalVnic(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalVnics/{internalVnicId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInternalVnicResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetInternalVnicAttachment Gets the specified service VNIC attachment.
+func (client VirtualNetworkClient) GetInternalVnicAttachment(ctx context.Context, request GetInternalVnicAttachmentRequest) (response GetInternalVnicAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInternalVnicAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInternalVnicAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInternalVnicAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInternalVnicAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInternalVnicAttachmentResponse")
+	}
+	return
+}
+
+// getInternalVnicAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getInternalVnicAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalVnics/{internalVnicId}/attachment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInternalVnicAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetInternetGateway Gets the specified internet gateway's information.
 func (client VirtualNetworkClient) GetInternetGateway(ctx context.Context, request GetInternetGatewayRequest) (response GetInternetGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -6983,6 +8544,53 @@ func (client VirtualNetworkClient) getPrivateIp(ctx context.Context, request com
 	}
 
 	var response GetPrivateIpResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetPrivateIpNextHop Gets nextHop configuration for the specified private IP.
+func (client VirtualNetworkClient) GetPrivateIpNextHop(ctx context.Context, request GetPrivateIpNextHopRequest) (response GetPrivateIpNextHopResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getPrivateIpNextHop, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetPrivateIpNextHopResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetPrivateIpNextHopResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetPrivateIpNextHopResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetPrivateIpNextHopResponse")
+	}
+	return
+}
+
+// getPrivateIpNextHop implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getPrivateIpNextHop(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/privateIps/{privateIpId}/nextHop")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetPrivateIpNextHopResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -7881,6 +9489,53 @@ func (client VirtualNetworkClient) getVnic(ctx context.Context, request common.O
 	return response, err
 }
 
+// GetVnicWorker Gets specified vnicWorker.
+func (client VirtualNetworkClient) GetVnicWorker(ctx context.Context, request GetVnicWorkerRequest) (response GetVnicWorkerResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getVnicWorker, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetVnicWorkerResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetVnicWorkerResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetVnicWorkerResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetVnicWorkerResponse")
+	}
+	return
+}
+
+// getVnicWorker implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getVnicWorker(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/vnicWorkers/{vnicWorkerId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetVnicWorkerResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListAllowedPeerRegionsForRemotePeering Lists the regions that support remote VCN peering (which is peering across regions).
 // For more information, see VCN Peering (https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm).
 func (client VirtualNetworkClient) ListAllowedPeerRegionsForRemotePeering(ctx context.Context, request ListAllowedPeerRegionsForRemotePeeringRequest) (response ListAllowedPeerRegionsForRemotePeeringResponse, err error) {
@@ -7917,6 +9572,54 @@ func (client VirtualNetworkClient) listAllowedPeerRegionsForRemotePeering(ctx co
 	}
 
 	var response ListAllowedPeerRegionsForRemotePeeringResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListByoipAllocatedRanges Lists the ByoipAllocatedRange objects for the ByoipRange.
+// Each ByoipAllocatedRange object has a CIDR block part of the ByoipRange and the PublicIpPool it is assigned to.
+func (client VirtualNetworkClient) ListByoipAllocatedRanges(ctx context.Context, request ListByoipAllocatedRangesRequest) (response ListByoipAllocatedRangesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listByoipAllocatedRanges, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListByoipAllocatedRangesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListByoipAllocatedRangesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListByoipAllocatedRangesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListByoipAllocatedRangesResponse")
+	}
+	return
+}
+
+// listByoipAllocatedRanges implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listByoipAllocatedRanges(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/byoipRanges/{byoipRangeId}/byoipAllocatedRanges")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListByoipAllocatedRangesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -8743,6 +10446,305 @@ func (client VirtualNetworkClient) listIPSecConnections(ctx context.Context, req
 	}
 
 	var response ListIPSecConnectionsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListInternalDnsRecords Get a list of Dns Records, based on compartment ID and Internal Hosted Zone Id.
+// Implicit DNS Records created by VNIC and FloatingPrivateIP are not captured by this LIST operation.
+func (client VirtualNetworkClient) ListInternalDnsRecords(ctx context.Context, request ListInternalDnsRecordsRequest) (response ListInternalDnsRecordsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listInternalDnsRecords, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListInternalDnsRecordsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListInternalDnsRecordsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListInternalDnsRecordsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListInternalDnsRecordsResponse")
+	}
+	return
+}
+
+// listInternalDnsRecords implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listInternalDnsRecords(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalDnsRecords")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListInternalDnsRecordsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListInternalDrgAttachments Lists the `InternalDrgAttachment` objects for the specified compartment. You can filter the
+// results by VCN or DRG.
+func (client VirtualNetworkClient) ListInternalDrgAttachments(ctx context.Context, request ListInternalDrgAttachmentsRequest) (response ListInternalDrgAttachmentsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listInternalDrgAttachments, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListInternalDrgAttachmentsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListInternalDrgAttachmentsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListInternalDrgAttachmentsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListInternalDrgAttachmentsResponse")
+	}
+	return
+}
+
+// listInternalDrgAttachments implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listInternalDrgAttachments(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalDrgAttachments")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListInternalDrgAttachmentsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListInternalDrgs Lists the InternalDRGs in the specified compartment.
+func (client VirtualNetworkClient) ListInternalDrgs(ctx context.Context, request ListInternalDrgsRequest) (response ListInternalDrgsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listInternalDrgs, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListInternalDrgsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListInternalDrgsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListInternalDrgsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListInternalDrgsResponse")
+	}
+	return
+}
+
+// listInternalDrgs implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listInternalDrgs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalDrgs")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListInternalDrgsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListInternalGenericGateways Gets a list of internal generic gateways for a gateway's compartment
+func (client VirtualNetworkClient) ListInternalGenericGateways(ctx context.Context, request ListInternalGenericGatewaysRequest) (response ListInternalGenericGatewaysResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listInternalGenericGateways, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListInternalGenericGatewaysResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListInternalGenericGatewaysResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListInternalGenericGatewaysResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListInternalGenericGatewaysResponse")
+	}
+	return
+}
+
+// listInternalGenericGateways implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listInternalGenericGateways(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalGenericGateways")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListInternalGenericGatewaysResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListInternalPublicIps Lists the InternalPublicIp Objects
+// in the specified compartment. You can filter the list by using query parameters.
+// To list your reserved public IPs:
+//   * Set `scope` = `REGION`  (required)
+//   * Leave the `availabilityDomain` parameter empty
+//   * Set `lifetime` = `RESERVED`
+// To list the ephemeral public IPs assigned to a regional entity such as a NAT gateway:
+//   * Set `scope` = `REGION`  (required)
+//   * Leave the `availabilityDomain` parameter empty
+//   * Set `lifetime` = `EPHEMERAL`
+// To list the ephemeral public IPs assigned to private IPs:
+//   * Set `scope` = `AVAILABILITY_DOMAIN` (required)
+//   * Set the `availabilityDomain` parameter to the desired availability domain (required)
+//   * Set `lifetime` = `EPHEMERAL`
+// **Note:** An ephemeral public IP assigned to a private IP
+// is always in the same availability domain and compartment as the private IP.
+func (client VirtualNetworkClient) ListInternalPublicIps(ctx context.Context, request ListInternalPublicIpsRequest) (response ListInternalPublicIpsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listInternalPublicIps, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListInternalPublicIpsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListInternalPublicIpsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListInternalPublicIpsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListInternalPublicIpsResponse")
+	}
+	return
+}
+
+// listInternalPublicIps implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listInternalPublicIps(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalPublicIps")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListInternalPublicIpsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListInternalVnics Lists the internal Vnics.
+func (client VirtualNetworkClient) ListInternalVnics(ctx context.Context, request ListInternalVnicsRequest) (response ListInternalVnicsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listInternalVnics, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListInternalVnicsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListInternalVnicsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListInternalVnicsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListInternalVnicsResponse")
+	}
+	return
+}
+
+// listInternalVnics implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listInternalVnics(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/internalVnics")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListInternalVnicsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -10123,6 +12125,55 @@ func (client VirtualNetworkClient) listVlans(ctx context.Context, request common
 	return response, err
 }
 
+// ListVnicWorkers Lists the vnicWorkers based on one of these filters:
+//   * Service VNIC OCID.
+//   * Instance OCID.
+func (client VirtualNetworkClient) ListVnicWorkers(ctx context.Context, request ListVnicWorkersRequest) (response ListVnicWorkersResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listVnicWorkers, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListVnicWorkersResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListVnicWorkersResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListVnicWorkersResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListVnicWorkersResponse")
+	}
+	return
+}
+
+// listVnicWorkers implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listVnicWorkers(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/vnicWorkers")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListVnicWorkersResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ModifyReverseConnections Modifies the configuration for reverse connections and the DNS proxy for the specified private endpoint.
 func (client VirtualNetworkClient) ModifyReverseConnections(ctx context.Context, request ModifyReverseConnectionsRequest) (response ModifyReverseConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -10948,6 +12999,315 @@ func (client VirtualNetworkClient) updateIPSecConnectionTunnelSharedSecret(ctx c
 	return response, err
 }
 
+// UpdateInternalDnsRecord Updates the specified DnsRecord.
+// Currently, only the name, ttl, and value can be updated for DnsRecord.
+func (client VirtualNetworkClient) UpdateInternalDnsRecord(ctx context.Context, request UpdateInternalDnsRecordRequest) (response UpdateInternalDnsRecordResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateInternalDnsRecord, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateInternalDnsRecordResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateInternalDnsRecordResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateInternalDnsRecordResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateInternalDnsRecordResponse")
+	}
+	return
+}
+
+// updateInternalDnsRecord implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateInternalDnsRecord(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/internalDnsRecords/{internalDnsRecordId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateInternalDnsRecordResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateInternalDrg Updates the specified DRG's display name or tags. Avoid entering confidential information.
+func (client VirtualNetworkClient) UpdateInternalDrg(ctx context.Context, request UpdateInternalDrgRequest) (response UpdateInternalDrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateInternalDrg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateInternalDrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateInternalDrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateInternalDrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateInternalDrgResponse")
+	}
+	return
+}
+
+// updateInternalDrg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateInternalDrg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/internalDrgs/{internalDrgId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateInternalDrgResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateInternalDrgAttachment Updates the display name for the specified `DrgAttachment`.
+// Avoid entering confidential information.
+func (client VirtualNetworkClient) UpdateInternalDrgAttachment(ctx context.Context, request UpdateInternalDrgAttachmentRequest) (response UpdateInternalDrgAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateInternalDrgAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateInternalDrgAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateInternalDrgAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateInternalDrgAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateInternalDrgAttachmentResponse")
+	}
+	return
+}
+
+// updateInternalDrgAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateInternalDrgAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/internalDrgAttachments/{internalDrgAttachmentId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateInternalDrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateInternalGenericGateway Update an existing internal generic gateway
+func (client VirtualNetworkClient) UpdateInternalGenericGateway(ctx context.Context, request UpdateInternalGenericGatewayRequest) (response UpdateInternalGenericGatewayResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateInternalGenericGateway, policy)
+	if err != nil {
+		if ociResponse != nil {
+			response = UpdateInternalGenericGatewayResponse{RawResponse: ociResponse.HTTPResponse()}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateInternalGenericGatewayResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateInternalGenericGatewayResponse")
+	}
+	return
+}
+
+// updateInternalGenericGateway implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateInternalGenericGateway(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/internalGenericGateways/{internalGenericGatewayId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateInternalGenericGatewayResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateInternalPublicIp Updates the specified internal public IP. You must specify the object's OCID. Use this operation if you want to:
+// * Assign a reserved public IP in your pool to a private IP/NAT Gateway.
+// * Move a reserved public IP to a different private IP/NAT Gateway.
+// * Unassign a reserved public IP from a private IP/NAT Gateway (which returns it to your pool
+// of reserved public IPs).
+// * Change the display name for a public IP.
+// Assigning, moving, and unassigning a reserved public IP are asynchronous
+// operations. Poll the public IP's `lifecycleState` to determine if the operation
+// succeeded.
+// **Note:** When moving a reserved public IP, the target private IP
+// must not already have a public IP with `lifecycleState` = ASSIGNING or ASSIGNED. If it
+// does, an error is returned. Also, the initial unassignment from the original
+// private IP always succeeds, but the assignment to the target private IP is asynchronous and
+// could fail silently (for example, if the target private IP is deleted or has a different public IP
+// assigned to it in the interim). If that occurs, the public IP remains unassigned and its
+// `lifecycleState` switches to AVAILABLE (it is not reassigned to its original private IP).
+// You must poll the public IP's `lifecycleState` to determine if the move succeeded.
+// Regarding ephemeral public IPs:
+// * If you want to assign an ephemeral public IP to a primary private IP, use
+// CreatePublicIp.
+// * You can't move an ephemeral public IP to a different private IP/NAT Gateway.
+// * If you want to unassign an ephemeral public IP from its private IP, use
+// DeleteInternalPublicIp, which unassigns and deletes the ephemeral public IP.
+// **Note:** If a public IP is assigned to a secondary private
+// IP (see PrivateIp), and you move that secondary
+// private IP to another VNIC, the public IP moves with it.
+// **Note:** There's a limit to the number of PublicIp
+// a VNIC or instance can have. If you try to move a reserved public IP
+// to a VNIC or instance that has already reached its public IP limit, an error is
+// returned. For information about the public IP limits, see
+// Public IP Addresses (https://docs.cloud.oracle.com/Content/Network/Tasks/managingpublicIPs.htm).
+func (client VirtualNetworkClient) UpdateInternalPublicIp(ctx context.Context, request UpdateInternalPublicIpRequest) (response UpdateInternalPublicIpResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateInternalPublicIp, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateInternalPublicIpResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateInternalPublicIpResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateInternalPublicIpResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateInternalPublicIpResponse")
+	}
+	return
+}
+
+// updateInternalPublicIp implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateInternalPublicIp(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/internalPublicIps/{internalPublicIpId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateInternalPublicIpResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateInternalVnic Updates the specified internal VNIC.
+func (client VirtualNetworkClient) UpdateInternalVnic(ctx context.Context, request UpdateInternalVnicRequest) (response UpdateInternalVnicResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateInternalVnic, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateInternalVnicResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateInternalVnicResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateInternalVnicResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateInternalVnicResponse")
+	}
+	return
+}
+
+// updateInternalVnic implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateInternalVnic(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/internalVnics/{internalVnicId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateInternalVnicResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // UpdateInternetGateway Updates the specified internet gateway. You can disable/enable it, or change its display name
 // or tags. Avoid entering confidential information.
 // If the gateway is disabled, that means no traffic will flow to/from the internet even if there's
@@ -11431,6 +13791,53 @@ func (client VirtualNetworkClient) updatePrivateIp(ctx context.Context, request 
 	}
 
 	var response UpdatePrivateIpResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdatePrivateIpNextHop Updates the nextHop configuration for the specified private IP.
+func (client VirtualNetworkClient) UpdatePrivateIpNextHop(ctx context.Context, request UpdatePrivateIpNextHopRequest) (response UpdatePrivateIpNextHopResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updatePrivateIpNextHop, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdatePrivateIpNextHopResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdatePrivateIpNextHopResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdatePrivateIpNextHopResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdatePrivateIpNextHopResponse")
+	}
+	return
+}
+
+// updatePrivateIpNextHop implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updatePrivateIpNextHop(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/privateIps/{privateIpId}/nextHop")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdatePrivateIpNextHopResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -12062,6 +14469,53 @@ func (client VirtualNetworkClient) updateVnic(ctx context.Context, request commo
 	}
 
 	var response UpdateVnicResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateVnicWorker Updates the specified vnicWorker.
+func (client VirtualNetworkClient) UpdateVnicWorker(ctx context.Context, request UpdateVnicWorkerRequest) (response UpdateVnicWorkerResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateVnicWorker, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateVnicWorkerResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateVnicWorkerResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateVnicWorkerResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateVnicWorkerResponse")
+	}
+	return
+}
+
+// updateVnicWorker implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateVnicWorker(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/vnicWorkers/{vnicWorkerId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateVnicWorkerResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

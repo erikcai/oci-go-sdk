@@ -46,6 +46,9 @@ type ByoipRangeSummary struct {
 	// The Byoip Range's current state.
 	LifecycleState ByoipRangeLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
+	// The Byoip Range's current lifeCycle substate.
+	LifecycleDetails ByoipRangeLifecycleDetailsEnum `mandatory:"false" json:"lifecycleDetails,omitempty"`
+
 	// The date and time the Byoip Range was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
