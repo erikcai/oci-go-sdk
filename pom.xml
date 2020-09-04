@@ -5118,7 +5118,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.538</version>
+        <version>0.1.546</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -5153,7 +5153,7 @@
       <dependency>
         <groupId>com.oracle.pic.query</groupId>
         <artifactId>resource-query-service-spec</artifactId>
-        <version>0.0.81</version>
+        <version>0.0.82</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
@@ -5293,7 +5293,7 @@
       <dependency>
         <groupId>com.oracle.pic.analytics</groupId>
         <artifactId>analytics-control-plane-api-spec</artifactId>
-        <version>1.2.0</version>
+        <version>1.3.0</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oracleintegration.spec</groupId>
@@ -5353,12 +5353,12 @@
       <dependency>
         <groupId>com.oracle.dis</groupId>
         <artifactId>dis-sdk-spec</artifactId>
-        <version>1.0.0-129</version>
+        <version>1.0.0-135</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.controlplane</groupId>
         <artifactId>hydra-controlplane-api-spec</artifactId>
-        <version>0.0.877</version>
+        <version>0.0.890</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.vmware.ocvp</groupId>

@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// ChangeCompartmentDetails The information about change compartment action.
+// ChangeCompartmentDetails The information needed to change the workspace compartment.
 type ChangeCompartmentDetails struct {
 
 	// The OCID of the compartment to move the the workspace to.

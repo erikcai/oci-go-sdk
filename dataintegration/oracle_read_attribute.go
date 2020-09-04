@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/common"
 )
 
-// OracleReadAttribute The Oracle read attribute
+// OracleReadAttribute The Oracle read attribute.
 type OracleReadAttribute struct {
 
 	// The fetch size for reading.

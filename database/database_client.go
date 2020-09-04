@@ -1395,7 +1395,7 @@ func (client DatabaseClient) createCloudVmCluster(ctx context.Context, request c
 	return response, err
 }
 
-// CreateConsoleConnection Creates a new console connection to the specified dbNode.
+// CreateConsoleConnection Creates a new console connection to the specified database node.
 // After the console connection has been created and is available,
 // you connect to the console using SSH.
 func (client DatabaseClient) CreateConsoleConnection(ctx context.Context, request CreateConsoleConnectionRequest) (response CreateConsoleConnectionResponse, err error) {
@@ -2316,7 +2316,7 @@ func (client DatabaseClient) deleteCloudVmCluster(ctx context.Context, request c
 	return response, err
 }
 
-// DeleteConsoleConnection Deletes the specified Db node console connection.
+// DeleteConsoleConnection Deletes the specified database node console connection.
 func (client DatabaseClient) DeleteConsoleConnection(ctx context.Context, request DeleteConsoleConnectionRequest) (response DeleteConsoleConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2363,7 +2363,7 @@ func (client DatabaseClient) deleteConsoleConnection(ctx context.Context, reques
 	return response, err
 }
 
-// DeleteDatabase Deletes the database. Applies only to Exadata DB systems.
+// DeleteDatabase Deletes the specified database. Applies only to Exadata DB systems.
 // The data in this database is local to the DB system and will be lost when the database is deleted. Oracle recommends that you back up any data in the DB system prior to deleting it. You can use the `performFinalBackup` parameter to have the Exadata DB system database backed up before it is deleted.
 func (client DatabaseClient) DeleteDatabase(ctx context.Context, request DeleteDatabaseRequest) (response DeleteDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -3711,7 +3711,7 @@ func (client DatabaseClient) getAutonomousExadataInfrastructure(ctx context.Cont
 	return response, err
 }
 
-// GetAutonomousPatch Gets information about the specified Autonomous Patch.
+// GetAutonomousPatch Gets information about a specific autonomous patch.
 func (client DatabaseClient) GetAutonomousPatch(ctx context.Context, request GetAutonomousPatchRequest) (response GetAutonomousPatchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4135,7 +4135,7 @@ func (client DatabaseClient) getCloudVmClusterUpdateHistoryEntry(ctx context.Con
 	return response, err
 }
 
-// GetConsoleConnection Gets the specified Db node console connection's information.
+// GetConsoleConnection Gets the specified database node console connection's information.
 func (client DatabaseClient) GetConsoleConnection(ctx context.Context, request GetConsoleConnectionRequest) (response GetConsoleConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4229,7 +4229,7 @@ func (client DatabaseClient) getDataGuardAssociation(ctx context.Context, reques
 	return response, err
 }
 
-// GetDatabase Gets information about a specific database.
+// GetDatabase Gets information about the specified database.
 func (client DatabaseClient) GetDatabase(ctx context.Context, request GetDatabaseRequest) (response GetDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4558,7 +4558,7 @@ func (client DatabaseClient) getDbSystem(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// GetDbSystemPatch Gets information about a specified patch package.
+// GetDbSystemPatch Gets information the specified patch.
 func (client DatabaseClient) GetDbSystemPatch(ctx context.Context, request GetDbSystemPatchRequest) (response GetDbSystemPatchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4605,7 +4605,7 @@ func (client DatabaseClient) getDbSystemPatch(ctx context.Context, request commo
 	return response, err
 }
 
-// GetDbSystemPatchHistoryEntry Gets the patch history details for the specified patchHistoryEntryId.
+// GetDbSystemPatchHistoryEntry Gets the details of the specified patch operation on the specified DB system.
 func (client DatabaseClient) GetDbSystemPatchHistoryEntry(ctx context.Context, request GetDbSystemPatchHistoryEntryRequest) (response GetDbSystemPatchHistoryEntryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4746,8 +4746,8 @@ func (client DatabaseClient) getExadataInfrastructureOcpus(ctx context.Context, 
 	return response, err
 }
 
-// GetExadataIormConfig Gets `IORM` Setting for the requested Exadata DB System.
-// The default IORM Settings is pre-created in all the Exadata DB System.
+// GetExadataIormConfig Gets the IORM configuration settings for the specified Exadata DB system.
+// All Exadata DB systems have default IORM settings.
 func (client DatabaseClient) GetExadataIormConfig(ctx context.Context, request GetExadataIormConfigRequest) (response GetExadataIormConfigResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5520,7 +5520,7 @@ func (client DatabaseClient) listAutonomousDatabaseBackups(ctx context.Context, 
 	return response, err
 }
 
-// ListAutonomousDatabaseClones Gets a list of the Autonomous Database clones for the specified Autonomous Database.
+// ListAutonomousDatabaseClones Lists the Autonomous Database clones for the specified Autonomous Database.
 func (client DatabaseClient) ListAutonomousDatabaseClones(ctx context.Context, request ListAutonomousDatabaseClonesRequest) (response ListAutonomousDatabaseClonesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5614,7 +5614,7 @@ func (client DatabaseClient) listAutonomousDatabaseDataguardAssociations(ctx con
 	return response, err
 }
 
-// ListAutonomousDatabases Gets a list of Autonomous Databases.
+// ListAutonomousDatabases Gets a list of Autonomous Databases based on the query parameters specified.
 func (client DatabaseClient) ListAutonomousDatabases(ctx context.Context, request ListAutonomousDatabasesRequest) (response ListAutonomousDatabasesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5944,7 +5944,7 @@ func (client DatabaseClient) listBackupDestination(ctx context.Context, request 
 	return response, err
 }
 
-// ListBackups Gets a list of backups based on the databaseId or compartmentId specified. Either one of the query parameters must be provided.
+// ListBackups Gets a list of backups based on the `databaseId` or `compartmentId` specified. Either one of these query parameters must be provided.
 func (client DatabaseClient) ListBackups(ctx context.Context, request ListBackupsRequest) (response ListBackupsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6179,7 +6179,7 @@ func (client DatabaseClient) listCloudVmClusters(ctx context.Context, request co
 	return response, err
 }
 
-// ListConsoleConnections Lists the console connections for the specified Db node.
+// ListConsoleConnections Lists the console connections for the specified database node.
 func (client DatabaseClient) ListConsoleConnections(ctx context.Context, request ListConsoleConnectionsRequest) (response ListConsoleConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6414,7 +6414,7 @@ func (client DatabaseClient) listDatabases(ctx context.Context, request common.O
 	return response, err
 }
 
-// ListDbHomePatchHistoryEntries Gets history of the actions taken for patches for the specified Database Home.
+// ListDbHomePatchHistoryEntries Lists the history of patch operations on the specified Database Home.
 func (client DatabaseClient) ListDbHomePatchHistoryEntries(ctx context.Context, request ListDbHomePatchHistoryEntriesRequest) (response ListDbHomePatchHistoryEntriesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6508,7 +6508,7 @@ func (client DatabaseClient) listDbHomePatches(ctx context.Context, request comm
 	return response, err
 }
 
-// ListDbHomes Gets a list of Database Homes in the specified DB system and compartment. A Database Home is a directory where Oracle Database software is installed.
+// ListDbHomes Lists the Database Homes in the specified DB system and compartment. A Database Home is a directory where Oracle Database software is installed.
 func (client DatabaseClient) ListDbHomes(ctx context.Context, request ListDbHomesRequest) (response ListDbHomesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6555,7 +6555,7 @@ func (client DatabaseClient) listDbHomes(ctx context.Context, request common.OCI
 	return response, err
 }
 
-// ListDbNodes Gets a list of database nodes in the specified DB system and compartment. A database node is a server running database software.
+// ListDbNodes Lists the database nodes in the specified DB system and compartment. A database node is a server running database software.
 func (client DatabaseClient) ListDbNodes(ctx context.Context, request ListDbNodesRequest) (response ListDbNodesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6649,7 +6649,7 @@ func (client DatabaseClient) listDbSystemPatchHistoryEntries(ctx context.Context
 	return response, err
 }
 
-// ListDbSystemPatches Lists the patches applicable to the requested DB system.
+// ListDbSystemPatches Lists the patches applicable to the specified DB system.
 func (client DatabaseClient) ListDbSystemPatches(ctx context.Context, request ListDbSystemPatchesRequest) (response ListDbSystemPatchesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6743,7 +6743,7 @@ func (client DatabaseClient) listDbSystemShapes(ctx context.Context, request com
 	return response, err
 }
 
-// ListDbSystems Gets a list of the DB systems in the specified compartment. You can specify a backupId to list only the DB systems that support creating a database using this backup in this compartment.
+// ListDbSystems Lists the DB systems in the specified compartment. You can specify a `backupId` to list only the DB systems that support creating a database using this backup in this compartment.
 func (client DatabaseClient) ListDbSystems(ctx context.Context, request ListDbSystemsRequest) (response ListDbSystemsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -7119,7 +7119,7 @@ func (client DatabaseClient) listVmClusterPatchHistoryEntries(ctx context.Contex
 	return response, err
 }
 
-// ListVmClusterPatches Lists the patches applicable to the requested Vm cluster.
+// ListVmClusterPatches Lists the patches applicable to the requested VM cluster.
 func (client DatabaseClient) ListVmClusterPatches(ctx context.Context, request ListVmClusterPatchesRequest) (response ListVmClusterPatchesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -7213,7 +7213,7 @@ func (client DatabaseClient) listVmClusters(ctx context.Context, request common.
 	return response, err
 }
 
-// MigrateExadataDbSystemResourceModel Migration Exadata dbSystem resource model to cloud Exadata infrastructure model. All related resources will be migrated.
+// MigrateExadataDbSystemResourceModel Migrates the Exadata DB system to the cloud Exadata infrastructure model. All related resources will be migrated.
 func (client DatabaseClient) MigrateExadataDbSystemResourceModel(ctx context.Context, request MigrateExadataDbSystemResourceModelRequest) (response MigrateExadataDbSystemResourceModelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8898,7 +8898,7 @@ func (client DatabaseClient) updateCloudVmClusterIormConfig(ctx context.Context,
 	return response, err
 }
 
-// UpdateDatabase Update a Database based on the request parameters you provide.
+// UpdateDatabase Update the specified database based on the request parameters provided.
 func (client DatabaseClient) UpdateDatabase(ctx context.Context, request UpdateDatabaseRequest) (response UpdateDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8992,7 +8992,7 @@ func (client DatabaseClient) updateDatabaseSoftwareImage(ctx context.Context, re
 	return response, err
 }
 
-// UpdateDbHome Patches the specified dbHome.
+// UpdateDbHome Patches the specified Database Home.
 func (client DatabaseClient) UpdateDbHome(ctx context.Context, request UpdateDbHomeRequest) (response UpdateDbHomeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -9039,7 +9039,7 @@ func (client DatabaseClient) updateDbHome(ctx context.Context, request common.OC
 	return response, err
 }
 
-// UpdateDbSystem Updates the properties of a DB system, such as the CPU core count.
+// UpdateDbSystem Updates the properties of the specified DB system.
 func (client DatabaseClient) UpdateDbSystem(ctx context.Context, request UpdateDbSystemRequest) (response UpdateDbSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -9133,7 +9133,7 @@ func (client DatabaseClient) updateExadataInfrastructure(ctx context.Context, re
 	return response, err
 }
 
-// UpdateExadataIormConfig Update `IORM` Settings for the requested Exadata DB System.
+// UpdateExadataIormConfig Updates IORM settings for the specified Exadata DB system.
 func (client DatabaseClient) UpdateExadataIormConfig(ctx context.Context, request UpdateExadataIormConfigRequest) (response UpdateExadataIormConfigResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -163,6 +163,7 @@ const (
 	InternalSubnetLifecycleStateAvailable    InternalSubnetLifecycleStateEnum = "AVAILABLE"
 	InternalSubnetLifecycleStateTerminating  InternalSubnetLifecycleStateEnum = "TERMINATING"
 	InternalSubnetLifecycleStateTerminated   InternalSubnetLifecycleStateEnum = "TERMINATED"
+	InternalSubnetLifecycleStateUpdating     InternalSubnetLifecycleStateEnum = "UPDATING"
 )
 
 var mappingInternalSubnetLifecycleState = map[string]InternalSubnetLifecycleStateEnum{
@@ -170,6 +171,7 @@ var mappingInternalSubnetLifecycleState = map[string]InternalSubnetLifecycleStat
 	"AVAILABLE":    InternalSubnetLifecycleStateAvailable,
 	"TERMINATING":  InternalSubnetLifecycleStateTerminating,
 	"TERMINATED":   InternalSubnetLifecycleStateTerminated,
+	"UPDATING":     InternalSubnetLifecycleStateUpdating,
 }
 
 // GetInternalSubnetLifecycleStateEnumValues Enumerates the set of values for InternalSubnetLifecycleStateEnum

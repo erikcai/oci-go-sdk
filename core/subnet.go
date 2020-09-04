@@ -160,6 +160,7 @@ const (
 	SubnetLifecycleStateAvailable    SubnetLifecycleStateEnum = "AVAILABLE"
 	SubnetLifecycleStateTerminating  SubnetLifecycleStateEnum = "TERMINATING"
 	SubnetLifecycleStateTerminated   SubnetLifecycleStateEnum = "TERMINATED"
+	SubnetLifecycleStateUpdating     SubnetLifecycleStateEnum = "UPDATING"
 )
 
 var mappingSubnetLifecycleState = map[string]SubnetLifecycleStateEnum{
@@ -167,6 +168,7 @@ var mappingSubnetLifecycleState = map[string]SubnetLifecycleStateEnum{
 	"AVAILABLE":    SubnetLifecycleStateAvailable,
 	"TERMINATING":  SubnetLifecycleStateTerminating,
 	"TERMINATED":   SubnetLifecycleStateTerminated,
+	"UPDATING":     SubnetLifecycleStateUpdating,
 }
 
 // GetSubnetLifecycleStateEnumValues Enumerates the set of values for SubnetLifecycleStateEnum

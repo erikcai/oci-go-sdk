@@ -155,6 +155,94 @@ func TestAnalyticsClientCreateAnalyticsInstance(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_oac_ww_grp@oracle.com" jiraProject="OB" opsJiraProject="AOAC"
+func TestAnalyticsClientCreatePrivateAccessChannel(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("analytics", "CreatePrivateAccessChannel")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreatePrivateAccessChannel is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("analytics", "Analytics", "CreatePrivateAccessChannel", createAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(analytics.AnalyticsClient)
+
+	body, err := testClient.getRequests("analytics", "CreatePrivateAccessChannel")
+	assert.NoError(t, err)
+
+	type CreatePrivateAccessChannelRequestInfo struct {
+		ContainerId string
+		Request     analytics.CreatePrivateAccessChannelRequest
+	}
+
+	var requests []CreatePrivateAccessChannelRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreatePrivateAccessChannel(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_oac_ww_grp@oracle.com" jiraProject="OB" opsJiraProject="AOAC"
+func TestAnalyticsClientCreateVanityUrl(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("analytics", "CreateVanityUrl")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateVanityUrl is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("analytics", "Analytics", "CreateVanityUrl", createAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(analytics.AnalyticsClient)
+
+	body, err := testClient.getRequests("analytics", "CreateVanityUrl")
+	assert.NoError(t, err)
+
+	type CreateVanityUrlRequestInfo struct {
+		ContainerId string
+		Request     analytics.CreateVanityUrlRequest
+	}
+
+	var requests []CreateVanityUrlRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateVanityUrl(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_oac_ww_grp@oracle.com" jiraProject="OB" opsJiraProject="AOAC"
 func TestAnalyticsClientDeleteAnalyticsInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -191,6 +279,94 @@ func TestAnalyticsClientDeleteAnalyticsInstance(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteAnalyticsInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_oac_ww_grp@oracle.com" jiraProject="OB" opsJiraProject="AOAC"
+func TestAnalyticsClientDeletePrivateAccessChannel(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("analytics", "DeletePrivateAccessChannel")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeletePrivateAccessChannel is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("analytics", "Analytics", "DeletePrivateAccessChannel", createAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(analytics.AnalyticsClient)
+
+	body, err := testClient.getRequests("analytics", "DeletePrivateAccessChannel")
+	assert.NoError(t, err)
+
+	type DeletePrivateAccessChannelRequestInfo struct {
+		ContainerId string
+		Request     analytics.DeletePrivateAccessChannelRequest
+	}
+
+	var requests []DeletePrivateAccessChannelRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeletePrivateAccessChannel(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_oac_ww_grp@oracle.com" jiraProject="OB" opsJiraProject="AOAC"
+func TestAnalyticsClientDeleteVanityUrl(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("analytics", "DeleteVanityUrl")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteVanityUrl is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("analytics", "Analytics", "DeleteVanityUrl", createAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(analytics.AnalyticsClient)
+
+	body, err := testClient.getRequests("analytics", "DeleteVanityUrl")
+	assert.NoError(t, err)
+
+	type DeleteVanityUrlRequestInfo struct {
+		ContainerId string
+		Request     analytics.DeleteVanityUrlRequest
+	}
+
+	var requests []DeleteVanityUrlRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteVanityUrl(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -279,6 +455,50 @@ func TestAnalyticsClientGetAnalyticsInstance(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetAnalyticsInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_oac_ww_grp@oracle.com" jiraProject="OB" opsJiraProject="AOAC"
+func TestAnalyticsClientGetPrivateAccessChannel(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("analytics", "GetPrivateAccessChannel")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPrivateAccessChannel is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("analytics", "Analytics", "GetPrivateAccessChannel", createAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(analytics.AnalyticsClient)
+
+	body, err := testClient.getRequests("analytics", "GetPrivateAccessChannel")
+	assert.NoError(t, err)
+
+	type GetPrivateAccessChannelRequestInfo struct {
+		ContainerId string
+		Request     analytics.GetPrivateAccessChannelRequest
+	}
+
+	var requests []GetPrivateAccessChannelRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetPrivateAccessChannel(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -715,6 +935,94 @@ func TestAnalyticsClientUpdateAnalyticsInstance(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateAnalyticsInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_oac_ww_grp@oracle.com" jiraProject="OB" opsJiraProject="AOAC"
+func TestAnalyticsClientUpdatePrivateAccessChannel(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("analytics", "UpdatePrivateAccessChannel")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdatePrivateAccessChannel is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("analytics", "Analytics", "UpdatePrivateAccessChannel", createAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(analytics.AnalyticsClient)
+
+	body, err := testClient.getRequests("analytics", "UpdatePrivateAccessChannel")
+	assert.NoError(t, err)
+
+	type UpdatePrivateAccessChannelRequestInfo struct {
+		ContainerId string
+		Request     analytics.UpdatePrivateAccessChannelRequest
+	}
+
+	var requests []UpdatePrivateAccessChannelRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdatePrivateAccessChannel(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_oac_ww_grp@oracle.com" jiraProject="OB" opsJiraProject="AOAC"
+func TestAnalyticsClientUpdateVanityUrl(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("analytics", "UpdateVanityUrl")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateVanityUrl is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("analytics", "Analytics", "UpdateVanityUrl", createAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(analytics.AnalyticsClient)
+
+	body, err := testClient.getRequests("analytics", "UpdateVanityUrl")
+	assert.NoError(t, err)
+
+	type UpdateVanityUrlRequestInfo struct {
+		ContainerId string
+		Request     analytics.UpdateVanityUrlRequest
+	}
+
+	var requests []UpdateVanityUrlRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateVanityUrl(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

@@ -21,7 +21,7 @@ type SearchResourcesRequest struct {
 	// The page at which to start retrieving results.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The override tenant ID for cross tenancy auth
+	// The tenancy ID, which can be used to specify a different tenancy (for cross-tenancy authorization) when searching for resources in a different tenancy.
 	TenantId *string `mandatory:"false" contributesTo:"query" name:"tenantId"`
 
 	// The unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular

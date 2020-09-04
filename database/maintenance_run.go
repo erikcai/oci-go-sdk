@@ -58,7 +58,8 @@ type MaintenanceRun struct {
 	// Maintenance sub-type.
 	MaintenanceSubtype MaintenanceRunMaintenanceSubtypeEnum `mandatory:"false" json:"maintenanceSubtype,omitempty"`
 
-	PeerMaintenanceRunSummary *PeerMaintenanceRunSummary `mandatory:"false" json:"peerMaintenanceRunSummary"`
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance run for the Data Guard association's peer container database.
+	PeerMaintenanceRunId *string `mandatory:"false" json:"peerMaintenanceRunId"`
 }
 
 func (m MaintenanceRun) String() string {

@@ -18,9 +18,6 @@ type UnifiedAgentLoggingDestination struct {
 
 	// The OCID of the resource.
 	LogObjectId *string `mandatory:"true" json:"logObjectId"`
-
-	// The OCID of the resource.
-	LogGroupId *string `mandatory:"false" json:"logGroupId"`
 }
 
 func (m UnifiedAgentLoggingDestination) String() string {

@@ -142,6 +142,8 @@ func TestDataIntegrationClientCreateConnection(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "modelType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"MYSQL_CONNECTION":                 &dataintegration.CreateConnectionFromMySql{},
+				"GENERIC_JDBC_CONNECTION":          &dataintegration.CreateConnectionFromJdbc{},
 				"ORACLE_ATP_CONNECTION":            &dataintegration.CreateConnectionFromAtp{},
 				"ORACLE_ADWC_CONNECTION":           &dataintegration.CreateConnectionFromAdwc{},
 				"ORACLEDB_CONNECTION":              &dataintegration.CreateConnectionFromOracle{},
@@ -244,6 +246,8 @@ func TestDataIntegrationClientCreateDataAsset(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "modelType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"GENERIC_JDBC_DATA_ASSET":          &dataintegration.CreateDataAssetFromJdbc{},
+				"MYSQL_DATA_ASSET":                 &dataintegration.CreateDataAssetFromMySql{},
 				"ORACLE_DATA_ASSET":                &dataintegration.CreateDataAssetFromOracle{},
 				"ORACLE_ADWC_DATA_ASSET":           &dataintegration.CreateDataAssetFromAdwc{},
 				"ORACLE_ATP_DATA_ASSET":            &dataintegration.CreateDataAssetFromAtp{},
@@ -1890,6 +1894,50 @@ func TestDataIntegrationClientGetPublishedObject(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientGetReference(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "GetReference")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetReference is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "GetReference", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "GetReference")
+	assert.NoError(t, err)
+
+	type GetReferenceRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.GetReferenceRequest
+	}
+
+	var requests []GetReferenceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetReference(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
 func TestDataIntegrationClientGetSchema(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2640,6 +2688,60 @@ func TestDataIntegrationClientListFolders(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientListPatchChanges(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "ListPatchChanges")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListPatchChanges is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "ListPatchChanges", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "ListPatchChanges")
+	assert.NoError(t, err)
+
+	type ListPatchChangesRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.ListPatchChangesRequest
+	}
+
+	var requests []ListPatchChangesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*dataintegration.ListPatchChangesRequest)
+				return c.ListPatchChanges(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]dataintegration.ListPatchChangesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(dataintegration.ListPatchChangesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
 func TestDataIntegrationClientListPatches(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2792,6 +2894,60 @@ func TestDataIntegrationClientListPublishedObjects(t *testing.T) {
 			typedListResponses := make([]dataintegration.ListPublishedObjectsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(dataintegration.ListPublishedObjectsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientListReferences(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "ListReferences")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListReferences is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "ListReferences", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "ListReferences")
+	assert.NoError(t, err)
+
+	type ListReferencesRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.ListReferencesRequest
+	}
+
+	var requests []ListReferencesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*dataintegration.ListReferencesRequest)
+				return c.ListReferences(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]dataintegration.ListReferencesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(dataintegration.ListReferencesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -3451,10 +3607,12 @@ func TestDataIntegrationClientUpdateConnection(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "modelType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"GENERIC_JDBC_CONNECTION":          &dataintegration.UpdateConnectionFromJdbc{},
 				"ORACLE_OBJECT_STORAGE_CONNECTION": &dataintegration.UpdateConnectionFromObjectStorage{},
 				"ORACLE_ATP_CONNECTION":            &dataintegration.UpdateConnectionFromAtp{},
 				"ORACLEDB_CONNECTION":              &dataintegration.UpdateConnectionFromOracle{},
 				"ORACLE_ADWC_CONNECTION":           &dataintegration.UpdateConnectionFromAdwc{},
+				"MYSQL_CONNECTION":                 &dataintegration.UpdateConnectionFromMySql{},
 			},
 		}
 
@@ -3511,7 +3669,9 @@ func TestDataIntegrationClientUpdateDataAsset(t *testing.T) {
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"ORACLE_ATP_DATA_ASSET":            &dataintegration.UpdateDataAssetFromAtp{},
 				"ORACLE_ADWC_DATA_ASSET":           &dataintegration.UpdateDataAssetFromAdwc{},
+				"GENERIC_JDBC_DATA_ASSET":          &dataintegration.UpdateDataAssetFromJdbc{},
 				"ORACLE_OBJECT_STORAGE_DATA_ASSET": &dataintegration.UpdateDataAssetFromObjectStorage{},
+				"MYSQL_DATA_ASSET":                 &dataintegration.UpdateDataAssetFromMySql{},
 				"ORACLE_DATA_ASSET":                &dataintegration.UpdateDataAssetFromOracle{},
 			},
 		}
@@ -3660,6 +3820,50 @@ func TestDataIntegrationClientUpdateProject(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateProject(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientUpdateReference(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "UpdateReference")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateReference is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "UpdateReference", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "UpdateReference")
+	assert.NoError(t, err)
+
+	type UpdateReferenceRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.UpdateReferenceRequest
+	}
+
+	var requests []UpdateReferenceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateReference(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

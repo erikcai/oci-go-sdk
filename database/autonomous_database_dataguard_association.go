@@ -42,6 +42,11 @@ type AutonomousDatabaseDataguardAssociation struct {
 	// The current state of the Autonomous Dataguard.
 	PeerAutonomousDatabaseLifeCycleState AutonomousDatabaseDataguardAssociationPeerAutonomousDatabaseLifeCycleStateEnum `mandatory:"false" json:"peerAutonomousDatabaseLifeCycleState,omitempty"`
 
+	// The protection mode of this Data Guard association. For more information, see
+	// Oracle Data Guard Protection Modes (http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
+	// in the Oracle Data Guard documentation.
+	ProtectionMode AutonomousDatabaseDataguardAssociationProtectionModeEnum `mandatory:"false" json:"protectionMode,omitempty"`
+
 	// The lag time between updates to the primary database and application of the redo data on the standby database,
 	// as computed by the reporting database.
 	// Example: `9 seconds`
@@ -169,6 +174,29 @@ var mappingAutonomousDatabaseDataguardAssociationPeerAutonomousDatabaseLifeCycle
 func GetAutonomousDatabaseDataguardAssociationPeerAutonomousDatabaseLifeCycleStateEnumValues() []AutonomousDatabaseDataguardAssociationPeerAutonomousDatabaseLifeCycleStateEnum {
 	values := make([]AutonomousDatabaseDataguardAssociationPeerAutonomousDatabaseLifeCycleStateEnum, 0)
 	for _, v := range mappingAutonomousDatabaseDataguardAssociationPeerAutonomousDatabaseLifeCycleState {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabaseDataguardAssociationProtectionModeEnum Enum with underlying type: string
+type AutonomousDatabaseDataguardAssociationProtectionModeEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabaseDataguardAssociationProtectionModeEnum
+const (
+	AutonomousDatabaseDataguardAssociationProtectionModeAvailability AutonomousDatabaseDataguardAssociationProtectionModeEnum = "MAXIMUM_AVAILABILITY"
+	AutonomousDatabaseDataguardAssociationProtectionModePerformance  AutonomousDatabaseDataguardAssociationProtectionModeEnum = "MAXIMUM_PERFORMANCE"
+)
+
+var mappingAutonomousDatabaseDataguardAssociationProtectionMode = map[string]AutonomousDatabaseDataguardAssociationProtectionModeEnum{
+	"MAXIMUM_AVAILABILITY": AutonomousDatabaseDataguardAssociationProtectionModeAvailability,
+	"MAXIMUM_PERFORMANCE":  AutonomousDatabaseDataguardAssociationProtectionModePerformance,
+}
+
+// GetAutonomousDatabaseDataguardAssociationProtectionModeEnumValues Enumerates the set of values for AutonomousDatabaseDataguardAssociationProtectionModeEnum
+func GetAutonomousDatabaseDataguardAssociationProtectionModeEnumValues() []AutonomousDatabaseDataguardAssociationProtectionModeEnum {
+	values := make([]AutonomousDatabaseDataguardAssociationProtectionModeEnum, 0)
+	for _, v := range mappingAutonomousDatabaseDataguardAssociationProtectionMode {
 		values = append(values, v)
 	}
 	return values
