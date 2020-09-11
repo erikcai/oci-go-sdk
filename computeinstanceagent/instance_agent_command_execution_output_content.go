@@ -26,7 +26,7 @@ type InstanceAgentCommandExecutionOutputContent interface {
 
 type instanceagentcommandexecutionoutputcontent struct {
 	JsonData   []byte
-	ExitCode   *int    `mandatory:"false" json:"exitCode"`
+	ExitCode   *int    `mandatory:"true" json:"exitCode"`
 	Message    *string `mandatory:"false" json:"message"`
 	OutputType string  `json:"outputType"`
 }

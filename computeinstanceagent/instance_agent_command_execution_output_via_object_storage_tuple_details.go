@@ -17,6 +17,9 @@ import (
 // InstanceAgentCommandExecutionOutputViaObjectStorageTupleDetails The representation of InstanceAgentCommandExecutionOutputViaObjectStorageTupleDetails
 type InstanceAgentCommandExecutionOutputViaObjectStorageTupleDetails struct {
 
+	// command exit code.
+	ExitCode *int `mandatory:"true" json:"exitCode"`
+
 	// The Object Storage bucket for the command output.
 	BucketName *string `mandatory:"true" json:"bucketName"`
 
@@ -25,9 +28,6 @@ type InstanceAgentCommandExecutionOutputViaObjectStorageTupleDetails struct {
 
 	// The Object Storage name for the command output.
 	ObjectName *string `mandatory:"true" json:"objectName"`
-
-	// command exit code.
-	ExitCode *int `mandatory:"false" json:"exitCode"`
 
 	// optional status message that agent's can populate for additional troubleshooting.
 	Message *string `mandatory:"false" json:"message"`

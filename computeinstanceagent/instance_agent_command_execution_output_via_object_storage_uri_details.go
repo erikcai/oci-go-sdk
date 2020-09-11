@@ -17,11 +17,11 @@ import (
 // InstanceAgentCommandExecutionOutputViaObjectStorageUriDetails The representation of InstanceAgentCommandExecutionOutputViaObjectStorageUriDetails
 type InstanceAgentCommandExecutionOutputViaObjectStorageUriDetails struct {
 
+	// command exit code.
+	ExitCode *int `mandatory:"true" json:"exitCode"`
+
 	// The Object Storage URL or PAR for the command output.
 	OutputUri *string `mandatory:"true" json:"outputUri"`
-
-	// command exit code.
-	ExitCode *int `mandatory:"false" json:"exitCode"`
 
 	// optional status message that agent's can populate for additional troubleshooting.
 	Message *string `mandatory:"false" json:"message"`

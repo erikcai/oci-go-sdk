@@ -28,16 +28,16 @@ type UpdateRoverClusterDetails struct {
 	ClusterWorkloads []interface{} `mandatory:"false" json:"clusterWorkloads"`
 
 	// Root password for the rover cluster.
-	SuperUserPassphrase *string `mandatory:"false" json:"superUserPassphrase"`
+	SuperUserPassword *string `mandatory:"false" json:"superUserPassword"`
 
-	// Serial password for the rover cluster.
-	SerialPassword *string `mandatory:"false" json:"serialPassword"`
+	// The current state of the RoverCluster.
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+
+	// A property that can contain details on the lifecycle.
+	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
 
 	// Password to unlock the rover cluster.
 	UnlockPassphrase *string `mandatory:"false" json:"unlockPassphrase"`
-
-	// Unlock mechanism for the cluster.
-	UnlockMethod UpdateRoverClusterDetailsUnlockMethodEnum `mandatory:"false" json:"unlockMethod,omitempty"`
 
 	// Name of point of contact for this order if customer is picking up.
 	PointOfContact *string `mandatory:"false" json:"pointOfContact"`
@@ -67,29 +67,6 @@ type UpdateRoverClusterDetails struct {
 
 func (m UpdateRoverClusterDetails) String() string {
 	return common.PointerString(m)
-}
-
-// UpdateRoverClusterDetailsUnlockMethodEnum Enum with underlying type: string
-type UpdateRoverClusterDetailsUnlockMethodEnum string
-
-// Set of constants representing the allowable values for UpdateRoverClusterDetailsUnlockMethodEnum
-const (
-	UpdateRoverClusterDetailsUnlockMethodAuto   UpdateRoverClusterDetailsUnlockMethodEnum = "AUTO"
-	UpdateRoverClusterDetailsUnlockMethodManual UpdateRoverClusterDetailsUnlockMethodEnum = "MANUAL"
-)
-
-var mappingUpdateRoverClusterDetailsUnlockMethod = map[string]UpdateRoverClusterDetailsUnlockMethodEnum{
-	"AUTO":   UpdateRoverClusterDetailsUnlockMethodAuto,
-	"MANUAL": UpdateRoverClusterDetailsUnlockMethodManual,
-}
-
-// GetUpdateRoverClusterDetailsUnlockMethodEnumValues Enumerates the set of values for UpdateRoverClusterDetailsUnlockMethodEnum
-func GetUpdateRoverClusterDetailsUnlockMethodEnumValues() []UpdateRoverClusterDetailsUnlockMethodEnum {
-	values := make([]UpdateRoverClusterDetailsUnlockMethodEnum, 0)
-	for _, v := range mappingUpdateRoverClusterDetailsUnlockMethod {
-		values = append(values, v)
-	}
-	return values
 }
 
 // UpdateRoverClusterDetailsShippingPreferenceEnum Enum with underlying type: string

@@ -28,8 +28,14 @@ type RoverCluster struct {
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// Size of the cluster.
+	ClusterSize *string `mandatory:"false" json:"clusterSize"`
+
 	// The time the the RoverCluster was created. An RFC3339 formatted datetime string
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
+
+	// A property that can contain details on the lifecycle.
+	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
 
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
@@ -48,16 +54,10 @@ type RoverCluster struct {
 	ClusterWorkloads []interface{} `mandatory:"false" json:"clusterWorkloads"`
 
 	// Root password for the rover cluster.
-	SuperUserPassphrase *string `mandatory:"false" json:"superUserPassphrase"`
-
-	// Serial password for the rover cluster.
-	SerialPassword *string `mandatory:"false" json:"serialPassword"`
+	SuperUserPassword *string `mandatory:"false" json:"superUserPassword"`
 
 	// Password to unlock the rover cluster.
 	UnlockPassphrase *string `mandatory:"false" json:"unlockPassphrase"`
-
-	// Unlock mechanism for the cluster.
-	UnlockMethod RoverClusterUnlockMethodEnum `mandatory:"false" json:"unlockMethod,omitempty"`
 
 	// Name of point of contact for this order if customer is picking up.
 	PointOfContact *string `mandatory:"false" json:"pointOfContact"`
@@ -73,9 +73,6 @@ type RoverCluster struct {
 
 	// Expected date when customer wants to pickup the device if they chose customer pickup.
 	ExpectedPickupDate *common.SDKTime `mandatory:"false" json:"expectedPickupDate"`
-
-	// A property that can contain details on the lifecycle.
-	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
 
 	// Start time for the window to pickup the device from customer.
 	ReturnWindowStartTime *common.SDKTime `mandatory:"false" json:"returnWindowStartTime"`
@@ -104,29 +101,6 @@ type RoverCluster struct {
 
 func (m RoverCluster) String() string {
 	return common.PointerString(m)
-}
-
-// RoverClusterUnlockMethodEnum Enum with underlying type: string
-type RoverClusterUnlockMethodEnum string
-
-// Set of constants representing the allowable values for RoverClusterUnlockMethodEnum
-const (
-	RoverClusterUnlockMethodAuto   RoverClusterUnlockMethodEnum = "AUTO"
-	RoverClusterUnlockMethodManual RoverClusterUnlockMethodEnum = "MANUAL"
-)
-
-var mappingRoverClusterUnlockMethod = map[string]RoverClusterUnlockMethodEnum{
-	"AUTO":   RoverClusterUnlockMethodAuto,
-	"MANUAL": RoverClusterUnlockMethodManual,
-}
-
-// GetRoverClusterUnlockMethodEnumValues Enumerates the set of values for RoverClusterUnlockMethodEnum
-func GetRoverClusterUnlockMethodEnumValues() []RoverClusterUnlockMethodEnum {
-	values := make([]RoverClusterUnlockMethodEnum, 0)
-	for _, v := range mappingRoverClusterUnlockMethod {
-		values = append(values, v)
-	}
-	return values
 }
 
 // RoverClusterShippingPreferenceEnum Enum with underlying type: string

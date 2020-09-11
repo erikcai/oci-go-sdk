@@ -34,8 +34,8 @@ type Reference struct {
 	// The type of reference object.
 	Type ReferenceTypeEnum `mandatory:"false" json:"type,omitempty"`
 
-	// The target object referenced. The type defining this reference is in the property type.
-	TargetObject *string `mandatory:"false" json:"targetObject"`
+	// The new reference object to use instead of the original reference, this can be a DataAsset reference.
+	TargetObject *interface{} `mandatory:"false" json:"targetObject"`
 
 	// The application key of the reference object.
 	ApplicationKey *string `mandatory:"false" json:"applicationKey"`

@@ -15,6 +15,8 @@ import (
 )
 
 // DbSystem A DB System is the core logical unit of MySQL Database Service.
+// # NOTE: definitions/DbSystemSnapshot is a snapshot version of DbSystem which is stored during backup. Any
+// # addition/deletion of properties should also consider snapshot's definition
 type DbSystem struct {
 
 	// The OCID of the DB System.
@@ -39,6 +41,8 @@ type DbSystem struct {
 	LifecycleState DbSystemLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	Maintenance *MaintenanceDetails `mandatory:"true" json:"maintenance"`
+
+	DeletionPolicy *DeletionPolicyDetails `mandatory:"true" json:"deletionPolicy"`
 
 	// The date and time the DB System was created.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
@@ -96,11 +100,11 @@ type DbSystem struct {
 	// Additional information about the current lifecycleState.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
-	// Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
+	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// Example: `{"foo-namespace": {"bar-key": "value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 }
@@ -136,6 +140,7 @@ func (m *DbSystem) UnmarshalJSON(data []byte) (e error) {
 		DataStorageSizeInGBs *int                              `json:"dataStorageSizeInGBs"`
 		LifecycleState       DbSystemLifecycleStateEnum        `json:"lifecycleState"`
 		Maintenance          *MaintenanceDetails               `json:"maintenance"`
+		DeletionPolicy       *DeletionPolicyDetails            `json:"deletionPolicy"`
 		TimeCreated          *common.SDKTime                   `json:"timeCreated"`
 		TimeUpdated          *common.SDKTime                   `json:"timeUpdated"`
 	}{}
@@ -206,6 +211,8 @@ func (m *DbSystem) UnmarshalJSON(data []byte) (e error) {
 	m.LifecycleState = model.LifecycleState
 
 	m.Maintenance = model.Maintenance
+
+	m.DeletionPolicy = model.DeletionPolicy
 
 	m.TimeCreated = model.TimeCreated
 

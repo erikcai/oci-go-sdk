@@ -30,6 +30,9 @@ type Schema struct {
 	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.
 	Name *string `mandatory:"false" json:"name"`
 
+	// Resource name can have letters, numbers, and special characters. The value is editable and is restricted to 4000 characters.
+	ResourceName *string `mandatory:"false" json:"resourceName"`
+
 	// User-defined description for the schema.
 	Description *string `mandatory:"false" json:"description"`
 

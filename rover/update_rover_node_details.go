@@ -25,16 +25,10 @@ type UpdateRoverNodeDetails struct {
 	NodeWorkloads []interface{} `mandatory:"false" json:"nodeWorkloads"`
 
 	// Root password for the rover node.
-	SuperUserPassphrase *string `mandatory:"false" json:"superUserPassphrase"`
-
-	// Serial password for the rover node.
-	SerialPassword *string `mandatory:"false" json:"serialPassword"`
+	SuperUserPassword *string `mandatory:"false" json:"superUserPassword"`
 
 	// Password to unlock the rover node.
 	UnlockPassphrase *string `mandatory:"false" json:"unlockPassphrase"`
-
-	// Unlock mechanism for the node.
-	UnlockMethod UpdateRoverNodeDetailsUnlockMethodEnum `mandatory:"false" json:"unlockMethod,omitempty"`
 
 	// Name of point of contact for this order if customer is picking up.
 	PointOfContact *string `mandatory:"false" json:"pointOfContact"`
@@ -76,29 +70,6 @@ type UpdateRoverNodeDetails struct {
 
 func (m UpdateRoverNodeDetails) String() string {
 	return common.PointerString(m)
-}
-
-// UpdateRoverNodeDetailsUnlockMethodEnum Enum with underlying type: string
-type UpdateRoverNodeDetailsUnlockMethodEnum string
-
-// Set of constants representing the allowable values for UpdateRoverNodeDetailsUnlockMethodEnum
-const (
-	UpdateRoverNodeDetailsUnlockMethodAuto   UpdateRoverNodeDetailsUnlockMethodEnum = "AUTO"
-	UpdateRoverNodeDetailsUnlockMethodManual UpdateRoverNodeDetailsUnlockMethodEnum = "MANUAL"
-)
-
-var mappingUpdateRoverNodeDetailsUnlockMethod = map[string]UpdateRoverNodeDetailsUnlockMethodEnum{
-	"AUTO":   UpdateRoverNodeDetailsUnlockMethodAuto,
-	"MANUAL": UpdateRoverNodeDetailsUnlockMethodManual,
-}
-
-// GetUpdateRoverNodeDetailsUnlockMethodEnumValues Enumerates the set of values for UpdateRoverNodeDetailsUnlockMethodEnum
-func GetUpdateRoverNodeDetailsUnlockMethodEnumValues() []UpdateRoverNodeDetailsUnlockMethodEnum {
-	values := make([]UpdateRoverNodeDetailsUnlockMethodEnum, 0)
-	for _, v := range mappingUpdateRoverNodeDetailsUnlockMethod {
-		values = append(values, v)
-	}
-	return values
 }
 
 // UpdateRoverNodeDetailsShippingPreferenceEnum Enum with underlying type: string

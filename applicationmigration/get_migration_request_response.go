@@ -12,7 +12,7 @@ import (
 // GetMigrationRequest wrapper for the GetMigration operation
 type GetMigrationRequest struct {
 
-	// The application OCID
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the migration.
 	MigrationId *string `mandatory:"true" contributesTo:"path" name:"migrationId"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a

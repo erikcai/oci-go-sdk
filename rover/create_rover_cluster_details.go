@@ -25,22 +25,16 @@ type CreateRoverClusterDetails struct {
 	// Number of nodes desired in the cluster, between 5 and 15.
 	ClusterSize *string `mandatory:"true" json:"clusterSize"`
 
-	// List of existing workloads that should be provisioned on the nodes.
-	ClusterWorkloads []interface{} `mandatory:"true" json:"clusterWorkloads"`
-
-	// Serial password for the rover cluster.
-	SerialPassword *string `mandatory:"true" json:"serialPassword"`
-
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
+	// List of existing workloads that should be provisioned on the nodes.
+	ClusterWorkloads []interface{} `mandatory:"false" json:"clusterWorkloads"`
+
 	// Root password for the rover cluster.
-	SuperUserPassphrase *string `mandatory:"false" json:"superUserPassphrase"`
+	SuperUserPassword *string `mandatory:"false" json:"superUserPassword"`
 
 	// Password to unlock the rover cluster.
 	UnlockPassphrase *string `mandatory:"false" json:"unlockPassphrase"`
-
-	// Unlock mechanism for the cluster.
-	UnlockMethod CreateRoverClusterDetailsUnlockMethodEnum `mandatory:"false" json:"unlockMethod,omitempty"`
 
 	// Name of point of contact for this order if customer is picking up.
 	PointOfContact *string `mandatory:"false" json:"pointOfContact"`
@@ -70,29 +64,6 @@ type CreateRoverClusterDetails struct {
 
 func (m CreateRoverClusterDetails) String() string {
 	return common.PointerString(m)
-}
-
-// CreateRoverClusterDetailsUnlockMethodEnum Enum with underlying type: string
-type CreateRoverClusterDetailsUnlockMethodEnum string
-
-// Set of constants representing the allowable values for CreateRoverClusterDetailsUnlockMethodEnum
-const (
-	CreateRoverClusterDetailsUnlockMethodAuto   CreateRoverClusterDetailsUnlockMethodEnum = "AUTO"
-	CreateRoverClusterDetailsUnlockMethodManual CreateRoverClusterDetailsUnlockMethodEnum = "MANUAL"
-)
-
-var mappingCreateRoverClusterDetailsUnlockMethod = map[string]CreateRoverClusterDetailsUnlockMethodEnum{
-	"AUTO":   CreateRoverClusterDetailsUnlockMethodAuto,
-	"MANUAL": CreateRoverClusterDetailsUnlockMethodManual,
-}
-
-// GetCreateRoverClusterDetailsUnlockMethodEnumValues Enumerates the set of values for CreateRoverClusterDetailsUnlockMethodEnum
-func GetCreateRoverClusterDetailsUnlockMethodEnumValues() []CreateRoverClusterDetailsUnlockMethodEnum {
-	values := make([]CreateRoverClusterDetailsUnlockMethodEnum, 0)
-	for _, v := range mappingCreateRoverClusterDetailsUnlockMethod {
-		values = append(values, v)
-	}
-	return values
 }
 
 // CreateRoverClusterDetailsShippingPreferenceEnum Enum with underlying type: string

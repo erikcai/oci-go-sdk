@@ -40,6 +40,9 @@ type RoverNode struct {
 	// The time the the RoverNode was created. An RFC3339 formatted datetime string
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
+	// A property that can contain details on the lifecycle.
+	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
+
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
 	// List of existing workloads that should be provisioned on the node.
@@ -53,16 +56,10 @@ type RoverNode struct {
 	DeliveryTrackingInfo *string `mandatory:"false" json:"deliveryTrackingInfo"`
 
 	// Root password for the rover node.
-	SuperUserPassphrase *string `mandatory:"false" json:"superUserPassphrase"`
-
-	// Serial password for the rover node.
-	SerialPassword *string `mandatory:"false" json:"serialPassword"`
+	SuperUserPassword *string `mandatory:"false" json:"superUserPassword"`
 
 	// Password to unlock the rover node.
 	UnlockPassphrase *string `mandatory:"false" json:"unlockPassphrase"`
-
-	// Unlock mechanism for the node.
-	UnlockMethod RoverNodeUnlockMethodEnum `mandatory:"false" json:"unlockMethod,omitempty"`
 
 	// Name of point of contact for this order if customer is picking up.
 	PointOfContact *string `mandatory:"false" json:"pointOfContact"`
@@ -78,9 +75,6 @@ type RoverNode struct {
 
 	// Expected date when customer wants to pickup the device if they chose customer pickup.
 	ExpectedPickupDate *common.SDKTime `mandatory:"false" json:"expectedPickupDate"`
-
-	// A property that can contain details on the lifecycle.
-	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
 
 	// Start time for the window to pickup the device from customer.
 	ReturnWindowStartTime *common.SDKTime `mandatory:"false" json:"returnWindowStartTime"`
@@ -109,29 +103,6 @@ type RoverNode struct {
 
 func (m RoverNode) String() string {
 	return common.PointerString(m)
-}
-
-// RoverNodeUnlockMethodEnum Enum with underlying type: string
-type RoverNodeUnlockMethodEnum string
-
-// Set of constants representing the allowable values for RoverNodeUnlockMethodEnum
-const (
-	RoverNodeUnlockMethodAuto   RoverNodeUnlockMethodEnum = "AUTO"
-	RoverNodeUnlockMethodManual RoverNodeUnlockMethodEnum = "MANUAL"
-)
-
-var mappingRoverNodeUnlockMethod = map[string]RoverNodeUnlockMethodEnum{
-	"AUTO":   RoverNodeUnlockMethodAuto,
-	"MANUAL": RoverNodeUnlockMethodManual,
-}
-
-// GetRoverNodeUnlockMethodEnumValues Enumerates the set of values for RoverNodeUnlockMethodEnum
-func GetRoverNodeUnlockMethodEnumValues() []RoverNodeUnlockMethodEnum {
-	values := make([]RoverNodeUnlockMethodEnum, 0)
-	for _, v := range mappingRoverNodeUnlockMethod {
-		values = append(values, v)
-	}
-	return values
 }
 
 // RoverNodeShippingPreferenceEnum Enum with underlying type: string

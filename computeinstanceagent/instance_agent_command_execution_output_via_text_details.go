@@ -18,13 +18,13 @@ import (
 type InstanceAgentCommandExecutionOutputViaTextDetails struct {
 
 	// command exit code.
-	ExitCode *int `mandatory:"false" json:"exitCode"`
+	ExitCode *int `mandatory:"true" json:"exitCode"`
+
+	// The command response output.
+	Text *string `mandatory:"true" json:"text"`
 
 	// optional status message that agent's can populate for additional troubleshooting.
 	Message *string `mandatory:"false" json:"message"`
-
-	// The command response output.
-	Text *string `mandatory:"false" json:"text"`
 
 	// Sha256 checksum value of the text content
 	TextSha256 *string `mandatory:"false" json:"textSha256"`

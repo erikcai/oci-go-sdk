@@ -22,22 +22,16 @@ type CreateRoverNodeDetails struct {
 	// Compartment Identifier
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	CustomerShippingAddress *ShippingAddress `mandatory:"true" json:"customerShippingAddress"`
+	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
 	// List of existing workloads that should be provisioned on the node.
-	NodeWorkloads []interface{} `mandatory:"true" json:"nodeWorkloads"`
+	NodeWorkloads []interface{} `mandatory:"false" json:"nodeWorkloads"`
 
 	// Root password for the rover node.
-	SuperUserPassphrase *string `mandatory:"true" json:"superUserPassphrase"`
+	SuperUserPassword *string `mandatory:"false" json:"superUserPassword"`
 
-	// Serial password for the rover node.
-	SerialPassword *string `mandatory:"false" json:"serialPassword"`
-
-	// Password to unlock the rover node.
+	// Passphrase to unlock the rover node.
 	UnlockPassphrase *string `mandatory:"false" json:"unlockPassphrase"`
-
-	// Unlock mechanism for the node.
-	UnlockMethod CreateRoverNodeDetailsUnlockMethodEnum `mandatory:"false" json:"unlockMethod,omitempty"`
 
 	// Name of point of contact for this order if customer is picking up.
 	PointOfContact *string `mandatory:"false" json:"pointOfContact"`
@@ -67,29 +61,6 @@ type CreateRoverNodeDetails struct {
 
 func (m CreateRoverNodeDetails) String() string {
 	return common.PointerString(m)
-}
-
-// CreateRoverNodeDetailsUnlockMethodEnum Enum with underlying type: string
-type CreateRoverNodeDetailsUnlockMethodEnum string
-
-// Set of constants representing the allowable values for CreateRoverNodeDetailsUnlockMethodEnum
-const (
-	CreateRoverNodeDetailsUnlockMethodAuto   CreateRoverNodeDetailsUnlockMethodEnum = "AUTO"
-	CreateRoverNodeDetailsUnlockMethodManual CreateRoverNodeDetailsUnlockMethodEnum = "MANUAL"
-)
-
-var mappingCreateRoverNodeDetailsUnlockMethod = map[string]CreateRoverNodeDetailsUnlockMethodEnum{
-	"AUTO":   CreateRoverNodeDetailsUnlockMethodAuto,
-	"MANUAL": CreateRoverNodeDetailsUnlockMethodManual,
-}
-
-// GetCreateRoverNodeDetailsUnlockMethodEnumValues Enumerates the set of values for CreateRoverNodeDetailsUnlockMethodEnum
-func GetCreateRoverNodeDetailsUnlockMethodEnumValues() []CreateRoverNodeDetailsUnlockMethodEnum {
-	values := make([]CreateRoverNodeDetailsUnlockMethodEnum, 0)
-	for _, v := range mappingCreateRoverNodeDetailsUnlockMethod {
-		values = append(values, v)
-	}
-	return values
 }
 
 // CreateRoverNodeDetailsShippingPreferenceEnum Enum with underlying type: string

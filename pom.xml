@@ -85,6 +85,8 @@
     <ibex-frontend-public-spec-spec-file>source/public-api.cond.yaml</ibex-frontend-public-spec-spec-file>
     <rover-cloud-service-spec-spec-file>source/api.cond.yaml</rover-cloud-service-spec-spec-file>
     <logan-api-spec-spec-file>source/api.cond.yaml</logan-api-spec-spec-file>
+    <customer-controlled-access-spec-spec-file>source/api.cond.yaml</customer-controlled-access-spec-spec-file>
+    <ggs-control-plane-spec-spec-file>source/api.cond.yaml</ggs-control-plane-spec-spec-file>
   </properties>
   <build>
     <plugins>
@@ -1313,6 +1315,42 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/logan-api-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-customer-controlled-access-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.db.cca</groupId>
+                  <artifactId>customer-controlled-access-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/customer-controlled-access-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-ggs-control-plane-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.ggs</groupId>
+                  <artifactId>ggs-control-plane-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/ggs-control-plane-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -3133,6 +3171,60 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-customer-controlled-access-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/customer-controlled-access-spec/source/${customer-controlled-access-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/customer-controlled-access-spec/${customer-controlled-access-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/customer-controlled-access-spec/${customer-controlled-access-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-customer-controlled-access-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/customer-controlled-access-spec/${customer-controlled-access-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/customer-controlled-access-spec/${customer-controlled-access-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-prefer-ggs-control-plane-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/ggs-control-plane-spec/source/${ggs-control-plane-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/ggs-control-plane-spec/${ggs-control-plane-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/ggs-control-plane-spec/${ggs-control-plane-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-ggs-control-plane-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/ggs-control-plane-spec/${ggs-control-plane-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/ggs-control-plane-spec/${ggs-control-plane-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -4600,6 +4692,46 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-customer-controlled-access-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/customer-controlled-access-spec/${customer-controlled-access-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>operatoraccesscontrol</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>operatoraccesscontrol</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
+          <execution>
+            <id>go-public-sdk-ggs-control-plane-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/ggs-control-plane-spec/${ggs-control-plane-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>goldengate</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>goldengate</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -5052,6 +5184,18 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/operatoraccesscontrol</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
+            <fileset>
+              <directory>lib/oci/goldengate</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -5108,7 +5252,7 @@
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.349</version>
+        <version>1.1.351</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -5273,7 +5417,7 @@
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.2.0-2007291849</version>
+        <version>1.3.0-2009102008</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -5288,7 +5432,7 @@
       <dependency>
         <groupId>com.oracle.bds</groupId>
         <artifactId>bds-cp-spec</artifactId>
-        <version>1.0.44</version>
+        <version>1.0.46</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.analytics</groupId>
@@ -5313,7 +5457,7 @@
       <dependency>
         <groupId>com.oracle.pic.migration.application</groupId>
         <artifactId>ams-spec</artifactId>
-        <version>0.1.36</version>
+        <version>0.1.48</version>
       </dependency>
       <dependency>
         <groupId>oracle.dfcs.server</groupId>
@@ -5323,7 +5467,7 @@
       <dependency>
         <groupId>com.oracle.oci.mysql</groupId>
         <artifactId>mysqlaas-api-spec</artifactId>
-        <version>10.9.6</version>
+        <version>10.9.9</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ocisms.dataplane</groupId>
@@ -5353,7 +5497,7 @@
       <dependency>
         <groupId>com.oracle.dis</groupId>
         <artifactId>dis-sdk-spec</artifactId>
-        <version>1.0.0-135</version>
+        <version>1.0.0-139</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.controlplane</groupId>
@@ -5363,7 +5507,7 @@
       <dependency>
         <groupId>com.oracle.pic.vmware.ocvp</groupId>
         <artifactId>vmware-provision-service-spec</artifactId>
-        <version>0.1.370</version>
+        <version>0.1.606</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.metering.usagestore.api</groupId>
@@ -5403,7 +5547,7 @@
       <dependency>
         <groupId>com.oracle.pic.compute.ias</groupId>
         <artifactId>instance-agent-service-api-spec</artifactId>
-        <version>0.0.25</version>
+        <version>0.0.26</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.pika.frontend</groupId>
@@ -5423,12 +5567,22 @@
       <dependency>
         <groupId>com.oracle.pic.rover</groupId>
         <artifactId>rover-cloud-service-spec</artifactId>
-        <version>0.0.12</version>
+        <version>0.0.13</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.loganalytics.api</groupId>
         <artifactId>logan-api-spec</artifactId>
         <version>0.1.155</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.db.cca</groupId>
+        <artifactId>customer-controlled-access-spec</artifactId>
+        <version>0.1.260</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.ggs</groupId>
+        <artifactId>ggs-control-plane-spec</artifactId>
+        <version>0.1.4-PREVIEW</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

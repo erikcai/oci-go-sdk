@@ -2697,6 +2697,53 @@ func (client ObjectStorageClient) updateNamespaceMetadata(ctx context.Context, r
 	return response, err
 }
 
+// UpdateObjectStorageTier Changes the storage tier of the object specified by the objectName parameter.
+func (client ObjectStorageClient) UpdateObjectStorageTier(ctx context.Context, request UpdateObjectStorageTierRequest) (response UpdateObjectStorageTierResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateObjectStorageTier, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateObjectStorageTierResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateObjectStorageTierResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateObjectStorageTierResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateObjectStorageTierResponse")
+	}
+	return
+}
+
+// updateObjectStorageTier implements the OCIOperation interface (enables retrying operations)
+func (client ObjectStorageClient) updateObjectStorageTier(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/n/{namespaceName}/b/{bucketName}/actions/updateObjectStorageTier")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateObjectStorageTierResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // UpdateRetentionRule Updates the specified retention rule. Rule changes take effect typically within 30 seconds.
 func (client ObjectStorageClient) UpdateRetentionRule(ctx context.Context, request UpdateRetentionRuleRequest) (response UpdateRetentionRuleResponse, err error) {
 	var ociResponse common.OCIResponse

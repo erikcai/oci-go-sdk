@@ -23,6 +23,94 @@ func createDataCatalogClientWithProvider(p common.ConfigurationProvider, testCon
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientAddDataSelectorPatterns(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "AddDataSelectorPatterns")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AddDataSelectorPatterns is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "AddDataSelectorPatterns", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "AddDataSelectorPatterns")
+	assert.NoError(t, err)
+
+	type AddDataSelectorPatternsRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.AddDataSelectorPatternsRequest
+	}
+
+	var requests []AddDataSelectorPatternsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AddDataSelectorPatterns(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientAssociateCustomProperty(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "AssociateCustomProperty")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AssociateCustomProperty is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "AssociateCustomProperty", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "AssociateCustomProperty")
+	assert.NoError(t, err)
+
+	type AssociateCustomPropertyRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.AssociateCustomPropertyRequest
+	}
+
+	var requests []AssociateCustomPropertyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AssociateCustomProperty(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientAttachCatalogPrivateEndpoint(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -367,6 +455,50 @@ func TestDataCatalogClientCreateConnection(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientCreateCustomProperty(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "CreateCustomProperty")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateCustomProperty is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "CreateCustomProperty", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "CreateCustomProperty")
+	assert.NoError(t, err)
+
+	type CreateCustomPropertyRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.CreateCustomPropertyRequest
+	}
+
+	var requests []CreateCustomPropertyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateCustomProperty(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -815,6 +947,94 @@ func TestDataCatalogClientCreateJobExecution(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientCreateNamespace(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "CreateNamespace")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateNamespace is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "CreateNamespace", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "CreateNamespace")
+	assert.NoError(t, err)
+
+	type CreateNamespaceRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.CreateNamespaceRequest
+	}
+
+	var requests []CreateNamespaceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateNamespace(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientCreatePattern(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "CreatePattern")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreatePattern is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "CreatePattern", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "CreatePattern")
+	assert.NoError(t, err)
+
+	type CreatePatternRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.CreatePatternRequest
+	}
+
+	var requests []CreatePatternRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreatePattern(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientCreateTerm(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1115,6 +1335,50 @@ func TestDataCatalogClientDeleteConnection(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientDeleteCustomProperty(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "DeleteCustomProperty")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteCustomProperty is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "DeleteCustomProperty", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "DeleteCustomProperty")
+	assert.NoError(t, err)
+
+	type DeleteCustomPropertyRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.DeleteCustomPropertyRequest
+	}
+
+	var requests []DeleteCustomPropertyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteCustomProperty(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1519,6 +1783,94 @@ func TestDataCatalogClientDeleteJobDefinition(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientDeleteNamespace(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "DeleteNamespace")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteNamespace is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "DeleteNamespace", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "DeleteNamespace")
+	assert.NoError(t, err)
+
+	type DeleteNamespaceRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.DeleteNamespaceRequest
+	}
+
+	var requests []DeleteNamespaceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteNamespace(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientDeletePattern(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "DeletePattern")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeletePattern is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "DeletePattern", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "DeletePattern")
+	assert.NoError(t, err)
+
+	type DeletePatternRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.DeletePatternRequest
+	}
+
+	var requests []DeletePatternRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeletePattern(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientDeleteTerm(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1643,6 +1995,50 @@ func TestDataCatalogClientDetachCatalogPrivateEndpoint(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DetachCatalogPrivateEndpoint(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientDisassociateCustomProperty(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "DisassociateCustomProperty")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DisassociateCustomProperty is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "DisassociateCustomProperty", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "DisassociateCustomProperty")
+	assert.NoError(t, err)
+
+	type DisassociateCustomPropertyRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.DisassociateCustomPropertyRequest
+	}
+
+	var requests []DisassociateCustomPropertyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DisassociateCustomProperty(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1951,6 +2347,50 @@ func TestDataCatalogClientGetConnection(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientGetCustomProperty(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "GetCustomProperty")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCustomProperty is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "GetCustomProperty", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "GetCustomProperty")
+	assert.NoError(t, err)
+
+	type GetCustomPropertyRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.GetCustomPropertyRequest
+	}
+
+	var requests []GetCustomPropertyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCustomProperty(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2487,6 +2927,94 @@ func TestDataCatalogClientGetJobMetrics(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientGetNamespace(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "GetNamespace")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetNamespace is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "GetNamespace", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "GetNamespace")
+	assert.NoError(t, err)
+
+	type GetNamespaceRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.GetNamespaceRequest
+	}
+
+	var requests []GetNamespaceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetNamespace(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientGetPattern(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "GetPattern")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPattern is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "GetPattern", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "GetPattern")
+	assert.NoError(t, err)
+
+	type GetPatternRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.GetPatternRequest
+	}
+
+	var requests []GetPatternRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetPattern(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientGetTerm(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -2743,6 +3271,50 @@ func TestDataCatalogClientImportGlossary(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ImportGlossary(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientListAggregatedPhysicalEntities(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ListAggregatedPhysicalEntities")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAggregatedPhysicalEntities is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListAggregatedPhysicalEntities", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ListAggregatedPhysicalEntities")
+	assert.NoError(t, err)
+
+	type ListAggregatedPhysicalEntitiesRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ListAggregatedPhysicalEntitiesRequest
+	}
+
+	var requests []ListAggregatedPhysicalEntitiesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ListAggregatedPhysicalEntities(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3021,6 +3593,60 @@ func TestDataCatalogClientListConnections(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientListCustomProperties(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ListCustomProperties")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCustomProperties is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListCustomProperties", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ListCustomProperties")
+	assert.NoError(t, err)
+
+	type ListCustomPropertiesRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ListCustomPropertiesRequest
+	}
+
+	var requests []ListCustomPropertiesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datacatalog.ListCustomPropertiesRequest)
+				return c.ListCustomProperties(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datacatalog.ListCustomPropertiesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datacatalog.ListCustomPropertiesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientListDataAssetTags(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3122,6 +3748,50 @@ func TestDataCatalogClientListDataAssets(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientListDerivedLogicalEntities(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ListDerivedLogicalEntities")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListDerivedLogicalEntities is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListDerivedLogicalEntities", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ListDerivedLogicalEntities")
+	assert.NoError(t, err)
+
+	type ListDerivedLogicalEntitiesRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ListDerivedLogicalEntitiesRequest
+	}
+
+	var requests []ListDerivedLogicalEntitiesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ListDerivedLogicalEntities(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -3669,6 +4339,114 @@ func TestDataCatalogClientListJobs(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientListNamespaces(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ListNamespaces")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListNamespaces is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListNamespaces", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ListNamespaces")
+	assert.NoError(t, err)
+
+	type ListNamespacesRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ListNamespacesRequest
+	}
+
+	var requests []ListNamespacesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datacatalog.ListNamespacesRequest)
+				return c.ListNamespaces(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datacatalog.ListNamespacesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datacatalog.ListNamespacesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientListPatterns(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ListPatterns")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListPatterns is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListPatterns", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ListPatterns")
+	assert.NoError(t, err)
+
+	type ListPatternsRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ListPatternsRequest
+	}
+
+	var requests []ListPatternsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datacatalog.ListPatternsRequest)
+				return c.ListPatterns(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datacatalog.ListPatternsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datacatalog.ListPatternsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientListTags(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4145,6 +4923,50 @@ func TestDataCatalogClientParseConnection(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientRemoveDataSelectorPatterns(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "RemoveDataSelectorPatterns")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RemoveDataSelectorPatterns is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "RemoveDataSelectorPatterns", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "RemoveDataSelectorPatterns")
+	assert.NoError(t, err)
+
+	type RemoveDataSelectorPatternsRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.RemoveDataSelectorPatternsRequest
+	}
+
+	var requests []RemoveDataSelectorPatternsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RemoveDataSelectorPatterns(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientSearchCriteria(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4419,6 +5241,50 @@ func TestDataCatalogClientUpdateConnection(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientUpdateCustomProperty(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "UpdateCustomProperty")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateCustomProperty is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "UpdateCustomProperty", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "UpdateCustomProperty")
+	assert.NoError(t, err)
+
+	type UpdateCustomPropertyRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.UpdateCustomPropertyRequest
+	}
+
+	var requests []UpdateCustomPropertyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateCustomProperty(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientUpdateDataAsset(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4683,6 +5549,94 @@ func TestDataCatalogClientUpdateJobDefinition(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientUpdateNamespace(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "UpdateNamespace")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateNamespace is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "UpdateNamespace", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "UpdateNamespace")
+	assert.NoError(t, err)
+
+	type UpdateNamespaceRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.UpdateNamespaceRequest
+	}
+
+	var requests []UpdateNamespaceRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateNamespace(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientUpdatePattern(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "UpdatePattern")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdatePattern is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "UpdatePattern", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "UpdatePattern")
+	assert.NoError(t, err)
+
+	type UpdatePatternRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.UpdatePatternRequest
+	}
+
+	var requests []UpdatePatternRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdatePattern(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
 func TestDataCatalogClientUpdateTerm(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4905,6 +5859,50 @@ func TestDataCatalogClientValidateConnection(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ValidateConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientValidatePattern(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ValidatePattern")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ValidatePattern is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ValidatePattern", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ValidatePattern")
+	assert.NoError(t, err)
+
+	type ValidatePatternRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ValidatePatternRequest
+	}
+
+	var requests []ValidatePatternRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ValidatePattern(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

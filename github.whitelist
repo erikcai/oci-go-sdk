@@ -78,3 +78,5 @@
 ^loggingsearch/
 ^rover/
 ^loganalytics/
+^operatoraccesscontrol/
+^goldengate/
