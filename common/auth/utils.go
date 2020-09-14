@@ -72,3 +72,16 @@ func colonSeparatedString(fingerprint [sha1.Size]byte) string {
 	spaceSeparated := fmt.Sprintf("% x", fingerprint)
 	return strings.Replace(spaceSeparated, " ", ":", -1)
 }
+
+// GetGenericConfigurationProvider checks auth config paras in config file and return the final configuration provider
+func GetGenericConfigurationProvider(configProvider common.ConfigurationProvider) (common.ConfigurationProvider, error) {
+	if authConfig, err := configProvider.AuthType(); err == nil && authConfig.IsFromConfigFile {
+		switch authConfig.AuthType {
+		case common.InstancePrincipalDelegationToken:
+			return InstancePrincipalDelegationTokenConfigurationProvider(authConfig.OboToken)
+		case common.UserPrincipal:
+			return configProvider, nil
+		}
+	}
+	return configProvider, nil
+}

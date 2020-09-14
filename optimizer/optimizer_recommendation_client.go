@@ -13,6 +13,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common/auth"
 	"net/http"
 )
 
@@ -25,12 +26,13 @@ type RecommendationClient struct {
 // NewRecommendationClientWithConfigurationProvider Creates a new default Recommendation client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewRecommendationClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client RecommendationClient, err error) {
-	baseClient, err := common.NewClientWithConfig(configProvider)
-	if err != nil {
-		return
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newRecommendationClientFromBaseClient(baseClient, configProvider)
+		}
 	}
 
-	return newRecommendationClientFromBaseClient(baseClient, configProvider)
+	return
 }
 
 // NewRecommendationClientWithOboToken Creates a new default Recommendation client with the given configuration provider.

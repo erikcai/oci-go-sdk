@@ -13,6 +13,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common/auth"
 	"net/http"
 )
 
@@ -25,12 +26,13 @@ type HistoryClient struct {
 // NewHistoryClientWithConfigurationProvider Creates a new default History client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewHistoryClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client HistoryClient, err error) {
-	baseClient, err := common.NewClientWithConfig(configProvider)
-	if err != nil {
-		return
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newHistoryClientFromBaseClient(baseClient, configProvider)
+		}
 	}
 
-	return newHistoryClientFromBaseClient(baseClient, configProvider)
+	return
 }
 
 // NewHistoryClientWithOboToken Creates a new default History client with the given configuration provider.

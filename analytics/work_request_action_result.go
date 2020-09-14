@@ -44,7 +44,7 @@ var mappingWorkRequestActionResult = map[string]WorkRequestActionResultEnum{
 	"PRIVATE_ACCESS_CHANNEL_CREATED": WorkRequestActionResultPrivateAccessChannelCreated,
 	"PRIVATE_ACCESS_CHANNEL_UPDATED": WorkRequestActionResultPrivateAccessChannelUpdated,
 	"PRIVATE_ACCESS_CHANNEL_DELETED": WorkRequestActionResultPrivateAccessChannelDeleted,
-	"NONE": WorkRequestActionResultNone,
+	"NONE":                           WorkRequestActionResultNone,
 }
 
 // GetWorkRequestActionResultEnumValues Enumerates the set of values for WorkRequestActionResultEnum

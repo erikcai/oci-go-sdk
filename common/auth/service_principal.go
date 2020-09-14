@@ -58,6 +58,11 @@ func (p *servicePrincipalKeyProvider) KeyID() (string, error) {
 	return fmt.Sprintf("ST$%s", securityToken), nil
 }
 
+func (p *servicePrincipalKeyProvider) AuthType() (common.AuthConfig, error) {
+	return common.AuthConfig{common.UnknownAuthenticationType, false, nil},
+		fmt.Errorf("unsupported, keep the interface")
+}
+
 type servicePrincipalConfigurationProvider struct {
 	keyProvider       *servicePrincipalKeyProvider
 	tenancyID, region string
@@ -150,4 +155,10 @@ func (p servicePrincipalConfigurationProvider) KeyFingerprint() (string, error) 
 
 func (p servicePrincipalConfigurationProvider) Region() (string, error) {
 	return p.region, nil
+}
+
+func (p servicePrincipalConfigurationProvider) AuthType() (common.AuthConfig, error) {
+	return common.AuthConfig{common.UnknownAuthenticationType, false, nil},
+		fmt.Errorf("unsupported, keep the interface")
+
 }

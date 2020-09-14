@@ -13,6 +13,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common/auth"
 	"net/http"
 )
 
@@ -25,12 +26,13 @@ type RoverEntitlementClient struct {
 // NewRoverEntitlementClientWithConfigurationProvider Creates a new default RoverEntitlement client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewRoverEntitlementClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client RoverEntitlementClient, err error) {
-	baseClient, err := common.NewClientWithConfig(configProvider)
-	if err != nil {
-		return
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newRoverEntitlementClientFromBaseClient(baseClient, configProvider)
+		}
 	}
 
-	return newRoverEntitlementClientFromBaseClient(baseClient, configProvider)
+	return
 }
 
 // NewRoverEntitlementClientWithOboToken Creates a new default RoverEntitlement client with the given configuration provider.

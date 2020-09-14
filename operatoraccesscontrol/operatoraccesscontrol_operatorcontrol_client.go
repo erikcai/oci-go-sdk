@@ -15,6 +15,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common/auth"
 	"net/http"
 )
 
@@ -27,12 +28,13 @@ type OperatorControlClient struct {
 // NewOperatorControlClientWithConfigurationProvider Creates a new default OperatorControl client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewOperatorControlClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client OperatorControlClient, err error) {
-	baseClient, err := common.NewClientWithConfig(configProvider)
-	if err != nil {
-		return
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newOperatorControlClientFromBaseClient(baseClient, configProvider)
+		}
 	}
 
-	return newOperatorControlClientFromBaseClient(baseClient, configProvider)
+	return
 }
 
 // NewOperatorControlClientWithOboToken Creates a new default OperatorControl client with the given configuration provider.

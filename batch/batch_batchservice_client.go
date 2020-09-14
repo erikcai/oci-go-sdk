@@ -14,6 +14,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/common/auth"
 	"net/http"
 )
 
@@ -26,12 +27,13 @@ type BatchServiceClient struct {
 // NewBatchServiceClientWithConfigurationProvider Creates a new default BatchService client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewBatchServiceClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client BatchServiceClient, err error) {
-	baseClient, err := common.NewClientWithConfig(configProvider)
-	if err != nil {
-		return
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newBatchServiceClientFromBaseClient(baseClient, configProvider)
+		}
 	}
 
-	return newBatchServiceClientFromBaseClient(baseClient, configProvider)
+	return
 }
 
 // NewBatchServiceClientWithOboToken Creates a new default BatchService client with the given configuration provider.
