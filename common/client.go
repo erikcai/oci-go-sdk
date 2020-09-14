@@ -5,8 +5,11 @@
 package common
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"math/rand"
 	"net/http"
 	"net/http/httputil"
@@ -292,12 +295,68 @@ func (client BaseClient) intercept(request *http.Request) (err error) {
 	return
 }
 
-func checkForSuccessfulResponse(res *http.Response) error {
+// checkForSuccessfulResponse checks if the response is successful
+// If Error Code is 4XX/5XX and debug level is set to info, will log the request and response
+func checkForSuccessfulResponse(res *http.Response, requestBody *io.ReadCloser) error {
 	familyStatusCode := res.StatusCode / 100
 	if familyStatusCode == 4 || familyStatusCode == 5 {
+		IfInfo(func() {
+			// If debug level is set to verbose, the request and request body will be dumped and logged under debug level, this is to avoid duplicate logging
+			if defaultLogger.LogLevel() < verboseLogging {
+				logRequest(res.Request, Logf, noLogging)
+				bodyContent, _ := ioutil.ReadAll(*requestBody)
+				Logf("Dump Request Body: \n%s", string(bodyContent))
+			}
+			logResponse(res, Logf, infoLogging)
+		})
 		return newServiceFailureFromResponse(res)
 	}
+	IfDebug(func() {
+		logResponse(res, Debugf, verboseLogging)
+	})
 	return nil
+}
+
+func logRequest(request *http.Request, fn func(format string, v ...interface{}), bodyLoggingLevel int) {
+	if request == nil {
+		return
+	}
+	dumpBody := true
+	if checkBodyLengthExceedLimit(request.ContentLength) {
+		fn("not dumping body too big\n")
+		dumpBody = false
+	}
+
+	dumpBody = dumpBody && defaultLogger.LogLevel() >= bodyLoggingLevel && bodyLoggingLevel != noLogging
+	if dump, e := httputil.DumpRequestOut(request, dumpBody); e == nil {
+		fn("Dump Request %s", string(dump))
+	} else {
+		fn("%v\n", e)
+	}
+}
+
+func logResponse(response *http.Response, fn func(format string, v ...interface{}), bodyLoggingLevel int) {
+	if response == nil {
+		return
+	}
+	dumpBody := true
+	if checkBodyLengthExceedLimit(response.ContentLength) {
+		fn("not dumping body too big\n")
+		dumpBody = false
+	}
+	dumpBody = dumpBody && defaultLogger.LogLevel() >= bodyLoggingLevel && bodyLoggingLevel != noLogging
+	if dump, e := httputil.DumpResponse(response, dumpBody); e == nil {
+		fn("Dump Response %s", string(dump))
+	} else {
+		fn("%v\n", e)
+	}
+}
+
+func checkBodyLengthExceedLimit(contentLength int64) bool {
+	if contentLength > maxBodyLenForDebug {
+		return true
+	}
+	return false
 }
 
 // OCIRequest is any request made to an OCI service.
@@ -356,48 +415,26 @@ func (client BaseClient) CallWithDetails(ctx context.Context, request *http.Requ
 		return
 	}
 
+	//Copy request body and save for logging
+	dumpRequestBody := ioutil.NopCloser(bytes.NewBuffer(nil))
+	if request.Body != nil && !checkBodyLengthExceedLimit(request.ContentLength) {
+		dumpRequestBody, _ = request.GetBody()
+	}
 	IfDebug(func() {
-		dumpBody := true
-		if request.ContentLength > maxBodyLenForDebug {
-			Debugf("not dumping body too big\n")
-			dumpBody = false
-		}
-		dumpBody = dumpBody && defaultLogger.LogLevel() == verboseLogging
-		if dump, e := httputil.DumpRequestOut(request, dumpBody); e == nil {
-			Debugf("Dump Request %s", string(dump))
-		} else {
-			Debugf("%v\n", e)
-		}
+		logRequest(request, Debugf, verboseLogging)
 	})
 
 	//Execute the http request
 	response, err = client.HTTPClient.Do(request)
 
-	IfDebug(func() {
-		if err != nil {
-			Debugf("%v\n", err)
-			return
-		}
-
-		dumpBody := true
-		if response.ContentLength > maxBodyLenForDebug {
-			Debugf("not dumping body too big\n")
-			dumpBody = false
-		}
-
-		dumpBody = dumpBody && defaultLogger.LogLevel() == verboseLogging
-		if dump, e := httputil.DumpResponse(response, dumpBody); e == nil {
-			Debugf("Dump Response %s", string(dump))
-		} else {
-			Debugf("%v\n", e)
-		}
-	})
-
 	if err != nil {
+		IfInfo(func() {
+			Logf("%v\n", err)
+		})
 		return
 	}
 
-	err = checkForSuccessfulResponse(response)
+	err = checkForSuccessfulResponse(response, &dumpRequestBody)
 	return
 }
 

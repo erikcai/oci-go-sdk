@@ -221,3 +221,10 @@ func IfDebug(fn func()) {
 		fn()
 	}
 }
+
+// IfInfo executes closure if info is enabled
+func IfInfo(fn func()) {
+	if defaultLogger.LogLevel() >= infoLogging {
+		fn()
+	}
+}
