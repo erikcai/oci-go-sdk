@@ -10,7 +10,7 @@
 package cloudguard
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // Configuration Cloud Guard configuration details of a tenancy.

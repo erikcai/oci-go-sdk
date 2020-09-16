@@ -15,8 +15,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/oracle/oci-go-sdk/audit"
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/audit"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // ListEvents test

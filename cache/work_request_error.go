@@ -10,7 +10,7 @@
 package cache
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // WorkRequestError An error that occurred while executing a work request.

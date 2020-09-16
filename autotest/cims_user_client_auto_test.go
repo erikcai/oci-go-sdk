@@ -1,8 +1,8 @@
 package autotest
 
 import (
-	"github.com/oracle/oci-go-sdk/cims"
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/cims"
+	"github.com/oracle/oci-go-sdk/v25/common"
 
 	"context"
 	"encoding/json"

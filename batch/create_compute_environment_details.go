@@ -11,7 +11,7 @@
 package batch
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // CreateComputeEnvironmentDetails Details for creating a new compute environment.

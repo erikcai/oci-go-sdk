@@ -10,7 +10,7 @@
 package cache
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // UpdateReplicatedCacheDetails The properties that are required to update the Redis replicated cache.

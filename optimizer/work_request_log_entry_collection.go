@@ -10,7 +10,7 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // WorkRequestLogEntryCollection A list of work request logs that match filter criteria, if any. Results contain `WorkRequestLogEntry` objects.

@@ -6,9 +6,9 @@ DOC_SERVER_URL_DEV=https:\/\/docs.cloud.oracle.com
 
 #### Versions
 #### If you are doing a release, do not forget to increment this versions
-VER_MAJOR=1
+VER_MAJOR=25
 ## where the number is the week number
-VER_MINOR=25
+VER_MINOR=0
 VER_TAG=preview
 ###################
 
@@ -55,6 +55,7 @@ generate:
 	@find autotest -name \*_auto_test.go|xargs rm -f
 	PROJECT_NAME=$(PROJECT_NAME) mvn clean install
 	@(cd $(PROJECT_PATH) && rm -f $(REMOVE_AFTER_GENERATE))
+	find . -name \*.go |xargs sed -i "" "s#\"$(PROJECT_NAME)/\(v[0-9]*/\)*#\"$(PROJECT_NAME)/v$(VER_MAJOR)/#g"
 
 build-autotest:
 	@echo "building autotests"
@@ -70,7 +71,9 @@ test-sdk-only:
 
 release-sdk:
 	@echo "Building oci-go-sdk with major:$(VER_MAJOR) minor:$(VER_MINOR) patch:$(VER_PATCH) tag:$(VER_TAG)"
-	@(cd $(PROJECT_PATH) && VER_MAJOR=$(VER_MAJOR) VER_MINOR=$(VER_MINOR) VER_PATCH=$(VER_PATCH) VER_TAG=$(VER_TAG) make release)
+	@(cd $(PROJECT_PATH))
+	find . -name \*.go |xargs sed -i "" "s#\"$(PROJECT_NAME)/\(v[0-9]*/\)*#\"$(PROJECT_NAME)/v$(VER_MAJOR)/#g"
+	@(VER_MAJOR=$(VER_MAJOR) VER_MINOR=$(VER_MINOR) VER_PATCH=$(VER_PATCH) VER_TAG=$(VER_TAG) make release)
 
 build: generate build-sdk build-autotest
 	@(cd $(PROJECT_PATH) && make pre-doc)
@@ -86,7 +89,11 @@ clean-pipeline:
 	@(cd $(PROJECT_PATH) && rm -f $(REMOVE_AFTER_GENERATE))
 
 # doing build and lint for generated code in self-service pipeline
-lint-pipeline: build-autotest test-sdk-only
+lint-pipeline: update-import build-autotest test-sdk-only
 	@echo "Rendering doc server to ${DOC_SERVER_URL_DEV}"
 	find . -name \*.go |xargs sed -i 's/{{DOC_SERVER_URL}}/${DOC_SERVER_URL_DEV}/g'
 	find . -name \*.go |xargs sed -i 's/https:\/\/docs.us-phoenix-1.oraclecloud.com/${DOC_SERVER_URL_DEV}/g'
+
+# update all imports to match latest major version
+update-import:
+	find . -name \*.go |xargs sed -i "" "s#\"$(PROJECT_NAME)/\(v[0-9]*/\)*#\"$(PROJECT_NAME)/v$(VER_MAJOR)/#g"

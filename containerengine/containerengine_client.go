@@ -14,8 +14,8 @@ package containerengine
 import (
 	"context"
 	"fmt"
-	"github.com/oracle/oci-go-sdk/common"
-	"github.com/oracle/oci-go-sdk/common/auth"
+	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v25/common/auth"
 	"net/http"
 )
 

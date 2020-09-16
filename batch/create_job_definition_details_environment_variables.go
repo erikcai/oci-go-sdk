@@ -11,7 +11,7 @@
 package batch
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // CreateJobDefinitionDetailsEnvironmentVariables The representation of CreateJobDefinitionDetailsEnvironmentVariables

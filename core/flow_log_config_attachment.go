@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // FlowLogConfigAttachment Represents an attachment between a flow log configuration and a resource such as a subnet. By

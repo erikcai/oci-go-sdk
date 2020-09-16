@@ -2,7 +2,7 @@ package autotest
 
 import (
 	"fmt"
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 	"math"
 	"os"
 	"time"

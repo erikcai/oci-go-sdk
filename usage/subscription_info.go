@@ -10,7 +10,7 @@
 package usage
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // SubscriptionInfo The response object for the GetSubscriptionInfo API call. It provides information about the specified billing cycle.

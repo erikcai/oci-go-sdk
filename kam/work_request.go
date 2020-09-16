@@ -12,7 +12,7 @@
 package kam
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // WorkRequest KAM work request

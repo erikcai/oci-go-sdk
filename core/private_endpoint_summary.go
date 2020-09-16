@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // PrivateEndpointSummary A summary of private endpoint information. This object is returned when listing private endpoints.

@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // ImageMemoryConstraints For a flexible image and shape, the amount of memory supported for instances that use this image.

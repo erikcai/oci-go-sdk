@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // ModifyReverseConnectionsDetails Details for modifying reverse connections configuration for the specified private endpoint.

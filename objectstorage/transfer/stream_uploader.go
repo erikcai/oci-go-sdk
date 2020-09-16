@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // StreamUploader is an interface for upload a stream

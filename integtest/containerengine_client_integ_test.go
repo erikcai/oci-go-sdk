@@ -11,8 +11,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/oracle/oci-go-sdk/common"
-	"github.com/oracle/oci-go-sdk/containerengine"
+	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v25/containerengine"
 	"github.com/stretchr/testify/assert"
 )
 

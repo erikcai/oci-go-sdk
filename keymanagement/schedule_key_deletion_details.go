@@ -11,7 +11,7 @@
 package keymanagement
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // ScheduleKeyDeletionDetails Details for scheduling key deletion.

@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // EndpointServiceIpDetails Information about an IP address (in the service VCN) that handles requests to the endpoint service.

@@ -7,7 +7,7 @@ import (
 	"crypto/rsa"
 	"errors"
 	"fmt"
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 	"os"
 	"path"
 )

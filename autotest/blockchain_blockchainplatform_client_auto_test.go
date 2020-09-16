@@ -1,8 +1,8 @@
 package autotest
 
 import (
-	"github.com/oracle/oci-go-sdk/blockchain"
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/blockchain"
+	"github.com/oracle/oci-go-sdk/v25/common"
 
 	"context"
 	"encoding/json"

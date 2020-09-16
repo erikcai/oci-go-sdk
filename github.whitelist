@@ -20,7 +20,8 @@
 ^README\.md$
 ^wercker\.yml$
 ^Makefile$
-
+^go\.mod$
+^go\.sum$
 
 
 ^monitoring/

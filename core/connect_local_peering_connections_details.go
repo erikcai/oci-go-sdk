@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // ConnectLocalPeeringConnectionsDetails Contains details indicating the local peering connection with which you wish to establish a peering relationship.

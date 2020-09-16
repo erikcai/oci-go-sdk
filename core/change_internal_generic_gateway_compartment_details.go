@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/common"
+	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
 // ChangeInternalGenericGatewayCompartmentDetails Contains details indicating which compartment the resource should move to
