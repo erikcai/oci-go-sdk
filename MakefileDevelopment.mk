@@ -96,4 +96,4 @@ lint-pipeline: update-import build-autotest test-sdk-only
 
 # update all imports to match latest major version
 update-import:
-	find . -name \*.go |xargs sed -i "" "s#\"$(PROJECT_NAME)/\(v[0-9]*/\)*#\"$(PROJECT_NAME)/v$(VER_MAJOR)/#g"
+	find . -name \*.go |xargs sed -i "s#\"$(PROJECT_NAME)/\(v[0-9]*/\)*#\"$(PROJECT_NAME)/v$(VER_MAJOR)/#g"
