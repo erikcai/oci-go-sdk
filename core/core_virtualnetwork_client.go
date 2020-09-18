@@ -12237,6 +12237,54 @@ func (client VirtualNetworkClient) listVnicWorkers(ctx context.Context, request 
 	return response, err
 }
 
+// MigrateDrg Updates the specified DrgAttachment's mplsLabel and routeTarget and also moves the DRG the destination Drg Type
+// for migration purposes.
+func (client VirtualNetworkClient) MigrateDrg(ctx context.Context, request MigrateDrgRequest) (response MigrateDrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.migrateDrg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = MigrateDrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = MigrateDrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(MigrateDrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into MigrateDrgResponse")
+	}
+	return
+}
+
+// migrateDrg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) migrateDrg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/internalDrgs/{internalDrgId}/actions/migrateDrg")
+	if err != nil {
+		return nil, err
+	}
+
+	var response MigrateDrgResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ModifyReverseConnections Modifies the configuration for reverse connections and the DNS proxy for the specified private endpoint.
 func (client VirtualNetworkClient) ModifyReverseConnections(ctx context.Context, request ModifyReverseConnectionsRequest) (response ModifyReverseConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse

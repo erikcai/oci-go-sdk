@@ -256,6 +256,50 @@ func TestComputeClientCaptureConsoleHistory(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
+func TestComputeClientChangeComputeCapacityReservationCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeComputeCapacityReservationCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeComputeCapacityReservationCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ChangeComputeCapacityReservationCompartment", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "ChangeComputeCapacityReservationCompartment")
+	assert.NoError(t, err)
+
+	type ChangeComputeCapacityReservationCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeComputeCapacityReservationCompartmentRequest
+	}
+
+	var requests []ChangeComputeCapacityReservationCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeComputeCapacityReservationCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientChangeComputeImageCapabilitySchemaCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -476,6 +520,50 @@ func TestComputeClientCreateAppCatalogSubscription(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
+func TestComputeClientCreateComputeCapacityReservation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateComputeCapacityReservation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateComputeCapacityReservation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "CreateComputeCapacityReservation", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "CreateComputeCapacityReservation")
+	assert.NoError(t, err)
+
+	type CreateComputeCapacityReservationRequestInfo struct {
+		ContainerId string
+		Request     core.CreateComputeCapacityReservationRequest
+	}
+
+	var requests []CreateComputeCapacityReservationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateComputeCapacityReservation(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="computeImaging" email="imaging_dev_us_grp@oracle.com" jiraProject="COM" opsJiraProject="COM"
 func TestComputeClientCreateComputeImageCapabilitySchema(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -689,6 +777,50 @@ func TestComputeClientDeleteAppCatalogSubscription(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteAppCatalogSubscription(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
+func TestComputeClientDeleteComputeCapacityReservation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteComputeCapacityReservation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteComputeCapacityReservation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "DeleteComputeCapacityReservation", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "DeleteComputeCapacityReservation")
+	assert.NoError(t, err)
+
+	type DeleteComputeCapacityReservationRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteComputeCapacityReservationRequest
+	}
+
+	var requests []DeleteComputeCapacityReservationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteComputeCapacityReservation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1273,6 +1405,50 @@ func TestComputeClientGetBootVolumeAttachment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetBootVolumeAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
+func TestComputeClientGetComputeCapacityReservation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetComputeCapacityReservation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetComputeCapacityReservation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "GetComputeCapacityReservation", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "GetComputeCapacityReservation")
+	assert.NoError(t, err)
+
+	type GetComputeCapacityReservationRequestInfo struct {
+		ContainerId string
+		Request     core.GetComputeCapacityReservationRequest
+	}
+
+	var requests []GetComputeCapacityReservationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetComputeCapacityReservation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2147,6 +2323,168 @@ func TestComputeClientListBootVolumeAttachments(t *testing.T) {
 			typedListResponses := make([]core.ListBootVolumeAttachmentsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(core.ListBootVolumeAttachmentsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
+func TestComputeClientListComputeCapacityReservationInstanceShapes(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListComputeCapacityReservationInstanceShapes")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListComputeCapacityReservationInstanceShapes is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListComputeCapacityReservationInstanceShapes", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "ListComputeCapacityReservationInstanceShapes")
+	assert.NoError(t, err)
+
+	type ListComputeCapacityReservationInstanceShapesRequestInfo struct {
+		ContainerId string
+		Request     core.ListComputeCapacityReservationInstanceShapesRequest
+	}
+
+	var requests []ListComputeCapacityReservationInstanceShapesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListComputeCapacityReservationInstanceShapesRequest)
+				return c.ListComputeCapacityReservationInstanceShapes(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListComputeCapacityReservationInstanceShapesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListComputeCapacityReservationInstanceShapesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
+func TestComputeClientListComputeCapacityReservationInstances(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListComputeCapacityReservationInstances")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListComputeCapacityReservationInstances is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListComputeCapacityReservationInstances", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "ListComputeCapacityReservationInstances")
+	assert.NoError(t, err)
+
+	type ListComputeCapacityReservationInstancesRequestInfo struct {
+		ContainerId string
+		Request     core.ListComputeCapacityReservationInstancesRequest
+	}
+
+	var requests []ListComputeCapacityReservationInstancesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListComputeCapacityReservationInstancesRequest)
+				return c.ListComputeCapacityReservationInstances(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListComputeCapacityReservationInstancesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListComputeCapacityReservationInstancesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
+func TestComputeClientListComputeCapacityReservations(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListComputeCapacityReservations")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListComputeCapacityReservations is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "ListComputeCapacityReservations", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "ListComputeCapacityReservations")
+	assert.NoError(t, err)
+
+	type ListComputeCapacityReservationsRequestInfo struct {
+		ContainerId string
+		Request     core.ListComputeCapacityReservationsRequest
+	}
+
+	var requests []ListComputeCapacityReservationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListComputeCapacityReservationsRequest)
+				return c.ListComputeCapacityReservations(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListComputeCapacityReservationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListComputeCapacityReservationsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -3101,6 +3439,50 @@ func TestComputeClientTerminateInstance(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.TerminateInstance(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeSharedOwnershipVmAndBm" email="compute_dev_us_grp@oracle.com" jiraProject="BMI" opsJiraProject="NONE"
+func TestComputeClientUpdateComputeCapacityReservation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateComputeCapacityReservation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateComputeCapacityReservation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Compute", "UpdateComputeCapacityReservation", createComputeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ComputeClient)
+
+	body, err := testClient.getRequests("core", "UpdateComputeCapacityReservation")
+	assert.NoError(t, err)
+
+	type UpdateComputeCapacityReservationRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateComputeCapacityReservationRequest
+	}
+
+	var requests []UpdateComputeCapacityReservationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateComputeCapacityReservation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

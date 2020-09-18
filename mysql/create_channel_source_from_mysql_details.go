@@ -26,7 +26,10 @@ type CreateChannelSourceFromMysqlDetails struct {
 	// please see the MySQL documentation (https://dev.mysql.com/doc/refman/8.0/en/change-master-to.html)
 	Username *string `mandatory:"true" json:"username"`
 
-	// The password for the replication user.
+	// The password for the replication user. The password must be
+	// between 8 and 32 characters long, and must contain at least 1
+	// numeric character, 1 lowercase character, 1 uppercase character,
+	// and 1 special (nonalphanumeric) character.
 	Password *string `mandatory:"true" json:"password"`
 
 	// The port the source MySQL instance listens on.

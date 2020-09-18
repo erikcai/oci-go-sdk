@@ -23,18 +23,23 @@ type CreatePatternDetails struct {
 	// Detailed description of the Pattern.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The expression used in the pattern that may include qualifiers. If a filePathList is sent and no logical entities
-	// are derived or all files are in the UNMATCHED group, then the expression results in validation failure.
+	// The expression used in the pattern that may include qualifiers. Refer to the user documentation for details of the format and examples.
 	Expression *string `mandatory:"false" json:"expression"`
 
-	// The list of file paths on which the expression is applied as a filter. Used for validating the expression.
-	FilePathList []string `mandatory:"false" json:"filePathList"`
+	// List of file paths against which the expression can be tried, as a check. This documents, for reference
+	// purposes, some example objects a pattern is meant to work with. If isEnableCheckFailureLimit is set to true,
+	// this will be run as a validation during the request, such that if the check fails the request fails. If
+	// isEnableCheckFailureLimit instead is set to (the default) false, a pattern will still be created or updated even
+	// if the check fails, with a lifecycleState of FAILED.
+	CheckFilePathList []string `mandatory:"false" json:"checkFilePathList"`
 
-	// Indicates whether this pattern creation is rejected resulting in error if the expression is invalid.
-	IsRejectedOnValidationFailure *bool `mandatory:"false" json:"isRejectedOnValidationFailure"`
+	// Indicates whether the expression check, against the checkFilePathList, will fail the request if the count of
+	// UNMATCHED files is above the checkFailureLimit.
+	IsEnableCheckFailureLimit *bool `mandatory:"false" json:"isEnableCheckFailureLimit"`
 
-	// Indicates the max number of UNMATCHED files for the expression to be invalid.
-	RejectionLimit *int `mandatory:"false" json:"rejectionLimit"`
+	// The maximum number of UNMATCHED files, in checkFilePathList, above which the check fails. Optional, if
+	// checkFilePathList is provided - but if isEnableCheckFailureLimit is set to true it is required.
+	CheckFailureLimit *int `mandatory:"false" json:"checkFailureLimit"`
 
 	// A map of maps that contains the properties which are specific to the pattern type. Each pattern type
 	// definition defines it's set of required and optional properties.

@@ -199,6 +199,50 @@ func TestLoadBalancerClientCreateCertificate(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientCreateCidrBlocks(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "CreateCidrBlocks")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateCidrBlocks is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "CreateCidrBlocks", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "CreateCidrBlocks")
+	assert.NoError(t, err)
+
+	type CreateCidrBlocksRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.CreateCidrBlocksRequest
+	}
+
+	var requests []CreateCidrBlocksRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateCidrBlocks(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
 func TestLoadBalancerClientCreateHostname(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -587,6 +631,50 @@ func TestLoadBalancerClientDeleteCertificate(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteCertificate(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientDeleteCidrBlocks(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "DeleteCidrBlocks")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteCidrBlocks is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "DeleteCidrBlocks", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "DeleteCidrBlocks")
+	assert.NoError(t, err)
+
+	type DeleteCidrBlocksRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.DeleteCidrBlocksRequest
+	}
+
+	var requests []DeleteCidrBlocksRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteCidrBlocks(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1027,6 +1115,50 @@ func TestLoadBalancerClientGetBackendSetHealth(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetBackendSetHealth(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientGetCidrBlocks(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "GetCidrBlocks")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCidrBlocks is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "GetCidrBlocks", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "GetCidrBlocks")
+	assert.NoError(t, err)
+
+	type GetCidrBlocksRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.GetCidrBlocksRequest
+	}
+
+	var requests []GetCidrBlocksRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCidrBlocks(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1511,6 +1643,50 @@ func TestLoadBalancerClientListCertificates(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ListCertificates(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientListCidrBlocks(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "ListCidrBlocks")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCidrBlocks is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "ListCidrBlocks", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "ListCidrBlocks")
+	assert.NoError(t, err)
+
+	type ListCidrBlocksRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.ListCidrBlocksRequest
+	}
+
+	var requests []ListCidrBlocksRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ListCidrBlocks(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2143,6 +2319,50 @@ func TestLoadBalancerClientUpdateBackendSet(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateBackendSet(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_lbaas_dev_us_grp@oracle.com" jiraProject="LBCP" opsJiraProject="LBCP"
+func TestLoadBalancerClientUpdateCidrBlocks(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loadbalancer", "UpdateCidrBlocks")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateCidrBlocks is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loadbalancer", "LoadBalancer", "UpdateCidrBlocks", createLoadBalancerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loadbalancer.LoadBalancerClient)
+
+	body, err := testClient.getRequests("loadbalancer", "UpdateCidrBlocks")
+	assert.NoError(t, err)
+
+	type UpdateCidrBlocksRequestInfo struct {
+		ContainerId string
+		Request     loadbalancer.UpdateCidrBlocksRequest
+	}
+
+	var requests []UpdateCidrBlocksRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateCidrBlocks(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

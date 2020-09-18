@@ -34,8 +34,9 @@ type LaunchInstanceDetails struct {
 	// You can enumerate all available shapes by calling ListShapes.
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// Details for the primary VNIC, which is automatically created and attached when
-	// the instance is launched.
+	// The OCID of the compute capacity reservation this instance is launched under.
+	CapacityReservationId *string `mandatory:"false" json:"capacityReservationId"`
+
 	CreateVnicDetails *CreateVnicDetails `mandatory:"false" json:"createVnicDetails"`
 
 	// The OCID of the dedicated VM host.
@@ -107,13 +108,10 @@ type LaunchInstanceDetails struct {
 	// For more information about iPXE, see http://ipxe.org.
 	IpxeScript *string `mandatory:"false" json:"ipxeScript"`
 
-	// Options for tuning the compatibility and performance of VM shapes. The values that you specify override any
-	// default values.
 	LaunchOptions *LaunchOptions `mandatory:"false" json:"launchOptions"`
 
 	InstanceOptions *InstanceOptions `mandatory:"false" json:"instanceOptions"`
 
-	// Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
 	AvailabilityConfig *LaunchInstanceAvailabilityConfigDetails `mandatory:"false" json:"availabilityConfig"`
 
 	// Custom metadata key/value pairs that you provide, such as the SSH public key
@@ -157,8 +155,6 @@ type LaunchInstanceDetails struct {
 
 	ShapeConfig *LaunchInstanceShapeConfigDetails `mandatory:"false" json:"shapeConfig"`
 
-	// Details for creating an instance.
-	// Use this parameter to specify whether a boot volume or an image should be used to launch a new instance.
 	SourceDetails InstanceSourceDetails `mandatory:"false" json:"sourceDetails"`
 
 	// Deprecated. Instead use `subnetId` in
@@ -188,6 +184,7 @@ func (m LaunchInstanceDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
+		CapacityReservationId          *string                                             `json:"capacityReservationId"`
 		CreateVnicDetails              *CreateVnicDetails                                  `json:"createVnicDetails"`
 		DedicatedVmHostId              *string                                             `json:"dedicatedVmHostId"`
 		DefinedTags                    map[string]map[string]interface{}                   `json:"definedTags"`
@@ -220,6 +217,8 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	var nn interface{}
+	m.CapacityReservationId = model.CapacityReservationId
+
 	m.CreateVnicDetails = model.CreateVnicDetails
 
 	m.DedicatedVmHostId = model.DedicatedVmHostId

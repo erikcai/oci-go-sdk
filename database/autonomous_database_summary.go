@@ -41,6 +41,15 @@ type AutonomousDatabaseSummary struct {
 	// Additional details about the status of the database, such as the progress of a backup or restore operation. UNPUBLISHED "HIDDEN" FIELD. This field is being added to unblock console functionality but will not be published in the SDK or documentation. It will be present in responses, so deprecating will require coordination to ensure we do not break customers if they begin relying on this field. Please see https://confluence.oci.oraclecorp.com/pages/viewpage.action?pageId=58769459 for details regarding the motivation of this field and the longer term plan.
 	AdditionalDatabaseStatus []string `mandatory:"false" json:"additionalDatabaseStatus"`
 
+	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+	KmsKeyId *string `mandatory:"false" json:"kmsKeyId"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure vault (https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+	VaultId *string `mandatory:"false" json:"vaultId"`
+
+	// KMS key lifecycle details.
+	KmsKeyLifecycleDetails *string `mandatory:"false" json:"kmsKeyLifecycleDetails"`
+
 	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of memory. For Always Free databases, memory and CPU cannot be scaled.
 	IsFreeTier *bool `mandatory:"false" json:"isFreeTier"`
 
@@ -55,6 +64,9 @@ type AutonomousDatabaseSummary struct {
 	TimeDeletionOfFreeAutonomousDatabase *common.SDKTime `mandatory:"false" json:"timeDeletionOfFreeAutonomousDatabase"`
 
 	BackupConfig *AutonomousDatabaseBackupConfig `mandatory:"false" json:"backupConfig"`
+
+	// Key History Entry.
+	KeyHistoryEntry []AutonomousDatabaseKeyHistoryEntry `mandatory:"false" json:"keyHistoryEntry"`
 
 	// The infrastructure type this resource belongs to.
 	InfrastructureType AutonomousDatabaseSummaryInfrastructureTypeEnum `mandatory:"false" json:"infrastructureType,omitempty"`
@@ -205,7 +217,7 @@ type AutonomousDatabaseSummary struct {
 
 	StandbyDb *AutonomousDatabaseStandbySummary `mandatory:"false" json:"standbyDb"`
 
-	// The role of the Autonomous Dataguard enabled Autonomous Container Database.
+	// The role of the Autonomous Data Guard-enabled Autonomous Container Database.
 	Role AutonomousDatabaseSummaryRoleEnum `mandatory:"false" json:"role,omitempty"`
 
 	// List of Oracle Database versions available for a database upgrade. If there are no version upgrades available, this list is empty.
@@ -246,6 +258,7 @@ const (
 	AutonomousDatabaseSummaryLifecycleStateRecreating              AutonomousDatabaseSummaryLifecycleStateEnum = "RECREATING"
 	AutonomousDatabaseSummaryLifecycleStateRoleChangeInProgress    AutonomousDatabaseSummaryLifecycleStateEnum = "ROLE_CHANGE_IN_PROGRESS"
 	AutonomousDatabaseSummaryLifecycleStateUpgrading               AutonomousDatabaseSummaryLifecycleStateEnum = "UPGRADING"
+	AutonomousDatabaseSummaryLifecycleStateInaccessible            AutonomousDatabaseSummaryLifecycleStateEnum = "INACCESSIBLE"
 )
 
 var mappingAutonomousDatabaseSummaryLifecycleState = map[string]AutonomousDatabaseSummaryLifecycleStateEnum{
@@ -268,6 +281,7 @@ var mappingAutonomousDatabaseSummaryLifecycleState = map[string]AutonomousDataba
 	"RECREATING":                AutonomousDatabaseSummaryLifecycleStateRecreating,
 	"ROLE_CHANGE_IN_PROGRESS":   AutonomousDatabaseSummaryLifecycleStateRoleChangeInProgress,
 	"UPGRADING":                 AutonomousDatabaseSummaryLifecycleStateUpgrading,
+	"INACCESSIBLE":              AutonomousDatabaseSummaryLifecycleStateInaccessible,
 }
 
 // GetAutonomousDatabaseSummaryLifecycleStateEnumValues Enumerates the set of values for AutonomousDatabaseSummaryLifecycleStateEnum

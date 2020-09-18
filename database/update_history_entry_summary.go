@@ -53,12 +53,14 @@ const (
 	UpdateHistoryEntrySummaryUpdateActionRollingApply    UpdateHistoryEntrySummaryUpdateActionEnum = "ROLLING_APPLY"
 	UpdateHistoryEntrySummaryUpdateActionNonRollingApply UpdateHistoryEntrySummaryUpdateActionEnum = "NON_ROLLING_APPLY"
 	UpdateHistoryEntrySummaryUpdateActionPrecheck        UpdateHistoryEntrySummaryUpdateActionEnum = "PRECHECK"
+	UpdateHistoryEntrySummaryUpdateActionRollback        UpdateHistoryEntrySummaryUpdateActionEnum = "ROLLBACK"
 )
 
 var mappingUpdateHistoryEntrySummaryUpdateAction = map[string]UpdateHistoryEntrySummaryUpdateActionEnum{
 	"ROLLING_APPLY":     UpdateHistoryEntrySummaryUpdateActionRollingApply,
 	"NON_ROLLING_APPLY": UpdateHistoryEntrySummaryUpdateActionNonRollingApply,
 	"PRECHECK":          UpdateHistoryEntrySummaryUpdateActionPrecheck,
+	"ROLLBACK":          UpdateHistoryEntrySummaryUpdateActionRollback,
 }
 
 // GetUpdateHistoryEntrySummaryUpdateActionEnumValues Enumerates the set of values for UpdateHistoryEntrySummaryUpdateActionEnum

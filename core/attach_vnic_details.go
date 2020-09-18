@@ -19,8 +19,6 @@ import (
 
 // AttachVnicDetails The representation of AttachVnicDetails
 type AttachVnicDetails struct {
-
-	// Details for creating a new VNIC.
 	CreateVnicDetails *CreateVnicDetails `mandatory:"true" json:"createVnicDetails"`
 
 	// A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.

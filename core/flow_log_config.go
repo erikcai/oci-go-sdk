@@ -56,7 +56,6 @@ type FlowLogConfig struct {
 	// rejected traffic.
 	FlowLogType FlowLogConfigFlowLogTypeEnum `mandatory:"true" json:"flowLogType"`
 
-	// Where to store the flow logs.
 	Destination FlowLogDestination `mandatory:"true" json:"destination"`
 
 	// The date and time the flow log configuration was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).

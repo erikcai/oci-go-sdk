@@ -16,11 +16,18 @@ import (
 // ValidatePatternDetails Validate pattern using the expression and file list.
 type ValidatePatternDetails struct {
 
-	// The new yet to be updated expression used in the pattern that may include qualifiers. If this is not provided,existing expression will be used to validate
+	// The expression used in the pattern that may include qualifiers. Refer to the user documentation for details of the format and examples.
 	Expression *string `mandatory:"false" json:"expression"`
 
-	// The list of file paths on which the expression is applied as a filter.
-	FilePathList []string `mandatory:"false" json:"filePathList"`
+	// List of file paths against which the expression can be tried, as a check. This documents, for reference
+	// purposes, some example objects a pattern is meant to work with.
+	// If provided with the request,this overrides the list which already exists as part of the pattern, if any.
+	CheckFilePathList []string `mandatory:"false" json:"checkFilePathList"`
+
+	// The maximum number of UNMATCHED files, in checkFilePathList, above which the check fails.
+	// Optional, if checkFilePathList is provided.
+	// If provided with the request, this overrides the value which already exists as part of the pattern, if any.
+	CheckFailureLimit *int `mandatory:"false" json:"checkFailureLimit"`
 }
 
 func (m ValidatePatternDetails) String() string {

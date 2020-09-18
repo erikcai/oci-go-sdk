@@ -40,6 +40,9 @@ type InternalVnicAttachment struct {
 	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// The slot number of the VNIC.
+	SlotId *int `mandatory:"false" json:"slotId"`
+
 	// Shape of VNIC that is used to allocate resource in the data plane.
 	VnicShape InternalVnicAttachmentVnicShapeEnum `mandatory:"false" json:"vnicShape,omitempty"`
 }
@@ -80,11 +83,13 @@ type InternalVnicAttachmentVnicShapeEnum string
 
 // Set of constants representing the allowable values for InternalVnicAttachmentVnicShapeEnum
 const (
-	InternalVnicAttachmentVnicShapeVnicaasFixed0200 InternalVnicAttachmentVnicShapeEnum = "VNICAAS_FIXED0200"
+	InternalVnicAttachmentVnicShapeFixed0200 InternalVnicAttachmentVnicShapeEnum = "VNICAAS_FIXED0200"
+	InternalVnicAttachmentVnicShapeFixed0400 InternalVnicAttachmentVnicShapeEnum = "VNICAAS_FIXED0400"
 )
 
 var mappingInternalVnicAttachmentVnicShape = map[string]InternalVnicAttachmentVnicShapeEnum{
-	"VNICAAS_FIXED0200": InternalVnicAttachmentVnicShapeVnicaasFixed0200,
+	"VNICAAS_FIXED0200": InternalVnicAttachmentVnicShapeFixed0200,
+	"VNICAAS_FIXED0400": InternalVnicAttachmentVnicShapeFixed0400,
 }
 
 // GetInternalVnicAttachmentVnicShapeEnumValues Enumerates the set of values for InternalVnicAttachmentVnicShapeEnum

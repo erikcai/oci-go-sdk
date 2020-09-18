@@ -22,6 +22,9 @@ type ListHistoriesRequest struct {
 	// Optional. A filter that returns results that match the name specified.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
 
+	// Optional. A filter that returns results that match the recommendation name specified.
+	RecommendationName *string `mandatory:"false" contributesTo:"query" name:"recommendationName"`
+
 	// The unique OCID associated with the recommendation.
 	RecommendationId *string `mandatory:"false" contributesTo:"query" name:"recommendationId"`
 

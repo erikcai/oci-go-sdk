@@ -20,6 +20,9 @@ import (
 // UpdateInstanceDetails The representation of UpdateInstanceDetails
 type UpdateInstanceDetails struct {
 
+	// The OCID of the compute capacity reservation this instance is launched under.
+	CapacityReservationId *string `mandatory:"false" json:"capacityReservationId"`
+
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
@@ -35,7 +38,6 @@ type UpdateInstanceDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// Instance agent configuration options to choose for updating the instance
 	AgentConfig *UpdateInstanceAgentConfigDetails `mandatory:"false" json:"agentConfig"`
 
 	// Custom metadata key/value string pairs that you provide. Any set of key/value pairs
@@ -94,10 +96,8 @@ type UpdateInstanceDetails struct {
 	// Example: `FAULT-DOMAIN-1`
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`
 
-	// Options for tuning the compatibility and performance of VM shapes.
 	LaunchOptions *UpdateLaunchOptions `mandatory:"false" json:"launchOptions"`
 
-	// Options for defining the availability of a VM instance after a maintenance event that impacts the underlying hardware.
 	AvailabilityConfig *UpdateInstanceAvailabilityConfigDetails `mandatory:"false" json:"availabilityConfig"`
 }
 

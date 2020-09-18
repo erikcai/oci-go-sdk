@@ -493,6 +493,110 @@ func (client DataIntegrationClient) createEntityShape(ctx context.Context, reque
 	return response, err
 }
 
+// CreateExternalPublication Publish a DataFlow in a OCI DataFlow application.
+func (client DataIntegrationClient) CreateExternalPublication(ctx context.Context, request CreateExternalPublicationRequest) (response CreateExternalPublicationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createExternalPublication, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateExternalPublicationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateExternalPublicationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateExternalPublicationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateExternalPublicationResponse")
+	}
+	return
+}
+
+// createExternalPublication implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) createExternalPublication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/workspaces/{workspaceId}/tasks/{taskKey}/externalPublications")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateExternalPublicationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateExternalPublicationValidation Validates a specific task.
+func (client DataIntegrationClient) CreateExternalPublicationValidation(ctx context.Context, request CreateExternalPublicationValidationRequest) (response CreateExternalPublicationValidationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createExternalPublicationValidation, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateExternalPublicationValidationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateExternalPublicationValidationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateExternalPublicationValidationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateExternalPublicationValidationResponse")
+	}
+	return
+}
+
+// createExternalPublicationValidation implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) createExternalPublicationValidation(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/workspaces/{workspaceId}/tasks/{taskKey}/externalPublicationValidations")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateExternalPublicationValidationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateFolder Creates a folder in a project or in another folder, limited to two levels of folders. |
 // Folders are used to organize your design-time resources, such as tasks or data flows.
 func (client DataIntegrationClient) CreateFolder(ctx context.Context, request CreateFolderRequest) (response CreateFolderResponse, err error) {
@@ -1128,6 +1232,100 @@ func (client DataIntegrationClient) deleteDataFlowValidation(ctx context.Context
 	}
 
 	var response DeleteDataFlowValidationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteExternalPublication Removes a published object using the specified identifier.
+func (client DataIntegrationClient) DeleteExternalPublication(ctx context.Context, request DeleteExternalPublicationRequest) (response DeleteExternalPublicationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteExternalPublication, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteExternalPublicationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteExternalPublicationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteExternalPublicationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteExternalPublicationResponse")
+	}
+	return
+}
+
+// deleteExternalPublication implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) deleteExternalPublication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/workspaces/{workspaceId}/tasks/{taskKey}/externalPublications/{externalPublicationsKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteExternalPublicationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteExternalPublicationValidation Removes a task validation using the specified identifier.
+func (client DataIntegrationClient) DeleteExternalPublicationValidation(ctx context.Context, request DeleteExternalPublicationValidationRequest) (response DeleteExternalPublicationValidationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteExternalPublicationValidation, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteExternalPublicationValidationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteExternalPublicationValidationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteExternalPublicationValidationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteExternalPublicationValidationResponse")
+	}
+	return
+}
+
+// deleteExternalPublicationValidation implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) deleteExternalPublicationValidation(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/workspaces/{workspaceId}/tasks/{taskKey}/externalPublicationValidations/{externalPublicationValidationKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteExternalPublicationValidationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1881,6 +2079,100 @@ func (client DataIntegrationClient) getDependentObject(ctx context.Context, requ
 	}
 
 	var response GetDependentObjectResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetExternalPublication Retrieves a publshed object in an task using the specified identifier.
+func (client DataIntegrationClient) GetExternalPublication(ctx context.Context, request GetExternalPublicationRequest) (response GetExternalPublicationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getExternalPublication, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetExternalPublicationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetExternalPublicationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetExternalPublicationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetExternalPublicationResponse")
+	}
+	return
+}
+
+// getExternalPublication implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) getExternalPublication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/tasks/{taskKey}/externalPublications/{externalPublicationsKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetExternalPublicationResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetExternalPublicationValidation Retrieves an external publication validation using the specified identifier.
+func (client DataIntegrationClient) GetExternalPublicationValidation(ctx context.Context, request GetExternalPublicationValidationRequest) (response GetExternalPublicationValidationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getExternalPublicationValidation, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetExternalPublicationValidationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetExternalPublicationValidationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetExternalPublicationValidationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetExternalPublicationValidationResponse")
+	}
+	return
+}
+
+// getExternalPublicationValidation implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) getExternalPublicationValidation(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/tasks/{taskKey}/externalPublicationValidations/{externalPublicationValidationKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetExternalPublicationValidationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2774,6 +3066,100 @@ func (client DataIntegrationClient) listDependentObjects(ctx context.Context, re
 	}
 
 	var response ListDependentObjectsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListExternalPublicationValidations Retrieves a lists of external publication validations in a workspace and provides options to filter the list.
+func (client DataIntegrationClient) ListExternalPublicationValidations(ctx context.Context, request ListExternalPublicationValidationsRequest) (response ListExternalPublicationValidationsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listExternalPublicationValidations, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListExternalPublicationValidationsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListExternalPublicationValidationsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListExternalPublicationValidationsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListExternalPublicationValidationsResponse")
+	}
+	return
+}
+
+// listExternalPublicationValidations implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) listExternalPublicationValidations(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/tasks/{taskKey}/externalPublicationValidations")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListExternalPublicationValidationsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListExternalPublications Retrieves a list of external publications in an application and provides options to filter the list.
+func (client DataIntegrationClient) ListExternalPublications(ctx context.Context, request ListExternalPublicationsRequest) (response ListExternalPublicationsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listExternalPublications, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListExternalPublicationsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListExternalPublicationsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListExternalPublicationsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListExternalPublicationsResponse")
+	}
+	return
+}
+
+// listExternalPublications implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) listExternalPublications(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/workspaces/{workspaceId}/tasks/{taskKey}/externalPublications")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListExternalPublicationsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -3771,6 +4157,53 @@ func (client DataIntegrationClient) updateDataFlow(ctx context.Context, request 
 	}
 
 	var response UpdateDataFlowResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateExternalPublication Updates the external publication object.
+func (client DataIntegrationClient) UpdateExternalPublication(ctx context.Context, request UpdateExternalPublicationRequest) (response UpdateExternalPublicationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateExternalPublication, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateExternalPublicationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateExternalPublicationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateExternalPublicationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateExternalPublicationResponse")
+	}
+	return
+}
+
+// updateExternalPublication implements the OCIOperation interface (enables retrying operations)
+func (client DataIntegrationClient) updateExternalPublication(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/workspaces/{workspaceId}/tasks/{taskKey}/externalPublications/{externalPublicationsKey}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateExternalPublicationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

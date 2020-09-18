@@ -877,7 +877,59 @@ func (client DatabaseClient) completeExternalBackupJob(ctx context.Context, requ
 	return response, err
 }
 
-// CreateAutonomousContainerDatabase Create a new Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
+// ConfigureAutonomousDatabaseVaultKey Configures the Autonomous Database Vault service key (https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+func (client DatabaseClient) ConfigureAutonomousDatabaseVaultKey(ctx context.Context, request ConfigureAutonomousDatabaseVaultKeyRequest) (response ConfigureAutonomousDatabaseVaultKeyResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.configureAutonomousDatabaseVaultKey, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ConfigureAutonomousDatabaseVaultKeyResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ConfigureAutonomousDatabaseVaultKeyResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ConfigureAutonomousDatabaseVaultKeyResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ConfigureAutonomousDatabaseVaultKeyResponse")
+	}
+	return
+}
+
+// configureAutonomousDatabaseVaultKey implements the OCIOperation interface (enables retrying operations)
+func (client DatabaseClient) configureAutonomousDatabaseVaultKey(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/autonomousDatabases/{autonomousDatabaseId}/actions/configureAutonomousDatabaseVaultKey")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ConfigureAutonomousDatabaseVaultKeyResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateAutonomousContainerDatabase Creates an Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
 func (client DatabaseClient) CreateAutonomousContainerDatabase(ctx context.Context, request CreateAutonomousContainerDatabaseRequest) (response CreateAutonomousContainerDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2991,8 +3043,8 @@ func (client DatabaseClient) failOverAutonomousDatabase(ctx context.Context, req
 	return response, err
 }
 
-// FailoverAutonomousContainerDatabaseDataguardAssociation Performs a failover to transition the standby Container Database identified by the autonomousContainerDatabaseId parameter into the specified Autonomous Container Database Dataguard Association's primary role after the existing primary Container Database fails or becomes unreachable.
-// A failover might result in data loss, depending on the protection mode in effect at the time of the primary Container Database failure.
+// FailoverAutonomousContainerDatabaseDataguardAssociation Fails over the standby Autonomous Container Database identified by the autonomousContainerDatabaseId parameter to the primary Autonomous Container Database after the existing primary Autonomous Container Database fails or becomes unreachable.
+// A failover can result in data loss, depending on the protection mode in effect at the time the primary Autonomous Container Database fails.
 func (client DatabaseClient) FailoverAutonomousContainerDatabaseDataguardAssociation(ctx context.Context, request FailoverAutonomousContainerDatabaseDataguardAssociationRequest) (response FailoverAutonomousContainerDatabaseDataguardAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3290,7 +3342,7 @@ func (client DatabaseClient) getAutonomousContainerDatabase(ctx context.Context,
 	return response, err
 }
 
-// GetAutonomousContainerDatabaseDataguardAssociation Gets an Autonomous Container Database dataguard association for the specified Autonomous Container Database.
+// GetAutonomousContainerDatabaseDataguardAssociation Gets an Autonomous Container Database enabled with Autonomous Data Guard associated with the specified Autonomous Container Database.
 func (client DatabaseClient) GetAutonomousContainerDatabaseDataguardAssociation(ctx context.Context, request GetAutonomousContainerDatabaseDataguardAssociationRequest) (response GetAutonomousContainerDatabaseDataguardAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3525,7 +3577,7 @@ func (client DatabaseClient) getAutonomousDatabaseBackup(ctx context.Context, re
 	return response, err
 }
 
-// GetAutonomousDatabaseDataguardAssociation Gets an Autonomous Database dataguard assocation for the specified Autonomous Database.
+// GetAutonomousDatabaseDataguardAssociation Gets an Autonomous Data Guard-enabled database associated with the specified Autonomous Database.
 func (client DatabaseClient) GetAutonomousDatabaseDataguardAssociation(ctx context.Context, request GetAutonomousDatabaseDataguardAssociationRequest) (response GetAutonomousDatabaseDataguardAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5287,7 +5339,7 @@ func (client DatabaseClient) launchDbSystem(ctx context.Context, request common.
 	return response, err
 }
 
-// ListAutonomousContainerDatabaseDataguardAssociations Gets a list of the Autonomous Container Database dataguard associations for the specified Autonomous Container Database.
+// ListAutonomousContainerDatabaseDataguardAssociations Gets a list of the Autonomous Container Databases with Autonomous Data Guard enabled associated with the specified Autonomous Container Database.
 func (client DatabaseClient) ListAutonomousContainerDatabaseDataguardAssociations(ctx context.Context, request ListAutonomousContainerDatabaseDataguardAssociationsRequest) (response ListAutonomousContainerDatabaseDataguardAssociationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5569,7 +5621,7 @@ func (client DatabaseClient) listAutonomousDatabaseClones(ctx context.Context, r
 	return response, err
 }
 
-// ListAutonomousDatabaseDataguardAssociations Gets a list of the Autonomous Database Dataguard assocations for the specified Autonomous Database.
+// ListAutonomousDatabaseDataguardAssociations Gets a list of the Autonomous Data Guard-enabled databases associated with the specified Autonomous Database.
 func (client DatabaseClient) ListAutonomousDatabaseDataguardAssociations(ctx context.Context, request ListAutonomousDatabaseDataguardAssociationsRequest) (response ListAutonomousDatabaseDataguardAssociationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -7418,7 +7470,7 @@ func (client DatabaseClient) registerAutonomousDatabaseDataSafe(ctx context.Cont
 	return response, err
 }
 
-// ReinstateAutonomousContainerDatabaseDataguardAssociation Performs a reinstate to transition the disabled standby autonomous container database identified by the autonomousContainerDatabaseId parameter to an active standby autonomous container database.
+// ReinstateAutonomousContainerDatabaseDataguardAssociation Reinstates a disabled standby Autonomous Container Database, identified by the autonomousContainerDatabaseId parameter, to an active standby Autonomous Container Database.
 func (client DatabaseClient) ReinstateAutonomousContainerDatabaseDataguardAssociation(ctx context.Context, request ReinstateAutonomousContainerDatabaseDataguardAssociationRequest) (response ReinstateAutonomousContainerDatabaseDataguardAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8091,8 +8143,8 @@ func (client DatabaseClient) stopAutonomousDatabase(ctx context.Context, request
 	return response, err
 }
 
-// SwitchoverAutonomousContainerDatabaseDataguardAssociation Performs a switchover to transition the primary Container Database of an Autonomous Container Database Dataguard Association into a standby role. The standby Container Database associated with autonomousContainerDatabaseDataguardAssociationId assumes the primary Container Database role.
-// A switchover guarantees no data loss.
+// SwitchoverAutonomousContainerDatabaseDataguardAssociation Switches over the primary Autonomous Container Database of an Autonomous Data Guard peer association into a standby role. The standby Autonomous Container Database associated with autonomousContainerDatabaseDataguardAssociationId assumes the primary Autonomous Container Database role.
+// A switchover incurs no data loss.
 func (client DatabaseClient) SwitchoverAutonomousContainerDatabaseDataguardAssociation(ctx context.Context, request SwitchoverAutonomousContainerDatabaseDataguardAssociationRequest) (response SwitchoverAutonomousContainerDatabaseDataguardAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -26,12 +26,6 @@ type UpdateInternalDrgAttachmentDetails struct {
 
 	// The OCID of the route table the DRG attachment will use.
 	RouteTableId *string `mandatory:"false" json:"routeTableId"`
-
-	// NextHop target's MPLS label.
-	MplsLabel *string `mandatory:"false" json:"mplsLabel"`
-
-	// The string in the form ASN:mplsLabel.
-	RouteTarget *string `mandatory:"false" json:"routeTarget"`
 }
 
 func (m UpdateInternalDrgAttachmentDetails) String() string {

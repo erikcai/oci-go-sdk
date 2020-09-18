@@ -23,7 +23,6 @@ type PrivateIpNextHopTarget struct {
 	// NextHop target's MPLS label.
 	MplsLabel *int `mandatory:"false" json:"mplsLabel"`
 
-	// Port range associated with the target. Used by VNICaaS for destination port based forwarding.
 	PortRange *PortRange `mandatory:"false" json:"portRange"`
 
 	// NextHop target's substrate IP.

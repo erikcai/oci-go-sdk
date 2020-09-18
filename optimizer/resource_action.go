@@ -61,13 +61,23 @@ type ResourceAction struct {
 	// date and time."
 	TimeStatusEnd *common.SDKTime `mandatory:"false" json:"timeStatusEnd"`
 
-	// Custom metadata for the resource action.
-	// Example: `{"bar-key": "value"}`
+	// Custom metadata key/value pairs for the resource action.
+	//  **Metadata Example**
+	//       "metadata" : {
+	//          "cpuRecommendedShape": "VM.Standard1.1",
+	//          "computeMemoryUtilization": "26.05734124418388",
+	//          "currentShape": "VM.Standard1.2",
+	//          "instanceRecommendedShape": "VM.Standard1.1",
+	//          "computeCpuUtilization": "7.930035319720132",
+	//          "memoryRecommendedShape": "None"
+	//       }
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 
-	// Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the 'metadata' object.
-	// They are distinguished from 'metadata' fields in that these can be nested JSON objects (whereas 'metadata' fields are string/string maps only).
-	// Example: `{"CurrentShape": {"name":"VM.Standard2.16"}, "RecommendedShape": {"name":"VM.Standard2.8"}}`
+	// Additional metadata key/value pairs that you provide.
+	// They serve the same purpose and functionality as fields in the `metadata` object.
+	// They are distinguished from `metadata` fields in that these can be nested JSON objects (whereas `metadata` fields are string/string maps only).
+	// For example:
+	// `{"CurrentShape": {"name":"VM.Standard2.16"}, "RecommendedShape": {"name":"VM.Standard2.8"}}`
 	ExtendedMetadata map[string]interface{} `mandatory:"false" json:"extendedMetadata"`
 
 	// The date and time the resource action details were created, in the format defined by RFC3339.

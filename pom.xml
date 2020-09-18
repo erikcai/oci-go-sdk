@@ -5242,7 +5242,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.1384</version>
+        <version>0.2.1451</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -5257,12 +5257,12 @@
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
         <artifactId>oralb-api-spec</artifactId>
-        <version>4.0.88</version>
+        <version>86.0.87</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.546</version>
+        <version>0.1.562</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -5417,7 +5417,7 @@
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.3.0-2009102008</version>
+        <version>1.3.0-2009170122</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -5467,7 +5467,7 @@
       <dependency>
         <groupId>com.oracle.oci.mysql</groupId>
         <artifactId>mysqlaas-api-spec</artifactId>
-        <version>10.9.9</version>
+        <version>10.9.10</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ocisms.dataplane</groupId>
@@ -5482,7 +5482,7 @@
       <dependency>
         <groupId>com.oracle.blockchain</groupId>
         <artifactId>oracle-blockchain-platform-spec</artifactId>
-        <version>20.7.2</version>
+        <version>20.9.1</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.ads.admin.cp</groupId>
@@ -5497,7 +5497,7 @@
       <dependency>
         <groupId>com.oracle.dis</groupId>
         <artifactId>dis-sdk-spec</artifactId>
-        <version>1.0.0-139</version>
+        <version>1.0.0-140</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.controlplane</groupId>
@@ -5507,7 +5507,7 @@
       <dependency>
         <groupId>com.oracle.pic.vmware.ocvp</groupId>
         <artifactId>vmware-provision-service-spec</artifactId>
-        <version>0.1.606</version>
+        <version>0.1.628</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.metering.usagestore.api</groupId>
@@ -5537,7 +5537,7 @@
       <dependency>
         <groupId>com.oracle.oci.optimizer</groupId>
         <artifactId>optimizer-spec</artifactId>
-        <version>0.1.191</version>
+        <version>0.1.238</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.macs</groupId>

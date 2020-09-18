@@ -56,12 +56,14 @@ const (
 	UpdateLastActionRollingApply    UpdateLastActionEnum = "ROLLING_APPLY"
 	UpdateLastActionNonRollingApply UpdateLastActionEnum = "NON_ROLLING_APPLY"
 	UpdateLastActionPrecheck        UpdateLastActionEnum = "PRECHECK"
+	UpdateLastActionRollback        UpdateLastActionEnum = "ROLLBACK"
 )
 
 var mappingUpdateLastAction = map[string]UpdateLastActionEnum{
 	"ROLLING_APPLY":     UpdateLastActionRollingApply,
 	"NON_ROLLING_APPLY": UpdateLastActionNonRollingApply,
 	"PRECHECK":          UpdateLastActionPrecheck,
+	"ROLLBACK":          UpdateLastActionRollback,
 }
 
 // GetUpdateLastActionEnumValues Enumerates the set of values for UpdateLastActionEnum
@@ -81,12 +83,14 @@ const (
 	UpdateAvailableActionsRollingApply    UpdateAvailableActionsEnum = "ROLLING_APPLY"
 	UpdateAvailableActionsNonRollingApply UpdateAvailableActionsEnum = "NON_ROLLING_APPLY"
 	UpdateAvailableActionsPrecheck        UpdateAvailableActionsEnum = "PRECHECK"
+	UpdateAvailableActionsRollback        UpdateAvailableActionsEnum = "ROLLBACK"
 )
 
 var mappingUpdateAvailableActions = map[string]UpdateAvailableActionsEnum{
 	"ROLLING_APPLY":     UpdateAvailableActionsRollingApply,
 	"NON_ROLLING_APPLY": UpdateAvailableActionsNonRollingApply,
 	"PRECHECK":          UpdateAvailableActionsPrecheck,
+	"ROLLBACK":          UpdateAvailableActionsRollback,
 }
 
 // GetUpdateAvailableActionsEnumValues Enumerates the set of values for UpdateAvailableActionsEnum

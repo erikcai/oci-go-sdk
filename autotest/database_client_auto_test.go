@@ -682,6 +682,50 @@ func TestDatabaseClientCompleteExternalBackupJob(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientConfigureAutonomousDatabaseVaultKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ConfigureAutonomousDatabaseVaultKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ConfigureAutonomousDatabaseVaultKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ConfigureAutonomousDatabaseVaultKey", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ConfigureAutonomousDatabaseVaultKey")
+	assert.NoError(t, err)
+
+	type ConfigureAutonomousDatabaseVaultKeyRequestInfo struct {
+		ContainerId string
+		Request     database.ConfigureAutonomousDatabaseVaultKeyRequest
+	}
+
+	var requests []ConfigureAutonomousDatabaseVaultKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ConfigureAutonomousDatabaseVaultKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientCreateAutonomousContainerDatabase(t *testing.T) {
 	defer failTestOnPanic(t)

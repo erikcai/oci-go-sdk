@@ -17,7 +17,7 @@ import (
 type LevelConfiguration struct {
 
 	// The unique OCID of the recommendation.
-	RecommendationId *string `mandatory:"true" json:"recommendationId"`
+	RecommendationId *string `mandatory:"false" json:"recommendationId"`
 
 	// The pre-defined profile level.
 	Level *string `mandatory:"false" json:"level"`

@@ -13,47 +13,47 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// AutonomousContainerDatabaseDataguardAssociation The properties that define dataguard association between two different Autonomous Container Databases.
+// AutonomousContainerDatabaseDataguardAssociation The properties that define Autonomous Data Guard association between two different Autonomous Container Databases.
 type AutonomousContainerDatabaseDataguardAssociation struct {
 
-	// The OCID of the Autonomous Dataguard created for given Autonomous Container Database.
+	// The OCID of the Autonomous Data Guard created for a given Autonomous Container Database.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Container Database that has a relationship with the peer Autonomous Container Database.
 	AutonomousContainerDatabaseId *string `mandatory:"true" json:"autonomousContainerDatabaseId"`
 
-	// The role of the Autonomous Dataguard enabled Autonomous Container Database.
+	// The role of the Autonomous Data Guard-enabled Autonomous Container Database.
 	Role AutonomousContainerDatabaseDataguardAssociationRoleEnum `mandatory:"true" json:"role"`
 
-	// The current state of the Autonomous Dataguard.
+	// The current state of the Autonomous Data Guard.
 	LifecycleState AutonomousContainerDatabaseDataguardAssociationLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The role of the Autonomous Dataguard enabled Autonomous Container Database.
+	// The role of the Autonomous Data Guard-enabled Autonomous Container Database.
 	PeerRole AutonomousContainerDatabaseDataguardAssociationPeerRoleEnum `mandatory:"true" json:"peerRole"`
 
 	// Additional information about the current lifecycleState, if available.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
-	// The OCID of the peer Autonomous Container Database Dataguard Association.
+	// The OCID of the peer Autonomous Container Database-Autonomous Data Guard association.
 	PeerAutonomousContainerDatabaseDataguardAssociationId *string `mandatory:"false" json:"peerAutonomousContainerDatabaseDataguardAssociationId"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the peer Autonomous Container Database.
 	PeerAutonomousContainerDatabaseId *string `mandatory:"false" json:"peerAutonomousContainerDatabaseId"`
 
-	// The current state of the Autonomous Dataguard.
+	// The current state of the Autonomous Data Guard.
 	PeerLifecycleState AutonomousContainerDatabaseDataguardAssociationPeerLifecycleStateEnum `mandatory:"false" json:"peerLifecycleState,omitempty"`
 
-	// The protection mode of this Data Guard association. For more information, see
+	// The protection mode of this Autonomous Data Guard association. For more information, see
 	// Oracle Data Guard Protection Modes (http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
 	// in the Oracle Data Guard documentation.
 	ProtectionMode AutonomousContainerDatabaseDataguardAssociationProtectionModeEnum `mandatory:"false" json:"protectionMode,omitempty"`
 
-	// The lag time between updates to the primary autonomous container database and application of the redo data on the standby autonomous container database,
+	// The lag time between updates to the primary Autonomous Container Database and application of the redo data on the standby Autonomous Container Database,
 	// as computed by the reporting database.
 	// Example: `9 seconds`
 	ApplyLag *string `mandatory:"false" json:"applyLag"`
 
-	// The rate at which redo logs are synced between the associated container databases.
+	// The rate at which redo logs are synchronized between the associated Autonomous Container Databases.
 	// Example: `180 Mb per second`
 	ApplyRate *string `mandatory:"false" json:"applyRate"`
 

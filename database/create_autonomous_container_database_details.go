@@ -31,13 +31,13 @@ type CreateAutonomousContainerDatabaseDetails struct {
 	// The OCID of the Autonomous Exadata Infrastructure.
 	AutonomousExadataInfrastructureId *string `mandatory:"false" json:"autonomousExadataInfrastructureId"`
 
-	// The OCID of the peer Autonomous Exadata Infrastructure for autonomous dataguard.
+	// The OCID of the peer Autonomous Exadata Infrastructure for Autonomous Data Guard.
 	PeerAutonomousExadataInfrastructureId *string `mandatory:"false" json:"peerAutonomousExadataInfrastructureId"`
 
 	// The display name for the peer Autonomous Container Database.
 	PeerAutonomousContainerDatabaseDisplayName *string `mandatory:"false" json:"peerAutonomousContainerDatabaseDisplayName"`
 
-	// The protection mode of this Data Guard association. For more information, see
+	// The protection mode of this Autonomous Data Guard association. For more information, see
 	// Oracle Data Guard Protection Modes (http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
 	// in the Oracle Data Guard documentation.
 	ProtectionMode CreateAutonomousContainerDatabaseDetailsProtectionModeEnum `mandatory:"false" json:"protectionMode,omitempty"`
@@ -50,7 +50,7 @@ type CreateAutonomousContainerDatabaseDetails struct {
 
 	MaintenanceWindowDetails *MaintenanceWindow `mandatory:"false" json:"maintenanceWindowDetails"`
 
-	// The scheduling detail for the quarterly maintenance window of standby Autonomous Container Database.
+	// The scheduling detail for the quarterly maintenance window of the standby Autonomous Container Database.
 	// This value represents the number of days before the primary database maintenance schedule.
 	StandbyMaintenanceBufferInDays *int `mandatory:"false" json:"standbyMaintenanceBufferInDays"`
 

@@ -24,7 +24,7 @@ type UpdateAutonomousContainerDatabaseDetails struct {
 
 	MaintenanceWindowDetails *MaintenanceWindow `mandatory:"false" json:"maintenanceWindowDetails"`
 
-	// The scheduling detail for the quarterly maintenance window of standby Autonomous Container Database.
+	// The scheduling detail for the quarterly maintenance window of the standby Autonomous Container Database.
 	// This value represents the number of days before the primary database maintenance schedule.
 	StandbyMaintenanceBufferInDays *int `mandatory:"false" json:"standbyMaintenanceBufferInDays"`
 

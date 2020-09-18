@@ -15,7 +15,7 @@ type GetAutonomousDatabaseDataguardAssociationRequest struct {
 	// The database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	AutonomousDatabaseId *string `mandatory:"true" contributesTo:"path" name:"autonomousDatabaseId"`
 
-	// The Autonomous Database Dataguard Association OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The Autonomous Container Database-Autonomous Data Guard association OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	AutonomousDatabaseDataguardAssociationId *string `mandatory:"true" contributesTo:"path" name:"autonomousDatabaseDataguardAssociationId"`
 
 	// Unique identifier for the request.
@@ -52,8 +52,8 @@ type GetAutonomousDatabaseDataguardAssociationResponse struct {
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about
-	// a particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. If you must contact Oracle about
+	// a particular request, then provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

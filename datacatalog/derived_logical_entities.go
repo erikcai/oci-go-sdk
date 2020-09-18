@@ -22,8 +22,8 @@ type DerivedLogicalEntities struct {
 	// The expression realized after resolving qualifiers . Used in deriving this logical entity
 	RealizedExpression *string `mandatory:"false" json:"realizedExpression"`
 
-	// The list of file paths on which the expression is applied as a filter.
-	FilePathList []string `mandatory:"false" json:"filePathList"`
+	// The list of file paths that belong to the grouping of logical entity or UNMATCHED for which realizedExpression is a selector.
+	FilesInLogicalGrouping []string `mandatory:"false" json:"filesInLogicalGrouping"`
 }
 
 func (m DerivedLogicalEntities) String() string {

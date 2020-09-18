@@ -82,13 +82,13 @@ type AutonomousContainerDatabase struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
-	// The role of the dataguard enabled Autonomous Container Database.
+	// The role of the Autonomous Data Guard-enabled Autonomous Container Database.
 	Role AutonomousContainerDatabaseRoleEnum `mandatory:"false" json:"role,omitempty"`
 
 	// The availability domain of the Autonomous Container Database.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
-	// Oracle Database version of the Autonomous Container Database
+	// Oracle Database version of the Autonomous Container Database.
 	DbVersion *string `mandatory:"false" json:"dbVersion"`
 
 	BackupConfig *AutonomousContainerDatabaseBackupConfig `mandatory:"false" json:"backupConfig"`

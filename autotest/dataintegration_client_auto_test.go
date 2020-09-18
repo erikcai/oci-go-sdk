@@ -418,6 +418,94 @@ func TestDataIntegrationClientCreateEntityShape(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientCreateExternalPublication(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "CreateExternalPublication")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateExternalPublication is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "CreateExternalPublication", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "CreateExternalPublication")
+	assert.NoError(t, err)
+
+	type CreateExternalPublicationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.CreateExternalPublicationRequest
+	}
+
+	var requests []CreateExternalPublicationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateExternalPublication(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientCreateExternalPublicationValidation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "CreateExternalPublicationValidation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateExternalPublicationValidation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "CreateExternalPublicationValidation", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "CreateExternalPublicationValidation")
+	assert.NoError(t, err)
+
+	type CreateExternalPublicationValidationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.CreateExternalPublicationValidationRequest
+	}
+
+	var requests []CreateExternalPublicationValidationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateExternalPublicationValidation(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
 func TestDataIntegrationClientCreateFolder(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1006,6 +1094,94 @@ func TestDataIntegrationClientDeleteDataFlowValidation(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteDataFlowValidation(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientDeleteExternalPublication(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "DeleteExternalPublication")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteExternalPublication is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "DeleteExternalPublication", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "DeleteExternalPublication")
+	assert.NoError(t, err)
+
+	type DeleteExternalPublicationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.DeleteExternalPublicationRequest
+	}
+
+	var requests []DeleteExternalPublicationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteExternalPublication(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientDeleteExternalPublicationValidation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "DeleteExternalPublicationValidation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteExternalPublicationValidation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "DeleteExternalPublicationValidation", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "DeleteExternalPublicationValidation")
+	assert.NoError(t, err)
+
+	type DeleteExternalPublicationValidationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.DeleteExternalPublicationValidationRequest
+	}
+
+	var requests []DeleteExternalPublicationValidationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteExternalPublicationValidation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1710,6 +1886,94 @@ func TestDataIntegrationClientGetDependentObject(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetDependentObject(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientGetExternalPublication(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "GetExternalPublication")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetExternalPublication is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "GetExternalPublication", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "GetExternalPublication")
+	assert.NoError(t, err)
+
+	type GetExternalPublicationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.GetExternalPublicationRequest
+	}
+
+	var requests []GetExternalPublicationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetExternalPublication(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientGetExternalPublicationValidation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "GetExternalPublicationValidation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetExternalPublicationValidation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "GetExternalPublicationValidation", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "GetExternalPublicationValidation")
+	assert.NoError(t, err)
+
+	type GetExternalPublicationValidationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.GetExternalPublicationValidationRequest
+	}
+
+	var requests []GetExternalPublicationValidationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetExternalPublicationValidation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2624,6 +2888,114 @@ func TestDataIntegrationClientListDependentObjects(t *testing.T) {
 			typedListResponses := make([]dataintegration.ListDependentObjectsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(dataintegration.ListDependentObjectsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientListExternalPublicationValidations(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "ListExternalPublicationValidations")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListExternalPublicationValidations is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "ListExternalPublicationValidations", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "ListExternalPublicationValidations")
+	assert.NoError(t, err)
+
+	type ListExternalPublicationValidationsRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.ListExternalPublicationValidationsRequest
+	}
+
+	var requests []ListExternalPublicationValidationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*dataintegration.ListExternalPublicationValidationsRequest)
+				return c.ListExternalPublicationValidations(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]dataintegration.ListExternalPublicationValidationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(dataintegration.ListExternalPublicationValidationsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientListExternalPublications(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "ListExternalPublications")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListExternalPublications is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "ListExternalPublications", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "ListExternalPublications")
+	assert.NoError(t, err)
+
+	type ListExternalPublicationsRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.ListExternalPublicationsRequest
+	}
+
+	var requests []ListExternalPublicationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*dataintegration.ListExternalPublicationsRequest)
+				return c.ListExternalPublications(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]dataintegration.ListExternalPublicationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(dataintegration.ListExternalPublicationsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -3732,6 +4104,50 @@ func TestDataIntegrationClientUpdateDataFlow(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateDataFlow(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientUpdateExternalPublication(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "UpdateExternalPublication")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateExternalPublication is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "UpdateExternalPublication", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "UpdateExternalPublication")
+	assert.NoError(t, err)
+
+	type UpdateExternalPublicationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.UpdateExternalPublicationRequest
+	}
+
+	var requests []UpdateExternalPublicationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateExternalPublication(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

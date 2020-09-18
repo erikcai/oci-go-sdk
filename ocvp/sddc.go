@@ -236,9 +236,6 @@ type Sddc struct {
 	// HCX Private IP
 	HcxPrivateIpId *string `mandatory:"false" json:"hcxPrivateIpId"`
 
-	// HCX Public IP
-	HcxPublicIpId *string `mandatory:"false" json:"hcxPublicIpId"`
-
 	// HCX Fully Qualified Domain Name
 	HcxFqdn *string `mandatory:"false" json:"hcxFqdn"`
 

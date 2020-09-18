@@ -29,7 +29,6 @@ type CreateFlowLogConfigDetails struct {
 	// rejected traffic.
 	FlowLogType CreateFlowLogConfigDetailsFlowLogTypeEnum `mandatory:"true" json:"flowLogType"`
 
-	// Where to store the flow logs.
 	Destination FlowLogDestination `mandatory:"true" json:"destination"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
