@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// SortKeyRule A rule to define a set of fields to sort by, and whether to sort by ascending or descending values.
+// SortKeyRule A rule to define the set of fields to sort by, and whether to sort by ascending or descending values.
 type SortKeyRule struct {
 	WrappedRule ProjectionRule `mandatory:"false" json:"wrappedRule"`
 

@@ -175,10 +175,8 @@ func (client VirtualNetworkClient) addNetworkSecurityGroupSecurityRules(ctx cont
 	return response, err
 }
 
-// AddPublicIpPoolCapacity Adds a Cidr from the named Byoip Range prefix to the referenced Public IP Pool.
-// The cidr must be a subset of the Byoip Range in question.
-// The cidr must not overlap with any other cidr already added to this
-// or any other Public Ip Pool.
+// AddPublicIpPoolCapacity Adds some or all of a CIDR block to a public IP pool.
+// The CIDR block (or subrange) must not overlap with any other CIDR block already added to this or any other public IP pool.
 func (client VirtualNetworkClient) AddPublicIpPoolCapacity(ctx context.Context, request AddPublicIpPoolCapacityRequest) (response AddPublicIpPoolCapacityResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -286,8 +284,8 @@ func (client VirtualNetworkClient) addVcnCidr(ctx context.Context, request commo
 	return response, err
 }
 
-// AdvertiseByoipRange initiate route advertisements for the Byoip Range prefix.
-// the prefix must be in PROVISIONED state
+// AdvertiseByoipRange Begins BGP route advertisements for the BYOIP CIDR block you imported to the Oracle Cloud.
+// The `ByoipRange` resource must be in the PROVISIONED state before the BYOIP CIDR block routes can be advertised with BGP.
 func (client VirtualNetworkClient) AdvertiseByoipRange(ctx context.Context, request AdvertiseByoipRangeRequest) (response AdvertiseByoipRangeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -479,7 +477,7 @@ func (client VirtualNetworkClient) bulkDeleteVirtualCircuitPublicPrefixes(ctx co
 	return response, err
 }
 
-// ChangeByoipRangeCompartment Moves a byoip range into a different compartment within the same tenancy. For information
+// ChangeByoipRangeCompartment Moves a BYOIP CIDR block to a different compartment. For information
 // about moving resources between compartments, see
 // Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 func (client VirtualNetworkClient) ChangeByoipRangeCompartment(ctx context.Context, request ChangeByoipRangeCompartmentRequest) (response ChangeByoipRangeCompartmentResponse, err error) {
@@ -1283,7 +1281,7 @@ func (client VirtualNetworkClient) changePublicIpCompartment(ctx context.Context
 	return response, err
 }
 
-// ChangePublicIpPoolCompartment Moves a public IP pool into a different compartment within the same tenancy. For information
+// ChangePublicIpPoolCompartment Moves a public IP pool to a different compartment. For information
 // about moving resources between compartments, see
 // Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 func (client VirtualNetworkClient) ChangePublicIpPoolCompartment(ctx context.Context, request ChangePublicIpPoolCompartmentRequest) (response ChangePublicIpPoolCompartmentResponse, err error) {
@@ -1922,7 +1920,7 @@ func (client VirtualNetworkClient) connectRemotePeeringConnections(ctx context.C
 	return response, err
 }
 
-// CreateByoipRange Creates a Byoip Range prefix.
+// CreateByoipRange Creates a subrange of the BYOIP CIDR block.
 func (client VirtualNetworkClient) CreateByoipRange(ctx context.Context, request CreateByoipRangeRequest) (response CreateByoipRangeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3591,7 +3589,7 @@ func (client VirtualNetworkClient) createPublicIp(ctx context.Context, request c
 	return response, err
 }
 
-// CreatePublicIpPool Creates a Public Ip Pool
+// CreatePublicIpPool Creates a public IP pool.
 func (client VirtualNetworkClient) CreatePublicIpPool(ctx context.Context, request CreatePublicIpPoolRequest) (response CreatePublicIpPoolResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4208,11 +4206,11 @@ func (client VirtualNetworkClient) createVnicWorker(ctx context.Context, request
 	return response, err
 }
 
-// DeleteByoipRange Deletes the specified Byoip Range prefix.
-// The prefix must be in CREATING, PROVISIONED or FAILED state.
-// It must not have any subranges allocated to a Public Ip Pool object.
-// You must specify the object's OCID.
-// In case the range is currently PROVISIONED, the operation will be asynchronous as it needs to be de-ptovisioned first.
+// DeleteByoipRange Deletes the specified `ByoipRange` resource.
+// The resource must be in one of the following states: CREATING, PROVISIONED, ACTIVE, or FAILED.
+// It must not have any subranges currently allocated to a PublicIpPool object or the deletion will fail.
+// You must specify the OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+// If the `ByoipRange` resource is currently in the PROVISIONED or ACTIVE state, it will be de-provisioned and then deleted.
 func (client VirtualNetworkClient) DeleteByoipRange(ctx context.Context, request DeleteByoipRangeRequest) (response DeleteByoipRangeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5641,9 +5639,9 @@ func (client VirtualNetworkClient) deletePublicIp(ctx context.Context, request c
 	return response, err
 }
 
-// DeletePublicIpPool Deletes the specified Public Ip Pool
-// It must not have any active address allocations
-// You must specify the object's OCID.
+// DeletePublicIpPool Deletes the specified public IP pool.
+// To delete a public IP pool it must not have any active IP address allocations.
+// You must specify the object's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) when deleting an IP pool.
 func (client VirtualNetworkClient) DeletePublicIpPool(ctx context.Context, request DeletePublicIpPoolRequest) (response DeletePublicIpPoolResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6476,7 +6474,7 @@ func (client VirtualNetworkClient) generateLocalPeeringToken(ctx context.Context
 	return response, err
 }
 
-// GetByoipRange Gets the specified Byoip Range object. You must specify the object's OCID.
+// GetByoipRange Gets the `ByoipRange` resource. You must specify the OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 func (client VirtualNetworkClient) GetByoipRange(ctx context.Context, request GetByoipRangeRequest) (response GetByoipRangeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -8826,7 +8824,7 @@ func (client VirtualNetworkClient) getPublicIpByPrivateIpId(ctx context.Context,
 	return response, err
 }
 
-// GetPublicIpPool Gets the specified Public Ip Pool object. You must specify the object's OCID.
+// GetPublicIpPool Gets the specified `PublicIpPool` object. You must specify the object's OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 func (client VirtualNetworkClient) GetPublicIpPool(ctx context.Context, request GetPublicIpPoolRequest) (response GetPublicIpPoolResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -9647,8 +9645,8 @@ func (client VirtualNetworkClient) listAllowedPeerRegionsForRemotePeering(ctx co
 	return response, err
 }
 
-// ListByoipAllocatedRanges Lists the ByoipAllocatedRange objects for the ByoipRange.
-// Each ByoipAllocatedRange object has a CIDR block part of the ByoipRange and the PublicIpPool it is assigned to.
+// ListByoipAllocatedRanges Lists the subranges of a BYOIP CIDR block currently allocated to an IP pool.
+// Each `ByoipAllocatedRange` object also lists the IP pool where it is allocated.
 func (client VirtualNetworkClient) ListByoipAllocatedRanges(ctx context.Context, request ListByoipAllocatedRangesRequest) (response ListByoipAllocatedRangesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -9695,8 +9693,8 @@ func (client VirtualNetworkClient) listByoipAllocatedRanges(ctx context.Context,
 	return response, err
 }
 
-// ListByoipRanges Lists the ByoipRange objects in the specified compartment.
-// You can filter the list by using query parameters.
+// ListByoipRanges Lists the `ByoipRange` resources in the specified compartment.
+// You can filter the list using query parameters.
 func (client VirtualNetworkClient) ListByoipRanges(ctx context.Context, request ListByoipRangesRequest) (response ListByoipRangesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -11457,8 +11455,8 @@ func (client VirtualNetworkClient) listPrivateIps(ctx context.Context, request c
 	return response, err
 }
 
-// ListPublicIpPools Lists the PublicIpPool objects in the specified compartment.
-// You can filter the list by using query parameters.
+// ListPublicIpPools Lists the public IP pools in the specified compartment.
+// You can filter the list using query parameters.
 func (client VirtualNetworkClient) ListPublicIpPools(ctx context.Context, request ListPublicIpPoolsRequest) (response ListPublicIpPoolsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -12437,7 +12435,7 @@ func (client VirtualNetworkClient) removeNetworkSecurityGroupSecurityRules(ctx c
 	return response, err
 }
 
-// RemovePublicIpPoolCapacity Removes a Cidr from the referenced Public IP Pool.
+// RemovePublicIpPoolCapacity Removes a CIDR block from the referenced public IP pool.
 func (client VirtualNetworkClient) RemovePublicIpPoolCapacity(ctx context.Context, request RemovePublicIpPoolCapacityRequest) (response RemovePublicIpPoolCapacityResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -12542,7 +12540,7 @@ func (client VirtualNetworkClient) removeVcnCidr(ctx context.Context, request co
 	return response, err
 }
 
-// UpdateByoipRange Updates the specified Byoip Range.
+// UpdateByoipRange Updates the tags or display name associated to the specified BYOIP CIDR block.
 func (client VirtualNetworkClient) UpdateByoipRange(ctx context.Context, request UpdateByoipRangeRequest) (response UpdateByoipRangeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -14150,7 +14148,7 @@ func (client VirtualNetworkClient) updatePublicIp(ctx context.Context, request c
 	return response, err
 }
 
-// UpdatePublicIpPool Updates the specified Public Ip Pool.
+// UpdatePublicIpPool Updates the specified public IP pool.
 func (client VirtualNetworkClient) UpdatePublicIpPool(ctx context.Context, request UpdatePublicIpPoolRequest) (response UpdatePublicIpPoolResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -14750,8 +14748,8 @@ func (client VirtualNetworkClient) updateVnicWorker(ctx context.Context, request
 	return response, err
 }
 
-// ValidateByoipRange submit the Byoip Range for validation. This presumes the user has
-// updated their IP registry record in accordance to validation requirements
+// ValidateByoipRange Submits the BYOIP CIDR block you are importing for validation. Do not submit to Oracle for validation if you have not already
+// modified the information for the BYOIP CIDR block with your Regional Internet Registry. See To import a CIDR block (https://docs.cloud.oracle.com/Content/Network/Concepts/BYOIP.htm#import_cidr) for details.
 func (client VirtualNetworkClient) ValidateByoipRange(ctx context.Context, request ValidateByoipRangeRequest) (response ValidateByoipRangeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -14798,7 +14796,7 @@ func (client VirtualNetworkClient) validateByoipRange(ctx context.Context, reque
 	return response, err
 }
 
-// WithdrawByoipRange stop route advertisements for the Byoip Range prefix.
+// WithdrawByoipRange Withdraws BGP route advertisement for the BYOIP CIDR block.
 func (client VirtualNetworkClient) WithdrawByoipRange(ctx context.Context, request WithdrawByoipRangeRequest) (response WithdrawByoipRangeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -5242,7 +5242,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.1451</version>
+        <version>0.2.1508</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -5262,7 +5262,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.562</version>
+        <version>0.1.576</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -5282,7 +5282,7 @@
       <dependency>
         <groupId>com.oracle.pic.dns.pub</groupId>
         <artifactId>public-dns-api-spec</artifactId>
-        <version>2.0.76</version>
+        <version>2.0.81</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
@@ -5302,7 +5302,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.1.22</version>
+        <version>1.1.23</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
@@ -5497,17 +5497,17 @@
       <dependency>
         <groupId>com.oracle.dis</groupId>
         <artifactId>dis-sdk-spec</artifactId>
-        <version>1.0.0-140</version>
+        <version>1.0.0-141</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.controlplane</groupId>
         <artifactId>hydra-controlplane-api-spec</artifactId>
-        <version>0.0.890</version>
+        <version>0.0.954</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.vmware.ocvp</groupId>
         <artifactId>vmware-provision-service-spec</artifactId>
-        <version>0.1.628</version>
+        <version>0.1.642</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.metering.usagestore.api</groupId>
@@ -5532,7 +5532,7 @@
       <dependency>
         <groupId>com.oracle.pic.connectors</groupId>
         <artifactId>connectors-spec</artifactId>
-        <version>0.2.19</version>
+        <version>0.2.25</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.optimizer</groupId>
@@ -5552,12 +5552,12 @@
       <dependency>
         <groupId>com.oracle.hydra.pika.frontend</groupId>
         <artifactId>hydra-pika-frontend-public-api-spec</artifactId>
-        <version>0.0.1351</version>
+        <version>0.0.1418</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ocibstn.controlplane.resources</groupId>
         <artifactId>oci-bastions-spec</artifactId>
-        <version>0.1.313</version>
+        <version>0.1.506</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.hydra.ibex</groupId>
@@ -5567,7 +5567,7 @@
       <dependency>
         <groupId>com.oracle.pic.rover</groupId>
         <artifactId>rover-cloud-service-spec</artifactId>
-        <version>0.0.13</version>
+        <version>0.0.14</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.loganalytics.api</groupId>

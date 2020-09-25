@@ -34,7 +34,7 @@ type ReferenceSummary struct {
 	// The type of reference object.
 	Type ReferenceSummaryTypeEnum `mandatory:"false" json:"type,omitempty"`
 
-	// The target object referenced, references are to data assets and child references to connections. The type defining this reference is in the property type.
+	// The target object referenced. References are made to data assets and child references are made to connections. The type defining this reference is mentioned in the property type.
 	TargetObject *interface{} `mandatory:"false" json:"targetObject"`
 
 	// The aggregator of reference object.

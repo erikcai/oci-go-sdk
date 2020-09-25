@@ -890,6 +890,7 @@ func TestDatabaseClientCreateAutonomousDatabase(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "source",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"CLONE_TO_VIRTUAL":      &database.CreateVirtualAutonomousDatabaseCloneDetails{},
 				"DATABASE":              &database.CreateAutonomousDatabaseCloneDetails{},
 				"CLONE_TO_REFRESHABLE":  &database.CreateRefreshableAutonomousDatabaseCloneDetails{},
 				"BACKUP_FROM_ID":        &database.CreateAutonomousDatabaseFromBackupDetails{},

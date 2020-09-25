@@ -16,23 +16,23 @@ import (
 // ExternalPublicationSummary The external publication summary contains the audit summary information and the definition of the external object.
 type ExternalPublicationSummary struct {
 
-	// The unique OCID of the identifier that is returned after creating the OCI Dataflow application.
+	// The unique OCID of the identifier that is returned after creating the Oracle Cloud Infrastructure Data Flow application.
 	ApplicationId *string `mandatory:"false" json:"applicationId"`
 
-	// The OCID of the compartment where the application is created in the OCI Dataflow Service.
+	// The OCID of the compartment where the application is created in the Oracle Cloud Infrastructure Data Flow Service.
 	ApplicationCompartmentId *string `mandatory:"false" json:"applicationCompartmentId"`
 
-	// The name of the application
+	// The name of the application.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	ResourceConfiguration *ResourceConfiguration `mandatory:"false" json:"resourceConfiguration"`
 
 	ConfigurationDetails *ConfigurationDetails `mandatory:"false" json:"configurationDetails"`
 
-	// The status of the publishing action to OCI Dataflow.
+	// The status of the publishing action to Oracle Cloud Infrastructure Data Flow.
 	Status ExternalPublicationSummaryStatusEnum `mandatory:"false" json:"status,omitempty"`
 
-	// The error of the published object in the application
+	// The error of the published object in the application.
 	ErrorMessage *string `mandatory:"false" json:"errorMessage"`
 
 	// The object key.
@@ -53,7 +53,7 @@ type ExternalPublicationSummary struct {
 	// The version of the object that is used to track changes in the object instance.
 	ObjectVersion *int `mandatory:"false" json:"objectVersion"`
 
-	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
+	// The status of an object that can be set to value 1 for shallow references across objects. Other values are reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
 
 	// Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.

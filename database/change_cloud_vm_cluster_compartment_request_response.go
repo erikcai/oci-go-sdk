@@ -15,7 +15,7 @@ type ChangeCloudVmClusterCompartmentRequest struct {
 	// Request to move cloud VM cluster to a different compartment
 	ChangeCloudVmClusterCompartmentDetails `contributesTo:"body"`
 
-	// The Cloud VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The cloud VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CloudVmClusterId *string `mandatory:"true" contributesTo:"path" name:"cloudVmClusterId"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

@@ -248,6 +248,9 @@ type Sddc struct {
 	// HCX enabled or not
 	IsHcxEnabled *bool `mandatory:"false" json:"isHcxEnabled"`
 
+	// HCX on-premise license key
+	HcxOnPremKey *string `mandatory:"false" json:"hcxOnPremKey"`
+
 	// The date and time the SDDC was updated, in the format defined by
 	// RFC3339 (https://tools.ietf.org/html/rfc3339).
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`

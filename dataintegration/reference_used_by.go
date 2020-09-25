@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// ReferenceUsedBy Referenced object information
+// ReferenceUsedBy Referenced object information.
 type ReferenceUsedBy struct {
 
 	// The key of the published object.

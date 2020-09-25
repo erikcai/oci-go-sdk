@@ -15,7 +15,7 @@ type ListCloudVmClustersRequest struct {
 	// The compartment OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// If provided, filters the results for the given Cloud Exadata Infrastructure.
+	// If provided, filters the results for the specified cloud Exadata infrastructure.
 	CloudExadataInfrastructureId *string `mandatory:"false" contributesTo:"query" name:"cloudExadataInfrastructureId"`
 
 	// The maximum number of items to return per page.
@@ -30,7 +30,7 @@ type ListCloudVmClustersRequest struct {
 	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
 	SortOrder ListCloudVmClustersSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
-	// A filter to return only resources that match the given lifecycle state exactly.
+	// A filter to return only cloud VM clusters that match the given lifecycle state exactly.
 	LifecycleState CloudVmClusterSummaryLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// A filter to return only resources that match the entire display name given. The match is not case sensitive.

@@ -16,7 +16,7 @@ import (
 // SourceApplicationInfo The information about the application.
 type SourceApplicationInfo struct {
 
-	// The OCID of the workspace containing the application. This allows cross workspace deployment to publish one application in one workspace into the current workspace specified in thi operation.
+	// The OCID of the workspace containing the application. This allows cross workspace deployment to publish an application from a different workspace into the current workspace specified in this operation.
 	WorkspaceId *string `mandatory:"false" json:"workspaceId"`
 
 	// The source application key to use when creating the application.

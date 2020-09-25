@@ -37,6 +37,9 @@ type SessionSummary struct {
 	// TTL of the session.
 	SessionTtlInSeconds *int `mandatory:"true" json:"sessionTtlInSeconds"`
 
+	// session Identifier, can be renamed
+	DisplayName *string `mandatory:"false" json:"displayName"`
+
 	// The time the session was updated. An RFC3339 formatted datetime string
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
@@ -51,6 +54,7 @@ func (m SessionSummary) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *SessionSummary) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
+		DisplayName           *string                   `json:"displayName"`
 		TimeUpdated           *common.SDKTime           `json:"timeUpdated"`
 		LifecycleDetails      *string                   `json:"lifecycleDetails"`
 		Id                    *string                   `json:"id"`
@@ -67,6 +71,8 @@ func (m *SessionSummary) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	var nn interface{}
+	m.DisplayName = model.DisplayName
+
 	m.TimeUpdated = model.TimeUpdated
 
 	m.LifecycleDetails = model.LifecycleDetails

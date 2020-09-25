@@ -34,7 +34,7 @@ type ConfiguredType struct {
 	// A user defined description for the object.
 	Description *string `mandatory:"false" json:"description"`
 
-	// Wrapped typed, may be a string or a BaseType
+	// A wrapped type, may be a string or a BaseType.
 	WrappedType *interface{} `mandatory:"false" json:"wrappedType"`
 
 	ConfigValues *ConfigValues `mandatory:"false" json:"configValues"`

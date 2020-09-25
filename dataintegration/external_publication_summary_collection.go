@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// ExternalPublicationSummaryCollection This is the collection of external publication summaries, it may be a collection of lightweight details or full definitions.
+// ExternalPublicationSummaryCollection This is the collection of external publication summaries. It may be a collection of lightweight details or full definitions.
 type ExternalPublicationSummaryCollection struct {
 
 	// The array of external publication summaries.

@@ -2359,7 +2359,7 @@ func (client DnsClient) updateTsigKey(ctx context.Context, request common.OCIReq
 	return response, err
 }
 
-// UpdateView Updates the specified view with your new information. Protected views cannot be updated.
+// UpdateView Updates the specified view with your new information.
 func (client DnsClient) UpdateView(ctx context.Context, request UpdateViewRequest) (response UpdateViewResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2409,7 +2409,6 @@ func (client DnsClient) updateView(ctx context.Context, request common.OCIReques
 // UpdateZone Updates the specified secondary zone with your new external master
 // server information. For more information about secondary zone, see
 // Manage DNS Service Zone (https://docs.cloud.oracle.com/iaas/Content/DNS/Tasks/managingdnszones.htm).
-// Protected zones cannot be updated.
 func (client DnsClient) UpdateZone(ctx context.Context, request UpdateZoneRequest) (response UpdateZoneResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

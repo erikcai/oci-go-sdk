@@ -46,7 +46,7 @@ type RoverNode struct {
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
 	// List of existing workloads that should be provisioned on the node.
-	NodeWorkloads []interface{} `mandatory:"false" json:"nodeWorkloads"`
+	NodeWorkloads []RoverWorkload `mandatory:"false" json:"nodeWorkloads"`
 
 	CustomerReceivedTime *common.SDKTime `mandatory:"false" json:"customerReceivedTime"`
 

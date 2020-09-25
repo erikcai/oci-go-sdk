@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// UpdateConnectionFromJdbc The details to update an generic JDBC data asset connection.
+// UpdateConnectionFromJdbc The details to update a generic JDBC data asset connection.
 type UpdateConnectionFromJdbc struct {
 
 	// Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.

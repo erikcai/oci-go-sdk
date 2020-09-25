@@ -57,6 +57,9 @@ type Session struct {
 	// the type of the key, PUB refers to normal public key
 	KeyType SessionKeyTypeEnum `mandatory:"false" json:"keyType,omitempty"`
 
+	// bastion host Key for customer to make sure they connect the correct bastion
+	BastionPublicHostKeyInfo *string `mandatory:"false" json:"bastionPublicHostKeyInfo"`
+
 	// The time the session was updated. An RFC3339 formatted datetime string
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
@@ -79,24 +82,25 @@ func (m Session) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *Session) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		DisplayName           *string                           `json:"displayName"`
-		BastionUserName       *string                           `json:"bastionUserName"`
-		BastionIp             *string                           `json:"bastionIp"`
-		BastionPort           *int                              `json:"bastionPort"`
-		SshMetadata           map[string]string                 `json:"sshMetadata"`
-		KeyType               SessionKeyTypeEnum                `json:"keyType"`
-		TimeUpdated           *common.SDKTime                   `json:"timeUpdated"`
-		LifecycleDetails      *string                           `json:"lifecycleDetails"`
-		FreeformTags          map[string]string                 `json:"freeformTags"`
-		DefinedTags           map[string]map[string]interface{} `json:"definedTags"`
-		Id                    *string                           `json:"id"`
-		BastionId             *string                           `json:"bastionId"`
-		BastionDisplayName    *string                           `json:"bastionDisplayName"`
-		TargetResourceDetails targetresourcedetails             `json:"targetResourceDetails"`
-		KeyDetails            *PublicKeyDetails                 `json:"keyDetails"`
-		TimeCreated           *common.SDKTime                   `json:"timeCreated"`
-		LifecycleState        SessionLifecycleStateEnum         `json:"lifecycleState"`
-		SessionTtlInSeconds   *int                              `json:"sessionTtlInSeconds"`
+		DisplayName              *string                           `json:"displayName"`
+		BastionUserName          *string                           `json:"bastionUserName"`
+		BastionIp                *string                           `json:"bastionIp"`
+		BastionPort              *int                              `json:"bastionPort"`
+		SshMetadata              map[string]string                 `json:"sshMetadata"`
+		KeyType                  SessionKeyTypeEnum                `json:"keyType"`
+		BastionPublicHostKeyInfo *string                           `json:"bastionPublicHostKeyInfo"`
+		TimeUpdated              *common.SDKTime                   `json:"timeUpdated"`
+		LifecycleDetails         *string                           `json:"lifecycleDetails"`
+		FreeformTags             map[string]string                 `json:"freeformTags"`
+		DefinedTags              map[string]map[string]interface{} `json:"definedTags"`
+		Id                       *string                           `json:"id"`
+		BastionId                *string                           `json:"bastionId"`
+		BastionDisplayName       *string                           `json:"bastionDisplayName"`
+		TargetResourceDetails    targetresourcedetails             `json:"targetResourceDetails"`
+		KeyDetails               *PublicKeyDetails                 `json:"keyDetails"`
+		TimeCreated              *common.SDKTime                   `json:"timeCreated"`
+		LifecycleState           SessionLifecycleStateEnum         `json:"lifecycleState"`
+		SessionTtlInSeconds      *int                              `json:"sessionTtlInSeconds"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -115,6 +119,8 @@ func (m *Session) UnmarshalJSON(data []byte) (e error) {
 	m.SshMetadata = model.SshMetadata
 
 	m.KeyType = model.KeyType
+
+	m.BastionPublicHostKeyInfo = model.BastionPublicHostKeyInfo
 
 	m.TimeUpdated = model.TimeUpdated
 

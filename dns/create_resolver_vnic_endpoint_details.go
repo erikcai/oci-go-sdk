@@ -15,7 +15,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// CreateResolverVnicEndpointDetails The body for defining a new resolver VNIC endpoint. At least one of isForwarding or isListening must be true.
+// CreateResolverVnicEndpointDetails The body for defining a new resolver VNIC endpoint. Either isForwarding or isListening must be true but not both.
 // If a listeningAddress is not provided then one will be chosen automatically. If isForwarding is true then a
 // forwardingAddress may be provided. If one is not then one will be chosen automatically. A listeningAddress will
 // be consumed regardless of if the resolver is configured for listening or not.

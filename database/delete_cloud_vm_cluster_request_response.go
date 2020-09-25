@@ -12,7 +12,7 @@ import (
 // DeleteCloudVmClusterRequest wrapper for the DeleteCloudVmCluster operation
 type DeleteCloudVmClusterRequest struct {
 
-	// The Cloud VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The cloud VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CloudVmClusterId *string `mandatory:"true" contributesTo:"path" name:"cloudVmClusterId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

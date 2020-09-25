@@ -16,14 +16,26 @@ import (
 // RoverWorkload Rover workload
 type RoverWorkload struct {
 
-	// The Unique Oracle ID (OCID) that is immutable on creation.
-	Id *string `mandatory:"true" json:"id"`
-
 	// The OCID of the compartment containing the workload.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
+	// The Unique Oracle ID (OCID) that is immutable on creation.
+	Id *string `mandatory:"true" json:"id"`
+
 	// The type of workload
 	WorkloadType *string `mandatory:"true" json:"workloadType"`
+
+	// Name of the Rover Workload
+	Name *string `mandatory:"false" json:"name"`
+
+	// Prefix to filter objects in case it is a bucket.
+	Prefix *string `mandatory:"false" json:"prefix"`
+
+	// Start of the range in a bucket.
+	RangeStart *string `mandatory:"false" json:"rangeStart"`
+
+	// End of the range in a bucket.
+	RangeEnd *string `mandatory:"false" json:"rangeEnd"`
 }
 
 func (m RoverWorkload) String() string {

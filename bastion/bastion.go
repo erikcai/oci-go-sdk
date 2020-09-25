@@ -49,6 +49,9 @@ type Bastion struct {
 	// availability domain of the bastion.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
+	// the ip ranges that the bastion has access to.
+	ClientCidrBlockAllowList []string `mandatory:"false" json:"clientCidrBlockAllowList"`
+
 	// Private ip address of the created private endpoint
 	PrivateEndpointIpAddress *string `mandatory:"false" json:"privateEndpointIpAddress"`
 

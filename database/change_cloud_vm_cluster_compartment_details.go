@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// ChangeCloudVmClusterCompartmentDetails The configuration details for moving the Cloud VM cluster.
+// ChangeCloudVmClusterCompartmentDetails The configuration details for moving the cloud VM cluster to another compartment.
 type ChangeCloudVmClusterCompartmentDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.

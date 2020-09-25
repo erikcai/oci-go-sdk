@@ -13,13 +13,13 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// ChildReferenceDetail References used in application.
+// ChildReferenceDetail References used in an application.
 type ChildReferenceDetail struct {
 
 	// The child reference key.
 	Key *string `mandatory:"false" json:"key"`
 
-	// The new reference object to use instead of the original reference, this can be a Connection reference.
+	// The new reference object to use instead of the original reference. For example, this can be a connection reference.
 	TargetObject *interface{} `mandatory:"false" json:"targetObject"`
 }
 

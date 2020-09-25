@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// ChildReference Reference contains application configuration information.
+// ChildReference Child reference contains application configuration information.
 type ChildReference struct {
 
 	// The reference's key, key of the object that is being used by a published object or its dependents.
@@ -34,10 +34,10 @@ type ChildReference struct {
 	// The type of the reference object.
 	Type ChildReferenceTypeEnum `mandatory:"false" json:"type,omitempty"`
 
-	// The new reference object to use instead of the original reference, this can be a DataAsset reference.
+	// The new reference object to use instead of the original reference. For example, this can be a data asset reference.
 	TargetObject *interface{} `mandatory:"false" json:"targetObject"`
 
-	// The agrgegator key of the child reference object, this will be a data asset key for example.
+	// The aggregator key of the child reference object. For example, this can be a data asset key.
 	AggregatorKey *string `mandatory:"false" json:"aggregatorKey"`
 
 	// List of published objects where this is used.

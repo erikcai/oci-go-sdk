@@ -51,7 +51,7 @@ type RoverCluster struct {
 	DeliveryTrackingInfo *string `mandatory:"false" json:"deliveryTrackingInfo"`
 
 	// List of existing workloads that should be provisioned on the nodes.
-	ClusterWorkloads []interface{} `mandatory:"false" json:"clusterWorkloads"`
+	ClusterWorkloads []RoverWorkload `mandatory:"false" json:"clusterWorkloads"`
 
 	// Root password for the rover cluster.
 	SuperUserPassword *string `mandatory:"false" json:"superUserPassword"`

@@ -12,7 +12,7 @@ import (
 // CreateByoipRangeRequest wrapper for the CreateByoipRange operation
 type CreateByoipRangeRequest struct {
 
-	// Create Byoip Range details.
+	// Details needed to create a BYOIP CIDR block subrange.
 	CreateByoipRangeDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.

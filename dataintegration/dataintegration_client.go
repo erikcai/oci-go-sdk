@@ -3266,7 +3266,7 @@ func (client DataIntegrationClient) listPatchChanges(ctx context.Context, reques
 	return response, err
 }
 
-// ListPatches Retrieves a list of patches in an application and provides options to filter the list.
+// ListPatches Retrieves a list of patches in an application and provides options to filter the list. For listing changes based on a period and logical objects changed, see ListPatchChanges API.
 func (client DataIntegrationClient) ListPatches(ctx context.Context, request ListPatchesRequest) (response ListPatchesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3407,7 +3407,7 @@ func (client DataIntegrationClient) listPublishedObjects(ctx context.Context, re
 	return response, err
 }
 
-// ListReferences Retrieves a list of references in an application. Reference objects are created when dataflows and tasks are created that use object such as data assets and connections.
+// ListReferences Retrieves a list of references in an application. Reference objects are created when dataflows and tasks use objects, such as data assets and connections.
 func (client DataIntegrationClient) ListReferences(ctx context.Context, request ListReferencesRequest) (response ListReferencesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4310,7 +4310,7 @@ func (client DataIntegrationClient) updateProject(ctx context.Context, request c
 	return response, err
 }
 
-// UpdateReference Updates the application references.
+// UpdateReference Updates the application references. For example, to map a data asset to a different target object.
 func (client DataIntegrationClient) UpdateReference(ctx context.Context, request UpdateReferenceRequest) (response UpdateReferenceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

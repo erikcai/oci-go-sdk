@@ -2,9 +2,9 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// PublicLoggingDataplane API
+// Logging Ingestion API
 //
-// PublicLoggingDataplane API specification
+// Use the Logging Ingestion API to ingest your application logs.
 //
 
 package loggingingestion
@@ -77,7 +77,7 @@ func (client *LoggingClient) ConfigurationProvider() *common.ConfigurationProvid
 	return client.config
 }
 
-// PutLogs This Api allows ingesting logs associated with a logId. Success
+// PutLogs This API allows ingesting logs associated with a logId. A success
 // response implies the data has been accepted.
 func (client LoggingClient) PutLogs(ctx context.Context, request PutLogsRequest) (response PutLogsResponse, err error) {
 	var ociResponse common.OCIResponse

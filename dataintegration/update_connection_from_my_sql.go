@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// UpdateConnectionFromMySql The details to update an MYSQL data asset connection.
+// UpdateConnectionFromMySql The details to update a MYSQL data asset connection.
 type UpdateConnectionFromMySql struct {
 
 	// Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.

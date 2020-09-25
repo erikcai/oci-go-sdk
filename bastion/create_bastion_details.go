@@ -31,6 +31,9 @@ type CreateBastionDetails struct {
 	// availability domain of the bastion.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
+	// the ip ranges that the bastion has access to.
+	ClientCidrBlockAllowList []string `mandatory:"false" json:"clientCidrBlockAllowList"`
+
 	// max TTL of the sessions on the bastion.
 	MaxSessionTtlInSeconds *int `mandatory:"false" json:"maxSessionTtlInSeconds"`
 

@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// PatchChangeSummaryCollection This is the collection of patch report summaries, it may be a collection of lightweight details or full definitions.
+// PatchChangeSummaryCollection This is the collection of patch report summaries,. It may be a collection of lightweight details or full definitions.
 type PatchChangeSummaryCollection struct {
 
 	// The array of patch summaries.

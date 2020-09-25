@@ -12,10 +12,10 @@ import (
 // UpdatePublicIpPoolRequest wrapper for the UpdatePublicIpPool operation
 type UpdatePublicIpPoolRequest struct {
 
-	// The OCID of the Public Ip Pool object.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP pool.
 	PublicIpPoolId *string `mandatory:"true" contributesTo:"path" name:"publicIpPoolId"`
 
-	// Public Ip Pool details.
+	// Public IP pool details.
 	UpdatePublicIpPoolDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.

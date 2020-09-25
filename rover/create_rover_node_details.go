@@ -25,7 +25,7 @@ type CreateRoverNodeDetails struct {
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
 	// List of existing workloads that should be provisioned on the node.
-	NodeWorkloads []interface{} `mandatory:"false" json:"nodeWorkloads"`
+	NodeWorkloads []RoverWorkload `mandatory:"false" json:"nodeWorkloads"`
 
 	// Root password for the rover node.
 	SuperUserPassword *string `mandatory:"false" json:"superUserPassword"`

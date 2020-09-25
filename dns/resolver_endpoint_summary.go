@@ -180,6 +180,7 @@ const (
 	ResolverEndpointSummaryLifecycleStateDeleted  ResolverEndpointSummaryLifecycleStateEnum = "DELETED"
 	ResolverEndpointSummaryLifecycleStateDeleting ResolverEndpointSummaryLifecycleStateEnum = "DELETING"
 	ResolverEndpointSummaryLifecycleStateFailed   ResolverEndpointSummaryLifecycleStateEnum = "FAILED"
+	ResolverEndpointSummaryLifecycleStateUpdating ResolverEndpointSummaryLifecycleStateEnum = "UPDATING"
 )
 
 var mappingResolverEndpointSummaryLifecycleState = map[string]ResolverEndpointSummaryLifecycleStateEnum{
@@ -188,6 +189,7 @@ var mappingResolverEndpointSummaryLifecycleState = map[string]ResolverEndpointSu
 	"DELETED":  ResolverEndpointSummaryLifecycleStateDeleted,
 	"DELETING": ResolverEndpointSummaryLifecycleStateDeleting,
 	"FAILED":   ResolverEndpointSummaryLifecycleStateFailed,
+	"UPDATING": ResolverEndpointSummaryLifecycleStateUpdating,
 }
 
 // GetResolverEndpointSummaryLifecycleStateEnumValues Enumerates the set of values for ResolverEndpointSummaryLifecycleStateEnum

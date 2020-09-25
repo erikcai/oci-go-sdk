@@ -12,7 +12,7 @@ import (
 // ListCloudVmClusterUpdatesRequest wrapper for the ListCloudVmClusterUpdates operation
 type ListCloudVmClusterUpdatesRequest struct {
 
-	// The Cloud VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The cloud VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CloudVmClusterId *string `mandatory:"true" contributesTo:"path" name:"cloudVmClusterId"`
 
 	// A filter to return only resources that match the given update type exactly.

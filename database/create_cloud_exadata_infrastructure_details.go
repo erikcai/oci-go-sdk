@@ -22,10 +22,10 @@ type CreateCloudExadataInfrastructureDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The user-friendly name for the cloud Exadata infrastructure. The name does not need to be unique.
+	// The user-friendly name for the cloud Exadata infrastructure resource. The name does not need to be unique.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The shape of the cloud Exadata infrastructure.
+	// The shape of the cloud Exadata infrastructure resource.
 	Shape *string `mandatory:"true" json:"shape"`
 
 	// The number of compute servers for the cloud Exadata infrastructure.

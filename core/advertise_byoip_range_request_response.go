@@ -12,7 +12,7 @@ import (
 // AdvertiseByoipRangeRequest wrapper for the AdvertiseByoipRange operation
 type AdvertiseByoipRangeRequest struct {
 
-	// The OCID of the Byoip Range object.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource containing the BYOIP CIDR block.
 	ByoipRangeId *string `mandatory:"true" contributesTo:"path" name:"byoipRangeId"`
 
 	// Unique identifier for the request.

@@ -28,6 +28,9 @@ type UpdateBastionDetails struct {
 	// the ip ranges that the bastion has access to.
 	WhitelistedClientCidrBlocks []string `mandatory:"false" json:"whitelistedClientCidrBlocks"`
 
+	// the ip ranges that the bastion has access to.
+	ClientCidrBlockAllowList []string `mandatory:"false" json:"clientCidrBlockAllowList"`
+
 	// Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
 	// Example: `{"bar-key": "value"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`

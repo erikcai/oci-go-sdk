@@ -23,6 +23,10 @@ type UpdatePrivateEndpointRequest struct {
 	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
+	// Indicates that this request is a dry-run.
+	// If set to true, nothing will be created, but only the validation will be performed.
+	IsDryRun *bool `mandatory:"false" contributesTo:"query" name:"isDryRun"`
+
 	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

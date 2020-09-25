@@ -64,7 +64,7 @@ type DbSystemShapeSummary struct {
 	// The maximum number of database nodes available for this shape.
 	MaximumNodeCount *int `mandatory:"false" json:"maximumNodeCount"`
 
-	// The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to Flex Exadata shape.
+	// The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape. Does not apply to X6, X7, and X8 fixed-shape systems.
 	AvailableCoreCountPerNode *int `mandatory:"false" json:"availableCoreCountPerNode"`
 }
 

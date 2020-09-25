@@ -13,19 +13,19 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// UpdateExternalPublicationDetails Properties used to update a published a OCI DataFlow object.
+// UpdateExternalPublicationDetails Properties used to update a published Oracle Cloud Infrastructure Data Flow object.
 type UpdateExternalPublicationDetails struct {
 
-	// The OCID of the compartment where the application is created in the OCI Dataflow Service.
+	// The OCID of the compartment where the application is created in the Oracle Cloud Infrastructure Data Flow Service.
 	ApplicationCompartmentId *string `mandatory:"true" json:"applicationCompartmentId"`
 
-	// The name of the application
+	// The name of the application.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The unique OCID of the identifier that is returned after creating the OCI Dataflow application.
+	// The unique OCID of the identifier that is returned after creating the Oracle Cloud Infrastructure Data Flow application.
 	ApplicationId *string `mandatory:"false" json:"applicationId"`
 
-	// The details of the dataflow or the application
+	// The details of the data flow or the application.
 	Description *string `mandatory:"false" json:"description"`
 
 	ResourceConfiguration *ResourceConfiguration `mandatory:"false" json:"resourceConfiguration"`

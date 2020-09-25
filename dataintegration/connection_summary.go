@@ -217,8 +217,8 @@ const (
 	ConnectionSummaryModelTypeOracleAtpConnection           ConnectionSummaryModelTypeEnum = "ORACLE_ATP_CONNECTION"
 	ConnectionSummaryModelTypeOracleObjectStorageConnection ConnectionSummaryModelTypeEnum = "ORACLE_OBJECT_STORAGE_CONNECTION"
 	ConnectionSummaryModelTypeOracledbConnection            ConnectionSummaryModelTypeEnum = "ORACLEDB_CONNECTION"
-	ConnectionSummaryModelTypeMysqlDataAsset                ConnectionSummaryModelTypeEnum = "MYSQL_DATA_ASSET"
-	ConnectionSummaryModelTypeGenericJdbcDataAsset          ConnectionSummaryModelTypeEnum = "GENERIC_JDBC_DATA_ASSET"
+	ConnectionSummaryModelTypeMysqlConnection               ConnectionSummaryModelTypeEnum = "MYSQL_CONNECTION"
+	ConnectionSummaryModelTypeGenericJdbcConnection         ConnectionSummaryModelTypeEnum = "GENERIC_JDBC_CONNECTION"
 )
 
 var mappingConnectionSummaryModelType = map[string]ConnectionSummaryModelTypeEnum{
@@ -226,8 +226,8 @@ var mappingConnectionSummaryModelType = map[string]ConnectionSummaryModelTypeEnu
 	"ORACLE_ATP_CONNECTION":            ConnectionSummaryModelTypeOracleAtpConnection,
 	"ORACLE_OBJECT_STORAGE_CONNECTION": ConnectionSummaryModelTypeOracleObjectStorageConnection,
 	"ORACLEDB_CONNECTION":              ConnectionSummaryModelTypeOracledbConnection,
-	"MYSQL_DATA_ASSET":                 ConnectionSummaryModelTypeMysqlDataAsset,
-	"GENERIC_JDBC_DATA_ASSET":          ConnectionSummaryModelTypeGenericJdbcDataAsset,
+	"MYSQL_CONNECTION":                 ConnectionSummaryModelTypeMysqlConnection,
+	"GENERIC_JDBC_CONNECTION":          ConnectionSummaryModelTypeGenericJdbcConnection,
 }
 
 // GetConnectionSummaryModelTypeEnumValues Enumerates the set of values for ConnectionSummaryModelTypeEnum

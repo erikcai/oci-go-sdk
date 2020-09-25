@@ -16,7 +16,7 @@ import (
 // CreateExternalPublicationValidationDetails The task type contains the audit summary information and the definition of the task that is published externally.
 type CreateExternalPublicationValidationDetails struct {
 
-	// Generated key that can be used in API calls to identify task. On scenarios where reference to the task is needed, a value can be passed in the create operation.
+	// Generated key that can be used in API calls to identify the task. On scenarios where reference to the task is needed, a value can be passed in the create operation.
 	Key *string `mandatory:"false" json:"key"`
 }
 

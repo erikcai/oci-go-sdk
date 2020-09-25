@@ -13,19 +13,19 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// ResourceConfiguration Properties related to a resource
+// ResourceConfiguration Properties related to a resource.
 type ResourceConfiguration struct {
 
-	// The version of the spark while creating an OCI Data Flow application
+	// The version of the spark used while creating an Oracle Cloud Infrastructure Data Flow application.
 	SparkVersion *string `mandatory:"true" json:"sparkVersion"`
 
-	// The VM shape of the driver used while creating an OCI Data Flow application, sets the driver cores and memory.
+	// The VM shape of the driver used while creating an Oracle Cloud Infrastructure Data Flow application. It sets the driver cores and memory.
 	DriverShape *string `mandatory:"true" json:"driverShape"`
 
-	// The shape of the executor used while creating an OCI Data Flow application, sets the executor cores and memory.
+	// The shape of the executor used while creating an Oracle Cloud Infrastructure Data Flow application. It sets the executor cores and memory.
 	ExecutorShape *string `mandatory:"true" json:"executorShape"`
 
-	// Number of executor VMs requested while creating an OCI Data Flow application
+	// Number of executor VMs requested while creating an Oracle Cloud Infrastructure Data Flow application.
 	TotalExecutors *int `mandatory:"true" json:"totalExecutors"`
 }
 

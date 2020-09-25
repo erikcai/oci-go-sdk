@@ -13,25 +13,25 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// CloudExadataInfrastructure Details of the cloud Exadata infrastructure.
+// CloudExadataInfrastructure Details of the cloud Exadata infrastructure resource.
 type CloudExadataInfrastructure struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure resource.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The current lifecycle state of the cloud Exadata infrastructure.
+	// The current lifecycle state of the cloud Exadata infrastructure resource.
 	LifecycleState CloudExadataInfrastructureLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// The user-friendly name for the Cloud Exadata infrastructure. The name does not need to be unique.
+	// The user-friendly name for the cloud Exadata infrastructure resource. The name does not need to be unique.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The model name of the Cloud Exadata infrastructure.
+	// The model name of the cloud Exadata infrastructure resource.
 	Shape *string `mandatory:"true" json:"shape"`
 
-	// The name of the availability domain that the cloud Exadata infrastructure is located in.
+	// The name of the availability domain that the cloud Exadata infrastructure resource is located in.
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
 	// The number of compute servers for the cloud Exadata infrastructure.
@@ -40,13 +40,13 @@ type CloudExadataInfrastructure struct {
 	// The number of storage servers for the cloud Exadata infrastructure.
 	StorageCount *int `mandatory:"false" json:"storageCount"`
 
-	// The total storage allocated to the Exadata infrastructure instance, in gigabytes (GB).
+	// The total storage allocated to the cloud Exadata infrastructure resource, in gigabytes (GB).
 	TotalStorageSizeInGBs *int `mandatory:"false" json:"totalStorageSizeInGBs"`
 
-	// The available storage can be allocated to the Exadata infrastructure instance, in gigabytes (GB).
+	// The available storage can be allocated to the cloud Exadata infrastructure resource, in gigabytes (GB).
 	AvailableStorageSizeInGBs *int `mandatory:"false" json:"availableStorageSizeInGBs"`
 
-	// The date and time the cloud Exadata infrastructure was created.
+	// The date and time the cloud Exadata infrastructure resource was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// Additional information about the current lifecycle state.

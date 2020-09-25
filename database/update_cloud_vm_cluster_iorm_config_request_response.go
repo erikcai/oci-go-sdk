@@ -12,7 +12,7 @@ import (
 // UpdateCloudVmClusterIormConfigRequest wrapper for the UpdateCloudVmClusterIormConfig operation
 type UpdateCloudVmClusterIormConfigRequest struct {
 
-	// The Cloud VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The cloud VM cluster OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CloudVmClusterId *string `mandatory:"true" contributesTo:"path" name:"cloudVmClusterId"`
 
 	// Request to perform database update.

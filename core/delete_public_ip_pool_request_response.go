@@ -12,7 +12,7 @@ import (
 // DeletePublicIpPoolRequest wrapper for the DeletePublicIpPool operation
 type DeletePublicIpPoolRequest struct {
 
-	// The OCID of the Public Ip Pool object.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP pool.
 	PublicIpPoolId *string `mandatory:"true" contributesTo:"path" name:"publicIpPoolId"`
 
 	// Unique identifier for the request.

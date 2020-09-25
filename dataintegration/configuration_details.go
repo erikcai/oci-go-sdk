@@ -14,13 +14,13 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// ConfigurationDetails A key map. If provided, key is replaced with generated key. This
+// ConfigurationDetails A key map. If provided, key is replaced with generated key.
 type ConfigurationDetails struct {
 	DataAsset DataAsset `mandatory:"false" json:"dataAsset"`
 
 	Connection Connection `mandatory:"false" json:"connection"`
 
-	// The compartment Id of the object store.
+	// The compartment ID of the object store.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	Schema *Schema `mandatory:"false" json:"schema"`

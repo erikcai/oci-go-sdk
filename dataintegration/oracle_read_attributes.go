@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// OracleReadAttributes Properties to configure reading from Oracle Database.
+// OracleReadAttributes Properties to configure reading from an Oracle Database.
 type OracleReadAttributes struct {
 
 	// The type of the abstract read attribute.

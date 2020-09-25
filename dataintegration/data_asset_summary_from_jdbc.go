@@ -56,7 +56,7 @@ type DataAssetSummaryFromJdbc struct {
 	// The generic JDBC port number.
 	Port *string `mandatory:"false" json:"port"`
 
-	// The dataAsset type for the generic JDBC data asset.
+	// The data asset type for the generic JDBC data asset.
 	DataAssetType *string `mandatory:"false" json:"dataAssetType"`
 
 	DefaultConnection *ConnectionSummaryFromJdbc `mandatory:"false" json:"defaultConnection"`

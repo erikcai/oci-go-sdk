@@ -145,10 +145,12 @@ type ListAutonomousDatabaseClonesCloneTypeEnum string
 // Set of constants representing the allowable values for ListAutonomousDatabaseClonesCloneTypeEnum
 const (
 	ListAutonomousDatabaseClonesCloneTypeRefreshableClone ListAutonomousDatabaseClonesCloneTypeEnum = "REFRESHABLE_CLONE"
+	ListAutonomousDatabaseClonesCloneTypeVirtualClone     ListAutonomousDatabaseClonesCloneTypeEnum = "VIRTUAL_CLONE"
 )
 
 var mappingListAutonomousDatabaseClonesCloneType = map[string]ListAutonomousDatabaseClonesCloneTypeEnum{
 	"REFRESHABLE_CLONE": ListAutonomousDatabaseClonesCloneTypeRefreshableClone,
+	"VIRTUAL_CLONE":     ListAutonomousDatabaseClonesCloneTypeVirtualClone,
 }
 
 // GetListAutonomousDatabaseClonesCloneTypeEnumValues Enumerates the set of values for ListAutonomousDatabaseClonesCloneTypeEnum

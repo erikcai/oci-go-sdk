@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// CreateConnectionFromMySql The details to create an MYSQL data asset connection.
+// CreateConnectionFromMySql The details to create a MYSQL data asset connection.
 type CreateConnectionFromMySql struct {
 
 	// Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.

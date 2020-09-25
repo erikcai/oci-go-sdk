@@ -35,7 +35,7 @@ type CsvFormatAttribute struct {
 	// Defines whether a file pattern is supported.
 	IsFilePattern *bool `mandatory:"false" json:"isFilePattern"`
 
-	// Format for timestamp data.
+	// Format for timestamp information.
 	TimestampFormat *string `mandatory:"false" json:"timestampFormat"`
 }
 

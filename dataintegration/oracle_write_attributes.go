@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// OracleWriteAttributes Properties to configure writing to Oracle Database.
+// OracleWriteAttributes Properties to configure when writing to an Oracle Database.
 type OracleWriteAttributes struct {
 
 	// The type of the abstract write attribute.

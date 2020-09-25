@@ -19,6 +19,9 @@ type ListInstancesRequest struct {
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" contributesTo:"query" name:"availabilityDomain"`
 
+	// The OCID of the compute capacity reservation.
+	CapacityReservationId *string `mandatory:"false" contributesTo:"query" name:"capacityReservationId"`
+
 	// A filter to return only resources that match the given display name exactly.
 	DisplayName *string `mandatory:"false" contributesTo:"query" name:"displayName"`
 

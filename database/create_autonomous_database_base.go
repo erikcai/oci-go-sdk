@@ -27,14 +27,14 @@ type CreateAutonomousDatabaseBase interface {
 	// The number of OCPU cores to be made available to the database.
 	GetCpuCoreCount() *int
 
-	// The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
-	GetDataStorageSizeInTBs() *int
-
 	// The Autonomous Database workload type. The following values are valid:
 	// - OLTP - indicates an Autonomous Transaction Processing database
 	// - DW - indicates an Autonomous Data Warehouse database
 	// - AJD - indicates an Autonomous JSON Database
 	GetDbWorkload() CreateAutonomousDatabaseBaseDbWorkloadEnum
+
+	// The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
+	GetDataStorageSizeInTBs() *int
 
 	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of memory. For Always Free databases, memory and CPU cannot be scaled.
 	GetIsFreeTier() *bool
@@ -75,12 +75,12 @@ type CreateAutonomousDatabaseBase interface {
 	// This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform.
 	GetIsAccessControlEnabled() *bool
 
-	// The client IP access control list (ACL). This feature is available for autonomous databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and that on Exadata Cloud at Customer.
+	// The client IP access control list (ACL). This feature is available for autonomous databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and on Exadata Cloud@Customer.
 	// Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
-	// For Shared Exadata Infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
-	// To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs.
+	// For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
+	// Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs.
 	// Example: `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.<unique_id>","ocid1.vcn.oc1.sea.<unique_id1>;1.1.1.1","ocid1.vcn.oc1.sea.<unique_id2>;1.1.0.0/16"]`
-	// For Exadata Cloud at Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
+	// For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
 	// Example: `["1.1.1.1","1.1.1.0/24","1.1.2.25"]`
 	// For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
 	GetWhitelistedIps() []string
@@ -91,7 +91,7 @@ type CreateAutonomousDatabaseBase interface {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
 	// **Subnet Restrictions:**
 	// - For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28.
-	// - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
+	// - For Exadata and virtual machine 2-node RAC systems, do not use a subnet that overlaps with 192.168.128.0/20.
 	// - For Autonomous Database, setting this will disable public secure access to the database.
 	// These subnets are used by the Oracle Clusterware private interconnect on the database instance.
 	// Specifying an overlapping subnet will cause the private interconnect to malfunction.
@@ -124,8 +124,8 @@ type createautonomousdatabasebase struct {
 	CompartmentId                            *string                                      `mandatory:"true" json:"compartmentId"`
 	DbName                                   *string                                      `mandatory:"true" json:"dbName"`
 	CpuCoreCount                             *int                                         `mandatory:"true" json:"cpuCoreCount"`
-	DataStorageSizeInTBs                     *int                                         `mandatory:"true" json:"dataStorageSizeInTBs"`
 	DbWorkload                               CreateAutonomousDatabaseBaseDbWorkloadEnum   `mandatory:"false" json:"dbWorkload,omitempty"`
+	DataStorageSizeInTBs                     *int                                         `mandatory:"false" json:"dataStorageSizeInTBs"`
 	IsFreeTier                               *bool                                        `mandatory:"false" json:"isFreeTier"`
 	KmsKeyId                                 *string                                      `mandatory:"false" json:"kmsKeyId"`
 	VaultId                                  *string                                      `mandatory:"false" json:"vaultId"`
@@ -162,8 +162,8 @@ func (m *createautonomousdatabasebase) UnmarshalJSON(data []byte) error {
 	m.CompartmentId = s.Model.CompartmentId
 	m.DbName = s.Model.DbName
 	m.CpuCoreCount = s.Model.CpuCoreCount
-	m.DataStorageSizeInTBs = s.Model.DataStorageSizeInTBs
 	m.DbWorkload = s.Model.DbWorkload
+	m.DataStorageSizeInTBs = s.Model.DataStorageSizeInTBs
 	m.IsFreeTier = s.Model.IsFreeTier
 	m.KmsKeyId = s.Model.KmsKeyId
 	m.VaultId = s.Model.VaultId
@@ -197,6 +197,10 @@ func (m *createautonomousdatabasebase) UnmarshalPolymorphicJSON(data []byte) (in
 
 	var err error
 	switch m.Source {
+	case "CLONE_TO_VIRTUAL":
+		mm := CreateVirtualAutonomousDatabaseCloneDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "DATABASE":
 		mm := CreateAutonomousDatabaseCloneDetails{}
 		err = json.Unmarshal(data, &mm)
@@ -237,14 +241,14 @@ func (m createautonomousdatabasebase) GetCpuCoreCount() *int {
 	return m.CpuCoreCount
 }
 
-//GetDataStorageSizeInTBs returns DataStorageSizeInTBs
-func (m createautonomousdatabasebase) GetDataStorageSizeInTBs() *int {
-	return m.DataStorageSizeInTBs
-}
-
 //GetDbWorkload returns DbWorkload
 func (m createautonomousdatabasebase) GetDbWorkload() CreateAutonomousDatabaseBaseDbWorkloadEnum {
 	return m.DbWorkload
+}
+
+//GetDataStorageSizeInTBs returns DataStorageSizeInTBs
+func (m createautonomousdatabasebase) GetDataStorageSizeInTBs() *int {
+	return m.DataStorageSizeInTBs
 }
 
 //GetIsFreeTier returns IsFreeTier
@@ -404,6 +408,7 @@ const (
 	CreateAutonomousDatabaseBaseSourceBackupFromId        CreateAutonomousDatabaseBaseSourceEnum = "BACKUP_FROM_ID"
 	CreateAutonomousDatabaseBaseSourceBackupFromTimestamp CreateAutonomousDatabaseBaseSourceEnum = "BACKUP_FROM_TIMESTAMP"
 	CreateAutonomousDatabaseBaseSourceCloneToRefreshable  CreateAutonomousDatabaseBaseSourceEnum = "CLONE_TO_REFRESHABLE"
+	CreateAutonomousDatabaseBaseSourceCloneToVirtual      CreateAutonomousDatabaseBaseSourceEnum = "CLONE_TO_VIRTUAL"
 )
 
 var mappingCreateAutonomousDatabaseBaseSource = map[string]CreateAutonomousDatabaseBaseSourceEnum{
@@ -412,6 +417,7 @@ var mappingCreateAutonomousDatabaseBaseSource = map[string]CreateAutonomousDatab
 	"BACKUP_FROM_ID":        CreateAutonomousDatabaseBaseSourceBackupFromId,
 	"BACKUP_FROM_TIMESTAMP": CreateAutonomousDatabaseBaseSourceBackupFromTimestamp,
 	"CLONE_TO_REFRESHABLE":  CreateAutonomousDatabaseBaseSourceCloneToRefreshable,
+	"CLONE_TO_VIRTUAL":      CreateAutonomousDatabaseBaseSourceCloneToVirtual,
 }
 
 // GetCreateAutonomousDatabaseBaseSourceEnumValues Enumerates the set of values for CreateAutonomousDatabaseBaseSourceEnum

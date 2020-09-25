@@ -12,10 +12,10 @@ import (
 // UpdateCloudExadataInfrastructureRequest wrapper for the UpdateCloudExadataInfrastructure operation
 type UpdateCloudExadataInfrastructureRequest struct {
 
-	// The Cloud Exadata infrastructure OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The cloud Exadata infrastructure OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CloudExadataInfrastructureId *string `mandatory:"true" contributesTo:"path" name:"cloudExadataInfrastructureId"`
 
-	// Request to update the properties of an cloud Exadata infrastructure
+	// Request to update the properties of an cloud Exadata infrastructure resource.
 	UpdateCloudExadataInfrastructureDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

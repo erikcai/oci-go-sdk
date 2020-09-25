@@ -19,13 +19,13 @@ type CreateCloudVmClusterDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the Cloud VM Cluster is associated with.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet associated with the cloud VM cluster.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup network subnet the cloud VM cluster is associated with.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup network subnet associated with the cloud VM cluster.
 	BackupSubnetId *string `mandatory:"true" json:"backupSubnetId"`
 
-	// The number of CPU cores to enable for a cloud Vm cluster. The valid values depend on the specified shape:
+	// The number of CPU cores to enable for a cloud VM cluster. Valid values depend on the specified shape:
 	// - Exadata.Base.48 - Specify a multiple of 2, from 0 to 48.
 	// - Exadata.Quarter1.84 - Specify a multiple of 2, from 22 to 84.
 	// - Exadata.Half1.168 - Specify a multiple of 4, from 44 to 168.
@@ -38,14 +38,14 @@ type CreateCloudVmClusterDetails struct {
 	// The user-friendly name for the cloud VM cluster. The name does not need to be unique.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure resource.
 	CloudExadataInfrastructureId *string `mandatory:"true" json:"cloudExadataInfrastructureId"`
 
-	// The hostname for the cloud Vm cluster. The hostname must begin with an alphabetic character, and
-	// can contain alphanumeric characters and hyphens (-). The maximum length of the hostname is 16 characters for bare metal and virtual machine DB systems, and 12 characters for Exadata DB systems.
+	// The hostname for the cloud VM cluster. The hostname must begin with an alphabetic character, and
+	// can contain alphanumeric characters and hyphens (-). The maximum length of the hostname is 16 characters for bare metal and virtual machine DB systems, and 12 characters for Exadata systems.
 	// The maximum length of the combined hostname and domain is 63 characters.
 	// **Note:** The hostname must be unique within the subnet. If it is not unique,
-	// the cloud Vm Cluster will fail to provision.
+	// the cloud VM Cluster will fail to provision.
 	Hostname *string `mandatory:"true" json:"hostname"`
 
 	// The public key portion of one or more key pairs used for SSH access to the cloud VM cluster.
@@ -54,15 +54,15 @@ type CreateCloudVmClusterDetails struct {
 	// A valid Oracle Grid Infrastructure (GI) software version.
 	GiVersion *string `mandatory:"true" json:"giVersion"`
 
-	// The cluster name for cloud Vm cluster. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.
+	// The cluster name for cloud VM cluster. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.
 	ClusterName *string `mandatory:"false" json:"clusterName"`
 
 	// The percentage assigned to DATA storage (user data and database files).
-	// The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups). Accepted values are 35, 40, 60 and 80. The default is 80 percent assigned to DATA storage. Please see https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Concepts/exaoverview.htm for details of Impact of Configuration Settings on Storage.
+	// The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups). Accepted values are 35, 40, 60 and 80. The default is 80 percent assigned to DATA storage. See Storage Configuration (https://docs.cloud.oracle.com/Content/Database/Concepts/exaoverview.htm#Exadata) in the Exadata documentation for details on the impact of the configuration settings on storage.
 	DataStoragePercentage *int `mandatory:"false" json:"dataStoragePercentage"`
 
-	// A domain name used for the cloud Vm cluster. If the Oracle-provided Internet and VCN
-	// Resolver is enabled for the specified subnet, the domain name for the subnet is used
+	// A domain name used for the cloud VM cluster. If the Oracle-provided internet and VCN
+	// resolver is enabled for the specified subnet, the domain name for the subnet is used
 	// (do not provide one). Otherwise, provide a valid DNS domain name. Hyphens (-) are not permitted.
 	Domain *string `mandatory:"false" json:"domain"`
 
@@ -75,7 +75,7 @@ type CreateCloudVmClusterDetails struct {
 	// If true, database backup on local Exadata storage is configured for the cloud VM cluster. If false, database backup on local Exadata storage is not available in the cloud VM cluster.
 	IsLocalBackupEnabled *bool `mandatory:"false" json:"isLocalBackupEnabled"`
 
-	// The time zone to use for the cloud VM cluster. For details, see DB System Time Zones (https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
+	// The time zone to use for the cloud VM cluster. For details, see Time Zones (https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
 	TimeZone *string `mandatory:"false" json:"timeZone"`
 
 	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
@@ -83,7 +83,7 @@ type CreateCloudVmClusterDetails struct {
 	// - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
 
-	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.
+	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata systems.
 	BackupNetworkNsgIds []string `mandatory:"false" json:"backupNetworkNsgIds"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

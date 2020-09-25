@@ -40,12 +40,12 @@ type MacroField struct {
 
 	Type BaseType `mandatory:"false" json:"type"`
 
-	// Specifies whether the type of macro fields is inferred from expression or useType (false) or the source field (true)
+	// Specifies whether the type of macro fields is inferred from an expression or useType (false) or the source field (true).
 	IsUseSourceType *bool `mandatory:"false" json:"isUseSourceType"`
 
 	UseType *ConfiguredType `mandatory:"false" json:"useType"`
 
-	// Labels are keywords or labels that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.
+	// Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.
 	Labels []string `mandatory:"false" json:"labels"`
 }
 

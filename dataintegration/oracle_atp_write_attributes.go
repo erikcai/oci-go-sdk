@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// OracleAtpWriteAttributes Properties to configure writing to Oracle Autonomous Data Warehouse Cloud.
+// OracleAtpWriteAttributes Properties to configure when writing to Oracle Autonomous Data Warehouse Cloud.
 type OracleAtpWriteAttributes struct {
 
 	// The type of the abstract write attribute.

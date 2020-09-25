@@ -26,11 +26,11 @@ type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 	// The number of OCPU cores to be made available to the database.
 	CpuCoreCount *int `mandatory:"true" json:"cpuCoreCount"`
 
-	// The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
-	DataStorageSizeInTBs *int `mandatory:"true" json:"dataStorageSizeInTBs"`
-
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create a new Autonomous Database.
 	SourceId *string `mandatory:"true" json:"sourceId"`
+
+	// The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
+	DataStorageSizeInTBs *int `mandatory:"false" json:"dataStorageSizeInTBs"`
 
 	// Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of memory. For Always Free databases, memory and CPU cannot be scaled.
 	IsFreeTier *bool `mandatory:"false" json:"isFreeTier"`
@@ -67,12 +67,12 @@ type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 	// This property is applicable only to Autonomous Databases on the Exadata Cloud@Customer platform.
 	IsAccessControlEnabled *bool `mandatory:"false" json:"isAccessControlEnabled"`
 
-	// The client IP access control list (ACL). This feature is available for autonomous databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and that on Exadata Cloud at Customer.
+	// The client IP access control list (ACL). This feature is available for autonomous databases on shared Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and on Exadata Cloud@Customer.
 	// Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
-	// For Shared Exadata Infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
-	// To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs.
+	// For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
+	// Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs.
 	// Example: `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.<unique_id>","ocid1.vcn.oc1.sea.<unique_id1>;1.1.1.1","ocid1.vcn.oc1.sea.<unique_id2>;1.1.0.0/16"]`
-	// For Exadata Cloud at Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
+	// For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
 	// Example: `["1.1.1.1","1.1.1.0/24","1.1.2.25"]`
 	// For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
 	WhitelistedIps []string `mandatory:"false" json:"whitelistedIps"`
@@ -83,7 +83,7 @@ type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.
 	// **Subnet Restrictions:**
 	// - For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28.
-	// - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
+	// - For Exadata and virtual machine 2-node RAC systems, do not use a subnet that overlaps with 192.168.128.0/20.
 	// - For Autonomous Database, setting this will disable public secure access to the database.
 	// These subnets are used by the Oracle Clusterware private interconnect on the database instance.
 	// Specifying an overlapping subnet will cause the private interconnect to malfunction.

@@ -188,8 +188,8 @@ const (
 	UpdateConnectionDetailsModelTypeOracleAtpConnection           UpdateConnectionDetailsModelTypeEnum = "ORACLE_ATP_CONNECTION"
 	UpdateConnectionDetailsModelTypeOracleObjectStorageConnection UpdateConnectionDetailsModelTypeEnum = "ORACLE_OBJECT_STORAGE_CONNECTION"
 	UpdateConnectionDetailsModelTypeOracledbConnection            UpdateConnectionDetailsModelTypeEnum = "ORACLEDB_CONNECTION"
-	UpdateConnectionDetailsModelTypeMysqlDataAsset                UpdateConnectionDetailsModelTypeEnum = "MYSQL_DATA_ASSET"
-	UpdateConnectionDetailsModelTypeGenericJdbcDataAsset          UpdateConnectionDetailsModelTypeEnum = "GENERIC_JDBC_DATA_ASSET"
+	UpdateConnectionDetailsModelTypeMysqlConnection               UpdateConnectionDetailsModelTypeEnum = "MYSQL_CONNECTION"
+	UpdateConnectionDetailsModelTypeGenericJdbcConnection         UpdateConnectionDetailsModelTypeEnum = "GENERIC_JDBC_CONNECTION"
 )
 
 var mappingUpdateConnectionDetailsModelType = map[string]UpdateConnectionDetailsModelTypeEnum{
@@ -197,8 +197,8 @@ var mappingUpdateConnectionDetailsModelType = map[string]UpdateConnectionDetails
 	"ORACLE_ATP_CONNECTION":            UpdateConnectionDetailsModelTypeOracleAtpConnection,
 	"ORACLE_OBJECT_STORAGE_CONNECTION": UpdateConnectionDetailsModelTypeOracleObjectStorageConnection,
 	"ORACLEDB_CONNECTION":              UpdateConnectionDetailsModelTypeOracledbConnection,
-	"MYSQL_DATA_ASSET":                 UpdateConnectionDetailsModelTypeMysqlDataAsset,
-	"GENERIC_JDBC_DATA_ASSET":          UpdateConnectionDetailsModelTypeGenericJdbcDataAsset,
+	"MYSQL_CONNECTION":                 UpdateConnectionDetailsModelTypeMysqlConnection,
+	"GENERIC_JDBC_CONNECTION":          UpdateConnectionDetailsModelTypeGenericJdbcConnection,
 }
 
 // GetUpdateConnectionDetailsModelTypeEnumValues Enumerates the set of values for UpdateConnectionDetailsModelTypeEnum

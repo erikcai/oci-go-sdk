@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v25/common"
 )
 
-// EnrichedEntity This is used for specify runtime parameters for entities such as files that need both the data entity and the format.
+// EnrichedEntity This is used to specify runtime parameters for data entities such as files that need both the data entity and the format.
 type EnrichedEntity struct {
 	Entity DataEntity `mandatory:"false" json:"entity"`
 

@@ -12,10 +12,10 @@ import (
 // ChangeCloudExadataInfrastructureCompartmentRequest wrapper for the ChangeCloudExadataInfrastructureCompartment operation
 type ChangeCloudExadataInfrastructureCompartmentRequest struct {
 
-	// Request to move cloud Exadata infrastructure to a different compartment
+	// Request to move cloud Exadata infrastructure resource to a different compartment.
 	ChangeCloudExadataInfrastructureCompartmentDetails `contributesTo:"body"`
 
-	// The Cloud Exadata infrastructure OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+	// The cloud Exadata infrastructure OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 	CloudExadataInfrastructureId *string `mandatory:"true" contributesTo:"path" name:"cloudExadataInfrastructureId"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
