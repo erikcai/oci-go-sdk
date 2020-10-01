@@ -107,7 +107,7 @@ func newFileBasedFederationClient(securityTokenPath string, supplier sessionKeyS
 			}
 
 			var newToken securityToken
-			if newToken, err = newInstancePrincipalToken(string(content)); err != nil {
+			if newToken, err = newPrincipalToken(string(content)); err != nil {
 				return nil, fmt.Errorf("failed to read security token from :%s. Due to: %s", securityTokenPath, err.Error())
 			}
 
@@ -119,7 +119,7 @@ func newFileBasedFederationClient(securityTokenPath string, supplier sessionKeyS
 func newStaticFederationClient(sessionToken string, supplier sessionKeySupplier) (*genericFederationClient, error) {
 	var newToken securityToken
 	var err error
-	if newToken, err = newInstancePrincipalToken(string(sessionToken)); err != nil {
+	if newToken, err = newPrincipalToken(string(sessionToken)); err != nil {
 		return nil, fmt.Errorf("failed to read security token. Due to: %s", err.Error())
 	}
 
@@ -316,7 +316,7 @@ func (c *x509FederationClient) getSecurityToken() (securityToken, error) {
 		return nil, fmt.Errorf("failed to unmarshal the response: %s", err.Error())
 	}
 
-	return newInstancePrincipalToken(response.Token.Token)
+	return newPrincipalToken(response.Token.Token)
 }
 
 func (c *x509FederationClient) GetClaim(key string) (interface{}, error) {
@@ -546,24 +546,24 @@ type securityToken interface {
 	ClaimHolder
 }
 
-type instancePrincipalToken struct {
+type principalToken struct {
 	tokenString string
 	jwtToken    *jwtToken
 }
 
-func newInstancePrincipalToken(tokenString string) (newToken securityToken, err error) {
+func newPrincipalToken(tokenString string) (newToken securityToken, err error) {
 	var jwtToken *jwtToken
 	if jwtToken, err = parseJwt(tokenString); err != nil {
 		return nil, fmt.Errorf("failed to parse the token string \"%s\": %s", tokenString, err.Error())
 	}
-	return &instancePrincipalToken{tokenString, jwtToken}, nil
+	return &principalToken{tokenString, jwtToken}, nil
 }
 
-func (t *instancePrincipalToken) String() string {
+func (t *principalToken) String() string {
 	return t.tokenString
 }
 
-func (t *instancePrincipalToken) Valid() bool {
+func (t *principalToken) Valid() bool {
 	return !t.jwtToken.expired()
 }
 
@@ -572,7 +572,7 @@ var (
 	ErrNoSuchClaim = errors.New("no such claim")
 )
 
-func (t *instancePrincipalToken) GetClaim(key string) (interface{}, error) {
+func (t *principalToken) GetClaim(key string) (interface{}, error) {
 	if value, ok := t.jwtToken.payload[key]; ok {
 		return value, nil
 	}

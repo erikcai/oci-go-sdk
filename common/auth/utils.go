@@ -73,6 +73,15 @@ func colonSeparatedString(fingerprint [sha1.Size]byte) string {
 	return strings.Replace(spaceSeparated, " ", ":", -1)
 }
 
+func sanitizeCertificateString(certString string) string {
+	certString = strings.Replace(certString, "-----BEGIN CERTIFICATE-----", "", -1)
+	certString = strings.Replace(certString, "-----END CERTIFICATE-----", "", -1)
+	certString = strings.Replace(certString, "-----BEGIN PUBLIC KEY-----", "", -1)
+	certString = strings.Replace(certString, "-----END PUBLIC KEY-----", "", -1)
+	certString = strings.Replace(certString, "\n", "", -1)
+	return certString
+}
+
 // GetGenericConfigurationProvider checks auth config paras in config file and return the final configuration provider
 func GetGenericConfigurationProvider(configProvider common.ConfigurationProvider) (common.ConfigurationProvider, error) {
 	if authConfig, err := configProvider.AuthType(); err == nil && authConfig.IsFromConfigFile {
