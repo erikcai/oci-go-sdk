@@ -38,6 +38,9 @@ type UpdateAutonomousContainerDatabaseDetails struct {
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	BackupConfig *AutonomousContainerDatabaseBackupConfig `mandatory:"false" json:"backupConfig"`
+
+	// Indicates if FIPS-140 compliant cryptography is enabled for the Autonomous Container Database.
+	IsFipsEnabled *bool `mandatory:"false" json:"isFipsEnabled"`
 }
 
 func (m UpdateAutonomousContainerDatabaseDetails) String() string {

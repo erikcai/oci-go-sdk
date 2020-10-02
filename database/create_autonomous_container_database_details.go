@@ -85,6 +85,11 @@ type CreateAutonomousContainerDatabaseDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
 	KeyStoreId *string `mandatory:"false" json:"keyStoreId"`
+
+	// Indicates if FIPS-140 compliant cryptography is enabled for the Autonomous Container Database. The default
+	// value is `TRUE` for regions in Oracle Cloud's Government, ONSR realms (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm),
+	// and `FALSE` for regions in Oracle Cloud's commercial realm.
+	IsFipsEnabled *bool `mandatory:"false" json:"isFipsEnabled"`
 }
 
 func (m CreateAutonomousContainerDatabaseDetails) String() string {

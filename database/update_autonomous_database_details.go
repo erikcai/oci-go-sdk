@@ -51,6 +51,7 @@ type UpdateAutonomousDatabaseDetails struct {
 	// - OLTP - indicates an Autonomous Transaction Processing database
 	// - DW - indicates an Autonomous Data Warehouse database
 	// - AJD - indicates an Autonomous JSON Database
+	// - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type.
 	DbWorkload UpdateAutonomousDatabaseDetailsDbWorkloadEnum `mandatory:"false" json:"dbWorkload,omitempty"`
 
 	// The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on dedicated Exadata infrastructure (https://docs.cloud.oracle.com/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute is already set at the
@@ -127,12 +128,14 @@ const (
 	UpdateAutonomousDatabaseDetailsDbWorkloadOltp UpdateAutonomousDatabaseDetailsDbWorkloadEnum = "OLTP"
 	UpdateAutonomousDatabaseDetailsDbWorkloadDw   UpdateAutonomousDatabaseDetailsDbWorkloadEnum = "DW"
 	UpdateAutonomousDatabaseDetailsDbWorkloadAjd  UpdateAutonomousDatabaseDetailsDbWorkloadEnum = "AJD"
+	UpdateAutonomousDatabaseDetailsDbWorkloadApex UpdateAutonomousDatabaseDetailsDbWorkloadEnum = "APEX"
 )
 
 var mappingUpdateAutonomousDatabaseDetailsDbWorkload = map[string]UpdateAutonomousDatabaseDetailsDbWorkloadEnum{
 	"OLTP": UpdateAutonomousDatabaseDetailsDbWorkloadOltp,
 	"DW":   UpdateAutonomousDatabaseDetailsDbWorkloadDw,
 	"AJD":  UpdateAutonomousDatabaseDetailsDbWorkloadAjd,
+	"APEX": UpdateAutonomousDatabaseDetailsDbWorkloadApex,
 }
 
 // GetUpdateAutonomousDatabaseDetailsDbWorkloadEnumValues Enumerates the set of values for UpdateAutonomousDatabaseDetailsDbWorkloadEnum

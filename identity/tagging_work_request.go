@@ -58,10 +58,12 @@ type TaggingWorkRequestOperationTypeEnum string
 // Set of constants representing the allowable values for TaggingWorkRequestOperationTypeEnum
 const (
 	TaggingWorkRequestOperationTypeDeleteTagDefinition TaggingWorkRequestOperationTypeEnum = "DELETE_TAG_DEFINITION"
+	TaggingWorkRequestOperationTypeBulkEditOfTags      TaggingWorkRequestOperationTypeEnum = "BULK_EDIT_OF_TAGS"
 )
 
 var mappingTaggingWorkRequestOperationType = map[string]TaggingWorkRequestOperationTypeEnum{
 	"DELETE_TAG_DEFINITION": TaggingWorkRequestOperationTypeDeleteTagDefinition,
+	"BULK_EDIT_OF_TAGS":     TaggingWorkRequestOperationTypeBulkEditOfTags,
 }
 
 // GetTaggingWorkRequestOperationTypeEnumValues Enumerates the set of values for TaggingWorkRequestOperationTypeEnum
@@ -78,21 +80,23 @@ type TaggingWorkRequestStatusEnum string
 
 // Set of constants representing the allowable values for TaggingWorkRequestStatusEnum
 const (
-	TaggingWorkRequestStatusAccepted   TaggingWorkRequestStatusEnum = "ACCEPTED"
-	TaggingWorkRequestStatusInProgress TaggingWorkRequestStatusEnum = "IN_PROGRESS"
-	TaggingWorkRequestStatusFailed     TaggingWorkRequestStatusEnum = "FAILED"
-	TaggingWorkRequestStatusSucceeded  TaggingWorkRequestStatusEnum = "SUCCEEDED"
-	TaggingWorkRequestStatusCanceling  TaggingWorkRequestStatusEnum = "CANCELING"
-	TaggingWorkRequestStatusCanceled   TaggingWorkRequestStatusEnum = "CANCELED"
+	TaggingWorkRequestStatusAccepted           TaggingWorkRequestStatusEnum = "ACCEPTED"
+	TaggingWorkRequestStatusInProgress         TaggingWorkRequestStatusEnum = "IN_PROGRESS"
+	TaggingWorkRequestStatusFailed             TaggingWorkRequestStatusEnum = "FAILED"
+	TaggingWorkRequestStatusSucceeded          TaggingWorkRequestStatusEnum = "SUCCEEDED"
+	TaggingWorkRequestStatusPartiallySucceeded TaggingWorkRequestStatusEnum = "PARTIALLY_SUCCEEDED"
+	TaggingWorkRequestStatusCanceling          TaggingWorkRequestStatusEnum = "CANCELING"
+	TaggingWorkRequestStatusCanceled           TaggingWorkRequestStatusEnum = "CANCELED"
 )
 
 var mappingTaggingWorkRequestStatus = map[string]TaggingWorkRequestStatusEnum{
-	"ACCEPTED":    TaggingWorkRequestStatusAccepted,
-	"IN_PROGRESS": TaggingWorkRequestStatusInProgress,
-	"FAILED":      TaggingWorkRequestStatusFailed,
-	"SUCCEEDED":   TaggingWorkRequestStatusSucceeded,
-	"CANCELING":   TaggingWorkRequestStatusCanceling,
-	"CANCELED":    TaggingWorkRequestStatusCanceled,
+	"ACCEPTED":            TaggingWorkRequestStatusAccepted,
+	"IN_PROGRESS":         TaggingWorkRequestStatusInProgress,
+	"FAILED":              TaggingWorkRequestStatusFailed,
+	"SUCCEEDED":           TaggingWorkRequestStatusSucceeded,
+	"PARTIALLY_SUCCEEDED": TaggingWorkRequestStatusPartiallySucceeded,
+	"CANCELING":           TaggingWorkRequestStatusCanceling,
+	"CANCELED":            TaggingWorkRequestStatusCanceled,
 }
 
 // GetTaggingWorkRequestStatusEnumValues Enumerates the set of values for TaggingWorkRequestStatusEnum

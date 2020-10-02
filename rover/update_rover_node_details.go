@@ -17,7 +17,7 @@ import (
 type UpdateRoverNodeDetails struct {
 
 	// RoverNode Identifier
-	DisplayName *string `mandatory:"true" json:"displayName"`
+	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 

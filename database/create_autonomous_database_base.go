@@ -31,6 +31,7 @@ type CreateAutonomousDatabaseBase interface {
 	// - OLTP - indicates an Autonomous Transaction Processing database
 	// - DW - indicates an Autonomous Data Warehouse database
 	// - AJD - indicates an Autonomous JSON Database
+	// - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type.
 	GetDbWorkload() CreateAutonomousDatabaseBaseDbWorkloadEnum
 
 	// The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
@@ -358,12 +359,14 @@ const (
 	CreateAutonomousDatabaseBaseDbWorkloadOltp CreateAutonomousDatabaseBaseDbWorkloadEnum = "OLTP"
 	CreateAutonomousDatabaseBaseDbWorkloadDw   CreateAutonomousDatabaseBaseDbWorkloadEnum = "DW"
 	CreateAutonomousDatabaseBaseDbWorkloadAjd  CreateAutonomousDatabaseBaseDbWorkloadEnum = "AJD"
+	CreateAutonomousDatabaseBaseDbWorkloadApex CreateAutonomousDatabaseBaseDbWorkloadEnum = "APEX"
 )
 
 var mappingCreateAutonomousDatabaseBaseDbWorkload = map[string]CreateAutonomousDatabaseBaseDbWorkloadEnum{
 	"OLTP": CreateAutonomousDatabaseBaseDbWorkloadOltp,
 	"DW":   CreateAutonomousDatabaseBaseDbWorkloadDw,
 	"AJD":  CreateAutonomousDatabaseBaseDbWorkloadAjd,
+	"APEX": CreateAutonomousDatabaseBaseDbWorkloadApex,
 }
 
 // GetCreateAutonomousDatabaseBaseDbWorkloadEnumValues Enumerates the set of values for CreateAutonomousDatabaseBaseDbWorkloadEnum

@@ -152,6 +152,10 @@ const (
 	ListCustomPropertiesTypeNameOracleObjectStorage             ListCustomPropertiesTypeNameEnum = "ORACLE_OBJECT_STORAGE"
 	ListCustomPropertiesTypeNameAutonomousTransactionProcessing ListCustomPropertiesTypeNameEnum = "AUTONOMOUS_TRANSACTION_PROCESSING"
 	ListCustomPropertiesTypeNameOracle                          ListCustomPropertiesTypeNameEnum = "ORACLE"
+	ListCustomPropertiesTypeNamePostgresql                      ListCustomPropertiesTypeNameEnum = "POSTGRESQL"
+	ListCustomPropertiesTypeNameMicrosoftAzureSqlDatabase       ListCustomPropertiesTypeNameEnum = "MICROSOFT_AZURE_SQL_DATABASE"
+	ListCustomPropertiesTypeNameMicrosoftSqlServer              ListCustomPropertiesTypeNameEnum = "MICROSOFT_SQL_SERVER"
+	ListCustomPropertiesTypeNameIbmDb2                          ListCustomPropertiesTypeNameEnum = "IBM_DB2"
 	ListCustomPropertiesTypeNameDataEntity                      ListCustomPropertiesTypeNameEnum = "DATA_ENTITY"
 	ListCustomPropertiesTypeNameLogicalEntity                   ListCustomPropertiesTypeNameEnum = "LOGICAL_ENTITY"
 	ListCustomPropertiesTypeNameTable                           ListCustomPropertiesTypeNameEnum = "TABLE"
@@ -175,6 +179,10 @@ var mappingListCustomPropertiesTypeName = map[string]ListCustomPropertiesTypeNam
 	"ORACLE_OBJECT_STORAGE":             ListCustomPropertiesTypeNameOracleObjectStorage,
 	"AUTONOMOUS_TRANSACTION_PROCESSING": ListCustomPropertiesTypeNameAutonomousTransactionProcessing,
 	"ORACLE":                            ListCustomPropertiesTypeNameOracle,
+	"POSTGRESQL":                        ListCustomPropertiesTypeNamePostgresql,
+	"MICROSOFT_AZURE_SQL_DATABASE":      ListCustomPropertiesTypeNameMicrosoftAzureSqlDatabase,
+	"MICROSOFT_SQL_SERVER":              ListCustomPropertiesTypeNameMicrosoftSqlServer,
+	"IBM_DB2":                           ListCustomPropertiesTypeNameIbmDb2,
 	"DATA_ENTITY":                       ListCustomPropertiesTypeNameDataEntity,
 	"LOGICAL_ENTITY":                    ListCustomPropertiesTypeNameLogicalEntity,
 	"TABLE":                             ListCustomPropertiesTypeNameTable,

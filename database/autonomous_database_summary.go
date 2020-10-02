@@ -141,6 +141,7 @@ type AutonomousDatabaseSummary struct {
 	// - OLTP - indicates an Autonomous Transaction Processing database
 	// - DW - indicates an Autonomous Data Warehouse database
 	// - AJD - indicates an Autonomous JSON Database
+	// - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type.
 	DbWorkload AutonomousDatabaseSummaryDbWorkloadEnum `mandatory:"false" json:"dbWorkload,omitempty"`
 
 	// Indicates if the database-level access control is enabled.
@@ -160,6 +161,9 @@ type AutonomousDatabaseSummary struct {
 	// Example: `["1.1.1.1","1.1.1.0/24","1.1.2.25"]`
 	// For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
 	WhitelistedIps []string `mandatory:"false" json:"whitelistedIps"`
+
+	// Information about Autonomous Application Express.
+	ApexDetails *AutonomousDatabaseApex `mandatory:"false" json:"apexDetails"`
 
 	// Indicates if auto scaling is enabled for the Autonomous Database CPU core count.
 	IsAutoScalingEnabled *bool `mandatory:"false" json:"isAutoScalingEnabled"`
@@ -350,12 +354,14 @@ const (
 	AutonomousDatabaseSummaryDbWorkloadOltp AutonomousDatabaseSummaryDbWorkloadEnum = "OLTP"
 	AutonomousDatabaseSummaryDbWorkloadDw   AutonomousDatabaseSummaryDbWorkloadEnum = "DW"
 	AutonomousDatabaseSummaryDbWorkloadAjd  AutonomousDatabaseSummaryDbWorkloadEnum = "AJD"
+	AutonomousDatabaseSummaryDbWorkloadApex AutonomousDatabaseSummaryDbWorkloadEnum = "APEX"
 )
 
 var mappingAutonomousDatabaseSummaryDbWorkload = map[string]AutonomousDatabaseSummaryDbWorkloadEnum{
 	"OLTP": AutonomousDatabaseSummaryDbWorkloadOltp,
 	"DW":   AutonomousDatabaseSummaryDbWorkloadDw,
 	"AJD":  AutonomousDatabaseSummaryDbWorkloadAjd,
+	"APEX": AutonomousDatabaseSummaryDbWorkloadApex,
 }
 
 // GetAutonomousDatabaseSummaryDbWorkloadEnumValues Enumerates the set of values for AutonomousDatabaseSummaryDbWorkloadEnum

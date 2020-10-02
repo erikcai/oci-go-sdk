@@ -8487,6 +8487,50 @@ func TestVirtualNetworkClientListCrossConnectLocations(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
+func TestVirtualNetworkClientListCrossConnectMappings(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListCrossConnectMappings")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCrossConnectMappings is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListCrossConnectMappings", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListCrossConnectMappings")
+	assert.NoError(t, err)
+
+	type ListCrossConnectMappingsRequestInfo struct {
+		ContainerId string
+		Request     core.ListCrossConnectMappingsRequest
+	}
+
+	var requests []ListCrossConnectMappingsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ListCrossConnectMappings(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientListCrossConnects(t *testing.T) {
 	defer failTestOnPanic(t)
 

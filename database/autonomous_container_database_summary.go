@@ -98,6 +98,9 @@ type AutonomousContainerDatabaseSummary struct {
 
 	// The wallet name for Oracle Key Vault.
 	KeyStoreWalletName *string `mandatory:"false" json:"keyStoreWalletName"`
+
+	// Indicates if FIPS-140 compliant cryptography is enabled for the Autonomous Container Database.
+	IsFipsEnabled *bool `mandatory:"false" json:"isFipsEnabled"`
 }
 
 func (m AutonomousContainerDatabaseSummary) String() string {

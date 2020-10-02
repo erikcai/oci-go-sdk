@@ -17,7 +17,7 @@ import (
 type UpdateRoverClusterDetails struct {
 
 	// RoverCluster Identifier
-	DisplayName *string `mandatory:"true" json:"displayName"`
+	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Number of nodes desired in the cluster, between 5 and 15.
 	ClusterSize *string `mandatory:"false" json:"clusterSize"`

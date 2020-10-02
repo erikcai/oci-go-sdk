@@ -356,6 +356,61 @@ func (client IdentityClient) bulkDeleteTags(ctx context.Context, request common.
 	return response, err
 }
 
+// BulkEditTags Bulk Edit (ADD_WHERE_ABSENT/SET_WHERE_PRESENT/ADD_OR_SET/Remove) specified list of tag key definitions from the selected resources. This operation triggers a process that edits the
+// tags from selected resources.
+// User can submit combination of operation and tag set. But one tag definition can't be used with multiple operations in single request.
+// e.g. One request can contain ADD_WHERE_ABSENT with tag set-1 & SET_WHERE_PRESENT with tag set-2. tag set-1 & tag set-2 should not have any common tag definitions
+func (client IdentityClient) BulkEditTags(ctx context.Context, request BulkEditTagsRequest) (response BulkEditTagsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.bulkEditTags, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = BulkEditTagsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = BulkEditTagsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(BulkEditTagsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into BulkEditTagsResponse")
+	}
+	return
+}
+
+// bulkEditTags implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) bulkEditTags(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/tags/actions/bulkEdit")
+	if err != nil {
+		return nil, err
+	}
+
+	var response BulkEditTagsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // BulkMoveResources Moves multiple resources from one compartment to another. All resources must be in the same compartment.
 // This API can only be invoked from the tenancy's home region (https://docs.cloud.oracle.com/Content/Identity/Tasks/managingregions.htm#Home).
 // To move resources, you must have the appropriate permissions to move the resource in both the source and target
@@ -656,7 +711,7 @@ func (client IdentityClient) createCompartment(ctx context.Context, request comm
 }
 
 // CreateCustomerSecretKey Creates a new secret key for the specified user. Secret keys are used for authentication with the Object Storage Service's Amazon S3
-// compatible API. For information, see
+// compatible API. The secret key consists of an Access Key/Secret Key pair. For information, see
 // Managing User Credentials (https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcredentials.htm).
 // You must specify a *description* for the secret key (although it can be an empty string). It does not
 // have to be unique, and you can change it anytime with
@@ -3917,6 +3972,53 @@ func (client IdentityClient) listBulkActionResourceTypes(ctx context.Context, re
 	}
 
 	var response ListBulkActionResourceTypesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListBulkEditTagsResourceTypes Lists the resource types which supports Bulk Edit of Tags.
+func (client IdentityClient) ListBulkEditTagsResourceTypes(ctx context.Context, request ListBulkEditTagsResourceTypesRequest) (response ListBulkEditTagsResourceTypesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listBulkEditTagsResourceTypes, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListBulkEditTagsResourceTypesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListBulkEditTagsResourceTypesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListBulkEditTagsResourceTypesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListBulkEditTagsResourceTypesResponse")
+	}
+	return
+}
+
+// listBulkEditTagsResourceTypes implements the OCIOperation interface (enables retrying operations)
+func (client IdentityClient) listBulkEditTagsResourceTypes(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/tags/bulkEditResourceTypes")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListBulkEditTagsResourceTypesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

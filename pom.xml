@@ -5247,7 +5247,7 @@
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.158</version>
+        <version>0.4.171</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -5257,12 +5257,12 @@
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
         <artifactId>oralb-api-spec</artifactId>
-        <version>86.0.87</version>
+        <version>94</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.576</version>
+        <version>0.1.581</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -5417,7 +5417,7 @@
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.3.0-2009170122</version>
+        <version>1.3.0-2009300208</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -5562,12 +5562,12 @@
       <dependency>
         <groupId>com.oracle.oci.hydra.ibex</groupId>
         <artifactId>ibex-frontend-public-spec</artifactId>
-        <version>1.0.2128</version>
+        <version>1.0.2136</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.rover</groupId>
         <artifactId>rover-cloud-service-spec</artifactId>
-        <version>0.0.14</version>
+        <version>0.0.15</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.loganalytics.api</groupId>

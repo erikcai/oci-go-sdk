@@ -243,6 +243,50 @@ func TestIdentityClientBulkDeleteTags(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientBulkEditTags(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "BulkEditTags")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("BulkEditTags is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "BulkEditTags", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "BulkEditTags")
+	assert.NoError(t, err)
+
+	type BulkEditTagsRequestInfo struct {
+		ContainerId string
+		Request     identity.BulkEditTagsRequest
+	}
+
+	var requests []BulkEditTagsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.BulkEditTags(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
 func TestIdentityClientBulkMoveResources(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3246,6 +3290,60 @@ func TestIdentityClientListBulkActionResourceTypes(t *testing.T) {
 			typedListResponses := make([]identity.ListBulkActionResourceTypesResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(identity.ListBulkActionResourceTypesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientListBulkEditTagsResourceTypes(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "ListBulkEditTagsResourceTypes")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListBulkEditTagsResourceTypes is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListBulkEditTagsResourceTypes", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "ListBulkEditTagsResourceTypes")
+	assert.NoError(t, err)
+
+	type ListBulkEditTagsResourceTypesRequestInfo struct {
+		ContainerId string
+		Request     identity.ListBulkEditTagsResourceTypesRequest
+	}
+
+	var requests []ListBulkEditTagsResourceTypesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*identity.ListBulkEditTagsResourceTypesRequest)
+				return c.ListBulkEditTagsResourceTypes(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]identity.ListBulkEditTagsResourceTypesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(identity.ListBulkEditTagsResourceTypesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
