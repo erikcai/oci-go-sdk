@@ -10,7 +10,7 @@
 package bastion
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // UpdateBastionDetails The bastion information to be updated.

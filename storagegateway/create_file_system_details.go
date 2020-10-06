@@ -11,7 +11,7 @@
 package storagegateway
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // CreateFileSystemDetails The configuration details for creating a storage gateway file system.

@@ -10,7 +10,7 @@
 package analytics
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // CreatePrivateAccessChannelDetails Input payload to create a Private Access Channel.

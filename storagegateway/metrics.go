@@ -11,7 +11,7 @@
 package storagegateway
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // Metrics The most current telemetry data posted from the specified storage gateway instance.

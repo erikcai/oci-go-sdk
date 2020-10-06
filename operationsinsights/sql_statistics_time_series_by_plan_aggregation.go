@@ -10,7 +10,7 @@
 package operationsinsights
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // SqlStatisticsTimeSeriesByPlanAggregation SQL performance statistics for a given plan

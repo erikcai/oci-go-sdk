@@ -10,7 +10,7 @@
 package operationsinsights
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // SummarizeDatabaseInsightResourceUsageAggregation Resource usage summation for the current time period

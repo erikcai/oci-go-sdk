@@ -11,7 +11,7 @@
 package batch
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // LogSummary Log file for a job's execution.

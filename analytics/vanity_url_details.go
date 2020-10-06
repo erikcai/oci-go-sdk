@@ -10,7 +10,7 @@
 package analytics
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // VanityUrlDetails Vanity url configuration details.

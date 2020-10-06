@@ -10,7 +10,7 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // Recommendation The metadata associated with the recommendation.

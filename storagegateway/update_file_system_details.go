@@ -11,7 +11,7 @@
 package storagegateway
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // UpdateFileSystemDetails Configuration details for updating a storage gateway file system.

@@ -12,7 +12,7 @@ package dns
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // UpdateResolverEndpointDetails The body for updating an existing resolver endpoint.

@@ -11,7 +11,7 @@ package computeinstanceagent
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // InstanceAgentCommandOutputViaTextDetails The representation of InstanceAgentCommandOutputViaTextDetails

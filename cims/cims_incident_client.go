@@ -10,8 +10,8 @@
 package cims
 
 import(
-    "github.com/oracle/oci-go-sdk/v25/common"
-    "github.com/oracle/oci-go-sdk/v25/common/auth"
+    "github.com/oracle/oci-go-sdk/v26/common"
+    "github.com/oracle/oci-go-sdk/v26/common/auth"
     "context"
     "fmt"
     "net/http"

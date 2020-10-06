@@ -10,7 +10,7 @@
 package filestorage
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // KerberosKeytabEntry Details of each keytab entry read from Keytab file.

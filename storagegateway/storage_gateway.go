@@ -11,7 +11,7 @@
 package storagegateway
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // StorageGateway The configuration details of a storage gateway. For general information about storage gateways, see

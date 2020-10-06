@@ -12,7 +12,7 @@
 package kam
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // KamOverride KAM charts come with default configuration values. This may be used to

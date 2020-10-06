@@ -2,8 +2,8 @@ package integtest
 
 import (
 	"context"
-	"github.com/oracle/oci-go-sdk/v25/common"
-	"github.com/oracle/oci-go-sdk/v25/storagegateway"
+	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v26/storagegateway"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

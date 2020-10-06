@@ -11,7 +11,7 @@ package filestorage
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // LdapBindAccount Account details for LDAP bind account from outbound connector.

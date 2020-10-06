@@ -10,7 +10,7 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // LevelConfiguration Details about the configuration level for the recommendation.

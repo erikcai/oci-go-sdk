@@ -10,7 +10,7 @@
 package cache
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // RedisShapeSummary The amount of memory allocated to the Redis replicated cache.

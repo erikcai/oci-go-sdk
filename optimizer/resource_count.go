@@ -10,7 +10,7 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // ResourceCount The count of resources in a category, grouped by status.

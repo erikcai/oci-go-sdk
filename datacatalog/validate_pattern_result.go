@@ -10,7 +10,7 @@
 package datacatalog
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // ValidatePatternResult Details regarding the validation of a pattern resource.

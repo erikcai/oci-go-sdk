@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // UpdatePrivateAccessGatewayDetails Information that can be updated for a private access gateway (PAG).

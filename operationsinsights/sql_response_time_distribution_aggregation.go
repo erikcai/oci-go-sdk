@@ -10,7 +10,7 @@
 package operationsinsights
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // SqlResponseTimeDistributionAggregation SQL Response time distribution entry.

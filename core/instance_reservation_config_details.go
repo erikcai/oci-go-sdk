@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // InstanceReservationConfigDetails A compute capacity configuration details is a template that defines the settings to use when defining

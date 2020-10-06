@@ -10,7 +10,7 @@
 package operationsinsights
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // SummarizeDatabaseInsightResourceStatisticsAggregationCollection Returns list of the Databases with resource statistics like usage,capacity,utilization and usage change percent.

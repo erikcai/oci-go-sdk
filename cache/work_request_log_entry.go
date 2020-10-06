@@ -10,7 +10,7 @@
 package cache
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // WorkRequestLogEntry A log entry of a work request.

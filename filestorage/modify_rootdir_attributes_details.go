@@ -10,7 +10,7 @@
 package filestorage
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // ModifyRootdirAttributesDetails Details for changing the ownership of file system root directory.

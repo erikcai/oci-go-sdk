@@ -12,7 +12,7 @@
 package kam
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // CreateKamReleaseDetails Details of the installation request. The KAM chart OCID can be looked up

@@ -11,7 +11,7 @@
 package batch
 
 import (
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // ComputeEnvironment Compute environment is definition of nodepool, does NOT mean nodepool will

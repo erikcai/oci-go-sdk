@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/oracle/oci-go-sdk/v25/loadbalancer"
+	"github.com/oracle/oci-go-sdk/v26/loadbalancer"
 	"github.com/stretchr/testify/assert"
 )
 

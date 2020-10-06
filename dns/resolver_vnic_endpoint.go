@@ -12,7 +12,7 @@ package dns
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v25/common"
+	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // ResolverVnicEndpoint An OCI DNS resolver VNIC endpoint.
