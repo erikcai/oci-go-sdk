@@ -67,7 +67,7 @@ build-sdk:
 
 test-sdk-only:
 	@echo "Testing sdk common"
-	@(cd $(PROJECT_PATH) && make test)
+	@(cd $(PROJECT_PATH) && make test && make test-integ)
 
 release-sdk:
 	@echo "Building oci-go-sdk with major:$(VER_MAJOR) minor:$(VER_MINOR) patch:$(VER_PATCH) tag:$(VER_TAG)"

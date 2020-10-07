@@ -214,7 +214,7 @@ func listOracleImages(t *testing.T) []core.Image {
 		OperatingSystem: common.String("Oracle Linux"),
 		SortBy:          core.ListImagesSortByTimecreated,
 		SortOrder:       core.ListImagesSortOrderDesc,
-		Shape:           common.String("VM.Standard1.1"),
+		Shape:           common.String("VM.Standard2.1"),
 	}
 
 	r, err := c.ListImages(context.Background(), request)
@@ -321,9 +321,9 @@ func createOrGetInstance(t *testing.T) core.Instance {
 	assert.NotEmpty(t, images)
 	createRequest.ImageId = images[0].Id
 
-	shapes := listShapesForImage(t, createRequest.ImageId)
-	assert.NotEmpty(t, shapes)
-	createRequest.Shape = shapes[0].Shape
+	// shapes := listShapesForImage(t, createRequest.ImageId)
+	// assert.NotEmpty(t, shapes)
+	createRequest.Shape = common.String("VM.Standard2.1")
 
 	createResp, err := c.LaunchInstance(context.Background(), createRequest)
 	assert.NotEmpty(t, createResp, fmt.Sprint(createResp))

@@ -258,11 +258,14 @@ func TestComputeClient_LaunchInstance(t *testing.T) {
 	assert.NotEmpty(t, shapes)
 
 	// if more shapes return, use different one to avoid getting service limited error
-	if len(shapes) > 0 {
-		request.Shape = shapes[1].Shape
-	} else {
-		request.Shape = shapes[0].Shape
-	}
+	// if len(shapes) > 0 {
+	// 	request.Shape = shapes[1].Shape
+	// } else {
+	// 	request.Shape = shapes[0].Shape
+	// }
+
+	// right now, we choose VM.Standard2.1 as a basic shape, this will avoid getting service limited error
+	request.Shape = common.String("VM.Standard2.1")
 
 	r, err := c.LaunchInstance(context.Background(), request)
 	failIfError(t, err)

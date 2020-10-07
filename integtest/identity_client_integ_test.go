@@ -11,7 +11,6 @@ package integtest
 import (
 	"context"
 	"fmt"
-
 	"net/http"
 	"reflect"
 	"strings"

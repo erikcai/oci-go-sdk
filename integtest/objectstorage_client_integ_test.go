@@ -423,7 +423,7 @@ func TestObjectStorageClient_UploadPart(t *testing.T) {
 
 func TestObjectStorage_UploadManager_UploadFile(t *testing.T) {
 	ctx := context.Background()
-	bname := "uploadManagerFileBucketName"
+	bname := "uploadManagerFileBucketName" + getUuid()
 	objectName := "sampleFileUploadObj"
 	namespace := getNamespace(t)
 
@@ -443,11 +443,11 @@ func TestObjectStorage_UploadManager_UploadFile(t *testing.T) {
 
 	req := transfer.UploadFileRequest{
 		UploadRequest: transfer.UploadRequest{
-			NamespaceName:  common.String(namespace),
-			BucketName:     common.String(bname),
-			ObjectName:     common.String(objectName),
-			PartSize:       common.Int64(1024 * 1000 * 1), // 1MB
-			CallBack:       callBack,
+			NamespaceName:                       common.String(namespace),
+			BucketName:                          common.String(bname),
+			ObjectName:                          common.String(objectName),
+			PartSize:                            common.Int64(1024 * 1000 * 1), // 1MB
+			CallBack:                            callBack,
 			EnableMultipartChecksumVerification: common.Bool(true),
 		},
 		FilePath: filepath,
@@ -467,13 +467,13 @@ func callBack(multiPartUploadPart transfer.MultiPartUploadPart) {
 	if nil == multiPartUploadPart.Err {
 		fmt.Printf("Part: %d / %d is uploaded, ", multiPartUploadPart.PartNum,
 			multiPartUploadPart.TotalParts)
-		fmt.Printf("and this part opcMD5(64BasedEncoding) is: %s.\n", *multiPartUploadPart.OpcMD5 )
+		fmt.Printf("and this part opcMD5(64BasedEncoding) is: %s.\n", *multiPartUploadPart.OpcMD5)
 	}
 }
 
 func TestObjectStorage_UploadManager_ResumeUploadFile(t *testing.T) {
 	ctx := context.Background()
-	bname := "uploadManagerResumeFileBucketName"
+	bname := "uploadManagerResumeFileBucketName" + getUuid()
 	objectName := "sampleFileUploadObj"
 	namespace := getNamespace(t)
 
@@ -521,7 +521,7 @@ func TestObjectStorage_UploadManager_ResumeUploadFile(t *testing.T) {
 }
 
 func TestObjectStorage_UploadManager_Stream(t *testing.T) {
-	bname := "uploadManagerStreamBucketName"
+	bname := "uploadManagerStreamBucketName" + getUuid()
 	objectName := "sampleStreamUploadObj"
 	namespace := getNamespace(t)
 
@@ -546,9 +546,9 @@ func TestObjectStorage_UploadManager_Stream(t *testing.T) {
 
 	req := transfer.UploadStreamRequest{
 		UploadRequest: transfer.UploadRequest{
-			NamespaceName: common.String(namespace),
-			BucketName:    common.String(bname),
-			ObjectName:    common.String(objectName),
+			NamespaceName:                       common.String(namespace),
+			BucketName:                          common.String(bname),
+			ObjectName:                          common.String(objectName),
 			EnableMultipartChecksumVerification: common.Bool(true),
 		},
 		StreamReader: file, // any struct implements the io.Reader interface

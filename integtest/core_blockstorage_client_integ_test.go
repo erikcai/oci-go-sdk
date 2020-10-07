@@ -34,7 +34,7 @@ func TestBlockstorageClient_CreateVolume(t *testing.T) {
 
 	request.AvailabilityDomain = common.String(validAD())
 	request.CompartmentId = common.String(getTenancyID())
-	request.DisplayName = common.String("GoSDK2_TestBlockStorageCreateVolumeDisplayName")
+	request.DisplayName = common.String("GoSDK2_TestBlockStorageVolume_" + getUuid())
 
 	resCreate, err := c.CreateVolume(context.Background(), request)
 	assert.NoError(t, err)
@@ -69,7 +69,7 @@ func TestBlockstorageClient_CreateVolume(t *testing.T) {
 		failIfError(t, clerr)
 		request := core.UpdateVolumeRequest{}
 		request.VolumeId = resCreate.Id
-		request.DisplayName = common.String("GoSDK2_TestBlockStorageCreateVolumeDisplayNameUpdated")
+		request.DisplayName = common.String("GoSDK2_TestBlockStorageVolumeUpdate_" + getUuid())
 		r, err := c.UpdateVolume(context.Background(), request)
 		assert.NotEmpty(t, r, fmt.Sprint(r))
 		assert.NoError(t, err)
@@ -94,6 +94,19 @@ func TestBlockstorageClient_CreateVolume(t *testing.T) {
 	deleteTest := func(t *testing.T) {
 		c, clerr := core.NewBlockstorageClientWithConfigurationProvider(configurationProvider())
 		failIfError(t, clerr)
+
+		volumeState := resCreate.LifecycleState
+		for volumeState != core.VolumeLifecycleStateAvailable {
+			time.Sleep(15 * time.Second)
+			getVolumeRequest, _ := c.GetVolume(context.Background(), core.GetVolumeRequest{
+				VolumeId: resCreate.Id,
+			})
+			volumeState = getVolumeRequest.LifecycleState
+		}
+		getRequest := core.GetVolumeRequest{}
+		getRequest.VolumeId = resCreate.Id
+		c.GetVolume(context.Background(), getRequest)
+
 		request := core.DeleteVolumeRequest{}
 		request.VolumeId = resCreate.Id
 		_, err := c.DeleteVolume(context.Background(), request)
@@ -116,7 +129,7 @@ func TestBlockstorageClient_CreateVolumeBackup(t *testing.T) {
 		rCreateVol := core.CreateVolumeRequest{}
 		rCreateVol.AvailabilityDomain = common.String(validAD())
 		rCreateVol.CompartmentId = common.String(getTenancyID())
-		rCreateVol.DisplayName = common.String("GoSDK2_TestBlockStorageCreateVolumeForBackup")
+		rCreateVol.DisplayName = common.String("GoSDK2_TestBlockStorageVolume_" + getUuid())
 		resCreate, err := c.CreateVolume(context.Background(), rCreateVol)
 		volumeId = resCreate.Id
 		failIfError(t, err)
@@ -149,7 +162,7 @@ func TestBlockstorageClient_CreateVolumeBackup(t *testing.T) {
 	//Create
 	request := core.CreateVolumeBackupRequest{}
 	request.VolumeId = volumeId
-	request.DisplayName = common.String("GoSDK2_TestBlockStorageCreateVolumeBackup")
+	request.DisplayName = common.String("GoSDK2_TestBlockStorageVolumeBackup_" + getUuid())
 	r, err := c.CreateVolumeBackup(context.Background(), request)
 	assert.NotEmpty(t, r, fmt.Sprint(r))
 	assert.NoError(t, err)
@@ -189,7 +202,7 @@ func TestBlockstorageClient_CreateVolumeBackup(t *testing.T) {
 		failIfError(t, clerr)
 		request := core.UpdateVolumeBackupRequest{}
 		request.VolumeBackupId = r.Id
-		request.DisplayName = common.String("GoSDK2_TestBlockStorageVolumeBackupUpdate")
+		request.DisplayName = common.String("GoSDK2_TestBlockStorageVolumeBackupUpdate_" + getUuid())
 		r, err := c.UpdateVolumeBackup(context.Background(), request)
 		assert.NotEmpty(t, r, fmt.Sprint(r))
 		failIfError(t, err)

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"math"
 	"math/rand"
 	"net/http"
 	"os"
@@ -22,7 +23,6 @@ import (
 	"github.com/oracle/oci-go-sdk/v26/database"
 	"github.com/oracle/oci-go-sdk/v26/identity"
 	"github.com/stretchr/testify/assert"
-	"math"
 )
 
 const (

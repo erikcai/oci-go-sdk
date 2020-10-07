@@ -2,14 +2,15 @@ package integtest
 
 import (
 	"context"
+	"testing"
+
 	"github.com/oracle/oci-go-sdk/v26/common"
 	"github.com/oracle/oci-go-sdk/v26/storagegateway"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestStorageGateway_Create(t *testing.T) {
-
+	t.Skip("Not implemented")
 	p := configurationProvider()
 	cId, _ := p.TenancyOCID()
 	c, _ := storagegateway.NewStorageGatewayClientWithConfigurationProvider(p)
@@ -17,8 +18,8 @@ func TestStorageGateway_Create(t *testing.T) {
 	res, err := c.CreateStorageGateway(context.Background(), storagegateway.CreateStorageGatewayRequest{
 		CreateStorageGatewayDetails: storagegateway.CreateStorageGatewayDetails{
 			CompartmentId: common.String(cId),
-			DisplayName: common.String("TestStorage"),
-			Description: common.String("some sample des"),
+			DisplayName:   common.String("TestStorage"),
+			Description:   common.String("some sample des"),
 		},
 	})
 
