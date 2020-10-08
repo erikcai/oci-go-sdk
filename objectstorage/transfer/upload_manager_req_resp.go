@@ -171,7 +171,7 @@ const (
 // UploadResponse is the response from commitMultipart or the putObject API operation.
 type UploadResponse struct {
 
-	// Polymorphic reponse type indicates the response type
+	// Polymorphic response type indicates the response type
 	Type UploadResponseType
 
 	// response for putObject API response (single part upload), will be nil if the operation is multiPart upload

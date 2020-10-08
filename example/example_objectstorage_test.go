@@ -157,7 +157,7 @@ func ExampleObjectStorage_UploadManager_Stream() {
 
 	// if you want to overwrite default value, you can do it
 	// as: transfer.UploadRequest.AllowMultipartUploads = common.Bool(false) // default is true
-	// or: transfer.UploadRequest.AllowParrallelUploads = common.Bool(false) // default is true
+	// or: transfer.UploadRequest.AllowParallelUploads = common.Bool(false) // default is true
 	_, err := uploadManager.UploadStream(context.Background(), req)
 
 	if err != nil {
