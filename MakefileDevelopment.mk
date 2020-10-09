@@ -37,7 +37,7 @@ help:
 list-autotest-services:
 	@echo $(AUTOTEST_TARGETS)
 
-test-all: build-sdk build-autotest test-sdk-only
+test-all: build-sdk build-autotest test-sdk-only test-integ-test
 
 autotest-all: build-sdk test-sdk-only $(AUTOTEST_TARGETS)
 
@@ -67,7 +67,11 @@ build-sdk:
 
 test-sdk-only:
 	@echo "Testing sdk common"
-	@(cd $(PROJECT_PATH) && make test && make test-integ)
+	@(cd $(PROJECT_PATH) && make test)
+
+test-integ-test:
+	@echo "Testing sdk integ test"
+	@(cd $(PROJECT_PATH) && make test-integ)
 
 release-sdk:
 	@echo "Building oci-go-sdk with major:$(VER_MAJOR) minor:$(VER_MINOR) patch:$(VER_PATCH) tag:$(VER_TAG)"
