@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
-// InstanceAgentCommandOutputViaTextDetails The representation of InstanceAgentCommandOutputViaTextDetails
+// InstanceAgentCommandOutputViaTextDetails Command output via text.
 type InstanceAgentCommandOutputViaTextDetails struct {
 }
 

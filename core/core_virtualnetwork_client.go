@@ -237,11 +237,11 @@ func (client VirtualNetworkClient) addPublicIpPoolCapacity(ctx context.Context, 
 	return response, err
 }
 
-// AddVcnCidr Add a CIDR to a VCN. The new CIDR must maintain the following rules -
-// a. The CIDR provided is valid
-// b. The new CIDR range should not overlap with any existing CIDRs
-// c. The new CIDR should not exceed the max limit of CIDRs per VCNs
-// d. The new CIDR range does not overlap with any peered VCNs
+// AddVcnCidr Adds a CIDR block to a VCN. The CIDR block you add:
+// - Must be valid.
+// - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block.
+// - Must not exceed the limit of CIDR blocks allowed per VCN.
+// **Note:** Adding a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
 func (client VirtualNetworkClient) AddVcnCidr(ctx context.Context, request AddVcnCidrRequest) (response AddVcnCidrResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4166,15 +4166,12 @@ func (client VirtualNetworkClient) createSubnet(ctx context.Context, request com
 
 // CreateVcn Creates a new virtual cloud network (VCN). For more information, see
 // VCNs and Subnets (https://docs.cloud.oracle.com/Content/Network/Tasks/managingVCNs.htm).
-// To create the VCN, you may specify a list of IPv4 CIDR blocks. The CIDRs must maintain
-// the following rules -
-// a. The list of CIDRs provided are valid
-// b. There is no overlap between different CIDRs
-// c. The list of CIDRs does not exceed the max limit of CIDRs per VCN
-// Oracle recommends using one of the private IP address ranges specified in RFC 1918
-//  (https://tools.ietf.org/html/rfc1918) (10.0.0.0/8, 172.16/12, and 192.168/16). Example:
-// 172.16.0.0/16. The CIDR blocks can range from /16 to /30, and they must not overlap with
-// your on-premises network.
+// For the VCN, you specify a list of one or more IPv4 CIDR blocks that meet the following criteria:
+// - The CIDR blocks must be valid.
+// - They must not overlap with each other or with the on-premises network CIDR block.
+// - The number of CIDR blocks does not exceed the limit of CIDR blocks allowed per VCN.
+// For a CIDR block, Oracle recommends that you use one of the private IP address ranges specified in RFC 1918 (https://tools.ietf.org/html/rfc1918) (10.0.0.0/8, 172.16/12, and 192.168/16). Example:
+// 172.16.0.0/16. The CIDR blocks can range from /16 to /30.
 // For the purposes of access control, you must provide the OCID of the compartment where you want the VCN to
 // reside. Consult an Oracle Cloud Infrastructure administrator in your organization if you're not sure which
 // compartment to use. Notice that the VCN doesn't have to be in the same compartment as the subnets or other
@@ -13101,13 +13098,13 @@ func (client VirtualNetworkClient) modifyReverseConnections(ctx context.Context,
 	return response, err
 }
 
-// ModifyVcnCidr Update a CIDR from a VCN. The new CIDR must maintain the following rules -
-// a. The CIDR provided is valid
-// b. The new CIDR range should not overlap with any existing CIDRs
-// c. The new CIDR should not exceed the max limit of CIDRs per VCNs
-// d. The new CIDR range does not overlap with any peered VCNs
-// e. The new CIDR should overlap with any existing route rule within a VCN
-// f. All existing subnet CIDRs are subsets of the updated CIDR ranges
+// ModifyVcnCidr Updates the specified CIDR block of a VCN. The new CIDR IP range must meet the following criteria:
+// - Must be valid.
+// - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block.
+// - Must not exceed the limit of CIDR blocks allowed per VCN.
+// - Must include IP addresses from the original CIDR block that are used in the VCN's existing route rules.
+// - No IP address in an existing subnet should be outside of the new CIDR block range.
+// **Note:** Modifying a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can vary depending on the size of your network. Updating a small network could take about a minute, and updating a large network could take up to an hour. You can use the `GetWorkRequest` operation to check the status of the update.
 func (client VirtualNetworkClient) ModifyVcnCidr(ctx context.Context, request ModifyVcnCidrRequest) (response ModifyVcnCidrResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -13267,8 +13264,10 @@ func (client VirtualNetworkClient) removePublicIpPoolCapacity(ctx context.Contex
 	return response, err
 }
 
-// RemoveVcnCidr Remove a CIDR from a VCN. The CIDR being removed should not have
-// any resources allocated from it.
+// RemoveVcnCidr Removes a specified CIDR block from a VCN.
+// **Notes:**
+// - You cannot remove a CIDR block if an IP address in its range is in use.
+// - Removing a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
 func (client VirtualNetworkClient) RemoveVcnCidr(ctx context.Context, request RemoveVcnCidrRequest) (response RemoveVcnCidrResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -15511,9 +15510,8 @@ func (client VirtualNetworkClient) updateVirtualCircuit(ctx context.Context, req
 	return response, err
 }
 
-// UpdateVlan Updates the specified VLAN. This could result in changes to all
-// the VNICs in the VLAN, which can take time. During that transition
-// period, the VLAN will be in the UPDATING state.
+// UpdateVlan Updates the specified VLAN. Note that this operation might require changes to all
+// the VNICs in the VLAN, which can take a while. The VLAN will be in the UPDATING state until the changes are complete.
 func (client VirtualNetworkClient) UpdateVlan(ctx context.Context, request UpdateVlanRequest) (response UpdateVlanResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

@@ -67,6 +67,50 @@ func TestDataScienceClientActivateModel(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientActivateModelDeployment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "ActivateModelDeployment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ActivateModelDeployment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "ActivateModelDeployment", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "ActivateModelDeployment")
+	assert.NoError(t, err)
+
+	type ActivateModelDeploymentRequestInfo struct {
+		ContainerId string
+		Request     datascience.ActivateModelDeploymentRequest
+	}
+
+	var requests []ActivateModelDeploymentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ActivateModelDeployment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
 func TestDataScienceClientActivateNotebookSession(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -191,6 +235,50 @@ func TestDataScienceClientChangeModelCompartment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ChangeModelCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientChangeModelDeploymentCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "ChangeModelDeploymentCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeModelDeploymentCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "ChangeModelDeploymentCompartment", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "ChangeModelDeploymentCompartment")
+	assert.NoError(t, err)
+
+	type ChangeModelDeploymentCompartmentRequestInfo struct {
+		ContainerId string
+		Request     datascience.ChangeModelDeploymentCompartmentRequest
+	}
+
+	var requests []ChangeModelDeploymentCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeModelDeploymentCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -375,6 +463,50 @@ func TestDataScienceClientCreateModelArtifact(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientCreateModelDeployment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "CreateModelDeployment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateModelDeployment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "CreateModelDeployment", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "CreateModelDeployment")
+	assert.NoError(t, err)
+
+	type CreateModelDeploymentRequestInfo struct {
+		ContainerId string
+		Request     datascience.CreateModelDeploymentRequest
+	}
+
+	var requests []CreateModelDeploymentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateModelDeployment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
 func TestDataScienceClientCreateModelProvenance(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -551,6 +683,50 @@ func TestDataScienceClientDeactivateModel(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientDeactivateModelDeployment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "DeactivateModelDeployment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeactivateModelDeployment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "DeactivateModelDeployment", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "DeactivateModelDeployment")
+	assert.NoError(t, err)
+
+	type DeactivateModelDeploymentRequestInfo struct {
+		ContainerId string
+		Request     datascience.DeactivateModelDeploymentRequest
+	}
+
+	var requests []DeactivateModelDeploymentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeactivateModelDeployment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
 func TestDataScienceClientDeactivateNotebookSession(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -631,6 +807,50 @@ func TestDataScienceClientDeleteModel(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteModel(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientDeleteModelDeployment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "DeleteModelDeployment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteModelDeployment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "DeleteModelDeployment", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "DeleteModelDeployment")
+	assert.NoError(t, err)
+
+	type DeleteModelDeploymentRequestInfo struct {
+		ContainerId string
+		Request     datascience.DeleteModelDeploymentRequest
+	}
+
+	var requests []DeleteModelDeploymentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteModelDeployment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -807,6 +1027,94 @@ func TestDataScienceClientGetModelArtifactContent(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetModelArtifactContent(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientGetModelDeployment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "GetModelDeployment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetModelDeployment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "GetModelDeployment", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "GetModelDeployment")
+	assert.NoError(t, err)
+
+	type GetModelDeploymentRequestInfo struct {
+		ContainerId string
+		Request     datascience.GetModelDeploymentRequest
+	}
+
+	var requests []GetModelDeploymentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetModelDeployment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientGetModelDeploymentResourcePrincipalTokenAction(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "GetModelDeploymentResourcePrincipalTokenAction")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetModelDeploymentResourcePrincipalTokenAction is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "GetModelDeploymentResourcePrincipalTokenAction", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "GetModelDeploymentResourcePrincipalTokenAction")
+	assert.NoError(t, err)
+
+	type GetModelDeploymentResourcePrincipalTokenActionRequestInfo struct {
+		ContainerId string
+		Request     datascience.GetModelDeploymentResourcePrincipalTokenActionRequest
+	}
+
+	var requests []GetModelDeploymentResourcePrincipalTokenActionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetModelDeploymentResourcePrincipalTokenAction(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1028,6 +1336,114 @@ func TestDataScienceClientHeadModelArtifact(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.HeadModelArtifact(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientListModelDeploymentShapes(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "ListModelDeploymentShapes")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListModelDeploymentShapes is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "ListModelDeploymentShapes", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "ListModelDeploymentShapes")
+	assert.NoError(t, err)
+
+	type ListModelDeploymentShapesRequestInfo struct {
+		ContainerId string
+		Request     datascience.ListModelDeploymentShapesRequest
+	}
+
+	var requests []ListModelDeploymentShapesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datascience.ListModelDeploymentShapesRequest)
+				return c.ListModelDeploymentShapes(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datascience.ListModelDeploymentShapesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datascience.ListModelDeploymentShapesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientListModelDeployments(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "ListModelDeployments")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListModelDeployments is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "ListModelDeployments", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "ListModelDeployments")
+	assert.NoError(t, err)
+
+	type ListModelDeploymentsRequestInfo struct {
+		ContainerId string
+		Request     datascience.ListModelDeploymentsRequest
+	}
+
+	var requests []ListModelDeploymentsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datascience.ListModelDeploymentsRequest)
+				return c.ListModelDeployments(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datascience.ListModelDeploymentsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datascience.ListModelDeploymentsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -1429,6 +1845,50 @@ func TestDataScienceClientUpdateModel(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateModel(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datascience_grp@oracle.com" jiraProject="ODSC" opsJiraProject="ODSC"
+func TestDataScienceClientUpdateModelDeployment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datascience", "UpdateModelDeployment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateModelDeployment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datascience", "DataScience", "UpdateModelDeployment", createDataScienceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datascience.DataScienceClient)
+
+	body, err := testClient.getRequests("datascience", "UpdateModelDeployment")
+	assert.NoError(t, err)
+
+	type UpdateModelDeploymentRequestInfo struct {
+		ContainerId string
+		Request     datascience.UpdateModelDeploymentRequest
+	}
+
+	var requests []UpdateModelDeploymentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateModelDeployment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

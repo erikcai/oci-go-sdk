@@ -17,6 +17,9 @@ import (
 // InstanceAgentCommandExecutionSummary A command's execution summary.
 type InstanceAgentCommandExecutionSummary struct {
 
+	// The OCID of the command
+	InstanceAgentCommandId *string `mandatory:"true" json:"instanceAgentCommandId"`
+
 	// The OCID of the instance
 	InstanceId *string `mandatory:"true" json:"instanceId"`
 
@@ -24,6 +27,7 @@ type InstanceAgentCommandExecutionSummary struct {
 	//  * `VISIBLE` - The command is visible to instance.
 	//  * `PENDING` - The command is pending ack from the instance.
 	//  * `ACKED` - The command has been received and acked by the instance.
+	//  * `ACKED_CANCELED` - The canceled command has been received and acked by the instance.
 	//  * `EXPIRED` - The instance has not requested for commands and its delivery has expired.
 	DeliveryState InstanceAgentCommandExecutionSummaryDeliveryStateEnum `mandatory:"true" json:"deliveryState"`
 
@@ -47,9 +51,6 @@ type InstanceAgentCommandExecutionSummary struct {
 
 	Content InstanceAgentCommandExecutionOutputContent `mandatory:"true" json:"content"`
 
-	// The OCID of the command
-	InstanceAgentCommandId *string `mandatory:"false" json:"instanceAgentCommandId"`
-
 	// The user friendly display name of the command.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 }
@@ -61,8 +62,8 @@ func (m InstanceAgentCommandExecutionSummary) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *InstanceAgentCommandExecutionSummary) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		InstanceAgentCommandId *string                                                `json:"instanceAgentCommandId"`
 		DisplayName            *string                                                `json:"displayName"`
+		InstanceAgentCommandId *string                                                `json:"instanceAgentCommandId"`
 		InstanceId             *string                                                `json:"instanceId"`
 		DeliveryState          InstanceAgentCommandExecutionSummaryDeliveryStateEnum  `json:"deliveryState"`
 		LifecycleState         InstanceAgentCommandExecutionSummaryLifecycleStateEnum `json:"lifecycleState"`
@@ -77,9 +78,9 @@ func (m *InstanceAgentCommandExecutionSummary) UnmarshalJSON(data []byte) (e err
 		return
 	}
 	var nn interface{}
-	m.InstanceAgentCommandId = model.InstanceAgentCommandId
-
 	m.DisplayName = model.DisplayName
+
+	m.InstanceAgentCommandId = model.InstanceAgentCommandId
 
 	m.InstanceId = model.InstanceId
 
@@ -111,17 +112,19 @@ type InstanceAgentCommandExecutionSummaryDeliveryStateEnum string
 
 // Set of constants representing the allowable values for InstanceAgentCommandExecutionSummaryDeliveryStateEnum
 const (
-	InstanceAgentCommandExecutionSummaryDeliveryStateVisible InstanceAgentCommandExecutionSummaryDeliveryStateEnum = "VISIBLE"
-	InstanceAgentCommandExecutionSummaryDeliveryStatePending InstanceAgentCommandExecutionSummaryDeliveryStateEnum = "PENDING"
-	InstanceAgentCommandExecutionSummaryDeliveryStateAcked   InstanceAgentCommandExecutionSummaryDeliveryStateEnum = "ACKED"
-	InstanceAgentCommandExecutionSummaryDeliveryStateExpired InstanceAgentCommandExecutionSummaryDeliveryStateEnum = "EXPIRED"
+	InstanceAgentCommandExecutionSummaryDeliveryStateVisible       InstanceAgentCommandExecutionSummaryDeliveryStateEnum = "VISIBLE"
+	InstanceAgentCommandExecutionSummaryDeliveryStatePending       InstanceAgentCommandExecutionSummaryDeliveryStateEnum = "PENDING"
+	InstanceAgentCommandExecutionSummaryDeliveryStateAcked         InstanceAgentCommandExecutionSummaryDeliveryStateEnum = "ACKED"
+	InstanceAgentCommandExecutionSummaryDeliveryStateAckedCanceled InstanceAgentCommandExecutionSummaryDeliveryStateEnum = "ACKED_CANCELED"
+	InstanceAgentCommandExecutionSummaryDeliveryStateExpired       InstanceAgentCommandExecutionSummaryDeliveryStateEnum = "EXPIRED"
 )
 
 var mappingInstanceAgentCommandExecutionSummaryDeliveryState = map[string]InstanceAgentCommandExecutionSummaryDeliveryStateEnum{
-	"VISIBLE": InstanceAgentCommandExecutionSummaryDeliveryStateVisible,
-	"PENDING": InstanceAgentCommandExecutionSummaryDeliveryStatePending,
-	"ACKED":   InstanceAgentCommandExecutionSummaryDeliveryStateAcked,
-	"EXPIRED": InstanceAgentCommandExecutionSummaryDeliveryStateExpired,
+	"VISIBLE":        InstanceAgentCommandExecutionSummaryDeliveryStateVisible,
+	"PENDING":        InstanceAgentCommandExecutionSummaryDeliveryStatePending,
+	"ACKED":          InstanceAgentCommandExecutionSummaryDeliveryStateAcked,
+	"ACKED_CANCELED": InstanceAgentCommandExecutionSummaryDeliveryStateAckedCanceled,
+	"EXPIRED":        InstanceAgentCommandExecutionSummaryDeliveryStateExpired,
 }
 
 // GetInstanceAgentCommandExecutionSummaryDeliveryStateEnumValues Enumerates the set of values for InstanceAgentCommandExecutionSummaryDeliveryStateEnum

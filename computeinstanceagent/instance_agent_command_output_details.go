@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
-// InstanceAgentCommandOutputDetails Command content.
+// InstanceAgentCommandOutputDetails Command output.
 type InstanceAgentCommandOutputDetails interface {
 }
 

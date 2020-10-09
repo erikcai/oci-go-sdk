@@ -155,6 +155,50 @@ func TestComputeinstanceagentComputeInstanceAgentClientGetInstanceAgentCommand(t
 }
 
 // IssueRoutingInfo tag="computeInstanceAgent" email="oci_osi_grp@oracle.com" jiraProject="OSI" opsJiraProject="IMAGE"
+func TestComputeinstanceagentComputeInstanceAgentClientGetInstanceAgentCommandExecution(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("computeinstanceagent", "GetInstanceAgentCommandExecution")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetInstanceAgentCommandExecution is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("computeinstanceagent", "ComputeInstanceAgent", "GetInstanceAgentCommandExecution", createComputeinstanceagentComputeInstanceAgentClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(computeinstanceagent.ComputeInstanceAgentClient)
+
+	body, err := testClient.getRequests("computeinstanceagent", "GetInstanceAgentCommandExecution")
+	assert.NoError(t, err)
+
+	type GetInstanceAgentCommandExecutionRequestInfo struct {
+		ContainerId string
+		Request     computeinstanceagent.GetInstanceAgentCommandExecutionRequest
+	}
+
+	var requests []GetInstanceAgentCommandExecutionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetInstanceAgentCommandExecution(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="computeInstanceAgent" email="oci_osi_grp@oracle.com" jiraProject="OSI" opsJiraProject="IMAGE"
 func TestComputeinstanceagentComputeInstanceAgentClientListInstanceAgentCommandExecutions(t *testing.T) {
 	defer failTestOnPanic(t)
 

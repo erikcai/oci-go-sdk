@@ -65,6 +65,12 @@ type InternalDrg struct {
 	// Route data for the Drg.
 	RouteData *string `mandatory:"false" json:"routeData"`
 
+	// NextHop target's MPLS label.
+	MplsLabel *string `mandatory:"false" json:"mplsLabel"`
+
+	// The string in the form ASN:mplsLabel.
+	RouteTarget *string `mandatory:"false" json:"routeTarget"`
+
 	// The type of the DRG.
 	DrgType InternalDrgDrgTypeEnum `mandatory:"false" json:"drgType,omitempty"`
 }

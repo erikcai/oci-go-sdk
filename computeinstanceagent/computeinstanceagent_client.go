@@ -232,6 +232,56 @@ func (client ComputeInstanceAgentClient) getInstanceAgentCommand(ctx context.Con
 	return response, err
 }
 
+// GetInstanceAgentCommandExecution Gets information about the status of specified instance agent commandId for the given instanceId.
+func (client ComputeInstanceAgentClient) GetInstanceAgentCommandExecution(ctx context.Context, request GetInstanceAgentCommandExecutionRequest) (response GetInstanceAgentCommandExecutionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getInstanceAgentCommandExecution, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetInstanceAgentCommandExecutionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetInstanceAgentCommandExecutionResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetInstanceAgentCommandExecutionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetInstanceAgentCommandExecutionResponse")
+	}
+	return
+}
+
+// getInstanceAgentCommandExecution implements the OCIOperation interface (enables retrying operations)
+func (client ComputeInstanceAgentClient) getInstanceAgentCommandExecution(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/instanceAgentCommands/{instanceAgentCommandId}/status")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetInstanceAgentCommandExecutionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListInstanceAgentCommandExecutions List all executions of a command, i.e return command execution results from all targeted instances batch by
 // batch.
 func (client ComputeInstanceAgentClient) ListInstanceAgentCommandExecutions(ctx context.Context, request ListInstanceAgentCommandExecutionsRequest) (response ListInstanceAgentCommandExecutionsResponse, err error) {

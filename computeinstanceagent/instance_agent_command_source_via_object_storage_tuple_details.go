@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
-// InstanceAgentCommandSourceViaObjectStorageTupleDetails The representation of InstanceAgentCommandSourceViaObjectStorageTupleDetails
+// InstanceAgentCommandSourceViaObjectStorageTupleDetails Command content via object storage tuple.
 type InstanceAgentCommandSourceViaObjectStorageTupleDetails struct {
 
 	// The Object Storage bucket for the command.

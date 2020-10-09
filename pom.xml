@@ -5242,7 +5242,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.1508</version>
+        <version>0.2.1524</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -5427,7 +5427,7 @@
       <dependency>
         <groupId>com.oracle.pic.odsc.pegasus</groupId>
         <artifactId>odsc-pegasus-control-plane-spec</artifactId>
-        <version>0.1.328</version>
+        <version>0.1.564</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.bds</groupId>
@@ -5442,7 +5442,7 @@
       <dependency>
         <groupId>com.oracle.oracleintegration.spec</groupId>
         <artifactId>oracle-integration-cp-apiserver-user-spec</artifactId>
-        <version>1.0.12</version>
+        <version>1.0.16</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kam</groupId>
@@ -5547,7 +5547,7 @@
       <dependency>
         <groupId>com.oracle.pic.compute.ias</groupId>
         <artifactId>instance-agent-service-api-spec</artifactId>
-        <version>0.0.26</version>
+        <version>0.0.29</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.pika.frontend</groupId>

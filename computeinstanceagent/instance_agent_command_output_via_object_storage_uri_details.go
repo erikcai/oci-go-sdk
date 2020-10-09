@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
-// InstanceAgentCommandOutputViaObjectStorageUriDetails The representation of InstanceAgentCommandOutputViaObjectStorageUriDetails
+// InstanceAgentCommandOutputViaObjectStorageUriDetails Command output via uri.
 type InstanceAgentCommandOutputViaObjectStorageUriDetails struct {
 
 	// The Object Storage URL or PAR for the command output.

@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
-// InstanceAgentCommandOutputViaObjectStorageTupleDetails The representation of InstanceAgentCommandOutputViaObjectStorageTupleDetails
+// InstanceAgentCommandOutputViaObjectStorageTupleDetails Command output via object storage tuple.
 type InstanceAgentCommandOutputViaObjectStorageTupleDetails struct {
 
 	// The Object Storage bucket for the command output.

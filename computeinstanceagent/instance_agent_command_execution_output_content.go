@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
-// InstanceAgentCommandExecutionOutputContent Response of the command execution.
+// InstanceAgentCommandExecutionOutputContent command execution output.
 type InstanceAgentCommandExecutionOutputContent interface {
 
 	// command exit code.
