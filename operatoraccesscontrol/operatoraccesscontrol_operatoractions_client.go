@@ -30,7 +30,7 @@ type OperatorActionsClient struct {
 func NewOperatorActionsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client OperatorActionsClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newOperatorActionsClientFromBaseClient(baseClient, configProvider)
+			return newOperatorActionsClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -83,6 +83,9 @@ func (client *OperatorActionsClient) ConfigurationProvider() *common.Configurati
 func (client OperatorActionsClient) GetOperatorAction(ctx context.Context, request GetOperatorActionRequest) (response GetOperatorActionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -130,6 +133,9 @@ func (client OperatorActionsClient) getOperatorAction(ctx context.Context, reque
 func (client OperatorActionsClient) ListOperatorActions(ctx context.Context, request ListOperatorActionsRequest) (response ListOperatorActionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

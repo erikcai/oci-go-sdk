@@ -30,7 +30,7 @@ type AccessRequestsClient struct {
 func NewAccessRequestsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client AccessRequestsClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newAccessRequestsClientFromBaseClient(baseClient, configProvider)
+			return newAccessRequestsClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -83,6 +83,9 @@ func (client *AccessRequestsClient) ConfigurationProvider() *common.Configuratio
 func (client AccessRequestsClient) ApproveAccessRequest(ctx context.Context, request ApproveAccessRequestRequest) (response ApproveAccessRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -135,6 +138,9 @@ func (client AccessRequestsClient) approveAccessRequest(ctx context.Context, req
 func (client AccessRequestsClient) GetAccessRequest(ctx context.Context, request GetAccessRequestRequest) (response GetAccessRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -182,6 +188,9 @@ func (client AccessRequestsClient) getAccessRequest(ctx context.Context, request
 func (client AccessRequestsClient) ListAccessRequestHistories(ctx context.Context, request ListAccessRequestHistoriesRequest) (response ListAccessRequestHistoriesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -229,6 +238,9 @@ func (client AccessRequestsClient) listAccessRequestHistories(ctx context.Contex
 func (client AccessRequestsClient) ListAccessRequests(ctx context.Context, request ListAccessRequestsRequest) (response ListAccessRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -276,6 +288,9 @@ func (client AccessRequestsClient) listAccessRequests(ctx context.Context, reque
 func (client AccessRequestsClient) RejectAccessRequest(ctx context.Context, request RejectAccessRequestRequest) (response RejectAccessRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -328,6 +343,9 @@ func (client AccessRequestsClient) rejectAccessRequest(ctx context.Context, requ
 func (client AccessRequestsClient) RevokeAccessRequest(ctx context.Context, request RevokeAccessRequestRequest) (response RevokeAccessRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

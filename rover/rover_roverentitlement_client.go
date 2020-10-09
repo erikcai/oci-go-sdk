@@ -28,7 +28,7 @@ type RoverEntitlementClient struct {
 func NewRoverEntitlementClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client RoverEntitlementClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newRoverEntitlementClientFromBaseClient(baseClient, configProvider)
+			return newRoverEntitlementClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -81,6 +81,9 @@ func (client *RoverEntitlementClient) ConfigurationProvider() *common.Configurat
 func (client RoverEntitlementClient) ChangeRoverEntitlementCompartment(ctx context.Context, request ChangeRoverEntitlementCompartmentRequest) (response ChangeRoverEntitlementCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -133,6 +136,9 @@ func (client RoverEntitlementClient) changeRoverEntitlementCompartment(ctx conte
 func (client RoverEntitlementClient) CreateRoverEntitlement(ctx context.Context, request CreateRoverEntitlementRequest) (response CreateRoverEntitlementResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -185,6 +191,9 @@ func (client RoverEntitlementClient) createRoverEntitlement(ctx context.Context,
 func (client RoverEntitlementClient) DeleteRoverEntitlement(ctx context.Context, request DeleteRoverEntitlementRequest) (response DeleteRoverEntitlementResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -237,6 +246,9 @@ func (client RoverEntitlementClient) deleteRoverEntitlement(ctx context.Context,
 func (client RoverEntitlementClient) GetRoverEntitlement(ctx context.Context, request GetRoverEntitlementRequest) (response GetRoverEntitlementResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -289,6 +301,9 @@ func (client RoverEntitlementClient) getRoverEntitlement(ctx context.Context, re
 func (client RoverEntitlementClient) ListRoverEntitlement(ctx context.Context, request ListRoverEntitlementRequest) (response ListRoverEntitlementResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

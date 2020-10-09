@@ -5,8 +5,8 @@ package transfer
 
 import (
 	"errors"
-	"io"
 	"github.com/oracle/oci-go-sdk/v26/common"
+	"io"
 	"reflect"
 )
 

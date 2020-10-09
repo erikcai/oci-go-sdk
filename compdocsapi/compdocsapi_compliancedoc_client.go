@@ -28,7 +28,7 @@ type ComplianceDocClient struct {
 func NewComplianceDocClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ComplianceDocClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newComplianceDocClientFromBaseClient(baseClient, configProvider)
+			return newComplianceDocClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -81,6 +81,9 @@ func (client *ComplianceDocClient) ConfigurationProvider() *common.Configuration
 func (client ComplianceDocClient) CreateNonDisclosureAgreement(ctx context.Context, request CreateNonDisclosureAgreementRequest) (response CreateNonDisclosureAgreementResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -133,6 +136,9 @@ func (client ComplianceDocClient) createNonDisclosureAgreement(ctx context.Conte
 func (client ComplianceDocClient) GetComplianceDocument(ctx context.Context, request GetComplianceDocumentRequest) (response GetComplianceDocumentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -180,6 +186,9 @@ func (client ComplianceDocClient) getComplianceDocument(ctx context.Context, req
 func (client ComplianceDocClient) GetComplianceDocumentContent(ctx context.Context, request GetComplianceDocumentContentRequest) (response GetComplianceDocumentContentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -226,6 +235,9 @@ func (client ComplianceDocClient) getComplianceDocumentContent(ctx context.Conte
 func (client ComplianceDocClient) ListComplianceDocuments(ctx context.Context, request ListComplianceDocumentsRequest) (response ListComplianceDocumentsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

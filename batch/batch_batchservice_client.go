@@ -29,7 +29,7 @@ type BatchServiceClient struct {
 func NewBatchServiceClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client BatchServiceClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newBatchServiceClientFromBaseClient(baseClient, configProvider)
+			return newBatchServiceClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -82,6 +82,9 @@ func (client *BatchServiceClient) ConfigurationProvider() *common.ConfigurationP
 func (client BatchServiceClient) CancelJob(ctx context.Context, request CancelJobRequest) (response CancelJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -129,6 +132,9 @@ func (client BatchServiceClient) cancelJob(ctx context.Context, request common.O
 func (client BatchServiceClient) CreateBatchInstance(ctx context.Context, request CreateBatchInstanceRequest) (response CreateBatchInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -181,6 +187,9 @@ func (client BatchServiceClient) createBatchInstance(ctx context.Context, reques
 func (client BatchServiceClient) CreateComputeEnvironment(ctx context.Context, request CreateComputeEnvironmentRequest) (response CreateComputeEnvironmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -233,6 +242,9 @@ func (client BatchServiceClient) createComputeEnvironment(ctx context.Context, r
 func (client BatchServiceClient) CreateJob(ctx context.Context, request CreateJobRequest) (response CreateJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -285,6 +297,9 @@ func (client BatchServiceClient) createJob(ctx context.Context, request common.O
 func (client BatchServiceClient) CreateJobDefinition(ctx context.Context, request CreateJobDefinitionRequest) (response CreateJobDefinitionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -337,6 +352,9 @@ func (client BatchServiceClient) createJobDefinition(ctx context.Context, reques
 func (client BatchServiceClient) DeleteBatchInstance(ctx context.Context, request DeleteBatchInstanceRequest) (response DeleteBatchInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -384,6 +402,9 @@ func (client BatchServiceClient) deleteBatchInstance(ctx context.Context, reques
 func (client BatchServiceClient) DeleteComputeEnvironment(ctx context.Context, request DeleteComputeEnvironmentRequest) (response DeleteComputeEnvironmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -431,6 +452,9 @@ func (client BatchServiceClient) deleteComputeEnvironment(ctx context.Context, r
 func (client BatchServiceClient) DeleteJob(ctx context.Context, request DeleteJobRequest) (response DeleteJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -478,6 +502,9 @@ func (client BatchServiceClient) deleteJob(ctx context.Context, request common.O
 func (client BatchServiceClient) DeleteJobDefinition(ctx context.Context, request DeleteJobDefinitionRequest) (response DeleteJobDefinitionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -525,6 +552,9 @@ func (client BatchServiceClient) deleteJobDefinition(ctx context.Context, reques
 func (client BatchServiceClient) DisableBatchInstance(ctx context.Context, request DisableBatchInstanceRequest) (response DisableBatchInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -572,6 +602,9 @@ func (client BatchServiceClient) disableBatchInstance(ctx context.Context, reque
 func (client BatchServiceClient) DisableComputeEnvironment(ctx context.Context, request DisableComputeEnvironmentRequest) (response DisableComputeEnvironmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -619,6 +652,9 @@ func (client BatchServiceClient) disableComputeEnvironment(ctx context.Context, 
 func (client BatchServiceClient) EnableBatchInstance(ctx context.Context, request EnableBatchInstanceRequest) (response EnableBatchInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -666,6 +702,9 @@ func (client BatchServiceClient) enableBatchInstance(ctx context.Context, reques
 func (client BatchServiceClient) EnableComputeEnvironment(ctx context.Context, request EnableComputeEnvironmentRequest) (response EnableComputeEnvironmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -713,6 +752,9 @@ func (client BatchServiceClient) enableComputeEnvironment(ctx context.Context, r
 func (client BatchServiceClient) GetBatchInstance(ctx context.Context, request GetBatchInstanceRequest) (response GetBatchInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -760,6 +802,9 @@ func (client BatchServiceClient) getBatchInstance(ctx context.Context, request c
 func (client BatchServiceClient) GetComputeEnvironment(ctx context.Context, request GetComputeEnvironmentRequest) (response GetComputeEnvironmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -807,6 +852,9 @@ func (client BatchServiceClient) getComputeEnvironment(ctx context.Context, requ
 func (client BatchServiceClient) GetJob(ctx context.Context, request GetJobRequest) (response GetJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -854,6 +902,9 @@ func (client BatchServiceClient) getJob(ctx context.Context, request common.OCIR
 func (client BatchServiceClient) GetJobDefinition(ctx context.Context, request GetJobDefinitionRequest) (response GetJobDefinitionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -901,6 +952,9 @@ func (client BatchServiceClient) getJobDefinition(ctx context.Context, request c
 func (client BatchServiceClient) GetJobLog(ctx context.Context, request GetJobLogRequest) (response GetJobLogResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -948,6 +1002,9 @@ func (client BatchServiceClient) getJobLog(ctx context.Context, request common.O
 func (client BatchServiceClient) GetJobLogContent(ctx context.Context, request GetJobLogContentRequest) (response GetJobLogContentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -995,6 +1052,9 @@ func (client BatchServiceClient) getJobLogContent(ctx context.Context, request c
 func (client BatchServiceClient) ListBatchInstances(ctx context.Context, request ListBatchInstancesRequest) (response ListBatchInstancesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1043,6 +1103,9 @@ func (client BatchServiceClient) listBatchInstances(ctx context.Context, request
 func (client BatchServiceClient) ListComputeEnvironments(ctx context.Context, request ListComputeEnvironmentsRequest) (response ListComputeEnvironmentsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1091,6 +1154,9 @@ func (client BatchServiceClient) listComputeEnvironments(ctx context.Context, re
 func (client BatchServiceClient) ListJobDefinitions(ctx context.Context, request ListJobDefinitionsRequest) (response ListJobDefinitionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1138,6 +1204,9 @@ func (client BatchServiceClient) listJobDefinitions(ctx context.Context, request
 func (client BatchServiceClient) ListJobLogs(ctx context.Context, request ListJobLogsRequest) (response ListJobLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1186,6 +1255,9 @@ func (client BatchServiceClient) listJobLogs(ctx context.Context, request common
 func (client BatchServiceClient) ListJobs(ctx context.Context, request ListJobsRequest) (response ListJobsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1233,6 +1305,9 @@ func (client BatchServiceClient) listJobs(ctx context.Context, request common.OC
 func (client BatchServiceClient) UpdateBatchInstance(ctx context.Context, request UpdateBatchInstanceRequest) (response UpdateBatchInstanceResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1280,6 +1355,9 @@ func (client BatchServiceClient) updateBatchInstance(ctx context.Context, reques
 func (client BatchServiceClient) UpdateComputeEnvironment(ctx context.Context, request UpdateComputeEnvironmentRequest) (response UpdateComputeEnvironmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1327,6 +1405,9 @@ func (client BatchServiceClient) updateComputeEnvironment(ctx context.Context, r
 func (client BatchServiceClient) UpdateJob(ctx context.Context, request UpdateJobRequest) (response UpdateJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1374,6 +1455,9 @@ func (client BatchServiceClient) updateJob(ctx context.Context, request common.O
 func (client BatchServiceClient) UpdateJobDefinition(ctx context.Context, request UpdateJobDefinitionRequest) (response UpdateJobDefinitionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

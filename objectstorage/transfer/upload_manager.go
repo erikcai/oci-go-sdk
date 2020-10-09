@@ -14,13 +14,13 @@ package transfer
 import (
 	"context"
 	"errors"
+	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v26/objectstorage"
 	"math"
 	"net/http"
 	"os"
 	"strings"
 	"time"
-	"github.com/oracle/oci-go-sdk/v26/common"
-	"github.com/oracle/oci-go-sdk/v26/objectstorage"
 )
 
 // UploadManager is the interface that groups the upload methods

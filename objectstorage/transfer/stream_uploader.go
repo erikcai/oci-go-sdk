@@ -6,9 +6,9 @@ package transfer
 import (
 	"context"
 	"fmt"
+	"github.com/oracle/oci-go-sdk/v26/common"
 	"strings"
 	"sync"
-	"github.com/oracle/oci-go-sdk/v26/common"
 )
 
 // StreamUploader is an interface for upload a stream

@@ -30,7 +30,7 @@ type OperatorControlClient struct {
 func NewOperatorControlClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client OperatorControlClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newOperatorControlClientFromBaseClient(baseClient, configProvider)
+			return newOperatorControlClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -83,6 +83,9 @@ func (client *OperatorControlClient) ConfigurationProvider() *common.Configurati
 func (client OperatorControlClient) ChangeOperatorControlCompartment(ctx context.Context, request ChangeOperatorControlCompartmentRequest) (response ChangeOperatorControlCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -135,6 +138,9 @@ func (client OperatorControlClient) changeOperatorControlCompartment(ctx context
 func (client OperatorControlClient) CreateOperatorControl(ctx context.Context, request CreateOperatorControlRequest) (response CreateOperatorControlResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -191,6 +197,9 @@ func (client OperatorControlClient) createOperatorControl(ctx context.Context, r
 func (client OperatorControlClient) DeleteOperatorControl(ctx context.Context, request DeleteOperatorControlRequest) (response DeleteOperatorControlResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -238,6 +247,9 @@ func (client OperatorControlClient) deleteOperatorControl(ctx context.Context, r
 func (client OperatorControlClient) GetOperatorControl(ctx context.Context, request GetOperatorControlRequest) (response GetOperatorControlResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -285,6 +297,9 @@ func (client OperatorControlClient) getOperatorControl(ctx context.Context, requ
 func (client OperatorControlClient) ListOperatorControls(ctx context.Context, request ListOperatorControlsRequest) (response ListOperatorControlsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -332,6 +347,9 @@ func (client OperatorControlClient) listOperatorControls(ctx context.Context, re
 func (client OperatorControlClient) UpdateOperatorControl(ctx context.Context, request UpdateOperatorControlRequest) (response UpdateOperatorControlResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

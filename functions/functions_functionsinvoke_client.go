@@ -28,7 +28,7 @@ type FunctionsInvokeClient struct {
 func NewFunctionsInvokeClientWithConfigurationProvider(configProvider common.ConfigurationProvider, endpoint string) (client FunctionsInvokeClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newFunctionsInvokeClientFromBaseClient(baseClient, configProvider, endpoint)
+			return newFunctionsInvokeClientFromBaseClient(baseClient, provider, endpoint)
 		}
 	}
 
@@ -74,6 +74,9 @@ func (client *FunctionsInvokeClient) ConfigurationProvider() *common.Configurati
 func (client FunctionsInvokeClient) InvokeFunction(ctx context.Context, request InvokeFunctionRequest) (response InvokeFunctionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

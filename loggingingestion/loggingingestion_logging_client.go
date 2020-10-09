@@ -28,7 +28,7 @@ type LoggingClient struct {
 func NewLoggingClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client LoggingClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newLoggingClientFromBaseClient(baseClient, configProvider)
+			return newLoggingClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -82,6 +82,9 @@ func (client *LoggingClient) ConfigurationProvider() *common.ConfigurationProvid
 func (client LoggingClient) PutLogs(ctx context.Context, request PutLogsRequest) (response PutLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

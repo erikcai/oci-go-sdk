@@ -28,7 +28,7 @@ type RoverNodeGetRPTClient struct {
 func NewRoverNodeGetRPTClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client RoverNodeGetRPTClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newRoverNodeGetRPTClientFromBaseClient(baseClient, configProvider)
+			return newRoverNodeGetRPTClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -81,6 +81,9 @@ func (client *RoverNodeGetRPTClient) ConfigurationProvider() *common.Configurati
 func (client RoverNodeGetRPTClient) GetRoverNodeRPT(ctx context.Context, request GetRoverNodeRPTRequest) (response GetRoverNodeRPTResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

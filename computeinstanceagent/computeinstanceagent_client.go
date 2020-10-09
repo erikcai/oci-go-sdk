@@ -28,7 +28,7 @@ type ComputeInstanceAgentClient struct {
 func NewComputeInstanceAgentClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ComputeInstanceAgentClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newComputeInstanceAgentClientFromBaseClient(baseClient, configProvider)
+			return newComputeInstanceAgentClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -81,6 +81,9 @@ func (client *ComputeInstanceAgentClient) ConfigurationProvider() *common.Config
 func (client ComputeInstanceAgentClient) CancelInstanceAgentCommand(ctx context.Context, request CancelInstanceAgentCommandRequest) (response CancelInstanceAgentCommandResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -128,6 +131,9 @@ func (client ComputeInstanceAgentClient) cancelInstanceAgentCommand(ctx context.
 func (client ComputeInstanceAgentClient) CreateInstanceAgentCommand(ctx context.Context, request CreateInstanceAgentCommandRequest) (response CreateInstanceAgentCommandResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -180,6 +186,9 @@ func (client ComputeInstanceAgentClient) createInstanceAgentCommand(ctx context.
 func (client ComputeInstanceAgentClient) GetInstanceAgentCommand(ctx context.Context, request GetInstanceAgentCommandRequest) (response GetInstanceAgentCommandResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -228,6 +237,9 @@ func (client ComputeInstanceAgentClient) getInstanceAgentCommand(ctx context.Con
 func (client ComputeInstanceAgentClient) ListInstanceAgentCommandExecutions(ctx context.Context, request ListInstanceAgentCommandExecutionsRequest) (response ListInstanceAgentCommandExecutionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -276,6 +288,9 @@ func (client ComputeInstanceAgentClient) listInstanceAgentCommandExecutions(ctx 
 func (client ComputeInstanceAgentClient) ListInstanceAgentCommands(ctx context.Context, request ListInstanceAgentCommandsRequest) (response ListInstanceAgentCommandsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

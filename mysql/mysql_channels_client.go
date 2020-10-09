@@ -28,7 +28,7 @@ type ChannelsClient struct {
 func NewChannelsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ChannelsClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newChannelsClientFromBaseClient(baseClient, configProvider)
+			return newChannelsClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -81,6 +81,9 @@ func (client *ChannelsClient) ConfigurationProvider() *common.ConfigurationProvi
 func (client ChannelsClient) CreateChannel(ctx context.Context, request CreateChannelRequest) (response CreateChannelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -133,6 +136,9 @@ func (client ChannelsClient) createChannel(ctx context.Context, request common.O
 func (client ChannelsClient) DeleteChannel(ctx context.Context, request DeleteChannelRequest) (response DeleteChannelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -182,6 +188,9 @@ func (client ChannelsClient) deleteChannel(ctx context.Context, request common.O
 func (client ChannelsClient) GetChannel(ctx context.Context, request GetChannelRequest) (response GetChannelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -229,6 +238,9 @@ func (client ChannelsClient) getChannel(ctx context.Context, request common.OCIR
 func (client ChannelsClient) ListChannels(ctx context.Context, request ListChannelsRequest) (response ListChannelsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -277,6 +289,9 @@ func (client ChannelsClient) listChannels(ctx context.Context, request common.OC
 func (client ChannelsClient) ResetChannel(ctx context.Context, request ResetChannelRequest) (response ResetChannelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -331,6 +346,9 @@ func (client ChannelsClient) resetChannel(ctx context.Context, request common.OC
 func (client ChannelsClient) ResumeChannel(ctx context.Context, request ResumeChannelRequest) (response ResumeChannelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -386,6 +404,9 @@ func (client ChannelsClient) resumeChannel(ctx context.Context, request common.O
 func (client ChannelsClient) UpdateChannel(ctx context.Context, request UpdateChannelRequest) (response UpdateChannelResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

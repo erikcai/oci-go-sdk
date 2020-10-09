@@ -28,7 +28,7 @@ type IncidentClient struct {
 func NewIncidentClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client IncidentClient, err error){
     if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
         if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-            return newIncidentClientFromBaseClient(baseClient, configProvider)
+            return newIncidentClientFromBaseClient(baseClient, provider)
         }
     }
 
@@ -86,6 +86,9 @@ func (client *IncidentClient) ConfigurationProvider() *common.ConfigurationProvi
 func(client IncidentClient) CreateIncident(ctx context.Context, request CreateIncidentRequest) (response CreateIncidentResponse, err error) {
     var ociResponse common.OCIResponse
     policy := common.NoRetryPolicy()
+    if client.RetryPolicy() != nil {
+        policy = *client.RetryPolicy()
+    }
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
@@ -136,6 +139,9 @@ func(client IncidentClient) createIncident(ctx context.Context, request common.O
 func(client IncidentClient) GetIncident(ctx context.Context, request GetIncidentRequest) (response GetIncidentResponse, err error) {
     var ociResponse common.OCIResponse
     policy := common.NoRetryPolicy()
+    if client.RetryPolicy() != nil {
+        policy = *client.RetryPolicy()
+    }
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
@@ -186,6 +192,9 @@ func(client IncidentClient) getIncident(ctx context.Context, request common.OCIR
 func(client IncidentClient) GetStatus(ctx context.Context, request GetStatusRequest) (response GetStatusResponse, err error) {
     var ociResponse common.OCIResponse
     policy := common.NoRetryPolicy()
+    if client.RetryPolicy() != nil {
+        policy = *client.RetryPolicy()
+    }
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
@@ -236,6 +245,9 @@ func(client IncidentClient) getStatus(ctx context.Context, request common.OCIReq
 func(client IncidentClient) ListIncidentResourceTypes(ctx context.Context, request ListIncidentResourceTypesRequest) (response ListIncidentResourceTypesResponse, err error) {
     var ociResponse common.OCIResponse
     policy := common.NoRetryPolicy()
+    if client.RetryPolicy() != nil {
+        policy = *client.RetryPolicy()
+    }
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
@@ -286,6 +298,9 @@ func(client IncidentClient) listIncidentResourceTypes(ctx context.Context, reque
 func(client IncidentClient) ListIncidents(ctx context.Context, request ListIncidentsRequest) (response ListIncidentsResponse, err error) {
     var ociResponse common.OCIResponse
     policy := common.NoRetryPolicy()
+    if client.RetryPolicy() != nil {
+        policy = *client.RetryPolicy()
+    }
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
@@ -336,6 +351,9 @@ func(client IncidentClient) listIncidents(ctx context.Context, request common.OC
 func(client IncidentClient) UpdateIncident(ctx context.Context, request UpdateIncidentRequest) (response UpdateIncidentResponse, err error) {
     var ociResponse common.OCIResponse
     policy := common.NoRetryPolicy()
+    if client.RetryPolicy() != nil {
+        policy = *client.RetryPolicy()
+    }
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
@@ -386,6 +404,9 @@ func(client IncidentClient) updateIncident(ctx context.Context, request common.O
 func(client IncidentClient) ValidateUser(ctx context.Context, request ValidateUserRequest) (response ValidateUserResponse, err error) {
     var ociResponse common.OCIResponse
     policy := common.NoRetryPolicy()
+    if client.RetryPolicy() != nil {
+        policy = *client.RetryPolicy()
+    }
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }

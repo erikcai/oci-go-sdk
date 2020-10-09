@@ -28,7 +28,7 @@ type UsageClient struct {
 func NewUsageClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client UsageClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newUsageClientFromBaseClient(baseClient, configProvider)
+			return newUsageClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -82,6 +82,9 @@ func (client *UsageClient) ConfigurationProvider() *common.ConfigurationProvider
 func (client UsageClient) GetSubscriptionInfo(ctx context.Context, request GetSubscriptionInfoRequest) (response GetSubscriptionInfoResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -133,6 +136,9 @@ func (client UsageClient) getSubscriptionInfo(ctx context.Context, request commo
 func (client UsageClient) ListUsageRecords(ctx context.Context, request ListUsageRecordsRequest) (response ListUsageRecordsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

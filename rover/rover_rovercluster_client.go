@@ -28,7 +28,7 @@ type RoverClusterClient struct {
 func NewRoverClusterClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client RoverClusterClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newRoverClusterClientFromBaseClient(baseClient, configProvider)
+			return newRoverClusterClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -81,6 +81,9 @@ func (client *RoverClusterClient) ConfigurationProvider() *common.ConfigurationP
 func (client RoverClusterClient) ChangeRoverClusterCompartment(ctx context.Context, request ChangeRoverClusterCompartmentRequest) (response ChangeRoverClusterCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -133,6 +136,9 @@ func (client RoverClusterClient) changeRoverClusterCompartment(ctx context.Conte
 func (client RoverClusterClient) CreateRoverCluster(ctx context.Context, request CreateRoverClusterRequest) (response CreateRoverClusterResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -185,6 +191,9 @@ func (client RoverClusterClient) createRoverCluster(ctx context.Context, request
 func (client RoverClusterClient) DeleteRoverCluster(ctx context.Context, request DeleteRoverClusterRequest) (response DeleteRoverClusterResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -232,6 +241,9 @@ func (client RoverClusterClient) deleteRoverCluster(ctx context.Context, request
 func (client RoverClusterClient) GetRoverCluster(ctx context.Context, request GetRoverClusterRequest) (response GetRoverClusterResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -279,6 +291,9 @@ func (client RoverClusterClient) getRoverCluster(ctx context.Context, request co
 func (client RoverClusterClient) ListRoverClusters(ctx context.Context, request ListRoverClustersRequest) (response ListRoverClustersResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -326,6 +341,9 @@ func (client RoverClusterClient) listRoverClusters(ctx context.Context, request 
 func (client RoverClusterClient) UpdateRoverCluster(ctx context.Context, request UpdateRoverClusterRequest) (response UpdateRoverClusterResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

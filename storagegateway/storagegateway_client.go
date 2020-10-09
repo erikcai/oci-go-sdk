@@ -29,7 +29,7 @@ type StorageGatewayClient struct {
 func NewStorageGatewayClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client StorageGatewayClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newStorageGatewayClientFromBaseClient(baseClient, configProvider)
+			return newStorageGatewayClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -82,6 +82,9 @@ func (client *StorageGatewayClient) ConfigurationProvider() *common.Configuratio
 func (client StorageGatewayClient) CancelCloudSync(ctx context.Context, request CancelCloudSyncRequest) (response CancelCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -131,6 +134,9 @@ func (client StorageGatewayClient) cancelCloudSync(ctx context.Context, request 
 func (client StorageGatewayClient) ChangeStorageGatewayCompartment(ctx context.Context, request ChangeStorageGatewayCompartmentRequest) (response ChangeStorageGatewayCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -183,6 +189,9 @@ func (client StorageGatewayClient) changeStorageGatewayCompartment(ctx context.C
 func (client StorageGatewayClient) ConnectFileSystem(ctx context.Context, request ConnectFileSystemRequest) (response ConnectFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -235,6 +244,9 @@ func (client StorageGatewayClient) connectFileSystem(ctx context.Context, reques
 func (client StorageGatewayClient) CreateCloudSync(ctx context.Context, request CreateCloudSyncRequest) (response CreateCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -292,6 +304,9 @@ func (client StorageGatewayClient) createCloudSync(ctx context.Context, request 
 func (client StorageGatewayClient) CreateFileSystem(ctx context.Context, request CreateFileSystemRequest) (response CreateFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -354,6 +369,9 @@ func (client StorageGatewayClient) createFileSystem(ctx context.Context, request
 func (client StorageGatewayClient) CreateStorageGateway(ctx context.Context, request CreateStorageGatewayRequest) (response CreateStorageGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -406,6 +424,9 @@ func (client StorageGatewayClient) createStorageGateway(ctx context.Context, req
 func (client StorageGatewayClient) DeleteCloudSync(ctx context.Context, request DeleteCloudSyncRequest) (response DeleteCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -453,6 +474,9 @@ func (client StorageGatewayClient) deleteCloudSync(ctx context.Context, request 
 func (client StorageGatewayClient) DeleteFileSystem(ctx context.Context, request DeleteFileSystemRequest) (response DeleteFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -500,6 +524,9 @@ func (client StorageGatewayClient) deleteFileSystem(ctx context.Context, request
 func (client StorageGatewayClient) DeleteStorageGateway(ctx context.Context, request DeleteStorageGatewayRequest) (response DeleteStorageGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -547,6 +574,9 @@ func (client StorageGatewayClient) deleteStorageGateway(ctx context.Context, req
 func (client StorageGatewayClient) DisconnectFileSystem(ctx context.Context, request DisconnectFileSystemRequest) (response DisconnectFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -594,6 +624,9 @@ func (client StorageGatewayClient) disconnectFileSystem(ctx context.Context, req
 func (client StorageGatewayClient) GetCloudSync(ctx context.Context, request GetCloudSyncRequest) (response GetCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -641,6 +674,9 @@ func (client StorageGatewayClient) getCloudSync(ctx context.Context, request com
 func (client StorageGatewayClient) GetCloudSyncHealth(ctx context.Context, request GetCloudSyncHealthRequest) (response GetCloudSyncHealthResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -688,6 +724,9 @@ func (client StorageGatewayClient) getCloudSyncHealth(ctx context.Context, reque
 func (client StorageGatewayClient) GetFileSystem(ctx context.Context, request GetFileSystemRequest) (response GetFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -735,6 +774,9 @@ func (client StorageGatewayClient) getFileSystem(ctx context.Context, request co
 func (client StorageGatewayClient) GetFileSystemHealth(ctx context.Context, request GetFileSystemHealthRequest) (response GetFileSystemHealthResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -782,6 +824,9 @@ func (client StorageGatewayClient) getFileSystemHealth(ctx context.Context, requ
 func (client StorageGatewayClient) GetStorageGateway(ctx context.Context, request GetStorageGatewayRequest) (response GetStorageGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -829,6 +874,9 @@ func (client StorageGatewayClient) getStorageGateway(ctx context.Context, reques
 func (client StorageGatewayClient) GetStorageGatewayHealth(ctx context.Context, request GetStorageGatewayHealthRequest) (response GetStorageGatewayHealthResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -876,6 +924,9 @@ func (client StorageGatewayClient) getStorageGatewayHealth(ctx context.Context, 
 func (client StorageGatewayClient) ListCloudSyncs(ctx context.Context, request ListCloudSyncsRequest) (response ListCloudSyncsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -923,6 +974,9 @@ func (client StorageGatewayClient) listCloudSyncs(ctx context.Context, request c
 func (client StorageGatewayClient) ListFileSystems(ctx context.Context, request ListFileSystemsRequest) (response ListFileSystemsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -970,6 +1024,9 @@ func (client StorageGatewayClient) listFileSystems(ctx context.Context, request 
 func (client StorageGatewayClient) ListStorageGateways(ctx context.Context, request ListStorageGatewaysRequest) (response ListStorageGatewaysResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1017,6 +1074,9 @@ func (client StorageGatewayClient) listStorageGateways(ctx context.Context, requ
 func (client StorageGatewayClient) ReclaimFileSystem(ctx context.Context, request ReclaimFileSystemRequest) (response ReclaimFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1066,6 +1126,9 @@ func (client StorageGatewayClient) reclaimFileSystem(ctx context.Context, reques
 func (client StorageGatewayClient) RefreshFileSystem(ctx context.Context, request RefreshFileSystemRequest) (response RefreshFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1113,6 +1176,9 @@ func (client StorageGatewayClient) refreshFileSystem(ctx context.Context, reques
 func (client StorageGatewayClient) RunCloudSync(ctx context.Context, request RunCloudSyncRequest) (response RunCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1160,6 +1226,9 @@ func (client StorageGatewayClient) runCloudSync(ctx context.Context, request com
 func (client StorageGatewayClient) UpdateCloudSync(ctx context.Context, request UpdateCloudSyncRequest) (response UpdateCloudSyncResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1207,6 +1276,9 @@ func (client StorageGatewayClient) updateCloudSync(ctx context.Context, request 
 func (client StorageGatewayClient) UpdateFileSystem(ctx context.Context, request UpdateFileSystemRequest) (response UpdateFileSystemResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -1254,6 +1326,9 @@ func (client StorageGatewayClient) updateFileSystem(ctx context.Context, request
 func (client StorageGatewayClient) UpdateStorageGateway(ctx context.Context, request UpdateStorageGatewayRequest) (response UpdateStorageGatewayResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

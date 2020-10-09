@@ -30,7 +30,7 @@ type KamClient struct {
 func NewKamClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client KamClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newKamClientFromBaseClient(baseClient, configProvider)
+			return newKamClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -84,6 +84,9 @@ func (client *KamClient) ConfigurationProvider() *common.ConfigurationProvider {
 func (client KamClient) CreateKamRelease(ctx context.Context, request CreateKamReleaseRequest) (response CreateKamReleaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -138,6 +141,9 @@ func (client KamClient) createKamRelease(ctx context.Context, request common.OCI
 func (client KamClient) DeleteKamRelease(ctx context.Context, request DeleteKamReleaseRequest) (response DeleteKamReleaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -190,6 +196,9 @@ func (client KamClient) deleteKamRelease(ctx context.Context, request common.OCI
 func (client KamClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -239,6 +248,9 @@ func (client KamClient) getWorkRequest(ctx context.Context, request common.OCIRe
 func (client KamClient) ListKamCharts(ctx context.Context, request ListKamChartsRequest) (response ListKamChartsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -287,6 +299,9 @@ func (client KamClient) listKamCharts(ctx context.Context, request common.OCIReq
 func (client KamClient) ListKamReleases(ctx context.Context, request ListKamReleasesRequest) (response ListKamReleasesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -334,6 +349,9 @@ func (client KamClient) listKamReleases(ctx context.Context, request common.OCIR
 func (client KamClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -381,6 +399,9 @@ func (client KamClient) listWorkRequestErrors(ctx context.Context, request commo
 func (client KamClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -429,6 +450,9 @@ func (client KamClient) listWorkRequestLogs(ctx context.Context, request common.
 func (client KamClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -478,6 +502,9 @@ func (client KamClient) listWorkRequests(ctx context.Context, request common.OCI
 func (client KamClient) UpdateKamRelease(ctx context.Context, request UpdateKamReleaseRequest) (response UpdateKamReleaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

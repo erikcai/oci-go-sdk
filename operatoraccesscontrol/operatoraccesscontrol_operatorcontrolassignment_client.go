@@ -30,7 +30,7 @@ type OperatorControlAssignmentClient struct {
 func NewOperatorControlAssignmentClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client OperatorControlAssignmentClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newOperatorControlAssignmentClientFromBaseClient(baseClient, configProvider)
+			return newOperatorControlAssignmentClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -83,6 +83,9 @@ func (client *OperatorControlAssignmentClient) ConfigurationProvider() *common.C
 func (client OperatorControlAssignmentClient) ChangeOperatorControlAssignmentCompartment(ctx context.Context, request ChangeOperatorControlAssignmentCompartmentRequest) (response ChangeOperatorControlAssignmentCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -135,6 +138,9 @@ func (client OperatorControlAssignmentClient) changeOperatorControlAssignmentCom
 func (client OperatorControlAssignmentClient) CreateOperatorControlAssignment(ctx context.Context, request CreateOperatorControlAssignmentRequest) (response CreateOperatorControlAssignmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -187,6 +193,9 @@ func (client OperatorControlAssignmentClient) createOperatorControlAssignment(ct
 func (client OperatorControlAssignmentClient) DeleteOperatorControlAssignment(ctx context.Context, request DeleteOperatorControlAssignmentRequest) (response DeleteOperatorControlAssignmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -234,6 +243,9 @@ func (client OperatorControlAssignmentClient) deleteOperatorControlAssignment(ct
 func (client OperatorControlAssignmentClient) GetOperatorControlAssignment(ctx context.Context, request GetOperatorControlAssignmentRequest) (response GetOperatorControlAssignmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -281,6 +293,9 @@ func (client OperatorControlAssignmentClient) getOperatorControlAssignment(ctx c
 func (client OperatorControlAssignmentClient) ListOperatorControlAssignments(ctx context.Context, request ListOperatorControlAssignmentsRequest) (response ListOperatorControlAssignmentsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -328,6 +343,9 @@ func (client OperatorControlAssignmentClient) listOperatorControlAssignments(ctx
 func (client OperatorControlAssignmentClient) UpdateOperatorControlAssignment(ctx context.Context, request UpdateOperatorControlAssignmentRequest) (response UpdateOperatorControlAssignmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

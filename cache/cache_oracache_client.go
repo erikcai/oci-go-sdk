@@ -28,7 +28,7 @@ type OracacheClient struct {
 func NewOracacheClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client OracacheClient, err error) {
 	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
 		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newOracacheClientFromBaseClient(baseClient, configProvider)
+			return newOracacheClientFromBaseClient(baseClient, provider)
 		}
 	}
 
@@ -82,6 +82,9 @@ func (client *OracacheClient) ConfigurationProvider() *common.ConfigurationProvi
 func (client OracacheClient) CancelWorkRequest(ctx context.Context, request CancelWorkRequestRequest) (response CancelWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -129,6 +132,9 @@ func (client OracacheClient) cancelWorkRequest(ctx context.Context, request comm
 func (client OracacheClient) CreateReplicatedCache(ctx context.Context, request CreateReplicatedCacheRequest) (response CreateReplicatedCacheResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -181,6 +187,9 @@ func (client OracacheClient) createReplicatedCache(ctx context.Context, request 
 func (client OracacheClient) DeleteReplicatedCache(ctx context.Context, request DeleteReplicatedCacheRequest) (response DeleteReplicatedCacheResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -228,6 +237,9 @@ func (client OracacheClient) deleteReplicatedCache(ctx context.Context, request 
 func (client OracacheClient) GetReplicatedCache(ctx context.Context, request GetReplicatedCacheRequest) (response GetReplicatedCacheResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -275,6 +287,9 @@ func (client OracacheClient) getReplicatedCache(ctx context.Context, request com
 func (client OracacheClient) GetWorkRequest(ctx context.Context, request GetWorkRequestRequest) (response GetWorkRequestResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -324,6 +339,9 @@ func (client OracacheClient) getWorkRequest(ctx context.Context, request common.
 func (client OracacheClient) ListRedisShapes(ctx context.Context, request ListRedisShapesRequest) (response ListRedisShapesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -372,6 +390,9 @@ func (client OracacheClient) listRedisShapes(ctx context.Context, request common
 func (client OracacheClient) ListReplicatedCaches(ctx context.Context, request ListReplicatedCachesRequest) (response ListReplicatedCachesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -419,6 +440,9 @@ func (client OracacheClient) listReplicatedCaches(ctx context.Context, request c
 func (client OracacheClient) ListVersions(ctx context.Context, request ListVersionsRequest) (response ListVersionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -467,6 +491,9 @@ func (client OracacheClient) listVersions(ctx context.Context, request common.OC
 func (client OracacheClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -515,6 +542,9 @@ func (client OracacheClient) listWorkRequestErrors(ctx context.Context, request 
 func (client OracacheClient) ListWorkRequestLogs(ctx context.Context, request ListWorkRequestLogsRequest) (response ListWorkRequestLogsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -562,6 +592,9 @@ func (client OracacheClient) listWorkRequestLogs(ctx context.Context, request co
 func (client OracacheClient) ListWorkRequests(ctx context.Context, request ListWorkRequestsRequest) (response ListWorkRequestsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
@@ -609,6 +642,9 @@ func (client OracacheClient) listWorkRequests(ctx context.Context, request commo
 func (client OracacheClient) UpdateReplicatedCache(ctx context.Context, request UpdateReplicatedCacheRequest) (response UpdateReplicatedCacheResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}

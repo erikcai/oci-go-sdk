@@ -28,7 +28,7 @@ type UserClient struct {
 func NewUserClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client UserClient, err error){
     if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
         if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-            return newUserClientFromBaseClient(baseClient, configProvider)
+            return newUserClientFromBaseClient(baseClient, provider)
         }
     }
 
@@ -86,6 +86,9 @@ func (client *UserClient) ConfigurationProvider() *common.ConfigurationProvider 
 func(client UserClient) CreateUser(ctx context.Context, request CreateUserRequest) (response CreateUserResponse, err error) {
     var ociResponse common.OCIResponse
     policy := common.NoRetryPolicy()
+    if client.RetryPolicy() != nil {
+        policy = *client.RetryPolicy()
+    }
     if request.RetryPolicy() != nil {
         policy = *request.RetryPolicy()
     }
