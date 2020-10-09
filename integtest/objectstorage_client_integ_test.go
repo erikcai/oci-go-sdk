@@ -472,6 +472,7 @@ func callBack(multiPartUploadPart transfer.MultiPartUploadPart) {
 }
 
 func TestObjectStorage_UploadManager_ResumeUploadFile(t *testing.T) {
+	t.Skip("Skipping test, Not stable currently")
 	ctx := context.Background()
 	bname := "uploadManagerResumeFileBucketName" + getUuid()
 	objectName := "sampleFileUploadObj"
