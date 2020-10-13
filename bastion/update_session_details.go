@@ -10,7 +10,7 @@
 package bastion
 
 import (
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
 // UpdateSessionDetails The session information to be updated.

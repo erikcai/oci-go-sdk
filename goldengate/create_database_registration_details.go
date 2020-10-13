@@ -11,7 +11,7 @@
 package goldengate
 
 import (
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
 // CreateDatabaseRegistrationDetails The information about new DatabaseRegistration.

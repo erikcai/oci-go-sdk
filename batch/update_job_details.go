@@ -11,7 +11,7 @@
 package batch
 
 import (
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
 // UpdateJobDetails Details for updating a job.

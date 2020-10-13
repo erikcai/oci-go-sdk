@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
 // ComputeCapacityReservation A capacity reservation is a template that defines the settings to use when creating capacity reservations.

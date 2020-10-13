@@ -10,7 +10,7 @@
 package loggingingestion
 
 import (
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
 // LogEntry Contains the log content with the associated timestamp and ID. Each

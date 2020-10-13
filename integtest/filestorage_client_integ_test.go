@@ -14,9 +14,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 
-	"github.com/oracle/oci-go-sdk/v26/filestorage"
+	"github.com/oracle/oci-go-sdk/v27/filestorage"
 )
 
 // sanity test for file storage service as the current plan is rely on Java test for other APIs

@@ -11,7 +11,7 @@
 package batch
 
 import (
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
 // JobDefinition Job definition to define a job and specify docker image, command, env,

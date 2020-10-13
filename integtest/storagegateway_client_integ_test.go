@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/oracle/oci-go-sdk/v26/common"
-	"github.com/oracle/oci-go-sdk/v26/storagegateway"
+	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v27/storagegateway"
 	"github.com/stretchr/testify/assert"
 )
 

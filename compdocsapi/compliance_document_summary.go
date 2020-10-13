@@ -10,7 +10,7 @@
 package compdocsapi
 
 import (
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
 // ComplianceDocumentSummary A summary representation of the compliance document.

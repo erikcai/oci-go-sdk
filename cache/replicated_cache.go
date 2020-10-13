@@ -10,7 +10,7 @@
 package cache
 
 import (
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
 // ReplicatedCache Details of the Redis replicated cache. Redis replicated caches are comprised of Oracle-managed Redis nodes that each contain a replica of the cached data. The cache is accessible from a tenant's compartment using a published endpoint.

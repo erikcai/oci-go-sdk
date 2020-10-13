@@ -11,7 +11,7 @@
 package goldengate
 
 import (
-	"github.com/oracle/oci-go-sdk/v26/common"
+	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
 // WorkRequestLogEntry A log message from the execution of a work request.
