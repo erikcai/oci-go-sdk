@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// OperationsInsights API
+// Operations Insights API
 //
-// The OperationsInsights API for OPSI service.
+// Use the Operations Insights API to perform data extraction operations to obtain database
+// resource utilization, performance statistics, and reference information. For more information,
+// see About Oracle Cloud Infrastructure Operations Insights (https://docs.cloud.oracle.com/en-us/iaas/operations-insights/doc/operations-insights.html).
 //
 
 package operationsinsights
@@ -77,7 +79,7 @@ func (client *OperationsInsightsClient) ConfigurationProvider() *common.Configur
 	return client.config
 }
 
-// IngestSqlBucket The sqlbucket endpoint takes in a JSON payload, persists it in DBX ingest pipeline.
+// IngestSqlBucket The sqlbucket endpoint takes in a JSON payload, persists it in Operations Insights ingest pipeline.
 func (client OperationsInsightsClient) IngestSqlBucket(ctx context.Context, request IngestSqlBucketRequest) (response IngestSqlBucketResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -132,7 +134,7 @@ func (client OperationsInsightsClient) ingestSqlBucket(ctx context.Context, requ
 	return response, err
 }
 
-// IngestSqlPlanLines The SqlPlanLines endpoint takes in a JSON payload, persists it in DBX ingest pipeline.
+// IngestSqlPlanLines The SqlPlanLines endpoint takes in a JSON payload, persists it in Operation Insights ingest pipeline.
 func (client OperationsInsightsClient) IngestSqlPlanLines(ctx context.Context, request IngestSqlPlanLinesRequest) (response IngestSqlPlanLinesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -187,7 +189,8 @@ func (client OperationsInsightsClient) ingestSqlPlanLines(ctx context.Context, r
 	return response, err
 }
 
-// IngestSqlText The SqlText endpoint takes in a JSON payload, persists it in DBX ingest pipeline.
+// IngestSqlText The SqlText endpoint takes in a JSON payload, persists it in Operation Insights ingest pipeline.
+// Disclaimer: SQL text being uploaded explicitly via APIs is not masked. Any sensitive literals contained in the sqlFullText column should be masked prior to ingestion.
 func (client OperationsInsightsClient) IngestSqlText(ctx context.Context, request IngestSqlTextRequest) (response IngestSqlTextResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -392,7 +395,7 @@ func (client OperationsInsightsClient) listSqlSearches(ctx context.Context, requ
 	return response, err
 }
 
-// ListSqlTexts Query SQL Warehouse to get the SQL Text for a SQL across one or more databases.
+// ListSqlTexts Query SQL Warehouse to get the full SQL Text for a SQL.
 func (client OperationsInsightsClient) ListSqlTexts(ctx context.Context, request ListSqlTextsRequest) (response ListSqlTextsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -493,7 +496,7 @@ func (client OperationsInsightsClient) summarizeDatabaseInsightResourceCapacityT
 	return response, err
 }
 
-// SummarizeDatabaseInsightResourceForecastTrend Get Forecast predictions for CPU, Storage and Memory resources since a time in the past.
+// SummarizeDatabaseInsightResourceForecastTrend Get Forecast predictions for CPU and Storage resources since a time in the past.
 func (client OperationsInsightsClient) SummarizeDatabaseInsightResourceForecastTrend(ctx context.Context, request SummarizeDatabaseInsightResourceForecastTrendRequest) (response SummarizeDatabaseInsightResourceForecastTrendResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -543,7 +546,7 @@ func (client OperationsInsightsClient) summarizeDatabaseInsightResourceForecastT
 	return response, err
 }
 
-// SummarizeDatabaseInsightResourceStatistics Lists the Resource statistics (usage,capacity, usage change percent, utilization percent) for each database filtered by utilization level
+// SummarizeDatabaseInsightResourceStatistics Lists the Resource statistics (usage,capacity, usage change percent, utilization percent, base capacity, isAutoScalingEnabled) for each database filtered by utilization level
 func (client OperationsInsightsClient) SummarizeDatabaseInsightResourceStatistics(ctx context.Context, request SummarizeDatabaseInsightResourceStatisticsRequest) (response SummarizeDatabaseInsightResourceStatisticsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

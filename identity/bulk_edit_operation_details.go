@@ -16,11 +16,18 @@ import (
 // BulkEditOperationDetails The representation of BulkEditOperationDetails
 type BulkEditOperationDetails struct {
 
-	// An enum-like description of the type of operation. ADD_WHERE_ABSENT - Add defined tag only if it doesn't exist on resource SET_WHERE_PRESENT - Set defined tag value only if it is present on resource ADD_OR_SET - Combines ADD and SET (Add defined tag if doesn't exist on resource or Set defined tag value if it is already present) REMOVE - Removes the defined tag on the resource. Tag will be removed from resource irrespective of the value.
+	// An enum-like description of the type of operation.
+	// * `ADD_WHERE_ABSENT` adds a defined tag only if the tag does not already exist on the resource.
+	// * `SET_WHERE_PRESENT` updates the value for a defined tag only if the tag is present on the resource.
+	// * `ADD_OR_SET` combines the first two operations to add a defined tag if it does not already exist on the resource
+	// or update the value for a defined tag only if the tag is present on the resource.
+	// * `REMOVE` removes the defined tag from the resource. The tag is removed from the resource regardless of the tag value.
 	OperationType BulkEditOperationDetailsOperationTypeEnum `mandatory:"true" json:"operationType"`
 
-	// Array of tags to be used for operations on resources.
-	DefinedTags []map[string]map[string]interface{} `mandatory:"true" json:"definedTags"`
+	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+	// Example: `{"Operations": {"CostCenter": "42"}}`
+	DefinedTags map[string]map[string]interface{} `mandatory:"true" json:"definedTags"`
 }
 
 func (m BulkEditOperationDetails) String() string {

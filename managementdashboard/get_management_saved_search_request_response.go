@@ -12,7 +12,7 @@ import (
 // GetManagementSavedSearchRequest wrapper for the GetManagementSavedSearch operation
 type GetManagementSavedSearchRequest struct {
 
-	// unique saved search identifier
+	// A unique saved search identifier.
 	ManagementSavedSearchId *string `mandatory:"true" contributesTo:"path" name:"managementSavedSearchId"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

@@ -12,10 +12,10 @@ import (
 // ChangeManagementDashboardsCompartmentRequest wrapper for the ChangeManagementDashboardsCompartment operation
 type ChangeManagementDashboardsCompartmentRequest struct {
 
-	// unique dashboard identifier
+	// A unique dashboard identifier.
 	ManagementDashboardId *string `mandatory:"true" contributesTo:"path" name:"managementDashboardId"`
 
-	// Id for dashboard to be moved.
+	// ID of the dashboard that is being moved.
 	ChangeManagementDashboardsCompartmentDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

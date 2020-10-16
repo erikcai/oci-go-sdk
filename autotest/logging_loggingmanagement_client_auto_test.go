@@ -683,50 +683,6 @@ func TestLoggingLoggingManagementClientGetLogGroup(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestLoggingLoggingManagementClientGetLogIncludedSearch(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("logging", "GetLogIncludedSearch")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetLogIncludedSearch is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "GetLogIncludedSearch", createLoggingLoggingManagementClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(logging.LoggingManagementClient)
-
-	body, err := testClient.getRequests("logging", "GetLogIncludedSearch")
-	assert.NoError(t, err)
-
-	type GetLogIncludedSearchRequestInfo struct {
-		ContainerId string
-		Request     logging.GetLogIncludedSearchRequest
-	}
-
-	var requests []GetLogIncludedSearchRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetLogIncludedSearch(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
 func TestLoggingLoggingManagementClientGetLogSavedSearch(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -903,60 +859,6 @@ func TestLoggingLoggingManagementClientListLogGroups(t *testing.T) {
 			typedListResponses := make([]logging.ListLogGroupsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(logging.ListLogGroupsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="hydra_dev_us_grp@oracle.com" jiraProject="HYD" opsJiraProject="HYD"
-func TestLoggingLoggingManagementClientListLogIncludedSearches(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("logging", "ListLogIncludedSearches")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListLogIncludedSearches is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("logging", "LoggingManagement", "ListLogIncludedSearches", createLoggingLoggingManagementClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(logging.LoggingManagementClient)
-
-	body, err := testClient.getRequests("logging", "ListLogIncludedSearches")
-	assert.NoError(t, err)
-
-	type ListLogIncludedSearchesRequestInfo struct {
-		ContainerId string
-		Request     logging.ListLogIncludedSearchesRequest
-	}
-
-	var requests []ListLogIncludedSearchesRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*logging.ListLogIncludedSearchesRequest)
-				return c.ListLogIncludedSearches(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]logging.ListLogIncludedSearchesResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(logging.ListLogIncludedSearchesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

@@ -12,10 +12,10 @@ import (
 // ChangeManagementSavedSearchesCompartmentRequest wrapper for the ChangeManagementSavedSearchesCompartment operation
 type ChangeManagementSavedSearchesCompartmentRequest struct {
 
-	// unique saved search identifier
+	// A unique saved search identifier.
 	ManagementSavedSearchId *string `mandatory:"true" contributesTo:"path" name:"managementSavedSearchId"`
 
-	// Compartment id to move the saved search to.
+	// ID of the saved search that is being moved.
 	ChangeManagementSavedSearchesCompartmentDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

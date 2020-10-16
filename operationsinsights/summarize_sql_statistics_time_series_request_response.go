@@ -12,13 +12,14 @@ import (
 // SummarizeSqlStatisticsTimeSeriesRequest wrapper for the SummarizeSqlStatisticsTimeSeries operation
 type SummarizeSqlStatisticsTimeSeriesRequest struct {
 
-	// The OCID  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// Unique SQL_ID for a SQL Statement.
+	// Example: `6rgjh9bjmy2s7`
 	SqlIdentifier *string `mandatory:"true" contributesTo:"query" name:"sqlIdentifier"`
 
-	// Optional list of database OCIDs  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+	// Optional list of database OCIDs (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
 	DatabaseId []string `contributesTo:"query" name:"databaseId" collectionFormat:"multi"`
 
 	// Specify time period in ISO 8601 format with respect to current time.

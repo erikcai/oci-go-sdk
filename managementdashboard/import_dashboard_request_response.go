@@ -12,7 +12,7 @@ import (
 // ImportDashboardRequest wrapper for the ImportDashboard operation
 type ImportDashboardRequest struct {
 
-	// Json metadata for dashboards and their saved searches to import.
+	// JSON metadata for importing dashboards and their saved searches.
 	ManagementDashboardImportDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

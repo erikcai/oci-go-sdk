@@ -23,16 +23,13 @@ type CreateBastionDetails struct {
 	TargetSubnetId *string `mandatory:"true" json:"targetSubnetId"`
 
 	// the ip ranges that the bastion has access to.
-	WhitelistedClientCidrBlocks []string `mandatory:"true" json:"whitelistedClientCidrBlocks"`
+	ClientCidrBlockAllowList []string `mandatory:"true" json:"clientCidrBlockAllowList"`
 
 	// Bastion Identifier, not unique
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// availability domain of the bastion.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
-
-	// the ip ranges that the bastion has access to.
-	ClientCidrBlockAllowList []string `mandatory:"false" json:"clientCidrBlockAllowList"`
 
 	// max TTL of the sessions on the bastion.
 	MaxSessionTtlInSeconds *int `mandatory:"false" json:"maxSessionTtlInSeconds"`

@@ -12,7 +12,7 @@ import (
 // CreateManagementSavedSearchRequest wrapper for the CreateManagementSavedSearch operation
 type CreateManagementSavedSearchRequest struct {
 
-	// Json metadata for the saved search.
+	// JSON metadata for the saved search.
 	CreateManagementSavedSearchDetails `contributesTo:"body"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or

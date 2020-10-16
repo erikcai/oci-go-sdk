@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// BulkEditTagsResourceTypeCollection Collection of resource types which supports Bulk Edit of Tags
+// BulkEditTagsResourceTypeCollection The list of resource types that support bulk editing of tags.
 type BulkEditTagsResourceTypeCollection struct {
 
-	// Collection of resource types which supports Bulk Edit of Tags.
+	// The collection of resource types that support bulk editing of tags.
 	Items []BulkEditTagsResourceType `mandatory:"true" json:"items"`
 }
 

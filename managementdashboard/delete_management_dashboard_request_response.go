@@ -12,7 +12,7 @@ import (
 // DeleteManagementDashboardRequest wrapper for the DeleteManagementDashboard operation
 type DeleteManagementDashboardRequest struct {
 
-	// unique dashboard identifier
+	// A unique dashboard identifier.
 	ManagementDashboardId *string `mandatory:"true" contributesTo:"path" name:"managementDashboardId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

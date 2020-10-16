@@ -12,10 +12,10 @@ import (
 // IngestSqlPlanLinesRequest wrapper for the IngestSqlPlanLines operation
 type IngestSqlPlanLinesRequest struct {
 
-	// The OCID  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// Required OCID  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
+	// Required OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
 	DatabaseId *string `mandatory:"true" contributesTo:"query" name:"databaseId"`
 
 	// Collection of SQL plan line objects for a particular database.

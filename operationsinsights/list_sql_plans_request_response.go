@@ -12,16 +12,18 @@ import (
 // ListSqlPlansRequest wrapper for the ListSqlPlans operation
 type ListSqlPlansRequest struct {
 
-	// The OCID  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
-	// Required OCID  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
+	// Required OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
 	DatabaseId *string `mandatory:"true" contributesTo:"query" name:"databaseId"`
 
 	// Unique SQL_ID for a SQL Statement.
+	// Example: `6rgjh9bjmy2s7`
 	SqlIdentifier *string `mandatory:"true" contributesTo:"query" name:"sqlIdentifier"`
 
 	// Unique plan hash for a SQL Plan of a particular SQL Statement.
+	// Example: `9820154385`
 	PlanHash []int64 `contributesTo:"query" name:"planHash" collectionFormat:"multi"`
 
 	// For list pagination. The value of the `opc-next-page` response header from

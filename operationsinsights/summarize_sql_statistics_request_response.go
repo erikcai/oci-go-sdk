@@ -12,20 +12,21 @@ import (
 // SummarizeSqlStatisticsRequest wrapper for the SummarizeSqlStatistics operation
 type SummarizeSqlStatisticsRequest struct {
 
-	// The OCID  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// Filter by one or more database type.
 	// Possible values are ADW-S, ATP-S, ADW-D, ATP-D
 	DatabaseType []SummarizeSqlStatisticsDatabaseTypeEnum `contributesTo:"query" name:"databaseType" omitEmpty:"true" collectionFormat:"multi"`
 
-	// Optional list of database OCIDs  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+	// Optional list of database OCIDs (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
 	DatabaseId []string `contributesTo:"query" name:"databaseId" collectionFormat:"multi"`
 
 	// Filter sqls by percentage of db time.
 	DatabaseTimePctGreaterThan *float64 `mandatory:"false" contributesTo:"query" name:"databaseTimePctGreaterThan"`
 
 	// One or more unique SQL_IDs for a SQL Statement.
+	// Example: `6rgjh9bjmy2s7`
 	SqlIdentifier []string `contributesTo:"query" name:"sqlIdentifier" collectionFormat:"multi"`
 
 	// Specify time period in ISO 8601 format with respect to current time.

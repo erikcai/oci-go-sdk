@@ -2,24 +2,24 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Logging Management API
+// TenantManager API
 //
-// Use the Logging Management API to create, read, list, update, and delete log groups, log objects, and agent configurations.
+// A description of the TenantManager API
 //
 
-package logging
+package tenantmanagercontrolplane
 
 import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// LogIncludedSearchSummaryCollection A set of LogIncludedSummary
-type LogIncludedSearchSummaryCollection struct {
+// WorkRequestCollection Result of a query request for a list of work requests. Contains WorkRequestSummary items.
+type WorkRequestCollection struct {
 
-	// The list of summaries
-	Items []LogIncludedSearchSummary `mandatory:"true" json:"items"`
+	// Array containing WorkRequestSummary items.
+	Items []WorkRequestSummary `mandatory:"true" json:"items"`
 }
 
-func (m LogIncludedSearchSummaryCollection) String() string {
+func (m WorkRequestCollection) String() string {
 	return common.PointerString(m)
 }

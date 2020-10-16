@@ -23,7 +23,7 @@ type BulkEditTagsRequest struct {
 	// may be rejected).
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
-	// Request object for bulk edit of Tags on resources in the compartment.
+	// The request object for bulk editing tags on resources in the compartment.
 	BulkEditTagsDetails `contributesTo:"body"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

@@ -12,7 +12,7 @@ import (
 // DeleteManagementSavedSearchRequest wrapper for the DeleteManagementSavedSearch operation
 type DeleteManagementSavedSearchRequest struct {
 
-	// unique saved search identifier
+	// A unique saved search identifier.
 	ManagementSavedSearchId *string `mandatory:"true" contributesTo:"path" name:"managementSavedSearchId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

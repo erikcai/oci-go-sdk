@@ -32,7 +32,7 @@ type Bastion struct {
 	TargetSubnetId *string `mandatory:"true" json:"targetSubnetId"`
 
 	// the ip ranges that the bastion has access to.
-	WhitelistedClientCidrBlocks []string `mandatory:"true" json:"whitelistedClientCidrBlocks"`
+	ClientCidrBlockAllowList []string `mandatory:"true" json:"clientCidrBlockAllowList"`
 
 	// max TTL of the sessions on the bastion.
 	MaxSessionTtlInSeconds *int `mandatory:"true" json:"maxSessionTtlInSeconds"`
@@ -48,9 +48,6 @@ type Bastion struct {
 
 	// availability domain of the bastion.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
-
-	// the ip ranges that the bastion has access to.
-	ClientCidrBlockAllowList []string `mandatory:"false" json:"clientCidrBlockAllowList"`
 
 	// Private ip address of the created private endpoint
 	PrivateEndpointIpAddress *string `mandatory:"false" json:"privateEndpointIpAddress"`
@@ -68,6 +65,10 @@ type Bastion struct {
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace.
 	// Example: `{"foo-namespace": {"bar-key": "value"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// Usage of system tag keys. These predefined keys are scoped to namespaces.
+	// Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
+	SystemTags map[string]map[string]interface{} `mandatory:"false" json:"systemTags"`
 }
 
 func (m Bastion) String() string {

@@ -302,7 +302,7 @@ func (client IdentityClient) bulkDeleteResources(ctx context.Context, request co
 }
 
 // BulkDeleteTags Deletes the specified tag key definitions. This operation triggers a process that removes the
-// tags from all resources in your tenancy.
+// tags from all resources in your tenancy. The tag key definitions must be within the same tag namespace.
 // The following actions happen immediately:
 //
 //   * If the tag is a cost-tracking tag, the tag no longer counts against your
@@ -371,10 +371,17 @@ func (client IdentityClient) bulkDeleteTags(ctx context.Context, request common.
 	return response, err
 }
 
-// BulkEditTags Bulk Edit (ADD_WHERE_ABSENT/SET_WHERE_PRESENT/ADD_OR_SET/Remove) specified list of tag key definitions from the selected resources. This operation triggers a process that edits the
-// tags from selected resources.
-// User can submit combination of operation and tag set. But one tag definition can't be used with multiple operations in single request.
-// e.g. One request can contain ADD_WHERE_ABSENT with tag set-1 & SET_WHERE_PRESENT with tag set-2. tag set-1 & tag set-2 should not have any common tag definitions
+// BulkEditTags Edits the specified list of tag key definitions for the selected resources.
+// This operation triggers a process that edits the tags on all selected resources. The possible actions are:
+//   * Add a defined tag when the tag does not already exist on the resource.
+//   * Update the value for a defined tag when the tag is present on the resource.
+//   * Add a defined tag when it does not already exist on the resource or update the value for a defined tag when the tag is present on the resource.
+//   * Remove a defined tag from a resource. The tag is removed from the resource regardless of the tag value.
+// See BulkEditOperationDetails for more information.
+// The edits can include a combination of operations and tag sets.
+// However, multiple operations cannot apply to one key definition in the same request.
+// For example, if one request adds `tag set-1` to a resource and sets a tag value to `tag set-2`,
+// `tag set-1` and `tag set-2` cannot have any common tag definitions.
 func (client IdentityClient) BulkEditTags(ctx context.Context, request BulkEditTagsRequest) (response BulkEditTagsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4206,7 +4213,7 @@ func (client IdentityClient) listBulkActionResourceTypes(ctx context.Context, re
 	return response, err
 }
 
-// ListBulkEditTagsResourceTypes Lists the resource types which supports Bulk Edit of Tags.
+// ListBulkEditTagsResourceTypes Lists the resource types that support bulk tag editing.
 func (client IdentityClient) ListBulkEditTagsResourceTypes(ctx context.Context, request ListBulkEditTagsResourceTypesRequest) (response ListBulkEditTagsResourceTypesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

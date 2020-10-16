@@ -12,10 +12,11 @@ import (
 // ListSqlSearchesRequest wrapper for the ListSqlSearches operation
 type ListSqlSearchesRequest struct {
 
-	// The OCID  (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// Unique SQL_ID for a SQL Statement.
+	// Example: `6rgjh9bjmy2s7`
 	SqlIdentifier *string `mandatory:"true" contributesTo:"query" name:"sqlIdentifier"`
 
 	// Specify time period in ISO 8601 format with respect to current time.

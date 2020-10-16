@@ -16,17 +16,13 @@ import (
 // BulkEditResource The representation of BulkEditResource
 type BulkEditResource struct {
 
-	// The OCID of the resource.
+	// The unique OCID of the resource.
 	Id *string `mandatory:"true" json:"id"`
 
-	// Type of resource. See BulkEditResourceTypes
+	// The type of resource. See BulkEditResourceTypes.
 	ResourceType *string `mandatory:"true" json:"resourceType"`
 
-	// Additional information that helps to identify the resource for bulk edit of Tags.
-	// UPDATE APIs for most resource types only require the resource identifier(ocid).
-	// But additional metadata is required for some resource types.
-	// This information is provided in the resource's public API document. It is also
-	// available through the ListTaggingSupportedResourceTypes API.
+	// Additional information that identifies the resource for bulk editing of tags. This information is provided in the resource's API documentation.
 	Metadata map[string]string `mandatory:"false" json:"metadata"`
 }
 

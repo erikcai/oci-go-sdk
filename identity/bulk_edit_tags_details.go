@@ -16,13 +16,13 @@ import (
 // BulkEditTagsDetails The representation of BulkEditTagsDetails
 type BulkEditTagsDetails struct {
 
-	// The OCID of the compartment. Compartment Id where Bulk Edit of Tags request submitted.
+	// The OCID of the compartment where the bulk tag edit request is submitted.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The resources to be updated.
 	Resources []BulkEditResource `mandatory:"true" json:"resources"`
 
-	// The object for operations to be performed on resources and tags.
+	// The operations associated with the request to bulk edit tags.
 	BulkEditOperations []BulkEditOperationDetails `mandatory:"true" json:"bulkEditOperations"`
 }
 

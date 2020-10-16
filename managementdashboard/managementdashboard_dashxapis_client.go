@@ -4,8 +4,7 @@
 
 // ManagementDashboard API
 //
-// Management Dashboard micro-service provides a set of CRUD, import, export, and compartment related APIs (such as change compartment)   to support dashboard and saved search metadata preservation.  These APIs are mainly for client UIs, for various UI activities such as get list of all saved searches in a compartment, create a dashboard, open a saved search, etc.  Use export to retrieve  dashboards and their saved searches, then edit the Json if necessary (for example change compartmentIds), then import the result to  destination dashboard service.
-// APIs validate all required properties to ensure properties are present and have correct type and values.
+// API for the Management Dashboard micro-service. Use this API for dashboard and saved search metadata preservation and to perform  tasks such as creating a dashboard, creating a saved search, and obtaining a list of dashboards and saved searches in a compartment.
 //
 //
 
@@ -79,7 +78,7 @@ func (client *DashxApisClient) ConfigurationProvider() *common.ConfigurationProv
 	return client.config
 }
 
-// ChangeManagementDashboardsCompartment Move the dashboard from existing compartment to a new compartment.
+// ChangeManagementDashboardsCompartment Moves the dashboard from the existing compartment to a new compartment.
 func (client DashxApisClient) ChangeManagementDashboardsCompartment(ctx context.Context, request ChangeManagementDashboardsCompartmentRequest) (response ChangeManagementDashboardsCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -134,7 +133,7 @@ func (client DashxApisClient) changeManagementDashboardsCompartment(ctx context.
 	return response, err
 }
 
-// ChangeManagementSavedSearchesCompartment Move the saved search from existing compartment to a new compartment.
+// ChangeManagementSavedSearchesCompartment Moves the saved search from the existing compartment to a new compartment.
 func (client DashxApisClient) ChangeManagementSavedSearchesCompartment(ctx context.Context, request ChangeManagementSavedSearchesCompartmentRequest) (response ChangeManagementSavedSearchesCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -299,7 +298,7 @@ func (client DashxApisClient) createManagementSavedSearch(ctx context.Context, r
 	return response, err
 }
 
-// DeleteManagementDashboard Deletes a Dashboard by id.
+// DeleteManagementDashboard Deletes a Dashboard by ID.
 func (client DashxApisClient) DeleteManagementDashboard(ctx context.Context, request DeleteManagementDashboardRequest) (response DeleteManagementDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -349,7 +348,7 @@ func (client DashxApisClient) deleteManagementDashboard(ctx context.Context, req
 	return response, err
 }
 
-// DeleteManagementSavedSearch Deletes a saved search by Id
+// DeleteManagementSavedSearch Deletes a saved search by ID.
 func (client DashxApisClient) DeleteManagementSavedSearch(ctx context.Context, request DeleteManagementSavedSearchRequest) (response DeleteManagementSavedSearchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -454,7 +453,7 @@ func (client DashxApisClient) exportDashboard(ctx context.Context, request commo
 	return response, err
 }
 
-// GetManagementDashboard Get a Dashboard and its saved searches by id.  Deleted or unauthorized saved searches are marked by tile's state property.
+// GetManagementDashboard Gets a dashboard and its saved searches by ID.  Deleted or unauthorized saved searches are marked by tile's state property.
 func (client DashxApisClient) GetManagementDashboard(ctx context.Context, request GetManagementDashboardRequest) (response GetManagementDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -509,7 +508,7 @@ func (client DashxApisClient) getManagementDashboard(ctx context.Context, reques
 	return response, err
 }
 
-// GetManagementSavedSearch Get a saved search by Id.
+// GetManagementSavedSearch Gets a saved search by ID.
 func (client DashxApisClient) GetManagementSavedSearch(ctx context.Context, request GetManagementSavedSearchRequest) (response GetManagementSavedSearchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -564,7 +563,7 @@ func (client DashxApisClient) getManagementSavedSearch(ctx context.Context, requ
 	return response, err
 }
 
-// ImportDashboard Import an array of dashboards and their saved searches.
+// ImportDashboard Imports an array of dashboards and their saved searches.
 func (client DashxApisClient) ImportDashboard(ctx context.Context, request ImportDashboardRequest) (response ImportDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -619,7 +618,7 @@ func (client DashxApisClient) importDashboard(ctx context.Context, request commo
 	return response, err
 }
 
-// ListManagementDashboards Gets list of dashboards and their saved searches for compartment with pagination.  Returned properties are a summary.
+// ListManagementDashboards Gets the list of dashboards and their saved searches in a compartment with pagination.  Returned properties are the summary.
 func (client DashxApisClient) ListManagementDashboards(ctx context.Context, request ListManagementDashboardsRequest) (response ListManagementDashboardsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -669,7 +668,7 @@ func (client DashxApisClient) listManagementDashboards(ctx context.Context, requ
 	return response, err
 }
 
-// ListManagementSavedSearches Gets list of saved searches with pagination.  Returned properties are a summary.
+// ListManagementSavedSearches Gets the list of saved searches in a compartment with pagination.  Returned properties are the summary.
 func (client DashxApisClient) ListManagementSavedSearches(ctx context.Context, request ListManagementSavedSearchesRequest) (response ListManagementSavedSearchesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -719,7 +718,7 @@ func (client DashxApisClient) listManagementSavedSearches(ctx context.Context, r
 	return response, err
 }
 
-// UpdateManagementDashboard Updates an existing dashboard identified by id path parameter.  Limit for number of saved searches in a dashboard is 20.
+// UpdateManagementDashboard Updates an existing dashboard identified by ID path parameter.  CompartmentId can be modified only by the changeCompartment API. Limit for number of saved searches in a dashboard is 20.
 func (client DashxApisClient) UpdateManagementDashboard(ctx context.Context, request UpdateManagementDashboardRequest) (response UpdateManagementDashboardResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -774,7 +773,7 @@ func (client DashxApisClient) updateManagementDashboard(ctx context.Context, req
 	return response, err
 }
 
-// UpdateManagementSavedSearch Update an existing saved search.  Id cannot be updated.
+// UpdateManagementSavedSearch Updates an existing saved search identified by ID path parameter.  CompartmentId can be modified only by the changeCompartment API.
 func (client DashxApisClient) UpdateManagementSavedSearch(ctx context.Context, request UpdateManagementSavedSearchRequest) (response UpdateManagementSavedSearchResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

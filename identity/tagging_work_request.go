@@ -57,13 +57,17 @@ type TaggingWorkRequestOperationTypeEnum string
 
 // Set of constants representing the allowable values for TaggingWorkRequestOperationTypeEnum
 const (
-	TaggingWorkRequestOperationTypeDeleteTagDefinition TaggingWorkRequestOperationTypeEnum = "DELETE_TAG_DEFINITION"
-	TaggingWorkRequestOperationTypeBulkEditOfTags      TaggingWorkRequestOperationTypeEnum = "BULK_EDIT_OF_TAGS"
+	TaggingWorkRequestOperationTypeDeleteTagDefinition        TaggingWorkRequestOperationTypeEnum = "DELETE_TAG_DEFINITION"
+	TaggingWorkRequestOperationTypeDeleteNonEmptyTagNamespace TaggingWorkRequestOperationTypeEnum = "DELETE_NON_EMPTY_TAG_NAMESPACE"
+	TaggingWorkRequestOperationTypeBulkDeleteTagDefinition    TaggingWorkRequestOperationTypeEnum = "BULK_DELETE_TAG_DEFINITION"
+	TaggingWorkRequestOperationTypeBulkEditOfTags             TaggingWorkRequestOperationTypeEnum = "BULK_EDIT_OF_TAGS"
 )
 
 var mappingTaggingWorkRequestOperationType = map[string]TaggingWorkRequestOperationTypeEnum{
-	"DELETE_TAG_DEFINITION": TaggingWorkRequestOperationTypeDeleteTagDefinition,
-	"BULK_EDIT_OF_TAGS":     TaggingWorkRequestOperationTypeBulkEditOfTags,
+	"DELETE_TAG_DEFINITION":          TaggingWorkRequestOperationTypeDeleteTagDefinition,
+	"DELETE_NON_EMPTY_TAG_NAMESPACE": TaggingWorkRequestOperationTypeDeleteNonEmptyTagNamespace,
+	"BULK_DELETE_TAG_DEFINITION":     TaggingWorkRequestOperationTypeBulkDeleteTagDefinition,
+	"BULK_EDIT_OF_TAGS":              TaggingWorkRequestOperationTypeBulkEditOfTags,
 }
 
 // GetTaggingWorkRequestOperationTypeEnumValues Enumerates the set of values for TaggingWorkRequestOperationTypeEnum

@@ -12,7 +12,7 @@ import (
 // GetManagementDashboardRequest wrapper for the GetManagementDashboard operation
 type GetManagementDashboardRequest struct {
 
-	// unique dashboard identifier
+	// A unique dashboard identifier.
 	ManagementDashboardId *string `mandatory:"true" contributesTo:"path" name:"managementDashboardId"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
