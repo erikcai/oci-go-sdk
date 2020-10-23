@@ -5319,7 +5319,7 @@
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
         <artifactId>identity-control-plane-api-spec</artifactId>
-        <version>0.4.176</version>
+        <version>0.4.177</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
@@ -5334,7 +5334,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.581</version>
+        <version>0.1.599</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>

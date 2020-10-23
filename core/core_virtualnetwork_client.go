@@ -131,6 +131,63 @@ func (client VirtualNetworkClient) acceptLocalPeeringToken(ctx context.Context, 
 	return response, err
 }
 
+// AddIpv6VcnCidr Add an IPv6 CIDR to a VCN. The VCN size is always /48.
+// AddVcnIpv6CidrDetails provides flexibility to have different private and public IPv6 address space.
+// Once added the IPv6 CIDR block cannot me removed or modified.
+func (client VirtualNetworkClient) AddIpv6VcnCidr(ctx context.Context, request AddIpv6VcnCidrRequest) (response AddIpv6VcnCidrResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.addIpv6VcnCidr, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = AddIpv6VcnCidrResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = AddIpv6VcnCidrResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(AddIpv6VcnCidrResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into AddIpv6VcnCidrResponse")
+	}
+	return
+}
+
+// addIpv6VcnCidr implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) addIpv6VcnCidr(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/vcns/{vcnId}/actions/addIpv6Cidr")
+	if err != nil {
+		return nil, err
+	}
+
+	var response AddIpv6VcnCidrResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // AddNetworkSecurityGroupSecurityRules Adds one or more security rules to the specified network security group.
 func (client VirtualNetworkClient) AddNetworkSecurityGroupSecurityRules(ctx context.Context, request AddNetworkSecurityGroupSecurityRulesRequest) (response AddNetworkSecurityGroupSecurityRulesResponse, err error) {
 	var ociResponse common.OCIResponse

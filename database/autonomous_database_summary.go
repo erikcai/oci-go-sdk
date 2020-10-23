@@ -68,6 +68,9 @@ type AutonomousDatabaseSummary struct {
 	// Key History Entry.
 	KeyHistoryEntry []AutonomousDatabaseKeyHistoryEntry `mandatory:"false" json:"keyHistoryEntry"`
 
+	// The quantity of data in the database, in gigabytes.
+	DataStorageSizeInGBs *int `mandatory:"false" json:"dataStorageSizeInGBs"`
+
 	// The infrastructure type this resource belongs to.
 	InfrastructureType AutonomousDatabaseSummaryInfrastructureTypeEnum `mandatory:"false" json:"infrastructureType,omitempty"`
 
@@ -171,7 +174,7 @@ type AutonomousDatabaseSummary struct {
 	// Status of the Data Safe registration for this Autonomous Database.
 	DataSafeStatus AutonomousDatabaseSummaryDataSafeStatusEnum `mandatory:"false" json:"dataSafeStatus,omitempty"`
 
-	// Status of the Operations Insights for this Autonomous Database.
+	// Status of Operations Insights for this Autonomous Database.
 	OperationsInsightsStatus AutonomousDatabaseSummaryOperationsInsightsStatusEnum `mandatory:"false" json:"operationsInsightsStatus,omitempty"`
 
 	// The date and time when maintenance will begin.

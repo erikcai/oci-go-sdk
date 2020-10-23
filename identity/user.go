@@ -63,6 +63,9 @@ type User struct {
 	// Whether the email address has been validated.
 	EmailVerified *bool `mandatory:"false" json:"emailVerified"`
 
+	// DB username of the DB credential. Has to be unique across the tenancy.
+	DbUserName *string `mandatory:"false" json:"dbUserName"`
+
 	// The OCID of the `IdentityProvider` this user belongs to.
 	IdentityProviderId *string `mandatory:"false" json:"identityProviderId"`
 
@@ -87,6 +90,26 @@ type User struct {
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	Capabilities *UserCapabilities `mandatory:"false" json:"capabilities"`
+
+	// The date and time of when the user most recently logged in the
+	// format defined by RFC3339 (ex. `2016-08-25T21:10:29.600Z`).
+	// If there is no login history, this field is null.
+	// For illustrative purposes, suppose we have a user who has logged in
+	// at July 1st, 2020 at 1200 PST and logged out 30 minutes later.
+	// They then login again on July 2nd, 2020 at 1500 PST.
+	// Their previousSuccessfulLoginTime would be `2020-07-01:19:00.000Z`.
+	// Their lastSuccessfulLoginTime would be `2020-07-02:22:00.000Z`.
+	LastSuccessfulLoginTime *common.SDKTime `mandatory:"false" json:"lastSuccessfulLoginTime"`
+
+	// The date and time of when the user most recently logged in the
+	// format defined by RFC3339 (ex. `2016-08-25T21:10:29.600Z`).
+	// If there is no login history, this field is null.
+	// For illustrative purposes, suppose we have a user who has logged in
+	// at July 1st, 2020 at 1200 PST and logged out 30 minutes later.
+	// They then login again on July 2nd, 2020 at 1500 PST.
+	// Their previousSuccessfulLoginTime would be `2020-07-01:19:00.000Z`.
+	// Their lastSuccessfulLoginTime would be `2020-07-02:22:00.000Z`.
+	PreviousSuccessfulLoginTime *common.SDKTime `mandatory:"false" json:"previousSuccessfulLoginTime"`
 }
 
 func (m User) String() string {

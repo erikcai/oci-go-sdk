@@ -551,6 +551,50 @@ func TestIdentityClientCreateCustomerSecretKey(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientCreateDbCredential(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "CreateDbCredential")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateDbCredential is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "CreateDbCredential", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "CreateDbCredential")
+	assert.NoError(t, err)
+
+	type CreateDbCredentialRequestInfo struct {
+		ContainerId string
+		Request     identity.CreateDbCredentialRequest
+	}
+
+	var requests []CreateDbCredentialRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateDbCredential(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
 func TestIdentityClientCreateDynamicGroup(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1522,6 +1566,50 @@ func TestIdentityClientDeleteCustomerSecretKey(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteCustomerSecretKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientDeleteDbCredential(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "DeleteDbCredential")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteDbCredential is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "DeleteDbCredential", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "DeleteDbCredential")
+	assert.NoError(t, err)
+
+	type DeleteDbCredentialRequestInfo struct {
+		ContainerId string
+		Request     identity.DeleteDbCredentialRequest
+	}
+
+	var requests []DeleteDbCredentialRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteDbCredential(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3499,6 +3587,60 @@ func TestIdentityClientListCustomerSecretKeys(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ListCustomerSecretKeys(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_identity_team_us_grp@oracle.com" jiraProject="ID" opsJiraProject="ID"
+func TestIdentityClientListDbCredentials(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("identity", "ListDbCredentials")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListDbCredentials is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("identity", "Identity", "ListDbCredentials", createIdentityClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(identity.IdentityClient)
+
+	body, err := testClient.getRequests("identity", "ListDbCredentials")
+	assert.NoError(t, err)
+
+	type ListDbCredentialsRequestInfo struct {
+		ContainerId string
+		Request     identity.ListDbCredentialsRequest
+	}
+
+	var requests []ListDbCredentialsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*identity.ListDbCredentialsRequest)
+				return c.ListDbCredentials(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]identity.ListDbCredentialsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(identity.ListDbCredentialsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

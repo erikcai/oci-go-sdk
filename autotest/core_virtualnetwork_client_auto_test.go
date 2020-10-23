@@ -67,6 +67,50 @@ func TestVirtualNetworkClientAcceptLocalPeeringToken(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientAddIpv6VcnCidr(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "AddIpv6VcnCidr")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AddIpv6VcnCidr is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "AddIpv6VcnCidr", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "AddIpv6VcnCidr")
+	assert.NoError(t, err)
+
+	type AddIpv6VcnCidrRequestInfo struct {
+		ContainerId string
+		Request     core.AddIpv6VcnCidrRequest
+	}
+
+	var requests []AddIpv6VcnCidrRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AddIpv6VcnCidr(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientAddNetworkSecurityGroupSecurityRules(t *testing.T) {
 	defer failTestOnPanic(t)
 
