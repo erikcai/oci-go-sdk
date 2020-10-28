@@ -26,13 +26,15 @@ type RoverNodeClient struct {
 // NewRoverNodeClientWithConfigurationProvider Creates a new default RoverNode client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewRoverNodeClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client RoverNodeClient, err error) {
-	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
-		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newRoverNodeClientFromBaseClient(baseClient, provider)
-		}
+	provider, err := auth.GetGenericConfigurationProvider(configProvider)
+	if err != nil {
+		return client, err
 	}
-
-	return
+	baseClient, e := common.NewClientWithConfig(provider)
+	if e != nil {
+		return client, e
+	}
+	return newRoverNodeClientFromBaseClient(baseClient, provider)
 }
 
 // NewRoverNodeClientWithOboToken Creates a new default RoverNode client with the given configuration provider.
@@ -41,7 +43,7 @@ func NewRoverNodeClientWithConfigurationProvider(configProvider common.Configura
 func NewRoverNodeClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client RoverNodeClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return
+		return client, err
 	}
 
 	return newRoverNodeClientFromBaseClient(baseClient, configProvider)

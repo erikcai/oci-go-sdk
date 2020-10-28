@@ -30,13 +30,15 @@ type VirtualNetworkClient struct {
 // NewVirtualNetworkClientWithConfigurationProvider Creates a new default VirtualNetwork client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewVirtualNetworkClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client VirtualNetworkClient, err error) {
-	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
-		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newVirtualNetworkClientFromBaseClient(baseClient, provider)
-		}
+	provider, err := auth.GetGenericConfigurationProvider(configProvider)
+	if err != nil {
+		return client, err
 	}
-
-	return
+	baseClient, e := common.NewClientWithConfig(provider)
+	if e != nil {
+		return client, e
+	}
+	return newVirtualNetworkClientFromBaseClient(baseClient, provider)
 }
 
 // NewVirtualNetworkClientWithOboToken Creates a new default VirtualNetwork client with the given configuration provider.
@@ -45,7 +47,7 @@ func NewVirtualNetworkClientWithConfigurationProvider(configProvider common.Conf
 func NewVirtualNetworkClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client VirtualNetworkClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return
+		return client, err
 	}
 
 	return newVirtualNetworkClientFromBaseClient(baseClient, configProvider)

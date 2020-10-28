@@ -28,13 +28,15 @@ type OperatorControlClient struct {
 // NewOperatorControlClientWithConfigurationProvider Creates a new default OperatorControl client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewOperatorControlClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client OperatorControlClient, err error) {
-	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
-		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newOperatorControlClientFromBaseClient(baseClient, provider)
-		}
+	provider, err := auth.GetGenericConfigurationProvider(configProvider)
+	if err != nil {
+		return client, err
 	}
-
-	return
+	baseClient, e := common.NewClientWithConfig(provider)
+	if e != nil {
+		return client, e
+	}
+	return newOperatorControlClientFromBaseClient(baseClient, provider)
 }
 
 // NewOperatorControlClientWithOboToken Creates a new default OperatorControl client with the given configuration provider.
@@ -43,7 +45,7 @@ func NewOperatorControlClientWithConfigurationProvider(configProvider common.Con
 func NewOperatorControlClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client OperatorControlClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return
+		return client, err
 	}
 
 	return newOperatorControlClientFromBaseClient(baseClient, configProvider)

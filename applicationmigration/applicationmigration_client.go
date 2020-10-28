@@ -29,13 +29,15 @@ type ApplicationMigrationClient struct {
 // NewApplicationMigrationClientWithConfigurationProvider Creates a new default ApplicationMigration client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewApplicationMigrationClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ApplicationMigrationClient, err error) {
-	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
-		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newApplicationMigrationClientFromBaseClient(baseClient, provider)
-		}
+	provider, err := auth.GetGenericConfigurationProvider(configProvider)
+	if err != nil {
+		return client, err
 	}
-
-	return
+	baseClient, e := common.NewClientWithConfig(provider)
+	if e != nil {
+		return client, e
+	}
+	return newApplicationMigrationClientFromBaseClient(baseClient, provider)
 }
 
 // NewApplicationMigrationClientWithOboToken Creates a new default ApplicationMigration client with the given configuration provider.
@@ -44,7 +46,7 @@ func NewApplicationMigrationClientWithConfigurationProvider(configProvider commo
 func NewApplicationMigrationClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client ApplicationMigrationClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return
+		return client, err
 	}
 
 	return newApplicationMigrationClientFromBaseClient(baseClient, configProvider)
