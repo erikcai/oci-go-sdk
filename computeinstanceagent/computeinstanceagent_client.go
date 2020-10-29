@@ -26,15 +26,13 @@ type ComputeInstanceAgentClient struct {
 // NewComputeInstanceAgentClientWithConfigurationProvider Creates a new default ComputeInstanceAgent client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewComputeInstanceAgentClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ComputeInstanceAgentClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newComputeInstanceAgentClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newComputeInstanceAgentClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewComputeInstanceAgentClientWithOboToken Creates a new default ComputeInstanceAgent client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewComputeInstanceAgentClientWithConfigurationProvider(configProvider commo
 func NewComputeInstanceAgentClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client ComputeInstanceAgentClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newComputeInstanceAgentClientFromBaseClient(baseClient, configProvider)

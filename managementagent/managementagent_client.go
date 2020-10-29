@@ -26,15 +26,13 @@ type ManagementAgentClient struct {
 // NewManagementAgentClientWithConfigurationProvider Creates a new default ManagementAgent client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewManagementAgentClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ManagementAgentClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newManagementAgentClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newManagementAgentClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewManagementAgentClientWithOboToken Creates a new default ManagementAgent client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewManagementAgentClientWithConfigurationProvider(configProvider common.Con
 func NewManagementAgentClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client ManagementAgentClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newManagementAgentClientFromBaseClient(baseClient, configProvider)

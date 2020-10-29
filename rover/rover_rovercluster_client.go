@@ -26,15 +26,13 @@ type RoverClusterClient struct {
 // NewRoverClusterClientWithConfigurationProvider Creates a new default RoverCluster client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewRoverClusterClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client RoverClusterClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newRoverClusterClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newRoverClusterClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewRoverClusterClientWithOboToken Creates a new default RoverCluster client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewRoverClusterClientWithConfigurationProvider(configProvider common.Config
 func NewRoverClusterClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client RoverClusterClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newRoverClusterClientFromBaseClient(baseClient, configProvider)

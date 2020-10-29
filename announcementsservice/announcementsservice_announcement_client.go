@@ -26,15 +26,13 @@ type AnnouncementClient struct {
 // NewAnnouncementClientWithConfigurationProvider Creates a new default Announcement client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewAnnouncementClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client AnnouncementClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newAnnouncementClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newAnnouncementClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewAnnouncementClientWithOboToken Creates a new default Announcement client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewAnnouncementClientWithConfigurationProvider(configProvider common.Config
 func NewAnnouncementClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client AnnouncementClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newAnnouncementClientFromBaseClient(baseClient, configProvider)

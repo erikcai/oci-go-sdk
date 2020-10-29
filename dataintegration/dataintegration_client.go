@@ -26,15 +26,13 @@ type DataIntegrationClient struct {
 // NewDataIntegrationClientWithConfigurationProvider Creates a new default DataIntegration client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewDataIntegrationClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client DataIntegrationClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newDataIntegrationClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newDataIntegrationClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewDataIntegrationClientWithOboToken Creates a new default DataIntegration client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewDataIntegrationClientWithConfigurationProvider(configProvider common.Con
 func NewDataIntegrationClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client DataIntegrationClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newDataIntegrationClientFromBaseClient(baseClient, configProvider)

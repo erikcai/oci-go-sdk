@@ -26,15 +26,13 @@ type SecretsClient struct {
 // NewSecretsClientWithConfigurationProvider Creates a new default Secrets client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewSecretsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client SecretsClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newSecretsClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newSecretsClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewSecretsClientWithOboToken Creates a new default Secrets client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewSecretsClientWithConfigurationProvider(configProvider common.Configurati
 func NewSecretsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client SecretsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newSecretsClientFromBaseClient(baseClient, configProvider)

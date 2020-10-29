@@ -26,15 +26,13 @@ type LogSearchClient struct {
 // NewLogSearchClientWithConfigurationProvider Creates a new default LogSearch client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewLogSearchClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client LogSearchClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newLogSearchClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newLogSearchClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewLogSearchClientWithOboToken Creates a new default LogSearch client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewLogSearchClientWithConfigurationProvider(configProvider common.Configura
 func NewLogSearchClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client LogSearchClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newLogSearchClientFromBaseClient(baseClient, configProvider)

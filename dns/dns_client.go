@@ -27,15 +27,13 @@ type DnsClient struct {
 // NewDnsClientWithConfigurationProvider Creates a new default Dns client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewDnsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client DnsClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newDnsClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newDnsClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewDnsClientWithOboToken Creates a new default Dns client with the given configuration provider.
@@ -44,7 +42,7 @@ func NewDnsClientWithConfigurationProvider(configProvider common.ConfigurationPr
 func NewDnsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client DnsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newDnsClientFromBaseClient(baseClient, configProvider)

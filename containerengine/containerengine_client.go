@@ -28,15 +28,13 @@ type ContainerEngineClient struct {
 // NewContainerEngineClientWithConfigurationProvider Creates a new default ContainerEngine client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewContainerEngineClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ContainerEngineClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newContainerEngineClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newContainerEngineClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewContainerEngineClientWithOboToken Creates a new default ContainerEngine client with the given configuration provider.
@@ -45,7 +43,7 @@ func NewContainerEngineClientWithConfigurationProvider(configProvider common.Con
 func NewContainerEngineClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client ContainerEngineClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newContainerEngineClientFromBaseClient(baseClient, configProvider)

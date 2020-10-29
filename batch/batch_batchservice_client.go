@@ -27,15 +27,13 @@ type BatchServiceClient struct {
 // NewBatchServiceClientWithConfigurationProvider Creates a new default BatchService client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewBatchServiceClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client BatchServiceClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newBatchServiceClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newBatchServiceClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewBatchServiceClientWithOboToken Creates a new default BatchService client with the given configuration provider.
@@ -44,7 +42,7 @@ func NewBatchServiceClientWithConfigurationProvider(configProvider common.Config
 func NewBatchServiceClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client BatchServiceClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newBatchServiceClientFromBaseClient(baseClient, configProvider)

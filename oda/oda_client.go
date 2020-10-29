@@ -26,15 +26,13 @@ type OdaClient struct {
 // NewOdaClientWithConfigurationProvider Creates a new default Oda client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewOdaClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client OdaClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newOdaClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newOdaClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewOdaClientWithOboToken Creates a new default Oda client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewOdaClientWithConfigurationProvider(configProvider common.ConfigurationPr
 func NewOdaClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client OdaClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newOdaClientFromBaseClient(baseClient, configProvider)

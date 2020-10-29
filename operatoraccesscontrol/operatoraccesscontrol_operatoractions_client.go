@@ -28,15 +28,13 @@ type OperatorActionsClient struct {
 // NewOperatorActionsClientWithConfigurationProvider Creates a new default OperatorActions client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewOperatorActionsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client OperatorActionsClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newOperatorActionsClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newOperatorActionsClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewOperatorActionsClientWithOboToken Creates a new default OperatorActions client with the given configuration provider.
@@ -45,7 +43,7 @@ func NewOperatorActionsClientWithConfigurationProvider(configProvider common.Con
 func NewOperatorActionsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client OperatorActionsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newOperatorActionsClientFromBaseClient(baseClient, configProvider)

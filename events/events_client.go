@@ -27,15 +27,13 @@ type EventsClient struct {
 // NewEventsClientWithConfigurationProvider Creates a new default Events client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewEventsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client EventsClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newEventsClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newEventsClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewEventsClientWithOboToken Creates a new default Events client with the given configuration provider.
@@ -44,7 +42,7 @@ func NewEventsClientWithConfigurationProvider(configProvider common.Configuratio
 func NewEventsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client EventsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newEventsClientFromBaseClient(baseClient, configProvider)

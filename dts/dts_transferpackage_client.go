@@ -26,15 +26,13 @@ type TransferPackageClient struct {
 // NewTransferPackageClientWithConfigurationProvider Creates a new default TransferPackage client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewTransferPackageClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client TransferPackageClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newTransferPackageClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newTransferPackageClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewTransferPackageClientWithOboToken Creates a new default TransferPackage client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewTransferPackageClientWithConfigurationProvider(configProvider common.Con
 func NewTransferPackageClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client TransferPackageClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newTransferPackageClientFromBaseClient(baseClient, configProvider)

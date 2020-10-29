@@ -30,15 +30,13 @@ type ComputeManagementClient struct {
 // NewComputeManagementClientWithConfigurationProvider Creates a new default ComputeManagement client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewComputeManagementClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ComputeManagementClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newComputeManagementClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newComputeManagementClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewComputeManagementClientWithOboToken Creates a new default ComputeManagement client with the given configuration provider.
@@ -47,7 +45,7 @@ func NewComputeManagementClientWithConfigurationProvider(configProvider common.C
 func NewComputeManagementClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client ComputeManagementClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newComputeManagementClientFromBaseClient(baseClient, configProvider)

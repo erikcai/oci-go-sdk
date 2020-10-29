@@ -26,15 +26,13 @@ type LogAnalyticsClient struct {
 // NewLogAnalyticsClientWithConfigurationProvider Creates a new default LogAnalytics client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewLogAnalyticsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client LogAnalyticsClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newLogAnalyticsClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newLogAnalyticsClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewLogAnalyticsClientWithOboToken Creates a new default LogAnalytics client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewLogAnalyticsClientWithConfigurationProvider(configProvider common.Config
 func NewLogAnalyticsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client LogAnalyticsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newLogAnalyticsClientFromBaseClient(baseClient, configProvider)

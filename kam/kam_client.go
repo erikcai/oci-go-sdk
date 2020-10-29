@@ -28,15 +28,13 @@ type KamClient struct {
 // NewKamClientWithConfigurationProvider Creates a new default Kam client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewKamClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client KamClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newKamClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newKamClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewKamClientWithOboToken Creates a new default Kam client with the given configuration provider.
@@ -45,7 +43,7 @@ func NewKamClientWithConfigurationProvider(configProvider common.ConfigurationPr
 func NewKamClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client KamClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newKamClientFromBaseClient(baseClient, configProvider)

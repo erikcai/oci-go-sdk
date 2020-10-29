@@ -26,15 +26,13 @@ type ComplianceDocClient struct {
 // NewComplianceDocClientWithConfigurationProvider Creates a new default ComplianceDoc client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewComplianceDocClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ComplianceDocClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newComplianceDocClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newComplianceDocClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewComplianceDocClientWithOboToken Creates a new default ComplianceDoc client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewComplianceDocClientWithConfigurationProvider(configProvider common.Confi
 func NewComplianceDocClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client ComplianceDocClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newComplianceDocClientFromBaseClient(baseClient, configProvider)

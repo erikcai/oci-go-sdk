@@ -26,15 +26,13 @@ type LoggingClient struct {
 // NewLoggingClientWithConfigurationProvider Creates a new default Logging client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewLoggingClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client LoggingClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newLoggingClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newLoggingClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewLoggingClientWithOboToken Creates a new default Logging client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewLoggingClientWithConfigurationProvider(configProvider common.Configurati
 func NewLoggingClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client LoggingClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newLoggingClientFromBaseClient(baseClient, configProvider)

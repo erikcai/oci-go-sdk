@@ -26,15 +26,13 @@ type DbBackupsClient struct {
 // NewDbBackupsClientWithConfigurationProvider Creates a new default DbBackups client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewDbBackupsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client DbBackupsClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newDbBackupsClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newDbBackupsClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewDbBackupsClientWithOboToken Creates a new default DbBackups client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewDbBackupsClientWithConfigurationProvider(configProvider common.Configura
 func NewDbBackupsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client DbBackupsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newDbBackupsClientFromBaseClient(baseClient, configProvider)

@@ -26,15 +26,13 @@ type TransferDeviceClient struct {
 // NewTransferDeviceClientWithConfigurationProvider Creates a new default TransferDevice client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewTransferDeviceClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client TransferDeviceClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newTransferDeviceClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newTransferDeviceClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewTransferDeviceClientWithOboToken Creates a new default TransferDevice client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewTransferDeviceClientWithConfigurationProvider(configProvider common.Conf
 func NewTransferDeviceClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client TransferDeviceClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newTransferDeviceClientFromBaseClient(baseClient, configProvider)

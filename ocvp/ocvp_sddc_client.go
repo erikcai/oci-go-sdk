@@ -26,15 +26,13 @@ type SddcClient struct {
 // NewSddcClientWithConfigurationProvider Creates a new default Sddc client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewSddcClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client SddcClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newSddcClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newSddcClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewSddcClientWithOboToken Creates a new default Sddc client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewSddcClientWithConfigurationProvider(configProvider common.ConfigurationP
 func NewSddcClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client SddcClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newSddcClientFromBaseClient(baseClient, configProvider)

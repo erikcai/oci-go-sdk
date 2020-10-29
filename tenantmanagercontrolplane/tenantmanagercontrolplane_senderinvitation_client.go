@@ -26,15 +26,13 @@ type SenderInvitationClient struct {
 // NewSenderInvitationClientWithConfigurationProvider Creates a new default SenderInvitation client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewSenderInvitationClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client SenderInvitationClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newSenderInvitationClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newSenderInvitationClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewSenderInvitationClientWithOboToken Creates a new default SenderInvitation client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewSenderInvitationClientWithConfigurationProvider(configProvider common.Co
 func NewSenderInvitationClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client SenderInvitationClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newSenderInvitationClientFromBaseClient(baseClient, configProvider)

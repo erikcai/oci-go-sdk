@@ -28,15 +28,13 @@ type ObjectStorageClient struct {
 // NewObjectStorageClientWithConfigurationProvider Creates a new default ObjectStorage client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewObjectStorageClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ObjectStorageClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newObjectStorageClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newObjectStorageClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewObjectStorageClientWithOboToken Creates a new default ObjectStorage client with the given configuration provider.
@@ -45,7 +43,7 @@ func NewObjectStorageClientWithConfigurationProvider(configProvider common.Confi
 func NewObjectStorageClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client ObjectStorageClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newObjectStorageClientFromBaseClient(baseClient, configProvider)

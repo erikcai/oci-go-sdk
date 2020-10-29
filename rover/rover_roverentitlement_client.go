@@ -26,15 +26,13 @@ type RoverEntitlementClient struct {
 // NewRoverEntitlementClientWithConfigurationProvider Creates a new default RoverEntitlement client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewRoverEntitlementClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client RoverEntitlementClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newRoverEntitlementClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newRoverEntitlementClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewRoverEntitlementClientWithOboToken Creates a new default RoverEntitlement client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewRoverEntitlementClientWithConfigurationProvider(configProvider common.Co
 func NewRoverEntitlementClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client RoverEntitlementClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newRoverEntitlementClientFromBaseClient(baseClient, configProvider)

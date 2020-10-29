@@ -26,15 +26,13 @@ type LinkClient struct {
 // NewLinkClientWithConfigurationProvider Creates a new default Link client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewLinkClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client LinkClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newLinkClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newLinkClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewLinkClientWithOboToken Creates a new default Link client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewLinkClientWithConfigurationProvider(configProvider common.ConfigurationP
 func NewLinkClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client LinkClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newLinkClientFromBaseClient(baseClient, configProvider)

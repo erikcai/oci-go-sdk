@@ -28,15 +28,13 @@ type GatewayClient struct {
 // NewGatewayClientWithConfigurationProvider Creates a new default Gateway client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewGatewayClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client GatewayClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newGatewayClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newGatewayClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewGatewayClientWithOboToken Creates a new default Gateway client with the given configuration provider.
@@ -45,7 +43,7 @@ func NewGatewayClientWithConfigurationProvider(configProvider common.Configurati
 func NewGatewayClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client GatewayClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newGatewayClientFromBaseClient(baseClient, configProvider)

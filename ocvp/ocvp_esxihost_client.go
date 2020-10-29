@@ -26,15 +26,13 @@ type EsxiHostClient struct {
 // NewEsxiHostClientWithConfigurationProvider Creates a new default EsxiHost client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewEsxiHostClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client EsxiHostClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newEsxiHostClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newEsxiHostClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewEsxiHostClientWithOboToken Creates a new default EsxiHost client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewEsxiHostClientWithConfigurationProvider(configProvider common.Configurat
 func NewEsxiHostClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client EsxiHostClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newEsxiHostClientFromBaseClient(baseClient, configProvider)

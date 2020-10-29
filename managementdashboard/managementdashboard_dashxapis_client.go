@@ -27,15 +27,13 @@ type DashxApisClient struct {
 // NewDashxApisClientWithConfigurationProvider Creates a new default DashxApis client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewDashxApisClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client DashxApisClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newDashxApisClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newDashxApisClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewDashxApisClientWithOboToken Creates a new default DashxApis client with the given configuration provider.
@@ -44,7 +42,7 @@ func NewDashxApisClientWithConfigurationProvider(configProvider common.Configura
 func NewDashxApisClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client DashxApisClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newDashxApisClientFromBaseClient(baseClient, configProvider)

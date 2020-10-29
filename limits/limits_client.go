@@ -26,15 +26,13 @@ type LimitsClient struct {
 // NewLimitsClientWithConfigurationProvider Creates a new default Limits client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewLimitsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client LimitsClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newLimitsClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newLimitsClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewLimitsClientWithOboToken Creates a new default Limits client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewLimitsClientWithConfigurationProvider(configProvider common.Configuratio
 func NewLimitsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client LimitsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newLimitsClientFromBaseClient(baseClient, configProvider)

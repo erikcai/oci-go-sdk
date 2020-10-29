@@ -26,15 +26,13 @@ type TransferApplianceEntitlementClient struct {
 // NewTransferApplianceEntitlementClientWithConfigurationProvider Creates a new default TransferApplianceEntitlement client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewTransferApplianceEntitlementClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client TransferApplianceEntitlementClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newTransferApplianceEntitlementClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newTransferApplianceEntitlementClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewTransferApplianceEntitlementClientWithOboToken Creates a new default TransferApplianceEntitlement client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewTransferApplianceEntitlementClientWithConfigurationProvider(configProvid
 func NewTransferApplianceEntitlementClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client TransferApplianceEntitlementClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newTransferApplianceEntitlementClientFromBaseClient(baseClient, configProvider)

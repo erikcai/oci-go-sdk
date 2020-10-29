@@ -28,15 +28,13 @@ type AccessRequestsClient struct {
 // NewAccessRequestsClientWithConfigurationProvider Creates a new default AccessRequests client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewAccessRequestsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client AccessRequestsClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newAccessRequestsClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newAccessRequestsClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewAccessRequestsClientWithOboToken Creates a new default AccessRequests client with the given configuration provider.
@@ -45,7 +43,7 @@ func NewAccessRequestsClientWithConfigurationProvider(configProvider common.Conf
 func NewAccessRequestsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client AccessRequestsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newAccessRequestsClientFromBaseClient(baseClient, configProvider)

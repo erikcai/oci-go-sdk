@@ -26,15 +26,13 @@ type ShippingVendorsClient struct {
 // NewShippingVendorsClientWithConfigurationProvider Creates a new default ShippingVendors client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewShippingVendorsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ShippingVendorsClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newShippingVendorsClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newShippingVendorsClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewShippingVendorsClientWithOboToken Creates a new default ShippingVendors client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewShippingVendorsClientWithConfigurationProvider(configProvider common.Con
 func NewShippingVendorsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client ShippingVendorsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newShippingVendorsClientFromBaseClient(baseClient, configProvider)

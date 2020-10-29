@@ -26,15 +26,13 @@ type LoggingManagementClient struct {
 // NewLoggingManagementClientWithConfigurationProvider Creates a new default LoggingManagement client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewLoggingManagementClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client LoggingManagementClient, err error) {
-	provider, err := auth.GetGenericConfigurationProvider(configProvider)
-	if err != nil {
-		return client, err
+	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
+		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
+			return newLoggingManagementClientFromBaseClient(baseClient, provider)
+		}
 	}
-	baseClient, e := common.NewClientWithConfig(provider)
-	if e != nil {
-		return client, e
-	}
-	return newLoggingManagementClientFromBaseClient(baseClient, provider)
+
+	return
 }
 
 // NewLoggingManagementClientWithOboToken Creates a new default LoggingManagement client with the given configuration provider.
@@ -43,7 +41,7 @@ func NewLoggingManagementClientWithConfigurationProvider(configProvider common.C
 func NewLoggingManagementClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client LoggingManagementClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return client, err
+		return
 	}
 
 	return newLoggingManagementClientFromBaseClient(baseClient, configProvider)
