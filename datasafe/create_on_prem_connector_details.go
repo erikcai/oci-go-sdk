@@ -19,16 +19,8 @@ type CreateOnPremConnectorDetails struct {
 	// The OCID of the compartment where you want to create the on-premises connector.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The type of the on-premises connector. Allowed values:
-	// - CMAN - Represents Connection Manager.
-	// - AGENT - Represents Management Agent.
-	ConnectorType CreateOnPremConnectorDetailsConnectorTypeEnum `mandatory:"true" json:"connectorType"`
-
 	// The display name of the on-premises connector. The name does not have to be unique, and it's changeable.
 	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// The OCID of the management agent if on-premises connector's type is AGENT.
-	AgentId *string `mandatory:"false" json:"agentId"`
 
 	// The description of the on-premises connector.
 	Description *string `mandatory:"false" json:"description"`
@@ -44,27 +36,4 @@ type CreateOnPremConnectorDetails struct {
 
 func (m CreateOnPremConnectorDetails) String() string {
 	return common.PointerString(m)
-}
-
-// CreateOnPremConnectorDetailsConnectorTypeEnum Enum with underlying type: string
-type CreateOnPremConnectorDetailsConnectorTypeEnum string
-
-// Set of constants representing the allowable values for CreateOnPremConnectorDetailsConnectorTypeEnum
-const (
-	CreateOnPremConnectorDetailsConnectorTypeCman  CreateOnPremConnectorDetailsConnectorTypeEnum = "CMAN"
-	CreateOnPremConnectorDetailsConnectorTypeAgent CreateOnPremConnectorDetailsConnectorTypeEnum = "AGENT"
-)
-
-var mappingCreateOnPremConnectorDetailsConnectorType = map[string]CreateOnPremConnectorDetailsConnectorTypeEnum{
-	"CMAN":  CreateOnPremConnectorDetailsConnectorTypeCman,
-	"AGENT": CreateOnPremConnectorDetailsConnectorTypeAgent,
-}
-
-// GetCreateOnPremConnectorDetailsConnectorTypeEnumValues Enumerates the set of values for CreateOnPremConnectorDetailsConnectorTypeEnum
-func GetCreateOnPremConnectorDetailsConnectorTypeEnumValues() []CreateOnPremConnectorDetailsConnectorTypeEnum {
-	values := make([]CreateOnPremConnectorDetailsConnectorTypeEnum, 0)
-	for _, v := range mappingCreateOnPremConnectorDetailsConnectorType {
-		values = append(values, v)
-	}
-	return values
 }

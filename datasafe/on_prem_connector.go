@@ -25,11 +25,6 @@ type OnPremConnector struct {
 	// The OCID of the compartment that contains the on-premises connector.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The type of the on-premises connector. Allowed values:
-	// - CMAN - Represents Connection Manager.
-	// - AGENT - Represents Management Agent.
-	ConnectorType OnPremConnectorConnectorTypeEnum `mandatory:"true" json:"connectorType"`
-
 	// The date and time the on-premises connector was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
@@ -38,9 +33,6 @@ type OnPremConnector struct {
 
 	// The description of the on-premises connector.
 	Description *string `mandatory:"false" json:"description"`
-
-	// The OCID of the management agent if on-premises connector's type is AGENT.
-	AgentId *string `mandatory:"false" json:"agentId"`
 
 	// Details about the current state of the on-premises connector.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
@@ -52,31 +44,14 @@ type OnPremConnector struct {
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// Latest available version of the on-premises connector.
+	AvailableVersion *string `mandatory:"false" json:"availableVersion"`
+
+	// Created version of the on-premises connector.
+	CreatedVersion *string `mandatory:"false" json:"createdVersion"`
 }
 
 func (m OnPremConnector) String() string {
 	return common.PointerString(m)
-}
-
-// OnPremConnectorConnectorTypeEnum Enum with underlying type: string
-type OnPremConnectorConnectorTypeEnum string
-
-// Set of constants representing the allowable values for OnPremConnectorConnectorTypeEnum
-const (
-	OnPremConnectorConnectorTypeCman  OnPremConnectorConnectorTypeEnum = "CMAN"
-	OnPremConnectorConnectorTypeAgent OnPremConnectorConnectorTypeEnum = "AGENT"
-)
-
-var mappingOnPremConnectorConnectorType = map[string]OnPremConnectorConnectorTypeEnum{
-	"CMAN":  OnPremConnectorConnectorTypeCman,
-	"AGENT": OnPremConnectorConnectorTypeAgent,
-}
-
-// GetOnPremConnectorConnectorTypeEnumValues Enumerates the set of values for OnPremConnectorConnectorTypeEnum
-func GetOnPremConnectorConnectorTypeEnumValues() []OnPremConnectorConnectorTypeEnum {
-	values := make([]OnPremConnectorConnectorTypeEnum, 0)
-	for _, v := range mappingOnPremConnectorConnectorType {
-		values = append(values, v)
-	}
-	return values
 }

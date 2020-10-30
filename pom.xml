@@ -5559,7 +5559,7 @@
       <dependency>
         <groupId>com.oracle.ads.admin.cp</groupId>
         <artifactId>ads-control-plane-spec</artifactId>
-        <version>200716.00</version>
+        <version>201027.00</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.compdocs</groupId>
@@ -5614,7 +5614,7 @@
       <dependency>
         <groupId>com.oracle.macs</groupId>
         <artifactId>mgmtagent-cloud-services-spec</artifactId>
-        <version>1.0.56</version>
+        <version>1.0.93</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.compute.ias</groupId>

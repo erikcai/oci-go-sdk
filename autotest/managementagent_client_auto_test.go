@@ -419,6 +419,60 @@ func TestManagementagentManagementAgentClientGetWorkRequest(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="team_oci_mgmtagent_macs_ww_grp@oracle.com" jiraProject="MGMTAGENT" opsJiraProject="MGMTAGENT"
+func TestManagementagentManagementAgentClientListAvailabilityHistories(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("managementagent", "ListAvailabilityHistories")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAvailabilityHistories is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("managementagent", "ManagementAgent", "ListAvailabilityHistories", createManagementagentManagementAgentClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(managementagent.ManagementAgentClient)
+
+	body, err := testClient.getRequests("managementagent", "ListAvailabilityHistories")
+	assert.NoError(t, err)
+
+	type ListAvailabilityHistoriesRequestInfo struct {
+		ContainerId string
+		Request     managementagent.ListAvailabilityHistoriesRequest
+	}
+
+	var requests []ListAvailabilityHistoriesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*managementagent.ListAvailabilityHistoriesRequest)
+				return c.ListAvailabilityHistories(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]managementagent.ListAvailabilityHistoriesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(managementagent.ListAvailabilityHistoriesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_mgmtagent_macs_ww_grp@oracle.com" jiraProject="MGMTAGENT" opsJiraProject="MGMTAGENT"
 func TestManagementagentManagementAgentClientListManagementAgentImages(t *testing.T) {
 	defer failTestOnPanic(t)
 
