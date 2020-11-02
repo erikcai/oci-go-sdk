@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net/http"
 	"os"
 	"path"
 
@@ -57,6 +58,8 @@ func ExampleObjectStorage_UploadFile() {
 func ExampleObjectStorage_UploadManager_UploadFile() {
 	c, clerr := objectstorage.NewObjectStorageClientWithConfigurationProvider(common.DefaultConfigProvider())
 	helpers.FatalIfError(clerr)
+	// Disable timeout to support big file upload(Once need to specify the os client for Upload Manager)
+	c.HTTPClient = &http.Client{}
 
 	ctx := context.Background()
 	bname := "bname"
@@ -65,7 +68,7 @@ func ExampleObjectStorage_UploadManager_UploadFile() {
 	createBucket(ctx, c, namespace, bname)
 	defer deleteBucket(ctx, c, namespace, bname)
 
-	contentlen := 1024 * 1000 * 300 // 300MB
+	contentlen := 1024 * 1024 * 300 // 300MB
 	filepath, _ := helpers.WriteTempFileOfSize(int64(contentlen))
 	filename := path.Base(filepath)
 	defer os.Remove(filename)
@@ -78,8 +81,9 @@ func ExampleObjectStorage_UploadManager_UploadFile() {
 			NamespaceName: common.String(namespace),
 			BucketName:    common.String(bname),
 			ObjectName:    common.String(objectName),
-			//PartSize:      common.Int(10000000),
+			PartSize:      common.Int64(128 * 1024 * 1024),
 			CallBack:                            callBack,
+			ObjectStorageClient:                 &c,
 			EnableMultipartChecksumVerification: common.Bool(true),
 		},
 		FilePath: filepath,
