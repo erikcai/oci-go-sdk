@@ -34,6 +34,7 @@ const (
     privateKey = `-----BEGIN RSA PRIVATE KEY-----
     PrivateKeyGoesHere
     -----END RSA PRIVATE KEY-----`
+	cidrBlocksOneName       = "cidrBlocks1"
 )
 
 func ExampleCreateLoadbalancer() {
@@ -66,6 +67,14 @@ func ExampleCreateLoadbalancer() {
 
 	request.ShapeName = shapes[0].Name
 
+	cidrBlocks := map[string]loadbalancer.CidrBlocksDetails{
+        cidrBlocksOneName: {
+            Name: common.String("cidrBlocks1"),
+            Items: []string{"129.213.176.0/24", "2002::1234:abcd:ffff:c0a8:101/64"},
+        },
+    }
+    request.CidrBlocks = cidrBlocks
+
 	// Create rulesets to modify response / request headers or control access types based on REST request
 	ruleSets := map[string]loadbalancer.RuleSetDetails{
 		rulesetOneName: {
@@ -89,6 +98,34 @@ func ExampleCreateLoadbalancer() {
 					},
 					StatusCode: common.Int(403),
 				},
+				loadbalancer.AllowRule{
+                    Description: common.String("Allow traffic from internet clients"),
+                    Conditions: []loadbalancer.RuleCondition{
+                        loadbalancer.RealIpAddressCondition{
+                            AttributeValue: common.String("cidrBlocks1"),
+                            HeaderName: common.String("X-Real-IP"),
+                        },
+                    },
+                },
+                loadbalancer.AddHttpRequestHeaderRule{
+                    Header: common.String("some-header-name-to-add-cidrBlock"),
+                    Value:  common.String("some-value-for-header-cidrBlock"),
+                    Conditions: []loadbalancer.RuleCondition{
+                        loadbalancer.RealIpAddressCondition{
+                            AttributeValue: common.String("cidrBlocks1"),
+                            HeaderName: common.String("X-Real-IP"),
+                        },
+                    },
+                },
+                loadbalancer.AddHttpRequestHeaderRule{
+                    Header: common.String("some-header-name-to-remove-cidrBlock"),
+                    Conditions: []loadbalancer.RuleCondition{
+                        loadbalancer.RealIpAddressCondition{
+                            AttributeValue: common.String("cidrBlocks1"),
+                            HeaderName: common.String("X-Real-IP"),
+                        },
+                    },
+                },
 				loadbalancer.RedirectRule{
 					ResponseCode: common.Int(302),
 					Conditions: []loadbalancer.RuleCondition{
