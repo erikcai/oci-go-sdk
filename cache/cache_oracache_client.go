@@ -26,13 +26,15 @@ type OracacheClient struct {
 // NewOracacheClientWithConfigurationProvider Creates a new default Oracache client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewOracacheClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client OracacheClient, err error) {
-	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
-		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newOracacheClientFromBaseClient(baseClient, provider)
-		}
+	provider, err := auth.GetGenericConfigurationProvider(configProvider)
+	if err != nil {
+		return client, err
 	}
-
-	return
+	baseClient, e := common.NewClientWithConfig(provider)
+	if e != nil {
+		return client, e
+	}
+	return newOracacheClientFromBaseClient(baseClient, provider)
 }
 
 // NewOracacheClientWithOboToken Creates a new default Oracache client with the given configuration provider.
@@ -41,7 +43,7 @@ func NewOracacheClientWithConfigurationProvider(configProvider common.Configurat
 func NewOracacheClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client OracacheClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return
+		return client, err
 	}
 
 	return newOracacheClientFromBaseClient(baseClient, configProvider)

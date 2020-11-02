@@ -78,10 +78,10 @@ func ExampleObjectStorage_UploadManager_UploadFile() {
 
 	req := transfer.UploadFileRequest{
 		UploadRequest: transfer.UploadRequest{
-			NamespaceName: common.String(namespace),
-			BucketName:    common.String(bname),
-			ObjectName:    common.String(objectName),
-			PartSize:      common.Int64(128 * 1024 * 1024),
+			NamespaceName:                       common.String(namespace),
+			BucketName:                          common.String(bname),
+			ObjectName:                          common.String(objectName),
+			PartSize:                            common.Int64(128 * 1024 * 1024),
 			CallBack:                            callBack,
 			ObjectStorageClient:                 &c,
 			EnableMultipartChecksumVerification: common.Bool(true),

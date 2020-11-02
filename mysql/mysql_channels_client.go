@@ -26,13 +26,15 @@ type ChannelsClient struct {
 // NewChannelsClientWithConfigurationProvider Creates a new default Channels client with the given configuration provider.
 // the configuration provider will be used for the default signer as well as reading the region
 func NewChannelsClientWithConfigurationProvider(configProvider common.ConfigurationProvider) (client ChannelsClient, err error) {
-	if provider, err := auth.GetGenericConfigurationProvider(configProvider); err == nil {
-		if baseClient, err := common.NewClientWithConfig(provider); err == nil {
-			return newChannelsClientFromBaseClient(baseClient, provider)
-		}
+	provider, err := auth.GetGenericConfigurationProvider(configProvider)
+	if err != nil {
+		return client, err
 	}
-
-	return
+	baseClient, e := common.NewClientWithConfig(provider)
+	if e != nil {
+		return client, e
+	}
+	return newChannelsClientFromBaseClient(baseClient, provider)
 }
 
 // NewChannelsClientWithOboToken Creates a new default Channels client with the given configuration provider.
@@ -41,7 +43,7 @@ func NewChannelsClientWithConfigurationProvider(configProvider common.Configurat
 func NewChannelsClientWithOboToken(configProvider common.ConfigurationProvider, oboToken string) (client ChannelsClient, err error) {
 	baseClient, err := common.NewClientWithOboToken(configProvider, oboToken)
 	if err != nil {
-		return
+		return client, err
 	}
 
 	return newChannelsClientFromBaseClient(baseClient, configProvider)
