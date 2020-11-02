@@ -117,7 +117,7 @@ func ExampleCreateLoadbalancer() {
                         },
                     },
                 },
-                loadbalancer.AddHttpRequestHeaderRule{
+                loadbalancer.RemoveHttpRequestHeaderRule{
                     Header: common.String("some-header-name-to-remove-cidrBlock"),
                     Conditions: []loadbalancer.RuleCondition{
                         loadbalancer.RealIpAddressCondition{
