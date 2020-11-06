@@ -16,7 +16,7 @@ import (
 // EstimatePurgeDataSizeResult purge data size in bytes
 type EstimatePurgeDataSizeResult struct {
 
-	// purge data size in bytes
+	// This is the size of data to be purged in bytes
 	PurgeDataSizeInBytes *int64 `mandatory:"true" json:"purgeDataSizeInBytes"`
 }
 

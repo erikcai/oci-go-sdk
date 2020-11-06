@@ -46,10 +46,8 @@ type LogAnalyticsLookup struct {
 	// name
 	LookupDisplayName *string `mandatory:"false" json:"lookupDisplayName"`
 
-	// sources using
 	ReferringSources *AutoLookups `mandatory:"false" json:"referringSources"`
 
-	// status summary
 	StatusSummary *StatusSummary `mandatory:"false" json:"statusSummary"`
 
 	// last updated date

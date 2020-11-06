@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// SourceValidateResults The representation of SourceValidateResults
+// SourceValidateResults results of source validation
 type SourceValidateResults struct {
 
 	// items

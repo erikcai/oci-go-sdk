@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// SourceValidateDetails The representation of SourceValidateDetails
+// SourceValidateDetails source validation details
 type SourceValidateDetails struct {
 
 	// key

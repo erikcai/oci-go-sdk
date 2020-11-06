@@ -19,6 +19,7 @@ type ExportContent struct {
 	// fieldNames
 	FieldNames []string `mandatory:"false" json:"fieldNames"`
 
+	// parserNames
 	ParserNames []string `mandatory:"false" json:"parserNames"`
 
 	// sourceNames

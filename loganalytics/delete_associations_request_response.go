@@ -12,7 +12,7 @@ import (
 // DeleteAssociationsRequest wrapper for the DeleteAssociations operation
 type DeleteAssociationsRequest struct {
 
-	// The Log Analytics namespace used for the request.
+	// The Logging Analytics namespace used for the request.
 	NamespaceName *string `mandatory:"true" contributesTo:"path" name:"namespaceName"`
 
 	// details for association
@@ -53,11 +53,10 @@ type DeleteAssociationsResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The ErrorDetails instance
-	ErrorDetails `presentIn:"body"`
+	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact
-	// Oracle about a particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. When you contact Oracle about a specific request, provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

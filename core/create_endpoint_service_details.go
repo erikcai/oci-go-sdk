@@ -24,14 +24,10 @@ type CreateEndpointServiceDetails struct {
 	// endpoint service.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// List of service IP addresses (in the service VCN) that handle requests to the endpoint service.
+	// List of service endpoints (in the service VCN) that handle requests to the endpoint service.
 	ServiceIps []EndpointServiceIpDetails `mandatory:"true" json:"serviceIps"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the service VCN that the endpoint
-	// service belongs to.
-	VcnId *string `mandatory:"false" json:"vcnId"`
-
-	// A description of the endpoint service. For Oracle services that use the "trusted" mode of the private endpoint service, customers never see this description. Avoid entering confidential information.
+	// A description of the endpoint service.
 	Description *string `mandatory:"false" json:"description"`
 
 	// A friendly name for the endpoint service. Must be unique within the VCN.
@@ -49,11 +45,8 @@ type CreateEndpointServiceDetails struct {
 	// Example: `true`
 	AreMultiplePrivateEndpointsPerVcnAllowed *bool `mandatory:"false" json:"areMultiplePrivateEndpointsPerVcnAllowed"`
 
-	// Reserved for future use.
-	IsVcnMetadataEnabled *bool `mandatory:"false" json:"isVcnMetadataEnabled"`
-
-	// The ports on the endpoint service IPs that are open for private endpoint traffic for this
-	// endpoint service. If you provide no ports, all open ports on the service IPs are accessible.
+	// The ports on the endpoint service's endpoints that are open for private endpoint traffic for this
+	// endpoint service. If you provide no ports, all open ports on the service endpoints are accessible.
 	Ports []int `mandatory:"false" json:"ports"`
 
 	// The default three-label FQDN to use for all private endpoints associated with this endpoint

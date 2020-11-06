@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// ExtractLogHeaderResults The representation of ExtractLogHeaderResults
+// ExtractLogHeaderResults log header values
 type ExtractLogHeaderResults struct {
 
 	// log header json paths

@@ -16,7 +16,7 @@ import (
 // ParsedField Parsed field response
 type ParsedField struct {
 
-	// Log Content
+	// Sample log entries picked up from the given file for validation
 	LogContent *string `mandatory:"false" json:"logContent"`
 
 	// Field Values

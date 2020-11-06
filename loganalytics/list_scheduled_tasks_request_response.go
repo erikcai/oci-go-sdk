@@ -12,7 +12,7 @@ import (
 // ListScheduledTasksRequest wrapper for the ListScheduledTasks operation
 type ListScheduledTasksRequest struct {
 
-	// The Log Analytics namespace used for the request.
+	// The Logging Analytics namespace used for the request.
 	NamespaceName *string `mandatory:"true" contributesTo:"path" name:"namespaceName"`
 
 	// Required parameter to specify schedule task type.
@@ -67,8 +67,7 @@ type ListScheduledTasksResponse struct {
 	// A list of ScheduledTaskCollection instances
 	ScheduledTaskCollection `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact
-	// Oracle about a particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. When you contact Oracle about a specific request, provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 
 	// For pagination of a list of items. When paging through a list, if this header appears in the response,

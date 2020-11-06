@@ -102,7 +102,7 @@ type DbSystem struct {
 	// The date and time the DB system was created.
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
-	// Additional information about the current lifecycleState.
+	// Additional information about the current lifecycle state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
 	// The type of redundancy configured for the DB system.

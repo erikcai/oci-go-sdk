@@ -24,8 +24,8 @@ type PrivateEndpointAssociation struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private endpoint.
 	Id *string `mandatory:"false" json:"id"`
 
-	// The private IP address (in the customer's VCN) that represents the access point for the
-	// associated endpoint service.
+	// The private IP address (in the customer's VCN) of the private endpoint associated for the given
+	// endpoint service.
 	PrivateEndpointIp *string `mandatory:"false" json:"privateEndpointIp"`
 
 	// The three-label FQDN to use for the private endpoint. The customer VCN's DNS records use
@@ -34,11 +34,6 @@ type PrivateEndpointAssociation struct {
 	// of DNS and FQDNs in PrivateEndpoint.
 	// Example: `xyz.oraclecloud.com`
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
-
-	// A list of additional FQDNs that you can provide along with endpointFqdn. These FQDNs are added to the
-	// customer VCN's DNS record.  For more information, see the discussion of DNS and FQDNs in
-	// PrivateEndpoint.
-	AdditionalFqdns []string `mandatory:"false" json:"additionalFqdns"`
 
 	ReverseConnectionConfiguration *ReverseConnectionConfiguration `mandatory:"false" json:"reverseConnectionConfiguration"`
 }

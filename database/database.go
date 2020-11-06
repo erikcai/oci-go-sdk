@@ -52,7 +52,7 @@ type Database struct {
 	// The database workload type.
 	DbWorkload *string `mandatory:"false" json:"dbWorkload"`
 
-	// Additional information about the current lifecycleState.
+	// Additional information about the current lifecycle state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
 	// The date and time the database was created.

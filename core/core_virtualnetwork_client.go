@@ -464,6 +464,61 @@ func (client VirtualNetworkClient) attachServiceId(ctx context.Context, request 
 	return response, err
 }
 
+// Backfill Backfill EP-DB with V1 Drg objects
+func (client VirtualNetworkClient) Backfill(ctx context.Context, request BackfillRequest) (response BackfillResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.backfill, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = BackfillResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = BackfillResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(BackfillResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into BackfillResponse")
+	}
+	return
+}
+
+// backfill implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) backfill(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/backfill")
+	if err != nil {
+		return nil, err
+	}
+
+	var response BackfillResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // BulkAddVirtualCircuitPublicPrefixes Adds one or more customer public IP prefixes to the specified public virtual circuit.
 // Use this operation (and not UpdateVirtualCircuit)
 // to add prefixes to the virtual circuit. Oracle must verify the customer's ownership
@@ -6720,6 +6775,61 @@ func (client VirtualNetworkClient) disableVnicWorker(ctx context.Context, reques
 	}
 
 	var response DisableVnicWorkerResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DrgMigration Migrates batches of V1 DRG from VCN to V2 Drgs in Transit-Hub. Steps include mirroring of V1 Drgs from VCN, migrating them to V2 and updating them as V2 in VCN
+func (client VirtualNetworkClient) DrgMigration(ctx context.Context, request DrgMigrationRequest) (response DrgMigrationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.drgMigration, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DrgMigrationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DrgMigrationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DrgMigrationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DrgMigrationResponse")
+	}
+	return
+}
+
+// drgMigration implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) drgMigration(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgMigration")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DrgMigrationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -13369,6 +13479,61 @@ func (client VirtualNetworkClient) removeVcnCidr(ctx context.Context, request co
 	}
 
 	var response RemoveVcnCidrResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RollbackDrgMigration Migrates batches of V1 DRG from VCN to V2 Drgs in Transit-Hub. Steps include mirroring of V1 Drgs from VCN, migrating them to V2 and updating them as V2 in VCN
+func (client VirtualNetworkClient) RollbackDrgMigration(ctx context.Context, request RollbackDrgMigrationRequest) (response RollbackDrgMigrationResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.rollbackDrgMigration, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RollbackDrgMigrationResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RollbackDrgMigrationResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RollbackDrgMigrationResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RollbackDrgMigrationResponse")
+	}
+	return
+}
+
+// rollbackDrgMigration implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) rollbackDrgMigration(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/rollbackDrgMigration")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RollbackDrgMigrationResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

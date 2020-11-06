@@ -25,10 +25,6 @@ type UpdateObjectStorageTierRequest struct {
 	// The client request ID for tracing.
 	OpcClientRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-client-request-id"`
 
-	// The entity tag (ETag) to match. For creating and committing a multipart upload to an object, this is the entity tag of the target object.
-	// For uploading a part, this is the entity tag of the target part.
-	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
-
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

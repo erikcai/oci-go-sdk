@@ -330,6 +330,50 @@ func TestDatabaseClientChangeBackupDestinationCompartment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeCloudAutonomousVmClusterCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeCloudAutonomousVmClusterCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeCloudAutonomousVmClusterCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeCloudAutonomousVmClusterCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeCloudAutonomousVmClusterCompartment")
+	assert.NoError(t, err)
+
+	type ChangeCloudAutonomousVmClusterCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeCloudAutonomousVmClusterCompartmentRequest
+	}
+
+	var requests []ChangeCloudAutonomousVmClusterCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeCloudAutonomousVmClusterCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientChangeCloudExadataInfrastructureCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -550,6 +594,138 @@ func TestDatabaseClientChangeExadataInfrastructureCompartment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeExternalContainerDatabaseCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeExternalContainerDatabaseCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeExternalContainerDatabaseCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeExternalContainerDatabaseCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeExternalContainerDatabaseCompartment")
+	assert.NoError(t, err)
+
+	type ChangeExternalContainerDatabaseCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeExternalContainerDatabaseCompartmentRequest
+	}
+
+	var requests []ChangeExternalContainerDatabaseCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeExternalContainerDatabaseCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeExternalNonContainerDatabaseCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeExternalNonContainerDatabaseCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeExternalNonContainerDatabaseCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeExternalNonContainerDatabaseCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeExternalNonContainerDatabaseCompartment")
+	assert.NoError(t, err)
+
+	type ChangeExternalNonContainerDatabaseCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeExternalNonContainerDatabaseCompartmentRequest
+	}
+
+	var requests []ChangeExternalNonContainerDatabaseCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeExternalNonContainerDatabaseCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientChangeExternalPluggableDatabaseCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ChangeExternalPluggableDatabaseCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeExternalPluggableDatabaseCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ChangeExternalPluggableDatabaseCompartment", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ChangeExternalPluggableDatabaseCompartment")
+	assert.NoError(t, err)
+
+	type ChangeExternalPluggableDatabaseCompartmentRequestInfo struct {
+		ContainerId string
+		Request     database.ChangeExternalPluggableDatabaseCompartmentRequest
+	}
+
+	var requests []ChangeExternalPluggableDatabaseCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeExternalPluggableDatabaseCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientChangeKeyStoreCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -631,6 +807,50 @@ func TestDatabaseClientChangeVmClusterCompartment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ChangeVmClusterCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCheckExternalDatabaseConnectorConnectionStatus(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CheckExternalDatabaseConnectorConnectionStatus")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CheckExternalDatabaseConnectorConnectionStatus is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CheckExternalDatabaseConnectorConnectionStatus", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CheckExternalDatabaseConnectorConnectionStatus")
+	assert.NoError(t, err)
+
+	type CheckExternalDatabaseConnectorConnectionStatusRequestInfo struct {
+		ContainerId string
+		Request     database.CheckExternalDatabaseConnectorConnectionStatusRequest
+	}
+
+	var requests []CheckExternalDatabaseConnectorConnectionStatusRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CheckExternalDatabaseConnectorConnectionStatus(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1106,6 +1326,50 @@ func TestDatabaseClientCreateBackupDestination(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateCloudAutonomousVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateCloudAutonomousVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateCloudAutonomousVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateCloudAutonomousVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateCloudAutonomousVmCluster")
+	assert.NoError(t, err)
+
+	type CreateCloudAutonomousVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.CreateCloudAutonomousVmClusterRequest
+	}
+
+	var requests []CreateCloudAutonomousVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateCloudAutonomousVmCluster(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientCreateCloudExadataInfrastructure(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -1542,6 +1806,193 @@ func TestDatabaseClientCreateExternalBackupJob(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateExternalContainerDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateExternalContainerDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateExternalContainerDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateExternalContainerDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateExternalContainerDatabase")
+	assert.NoError(t, err)
+
+	type CreateExternalContainerDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.CreateExternalContainerDatabaseRequest
+	}
+
+	var requests []CreateExternalContainerDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateExternalContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateExternalDatabaseConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateExternalDatabaseConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateExternalDatabaseConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateExternalDatabaseConnector", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateExternalDatabaseConnector")
+	assert.NoError(t, err)
+
+	type CreateExternalDatabaseConnectorRequestInfo struct {
+		ContainerId string
+		Request     database.CreateExternalDatabaseConnectorRequest
+	}
+
+	var requests []CreateExternalDatabaseConnectorRequestInfo
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
+	assert.NoError(t, err)
+	requests = make([]CreateExternalDatabaseConnectorRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["CreateExternalDatabaseConnectorDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "connectorType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"MACS": &database.CreateExternalMacsConnectorDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateExternalDatabaseConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateExternalNonContainerDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateExternalNonContainerDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateExternalNonContainerDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateExternalNonContainerDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateExternalNonContainerDatabase")
+	assert.NoError(t, err)
+
+	type CreateExternalNonContainerDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.CreateExternalNonContainerDatabaseRequest
+	}
+
+	var requests []CreateExternalNonContainerDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateExternalNonContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientCreateExternalPluggableDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "CreateExternalPluggableDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateExternalPluggableDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "CreateExternalPluggableDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "CreateExternalPluggableDatabase")
+	assert.NoError(t, err)
+
+	type CreateExternalPluggableDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.CreateExternalPluggableDatabaseRequest
+	}
+
+	var requests []CreateExternalPluggableDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateExternalPluggableDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientCreateKeyStore(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -1938,6 +2389,50 @@ func TestDatabaseClientDeleteBackupDestination(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteCloudAutonomousVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteCloudAutonomousVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteCloudAutonomousVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteCloudAutonomousVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteCloudAutonomousVmCluster")
+	assert.NoError(t, err)
+
+	type DeleteCloudAutonomousVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteCloudAutonomousVmClusterRequest
+	}
+
+	var requests []DeleteCloudAutonomousVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteCloudAutonomousVmCluster(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientDeleteCloudExadataInfrastructure(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2246,6 +2741,182 @@ func TestDatabaseClientDeleteExadataInfrastructure(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteExternalContainerDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteExternalContainerDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteExternalContainerDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteExternalContainerDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteExternalContainerDatabase")
+	assert.NoError(t, err)
+
+	type DeleteExternalContainerDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteExternalContainerDatabaseRequest
+	}
+
+	var requests []DeleteExternalContainerDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteExternalContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteExternalDatabaseConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteExternalDatabaseConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteExternalDatabaseConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteExternalDatabaseConnector", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteExternalDatabaseConnector")
+	assert.NoError(t, err)
+
+	type DeleteExternalDatabaseConnectorRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteExternalDatabaseConnectorRequest
+	}
+
+	var requests []DeleteExternalDatabaseConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteExternalDatabaseConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteExternalNonContainerDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteExternalNonContainerDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteExternalNonContainerDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteExternalNonContainerDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteExternalNonContainerDatabase")
+	assert.NoError(t, err)
+
+	type DeleteExternalNonContainerDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteExternalNonContainerDatabaseRequest
+	}
+
+	var requests []DeleteExternalNonContainerDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteExternalNonContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDeleteExternalPluggableDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DeleteExternalPluggableDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteExternalPluggableDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DeleteExternalPluggableDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DeleteExternalPluggableDatabase")
+	assert.NoError(t, err)
+
+	type DeleteExternalPluggableDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.DeleteExternalPluggableDatabaseRequest
+	}
+
+	var requests []DeleteExternalPluggableDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteExternalPluggableDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientDeleteKeyStore(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2466,6 +3137,138 @@ func TestDatabaseClientDisableAutonomousDatabaseOperationsInsights(t *testing.T)
 	}
 }
 
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDisableExternalContainerDatabaseDatabaseManagement(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DisableExternalContainerDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DisableExternalContainerDatabaseDatabaseManagement is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DisableExternalContainerDatabaseDatabaseManagement", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DisableExternalContainerDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+
+	type DisableExternalContainerDatabaseDatabaseManagementRequestInfo struct {
+		ContainerId string
+		Request     database.DisableExternalContainerDatabaseDatabaseManagementRequest
+	}
+
+	var requests []DisableExternalContainerDatabaseDatabaseManagementRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DisableExternalContainerDatabaseDatabaseManagement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDisableExternalNonContainerDatabaseDatabaseManagement(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DisableExternalNonContainerDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DisableExternalNonContainerDatabaseDatabaseManagement is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DisableExternalNonContainerDatabaseDatabaseManagement", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DisableExternalNonContainerDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+
+	type DisableExternalNonContainerDatabaseDatabaseManagementRequestInfo struct {
+		ContainerId string
+		Request     database.DisableExternalNonContainerDatabaseDatabaseManagementRequest
+	}
+
+	var requests []DisableExternalNonContainerDatabaseDatabaseManagementRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DisableExternalNonContainerDatabaseDatabaseManagement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientDisableExternalPluggableDatabaseDatabaseManagement(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "DisableExternalPluggableDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DisableExternalPluggableDatabaseDatabaseManagement is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "DisableExternalPluggableDatabaseDatabaseManagement", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "DisableExternalPluggableDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+
+	type DisableExternalPluggableDatabaseDatabaseManagementRequestInfo struct {
+		ContainerId string
+		Request     database.DisableExternalPluggableDatabaseDatabaseManagementRequest
+	}
+
+	var requests []DisableExternalPluggableDatabaseDatabaseManagementRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DisableExternalPluggableDatabaseDatabaseManagement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCC" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientDownloadExadataInfrastructureConfigFile(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2591,6 +3394,138 @@ func TestDatabaseClientEnableAutonomousDatabaseOperationsInsights(t *testing.T) 
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.EnableAutonomousDatabaseOperationsInsights(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientEnableExternalContainerDatabaseDatabaseManagement(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "EnableExternalContainerDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("EnableExternalContainerDatabaseDatabaseManagement is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "EnableExternalContainerDatabaseDatabaseManagement", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "EnableExternalContainerDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+
+	type EnableExternalContainerDatabaseDatabaseManagementRequestInfo struct {
+		ContainerId string
+		Request     database.EnableExternalContainerDatabaseDatabaseManagementRequest
+	}
+
+	var requests []EnableExternalContainerDatabaseDatabaseManagementRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.EnableExternalContainerDatabaseDatabaseManagement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientEnableExternalNonContainerDatabaseDatabaseManagement(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "EnableExternalNonContainerDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("EnableExternalNonContainerDatabaseDatabaseManagement is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "EnableExternalNonContainerDatabaseDatabaseManagement", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "EnableExternalNonContainerDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+
+	type EnableExternalNonContainerDatabaseDatabaseManagementRequestInfo struct {
+		ContainerId string
+		Request     database.EnableExternalNonContainerDatabaseDatabaseManagementRequest
+	}
+
+	var requests []EnableExternalNonContainerDatabaseDatabaseManagementRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.EnableExternalNonContainerDatabaseDatabaseManagement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientEnableExternalPluggableDatabaseDatabaseManagement(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "EnableExternalPluggableDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("EnableExternalPluggableDatabaseDatabaseManagement is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "EnableExternalPluggableDatabaseDatabaseManagement", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "EnableExternalPluggableDatabaseDatabaseManagement")
+	assert.NoError(t, err)
+
+	type EnableExternalPluggableDatabaseDatabaseManagementRequestInfo struct {
+		ContainerId string
+		Request     database.EnableExternalPluggableDatabaseDatabaseManagementRequest
+	}
+
+	var requests []EnableExternalPluggableDatabaseDatabaseManagementRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.EnableExternalPluggableDatabaseDatabaseManagement(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3471,6 +4406,50 @@ func TestDatabaseClientGetBackupDestination(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetBackupDestination(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetCloudAutonomousVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetCloudAutonomousVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetCloudAutonomousVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetCloudAutonomousVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetCloudAutonomousVmCluster")
+	assert.NoError(t, err)
+
+	type GetCloudAutonomousVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.GetCloudAutonomousVmClusterRequest
+	}
+
+	var requests []GetCloudAutonomousVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetCloudAutonomousVmCluster(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -4395,6 +5374,182 @@ func TestDatabaseClientGetExternalBackupJob(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetExternalBackupJob(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetExternalContainerDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetExternalContainerDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetExternalContainerDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetExternalContainerDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetExternalContainerDatabase")
+	assert.NoError(t, err)
+
+	type GetExternalContainerDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.GetExternalContainerDatabaseRequest
+	}
+
+	var requests []GetExternalContainerDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetExternalContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetExternalDatabaseConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetExternalDatabaseConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetExternalDatabaseConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetExternalDatabaseConnector", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetExternalDatabaseConnector")
+	assert.NoError(t, err)
+
+	type GetExternalDatabaseConnectorRequestInfo struct {
+		ContainerId string
+		Request     database.GetExternalDatabaseConnectorRequest
+	}
+
+	var requests []GetExternalDatabaseConnectorRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetExternalDatabaseConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetExternalNonContainerDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetExternalNonContainerDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetExternalNonContainerDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetExternalNonContainerDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetExternalNonContainerDatabase")
+	assert.NoError(t, err)
+
+	type GetExternalNonContainerDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.GetExternalNonContainerDatabaseRequest
+	}
+
+	var requests []GetExternalNonContainerDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetExternalNonContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientGetExternalPluggableDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "GetExternalPluggableDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetExternalPluggableDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "GetExternalPluggableDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "GetExternalPluggableDatabase")
+	assert.NoError(t, err)
+
+	type GetExternalPluggableDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.GetExternalPluggableDatabaseRequest
+	}
+
+	var requests []GetExternalPluggableDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetExternalPluggableDatabase(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -5622,6 +6777,60 @@ func TestDatabaseClientListBackups(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListCloudAutonomousVmClusters(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListCloudAutonomousVmClusters")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListCloudAutonomousVmClusters is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListCloudAutonomousVmClusters", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListCloudAutonomousVmClusters")
+	assert.NoError(t, err)
+
+	type ListCloudAutonomousVmClustersRequestInfo struct {
+		ContainerId string
+		Request     database.ListCloudAutonomousVmClustersRequest
+	}
+
+	var requests []ListCloudAutonomousVmClustersRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListCloudAutonomousVmClustersRequest)
+				return c.ListCloudAutonomousVmClusters(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListCloudAutonomousVmClustersResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListCloudAutonomousVmClustersResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientListCloudExadataInfrastructures(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -6683,6 +7892,222 @@ func TestDatabaseClientListExadataInfrastructures(t *testing.T) {
 			typedListResponses := make([]database.ListExadataInfrastructuresResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(database.ListExadataInfrastructuresResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListExternalContainerDatabases(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListExternalContainerDatabases")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListExternalContainerDatabases is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListExternalContainerDatabases", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListExternalContainerDatabases")
+	assert.NoError(t, err)
+
+	type ListExternalContainerDatabasesRequestInfo struct {
+		ContainerId string
+		Request     database.ListExternalContainerDatabasesRequest
+	}
+
+	var requests []ListExternalContainerDatabasesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListExternalContainerDatabasesRequest)
+				return c.ListExternalContainerDatabases(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListExternalContainerDatabasesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListExternalContainerDatabasesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListExternalDatabaseConnectors(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListExternalDatabaseConnectors")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListExternalDatabaseConnectors is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListExternalDatabaseConnectors", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListExternalDatabaseConnectors")
+	assert.NoError(t, err)
+
+	type ListExternalDatabaseConnectorsRequestInfo struct {
+		ContainerId string
+		Request     database.ListExternalDatabaseConnectorsRequest
+	}
+
+	var requests []ListExternalDatabaseConnectorsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListExternalDatabaseConnectorsRequest)
+				return c.ListExternalDatabaseConnectors(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListExternalDatabaseConnectorsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListExternalDatabaseConnectorsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListExternalNonContainerDatabases(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListExternalNonContainerDatabases")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListExternalNonContainerDatabases is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListExternalNonContainerDatabases", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListExternalNonContainerDatabases")
+	assert.NoError(t, err)
+
+	type ListExternalNonContainerDatabasesRequestInfo struct {
+		ContainerId string
+		Request     database.ListExternalNonContainerDatabasesRequest
+	}
+
+	var requests []ListExternalNonContainerDatabasesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListExternalNonContainerDatabasesRequest)
+				return c.ListExternalNonContainerDatabases(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListExternalNonContainerDatabasesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListExternalNonContainerDatabasesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListExternalPluggableDatabases(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListExternalPluggableDatabases")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListExternalPluggableDatabases is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListExternalPluggableDatabases", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListExternalPluggableDatabases")
+	assert.NoError(t, err)
+
+	type ListExternalPluggableDatabasesRequestInfo struct {
+		ContainerId string
+		Request     database.ListExternalPluggableDatabasesRequest
+	}
+
+	var requests []ListExternalPluggableDatabasesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListExternalPluggableDatabasesRequest)
+				return c.ListExternalPluggableDatabases(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListExternalPluggableDatabasesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListExternalPluggableDatabasesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -7775,6 +9200,50 @@ func TestDatabaseClientRotateVaultKey(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientScanExternalContainerDatabasePluggableDatabases(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ScanExternalContainerDatabasePluggableDatabases")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ScanExternalContainerDatabasePluggableDatabases is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ScanExternalContainerDatabasePluggableDatabases", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ScanExternalContainerDatabasePluggableDatabases")
+	assert.NoError(t, err)
+
+	type ScanExternalContainerDatabasePluggableDatabasesRequestInfo struct {
+		ContainerId string
+		Request     database.ScanExternalContainerDatabasePluggableDatabasesRequest
+	}
+
+	var requests []ScanExternalContainerDatabasePluggableDatabasesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ScanExternalContainerDatabasePluggableDatabases(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientStartAutonomousDataWarehouse(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -8566,6 +10035,50 @@ func TestDatabaseClientUpdateBackupDestination(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateCloudAutonomousVmCluster(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateCloudAutonomousVmCluster")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateCloudAutonomousVmCluster is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateCloudAutonomousVmCluster", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateCloudAutonomousVmCluster")
+	assert.NoError(t, err)
+
+	type UpdateCloudAutonomousVmClusterRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateCloudAutonomousVmClusterRequest
+	}
+
+	var requests []UpdateCloudAutonomousVmClusterRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateCloudAutonomousVmCluster(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ExaCS" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientUpdateCloudExadataInfrastructure(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -8955,6 +10468,193 @@ func TestDatabaseClientUpdateExadataIormConfig(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateExadataIormConfig(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateExternalContainerDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateExternalContainerDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateExternalContainerDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateExternalContainerDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateExternalContainerDatabase")
+	assert.NoError(t, err)
+
+	type UpdateExternalContainerDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateExternalContainerDatabaseRequest
+	}
+
+	var requests []UpdateExternalContainerDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateExternalContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateExternalDatabaseConnector(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateExternalDatabaseConnector")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateExternalDatabaseConnector is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateExternalDatabaseConnector", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateExternalDatabaseConnector")
+	assert.NoError(t, err)
+
+	type UpdateExternalDatabaseConnectorRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateExternalDatabaseConnectorRequest
+	}
+
+	var requests []UpdateExternalDatabaseConnectorRequestInfo
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
+	assert.NoError(t, err)
+	requests = make([]UpdateExternalDatabaseConnectorRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["UpdateExternalDatabaseConnectorDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "connectorType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"MACS": &database.UpdateExternalMacsConnectorDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateExternalDatabaseConnector(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateExternalNonContainerDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateExternalNonContainerDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateExternalNonContainerDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateExternalNonContainerDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateExternalNonContainerDatabase")
+	assert.NoError(t, err)
+
+	type UpdateExternalNonContainerDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateExternalNonContainerDatabaseRequest
+	}
+
+	var requests []UpdateExternalNonContainerDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateExternalNonContainerDatabase(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientUpdateExternalPluggableDatabase(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "UpdateExternalPluggableDatabase")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateExternalPluggableDatabase is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "UpdateExternalPluggableDatabase", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "UpdateExternalPluggableDatabase")
+	assert.NoError(t, err)
+
+	type UpdateExternalPluggableDatabaseRequestInfo struct {
+		ContainerId string
+		Request     database.UpdateExternalPluggableDatabaseRequest
+	}
+
+	var requests []UpdateExternalPluggableDatabaseRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateExternalPluggableDatabase(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

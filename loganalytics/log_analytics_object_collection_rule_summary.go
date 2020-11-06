@@ -32,9 +32,7 @@ type LogAnalyticsObjectCollectionRuleSummary struct {
 	OsBucketName *string `mandatory:"true" json:"osBucketName"`
 
 	// The type of collection.
-	// Accepted values are: LIVE.
-	// Collection type LIVE indicates to enable log collection from the time of this rule creation,
-	// and continue until the rule exists.
+	// Supported collection types: LIVE, HISTORIC, HISTORIC_LIVE
 	CollectionType ObjectCollectionRuleCollectionTypesEnum `mandatory:"true" json:"collectionType"`
 
 	// The current state of the rule.

@@ -13,19 +13,19 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// RecallArchivedDataDetails Work request details to recall archived data
+// RecallArchivedDataDetails This is the input used to recall archived data
 type RecallArchivedDataDetails struct {
 
-	// the compartment OCID for permission checking
+	// This is the compartment OCID for permission checking
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// the end of the time interval
+	// This is the end of the time interval
 	TimeDataEnded *common.SDKTime `mandatory:"true" json:"timeDataEnded"`
 
-	// the start of the time interval
+	// This is the start of the time interval
 	TimeDataStarted *common.SDKTime `mandatory:"true" json:"timeDataStarted"`
 
-	// the type of the log data to be purged
+	// This is the type of the log data to be recalled
 	DataType StorageDataTypeEnum `mandatory:"false" json:"dataType,omitempty"`
 }
 

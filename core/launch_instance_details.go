@@ -35,6 +35,7 @@ type LaunchInstanceDetails struct {
 	Shape *string `mandatory:"true" json:"shape"`
 
 	// The OCID of the compute capacity reservation this instance is launched under.
+	// You can opt out of default reservation by specifying an empty string for this as input.
 	CapacityReservationId *string `mandatory:"false" json:"capacityReservationId"`
 
 	CreateVnicDetails *CreateVnicDetails `mandatory:"false" json:"createVnicDetails"`

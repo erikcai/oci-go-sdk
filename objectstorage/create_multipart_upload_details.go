@@ -56,8 +56,8 @@ type CreateMultipartUploadDetails struct {
 	CacheControl *string `mandatory:"false" json:"cacheControl"`
 
 	// The storage tier that the object should be stored in. If not specified, the object will be stored in
-	// 'Standard' tier by default.
-	StorageTier StorageTiersEnum `mandatory:"false" json:"storageTier,omitempty"`
+	// the same storage tier as the bucket.
+	StorageTier StorageTierEnum `mandatory:"false" json:"storageTier,omitempty"`
 
 	// Arbitrary string keys and values for the user-defined metadata for the object.
 	// Keys must be in "opc-meta-*" format. Avoid entering confidential information.

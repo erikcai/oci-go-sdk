@@ -59,8 +59,8 @@ type CopyObjectDetails struct {
 	DestinationObjectMetadata map[string]string `mandatory:"false" json:"destinationObjectMetadata"`
 
 	// The storage tier that the object should be stored in. If not specified, the object will be stored in
-	// 'Standard' tier by default.
-	DestinationObjectStorageTier StorageTiersEnum `mandatory:"false" json:"destinationObjectStorageTier,omitempty"`
+	// the same storage tier as the bucket.
+	DestinationObjectStorageTier StorageTierEnum `mandatory:"false" json:"destinationObjectStorageTier,omitempty"`
 }
 
 func (m CopyObjectDetails) String() string {

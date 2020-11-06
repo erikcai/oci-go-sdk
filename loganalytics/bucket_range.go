@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// BucketRange Represents querylanguage bucket command input arguments in parse endpoint output.
+// BucketRange Represents querylanguage bucket command input arguments in parse output.
 type BucketRange struct {
 
 	// Lower bound of the bucket range specified in the querystring for the numeric field referenced in tbe bucket command.

@@ -21,6 +21,7 @@ import (
 type UpdateInstanceDetails struct {
 
 	// The OCID of the compute capacity reservation this instance is launched under.
+	// You can opt out of default reservation by specifying an empty string for this as input.
 	CapacityReservationId *string `mandatory:"false" json:"capacityReservationId"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a

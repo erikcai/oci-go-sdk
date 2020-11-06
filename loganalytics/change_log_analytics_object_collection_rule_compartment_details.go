@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// ChangeLogAnalyticsObjectCollectionRuleCompartmentDetails Log Analytics Object Storage based collection rule compartment to be updated to.
+// ChangeLogAnalyticsObjectCollectionRuleCompartmentDetails The new compartment this Object Collection Rule will be moved to.
 type ChangeLogAnalyticsObjectCollectionRuleCompartmentDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment into which the rule should be moved.

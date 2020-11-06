@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// ExtractLogFieldResults The representation of ExtractLogFieldResults
+// ExtractLogFieldResults log field path values
 type ExtractLogFieldResults struct {
 
 	// log field path values

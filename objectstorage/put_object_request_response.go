@@ -98,7 +98,7 @@ type PutObjectRequest struct {
 	OpcSseCustomerKeySha256 *string `mandatory:"false" contributesTo:"header" name:"opc-sse-customer-key-sha256"`
 
 	// The storage tier that the object should be stored in. If not specified, the object will be stored in
-	// 'Standard' tier by default.
+	// the same storage tier as the bucket.
 	StorageTier PutObjectStorageTierEnum `mandatory:"false" contributesTo:"header" name:"storage-tier"`
 
 	// Optional user-defined metadata key and value.

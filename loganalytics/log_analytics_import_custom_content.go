@@ -25,7 +25,6 @@ type LogAnalyticsImportCustomContent struct {
 	// fieldNames
 	FieldNames []string `mandatory:"false" json:"fieldNames"`
 
-	// changeList
 	ChangeList *LogAnalyticsImportCustomChangeList `mandatory:"false" json:"changeList"`
 
 	// contentName

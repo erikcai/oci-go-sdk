@@ -39,10 +39,10 @@ type ListObjectVersionsRequest struct {
 	Delimiter *string `mandatory:"false" contributesTo:"query" name:"delimiter"`
 
 	// Object summary in list of objects includes the 'name' field. This parameter can also include 'size'
-	// (object size in bytes), 'etag', 'md5', 'timeCreated' (object creation date and time) and 'timeModified'
-	// (object modification date and time).
+	// (object size in bytes), 'etag', 'md5', 'timeCreated' (object creation date and time), 'timeModified'
+	// (object modification date and time) and 'storageTier' fields.
 	// Value of this parameter should be a comma-separated, case-insensitive list of those field names.
-	// For example 'name,etag,timeCreated,md5,timeModified'
+	// For example 'name,etag,timeCreated,md5,timeModified,storageTier'
 	Fields ListObjectVersionsFieldsEnum `mandatory:"false" contributesTo:"query" name:"fields" omitEmpty:"true"`
 
 	// The client request ID for tracing.
@@ -118,6 +118,7 @@ const (
 	ListObjectVersionsFieldsTimecreated  ListObjectVersionsFieldsEnum = "timeCreated"
 	ListObjectVersionsFieldsMd5          ListObjectVersionsFieldsEnum = "md5"
 	ListObjectVersionsFieldsTimemodified ListObjectVersionsFieldsEnum = "timeModified"
+	ListObjectVersionsFieldsStoragetier  ListObjectVersionsFieldsEnum = "storageTier"
 )
 
 var mappingListObjectVersionsFields = map[string]ListObjectVersionsFieldsEnum{
@@ -127,6 +128,7 @@ var mappingListObjectVersionsFields = map[string]ListObjectVersionsFieldsEnum{
 	"timeCreated":  ListObjectVersionsFieldsTimecreated,
 	"md5":          ListObjectVersionsFieldsMd5,
 	"timeModified": ListObjectVersionsFieldsTimemodified,
+	"storageTier":  ListObjectVersionsFieldsStoragetier,
 }
 
 // GetListObjectVersionsFieldsEnumValues Enumerates the set of values for ListObjectVersionsFieldsEnum

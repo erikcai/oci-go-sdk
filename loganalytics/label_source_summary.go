@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// LabelSourceSummary The representation of LabelSourceSummary
+// LabelSourceSummary source summary
 type LabelSourceSummary struct {
 
 	// display name

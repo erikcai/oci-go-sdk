@@ -12,7 +12,7 @@ import (
 // OnboardNamespaceRequest wrapper for the OnboardNamespace operation
 type OnboardNamespaceRequest struct {
 
-	// The Log Analytics namespace used for the request.
+	// The Logging Analytics namespace used for the request.
 	NamespaceName *string `mandatory:"true" contributesTo:"path" name:"namespaceName"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
@@ -53,8 +53,7 @@ type OnboardNamespaceResponse struct {
 	// Unique Oracle-assigned identifier for the asynchronous request. You can use this to query status of the asynchronous operation.
 	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact
-	// Oracle about a particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. When you contact Oracle about a specific request, provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

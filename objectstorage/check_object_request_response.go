@@ -30,6 +30,9 @@ type CheckObjectRequest struct {
 	// The API of the object to check.  Must be 'v1' or 'v2'.
 	Api *string `mandatory:"false" contributesTo:"query" name:"api"`
 
+	// VersionId used to identify a particular version of the object
+	VersionId *string `mandatory:"false" contributesTo:"query" name:"versionId"`
+
 	// Unique Oracle-assigned identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`

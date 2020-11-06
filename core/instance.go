@@ -58,6 +58,7 @@ type Instance struct {
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
 	// The OCID of the compute capacity reservation this instance is launched under.
+	// You can opt out of default reservation by specifying an empty string for this as input.
 	CapacityReservationId *string `mandatory:"false" json:"capacityReservationId"`
 
 	// The OCID of dedicated VM host.

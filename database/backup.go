@@ -37,7 +37,7 @@ type Backup struct {
 	// The date and time the backup was completed.
 	TimeEnded *common.SDKTime `mandatory:"false" json:"timeEnded"`
 
-	// Additional information about the current lifecycleState.
+	// Additional information about the current lifecycle state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
 	// The name of the availability domain where the database backup is stored.

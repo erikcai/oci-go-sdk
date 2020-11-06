@@ -17,7 +17,7 @@ import (
 type LogAnalyticsParserFilter struct {
 
 	// id
-	Id *interface{} `mandatory:"false" json:"id"`
+	Id *string `mandatory:"false" json:"id"`
 
 	Parser *LogAnalyticsParser `mandatory:"false" json:"parser"`
 

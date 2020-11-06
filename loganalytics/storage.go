@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/v27/common"
 )
 
-// Storage Storage configuration and status of a tenancy in Logan Analytics application
+// Storage This is the storage configuration and status of a tenancy in Logan Analytics application
 type Storage struct {
 
-	// if old data can be archived for a tenancy
+	// This indicates if old data can be archived for a tenancy
 	IsArchivingEnabled *bool `mandatory:"true" json:"isArchivingEnabled"`
 
 	ArchivingConfiguration *ArchivingConfiguration `mandatory:"true" json:"archivingConfiguration"`

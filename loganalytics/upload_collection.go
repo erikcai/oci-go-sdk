@@ -16,7 +16,7 @@ import (
 // UploadCollection Collection of UploadSummary objects.
 type UploadCollection struct {
 
-	// list of UploadSummary objects.
+	// List of UploadSummary objects.
 	Items []UploadSummary `mandatory:"true" json:"items"`
 }
 

@@ -134,23 +134,25 @@ type ChannelLifecycleStateEnum string
 
 // Set of constants representing the allowable values for ChannelLifecycleStateEnum
 const (
-	ChannelLifecycleStateCreating ChannelLifecycleStateEnum = "CREATING"
-	ChannelLifecycleStateActive   ChannelLifecycleStateEnum = "ACTIVE"
-	ChannelLifecycleStateInactive ChannelLifecycleStateEnum = "INACTIVE"
-	ChannelLifecycleStateUpdating ChannelLifecycleStateEnum = "UPDATING"
-	ChannelLifecycleStateDeleting ChannelLifecycleStateEnum = "DELETING"
-	ChannelLifecycleStateDeleted  ChannelLifecycleStateEnum = "DELETED"
-	ChannelLifecycleStateFailed   ChannelLifecycleStateEnum = "FAILED"
+	ChannelLifecycleStateCreating       ChannelLifecycleStateEnum = "CREATING"
+	ChannelLifecycleStateActive         ChannelLifecycleStateEnum = "ACTIVE"
+	ChannelLifecycleStateNeedsAttention ChannelLifecycleStateEnum = "NEEDS_ATTENTION"
+	ChannelLifecycleStateInactive       ChannelLifecycleStateEnum = "INACTIVE"
+	ChannelLifecycleStateUpdating       ChannelLifecycleStateEnum = "UPDATING"
+	ChannelLifecycleStateDeleting       ChannelLifecycleStateEnum = "DELETING"
+	ChannelLifecycleStateDeleted        ChannelLifecycleStateEnum = "DELETED"
+	ChannelLifecycleStateFailed         ChannelLifecycleStateEnum = "FAILED"
 )
 
 var mappingChannelLifecycleState = map[string]ChannelLifecycleStateEnum{
-	"CREATING": ChannelLifecycleStateCreating,
-	"ACTIVE":   ChannelLifecycleStateActive,
-	"INACTIVE": ChannelLifecycleStateInactive,
-	"UPDATING": ChannelLifecycleStateUpdating,
-	"DELETING": ChannelLifecycleStateDeleting,
-	"DELETED":  ChannelLifecycleStateDeleted,
-	"FAILED":   ChannelLifecycleStateFailed,
+	"CREATING":        ChannelLifecycleStateCreating,
+	"ACTIVE":          ChannelLifecycleStateActive,
+	"NEEDS_ATTENTION": ChannelLifecycleStateNeedsAttention,
+	"INACTIVE":        ChannelLifecycleStateInactive,
+	"UPDATING":        ChannelLifecycleStateUpdating,
+	"DELETING":        ChannelLifecycleStateDeleting,
+	"DELETED":         ChannelLifecycleStateDeleted,
+	"FAILED":          ChannelLifecycleStateFailed,
 }
 
 // GetChannelLifecycleStateEnumValues Enumerates the set of values for ChannelLifecycleStateEnum

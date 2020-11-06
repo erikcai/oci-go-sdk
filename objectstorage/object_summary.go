@@ -40,7 +40,7 @@ type ObjectSummary struct {
 	TimeModified *common.SDKTime `mandatory:"false" json:"timeModified"`
 
 	// The storage tier that the object is stored in.
-	StorageTier StorageTiersEnum `mandatory:"false" json:"storageTier,omitempty"`
+	StorageTier StorageTierEnum `mandatory:"false" json:"storageTier,omitempty"`
 }
 
 func (m ObjectSummary) String() string {

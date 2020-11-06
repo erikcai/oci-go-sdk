@@ -12,7 +12,7 @@ import (
 // GetFieldsSummaryRequest wrapper for the GetFieldsSummary operation
 type GetFieldsSummaryRequest struct {
 
-	// The Log Analytics namespace used for the request.
+	// The Logging Analytics namespace used for the request.
 	NamespaceName *string `mandatory:"true" contributesTo:"path" name:"namespaceName"`
 
 	// show detail flag
@@ -49,8 +49,7 @@ type GetFieldsSummaryResponse struct {
 	// The FieldSummaryReport instance
 	FieldSummaryReport `presentIn:"body"`
 
-	// Unique Oracle-assigned identifier for the request. If you need to contact
-	// Oracle about a particular request, please provide the request ID.
+	// Unique Oracle-assigned identifier for the request. When you contact Oracle about a specific request, provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 }
 

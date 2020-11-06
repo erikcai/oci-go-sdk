@@ -5314,7 +5314,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>0.2.1525</version>
+        <version>1.0.24</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -5324,7 +5324,7 @@
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.351</version>
+        <version>1.1.363</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -5334,7 +5334,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.599</version>
+        <version>0.1.606</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -5539,7 +5539,7 @@
       <dependency>
         <groupId>com.oracle.oci.mysql</groupId>
         <artifactId>mysqlaas-api-spec</artifactId>
-        <version>10.9.10</version>
+        <version>13.2.0</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ocisms.dataplane</groupId>
@@ -5644,7 +5644,7 @@
       <dependency>
         <groupId>com.oracle.loganalytics.api</groupId>
         <artifactId>logan-api-spec</artifactId>
-        <version>0.1.155</version>
+        <version>0.1.187</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.db.cca</groupId>

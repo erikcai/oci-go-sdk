@@ -54,6 +54,9 @@ type CreateAutonomousContainerDatabaseDetails struct {
 	// The OCID of the Autonomous VM Cluster.
 	AutonomousVmClusterId *string `mandatory:"false" json:"autonomousVmClusterId"`
 
+	// The OCID of the Autonomous VM Cluster.
+	CloudAutonomousVmClusterId *string `mandatory:"false" json:"cloudAutonomousVmClusterId"`
+
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Autonomous Container Database.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 

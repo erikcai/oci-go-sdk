@@ -26,7 +26,7 @@ type UpdateObjectStorageTierDetails struct {
 	ObjectName *string `mandatory:"true" json:"objectName"`
 
 	// The storage tier that the object should be moved to.
-	StorageTier StorageTiersEnum `mandatory:"true" json:"storageTier"`
+	StorageTier StorageTierEnum `mandatory:"true" json:"storageTier"`
 
 	// The versionId of the object. Current object version is used by default.
 	VersionId *string `mandatory:"false" json:"versionId"`
