@@ -185,10 +185,7 @@ func (fileUpload *fileUpload) startConcurrentUpload(ctx context.Context, done <-
 	multipartMD5 := fileUpload.manifest.getMultipartMD5Checksum(request.EnableMultipartChecksumVerification, fileUpload.uploadID)
 
 	resp, err := fileUpload.multipartUploader.commit(ctx, request.UploadRequest, fileUpload.manifest.parts[fileUpload.uploadID], fileUpload.uploadID)
-	if multipartMD5 != nil && *request.EnableMultipartChecksumVerification && strings.Compare(*resp.OpcMultipartMd5, *multipartMD5) != 0 {
 
-		err = fmt.Errorf("multipart base64 MD5 checksum verification failure, the sending opcMD5 is %s, the reveived is %s", *resp.OpcMultipartMd5, *multipartMD5)
-	}
 	if err != nil {
 		common.Debugf("failed to commit with error: %v\n", err)
 		return UploadResponse{
@@ -196,6 +193,11 @@ func (fileUpload *fileUpload) startConcurrentUpload(ctx context.Context, done <-
 				MultipartUploadResponse: &MultipartUploadResponse{
 					isResumable: common.Bool(true), UploadID: common.String(fileUpload.uploadID)}},
 			err
+	}
+
+	if multipartMD5 != nil && *request.EnableMultipartChecksumVerification && strings.Compare(*resp.OpcMultipartMd5, *multipartMD5) != 0 {
+		err = fmt.Errorf("multipart base64 MD5 checksum verification failure, the sending opcMD5 is %s, the reveived is %s", *resp.OpcMultipartMd5, *multipartMD5)
+		common.Debugf("MD5 checksum error: %v\n", err)
 	}
 
 	response = UploadResponse{

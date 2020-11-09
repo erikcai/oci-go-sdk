@@ -148,6 +148,39 @@ func TestObjectStorageClient_BigFile(t *testing.T) {
 	assert.Equal(t, expectedHash, actualHash)
 }
 
+func TestObjectStorageClient_ZeroLengthFile(t *testing.T) {
+	bname := getUniqueName("ZeroLengthFileBucket")
+	namespace := getNamespace(t)
+
+	createBucket(t, getNamespace(t), getTenancyID(), bname)
+	defer deleteBucket(t, namespace, bname)
+
+	contentlen := 0
+	filepath, filesize, expectedHash := writeTempFileOfSize(int64(contentlen))
+	filename := path.Base(filepath)
+	fmt.Println("uploading ", filepath)
+	defer removeFileFn(filepath)
+	file, e := os.Open(filepath)
+	defer file.Close()
+	failIfError(t, e)
+
+	e = putObject(t, namespace, bname, filename, filesize, file, nil)
+	failIfError(t, e)
+	fmt.Println(expectedHash)
+	rGet, e := getObject(t, namespace, bname, filename)
+	failIfError(t, e)
+	defer deleteObject(t, namespace, bname, filename)
+
+	h := sha256.New()
+	_, e = io.Copy(h, rGet.Content)
+	rGet.Content.Close()
+	actualHash := hex.EncodeToString(h.Sum(nil))
+	assert.NoError(t, e)
+	assert.Equal(t, filesize, int64(*rGet.ContentLength))
+	assert.Equal(t, "application/octet-stream", *rGet.ContentType)
+	assert.Equal(t, expectedHash, actualHash)
+}
+
 func TestObjectStorage_GzipFileEncoding(t *testing.T) {
 	bname := getUniqueName("BucketWithZip")
 	objname := getUniqueName("gzippedcontent")
