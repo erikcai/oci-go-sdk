@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // PrivateEndpoint A *private endpoint* (PE) is a way for a service provider to give a customer a private access point for

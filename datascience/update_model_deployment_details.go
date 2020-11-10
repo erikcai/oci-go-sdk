@@ -11,7 +11,7 @@ package datascience
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // UpdateModelDeploymentDetails Details for updating a model deployment. `modelDeploymentConfigurationDetails` can only be updated while the model deployment is in the `INACTIVE` state.

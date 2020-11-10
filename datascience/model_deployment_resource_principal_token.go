@@ -10,7 +10,7 @@
 package datascience
 
 import (
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // ModelDeploymentResourcePrincipalToken This is a JsonWebToken (JWT) containing the mapping information between the instance principal and model deployment resource.

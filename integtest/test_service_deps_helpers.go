@@ -18,11 +18,11 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/oracle/oci-go-sdk/v27/common"
-	"github.com/oracle/oci-go-sdk/v27/core"
-	"github.com/oracle/oci-go-sdk/v27/database"
-	"github.com/oracle/oci-go-sdk/v27/identity"
-	"github.com/oracle/oci-go-sdk/v27/loadbalancer"
+	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v28/core"
+	"github.com/oracle/oci-go-sdk/v28/database"
+	"github.com/oracle/oci-go-sdk/v28/identity"
+	"github.com/oracle/oci-go-sdk/v28/loadbalancer"
 )
 
 const (

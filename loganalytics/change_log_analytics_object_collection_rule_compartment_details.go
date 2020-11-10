@@ -10,7 +10,7 @@
 package loganalytics
 
 import (
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // ChangeLogAnalyticsObjectCollectionRuleCompartmentDetails The new compartment this Object Collection Rule will be moved to.

@@ -12,7 +12,7 @@
 package objectstorage
 
 import (
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // BulkCopyObjectsDetails The parameters required by Object Storage to process a request to copy objects to another bucket.

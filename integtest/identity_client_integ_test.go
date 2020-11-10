@@ -17,8 +17,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/oracle/oci-go-sdk/v27/common"
-	"github.com/oracle/oci-go-sdk/v27/identity"
+	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v28/identity"
 	"github.com/stretchr/testify/assert"
 )
 

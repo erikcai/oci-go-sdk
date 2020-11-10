@@ -10,7 +10,7 @@
 package mysql
 
 import (
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // AnalyticsClusterNode An Analytics Cluster Node is a compute host that is part of an Analytics Cluster.

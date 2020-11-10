@@ -12,7 +12,7 @@
 package operationsinsights
 
 import (
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // DatabaseInsights Logical grouping used for Operations Insights database-targeted operations.

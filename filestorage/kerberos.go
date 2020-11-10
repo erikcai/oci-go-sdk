@@ -10,7 +10,7 @@
 package filestorage
 
 import (
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // Kerberos Allows administrator to configure a mount target to interact with the administrator's Kerberos Infrastructure.

@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // AddVcnIpv6CidrDetails Contains an optional field which might be specified if private and public IPv6 CIDR block need to be different

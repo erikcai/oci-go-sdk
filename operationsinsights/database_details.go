@@ -12,7 +12,7 @@
 package operationsinsights
 
 import (
-	"github.com/oracle/oci-go-sdk/v27/common"
+	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
 // DatabaseDetails Partial information about the database which includes id, name, type.

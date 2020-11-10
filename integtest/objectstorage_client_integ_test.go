@@ -23,9 +23,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/oracle/oci-go-sdk/v27/common"
-	"github.com/oracle/oci-go-sdk/v27/objectstorage"
-	"github.com/oracle/oci-go-sdk/v27/objectstorage/transfer"
+	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v28/objectstorage"
+	"github.com/oracle/oci-go-sdk/v28/objectstorage/transfer"
 	"github.com/stretchr/testify/assert"
 )
 
