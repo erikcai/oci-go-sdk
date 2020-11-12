@@ -3,7 +3,7 @@
 
 // Example code for Load Balancing Service API
 // This example creates a new loadbalancer with SSL cipher suites. After that it creates a new listener with the SSL configuration and updates the backend set with it. Finally it updates the loadbalancer cipher suites.
-
+// The loadblancer allow rule and conditional add/drop header rules are now enhanced to restrict traffic based on the original client IP in the HTTP Real Client IP header in addition to the previous hop source IP.
 package example
 
 import (
@@ -35,6 +35,8 @@ const (
     PrivateKeyGoesHere
     -----END RSA PRIVATE KEY-----`
 	cidrBlocksOneName       = "cidrBlocks1"
+	cidrBlocksIPv4Addr      = "129.213.176.0/24"
+    cidrBlocksIPv6Addr      = "2002::1234:abcd:ffff:c0a8:101/64"
 )
 
 func ExampleCreateLoadbalancer() {
@@ -70,7 +72,7 @@ func ExampleCreateLoadbalancer() {
 	cidrBlocks := map[string]loadbalancer.CidrBlocksDetails{
         cidrBlocksOneName: {
             Name: common.String("cidrBlocks1"),
-            Items: []string{"129.213.176.0/24", "2002::1234:abcd:ffff:c0a8:101/64"},
+            Items: []string{cidrBlocksIPv4Addr, cidrBlocksIPv6Addr},
         },
     }
     request.CidrBlocks = cidrBlocks
