@@ -23,6 +23,50 @@ func createRoverRoverNodeClientWithProvider(p common.ConfigurationProvider, test
 }
 
 // IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
+func TestRoverRoverNodeClientChangeRoverNodeCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("rover", "ChangeRoverNodeCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeRoverNodeCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("rover", "RoverNode", "ChangeRoverNodeCompartment", createRoverRoverNodeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(rover.RoverNodeClient)
+
+	body, err := testClient.getRequests("rover", "ChangeRoverNodeCompartment")
+	assert.NoError(t, err)
+
+	type ChangeRoverNodeCompartmentRequestInfo struct {
+		ContainerId string
+		Request     rover.ChangeRoverNodeCompartmentRequest
+	}
+
+	var requests []ChangeRoverNodeCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeRoverNodeCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
 func TestRoverRoverNodeClientCreateRoverNode(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -111,6 +155,50 @@ func TestRoverRoverNodeClientDeleteRoverNode(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
+func TestRoverRoverNodeClientGetNodeCertificate(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("rover", "GetNodeCertificate")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetNodeCertificate is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("rover", "RoverNode", "GetNodeCertificate", createRoverRoverNodeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(rover.RoverNodeClient)
+
+	body, err := testClient.getRequests("rover", "GetNodeCertificate")
+	assert.NoError(t, err)
+
+	type GetNodeCertificateRequestInfo struct {
+		ContainerId string
+		Request     rover.GetNodeCertificateRequest
+	}
+
+	var requests []GetNodeCertificateRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetNodeCertificate(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
 func TestRoverRoverNodeClientGetRoverNode(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -147,6 +235,50 @@ func TestRoverRoverNodeClientGetRoverNode(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetRoverNode(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
+func TestRoverRoverNodeClientGetRoverNodeRPT(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("rover", "GetRoverNodeRPT")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetRoverNodeRPT is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("rover", "RoverNode", "GetRoverNodeRPT", createRoverRoverNodeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(rover.RoverNodeClient)
+
+	body, err := testClient.getRequests("rover", "GetRoverNodeRPT")
+	assert.NoError(t, err)
+
+	type GetRoverNodeRPTRequestInfo struct {
+		ContainerId string
+		Request     rover.GetRoverNodeRPTRequest
+	}
+
+	var requests []GetRoverNodeRPTRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetRoverNodeRPT(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

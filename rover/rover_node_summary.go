@@ -25,11 +25,20 @@ type RoverNodeSummary struct {
 	// The current state of the RoverNode.
 	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
+	// The cluster ID if the node is part of a cluster.
+	ClusterId *string `mandatory:"false" json:"clusterId"`
+
+	// Serial number of the node.
+	SerialNumber *string `mandatory:"false" json:"serialNumber"`
+
 	// RoverNode Identifier, can be renamed
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The time the the RoverNode was created. An RFC3339 formatted datetime string
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
+
+	// A property that can contain details on the lifecycle.
+	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).

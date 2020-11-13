@@ -29,6 +29,9 @@ type Shape struct {
 	// The shape's availability domain.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
+	// For a subcore VM, the supported baseline ocpu utilization for instances that use this shape.
+	BaselineOcpuUtilizations []ShapeBaselineOcpuUtilizationsEnum `mandatory:"false" json:"baselineOcpuUtilizations,omitempty"`
+
 	// A short description of the shape's processor (CPU).
 	ProcessorDescription *string `mandatory:"false" json:"processorDescription"`
 
@@ -73,4 +76,27 @@ type Shape struct {
 
 func (m Shape) String() string {
 	return common.PointerString(m)
+}
+
+// ShapeBaselineOcpuUtilizationsEnum Enum with underlying type: string
+type ShapeBaselineOcpuUtilizationsEnum string
+
+// Set of constants representing the allowable values for ShapeBaselineOcpuUtilizationsEnum
+const (
+	ShapeBaselineOcpuUtilizations8 ShapeBaselineOcpuUtilizationsEnum = "BASELINE_1_8"
+	ShapeBaselineOcpuUtilizations2 ShapeBaselineOcpuUtilizationsEnum = "BASELINE_1_2"
+)
+
+var mappingShapeBaselineOcpuUtilizations = map[string]ShapeBaselineOcpuUtilizationsEnum{
+	"BASELINE_1_8": ShapeBaselineOcpuUtilizations8,
+	"BASELINE_1_2": ShapeBaselineOcpuUtilizations2,
+}
+
+// GetShapeBaselineOcpuUtilizationsEnumValues Enumerates the set of values for ShapeBaselineOcpuUtilizationsEnum
+func GetShapeBaselineOcpuUtilizationsEnumValues() []ShapeBaselineOcpuUtilizationsEnum {
+	values := make([]ShapeBaselineOcpuUtilizationsEnum, 0)
+	for _, v := range mappingShapeBaselineOcpuUtilizations {
+		values = append(values, v)
+	}
+	return values
 }

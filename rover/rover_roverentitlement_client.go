@@ -58,7 +58,7 @@ func newRoverEntitlementClientFromBaseClient(baseClient common.BaseClient, confi
 
 // SetRegion overrides the region of this client.
 func (client *RoverEntitlementClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("rover", "https://rover-cloud-service.{region}.oci.{secondLevelDomain}")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("rover", "https://rover.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -226,7 +226,7 @@ func (client RoverEntitlementClient) DeleteRoverEntitlement(ctx context.Context,
 
 // deleteRoverEntitlement implements the OCIOperation interface (enables retrying operations)
 func (client RoverEntitlementClient) deleteRoverEntitlement(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/roverEntitlements/{id}")
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/roverEntitlements/{roverEntitlementId}")
 	if err != nil {
 		return nil, err
 	}
@@ -281,7 +281,7 @@ func (client RoverEntitlementClient) GetRoverEntitlement(ctx context.Context, re
 
 // getRoverEntitlement implements the OCIOperation interface (enables retrying operations)
 func (client RoverEntitlementClient) getRoverEntitlement(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/roverEntitlements/{id}")
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/roverEntitlements/{roverEntitlementId}")
 	if err != nil {
 		return nil, err
 	}
@@ -337,6 +337,56 @@ func (client RoverEntitlementClient) listRoverEntitlement(ctx context.Context, r
 	}
 
 	var response ListRoverEntitlementResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateRoverEntitlement Updates the RoverEntitlement
+func (client RoverEntitlementClient) UpdateRoverEntitlement(ctx context.Context, request UpdateRoverEntitlementRequest) (response UpdateRoverEntitlementResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateRoverEntitlement, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateRoverEntitlementResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateRoverEntitlementResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateRoverEntitlementResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateRoverEntitlementResponse")
+	}
+	return
+}
+
+// updateRoverEntitlement implements the OCIOperation interface (enables retrying operations)
+func (client RoverEntitlementClient) updateRoverEntitlement(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/roverEntitlements/{roverEntitlementId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateRoverEntitlementResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

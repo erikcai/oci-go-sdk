@@ -35,6 +35,8 @@ type UpdateChannelSourceFromMysqlDetails struct {
 	// and 1 special (nonalphanumeric) character.
 	Password *string `mandatory:"false" json:"password"`
 
+	SslCaCertificate CaCertificate `mandatory:"false" json:"sslCaCertificate"`
+
 	// The SSL mode of the Channel.
 	SslMode ChannelSourceMysqlSslModeEnum `mandatory:"false" json:"sslMode,omitempty"`
 }
@@ -55,4 +57,43 @@ func (m UpdateChannelSourceFromMysqlDetails) MarshalJSON() (buff []byte, e error
 	}
 
 	return json.Marshal(&s)
+}
+
+// UnmarshalJSON unmarshals from json
+func (m *UpdateChannelSourceFromMysqlDetails) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		Hostname         *string                       `json:"hostname"`
+		Port             *int                          `json:"port"`
+		Username         *string                       `json:"username"`
+		Password         *string                       `json:"password"`
+		SslMode          ChannelSourceMysqlSslModeEnum `json:"sslMode"`
+		SslCaCertificate cacertificate                 `json:"sslCaCertificate"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	var nn interface{}
+	m.Hostname = model.Hostname
+
+	m.Port = model.Port
+
+	m.Username = model.Username
+
+	m.Password = model.Password
+
+	m.SslMode = model.SslMode
+
+	nn, e = model.SslCaCertificate.UnmarshalPolymorphicJSON(model.SslCaCertificate.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.SslCaCertificate = nn.(CaCertificate)
+	} else {
+		m.SslCaCertificate = nil
+	}
+
+	return
 }

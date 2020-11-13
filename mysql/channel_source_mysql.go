@@ -28,7 +28,9 @@ type ChannelSourceMysql struct {
 	// please see the MySQL documentation (https://dev.mysql.com/doc/refman/8.0/en/change-master-to.html)
 	Username *string `mandatory:"true" json:"username"`
 
-	// The state of the Channel.
+	SslCaCertificate CaCertificate `mandatory:"false" json:"sslCaCertificate"`
+
+	// The SSL mode of the Channel.
 	SslMode ChannelSourceMysqlSslModeEnum `mandatory:"true" json:"sslMode"`
 }
 
@@ -50,18 +52,58 @@ func (m ChannelSourceMysql) MarshalJSON() (buff []byte, e error) {
 	return json.Marshal(&s)
 }
 
+// UnmarshalJSON unmarshals from json
+func (m *ChannelSourceMysql) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		SslCaCertificate cacertificate                 `json:"sslCaCertificate"`
+		Hostname         *string                       `json:"hostname"`
+		Port             *int                          `json:"port"`
+		Username         *string                       `json:"username"`
+		SslMode          ChannelSourceMysqlSslModeEnum `json:"sslMode"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	var nn interface{}
+	nn, e = model.SslCaCertificate.UnmarshalPolymorphicJSON(model.SslCaCertificate.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.SslCaCertificate = nn.(CaCertificate)
+	} else {
+		m.SslCaCertificate = nil
+	}
+
+	m.Hostname = model.Hostname
+
+	m.Port = model.Port
+
+	m.Username = model.Username
+
+	m.SslMode = model.SslMode
+
+	return
+}
+
 // ChannelSourceMysqlSslModeEnum Enum with underlying type: string
 type ChannelSourceMysqlSslModeEnum string
 
 // Set of constants representing the allowable values for ChannelSourceMysqlSslModeEnum
 const (
-	ChannelSourceMysqlSslModeRequired ChannelSourceMysqlSslModeEnum = "REQUIRED"
-	ChannelSourceMysqlSslModeDisabled ChannelSourceMysqlSslModeEnum = "DISABLED"
+	ChannelSourceMysqlSslModeVerifyIdentity ChannelSourceMysqlSslModeEnum = "VERIFY_IDENTITY"
+	ChannelSourceMysqlSslModeVerifyCa       ChannelSourceMysqlSslModeEnum = "VERIFY_CA"
+	ChannelSourceMysqlSslModeRequired       ChannelSourceMysqlSslModeEnum = "REQUIRED"
+	ChannelSourceMysqlSslModeDisabled       ChannelSourceMysqlSslModeEnum = "DISABLED"
 )
 
 var mappingChannelSourceMysqlSslMode = map[string]ChannelSourceMysqlSslModeEnum{
-	"REQUIRED": ChannelSourceMysqlSslModeRequired,
-	"DISABLED": ChannelSourceMysqlSslModeDisabled,
+	"VERIFY_IDENTITY": ChannelSourceMysqlSslModeVerifyIdentity,
+	"VERIFY_CA":       ChannelSourceMysqlSslModeVerifyCa,
+	"REQUIRED":        ChannelSourceMysqlSslModeRequired,
+	"DISABLED":        ChannelSourceMysqlSslModeDisabled,
 }
 
 // GetChannelSourceMysqlSslModeEnumValues Enumerates the set of values for ChannelSourceMysqlSslModeEnum

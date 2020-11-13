@@ -32,7 +32,7 @@ type RoverNode struct {
 	NodeType *string `mandatory:"false" json:"nodeType"`
 
 	// Serial number of the node.
-	NodeSerialNo *string `mandatory:"false" json:"nodeSerialNo"`
+	SerialNumber *string `mandatory:"false" json:"serialNumber"`
 
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
@@ -79,11 +79,17 @@ type RoverNode struct {
 	// Start time for the window to pickup the device from customer.
 	ReturnWindowStartTime *common.SDKTime `mandatory:"false" json:"returnWindowStartTime"`
 
+	// Tracking Url for the shipped RoverNode.
+	OracleShippingTrackingUrl *string `mandatory:"false" json:"oracleShippingTrackingUrl"`
+
 	// End time for the window to pickup the device from customer.
 	ReturnWindowEndTime *common.SDKTime `mandatory:"false" json:"returnWindowEndTime"`
 
 	// Uri to download return shipping label.
 	ReturnShippingLabelUri *string `mandatory:"false" json:"returnShippingLabelUri"`
+
+	// Uri of a pre-authenticated request to a bucket in service tenancy where Image workloads will be exported.
+	ImageExportPar *string `mandatory:"false" json:"imageExportPar"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).

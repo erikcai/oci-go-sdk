@@ -34,6 +34,9 @@ type RoverClusterSummary struct {
 	// The nodes that are part of this cluster.
 	Nodes []string `mandatory:"false" json:"nodes"`
 
+	// A property that can contain details on the lifecycle.
+	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
+
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`

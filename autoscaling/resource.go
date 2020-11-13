@@ -18,7 +18,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
-// Resource A resource that is managed by an autoscaling configuration. The only supported type is "instancePool."
+// Resource A resource that is managed by an autoscaling configuration. The only supported type is `instancePool`.
 // Each instance pool can have one autoscaling configuration.
 type Resource interface {
 
@@ -58,6 +58,10 @@ func (m *resource) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 
 	var err error
 	switch m.Type {
+	case "instance":
+		mm := InstanceResource{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "instancePool":
 		mm := InstancePoolResource{}
 		err = json.Unmarshal(data, &mm)

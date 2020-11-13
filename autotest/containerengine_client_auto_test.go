@@ -23,6 +23,50 @@ func createContainerEngineClientWithProvider(p common.ConfigurationProvider, tes
 }
 
 // IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
+func TestContainerEngineClientClusterMigrateToNativeVcn(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("containerengine", "ClusterMigrateToNativeVcn")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ClusterMigrateToNativeVcn is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("containerengine", "ContainerEngine", "ClusterMigrateToNativeVcn", createContainerEngineClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(containerengine.ContainerEngineClient)
+
+	body, err := testClient.getRequests("containerengine", "ClusterMigrateToNativeVcn")
+	assert.NoError(t, err)
+
+	type ClusterMigrateToNativeVcnRequestInfo struct {
+		ContainerId string
+		Request     containerengine.ClusterMigrateToNativeVcnRequest
+	}
+
+	var requests []ClusterMigrateToNativeVcnRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ClusterMigrateToNativeVcn(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
 func TestContainerEngineClientCreateCluster(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -323,6 +367,50 @@ func TestContainerEngineClientGetCluster(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetCluster(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
+func TestContainerEngineClientGetClusterMigrateToNativeVcnStatus(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("containerengine", "GetClusterMigrateToNativeVcnStatus")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetClusterMigrateToNativeVcnStatus is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("containerengine", "ContainerEngine", "GetClusterMigrateToNativeVcnStatus", createContainerEngineClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(containerengine.ContainerEngineClient)
+
+	body, err := testClient.getRequests("containerengine", "GetClusterMigrateToNativeVcnStatus")
+	assert.NoError(t, err)
+
+	type GetClusterMigrateToNativeVcnStatusRequestInfo struct {
+		ContainerId string
+		Request     containerengine.GetClusterMigrateToNativeVcnStatusRequest
+	}
+
+	var requests []GetClusterMigrateToNativeVcnStatusRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetClusterMigrateToNativeVcnStatus(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -793,6 +881,50 @@ func TestContainerEngineClientUpdateCluster(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateCluster(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oke_control_plane_ww_grp@oracle.com" jiraProject="OKE" opsJiraProject="OKE"
+func TestContainerEngineClientUpdateClusterEndpointConfig(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("containerengine", "UpdateClusterEndpointConfig")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateClusterEndpointConfig is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("containerengine", "ContainerEngine", "UpdateClusterEndpointConfig", createContainerEngineClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(containerengine.ContainerEngineClient)
+
+	body, err := testClient.getRequests("containerengine", "UpdateClusterEndpointConfig")
+	assert.NoError(t, err)
+
+	type UpdateClusterEndpointConfigRequestInfo struct {
+		ContainerId string
+		Request     containerengine.UpdateClusterEndpointConfigRequest
+	}
+
+	var requests []UpdateClusterEndpointConfigRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateClusterEndpointConfig(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

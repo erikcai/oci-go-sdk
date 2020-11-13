@@ -51,6 +51,9 @@ type LocalPeeringGateway struct {
 	// LPG at the other end of the peering has been deleted.
 	PeeringStatus LocalPeeringGatewayPeeringStatusEnum `mandatory:"true" json:"peeringStatus"`
 
+	// The OCID of the peered LPG
+	PeerId *string `mandatory:"true" json:"peerId"`
+
 	// The date and time the LPG was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`

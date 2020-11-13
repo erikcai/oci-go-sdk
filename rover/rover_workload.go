@@ -28,6 +28,12 @@ type RoverWorkload struct {
 	// Name of the Rover Workload
 	Name *string `mandatory:"false" json:"name"`
 
+	// Size of the workload.
+	Size *string `mandatory:"false" json:"size"`
+
+	// Number of objects in a workload.
+	ObjectCount *string `mandatory:"false" json:"objectCount"`
+
 	// Prefix to filter objects in case it is a bucket.
 	Prefix *string `mandatory:"false" json:"prefix"`
 

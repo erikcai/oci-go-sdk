@@ -1321,6 +1321,94 @@ func TestLoganalyticsLogAnalyticsClientEstimatePurgeDataSize(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientEstimateRecallDataSize(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "EstimateRecallDataSize")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("EstimateRecallDataSize is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "EstimateRecallDataSize", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "EstimateRecallDataSize")
+	assert.NoError(t, err)
+
+	type EstimateRecallDataSizeRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.EstimateRecallDataSizeRequest
+	}
+
+	var requests []EstimateRecallDataSizeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.EstimateRecallDataSize(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientEstimateReleaseDataSize(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "EstimateReleaseDataSize")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("EstimateReleaseDataSize is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "EstimateReleaseDataSize", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "EstimateReleaseDataSize")
+	assert.NoError(t, err)
+
+	type EstimateReleaseDataSizeRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.EstimateReleaseDataSizeRequest
+	}
+
+	var requests []EstimateReleaseDataSizeRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.EstimateReleaseDataSize(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
 func TestLoganalyticsLogAnalyticsClientExportCustomContent(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3691,6 +3779,60 @@ func TestLoganalyticsLogAnalyticsClientListQueryWorkRequests(t *testing.T) {
 			typedListResponses := make([]loganalytics.ListQueryWorkRequestsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(loganalytics.ListQueryWorkRequestsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientListRecalledData(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "ListRecalledData")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListRecalledData is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "ListRecalledData", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "ListRecalledData")
+	assert.NoError(t, err)
+
+	type ListRecalledDataRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.ListRecalledDataRequest
+	}
+
+	var requests []ListRecalledDataRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*loganalytics.ListRecalledDataRequest)
+				return c.ListRecalledData(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]loganalytics.ListRecalledDataResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(loganalytics.ListRecalledDataResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

@@ -79,7 +79,7 @@ func (client *LogAnalyticsClient) ConfigurationProvider() *common.ConfigurationP
 	return client.config
 }
 
-// AddEntityAssociation Adds association between input source log analytics entity and destination entities.
+// AddEntityAssociation Adds association between input source log analytics entity and one or more existing destination entities.
 func (client LogAnalyticsClient) AddEntityAssociation(ctx context.Context, request AddEntityAssociationRequest) (response AddEntityAssociationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -344,7 +344,7 @@ func (client LogAnalyticsClient) changeLogAnalyticsLogGroupCompartment(ctx conte
 	return response, err
 }
 
-// ChangeLogAnalyticsObjectCollectionRuleCompartment Move the rule from it's current compartment to given compartment.
+// ChangeLogAnalyticsObjectCollectionRuleCompartment Move the rule from it's current compartment to the given compartment.
 func (client LogAnalyticsClient) ChangeLogAnalyticsObjectCollectionRuleCompartment(ctx context.Context, request ChangeLogAnalyticsObjectCollectionRuleCompartmentRequest) (response ChangeLogAnalyticsObjectCollectionRuleCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -670,7 +670,7 @@ func (client LogAnalyticsClient) createLogAnalyticsLogGroup(ctx context.Context,
 	return response, err
 }
 
-// CreateLogAnalyticsObjectCollectionRule Create a configuration to collect logs from object storage bucket.
+// CreateLogAnalyticsObjectCollectionRule Creates a rule to collect logs from an object storage bucket.
 func (client LogAnalyticsClient) CreateLogAnalyticsObjectCollectionRule(ctx context.Context, request CreateLogAnalyticsObjectCollectionRuleRequest) (response CreateLogAnalyticsObjectCollectionRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -990,7 +990,7 @@ func (client LogAnalyticsClient) deleteLogAnalyticsEntity(ctx context.Context, r
 	return response, err
 }
 
-// DeleteLogAnalyticsEntityType Delete the log analytics entity type with the given name.
+// DeleteLogAnalyticsEntityType Delete log analytics entity type with the given name.
 func (client LogAnalyticsClient) DeleteLogAnalyticsEntityType(ctx context.Context, request DeleteLogAnalyticsEntityTypeRequest) (response DeleteLogAnalyticsEntityTypeResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1090,8 +1090,8 @@ func (client LogAnalyticsClient) deleteLogAnalyticsLogGroup(ctx context.Context,
 	return response, err
 }
 
-// DeleteLogAnalyticsObjectCollectionRule Deletes a configured object storage bucket based collection rule to stop the log collection of the configured bucket .
-// It will not delete the already collected log data from the configured bucket.
+// DeleteLogAnalyticsObjectCollectionRule Deletes the configured object storage bucket based collection rule and stop the log collection.
+// It will not delete the existing processed data associated with this bucket from logging analytics storage.
 func (client LogAnalyticsClient) DeleteLogAnalyticsObjectCollectionRule(ctx context.Context, request DeleteLogAnalyticsObjectCollectionRuleRequest) (response DeleteLogAnalyticsObjectCollectionRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1352,8 +1352,8 @@ func (client LogAnalyticsClient) deleteUpload(ctx context.Context, request commo
 	return response, err
 }
 
-// DeleteUploadFile Deletes a specific log file inside an upload by providing upload file reference.
-// It deletes all the logs in storage asscoiated with the upload file and the corresponding upload metadata.
+// DeleteUploadFile Deletes a specific log file inside an upload by upload file reference.
+// It deletes all the logs from storage associated with the file and the corresponding metadata.
 func (client LogAnalyticsClient) DeleteUploadFile(ctx context.Context, request DeleteUploadFileRequest) (response DeleteUploadFileResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1596,6 +1596,106 @@ func (client LogAnalyticsClient) estimatePurgeDataSize(ctx context.Context, requ
 	}
 
 	var response EstimatePurgeDataSizeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// EstimateRecallDataSize This API gives an active storage usage estimate for archived data to be recalled and the time range of such data.
+func (client LogAnalyticsClient) EstimateRecallDataSize(ctx context.Context, request EstimateRecallDataSizeRequest) (response EstimateRecallDataSizeResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.estimateRecallDataSize, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = EstimateRecallDataSizeResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = EstimateRecallDataSizeResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(EstimateRecallDataSizeResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into EstimateRecallDataSizeResponse")
+	}
+	return
+}
+
+// estimateRecallDataSize implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) estimateRecallDataSize(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/namespaces/{namespaceName}/storage/actions/estimateRecallDataSize")
+	if err != nil {
+		return nil, err
+	}
+
+	var response EstimateRecallDataSizeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// EstimateReleaseDataSize This API gives an active storage usage estimate for recalled data to be released and the time range of such data.
+func (client LogAnalyticsClient) EstimateReleaseDataSize(ctx context.Context, request EstimateReleaseDataSizeRequest) (response EstimateReleaseDataSizeResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.estimateReleaseDataSize, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = EstimateReleaseDataSizeResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = EstimateReleaseDataSizeResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(EstimateReleaseDataSizeResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into EstimateReleaseDataSizeResponse")
+	}
+	return
+}
+
+// estimateReleaseDataSize implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) estimateReleaseDataSize(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/namespaces/{namespaceName}/storage/actions/estimateReleaseDataSize")
+	if err != nil {
+		return nil, err
+	}
+
+	var response EstimateReleaseDataSizeResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2226,7 +2326,7 @@ func (client LogAnalyticsClient) getLabelSummary(ctx context.Context, request co
 	return response, err
 }
 
-// GetLogAnalyticsEntitiesSummary Returns log analytics entities count summary.
+// GetLogAnalyticsEntitiesSummary Returns log analytics entities count summary report.
 func (client LogAnalyticsClient) GetLogAnalyticsEntitiesSummary(ctx context.Context, request GetLogAnalyticsEntitiesSummaryRequest) (response GetLogAnalyticsEntitiesSummaryResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3079,7 +3179,7 @@ func (client LogAnalyticsClient) getStorageWorkRequest(ctx context.Context, requ
 	return response, err
 }
 
-// GetUpload Gets an On-Demand Upload info by reference
+// GetUpload Gets an On-Demand Upload info by reference.
 func (client LogAnalyticsClient) GetUpload(ctx context.Context, request GetUploadRequest) (response GetUploadResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3784,7 +3884,7 @@ func (client LogAnalyticsClient) listLogAnalyticsLogGroups(ctx context.Context, 
 	return response, err
 }
 
-// ListLogAnalyticsObjectCollectionRules Gets list of configuration details of Object Storage based collection rules.
+// ListLogAnalyticsObjectCollectionRules Gets list of collection rules.
 func (client LogAnalyticsClient) ListLogAnalyticsObjectCollectionRules(ctx context.Context, request ListLogAnalyticsObjectCollectionRulesRequest) (response ListLogAnalyticsObjectCollectionRulesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4123,6 +4223,56 @@ func (client LogAnalyticsClient) listQueryWorkRequests(ctx context.Context, requ
 	}
 
 	var response ListQueryWorkRequestsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListRecalledData This API returns the list of recalled data of a tenancy.
+func (client LogAnalyticsClient) ListRecalledData(ctx context.Context, request ListRecalledDataRequest) (response ListRecalledDataResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listRecalledData, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListRecalledDataResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListRecalledDataResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListRecalledDataResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListRecalledDataResponse")
+	}
+	return
+}
+
+// listRecalledData implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) listRecalledData(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/namespaces/{namespaceName}/storage/recalledData")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListRecalledDataResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -4585,7 +4735,7 @@ func (client LogAnalyticsClient) listStorageWorkRequests(ctx context.Context, re
 	return response, err
 }
 
-// ListSupportedCharEncodings Gets the list of character encodings supported for log files.
+// ListSupportedCharEncodings Gets list of character encodings which are supported by on-demand upload.
 func (client LogAnalyticsClient) ListSupportedCharEncodings(ctx context.Context, request ListSupportedCharEncodingsRequest) (response ListSupportedCharEncodingsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4635,7 +4785,7 @@ func (client LogAnalyticsClient) listSupportedCharEncodings(ctx context.Context,
 	return response, err
 }
 
-// ListSupportedTimezones Gets timezones that are supported when performing uploads.
+// ListSupportedTimezones Gets list of timezones which are supported by on-demand upload.
 func (client LogAnalyticsClient) ListSupportedTimezones(ctx context.Context, request ListSupportedTimezonesRequest) (response ListSupportedTimezonesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4685,7 +4835,7 @@ func (client LogAnalyticsClient) listSupportedTimezones(ctx context.Context, req
 	return response, err
 }
 
-// ListUploadFiles Gets list of files in an upload.
+// ListUploadFiles Gets list of files in an upload along with its processing state.
 func (client LogAnalyticsClient) ListUploadFiles(ctx context.Context, request ListUploadFilesRequest) (response ListUploadFilesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -4735,7 +4885,7 @@ func (client LogAnalyticsClient) listUploadFiles(ctx context.Context, request co
 	return response, err
 }
 
-// ListUploadWarnings Gets list of warnings in an upload explaining the failures due to incorrect configuration.
+// ListUploadWarnings Gets list of warnings in an upload caused by incorrect configuration.
 func (client LogAnalyticsClient) ListUploadWarnings(ctx context.Context, request ListUploadWarningsRequest) (response ListUploadWarningsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -5834,7 +5984,7 @@ func (client LogAnalyticsClient) updateLogAnalyticsLogGroup(ctx context.Context,
 	return response, err
 }
 
-// UpdateLogAnalyticsObjectCollectionRule Update the rule with the given id.
+// UpdateLogAnalyticsObjectCollectionRule Updates configuration of the object collection rule for the given id.
 func (client LogAnalyticsClient) UpdateLogAnalyticsObjectCollectionRule(ctx context.Context, request UpdateLogAnalyticsObjectCollectionRuleRequest) (response UpdateLogAnalyticsObjectCollectionRuleResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6379,7 +6529,7 @@ func (client LogAnalyticsClient) validateAssociationParameters(ctx context.Conte
 	return response, err
 }
 
-// ValidateFile Validates a log file to check whether it is eligible to upload or not.
+// ValidateFile Validates a log file to check whether it is eligible to be uploaded or not.
 func (client LogAnalyticsClient) ValidateFile(ctx context.Context, request ValidateFileRequest) (response ValidateFileResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -6539,7 +6689,7 @@ func (client LogAnalyticsClient) validateSourceExtendedFieldDetails(ctx context.
 	return response, err
 }
 
-// ValidateSourceMapping Validates the source mapping for given file and provides match status and parsed representation of log data.
+// ValidateSourceMapping Validates the source mapping for a given file and provides match status and the parsed representation of log data.
 func (client LogAnalyticsClient) ValidateSourceMapping(ctx context.Context, request ValidateSourceMappingRequest) (response ValidateSourceMappingResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

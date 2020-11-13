@@ -68,6 +68,9 @@ type RoverCluster struct {
 	// Preference for device delivery.
 	ShippingPreference RoverClusterShippingPreferenceEnum `mandatory:"false" json:"shippingPreference,omitempty"`
 
+	// Tracking Url for the shipped Rover Cluster.
+	OracleShippingTrackingUrl *string `mandatory:"false" json:"oracleShippingTrackingUrl"`
+
 	// Shipping vendor of choice for orace to customer shipping.
 	ShippingVendor *string `mandatory:"false" json:"shippingVendor"`
 
@@ -82,6 +85,9 @@ type RoverCluster struct {
 
 	// Uri to download return shipping label.
 	ReturnShippingLabelUri *string `mandatory:"false" json:"returnShippingLabelUri"`
+
+	// Uri of a pre-authenticated request to a bucket in service tenancy where Image workloads will be exported.
+	ImageExportPar *string `mandatory:"false" json:"imageExportPar"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).

@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
-// CreateLogAnalyticsObjectCollectionRuleDetails The configuration details of an Object Storage based collection rule to enable automatic log collection.
+// CreateLogAnalyticsObjectCollectionRuleDetails The configuration details of collection rule to enable automatic log collection from an object storage bucket.
 type CreateLogAnalyticsObjectCollectionRuleDetails struct {
 
 	// A unique name given to the rule. The name must be unique within the tenancy, and cannot be modified.
@@ -39,7 +39,6 @@ type CreateLogAnalyticsObjectCollectionRuleDetails struct {
 	Description *string `mandatory:"false" json:"description"`
 
 	// The type of collection.
-	// Supported collection types: LIVE, HISTORIC, HISTORIC_LIVE
 	CollectionType ObjectCollectionRuleCollectionTypesEnum `mandatory:"false" json:"collectionType,omitempty"`
 
 	// The oldest time of the file in the bucket to consider for collection.
@@ -56,7 +55,7 @@ type CreateLogAnalyticsObjectCollectionRuleDetails struct {
 	EntityId *string `mandatory:"false" json:"entityId"`
 
 	// An optional character encoding to aid in detecting the character encoding of the contents of the objects while processing.
-	// It is recommended to set this value as ISO_8589_1 when configuring content of the objects having more numeric characters,
+	// It is recommended to set this value as ISO_8859_1 when configuring content of the objects having more numeric characters,
 	// and very few alphabets.
 	// For e.g. this applies when configuring VCN Flow Logs.
 	CharEncoding *string `mandatory:"false" json:"charEncoding"`

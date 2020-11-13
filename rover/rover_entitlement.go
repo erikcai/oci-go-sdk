@@ -33,6 +33,9 @@ type RoverEntitlement struct {
 	// Requestor email for the entitlement.
 	RequestorEmail *string `mandatory:"false" json:"requestorEmail"`
 
+	// Details about the entitlement.
+	EntitlementDetails *string `mandatory:"false" json:"entitlementDetails"`
+
 	// A property that can contain details on the lifecycle.
 	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
 

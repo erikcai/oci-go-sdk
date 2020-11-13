@@ -48,6 +48,9 @@ type UpdateRoverClusterDetails struct {
 	// Preference for device delivery.
 	ShippingPreference UpdateRoverClusterDetailsShippingPreferenceEnum `mandatory:"false" json:"shippingPreference,omitempty"`
 
+	// Tracking Url for the shipped Rover Cluster.
+	OracleShippingTrackingUrl *string `mandatory:"false" json:"oracleShippingTrackingUrl"`
+
 	// Shipping vendor of choice for orace to customer shipping.
 	ShippingVendor *string `mandatory:"false" json:"shippingVendor"`
 

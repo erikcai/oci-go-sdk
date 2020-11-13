@@ -58,7 +58,7 @@ func newRoverNodeClientFromBaseClient(baseClient common.BaseClient, configProvid
 
 // SetRegion overrides the region of this client.
 func (client *RoverNodeClient) SetRegion(region string) {
-	client.Host = common.StringToRegion(region).EndpointForTemplate("rover", "https://rover-cloud-service.{region}.oci.{secondLevelDomain}")
+	client.Host = common.StringToRegion(region).EndpointForTemplate("rover", "https://rover.{region}.oci.{secondLevelDomain}")
 }
 
 // SetConfigurationProvider sets the configuration provider including the region, returns an error if is not valid
@@ -77,6 +77,61 @@ func (client *RoverNodeClient) setConfigurationProvider(configProvider common.Co
 // ConfigurationProvider the ConfigurationProvider used in this client, or null if none set
 func (client *RoverNodeClient) ConfigurationProvider() *common.ConfigurationProvider {
 	return client.config
+}
+
+// ChangeRoverNodeCompartment Moves a cluster into a different compartment.
+func (client RoverNodeClient) ChangeRoverNodeCompartment(ctx context.Context, request ChangeRoverNodeCompartmentRequest) (response ChangeRoverNodeCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeRoverNodeCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeRoverNodeCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeRoverNodeCompartmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeRoverNodeCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeRoverNodeCompartmentResponse")
+	}
+	return
+}
+
+// changeRoverNodeCompartment implements the OCIOperation interface (enables retrying operations)
+func (client RoverNodeClient) changeRoverNodeCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/roverNodes/{roverNodeId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeRoverNodeCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
 }
 
 // CreateRoverNode Creates a new RoverNode.
@@ -184,6 +239,56 @@ func (client RoverNodeClient) deleteRoverNode(ctx context.Context, request commo
 	return response, err
 }
 
+// GetNodeCertificate Get the certificate for a rover node
+func (client RoverNodeClient) GetNodeCertificate(ctx context.Context, request GetNodeCertificateRequest) (response GetNodeCertificateResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getNodeCertificate, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetNodeCertificateResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetNodeCertificateResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetNodeCertificateResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetNodeCertificateResponse")
+	}
+	return
+}
+
+// getNodeCertificate implements the OCIOperation interface (enables retrying operations)
+func (client RoverNodeClient) getNodeCertificate(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/roverNodes/{roverNodeId}/certificate")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetNodeCertificateResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetRoverNode Gets a RoverNode by identifier
 func (client RoverNodeClient) GetRoverNode(ctx context.Context, request GetRoverNodeRequest) (response GetRoverNodeResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -222,6 +327,56 @@ func (client RoverNodeClient) getRoverNode(ctx context.Context, request common.O
 	}
 
 	var response GetRoverNodeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetRoverNodeRPT Get the resource principal token for a rover node
+func (client RoverNodeClient) GetRoverNodeRPT(ctx context.Context, request GetRoverNodeRPTRequest) (response GetRoverNodeRPTResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getRoverNodeRPT, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetRoverNodeRPTResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetRoverNodeRPTResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetRoverNodeRPTResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetRoverNodeRPTResponse")
+	}
+	return
+}
+
+// getRoverNodeRPT implements the OCIOperation interface (enables retrying operations)
+func (client RoverNodeClient) getRoverNodeRPT(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/roverNodes/{roverNodeId}/getRPT")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetRoverNodeRPTResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

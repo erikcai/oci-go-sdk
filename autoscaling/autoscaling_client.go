@@ -198,6 +198,11 @@ func (client AutoScalingClient) createAutoScalingConfiguration(ctx context.Conte
 }
 
 // CreateAutoScalingPolicy Creates an autoscaling policy for the specified autoscaling configuration.
+// You can create the following types of autoscaling policies:
+// - **Schedule-based:** Autoscaling events take place at the specific times that you schedule.
+// - **Threshold-based:** An autoscaling action is triggered when a performance metric meets or exceeds a threshold.
+// An autoscaling configuration can either have multiple schedule-based autoscaling policies, or one
+// threshold-based autoscaling policy.
 func (client AutoScalingClient) CreateAutoScalingPolicy(ctx context.Context, request CreateAutoScalingPolicyRequest) (response CreateAutoScalingPolicyResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

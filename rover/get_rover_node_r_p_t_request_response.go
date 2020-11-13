@@ -48,8 +48,8 @@ type GetRoverNodeRPTResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The GetRpt instance
-	GetRpt `presentIn:"body"`
+	// The GetRoverNodeRpt instance
+	GetRoverNodeRpt `presentIn:"body"`
 
 	// For optimistic concurrency control. See `if-match`.
 	Etag *string `presentIn:"header" name:"etag"`

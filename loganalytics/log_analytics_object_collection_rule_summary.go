@@ -31,8 +31,7 @@ type LogAnalyticsObjectCollectionRuleSummary struct {
 	// Name of the Object Storage bucket.
 	OsBucketName *string `mandatory:"true" json:"osBucketName"`
 
-	// The type of collection.
-	// Supported collection types: LIVE, HISTORIC, HISTORIC_LIVE
+	// The type of log collection.
 	CollectionType ObjectCollectionRuleCollectionTypesEnum `mandatory:"true" json:"collectionType"`
 
 	// The current state of the rule.

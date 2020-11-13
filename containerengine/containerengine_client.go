@@ -81,6 +81,56 @@ func (client *ContainerEngineClient) ConfigurationProvider() *common.Configurati
 	return client.config
 }
 
+// ClusterMigrateToNativeVcn Initiates cluster migration to use native VCN.
+func (client ContainerEngineClient) ClusterMigrateToNativeVcn(ctx context.Context, request ClusterMigrateToNativeVcnRequest) (response ClusterMigrateToNativeVcnResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.clusterMigrateToNativeVcn, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ClusterMigrateToNativeVcnResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ClusterMigrateToNativeVcnResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ClusterMigrateToNativeVcnResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ClusterMigrateToNativeVcnResponse")
+	}
+	return
+}
+
+// clusterMigrateToNativeVcn implements the OCIOperation interface (enables retrying operations)
+func (client ContainerEngineClient) clusterMigrateToNativeVcn(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/clusters/{clusterId}/actions/migrateToNativeVcn")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ClusterMigrateToNativeVcnResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateCluster Create a new cluster.
 func (client ContainerEngineClient) CreateCluster(ctx context.Context, request CreateClusterRequest) (response CreateClusterResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -428,6 +478,56 @@ func (client ContainerEngineClient) getCluster(ctx context.Context, request comm
 	}
 
 	var response GetClusterResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetClusterMigrateToNativeVcnStatus Get details on a cluster's migration to native VCN.
+func (client ContainerEngineClient) GetClusterMigrateToNativeVcnStatus(ctx context.Context, request GetClusterMigrateToNativeVcnStatusRequest) (response GetClusterMigrateToNativeVcnStatusResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getClusterMigrateToNativeVcnStatus, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetClusterMigrateToNativeVcnStatusResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetClusterMigrateToNativeVcnStatusResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetClusterMigrateToNativeVcnStatusResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetClusterMigrateToNativeVcnStatusResponse")
+	}
+	return
+}
+
+// getClusterMigrateToNativeVcnStatus implements the OCIOperation interface (enables retrying operations)
+func (client ContainerEngineClient) getClusterMigrateToNativeVcnStatus(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clusters/{clusterId}/migrateToNativeVcnStatus")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetClusterMigrateToNativeVcnStatusResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -928,6 +1028,56 @@ func (client ContainerEngineClient) updateCluster(ctx context.Context, request c
 	}
 
 	var response UpdateClusterResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateClusterEndpointConfig Update the details of the cluster endpoint configuration.
+func (client ContainerEngineClient) UpdateClusterEndpointConfig(ctx context.Context, request UpdateClusterEndpointConfigRequest) (response UpdateClusterEndpointConfigResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateClusterEndpointConfig, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateClusterEndpointConfigResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateClusterEndpointConfigResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateClusterEndpointConfigResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateClusterEndpointConfigResponse")
+	}
+	return
+}
+
+// updateClusterEndpointConfig implements the OCIOperation interface (enables retrying operations)
+func (client ContainerEngineClient) updateClusterEndpointConfig(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/clusters/{clusterId}/actions/updateEndpointConfig")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateClusterEndpointConfigResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

@@ -13,16 +13,13 @@ import (
 	"github.com/oracle/oci-go-sdk/v28/common"
 )
 
-// GetRpt The resource principal token response
-type GetRpt struct {
+// GetClusterCertificate The certificate response
+type GetClusterCertificate struct {
 
-	// The resource principal token blob that contains claims about the resource
-	ResourcePrincipalToken *string `mandatory:"false" json:"resourcePrincipalToken"`
-
-	// The service principal session token
-	ServicePrincipalSessionToken *string `mandatory:"false" json:"servicePrincipalSessionToken"`
+	// The certificate that can be installed on a client to do TLS communication to the cluster
+	Certificate *string `mandatory:"false" json:"certificate"`
 }
 
-func (m GetRpt) String() string {
+func (m GetClusterCertificate) String() string {
 	return common.PointerString(m)
 }

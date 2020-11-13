@@ -12,8 +12,11 @@ import (
 // GetRoverEntitlementRequest wrapper for the GetRoverEntitlement operation
 type GetRoverEntitlementRequest struct {
 
-	// Id of the Rover Device Entitlement
-	Id *string `mandatory:"true" contributesTo:"path" name:"id"`
+	// ID of the rover node or cluster entitlement
+	RoverEntitlementId *string `mandatory:"true" contributesTo:"path" name:"roverEntitlementId"`
+
+	// compartment id
+	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
 	// server error without risk of executing that same action again. Retry tokens expire after 24
@@ -24,15 +27,6 @@ type GetRoverEntitlementRequest struct {
 
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
-
-	// The maximum number of items to return.
-	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
-
-	// The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is ascending. If no value is specified timeCreated is default.
-	SortBy GetRoverEntitlementSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
-
-	// The page token representing the page at which to start retrieving results. This is usually retrieved from a previous list call.
-	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
@@ -59,7 +53,7 @@ type GetRoverEntitlementResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// A list of RoverEntitlement instances
+	// The RoverEntitlement instance
 	RoverEntitlement `presentIn:"body"`
 
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
@@ -79,27 +73,4 @@ func (response GetRoverEntitlementResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response GetRoverEntitlementResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// GetRoverEntitlementSortByEnum Enum with underlying type: string
-type GetRoverEntitlementSortByEnum string
-
-// Set of constants representing the allowable values for GetRoverEntitlementSortByEnum
-const (
-	GetRoverEntitlementSortByTimecreated GetRoverEntitlementSortByEnum = "timeCreated"
-	GetRoverEntitlementSortByDisplayname GetRoverEntitlementSortByEnum = "displayName"
-)
-
-var mappingGetRoverEntitlementSortBy = map[string]GetRoverEntitlementSortByEnum{
-	"timeCreated": GetRoverEntitlementSortByTimecreated,
-	"displayName": GetRoverEntitlementSortByDisplayname,
-}
-
-// GetGetRoverEntitlementSortByEnumValues Enumerates the set of values for GetRoverEntitlementSortByEnum
-func GetGetRoverEntitlementSortByEnumValues() []GetRoverEntitlementSortByEnum {
-	values := make([]GetRoverEntitlementSortByEnum, 0)
-	for _, v := range mappingGetRoverEntitlementSortBy {
-		values = append(values, v)
-	}
-	return values
 }

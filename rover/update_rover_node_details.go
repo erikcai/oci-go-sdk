@@ -19,6 +19,9 @@ type UpdateRoverNodeDetails struct {
 	// RoverNode Identifier
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// Serial number of the node.
+	SerialNumber *string `mandatory:"false" json:"serialNumber"`
+
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
 	// List of existing workloads that should be provisioned on the node.
@@ -35,6 +38,9 @@ type UpdateRoverNodeDetails struct {
 
 	// Phone number of point of contact for this order if customer is picking up.
 	PointOfContactPhoneNumber *string `mandatory:"false" json:"pointOfContactPhoneNumber"`
+
+	// Tracking Url for the shipped FmsRoverNode.
+	OracleShippingTrackingUrl *string `mandatory:"false" json:"oracleShippingTrackingUrl"`
 
 	// Preference for device delivery.
 	ShippingPreference UpdateRoverNodeDetailsShippingPreferenceEnum `mandatory:"false" json:"shippingPreference,omitempty"`
@@ -56,6 +62,9 @@ type UpdateRoverNodeDetails struct {
 
 	// End time for the window to pickup the device from customer.
 	ReturnWindowEndTime *common.SDKTime `mandatory:"false" json:"returnWindowEndTime"`
+
+	// The public key of the resource principal
+	PublicKey *string `mandatory:"false" json:"publicKey"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).

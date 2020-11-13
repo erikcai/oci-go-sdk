@@ -140,24 +140,14 @@ func TestRoverRoverEntitlementClientDeleteRoverEntitlement(t *testing.T) {
 	assert.NoError(t, err)
 
 	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
+	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
 			if withRetry == true {
 				retryPolicy = retryPolicyForTests()
 			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*rover.DeleteRoverEntitlementRequest)
-				return c.DeleteRoverEntitlement(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]rover.DeleteRoverEntitlementResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(rover.DeleteRoverEntitlementResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteRoverEntitlement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -194,24 +184,14 @@ func TestRoverRoverEntitlementClientGetRoverEntitlement(t *testing.T) {
 	assert.NoError(t, err)
 
 	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
+	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
 			if withRetry == true {
 				retryPolicy = retryPolicyForTests()
 			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*rover.GetRoverEntitlementRequest)
-				return c.GetRoverEntitlement(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]rover.GetRoverEntitlementResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(rover.GetRoverEntitlementResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetRoverEntitlement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -248,24 +228,58 @@ func TestRoverRoverEntitlementClientListRoverEntitlement(t *testing.T) {
 	assert.NoError(t, err)
 
 	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
+	for i, req := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
 			if withRetry == true {
 				retryPolicy = retryPolicyForTests()
 			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*rover.ListRoverEntitlementRequest)
-				return c.ListRoverEntitlement(context.Background(), *r)
-			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ListRoverEntitlement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
 
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]rover.ListRoverEntitlementResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(rover.ListRoverEntitlementResponse)
-			}
+// IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
+func TestRoverRoverEntitlementClientUpdateRoverEntitlement(t *testing.T) {
+	defer failTestOnPanic(t)
 
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+	enabled, err := testClient.isApiEnabled("rover", "UpdateRoverEntitlement")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateRoverEntitlement is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("rover", "RoverEntitlement", "UpdateRoverEntitlement", createRoverRoverEntitlementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(rover.RoverEntitlementClient)
+
+	body, err := testClient.getRequests("rover", "UpdateRoverEntitlement")
+	assert.NoError(t, err)
+
+	type UpdateRoverEntitlementRequestInfo struct {
+		ContainerId string
+		Request     rover.UpdateRoverEntitlementRequest
+	}
+
+	var requests []UpdateRoverEntitlementRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateRoverEntitlement(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
