@@ -14,7 +14,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
 // PrivateAccessGatewaySummary A summary of private access gateway (PAG) information. This object is returned when listing

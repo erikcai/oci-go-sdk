@@ -9,7 +9,7 @@ import (
 	"io/ioutil"
 	"path"
 
-	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
 type servicePrincipalKeyProvider struct {

@@ -10,7 +10,7 @@
 package compdocsapi
 
 import (
-	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
 // ComplianceDocument A compliance document that exists in the tenancy.

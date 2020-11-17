@@ -11,7 +11,7 @@ package filestorage
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
 // OutboundConnector resource that includes all the information needed to connect, authenticate and gain authorization

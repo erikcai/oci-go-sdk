@@ -12,7 +12,7 @@
 package ocas
 
 import (
-	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
 // DetectLanguageKeyPhrasesDetails The document details for keyPhrases detect call

@@ -10,7 +10,7 @@
 package cache
 
 import (
-	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
 // RedisNodeDetails The Redis nodes that host the Redis servers. The nodes are created in the specified availability domain.

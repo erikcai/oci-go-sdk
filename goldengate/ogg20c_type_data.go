@@ -11,7 +11,7 @@
 package goldengate
 
 import (
-	"github.com/oracle/oci-go-sdk/v28/common"
+	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
 // Ogg20cTypeData The properties and values for the details of the type "UUID_1D7CAE6C_4CB0_3ABD_97E2_CDC1F558B638"
