@@ -91,6 +91,7 @@ const (
 	InstanceActionActionSoftstop                InstanceActionActionEnum = "SOFTSTOP"
 	InstanceActionActionValidatelivemigrate     InstanceActionActionEnum = "VALIDATELIVEMIGRATE"
 	InstanceActionActionSenddiagnosticinterrupt InstanceActionActionEnum = "SENDDIAGNOSTICINTERRUPT"
+	InstanceActionActionExtendscheduledstop     InstanceActionActionEnum = "EXTENDSCHEDULEDSTOP"
 )
 
 var mappingInstanceActionAction = map[string]InstanceActionActionEnum{
@@ -101,6 +102,7 @@ var mappingInstanceActionAction = map[string]InstanceActionActionEnum{
 	"SOFTSTOP":                InstanceActionActionSoftstop,
 	"VALIDATELIVEMIGRATE":     InstanceActionActionValidatelivemigrate,
 	"SENDDIAGNOSTICINTERRUPT": InstanceActionActionSenddiagnosticinterrupt,
+	"EXTENDSCHEDULEDSTOP":     InstanceActionActionExtendscheduledstop,
 }
 
 // GetInstanceActionActionEnumValues Enumerates the set of values for InstanceActionActionEnum

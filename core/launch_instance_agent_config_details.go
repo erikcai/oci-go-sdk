@@ -27,6 +27,13 @@ type LaunchInstanceAgentConfigDetails struct {
 	// Whether the agent running on the instance can run all the available management plugins.
 	// Default value is false.
 	IsManagementDisabled *bool `mandatory:"false" json:"isManagementDisabled"`
+
+	// Whether the agent running on the instance can run all the available plugins.
+	// This includes the management and monitoring plugins.
+	AreAllPluginsDisabled *bool `mandatory:"false" json:"areAllPluginsDisabled"`
+
+	// The configuration of plugins associated with this instance.
+	PluginsConfig []InstanceAgentPluginConfigDetails `mandatory:"false" json:"pluginsConfig"`
 }
 
 func (m LaunchInstanceAgentConfigDetails) String() string {

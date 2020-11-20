@@ -2504,7 +2504,7 @@ func (client ComputeClient) getWindowsInstanceInitialCredentials(ctx context.Con
 // crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of
 // the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see
 // Sending a Diagnostic Interrupt (https://docs.cloud.oracle.com/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm).
-//
+// - **EXTENDSCHEDULEDSTOP** - Extends the scheduled stop time of instance.
 // - **VALIDATELIVEMIGRATE** - Live migrate the instance to validate impact on the customer workload.
 //                             Live migrating an instance moves it to a different physical host while the instance is running.
 // For more information about managing instance lifecycle states, see

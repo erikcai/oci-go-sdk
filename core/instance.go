@@ -150,6 +150,12 @@ type Instance struct {
 	// Example: `2018-05-25T21:10:29.600Z`
 	TimeMaintenanceRebootDue *common.SDKTime `mandatory:"false" json:"timeMaintenanceRebootDue"`
 
+	// The date and time the instance is scheduled to be stopped.
+	// After that time if instance hasn't been stopped or terminated, Oracle will stop the instance automatically.
+	// Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state.
+	// Example: `2018-05-25T21:10:29.600Z`
+	TimeStopScheduled *common.SDKTime `mandatory:"false" json:"timeStopScheduled"`
+
 	// The preferred maintenance action for an instance.
 	// * `LIVE_MIGRATE` - Run maintenance using a live migration.
 	// * `REBOOT` - Run maintenance using a reboot.
@@ -182,6 +188,7 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 		SystemTags                 map[string]map[string]interface{}      `json:"systemTags"`
 		AgentConfig                *InstanceAgentConfig                   `json:"agentConfig"`
 		TimeMaintenanceRebootDue   *common.SDKTime                        `json:"timeMaintenanceRebootDue"`
+		TimeStopScheduled          *common.SDKTime                        `json:"timeStopScheduled"`
 		PreferredMaintenanceAction InstancePreferredMaintenanceActionEnum `json:"preferredMaintenanceAction"`
 		AvailabilityDomain         *string                                `json:"availabilityDomain"`
 		CompartmentId              *string                                `json:"compartmentId"`
@@ -242,6 +249,8 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	m.AgentConfig = model.AgentConfig
 
 	m.TimeMaintenanceRebootDue = model.TimeMaintenanceRebootDue
+
+	m.TimeStopScheduled = model.TimeStopScheduled
 
 	m.PreferredMaintenanceAction = model.PreferredMaintenanceAction
 

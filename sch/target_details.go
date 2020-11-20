@@ -69,6 +69,10 @@ func (m *targetdetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, erro
 		mm := FunctionsTargetDetails{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "loggingAnalytics":
+		mm := LoggingAnalyticsTargetDetails{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "streaming":
 		mm := StreamingTargetDetails{}
 		err = json.Unmarshal(data, &mm)
@@ -87,19 +91,21 @@ type TargetDetailsKindEnum string
 
 // Set of constants representing the allowable values for TargetDetailsKindEnum
 const (
-	TargetDetailsKindStreaming     TargetDetailsKindEnum = "streaming"
-	TargetDetailsKindObjectstorage TargetDetailsKindEnum = "objectStorage"
-	TargetDetailsKindMonitoring    TargetDetailsKindEnum = "monitoring"
-	TargetDetailsKindFunctions     TargetDetailsKindEnum = "functions"
-	TargetDetailsKindNotifications TargetDetailsKindEnum = "notifications"
+	TargetDetailsKindStreaming        TargetDetailsKindEnum = "streaming"
+	TargetDetailsKindObjectstorage    TargetDetailsKindEnum = "objectStorage"
+	TargetDetailsKindMonitoring       TargetDetailsKindEnum = "monitoring"
+	TargetDetailsKindFunctions        TargetDetailsKindEnum = "functions"
+	TargetDetailsKindNotifications    TargetDetailsKindEnum = "notifications"
+	TargetDetailsKindLogginganalytics TargetDetailsKindEnum = "loggingAnalytics"
 )
 
 var mappingTargetDetailsKind = map[string]TargetDetailsKindEnum{
-	"streaming":     TargetDetailsKindStreaming,
-	"objectStorage": TargetDetailsKindObjectstorage,
-	"monitoring":    TargetDetailsKindMonitoring,
-	"functions":     TargetDetailsKindFunctions,
-	"notifications": TargetDetailsKindNotifications,
+	"streaming":        TargetDetailsKindStreaming,
+	"objectStorage":    TargetDetailsKindObjectstorage,
+	"monitoring":       TargetDetailsKindMonitoring,
+	"functions":        TargetDetailsKindFunctions,
+	"notifications":    TargetDetailsKindNotifications,
+	"loggingAnalytics": TargetDetailsKindLogginganalytics,
 }
 
 // GetTargetDetailsKindEnumValues Enumerates the set of values for TargetDetailsKindEnum

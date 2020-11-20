@@ -12021,7 +12021,8 @@ func (client VirtualNetworkClient) listNetworkSecurityGroupVnics(ctx context.Con
 	return response, err
 }
 
-// ListNetworkSecurityGroups Lists the network security groups in the specified compartment.
+// ListNetworkSecurityGroups Lists either the network security groups in the specified compartment, or those associated with the specified VLAN.
+// You must specify either a `vlanId` or a `compartmentId`, but not both. If you specify a `vlanId`, all other parameters are ignored.
 func (client VirtualNetworkClient) ListNetworkSecurityGroups(ctx context.Context, request ListNetworkSecurityGroupsRequest) (response ListNetworkSecurityGroupsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
