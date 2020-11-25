@@ -51,7 +51,7 @@ func NewRoverEntitlementClientWithOboToken(configProvider common.ConfigurationPr
 
 func newRoverEntitlementClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client RoverEntitlementClient, err error) {
 	client = RoverEntitlementClient{BaseClient: baseClient}
-	client.BasePath = "20180828"
+	client.BasePath = "20201210"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -79,7 +79,7 @@ func (client *RoverEntitlementClient) ConfigurationProvider() *common.Configurat
 	return client.config
 }
 
-// ChangeRoverEntitlementCompartment Moves a entitlement into a different compartment.
+// ChangeRoverEntitlementCompartment Moves an entitlement into a different compartment.
 func (client RoverEntitlementClient) ChangeRoverEntitlementCompartment(ctx context.Context, request ChangeRoverEntitlementCompartmentRequest) (response ChangeRoverEntitlementCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -189,7 +189,7 @@ func (client RoverEntitlementClient) createRoverEntitlement(ctx context.Context,
 	return response, err
 }
 
-// DeleteRoverEntitlement deletes a rover entitlement
+// DeleteRoverEntitlement Deletes a rover entitlement
 func (client RoverEntitlementClient) DeleteRoverEntitlement(ctx context.Context, request DeleteRoverEntitlementRequest) (response DeleteRoverEntitlementResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -299,8 +299,8 @@ func (client RoverEntitlementClient) getRoverEntitlement(ctx context.Context, re
 	return response, err
 }
 
-// ListRoverEntitlement Lists Rover Device Entitlement
-func (client RoverEntitlementClient) ListRoverEntitlement(ctx context.Context, request ListRoverEntitlementRequest) (response ListRoverEntitlementResponse, err error) {
+// ListRoverEntitlements Returns a list of RoverEntitlements.
+func (client RoverEntitlementClient) ListRoverEntitlements(ctx context.Context, request ListRoverEntitlementsRequest) (response ListRoverEntitlementsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
 	if client.RetryPolicy() != nil {
@@ -309,34 +309,34 @@ func (client RoverEntitlementClient) ListRoverEntitlement(ctx context.Context, r
 	if request.RetryPolicy() != nil {
 		policy = *request.RetryPolicy()
 	}
-	ociResponse, err = common.Retry(ctx, request, client.listRoverEntitlement, policy)
+	ociResponse, err = common.Retry(ctx, request, client.listRoverEntitlements, policy)
 	if err != nil {
 		if ociResponse != nil {
 			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
 				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ListRoverEntitlementResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+				response = ListRoverEntitlementsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
 			} else {
-				response = ListRoverEntitlementResponse{}
+				response = ListRoverEntitlementsResponse{}
 			}
 		}
 		return
 	}
-	if convertedResponse, ok := ociResponse.(ListRoverEntitlementResponse); ok {
+	if convertedResponse, ok := ociResponse.(ListRoverEntitlementsResponse); ok {
 		response = convertedResponse
 	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListRoverEntitlementResponse")
+		err = fmt.Errorf("failed to convert OCIResponse into ListRoverEntitlementsResponse")
 	}
 	return
 }
 
-// listRoverEntitlement implements the OCIOperation interface (enables retrying operations)
-func (client RoverEntitlementClient) listRoverEntitlement(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+// listRoverEntitlements implements the OCIOperation interface (enables retrying operations)
+func (client RoverEntitlementClient) listRoverEntitlements(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
 	httpRequest, err := request.HTTPRequest(http.MethodGet, "/roverEntitlements")
 	if err != nil {
 		return nil, err
 	}
 
-	var response ListRoverEntitlementResponse
+	var response ListRoverEntitlementsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

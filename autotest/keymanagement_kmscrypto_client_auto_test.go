@@ -191,3 +191,91 @@ func TestKmsCryptoClientGenerateDataEncryptionKey(t *testing.T) {
 		})
 	}
 }
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsCryptoClientSign(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "Sign")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("Sign is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsCrypto", "Sign", createKmsCryptoClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsCryptoClient)
+
+	body, err := testClient.getRequests("keymanagement", "Sign")
+	assert.NoError(t, err)
+
+	type SignRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.SignRequest
+	}
+
+	var requests []SignRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.Sign(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsCryptoClientVerify(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "Verify")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("Verify is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsCrypto", "Verify", createKmsCryptoClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsCryptoClient)
+
+	body, err := testClient.getRequests("keymanagement", "Verify")
+	assert.NoError(t, err)
+
+	type VerifyRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.VerifyRequest
+	}
+
+	var requests []VerifyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.Verify(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}

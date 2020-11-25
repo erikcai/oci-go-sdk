@@ -5458,7 +5458,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>1.0.40</version>
+        <version>1.0.70</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -5478,7 +5478,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.606</version>
+        <version>0.1.612</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -5503,12 +5503,12 @@
       <dependency>
         <groupId>com.oracle.pic.orchestration.orm</groupId>
         <artifactId>maestro-spec</artifactId>
-        <version>0.1.21</version>
+        <version>0.1.28</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.kms</groupId>
         <artifactId>kms-api-spec</artifactId>
-        <version>0.3.68</version>
+        <version>0.3.93</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.query</groupId>
@@ -5748,7 +5748,7 @@
       <dependency>
         <groupId>com.oracle.pic.connectors</groupId>
         <artifactId>connectors-spec</artifactId>
-        <version>0.2.28</version>
+        <version>0.2.29</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.optimizer</groupId>
@@ -5763,7 +5763,7 @@
       <dependency>
         <groupId>com.oracle.pic.compute.ias</groupId>
         <artifactId>instance-agent-service-api-spec</artifactId>
-        <version>0.0.29</version>
+        <version>0.0.37</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.pika.frontend</groupId>
@@ -5783,7 +5783,7 @@
       <dependency>
         <groupId>com.oracle.pic.rover</groupId>
         <artifactId>rover-cloud-service-spec</artifactId>
-        <version>3.0.10677</version>
+        <version>3.0.10854</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.loganalytics.api</groupId>

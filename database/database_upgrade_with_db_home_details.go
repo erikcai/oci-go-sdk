@@ -15,7 +15,6 @@ import (
 )
 
 // DatabaseUpgradeWithDbHomeDetails Details of Database Home for upgrading a database.
-// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type DatabaseUpgradeWithDbHomeDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.

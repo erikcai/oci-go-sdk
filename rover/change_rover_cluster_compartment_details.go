@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// ChangeRoverClusterCompartmentDetails The representation of ChangeRoverClusterCompartmentDetails
+// ChangeRoverClusterCompartmentDetails Object for moving a cluster to a different compartment.
 type ChangeRoverClusterCompartmentDetails struct {
 
 	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment into which the resources should be moved.

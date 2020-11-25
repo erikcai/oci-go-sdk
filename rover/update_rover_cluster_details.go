@@ -13,14 +13,14 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// UpdateRoverClusterDetails The information to be updated.
+// UpdateRoverClusterDetails The information required to update a RoverCluster.
 type UpdateRoverClusterDetails struct {
 
-	// RoverCluster Identifier
+	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Number of nodes desired in the cluster, between 5 and 15.
-	ClusterSize *string `mandatory:"false" json:"clusterSize"`
+	ClusterSize *int `mandatory:"false" json:"clusterSize"`
 
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
@@ -39,6 +39,9 @@ type UpdateRoverClusterDetails struct {
 	// Password to unlock the rover cluster.
 	UnlockPassphrase *string `mandatory:"false" json:"unlockPassphrase"`
 
+	// The type of enclosure rover nodes in this cluster are shipped in.
+	EnclosureType EnclosureTypeEnum `mandatory:"false" json:"enclosureType,omitempty"`
+
 	// Name of point of contact for this order if customer is picking up.
 	PointOfContact *string `mandatory:"false" json:"pointOfContact"`
 
@@ -55,7 +58,7 @@ type UpdateRoverClusterDetails struct {
 	ShippingVendor *string `mandatory:"false" json:"shippingVendor"`
 
 	// Expected date when customer wants to pickup the device if they chose customer pickup.
-	ExpectedPickupDate *common.SDKTime `mandatory:"false" json:"expectedPickupDate"`
+	TimePickupExpected *common.SDKTime `mandatory:"false" json:"timePickupExpected"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
@@ -66,6 +69,11 @@ type UpdateRoverClusterDetails struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// The system tags associated with this resource, if any. The system tags are set by Oracle cloud infrastructure services. Each key is predefined and scoped to namespaces.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{orcl-cloud: {free-tier-retain: true}}`
+	SystemTags map[string]map[string]interface{} `mandatory:"false" json:"systemTags"`
 }
 
 func (m UpdateRoverClusterDetails) String() string {

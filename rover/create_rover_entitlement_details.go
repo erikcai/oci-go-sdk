@@ -13,20 +13,32 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// CreateRoverEntitlementDetails The representation of CreateRoverEntitlementDetails
+// CreateRoverEntitlementDetails Information required to create a RoverEntitlement.
 type CreateRoverEntitlementDetails struct {
 
-	// Compartment id for the entitlement.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
-
-	// Display name for the entitlement.
-	DisplayName *string `mandatory:"false" json:"displayName"`
+	// The OCID of the compartment containing the RoverEntitlement.
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// Requestor name for the entitlement.
-	RequestorName *string `mandatory:"false" json:"requestorName"`
+	RequestorName *string `mandatory:"true" json:"requestorName"`
 
 	// Requestor email for the entitlement.
-	RequestorEmail *string `mandatory:"false" json:"requestorEmail"`
+	RequestorEmail *string `mandatory:"true" json:"requestorEmail"`
+
+	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// Details about the entitlement.
+	EntitlementDetails *string `mandatory:"false" json:"entitlementDetails"`
+
+	// The current state of the RoverNode.
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+
+	// A property that can contain details on the lifecycle.
+	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
+
+	// tenant Id.
+	TenantId *string `mandatory:"false" json:"tenantId"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
@@ -37,6 +49,11 @@ type CreateRoverEntitlementDetails struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// The system tags associated with this resource, if any. The system tags are set by Oracle cloud infrastructure services. Each key is predefined and scoped to namespaces.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{orcl-cloud: {free-tier-retain: true}}`
+	SystemTags map[string]map[string]interface{} `mandatory:"false" json:"systemTags"`
 }
 
 func (m CreateRoverEntitlementDetails) String() string {

@@ -359,9 +359,10 @@ func (client ResourceManagerClient) createJob(ctx context.Context, request commo
 }
 
 // CreateStack Creates a stack in the specified compartment.
-// You can create a stack from a Terraform configuration file.
-// The Terraform configuration file can be directly uploaded or referenced from a source code control system.
+// You can create a stack from a Terraform configuration.
+// The Terraform configuration can be directly uploaded or referenced from a source code control system.
 // You can also create a stack from an existing compartment.
+// You can also upload the Terraform configuration from an Object Storage bucket.
 // For more information, see
 // To create a stack (https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack).
 func (client ResourceManagerClient) CreateStack(ctx context.Context, request CreateStackRequest) (response CreateStackResponse, err error) {

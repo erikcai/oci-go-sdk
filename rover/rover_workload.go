@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// RoverWorkload Rover workload
+// RoverWorkload Information about a RoverWorkload.
 type RoverWorkload struct {
 
 	// The OCID of the compartment containing the workload.
@@ -42,6 +42,9 @@ type RoverWorkload struct {
 
 	// End of the range in a bucket.
 	RangeEnd *string `mandatory:"false" json:"rangeEnd"`
+
+	// The compute work request id to track progress of custom image exports.
+	WorkRequestId *string `mandatory:"false" json:"workRequestId"`
 }
 
 func (m RoverWorkload) String() string {

@@ -187,6 +187,7 @@ func TestResourceManagerClientCreateConfigurationSourceProvider(t *testing.T) {
 			DiscriminatorName: "configSourceProviderType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"GITLAB_ACCESS_TOKEN": &resourcemanager.CreateGitlabAccessTokenConfigurationSourceProviderDetails{},
+				"GITHUB_ACCESS_TOKEN": &resourcemanager.CreateGithubAccessTokenConfigurationSourceProviderDetails{},
 			},
 		}
 
@@ -1378,6 +1379,7 @@ func TestResourceManagerClientUpdateConfigurationSourceProvider(t *testing.T) {
 			DiscriminatorName: "configSourceProviderType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"GITLAB_ACCESS_TOKEN": &resourcemanager.UpdateGitlabAccessTokenConfigurationSourceProviderDetails{},
+				"GITHUB_ACCESS_TOKEN": &resourcemanager.UpdateGithubAccessTokenConfigurationSourceProviderDetails{},
 			},
 		}
 

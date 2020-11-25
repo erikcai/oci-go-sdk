@@ -5,10 +5,11 @@
 // Core Services API
 //
 // API covering the Networking (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm),
-// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm), and
-// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm) services. Use this API
-// to manage resources such as virtual cloud networks (VCNs), compute instances, and
-// block storage volumes.
+// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm),
+// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm), and
+// Registry (https://docs.cloud.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm) services.
+// Use this API to manage resources such as virtual cloud networks (VCNs),
+// compute instances, block storage volumes, and container images.
 //
 
 package core
@@ -19,10 +20,6 @@ import (
 
 // CreateIpv6Details The representation of CreateIpv6Details
 type CreateIpv6Details struct {
-
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC to assign the IPv6 to. The
-	// IPv6 will be in the VNIC's subnet.
-	VnicId *string `mandatory:"true" json:"vnicId"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -52,6 +49,13 @@ type CreateIpv6Details struct {
 	// for the Ipv6 is null.
 	// Example: `true`
 	IsInternetAccessAllowed *bool `mandatory:"false" json:"isInternetAccessAllowed"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC to assign the IPv6 to. The
+	// IPv6 will be in the VNIC's subnet.
+	VnicId *string `mandatory:"false" json:"vnicId"`
+
+	// true if the IP is reserved and can exist detached from vnic
+	IsReserved *bool `mandatory:"false" json:"isReserved"`
 }
 
 func (m CreateIpv6Details) String() string {

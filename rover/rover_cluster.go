@@ -16,20 +16,20 @@ import (
 // RoverCluster Description of RoverCluster.
 type RoverCluster struct {
 
-	// The Unique Oracle ID (OCID) that is immutable on creation.
+	// The OCID of RoverCluster.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The OCID of the compartment containing the RoverCluster.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The current state of the RoverCluster.
-	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
-
 	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-	DisplayName *string `mandatory:"false" json:"displayName"`
+	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// Size of the cluster.
-	ClusterSize *string `mandatory:"false" json:"clusterSize"`
+	ClusterSize *int `mandatory:"true" json:"clusterSize"`
+
+	// The current state of the RoverCluster.
+	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The time the the RoverCluster was created. An RFC3339 formatted datetime string
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
@@ -39,13 +39,17 @@ type RoverCluster struct {
 
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
-	// The nodes that are part of this cluster.
-	Nodes []string `mandatory:"false" json:"nodes"`
+	// The summary of nodes that are part of this cluster.
+	Nodes []RoverNodeSummary `mandatory:"false" json:"nodes"`
 
-	CustomerReceivedTime *common.SDKTime `mandatory:"false" json:"customerReceivedTime"`
+	// The type of enclosure rover nodes in this cluster are shipped in.
+	EnclosureType EnclosureTypeEnum `mandatory:"false" json:"enclosureType,omitempty"`
+
+	// Time when customer received the cluster.
+	TimeCustomerReceived *common.SDKTime `mandatory:"false" json:"timeCustomerReceived"`
 
 	// Time when customer returned the cluster.
-	CustomerReturnedTime *common.SDKTime `mandatory:"false" json:"customerReturnedTime"`
+	TimeCustomerReturned *common.SDKTime `mandatory:"false" json:"timeCustomerReturned"`
 
 	// Tracking information for device shipping.
 	DeliveryTrackingInfo *string `mandatory:"false" json:"deliveryTrackingInfo"`
@@ -75,18 +79,18 @@ type RoverCluster struct {
 	ShippingVendor *string `mandatory:"false" json:"shippingVendor"`
 
 	// Expected date when customer wants to pickup the device if they chose customer pickup.
-	ExpectedPickupDate *common.SDKTime `mandatory:"false" json:"expectedPickupDate"`
+	TimePickupExpected *common.SDKTime `mandatory:"false" json:"timePickupExpected"`
 
 	// Start time for the window to pickup the device from customer.
-	ReturnWindowStartTime *common.SDKTime `mandatory:"false" json:"returnWindowStartTime"`
+	TimeReturnWindowStarts *common.SDKTime `mandatory:"false" json:"timeReturnWindowStarts"`
 
 	// End time for the window to pickup the device from customer.
-	ReturnWindowEndTime *common.SDKTime `mandatory:"false" json:"returnWindowEndTime"`
+	TimeReturnWindowEnds *common.SDKTime `mandatory:"false" json:"timeReturnWindowEnds"`
 
 	// Uri to download return shipping label.
 	ReturnShippingLabelUri *string `mandatory:"false" json:"returnShippingLabelUri"`
 
-	// Uri of a pre-authenticated request to a bucket in service tenancy where Image workloads will be exported.
+	// The link to pre-authenticated request for a bucket where image workloads are moved.
 	ImageExportPar *string `mandatory:"false" json:"imageExportPar"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no

@@ -5,10 +5,11 @@
 // Core Services API
 //
 // API covering the Networking (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm),
-// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm), and
-// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm) services. Use this API
-// to manage resources such as virtual cloud networks (VCNs), compute instances, and
-// block storage volumes.
+// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm),
+// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm), and
+// Registry (https://docs.cloud.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm) services.
+// Use this API to manage resources such as virtual cloud networks (VCNs),
+// compute instances, block storage volumes, and container images.
 //
 
 package core
@@ -26,6 +27,7 @@ type CpeDeviceConfigQuestion struct {
 	Key *string `mandatory:"false" json:"key"`
 
 	// A descriptive label for the question (for example, to display in a form in a graphical interface).
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// A description or explanation of the question, to help the customer answer accurately.

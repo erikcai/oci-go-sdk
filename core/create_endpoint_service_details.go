@@ -5,10 +5,11 @@
 // Core Services API
 //
 // API covering the Networking (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm),
-// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm), and
-// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm) services. Use this API
-// to manage resources such as virtual cloud networks (VCNs), compute instances, and
-// block storage volumes.
+// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm),
+// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm), and
+// Registry (https://docs.cloud.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm) services.
+// Use this API to manage resources such as virtual cloud networks (VCNs),
+// compute instances, block storage volumes, and container images.
 //
 
 package core
@@ -30,7 +31,7 @@ type CreateEndpointServiceDetails struct {
 	// A description of the endpoint service.
 	Description *string `mandatory:"false" json:"description"`
 
-	// A friendly name for the endpoint service. Must be unique within the VCN.
+	// A friendly name for the endpoint service. Must be unique within the VCN. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Some services want to restrict access to the resources represented by an endpoint service so

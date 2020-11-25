@@ -12,7 +12,7 @@ import (
 // ListRoverClustersRequest wrapper for the ListRoverClusters operation
 type ListRoverClustersRequest struct {
 
-	// The ID of the compartment in which to list resources.
+	// The OCID of the compartment in which to list resources.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// A filter to return only resources that match the entire display name given.
@@ -72,6 +72,11 @@ type ListRoverClustersResponse struct {
 	// then a partial list might have been returned. Include this value as the `page` parameter for the
 	// subsequent GET request to get the next batch of items.
 	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
+
+	// For pagination of a list of items. When paging through a list, if this header appears in the response,
+	// then a partial list might have been returned. Include this value as the `page` parameter for the
+	// subsequent GET request to get the previous batch of items.
+	OpcPrevPage *string `presentIn:"header" name:"opc-prev-page"`
 }
 
 func (response ListRoverClustersResponse) String() string {
@@ -88,21 +93,23 @@ type ListRoverClustersLifecycleStateEnum string
 
 // Set of constants representing the allowable values for ListRoverClustersLifecycleStateEnum
 const (
-	ListRoverClustersLifecycleStateCreating ListRoverClustersLifecycleStateEnum = "CREATING"
-	ListRoverClustersLifecycleStateUpdating ListRoverClustersLifecycleStateEnum = "UPDATING"
-	ListRoverClustersLifecycleStateActive   ListRoverClustersLifecycleStateEnum = "ACTIVE"
-	ListRoverClustersLifecycleStateDeleting ListRoverClustersLifecycleStateEnum = "DELETING"
-	ListRoverClustersLifecycleStateDeleted  ListRoverClustersLifecycleStateEnum = "DELETED"
-	ListRoverClustersLifecycleStateFailed   ListRoverClustersLifecycleStateEnum = "FAILED"
+	ListRoverClustersLifecycleStateCreating   ListRoverClustersLifecycleStateEnum = "CREATING"
+	ListRoverClustersLifecycleStateUpdating   ListRoverClustersLifecycleStateEnum = "UPDATING"
+	ListRoverClustersLifecycleStateActive     ListRoverClustersLifecycleStateEnum = "ACTIVE"
+	ListRoverClustersLifecycleStateDeleting   ListRoverClustersLifecycleStateEnum = "DELETING"
+	ListRoverClustersLifecycleStateDeleted    ListRoverClustersLifecycleStateEnum = "DELETED"
+	ListRoverClustersLifecycleStateFailed     ListRoverClustersLifecycleStateEnum = "FAILED"
+	ListRoverClustersLifecycleStateInprogress ListRoverClustersLifecycleStateEnum = "INPROGRESS"
 )
 
 var mappingListRoverClustersLifecycleState = map[string]ListRoverClustersLifecycleStateEnum{
-	"CREATING": ListRoverClustersLifecycleStateCreating,
-	"UPDATING": ListRoverClustersLifecycleStateUpdating,
-	"ACTIVE":   ListRoverClustersLifecycleStateActive,
-	"DELETING": ListRoverClustersLifecycleStateDeleting,
-	"DELETED":  ListRoverClustersLifecycleStateDeleted,
-	"FAILED":   ListRoverClustersLifecycleStateFailed,
+	"CREATING":   ListRoverClustersLifecycleStateCreating,
+	"UPDATING":   ListRoverClustersLifecycleStateUpdating,
+	"ACTIVE":     ListRoverClustersLifecycleStateActive,
+	"DELETING":   ListRoverClustersLifecycleStateDeleting,
+	"DELETED":    ListRoverClustersLifecycleStateDeleted,
+	"FAILED":     ListRoverClustersLifecycleStateFailed,
+	"INPROGRESS": ListRoverClustersLifecycleStateInprogress,
 }
 
 // GetListRoverClustersLifecycleStateEnumValues Enumerates the set of values for ListRoverClustersLifecycleStateEnum

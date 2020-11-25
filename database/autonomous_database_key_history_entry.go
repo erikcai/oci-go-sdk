@@ -19,8 +19,8 @@ type AutonomousDatabaseKeyHistoryEntry struct {
 	// The id of the Autonomous Database Vault (https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts) service key management history entry.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The name of the Autonomous Database Vault (https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts) service key management history entry.
-	Name *string `mandatory:"false" json:"name"`
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure vault (https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+	VaultId *string `mandatory:"false" json:"vaultId"`
 
 	// The date and time the kms key activated.
 	TimeActivated *common.SDKTime `mandatory:"false" json:"timeActivated"`

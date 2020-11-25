@@ -5,10 +5,11 @@
 // Core Services API
 //
 // API covering the Networking (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm),
-// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm), and
-// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm) services. Use this API
-// to manage resources such as virtual cloud networks (VCNs), compute instances, and
-// block storage volumes.
+// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm),
+// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm), and
+// Registry (https://docs.cloud.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm) services.
+// Use this API to manage resources such as virtual cloud networks (VCNs),
+// compute instances, block storage volumes, and container images.
 //
 
 package core
@@ -20,8 +21,6 @@ import (
 // FlowLogConfigAttachment Represents an attachment between a flow log configuration and a resource such as a subnet. By
 // creating a `FlowLogConfigAttachment`, you turn on flow logs for the attached resource. See
 // CreateFlowLogConfigAttachment.
-// **Warning:** Oracle recommends that you avoid using any confidential information when you
-// supply string values using the API.
 type FlowLogConfigAttachment struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the

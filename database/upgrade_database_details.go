@@ -14,8 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// UpgradeDatabaseDetails Details for upgrading a database to a specific db version.
-// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
+// UpgradeDatabaseDetails Details for upgrading a database to a specific Oracle Database version in a bare metal or virtual machine DB system.
 type UpgradeDatabaseDetails struct {
 
 	// action for upgrading database.

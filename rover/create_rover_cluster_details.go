@@ -13,17 +13,17 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// CreateRoverClusterDetails The information about new RoverCluster.
+// CreateRoverClusterDetails The information required to create a RoverCluster.
 type CreateRoverClusterDetails struct {
 
-	// RoverCluster Identifier
+	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
-	// Compartment Identifier
+	// The OCID of the compartment containing the RoverCluster.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// Number of nodes desired in the cluster, between 5 and 15.
-	ClusterSize *string `mandatory:"true" json:"clusterSize"`
+	ClusterSize *int `mandatory:"true" json:"clusterSize"`
 
 	CustomerShippingAddress *ShippingAddress `mandatory:"false" json:"customerShippingAddress"`
 
@@ -32,6 +32,9 @@ type CreateRoverClusterDetails struct {
 
 	// Root password for the rover cluster.
 	SuperUserPassword *string `mandatory:"false" json:"superUserPassword"`
+
+	// The type of enclosure rover nodes in this cluster are shipped in.
+	EnclosureType EnclosureTypeEnum `mandatory:"false" json:"enclosureType,omitempty"`
 
 	// Password to unlock the rover cluster.
 	UnlockPassphrase *string `mandatory:"false" json:"unlockPassphrase"`
@@ -49,7 +52,16 @@ type CreateRoverClusterDetails struct {
 	ShippingVendor *string `mandatory:"false" json:"shippingVendor"`
 
 	// Expected date when customer wants to pickup the cluster if they chose customer pickup.
-	ExpectedPickupDate *common.SDKTime `mandatory:"false" json:"expectedPickupDate"`
+	TimePickupExpected *common.SDKTime `mandatory:"false" json:"timePickupExpected"`
+
+	// Tracking Url for the shipped Rover Cluster.
+	OracleShippingTrackingUrl *string `mandatory:"false" json:"oracleShippingTrackingUrl"`
+
+	// The current state of the RoverCluster.
+	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+
+	// A property that can contain details on the lifecycle.
+	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
@@ -60,6 +72,11 @@ type CreateRoverClusterDetails struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// The system tags associated with this resource, if any. The system tags are set by Oracle cloud infrastructure services. Each key is predefined and scoped to namespaces.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{orcl-cloud: {free-tier-retain: true}}`
+	SystemTags map[string]map[string]interface{} `mandatory:"false" json:"systemTags"`
 }
 
 func (m CreateRoverClusterDetails) String() string {

@@ -16,7 +16,7 @@ import (
 // RoverClusterCollection Results of a roverCluster search. Contains both RoverClusterSummary items and other data.
 type RoverClusterCollection struct {
 
-	// List of roverClusters.
+	// List of roverClusterSummary.
 	Items []RoverClusterSummary `mandatory:"true" json:"items"`
 }
 

@@ -5,10 +5,11 @@
 // Core Services API
 //
 // API covering the Networking (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm),
-// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm), and
-// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm) services. Use this API
-// to manage resources such as virtual cloud networks (VCNs), compute instances, and
-// block storage volumes.
+// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm),
+// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm), and
+// Registry (https://docs.cloud.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm) services.
+// Use this API to manage resources such as virtual cloud networks (VCNs),
+// compute instances, block storage volumes, and container images.
 //
 
 package core
@@ -96,6 +97,9 @@ type BootVolumeBackup struct {
 	// The size used by the backup, in GBs. It is typically smaller than sizeInGBs, depending on the space
 	// consumed on the boot volume and whether the backup is full or incremental.
 	UniqueSizeInGBs *int64 `mandatory:"false" json:"uniqueSizeInGBs"`
+
+	// The percentage complete of the operation to create the boot volume backup, based on the boot volume backup size.
+	BackupProgress *int `mandatory:"false" json:"backupProgress"`
 }
 
 func (m BootVolumeBackup) String() string {

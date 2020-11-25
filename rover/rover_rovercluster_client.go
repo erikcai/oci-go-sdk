@@ -51,7 +51,7 @@ func NewRoverClusterClientWithOboToken(configProvider common.ConfigurationProvid
 
 func newRoverClusterClientFromBaseClient(baseClient common.BaseClient, configProvider common.ConfigurationProvider) (client RoverClusterClient, err error) {
 	client = RoverClusterClient{BaseClient: baseClient}
-	client.BasePath = "20180828"
+	client.BasePath = "20201210"
 	err = client.setConfigurationProvider(configProvider)
 	return
 }
@@ -239,56 +239,6 @@ func (client RoverClusterClient) deleteRoverCluster(ctx context.Context, request
 	return response, err
 }
 
-// GetClusterCertificate Get the certificate for a rover cluster
-func (client RoverClusterClient) GetClusterCertificate(ctx context.Context, request GetClusterCertificateRequest) (response GetClusterCertificateResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if client.RetryPolicy() != nil {
-		policy = *client.RetryPolicy()
-	}
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getClusterCertificate, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetClusterCertificateResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = GetClusterCertificateResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetClusterCertificateResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetClusterCertificateResponse")
-	}
-	return
-}
-
-// getClusterCertificate implements the OCIOperation interface (enables retrying operations)
-func (client RoverClusterClient) getClusterCertificate(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/roverClusters/{roverClusterId}/certificate")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetClusterCertificateResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // GetRoverCluster Gets a RoverCluster by identifier
 func (client RoverClusterClient) GetRoverCluster(ctx context.Context, request GetRoverClusterRequest) (response GetRoverClusterResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -327,6 +277,56 @@ func (client RoverClusterClient) getRoverCluster(ctx context.Context, request co
 	}
 
 	var response GetRoverClusterResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetRoverClusterCertificate Get the certificate for a rover cluster
+func (client RoverClusterClient) GetRoverClusterCertificate(ctx context.Context, request GetRoverClusterCertificateRequest) (response GetRoverClusterCertificateResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getRoverClusterCertificate, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetRoverClusterCertificateResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetRoverClusterCertificateResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetRoverClusterCertificateResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetRoverClusterCertificateResponse")
+	}
+	return
+}
+
+// getRoverClusterCertificate implements the OCIOperation interface (enables retrying operations)
+func (client RoverClusterClient) getRoverClusterCertificate(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/roverClusters/{roverClusterId}/certificate")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetRoverClusterCertificateResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

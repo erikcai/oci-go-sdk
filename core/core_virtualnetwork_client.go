@@ -5,10 +5,11 @@
 // Core Services API
 //
 // API covering the Networking (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm),
-// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm), and
-// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm) services. Use this API
-// to manage resources such as virtual cloud networks (VCNs), compute instances, and
-// block storage volumes.
+// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm),
+// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm), and
+// Registry (https://docs.cloud.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm) services.
+// Use this API to manage resources such as virtual cloud networks (VCNs),
+// compute instances, block storage volumes, and container images.
 //
 
 package core
@@ -660,6 +661,61 @@ func (client VirtualNetworkClient) changeByoipRangeCompartment(ctx context.Conte
 	}
 
 	var response ChangeByoipRangeCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ChangeClientVpnEndpointCompartment Moves a ClientVpnEndpoint into a different compartment within the same tenancy.
+func (client VirtualNetworkClient) ChangeClientVpnEndpointCompartment(ctx context.Context, request ChangeClientVpnEndpointCompartmentRequest) (response ChangeClientVpnEndpointCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeClientVpnEndpointCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeClientVpnEndpointCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeClientVpnEndpointCompartmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeClientVpnEndpointCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeClientVpnEndpointCompartmentResponse")
+	}
+	return
+}
+
+// changeClientVpnEndpointCompartment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) changeClientVpnEndpointCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/clientVpnEndpoints/{clientVpnEndpointId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeClientVpnEndpointCompartmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2182,6 +2238,119 @@ func (client VirtualNetworkClient) createByoipRange(ctx context.Context, request
 	}
 
 	var response CreateByoipRangeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateClientVpnEndpoint Create a specific Client VPN endpoint. The maxConnections and the attachedSubnetId are required fields. Customers can
+// specify a list of accessible subnets to manage the traffic access through this endpoint. Our service also provides
+// customers options like addressing mode and authentication method etc.
+// clientVpnEndpoints.
+func (client VirtualNetworkClient) CreateClientVpnEndpoint(ctx context.Context, request CreateClientVpnEndpointRequest) (response CreateClientVpnEndpointResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createClientVpnEndpoint, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateClientVpnEndpointResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateClientVpnEndpointResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateClientVpnEndpointResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateClientVpnEndpointResponse")
+	}
+	return
+}
+
+// createClientVpnEndpoint implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createClientVpnEndpoint(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/clientVpnEndpoints")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateClientVpnEndpointResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateClientVpnEndpointUser Create a clientVpnEndpoint user on a clientVpnEndpoint.
+func (client VirtualNetworkClient) CreateClientVpnEndpointUser(ctx context.Context, request CreateClientVpnEndpointUserRequest) (response CreateClientVpnEndpointUserResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createClientVpnEndpointUser, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateClientVpnEndpointUserResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateClientVpnEndpointUserResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateClientVpnEndpointUserResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateClientVpnEndpointUserResponse")
+	}
+	return
+}
+
+// createClientVpnEndpointUser implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createClientVpnEndpointUser(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/clientVpnEndpoints/{clientVpnEndpointId}/users")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateClientVpnEndpointUserResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -4581,6 +4750,106 @@ func (client VirtualNetworkClient) deleteByoipRange(ctx context.Context, request
 	}
 
 	var response DeleteByoipRangeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteClientVpnEndpoint Delete the specific ClientVpnEndpoint by given the clientVpnEndpointid.
+func (client VirtualNetworkClient) DeleteClientVpnEndpoint(ctx context.Context, request DeleteClientVpnEndpointRequest) (response DeleteClientVpnEndpointResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteClientVpnEndpoint, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteClientVpnEndpointResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteClientVpnEndpointResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteClientVpnEndpointResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteClientVpnEndpointResponse")
+	}
+	return
+}
+
+// deleteClientVpnEndpoint implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteClientVpnEndpoint(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/clientVpnEndpoints/{clientVpnEndpointId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteClientVpnEndpointResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteClientVpnEndpointUser Delete the specific ClientVpnEndpointUser by given an id of ClientVpnEndpoint and a username.
+func (client VirtualNetworkClient) DeleteClientVpnEndpointUser(ctx context.Context, request DeleteClientVpnEndpointUserRequest) (response DeleteClientVpnEndpointUserResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteClientVpnEndpointUser, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteClientVpnEndpointUserResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteClientVpnEndpointUserResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteClientVpnEndpointUserResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteClientVpnEndpointUserResponse")
+	}
+	return
+}
+
+// deleteClientVpnEndpointUser implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteClientVpnEndpointUser(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/clientVpnEndpoints/{clientVpnEndpointId}/users/{userName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteClientVpnEndpointUserResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -7041,6 +7310,254 @@ func (client VirtualNetworkClient) getByoipRange(ctx context.Context, request co
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetClientVpnEndpoint Get the specific ClientVpnEndpoint by given the id.
+func (client VirtualNetworkClient) GetClientVpnEndpoint(ctx context.Context, request GetClientVpnEndpointRequest) (response GetClientVpnEndpointResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getClientVpnEndpoint, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetClientVpnEndpointResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetClientVpnEndpointResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetClientVpnEndpointResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetClientVpnEndpointResponse")
+	}
+	return
+}
+
+// getClientVpnEndpoint implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getClientVpnEndpoint(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clientVpnEndpoints/{clientVpnEndpointId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetClientVpnEndpointResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetClientVpnEndpointProfile Get the profile of the specific ClientVpnEndpoint by given an id of ClientVpnEndpoint.
+func (client VirtualNetworkClient) GetClientVpnEndpointProfile(ctx context.Context, request GetClientVpnEndpointProfileRequest) (response GetClientVpnEndpointProfileResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getClientVpnEndpointProfile, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetClientVpnEndpointProfileResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetClientVpnEndpointProfileResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetClientVpnEndpointProfileResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetClientVpnEndpointProfileResponse")
+	}
+	return
+}
+
+// getClientVpnEndpointProfile implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getClientVpnEndpointProfile(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clientVpnEndpoints/{clientVpnEndpointId}/profile")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetClientVpnEndpointProfileResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetClientVpnEndpointStatus Get the status of ClientVpnEndpoint.
+func (client VirtualNetworkClient) GetClientVpnEndpointStatus(ctx context.Context, request GetClientVpnEndpointStatusRequest) (response GetClientVpnEndpointStatusResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getClientVpnEndpointStatus, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetClientVpnEndpointStatusResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetClientVpnEndpointStatusResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetClientVpnEndpointStatusResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetClientVpnEndpointStatusResponse")
+	}
+	return
+}
+
+// getClientVpnEndpointStatus implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getClientVpnEndpointStatus(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clientVpnEndpoints/{clientVpnEndpointId}/status")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetClientVpnEndpointStatusResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetClientVpnEndpointUser Get the specific ClientVpnEndpointUser by given an id of ClientVpnEndpoint and an username.
+func (client VirtualNetworkClient) GetClientVpnEndpointUser(ctx context.Context, request GetClientVpnEndpointUserRequest) (response GetClientVpnEndpointUserResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getClientVpnEndpointUser, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetClientVpnEndpointUserResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetClientVpnEndpointUserResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetClientVpnEndpointUserResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetClientVpnEndpointUserResponse")
+	}
+	return
+}
+
+// getClientVpnEndpointUser implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getClientVpnEndpointUser(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clientVpnEndpoints/{clientVpnEndpointId}/users/{userName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetClientVpnEndpointUserResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetClientVpnEndpointUserProfile Get the profile of the specific ClientVpnEndpointUser by given an id of ClientVpnEndpoint and a username.
+func (client VirtualNetworkClient) GetClientVpnEndpointUserProfile(ctx context.Context, request GetClientVpnEndpointUserProfileRequest) (response GetClientVpnEndpointUserProfileResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getClientVpnEndpointUserProfile, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetClientVpnEndpointUserProfileResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetClientVpnEndpointUserProfileResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetClientVpnEndpointUserProfileResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetClientVpnEndpointUserProfileResponse")
+	}
+	return
+}
+
+// getClientVpnEndpointUserProfile implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getClientVpnEndpointUserProfile(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clientVpnEndpoints/{clientVpnEndpointId}/users/{userName}/profile")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetClientVpnEndpointUserProfileResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
 	response.RawResponse = httpResponse
 	if err != nil {
 		return response, err
@@ -10468,6 +10985,106 @@ func (client VirtualNetworkClient) listByoipRanges(ctx context.Context, request 
 	return response, err
 }
 
+// ListClientVpnEndpointUsers List the ClientVpnEndpointUsers on a ClientVpnEnpoint in the specified compartement.
+func (client VirtualNetworkClient) ListClientVpnEndpointUsers(ctx context.Context, request ListClientVpnEndpointUsersRequest) (response ListClientVpnEndpointUsersResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listClientVpnEndpointUsers, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListClientVpnEndpointUsersResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListClientVpnEndpointUsersResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListClientVpnEndpointUsersResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListClientVpnEndpointUsersResponse")
+	}
+	return
+}
+
+// listClientVpnEndpointUsers implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listClientVpnEndpointUsers(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clientVpnEndpoints/{clientVpnEndpointId}/users")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListClientVpnEndpointUsersResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListClientVpnEndpoints List the ClientVpnEndpoints in the specified compartement.
+func (client VirtualNetworkClient) ListClientVpnEndpoints(ctx context.Context, request ListClientVpnEndpointsRequest) (response ListClientVpnEndpointsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listClientVpnEndpoints, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListClientVpnEndpointsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListClientVpnEndpointsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListClientVpnEndpointsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListClientVpnEndpointsResponse")
+	}
+	return
+}
+
+// listClientVpnEndpoints implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listClientVpnEndpoints(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/clientVpnEndpoints")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListClientVpnEndpointsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListCpeDeviceShapes Lists the CPE device types that the Networking service provides CPE configuration
 // content for (example: Cisco ASA). The content helps a network engineer configure
 // the actual CPE device represented by a Cpe object.
@@ -13585,6 +14202,111 @@ func (client VirtualNetworkClient) updateByoipRange(ctx context.Context, request
 	}
 
 	var response UpdateByoipRangeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateClientVpnEndpoint Update the specific ClientVpnEndpoint by given the clientVpnEndpointId.
+func (client VirtualNetworkClient) UpdateClientVpnEndpoint(ctx context.Context, request UpdateClientVpnEndpointRequest) (response UpdateClientVpnEndpointResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.updateClientVpnEndpoint, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateClientVpnEndpointResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateClientVpnEndpointResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateClientVpnEndpointResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateClientVpnEndpointResponse")
+	}
+	return
+}
+
+// updateClientVpnEndpoint implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateClientVpnEndpoint(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/clientVpnEndpoints/{clientVpnEndpointId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateClientVpnEndpointResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateClientVpnEndpointUser Update the specific ClientVpnEndpointUser by given an id of ClientVpnEndpoint and a username.
+func (client VirtualNetworkClient) UpdateClientVpnEndpointUser(ctx context.Context, request UpdateClientVpnEndpointUserRequest) (response UpdateClientVpnEndpointUserResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateClientVpnEndpointUser, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateClientVpnEndpointUserResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateClientVpnEndpointUserResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateClientVpnEndpointUserResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateClientVpnEndpointUserResponse")
+	}
+	return
+}
+
+// updateClientVpnEndpointUser implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateClientVpnEndpointUser(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/clientVpnEndpoints/{clientVpnEndpointId}/users/{userName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateClientVpnEndpointUserResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

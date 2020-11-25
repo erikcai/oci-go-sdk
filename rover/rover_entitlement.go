@@ -13,25 +13,29 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// RoverEntitlement The representation of RoverEntitlement
+// RoverEntitlement Information about a RoverEntitlement.
 type RoverEntitlement struct {
+
+	// A property that can uniquely identify the rover entitlement.
+	Id *string `mandatory:"true" json:"id"`
 
 	// The compartment Id for the entitlement.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	LifecycleState RoverEntitlementLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
-
-	// A property that can uniquely identify the rover entitlement.
-	Id *string `mandatory:"false" json:"id"`
-
-	// The display name for the entitlement.
-	DisplayName *string `mandatory:"false" json:"displayName"`
-
 	// Requestor name for the entitlement.
-	RequestorName *string `mandatory:"false" json:"requestorName"`
+	RequestorName *string `mandatory:"true" json:"requestorName"`
 
 	// Requestor email for the entitlement.
-	RequestorEmail *string `mandatory:"false" json:"requestorEmail"`
+	RequestorEmail *string `mandatory:"true" json:"requestorEmail"`
+
+	// Lifecyclestate for the entitlement.
+	LifecycleState RoverEntitlementLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+
+	// tenant Id.
+	TenantId *string `mandatory:"false" json:"tenantId"`
+
+	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Details about the entitlement.
 	EntitlementDetails *string `mandatory:"false" json:"entitlementDetails"`
@@ -40,10 +44,10 @@ type RoverEntitlement struct {
 	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
 
 	// Time of creation for the entitlement.
-	CreationTime *common.SDKTime `mandatory:"false" json:"creationTime"`
+	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// Time when the entitlement was last updated.
-	UpdateTime *common.SDKTime `mandatory:"false" json:"updateTime"`
+	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
@@ -54,6 +58,11 @@ type RoverEntitlement struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// The system tags associated with this resource, if any. The system tags are set by Oracle cloud infrastructure services. Each key is predefined and scoped to namespaces.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{orcl-cloud: {free-tier-retain: true}}`
+	SystemTags map[string]map[string]interface{} `mandatory:"false" json:"systemTags"`
 }
 
 func (m RoverEntitlement) String() string {

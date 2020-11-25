@@ -15,7 +15,7 @@ type GetRoverEntitlementRequest struct {
 	// ID of the rover node or cluster entitlement
 	RoverEntitlementId *string `mandatory:"true" contributesTo:"path" name:"roverEntitlementId"`
 
-	// compartment id
+	// The OCID of the compartment in which to list resources.
 	CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
 
 	// A token that uniquely identifies a request so it can be retried in case of a timeout or
@@ -57,11 +57,6 @@ type GetRoverEntitlementResponse struct {
 	RoverEntitlement `presentIn:"body"`
 
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-
-	// For pagination of a list of items. When paging through a list, if this header appears in the response,
-	// then a partial list might have been returned. Include this value as the `page` parameter for the
-	// subsequent GET request to get the next batch of items.
-	OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
 	Etag *string `presentIn:"header" name:"etag"`
 }

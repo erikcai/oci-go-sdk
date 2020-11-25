@@ -155,50 +155,6 @@ func TestRoverRoverNodeClientDeleteRoverNode(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
-func TestRoverRoverNodeClientGetNodeCertificate(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("rover", "GetNodeCertificate")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetNodeCertificate is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("rover", "RoverNode", "GetNodeCertificate", createRoverRoverNodeClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(rover.RoverNodeClient)
-
-	body, err := testClient.getRequests("rover", "GetNodeCertificate")
-	assert.NoError(t, err)
-
-	type GetNodeCertificateRequestInfo struct {
-		ContainerId string
-		Request     rover.GetNodeCertificateRequest
-	}
-
-	var requests []GetNodeCertificateRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetNodeCertificate(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
 func TestRoverRoverNodeClientGetRoverNode(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -243,28 +199,28 @@ func TestRoverRoverNodeClientGetRoverNode(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
-func TestRoverRoverNodeClientGetRoverNodeRPT(t *testing.T) {
+func TestRoverRoverNodeClientGetRoverNodeCertificate(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("rover", "GetRoverNodeRPT")
+	enabled, err := testClient.isApiEnabled("rover", "GetRoverNodeCertificate")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("GetRoverNodeRPT is not enabled by the testing service")
+		t.Skip("GetRoverNodeCertificate is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("rover", "RoverNode", "GetRoverNodeRPT", createRoverRoverNodeClientWithProvider)
+	cc, err := testClient.createClientForOperation("rover", "RoverNode", "GetRoverNodeCertificate", createRoverRoverNodeClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(rover.RoverNodeClient)
 
-	body, err := testClient.getRequests("rover", "GetRoverNodeRPT")
+	body, err := testClient.getRequests("rover", "GetRoverNodeCertificate")
 	assert.NoError(t, err)
 
-	type GetRoverNodeRPTRequestInfo struct {
+	type GetRoverNodeCertificateRequestInfo struct {
 		ContainerId string
-		Request     rover.GetRoverNodeRPTRequest
+		Request     rover.GetRoverNodeCertificateRequest
 	}
 
-	var requests []GetRoverNodeRPTRequestInfo
+	var requests []GetRoverNodeCertificateRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -278,7 +234,95 @@ func TestRoverRoverNodeClientGetRoverNodeRPT(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetRoverNodeRPT(context.Background(), req.Request)
+			response, err := c.GetRoverNodeCertificate(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
+func TestRoverRoverNodeClientGetRoverNodeEncryptionKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("rover", "GetRoverNodeEncryptionKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetRoverNodeEncryptionKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("rover", "RoverNode", "GetRoverNodeEncryptionKey", createRoverRoverNodeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(rover.RoverNodeClient)
+
+	body, err := testClient.getRequests("rover", "GetRoverNodeEncryptionKey")
+	assert.NoError(t, err)
+
+	type GetRoverNodeEncryptionKeyRequestInfo struct {
+		ContainerId string
+		Request     rover.GetRoverNodeEncryptionKeyRequest
+	}
+
+	var requests []GetRoverNodeEncryptionKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetRoverNodeEncryptionKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
+func TestRoverRoverNodeClientGetRoverNodeGetRpt(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("rover", "GetRoverNodeGetRpt")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetRoverNodeGetRpt is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("rover", "RoverNode", "GetRoverNodeGetRpt", createRoverRoverNodeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(rover.RoverNodeClient)
+
+	body, err := testClient.getRequests("rover", "GetRoverNodeGetRpt")
+	assert.NoError(t, err)
+
+	type GetRoverNodeGetRptRequestInfo struct {
+		ContainerId string
+		Request     rover.GetRoverNodeGetRptRequest
+	}
+
+	var requests []GetRoverNodeGetRptRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetRoverNodeGetRpt(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -334,6 +378,50 @@ func TestRoverRoverNodeClientListRoverNodes(t *testing.T) {
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="edge_rover_us_grp@oracle.com" jiraProject="JIRA" opsJiraProject="JIRA-OPS"
+func TestRoverRoverNodeClientRoverNodeActionSetKey(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("rover", "RoverNodeActionSetKey")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RoverNodeActionSetKey is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("rover", "RoverNode", "RoverNodeActionSetKey", createRoverRoverNodeClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(rover.RoverNodeClient)
+
+	body, err := testClient.getRequests("rover", "RoverNodeActionSetKey")
+	assert.NoError(t, err)
+
+	type RoverNodeActionSetKeyRequestInfo struct {
+		ContainerId string
+		Request     rover.RoverNodeActionSetKeyRequest
+	}
+
+	var requests []RoverNodeActionSetKeyRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RoverNodeActionSetKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

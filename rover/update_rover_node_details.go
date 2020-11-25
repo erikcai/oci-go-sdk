@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// UpdateRoverNodeDetails The information to be updated.
+// UpdateRoverNodeDetails The information required to update a RoverNode.
 type UpdateRoverNodeDetails struct {
 
-	// RoverNode Identifier
+	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Serial number of the node.
@@ -49,19 +49,22 @@ type UpdateRoverNodeDetails struct {
 	ShippingVendor *string `mandatory:"false" json:"shippingVendor"`
 
 	// Expected date when customer wants to pickup the device if they chose customer pickup.
-	ExpectedPickupDate *common.SDKTime `mandatory:"false" json:"expectedPickupDate"`
+	TimePickupExpected *common.SDKTime `mandatory:"false" json:"timePickupExpected"`
 
 	// The current state of the RoverNode.
 	LifecycleState LifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+
+	// The type of enclosure rover nodes in this cluster are shipped in.
+	EnclosureType EnclosureTypeEnum `mandatory:"false" json:"enclosureType,omitempty"`
 
 	// A property that can contain details on the lifecycle.
 	LifecycleStateDetails *string `mandatory:"false" json:"lifecycleStateDetails"`
 
 	// Start time for the window to pickup the device from customer.
-	ReturnWindowStartTime *common.SDKTime `mandatory:"false" json:"returnWindowStartTime"`
+	TimeReturnWindowStarts *common.SDKTime `mandatory:"false" json:"timeReturnWindowStarts"`
 
 	// End time for the window to pickup the device from customer.
-	ReturnWindowEndTime *common.SDKTime `mandatory:"false" json:"returnWindowEndTime"`
+	TimeReturnWindowEnds *common.SDKTime `mandatory:"false" json:"timeReturnWindowEnds"`
 
 	// The public key of the resource principal
 	PublicKey *string `mandatory:"false" json:"publicKey"`
@@ -75,6 +78,11 @@ type UpdateRoverNodeDetails struct {
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
+
+	// The system tags associated with this resource, if any. The system tags are set by Oracle cloud infrastructure services. Each key is predefined and scoped to namespaces.
+	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+	// Example: `{orcl-cloud: {free-tier-retain: true}}`
+	SystemTags map[string]map[string]interface{} `mandatory:"false" json:"systemTags"`
 }
 
 func (m UpdateRoverNodeDetails) String() string {

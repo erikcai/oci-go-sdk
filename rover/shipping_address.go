@@ -13,30 +13,43 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// ShippingAddress The representation of ShippingAddress
+// ShippingAddress Shipping address for rover devices.
 type ShippingAddress struct {
-	Addressee *string `mandatory:"false" json:"addressee"`
 
+	// Addressee in shipping address.
+	Addressee *string `mandatory:"true" json:"addressee"`
+
+	// Address line 1.
+	Address1 *string `mandatory:"true" json:"address1"`
+
+	// city or locality for shipping address.
+	CityOrLocality *string `mandatory:"true" json:"cityOrLocality"`
+
+	// state or region for shipping address.
+	StateOrRegion *string `mandatory:"true" json:"stateOrRegion"`
+
+	// zipcode for shipping address.
+	Zipcode *string `mandatory:"true" json:"zipcode"`
+
+	// country for shipping address.
+	Country *string `mandatory:"true" json:"country"`
+
+	// recepient phone number.
+	PhoneNumber *string `mandatory:"true" json:"phoneNumber"`
+
+	// CareOf for shipping address.
 	CareOf *string `mandatory:"false" json:"careOf"`
 
-	Address1 *string `mandatory:"false" json:"address1"`
-
+	// Address line 2.
 	Address2 *string `mandatory:"false" json:"address2"`
 
+	// Address line 3.
 	Address3 *string `mandatory:"false" json:"address3"`
 
+	// Address line 4.
 	Address4 *string `mandatory:"false" json:"address4"`
 
-	CityOrLocality *string `mandatory:"false" json:"cityOrLocality"`
-
-	StateOrRegion *string `mandatory:"false" json:"stateOrRegion"`
-
-	Zipcode *string `mandatory:"false" json:"zipcode"`
-
-	Country *string `mandatory:"false" json:"country"`
-
-	PhoneNumber *string `mandatory:"false" json:"phoneNumber"`
-
+	// recepient email address.
 	Email *string `mandatory:"false" json:"email"`
 }
 

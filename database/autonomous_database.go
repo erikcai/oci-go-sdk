@@ -31,9 +31,6 @@ type AutonomousDatabase struct {
 	// The number of OCPU cores to be made available to the database.
 	CpuCoreCount *int `mandatory:"true" json:"cpuCoreCount"`
 
-	// The quantity of data in the database, in terabytes.
-	DataStorageSizeInTBs *int `mandatory:"true" json:"dataStorageSizeInTBs"`
-
 	// Information about the current lifecycle state.
 	LifecycleDetails *string `mandatory:"false" json:"lifecycleDetails"`
 
@@ -66,6 +63,9 @@ type AutonomousDatabase struct {
 
 	// Key History Entry.
 	KeyHistoryEntry []AutonomousDatabaseKeyHistoryEntry `mandatory:"false" json:"keyHistoryEntry"`
+
+	// The quantity of data in the database, in terabytes.
+	DataStorageSizeInTBs *int `mandatory:"false" json:"dataStorageSizeInTBs"`
 
 	// The quantity of data in the database, in gigabytes.
 	DataStorageSizeInGBs *int `mandatory:"false" json:"dataStorageSizeInGBs"`

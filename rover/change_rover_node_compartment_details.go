@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// ChangeRoverNodeCompartmentDetails The representation of ChangeRoverNodeCompartmentDetails
+// ChangeRoverNodeCompartmentDetails Object for moving a node to a different compartment.
 type ChangeRoverNodeCompartmentDetails struct {
 
 	// The OCID  (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment into which the resources should be moved.

@@ -5,10 +5,11 @@
 // Core Services API
 //
 // API covering the Networking (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm),
-// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm), and
-// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm) services. Use this API
-// to manage resources such as virtual cloud networks (VCNs), compute instances, and
-// block storage volumes.
+// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm),
+// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm), and
+// Registry (https://docs.cloud.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm) services.
+// Use this API to manage resources such as virtual cloud networks (VCNs),
+// compute instances, block storage volumes, and container images.
 //
 
 package core
@@ -98,6 +99,9 @@ type VolumeBackup struct {
 	// consumed on the volume and whether the backup is full or incremental.
 	// This field is deprecated. Please use uniqueSizeInGBs.
 	UniqueSizeInMbs *int64 `mandatory:"false" json:"uniqueSizeInMbs"`
+
+	// The percentage complete of the operation to create the volume backup, based on the volume backup size.
+	BackupProgress *int `mandatory:"false" json:"backupProgress"`
 
 	// The OCID of the volume.
 	VolumeId *string `mandatory:"false" json:"volumeId"`

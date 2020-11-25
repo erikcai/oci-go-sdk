@@ -13,14 +13,17 @@ import (
 	"github.com/oracle/oci-go-sdk/v29/common"
 )
 
-// RoverNode Description of RoverNode.
+// RoverNode Information about a RoverNode.
 type RoverNode struct {
 
-	// The Unique Oracle ID (OCID) that is immutable on creation.
+	// The OCID of RoverNode.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The OCID of the compartment containing the RoverNode.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// The current state of the RoverNode.
 	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
@@ -29,13 +32,13 @@ type RoverNode struct {
 	ClusterId *string `mandatory:"false" json:"clusterId"`
 
 	// The type of node indicating if it belongs to a cluster
-	NodeType *string `mandatory:"false" json:"nodeType"`
+	NodeType NodeTypeEnum `mandatory:"false" json:"nodeType,omitempty"`
+
+	// The type of enclosure rover node is shipped in.
+	EnclosureType EnclosureTypeEnum `mandatory:"false" json:"enclosureType,omitempty"`
 
 	// Serial number of the node.
 	SerialNumber *string `mandatory:"false" json:"serialNumber"`
-
-	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The time the the RoverNode was created. An RFC3339 formatted datetime string
 	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
@@ -48,9 +51,11 @@ type RoverNode struct {
 	// List of existing workloads that should be provisioned on the node.
 	NodeWorkloads []RoverWorkload `mandatory:"false" json:"nodeWorkloads"`
 
-	CustomerReceivedTime *common.SDKTime `mandatory:"false" json:"customerReceivedTime"`
+	// Date and time when customer received tne node.
+	TimeCustomerReceieved *common.SDKTime `mandatory:"false" json:"timeCustomerReceieved"`
 
-	CustomerReturnedTime *common.SDKTime `mandatory:"false" json:"customerReturnedTime"`
+	// Date and time when customer returned the node.
+	TimeCustomerReturned *common.SDKTime `mandatory:"false" json:"timeCustomerReturned"`
 
 	// Tracking information for device shipping.
 	DeliveryTrackingInfo *string `mandatory:"false" json:"deliveryTrackingInfo"`
@@ -74,21 +79,24 @@ type RoverNode struct {
 	ShippingVendor *string `mandatory:"false" json:"shippingVendor"`
 
 	// Expected date when customer wants to pickup the device if they chose customer pickup.
-	ExpectedPickupDate *common.SDKTime `mandatory:"false" json:"expectedPickupDate"`
+	TimePickupExpected *common.SDKTime `mandatory:"false" json:"timePickupExpected"`
 
 	// Start time for the window to pickup the device from customer.
-	ReturnWindowStartTime *common.SDKTime `mandatory:"false" json:"returnWindowStartTime"`
+	TimeReturnWindowStarts *common.SDKTime `mandatory:"false" json:"timeReturnWindowStarts"`
 
 	// Tracking Url for the shipped RoverNode.
 	OracleShippingTrackingUrl *string `mandatory:"false" json:"oracleShippingTrackingUrl"`
 
 	// End time for the window to pickup the device from customer.
-	ReturnWindowEndTime *common.SDKTime `mandatory:"false" json:"returnWindowEndTime"`
+	TimeReturnWindowEnds *common.SDKTime `mandatory:"false" json:"timeReturnWindowEnds"`
 
 	// Uri to download return shipping label.
 	ReturnShippingLabelUri *string `mandatory:"false" json:"returnShippingLabelUri"`
 
-	// Uri of a pre-authenticated request to a bucket in service tenancy where Image workloads will be exported.
+	// The public key of the resource principal
+	PublicKey *string `mandatory:"false" json:"publicKey"`
+
+	// The link to pre-authenticated request for a bucket where image workloads are moved.
 	ImageExportPar *string `mandatory:"false" json:"imageExportPar"`
 
 	// The freeform tags associated with this resource, if any. Each tag is a simple key-value pair with no

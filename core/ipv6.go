@@ -5,10 +5,11 @@
 // Core Services API
 //
 // API covering the Networking (https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm),
-// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm), and
-// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm) services. Use this API
-// to manage resources such as virtual cloud networks (VCNs), compute instances, and
-// block storage volumes.
+// Compute (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm),
+// Block Volume (https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm), and
+// Registry (https://docs.cloud.oracle.com/iaas/Content/Registry/Concepts/registryoverview.htm) services.
+// Use this API to manage resources such as virtual cloud networks (VCNs),
+// compute instances, block storage volumes, and container images.
 //
 
 package core
@@ -52,10 +53,6 @@ type Ipv6 struct {
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC the IPv6 is assigned to.
-	// The VNIC and IPv6 must be in the same subnet.
-	VnicId *string `mandatory:"true" json:"vnicId"`
-
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
@@ -85,6 +82,13 @@ type Ipv6 struct {
 	// This is null if the IPv6 is created with `isInternetAccessAllowed` set to `false`.
 	// Example: `2001:0db8:0123:1111:abcd:ef01:2345:6789`
 	PublicIpAddress *string `mandatory:"false" json:"publicIpAddress"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC the IPv6 is assigned to.
+	// The VNIC and IPv6 must be in the same subnet.
+	VnicId *string `mandatory:"false" json:"vnicId"`
+
+	// true if the IP is reserved and can exist detached from vnic
+	IsReserved *bool `mandatory:"false" json:"isReserved"`
 }
 
 func (m Ipv6) String() string {

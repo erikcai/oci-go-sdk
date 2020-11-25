@@ -16,10 +16,10 @@ import (
 // RoverNodeSummary Summary of the RoverNode.
 type RoverNodeSummary struct {
 
-	// Unique identifier that is immutable on creation
+	// The OCID of the RoverNode.
 	Id *string `mandatory:"true" json:"id"`
 
-	// Compartment Identifier
+	// The OCID of the compartment containing the RoverNode.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The current state of the RoverNode.
@@ -31,7 +31,7 @@ type RoverNodeSummary struct {
 	// Serial number of the node.
 	SerialNumber *string `mandatory:"false" json:"serialNumber"`
 
-	// RoverNode Identifier, can be renamed
+	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The time the the RoverNode was created. An RFC3339 formatted datetime string

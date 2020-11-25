@@ -990,94 +990,6 @@ func TestDatabaseClientCreateAutonomousContainerDatabase(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientCreateAutonomousDataWarehouse(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "CreateAutonomousDataWarehouse")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("CreateAutonomousDataWarehouse is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "CreateAutonomousDataWarehouse", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "CreateAutonomousDataWarehouse")
-	assert.NoError(t, err)
-
-	type CreateAutonomousDataWarehouseRequestInfo struct {
-		ContainerId string
-		Request     database.CreateAutonomousDataWarehouseRequest
-	}
-
-	var requests []CreateAutonomousDataWarehouseRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.CreateAutonomousDataWarehouse(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientCreateAutonomousDataWarehouseBackup(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "CreateAutonomousDataWarehouseBackup")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("CreateAutonomousDataWarehouseBackup is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "CreateAutonomousDataWarehouseBackup", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "CreateAutonomousDataWarehouseBackup")
-	assert.NoError(t, err)
-
-	type CreateAutonomousDataWarehouseBackupRequestInfo struct {
-		ContainerId string
-		Request     database.CreateAutonomousDataWarehouseBackupRequest
-	}
-
-	var requests []CreateAutonomousDataWarehouseBackupRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.CreateAutonomousDataWarehouseBackup(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
 // IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientCreateAutonomousDatabase(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2162,50 +2074,6 @@ func TestDatabaseClientDbNodeAction(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DbNodeAction(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientDeleteAutonomousDataWarehouse(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "DeleteAutonomousDataWarehouse")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("DeleteAutonomousDataWarehouse is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "DeleteAutonomousDataWarehouse", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "DeleteAutonomousDataWarehouse")
-	assert.NoError(t, err)
-
-	type DeleteAutonomousDataWarehouseRequestInfo struct {
-		ContainerId string
-		Request     database.DeleteAutonomousDataWarehouseRequest
-	}
-
-	var requests []DeleteAutonomousDataWarehouseRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.DeleteAutonomousDataWarehouse(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3665,50 +3533,6 @@ func TestDatabaseClientFailoverDataGuardAssociation(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientGenerateAutonomousDataWarehouseWallet(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "GenerateAutonomousDataWarehouseWallet")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GenerateAutonomousDataWarehouseWallet is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "GenerateAutonomousDataWarehouseWallet", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "GenerateAutonomousDataWarehouseWallet")
-	assert.NoError(t, err)
-
-	type GenerateAutonomousDataWarehouseWalletRequestInfo struct {
-		ContainerId string
-		Request     database.GenerateAutonomousDataWarehouseWalletRequest
-	}
-
-	var requests []GenerateAutonomousDataWarehouseWalletRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GenerateAutonomousDataWarehouseWallet(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
 // IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientGenerateAutonomousDatabaseWallet(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -3878,94 +3702,6 @@ func TestDatabaseClientGetAutonomousContainerDatabaseDataguardAssociation(t *tes
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetAutonomousContainerDatabaseDataguardAssociation(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientGetAutonomousDataWarehouse(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "GetAutonomousDataWarehouse")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetAutonomousDataWarehouse is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousDataWarehouse", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "GetAutonomousDataWarehouse")
-	assert.NoError(t, err)
-
-	type GetAutonomousDataWarehouseRequestInfo struct {
-		ContainerId string
-		Request     database.GetAutonomousDataWarehouseRequest
-	}
-
-	var requests []GetAutonomousDataWarehouseRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetAutonomousDataWarehouse(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientGetAutonomousDataWarehouseBackup(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "GetAutonomousDataWarehouseBackup")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetAutonomousDataWarehouseBackup is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "GetAutonomousDataWarehouseBackup", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "GetAutonomousDataWarehouseBackup")
-	assert.NoError(t, err)
-
-	type GetAutonomousDataWarehouseBackupRequestInfo struct {
-		ContainerId string
-		Request     database.GetAutonomousDataWarehouseBackupRequest
-	}
-
-	var requests []GetAutonomousDataWarehouseBackupRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetAutonomousDataWarehouseBackup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -6075,114 +5811,6 @@ func TestDatabaseClientListAutonomousContainerDatabases(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientListAutonomousDataWarehouseBackups(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "ListAutonomousDataWarehouseBackups")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListAutonomousDataWarehouseBackups is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDataWarehouseBackups", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "ListAutonomousDataWarehouseBackups")
-	assert.NoError(t, err)
-
-	type ListAutonomousDataWarehouseBackupsRequestInfo struct {
-		ContainerId string
-		Request     database.ListAutonomousDataWarehouseBackupsRequest
-	}
-
-	var requests []ListAutonomousDataWarehouseBackupsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*database.ListAutonomousDataWarehouseBackupsRequest)
-				return c.ListAutonomousDataWarehouseBackups(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]database.ListAutonomousDataWarehouseBackupsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(database.ListAutonomousDataWarehouseBackupsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientListAutonomousDataWarehouses(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "ListAutonomousDataWarehouses")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListAutonomousDataWarehouses is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "ListAutonomousDataWarehouses", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "ListAutonomousDataWarehouses")
-	assert.NoError(t, err)
-
-	type ListAutonomousDataWarehousesRequestInfo struct {
-		ContainerId string
-		Request     database.ListAutonomousDataWarehousesRequest
-	}
-
-	var requests []ListAutonomousDataWarehousesRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*database.ListAutonomousDataWarehousesRequest)
-				return c.ListAutonomousDataWarehouses(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]database.ListAutonomousDataWarehousesResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(database.ListAutonomousDataWarehousesResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
 // IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientListAutonomousDatabaseBackups(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -8118,6 +7746,60 @@ func TestDatabaseClientListExternalPluggableDatabases(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientListFlexComponents(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "ListFlexComponents")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListFlexComponents is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "ListFlexComponents", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "ListFlexComponents")
+	assert.NoError(t, err)
+
+	type ListFlexComponentsRequestInfo struct {
+		ContainerId string
+		Request     database.ListFlexComponentsRequest
+	}
+
+	var requests []ListFlexComponentsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*database.ListFlexComponentsRequest)
+				return c.ListFlexComponents(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]database.ListFlexComponentsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(database.ListFlexComponentsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientListGiVersions(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -8847,50 +8529,6 @@ func TestDatabaseClientRestartAutonomousDatabase(t *testing.T) {
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientRestoreAutonomousDataWarehouse(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "RestoreAutonomousDataWarehouse")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("RestoreAutonomousDataWarehouse is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "RestoreAutonomousDataWarehouse", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "RestoreAutonomousDataWarehouse")
-	assert.NoError(t, err)
-
-	type RestoreAutonomousDataWarehouseRequestInfo struct {
-		ContainerId string
-		Request     database.RestoreAutonomousDataWarehouseRequest
-	}
-
-	var requests []RestoreAutonomousDataWarehouseRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.RestoreAutonomousDataWarehouse(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
 // IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientRestoreAutonomousDatabase(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -9243,50 +8881,6 @@ func TestDatabaseClientScanExternalContainerDatabasePluggableDatabases(t *testin
 	}
 }
 
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientStartAutonomousDataWarehouse(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "StartAutonomousDataWarehouse")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("StartAutonomousDataWarehouse is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "StartAutonomousDataWarehouse", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "StartAutonomousDataWarehouse")
-	assert.NoError(t, err)
-
-	type StartAutonomousDataWarehouseRequestInfo struct {
-		ContainerId string
-		Request     database.StartAutonomousDataWarehouseRequest
-	}
-
-	var requests []StartAutonomousDataWarehouseRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.StartAutonomousDataWarehouse(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
 // IssueRoutingInfo tag="dbaas-adb" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientStartAutonomousDatabase(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -9324,50 +8918,6 @@ func TestDatabaseClientStartAutonomousDatabase(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.StartAutonomousDatabase(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientStopAutonomousDataWarehouse(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "StopAutonomousDataWarehouse")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("StopAutonomousDataWarehouse is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "StopAutonomousDataWarehouse", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "StopAutonomousDataWarehouse")
-	assert.NoError(t, err)
-
-	type StopAutonomousDataWarehouseRequestInfo struct {
-		ContainerId string
-		Request     database.StopAutonomousDataWarehouseRequest
-	}
-
-	var requests []StopAutonomousDataWarehouseRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.StopAutonomousDataWarehouse(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -9720,50 +9270,6 @@ func TestDatabaseClientUpdateAutonomousContainerDatabase(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateAutonomousContainerDatabase(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
-func TestDatabaseClientUpdateAutonomousDataWarehouse(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("database", "UpdateAutonomousDataWarehouse")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("UpdateAutonomousDataWarehouse is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("database", "Database", "UpdateAutonomousDataWarehouse", createDatabaseClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(database.DatabaseClient)
-
-	body, err := testClient.getRequests("database", "UpdateAutonomousDataWarehouse")
-	assert.NoError(t, err)
-
-	type UpdateAutonomousDataWarehouseRequestInfo struct {
-		ContainerId string
-		Request     database.UpdateAutonomousDataWarehouseRequest
-	}
-
-	var requests []UpdateAutonomousDataWarehouseRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.UpdateAutonomousDataWarehouse(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

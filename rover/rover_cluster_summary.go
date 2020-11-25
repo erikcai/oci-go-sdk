@@ -16,16 +16,16 @@ import (
 // RoverClusterSummary Summary of the RoverCluster.
 type RoverClusterSummary struct {
 
-	// Unique identifier that is immutable on creation
+	// The OCID of RoverCluster.
 	Id *string `mandatory:"true" json:"id"`
 
-	// Compartment Identifier
+	// The OCID of the compartment containing the RoverCluster.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
 	// The current state of the RoverCluster.
 	LifecycleState LifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
-	// RoverCluster Identifier, can be renamed
+	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The time the the RoverCluster was created. An RFC3339 formatted datetime string

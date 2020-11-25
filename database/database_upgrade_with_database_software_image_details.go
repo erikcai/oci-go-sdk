@@ -15,7 +15,6 @@ import (
 )
 
 // DatabaseUpgradeWithDatabaseSoftwareImageDetails Details of Database Software Image for upgrading a database.
-// **Warning:** Oracle recommends that you avoid using any confidential information when you supply string values using the API.
 type DatabaseUpgradeWithDatabaseSoftwareImageDetails struct {
 
 	// the database software id used for upgrading the database.
