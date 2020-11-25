@@ -479,6 +479,7 @@ func TestObjectStorage_UploadManager_UploadFile(t *testing.T) {
 			NamespaceName:                       common.String(namespace),
 			BucketName:                          common.String(bname),
 			ObjectName:                          common.String(objectName),
+			StorageTier:                         objectstorage.PutObjectStorageTierInfrequentaccess,
 			PartSize:                            common.Int64(1024 * 1000 * 1), // 1MB
 			CallBack:                            callBack,
 			EnableMultipartChecksumVerification: common.Bool(true),

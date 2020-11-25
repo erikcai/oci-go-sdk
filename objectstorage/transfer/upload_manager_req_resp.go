@@ -84,6 +84,10 @@ type UploadRequest struct {
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata
 
+	// [Optional] The storage tier of the object to upload. If not specified, the storage tier is
+	// defaulted to 'Standard'
+	StorageTier objectstorage.PutObjectStorageTierEnum `mandatory:"false"`
+
 	// [Optional] Callback API that can be invoked during multiPartUploads
 	CallBack UploadCallBack `mandatory:"false"`
 

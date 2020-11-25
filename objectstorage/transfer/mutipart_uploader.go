@@ -37,6 +37,14 @@ func (uploader *multipartUpload) createMultipartUpload(ctx context.Context, requ
 	multipartUploadRequest.ContentEncoding = request.ContentEncoding
 	multipartUploadRequest.ContentLanguage = request.ContentLanguage
 	multipartUploadRequest.Metadata = request.Metadata
+	switch request.StorageTier {
+	case objectstorage.PutObjectStorageTierStandard:
+		multipartUploadRequest.StorageTier = objectstorage.StorageTierStandard
+	case objectstorage.PutObjectStorageTierArchive:
+		multipartUploadRequest.StorageTier = objectstorage.StorageTierArchive
+	case objectstorage.PutObjectStorageTierInfrequentaccess:
+		multipartUploadRequest.StorageTier = objectstorage.StorageTierInfrequentAccess
+	}
 
 	resp, err := request.ObjectStorageClient.CreateMultipartUpload(ctx, multipartUploadRequest)
 	return *resp.UploadId, err

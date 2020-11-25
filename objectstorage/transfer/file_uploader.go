@@ -105,6 +105,7 @@ func (fileUpload *fileUpload) UploadFilePutObject(ctx context.Context, request U
 		ContentMD5:         request.ContentMD5,
 		OpcClientRequestId: request.OpcClientRequestID,
 		RequestMetadata:    request.RequestMetadata,
+		StorageTier:        request.StorageTier,
 	}
 
 	resp, err := request.ObjectStorageClient.PutObject(ctx, req)
