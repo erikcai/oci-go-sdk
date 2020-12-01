@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v29/common"
+	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
 // ComputeInstanceGroupByIdsSelector Specifies the Compute Instance Group environment by listing the OCIDs of the compute instances

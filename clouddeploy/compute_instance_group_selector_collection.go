@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v29/common"
+	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
 // ComputeInstanceGroupSelectorCollection A collection of selectors. The UNION of instances matching the selectors are included in the instance group.

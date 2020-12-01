@@ -1,8 +1,8 @@
 package autotest
 
 import (
-	"github.com/oracle/oci-go-sdk/v29/cloudguard"
-	"github.com/oracle/oci-go-sdk/v29/common"
+	"github.com/oracle/oci-go-sdk/v30/cloudguard"
+	"github.com/oracle/oci-go-sdk/v30/common"
 
 	"context"
 	"encoding/json"

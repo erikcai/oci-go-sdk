@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v29/common"
+	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
 // ReverseConnectionsSourceIpDetails IP information for reverse connection configuration. Returned as part of the `PrivateEndpoint` object.

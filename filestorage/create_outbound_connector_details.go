@@ -11,7 +11,7 @@ package filestorage
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v29/common"
+	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
 // CreateOutboundConnectorDetails Details for creating the outbound connector.

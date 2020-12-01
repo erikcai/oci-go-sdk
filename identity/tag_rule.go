@@ -10,7 +10,7 @@
 package identity
 
 import (
-	"github.com/oracle/oci-go-sdk/v29/common"
+	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
 // TagRule A document that specifies one or more actions on tag key(s) and/or value(s) for one or more resource types in a

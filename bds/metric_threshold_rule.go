@@ -12,7 +12,7 @@
 package bds
 
 import (
-	"github.com/oracle/oci-go-sdk/v29/common"
+	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
 // MetricThresholdRule An autoscaling action is triggered when a performance metric meets or exceeds a threshold

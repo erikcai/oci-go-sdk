@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v29/common"
+	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
 // GetCreateReverseConnectionNatIpDetails Details for retrieving the reverse connection NAT IP address.
