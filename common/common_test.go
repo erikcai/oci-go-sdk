@@ -5,11 +5,12 @@ package common
 
 import (
 	"errors"
-	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
 	"path"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestEndpoint(t *testing.T) {
@@ -25,6 +26,18 @@ func TestEndpoint(t *testing.T) {
 	region = StringToRegion("eu-marseille-1")
 	endpoint = region.Endpoint("bar")
 	assert.Equal(t, "bar.eu-marseille-1.oraclecloud.com", endpoint)
+
+	region = StringToRegion("eu-stockholm-1")
+	endpoint = region.Endpoint("bar")
+	assert.Equal(t, "bar.eu-stockholm-1.oraclecloud.com", endpoint)
+
+	region = StringToRegion("eu-milan-1")
+	endpoint = region.Endpoint("bar")
+	assert.Equal(t, "bar.eu-milan-1.oraclecloud.com", endpoint)
+
+	region = StringToRegion("il-jerusalem-1")
+	endpoint = region.Endpoint("bar")
+	assert.Equal(t, "bar.il-jerusalem-1.oraclecloud.com", endpoint)
 
 	// OC2
 	region = StringToRegion("us-langley-1")
@@ -206,6 +219,15 @@ func TestStringToRegion(t *testing.T) {
 
 	region = StringToRegion("mrs")
 	assert.Equal(t, RegionEUMarseille1, region)
+
+	region = StringToRegion("mtz")
+	assert.Equal(t, RegionILJerusalem1, region)
+
+	region = StringToRegion("arn")
+	assert.Equal(t, RegionEUStockholm1, region)
+
+	region = StringToRegion("lin")
+	assert.Equal(t, RegionEUMilan1, region)
 
 	regionMetadataEnvVar := `{"realmKey":"OC0","realmDomainComponent":"testRealm.com","regionKey":"RTK","regionIdentifier":"us-testregion-1"}`
 	os.Unsetenv("OCI_REGION_METADATA")
