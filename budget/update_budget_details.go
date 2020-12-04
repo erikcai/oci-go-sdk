@@ -25,6 +25,9 @@ type UpdateBudgetDetails struct {
 	// The amount of the budget expressed as a whole number in the currency of the customer's rate card.
 	Amount *float32 `mandatory:"false" json:"amount"`
 
+	// The first day of the billing cycle in a month.
+	BillingDayOfMonth *int `mandatory:"false" json:"billingDayOfMonth"`
+
 	// The reset period for the budget.
 	ResetPeriod ResetPeriodEnum `mandatory:"false" json:"resetPeriod,omitempty"`
 

@@ -168,6 +168,8 @@ const (
 	ListCustomPropertiesTypeNameCategory                        ListCustomPropertiesTypeNameEnum = "CATEGORY"
 	ListCustomPropertiesTypeNameFile                            ListCustomPropertiesTypeNameEnum = "FILE"
 	ListCustomPropertiesTypeNameBucket                          ListCustomPropertiesTypeNameEnum = "BUCKET"
+	ListCustomPropertiesTypeNameMessage                         ListCustomPropertiesTypeNameEnum = "MESSAGE"
+	ListCustomPropertiesTypeNameUnrecognizedFile                ListCustomPropertiesTypeNameEnum = "UNRECOGNIZED_FILE"
 )
 
 var mappingListCustomPropertiesTypeName = map[string]ListCustomPropertiesTypeNameEnum{
@@ -195,6 +197,8 @@ var mappingListCustomPropertiesTypeName = map[string]ListCustomPropertiesTypeNam
 	"CATEGORY":                          ListCustomPropertiesTypeNameCategory,
 	"FILE":                              ListCustomPropertiesTypeNameFile,
 	"BUCKET":                            ListCustomPropertiesTypeNameBucket,
+	"MESSAGE":                           ListCustomPropertiesTypeNameMessage,
+	"UNRECOGNIZED_FILE":                 ListCustomPropertiesTypeNameUnrecognizedFile,
 }
 
 // GetListCustomPropertiesTypeNameEnumValues Enumerates the set of values for ListCustomPropertiesTypeNameEnum

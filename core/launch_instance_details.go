@@ -177,6 +177,8 @@ type LaunchInstanceDetails struct {
 	// * `LIVE_MIGRATE` - Run maintenance using a live migration.
 	// * `REBOOT` - Run maintenance using a reboot.
 	PreferredMaintenanceAction LaunchInstanceDetailsPreferredMaintenanceActionEnum `mandatory:"false" json:"preferredMaintenanceAction,omitempty"`
+
+	PlatformConfig LaunchInstancePlatformConfig `mandatory:"false" json:"platformConfig"`
 }
 
 func (m LaunchInstanceDetails) String() string {
@@ -209,6 +211,7 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 		SecondaryVnicAttachments       []AttachVnicDetails                                 `json:"secondaryVnicAttachments"`
 		IsPvEncryptionInTransitEnabled *bool                                               `json:"isPvEncryptionInTransitEnabled"`
 		PreferredMaintenanceAction     LaunchInstanceDetailsPreferredMaintenanceActionEnum `json:"preferredMaintenanceAction"`
+		PlatformConfig                 launchinstanceplatformconfig                        `json:"platformConfig"`
 		AvailabilityDomain             *string                                             `json:"availabilityDomain"`
 		CompartmentId                  *string                                             `json:"compartmentId"`
 		Shape                          *string                                             `json:"shape"`
@@ -286,6 +289,16 @@ func (m *LaunchInstanceDetails) UnmarshalJSON(data []byte) (e error) {
 	m.IsPvEncryptionInTransitEnabled = model.IsPvEncryptionInTransitEnabled
 
 	m.PreferredMaintenanceAction = model.PreferredMaintenanceAction
+
+	nn, e = model.PlatformConfig.UnmarshalPolymorphicJSON(model.PlatformConfig.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.PlatformConfig = nn.(LaunchInstancePlatformConfig)
+	} else {
+		m.PlatformConfig = nil
+	}
 
 	m.AvailabilityDomain = model.AvailabilityDomain
 

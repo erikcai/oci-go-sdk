@@ -51,6 +51,9 @@ type Budget struct {
 	// The description of the budget.
 	Description *string `mandatory:"false" json:"description"`
 
+	// The first day of the billing cycle in a month.
+	BillingDayOfMonth *int `mandatory:"false" json:"billingDayOfMonth"`
+
 	// The type of target on which the budget is applied.
 	TargetType TargetTypeEnum `mandatory:"false" json:"targetType,omitempty"`
 

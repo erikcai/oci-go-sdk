@@ -134,6 +134,161 @@ func (client VirtualNetworkClient) acceptLocalPeeringToken(ctx context.Context, 
 	return response, err
 }
 
+// AddAdditionalRouteRules Add route rules to a route table.
+func (client VirtualNetworkClient) AddAdditionalRouteRules(ctx context.Context, request AddAdditionalRouteRulesRequest) (response AddAdditionalRouteRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.addAdditionalRouteRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = AddAdditionalRouteRulesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = AddAdditionalRouteRulesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(AddAdditionalRouteRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into AddAdditionalRouteRulesResponse")
+	}
+	return
+}
+
+// addAdditionalRouteRules implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) addAdditionalRouteRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/routeTables/{rtId}/actions/addAdditionalRouteRules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response AddAdditionalRouteRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// AddDrgRouteDistributionStatements Adds one or more route distribution statement to the specified Route Distribution
+func (client VirtualNetworkClient) AddDrgRouteDistributionStatements(ctx context.Context, request AddDrgRouteDistributionStatementsRequest) (response AddDrgRouteDistributionStatementsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.addDrgRouteDistributionStatements, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = AddDrgRouteDistributionStatementsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = AddDrgRouteDistributionStatementsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(AddDrgRouteDistributionStatementsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into AddDrgRouteDistributionStatementsResponse")
+	}
+	return
+}
+
+// addDrgRouteDistributionStatements implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) addDrgRouteDistributionStatements(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgRouteDistributions/{drgRouteDistributionId}/actions/addDrgRouteDistributionStatements")
+	if err != nil {
+		return nil, err
+	}
+
+	var response AddDrgRouteDistributionStatementsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// AddDrgRouteRules Adds one or more static route rules to the specified DRG Route Table
+func (client VirtualNetworkClient) AddDrgRouteRules(ctx context.Context, request AddDrgRouteRulesRequest) (response AddDrgRouteRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.addDrgRouteRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = AddDrgRouteRulesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = AddDrgRouteRulesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(AddDrgRouteRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into AddDrgRouteRulesResponse")
+	}
+	return
+}
+
+// addDrgRouteRules implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) addDrgRouteRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgRouteTables/{drgRouteTableId}/actions/addDrgRouteRules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response AddDrgRouteRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // AddIpv6VcnCidr Add an IPv6 CIDR to a VCN. The VCN size is always /48.
 // AddVcnIpv6CidrDetails provides flexibility to have different private and public IPv6 address space.
 // Once added the IPv6 CIDR block cannot me removed or modified.
@@ -944,6 +1099,63 @@ func (client VirtualNetworkClient) changeDhcpOptionsCompartment(ctx context.Cont
 	}
 
 	var response ChangeDhcpOptionsCompartmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ChangeDrgAttachmentCompartment Moves a DRG Attachment into a different compartment within the same tenancy. For information
+// about moving resources between compartments, see
+// Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+func (client VirtualNetworkClient) ChangeDrgAttachmentCompartment(ctx context.Context, request ChangeDrgAttachmentCompartmentRequest) (response ChangeDrgAttachmentCompartmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.changeDrgAttachmentCompartment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ChangeDrgAttachmentCompartmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ChangeDrgAttachmentCompartmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ChangeDrgAttachmentCompartmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ChangeDrgAttachmentCompartmentResponse")
+	}
+	return
+}
+
+// changeDrgAttachmentCompartment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) changeDrgAttachmentCompartment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgAttachments/{drgAttachmentId}/actions/changeCompartment")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ChangeDrgAttachmentCompartmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2250,6 +2462,133 @@ func (client VirtualNetworkClient) createByoipRange(ctx context.Context, request
 	return response, err
 }
 
+// CreateC3Drg Creates a new dynamic routing gateway (DRG) in the specified compartment. For more information,
+// see Dynamic Routing Gateways (DRGs) (https://docs.cloud.oracle.com/Content/Network/Tasks/managingDRGs.htm).
+// For the purposes of access control, you must provide the OCID of the compartment where you want
+// the DRG to reside. Notice that the DRG doesn't have to be in the same compartment as the VCN,
+// the DRG attachment, or other Networking Service components. If you're not sure which compartment
+// to use, put the DRG in the same compartment as the VCN. For more information about compartments
+// and access control, see Overview of the IAM Service (https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+// For information about OCIDs, see Resource Identifiers (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+// You may optionally specify a *display name* for the DRG, otherwise a default is provided.
+// It does not have to be unique, and you can change it. Avoid entering confidential information.
+func (client VirtualNetworkClient) CreateC3Drg(ctx context.Context, request CreateC3DrgRequest) (response CreateC3DrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createC3Drg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateC3DrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateC3DrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateC3DrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateC3DrgResponse")
+	}
+	return
+}
+
+// createC3Drg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createC3Drg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/c3_drgs")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateC3DrgResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateC3DrgAttachment Attaches the specified DRG to the specified resource. A DRG can be attached to a VCN, Virtual Circuit,
+// IPSec Connection, or Remote Peering Connection. A DRG can be attached to multiple VCNs.
+// The response includes a `DrgAttachment` object with its own OCID. For more information about DRGs, see
+// Dynamic Routing Gateways (DRGs) (https://docs.cloud.oracle.com/Content/Network/Tasks/managingDRGs.htm).
+// You may optionally specify a *display name* for the attachment, otherwise a default is provided.
+// It does not have to be unique, and you can change it. Avoid entering confidential information.
+// For the purposes of access control, the DRG attachment is automatically placed into the same compartment
+// as the attached resource. For more information about compartments and access control, see
+// Overview of the IAM Service (https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+func (client VirtualNetworkClient) CreateC3DrgAttachment(ctx context.Context, request CreateC3DrgAttachmentRequest) (response CreateC3DrgAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createC3DrgAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateC3DrgAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateC3DrgAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateC3DrgAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateC3DrgAttachmentResponse")
+	}
+	return
+}
+
+// createC3DrgAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createC3DrgAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/c3_drgAttachments")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateC3DrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // CreateClientVpnEndpoint Create a specific Client VPN endpoint. The maxConnections and the attachedSubnetId are required fields. Customers can
 // specify a list of accessible subnets to manage the traffic access through this endpoint. Our service also provides
 // customers options like addressing mode and authentication method etc.
@@ -2745,6 +3084,120 @@ func (client VirtualNetworkClient) createDrgAttachment(ctx context.Context, requ
 	}
 
 	var response CreateDrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateDrgRouteDistribution Creates a new Route Distribution for the specified DRG. Assign the route distribution as an import
+// distribution for a DRG Route Table using the UpdateDrgRouteTable or CreateDrgRouteTable operation.
+// Assign the route distribution as an export distribution to a DRG Attachment
+// using the UpdateDrgAttachment or CreateDrgAttachment operation.
+func (client VirtualNetworkClient) CreateDrgRouteDistribution(ctx context.Context, request CreateDrgRouteDistributionRequest) (response CreateDrgRouteDistributionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createDrgRouteDistribution, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateDrgRouteDistributionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateDrgRouteDistributionResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateDrgRouteDistributionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateDrgRouteDistributionResponse")
+	}
+	return
+}
+
+// createDrgRouteDistribution implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createDrgRouteDistribution(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgRouteDistributions")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateDrgRouteDistributionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// CreateDrgRouteTable Creates a new DRG Route Table for the specified DRG. Assign the route table to a DRG Attachment
+// using the UpdateDrgAttachment or CreateDrgAttachment operation.
+func (client VirtualNetworkClient) CreateDrgRouteTable(ctx context.Context, request CreateDrgRouteTableRequest) (response CreateDrgRouteTableResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.createDrgRouteTable, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = CreateDrgRouteTableResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = CreateDrgRouteTableResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(CreateDrgRouteTableResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into CreateDrgRouteTableResponse")
+	}
+	return
+}
+
+// createDrgRouteTable implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) createDrgRouteTable(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgRouteTables")
+	if err != nil {
+		return nil, err
+	}
+
+	var response CreateDrgRouteTableResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -4762,6 +5215,113 @@ func (client VirtualNetworkClient) deleteByoipRange(ctx context.Context, request
 	return response, err
 }
 
+// DeleteC3Drg Deletes the specified DRG. The DRG must not be attached to a VCN or be connected to your on-premise
+// network. Also, there must not be a route table that lists the DRG as a target. This is an asynchronous
+// operation. The DRG's `lifecycleState` will change to TERMINATING temporarily until the DRG is completely
+// removed.
+func (client VirtualNetworkClient) DeleteC3Drg(ctx context.Context, request DeleteC3DrgRequest) (response DeleteC3DrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteC3Drg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteC3DrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteC3DrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteC3DrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteC3DrgResponse")
+	}
+	return
+}
+
+// deleteC3Drg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteC3Drg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/c3_drgs/{drgId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteC3DrgResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteC3DrgAttachment Detaches a DRG from a network by deleting the corresponding `DrgAttachment`. This is an asynchronous
+// operation. The attachment's `lifecycleState` will change to DETACHING temporarily until the attachment
+// is completely removed.
+// There must be no DRG Route Rules that lists the DRG Attachment as a target. You can delete a DRG Attachment that is
+// referenced in DRG Route Map policies.
+func (client VirtualNetworkClient) DeleteC3DrgAttachment(ctx context.Context, request DeleteC3DrgAttachmentRequest) (response DeleteC3DrgAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteC3DrgAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteC3DrgAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteC3DrgAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteC3DrgAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteC3DrgAttachmentResponse")
+	}
+	return
+}
+
+// deleteC3DrgAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteC3DrgAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/c3_drgAttachments/{drgAttachmentId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteC3DrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // DeleteClientVpnEndpoint Delete the specific ClientVpnEndpoint by given the clientVpnEndpointid.
 func (client VirtualNetworkClient) DeleteClientVpnEndpoint(ctx context.Context, request DeleteClientVpnEndpointRequest) (response DeleteClientVpnEndpointResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -5163,6 +5723,107 @@ func (client VirtualNetworkClient) deleteDrgAttachment(ctx context.Context, requ
 	}
 
 	var response DeleteDrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteDrgRouteDistribution Deletes the specified Route Distribution. You cannot delete a Route Distribution that is used by a DRG Attachment
+// or DRG Route Table.
+func (client VirtualNetworkClient) DeleteDrgRouteDistribution(ctx context.Context, request DeleteDrgRouteDistributionRequest) (response DeleteDrgRouteDistributionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteDrgRouteDistribution, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteDrgRouteDistributionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteDrgRouteDistributionResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteDrgRouteDistributionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteDrgRouteDistributionResponse")
+	}
+	return
+}
+
+// deleteDrgRouteDistribution implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteDrgRouteDistribution(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/drgRouteDistributions/{drgRouteDistributionId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteDrgRouteDistributionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteDrgRouteTable Deletes the specified DRG Route Table. There must not be any DRG Attachments assigned.
+func (client VirtualNetworkClient) DeleteDrgRouteTable(ctx context.Context, request DeleteDrgRouteTableRequest) (response DeleteDrgRouteTableResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.deleteDrgRouteTable, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteDrgRouteTableResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteDrgRouteTableResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteDrgRouteTableResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteDrgRouteTableResponse")
+	}
+	return
+}
+
+// deleteDrgRouteTable implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) deleteDrgRouteTable(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/drgRouteTables/{drgRouteTableId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteDrgRouteTableResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -7269,6 +7930,56 @@ func (client VirtualNetworkClient) generateLocalPeeringToken(ctx context.Context
 	return response, err
 }
 
+// GetAllDrgAttachments Returns the complete list of DRG Attachments that belong to a particular DRG.
+func (client VirtualNetworkClient) GetAllDrgAttachments(ctx context.Context, request GetAllDrgAttachmentsRequest) (response GetAllDrgAttachmentsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getAllDrgAttachments, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetAllDrgAttachmentsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetAllDrgAttachmentsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetAllDrgAttachmentsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetAllDrgAttachmentsResponse")
+	}
+	return
+}
+
+// getAllDrgAttachments implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getAllDrgAttachments(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgs/{drgId}/actions/getAllDrgAttachments")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetAllDrgAttachmentsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetByoipRange Gets the `ByoipRange` resource. You must specify the OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
 func (client VirtualNetworkClient) GetByoipRange(ctx context.Context, request GetByoipRangeRequest) (response GetByoipRangeResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -7307,6 +8018,106 @@ func (client VirtualNetworkClient) getByoipRange(ctx context.Context, request co
 	}
 
 	var response GetByoipRangeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetC3Drg Gets the specified DRG's information.
+func (client VirtualNetworkClient) GetC3Drg(ctx context.Context, request GetC3DrgRequest) (response GetC3DrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getC3Drg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetC3DrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetC3DrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetC3DrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetC3DrgResponse")
+	}
+	return
+}
+
+// getC3Drg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getC3Drg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/c3_drgs/{drgId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetC3DrgResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetC3DrgAttachment Gets the information for the specified `DrgAttachment`.
+func (client VirtualNetworkClient) GetC3DrgAttachment(ctx context.Context, request GetC3DrgAttachmentRequest) (response GetC3DrgAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getC3DrgAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetC3DrgAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetC3DrgAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetC3DrgAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetC3DrgAttachmentResponse")
+	}
+	return
+}
+
+// getC3DrgAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getC3DrgAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/c3_drgAttachments/{drgAttachmentId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetC3DrgAttachmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -8185,6 +8996,106 @@ func (client VirtualNetworkClient) getDrgRedundancyStatus(ctx context.Context, r
 	}
 
 	var response GetDrgRedundancyStatusResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetDrgRouteDistribution Gets the specified Route Distribution's information.
+func (client VirtualNetworkClient) GetDrgRouteDistribution(ctx context.Context, request GetDrgRouteDistributionRequest) (response GetDrgRouteDistributionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getDrgRouteDistribution, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetDrgRouteDistributionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetDrgRouteDistributionResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetDrgRouteDistributionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetDrgRouteDistributionResponse")
+	}
+	return
+}
+
+// getDrgRouteDistribution implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getDrgRouteDistribution(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/drgRouteDistributions/{drgRouteDistributionId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetDrgRouteDistributionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// GetDrgRouteTable Gets the specified DRG Route Table's information.
+func (client VirtualNetworkClient) GetDrgRouteTable(ctx context.Context, request GetDrgRouteTableRequest) (response GetDrgRouteTableResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getDrgRouteTable, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetDrgRouteTableResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetDrgRouteTableResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetDrgRouteTableResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetDrgRouteTableResponse")
+	}
+	return
+}
+
+// getDrgRouteTable implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) getDrgRouteTable(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/drgRouteTables/{drgRouteTableId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetDrgRouteTableResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -10832,6 +11743,56 @@ func (client VirtualNetworkClient) getVnicWorker(ctx context.Context, request co
 	return response, err
 }
 
+// ListAdditionalRouteRules List the route rules in a large route table.
+func (client VirtualNetworkClient) ListAdditionalRouteRules(ctx context.Context, request ListAdditionalRouteRulesRequest) (response ListAdditionalRouteRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listAdditionalRouteRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListAdditionalRouteRulesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListAdditionalRouteRulesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListAdditionalRouteRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListAdditionalRouteRulesResponse")
+	}
+	return
+}
+
+// listAdditionalRouteRules implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listAdditionalRouteRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/routeTables/{rtId}/additionalRouteRules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListAdditionalRouteRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListAllowedPeerRegionsForRemotePeering Lists the regions that support remote VCN peering (which is peering across regions).
 // For more information, see VCN Peering (https://docs.cloud.oracle.com/Content/Network/Tasks/VCNpeering.htm).
 func (client VirtualNetworkClient) ListAllowedPeerRegionsForRemotePeering(ctx context.Context, request ListAllowedPeerRegionsForRemotePeeringRequest) (response ListAllowedPeerRegionsForRemotePeeringResponse, err error) {
@@ -10973,6 +11934,110 @@ func (client VirtualNetworkClient) listByoipRanges(ctx context.Context, request 
 	}
 
 	var response ListByoipRangesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListC3DrgAttachments Lists the `DrgAttachment` objects for the specified compartment. You can filter the
+// results by VCN, DRG, Attached Resource, Attachment Type, DRG Route Table or
+// VCN Route Table.
+// The LIST API lists DRG Attachment by attachment type. It will default to list VCN Attachments,
+// but you may request to list ALL attachments of ALL types.
+func (client VirtualNetworkClient) ListC3DrgAttachments(ctx context.Context, request ListC3DrgAttachmentsRequest) (response ListC3DrgAttachmentsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listC3DrgAttachments, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListC3DrgAttachmentsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListC3DrgAttachmentsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListC3DrgAttachmentsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListC3DrgAttachmentsResponse")
+	}
+	return
+}
+
+// listC3DrgAttachments implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listC3DrgAttachments(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/c3_drgAttachments")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListC3DrgAttachmentsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListC3Drgs Lists the DRGs in the specified compartment.
+func (client VirtualNetworkClient) ListC3Drgs(ctx context.Context, request ListC3DrgsRequest) (response ListC3DrgsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listC3Drgs, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListC3DrgsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListC3DrgsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListC3DrgsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListC3DrgsResponse")
+	}
+	return
+}
+
+// listC3Drgs implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listC3Drgs(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/c3_drgs")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListC3DrgsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -11541,6 +12606,210 @@ func (client VirtualNetworkClient) listDrgAttachments(ctx context.Context, reque
 	}
 
 	var response ListDrgAttachmentsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListDrgRouteDistributionStatements List the specified Route Distribution's statements.
+func (client VirtualNetworkClient) ListDrgRouteDistributionStatements(ctx context.Context, request ListDrgRouteDistributionStatementsRequest) (response ListDrgRouteDistributionStatementsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listDrgRouteDistributionStatements, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListDrgRouteDistributionStatementsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListDrgRouteDistributionStatementsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListDrgRouteDistributionStatementsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListDrgRouteDistributionStatementsResponse")
+	}
+	return
+}
+
+// listDrgRouteDistributionStatements implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listDrgRouteDistributionStatements(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/drgRouteDistributions/{drgRouteDistributionId}/drgRouteDistributionStatements")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListDrgRouteDistributionStatementsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListDrgRouteDistributions Lists the Route Distributions in the specified DRG.
+// To retrieve the statements in a distribution, use the
+// ListDrgRouteDistributionStatements operation.
+func (client VirtualNetworkClient) ListDrgRouteDistributions(ctx context.Context, request ListDrgRouteDistributionsRequest) (response ListDrgRouteDistributionsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listDrgRouteDistributions, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListDrgRouteDistributionsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListDrgRouteDistributionsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListDrgRouteDistributionsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListDrgRouteDistributionsResponse")
+	}
+	return
+}
+
+// listDrgRouteDistributions implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listDrgRouteDistributions(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/drgRouteDistributions")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListDrgRouteDistributionsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListDrgRouteRules Lists the route rules in the specified DRG Route Table
+func (client VirtualNetworkClient) ListDrgRouteRules(ctx context.Context, request ListDrgRouteRulesRequest) (response ListDrgRouteRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listDrgRouteRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListDrgRouteRulesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListDrgRouteRulesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListDrgRouteRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListDrgRouteRulesResponse")
+	}
+	return
+}
+
+// listDrgRouteRules implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listDrgRouteRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/drgRouteTables/{drgRouteTableId}/drgRouteRules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListDrgRouteRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListDrgRouteTables Lists the DRG Route Tables in the specified DRG.
+// To retrieve the route rules in a table, use the
+// ListDrgRouteRules operation.
+func (client VirtualNetworkClient) ListDrgRouteTables(ctx context.Context, request ListDrgRouteTablesRequest) (response ListDrgRouteTablesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listDrgRouteTables, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListDrgRouteTablesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListDrgRouteTablesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListDrgRouteTablesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListDrgRouteTablesResponse")
+	}
+	return
+}
+
+// listDrgRouteTables implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) listDrgRouteTables(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/drgRouteTables")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListDrgRouteTablesResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -13946,6 +15215,206 @@ func (client VirtualNetworkClient) modifyVcnCidr(ctx context.Context, request co
 	return response, err
 }
 
+// RemoveAdditionalRouteRules Remove route rules from a route table.
+func (client VirtualNetworkClient) RemoveAdditionalRouteRules(ctx context.Context, request RemoveAdditionalRouteRulesRequest) (response RemoveAdditionalRouteRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.removeAdditionalRouteRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RemoveAdditionalRouteRulesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RemoveAdditionalRouteRulesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RemoveAdditionalRouteRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RemoveAdditionalRouteRulesResponse")
+	}
+	return
+}
+
+// removeAdditionalRouteRules implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) removeAdditionalRouteRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/routeTables/{rtId}/actions/removeAdditionalRouteRules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RemoveAdditionalRouteRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RemoveDrgPeeringConnection Remove the peering info for an RPC Attachment.
+func (client VirtualNetworkClient) RemoveDrgPeeringConnection(ctx context.Context, request RemoveDrgPeeringConnectionRequest) (response RemoveDrgPeeringConnectionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.removeDrgPeeringConnection, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RemoveDrgPeeringConnectionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RemoveDrgPeeringConnectionResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RemoveDrgPeeringConnectionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RemoveDrgPeeringConnectionResponse")
+	}
+	return
+}
+
+// removeDrgPeeringConnection implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) removeDrgPeeringConnection(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgAttachments/{drgAttachmentId}/actions/removeDrgPeeringConnection")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RemoveDrgPeeringConnectionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RemoveDrgRouteDistributionStatements Removes one or more route distribution statements from the specified Route Distribution's Map
+func (client VirtualNetworkClient) RemoveDrgRouteDistributionStatements(ctx context.Context, request RemoveDrgRouteDistributionStatementsRequest) (response RemoveDrgRouteDistributionStatementsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.removeDrgRouteDistributionStatements, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RemoveDrgRouteDistributionStatementsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RemoveDrgRouteDistributionStatementsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RemoveDrgRouteDistributionStatementsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RemoveDrgRouteDistributionStatementsResponse")
+	}
+	return
+}
+
+// removeDrgRouteDistributionStatements implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) removeDrgRouteDistributionStatements(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgRouteDistributions/{drgRouteDistributionId}/actions/removeDrgRouteDistributionStatements")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RemoveDrgRouteDistributionStatementsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// RemoveDrgRouteRules Removes one or more route rules from the specified DRG Route Table
+func (client VirtualNetworkClient) RemoveDrgRouteRules(ctx context.Context, request RemoveDrgRouteRulesRequest) (response RemoveDrgRouteRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.removeDrgRouteRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = RemoveDrgRouteRulesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = RemoveDrgRouteRulesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(RemoveDrgRouteRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into RemoveDrgRouteRulesResponse")
+	}
+	return
+}
+
+// removeDrgRouteRules implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) removeDrgRouteRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgRouteTables/{drgRouteTableId}/actions/removeDrgRouteRules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response RemoveDrgRouteRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // RemoveNetworkSecurityGroupSecurityRules Removes one or more security rules from the specified network security group.
 func (client VirtualNetworkClient) RemoveNetworkSecurityGroupSecurityRules(ctx context.Context, request RemoveNetworkSecurityGroupSecurityRulesRequest) (response RemoveNetworkSecurityGroupSecurityRulesResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -14164,6 +15633,56 @@ func (client VirtualNetworkClient) rollbackDrgMigration(ctx context.Context, req
 	return response, err
 }
 
+// SetDrgPeeringConnection Sets the peering info for an RPC Attachment.
+func (client VirtualNetworkClient) SetDrgPeeringConnection(ctx context.Context, request SetDrgPeeringConnectionRequest) (response SetDrgPeeringConnectionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.setDrgPeeringConnection, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = SetDrgPeeringConnectionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = SetDrgPeeringConnectionResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(SetDrgPeeringConnectionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into SetDrgPeeringConnectionResponse")
+	}
+	return
+}
+
+// setDrgPeeringConnection implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) setDrgPeeringConnection(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgAttachments/{drgAttachmentId}/actions/setDrgPeeringConnection")
+	if err != nil {
+		return nil, err
+	}
+
+	var response SetDrgPeeringConnectionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // UpdateByoipRange Updates the tags or display name associated to the specified BYOIP CIDR block.
 func (client VirtualNetworkClient) UpdateByoipRange(ctx context.Context, request UpdateByoipRangeRequest) (response UpdateByoipRangeResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -14202,6 +15721,107 @@ func (client VirtualNetworkClient) updateByoipRange(ctx context.Context, request
 	}
 
 	var response UpdateByoipRangeResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateC3Drg Updates the specified DRG's display name or tags. Avoid entering confidential information.
+func (client VirtualNetworkClient) UpdateC3Drg(ctx context.Context, request UpdateC3DrgRequest) (response UpdateC3DrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateC3Drg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateC3DrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateC3DrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateC3DrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateC3DrgResponse")
+	}
+	return
+}
+
+// updateC3Drg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateC3Drg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/c3_drgs/{drgId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateC3DrgResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateC3DrgAttachment Updates the display name for the specified `DrgAttachment`.
+// Avoid entering confidential information.
+func (client VirtualNetworkClient) UpdateC3DrgAttachment(ctx context.Context, request UpdateC3DrgAttachmentRequest) (response UpdateC3DrgAttachmentResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateC3DrgAttachment, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateC3DrgAttachmentResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateC3DrgAttachmentResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateC3DrgAttachmentResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateC3DrgAttachmentResponse")
+	}
+	return
+}
+
+// updateC3DrgAttachment implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateC3DrgAttachment(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/c3_drgAttachments/{drgAttachmentId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateC3DrgAttachmentResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -14612,6 +16232,206 @@ func (client VirtualNetworkClient) updateDrgAttachment(ctx context.Context, requ
 	}
 
 	var response UpdateDrgAttachmentResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateDrgRouteDistribution Updates the specified Route Distribution.
+func (client VirtualNetworkClient) UpdateDrgRouteDistribution(ctx context.Context, request UpdateDrgRouteDistributionRequest) (response UpdateDrgRouteDistributionResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateDrgRouteDistribution, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateDrgRouteDistributionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateDrgRouteDistributionResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateDrgRouteDistributionResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateDrgRouteDistributionResponse")
+	}
+	return
+}
+
+// updateDrgRouteDistribution implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateDrgRouteDistribution(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/drgRouteDistributions/{drgRouteDistributionId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateDrgRouteDistributionResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateDrgRouteDistributionStatements Updates one or more route distribution statements in the specified Route Distribution's Route Distribution.
+func (client VirtualNetworkClient) UpdateDrgRouteDistributionStatements(ctx context.Context, request UpdateDrgRouteDistributionStatementsRequest) (response UpdateDrgRouteDistributionStatementsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateDrgRouteDistributionStatements, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateDrgRouteDistributionStatementsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateDrgRouteDistributionStatementsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateDrgRouteDistributionStatementsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateDrgRouteDistributionStatementsResponse")
+	}
+	return
+}
+
+// updateDrgRouteDistributionStatements implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateDrgRouteDistributionStatements(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgRouteDistributions/{drgRouteDistributionId}/actions/updateDrgRouteDistributionStatements")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateDrgRouteDistributionStatementsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateDrgRouteRules Updates one or more route rules in the specified DRG Route Table.
+func (client VirtualNetworkClient) UpdateDrgRouteRules(ctx context.Context, request UpdateDrgRouteRulesRequest) (response UpdateDrgRouteRulesResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateDrgRouteRules, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateDrgRouteRulesResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateDrgRouteRulesResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateDrgRouteRulesResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateDrgRouteRulesResponse")
+	}
+	return
+}
+
+// updateDrgRouteRules implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateDrgRouteRules(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgRouteTables/{drgRouteTableId}/actions/updateDrgRouteRules")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateDrgRouteRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateDrgRouteTable Updates the specified DRG Route Table.
+func (client VirtualNetworkClient) UpdateDrgRouteTable(ctx context.Context, request UpdateDrgRouteTableRequest) (response UpdateDrgRouteTableResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.updateDrgRouteTable, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateDrgRouteTableResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateDrgRouteTableResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateDrgRouteTableResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateDrgRouteTableResponse")
+	}
+	return
+}
+
+// updateDrgRouteTable implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) updateDrgRouteTable(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/drgRouteTables/{drgRouteTableId}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateDrgRouteTableResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -16596,6 +18416,62 @@ func (client VirtualNetworkClient) updateVnicWorker(ctx context.Context, request
 	}
 
 	var response UpdateVnicWorkerResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpgradeDrg Upgrades the DRG. This allows users to control routing inside their DRG
+// via DRG Attachments, Route Distributions, and DRG Route Tables.
+func (client VirtualNetworkClient) UpgradeDrg(ctx context.Context, request UpgradeDrgRequest) (response UpgradeDrgResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.upgradeDrg, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpgradeDrgResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpgradeDrgResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpgradeDrgResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpgradeDrgResponse")
+	}
+	return
+}
+
+// upgradeDrg implements the OCIOperation interface (enables retrying operations)
+func (client VirtualNetworkClient) upgradeDrg(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/drgs/{drgId}/actions/upgrade")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpgradeDrgResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

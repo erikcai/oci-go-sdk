@@ -94,23 +94,21 @@ type ListRoverEntitlementsLifecycleStateEnum string
 
 // Set of constants representing the allowable values for ListRoverEntitlementsLifecycleStateEnum
 const (
-	ListRoverEntitlementsLifecycleStateCreating   ListRoverEntitlementsLifecycleStateEnum = "CREATING"
-	ListRoverEntitlementsLifecycleStateUpdating   ListRoverEntitlementsLifecycleStateEnum = "UPDATING"
-	ListRoverEntitlementsLifecycleStateActive     ListRoverEntitlementsLifecycleStateEnum = "ACTIVE"
-	ListRoverEntitlementsLifecycleStateDeleting   ListRoverEntitlementsLifecycleStateEnum = "DELETING"
-	ListRoverEntitlementsLifecycleStateDeleted    ListRoverEntitlementsLifecycleStateEnum = "DELETED"
-	ListRoverEntitlementsLifecycleStateFailed     ListRoverEntitlementsLifecycleStateEnum = "FAILED"
-	ListRoverEntitlementsLifecycleStateInprogress ListRoverEntitlementsLifecycleStateEnum = "INPROGRESS"
+	ListRoverEntitlementsLifecycleStateCreating ListRoverEntitlementsLifecycleStateEnum = "CREATING"
+	ListRoverEntitlementsLifecycleStateUpdating ListRoverEntitlementsLifecycleStateEnum = "UPDATING"
+	ListRoverEntitlementsLifecycleStateActive   ListRoverEntitlementsLifecycleStateEnum = "ACTIVE"
+	ListRoverEntitlementsLifecycleStateDeleting ListRoverEntitlementsLifecycleStateEnum = "DELETING"
+	ListRoverEntitlementsLifecycleStateDeleted  ListRoverEntitlementsLifecycleStateEnum = "DELETED"
+	ListRoverEntitlementsLifecycleStateFailed   ListRoverEntitlementsLifecycleStateEnum = "FAILED"
 )
 
 var mappingListRoverEntitlementsLifecycleState = map[string]ListRoverEntitlementsLifecycleStateEnum{
-	"CREATING":   ListRoverEntitlementsLifecycleStateCreating,
-	"UPDATING":   ListRoverEntitlementsLifecycleStateUpdating,
-	"ACTIVE":     ListRoverEntitlementsLifecycleStateActive,
-	"DELETING":   ListRoverEntitlementsLifecycleStateDeleting,
-	"DELETED":    ListRoverEntitlementsLifecycleStateDeleted,
-	"FAILED":     ListRoverEntitlementsLifecycleStateFailed,
-	"INPROGRESS": ListRoverEntitlementsLifecycleStateInprogress,
+	"CREATING": ListRoverEntitlementsLifecycleStateCreating,
+	"UPDATING": ListRoverEntitlementsLifecycleStateUpdating,
+	"ACTIVE":   ListRoverEntitlementsLifecycleStateActive,
+	"DELETING": ListRoverEntitlementsLifecycleStateDeleting,
+	"DELETED":  ListRoverEntitlementsLifecycleStateDeleted,
+	"FAILED":   ListRoverEntitlementsLifecycleStateFailed,
 }
 
 // GetListRoverEntitlementsLifecycleStateEnumValues Enumerates the set of values for ListRoverEntitlementsLifecycleStateEnum

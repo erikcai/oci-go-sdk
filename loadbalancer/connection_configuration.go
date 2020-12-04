@@ -27,8 +27,33 @@ type ConnectionConfiguration struct {
 	// The backend TCP Proxy Protocol version.
 	// Example: `1`
 	BackendTcpProxyProtocolVersion *int `mandatory:"false" json:"backendTcpProxyProtocolVersion"`
+
+	// An array that represents the PPV2 Options that can be enabled on TCP Listeners.
+	// Example: ["PP2_TYPE_AUTHORITY"]
+	BackendTcpProxyProtocolOptions []ConnectionConfigurationBackendTcpProxyProtocolOptionsEnum `mandatory:"false" json:"backendTcpProxyProtocolOptions,omitempty"`
 }
 
 func (m ConnectionConfiguration) String() string {
 	return common.PointerString(m)
+}
+
+// ConnectionConfigurationBackendTcpProxyProtocolOptionsEnum Enum with underlying type: string
+type ConnectionConfigurationBackendTcpProxyProtocolOptionsEnum string
+
+// Set of constants representing the allowable values for ConnectionConfigurationBackendTcpProxyProtocolOptionsEnum
+const (
+	ConnectionConfigurationBackendTcpProxyProtocolOptionsPp2TypeAuthority ConnectionConfigurationBackendTcpProxyProtocolOptionsEnum = "PP2_TYPE_AUTHORITY"
+)
+
+var mappingConnectionConfigurationBackendTcpProxyProtocolOptions = map[string]ConnectionConfigurationBackendTcpProxyProtocolOptionsEnum{
+	"PP2_TYPE_AUTHORITY": ConnectionConfigurationBackendTcpProxyProtocolOptionsPp2TypeAuthority,
+}
+
+// GetConnectionConfigurationBackendTcpProxyProtocolOptionsEnumValues Enumerates the set of values for ConnectionConfigurationBackendTcpProxyProtocolOptionsEnum
+func GetConnectionConfigurationBackendTcpProxyProtocolOptionsEnumValues() []ConnectionConfigurationBackendTcpProxyProtocolOptionsEnum {
+	values := make([]ConnectionConfigurationBackendTcpProxyProtocolOptionsEnum, 0)
+	for _, v := range mappingConnectionConfigurationBackendTcpProxyProtocolOptions {
+		values = append(values, v)
+	}
+	return values
 }

@@ -3308,14 +3308,24 @@ func TestDataCatalogClientListAggregatedPhysicalEntities(t *testing.T) {
 	assert.NoError(t, err)
 
 	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
+	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
 			if withRetry == true {
 				retryPolicy = retryPolicyForTests()
 			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ListAggregatedPhysicalEntities(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datacatalog.ListAggregatedPhysicalEntitiesRequest)
+				return c.ListAggregatedPhysicalEntities(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datacatalog.ListAggregatedPhysicalEntitiesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datacatalog.ListAggregatedPhysicalEntitiesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -3784,14 +3794,24 @@ func TestDataCatalogClientListDerivedLogicalEntities(t *testing.T) {
 	assert.NoError(t, err)
 
 	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
+	for i, request := range requests {
 		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
 			if withRetry == true {
 				retryPolicy = retryPolicyForTests()
 			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ListDerivedLogicalEntities(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datacatalog.ListDerivedLogicalEntitiesRequest)
+				return c.ListDerivedLogicalEntities(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datacatalog.ListDerivedLogicalEntitiesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datacatalog.ListDerivedLogicalEntitiesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -4437,6 +4457,60 @@ func TestDataCatalogClientListPatterns(t *testing.T) {
 			typedListResponses := make([]datacatalog.ListPatternsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(datacatalog.ListPatternsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="datacatalog_ww_grp@oracle.com" jiraProject="DCAT" opsJiraProject="ADCS"
+func TestDataCatalogClientListRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("datacatalog", "ListRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("datacatalog", "DataCatalog", "ListRules", createDataCatalogClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(datacatalog.DataCatalogClient)
+
+	body, err := testClient.getRequests("datacatalog", "ListRules")
+	assert.NoError(t, err)
+
+	type ListRulesRequestInfo struct {
+		ContainerId string
+		Request     datacatalog.ListRulesRequest
+	}
+
+	var requests []ListRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*datacatalog.ListRulesRequest)
+				return c.ListRules(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]datacatalog.ListRulesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(datacatalog.ListRulesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

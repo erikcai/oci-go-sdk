@@ -24,6 +24,23 @@ type ListAggregatedPhysicalEntitiesRequest struct {
 	// Specifies the fields to return in an entity response.
 	Fields []ListAggregatedPhysicalEntitiesFieldsEnum `contributesTo:"query" name:"fields" omitEmpty:"true" collectionFormat:"multi"`
 
+	// A filter to return only resources that match display name pattern given. The match is not case sensitive.
+	// For Example : /folders?displayNameContains=Cu.*
+	// The above would match all folders with display name that starts with "Cu".
+	DisplayNameContains *string `mandatory:"false" contributesTo:"query" name:"displayNameContains"`
+
+	// The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is ascending. If no value is specified TIMECREATED is default.
+	SortBy ListAggregatedPhysicalEntitiesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
+
+	// The sort order to use, either 'asc' or 'desc'.
+	SortOrder ListAggregatedPhysicalEntitiesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
+
+	// The maximum number of items to return.
+	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
+
+	// The page token representing the page at which to start retrieving results. This is usually retrieved from a previous list call.
+	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
+
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
@@ -52,7 +69,7 @@ type ListAggregatedPhysicalEntitiesResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The EntityCollection instance
+	// A list of EntityCollection instances
 	EntityCollection `presentIn:"body"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact
@@ -127,6 +144,52 @@ var mappingListAggregatedPhysicalEntitiesFields = map[string]ListAggregatedPhysi
 func GetListAggregatedPhysicalEntitiesFieldsEnumValues() []ListAggregatedPhysicalEntitiesFieldsEnum {
 	values := make([]ListAggregatedPhysicalEntitiesFieldsEnum, 0)
 	for _, v := range mappingListAggregatedPhysicalEntitiesFields {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListAggregatedPhysicalEntitiesSortByEnum Enum with underlying type: string
+type ListAggregatedPhysicalEntitiesSortByEnum string
+
+// Set of constants representing the allowable values for ListAggregatedPhysicalEntitiesSortByEnum
+const (
+	ListAggregatedPhysicalEntitiesSortByTimecreated ListAggregatedPhysicalEntitiesSortByEnum = "TIMECREATED"
+	ListAggregatedPhysicalEntitiesSortByDisplayname ListAggregatedPhysicalEntitiesSortByEnum = "DISPLAYNAME"
+)
+
+var mappingListAggregatedPhysicalEntitiesSortBy = map[string]ListAggregatedPhysicalEntitiesSortByEnum{
+	"TIMECREATED": ListAggregatedPhysicalEntitiesSortByTimecreated,
+	"DISPLAYNAME": ListAggregatedPhysicalEntitiesSortByDisplayname,
+}
+
+// GetListAggregatedPhysicalEntitiesSortByEnumValues Enumerates the set of values for ListAggregatedPhysicalEntitiesSortByEnum
+func GetListAggregatedPhysicalEntitiesSortByEnumValues() []ListAggregatedPhysicalEntitiesSortByEnum {
+	values := make([]ListAggregatedPhysicalEntitiesSortByEnum, 0)
+	for _, v := range mappingListAggregatedPhysicalEntitiesSortBy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// ListAggregatedPhysicalEntitiesSortOrderEnum Enum with underlying type: string
+type ListAggregatedPhysicalEntitiesSortOrderEnum string
+
+// Set of constants representing the allowable values for ListAggregatedPhysicalEntitiesSortOrderEnum
+const (
+	ListAggregatedPhysicalEntitiesSortOrderAsc  ListAggregatedPhysicalEntitiesSortOrderEnum = "ASC"
+	ListAggregatedPhysicalEntitiesSortOrderDesc ListAggregatedPhysicalEntitiesSortOrderEnum = "DESC"
+)
+
+var mappingListAggregatedPhysicalEntitiesSortOrder = map[string]ListAggregatedPhysicalEntitiesSortOrderEnum{
+	"ASC":  ListAggregatedPhysicalEntitiesSortOrderAsc,
+	"DESC": ListAggregatedPhysicalEntitiesSortOrderDesc,
+}
+
+// GetListAggregatedPhysicalEntitiesSortOrderEnumValues Enumerates the set of values for ListAggregatedPhysicalEntitiesSortOrderEnum
+func GetListAggregatedPhysicalEntitiesSortOrderEnumValues() []ListAggregatedPhysicalEntitiesSortOrderEnum {
+	values := make([]ListAggregatedPhysicalEntitiesSortOrderEnum, 0)
+	for _, v := range mappingListAggregatedPhysicalEntitiesSortOrder {
 		values = append(values, v)
 	}
 	return values

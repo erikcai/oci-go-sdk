@@ -93,23 +93,21 @@ type ListRoverNodesLifecycleStateEnum string
 
 // Set of constants representing the allowable values for ListRoverNodesLifecycleStateEnum
 const (
-	ListRoverNodesLifecycleStateCreating   ListRoverNodesLifecycleStateEnum = "CREATING"
-	ListRoverNodesLifecycleStateUpdating   ListRoverNodesLifecycleStateEnum = "UPDATING"
-	ListRoverNodesLifecycleStateActive     ListRoverNodesLifecycleStateEnum = "ACTIVE"
-	ListRoverNodesLifecycleStateDeleting   ListRoverNodesLifecycleStateEnum = "DELETING"
-	ListRoverNodesLifecycleStateDeleted    ListRoverNodesLifecycleStateEnum = "DELETED"
-	ListRoverNodesLifecycleStateFailed     ListRoverNodesLifecycleStateEnum = "FAILED"
-	ListRoverNodesLifecycleStateInprogress ListRoverNodesLifecycleStateEnum = "INPROGRESS"
+	ListRoverNodesLifecycleStateCreating ListRoverNodesLifecycleStateEnum = "CREATING"
+	ListRoverNodesLifecycleStateUpdating ListRoverNodesLifecycleStateEnum = "UPDATING"
+	ListRoverNodesLifecycleStateActive   ListRoverNodesLifecycleStateEnum = "ACTIVE"
+	ListRoverNodesLifecycleStateDeleting ListRoverNodesLifecycleStateEnum = "DELETING"
+	ListRoverNodesLifecycleStateDeleted  ListRoverNodesLifecycleStateEnum = "DELETED"
+	ListRoverNodesLifecycleStateFailed   ListRoverNodesLifecycleStateEnum = "FAILED"
 )
 
 var mappingListRoverNodesLifecycleState = map[string]ListRoverNodesLifecycleStateEnum{
-	"CREATING":   ListRoverNodesLifecycleStateCreating,
-	"UPDATING":   ListRoverNodesLifecycleStateUpdating,
-	"ACTIVE":     ListRoverNodesLifecycleStateActive,
-	"DELETING":   ListRoverNodesLifecycleStateDeleting,
-	"DELETED":    ListRoverNodesLifecycleStateDeleted,
-	"FAILED":     ListRoverNodesLifecycleStateFailed,
-	"INPROGRESS": ListRoverNodesLifecycleStateInprogress,
+	"CREATING": ListRoverNodesLifecycleStateCreating,
+	"UPDATING": ListRoverNodesLifecycleStateUpdating,
+	"ACTIVE":   ListRoverNodesLifecycleStateActive,
+	"DELETING": ListRoverNodesLifecycleStateDeleting,
+	"DELETED":  ListRoverNodesLifecycleStateDeleted,
+	"FAILED":   ListRoverNodesLifecycleStateFailed,
 }
 
 // GetListRoverNodesLifecycleStateEnumValues Enumerates the set of values for ListRoverNodesLifecycleStateEnum

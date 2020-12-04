@@ -67,6 +67,138 @@ func TestVirtualNetworkClientAcceptLocalPeeringToken(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientAddAdditionalRouteRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "AddAdditionalRouteRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AddAdditionalRouteRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "AddAdditionalRouteRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "AddAdditionalRouteRules")
+	assert.NoError(t, err)
+
+	type AddAdditionalRouteRulesRequestInfo struct {
+		ContainerId string
+		Request     core.AddAdditionalRouteRulesRequest
+	}
+
+	var requests []AddAdditionalRouteRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AddAdditionalRouteRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientAddDrgRouteDistributionStatements(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "AddDrgRouteDistributionStatements")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AddDrgRouteDistributionStatements is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "AddDrgRouteDistributionStatements", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "AddDrgRouteDistributionStatements")
+	assert.NoError(t, err)
+
+	type AddDrgRouteDistributionStatementsRequestInfo struct {
+		ContainerId string
+		Request     core.AddDrgRouteDistributionStatementsRequest
+	}
+
+	var requests []AddDrgRouteDistributionStatementsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AddDrgRouteDistributionStatements(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientAddDrgRouteRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "AddDrgRouteRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AddDrgRouteRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "AddDrgRouteRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "AddDrgRouteRules")
+	assert.NoError(t, err)
+
+	type AddDrgRouteRulesRequestInfo struct {
+		ContainerId string
+		Request     core.AddDrgRouteRulesRequest
+	}
+
+	var requests []AddDrgRouteRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AddDrgRouteRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientAddIpv6VcnCidr(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -719,6 +851,50 @@ func TestVirtualNetworkClientChangeDhcpOptionsCompartment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ChangeDhcpOptionsCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientChangeDrgAttachmentCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ChangeDrgAttachmentCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeDrgAttachmentCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ChangeDrgAttachmentCompartment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ChangeDrgAttachmentCompartment")
+	assert.NoError(t, err)
+
+	type ChangeDrgAttachmentCompartmentRequestInfo struct {
+		ContainerId string
+		Request     core.ChangeDrgAttachmentCompartmentRequest
+	}
+
+	var requests []ChangeDrgAttachmentCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeDrgAttachmentCompartment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1738,6 +1914,94 @@ func TestVirtualNetworkClientCreateByoipRange(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientCreateC3Drg(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateC3Drg")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateC3Drg is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateC3Drg", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateC3Drg")
+	assert.NoError(t, err)
+
+	type CreateC3DrgRequestInfo struct {
+		ContainerId string
+		Request     core.CreateC3DrgRequest
+	}
+
+	var requests []CreateC3DrgRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateC3Drg(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientCreateC3DrgAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateC3DrgAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateC3DrgAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateC3DrgAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateC3DrgAttachment")
+	assert.NoError(t, err)
+
+	type CreateC3DrgAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.CreateC3DrgAttachmentRequest
+	}
+
+	var requests []CreateC3DrgAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateC3DrgAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientCreateClientVpnEndpoint(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -2083,6 +2347,94 @@ func TestVirtualNetworkClientCreateDrgAttachment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.CreateDrgAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientCreateDrgRouteDistribution(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateDrgRouteDistribution")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateDrgRouteDistribution is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateDrgRouteDistribution", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateDrgRouteDistribution")
+	assert.NoError(t, err)
+
+	type CreateDrgRouteDistributionRequestInfo struct {
+		ContainerId string
+		Request     core.CreateDrgRouteDistributionRequest
+	}
+
+	var requests []CreateDrgRouteDistributionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateDrgRouteDistribution(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientCreateDrgRouteTable(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateDrgRouteTable")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateDrgRouteTable is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "CreateDrgRouteTable", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "CreateDrgRouteTable")
+	assert.NoError(t, err)
+
+	type CreateDrgRouteTableRequestInfo struct {
+		ContainerId string
+		Request     core.CreateDrgRouteTableRequest
+	}
+
+	var requests []CreateDrgRouteTableRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateDrgRouteTable(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3542,6 +3894,94 @@ func TestVirtualNetworkClientDeleteByoipRange(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientDeleteC3Drg(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteC3Drg")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteC3Drg is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteC3Drg", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteC3Drg")
+	assert.NoError(t, err)
+
+	type DeleteC3DrgRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteC3DrgRequest
+	}
+
+	var requests []DeleteC3DrgRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteC3Drg(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientDeleteC3DrgAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteC3DrgAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteC3DrgAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteC3DrgAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteC3DrgAttachment")
+	assert.NoError(t, err)
+
+	type DeleteC3DrgAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteC3DrgAttachmentRequest
+	}
+
+	var requests []DeleteC3DrgAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteC3DrgAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientDeleteClientVpnEndpoint(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -3887,6 +4327,94 @@ func TestVirtualNetworkClientDeleteDrgAttachment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteDrgAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientDeleteDrgRouteDistribution(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteDrgRouteDistribution")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteDrgRouteDistribution is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteDrgRouteDistribution", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteDrgRouteDistribution")
+	assert.NoError(t, err)
+
+	type DeleteDrgRouteDistributionRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteDrgRouteDistributionRequest
+	}
+
+	var requests []DeleteDrgRouteDistributionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteDrgRouteDistribution(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientDeleteDrgRouteTable(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteDrgRouteTable")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteDrgRouteTable is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "DeleteDrgRouteTable", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "DeleteDrgRouteTable")
+	assert.NoError(t, err)
+
+	type DeleteDrgRouteTableRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteDrgRouteTableRequest
+	}
+
+	var requests []DeleteDrgRouteTableRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteDrgRouteTable(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -5654,6 +6182,60 @@ func TestVirtualNetworkClientGenerateLocalPeeringToken(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientGetAllDrgAttachments(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetAllDrgAttachments")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetAllDrgAttachments is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetAllDrgAttachments", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetAllDrgAttachments")
+	assert.NoError(t, err)
+
+	type GetAllDrgAttachmentsRequestInfo struct {
+		ContainerId string
+		Request     core.GetAllDrgAttachmentsRequest
+	}
+
+	var requests []GetAllDrgAttachmentsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.GetAllDrgAttachmentsRequest)
+				return c.GetAllDrgAttachments(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.GetAllDrgAttachmentsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.GetAllDrgAttachmentsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
 func TestVirtualNetworkClientGetByoipRange(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -5691,6 +6273,94 @@ func TestVirtualNetworkClientGetByoipRange(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetByoipRange(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientGetC3Drg(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetC3Drg")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetC3Drg is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetC3Drg", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetC3Drg")
+	assert.NoError(t, err)
+
+	type GetC3DrgRequestInfo struct {
+		ContainerId string
+		Request     core.GetC3DrgRequest
+	}
+
+	var requests []GetC3DrgRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetC3Drg(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientGetC3DrgAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetC3DrgAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetC3DrgAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetC3DrgAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetC3DrgAttachment")
+	assert.NoError(t, err)
+
+	type GetC3DrgAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.GetC3DrgAttachmentRequest
+	}
+
+	var requests []GetC3DrgAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetC3DrgAttachment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -6439,6 +7109,94 @@ func TestVirtualNetworkClientGetDrgRedundancyStatus(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetDrgRedundancyStatus(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientGetDrgRouteDistribution(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetDrgRouteDistribution")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetDrgRouteDistribution is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetDrgRouteDistribution", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetDrgRouteDistribution")
+	assert.NoError(t, err)
+
+	type GetDrgRouteDistributionRequestInfo struct {
+		ContainerId string
+		Request     core.GetDrgRouteDistributionRequest
+	}
+
+	var requests []GetDrgRouteDistributionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetDrgRouteDistribution(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientGetDrgRouteTable(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetDrgRouteTable")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetDrgRouteTable is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "GetDrgRouteTable", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "GetDrgRouteTable")
+	assert.NoError(t, err)
+
+	type GetDrgRouteTableRequestInfo struct {
+		ContainerId string
+		Request     core.GetDrgRouteTableRequest
+	}
+
+	var requests []GetDrgRouteTableRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetDrgRouteTable(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -8690,6 +9448,60 @@ func TestVirtualNetworkClientGetVnicWorker(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientListAdditionalRouteRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListAdditionalRouteRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListAdditionalRouteRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListAdditionalRouteRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListAdditionalRouteRules")
+	assert.NoError(t, err)
+
+	type ListAdditionalRouteRulesRequestInfo struct {
+		ContainerId string
+		Request     core.ListAdditionalRouteRulesRequest
+	}
+
+	var requests []ListAdditionalRouteRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListAdditionalRouteRulesRequest)
+				return c.ListAdditionalRouteRules(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListAdditionalRouteRulesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListAdditionalRouteRulesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="c3" email="c3_scrum_team_us_grp@oracle.com" jiraProject="RSC" opsJiraProject="RSC"
 func TestVirtualNetworkClientListAllowedPeerRegionsForRemotePeering(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -8833,6 +9645,114 @@ func TestVirtualNetworkClientListByoipRanges(t *testing.T) {
 			typedListResponses := make([]core.ListByoipRangesResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(core.ListByoipRangesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientListC3DrgAttachments(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListC3DrgAttachments")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListC3DrgAttachments is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListC3DrgAttachments", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListC3DrgAttachments")
+	assert.NoError(t, err)
+
+	type ListC3DrgAttachmentsRequestInfo struct {
+		ContainerId string
+		Request     core.ListC3DrgAttachmentsRequest
+	}
+
+	var requests []ListC3DrgAttachmentsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListC3DrgAttachmentsRequest)
+				return c.ListC3DrgAttachments(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListC3DrgAttachmentsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListC3DrgAttachmentsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientListC3Drgs(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListC3Drgs")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListC3Drgs is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListC3Drgs", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListC3Drgs")
+	assert.NoError(t, err)
+
+	type ListC3DrgsRequestInfo struct {
+		ContainerId string
+		Request     core.ListC3DrgsRequest
+	}
+
+	var requests []ListC3DrgsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListC3DrgsRequest)
+				return c.ListC3Drgs(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListC3DrgsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListC3DrgsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -9417,6 +10337,222 @@ func TestVirtualNetworkClientListDrgAttachments(t *testing.T) {
 			typedListResponses := make([]core.ListDrgAttachmentsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(core.ListDrgAttachmentsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientListDrgRouteDistributionStatements(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListDrgRouteDistributionStatements")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListDrgRouteDistributionStatements is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListDrgRouteDistributionStatements", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListDrgRouteDistributionStatements")
+	assert.NoError(t, err)
+
+	type ListDrgRouteDistributionStatementsRequestInfo struct {
+		ContainerId string
+		Request     core.ListDrgRouteDistributionStatementsRequest
+	}
+
+	var requests []ListDrgRouteDistributionStatementsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListDrgRouteDistributionStatementsRequest)
+				return c.ListDrgRouteDistributionStatements(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListDrgRouteDistributionStatementsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListDrgRouteDistributionStatementsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientListDrgRouteDistributions(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListDrgRouteDistributions")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListDrgRouteDistributions is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListDrgRouteDistributions", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListDrgRouteDistributions")
+	assert.NoError(t, err)
+
+	type ListDrgRouteDistributionsRequestInfo struct {
+		ContainerId string
+		Request     core.ListDrgRouteDistributionsRequest
+	}
+
+	var requests []ListDrgRouteDistributionsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListDrgRouteDistributionsRequest)
+				return c.ListDrgRouteDistributions(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListDrgRouteDistributionsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListDrgRouteDistributionsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientListDrgRouteRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListDrgRouteRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListDrgRouteRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListDrgRouteRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListDrgRouteRules")
+	assert.NoError(t, err)
+
+	type ListDrgRouteRulesRequestInfo struct {
+		ContainerId string
+		Request     core.ListDrgRouteRulesRequest
+	}
+
+	var requests []ListDrgRouteRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListDrgRouteRulesRequest)
+				return c.ListDrgRouteRules(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListDrgRouteRulesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListDrgRouteRulesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientListDrgRouteTables(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListDrgRouteTables")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListDrgRouteTables is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "ListDrgRouteTables", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "ListDrgRouteTables")
+	assert.NoError(t, err)
+
+	type ListDrgRouteTablesRequestInfo struct {
+		ContainerId string
+		Request     core.ListDrgRouteTablesRequest
+	}
+
+	var requests []ListDrgRouteTablesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListDrgRouteTablesRequest)
+				return c.ListDrgRouteTables(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListDrgRouteTablesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListDrgRouteTablesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -11851,6 +12987,182 @@ func TestVirtualNetworkClientModifyVcnCidr(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
+func TestVirtualNetworkClientRemoveAdditionalRouteRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "RemoveAdditionalRouteRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RemoveAdditionalRouteRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "RemoveAdditionalRouteRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "RemoveAdditionalRouteRules")
+	assert.NoError(t, err)
+
+	type RemoveAdditionalRouteRulesRequestInfo struct {
+		ContainerId string
+		Request     core.RemoveAdditionalRouteRulesRequest
+	}
+
+	var requests []RemoveAdditionalRouteRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RemoveAdditionalRouteRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientRemoveDrgPeeringConnection(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "RemoveDrgPeeringConnection")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RemoveDrgPeeringConnection is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "RemoveDrgPeeringConnection", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "RemoveDrgPeeringConnection")
+	assert.NoError(t, err)
+
+	type RemoveDrgPeeringConnectionRequestInfo struct {
+		ContainerId string
+		Request     core.RemoveDrgPeeringConnectionRequest
+	}
+
+	var requests []RemoveDrgPeeringConnectionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RemoveDrgPeeringConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientRemoveDrgRouteDistributionStatements(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "RemoveDrgRouteDistributionStatements")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RemoveDrgRouteDistributionStatements is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "RemoveDrgRouteDistributionStatements", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "RemoveDrgRouteDistributionStatements")
+	assert.NoError(t, err)
+
+	type RemoveDrgRouteDistributionStatementsRequestInfo struct {
+		ContainerId string
+		Request     core.RemoveDrgRouteDistributionStatementsRequest
+	}
+
+	var requests []RemoveDrgRouteDistributionStatementsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RemoveDrgRouteDistributionStatements(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientRemoveDrgRouteRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "RemoveDrgRouteRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RemoveDrgRouteRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "RemoveDrgRouteRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "RemoveDrgRouteRules")
+	assert.NoError(t, err)
+
+	type RemoveDrgRouteRulesRequestInfo struct {
+		ContainerId string
+		Request     core.RemoveDrgRouteRulesRequest
+	}
+
+	var requests []RemoveDrgRouteRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RemoveDrgRouteRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="virtualNetwork" email="bmc_vcn_cp_us_grp@oracle.com" jiraProject="VCN" opsJiraProject="VN"
 func TestVirtualNetworkClientRemoveNetworkSecurityGroupSecurityRules(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -12026,6 +13338,50 @@ func TestVirtualNetworkClientRollbackDrgMigration(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientSetDrgPeeringConnection(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "SetDrgPeeringConnection")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("SetDrgPeeringConnection is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "SetDrgPeeringConnection", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "SetDrgPeeringConnection")
+	assert.NoError(t, err)
+
+	type SetDrgPeeringConnectionRequestInfo struct {
+		ContainerId string
+		Request     core.SetDrgPeeringConnectionRequest
+	}
+
+	var requests []SetDrgPeeringConnectionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.SetDrgPeeringConnection(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="vcnip" email="vcn_ip_mgmt_grp@oracle.com" jiraProject="VCNIP" opsJiraProject="VCNIP"
 func TestVirtualNetworkClientUpdateByoipRange(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -12063,6 +13419,94 @@ func TestVirtualNetworkClientUpdateByoipRange(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateByoipRange(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientUpdateC3Drg(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateC3Drg")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateC3Drg is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateC3Drg", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateC3Drg")
+	assert.NoError(t, err)
+
+	type UpdateC3DrgRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateC3DrgRequest
+	}
+
+	var requests []UpdateC3DrgRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateC3Drg(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientUpdateC3DrgAttachment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateC3DrgAttachment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateC3DrgAttachment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateC3DrgAttachment", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateC3DrgAttachment")
+	assert.NoError(t, err)
+
+	type UpdateC3DrgAttachmentRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateC3DrgAttachmentRequest
+	}
+
+	var requests []UpdateC3DrgAttachmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateC3DrgAttachment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -12415,6 +13859,182 @@ func TestVirtualNetworkClientUpdateDrgAttachment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateDrgAttachment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientUpdateDrgRouteDistribution(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateDrgRouteDistribution")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateDrgRouteDistribution is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateDrgRouteDistribution", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateDrgRouteDistribution")
+	assert.NoError(t, err)
+
+	type UpdateDrgRouteDistributionRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateDrgRouteDistributionRequest
+	}
+
+	var requests []UpdateDrgRouteDistributionRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateDrgRouteDistribution(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientUpdateDrgRouteDistributionStatements(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateDrgRouteDistributionStatements")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateDrgRouteDistributionStatements is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateDrgRouteDistributionStatements", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateDrgRouteDistributionStatements")
+	assert.NoError(t, err)
+
+	type UpdateDrgRouteDistributionStatementsRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateDrgRouteDistributionStatementsRequest
+	}
+
+	var requests []UpdateDrgRouteDistributionStatementsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateDrgRouteDistributionStatements(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientUpdateDrgRouteRules(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateDrgRouteRules")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateDrgRouteRules is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateDrgRouteRules", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateDrgRouteRules")
+	assert.NoError(t, err)
+
+	type UpdateDrgRouteRulesRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateDrgRouteRulesRequest
+	}
+
+	var requests []UpdateDrgRouteRulesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateDrgRouteRules(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientUpdateDrgRouteTable(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpdateDrgRouteTable")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateDrgRouteTable is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpdateDrgRouteTable", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpdateDrgRouteTable")
+	assert.NoError(t, err)
+
+	type UpdateDrgRouteTableRequestInfo struct {
+		ContainerId string
+		Request     core.UpdateDrgRouteTableRequest
+	}
+
+	var requests []UpdateDrgRouteTableRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateDrgRouteTable(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -14043,6 +15663,50 @@ func TestVirtualNetworkClientUpdateVnicWorker(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateVnicWorker(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="pnp" email="elpaso_ops_us_grp@oracle.com" jiraProject="NAT" opsJiraProject="PNP"
+func TestVirtualNetworkClientUpgradeDrg(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "UpgradeDrg")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpgradeDrg is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "VirtualNetwork", "UpgradeDrg", createVirtualNetworkClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.VirtualNetworkClient)
+
+	body, err := testClient.getRequests("core", "UpgradeDrg")
+	assert.NoError(t, err)
+
+	type UpgradeDrgRequestInfo struct {
+		ContainerId string
+		Request     core.UpgradeDrgRequest
+	}
+
+	var requests []UpgradeDrgRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpgradeDrg(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

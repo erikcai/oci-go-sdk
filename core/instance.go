@@ -161,6 +161,8 @@ type Instance struct {
 	// * `LIVE_MIGRATE` - Run maintenance using a live migration.
 	// * `REBOOT` - Run maintenance using a reboot.
 	PreferredMaintenanceAction InstancePreferredMaintenanceActionEnum `mandatory:"false" json:"preferredMaintenanceAction,omitempty"`
+
+	PlatformConfig PlatformConfig `mandatory:"false" json:"platformConfig"`
 }
 
 func (m Instance) String() string {
@@ -191,6 +193,7 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 		TimeMaintenanceRebootDue   *common.SDKTime                        `json:"timeMaintenanceRebootDue"`
 		TimeStopScheduled          *common.SDKTime                        `json:"timeStopScheduled"`
 		PreferredMaintenanceAction InstancePreferredMaintenanceActionEnum `json:"preferredMaintenanceAction"`
+		PlatformConfig             platformconfig                         `json:"platformConfig"`
 		AvailabilityDomain         *string                                `json:"availabilityDomain"`
 		CompartmentId              *string                                `json:"compartmentId"`
 		Id                         *string                                `json:"id"`
@@ -254,6 +257,16 @@ func (m *Instance) UnmarshalJSON(data []byte) (e error) {
 	m.TimeStopScheduled = model.TimeStopScheduled
 
 	m.PreferredMaintenanceAction = model.PreferredMaintenanceAction
+
+	nn, e = model.PlatformConfig.UnmarshalPolymorphicJSON(model.PlatformConfig.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.PlatformConfig = nn.(PlatformConfig)
+	} else {
+		m.PlatformConfig = nil
+	}
 
 	m.AvailabilityDomain = model.AvailabilityDomain
 

@@ -14,23 +14,21 @@ type LifecycleStateEnum string
 
 // Set of constants representing the allowable values for LifecycleStateEnum
 const (
-	LifecycleStateCreating   LifecycleStateEnum = "CREATING"
-	LifecycleStateUpdating   LifecycleStateEnum = "UPDATING"
-	LifecycleStateActive     LifecycleStateEnum = "ACTIVE"
-	LifecycleStateDeleting   LifecycleStateEnum = "DELETING"
-	LifecycleStateDeleted    LifecycleStateEnum = "DELETED"
-	LifecycleStateFailed     LifecycleStateEnum = "FAILED"
-	LifecycleStateInprogress LifecycleStateEnum = "INPROGRESS"
+	LifecycleStateCreating LifecycleStateEnum = "CREATING"
+	LifecycleStateUpdating LifecycleStateEnum = "UPDATING"
+	LifecycleStateActive   LifecycleStateEnum = "ACTIVE"
+	LifecycleStateDeleting LifecycleStateEnum = "DELETING"
+	LifecycleStateDeleted  LifecycleStateEnum = "DELETED"
+	LifecycleStateFailed   LifecycleStateEnum = "FAILED"
 )
 
 var mappingLifecycleState = map[string]LifecycleStateEnum{
-	"CREATING":   LifecycleStateCreating,
-	"UPDATING":   LifecycleStateUpdating,
-	"ACTIVE":     LifecycleStateActive,
-	"DELETING":   LifecycleStateDeleting,
-	"DELETED":    LifecycleStateDeleted,
-	"FAILED":     LifecycleStateFailed,
-	"INPROGRESS": LifecycleStateInprogress,
+	"CREATING": LifecycleStateCreating,
+	"UPDATING": LifecycleStateUpdating,
+	"ACTIVE":   LifecycleStateActive,
+	"DELETING": LifecycleStateDeleting,
+	"DELETED":  LifecycleStateDeleted,
+	"FAILED":   LifecycleStateFailed,
 }
 
 // GetLifecycleStateEnumValues Enumerates the set of values for LifecycleStateEnum

@@ -18,16 +18,14 @@ import (
 type ShapeDetails struct {
 
 	// Bandwidth in Mbps that determines the total pre-provisioned bandwidth (ingress plus egress).
-	// The values must be between 0 and the maximumBandwidthInMbps in multiples of 10.
-	// The current allowed maximum value is defined in Service Limits (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm).
+	// The values must be between 10 and the maximumBandwidthInMbps.
 	// Example: `150`
 	MinimumBandwidthInMbps *int `mandatory:"true" json:"minimumBandwidthInMbps"`
 
 	// Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can
-	// achieve. This bandwidth cannot always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps
+	// achieve. This bandwidth cannot be always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps
 	// parameter.
-	// The values must be between minimumBandwidthInMbps and the highest limit available in multiples of 10.
-	// The highest limit available is defined in Service Limits (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm).
+	// The values must be between minimumBandwidthInMbps and 8192 (8Gbps).
 	// Example: `1500`
 	MaximumBandwidthInMbps *int `mandatory:"true" json:"maximumBandwidthInMbps"`
 }

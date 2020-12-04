@@ -93,23 +93,21 @@ type ListRoverClustersLifecycleStateEnum string
 
 // Set of constants representing the allowable values for ListRoverClustersLifecycleStateEnum
 const (
-	ListRoverClustersLifecycleStateCreating   ListRoverClustersLifecycleStateEnum = "CREATING"
-	ListRoverClustersLifecycleStateUpdating   ListRoverClustersLifecycleStateEnum = "UPDATING"
-	ListRoverClustersLifecycleStateActive     ListRoverClustersLifecycleStateEnum = "ACTIVE"
-	ListRoverClustersLifecycleStateDeleting   ListRoverClustersLifecycleStateEnum = "DELETING"
-	ListRoverClustersLifecycleStateDeleted    ListRoverClustersLifecycleStateEnum = "DELETED"
-	ListRoverClustersLifecycleStateFailed     ListRoverClustersLifecycleStateEnum = "FAILED"
-	ListRoverClustersLifecycleStateInprogress ListRoverClustersLifecycleStateEnum = "INPROGRESS"
+	ListRoverClustersLifecycleStateCreating ListRoverClustersLifecycleStateEnum = "CREATING"
+	ListRoverClustersLifecycleStateUpdating ListRoverClustersLifecycleStateEnum = "UPDATING"
+	ListRoverClustersLifecycleStateActive   ListRoverClustersLifecycleStateEnum = "ACTIVE"
+	ListRoverClustersLifecycleStateDeleting ListRoverClustersLifecycleStateEnum = "DELETING"
+	ListRoverClustersLifecycleStateDeleted  ListRoverClustersLifecycleStateEnum = "DELETED"
+	ListRoverClustersLifecycleStateFailed   ListRoverClustersLifecycleStateEnum = "FAILED"
 )
 
 var mappingListRoverClustersLifecycleState = map[string]ListRoverClustersLifecycleStateEnum{
-	"CREATING":   ListRoverClustersLifecycleStateCreating,
-	"UPDATING":   ListRoverClustersLifecycleStateUpdating,
-	"ACTIVE":     ListRoverClustersLifecycleStateActive,
-	"DELETING":   ListRoverClustersLifecycleStateDeleting,
-	"DELETED":    ListRoverClustersLifecycleStateDeleted,
-	"FAILED":     ListRoverClustersLifecycleStateFailed,
-	"INPROGRESS": ListRoverClustersLifecycleStateInprogress,
+	"CREATING": ListRoverClustersLifecycleStateCreating,
+	"UPDATING": ListRoverClustersLifecycleStateUpdating,
+	"ACTIVE":   ListRoverClustersLifecycleStateActive,
+	"DELETING": ListRoverClustersLifecycleStateDeleting,
+	"DELETED":  ListRoverClustersLifecycleStateDeleted,
+	"FAILED":   ListRoverClustersLifecycleStateFailed,
 }
 
 // GetListRoverClustersLifecycleStateEnumValues Enumerates the set of values for ListRoverClustersLifecycleStateEnum

@@ -37,6 +37,9 @@ type UpdateRouteTableDetails struct {
 
 	// The collection of rules used for routing destination IPs to network devices.
 	RouteRules []RouteRule `mandatory:"false" json:"routeRules"`
+
+	// Indicates whether ECMP is enabled or not on the route table.
+	IsEcmpEnabled *bool `mandatory:"false" json:"isEcmpEnabled"`
 }
 
 func (m UpdateRouteTableDetails) String() string {
