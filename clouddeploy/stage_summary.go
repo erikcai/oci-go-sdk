@@ -39,7 +39,7 @@ type StageSummary interface {
 	GetTimeUpdated() *common.SDKTime
 
 	// The current state of the Stage.
-	GetLifecycleState() StageSummary
+	GetLifecycleState() StageLifecycleStateEnum
 
 	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
 	GetLifecycleDetails() *string
@@ -71,7 +71,7 @@ type stagesummary struct {
 	DisplayName                *string                           `mandatory:"false" json:"displayName"`
 	TimeCreated                *common.SDKTime                   `mandatory:"false" json:"timeCreated"`
 	TimeUpdated                *common.SDKTime                   `mandatory:"false" json:"timeUpdated"`
-	LifecycleState             StageSummary                      `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState             StageLifecycleStateEnum           `mandatory:"false" json:"lifecycleState,omitempty"`
 	LifecycleDetails           *string                           `mandatory:"false" json:"lifecycleDetails"`
 	TimeoutInSeconds           *int                              `mandatory:"false" json:"timeoutInSeconds"`
 	StagePredecessorCollection *StagePredecessorCollection       `mandatory:"false" json:"stagePredecessorCollection"`
@@ -221,7 +221,7 @@ func (m stagesummary) GetTimeUpdated() *common.SDKTime {
 }
 
 //GetLifecycleState returns LifecycleState
-func (m stagesummary) GetLifecycleState() StageSummary {
+func (m stagesummary) GetLifecycleState() StageLifecycleStateEnum {
 	return m.LifecycleState
 }
 

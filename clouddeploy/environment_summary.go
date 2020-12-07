@@ -36,7 +36,7 @@ type EnvironmentSummary interface {
 	GetTimeUpdated() *common.SDKTime
 
 	// The current state of the Environment.
-	GetLifecycleState() EnvironmentSummary
+	GetLifecycleState() EnvironmentLifecycleStateEnum
 
 	// A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
 	GetLifecycleDetails() *string
@@ -62,7 +62,7 @@ type environmentsummary struct {
 	DisplayName      *string                           `mandatory:"false" json:"displayName"`
 	TimeCreated      *common.SDKTime                   `mandatory:"false" json:"timeCreated"`
 	TimeUpdated      *common.SDKTime                   `mandatory:"false" json:"timeUpdated"`
-	LifecycleState   EnvironmentSummary                `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState   EnvironmentLifecycleStateEnum     `mandatory:"false" json:"lifecycleState,omitempty"`
 	LifecycleDetails *string                           `mandatory:"false" json:"lifecycleDetails"`
 	FreeformTags     map[string]string                 `mandatory:"false" json:"freeformTags"`
 	DefinedTags      map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
@@ -158,7 +158,7 @@ func (m environmentsummary) GetTimeUpdated() *common.SDKTime {
 }
 
 //GetLifecycleState returns LifecycleState
-func (m environmentsummary) GetLifecycleState() EnvironmentSummary {
+func (m environmentsummary) GetLifecycleState() EnvironmentLifecycleStateEnum {
 	return m.LifecycleState
 }
 

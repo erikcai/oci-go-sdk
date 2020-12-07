@@ -26,7 +26,7 @@ type CreateJobDetails interface {
 	GetCompartmentId() *string
 
 	// Schedule type for the job.
-	GetScheduleType() CreateJobDetails
+	GetScheduleType() JobScheduleTypeEnum
 
 	// Description of the job.
 	GetDescription() *string
@@ -50,7 +50,7 @@ type createjobdetails struct {
 	JsonData               []byte
 	Name                   *string                    `mandatory:"true" json:"name"`
 	CompartmentId          *string                    `mandatory:"true" json:"compartmentId"`
-	ScheduleType           CreateJobDetails           `mandatory:"true" json:"scheduleType"`
+	ScheduleType           JobScheduleTypeEnum        `mandatory:"true" json:"scheduleType"`
 	Description            *string                    `mandatory:"false" json:"description"`
 	ManagedDatabaseGroupId *string                    `mandatory:"false" json:"managedDatabaseGroupId"`
 	ManagedDatabaseId      *string                    `mandatory:"false" json:"managedDatabaseId"`
@@ -114,7 +114,7 @@ func (m createjobdetails) GetCompartmentId() *string {
 }
 
 //GetScheduleType returns ScheduleType
-func (m createjobdetails) GetScheduleType() CreateJobDetails {
+func (m createjobdetails) GetScheduleType() JobScheduleTypeEnum {
 	return m.ScheduleType
 }
 

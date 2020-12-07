@@ -32,7 +32,7 @@ type ExternalDatabaseConnectorSummary interface {
 	GetId() *string
 
 	// The current lifecycle state of the external database connector resource.
-	GetLifecycleState() ExternalDatabaseConnectorSummary
+	GetLifecycleState() ExternalDatabaseConnectorLifecycleStateEnum
 
 	// The date and time the external connector was created.
 	GetTimeCreated() *common.SDKTime
@@ -61,18 +61,18 @@ type ExternalDatabaseConnectorSummary interface {
 
 type externaldatabaseconnectorsummary struct {
 	JsonData                        []byte
-	CompartmentId                   *string                           `mandatory:"true" json:"compartmentId"`
-	DisplayName                     *string                           `mandatory:"true" json:"displayName"`
-	Id                              *string                           `mandatory:"true" json:"id"`
-	LifecycleState                  ExternalDatabaseConnectorSummary  `mandatory:"true" json:"lifecycleState"`
-	TimeCreated                     *common.SDKTime                   `mandatory:"true" json:"timeCreated"`
-	ExternalDatabaseId              *string                           `mandatory:"true" json:"externalDatabaseId"`
-	ConnectionStatus                *string                           `mandatory:"true" json:"connectionStatus"`
-	TimeConnectionStatusLastUpdated *common.SDKTime                   `mandatory:"true" json:"timeConnectionStatusLastUpdated"`
-	FreeformTags                    map[string]string                 `mandatory:"false" json:"freeformTags"`
-	DefinedTags                     map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
-	LifecycleDetails                *string                           `mandatory:"false" json:"lifecycleDetails"`
-	ConnectorType                   string                            `json:"connectorType"`
+	CompartmentId                   *string                                     `mandatory:"true" json:"compartmentId"`
+	DisplayName                     *string                                     `mandatory:"true" json:"displayName"`
+	Id                              *string                                     `mandatory:"true" json:"id"`
+	LifecycleState                  ExternalDatabaseConnectorLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+	TimeCreated                     *common.SDKTime                             `mandatory:"true" json:"timeCreated"`
+	ExternalDatabaseId              *string                                     `mandatory:"true" json:"externalDatabaseId"`
+	ConnectionStatus                *string                                     `mandatory:"true" json:"connectionStatus"`
+	TimeConnectionStatusLastUpdated *common.SDKTime                             `mandatory:"true" json:"timeConnectionStatusLastUpdated"`
+	FreeformTags                    map[string]string                           `mandatory:"false" json:"freeformTags"`
+	DefinedTags                     map[string]map[string]interface{}           `mandatory:"false" json:"definedTags"`
+	LifecycleDetails                *string                                     `mandatory:"false" json:"lifecycleDetails"`
+	ConnectorType                   string                                      `json:"connectorType"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -136,7 +136,7 @@ func (m externaldatabaseconnectorsummary) GetId() *string {
 }
 
 //GetLifecycleState returns LifecycleState
-func (m externaldatabaseconnectorsummary) GetLifecycleState() ExternalDatabaseConnectorSummary {
+func (m externaldatabaseconnectorsummary) GetLifecycleState() ExternalDatabaseConnectorLifecycleStateEnum {
 	return m.LifecycleState
 }
 
