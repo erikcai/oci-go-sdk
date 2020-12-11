@@ -12,7 +12,7 @@ import (
 // GetJobRequest wrapper for the GetJob operation
 type GetJobRequest struct {
 
-	// Job id
+	// The identifier of the job.
 	JobId *string `mandatory:"true" contributesTo:"path" name:"jobId"`
 
 	// The client request ID for tracing.

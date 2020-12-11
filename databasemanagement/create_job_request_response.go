@@ -12,7 +12,7 @@ import (
 // CreateJobRequest wrapper for the CreateJob operation
 type CreateJobRequest struct {
 
-	// Details required for job creation.
+	// The details required to create a job.
 	CreateJobDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.

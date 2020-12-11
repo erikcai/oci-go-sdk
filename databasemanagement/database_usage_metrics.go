@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Database Management Service APIs.
+// Database Management API
 //
-// This file contains the customer facing APIs for Database Management service.
+// Use the Database Management API to perform tasks such as obtaining performance and resource usage metrics
+// for a fleet of Managed Databases or a specific Managed Database, creating Managed Database Groups, and
+// running a SQL job on a Managed Database or Managed Database Group.
 //
 
 package databasemanagement
@@ -13,28 +15,28 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// DatabaseUsageMetrics Database metric aggregated values
+// DatabaseUsageMetrics The list of aggregated metrics for Managed Databases in the fleet.
 type DatabaseUsageMetrics struct {
 
-	// ocid of the database asset.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
 	DbId *string `mandatory:"false" json:"dbId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Compartment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the Managed Database resides.
 	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
-	// The type of Oracle database installation.
+	// The type of Oracle Database installation.
 	DatabaseType DatabaseTypeEnum `mandatory:"false" json:"databaseType,omitempty"`
 
-	// Indicates whether an Oracle database is a Container/Pluggable/Non-Container database.
+	// The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container Database.
 	DatabaseSubType DatabaseSubTypeEnum `mandatory:"false" json:"databaseSubType,omitempty"`
 
-	// Display name of the database.
+	// The display name of the Managed Database.
 	DatabaseName *string `mandatory:"false" json:"databaseName"`
 
-	// If the database is a Pluggable database then this value indicates its managed Container database ocid
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the parent Container Database, in the case of a Pluggable Database.
 	DatabaseContainerId *string `mandatory:"false" json:"databaseContainerId"`
 
-	// List of fleet databases health metrics like cpu, storage and memory so on so forth.
+	// A list of the database health metrics like CPU, Storage, and Memory.
 	Metrics []FleetMetricDefinition `mandatory:"false" json:"metrics"`
 }
 

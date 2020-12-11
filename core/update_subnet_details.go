@@ -57,7 +57,7 @@ type UpdateSubnetDetails struct {
 	// Example: `172.16.0.0/16`
 	CidrBlock *string `mandatory:"false" json:"cidrBlock"`
 
-	// This is the IPv6 CIDR block for the subnet's private IP address space.
+	// This is the IPv6 CIDR block for the subnet's IP address space.
 	// The subnet size is always /64.
 	// See IPv6 Addresses (https://docs.cloud.oracle.com/Content/Network/Concepts/ipv6.htm).
 	// The provided CIDR must maintain the following rules -

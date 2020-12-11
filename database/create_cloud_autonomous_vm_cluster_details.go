@@ -19,9 +19,6 @@ type CreateCloudAutonomousVmClusterDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The name of the availability domain that the Cloud Autonomous VM cluster is located in.
-	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
-
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the cloud Autonomous VM Cluster is associated with.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
@@ -33,9 +30,6 @@ type CreateCloudAutonomousVmClusterDetails struct {
 
 	// User defined description of the Cloud Autonomous Vm cluster.
 	Description *string `mandatory:"false" json:"description"`
-
-	// The number of nodes in Autonomous VM Cluster.
-	NodeCount *int `mandatory:"false" json:"nodeCount"`
 
 	// The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud.
 	// License Included allows you to subscribe to new Oracle Database software licenses and the Database service.

@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// DatabaseUpgradeSourceBase Details of upgrade source using which the database is upgraded.
+// DatabaseUpgradeSourceBase Details for the database upgrade source.
 type DatabaseUpgradeSourceBase interface {
 }
 

@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Database Management Service APIs.
+// Database Management API
 //
-// This file contains the customer facing APIs for Database Management service.
+// Use the Database Management API to perform tasks such as obtaining performance and resource usage metrics
+// for a fleet of Managed Databases or a specific Managed Database, creating Managed Database Groups, and
+// running a SQL job on a Managed Database or Managed Database Group.
 //
 
 package databasemanagement
@@ -14,66 +16,67 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// SqlJob SQL job
+// SqlJob The details of the SQL job.
 type SqlJob struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the job.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment of the job.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the job resides.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Display name of the job.
+	// The display name of the job.
 	Name *string `mandatory:"true" json:"name"`
 
-	// Time when the job was created.
+	// The date and time when the job was created.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// Time when the job was last updated.
+	// The date and time when the job was last updated.
 	TimeUpdated *common.SDKTime `mandatory:"true" json:"timeUpdated"`
 
-	// Description of the job.
+	// The description of the job.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group where the job has to be executed.
 	ManagedDatabaseGroupId *string `mandatory:"false" json:"managedDatabaseGroupId"`
 
-	// Managed database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) where job has to be executed.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database where the job has to be executed.
 	ManagedDatabaseId *string `mandatory:"false" json:"managedDatabaseId"`
 
-	// Details of managed databases where job needs to be executed
+	// The details of the Managed Databases where the job has to be executed.
 	ManagedDatabasesDetails []JobDatabase `mandatory:"false" json:"managedDatabasesDetails"`
 
-	// Job timeout duration expressed like "1h 10m 15s".
+	// The job timeout duration, which is expressed like "1h 10m 15s".
 	Timeout *string `mandatory:"false" json:"timeout"`
 
 	ResultLocation JobExecutionResultLocation `mandatory:"false" json:"resultLocation"`
 
-	// Error message if job submission failed else null.
+	// The error message that is returned if the job submission fails. Null is returned in all other scenarios.
 	SubmissionErrorMessage *string `mandatory:"false" json:"submissionErrorMessage"`
 
-	// SQL text to be executed as the job. This is a mandatory field for EXECUTE_SQL operationType.
+	// The SQL text to be executed in the job. This is a mandatory field for the EXECUTE_SQL operationType.
 	SqlText *string `mandatory:"false" json:"sqlText"`
 
-	// Database user name used for executing the SQL job. If managedDatabaseGroupId is provided, this user name should exist on all the databases in the group with the same password.
+	// The database user name used to execute the SQL job. If the job is being executed on a Managed Database Group,
+	// then the user name should exist on all the databases in the group with the same password.
 	UserName *string `mandatory:"false" json:"userName"`
 
-	// Type of the SQL. This is a mandatory field for EXECUTE_SQL operationType.
+	// The type of SQL. This is a mandatory field for the EXECUTE_SQL operationType.
 	SqlType SqlJobSqlTypeEnum `mandatory:"false" json:"sqlType,omitempty"`
 
-	// SQL operation type.
+	// The SQL operation type.
 	OperationType SqlJobOperationTypeEnum `mandatory:"true" json:"operationType"`
 
-	// Role of database user
+	// The role of the database user. Indicates whether the database user is a normal user or sysdba.
 	Role SqlJobRoleEnum `mandatory:"false" json:"role,omitempty"`
 
-	// Subtype of databases (CDB/PDB/NON_CDB) where job needs to be executed. Applicable only when managedDatabaseGroupId is provided.
+	// The subtype of the Oracle Database where the job has to be executed. Applicable only when managedDatabaseGroupId is provided.
 	DatabaseSubType DatabaseSubTypeEnum `mandatory:"false" json:"databaseSubType,omitempty"`
 
-	// Schedule type for the job.
+	// The schedule type of the job.
 	ScheduleType JobScheduleTypeEnum `mandatory:"true" json:"scheduleType"`
 
-	// Lifecycle state of the job.
+	// The lifecycle state of the job.
 	LifecycleState JobLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 }
 

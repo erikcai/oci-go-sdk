@@ -25,7 +25,8 @@ type CreateDrgAttachmentDetails struct {
 	// The OCID of the DRG.
 	DrgId *string `mandatory:"true" json:"drgId"`
 
-	// A user-friendly name. Does not have to be unique. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique. Avoid entering
+	// confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The OCID of the DRG route table the attachment will use.

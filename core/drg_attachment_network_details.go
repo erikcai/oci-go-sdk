@@ -98,17 +98,17 @@ type DrgAttachmentNetworkDetailsTypeEnum string
 // Set of constants representing the allowable values for DrgAttachmentNetworkDetailsTypeEnum
 const (
 	DrgAttachmentNetworkDetailsTypeVcn                     DrgAttachmentNetworkDetailsTypeEnum = "VCN"
+	DrgAttachmentNetworkDetailsTypeIpsecTunnel             DrgAttachmentNetworkDetailsTypeEnum = "IPSEC_TUNNEL"
 	DrgAttachmentNetworkDetailsTypeVirtualCircuit          DrgAttachmentNetworkDetailsTypeEnum = "VIRTUAL_CIRCUIT"
 	DrgAttachmentNetworkDetailsTypeRemotePeeringConnection DrgAttachmentNetworkDetailsTypeEnum = "REMOTE_PEERING_CONNECTION"
-	DrgAttachmentNetworkDetailsTypeIpsecTunnel             DrgAttachmentNetworkDetailsTypeEnum = "IPSEC_TUNNEL"
 	DrgAttachmentNetworkDetailsTypeInternet                DrgAttachmentNetworkDetailsTypeEnum = "INTERNET"
 )
 
 var mappingDrgAttachmentNetworkDetailsType = map[string]DrgAttachmentNetworkDetailsTypeEnum{
 	"VCN":                       DrgAttachmentNetworkDetailsTypeVcn,
+	"IPSEC_TUNNEL":              DrgAttachmentNetworkDetailsTypeIpsecTunnel,
 	"VIRTUAL_CIRCUIT":           DrgAttachmentNetworkDetailsTypeVirtualCircuit,
 	"REMOTE_PEERING_CONNECTION": DrgAttachmentNetworkDetailsTypeRemotePeeringConnection,
-	"IPSEC_TUNNEL":              DrgAttachmentNetworkDetailsTypeIpsecTunnel,
 	"INTERNET":                  DrgAttachmentNetworkDetailsTypeInternet,
 }
 

@@ -14,10 +14,10 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// UpgradeDatabaseDetails Details for upgrading a database to a specific Oracle Database version in a bare metal or virtual machine DB system.
+// UpgradeDatabaseDetails Details for upgrading a database to a specific Oracle Database version.
 type UpgradeDatabaseDetails struct {
 
-	// action for upgrading database.
+	// The database upgrade action.
 	Action UpgradeDatabaseDetailsActionEnum `mandatory:"true" json:"action"`
 
 	DatabaseUpgradeSourceDetails DatabaseUpgradeSourceBase `mandatory:"false" json:"databaseUpgradeSourceDetails"`

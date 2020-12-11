@@ -29,7 +29,8 @@ import (
 // There must always be a default DRG Route Table for each attachment type.
 type DrgRouteTable struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG Route Table.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+	// DRG Route Table.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment the DRG Route Table belongs to. The DRG Route Table

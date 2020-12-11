@@ -92,18 +92,10 @@ type InternalSubnet struct {
 	// The OCID of the Internal Hosted Zone the DnsRecord belongs to.
 	InternalHostedZoneId *string `mandatory:"false" json:"internalHostedZoneId"`
 
-	// For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's private IP address
-	// space. The subnet size is always /64. Note that IPv6 addressing is currently supported only
-	// in certain regions. See IPv6 Addresses (https://docs.cloud.oracle.com/Content/Network/Concepts/ipv6.htm).
+	// For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's IP address space.
+	// The subnet size is always /64. See IPv6 Addresses (https://docs.cloud.oracle.com/Content/Network/Concepts/ipv6.htm).
 	// Example: `2001:0db8:0123:1111::/64`
 	Ipv6CidrBlock *string `mandatory:"false" json:"ipv6CidrBlock"`
-
-	// For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's public IP address
-	// space. The subnet size is always /64. The left 48 bits are inherited from the
-	// `ipv6PublicCidrBlock` of the Vcn,
-	// and the remaining 16 bits are from the subnet's `ipv6CidrBlock`.
-	// Example: `2001:0db8:0123:1111::/64`
-	Ipv6PublicCidrBlock *string `mandatory:"false" json:"ipv6PublicCidrBlock"`
 
 	// For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.
 	// Example: `2001:0db8:0123:1111:89ab:cdef:1234:5678`
@@ -119,6 +111,14 @@ type InternalSubnet struct {
 	// **Note:** When a subnet does not have learning enabled, this field will be null.
 	// Example: `100`
 	VlanTag *int `mandatory:"false" json:"vlanTag"`
+
+	// Whether to disallow ingress internet traffic to VNICs within this subnet. Defaults to false.
+	// For IPv6, if `prohibitInternetIngress` is set to `true`, internet access is not allowed for any
+	// IPv6s assigned to VNICs in the subnet. Otherwise, ingress internet traffic is allowed by default.
+	// `prohibitPublicIpOnVnic` will be set to the value of `prohibitInternetIngress` to dictate IPv4
+	// behavior in this subnet. Only one or the other flag should be specified.
+	// Example: `true`
+	ProhibitInternetIngress *bool `mandatory:"false" json:"prohibitInternetIngress"`
 
 	// Whether VNICs within this subnet can have public IP addresses.
 	// Defaults to false, which means VNICs created in this subnet will

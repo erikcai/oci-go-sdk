@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Database Management Service APIs.
+// Database Management API
 //
-// This file contains the customer facing APIs for Database Management service.
+// Use the Database Management API to perform tasks such as obtaining performance and resource usage metrics
+// for a fleet of Managed Databases or a specific Managed Database, creating Managed Database Groups, and
+// running a SQL job on a Managed Database or Managed Database Group.
 //
 
 package databasemanagement
@@ -14,51 +16,51 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// Job Details of the job.
+// Job The details of the job.
 type Job interface {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the job.
 	GetId() *string
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment of the job.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the job resides.
 	GetCompartmentId() *string
 
-	// Display name of the job.
+	// The display name of the job.
 	GetName() *string
 
-	// Schedule type for the job.
+	// The schedule type of the job.
 	GetScheduleType() JobScheduleTypeEnum
 
-	// Lifecycle state of the job.
+	// The lifecycle state of the job.
 	GetLifecycleState() JobLifecycleStateEnum
 
-	// Time when the job was created.
+	// The date and time when the job was created.
 	GetTimeCreated() *common.SDKTime
 
-	// Time when the job was last updated.
+	// The date and time when the job was last updated.
 	GetTimeUpdated() *common.SDKTime
 
-	// Description of the job.
+	// The description of the job.
 	GetDescription() *string
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group where the job has to be executed.
 	GetManagedDatabaseGroupId() *string
 
-	// Managed database OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) where job has to be executed.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database where the job has to be executed.
 	GetManagedDatabaseId() *string
 
-	// Details of managed databases where job needs to be executed
+	// The details of the Managed Databases where the job has to be executed.
 	GetManagedDatabasesDetails() []JobDatabase
 
-	// Subtype of databases (CDB/PDB/NON_CDB) where job needs to be executed. Applicable only when managedDatabaseGroupId is provided.
+	// The subtype of the Oracle Database where the job has to be executed. Applicable only when managedDatabaseGroupId is provided.
 	GetDatabaseSubType() DatabaseSubTypeEnum
 
-	// Job timeout duration expressed like "1h 10m 15s".
+	// The job timeout duration, which is expressed like "1h 10m 15s".
 	GetTimeout() *string
 
 	GetResultLocation() JobExecutionResultLocation
 
-	// Error message if job submission failed else null.
+	// The error message that is returned if the job submission fails. Null is returned in all other scenarios.
 	GetSubmissionErrorMessage() *string
 }
 

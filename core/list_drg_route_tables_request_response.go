@@ -45,7 +45,8 @@ type ListDrgRouteTablesRequest struct {
 	// The OCID of the import Route Distribution.
 	ImportDrgRouteDistributionId *string `mandatory:"false" contributesTo:"query" name:"importDrgRouteDistributionId"`
 
-	// A filter to return only resources that match the specified lifecycle state. The value is case insensitive.
+	// A filter to return only resources that match the specified lifecycle
+	// state. The value is case insensitive.
 	LifecycleState DrgRouteTableLifecycleStateEnum `mandatory:"false" contributesTo:"query" name:"lifecycleState" omitEmpty:"true"`
 
 	// Unique Oracle-assigned identifier for the request.

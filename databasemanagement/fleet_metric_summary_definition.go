@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Database Management Service APIs.
+// Database Management API
 //
-// This file contains the customer facing APIs for Database Management service.
+// Use the Database Management API to perform tasks such as obtaining performance and resource usage metrics
+// for a fleet of Managed Databases or a specific Managed Database, creating Managed Database Groups, and
+// running a SQL job on a Managed Database or Managed Database Group.
 //
 
 package databasemanagement
@@ -13,25 +15,25 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// FleetMetricSummaryDefinition This provides metric aggregated value of fleet databases.
+// FleetMetricSummaryDefinition A summary of the fleet metrics, which provides the metric aggregated value of the databases in the fleet.
 type FleetMetricSummaryDefinition struct {
 
-	// Name of the metric.
+	// The name of the metric.
 	MetricName *string `mandatory:"false" json:"metricName"`
 
-	// Metric aggregated value of baseline datetime.
+	// The metric aggregated value at the baseline date and time.
 	BaselineValue *float64 `mandatory:"false" json:"baselineValue"`
 
-	// Metric aggregated value of target datetime.
+	// The metric aggregated value at the target date and time.
 	TargetValue *float64 `mandatory:"false" json:"targetValue"`
 
-	// Unit of the value.
+	// The unit of the value.
 	Unit *string `mandatory:"false" json:"unit"`
 
-	// Percentage change of value compare to baseline value.
+	// The percentage change in the metric aggregated value compared to the baseline value.
 	PercentageChange *float64 `mandatory:"false" json:"percentageChange"`
 
-	// This contains unique dimension key and values of the base metric.
+	// The unique dimension key and values of the baseline metric.
 	Dimensions []MetricDimensionDefinition `mandatory:"false" json:"dimensions"`
 }
 

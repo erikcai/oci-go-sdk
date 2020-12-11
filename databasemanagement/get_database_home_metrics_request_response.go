@@ -15,10 +15,12 @@ type GetDatabaseHomeMetricsRequest struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
 	ManagedDatabaseId *string `mandatory:"true" contributesTo:"query" name:"managedDatabaseId"`
 
-	// Start time in ISO UTC format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+	// The start time for the time range to retrieve the health metrics of a Managed Database
+	// in UTC in ISO-8601 format, which is "yyyy-MM-dd'T'hh:mm:ss.sss'Z'".
 	StartTime *string `mandatory:"true" contributesTo:"query" name:"startTime"`
 
-	// End time in ISO UTC format yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+	// The end time for the time range to retrieve the health metrics of a Managed Database
+	// in UTC in ISO-8601 format, which is "yyyy-MM-dd'T'hh:mm:ss.sss'Z'".
 	EndTime *string `mandatory:"true" contributesTo:"query" name:"endTime"`
 
 	// The client request ID for tracing.

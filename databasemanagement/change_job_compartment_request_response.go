@@ -12,10 +12,10 @@ import (
 // ChangeJobCompartmentRequest wrapper for the ChangeJobCompartment operation
 type ChangeJobCompartmentRequest struct {
 
-	// Job id
+	// The identifier of the job.
 	JobId *string `mandatory:"true" contributesTo:"path" name:"jobId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the job to.
 	ChangeJobCompartmentDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.

@@ -15,9 +15,6 @@ type AddIpv6VcnCidrRequest struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
 	VcnId *string `mandatory:"true" contributesTo:"path" name:"vcnId"`
 
-	// Details object for adding an IPv6 VCN CIDR.
-	AddVcnIpv6CidrDetails `contributesTo:"body"`
-
 	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -30,7 +27,7 @@ type AddIpv6VcnCidrRequest struct {
 	OpcRetryToken *string `mandatory:"false" contributesTo:"header" name:"opc-retry-token"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
-	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
+	// parameter to the value of the etag from a previous GET or POST response for that resource. The resource
 	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 

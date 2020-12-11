@@ -6756,7 +6756,6 @@ func (client DatabaseClient) launchAutonomousExadataInfrastructure(ctx context.C
 // An initial database is created on the DB system based on the request parameters you provide and some default
 // options. For detailed information about default options, see Bare metal and virtual machine DB system default options. (https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#Default)
 // **Note:** Deprecated for Exadata Cloud Service systems. Use the new resource model APIs (https://docs.cloud.oracle.com/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model) instead.
-//
 // For Exadata Cloud Service instances, support for this API will end on May 15th, 2021. See Switching an Exadata DB System to the New Resource Model and APIs (https://docs.cloud.oracle.com/Concepts/exaflexsystem_topic-resource_model_conversion.htm) for details on converting existing Exadata DB systems to the new resource model.
 // Use the CreateCloudExadataInfrastructure and CreateCloudVmCluster APIs to provision a new Exadata Cloud Service instance.
 func (client DatabaseClient) LaunchDbSystem(ctx context.Context, request LaunchDbSystemRequest) (response LaunchDbSystemResponse, err error) {
@@ -11656,7 +11655,7 @@ func (client DatabaseClient) updateVmClusterNetwork(ctx context.Context, request
 	return response, err
 }
 
-// UpgradeDatabase Upgrades the specified database in a bare metal or virtual machine DB system.
+// UpgradeDatabase Upgrades the specified Oracle Database instance.
 func (client DatabaseClient) UpgradeDatabase(ctx context.Context, request UpgradeDatabaseRequest) (response UpgradeDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

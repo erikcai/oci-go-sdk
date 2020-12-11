@@ -29,7 +29,7 @@ type CreateVirtualCircuitDetails struct {
 	// (10.0.0.0/8, 172.16/12, and 192.168/16).
 	Type CreateVirtualCircuitDetailsTypeEnum `mandatory:"true" json:"type"`
 
-	// The provisioned data rate of the connection.  To get a list of the
+	// The provisioned data rate of the connection. To get a list of the
 	// available bandwidth levels (that is, shapes), see
 	// ListFastConnectProviderVirtualCircuitBandwidthShapes.
 	// Example: `10 Gbps`
@@ -39,8 +39,7 @@ type CreateVirtualCircuitDetails struct {
 	// group this virtual circuit will run on.
 	CrossConnectMappings []CrossConnectMapping `mandatory:"false" json:"crossConnectMappings"`
 
-	// The routing policy setting defines the scope of how widely routing information about the Oracle cloud is shared through FastConnect. For private virtual circuit,
-	// virtual cloud network (VCN) can either share a single IP address range for the entire VCN (the default) or individually specify all subnets in that VCN.
+	// The routing policy setting defines the scope of how widely routing information about the Oracle cloud is shared over public Virtual circuit.
 	// For public virtual Circuit, VCN can share IP address ranges for the Oracle Service Network (OSN), for all connected subnets in the region, for all connected subnets in the
 	// same market (for example connecting the Canada Southeast (Toronto) region and the US East (Ashburn) region) or for all connected subnets globally across Oracle Cloud Infrastructure.
 	// By default, information is shared for subnets in the same market.
@@ -111,8 +110,6 @@ type CreateVirtualCircuitDetailsRoutingPolicyEnum string
 
 // Set of constants representing the allowable values for CreateVirtualCircuitDetailsRoutingPolicyEnum
 const (
-	CreateVirtualCircuitDetailsRoutingPolicyVcnCidr              CreateVirtualCircuitDetailsRoutingPolicyEnum = "VCN_CIDR"
-	CreateVirtualCircuitDetailsRoutingPolicyAllSubnetsInVcn      CreateVirtualCircuitDetailsRoutingPolicyEnum = "ALL_SUBNETS_IN_VCN"
 	CreateVirtualCircuitDetailsRoutingPolicyOracleServiceNetwork CreateVirtualCircuitDetailsRoutingPolicyEnum = "ORACLE_SERVICE_NETWORK"
 	CreateVirtualCircuitDetailsRoutingPolicyRegional             CreateVirtualCircuitDetailsRoutingPolicyEnum = "REGIONAL"
 	CreateVirtualCircuitDetailsRoutingPolicyMarketLevel          CreateVirtualCircuitDetailsRoutingPolicyEnum = "MARKET_LEVEL"
@@ -120,8 +117,6 @@ const (
 )
 
 var mappingCreateVirtualCircuitDetailsRoutingPolicy = map[string]CreateVirtualCircuitDetailsRoutingPolicyEnum{
-	"VCN_CIDR":               CreateVirtualCircuitDetailsRoutingPolicyVcnCidr,
-	"ALL_SUBNETS_IN_VCN":     CreateVirtualCircuitDetailsRoutingPolicyAllSubnetsInVcn,
 	"ORACLE_SERVICE_NETWORK": CreateVirtualCircuitDetailsRoutingPolicyOracleServiceNetwork,
 	"REGIONAL":               CreateVirtualCircuitDetailsRoutingPolicyRegional,
 	"MARKET_LEVEL":           CreateVirtualCircuitDetailsRoutingPolicyMarketLevel,

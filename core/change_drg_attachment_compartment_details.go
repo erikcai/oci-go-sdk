@@ -21,7 +21,8 @@ import (
 // ChangeDrgAttachmentCompartmentDetails The configuration details for the move operation.
 type ChangeDrgAttachmentCompartmentDetails struct {
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the DRG Attachment to.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the
+	// DRG Attachment to.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

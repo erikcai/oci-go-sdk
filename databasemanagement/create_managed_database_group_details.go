@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Database Management Service APIs.
+// Database Management API
 //
-// This file contains the customer facing APIs for Database Management service.
+// Use the Database Management API to perform tasks such as obtaining performance and resource usage metrics
+// for a fleet of Managed Databases or a specific Managed Database, creating Managed Database Groups, and
+// running a SQL job on a Managed Database or Managed Database Group.
 //
 
 package databasemanagement
@@ -13,20 +15,20 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// CreateManagedDatabaseGroupDetails Details to create a Managed Database Group.
+// CreateManagedDatabaseGroupDetails The details required to create a Managed Database Group.
 type CreateManagedDatabaseGroupDetails struct {
 
-	// The name of the Managed Database Group. Valid characters are
-	// uppercase or lowercase letters, numbers, and underscores. It
-	// is unmodifiable and must be unique in a compartment. It must
-	// begin with an alphabetic character.
+	// The name of the Managed Database Group. Valid characters are uppercase or
+	// lowercase letters, numbers, and "_". The name of the Managed Database Group
+	// cannot be modified. It must be unique in the compartment and must begin with
+	// an alphabetic character.
 	Name *string `mandatory:"true" json:"name"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
-	// to which the Managed Database Group belongs to.
+	// in which the Managed Database Group resides.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Information specified by the user about the Managed Database Group.
+	// The information specified by the user about the Managed Database Group.
 	Description *string `mandatory:"false" json:"description"`
 }
 

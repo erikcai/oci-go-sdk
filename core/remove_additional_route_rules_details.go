@@ -18,16 +18,19 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// RemoveAdditionalRouteRulesDetails The configuration details for the remove rules operation. Only one of the three properties should be supplied to call the removeAdditionalRouteRules API.
+// RemoveAdditionalRouteRulesDetails The configuration details for the remove rules operation. Only one of the three properties should be
+// supplied to call the removeAdditionalRouteRules API.
 type RemoveAdditionalRouteRulesDetails struct {
 
 	// The list of route rule identifiers used for removing route rules from route table.
 	AdditionalRouteRuleIds []string `mandatory:"false" json:"additionalRouteRuleIds"`
 
-	// The list of destinations used for removing route rules from route table. This is only supplied when additionalRouteRuleIds are not provided.
+	// The list of destinations used for removing route rules from route table. This is only supplied
+	// when additionalRouteRuleIds are not provided.
 	Destinations []string `mandatory:"false" json:"destinations"`
 
-	// The pairs of <destination, target> used for removing route rules from route table. This is only supplied when additionalRouteRules and destinations are not provided.
+	// The pairs of <destination, target> used for removing route rules from route table. This is only
+	// supplied when additionalRouteRules and destinations are not provided.
 	RouteDestinationRouteTargets []RouteDestinationRouteTargetDetails `mandatory:"false" json:"routeDestinationRouteTargets"`
 }
 

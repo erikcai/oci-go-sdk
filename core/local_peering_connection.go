@@ -28,7 +28,8 @@ type LocalPeeringConnection struct {
 	// The OCID of the compartment containing the local peering connection.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique, and it's changeable.
+	// Avoid entering confidential information.
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// The local peering connection's Oracle ID (OCID).

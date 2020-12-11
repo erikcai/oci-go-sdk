@@ -36,7 +36,7 @@ import (
 // Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
 type VirtualCircuit struct {
 
-	// The provisioned data rate of the connection.  To get a list of the
+	// The provisioned data rate of the connection. To get a list of the
 	// available bandwidth levels (that is, shapes), see
 	// ListFastConnectProviderVirtualCircuitBandwidthShapes.
 	// Example: `10 Gbps`
@@ -60,8 +60,7 @@ type VirtualCircuit struct {
 	// virtual circuit.
 	CrossConnectMappings []CrossConnectMapping `mandatory:"false" json:"crossConnectMappings"`
 
-	// The routing policy setting defines the scope of how widely routing information about the Oracle cloud is shared through FastConnect. For private virtual circuit,
-	// virtual cloud network (VCN) can either share a single IP address range for the entire VCN (the default) or individually specify all subnets in that VCN. For public virtual Circuit,
+	// The routing policy setting defines the scope of how widely routing information about the Oracle cloud is shared over public Virtual Circuit. For public virtual Circuit,
 	// VCN can share IP address ranges for the Oracle Service Network (OSN), for all connected subnets in the region, for all connected subnets in the same market
 	// (for example connecting the Canada Southeast (Toronto) region and the US East (Ashburn) region) or for all connected subnets globally across Oracle Cloud Infrastructure.
 	// By default, information is shared for subnets in the same market.
@@ -232,8 +231,6 @@ type VirtualCircuitRoutingPolicyEnum string
 
 // Set of constants representing the allowable values for VirtualCircuitRoutingPolicyEnum
 const (
-	VirtualCircuitRoutingPolicyVcnCidr              VirtualCircuitRoutingPolicyEnum = "VCN_CIDR"
-	VirtualCircuitRoutingPolicyAllSubnetsInVcn      VirtualCircuitRoutingPolicyEnum = "ALL_SUBNETS_IN_VCN"
 	VirtualCircuitRoutingPolicyOracleServiceNetwork VirtualCircuitRoutingPolicyEnum = "ORACLE_SERVICE_NETWORK"
 	VirtualCircuitRoutingPolicyRegional             VirtualCircuitRoutingPolicyEnum = "REGIONAL"
 	VirtualCircuitRoutingPolicyMarketLevel          VirtualCircuitRoutingPolicyEnum = "MARKET_LEVEL"
@@ -241,8 +238,6 @@ const (
 )
 
 var mappingVirtualCircuitRoutingPolicy = map[string]VirtualCircuitRoutingPolicyEnum{
-	"VCN_CIDR":               VirtualCircuitRoutingPolicyVcnCidr,
-	"ALL_SUBNETS_IN_VCN":     VirtualCircuitRoutingPolicyAllSubnetsInVcn,
 	"ORACLE_SERVICE_NETWORK": VirtualCircuitRoutingPolicyOracleServiceNetwork,
 	"REGIONAL":               VirtualCircuitRoutingPolicyRegional,
 	"MARKET_LEVEL":           VirtualCircuitRoutingPolicyMarketLevel,

@@ -15,7 +15,7 @@ type ChangeManagedDatabaseGroupCompartmentRequest struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group.
 	ManagedDatabaseGroupId *string `mandatory:"true" contributesTo:"path" name:"managedDatabaseGroupId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the Managed Database Group to.
 	ChangeManagedDatabaseGroupCompartmentDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.

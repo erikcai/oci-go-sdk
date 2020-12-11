@@ -33,7 +33,8 @@ type NatGateway struct {
 	// the NAT gateway.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the NAT gateway.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+	// NAT gateway.
 	Id *string `mandatory:"true" json:"id"`
 
 	// Whether the NAT gateway blocks traffic through it. The default is `false`.

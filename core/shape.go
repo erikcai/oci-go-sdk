@@ -33,6 +33,9 @@ type Shape struct {
 	// For a subcore VM, the supported baseline ocpu utilization for instances that use this shape.
 	BaselineOcpuUtilizations []ShapeBaselineOcpuUtilizationsEnum `mandatory:"false" json:"baselineOcpuUtilizations,omitempty"`
 
+	// For a subcore VM, the minimum total baseline OCPUs required. The total baseline OCPUs is equal to baselineOcpuUtilization chosen multiplied by the number of OCPUs chosen.
+	MinTotalBaselineOcpusRequired *float32 `mandatory:"false" json:"minTotalBaselineOcpusRequired"`
+
 	// A short description of the shape's processor (CPU).
 	ProcessorDescription *string `mandatory:"false" json:"processorDescription"`
 

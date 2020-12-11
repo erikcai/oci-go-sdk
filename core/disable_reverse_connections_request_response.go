@@ -16,17 +16,13 @@ type DisableReverseConnectionsRequest struct {
 	PrivateEndpointId *string `mandatory:"true" contributesTo:"path" name:"privateEndpointId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`
-	// parameter to the value of the etag from a previous GET or POST response for that resource.  The resource
+	// parameter to the value of the etag from a previous GET or POST response for that resource. The resource
 	// will be updated or deleted only if the etag you provide matches the resource's current etag value.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
 	// Unique identifier for the request.
 	// If you need to contact Oracle about a particular request, please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
-
-	// Indicates that this request is a dry-run.
-	// If set to true, nothing will be created, but only the validation will be performed.
-	IsDryRun *bool `mandatory:"false" contributesTo:"query" name:"isDryRun"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.

@@ -12,7 +12,7 @@ import (
 // CreateManagedDatabaseGroupRequest wrapper for the CreateManagedDatabaseGroup operation
 type CreateManagedDatabaseGroupRequest struct {
 
-	// Details to create a Managed Database Group.
+	// The details required to create a Managed Database Group.
 	CreateManagedDatabaseGroupDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.
@@ -53,7 +53,7 @@ type CreateManagedDatabaseGroupResponse struct {
 	// The ManagedDatabaseGroup instance
 	ManagedDatabaseGroup `presentIn:"body"`
 
-	// A link to the created Managed Database Group
+	// A link to the newly created Managed Database Group.
 	Location *string `presentIn:"header" name:"location"`
 
 	// Unique Oracle-assigned identifier for the request. If you need to contact

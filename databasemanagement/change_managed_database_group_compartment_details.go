@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Database Management Service APIs.
+// Database Management API
 //
-// This file contains the customer facing APIs for Database Management service.
+// Use the Database Management API to perform tasks such as obtaining performance and resource usage metrics
+// for a fleet of Managed Databases or a specific Managed Database, creating Managed Database Groups, and
+// running a SQL job on a Managed Database or Managed Database Group.
 //
 
 package databasemanagement
@@ -13,11 +15,11 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// ChangeManagedDatabaseGroupCompartmentDetails The details for changing the compartment of a Managed Database Group.
+// ChangeManagedDatabaseGroupCompartmentDetails The details required to change the compartment of a Managed Database Group.
 type ChangeManagedDatabaseGroupCompartmentDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
-	// compartment into which the resource should be moved.
+	// compartment to which the Managed Database Group should be moved.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 }
 

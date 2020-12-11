@@ -36,7 +36,8 @@ type CreateInternalDrgAttachmentDetails struct {
 	// The string in the form ASN:mplsLabel.
 	RouteTarget *string `mandatory:"true" json:"routeTarget"`
 
-	// A user-friendly name. Does not have to be unique. Avoid entering confidential information.
+	// A user-friendly name. Does not have to be unique. Avoid entering
+	// confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The OCID of the route table the DRG attachment will use.

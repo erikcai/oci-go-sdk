@@ -18,11 +18,11 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// EndpointServiceIpDetails Information about an endpoint (in the service VCN) that handles requests to the endpoint service.
+// EndpointServiceIpDetails Information about an IP address (in the service VCN) that handles requests to the endpoint service.
 type EndpointServiceIpDetails struct {
 
 	// An IP address (in the service VCN) that handles requests to the endpoint service.
-	ServiceIp *string `mandatory:"false" json:"serviceIp"`
+	ServiceIp *string `mandatory:"true" json:"serviceIp"`
 }
 
 func (m EndpointServiceIpDetails) String() string {

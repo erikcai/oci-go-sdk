@@ -54,7 +54,7 @@ type InstancePoolInstance struct {
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The user-friendly name.  Does not have to be unique.
+	// The user-friendly name. Does not have to be unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// The fault domain the instance is running in.

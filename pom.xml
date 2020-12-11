@@ -5530,7 +5530,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>1.0.70</version>
+        <version>1.0.87</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -5550,7 +5550,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.612</version>
+        <version>0.1.628</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -5770,7 +5770,7 @@
       <dependency>
         <groupId>com.oracle.blockchain</groupId>
         <artifactId>oracle-blockchain-platform-spec</artifactId>
-        <version>20.9.1</version>
+        <version>21.1.1</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.ads.admin.cp</groupId>
@@ -5890,7 +5890,7 @@
       <dependency>
         <groupId>com.oracle.oci.dpd.dbmgmt.api</groupId>
         <artifactId>dbmgmt-dbadmin-spec</artifactId>
-        <version>20201101.23</version>
+        <version>20201101.27</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

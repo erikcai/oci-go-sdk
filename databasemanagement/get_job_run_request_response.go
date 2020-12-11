@@ -12,7 +12,7 @@ import (
 // GetJobRunRequest wrapper for the GetJobRun operation
 type GetJobRunRequest struct {
 
-	// Job run identifier
+	// The identifier of the job run.
 	JobRunId *string `mandatory:"true" contributesTo:"path" name:"jobRunId"`
 
 	// The client request ID for tracing.

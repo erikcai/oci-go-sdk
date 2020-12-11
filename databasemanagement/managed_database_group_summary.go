@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Database Management Service APIs.
+// Database Management API
 //
-// This file contains the customer facing APIs for Database Management service.
+// Use the Database Management API to perform tasks such as obtaining performance and resource usage metrics
+// for a fleet of Managed Databases or a specific Managed Database, creating Managed Database Groups, and
+// running a SQL job on a Managed Database or Managed Database Group.
 //
 
 package databasemanagement
@@ -22,19 +24,19 @@ type ManagedDatabaseGroupSummary struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group.
 	Id *string `mandatory:"true" json:"id"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Compartment.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// Number of Managed Databases in the group.
+	// The number of Managed Databases in the Managed Database Group.
 	ManagedDatabaseCount *int `mandatory:"true" json:"managedDatabaseCount"`
 
-	// The current state of the Managed Database Group.
+	// The current lifecycle state of the Managed Database Group.
 	LifecycleState LifecycleStatesEnum `mandatory:"true" json:"lifecycleState"`
 
 	// The date and time the Managed Database Group was created.
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// Information specified by the user about the Managed Database Group.
+	// The information specified by the user about the Managed Database Group.
 	Description *string `mandatory:"false" json:"description"`
 }
 

@@ -34,9 +34,8 @@ type UpdateVirtualCircuitDetails struct {
 	// CrossConnectMapping.
 	CrossConnectMappings []CrossConnectMapping `mandatory:"false" json:"crossConnectMappings"`
 
-	// The routing policy setting defines the scope of how widely routing information about the Oracle cloud is shared through FastConnect. For private virtual circuit,
-	// virtual cloud network (VCN) can either share a single IP address range for the entire VCN (the default) or individually specify all subnets in that VCN. For public virtual Circuit,
-	// VCN can share IP address ranges for the Oracle Service Network (OSN), for all connected subnets in the region, for all connected subnets in the same market
+	// The routing policy setting defines the scope of how widely routing information about the Oracle cloud is shared over public Virtual circuit.
+	// For public virtual Circuit, VCN can share IP address ranges for the Oracle Service Network (OSN), for all connected subnets in the region, for all connected subnets in the same market
 	// (for example connecting the Canada Southeast (Toronto) region and the US East (Ashburn) region) or for all connected subnets globally across Oracle Cloud Infrastructure.
 	// By default, information is shared for subnets in the same market.
 	RoutingPolicy []UpdateVirtualCircuitDetailsRoutingPolicyEnum `mandatory:"false" json:"routingPolicy,omitempty"`
@@ -77,7 +76,7 @@ type UpdateVirtualCircuitDetails struct {
 	GatewayId *string `mandatory:"false" json:"gatewayId"`
 
 	// The provider's state in relation to this virtual circuit. Relevant only
-	// if the customer is using FastConnect via a provider.  ACTIVE
+	// if the customer is using FastConnect via a provider. ACTIVE
 	// means the provider has provisioned the virtual circuit from their
 	// end. INACTIVE means the provider has not yet provisioned the virtual
 	// circuit, or has de-provisioned it.
@@ -102,8 +101,6 @@ type UpdateVirtualCircuitDetailsRoutingPolicyEnum string
 
 // Set of constants representing the allowable values for UpdateVirtualCircuitDetailsRoutingPolicyEnum
 const (
-	UpdateVirtualCircuitDetailsRoutingPolicyVcnCidr              UpdateVirtualCircuitDetailsRoutingPolicyEnum = "VCN_CIDR"
-	UpdateVirtualCircuitDetailsRoutingPolicyAllSubnetsInVcn      UpdateVirtualCircuitDetailsRoutingPolicyEnum = "ALL_SUBNETS_IN_VCN"
 	UpdateVirtualCircuitDetailsRoutingPolicyOracleServiceNetwork UpdateVirtualCircuitDetailsRoutingPolicyEnum = "ORACLE_SERVICE_NETWORK"
 	UpdateVirtualCircuitDetailsRoutingPolicyRegional             UpdateVirtualCircuitDetailsRoutingPolicyEnum = "REGIONAL"
 	UpdateVirtualCircuitDetailsRoutingPolicyMarketLevel          UpdateVirtualCircuitDetailsRoutingPolicyEnum = "MARKET_LEVEL"
@@ -111,8 +108,6 @@ const (
 )
 
 var mappingUpdateVirtualCircuitDetailsRoutingPolicy = map[string]UpdateVirtualCircuitDetailsRoutingPolicyEnum{
-	"VCN_CIDR":               UpdateVirtualCircuitDetailsRoutingPolicyVcnCidr,
-	"ALL_SUBNETS_IN_VCN":     UpdateVirtualCircuitDetailsRoutingPolicyAllSubnetsInVcn,
 	"ORACLE_SERVICE_NETWORK": UpdateVirtualCircuitDetailsRoutingPolicyOracleServiceNetwork,
 	"REGIONAL":               UpdateVirtualCircuitDetailsRoutingPolicyRegional,
 	"MARKET_LEVEL":           UpdateVirtualCircuitDetailsRoutingPolicyMarketLevel,

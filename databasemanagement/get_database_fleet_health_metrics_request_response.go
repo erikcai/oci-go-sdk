@@ -12,10 +12,10 @@ import (
 // GetDatabaseFleetHealthMetricsRequest wrapper for the GetDatabaseFleetHealthMetrics operation
 type GetDatabaseFleetHealthMetricsRequest struct {
 
-	// Source time period
+	// The baseline time for metrics comparison.
 	CompareBaselineTime *string `mandatory:"true" contributesTo:"query" name:"compareBaselineTime"`
 
-	// Target time period
+	// The target time for metrics comparison.
 	CompareTargetTime *string `mandatory:"true" contributesTo:"query" name:"compareTargetTime"`
 
 	// The client request ID for tracing.
@@ -27,16 +27,16 @@ type GetDatabaseFleetHealthMetricsRequest struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"false" contributesTo:"query" name:"compartmentId"`
 
-	// Metrics period compare type
+	// The time window used for metrics comparison.
 	CompareType GetDatabaseFleetHealthMetricsCompareTypeEnum `mandatory:"false" contributesTo:"query" name:"compareType" omitEmpty:"true"`
 
-	// By default service returns all supported metrics, instead user wants to fetch specific set of metrics then use this filter to pass desired metric names with comma seperator.
+	// The filter used to retrieve a specific set of metrics by passing the desired metric names with a comma separator. Note that, by default, the service returns all supported metrics.
 	FilterByMetricNames *string `mandatory:"false" contributesTo:"query" name:"filterByMetricNames"`
 
-	// This filter allows the user to filter the fleet databases by specified database type
+	// The filter used to filter the databases in the fleet by a specific Oracle Database type.
 	FilterByDatabaseType *string `mandatory:"false" contributesTo:"query" name:"filterByDatabaseType"`
 
-	// This filter allows the user to filter the fleet databases by specified database subtype.
+	// The filter used to filter the databases in the fleet by a specific Oracle Database subtype.
 	FilterByDatabaseSubType *string `mandatory:"false" contributesTo:"query" name:"filterByDatabaseSubType"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

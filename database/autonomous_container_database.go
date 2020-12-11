@@ -175,6 +175,7 @@ const (
 	AutonomousContainerDatabaseLifecycleStateRestarting            AutonomousContainerDatabaseLifecycleStateEnum = "RESTARTING"
 	AutonomousContainerDatabaseLifecycleStateMaintenanceInProgress AutonomousContainerDatabaseLifecycleStateEnum = "MAINTENANCE_IN_PROGRESS"
 	AutonomousContainerDatabaseLifecycleStateRoleChangeInProgress  AutonomousContainerDatabaseLifecycleStateEnum = "ROLE_CHANGE_IN_PROGRESS"
+	AutonomousContainerDatabaseLifecycleStateUnavailable           AutonomousContainerDatabaseLifecycleStateEnum = "UNAVAILABLE"
 )
 
 var mappingAutonomousContainerDatabaseLifecycleState = map[string]AutonomousContainerDatabaseLifecycleStateEnum{
@@ -190,6 +191,7 @@ var mappingAutonomousContainerDatabaseLifecycleState = map[string]AutonomousCont
 	"RESTARTING":              AutonomousContainerDatabaseLifecycleStateRestarting,
 	"MAINTENANCE_IN_PROGRESS": AutonomousContainerDatabaseLifecycleStateMaintenanceInProgress,
 	"ROLE_CHANGE_IN_PROGRESS": AutonomousContainerDatabaseLifecycleStateRoleChangeInProgress,
+	"UNAVAILABLE":             AutonomousContainerDatabaseLifecycleStateUnavailable,
 }
 
 // GetAutonomousContainerDatabaseLifecycleStateEnumValues Enumerates the set of values for AutonomousContainerDatabaseLifecycleStateEnum

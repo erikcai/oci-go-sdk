@@ -15,7 +15,7 @@ type UpdateManagedDatabaseGroupRequest struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group.
 	ManagedDatabaseGroupId *string `mandatory:"true" contributesTo:"path" name:"managedDatabaseGroupId"`
 
-	// Details to update a Managed Database Group.
+	// The details required to update a Managed Database Group.
 	UpdateManagedDatabaseGroupDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

@@ -14,7 +14,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v30/common"
 )
 
-// DatabaseUpgradeWithDbVersionDetails Details of Database version for upgrading a database.
+// DatabaseUpgradeWithDbVersionDetails Details of the Oracle Database software version number for upgrading a database.
 type DatabaseUpgradeWithDbVersionDetails struct {
 
 	// A valid Oracle Database version. To get a list of supported versions, use the ListDbVersions operation.

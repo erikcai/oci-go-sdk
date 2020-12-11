@@ -46,6 +46,11 @@ type UpdateDrgAttachmentDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
+	// The OCID of the export route distribution used to specify how routes in the assigned DRG route table
+	// are advertised out through the attachment.
+	// If this value is null, no routes are advertised through this attachment.
+	ExportRouteDistributionId *string `mandatory:"false" json:"exportRouteDistributionId"`
+
 	// The OCID of the route table the DRG attachment will use.
 	// For information about why you would associate a route table with a DRG attachment, see:
 	//   * Transit Routing: Access to Multiple VCNs in Same Region (https://docs.cloud.oracle.com/Content/Network/Tasks/transitrouting.htm)
@@ -60,12 +65,13 @@ func (m UpdateDrgAttachmentDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *UpdateDrgAttachmentDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		DisplayName     *string                           `json:"displayName"`
-		DrgRouteTableId *string                           `json:"drgRouteTableId"`
-		NetworkDetails  drgattachmentnetworkupdatedetails `json:"networkDetails"`
-		DefinedTags     map[string]map[string]interface{} `json:"definedTags"`
-		FreeformTags    map[string]string                 `json:"freeformTags"`
-		RouteTableId    *string                           `json:"routeTableId"`
+		DisplayName               *string                           `json:"displayName"`
+		DrgRouteTableId           *string                           `json:"drgRouteTableId"`
+		NetworkDetails            drgattachmentnetworkupdatedetails `json:"networkDetails"`
+		DefinedTags               map[string]map[string]interface{} `json:"definedTags"`
+		FreeformTags              map[string]string                 `json:"freeformTags"`
+		ExportRouteDistributionId *string                           `json:"exportRouteDistributionId"`
+		RouteTableId              *string                           `json:"routeTableId"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -90,6 +96,8 @@ func (m *UpdateDrgAttachmentDetails) UnmarshalJSON(data []byte) (e error) {
 	m.DefinedTags = model.DefinedTags
 
 	m.FreeformTags = model.FreeformTags
+
+	m.ExportRouteDistributionId = model.ExportRouteDistributionId
 
 	m.RouteTableId = model.RouteTableId
 

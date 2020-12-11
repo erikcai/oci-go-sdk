@@ -29,7 +29,8 @@ type CreatePrivateEndpointDetails struct {
 	// associated with the private endpoint.
 	EndpointServiceId *string `mandatory:"true" json:"endpointServiceId"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer's subnet where the private endpoint VNIC will reside.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer's
+	// subnet where the private endpoint VNIC will reside.
 	SubnetId *string `mandatory:"true" json:"subnetId"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
@@ -55,6 +56,11 @@ type CreatePrivateEndpointDetails struct {
 	// of DNS and FQDNs in PrivateEndpoint.
 	// Example: `xyz.oraclecloud.com`
 	EndpointFqdn *string `mandatory:"false" json:"endpointFqdn"`
+
+	// A list of additional FQDNs that you can provide along with endpointFqdn. These FQDNs are added to the
+	// customer VCN's DNS record. For more information, see the discussion of DNS and FQDNs in
+	// PrivateEndpoint.
+	AdditionalFqdns []string `mandatory:"false" json:"additionalFqdns"`
 
 	// A list of the OCIDs of the network security groups (NSGs) to add the private endpoint's VNIC to.
 	// For more information about NSGs, see

@@ -2,9 +2,11 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Database Management Service APIs.
+// Database Management API
 //
-// This file contains the customer facing APIs for Database Management service.
+// Use the Database Management API to perform tasks such as obtaining performance and resource usage metrics
+// for a fleet of Managed Databases or a specific Managed Database, creating Managed Database Groups, and
+// running a SQL job on a Managed Database or Managed Database Group.
 //
 
 package databasemanagement
@@ -79,9 +81,9 @@ func (client *DbManagementClient) ConfigurationProvider() *common.ConfigurationP
 	return client.config
 }
 
-// AddManagedDatabaseToManagedDatabaseGroup Adds a Managed Database to the specified Managed Database Group.
-// After you add the database, it will be included in the management
-// activities performed on the Managed Database Group.
+// AddManagedDatabaseToManagedDatabaseGroup Adds a Managed Database to a specific Managed Database Group.
+// After the database is added, it will be included in the
+// management activities performed on the Managed Database Group.
 func (client DbManagementClient) AddManagedDatabaseToManagedDatabaseGroup(ctx context.Context, request AddManagedDatabaseToManagedDatabaseGroupRequest) (response AddManagedDatabaseToManagedDatabaseGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -136,7 +138,7 @@ func (client DbManagementClient) addManagedDatabaseToManagedDatabaseGroup(ctx co
 	return response, err
 }
 
-// ChangeJobCompartment Moves a job into a different compartment.
+// ChangeJobCompartment Moves a job.
 func (client DbManagementClient) ChangeJobCompartment(ctx context.Context, request ChangeJobCompartmentRequest) (response ChangeJobCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -191,7 +193,7 @@ func (client DbManagementClient) changeJobCompartment(ctx context.Context, reque
 	return response, err
 }
 
-// ChangeManagedDatabaseGroupCompartment Moves a Managed Database Group into a different compartment.
+// ChangeManagedDatabaseGroupCompartment Moves a Managed Database Group to a different compartment.
 // The destination compartment must not have a Managed Database Group
 // with the same name.
 func (client DbManagementClient) ChangeManagedDatabaseGroupCompartment(ctx context.Context, request ChangeManagedDatabaseGroupCompartmentRequest) (response ChangeManagedDatabaseGroupCompartmentResponse, err error) {
@@ -248,8 +250,9 @@ func (client DbManagementClient) changeManagedDatabaseGroupCompartment(ctx conte
 	return response, err
 }
 
-// CreateJob Creates a job to be executed on the specific Managed Database or Managed Database Group. Only one
-// of the managed database or managed database group id should be provided in the body parameter.
+// CreateJob Creates a job to be executed on a Managed Database or Managed Database Group. Only one
+// of the parameters, managedDatabaseId or managedDatabaseGroupId should be provided as
+// input in CreateJobDetails resource in request body.
 func (client DbManagementClient) CreateJob(ctx context.Context, request CreateJobRequest) (response CreateJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -304,9 +307,8 @@ func (client DbManagementClient) createJob(ctx context.Context, request common.O
 	return response, err
 }
 
-// CreateManagedDatabaseGroup Creates a Managed Database Group. The group will not contain any
-// Managed Databases after it is first created, and they must be
-// added later.
+// CreateManagedDatabaseGroup Creates a Managed Database Group. The group does not contain any
+// Managed Databases when it is created, and they must be added later.
 func (client DbManagementClient) CreateManagedDatabaseGroup(ctx context.Context, request CreateManagedDatabaseGroupRequest) (response CreateManagedDatabaseGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -361,7 +363,7 @@ func (client DbManagementClient) createManagedDatabaseGroup(ctx context.Context,
 	return response, err
 }
 
-// DeleteJob Deletes the job specified by the jobId.
+// DeleteJob Deletes the job specified by jobId.
 func (client DbManagementClient) DeleteJob(ctx context.Context, request DeleteJobRequest) (response DeleteJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -411,8 +413,8 @@ func (client DbManagementClient) deleteJob(ctx context.Context, request common.O
 	return response, err
 }
 
-// DeleteManagedDatabaseGroup Deletes the Managed Database Group specified by the managedDatabaseGroupId.
-// The group must be empty and have no Managed Databases before it can be deleted.
+// DeleteManagedDatabaseGroup Deletes the Managed Database Group specified by managedDatabaseGroupId.
+// If the group contains Managed Databases, then it cannot be deleted.
 func (client DbManagementClient) DeleteManagedDatabaseGroup(ctx context.Context, request DeleteManagedDatabaseGroupRequest) (response DeleteManagedDatabaseGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -462,9 +464,8 @@ func (client DbManagementClient) deleteManagedDatabaseGroup(ctx context.Context,
 	return response, err
 }
 
-// GetDatabaseFleetHealthMetrics Api to retrieve database fleet health metrics for a compartment or Managed Database Group. Caller has
-// to provide either compartment or Managed Database Group id query parameter but not both to fetch
-// health metrics.
+// GetDatabaseFleetHealthMetrics Gets the health metrics for a fleet of databases in a compartment or in a Managed Database Group.
+// Either the CompartmentId or the ManagedDatabaseGroupId query parameters must be provided to retrieve the health metrics.
 func (client DbManagementClient) GetDatabaseFleetHealthMetrics(ctx context.Context, request GetDatabaseFleetHealthMetricsRequest) (response GetDatabaseFleetHealthMetricsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -514,7 +515,7 @@ func (client DbManagementClient) getDatabaseFleetHealthMetrics(ctx context.Conte
 	return response, err
 }
 
-// GetDatabaseHomeMetrics Api to retrieve Cpu, Storage, Wait, DbTime and Memory metrics for a given Managed Database.
+// GetDatabaseHomeMetrics Gets a summary of the activity and resource usage metrics like DB Time, CPU, User I/O, Wait, Storage, and Memory for a Managed Database.
 func (client DbManagementClient) GetDatabaseHomeMetrics(ctx context.Context, request GetDatabaseHomeMetricsRequest) (response GetDatabaseHomeMetricsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -564,7 +565,7 @@ func (client DbManagementClient) getDatabaseHomeMetrics(ctx context.Context, req
 	return response, err
 }
 
-// GetJob Get the details for the job specified by jobId.
+// GetJob Gets the details for the job specified by jobId.
 func (client DbManagementClient) GetJob(ctx context.Context, request GetJobRequest) (response GetJobResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -614,7 +615,7 @@ func (client DbManagementClient) getJob(ctx context.Context, request common.OCIR
 	return response, err
 }
 
-// GetJobExecution Get the details for the job execution specified by jobExecutionId.
+// GetJobExecution Gets the details for the job execution specified by jobExecutionId.
 func (client DbManagementClient) GetJobExecution(ctx context.Context, request GetJobExecutionRequest) (response GetJobExecutionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -664,7 +665,7 @@ func (client DbManagementClient) getJobExecution(ctx context.Context, request co
 	return response, err
 }
 
-// GetJobRun Get the details for the a job run specified by jobRunId.
+// GetJobRun Gets the details for the job run specified by jobRunId.
 func (client DbManagementClient) GetJobRun(ctx context.Context, request GetJobRunRequest) (response GetJobRunResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -714,7 +715,7 @@ func (client DbManagementClient) getJobRun(ctx context.Context, request common.O
 	return response, err
 }
 
-// GetManagedDatabase Returns the details of the selected Managed Database.
+// GetManagedDatabase Gets the details for the Managed Database specified by managedDatabaseId.
 func (client DbManagementClient) GetManagedDatabase(ctx context.Context, request GetManagedDatabaseRequest) (response GetManagedDatabaseResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -764,7 +765,7 @@ func (client DbManagementClient) getManagedDatabase(ctx context.Context, request
 	return response, err
 }
 
-// GetManagedDatabaseGroup Returns the details of the selected Managed Database Group.
+// GetManagedDatabaseGroup Gets the details for the Managed Database Group specified by managedDatabaseGroupId.
 func (client DbManagementClient) GetManagedDatabaseGroup(ctx context.Context, request GetManagedDatabaseGroupRequest) (response GetManagedDatabaseGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -814,9 +815,10 @@ func (client DbManagementClient) getManagedDatabaseGroup(ctx context.Context, re
 	return response, err
 }
 
-// ListJobExecutions Get the list of job executions for the given Job or Managed Database or Managed Database Group in a given compartment.
-// Only one of these parameters (jobId, managedDatabaseId, managedDatabaseGroupId) should be provided. If none of these
-// parameters is provided all job executions in the given compartment are returned.
+// ListJobExecutions Gets the job execution for a specific ID or the list of job executions for a job, Managed Database or Managed Database Group
+// in a specific compartment. Only one of the parameters, ID, jobId, managedDatabaseId or managedDatabaseGroupId should be provided.
+// If none of these parameters is provided, all the job executions in the compartment are listed. Job executions can also be filtered
+// based on the name and status parameters.
 func (client DbManagementClient) ListJobExecutions(ctx context.Context, request ListJobExecutionsRequest) (response ListJobExecutionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -866,9 +868,10 @@ func (client DbManagementClient) listJobExecutions(ctx context.Context, request 
 	return response, err
 }
 
-// ListJobRuns Get the list of job runs for the given Job or Managed Database or Managed Database Group in a given compartment.
-// Only one of these parameters (jobId, managedDatabaseId, managedDatabaseGroupId) should be provided. If none of these
-// parameters is provided all job runs in the given compartment are returned.
+// ListJobRuns Gets the job run for a specific ID or the list of job runs for a job, Managed Database or Managed Database Group
+// in a specific compartment. Only one of the parameters, ID, jobId, managedDatabaseId, or managedDatabaseGroupId
+// should be provided. If none of these parameters is provided, all the job runs in the compartment are listed.
+// Job runs can also be filtered based on name and runStatus parameters.
 func (client DbManagementClient) ListJobRuns(ctx context.Context, request ListJobRunsRequest) (response ListJobRunsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -918,9 +921,10 @@ func (client DbManagementClient) listJobRuns(ctx context.Context, request common
 	return response, err
 }
 
-// ListJobs Get the list of jobs for the given Managed Database or Managed Database Group in a given compartment.
-// Only one of these parameters (managedDatabaseId, managedDatabaseGroupId) should be provided.
-// If none of these parameters is provided all jobs in the given compartment are returned.
+// ListJobs Gets the job for a specific ID or the list of jobs for a Managed Database or Managed Database Group
+// in a specific compartment. Only one of the parameters, ID, managedDatabaseId or managedDatabaseGroupId,
+// should be provided. If none of these parameters is provided, all the jobs in the compartment are listed.
+// Jobs can also be filtered based on the name and lifecycleState parameters.
 func (client DbManagementClient) ListJobs(ctx context.Context, request ListJobsRequest) (response ListJobsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -970,9 +974,10 @@ func (client DbManagementClient) listJobs(ctx context.Context, request common.OC
 	return response, err
 }
 
-// ListManagedDatabaseGroups Gets a list of Managed Database Groups in the specified compartment.
-// You can specify a name to list only the groups that match the name in
-// this compartment.
+// ListManagedDatabaseGroups Gets the Managed Database Group for a specific ID or the list of Managed Database Groups in
+// a specific compartment. Managed Database Groups can also be filtered based on the name parameter.
+// Only one of the parameters, ID or name should be provided. If none of these parameters is provided,
+// all the Managed Database Groups in the compartment are listed.
 func (client DbManagementClient) ListManagedDatabaseGroups(ctx context.Context, request ListManagedDatabaseGroupsRequest) (response ListManagedDatabaseGroupsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1022,8 +1027,9 @@ func (client DbManagementClient) listManagedDatabaseGroups(ctx context.Context, 
 	return response, err
 }
 
-// ListManagedDatabases Gets a list of Managed Databases in the specified compartment. You can specify
-// a name to list only the databases that match the name in this compartment.
+// ListManagedDatabases Gets the Managed Database for a specific ID or the list of Managed Databases in a specific compartment.
+// Managed Databases can also be filtered based on the name parameter. Only one of the parameters, ID or name
+// should be provided. If none of these parameters is provided, all the Managed Databases in the compartment are listed.
 func (client DbManagementClient) ListManagedDatabases(ctx context.Context, request ListManagedDatabasesRequest) (response ListManagedDatabasesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1073,7 +1079,7 @@ func (client DbManagementClient) listManagedDatabases(ctx context.Context, reque
 	return response, err
 }
 
-// RemoveManagedDatabaseFromManagedDatabaseGroup Remove a Managed Database from a Managed Database Group. Any management
+// RemoveManagedDatabaseFromManagedDatabaseGroup Removes a Managed Database from a Managed Database Group. Any management
 // activities that are currently running on this database will continue to
 // run to completion. However, any activities scheduled to run in the future
 // will not be performed on this database.
@@ -1131,7 +1137,7 @@ func (client DbManagementClient) removeManagedDatabaseFromManagedDatabaseGroup(c
 	return response, err
 }
 
-// UpdateManagedDatabaseGroup Updates the Managed Database Group identified by the managedDatabaseGroupId.
+// UpdateManagedDatabaseGroup Updates the Managed Database Group specified by managedDatabaseGroupId.
 func (client DbManagementClient) UpdateManagedDatabaseGroup(ctx context.Context, request UpdateManagedDatabaseGroupRequest) (response UpdateManagedDatabaseGroupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

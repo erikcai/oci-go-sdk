@@ -18,21 +18,25 @@ type ListManagedDatabasesRequest struct {
 	// The client request ID for tracing.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
 
-	// A filter to return only resources that match the entire name given.
+	// The identifier of the resource.
+	Id *string `mandatory:"false" contributesTo:"query" name:"id"`
+
+	// A filter to return only resources that match the entire name.
 	Name *string `mandatory:"false" contributesTo:"query" name:"name"`
 
-	// The page token representing the page at which to start retrieving results. This is usually retrieved from a previous list call.
+	// The page token representing the page, from where the next set of paginated results
+	// are retrieved. This is usually retrieved from a previous list call.
 	Page *string `mandatory:"false" contributesTo:"query" name:"page"`
 
-	// The maximum number of items to return.
+	// The maximum number of records returned in paginated response.
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
-	// The field to sort by. You can provide one sort order (`sortOrder`).
-	// Default order for `TIMECREATED` is descending. Default order for `NAME`
-	// is ascending. The `NAME` sort order is case sensitive.
+	// The field to sort information by. Only one sortOrder can be used. The default sort order
+	// for ‘TIMECREATED’ is descending and the default sort order for ‘NAME’ is ascending.
+	// The ‘NAME’ sort order is case-sensitive.
 	SortBy ListManagedDatabasesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
 
-	// The sort order to use, either ascending (`ASC`) or descending (`DESC`).
+	// The option to sort information in ascending (‘ASC’) or descending (‘DESC’) order.
 	SortOrder ListManagedDatabasesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
 	// Metadata about the request. This information will not be transmitted to the service, but

@@ -289,9 +289,8 @@ func (client VirtualNetworkClient) addDrgRouteRules(ctx context.Context, request
 	return response, err
 }
 
-// AddIpv6VcnCidr Add an IPv6 CIDR to a VCN. The VCN size is always /48.
-// AddVcnIpv6CidrDetails provides flexibility to have different private and public IPv6 address space.
-// Once added the IPv6 CIDR block cannot me removed or modified.
+// AddIpv6VcnCidr Add an IPv6 CIDR to a VCN. The VCN size is always /56 and assigned by Oracle.
+// Once added the IPv6 CIDR block cannot be removed or modified.
 func (client VirtualNetworkClient) AddIpv6VcnCidr(ctx context.Context, request AddIpv6VcnCidrRequest) (response AddIpv6VcnCidrResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

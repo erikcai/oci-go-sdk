@@ -12,7 +12,7 @@ import (
 // DeleteJobRequest wrapper for the DeleteJob operation
 type DeleteJobRequest struct {
 
-	// Job id
+	// The identifier of the job.
 	JobId *string `mandatory:"true" contributesTo:"path" name:"jobId"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call

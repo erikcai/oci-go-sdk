@@ -1385,7 +1385,8 @@ func (client BlockstorageClient) deleteVolumeGroup(ctx context.Context, request 
 	return response, err
 }
 
-// DeleteVolumeGroupBackup Deletes a volume group backup. This operation deletes all the backups in the volume group. For more information, see Volume Groups (https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
+// DeleteVolumeGroupBackup Deletes a volume group backup. This operation deletes all the backups in
+// the volume group. For more information, see Volume Groups (https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
 func (client BlockstorageClient) DeleteVolumeGroupBackup(ctx context.Context, request DeleteVolumeGroupBackupRequest) (response DeleteVolumeGroupBackupResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
