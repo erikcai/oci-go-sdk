@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // InternalDrgAttachment A link between a DRG and VCN. For more information, see

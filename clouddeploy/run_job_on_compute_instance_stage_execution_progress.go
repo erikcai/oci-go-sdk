@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // RunJobOnComputeInstanceStageExecutionProgress Specifies Run job on an instance stage specific execution details.

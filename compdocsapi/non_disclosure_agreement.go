@@ -10,7 +10,7 @@
 package compdocsapi
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // NonDisclosureAgreement A non-disclosure agreement that describes terms of use for a particular compliance document.

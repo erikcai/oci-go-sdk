@@ -11,7 +11,7 @@
 package goldengate
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // CreateDeploymentDetails The information about new Deployment.

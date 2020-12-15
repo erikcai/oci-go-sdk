@@ -16,7 +16,7 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // SslCertContentDetails The encoded SslCertContent of ClientVpnEndpoint which is used in LDAP.

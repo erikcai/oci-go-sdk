@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // BackfillDetails Request details for DRG backfill from VCN to EP-DB

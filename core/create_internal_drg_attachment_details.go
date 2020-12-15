@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // CreateInternalDrgAttachmentDetails The request to create a new InternalDrgAttachment.

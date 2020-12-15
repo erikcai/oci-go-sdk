@@ -10,7 +10,7 @@
 package clouddeploy
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // LoadBalancerTrafficShiftRollOutPolicy Description of rollout policy for Load Balancer Traffic Shift stage.

@@ -12,7 +12,7 @@
 package kam
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // WorkRequestResource A resource created or operated on by a work request.

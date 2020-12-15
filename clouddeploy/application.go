@@ -10,7 +10,7 @@
 package clouddeploy
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // Application Application consists of Environment, Artifacts, Pipelines and Deployments for a group of related services.

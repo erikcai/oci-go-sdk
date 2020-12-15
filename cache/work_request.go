@@ -10,7 +10,7 @@
 package cache
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // WorkRequest Details of a work request. The Data Cache service initiates and manages service operations in the context of a work request.

@@ -16,7 +16,7 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // DrgRouteDistributionMatchCriteria A matchCriteria in a Route Distribution statement.The matchCriteria outlines which routes

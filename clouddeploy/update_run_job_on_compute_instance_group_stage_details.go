@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // UpdateRunJobOnComputeInstanceGroupStageDetails Specifies Run job on the compute instance groups stage.

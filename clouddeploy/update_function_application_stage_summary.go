@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // UpdateFunctionApplicationStageSummary Specifies the summary of an Update Function Application Stage, either by updating the value of a property or by providing the name of an existing image in the Docker registry that you now want to base the function on, instead of the previously specified image.

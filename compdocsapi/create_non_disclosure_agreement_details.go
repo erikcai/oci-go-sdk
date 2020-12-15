@@ -10,7 +10,7 @@
 package compdocsapi
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // CreateNonDisclosureAgreementDetails Details to use to create a new non-disclosure agreement for a particular compliance document.

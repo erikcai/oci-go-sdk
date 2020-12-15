@@ -11,7 +11,7 @@
 package batch
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // JobDefinitionSummary Condensed JobDefinition data when listing job definitions.

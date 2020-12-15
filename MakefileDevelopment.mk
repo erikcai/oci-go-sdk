@@ -6,9 +6,9 @@ DOC_SERVER_URL_DEV=https:\/\/docs.cloud.oracle.com
 
 #### Versions
 #### If you are doing a release, do not forget to increment this versions
-VER_MAJOR=30
+VER_MAJOR=31
 ## where the number is the week number
-VER_MINOR=1
+VER_MINOR=0
 VER_TAG=preview
 ###################
 

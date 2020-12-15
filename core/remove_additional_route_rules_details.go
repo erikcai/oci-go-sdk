@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // RemoveAdditionalRouteRulesDetails The configuration details for the remove rules operation. Only one of the three properties should be

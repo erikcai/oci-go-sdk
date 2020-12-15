@@ -10,7 +10,7 @@
 package clouddeploy
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // CreateObjectNameFilterDetails Specifies a filter that compares object names to a set of prefixes or patterns

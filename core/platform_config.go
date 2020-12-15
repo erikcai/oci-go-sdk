@@ -16,7 +16,7 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // PlatformConfig The platform configuration for the instance. The type of platform configuration is

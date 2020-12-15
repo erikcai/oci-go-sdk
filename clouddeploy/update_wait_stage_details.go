@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // UpdateWaitStageDetails Specifies the Wait Stage. User can specify variable wait times or an absolute duration.

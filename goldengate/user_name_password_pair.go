@@ -11,7 +11,7 @@
 package goldengate
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // UserNamePasswordPair The definition of a UserName/Password Pair.

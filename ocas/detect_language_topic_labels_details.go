@@ -12,7 +12,7 @@
 package ocas
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // DetectLanguageTopicLabelsDetails The document details for topics detect call

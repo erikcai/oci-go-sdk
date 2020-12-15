@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // GatewayRouteData Maps Region identifier and/or AD(s) to corresponding VIPs. Region identifier is required. Passed through as-is to El Paso.

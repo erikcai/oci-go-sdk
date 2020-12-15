@@ -12,7 +12,7 @@
 package ocas
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // DetectDominantLanguageResult Result of language detect call.

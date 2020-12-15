@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v30/common"
+	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
 // RemoveDrgRouteDistributionStatementsDetails Details request to removing statements from a Route Distribution.
