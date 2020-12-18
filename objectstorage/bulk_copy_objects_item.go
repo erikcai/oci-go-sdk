@@ -25,7 +25,7 @@ type BulkCopyObjectsItem struct {
 	// The name of the object to be copied.
 	SourceObjectName *string `mandatory:"true" json:"sourceObjectName"`
 
-	// The name of the destination object resulting from the copy operation.
+	// The name of the destination object resulting from the copy operation. Avoid entering confidential information.
 	DestinationObjectName *string `mandatory:"true" json:"destinationObjectName"`
 
 	// The entity tag (ETag) to match against that of the source object. Used to confirm that the source object

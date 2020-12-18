@@ -84,13 +84,17 @@ type InternalVnicAttachmentVnicShapeEnum string
 
 // Set of constants representing the allowable values for InternalVnicAttachmentVnicShapeEnum
 const (
-	InternalVnicAttachmentVnicShapeFixed0200 InternalVnicAttachmentVnicShapeEnum = "VNICAAS_FIXED0200"
-	InternalVnicAttachmentVnicShapeFixed0400 InternalVnicAttachmentVnicShapeEnum = "VNICAAS_FIXED0400"
+	InternalVnicAttachmentVnicShapeFixed0200  InternalVnicAttachmentVnicShapeEnum = "VNICAAS_FIXED0200"
+	InternalVnicAttachmentVnicShapeFixed0400  InternalVnicAttachmentVnicShapeEnum = "VNICAAS_FIXED0400"
+	InternalVnicAttachmentVnicShapeTelesis25g InternalVnicAttachmentVnicShapeEnum = "VNICAAS_TELESIS_25G"
+	InternalVnicAttachmentVnicShapeTelesis10g InternalVnicAttachmentVnicShapeEnum = "VNICAAS_TELESIS_10G"
 )
 
 var mappingInternalVnicAttachmentVnicShape = map[string]InternalVnicAttachmentVnicShapeEnum{
-	"VNICAAS_FIXED0200": InternalVnicAttachmentVnicShapeFixed0200,
-	"VNICAAS_FIXED0400": InternalVnicAttachmentVnicShapeFixed0400,
+	"VNICAAS_FIXED0200":   InternalVnicAttachmentVnicShapeFixed0200,
+	"VNICAAS_FIXED0400":   InternalVnicAttachmentVnicShapeFixed0400,
+	"VNICAAS_TELESIS_25G": InternalVnicAttachmentVnicShapeTelesis25g,
+	"VNICAAS_TELESIS_10G": InternalVnicAttachmentVnicShapeTelesis10g,
 }
 
 // GetInternalVnicAttachmentVnicShapeEnumValues Enumerates the set of values for InternalVnicAttachmentVnicShapeEnum

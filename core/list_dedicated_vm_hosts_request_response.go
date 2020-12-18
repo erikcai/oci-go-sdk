@@ -56,6 +56,12 @@ type ListDedicatedVmHostsRequest struct {
 	// is case sensitive.
 	SortOrder ListDedicatedVmHostsSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
 
+	// Allows callers to filter dedicated VM hosts by remaining memory in GBs
+	RemainingMemoryInGBsGreaterThanOrEqualTo *float32 `mandatory:"false" contributesTo:"query" name:"remainingMemoryInGBsGreaterThanOrEqualTo"`
+
+	// Allows callers to filter dedicated VM hosts by remaining ocpus
+	RemainingOcpusGreaterThanOrEqualTo *float32 `mandatory:"false" contributesTo:"query" name:"remainingOcpusGreaterThanOrEqualTo"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

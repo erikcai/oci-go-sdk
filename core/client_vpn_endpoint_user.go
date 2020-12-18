@@ -30,8 +30,9 @@ type ClientVpnEndpointUser struct {
 	// Whether to log in the user by cert-authentication only or not.
 	IsCertificateAuthenticationOnly *bool `mandatory:"false" json:"isCertificateAuthenticationOnly"`
 
-	// Whether to enable auto-login feature or not.
-	IsAutomaticLoginEnabled *bool `mandatory:"false" json:"isAutomaticLoginEnabled"`
+	// The time ClientVpnEndpointUser was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
+	// Example: `2016-08-25T21:10:29.600Z`
+	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 }
 
 func (m ClientVpnEndpointUser) String() string {

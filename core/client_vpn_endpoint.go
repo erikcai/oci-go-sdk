@@ -67,6 +67,10 @@ type ClientVpnEndpoint struct {
 	//   * `LDAP`: LDAP authentication mode that applies users and passwords to get authentication through the LDAP server.
 	AuthenticationMode ClientVpnEndpointAuthenticationModeEnum `mandatory:"false" json:"authenticationMode,omitempty"`
 
+	// The time ClientVpnEndpoint was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
+	// Example: `2016-08-25T21:10:29.600Z`
+	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
+
 	RadiusConfig *RadiusConfigDetails `mandatory:"false" json:"radiusConfig"`
 
 	LdapConfig *LdapConfigDetails `mandatory:"false" json:"ldapConfig"`

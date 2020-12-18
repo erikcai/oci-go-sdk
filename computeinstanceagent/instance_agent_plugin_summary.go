@@ -20,7 +20,7 @@ type InstanceAgentPluginSummary struct {
 	// The plugin name
 	Name *string `mandatory:"true" json:"name"`
 
-	// The plugin status Specified the plugin state on the instance * `RUNNING` - The plugin is in running state * `STOPPED` - The plugin is in stopped state * `UNKNOWN` - The plugin state is not recognizable by the service
+	// The plugin status Specified the plugin state on the instance * `RUNNING` - The plugin is in running state * `STOPPED` - The plugin is in stopped state * `NOT_SUPPORTED` - The plugin is not supported on this platform * `INVALID` - The plugin state is not recognizable by the service
 	Status InstanceAgentPluginSummaryStatusEnum `mandatory:"true" json:"status"`
 
 	// The last update time of the plugin in UTC
@@ -36,13 +36,17 @@ type InstanceAgentPluginSummaryStatusEnum string
 
 // Set of constants representing the allowable values for InstanceAgentPluginSummaryStatusEnum
 const (
-	InstanceAgentPluginSummaryStatusRunning InstanceAgentPluginSummaryStatusEnum = "RUNNING"
-	InstanceAgentPluginSummaryStatusStopped InstanceAgentPluginSummaryStatusEnum = "STOPPED"
+	InstanceAgentPluginSummaryStatusRunning      InstanceAgentPluginSummaryStatusEnum = "RUNNING"
+	InstanceAgentPluginSummaryStatusStopped      InstanceAgentPluginSummaryStatusEnum = "STOPPED"
+	InstanceAgentPluginSummaryStatusNotSupported InstanceAgentPluginSummaryStatusEnum = "NOT_SUPPORTED"
+	InstanceAgentPluginSummaryStatusInvalid      InstanceAgentPluginSummaryStatusEnum = "INVALID"
 )
 
 var mappingInstanceAgentPluginSummaryStatus = map[string]InstanceAgentPluginSummaryStatusEnum{
-	"RUNNING": InstanceAgentPluginSummaryStatusRunning,
-	"STOPPED": InstanceAgentPluginSummaryStatusStopped,
+	"RUNNING":       InstanceAgentPluginSummaryStatusRunning,
+	"STOPPED":       InstanceAgentPluginSummaryStatusStopped,
+	"NOT_SUPPORTED": InstanceAgentPluginSummaryStatusNotSupported,
+	"INVALID":       InstanceAgentPluginSummaryStatusInvalid,
 }
 
 // GetInstanceAgentPluginSummaryStatusEnumValues Enumerates the set of values for InstanceAgentPluginSummaryStatusEnum

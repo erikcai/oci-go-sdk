@@ -52,7 +52,7 @@ type MaintenanceRun struct {
 	// Maintenance type.
 	MaintenanceType MaintenanceRunMaintenanceTypeEnum `mandatory:"false" json:"maintenanceType,omitempty"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch to be applied in the maintenance run.
+	// The unique identifier of the patch. The identifier string includes the patch type, the Oracle Database version, and the patch creation date (using the format YYMMDD). For example, the identifier `ru_patch_19.9.0.0_201030` is used for an RU patch for Oracle Database 19.9.0.0 that was released October 30, 2020.
 	PatchId *string `mandatory:"false" json:"patchId"`
 
 	// Maintenance sub-type.
@@ -79,6 +79,7 @@ const (
 	MaintenanceRunLifecycleStateUpdating   MaintenanceRunLifecycleStateEnum = "UPDATING"
 	MaintenanceRunLifecycleStateDeleting   MaintenanceRunLifecycleStateEnum = "DELETING"
 	MaintenanceRunLifecycleStateDeleted    MaintenanceRunLifecycleStateEnum = "DELETED"
+	MaintenanceRunLifecycleStateCanceled   MaintenanceRunLifecycleStateEnum = "CANCELED"
 )
 
 var mappingMaintenanceRunLifecycleState = map[string]MaintenanceRunLifecycleStateEnum{
@@ -90,6 +91,7 @@ var mappingMaintenanceRunLifecycleState = map[string]MaintenanceRunLifecycleStat
 	"UPDATING":    MaintenanceRunLifecycleStateUpdating,
 	"DELETING":    MaintenanceRunLifecycleStateDeleting,
 	"DELETED":     MaintenanceRunLifecycleStateDeleted,
+	"CANCELED":    MaintenanceRunLifecycleStateCanceled,
 }
 
 // GetMaintenanceRunLifecycleStateEnumValues Enumerates the set of values for MaintenanceRunLifecycleStateEnum
@@ -161,12 +163,14 @@ const (
 	MaintenanceRunMaintenanceSubtypeQuarterly MaintenanceRunMaintenanceSubtypeEnum = "QUARTERLY"
 	MaintenanceRunMaintenanceSubtypeHardware  MaintenanceRunMaintenanceSubtypeEnum = "HARDWARE"
 	MaintenanceRunMaintenanceSubtypeCritical  MaintenanceRunMaintenanceSubtypeEnum = "CRITICAL"
+	MaintenanceRunMaintenanceSubtypeOneoff    MaintenanceRunMaintenanceSubtypeEnum = "ONEOFF"
 )
 
 var mappingMaintenanceRunMaintenanceSubtype = map[string]MaintenanceRunMaintenanceSubtypeEnum{
 	"QUARTERLY": MaintenanceRunMaintenanceSubtypeQuarterly,
 	"HARDWARE":  MaintenanceRunMaintenanceSubtypeHardware,
 	"CRITICAL":  MaintenanceRunMaintenanceSubtypeCritical,
+	"ONEOFF":    MaintenanceRunMaintenanceSubtypeOneoff,
 }
 
 // GetMaintenanceRunMaintenanceSubtypeEnumValues Enumerates the set of values for MaintenanceRunMaintenanceSubtypeEnum

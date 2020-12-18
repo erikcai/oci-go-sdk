@@ -102,13 +102,17 @@ type ListInstanceAgentPluginsStatusEnum string
 
 // Set of constants representing the allowable values for ListInstanceAgentPluginsStatusEnum
 const (
-	ListInstanceAgentPluginsStatusRunning ListInstanceAgentPluginsStatusEnum = "RUNNING"
-	ListInstanceAgentPluginsStatusStopped ListInstanceAgentPluginsStatusEnum = "STOPPED"
+	ListInstanceAgentPluginsStatusRunning      ListInstanceAgentPluginsStatusEnum = "RUNNING"
+	ListInstanceAgentPluginsStatusStopped      ListInstanceAgentPluginsStatusEnum = "STOPPED"
+	ListInstanceAgentPluginsStatusNotSupported ListInstanceAgentPluginsStatusEnum = "NOT_SUPPORTED"
+	ListInstanceAgentPluginsStatusInvalid      ListInstanceAgentPluginsStatusEnum = "INVALID"
 )
 
 var mappingListInstanceAgentPluginsStatus = map[string]ListInstanceAgentPluginsStatusEnum{
-	"RUNNING": ListInstanceAgentPluginsStatusRunning,
-	"STOPPED": ListInstanceAgentPluginsStatusStopped,
+	"RUNNING":       ListInstanceAgentPluginsStatusRunning,
+	"STOPPED":       ListInstanceAgentPluginsStatusStopped,
+	"NOT_SUPPORTED": ListInstanceAgentPluginsStatusNotSupported,
+	"INVALID":       ListInstanceAgentPluginsStatusInvalid,
 }
 
 // GetListInstanceAgentPluginsStatusEnumValues Enumerates the set of values for ListInstanceAgentPluginsStatusEnum

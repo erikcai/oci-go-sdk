@@ -47,6 +47,9 @@ type ObjectVersionSummary struct {
 
 	// The storage tier that the object is stored in.
 	StorageTier StorageTierEnum `mandatory:"false" json:"storageTier,omitempty"`
+
+	// Archival state of an object. This field is set only for objects in Archive tier.
+	ArchivalState ArchivalStateEnum `mandatory:"false" json:"archivalState,omitempty"`
 }
 
 func (m ObjectVersionSummary) String() string {

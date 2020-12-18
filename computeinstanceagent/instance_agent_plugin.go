@@ -20,7 +20,7 @@ type InstanceAgentPlugin struct {
 	// The plugin name
 	Name *string `mandatory:"true" json:"name"`
 
-	// The plugin status Specified the plugin state on the instance * `RUNNING` - The plugin is in running state * `STOPPED` - The plugin is in stopped state * `UNKNOWN` - The plugin state is not recognizable by the service
+	// The plugin status Specified the plugin state on the instance * `RUNNING` - The plugin is in running state * `STOPPED` - The plugin is in stopped state * `NOT_SUPPORTED` - The plugin is not supported on this platform * `INVALID` - The plugin state is not recognizable by the service
 	Status InstanceAgentPluginStatusEnum `mandatory:"true" json:"status"`
 
 	// The last update time of the plugin in UTC
@@ -39,13 +39,17 @@ type InstanceAgentPluginStatusEnum string
 
 // Set of constants representing the allowable values for InstanceAgentPluginStatusEnum
 const (
-	InstanceAgentPluginStatusRunning InstanceAgentPluginStatusEnum = "RUNNING"
-	InstanceAgentPluginStatusStopped InstanceAgentPluginStatusEnum = "STOPPED"
+	InstanceAgentPluginStatusRunning      InstanceAgentPluginStatusEnum = "RUNNING"
+	InstanceAgentPluginStatusStopped      InstanceAgentPluginStatusEnum = "STOPPED"
+	InstanceAgentPluginStatusNotSupported InstanceAgentPluginStatusEnum = "NOT_SUPPORTED"
+	InstanceAgentPluginStatusInvalid      InstanceAgentPluginStatusEnum = "INVALID"
 )
 
 var mappingInstanceAgentPluginStatus = map[string]InstanceAgentPluginStatusEnum{
-	"RUNNING": InstanceAgentPluginStatusRunning,
-	"STOPPED": InstanceAgentPluginStatusStopped,
+	"RUNNING":       InstanceAgentPluginStatusRunning,
+	"STOPPED":       InstanceAgentPluginStatusStopped,
+	"NOT_SUPPORTED": InstanceAgentPluginStatusNotSupported,
+	"INVALID":       InstanceAgentPluginStatusInvalid,
 }
 
 // GetInstanceAgentPluginStatusEnumValues Enumerates the set of values for InstanceAgentPluginStatusEnum

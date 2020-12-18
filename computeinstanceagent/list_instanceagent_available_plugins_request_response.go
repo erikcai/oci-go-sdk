@@ -26,10 +26,6 @@ type ListInstanceagentAvailablePluginsRequest struct {
 	// The OS version for which the plugin is supported.
 	OsVersion *string `mandatory:"true" contributesTo:"query" name:"osVersion"`
 
-	// The region where the plugin is supported.
-	// Examples are us-ashburn-1, eu-frankfurt-1, ap-tokyo-1
-	Region *string `mandatory:"true" contributesTo:"query" name:"region"`
-
 	// Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request,
 	// please provide the request ID.
 	OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
@@ -43,11 +39,6 @@ type ListInstanceagentAvailablePluginsRequest struct {
 	// "List" call. For important details about how pagination works, see
 	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
-
-	// The plugins that support the shape provided.
-	// Examples are VM.Standard2.1, VM.DenseIO1.4, BM.Standard1.36
-	// Refer: https://docs.cloud.oracle.com/en-us/iaas/Content/Compute/References/computeshapes.htm
-	Shape *string `mandatory:"false" contributesTo:"query" name:"shape"`
 
 	// The field to sort by. You can provide one sort order (`sortOrder`). Default order for
 	// `TIMECREATED` is descending.

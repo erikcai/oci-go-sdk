@@ -112,6 +112,8 @@ const (
 	CreateInternalVnicAttachmentDetailsVnicShapeMicroLbFixed0001E125g CreateInternalVnicAttachmentDetailsVnicShapeEnum = "MICRO_LB_FIXED0001_E1_25G"
 	CreateInternalVnicAttachmentDetailsVnicShapeVnicaasFixed0200      CreateInternalVnicAttachmentDetailsVnicShapeEnum = "VNICAAS_FIXED0200"
 	CreateInternalVnicAttachmentDetailsVnicShapeVnicaasFixed0400      CreateInternalVnicAttachmentDetailsVnicShapeEnum = "VNICAAS_FIXED0400"
+	CreateInternalVnicAttachmentDetailsVnicShapeVnicaasTelesis25g     CreateInternalVnicAttachmentDetailsVnicShapeEnum = "VNICAAS_TELESIS_25G"
+	CreateInternalVnicAttachmentDetailsVnicShapeVnicaasTelesis10g     CreateInternalVnicAttachmentDetailsVnicShapeEnum = "VNICAAS_TELESIS_10G"
 	CreateInternalVnicAttachmentDetailsVnicShapeDynamicE350g          CreateInternalVnicAttachmentDetailsVnicShapeEnum = "DYNAMIC_E3_50G"
 	CreateInternalVnicAttachmentDetailsVnicShapeFixed0040E350g        CreateInternalVnicAttachmentDetailsVnicShapeEnum = "FIXED0040_E3_50G"
 	CreateInternalVnicAttachmentDetailsVnicShapeFixed0100E350g        CreateInternalVnicAttachmentDetailsVnicShapeEnum = "FIXED0100_E3_50G"
@@ -199,6 +201,8 @@ var mappingCreateInternalVnicAttachmentDetailsVnicShape = map[string]CreateInter
 	"MICRO_LB_FIXED0001_E1_25G": CreateInternalVnicAttachmentDetailsVnicShapeMicroLbFixed0001E125g,
 	"VNICAAS_FIXED0200":         CreateInternalVnicAttachmentDetailsVnicShapeVnicaasFixed0200,
 	"VNICAAS_FIXED0400":         CreateInternalVnicAttachmentDetailsVnicShapeVnicaasFixed0400,
+	"VNICAAS_TELESIS_25G":       CreateInternalVnicAttachmentDetailsVnicShapeVnicaasTelesis25g,
+	"VNICAAS_TELESIS_10G":       CreateInternalVnicAttachmentDetailsVnicShapeVnicaasTelesis10g,
 	"DYNAMIC_E3_50G":            CreateInternalVnicAttachmentDetailsVnicShapeDynamicE350g,
 	"FIXED0040_E3_50G":          CreateInternalVnicAttachmentDetailsVnicShapeFixed0040E350g,
 	"FIXED0100_E3_50G":          CreateInternalVnicAttachmentDetailsVnicShapeFixed0100E350g,

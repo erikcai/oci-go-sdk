@@ -8705,6 +8705,94 @@ func TestDatabaseClientRotateAutonomousDatabaseEncryptionKey(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientRotateCloudAutonomousVmClusterOrdsCerts(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "RotateCloudAutonomousVmClusterOrdsCerts")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RotateCloudAutonomousVmClusterOrdsCerts is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "RotateCloudAutonomousVmClusterOrdsCerts", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "RotateCloudAutonomousVmClusterOrdsCerts")
+	assert.NoError(t, err)
+
+	type RotateCloudAutonomousVmClusterOrdsCertsRequestInfo struct {
+		ContainerId string
+		Request     database.RotateCloudAutonomousVmClusterOrdsCertsRequest
+	}
+
+	var requests []RotateCloudAutonomousVmClusterOrdsCertsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RotateCloudAutonomousVmClusterOrdsCerts(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="dbaas-atp-d" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
+func TestDatabaseClientRotateCloudAutonomousVmClusterSslCerts(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("database", "RotateCloudAutonomousVmClusterSslCerts")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RotateCloudAutonomousVmClusterSslCerts is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("database", "Database", "RotateCloudAutonomousVmClusterSslCerts", createDatabaseClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(database.DatabaseClient)
+
+	body, err := testClient.getRequests("database", "RotateCloudAutonomousVmClusterSslCerts")
+	assert.NoError(t, err)
+
+	type RotateCloudAutonomousVmClusterSslCertsRequestInfo struct {
+		ContainerId string
+		Request     database.RotateCloudAutonomousVmClusterSslCertsRequest
+	}
+
+	var requests []RotateCloudAutonomousVmClusterSslCertsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RotateCloudAutonomousVmClusterSslCerts(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="default" email="sic_dbaas_cp_us_grp@oracle.com" jiraProject="DBAAS" opsJiraProject="DBAASOPS"
 func TestDatabaseClientRotateOrdsCerts(t *testing.T) {
 	defer failTestOnPanic(t)

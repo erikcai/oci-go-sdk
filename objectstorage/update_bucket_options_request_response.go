@@ -19,7 +19,7 @@ type UpdateBucketOptionsRequest struct {
 	// Example: `my-new-bucket1`
 	BucketName *string `mandatory:"true" contributesTo:"path" name:"bucketName"`
 
-	// Options to associate with the bucket
+	// Options to associate with the bucket.
 	BucketOptions BucketOptionsDetails `contributesTo:"body"`
 
 	// The client request ID for tracing.

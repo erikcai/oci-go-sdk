@@ -27,13 +27,13 @@ type GetObjectRequest struct {
 	// VersionId used to identify a particular version of the object
 	VersionId *string `mandatory:"false" contributesTo:"query" name:"versionId"`
 
-	// The entity tag (ETag) to match. For creating and committing a multipart upload to an object, this is the entity tag of the target object.
-	// For uploading a part, this is the entity tag of the target part.
+	// The entity tag (ETag) to match with the ETag of an existing resource. If the specified ETag matches the ETag of
+	// the existing resource, GET and HEAD requests will return the resource and PUT and POST requests will upload
+	// the resource.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
-	// The entity tag (ETag) to avoid matching. The only valid value is '*', which indicates that the request should fail if the object
-	// already exists. For creating and committing a multipart upload, this is the entity tag of the target object. For uploading a
-	// part, this is the entity tag of the target part.
+	// The entity tag (ETag) to avoid matching. The only valid value is '*', which indicates that the request should
+	// fail if the resource already exists.
 	IfNoneMatch *string `mandatory:"false" contributesTo:"header" name:"if-none-match"`
 
 	// The client request ID for tracing.
@@ -151,7 +151,10 @@ type GetObjectResponse struct {
 	// The object modification time, as described in RFC 2616 (https://tools.ietf.org/html/rfc2616#section-14.29).
 	LastModified *common.SDKTime `presentIn:"header" name:"last-modified"`
 
-	// The current state of the object.
+	// The storage tier that the object is stored in.
+	StorageTier GetObjectStorageTierEnum `presentIn:"header" name:"storage-tier"`
+
+	// Archival state of an object. This field is set only for objects in Archive tier.
 	ArchivalState GetObjectArchivalStateEnum `presentIn:"header" name:"archival-state"`
 
 	// Time that the object is returned to the archived state. This field is only present for restored objects.
@@ -163,9 +166,6 @@ type GetObjectResponse struct {
 	// The date and time after which the object is no longer cached by a browser, proxy, or other caching entity. See
 	// RFC 2616 (https://tools.ietf.org/rfc/rfc2616#section-14.21).
 	Expires *common.SDKTime `presentIn:"header" name:"expires"`
-
-	// The storage tier that the object is stored in.
-	StorageTier GetObjectStorageTierEnum `presentIn:"header" name:"storage-tier"`
 
 	// Flag to indicate whether or not the object was modified.  If this is true,
 	// the getter for the object itself will return null.  Callers should check this
@@ -181,33 +181,6 @@ func (response GetObjectResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response GetObjectResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// GetObjectArchivalStateEnum Enum with underlying type: string
-type GetObjectArchivalStateEnum string
-
-// Set of constants representing the allowable values for GetObjectArchivalStateEnum
-const (
-	GetObjectArchivalStateAvailable GetObjectArchivalStateEnum = "AVAILABLE"
-	GetObjectArchivalStateArchived  GetObjectArchivalStateEnum = "ARCHIVED"
-	GetObjectArchivalStateRestoring GetObjectArchivalStateEnum = "RESTORING"
-	GetObjectArchivalStateRestored  GetObjectArchivalStateEnum = "RESTORED"
-)
-
-var mappingGetObjectArchivalState = map[string]GetObjectArchivalStateEnum{
-	"AVAILABLE": GetObjectArchivalStateAvailable,
-	"ARCHIVED":  GetObjectArchivalStateArchived,
-	"RESTORING": GetObjectArchivalStateRestoring,
-	"RESTORED":  GetObjectArchivalStateRestored,
-}
-
-// GetGetObjectArchivalStateEnumValues Enumerates the set of values for GetObjectArchivalStateEnum
-func GetGetObjectArchivalStateEnumValues() []GetObjectArchivalStateEnum {
-	values := make([]GetObjectArchivalStateEnum, 0)
-	for _, v := range mappingGetObjectArchivalState {
-		values = append(values, v)
-	}
-	return values
 }
 
 // GetObjectStorageTierEnum Enum with underlying type: string
@@ -230,6 +203,31 @@ var mappingGetObjectStorageTier = map[string]GetObjectStorageTierEnum{
 func GetGetObjectStorageTierEnumValues() []GetObjectStorageTierEnum {
 	values := make([]GetObjectStorageTierEnum, 0)
 	for _, v := range mappingGetObjectStorageTier {
+		values = append(values, v)
+	}
+	return values
+}
+
+// GetObjectArchivalStateEnum Enum with underlying type: string
+type GetObjectArchivalStateEnum string
+
+// Set of constants representing the allowable values for GetObjectArchivalStateEnum
+const (
+	GetObjectArchivalStateArchived  GetObjectArchivalStateEnum = "Archived"
+	GetObjectArchivalStateRestoring GetObjectArchivalStateEnum = "Restoring"
+	GetObjectArchivalStateRestored  GetObjectArchivalStateEnum = "Restored"
+)
+
+var mappingGetObjectArchivalState = map[string]GetObjectArchivalStateEnum{
+	"Archived":  GetObjectArchivalStateArchived,
+	"Restoring": GetObjectArchivalStateRestoring,
+	"Restored":  GetObjectArchivalStateRestored,
+}
+
+// GetGetObjectArchivalStateEnumValues Enumerates the set of values for GetObjectArchivalStateEnum
+func GetGetObjectArchivalStateEnumValues() []GetObjectArchivalStateEnum {
+	values := make([]GetObjectArchivalStateEnum, 0)
+	for _, v := range mappingGetObjectArchivalState {
 		values = append(values, v)
 	}
 	return values

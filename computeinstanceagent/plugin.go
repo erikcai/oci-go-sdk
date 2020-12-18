@@ -27,7 +27,7 @@ type Plugin struct {
 	Status *string `mandatory:"true" json:"status"`
 
 	// The last update time of the plugin
-	LastUpdateTime *common.SDKTime `mandatory:"true" json:"lastUpdateTime"`
+	LastUpdateTime *common.SDKTime `mandatory:"false" json:"lastUpdateTime"`
 
 	// The optional message from the agent plugin
 	Message *string `mandatory:"false" json:"message"`

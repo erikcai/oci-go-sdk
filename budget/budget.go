@@ -51,8 +51,8 @@ type Budget struct {
 	// The description of the budget.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The first day of the billing cycle in a month.
-	BillingDayOfMonth *int `mandatory:"false" json:"billingDayOfMonth"`
+	// The number of days offset from the first day of the month, at which the budget processing period starts. In months that have fewer days than this value, processing will begin on the last day of that month. For example, for a value of 12, processing starts every month on the 12th at midnight.
+	BudgetProcessingPeriodStartOffset *int `mandatory:"false" json:"budgetProcessingPeriodStartOffset"`
 
 	// The type of target on which the budget is applied.
 	TargetType TargetTypeEnum `mandatory:"false" json:"targetType,omitempty"`

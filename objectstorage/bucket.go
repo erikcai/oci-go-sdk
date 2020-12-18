@@ -23,7 +23,7 @@ import (
 // Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
 type Bucket struct {
 
-	// The Object Storage namespace in which the bucket lives.
+	// The Object Storage namespace in which the bucket resides.
 	Namespace *string `mandatory:"true" json:"namespace"`
 
 	// The name of the bucket. Avoid entering confidential information.

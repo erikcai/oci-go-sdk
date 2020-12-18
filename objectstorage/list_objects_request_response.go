@@ -38,11 +38,11 @@ type ListObjectsRequest struct {
 	// Note that only '/' is a supported delimiter character at this time.
 	Delimiter *string `mandatory:"false" contributesTo:"query" name:"delimiter"`
 
-	// Object summary in list of objects includes the 'name' field. This parameter can also include 'size'
-	// (object size in bytes), 'etag', 'md5', 'timeCreated' (object creation date and time), 'timeModified'
-	// (object modification date and time) and 'storageTier' fields.
-	// Value of this parameter should be a comma-separated, case-insensitive list of those field names.
-	// For example 'name,etag,timeCreated,md5,timeModified,storageTier'
+	// Object summary by default includes only the 'name' field. Use this parameter to also
+	// include 'size' (object size in bytes), 'etag', 'md5', 'timeCreated' (object creation date and time),
+	// 'timeModified' (object modification date and time), 'storageTier' and 'archivalState' fields.
+	// Specify the value of this parameter as a comma-separated, case-insensitive list of those field names.
+	// For example 'name,etag,timeCreated,md5,timeModified,storageTier,archivalState'.
 	Fields *string `mandatory:"false" contributesTo:"query" name:"fields" omitEmpty:"true"`
 
 	// The client request ID for tracing.

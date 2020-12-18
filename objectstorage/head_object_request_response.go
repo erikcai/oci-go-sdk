@@ -26,13 +26,13 @@ type HeadObjectRequest struct {
 	// VersionId used to identify a particular version of the object
 	VersionId *string `mandatory:"false" contributesTo:"query" name:"versionId"`
 
-	// The entity tag (ETag) to match. For creating and committing a multipart upload to an object, this is the entity tag of the target object.
-	// For uploading a part, this is the entity tag of the target part.
+	// The entity tag (ETag) to match with the ETag of an existing resource. If the specified ETag matches the ETag of
+	// the existing resource, GET and HEAD requests will return the resource and PUT and POST requests will upload
+	// the resource.
 	IfMatch *string `mandatory:"false" contributesTo:"header" name:"if-match"`
 
-	// The entity tag (ETag) to avoid matching. The only valid value is '*', which indicates that the request should fail if the object
-	// already exists. For creating and committing a multipart upload, this is the entity tag of the target object. For uploading a
-	// part, this is the entity tag of the target part.
+	// The entity tag (ETag) to avoid matching. The only valid value is '*', which indicates that the request should
+	// fail if the resource already exists.
 	IfNoneMatch *string `mandatory:"false" contributesTo:"header" name:"if-none-match"`
 
 	// The client request ID for tracing.
@@ -122,7 +122,10 @@ type HeadObjectResponse struct {
 	// The object modification time, as described in RFC 2616 (https://tools.ietf.org/html/rfc2616#section-14.29).
 	LastModified *common.SDKTime `presentIn:"header" name:"last-modified"`
 
-	// The current state of the object.
+	// The storage tier that the object is stored in.
+	StorageTier HeadObjectStorageTierEnum `presentIn:"header" name:"storage-tier"`
+
+	// Archival state of an object. This field is set only for objects in Archive tier.
 	ArchivalState HeadObjectArchivalStateEnum `presentIn:"header" name:"archival-state"`
 
 	// Time that the object is returned to the archived state. This field is only present for restored objects.
@@ -130,9 +133,6 @@ type HeadObjectResponse struct {
 
 	// VersionId of the object requested
 	VersionId *string `presentIn:"header" name:"version-id"`
-
-	// The storage tier that the object is stored in.
-	StorageTier HeadObjectStorageTierEnum `presentIn:"header" name:"storage-tier"`
 
 	// Flag to indicate whether or not the object was modified.  If this is true,
 	// the getter for the object itself will return null.  Callers should check this
@@ -148,33 +148,6 @@ func (response HeadObjectResponse) String() string {
 // HTTPResponse implements the OCIResponse interface
 func (response HeadObjectResponse) HTTPResponse() *http.Response {
 	return response.RawResponse
-}
-
-// HeadObjectArchivalStateEnum Enum with underlying type: string
-type HeadObjectArchivalStateEnum string
-
-// Set of constants representing the allowable values for HeadObjectArchivalStateEnum
-const (
-	HeadObjectArchivalStateAvailable HeadObjectArchivalStateEnum = "AVAILABLE"
-	HeadObjectArchivalStateArchived  HeadObjectArchivalStateEnum = "ARCHIVED"
-	HeadObjectArchivalStateRestoring HeadObjectArchivalStateEnum = "RESTORING"
-	HeadObjectArchivalStateRestored  HeadObjectArchivalStateEnum = "RESTORED"
-)
-
-var mappingHeadObjectArchivalState = map[string]HeadObjectArchivalStateEnum{
-	"AVAILABLE": HeadObjectArchivalStateAvailable,
-	"ARCHIVED":  HeadObjectArchivalStateArchived,
-	"RESTORING": HeadObjectArchivalStateRestoring,
-	"RESTORED":  HeadObjectArchivalStateRestored,
-}
-
-// GetHeadObjectArchivalStateEnumValues Enumerates the set of values for HeadObjectArchivalStateEnum
-func GetHeadObjectArchivalStateEnumValues() []HeadObjectArchivalStateEnum {
-	values := make([]HeadObjectArchivalStateEnum, 0)
-	for _, v := range mappingHeadObjectArchivalState {
-		values = append(values, v)
-	}
-	return values
 }
 
 // HeadObjectStorageTierEnum Enum with underlying type: string
@@ -197,6 +170,31 @@ var mappingHeadObjectStorageTier = map[string]HeadObjectStorageTierEnum{
 func GetHeadObjectStorageTierEnumValues() []HeadObjectStorageTierEnum {
 	values := make([]HeadObjectStorageTierEnum, 0)
 	for _, v := range mappingHeadObjectStorageTier {
+		values = append(values, v)
+	}
+	return values
+}
+
+// HeadObjectArchivalStateEnum Enum with underlying type: string
+type HeadObjectArchivalStateEnum string
+
+// Set of constants representing the allowable values for HeadObjectArchivalStateEnum
+const (
+	HeadObjectArchivalStateArchived  HeadObjectArchivalStateEnum = "Archived"
+	HeadObjectArchivalStateRestoring HeadObjectArchivalStateEnum = "Restoring"
+	HeadObjectArchivalStateRestored  HeadObjectArchivalStateEnum = "Restored"
+)
+
+var mappingHeadObjectArchivalState = map[string]HeadObjectArchivalStateEnum{
+	"Archived":  HeadObjectArchivalStateArchived,
+	"Restoring": HeadObjectArchivalStateRestoring,
+	"Restored":  HeadObjectArchivalStateRestored,
+}
+
+// GetHeadObjectArchivalStateEnumValues Enumerates the set of values for HeadObjectArchivalStateEnum
+func GetHeadObjectArchivalStateEnumValues() []HeadObjectArchivalStateEnum {
+	values := make([]HeadObjectArchivalStateEnum, 0)
+	for _, v := range mappingHeadObjectArchivalState {
 		values = append(values, v)
 	}
 	return values

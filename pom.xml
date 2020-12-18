@@ -5530,7 +5530,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>1.0.87</version>
+        <version>1.0.92</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -5540,7 +5540,7 @@
       <dependency>
         <groupId>com.oracle.pic.casper</groupId>
         <artifactId>casper-api-spec</artifactId>
-        <version>1.1.367</version>
+        <version>1.1.374</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.lb</groupId>
@@ -5550,7 +5550,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.628</version>
+        <version>0.1.641</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -5660,7 +5660,7 @@
       <dependency>
         <groupId>com.oracle.oci.usage.budgets</groupId>
         <artifactId>budgets-control-plane-spec</artifactId>
-        <version>2.4.8-releasePreview</version>
+        <version>2.4.9</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.quotas</groupId>
@@ -5820,7 +5820,7 @@
       <dependency>
         <groupId>com.oracle.pic.connectors</groupId>
         <artifactId>connectors-spec</artifactId>
-        <version>0.2.29</version>
+        <version>0.2.34</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.optimizer</groupId>
@@ -5835,7 +5835,7 @@
       <dependency>
         <groupId>com.oracle.pic.compute.ias</groupId>
         <artifactId>instance-agent-service-api-spec</artifactId>
-        <version>0.0.37</version>
+        <version>0.0.39</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.pika.frontend</groupId>
@@ -5850,7 +5850,7 @@
       <dependency>
         <groupId>com.oracle.oci.hydra.ibex</groupId>
         <artifactId>ibex-frontend-public-spec</artifactId>
-        <version>1.0.2136</version>
+        <version>1.0.2154</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.rover</groupId>

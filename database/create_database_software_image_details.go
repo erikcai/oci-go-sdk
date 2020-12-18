@@ -32,7 +32,7 @@ type CreateDatabaseSoftwareImageDetails struct {
 	// To what shape the image is meant for.
 	ImageShapeFamily CreateDatabaseSoftwareImageDetailsImageShapeFamilyEnum `mandatory:"false" json:"imageShapeFamily,omitempty"`
 
-	// List of the Fault Domains in which this DB system is provisioned.
+	// The type of software image. Can be grid or database.
 	ImageType CreateDatabaseSoftwareImageDetailsImageTypeEnum `mandatory:"false" json:"imageType,omitempty"`
 
 	// List of one-off patches for Database Homes.
@@ -62,11 +62,13 @@ type CreateDatabaseSoftwareImageDetailsImageShapeFamilyEnum string
 const (
 	CreateDatabaseSoftwareImageDetailsImageShapeFamilyVmBmShape    CreateDatabaseSoftwareImageDetailsImageShapeFamilyEnum = "VM_BM_SHAPE"
 	CreateDatabaseSoftwareImageDetailsImageShapeFamilyExadataShape CreateDatabaseSoftwareImageDetailsImageShapeFamilyEnum = "EXADATA_SHAPE"
+	CreateDatabaseSoftwareImageDetailsImageShapeFamilyExaccShape   CreateDatabaseSoftwareImageDetailsImageShapeFamilyEnum = "EXACC_SHAPE"
 )
 
 var mappingCreateDatabaseSoftwareImageDetailsImageShapeFamily = map[string]CreateDatabaseSoftwareImageDetailsImageShapeFamilyEnum{
 	"VM_BM_SHAPE":   CreateDatabaseSoftwareImageDetailsImageShapeFamilyVmBmShape,
 	"EXADATA_SHAPE": CreateDatabaseSoftwareImageDetailsImageShapeFamilyExadataShape,
+	"EXACC_SHAPE":   CreateDatabaseSoftwareImageDetailsImageShapeFamilyExaccShape,
 }
 
 // GetCreateDatabaseSoftwareImageDetailsImageShapeFamilyEnumValues Enumerates the set of values for CreateDatabaseSoftwareImageDetailsImageShapeFamilyEnum

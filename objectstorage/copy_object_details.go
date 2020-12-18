@@ -33,7 +33,7 @@ type CopyObjectDetails struct {
 	// The destination bucket the object will be copied to.
 	DestinationBucket *string `mandatory:"true" json:"destinationBucket"`
 
-	// The name of the destination object resulting from the copy operation.
+	// The name of the destination object resulting from the copy operation. Avoid entering confidential information.
 	DestinationObjectName *string `mandatory:"true" json:"destinationObjectName"`
 
 	// The entity tag (ETag) to match against that of the source object. Used to confirm that the source object

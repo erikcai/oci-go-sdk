@@ -91,21 +91,21 @@ type TargetDetailsKindEnum string
 
 // Set of constants representing the allowable values for TargetDetailsKindEnum
 const (
-	TargetDetailsKindStreaming        TargetDetailsKindEnum = "streaming"
-	TargetDetailsKindObjectstorage    TargetDetailsKindEnum = "objectStorage"
-	TargetDetailsKindMonitoring       TargetDetailsKindEnum = "monitoring"
 	TargetDetailsKindFunctions        TargetDetailsKindEnum = "functions"
-	TargetDetailsKindNotifications    TargetDetailsKindEnum = "notifications"
 	TargetDetailsKindLogginganalytics TargetDetailsKindEnum = "loggingAnalytics"
+	TargetDetailsKindMonitoring       TargetDetailsKindEnum = "monitoring"
+	TargetDetailsKindNotifications    TargetDetailsKindEnum = "notifications"
+	TargetDetailsKindObjectstorage    TargetDetailsKindEnum = "objectStorage"
+	TargetDetailsKindStreaming        TargetDetailsKindEnum = "streaming"
 )
 
 var mappingTargetDetailsKind = map[string]TargetDetailsKindEnum{
-	"streaming":        TargetDetailsKindStreaming,
-	"objectStorage":    TargetDetailsKindObjectstorage,
-	"monitoring":       TargetDetailsKindMonitoring,
 	"functions":        TargetDetailsKindFunctions,
-	"notifications":    TargetDetailsKindNotifications,
 	"loggingAnalytics": TargetDetailsKindLogginganalytics,
+	"monitoring":       TargetDetailsKindMonitoring,
+	"notifications":    TargetDetailsKindNotifications,
+	"objectStorage":    TargetDetailsKindObjectstorage,
+	"streaming":        TargetDetailsKindStreaming,
 }
 
 // GetTargetDetailsKindEnumValues Enumerates the set of values for TargetDetailsKindEnum

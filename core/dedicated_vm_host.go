@@ -71,6 +71,12 @@ type DedicatedVmHost struct {
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// The total memory in GBs of the dedicated VM host
+	TotalMemoryInGBs *float32 `mandatory:"false" json:"totalMemoryInGBs"`
+
+	// The remaining memory in GBs of the dedicated VM host
+	RemainingMemoryInGBs *float32 `mandatory:"false" json:"remainingMemoryInGBs"`
 }
 
 func (m DedicatedVmHost) String() string {

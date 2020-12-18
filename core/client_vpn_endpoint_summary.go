@@ -49,6 +49,10 @@ type ClientVpnEndpointSummary struct {
 	// Whether re-route Internet traffic or not.
 	IsRerouteInternetTraffic *bool `mandatory:"false" json:"isRerouteInternetTraffic"`
 
+	// The date and time the ClientVpnEndpoint was created, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
+	// Example: `2016-08-25T21:10:29.600Z`
+	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
+
 	// Allowed values:
 	//   * `NAT`: NAT mode supports the one-way access. In NAT mode, client can access the Internet from server endpoint
 	//   but server endpoint cannot access the Internet from client.

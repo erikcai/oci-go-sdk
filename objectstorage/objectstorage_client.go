@@ -1807,7 +1807,8 @@ func (client ObjectStorageClient) listObjectVersions(ctx context.Context, reques
 	return response, err
 }
 
-// ListObjects Lists the objects in a bucket.
+// ListObjects Lists the objects in a bucket. By default, ListObjects returns object names only. See the `fields`
+// parameter for other fields that you can optionally include in ListObjects response.
 // To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized,
 // talk to an administrator. If you are an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
