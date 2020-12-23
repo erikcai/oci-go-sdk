@@ -46,7 +46,7 @@ type AutonomousContainerDatabase struct {
 	// The infrastructure type this resource belongs to.
 	InfrastructureType AutonomousContainerDatabaseInfrastructureTypeEnum `mandatory:"false" json:"infrastructureType,omitempty"`
 
-	// The OCID of the Cloud Autonomous VM Cluster.
+	// The OCID of the cloud Autonomous VM Cluster.
 	CloudAutonomousVmClusterId *string `mandatory:"false" json:"cloudAutonomousVmClusterId"`
 
 	// The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.

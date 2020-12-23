@@ -43,12 +43,12 @@ type CreateLogAnalyticsObjectCollectionRuleDetails struct {
 
 	// The oldest time of the file in the bucket to consider for collection.
 	// Accepted values are: BEGINNING or CURRENT_TIME or RFC3339 formatted datetime string.
-	// When collectionType is LIVE, specifying pollSince value other than CURRENT_TIME will result in error.
+	// Use this for HISTORIC or HISTORIC_LIVE collection types. When collectionType is LIVE, specifying pollSince value other than CURRENT_TIME will result in error.
 	PollSince *string `mandatory:"false" json:"pollSince"`
 
-	// The oldest time of the file in the bucket to consider for collection.
+	// The newest time of the file in the bucket to consider for collection.
 	// Accepted values are: CURRENT_TIME or RFC3339 formatted datetime string.
-	// When collectionType is LIVE, specifying pollTill will result in error.
+	// Use this for HISTORIC collection type. When collectionType is LIVE or HISTORIC_LIVE, specifying pollTill will result in error.
 	PollTill *string `mandatory:"false" json:"pollTill"`
 
 	// Logging Analytics entity OCID. Associates the processed logs with the given entity (optional).
@@ -59,6 +59,9 @@ type CreateLogAnalyticsObjectCollectionRuleDetails struct {
 	// and very few alphabets.
 	// For e.g. this applies when configuring VCN Flow Logs.
 	CharEncoding *string `mandatory:"false" json:"charEncoding"`
+
+	// Whether or not this rule is currently enabled.
+	IsEnabled *bool `mandatory:"false" json:"isEnabled"`
 
 	// The override is used to modify some important configuration properties for objects matching a specific pattern inside the bucket.
 	// Supported propeties for override are - logSourceName, charEncoding.

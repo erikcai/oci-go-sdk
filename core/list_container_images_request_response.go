@@ -34,7 +34,7 @@ type ListContainerImagesRequest struct {
 	// A filter to return container images only for the specified container repository OCID.
 	RepositoryId *string `mandatory:"false" contributesTo:"query" name:"repositoryId"`
 
-	// A filter to return container images that match the repository name.
+	// A filter to return container images or container image signatures that match the repository name.
 	// Example: `foo` or `foo*`
 	RepositoryName *string `mandatory:"false" contributesTo:"query" name:"repositoryName"`
 

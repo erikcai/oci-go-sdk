@@ -1602,6 +1602,8 @@ func (client ObjectStorageClient) headObject(ctx context.Context, request common
 
 // ListBuckets Gets a list of all BucketSummary items in a compartment. A BucketSummary contains only summary fields for the bucket
 // and does not contain fields like the user-defined metadata.
+// ListBuckets returns a BucketSummary containing at most 1000 buckets. To paginate through more buckets, use the returned
+// `opc-next-page` value with the `page` request parameter.
 // To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized,
 // talk to an administrator. If you are an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -1755,6 +1757,8 @@ func (client ObjectStorageClient) listMultipartUploads(ctx context.Context, requ
 }
 
 // ListObjectVersions Lists the object versions in a bucket.
+// ListObjectVersions returns an ObjectVersionCollection containing at most 1000 object versions. To paginate through
+// more object versions, use the returned `opc-next-page` value with the `page` request parameter.
 // To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized,
 // talk to an administrator. If you are an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
@@ -1809,6 +1813,9 @@ func (client ObjectStorageClient) listObjectVersions(ctx context.Context, reques
 
 // ListObjects Lists the objects in a bucket. By default, ListObjects returns object names only. See the `fields`
 // parameter for other fields that you can optionally include in ListObjects response.
+// ListObjects returns at most 1000 objects. To paginate through more objects, use the returned 'nextStartWith'
+// value with the 'start' parameter. To filter which objects ListObjects returns, use the 'start' and 'end'
+// parameters.
 // To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized,
 // talk to an administrator. If you are an administrator who needs to write policies to give users access, see
 // Getting Started with Policies (https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).

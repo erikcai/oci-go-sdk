@@ -18,7 +18,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// CapacityReservationInstanceSummary Condensed instance data when listing reserved instances in a reservation.
+// CapacityReservationInstanceSummary Condensed instance data when listing instances in a compute capacity reservation.
 type CapacityReservationInstanceSummary struct {
 
 	// The OCID of the instance.
@@ -30,7 +30,7 @@ type CapacityReservationInstanceSummary struct {
 	// The OCID of the compartment that contains the instance.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The shape of an instance. The shape determines the number of CPUs, amount of memory,
+	// The shape of the instance. The shape determines the number of CPUs, amount of memory,
 	// and other resources allocated to the instance.
 	// You can enumerate all available shapes by calling ListComputeCapacityReservationInstanceShapes.
 	Shape *string `mandatory:"true" json:"shape"`

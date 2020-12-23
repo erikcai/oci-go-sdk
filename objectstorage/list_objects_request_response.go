@@ -28,7 +28,9 @@ type ListObjectsRequest struct {
 	// Object names returned by a list query must be strictly less than this parameter.
 	End *string `mandatory:"false" contributesTo:"query" name:"end"`
 
-	// The maximum number of items to return.
+	// For list pagination. The maximum number of results per page, or items to return in a paginated
+	// "List" call. For important details about how pagination works, see
+	// List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
 	Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
 
 	// When this parameter is set, only objects whose names do not contain the delimiter character

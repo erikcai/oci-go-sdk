@@ -18,7 +18,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// UpdateComputeCapacityReservationDetails The data to update the compute capacity reservation.
+// UpdateComputeCapacityReservationDetails Details for updating the compute capacity reservation.
 type UpdateComputeCapacityReservationDetails struct {
 
 	// Defined tags for this resource. Each key is predefined and scoped to a
@@ -35,12 +35,13 @@ type UpdateComputeCapacityReservationDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// This shows whether this capacity reservation is default or not.
+	// Whether this capacity reservation is the default.
+	// For more information, see Capacity Reservations (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
 	IsDefaultReservation *bool `mandatory:"false" json:"isDefaultReservation"`
 
 	// The reservation configurations for the capacity reservation.
-	// To use the reservation for the desired shape, specify the shape and count and
-	// optional fault domain where you want this configuration.
+	// To use the reservation for the desired shape, specify the shape, count, and
+	// optionally the fault domain where you want this configuration.
 	InstanceReservationConfigs []InstanceReservationConfigDetails `mandatory:"false" json:"instanceReservationConfigs"`
 }
 

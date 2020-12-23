@@ -22,7 +22,8 @@ import (
 type UpdateInstanceDetails struct {
 
 	// The OCID of the compute capacity reservation this instance is launched under.
-	// You can opt out of default reservation by specifying an empty string for this as input.
+	// You can remove the instance from a reservation by specifying an empty string as input for this field.
+	// For more information, see Capacity Reservations (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
 	CapacityReservationId *string `mandatory:"false" json:"capacityReservationId"`
 
 	// Defined tags for this resource. Each key is predefined and scoped to a

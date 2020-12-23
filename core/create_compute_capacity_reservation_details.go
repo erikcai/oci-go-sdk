@@ -24,7 +24,7 @@ type CreateComputeCapacityReservationDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the capacity reservation.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The availability domain where this reservation lives.
+	// The availability domain of this compute capacity reservation.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
@@ -42,12 +42,13 @@ type CreateComputeCapacityReservationDetails struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// This shows whether this capacity reservation is default or not.
+	// Whether this capacity reservation is the default.
+	// For more information, see Capacity Reservations (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
 	IsDefaultReservation *bool `mandatory:"false" json:"isDefaultReservation"`
 
 	// The reservation configurations for the capacity reservation.
-	// To use the reservation for the desired shape, specify the shape and count and
-	// optional fault domain where you want this configuration.
+	// To use the reservation for the desired shape, specify the shape, count, and
+	// optionally the fault domain where you want this configuration.
 	InstanceReservationConfigs []InstanceReservationConfigDetails `mandatory:"false" json:"instanceReservationConfigs"`
 }
 

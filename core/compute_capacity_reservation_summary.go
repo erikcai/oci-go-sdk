@@ -18,7 +18,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// ComputeCapacityReservationSummary Summary information for an compute capacity reservation.
+// ComputeCapacityReservationSummary Summary information for a compute capacity reservation.
 type ComputeCapacityReservationSummary struct {
 
 	// The OCID of the instance reservation configuration.
@@ -28,7 +28,7 @@ type ComputeCapacityReservationSummary struct {
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// A user-friendly name for the capacity reservation.Does not have to be unique, and it's changeable.
+	// A user-friendly name for the capacity reservation. Does not have to be unique, and it's changeable.
 	// Avoid entering confidential information.
 	// Example: `My Reservation`
 	DisplayName *string `mandatory:"false" json:"displayName"`
@@ -36,22 +36,23 @@ type ComputeCapacityReservationSummary struct {
 	// The current state of the capacity reservation.
 	LifecycleState ComputeCapacityReservationLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
 
-	// The availability domain the capacity reservation is present in.
+	// The availability domain of the capacity reservation.
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
-	// The total number of instances that could reserved in this
-	// compute capacity reservation. This number is the sum of reservedCount
-	// of all the instance reservation config under this reservation.
-	// This exists to calulate the percentage usage of the reservation.
+	// The number of instances for which capacity will be held in this
+	// compute capacity reservation. This number is the sum of the values of the `reservedCount` fields
+	// for all of the instance reservation configurations under this reservation.
+	// The purpose of this field is to calculate the percentage usage of the reservation.
 	ReservedInstanceCount *int64 `mandatory:"false" json:"reservedInstanceCount"`
 
-	// The total number of instances currently running using
-	// this compute capacity reservation. This number is the sum of usedCount
-	// of all the instance reservation config under this reservation.
-	// This exists to calulate the percentage usage of the reservation.
+	// The total number of instances currently consuming space in
+	// this compute capacity reservation. This number is the sum of the values of the `usedCount` fields
+	// for all of the instance reservation configurations under this reservation.
+	// The purpose of this field is to calculate the percentage usage of the reservation.
 	UsedInstanceCount *int64 `mandatory:"false" json:"usedInstanceCount"`
 
-	// This shows whether this capacity reservation is default or not.
+	// Whether this capacity reservation is the default.
+	// For more information, see Capacity Reservations (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
 	IsDefaultReservation *bool `mandatory:"false" json:"isDefaultReservation"`
 }
 

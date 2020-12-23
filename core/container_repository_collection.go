@@ -35,6 +35,9 @@ type ContainerRepositoryCollection struct {
 
 	// Estimated number of remaining results.
 	RemainingItemsCount *int `mandatory:"true" json:"remainingItemsCount"`
+
+	// Total number of repositories.
+	RepositoryCount *int `mandatory:"true" json:"repositoryCount"`
 }
 
 func (m ContainerRepositoryCollection) String() string {

@@ -49,7 +49,7 @@ type ManagementAgent struct {
 	// list of managementAgentPlugins associated with the agent
 	PluginList []ManagementAgentPluginDetails `mandatory:"false" json:"pluginList"`
 
-	// true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.
+	// true if the agent can be upgraded automatically; false if it must be upgraded manually.
 	IsAgentAutoUpgradable *bool `mandatory:"false" json:"isAgentAutoUpgradable"`
 
 	// The time the Management Agent was created. An RFC3339 formatted datetime string

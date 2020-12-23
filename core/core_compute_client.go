@@ -370,7 +370,9 @@ func (client ComputeClient) captureConsoleHistory(ctx context.Context, request c
 	return response, err
 }
 
-// ChangeComputeCapacityReservationCompartment Moves a compute capacity reservation from one compartment to another compartment.
+// ChangeComputeCapacityReservationCompartment Moves a compute capacity reservation into a different compartment. For information about
+// moving resources between compartments, see
+// Moving Resources to a Different Compartment (https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 func (client ComputeClient) ChangeComputeCapacityReservationCompartment(ctx context.Context, request ChangeComputeCapacityReservationCompartmentRequest) (response ChangeComputeCapacityReservationCompartmentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -708,11 +710,11 @@ func (client ComputeClient) createAppCatalogSubscription(ctx context.Context, re
 	return response, err
 }
 
-// CreateComputeCapacityReservation Creates a new compute capacity reservation in the specified compartment and the specified availability domain.
-// Compute capacity reservation lets you create a reservation in the compartment which lets you reserve space on the hypervisor.
-// When you launch an instance using this reservation you have reserved space where you are launching your instance in so you won't
-// get any Out of capacity errors.
-// For more information, see Compute Capacity Reservations (https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/capacityreservations.htm).
+// CreateComputeCapacityReservation Creates a new compute capacity reservation in the specified compartment and availability domain.
+// Compute capacity reservations let you reserve instances in a compartment.
+// When you launch an instance using this reservation, you are assured that you have enough space for your instance,
+// and you won't get out of capacity errors.
+// For more information, see Reserved Capacity (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm).
 func (client ComputeClient) CreateComputeCapacityReservation(ctx context.Context, request CreateComputeCapacityReservationRequest) (response CreateComputeCapacityReservationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1059,7 +1061,7 @@ func (client ComputeClient) deleteAppCatalogSubscription(ctx context.Context, re
 	return response, err
 }
 
-// DeleteComputeCapacityReservation Deletes an instance reservation.
+// DeleteComputeCapacityReservation Deletes the specified compute capacity reservation.
 func (client ComputeClient) DeleteComputeCapacityReservation(ctx context.Context, request DeleteComputeCapacityReservationRequest) (response DeleteComputeCapacityReservationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2901,7 +2903,7 @@ func (client ComputeClient) listComputeCapacityReservationInstanceShapes(ctx con
 	return response, err
 }
 
-// ListComputeCapacityReservationInstances Returns the list of instances launched under a specified reservation that match the specified criteria.
+// ListComputeCapacityReservationInstances Lists the instances launched under a capacity reservation. You can filter results by specifying criteria.
 func (client ComputeClient) ListComputeCapacityReservationInstances(ctx context.Context, request ListComputeCapacityReservationInstancesRequest) (response ListComputeCapacityReservationInstancesResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2951,9 +2953,9 @@ func (client ComputeClient) listComputeCapacityReservationInstances(ctx context.
 	return response, err
 }
 
-// ListComputeCapacityReservations Returns the list of compute capacity reservations that match the specified criteria in the specified compartment.
-// You can limit the list by specifying a compute capacity reservation display name. The list will include all
-// the identically-named compute capacity reservations.
+// ListComputeCapacityReservations Lists the compute capacity reservations that match the specified criteria and compartment.
+// You can limit the list by specifying a compute capacity reservation display name
+// (the list will include all the identically-named compute capacity reservations in the compartment).
 func (client ComputeClient) ListComputeCapacityReservations(ctx context.Context, request ListComputeCapacityReservationsRequest) (response ListComputeCapacityReservationsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -3941,10 +3943,9 @@ func (client ComputeClient) terminateInstance(ctx context.Context, request commo
 	return response, err
 }
 
-// UpdateComputeCapacityReservation Updates the displayName, freeformTags, and definedTags attributes for the
-// specified compute capacity reservation. If an attribute value is not included,
-// it will not be updated. The update also recreates(updates/add/deletes)
-// the reservation configs of the specified compute capacity reservation.
+// UpdateComputeCapacityReservation Updates the display name, defined tag, and freeform tag fields for the specified compute capacity reservation.
+// Fields that are not provided in the request will not be updated. Avoid entering confidential information.
+// The update also modifies the reservation configurations of the specified compute capacity reservation.
 func (client ComputeClient) UpdateComputeCapacityReservation(ctx context.Context, request UpdateComputeCapacityReservationRequest) (response UpdateComputeCapacityReservationResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

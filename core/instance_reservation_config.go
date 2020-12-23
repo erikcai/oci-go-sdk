@@ -18,21 +18,23 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// InstanceReservationConfig The data to define instance reservation config.
+// InstanceReservationConfig Data that defines the instance reservation configuration.
 type InstanceReservationConfig struct {
 
-	// The shape which the customer wants to reserve. The shape determines the number of CPUs, amount of memory,
+	// The shape to use when launching instances using compute capacity reservations. The shape determines the number of CPUs, the amount of memory,
 	// and other resources allocated to the instance.
-	// You can enumerate all available shapes by calling ListComputeCapacityReservationInstanceShapes.
+	// You can list all available shapes by calling ListComputeCapacityReservationInstanceShapes.
 	InstanceShape *string `mandatory:"true" json:"instanceShape"`
 
-	// The number of instances the customer wants to reserve under this reservation config.
+	// The amount of capacity reserved in this configuration.
 	ReservedCount *int64 `mandatory:"true" json:"reservedCount"`
 
-	// The number of instances the customer is using in this reservation out of the reservedCount.
+	// The amount of capacity in use out of the total capacity reserved in this reservation configuration.
 	UsedCount *int64 `mandatory:"true" json:"usedCount"`
 
-	// The fault domain the reservation config is intented for. If not supplied this config is applicable to all fault domains in the specified AD.
+	// The fault domain of this reservation configuration.
+	// If a value is not supplied, this reservation configuration is applicable to all fault domains in the specified availability domain.
+	// For more information, see Capacity Reservations (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm).
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`
 
 	InstanceShapeConfig *InstanceReservationShapeConfigDetails `mandatory:"false" json:"instanceShapeConfig"`

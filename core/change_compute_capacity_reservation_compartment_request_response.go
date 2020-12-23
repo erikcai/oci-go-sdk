@@ -15,7 +15,7 @@ type ChangeComputeCapacityReservationCompartmentRequest struct {
 	// The OCID of the compute capacity reservation.
 	CapacityReservationId *string `mandatory:"true" contributesTo:"path" name:"capacityReservationId"`
 
-	// Request to change the compartment of given compute capacity configuration to a different compartment.
+	// The configuration details for the move operation.
 	ChangeComputeCapacityReservationCompartmentDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call for a resource, set the `if-match`

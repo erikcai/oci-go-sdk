@@ -13,10 +13,10 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// UpdateCloudAutonomousVmClusterDetails Details for updating the Cloud Autonomous VM cluster.
+// UpdateCloudAutonomousVmClusterDetails Details for updating the cloud Autonomous VM cluster.
 type UpdateCloudAutonomousVmClusterDetails struct {
 
-	// User defined description of the Cloud Autonomous Vm cluster.
+	// User defined description of the cloud Autonomous VM cluster.
 	Description *string `mandatory:"false" json:"description"`
 
 	// The user-friendly name for the cloud Autonomous VM cluster. The name does not need to be unique.

@@ -67,6 +67,50 @@ func TestLoganalyticsLogAnalyticsClientAddEntityAssociation(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientAppendLookupData(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "AppendLookupData")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("AppendLookupData is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "AppendLookupData", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "AppendLookupData")
+	assert.NoError(t, err)
+
+	type AppendLookupDataRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.AppendLookupDataRequest
+	}
+
+	var requests []AppendLookupDataRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.AppendLookupData(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
 func TestLoganalyticsLogAnalyticsClientBatchGetBasicInfo(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -917,6 +961,50 @@ func TestLoganalyticsLogAnalyticsClientDeleteLogAnalyticsObjectCollectionRule(t 
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteLogAnalyticsObjectCollectionRule(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientDeleteLookup(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "DeleteLookup")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteLookup is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "DeleteLookup", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "DeleteLookup")
+	assert.NoError(t, err)
+
+	type DeleteLookupRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.DeleteLookupRequest
+	}
+
+	var requests []DeleteLookupRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteLookup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2201,6 +2289,50 @@ func TestLoganalyticsLogAnalyticsClientGetLogAnalyticsObjectCollectionRule(t *te
 }
 
 // IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientGetLookup(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "GetLookup")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetLookup is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "GetLookup", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "GetLookup")
+	assert.NoError(t, err)
+
+	type GetLookupRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.GetLookupRequest
+	}
+
+	var requests []GetLookupRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetLookup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
 func TestLoganalyticsLogAnalyticsClientGetNamespace(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -3475,6 +3607,60 @@ func TestLoganalyticsLogAnalyticsClientListLogAnalyticsObjectCollectionRules(t *
 }
 
 // IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientListLookups(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "ListLookups")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListLookups is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "ListLookups", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "ListLookups")
+	assert.NoError(t, err)
+
+	type ListLookupsRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.ListLookupsRequest
+	}
+
+	var requests []ListLookupsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*loganalytics.ListLookupsRequest)
+				return c.ListLookups(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]loganalytics.ListLookupsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(loganalytics.ListLookupsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
 func TestLoganalyticsLogAnalyticsClientListMetaSourceTypes(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4599,6 +4785,60 @@ func TestLoganalyticsLogAnalyticsClientListUploads(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientListWarnings(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "ListWarnings")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListWarnings is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "ListWarnings", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "ListWarnings")
+	assert.NoError(t, err)
+
+	type ListWarningsRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.ListWarningsRequest
+	}
+
+	var requests []ListWarningsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*loganalytics.ListWarningsRequest)
+				return c.ListWarnings(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]loganalytics.ListWarningsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(loganalytics.ListWarningsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
 func TestLoganalyticsLogAnalyticsClientListWorkRequestErrors(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4885,6 +5125,50 @@ func TestLoganalyticsLogAnalyticsClientParseQuery(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ParseQuery(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientPauseScheduledTask(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "PauseScheduledTask")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("PauseScheduledTask is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "PauseScheduledTask", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "PauseScheduledTask")
+	assert.NoError(t, err)
+
+	type PauseScheduledTaskRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.PauseScheduledTaskRequest
+	}
+
+	var requests []PauseScheduledTaskRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.PauseScheduledTask(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -5211,6 +5495,50 @@ func TestLoganalyticsLogAnalyticsClientRemoveEntityAssociations(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientResumeScheduledTask(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "ResumeScheduledTask")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ResumeScheduledTask is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "ResumeScheduledTask", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "ResumeScheduledTask")
+	assert.NoError(t, err)
+
+	type ResumeScheduledTaskRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.ResumeScheduledTaskRequest
+	}
+
+	var requests []ResumeScheduledTaskRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ResumeScheduledTask(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
 func TestLoganalyticsLogAnalyticsClientRun(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5299,6 +5627,50 @@ func TestLoganalyticsLogAnalyticsClientSuggest(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientSuppressWarning(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "SuppressWarning")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("SuppressWarning is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "SuppressWarning", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "SuppressWarning")
+	assert.NoError(t, err)
+
+	type SuppressWarningRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.SuppressWarningRequest
+	}
+
+	var requests []SuppressWarningRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.SuppressWarning(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
 func TestLoganalyticsLogAnalyticsClientTestParser(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5335,6 +5707,50 @@ func TestLoganalyticsLogAnalyticsClientTestParser(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.TestParser(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientUnsuppressWarning(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "UnsuppressWarning")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UnsuppressWarning is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "UnsuppressWarning", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "UnsuppressWarning")
+	assert.NoError(t, err)
+
+	type UnsuppressWarningRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.UnsuppressWarningRequest
+	}
+
+	var requests []UnsuppressWarningRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UnsuppressWarning(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -5519,6 +5935,94 @@ func TestLoganalyticsLogAnalyticsClientUpdateLogAnalyticsObjectCollectionRule(t 
 }
 
 // IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientUpdateLookup(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "UpdateLookup")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateLookup is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "UpdateLookup", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "UpdateLookup")
+	assert.NoError(t, err)
+
+	type UpdateLookupRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.UpdateLookupRequest
+	}
+
+	var requests []UpdateLookupRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateLookup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
+func TestLoganalyticsLogAnalyticsClientUpdateLookupData(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("loganalytics", "UpdateLookupData")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateLookupData is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("loganalytics", "LogAnalytics", "UpdateLookupData", createLoganalyticsLogAnalyticsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(loganalytics.LogAnalyticsClient)
+
+	body, err := testClient.getRequests("loganalytics", "UpdateLookupData")
+	assert.NoError(t, err)
+
+	type UpdateLookupDataRequestInfo struct {
+		ContainerId string
+		Request     loganalytics.UpdateLookupDataRequest
+	}
+
+	var requests []UpdateLookupDataRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateLookupData(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="omc_loganalytics_dev_ww_grp@oracle.com" jiraProject="LOGAN" opsJiraProject="LOGAN"
 func TestLoganalyticsLogAnalyticsClientUpdateScheduledTask(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -5541,11 +6045,22 @@ func TestLoganalyticsLogAnalyticsClientUpdateScheduledTask(t *testing.T) {
 	}
 
 	var requests []UpdateScheduledTaskRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]UpdateScheduledTaskRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["UpdateScheduledTaskDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "kind",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"STANDARD": &loganalytics.UpdateStandardTaskDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {

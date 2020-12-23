@@ -2,24 +2,24 @@
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// Management Agent API
+// LogAnalytics API
 //
-// API for Management Agent Cloud Service
+// The LogAnalytics API for the LogAnalytics service.
 //
 
-package managementagent
+package loganalytics
 
 import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// WorkSubmissionKey Work Submission Identifier
-type WorkSubmissionKey struct {
+// LogAnalyticsWarningCollection A collection of warnings.
+type LogAnalyticsWarningCollection struct {
 
-	// Work Submission Identifier
-	WorkSubmissionKey *string `mandatory:"true" json:"workSubmissionKey"`
+	// A collection of LogAnalyticsWarnings
+	Items []LogAnalyticsWarning `mandatory:"false" json:"items"`
 }
 
-func (m WorkSubmissionKey) String() string {
+func (m LogAnalyticsWarningCollection) String() string {
 	return common.PointerString(m)
 }

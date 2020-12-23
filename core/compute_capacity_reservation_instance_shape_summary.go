@@ -18,13 +18,13 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// ComputeCapacityReservationInstanceShapeSummary The shape used to launch reserved instances.
+// ComputeCapacityReservationInstanceShapeSummary An available shape used to launch instances in a compute capacity reservation.
 type ComputeCapacityReservationInstanceShapeSummary struct {
 
 	// The shape's availability domain.
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
-	// The name of the instance shape that can be reserved.
+	// The name of the available shape used to launch instances in a compute capacity reservation.
 	InstanceShape *string `mandatory:"true" json:"instanceShape"`
 }
 

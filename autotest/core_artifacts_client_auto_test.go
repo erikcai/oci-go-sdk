@@ -66,6 +66,50 @@ func TestCoreArtifactsClientChangeContainerRepositoryCompartment(t *testing.T) {
 	}
 }
 
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestCoreArtifactsClientCreateContainerImageSignature(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "CreateContainerImageSignature")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateContainerImageSignature is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Artifacts", "CreateContainerImageSignature", createCoreArtifactsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ArtifactsClient)
+
+	body, err := testClient.getRequests("core", "CreateContainerImageSignature")
+	assert.NoError(t, err)
+
+	type CreateContainerImageSignatureRequestInfo struct {
+		ContainerId string
+		Request     core.CreateContainerImageSignatureRequest
+	}
+
+	var requests []CreateContainerImageSignatureRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateContainerImageSignature(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
 // IssueRoutingInfo tag="ocir" email="odx_registry_grp@oracle.com" jiraProject="OCIR" opsJiraProject="OCIR"
 func TestCoreArtifactsClientCreateContainerRepository(t *testing.T) {
 	defer failTestOnPanic(t)
@@ -147,6 +191,50 @@ func TestCoreArtifactsClientDeleteContainerImage(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteContainerImage(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ocir" email="odx_registry_grp@oracle.com" jiraProject="OCIR" opsJiraProject="OCIR"
+func TestCoreArtifactsClientDeleteContainerImageSignature(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "DeleteContainerImageSignature")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteContainerImageSignature is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Artifacts", "DeleteContainerImageSignature", createCoreArtifactsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ArtifactsClient)
+
+	body, err := testClient.getRequests("core", "DeleteContainerImageSignature")
+	assert.NoError(t, err)
+
+	type DeleteContainerImageSignatureRequestInfo struct {
+		ContainerId string
+		Request     core.DeleteContainerImageSignatureRequest
+	}
+
+	var requests []DeleteContainerImageSignatureRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteContainerImageSignature(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -287,6 +375,50 @@ func TestCoreArtifactsClientGetContainerImage(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="ocir" email="odx_registry_grp@oracle.com" jiraProject="OCIR" opsJiraProject="OCIR"
+func TestCoreArtifactsClientGetContainerImageSignature(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetContainerImageSignature")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetContainerImageSignature is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Artifacts", "GetContainerImageSignature", createCoreArtifactsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ArtifactsClient)
+
+	body, err := testClient.getRequests("core", "GetContainerImageSignature")
+	assert.NoError(t, err)
+
+	type GetContainerImageSignatureRequestInfo struct {
+		ContainerId string
+		Request     core.GetContainerImageSignatureRequest
+	}
+
+	var requests []GetContainerImageSignatureRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetContainerImageSignature(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="ocir" email="odx_registry_grp@oracle.com" jiraProject="OCIR" opsJiraProject="OCIR"
 func TestCoreArtifactsClientGetContainerRepository(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -324,6 +456,60 @@ func TestCoreArtifactsClientGetContainerRepository(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetContainerRepository(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sic_block_storage_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BS"
+func TestCoreArtifactsClientListContainerImageSignatures(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListContainerImageSignatures")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListContainerImageSignatures is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Artifacts", "ListContainerImageSignatures", createCoreArtifactsClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.ArtifactsClient)
+
+	body, err := testClient.getRequests("core", "ListContainerImageSignatures")
+	assert.NoError(t, err)
+
+	type ListContainerImageSignaturesRequestInfo struct {
+		ContainerId string
+		Request     core.ListContainerImageSignaturesRequest
+	}
+
+	var requests []ListContainerImageSignaturesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListContainerImageSignaturesRequest)
+				return c.ListContainerImageSignatures(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListContainerImageSignaturesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListContainerImageSignaturesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})

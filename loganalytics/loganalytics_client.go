@@ -134,6 +134,62 @@ func (client LogAnalyticsClient) addEntityAssociation(ctx context.Context, reque
 	return response, err
 }
 
+// AppendLookupData Append data to a lookup.  The file containing the information to append
+// must be provided.
+func (client LogAnalyticsClient) AppendLookupData(ctx context.Context, request AppendLookupDataRequest) (response AppendLookupDataResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.appendLookupData, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = AppendLookupDataResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = AppendLookupDataResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(AppendLookupDataResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into AppendLookupDataResponse")
+	}
+	return
+}
+
+// appendLookupData implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) appendLookupData(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/namespaces/{namespaceName}/lookups/{lookupName}/actions/appendData")
+	if err != nil {
+		return nil, err
+	}
+
+	var response AppendLookupDataResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // BatchGetBasicInfo get basic information about a specified set of labels
 func (client LogAnalyticsClient) BatchGetBasicInfo(ctx context.Context, request BatchGetBasicInfoRequest) (response BatchGetBasicInfoResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -771,7 +827,7 @@ func (client LogAnalyticsClient) createScheduledTask(ctx context.Context, reques
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &scheduledtask{})
 	return response, err
 }
 
@@ -1129,6 +1185,61 @@ func (client LogAnalyticsClient) deleteLogAnalyticsObjectCollectionRule(ctx cont
 	}
 
 	var response DeleteLogAnalyticsObjectCollectionRuleResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// DeleteLookup Delete the specified lookup.
+func (client LogAnalyticsClient) DeleteLookup(ctx context.Context, request DeleteLookupRequest) (response DeleteLookupResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.deleteLookup, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = DeleteLookupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = DeleteLookupResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(DeleteLookupResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into DeleteLookupResponse")
+	}
+	return
+}
+
+// deleteLookup implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) deleteLookup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/namespaces/{namespaceName}/lookups/{lookupName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response DeleteLookupResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -2626,6 +2737,56 @@ func (client LogAnalyticsClient) getLogAnalyticsObjectCollectionRule(ctx context
 	return response, err
 }
 
+// GetLookup Obtains the lookup with the specified reference.
+func (client LogAnalyticsClient) GetLookup(ctx context.Context, request GetLookupRequest) (response GetLookupResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.getLookup, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = GetLookupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = GetLookupResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(GetLookupResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into GetLookupResponse")
+	}
+	return
+}
+
+// getLookup implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) getLookup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/namespaces/{namespaceName}/lookups/{lookupName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response GetLookupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // GetNamespace This API gets the namespace details of a tenancy already onboarded in Logging Analytics Application
 func (client LogAnalyticsClient) GetNamespace(ctx context.Context, request GetNamespaceRequest) (response GetNamespaceResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2923,7 +3084,7 @@ func (client LogAnalyticsClient) getScheduledTask(ctx context.Context, request c
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &scheduledtask{})
 	return response, err
 }
 
@@ -3922,6 +4083,57 @@ func (client LogAnalyticsClient) listLogAnalyticsObjectCollectionRules(ctx conte
 	}
 
 	var response ListLogAnalyticsObjectCollectionRulesResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// ListLookups Obtains a list of lookups.  The list is filtered according to the filter criteria
+// specified by the user, and sorted according to the ordering criteria specified.
+func (client LogAnalyticsClient) ListLookups(ctx context.Context, request ListLookupsRequest) (response ListLookupsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listLookups, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListLookupsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListLookupsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListLookupsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListLookupsResponse")
+	}
+	return
+}
+
+// listLookups implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) listLookups(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/namespaces/{namespaceName}/lookups")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListLookupsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -4986,6 +5198,57 @@ func (client LogAnalyticsClient) listUploads(ctx context.Context, request common
 	return response, err
 }
 
+// ListWarnings Obtains a list of warnings.  The list is filtered according to the filter criteria
+// specified by the user, and sorted according to the ordering criteria specified.
+func (client LogAnalyticsClient) ListWarnings(ctx context.Context, request ListWarningsRequest) (response ListWarningsResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.listWarnings, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ListWarningsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ListWarningsResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ListWarningsResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ListWarningsResponse")
+	}
+	return
+}
+
+// listWarnings implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) listWarnings(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodGet, "/namespaces/{namespaceName}/warnings")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ListWarningsResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // ListWorkRequestErrors Return a (paginated) list of errors for a given work request.
 func (client LogAnalyticsClient) ListWorkRequestErrors(ctx context.Context, request ListWorkRequestErrorsRequest) (response ListWorkRequestErrorsResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -5293,6 +5556,56 @@ func (client LogAnalyticsClient) parseQuery(ctx context.Context, request common.
 	}
 
 	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// PauseScheduledTask Pause the scheduled task specified by {scheduledTaskId}.
+func (client LogAnalyticsClient) PauseScheduledTask(ctx context.Context, request PauseScheduledTaskRequest) (response PauseScheduledTaskResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.pauseScheduledTask, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = PauseScheduledTaskResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = PauseScheduledTaskResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(PauseScheduledTaskResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into PauseScheduledTaskResponse")
+	}
+	return
+}
+
+// pauseScheduledTask implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) pauseScheduledTask(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/namespaces/{namespaceName}/scheduledTasks/{scheduledTaskId}/actions/pause")
+	if err != nil {
+		return nil, err
+	}
+
+	var response PauseScheduledTaskResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &scheduledtask{})
 	return response, err
 }
 
@@ -5672,6 +5985,56 @@ func (client LogAnalyticsClient) removeEntityAssociations(ctx context.Context, r
 	return response, err
 }
 
+// ResumeScheduledTask Resume the scheduled task specified by {scheduledTaskId}.
+func (client LogAnalyticsClient) ResumeScheduledTask(ctx context.Context, request ResumeScheduledTaskRequest) (response ResumeScheduledTaskResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+	ociResponse, err = common.Retry(ctx, request, client.resumeScheduledTask, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = ResumeScheduledTaskResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = ResumeScheduledTaskResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(ResumeScheduledTaskResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into ResumeScheduledTaskResponse")
+	}
+	return
+}
+
+// resumeScheduledTask implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) resumeScheduledTask(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/namespaces/{namespaceName}/scheduledTasks/{scheduledTaskId}/actions/resume")
+	if err != nil {
+		return nil, err
+	}
+
+	var response ResumeScheduledTaskResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &scheduledtask{})
+	return response, err
+}
+
 // Run Execute the saved search acceleration task in the foreground.
 // The ScheduledTask taskType must be ACCELERATION.
 // Optionally specify time range (timeStart and timeEnd). The default is all time.
@@ -5779,6 +6142,63 @@ func (client LogAnalyticsClient) suggest(ctx context.Context, request common.OCI
 	return response, err
 }
 
+// SuppressWarning Accepts a list of warnings.  Any unsuppressed warnings in the input list will
+// be suppressed.  Warnings in the input list which are already suppressed will
+// not be modified.
+func (client LogAnalyticsClient) SuppressWarning(ctx context.Context, request SuppressWarningRequest) (response SuppressWarningResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.suppressWarning, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = SuppressWarningResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = SuppressWarningResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(SuppressWarningResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into SuppressWarningResponse")
+	}
+	return
+}
+
+// suppressWarning implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) suppressWarning(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/namespaces/{namespaceName}/warnings/actions/suppress")
+	if err != nil {
+		return nil, err
+	}
+
+	var response SuppressWarningResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // TestParser test parser
 func (client LogAnalyticsClient) TestParser(ctx context.Context, request TestParserRequest) (response TestParserResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -5822,6 +6242,63 @@ func (client LogAnalyticsClient) testParser(ctx context.Context, request common.
 	}
 
 	var response TestParserResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UnsuppressWarning Accepts a list of warnings.  Any suppressed warnings in the input list will
+// be unsuppressed.  Warnings in the input list which are unsuppressed will
+// not be modified.
+func (client LogAnalyticsClient) UnsuppressWarning(ctx context.Context, request UnsuppressWarningRequest) (response UnsuppressWarningResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.unsuppressWarning, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UnsuppressWarningResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UnsuppressWarningResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UnsuppressWarningResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UnsuppressWarningResponse")
+	}
+	return
+}
+
+// unsuppressWarning implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) unsuppressWarning(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/namespaces/{namespaceName}/warnings/actions/unsuppress")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UnsuppressWarningResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -6034,6 +6511,117 @@ func (client LogAnalyticsClient) updateLogAnalyticsObjectCollectionRule(ctx cont
 	return response, err
 }
 
+// UpdateLookup Updates the metadata of the specified lookup, such as the lookup description.
+func (client LogAnalyticsClient) UpdateLookup(ctx context.Context, request UpdateLookupRequest) (response UpdateLookupResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.updateLookup, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateLookupResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateLookupResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateLookupResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateLookupResponse")
+	}
+	return
+}
+
+// updateLookup implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) updateLookup(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPut, "/namespaces/{namespaceName}/lookups/{lookupName}")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateLookupResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
+// UpdateLookupData Updates the specified lookup with the details provided.  This API will not update
+// lookup metadata (such as lookup description).
+func (client LogAnalyticsClient) UpdateLookupData(ctx context.Context, request UpdateLookupDataRequest) (response UpdateLookupDataResponse, err error) {
+	var ociResponse common.OCIResponse
+	policy := common.NoRetryPolicy()
+	if client.RetryPolicy() != nil {
+		policy = *client.RetryPolicy()
+	}
+	if request.RetryPolicy() != nil {
+		policy = *request.RetryPolicy()
+	}
+
+	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
+		request.OpcRetryToken = common.String(common.RetryToken())
+	}
+
+	ociResponse, err = common.Retry(ctx, request, client.updateLookupData, policy)
+	if err != nil {
+		if ociResponse != nil {
+			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
+				opcRequestId := httpResponse.Header.Get("opc-request-id")
+				response = UpdateLookupDataResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
+			} else {
+				response = UpdateLookupDataResponse{}
+			}
+		}
+		return
+	}
+	if convertedResponse, ok := ociResponse.(UpdateLookupDataResponse); ok {
+		response = convertedResponse
+	} else {
+		err = fmt.Errorf("failed to convert OCIResponse into UpdateLookupDataResponse")
+	}
+	return
+}
+
+// updateLookupData implements the OCIOperation interface (enables retrying operations)
+func (client LogAnalyticsClient) updateLookupData(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
+	httpRequest, err := request.HTTPRequest(http.MethodPost, "/namespaces/{namespaceName}/lookups/{lookupName}/actions/updateData")
+	if err != nil {
+		return nil, err
+	}
+
+	var response UpdateLookupDataResponse
+	var httpResponse *http.Response
+	httpResponse, err = client.Call(ctx, &httpRequest)
+	defer common.CloseBodyIfValid(httpResponse)
+	response.RawResponse = httpResponse
+	if err != nil {
+		return response, err
+	}
+
+	err = common.UnmarshalResponse(httpResponse, &response)
+	return response, err
+}
+
 // UpdateScheduledTask Update the scheduled task. Schedules may be updated only for taskType SAVED_SEARCH and PURGE.
 func (client LogAnalyticsClient) UpdateScheduledTask(ctx context.Context, request UpdateScheduledTaskRequest) (response UpdateScheduledTaskResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -6080,7 +6668,7 @@ func (client LogAnalyticsClient) updateScheduledTask(ctx context.Context, reques
 		return response, err
 	}
 
-	err = common.UnmarshalResponse(httpResponse, &response)
+	err = common.UnmarshalResponseWithPolymorphicBody(httpResponse, &response, &scheduledtask{})
 	return response, err
 }
 

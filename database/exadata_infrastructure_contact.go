@@ -22,7 +22,7 @@ type ExadataInfrastructureContact struct {
 	// The email for the Exadata Infrastructure contact.
 	Email *string `mandatory:"true" json:"email"`
 
-	// True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+	// If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.
 	IsPrimary *bool `mandatory:"true" json:"isPrimary"`
 
 	// The phone number for the Exadata Infrastructure contact.

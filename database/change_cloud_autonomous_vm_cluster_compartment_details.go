@@ -13,7 +13,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// ChangeCloudAutonomousVmClusterCompartmentDetails The configuration details for moving the Cloud Autonomous VM cluster.
+// ChangeCloudAutonomousVmClusterCompartmentDetails The configuration details for moving the cloud Autonomous VM cluster.
 type ChangeCloudAutonomousVmClusterCompartmentDetails struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.

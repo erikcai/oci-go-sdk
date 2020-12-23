@@ -37,6 +37,7 @@ type ContainerImage struct {
 	DisplayName *string `mandatory:"true" json:"displayName"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image.
+	// Example: `ocid1.containerimage.oc1..exampleuniqueID`
 	Id *string `mandatory:"true" json:"id"`
 
 	// Layers of which the image is composed, ordered by the layer digest.

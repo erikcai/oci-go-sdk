@@ -28,7 +28,7 @@ type CreateCloudAutonomousVmClusterDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
 	CloudExadataInfrastructureId *string `mandatory:"true" json:"cloudExadataInfrastructureId"`
 
-	// User defined description of the Cloud Autonomous Vm cluster.
+	// User defined description of the cloud Autonomous VM cluster.
 	Description *string `mandatory:"false" json:"description"`
 
 	// The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud.

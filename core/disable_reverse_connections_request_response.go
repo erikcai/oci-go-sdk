@@ -27,6 +27,10 @@ type DisableReverseConnectionsRequest struct {
 	// Indicates whether Private Endpoint operation is being triggered in Management mode.
 	IsManagementMode *bool `mandatory:"false" contributesTo:"query" name:"isManagementMode"`
 
+	// Indicates that this request is a dry-run.
+	// If set to true, nothing will be created, but only the validation will be performed.
+	IsDryRun *bool `mandatory:"false" contributesTo:"query" name:"isDryRun"`
+
 	// Metadata about the request. This information will not be transmitted to the service, but
 	// represents information that the SDK will consume to drive retry behavior.
 	RequestMetadata common.RequestMetadata

@@ -18,7 +18,7 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// ComputeCapacityReservation A capacity reservation is a template that defines the settings to use when creating capacity reservations.
+// ComputeCapacityReservation A template that defines the settings to use when creating compute capacity reservations.
 type ComputeCapacityReservation struct {
 
 	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
@@ -35,7 +35,7 @@ type ComputeCapacityReservation struct {
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
 
-	// The availability domain where this compute capacity reservation lives.
+	// The availability domain of the compute capacity reservation.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
 
@@ -45,6 +45,7 @@ type ComputeCapacityReservation struct {
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// A user-friendly name for the compute capacity reservation.
+	// It does not have to be unique, and it's changeable. Avoid entering confidential information.
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -52,28 +53,29 @@ type ComputeCapacityReservation struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
-	// This shows whether this compute capacity reservation is default or not.
+	// Whether this capacity reservation is the default.
+	// For more information, see Capacity Reservations (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
 	IsDefaultReservation *bool `mandatory:"false" json:"isDefaultReservation"`
 
 	// The reservation configurations for the capacity reservation.
-	// To use the reservation for the desired shape, specify the shape and count and
-	// optional fault domain where you want this configuration.
+	// To use the reservation for the desired shape, specify the shape, count, and
+	// optionally the fault domain where you want this configuration.
 	InstanceReservationConfigs []InstanceReservationConfig `mandatory:"false" json:"instanceReservationConfigs"`
 
-	// The total number of instances that could reserved in this
-	// compute capacity reservation. This number is the sum of reservedCount
-	// of all the instance reservation config under this reservation.
-	// This exists to calulate the percentage usage of the reservation.
+	// The number of instances for which capacity will be held with this
+	// compute capacity reservation. This number is the sum of the values of the `reservedCount` fields
+	// for all of the instance reservation configurations under this reservation.
+	// The purpose of this field is to calculate the percentage usage of the reservation.
 	ReservedInstanceCount *int64 `mandatory:"false" json:"reservedInstanceCount"`
 
 	// The date and time the compute capacity reservation was updated, in the format defined by RFC3339 (https://tools.ietf.org/html/rfc3339).
 	// Example: `2016-08-25T21:10:29.600Z`
 	TimeUpdated *common.SDKTime `mandatory:"false" json:"timeUpdated"`
 
-	// The total number of instances currently running using
-	// this compute capacity reservation. This number is the sum of usedCount
-	// of all the instance reservation config under this reservation.
-	// This exists to calulate the percentage usage of the reservation.
+	// The total number of instances currently consuming space in
+	// this compute capacity reservation. This number is the sum of the values of the `usedCount` fields
+	// for all of the instance reservation configurations under this reservation.
+	// The purpose of this field is to calculate the percentage usage of the reservation.
 	UsedInstanceCount *int64 `mandatory:"false" json:"usedInstanceCount"`
 }
 

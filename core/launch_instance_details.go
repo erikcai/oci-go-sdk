@@ -36,7 +36,8 @@ type LaunchInstanceDetails struct {
 	Shape *string `mandatory:"true" json:"shape"`
 
 	// The OCID of the compute capacity reservation this instance is launched under.
-	// You can opt out of default reservation by specifying an empty string for this as input.
+	// You can opt out of all default reservations by specifying an empty string as input for this field.
+	// For more information, see Capacity Reservations (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
 	CapacityReservationId *string `mandatory:"false" json:"capacityReservationId"`
 
 	CreateVnicDetails *CreateVnicDetails `mandatory:"false" json:"createVnicDetails"`

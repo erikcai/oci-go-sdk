@@ -18,26 +18,26 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// InstanceReservationConfigDetails A compute capacity configuration details is a template that defines the settings to use when defining
-// the instance reservation config .
+// InstanceReservationConfigDetails A template that contains the settings to use when defining the instance reservation configuration.
 type InstanceReservationConfigDetails struct {
 
-	// The shape which the customer wants to reserve. The shape determines the number of CPUs, amount of memory,
+	// The shape requested when launching instances using reserved capacity.
+	// The shape determines the number of CPUs, amount of memory,
 	// and other resources allocated to the instance.
-	// You can enumerate all available shapes by calling ListComputeCapacityReservationInstanceShapes.
+	// You can list all available shapes by calling ListComputeCapacityReservationInstanceShapes.
 	InstanceShape *string `mandatory:"true" json:"instanceShape"`
 
-	// The number of instances the customer wants to reserve.
+	// The amount of capacity to reserve in this reservation configuration.
 	ReservedCount *int64 `mandatory:"true" json:"reservedCount"`
 
 	InstanceShapeConfig *InstanceReservationShapeConfigDetails `mandatory:"false" json:"instanceShapeConfig"`
 
-	// The fault domain the reservation is intented for.
+	// The fault domain to use for instances created using this reservation configuration.
 	// For more information, see Fault Domains (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#fault).
 	// If you do not specify the fault domain, the capacity is available for an instance
 	// that does not specify a fault domain. To change the fault domain for a reservation,
-	// delete it and create a new reservation in the preferred fault domain.
-	// To get a list of fault domains, use the `ListFaultDomains` operation in
+	// delete the reservation and create a new one in the preferred fault domain.
+	// To retrieve a list of fault domains, use the `ListFaultDomains` operation in
 	// the Identity and Access Management Service API (https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/).
 	// Example: `FAULT-DOMAIN-1`
 	FaultDomain *string `mandatory:"false" json:"faultDomain"`

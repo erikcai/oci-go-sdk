@@ -40,7 +40,7 @@ type ManagementAgentSummary struct {
 	// Platform Version
 	PlatformVersion *string `mandatory:"false" json:"platformVersion"`
 
-	// true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.
+	// true if the agent can be upgraded automatically; false if it must be upgraded manually.
 	IsAgentAutoUpgradable *bool `mandatory:"false" json:"isAgentAutoUpgradable"`
 
 	// The time the Management Agent was created. An RFC3339 formatted datetime string

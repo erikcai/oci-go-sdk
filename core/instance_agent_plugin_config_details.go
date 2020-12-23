@@ -18,13 +18,18 @@ import (
 	"github.com/oracle/oci-go-sdk/v31/common"
 )
 
-// InstanceAgentPluginConfigDetails Instance Agent plugin configuration.
+// InstanceAgentPluginConfigDetails The configuration of plugins associated with this instance.
 type InstanceAgentPluginConfigDetails struct {
 
-	// The plugin name.
+	// The plugin name. To get a list of available plugins, use the
+	// ListInstanceagentAvailablePlugins
+	// operation in the Oracle Cloud Agent API. For more information about the available plugins, see
+	// Managing Plugins with Oracle Cloud Agent (https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-plugins.htm).
 	Name *string `mandatory:"true" json:"name"`
 
 	// Whether the plugin should be enabled or disabled.
+	// To enable the monitoring and management plugins, the `isMonitoringDisabled` and
+	// `isManagementDisabled` attributes must also be set to false.
 	DesiredState InstanceAgentPluginConfigDetailsDesiredStateEnum `mandatory:"true" json:"desiredState"`
 }
 

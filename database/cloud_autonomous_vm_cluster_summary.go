@@ -22,10 +22,10 @@ type CloudAutonomousVmClusterSummary struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
 
-	// The name of the availability domain that the Cloud Autonomous VM cluster is located in.
+	// The name of the availability domain that the cloud Autonomous VM cluster is located in.
 	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
 
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the cloud Autonomous Vm Cluster is associated with.
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the cloud Autonomous VM Cluster is associated with.
 	// **Subnet Restrictions:**
 	// - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.
 	// These subnets are used by the Oracle Clusterware private interconnect on the database instance.
@@ -42,7 +42,7 @@ type CloudAutonomousVmClusterSummary struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
 	CloudExadataInfrastructureId *string `mandatory:"true" json:"cloudExadataInfrastructureId"`
 
-	// User defined description of the Cloud Autonomous Vm cluster.
+	// User defined description of the cloud Autonomous VM cluster.
 	Description *string `mandatory:"false" json:"description"`
 
 	// A list of the OCIDs (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see Security Rules (https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
@@ -67,6 +67,21 @@ type CloudAutonomousVmClusterSummary struct {
 
 	// The domain name for the cloud Autonomous VM cluster.
 	Domain *string `mandatory:"false" json:"domain"`
+
+	// The model name of the Exadata hardware running the cloud Autonomous VM cluster.
+	Shape *string `mandatory:"false" json:"shape"`
+
+	// The number of database servers in the cloud VM cluster.
+	NodeCount *int `mandatory:"false" json:"nodeCount"`
+
+	// The total data storage allocated, in terabytes (TB).
+	StorageSizeInTBs *int `mandatory:"false" json:"storageSizeInTBs"`
+
+	// The number of CPU cores enabled on the cloud Autonomous VM cluster.
+	CpuCoreCount *int `mandatory:"false" json:"cpuCoreCount"`
+
+	// The memory allocated in GBs.
+	MemorySizeInGBs *int `mandatory:"false" json:"memorySizeInGBs"`
 
 	// The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-premises Oracle software licenses to equivalent, highly automated Oracle PaaS and IaaS services in the cloud.
 	// License Included allows you to subscribe to new Oracle Database software licenses and the Database service.

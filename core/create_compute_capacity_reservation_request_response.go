@@ -12,7 +12,8 @@ import (
 // CreateComputeCapacityReservationRequest wrapper for the CreateComputeCapacityReservation operation
 type CreateComputeCapacityReservationRequest struct {
 
-	// The details for creating a new compute capacity reservation.
+	// Details for creating a new compute capacity reservation.
+	// **Caution:** Avoid using any confidential information when you use the API to supply string values.
 	CreateComputeCapacityReservationDetails `contributesTo:"body"`
 
 	// Unique identifier for the request.
