@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -16,11 +16,6 @@ import (
 
 // OutboundConnectorSummary Summary information for a outbound connector.
 type OutboundConnectorSummary interface {
-
-	// The availability domain the outbound connector is in. May be unset
-	// as a blank or NULL value.
-	// Example: `Uocm:PHX-AD-1`
-	GetAvailabilityDomain() *string
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the outbound connector.
 	GetCompartmentId() *string
@@ -41,6 +36,11 @@ type OutboundConnectorSummary interface {
 	// Example: `2016-08-25T21:10:29.600Z`
 	GetTimeCreated() *common.SDKTime
 
+	// The availability domain the outbound connector is in. May be unset
+	// as a blank or NULL value.
+	// Example: `Uocm:PHX-AD-1`
+	GetAvailabilityDomain() *string
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair
 	//  with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
@@ -55,12 +55,12 @@ type OutboundConnectorSummary interface {
 
 type outboundconnectorsummary struct {
 	JsonData           []byte
+	CompartmentId      *string                                    `mandatory:"true" json:"compartmentId"`
+	Id                 *string                                    `mandatory:"true" json:"id"`
+	LifecycleState     OutboundConnectorSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+	DisplayName        *string                                    `mandatory:"true" json:"displayName"`
+	TimeCreated        *common.SDKTime                            `mandatory:"true" json:"timeCreated"`
 	AvailabilityDomain *string                                    `mandatory:"false" json:"availabilityDomain"`
-	CompartmentId      *string                                    `mandatory:"false" json:"compartmentId"`
-	Id                 *string                                    `mandatory:"false" json:"id"`
-	LifecycleState     OutboundConnectorSummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
-	DisplayName        *string                                    `mandatory:"false" json:"displayName"`
-	TimeCreated        *common.SDKTime                            `mandatory:"false" json:"timeCreated"`
 	FreeformTags       map[string]string                          `mandatory:"false" json:"freeformTags"`
 	DefinedTags        map[string]map[string]interface{}          `mandatory:"false" json:"definedTags"`
 	ConnectorType      string                                     `json:"connectorType"`
@@ -77,12 +77,12 @@ func (m *outboundconnectorsummary) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
-	m.AvailabilityDomain = s.Model.AvailabilityDomain
 	m.CompartmentId = s.Model.CompartmentId
 	m.Id = s.Model.Id
 	m.LifecycleState = s.Model.LifecycleState
 	m.DisplayName = s.Model.DisplayName
 	m.TimeCreated = s.Model.TimeCreated
+	m.AvailabilityDomain = s.Model.AvailabilityDomain
 	m.FreeformTags = s.Model.FreeformTags
 	m.DefinedTags = s.Model.DefinedTags
 	m.ConnectorType = s.Model.ConnectorType
@@ -108,11 +108,6 @@ func (m *outboundconnectorsummary) UnmarshalPolymorphicJSON(data []byte) (interf
 	}
 }
 
-//GetAvailabilityDomain returns AvailabilityDomain
-func (m outboundconnectorsummary) GetAvailabilityDomain() *string {
-	return m.AvailabilityDomain
-}
-
 //GetCompartmentId returns CompartmentId
 func (m outboundconnectorsummary) GetCompartmentId() *string {
 	return m.CompartmentId
@@ -136,6 +131,11 @@ func (m outboundconnectorsummary) GetDisplayName() *string {
 //GetTimeCreated returns TimeCreated
 func (m outboundconnectorsummary) GetTimeCreated() *common.SDKTime {
 	return m.TimeCreated
+}
+
+//GetAvailabilityDomain returns AvailabilityDomain
+func (m outboundconnectorsummary) GetAvailabilityDomain() *string {
+	return m.AvailabilityDomain
 }
 
 //GetFreeformTags returns FreeformTags

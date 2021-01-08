@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -117,6 +117,10 @@ func (m *createtaskdetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, 
 		mm := CreateTaskFromDataLoaderTask{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "PIPELINE_TASK":
+		mm := CreateTaskFromPipelineTask{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	default:
 		return *m, nil
 	}
@@ -198,11 +202,13 @@ type CreateTaskDetailsModelTypeEnum string
 const (
 	CreateTaskDetailsModelTypeIntegrationTask CreateTaskDetailsModelTypeEnum = "INTEGRATION_TASK"
 	CreateTaskDetailsModelTypeDataLoaderTask  CreateTaskDetailsModelTypeEnum = "DATA_LOADER_TASK"
+	CreateTaskDetailsModelTypePipelineTask    CreateTaskDetailsModelTypeEnum = "PIPELINE_TASK"
 )
 
 var mappingCreateTaskDetailsModelType = map[string]CreateTaskDetailsModelTypeEnum{
 	"INTEGRATION_TASK": CreateTaskDetailsModelTypeIntegrationTask,
 	"DATA_LOADER_TASK": CreateTaskDetailsModelTypeDataLoaderTask,
+	"PIPELINE_TASK":    CreateTaskDetailsModelTypePipelineTask,
 }
 
 // GetCreateTaskDetailsModelTypeEnumValues Enumerates the set of values for CreateTaskDetailsModelTypeEnum

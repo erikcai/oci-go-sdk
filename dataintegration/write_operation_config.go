@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -34,7 +34,7 @@ type WriteOperationConfig struct {
 
 	WriteAttribute AbstractWriteAttribute `mandatory:"false" json:"writeAttribute"`
 
-	MergeKey *UniqueKey `mandatory:"false" json:"mergeKey"`
+	MergeKey UniqueKey `mandatory:"false" json:"mergeKey"`
 
 	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
@@ -72,7 +72,7 @@ func (m *WriteOperationConfig) UnmarshalJSON(data []byte) (e error) {
 		PartitionConfig partitionconfig                   `json:"partitionConfig"`
 		WriteAttribute  abstractwriteattribute            `json:"writeAttribute"`
 		WriteMode       WriteOperationConfigWriteModeEnum `json:"writeMode"`
-		MergeKey        *UniqueKey                        `json:"mergeKey"`
+		MergeKey        uniquekey                         `json:"mergeKey"`
 		ObjectStatus    *int                              `json:"objectStatus"`
 	}{}
 
@@ -124,7 +124,15 @@ func (m *WriteOperationConfig) UnmarshalJSON(data []byte) (e error) {
 
 	m.WriteMode = model.WriteMode
 
-	m.MergeKey = model.MergeKey
+	nn, e = model.MergeKey.UnmarshalPolymorphicJSON(model.MergeKey.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.MergeKey = nn.(UniqueKey)
+	} else {
+		m.MergeKey = nil
+	}
 
 	m.ObjectStatus = model.ObjectStatus
 

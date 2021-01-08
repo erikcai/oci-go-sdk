@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -62,6 +62,10 @@ type UpdateApplicationDetails struct {
 
 	// The VM shape for the driver. Sets the driver cores and memory.
 	DriverShape *string `mandatory:"false" json:"driverShape"`
+
+	// The input option String used for spark-submit command, refer to https://spark.apache.org/docs/latest/submitting-applications.html#launching-applications-with-spark-submit for more details. Currently supported options include --class --file, --jars, --conf, --py-files, main file with arguments.
+	// In cases where this property is optional and users still set it, for example, in CreateApplicationDetails and UpdateApplicationDetails, Data Flow service will combine it with configuration property.
+	Exec *string `mandatory:"false" json:"exec"`
 
 	// The VM shape for the executors. Sets the executor cores and memory.
 	ExecutorShape *string `mandatory:"false" json:"executorShape"`

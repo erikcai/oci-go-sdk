@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -68,6 +68,8 @@ type Vault struct {
 	// If you restore a vault to the same region, the vault retains the same OCID that it had when you
 	// backed up the vault.
 	RestoredFromVaultId *string `mandatory:"false" json:"restoredFromVaultId"`
+
+	ReplicaDetails *VaultReplicaDetails `mandatory:"false" json:"replicaDetails"`
 }
 
 func (m Vault) String() string {

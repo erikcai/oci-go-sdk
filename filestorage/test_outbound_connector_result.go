@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -17,10 +17,10 @@ import (
 type TestOutboundConnectorResult struct {
 
 	// Endpoint used while trying to connect while using LDAP bind account
-	Endpoint *interface{} `mandatory:"false" json:"endpoint"`
+	Endpoint *interface{} `mandatory:"true" json:"endpoint"`
 
 	// Status of connection to given endpoint
-	Result TestOutboundConnectorResultResultEnum `mandatory:"false" json:"result,omitempty"`
+	Result TestOutboundConnectorResultResultEnum `mandatory:"true" json:"result"`
 
 	// Error from the perspective of the mount target.
 	MountTargetErrorString *string `mandatory:"false" json:"mountTargetErrorString"`

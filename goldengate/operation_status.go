@@ -1,11 +1,10 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
-// GgsControlPlane API
+// GoldenGate API
 //
-// The GoldenGate Control Plane API specifying the operations and metadata for creating and maintaining the control infrastructure
-// related to operating an OCI native Oracle managed GoldenGate service.
+// Use the Oracle Cloud Infrastructure GoldenGate APIs to perform data replication operations.
 //
 
 package goldengate
@@ -19,6 +18,7 @@ const (
 	OperationStatusInProgress OperationStatusEnum = "IN_PROGRESS"
 	OperationStatusFailed     OperationStatusEnum = "FAILED"
 	OperationStatusSucceeded  OperationStatusEnum = "SUCCEEDED"
+	OperationStatusCanceled   OperationStatusEnum = "CANCELED"
 )
 
 var mappingOperationStatus = map[string]OperationStatusEnum{
@@ -26,6 +26,7 @@ var mappingOperationStatus = map[string]OperationStatusEnum{
 	"IN_PROGRESS": OperationStatusInProgress,
 	"FAILED":      OperationStatusFailed,
 	"SUCCEEDED":   OperationStatusSucceeded,
+	"CANCELED":    OperationStatusCanceled,
 }
 
 // GetOperationStatusEnumValues Enumerates the set of values for OperationStatusEnum

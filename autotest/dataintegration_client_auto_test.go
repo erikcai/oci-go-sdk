@@ -594,6 +594,94 @@ func TestDataIntegrationClientCreatePatch(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientCreatePipeline(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "CreatePipeline")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreatePipeline is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "CreatePipeline", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "CreatePipeline")
+	assert.NoError(t, err)
+
+	type CreatePipelineRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.CreatePipelineRequest
+	}
+
+	var requests []CreatePipelineRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreatePipeline(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientCreatePipelineValidation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "CreatePipelineValidation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreatePipelineValidation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "CreatePipelineValidation", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "CreatePipelineValidation")
+	assert.NoError(t, err)
+
+	type CreatePipelineValidationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.CreatePipelineValidationRequest
+	}
+
+	var requests []CreatePipelineValidationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreatePipelineValidation(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
 func TestDataIntegrationClientCreateProject(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -671,6 +759,7 @@ func TestDataIntegrationClientCreateTask(t *testing.T) {
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"INTEGRATION_TASK": &dataintegration.CreateTaskFromIntegrationTask{},
 				"DATA_LOADER_TASK": &dataintegration.CreateTaskFromDataLoaderTask{},
+				"PIPELINE_TASK":    &dataintegration.CreateTaskFromPipelineTask{},
 			},
 		}
 
@@ -770,6 +859,7 @@ func TestDataIntegrationClientCreateTaskValidation(t *testing.T) {
 			DiscriminatorName: "modelType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"DATA_LOADER_TASK": &dataintegration.CreateTaskValidationFromDataLoaderTask{},
+				"PIPELINE_TASK":    &dataintegration.CreateTaskValidationFromPipelineTask{},
 				"INTEGRATION_TASK": &dataintegration.CreateTaskValidationFromIntegrationTask{},
 			},
 		}
@@ -1270,6 +1360,94 @@ func TestDataIntegrationClientDeletePatch(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeletePatch(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientDeletePipeline(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "DeletePipeline")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeletePipeline is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "DeletePipeline", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "DeletePipeline")
+	assert.NoError(t, err)
+
+	type DeletePipelineRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.DeletePipelineRequest
+	}
+
+	var requests []DeletePipelineRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeletePipeline(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientDeletePipelineValidation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "DeletePipelineValidation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeletePipelineValidation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "DeletePipelineValidation", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "DeletePipelineValidation")
+	assert.NoError(t, err)
+
+	type DeletePipelineValidationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.DeletePipelineValidationRequest
+	}
+
+	var requests []DeletePipelineValidationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeletePipelineValidation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -2062,6 +2240,94 @@ func TestDataIntegrationClientGetPatch(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetPatch(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientGetPipeline(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "GetPipeline")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPipeline is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "GetPipeline", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "GetPipeline")
+	assert.NoError(t, err)
+
+	type GetPipelineRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.GetPipelineRequest
+	}
+
+	var requests []GetPipelineRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetPipeline(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientGetPipelineValidation(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "GetPipelineValidation")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetPipelineValidation is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "GetPipelineValidation", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "GetPipelineValidation")
+	assert.NoError(t, err)
+
+	type GetPipelineValidationRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.GetPipelineValidationRequest
+	}
+
+	var requests []GetPipelineValidationRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetPipelineValidation(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -3168,6 +3434,114 @@ func TestDataIntegrationClientListPatches(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientListPipelineValidations(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "ListPipelineValidations")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListPipelineValidations is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "ListPipelineValidations", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "ListPipelineValidations")
+	assert.NoError(t, err)
+
+	type ListPipelineValidationsRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.ListPipelineValidationsRequest
+	}
+
+	var requests []ListPipelineValidationsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*dataintegration.ListPipelineValidationsRequest)
+				return c.ListPipelineValidations(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]dataintegration.ListPipelineValidationsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(dataintegration.ListPipelineValidationsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientListPipelines(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "ListPipelines")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListPipelines is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "ListPipelines", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "ListPipelines")
+	assert.NoError(t, err)
+
+	type ListPipelinesRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.ListPipelinesRequest
+	}
+
+	var requests []ListPipelinesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*dataintegration.ListPipelinesRequest)
+				return c.ListPipelines(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]dataintegration.ListPipelinesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(dataintegration.ListPipelinesResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
 func TestDataIntegrationClientListProjects(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4200,6 +4574,50 @@ func TestDataIntegrationClientUpdateFolder(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
+func TestDataIntegrationClientUpdatePipeline(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("dataintegration", "UpdatePipeline")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdatePipeline is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("dataintegration", "DataIntegration", "UpdatePipeline", createDataIntegrationClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(dataintegration.DataIntegrationClient)
+
+	body, err := testClient.getRequests("dataintegration", "UpdatePipeline")
+	assert.NoError(t, err)
+
+	type UpdatePipelineRequestInfo struct {
+		ContainerId string
+		Request     dataintegration.UpdatePipelineRequest
+	}
+
+	var requests []UpdatePipelineRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdatePipeline(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="di_dis_ww_grp@oracle.com" jiraProject="DI" opsJiraProject="DIS"
 func TestDataIntegrationClientUpdateProject(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -4319,6 +4737,7 @@ func TestDataIntegrationClientUpdateTask(t *testing.T) {
 		PolymorphicRequestUnmarshallingInfo{
 			DiscriminatorName: "modelType",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"PIPELINE_TASK":    &dataintegration.UpdateTaskFromPipelineTask{},
 				"DATA_LOADER_TASK": &dataintegration.UpdateTaskFromDataLoaderTask{},
 				"INTEGRATION_TASK": &dataintegration.UpdateTaskFromIntegrationTask{},
 			},

@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -1264,7 +1264,7 @@ func (client ComputeManagementClient) listInstancePools(ctx context.Context, req
 	return response, err
 }
 
-// ResetInstancePool Performs the reset (power off and power on) action on the specified instance pool,
+// ResetInstancePool Performs the reset (immediate power off and power on) action on the specified instance pool,
 // which performs the action on all the instances in the pool.
 func (client ComputeManagementClient) ResetInstancePool(ctx context.Context, request ResetInstancePoolRequest) (response ResetInstancePoolResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -1322,6 +1322,8 @@ func (client ComputeManagementClient) resetInstancePool(ctx context.Context, req
 
 // SoftresetInstancePool Performs the softreset (ACPI shutdown and power on) action on the specified instance pool,
 // which performs the action on all the instances in the pool.
+// Softreset gracefully reboots the instances by sending a shutdown command to the operating systems.
+// After waiting 15 minutes for the OS to shut down, the instances are powered off and then powered back on.
 func (client ComputeManagementClient) SoftresetInstancePool(ctx context.Context, request SoftresetInstancePoolRequest) (response SoftresetInstancePoolResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -1432,7 +1434,7 @@ func (client ComputeManagementClient) startInstancePool(ctx context.Context, req
 	return response, err
 }
 
-// StopInstancePool Performs the stop (power off) action on the specified instance pool,
+// StopInstancePool Performs the stop (immediate power off) action on the specified instance pool,
 // which performs the action on all the instances in the pool.
 func (client ComputeManagementClient) StopInstancePool(ctx context.Context, request StopInstancePoolRequest) (response StopInstancePoolResponse, err error) {
 	var ociResponse common.OCIResponse

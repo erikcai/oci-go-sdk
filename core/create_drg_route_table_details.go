@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -24,10 +24,6 @@ type CreateDrgRouteTableDetails struct {
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG the DRG Route Table belongs to.
 	DrgId *string `mandatory:"true" json:"drgId"`
 
-	// The OCID of the import route distribution used to specify how incoming route advertisements through
-	// referenced attachements are inserted into the DRG route table.
-	ImportDrgRouteDistributionId *string `mandatory:"true" json:"importDrgRouteDistributionId"`
-
 	// Defined tags for this resource. Each key is predefined and scoped to a
 	// namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
@@ -41,6 +37,10 @@ type CreateDrgRouteTableDetails struct {
 	// predefined name, type, or namespace. For more information, see Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
+
+	// The OCID of the import route distribution used to specify how incoming route advertisements through
+	// referenced attachements are inserted into the DRG route table.
+	ImportDrgRouteDistributionId *string `mandatory:"false" json:"importDrgRouteDistributionId"`
 
 	// If a user wants traffic to be routed using ECMP across their Virtual Circuits or IPSec Tunnels to
 	// their on-prem networks, the user should enable ECMP on the route table to which these attachments

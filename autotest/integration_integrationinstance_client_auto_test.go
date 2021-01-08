@@ -67,6 +67,50 @@ func TestIntegrationInstanceClientChangeIntegrationInstanceCompartment(t *testin
 }
 
 // IssueRoutingInfo tag="default" email="&lt;tbd&gt;_ww@oracle.com" jiraProject="&lt;tbc&gt;" opsJiraProject="&lt;tbd&gt;"
+func TestIntegrationInstanceClientChangeIntegrationInstanceNetworkEndpoint(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("integration", "ChangeIntegrationInstanceNetworkEndpoint")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeIntegrationInstanceNetworkEndpoint is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("integration", "IntegrationInstance", "ChangeIntegrationInstanceNetworkEndpoint", createIntegrationInstanceClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(integration.IntegrationInstanceClient)
+
+	body, err := testClient.getRequests("integration", "ChangeIntegrationInstanceNetworkEndpoint")
+	assert.NoError(t, err)
+
+	type ChangeIntegrationInstanceNetworkEndpointRequestInfo struct {
+		ContainerId string
+		Request     integration.ChangeIntegrationInstanceNetworkEndpointRequest
+	}
+
+	var requests []ChangeIntegrationInstanceNetworkEndpointRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeIntegrationInstanceNetworkEndpoint(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="&lt;tbd&gt;_ww@oracle.com" jiraProject="&lt;tbc&gt;" opsJiraProject="&lt;tbd&gt;"
 func TestIntegrationInstanceClientCreateIntegrationInstance(t *testing.T) {
 	defer failTestOnPanic(t)
 

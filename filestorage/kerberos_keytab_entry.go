@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -17,17 +17,17 @@ import (
 type KerberosKeytabEntry struct {
 
 	// Keytab principal.
-	Principal *string `mandatory:"false" json:"principal"`
+	Principal *string `mandatory:"true" json:"principal"`
 
 	// Encryption type with with keytab was generated.
 	// Secure: aes128-cts-hmac-sha256-128
 	// Secure: aes256-cts-hmac-sha384-192
 	// Less Secure: aes128-cts-hmac-sha1-96
 	// Less Secure: aes256-cts-hmac-sha1-96
-	EncryptionType KerberosKeytabEntryEncryptionTypeEnum `mandatory:"false" json:"encryptionType,omitempty"`
+	EncryptionType KerberosKeytabEntryEncryptionTypeEnum `mandatory:"true" json:"encryptionType"`
 
 	// Kerberos kvno (key version number) for key in keytab entry.
-	KeyVersionNumber *int64 `mandatory:"false" json:"keyVersionNumber"`
+	KeyVersionNumber *int64 `mandatory:"true" json:"keyVersionNumber"`
 
 	// The date and time the Keytab was rotated, expressed in
 	// RFC 3339 (https://tools.ietf.org/rfc/rfc3339) timestamp format.

@@ -23,50 +23,6 @@ func createGoldengateGoldenGateClientWithProvider(p common.ConfigurationProvider
 }
 
 // IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
-func TestGoldengateGoldenGateClientChangeBackupCompartment(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("goldengate", "ChangeBackupCompartment")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ChangeBackupCompartment is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "ChangeBackupCompartment", createGoldengateGoldenGateClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(goldengate.GoldenGateClient)
-
-	body, err := testClient.getRequests("goldengate", "ChangeBackupCompartment")
-	assert.NoError(t, err)
-
-	type ChangeBackupCompartmentRequestInfo struct {
-		ContainerId string
-		Request     goldengate.ChangeBackupCompartmentRequest
-	}
-
-	var requests []ChangeBackupCompartmentRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.ChangeBackupCompartment(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
 func TestGoldengateGoldenGateClientChangeDatabaseRegistrationCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -111,6 +67,50 @@ func TestGoldengateGoldenGateClientChangeDatabaseRegistrationCompartment(t *test
 }
 
 // IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
+func TestGoldengateGoldenGateClientChangeDeploymentBackupCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("goldengate", "ChangeDeploymentBackupCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeDeploymentBackupCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "ChangeDeploymentBackupCompartment", createGoldengateGoldenGateClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(goldengate.GoldenGateClient)
+
+	body, err := testClient.getRequests("goldengate", "ChangeDeploymentBackupCompartment")
+	assert.NoError(t, err)
+
+	type ChangeDeploymentBackupCompartmentRequestInfo struct {
+		ContainerId string
+		Request     goldengate.ChangeDeploymentBackupCompartmentRequest
+	}
+
+	var requests []ChangeDeploymentBackupCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeDeploymentBackupCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
 func TestGoldengateGoldenGateClientChangeDeploymentCompartment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -147,50 +147,6 @@ func TestGoldengateGoldenGateClientChangeDeploymentCompartment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.ChangeDeploymentCompartment(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
-func TestGoldengateGoldenGateClientCreateBackup(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("goldengate", "CreateBackup")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("CreateBackup is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "CreateBackup", createGoldengateGoldenGateClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(goldengate.GoldenGateClient)
-
-	body, err := testClient.getRequests("goldengate", "CreateBackup")
-	assert.NoError(t, err)
-
-	type CreateBackupRequestInfo struct {
-		ContainerId string
-		Request     goldengate.CreateBackupRequest
-	}
-
-	var requests []CreateBackupRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.CreateBackup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -287,28 +243,28 @@ func TestGoldengateGoldenGateClientCreateDeployment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
-func TestGoldengateGoldenGateClientDeleteBackup(t *testing.T) {
+func TestGoldengateGoldenGateClientCreateDeploymentBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("goldengate", "DeleteBackup")
+	enabled, err := testClient.isApiEnabled("goldengate", "CreateDeploymentBackup")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("DeleteBackup is not enabled by the testing service")
+		t.Skip("CreateDeploymentBackup is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "DeleteBackup", createGoldengateGoldenGateClientWithProvider)
+	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "CreateDeploymentBackup", createGoldengateGoldenGateClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(goldengate.GoldenGateClient)
 
-	body, err := testClient.getRequests("goldengate", "DeleteBackup")
+	body, err := testClient.getRequests("goldengate", "CreateDeploymentBackup")
 	assert.NoError(t, err)
 
-	type DeleteBackupRequestInfo struct {
+	type CreateDeploymentBackupRequestInfo struct {
 		ContainerId string
-		Request     goldengate.DeleteBackupRequest
+		Request     goldengate.CreateDeploymentBackupRequest
 	}
 
-	var requests []DeleteBackupRequestInfo
+	var requests []CreateDeploymentBackupRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -322,7 +278,7 @@ func TestGoldengateGoldenGateClientDeleteBackup(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.DeleteBackup(context.Background(), req.Request)
+			response, err := c.CreateDeploymentBackup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -419,28 +375,28 @@ func TestGoldengateGoldenGateClientDeleteDeployment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
-func TestGoldengateGoldenGateClientGetBackup(t *testing.T) {
+func TestGoldengateGoldenGateClientDeleteDeploymentBackup(t *testing.T) {
 	defer failTestOnPanic(t)
 
-	enabled, err := testClient.isApiEnabled("goldengate", "GetBackup")
+	enabled, err := testClient.isApiEnabled("goldengate", "DeleteDeploymentBackup")
 	assert.NoError(t, err)
 	if !enabled {
-		t.Skip("GetBackup is not enabled by the testing service")
+		t.Skip("DeleteDeploymentBackup is not enabled by the testing service")
 	}
 
-	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "GetBackup", createGoldengateGoldenGateClientWithProvider)
+	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "DeleteDeploymentBackup", createGoldengateGoldenGateClientWithProvider)
 	assert.NoError(t, err)
 	c := cc.(goldengate.GoldenGateClient)
 
-	body, err := testClient.getRequests("goldengate", "GetBackup")
+	body, err := testClient.getRequests("goldengate", "DeleteDeploymentBackup")
 	assert.NoError(t, err)
 
-	type GetBackupRequestInfo struct {
+	type DeleteDeploymentBackupRequestInfo struct {
 		ContainerId string
-		Request     goldengate.GetBackupRequest
+		Request     goldengate.DeleteDeploymentBackupRequest
 	}
 
-	var requests []GetBackupRequestInfo
+	var requests []DeleteDeploymentBackupRequestInfo
 	var dataHolder []map[string]interface{}
 	err = json.Unmarshal([]byte(body), &dataHolder)
 	assert.NoError(t, err)
@@ -454,7 +410,7 @@ func TestGoldengateGoldenGateClientGetBackup(t *testing.T) {
 				retryPolicy = retryPolicyForTests()
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetBackup(context.Background(), req.Request)
+			response, err := c.DeleteDeploymentBackup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -551,6 +507,50 @@ func TestGoldengateGoldenGateClientGetDeployment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
+func TestGoldengateGoldenGateClientGetDeploymentBackup(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("goldengate", "GetDeploymentBackup")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetDeploymentBackup is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "GetDeploymentBackup", createGoldengateGoldenGateClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(goldengate.GoldenGateClient)
+
+	body, err := testClient.getRequests("goldengate", "GetDeploymentBackup")
+	assert.NoError(t, err)
+
+	type GetDeploymentBackupRequestInfo struct {
+		ContainerId string
+		Request     goldengate.GetDeploymentBackupRequest
+	}
+
+	var requests []GetDeploymentBackupRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetDeploymentBackup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
 func TestGoldengateGoldenGateClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -588,60 +588,6 @@ func TestGoldengateGoldenGateClientGetWorkRequest(t *testing.T) {
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetWorkRequest(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
-func TestGoldengateGoldenGateClientListBackups(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("goldengate", "ListBackups")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListBackups is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "ListBackups", createGoldengateGoldenGateClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(goldengate.GoldenGateClient)
-
-	body, err := testClient.getRequests("goldengate", "ListBackups")
-	assert.NoError(t, err)
-
-	type ListBackupsRequestInfo struct {
-		ContainerId string
-		Request     goldengate.ListBackupsRequest
-	}
-
-	var requests []ListBackupsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*goldengate.ListBackupsRequest)
-				return c.ListBackups(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]goldengate.ListBackupsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(goldengate.ListBackupsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
 		})
@@ -693,6 +639,60 @@ func TestGoldengateGoldenGateClientListDatabaseRegistrations(t *testing.T) {
 			typedListResponses := make([]goldengate.ListDatabaseRegistrationsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(goldengate.ListDatabaseRegistrationsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
+func TestGoldengateGoldenGateClientListDeploymentBackups(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("goldengate", "ListDeploymentBackups")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListDeploymentBackups is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "ListDeploymentBackups", createGoldengateGoldenGateClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(goldengate.GoldenGateClient)
+
+	body, err := testClient.getRequests("goldengate", "ListDeploymentBackups")
+	assert.NoError(t, err)
+
+	type ListDeploymentBackupsRequestInfo struct {
+		ContainerId string
+		Request     goldengate.ListDeploymentBackupsRequest
+	}
+
+	var requests []ListDeploymentBackupsRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*goldengate.ListDeploymentBackupsRequest)
+				return c.ListDeploymentBackups(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]goldengate.ListDeploymentBackupsResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(goldengate.ListDeploymentBackupsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -919,6 +919,61 @@ func TestGoldengateGoldenGateClientListWorkRequests(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
+func TestGoldengateGoldenGateClientRestoreDeployment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("goldengate", "RestoreDeployment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("RestoreDeployment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "RestoreDeployment", createGoldengateGoldenGateClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(goldengate.GoldenGateClient)
+
+	body, err := testClient.getRequests("goldengate", "RestoreDeployment")
+	assert.NoError(t, err)
+
+	type RestoreDeploymentRequestInfo struct {
+		ContainerId string
+		Request     goldengate.RestoreDeploymentRequest
+	}
+
+	var requests []RestoreDeploymentRequestInfo
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
+	assert.NoError(t, err)
+	requests = make([]RestoreDeploymentRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["RestoreDeploymentDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "restoreDeploymentType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"DEFAULT": &goldengate.DefaultRestoreDeploymentDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.RestoreDeployment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
 func TestGoldengateGoldenGateClientStartDeployment(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -941,11 +996,22 @@ func TestGoldengateGoldenGateClientStartDeployment(t *testing.T) {
 	}
 
 	var requests []StartDeploymentRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]StartDeploymentRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["StartDeploymentDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "startDeploymentType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"DEFAULT": &goldengate.DefaultStartDeploymentDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
@@ -985,11 +1051,22 @@ func TestGoldengateGoldenGateClientStopDeployment(t *testing.T) {
 	}
 
 	var requests []StopDeploymentRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
 	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
+	requests = make([]StopDeploymentRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["StopDeploymentDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "stopDeploymentType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"DEFAULT": &goldengate.DefaultStopDeploymentDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
 
 	var retryPolicy *common.RetryPolicy
 	for i, req := range requests {
@@ -999,94 +1076,6 @@ func TestGoldengateGoldenGateClientStopDeployment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.StopDeployment(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
-func TestGoldengateGoldenGateClientSynchronizeDatabaseRegistration(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("goldengate", "SynchronizeDatabaseRegistration")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("SynchronizeDatabaseRegistration is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "SynchronizeDatabaseRegistration", createGoldengateGoldenGateClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(goldengate.GoldenGateClient)
-
-	body, err := testClient.getRequests("goldengate", "SynchronizeDatabaseRegistration")
-	assert.NoError(t, err)
-
-	type SynchronizeDatabaseRegistrationRequestInfo struct {
-		ContainerId string
-		Request     goldengate.SynchronizeDatabaseRegistrationRequest
-	}
-
-	var requests []SynchronizeDatabaseRegistrationRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.SynchronizeDatabaseRegistration(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
-func TestGoldengateGoldenGateClientUpdateBackup(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("goldengate", "UpdateBackup")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("UpdateBackup is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "UpdateBackup", createGoldengateGoldenGateClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(goldengate.GoldenGateClient)
-
-	body, err := testClient.getRequests("goldengate", "UpdateBackup")
-	assert.NoError(t, err)
-
-	type UpdateBackupRequestInfo struct {
-		ContainerId string
-		Request     goldengate.UpdateBackupRequest
-	}
-
-	var requests []UpdateBackupRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.UpdateBackup(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1175,6 +1164,105 @@ func TestGoldengateGoldenGateClientUpdateDeployment(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateDeployment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
+func TestGoldengateGoldenGateClientUpdateDeploymentBackup(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("goldengate", "UpdateDeploymentBackup")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateDeploymentBackup is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "UpdateDeploymentBackup", createGoldengateGoldenGateClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(goldengate.GoldenGateClient)
+
+	body, err := testClient.getRequests("goldengate", "UpdateDeploymentBackup")
+	assert.NoError(t, err)
+
+	type UpdateDeploymentBackupRequestInfo struct {
+		ContainerId string
+		Request     goldengate.UpdateDeploymentBackupRequest
+	}
+
+	var requests []UpdateDeploymentBackupRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateDeploymentBackup(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="ggs_team_ww_grp@oracle.com" jiraProject="GGS" opsJiraProject="GGS"
+func TestGoldengateGoldenGateClientUpgradeDeployment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("goldengate", "UpgradeDeployment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpgradeDeployment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("goldengate", "GoldenGate", "UpgradeDeployment", createGoldengateGoldenGateClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(goldengate.GoldenGateClient)
+
+	body, err := testClient.getRequests("goldengate", "UpgradeDeployment")
+	assert.NoError(t, err)
+
+	type UpgradeDeploymentRequestInfo struct {
+		ContainerId string
+		Request     goldengate.UpgradeDeploymentRequest
+	}
+
+	var requests []UpgradeDeploymentRequestInfo
+	var pr []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &pr)
+	assert.NoError(t, err)
+	requests = make([]UpgradeDeploymentRequestInfo, len(pr))
+	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
+	polymorphicRequestInfo["UpgradeDeploymentDetails"] =
+		PolymorphicRequestUnmarshallingInfo{
+			DiscriminatorName: "upgradeDeploymentType",
+			DiscriminatorValuesAndTypes: map[string]interface{}{
+				"CURRENT_RELEASE": &goldengate.UpgradeDeploymentCurrentReleaseDetails{},
+			},
+		}
+
+	for i, ppr := range pr {
+		conditionalStructCopy(ppr, &requests[i], polymorphicRequestInfo, testClient.Log)
+	}
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpgradeDeployment(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -48,10 +48,6 @@ func (m *key) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 
 	var err error
 	switch m.ModelType {
-	case "UNIQUE_KEY":
-		mm := UniqueKey{}
-		err = json.Unmarshal(data, &mm)
-		return mm, err
 	case "FOREIGN_KEY":
 		mm := ForeignKey{}
 		err = json.Unmarshal(data, &mm)
@@ -71,14 +67,10 @@ type KeyModelTypeEnum string
 // Set of constants representing the allowable values for KeyModelTypeEnum
 const (
 	KeyModelTypeForeignKey KeyModelTypeEnum = "FOREIGN_KEY"
-	KeyModelTypePrimaryKey KeyModelTypeEnum = "PRIMARY_KEY"
-	KeyModelTypeUniqueKey  KeyModelTypeEnum = "UNIQUE_KEY"
 )
 
 var mappingKeyModelType = map[string]KeyModelTypeEnum{
 	"FOREIGN_KEY": KeyModelTypeForeignKey,
-	"PRIMARY_KEY": KeyModelTypePrimaryKey,
-	"UNIQUE_KEY":  KeyModelTypeUniqueKey,
 }
 
 // GetKeyModelTypeEnumValues Enumerates the set of values for KeyModelTypeEnum

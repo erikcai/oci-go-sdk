@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -171,7 +171,7 @@ type LaunchInstanceDetails struct {
 	// Secondary VNICS to create and attach as part of the launch instance operation.
 	SecondaryVnicAttachments []AttachVnicDetails `mandatory:"false" json:"secondaryVnicAttachments"`
 
-	// Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
+	// Whether to enable in-transit encryption for the data volume's paravirtualized attachment. This field applies to both block volumes and boot volumes. The default value is false.
 	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 
 	// The preferred maintenance action for an instance. The default is LIVE_MIGRATE, if live migration is supported.

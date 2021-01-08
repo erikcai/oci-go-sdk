@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -114,6 +114,10 @@ func (m *updatetaskdetails) UnmarshalPolymorphicJSON(data []byte) (interface{}, 
 
 	var err error
 	switch m.ModelType {
+	case "PIPELINE_TASK":
+		mm := UpdateTaskFromPipelineTask{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "DATA_LOADER_TASK":
 		mm := UpdateTaskFromDataLoaderTask{}
 		err = json.Unmarshal(data, &mm)
@@ -208,11 +212,13 @@ type UpdateTaskDetailsModelTypeEnum string
 const (
 	UpdateTaskDetailsModelTypeIntegrationTask UpdateTaskDetailsModelTypeEnum = "INTEGRATION_TASK"
 	UpdateTaskDetailsModelTypeDataLoaderTask  UpdateTaskDetailsModelTypeEnum = "DATA_LOADER_TASK"
+	UpdateTaskDetailsModelTypePipelineTask    UpdateTaskDetailsModelTypeEnum = "PIPELINE_TASK"
 )
 
 var mappingUpdateTaskDetailsModelType = map[string]UpdateTaskDetailsModelTypeEnum{
 	"INTEGRATION_TASK": UpdateTaskDetailsModelTypeIntegrationTask,
 	"DATA_LOADER_TASK": UpdateTaskDetailsModelTypeDataLoaderTask,
+	"PIPELINE_TASK":    UpdateTaskDetailsModelTypePipelineTask,
 }
 
 // GetUpdateTaskDetailsModelTypeEnumValues Enumerates the set of values for UpdateTaskDetailsModelTypeEnum

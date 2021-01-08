@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -33,7 +33,7 @@ type KeyVersion struct {
 	// The OCID of the vault that contains this key version.
 	VaultId *string `mandatory:"true" json:"vaultId"`
 
-	// The public key in PEM format which will be populated only in case of RSA and ECDSA keys.
+	// The public key in PEM format. (This value pertains only to RSA and ECDSA keys.)
 	PublicKey *string `mandatory:"false" json:"publicKey"`
 
 	// The key version's current lifecycle state.
@@ -51,6 +51,8 @@ type KeyVersion struct {
 
 	// The OCID of the key version from which this key version was restored.
 	RestoredFromKeyVersionId *string `mandatory:"false" json:"restoredFromKeyVersionId"`
+
+	ReplicaDetails *KeyVersionReplicaDetails `mandatory:"false" json:"replicaDetails"`
 }
 
 func (m KeyVersion) String() string {

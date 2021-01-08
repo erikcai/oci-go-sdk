@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -17,6 +17,14 @@ import (
 // CreateLdapBindAccountDetails Account details for LDAP bind account to be used in creating outbound connector.
 type CreateLdapBindAccountDetails struct {
 
+	// The availability domain the outbound connector is in. May be unset
+	// as a blank or NULL value.
+	// Example: `Uocm:PHX-AD-1`
+	AvailabilityDomain *string `mandatory:"true" json:"availabilityDomain"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the outbound connector.
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
 	// Array of server endpoints to use while trying to connect while using LDAP bind account.
 	Endpoints []Endpoint `mandatory:"true" json:"endpoints"`
 
@@ -25,14 +33,6 @@ type CreateLdapBindAccountDetails struct {
 
 	// The password for the LDAP bind account.
 	Password *string `mandatory:"true" json:"password"`
-
-	// The availability domain the outbound connector is in. May be unset
-	// as a blank or NULL value.
-	// Example: `Uocm:PHX-AD-1`
-	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
-
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the outbound connector.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
 
 	// A user-friendly name. It does not have to be unique, and it is changeable.
 	// Avoid entering confidential information.

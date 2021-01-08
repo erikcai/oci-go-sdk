@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -127,6 +127,12 @@ type DbSystem struct {
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DNS record for the SCAN IP addresses that are associated with the DB system.
 	ScanDnsRecordId *string `mandatory:"false" json:"scanDnsRecordId"`
+
+	// The FQDN of the DNS record for the SCAN IP addresses that are associated with the DB system.
+	ScanDnsName *string `mandatory:"false" json:"scanDnsName"`
+
+	// The OCID of the zone the DB system is associated with.
+	ZoneId *string `mandatory:"false" json:"zoneId"`
 
 	// The data storage size, in gigabytes, that is currently available to the DB system. Applies only for virtual machine DB systems.
 	DataStorageSizeInGBs *int `mandatory:"false" json:"dataStorageSizeInGBs"`

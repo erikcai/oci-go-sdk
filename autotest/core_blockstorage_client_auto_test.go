@@ -1167,6 +1167,50 @@ func TestBlockstorageClientDeleteVolumeKmsKey(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
+func TestBlockstorageClientGetBlockVolumeReplica(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetBlockVolumeReplica")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetBlockVolumeReplica is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "GetBlockVolumeReplica", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "GetBlockVolumeReplica")
+	assert.NoError(t, err)
+
+	type GetBlockVolumeReplicaRequestInfo struct {
+		ContainerId string
+		Request     core.GetBlockVolumeReplicaRequest
+	}
+
+	var requests []GetBlockVolumeReplicaRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetBlockVolumeReplica(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientGetBootVolume(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1291,6 +1335,50 @@ func TestBlockstorageClientGetBootVolumeKmsKey(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetBootVolumeKmsKey(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
+func TestBlockstorageClientGetBootVolumeReplica(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "GetBootVolumeReplica")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetBootVolumeReplica is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "GetBootVolumeReplica", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "GetBootVolumeReplica")
+	assert.NoError(t, err)
+
+	type GetBootVolumeReplicaRequestInfo struct {
+		ContainerId string
+		Request     core.GetBootVolumeReplicaRequest
+	}
+
+	var requests []GetBootVolumeReplicaRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetBootVolumeReplica(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -1661,6 +1749,60 @@ func TestBlockstorageClientGetVolumeKmsKey(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
+func TestBlockstorageClientListBlockVolumeReplicas(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListBlockVolumeReplicas")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListBlockVolumeReplicas is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ListBlockVolumeReplicas", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "ListBlockVolumeReplicas")
+	assert.NoError(t, err)
+
+	type ListBlockVolumeReplicasRequestInfo struct {
+		ContainerId string
+		Request     core.ListBlockVolumeReplicasRequest
+	}
+
+	var requests []ListBlockVolumeReplicasRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListBlockVolumeReplicasRequest)
+				return c.ListBlockVolumeReplicas(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListBlockVolumeReplicasResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListBlockVolumeReplicasResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
 func TestBlockstorageClientListBootVolumeBackups(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1705,6 +1847,60 @@ func TestBlockstorageClientListBootVolumeBackups(t *testing.T) {
 			typedListResponses := make([]core.ListBootVolumeBackupsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(core.ListBootVolumeBackupsResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="blockStorage" email="sic_block_storage_cp_us_grp@oracle.com" jiraProject="BLOCK" opsJiraProject="BSCP"
+func TestBlockstorageClientListBootVolumeReplicas(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("core", "ListBootVolumeReplicas")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListBootVolumeReplicas is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("core", "Blockstorage", "ListBootVolumeReplicas", createBlockstorageClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(core.BlockstorageClient)
+
+	body, err := testClient.getRequests("core", "ListBootVolumeReplicas")
+	assert.NoError(t, err)
+
+	type ListBootVolumeReplicasRequestInfo struct {
+		ContainerId string
+		Request     core.ListBootVolumeReplicasRequest
+	}
+
+	var requests []ListBootVolumeReplicasRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*core.ListBootVolumeReplicasRequest)
+				return c.ListBootVolumeReplicas(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]core.ListBootVolumeReplicasResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(core.ListBootVolumeReplicasResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)

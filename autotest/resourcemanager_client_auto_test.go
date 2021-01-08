@@ -155,6 +155,50 @@ func TestResourceManagerClientChangeStackCompartment(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientChangeTemplateCompartment(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "ChangeTemplateCompartment")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ChangeTemplateCompartment is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "ChangeTemplateCompartment", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "ChangeTemplateCompartment")
+	assert.NoError(t, err)
+
+	type ChangeTemplateCompartmentRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.ChangeTemplateCompartmentRequest
+	}
+
+	var requests []ChangeTemplateCompartmentRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ChangeTemplateCompartment(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
 func TestResourceManagerClientCreateConfigurationSourceProvider(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -299,6 +343,50 @@ func TestResourceManagerClientCreateStack(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientCreateTemplate(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "CreateTemplate")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("CreateTemplate is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "CreateTemplate", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "CreateTemplate")
+	assert.NoError(t, err)
+
+	type CreateTemplateRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.CreateTemplateRequest
+	}
+
+	var requests []CreateTemplateRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.CreateTemplate(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
 func TestResourceManagerClientDeleteConfigurationSourceProvider(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -379,6 +467,50 @@ func TestResourceManagerClientDeleteStack(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteStack(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientDeleteTemplate(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "DeleteTemplate")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("DeleteTemplate is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "DeleteTemplate", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "DeleteTemplate")
+	assert.NoError(t, err)
+
+	type DeleteTemplateRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.DeleteTemplateRequest
+	}
+
+	var requests []DeleteTemplateRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.DeleteTemplate(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -837,6 +969,138 @@ func TestResourceManagerClientGetStackTfState(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientGetTemplate(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "GetTemplate")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetTemplate is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetTemplate", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "GetTemplate")
+	assert.NoError(t, err)
+
+	type GetTemplateRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.GetTemplateRequest
+	}
+
+	var requests []GetTemplateRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetTemplate(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientGetTemplateLogo(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "GetTemplateLogo")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetTemplateLogo is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetTemplateLogo", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "GetTemplateLogo")
+	assert.NoError(t, err)
+
+	type GetTemplateLogoRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.GetTemplateLogoRequest
+	}
+
+	var requests []GetTemplateLogoRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetTemplateLogo(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientGetTemplateTfConfig(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "GetTemplateTfConfig")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetTemplateTfConfig is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "GetTemplateTfConfig", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "GetTemplateTfConfig")
+	assert.NoError(t, err)
+
+	type GetTemplateTfConfigRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.GetTemplateTfConfigRequest
+	}
+
+	var requests []GetTemplateTfConfigRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetTemplateTfConfig(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
 func TestResourceManagerClientGetWorkRequest(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -1131,6 +1395,104 @@ func TestResourceManagerClientListStacks(t *testing.T) {
 			typedListResponses := make([]resourcemanager.ListStacksResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(resourcemanager.ListStacksResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientListTemplateCategories(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "ListTemplateCategories")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTemplateCategories is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "ListTemplateCategories", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "ListTemplateCategories")
+	assert.NoError(t, err)
+
+	type ListTemplateCategoriesRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.ListTemplateCategoriesRequest
+	}
+
+	var requests []ListTemplateCategoriesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.ListTemplateCategories(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientListTemplates(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "ListTemplates")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListTemplates is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "ListTemplates", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "ListTemplates")
+	assert.NoError(t, err)
+
+	type ListTemplatesRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.ListTemplatesRequest
+	}
+
+	var requests []ListTemplatesRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*resourcemanager.ListTemplatesRequest)
+				return c.ListTemplates(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]resourcemanager.ListTemplatesResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(resourcemanager.ListTemplatesResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -1483,6 +1845,50 @@ func TestResourceManagerClientUpdateStack(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateStack(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="team_oci_orm_us_grp@oracle.com" jiraProject="ORCH" opsJiraProject="OS"
+func TestResourceManagerClientUpdateTemplate(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("resourcemanager", "UpdateTemplate")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("UpdateTemplate is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("resourcemanager", "ResourceManager", "UpdateTemplate", createResourceManagerClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(resourcemanager.ResourceManagerClient)
+
+	body, err := testClient.getRequests("resourcemanager", "UpdateTemplate")
+	assert.NoError(t, err)
+
+	type UpdateTemplateRequestInfo struct {
+		ContainerId string
+		Request     resourcemanager.UpdateTemplateRequest
+	}
+
+	var requests []UpdateTemplateRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.UpdateTemplate(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

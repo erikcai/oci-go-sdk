@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -118,6 +118,10 @@ func (m *createtaskvalidationdetails) UnmarshalPolymorphicJSON(data []byte) (int
 		mm := CreateTaskValidationFromDataLoaderTask{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "PIPELINE_TASK":
+		mm := CreateTaskValidationFromPipelineTask{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "INTEGRATION_TASK":
 		mm := CreateTaskValidationFromIntegrationTask{}
 		err = json.Unmarshal(data, &mm)
@@ -208,11 +212,13 @@ type CreateTaskValidationDetailsModelTypeEnum string
 const (
 	CreateTaskValidationDetailsModelTypeIntegrationTask CreateTaskValidationDetailsModelTypeEnum = "INTEGRATION_TASK"
 	CreateTaskValidationDetailsModelTypeDataLoaderTask  CreateTaskValidationDetailsModelTypeEnum = "DATA_LOADER_TASK"
+	CreateTaskValidationDetailsModelTypePipelineTask    CreateTaskValidationDetailsModelTypeEnum = "PIPELINE_TASK"
 )
 
 var mappingCreateTaskValidationDetailsModelType = map[string]CreateTaskValidationDetailsModelTypeEnum{
 	"INTEGRATION_TASK": CreateTaskValidationDetailsModelTypeIntegrationTask,
 	"DATA_LOADER_TASK": CreateTaskValidationDetailsModelTypeDataLoaderTask,
+	"PIPELINE_TASK":    CreateTaskValidationDetailsModelTypePipelineTask,
 }
 
 // GetCreateTaskValidationDetailsModelTypeEnumValues Enumerates the set of values for CreateTaskValidationDetailsModelTypeEnum

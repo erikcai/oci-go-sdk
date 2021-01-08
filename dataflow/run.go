@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -32,7 +32,7 @@ type Run struct {
 	// See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
 	FileUri *string `mandatory:"true" json:"fileUri"`
 
-	// The ID of a run.
+	// The OCID of a run.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The Spark language.
@@ -91,6 +91,10 @@ type Run struct {
 
 	// A user-friendly name. This name is not necessarily unique.
 	DisplayName *string `mandatory:"false" json:"displayName"`
+
+	// The input option String used for spark-submit command, refer to https://spark.apache.org/docs/latest/submitting-applications.html#launching-applications-with-spark-submit for more details. Currently supported options include --class --file, --jars, --conf, --py-files, main file with arguments.
+	// In cases where this property is optional and users still set it, for example, in CreateApplicationDetails and UpdateApplicationDetails, Data Flow service will combine it with configuration property.
+	Exec *string `mandatory:"false" json:"exec"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).

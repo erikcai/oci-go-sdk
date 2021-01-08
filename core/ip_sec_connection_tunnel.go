@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -52,6 +52,8 @@ type IpSecConnectionTunnel struct {
 
 	BgpSessionInfo *BgpSessionInfo `mandatory:"false" json:"bgpSessionInfo"`
 
+	EncryptionDomainConfig *EncryptionDomainConfig `mandatory:"false" json:"encryptionDomainConfig"`
+
 	// The type of routing used for this tunnel (either BGP dynamic routing or static routing).
 	Routing IpSecConnectionTunnelRoutingEnum `mandatory:"false" json:"routing,omitempty"`
 
@@ -76,12 +78,14 @@ const (
 	IpSecConnectionTunnelStatusUp                 IpSecConnectionTunnelStatusEnum = "UP"
 	IpSecConnectionTunnelStatusDown               IpSecConnectionTunnelStatusEnum = "DOWN"
 	IpSecConnectionTunnelStatusDownForMaintenance IpSecConnectionTunnelStatusEnum = "DOWN_FOR_MAINTENANCE"
+	IpSecConnectionTunnelStatusPartialUp          IpSecConnectionTunnelStatusEnum = "PARTIAL_UP"
 )
 
 var mappingIpSecConnectionTunnelStatus = map[string]IpSecConnectionTunnelStatusEnum{
 	"UP":                   IpSecConnectionTunnelStatusUp,
 	"DOWN":                 IpSecConnectionTunnelStatusDown,
 	"DOWN_FOR_MAINTENANCE": IpSecConnectionTunnelStatusDownForMaintenance,
+	"PARTIAL_UP":           IpSecConnectionTunnelStatusPartialUp,
 }
 
 // GetIpSecConnectionTunnelStatusEnumValues Enumerates the set of values for IpSecConnectionTunnelStatusEnum
@@ -150,11 +154,13 @@ type IpSecConnectionTunnelRoutingEnum string
 const (
 	IpSecConnectionTunnelRoutingBgp    IpSecConnectionTunnelRoutingEnum = "BGP"
 	IpSecConnectionTunnelRoutingStatic IpSecConnectionTunnelRoutingEnum = "STATIC"
+	IpSecConnectionTunnelRoutingPolicy IpSecConnectionTunnelRoutingEnum = "POLICY"
 )
 
 var mappingIpSecConnectionTunnelRouting = map[string]IpSecConnectionTunnelRoutingEnum{
 	"BGP":    IpSecConnectionTunnelRoutingBgp,
 	"STATIC": IpSecConnectionTunnelRoutingStatic,
+	"POLICY": IpSecConnectionTunnelRoutingPolicy,
 }
 
 // GetIpSecConnectionTunnelRoutingEnumValues Enumerates the set of values for IpSecConnectionTunnelRoutingEnum

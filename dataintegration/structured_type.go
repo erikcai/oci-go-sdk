@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -117,6 +117,7 @@ const (
 	StructuredTypeModelTypeJavaType       StructuredTypeModelTypeEnum = "JAVA_TYPE"
 	StructuredTypeModelTypeConfiguredType StructuredTypeModelTypeEnum = "CONFIGURED_TYPE"
 	StructuredTypeModelTypeCompositeType  StructuredTypeModelTypeEnum = "COMPOSITE_TYPE"
+	StructuredTypeModelTypeDerivedType    StructuredTypeModelTypeEnum = "DERIVED_TYPE"
 )
 
 var mappingStructuredTypeModelType = map[string]StructuredTypeModelTypeEnum{
@@ -126,6 +127,7 @@ var mappingStructuredTypeModelType = map[string]StructuredTypeModelTypeEnum{
 	"JAVA_TYPE":       StructuredTypeModelTypeJavaType,
 	"CONFIGURED_TYPE": StructuredTypeModelTypeConfiguredType,
 	"COMPOSITE_TYPE":  StructuredTypeModelTypeCompositeType,
+	"DERIVED_TYPE":    StructuredTypeModelTypeDerivedType,
 }
 
 // GetStructuredTypeModelTypeEnumValues Enumerates the set of values for StructuredTypeModelTypeEnum

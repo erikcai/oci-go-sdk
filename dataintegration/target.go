@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -61,6 +61,10 @@ type Target struct {
 
 	// Specifies if this uses a predefined shape.
 	IsPredefinedShape *bool `mandatory:"false" json:"isPredefinedShape"`
+
+	SchemaDriftConfig *SchemaDriftConfig `mandatory:"false" json:"schemaDriftConfig"`
+
+	FixedDataShape *Shape `mandatory:"false" json:"fixedDataShape"`
 
 	WriteOperationConfig *WriteOperationConfig `mandatory:"false" json:"writeOperationConfig"`
 
@@ -166,6 +170,8 @@ func (m *Target) UnmarshalJSON(data []byte) (e error) {
 		IsCopyFields         *bool                  `json:"isCopyFields"`
 		IsPredefinedShape    *bool                  `json:"isPredefinedShape"`
 		DataProperty         TargetDataPropertyEnum `json:"dataProperty"`
+		SchemaDriftConfig    *SchemaDriftConfig     `json:"schemaDriftConfig"`
+		FixedDataShape       *Shape                 `json:"fixedDataShape"`
 		WriteOperationConfig *WriteOperationConfig  `json:"writeOperationConfig"`
 	}{}
 
@@ -224,6 +230,10 @@ func (m *Target) UnmarshalJSON(data []byte) (e error) {
 	m.IsPredefinedShape = model.IsPredefinedShape
 
 	m.DataProperty = model.DataProperty
+
+	m.SchemaDriftConfig = model.SchemaDriftConfig
+
+	m.FixedDataShape = model.FixedDataShape
 
 	m.WriteOperationConfig = model.WriteOperationConfig
 

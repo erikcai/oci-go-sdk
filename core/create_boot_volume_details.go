@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -66,6 +66,10 @@ type CreateBootVolumeDetails struct {
 
 	// Specifies whether the auto-tune performance is enabled for this boot volume.
 	IsAutoTuneEnabled *bool `mandatory:"false" json:"isAutoTuneEnabled"`
+
+	// The list of boot volume replicas to be enabled for this boot volume
+	// in the specified destination availability domains.
+	BootVolumeReplicas []BootVolumeReplicaDetails `mandatory:"false" json:"bootVolumeReplicas"`
 }
 
 func (m CreateBootVolumeDetails) String() string {
@@ -83,6 +87,7 @@ func (m *CreateBootVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 		SizeInGBs          *int64                            `json:"sizeInGBs"`
 		VpusPerGB          *int64                            `json:"vpusPerGB"`
 		IsAutoTuneEnabled  *bool                             `json:"isAutoTuneEnabled"`
+		BootVolumeReplicas []BootVolumeReplicaDetails        `json:"bootVolumeReplicas"`
 		AvailabilityDomain *string                           `json:"availabilityDomain"`
 		CompartmentId      *string                           `json:"compartmentId"`
 		SourceDetails      bootvolumesourcedetails           `json:"sourceDetails"`
@@ -108,6 +113,11 @@ func (m *CreateBootVolumeDetails) UnmarshalJSON(data []byte) (e error) {
 	m.VpusPerGB = model.VpusPerGB
 
 	m.IsAutoTuneEnabled = model.IsAutoTuneEnabled
+
+	m.BootVolumeReplicas = make([]BootVolumeReplicaDetails, len(model.BootVolumeReplicas))
+	for i, n := range model.BootVolumeReplicas {
+		m.BootVolumeReplicas[i] = n
+	}
 
 	m.AvailabilityDomain = model.AvailabilityDomain
 

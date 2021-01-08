@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -17,6 +17,22 @@ import (
 // LdapBindAccountSummary Summary information for LDAP bind account from outbound connector.
 type LdapBindAccountSummary struct {
 
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the outbound connector.
+	CompartmentId *string `mandatory:"true" json:"compartmentId"`
+
+	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the outbound connector.
+	Id *string `mandatory:"true" json:"id"`
+
+	// A user-friendly name. It does not have to be unique, and it is changeable.
+	// Avoid entering confidential information.
+	// Example: `My outbound connector`
+	DisplayName *string `mandatory:"true" json:"displayName"`
+
+	// The date and time the outbound connector was created
+	// in RFC 3339 (https://tools.ietf.org/rfc/rfc3339) timestamp format.
+	// Example: `2016-08-25T21:10:29.600Z`
+	TimeCreated *common.SDKTime `mandatory:"true" json:"timeCreated"`
+
 	// Array of server endpoints to use while trying to connect while using LDAP bind account
 	Endpoints []Endpoint `mandatory:"true" json:"endpoints"`
 
@@ -27,22 +43,6 @@ type LdapBindAccountSummary struct {
 	// as a blank or NULL value.
 	// Example: `Uocm:PHX-AD-1`
 	AvailabilityDomain *string `mandatory:"false" json:"availabilityDomain"`
-
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the outbound connector.
-	CompartmentId *string `mandatory:"false" json:"compartmentId"`
-
-	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the outbound connector.
-	Id *string `mandatory:"false" json:"id"`
-
-	// A user-friendly name. It does not have to be unique, and it is changeable.
-	// Avoid entering confidential information.
-	// Example: `My outbound connector`
-	DisplayName *string `mandatory:"false" json:"displayName"`
-
-	// The date and time the outbound connector was created
-	// in RFC 3339 (https://tools.ietf.org/rfc/rfc3339) timestamp format.
-	// Example: `2016-08-25T21:10:29.600Z`
-	TimeCreated *common.SDKTime `mandatory:"false" json:"timeCreated"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair
 	//  with no predefined name, type, or namespace.
@@ -56,7 +56,7 @@ type LdapBindAccountSummary struct {
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
 
 	// The current state of this outbound connector.
-	LifecycleState OutboundConnectorSummaryLifecycleStateEnum `mandatory:"false" json:"lifecycleState,omitempty"`
+	LifecycleState OutboundConnectorSummaryLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 }
 
 //GetAvailabilityDomain returns AvailabilityDomain

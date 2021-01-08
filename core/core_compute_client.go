@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -956,7 +956,7 @@ func (client ComputeClient) createImage(ctx context.Context, request common.OCIR
 // CreateInstanceConsoleConnection Creates a new console connection to the specified instance.
 // After the console connection has been created and is available,
 // you connect to the console using SSH.
-// For more information about console access, see Accessing the Console (https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
+// For more information about instance console connections, see Troubleshooting Instances Using Instance Console Connections (https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
 func (client ComputeClient) CreateInstanceConsoleConnection(ctx context.Context, request CreateInstanceConsoleConnectionRequest) (response CreateInstanceConsoleConnectionResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()
@@ -2496,11 +2496,13 @@ func (client ComputeClient) getWindowsInstanceInitialCredentials(ctx context.Con
 // - **STOP** - Powers off the instance.
 // - **RESET** - Powers off the instance and then powers it back on.
 // - **SOFTSTOP** - Gracefully shuts down the instance by sending a shutdown command to the operating system.
-// If the applications that run on the instance take a long time to shut down, they could be improperly stopped, resulting
-// in data corruption. To avoid this, shut down the instance using the commands available in the OS before you softstop the
+// After waiting 15 minutes for the OS to shut down, the instance is powered off.
+// If the applications that run on the instance take more than 15 minutes to shut down, they could be improperly stopped, resulting
+// in data corruption. To avoid this, manually shut down the instance using the commands available in the OS before you softstop the
 // instance.
-// - **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system, and
-// then powers the instance back on.
+// - **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system.
+// After waiting 15 minutes for the OS to shut down, the instance is powered off and
+// then powered back on.
 // - **SENDDIAGNOSTICINTERRUPT** - For advanced users. **Warning: Sending a diagnostic interrupt to a live system can
 // cause data corruption or system failure.** Sends a diagnostic interrupt that causes the instance's
 // OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a
@@ -3514,7 +3516,7 @@ func (client ComputeClient) listImages(ctx context.Context, request common.OCIRe
 }
 
 // ListInstanceConsoleConnections Lists the console connections for the specified compartment or instance.
-// For more information about console access, see Accessing the Console (https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
+// For more information about instance console connections, see Troubleshooting Instances Using Instance Console Connections (https://docs.cloud.oracle.com/Content/Compute/References/serialconsole.htm).
 func (client ComputeClient) ListInstanceConsoleConnections(ctx context.Context, request ListInstanceConsoleConnectionsRequest) (response ListInstanceConsoleConnectionsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

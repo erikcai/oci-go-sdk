@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -17,14 +17,14 @@ import (
 // WrappedImportKey The representation of WrappedImportKey
 type WrappedImportKey struct {
 
-	// The key material to import, wrapped by the vault's public RSA wrapping key and base64-encoded.
+	// The key material to import, wrapped by the vault's RSA public wrapping key and base64-encoded.
 	KeyMaterial *string `mandatory:"true" json:"keyMaterial"`
 
 	// The wrapping mechanism to use during key import.
-	// RSA_OAEP_AES_SHA256 invokes the RSA AES key wrap mechanism, which generates a temporary AES key. The temporary AES key is wrapped
-	// by the Vault RSA public wrapping key, creating a wrapped temporary AES key. The temporary AES key is also used to wrap the private key material.
+	// `RSA_OAEP_AES_SHA256` invokes the RSA AES key wrap mechanism, which generates a temporary AES key. The temporary AES key is wrapped
+	// by the vault's RSA public wrapping key, creating a wrapped temporary AES key. The temporary AES key is also used to wrap the private key material.
 	// The wrapped temporary AES key and the wrapped exportable key material are concatenated, producing concatenated blob output that jointly represents them.
-	// RSA_OAEP_SHA256 means that the exportable key material is wrapped by the Vault RSA public wrapping key.
+	// `RSA_OAEP_SHA256` means that the exportable key material is wrapped by the vault's RSA public wrapping key.
 	WrappingAlgorithm WrappedImportKeyWrappingAlgorithmEnum `mandatory:"true" json:"wrappingAlgorithm"`
 }
 

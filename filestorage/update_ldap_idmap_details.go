@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -28,8 +28,10 @@ type UpdateLdapIdmapDetails struct {
 	// Integer for how long to cache if idmap information is missing.
 	NegativeCacheLifetimeSeconds *int `mandatory:"false" json:"negativeCacheLifetimeSeconds"`
 
+	// All LDAP searches are recursive starting at this Base Distinguished user name.
 	BaseDistinguishedUserName *string `mandatory:"false" json:"baseDistinguishedUserName"`
 
+	// All LDAP searches are recursive starting at this Base Distinguished group name.
 	BaseDistinguishedGroupName *string `mandatory:"false" json:"baseDistinguishedGroupName"`
 
 	// OCID of the first LDAP Account

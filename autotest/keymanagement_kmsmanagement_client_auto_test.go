@@ -457,6 +457,50 @@ func TestKmsManagementClientGetKeyVersion(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
+func TestKmsManagementClientGetReplicationStatus(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("keymanagement", "GetReplicationStatus")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("GetReplicationStatus is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("keymanagement", "KmsManagement", "GetReplicationStatus", createKmsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(keymanagement.KmsManagementClient)
+
+	body, err := testClient.getRequests("keymanagement", "GetReplicationStatus")
+	assert.NoError(t, err)
+
+	type GetReplicationStatusRequestInfo struct {
+		ContainerId string
+		Request     keymanagement.GetReplicationStatusRequest
+	}
+
+	var requests []GetReplicationStatusRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, req := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			req.Request.RequestMetadata.RetryPolicy = retryPolicy
+			response, err := c.GetReplicationStatus(context.Background(), req.Request)
+			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="sparta_kms_us_grp@oracle.com" jiraProject="KMS" opsJiraProject="KMS"
 func TestKmsManagementClientGetWrappingKey(t *testing.T) {
 	defer failTestOnPanic(t)
 

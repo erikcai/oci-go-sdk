@@ -1,4 +1,4 @@
-// Copyright (c) 2016, 2018, 2020, Oracle and/or its affiliates.  All rights reserved.
+// Copyright (c) 2016, 2018, 2021, Oracle and/or its affiliates.  All rights reserved.
 // This software is dual-licensed to you under the Universal Permissive License (UPL) 1.0 as shown at https://oss.oracle.com/licenses/upl or Apache License 2.0 as shown at http://www.apache.org/licenses/LICENSE-2.0. You may choose either license.
 // Code generated. DO NOT EDIT.
 
@@ -37,7 +37,7 @@ type ForeignKey struct {
 	// The delete rule.
 	DeleteRule *int `mandatory:"false" json:"deleteRule"`
 
-	ReferenceUniqueKey *UniqueKey `mandatory:"false" json:"referenceUniqueKey"`
+	ReferenceUniqueKey UniqueKey `mandatory:"false" json:"referenceUniqueKey"`
 
 	// The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
 	ObjectStatus *int `mandatory:"false" json:"objectStatus"`
@@ -59,4 +59,55 @@ func (m ForeignKey) MarshalJSON() (buff []byte, e error) {
 	}
 
 	return json.Marshal(&s)
+}
+
+// UnmarshalJSON unmarshals from json
+func (m *ForeignKey) UnmarshalJSON(data []byte) (e error) {
+	model := struct {
+		Key                *string          `json:"key"`
+		ModelVersion       *string          `json:"modelVersion"`
+		ParentRef          *ParentReference `json:"parentRef"`
+		Name               *string          `json:"name"`
+		AttributeRefs      []KeyAttribute   `json:"attributeRefs"`
+		UpdateRule         *int             `json:"updateRule"`
+		DeleteRule         *int             `json:"deleteRule"`
+		ReferenceUniqueKey uniquekey        `json:"referenceUniqueKey"`
+		ObjectStatus       *int             `json:"objectStatus"`
+	}{}
+
+	e = json.Unmarshal(data, &model)
+	if e != nil {
+		return
+	}
+	var nn interface{}
+	m.Key = model.Key
+
+	m.ModelVersion = model.ModelVersion
+
+	m.ParentRef = model.ParentRef
+
+	m.Name = model.Name
+
+	m.AttributeRefs = make([]KeyAttribute, len(model.AttributeRefs))
+	for i, n := range model.AttributeRefs {
+		m.AttributeRefs[i] = n
+	}
+
+	m.UpdateRule = model.UpdateRule
+
+	m.DeleteRule = model.DeleteRule
+
+	nn, e = model.ReferenceUniqueKey.UnmarshalPolymorphicJSON(model.ReferenceUniqueKey.JsonData)
+	if e != nil {
+		return
+	}
+	if nn != nil {
+		m.ReferenceUniqueKey = nn.(UniqueKey)
+	} else {
+		m.ReferenceUniqueKey = nil
+	}
+
+	m.ObjectStatus = model.ObjectStatus
+
+	return
 }
