@@ -12,7 +12,7 @@
 package sch
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // ChangeServiceConnectorCompartmentDetails The configuration details for moving a service connector to a different compartment.

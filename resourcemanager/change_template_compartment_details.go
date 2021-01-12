@@ -13,7 +13,7 @@
 package resourcemanager
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // ChangeTemplateCompartmentDetails The details for moving a template to a different compartment.

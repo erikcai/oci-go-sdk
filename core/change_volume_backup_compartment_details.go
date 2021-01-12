@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // ChangeVolumeBackupCompartmentDetails Contains the details for the compartment to move the volume backup to.

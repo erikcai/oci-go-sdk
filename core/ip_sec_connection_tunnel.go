@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // IpSecConnectionTunnel Information about a single tunnel in an IPSec connection. This object does not include the tunnel's

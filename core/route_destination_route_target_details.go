@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // RouteDestinationRouteTargetDetails The configuration details for the destination target pair used to call remove route rules.

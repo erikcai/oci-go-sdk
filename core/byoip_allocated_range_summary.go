@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // ByoipAllocatedRangeSummary A summary of CIDR block subranges that are currently allocated to an IP pool.

@@ -10,7 +10,7 @@
 package jms
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // ApplicationView A view resource on the application in the specified time period. An application is a Java application that can be executed by JRE installations. Application is independent to the Java Runtime or the installation.

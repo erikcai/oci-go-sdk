@@ -5,7 +5,7 @@
 package operationsinsights
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 	"net/http"
 )
 

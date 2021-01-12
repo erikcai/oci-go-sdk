@@ -10,7 +10,7 @@
 package jms
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // RequestSummarizedManagedInstancesDetails Parameters for summarizing observed managed instances for a specified time period.

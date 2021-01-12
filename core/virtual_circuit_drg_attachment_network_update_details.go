@@ -16,7 +16,7 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // VirtualCircuitDrgAttachmentNetworkUpdateDetails Specifies the Update details for the Virtual Circuit Attachment

@@ -10,7 +10,7 @@
 package database
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // CreateCloudAutonomousVmClusterDetails Details for the create cloud Autonomous VM cluster operation.

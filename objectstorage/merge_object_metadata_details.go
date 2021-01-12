@@ -12,7 +12,7 @@
 package objectstorage
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // MergeObjectMetadataDetails To merge Objects User metadata with existing metadata we specify the new metadata in the body.

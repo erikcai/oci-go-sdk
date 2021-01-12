@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // UpdateInstanceAgentConfigDetails Configuration options for the Oracle Cloud Agent software running on the instance.

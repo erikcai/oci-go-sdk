@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // ClientVpnEndpoint The ClientVPNEnpoint is a server endpoint that allow customer get access to openVPN service.

@@ -16,7 +16,7 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // ComputeImageCapabilitySchema Compute Image Capability Schema is a set of capabilities that filter the compute global capability schema

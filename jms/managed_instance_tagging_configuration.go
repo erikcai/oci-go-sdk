@@ -10,7 +10,7 @@
 package jms
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // ManagedInstanceTaggingConfiguration The tag key-value pair that is used to associate managed instances to fleet

@@ -10,7 +10,7 @@
 package loganalytics
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // WarningReferenceDetails A list of LogAnalyticsWarning references.  Used as input to APIs which operate on a

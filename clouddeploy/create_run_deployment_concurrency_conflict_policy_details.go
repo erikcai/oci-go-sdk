@@ -10,7 +10,7 @@
 package clouddeploy
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // CreateRunDeploymentConcurrencyConflictPolicyDetails This describes the policy in case there is a deployment already running on the target pipeline.

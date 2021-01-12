@@ -11,7 +11,7 @@
 package loadbalancer
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // UpdateCidrBlocksDetails The configuration details for updating CidrBlocks. If an empty array is sent the request will be disallowed.

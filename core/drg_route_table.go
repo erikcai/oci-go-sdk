@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // DrgRouteTable The DRG Route Table is the data table stored in the DRG that manages routing inside the DRG.

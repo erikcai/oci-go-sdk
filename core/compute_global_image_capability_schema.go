@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v31/common"
+	"github.com/oracle/oci-go-sdk/v32/common"
 )
 
 // ComputeGlobalImageCapabilitySchema Compute Global Image Capability Schema is a container for a set of compute global image capability schema versions
