@@ -5622,7 +5622,7 @@
       <dependency>
         <groupId>com.oracle.pic.dbaas</groupId>
         <artifactId>dbaas-api-spec</artifactId>
-        <version>0.1.650</version>
+        <version>0.1.651</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.ffsw</groupId>
@@ -5817,7 +5817,7 @@
       <dependency>
         <groupId>com.oracle.pic.migration.application</groupId>
         <artifactId>ams-spec</artifactId>
-        <version>0.1.48</version>
+        <version>0.1.51</version>
       </dependency>
       <dependency>
         <groupId>oracle.dfcs.server</groupId>

@@ -27,6 +27,9 @@ type ExadataInfrastructureContact struct {
 
 	// The phone number for the Exadata Infrastructure contact.
 	PhoneNumber *string `mandatory:"false" json:"phoneNumber"`
+
+	// If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure contact is not a valid MOS contact.
+	IsContactMosValidated *bool `mandatory:"false" json:"isContactMosValidated"`
 }
 
 func (m ExadataInfrastructureContact) String() string {
