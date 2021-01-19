@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // DrgRouteDistribution A Route Distribution establishes how routes get imported into DRG Route Tables and exported through the DRG attachments.

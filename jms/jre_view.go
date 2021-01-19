@@ -10,7 +10,7 @@
 package jms
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // JreView A view resource on the Java Runtime Environment in the specified time period. A Java Runtime Environment (JRE) is a certain distribution of a Java Runtime identified by its vendor and version

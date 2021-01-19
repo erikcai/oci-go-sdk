@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // AttachInstancePoolInstanceDetails Contains an instance and availability domain information for attaching an instance to the pool.

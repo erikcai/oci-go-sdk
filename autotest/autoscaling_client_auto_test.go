@@ -1,8 +1,8 @@
 package autotest
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/autoscaling"
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/autoscaling"
+	"github.com/oracle/oci-go-sdk/v33/common"
 
 	"context"
 	"encoding/json"

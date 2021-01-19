@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // LocalPeeringConnection Details regarding a local peering connection, which is an entity that allows two VCNs to communicate

@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // LocalPeeringTokenDetails An object containing a generated peering token to be given to a peer who then accepts the token as part of the peering handshake process.

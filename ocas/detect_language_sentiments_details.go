@@ -12,7 +12,7 @@
 package ocas
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // DetectLanguageSentimentsDetails The document details for sentiments detect call

@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/oracle/oci-go-sdk/v32/common"
-	"github.com/oracle/oci-go-sdk/v32/database"
-	"github.com/oracle/oci-go-sdk/v32/example/helpers"
+	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/oracle/oci-go-sdk/v33/database"
+	"github.com/oracle/oci-go-sdk/v33/example/helpers"
 )
 
 func ExampleExaCCCreateDbHome() {

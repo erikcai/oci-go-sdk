@@ -10,7 +10,7 @@
 package jms
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // Fleet A Fleet is the primary administrative collection that an JMS customer interact with in order to perform functions across a subset of managed instances.

@@ -11,7 +11,7 @@
 package storagegateway
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // StatusReasons The reasons for the overall health status. The object can include an array of reason strings for the 'CRITICAL'

@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // ComputeInstanceGroupEnvironment Specifies the Compute Instance Group environment. The instances in the group will be a UNION of the results of each selectors in instanceGroupSelectors.

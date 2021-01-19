@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // RunValidationTestOnOkeStage Specifies Run validation on OKE stage, to validate ongoing deployment on OKE.

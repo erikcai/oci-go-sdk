@@ -16,7 +16,7 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // AmdMilanBmPlatformConfig The platform configuration of a bare metal instance specific to the AMD Milan platform.

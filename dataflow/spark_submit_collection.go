@@ -10,7 +10,7 @@
 package dataflow
 
 import (
-	"github.com/oracle/oci-go-sdk/v32/common"
+	"github.com/oracle/oci-go-sdk/v33/common"
 )
 
 // SparkSubmitCollection The results of a query for a list of spark submit objects. It contains SparkSubmitSummary items.

@@ -17,10 +17,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/oracle/oci-go-sdk/v32/autoscaling"
-	"github.com/oracle/oci-go-sdk/v32/common"
-	"github.com/oracle/oci-go-sdk/v32/core"
-	"github.com/oracle/oci-go-sdk/v32/example/helpers"
+	"github.com/oracle/oci-go-sdk/v33/autoscaling"
+	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/oracle/oci-go-sdk/v33/core"
+	"github.com/oracle/oci-go-sdk/v33/example/helpers"
 )
 
 // Example to showcase autoscaling configuration creation and eventual teardown

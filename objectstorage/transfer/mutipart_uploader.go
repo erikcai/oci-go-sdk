@@ -6,8 +6,8 @@ package transfer
 import (
 	"bytes"
 	"context"
-	"github.com/oracle/oci-go-sdk/v32/common"
-	"github.com/oracle/oci-go-sdk/v32/objectstorage"
+	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/oracle/oci-go-sdk/v33/objectstorage"
 	"io/ioutil"
 )
 
