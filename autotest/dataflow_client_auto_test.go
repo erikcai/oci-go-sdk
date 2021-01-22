@@ -287,50 +287,6 @@ func TestDataFlowClientCreateRun(t *testing.T) {
 }
 
 // IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
-func TestDataFlowClientCreateSparkSubmit(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("dataflow", "CreateSparkSubmit")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("CreateSparkSubmit is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("dataflow", "DataFlow", "CreateSparkSubmit", createDataFlowClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(dataflow.DataFlowClient)
-
-	body, err := testClient.getRequests("dataflow", "CreateSparkSubmit")
-	assert.NoError(t, err)
-
-	type CreateSparkSubmitRequestInfo struct {
-		ContainerId string
-		Request     dataflow.CreateSparkSubmitRequest
-	}
-
-	var requests []CreateSparkSubmitRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.CreateSparkSubmit(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
 func TestDataFlowClientDeleteApplication(t *testing.T) {
 	defer failTestOnPanic(t)
 
@@ -455,50 +411,6 @@ func TestDataFlowClientDeleteRun(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.DeleteRun(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
-func TestDataFlowClientDeleteSparkSubmit(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("dataflow", "DeleteSparkSubmit")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("DeleteSparkSubmit is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("dataflow", "DataFlow", "DeleteSparkSubmit", createDataFlowClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(dataflow.DataFlowClient)
-
-	body, err := testClient.getRequests("dataflow", "DeleteSparkSubmit")
-	assert.NoError(t, err)
-
-	type DeleteSparkSubmitRequestInfo struct {
-		ContainerId string
-		Request     dataflow.DeleteSparkSubmitRequest
-	}
-
-	var requests []DeleteSparkSubmitRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.DeleteSparkSubmit(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -675,50 +587,6 @@ func TestDataFlowClientGetRunLog(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.GetRunLog(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
-func TestDataFlowClientGetSparkSubmit(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("dataflow", "GetSparkSubmit")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("GetSparkSubmit is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("dataflow", "DataFlow", "GetSparkSubmit", createDataFlowClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(dataflow.DataFlowClient)
-
-	body, err := testClient.getRequests("dataflow", "GetSparkSubmit")
-	assert.NoError(t, err)
-
-	type GetSparkSubmitRequestInfo struct {
-		ContainerId string
-		Request     dataflow.GetSparkSubmitRequest
-	}
-
-	var requests []GetSparkSubmitRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.GetSparkSubmit(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)
@@ -977,60 +845,6 @@ func TestDataFlowClientListRuns(t *testing.T) {
 			typedListResponses := make([]dataflow.ListRunsResponse, len(listResponses))
 			for i, lr := range listResponses {
 				typedListResponses[i] = lr.(dataflow.ListRunsResponse)
-			}
-
-			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
-func TestDataFlowClientListSparkSubmits(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("dataflow", "ListSparkSubmits")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("ListSparkSubmits is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("dataflow", "DataFlow", "ListSparkSubmits", createDataFlowClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(dataflow.DataFlowClient)
-
-	body, err := testClient.getRequests("dataflow", "ListSparkSubmits")
-	assert.NoError(t, err)
-
-	type ListSparkSubmitsRequestInfo struct {
-		ContainerId string
-		Request     dataflow.ListSparkSubmitsRequest
-	}
-
-	var requests []ListSparkSubmitsRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, request := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			request.Request.RequestMetadata.RetryPolicy = retryPolicy
-			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
-				r := req.(*dataflow.ListSparkSubmitsRequest)
-				return c.ListSparkSubmits(context.Background(), *r)
-			}
-
-			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
-			typedListResponses := make([]dataflow.ListSparkSubmitsResponse, len(listResponses))
-			for i, lr := range listResponses {
-				typedListResponses[i] = lr.(dataflow.ListSparkSubmitsResponse)
 			}
 
 			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
@@ -1327,50 +1141,6 @@ func TestDataFlowClientUpdateRun(t *testing.T) {
 			}
 			req.Request.RequestMetadata.RetryPolicy = retryPolicy
 			response, err := c.UpdateRun(context.Background(), req.Request)
-			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
-			assert.NoError(t, err)
-			assert.Empty(t, message, message)
-		})
-	}
-}
-
-// IssueRoutingInfo tag="default" email="sss_dev_ww_grp@oracle.com" jiraProject="SSS" opsJiraProject="SSS"
-func TestDataFlowClientUpdateSparkSubmit(t *testing.T) {
-	defer failTestOnPanic(t)
-
-	enabled, err := testClient.isApiEnabled("dataflow", "UpdateSparkSubmit")
-	assert.NoError(t, err)
-	if !enabled {
-		t.Skip("UpdateSparkSubmit is not enabled by the testing service")
-	}
-
-	cc, err := testClient.createClientForOperation("dataflow", "DataFlow", "UpdateSparkSubmit", createDataFlowClientWithProvider)
-	assert.NoError(t, err)
-	c := cc.(dataflow.DataFlowClient)
-
-	body, err := testClient.getRequests("dataflow", "UpdateSparkSubmit")
-	assert.NoError(t, err)
-
-	type UpdateSparkSubmitRequestInfo struct {
-		ContainerId string
-		Request     dataflow.UpdateSparkSubmitRequest
-	}
-
-	var requests []UpdateSparkSubmitRequestInfo
-	var dataHolder []map[string]interface{}
-	err = json.Unmarshal([]byte(body), &dataHolder)
-	assert.NoError(t, err)
-	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
-	assert.NoError(t, err)
-
-	var retryPolicy *common.RetryPolicy
-	for i, req := range requests {
-		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
-			if withRetry == true {
-				retryPolicy = retryPolicyForTests()
-			}
-			req.Request.RequestMetadata.RetryPolicy = retryPolicy
-			response, err := c.UpdateSparkSubmit(context.Background(), req.Request)
 			message, err := testClient.validateResult(req.ContainerId, req.Request, response, err)
 			assert.NoError(t, err)
 			assert.Empty(t, message, message)

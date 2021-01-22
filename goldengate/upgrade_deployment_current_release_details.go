@@ -26,7 +26,7 @@ func (m UpgradeDeploymentCurrentReleaseDetails) String() string {
 func (m UpgradeDeploymentCurrentReleaseDetails) MarshalJSON() (buff []byte, e error) {
 	type MarshalTypeUpgradeDeploymentCurrentReleaseDetails UpgradeDeploymentCurrentReleaseDetails
 	s := struct {
-		DiscriminatorParam string `json:"upgradeDeploymentType"`
+		DiscriminatorParam string `json:"type"`
 		MarshalTypeUpgradeDeploymentCurrentReleaseDetails
 	}{
 		"CURRENT_RELEASE",

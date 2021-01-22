@@ -948,7 +948,7 @@ func TestGoldengateGoldenGateClientRestoreDeployment(t *testing.T) {
 	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
 	polymorphicRequestInfo["RestoreDeploymentDetails"] =
 		PolymorphicRequestUnmarshallingInfo{
-			DiscriminatorName: "restoreDeploymentType",
+			DiscriminatorName: "type",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"DEFAULT": &goldengate.DefaultRestoreDeploymentDetails{},
 			},
@@ -1003,7 +1003,7 @@ func TestGoldengateGoldenGateClientStartDeployment(t *testing.T) {
 	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
 	polymorphicRequestInfo["StartDeploymentDetails"] =
 		PolymorphicRequestUnmarshallingInfo{
-			DiscriminatorName: "startDeploymentType",
+			DiscriminatorName: "type",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"DEFAULT": &goldengate.DefaultStartDeploymentDetails{},
 			},
@@ -1058,7 +1058,7 @@ func TestGoldengateGoldenGateClientStopDeployment(t *testing.T) {
 	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
 	polymorphicRequestInfo["StopDeploymentDetails"] =
 		PolymorphicRequestUnmarshallingInfo{
-			DiscriminatorName: "stopDeploymentType",
+			DiscriminatorName: "type",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"DEFAULT": &goldengate.DefaultStopDeploymentDetails{},
 			},
@@ -1245,7 +1245,7 @@ func TestGoldengateGoldenGateClientUpgradeDeployment(t *testing.T) {
 	polymorphicRequestInfo := map[string]PolymorphicRequestUnmarshallingInfo{}
 	polymorphicRequestInfo["UpgradeDeploymentDetails"] =
 		PolymorphicRequestUnmarshallingInfo{
-			DiscriminatorName: "upgradeDeploymentType",
+			DiscriminatorName: "type",
 			DiscriminatorValuesAndTypes: map[string]interface{}{
 				"CURRENT_RELEASE": &goldengate.UpgradeDeploymentCurrentReleaseDetails{},
 			},

@@ -19,8 +19,8 @@ type StartDeploymentDetails interface {
 }
 
 type startdeploymentdetails struct {
-	JsonData            []byte
-	StartDeploymentType string `json:"startDeploymentType"`
+	JsonData []byte
+	Type     string `json:"type"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -34,7 +34,7 @@ func (m *startdeploymentdetails) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
-	m.StartDeploymentType = s.Model.StartDeploymentType
+	m.Type = s.Model.Type
 
 	return err
 }
@@ -47,7 +47,7 @@ func (m *startdeploymentdetails) UnmarshalPolymorphicJSON(data []byte) (interfac
 	}
 
 	var err error
-	switch m.StartDeploymentType {
+	switch m.Type {
 	case "DEFAULT":
 		mm := DefaultStartDeploymentDetails{}
 		err = json.Unmarshal(data, &mm)

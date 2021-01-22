@@ -408,61 +408,6 @@ func (client DataFlowClient) createRun(ctx context.Context, request common.OCIRe
 	return response, err
 }
 
-// CreateSparkSubmit Create a SparkSubmit object from --exec input, which is compatible with spark-submit syntax. It will create an application and start a run immediately. Refer to https://spark.apache.org/docs/latest/submitting-applications.html#launching-applications-with-spark-submit for more details. Currently supported options include --class --file, --jars, --conf, --py-files, main file with arguments
-func (client DataFlowClient) CreateSparkSubmit(ctx context.Context, request CreateSparkSubmitRequest) (response CreateSparkSubmitResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if client.RetryPolicy() != nil {
-		policy = *client.RetryPolicy()
-	}
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-
-	if !(request.OpcRetryToken != nil && *request.OpcRetryToken != "") {
-		request.OpcRetryToken = common.String(common.RetryToken())
-	}
-
-	ociResponse, err = common.Retry(ctx, request, client.createSparkSubmit, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = CreateSparkSubmitResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = CreateSparkSubmitResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(CreateSparkSubmitResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into CreateSparkSubmitResponse")
-	}
-	return
-}
-
-// createSparkSubmit implements the OCIOperation interface (enables retrying operations)
-func (client DataFlowClient) createSparkSubmit(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPost, "/sparkSubmits")
-	if err != nil {
-		return nil, err
-	}
-
-	var response CreateSparkSubmitResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // DeleteApplication Deletes an application using an `applicationId`.
 func (client DataFlowClient) DeleteApplication(ctx context.Context, request DeleteApplicationRequest) (response DeleteApplicationResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -602,57 +547,6 @@ func (client DataFlowClient) deleteRun(ctx context.Context, request common.OCIRe
 	}
 
 	var response DeleteRunResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// DeleteSparkSubmit Cancel the run associated with SparkSubmit object by its `sparkSubmitId` OCID, if it has not already completed or was previously cancelled.
-// If a run is in progress, the executing job will be killed.
-func (client DataFlowClient) DeleteSparkSubmit(ctx context.Context, request DeleteSparkSubmitRequest) (response DeleteSparkSubmitResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if client.RetryPolicy() != nil {
-		policy = *client.RetryPolicy()
-	}
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.deleteSparkSubmit, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = DeleteSparkSubmitResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = DeleteSparkSubmitResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(DeleteSparkSubmitResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into DeleteSparkSubmitResponse")
-	}
-	return
-}
-
-// deleteSparkSubmit implements the OCIOperation interface (enables retrying operations)
-func (client DataFlowClient) deleteSparkSubmit(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodDelete, "/sparkSubmits/{sparkSubmitId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response DeleteSparkSubmitResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -855,56 +749,6 @@ func (client DataFlowClient) getRunLog(ctx context.Context, request common.OCIRe
 	var response GetRunLogResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// GetSparkSubmit Retrieves a SparkSubmit object using a `sparkSubmitId`.
-func (client DataFlowClient) GetSparkSubmit(ctx context.Context, request GetSparkSubmitRequest) (response GetSparkSubmitResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if client.RetryPolicy() != nil {
-		policy = *client.RetryPolicy()
-	}
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getSparkSubmit, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetSparkSubmitResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = GetSparkSubmitResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetSparkSubmitResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetSparkSubmitResponse")
-	}
-	return
-}
-
-// getSparkSubmit implements the OCIOperation interface (enables retrying operations)
-func (client DataFlowClient) getSparkSubmit(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/sparkSubmits/{sparkSubmitId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetSparkSubmitResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
 	response.RawResponse = httpResponse
 	if err != nil {
 		return response, err
@@ -1152,56 +996,6 @@ func (client DataFlowClient) listRuns(ctx context.Context, request common.OCIReq
 	}
 
 	var response ListRunsResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// ListSparkSubmits Lists all SparkSubmit objects in the specified compartment. Only one parameter other than compartmentId may also be included in a query. The query must include compartmentId. If the query does not include compartmentId, or includes compartmentId but two or more other parameters an error is returned.
-func (client DataFlowClient) ListSparkSubmits(ctx context.Context, request ListSparkSubmitsRequest) (response ListSparkSubmitsResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if client.RetryPolicy() != nil {
-		policy = *client.RetryPolicy()
-	}
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.listSparkSubmits, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = ListSparkSubmitsResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = ListSparkSubmitsResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(ListSparkSubmitsResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into ListSparkSubmitsResponse")
-	}
-	return
-}
-
-// listSparkSubmits implements the OCIOperation interface (enables retrying operations)
-func (client DataFlowClient) listSparkSubmits(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/sparkSubmits")
-	if err != nil {
-		return nil, err
-	}
-
-	var response ListSparkSubmitsResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)
@@ -1504,56 +1298,6 @@ func (client DataFlowClient) updateRun(ctx context.Context, request common.OCIRe
 	}
 
 	var response UpdateRunResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
-// UpdateSparkSubmit Updates a SparkSubmit object using a `sparkSubmitId`.
-func (client DataFlowClient) UpdateSparkSubmit(ctx context.Context, request UpdateSparkSubmitRequest) (response UpdateSparkSubmitResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if client.RetryPolicy() != nil {
-		policy = *client.RetryPolicy()
-	}
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.updateSparkSubmit, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = UpdateSparkSubmitResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = UpdateSparkSubmitResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(UpdateSparkSubmitResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into UpdateSparkSubmitResponse")
-	}
-	return
-}
-
-// updateSparkSubmit implements the OCIOperation interface (enables retrying operations)
-func (client DataFlowClient) updateSparkSubmit(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodPut, "/sparkSubmits/{sparkSubmitId}")
-	if err != nil {
-		return nil, err
-	}
-
-	var response UpdateSparkSubmitResponse
 	var httpResponse *http.Response
 	httpResponse, err = client.Call(ctx, &httpRequest)
 	defer common.CloseBodyIfValid(httpResponse)

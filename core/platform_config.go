@@ -22,11 +22,23 @@ import (
 // PlatformConfig The platform configuration for the instance. The type of platform configuration is
 // determined by the `type`.
 type PlatformConfig interface {
+
+	// Whether the Secure Boot is to be enabled on the instance
+	GetIsSecureBootEnabled() *bool
+
+	// Whether the Trusted Platform Module (TPM) is to be enabled on the instance
+	GetIsTrustedPlatformModuleEnabled() *bool
+
+	// Whether the Measured Boot is to be enabled on the instance
+	GetIsMeasuredBootEnabled() *bool
 }
 
 type platformconfig struct {
-	JsonData []byte
-	Type     string `json:"type"`
+	JsonData                       []byte
+	IsSecureBootEnabled            *bool  `mandatory:"false" json:"isSecureBootEnabled"`
+	IsTrustedPlatformModuleEnabled *bool  `mandatory:"false" json:"isTrustedPlatformModuleEnabled"`
+	IsMeasuredBootEnabled          *bool  `mandatory:"false" json:"isMeasuredBootEnabled"`
+	Type                           string `json:"type"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -40,6 +52,9 @@ func (m *platformconfig) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
+	m.IsSecureBootEnabled = s.Model.IsSecureBootEnabled
+	m.IsTrustedPlatformModuleEnabled = s.Model.IsTrustedPlatformModuleEnabled
+	m.IsMeasuredBootEnabled = s.Model.IsMeasuredBootEnabled
 	m.Type = s.Model.Type
 
 	return err
@@ -58,9 +73,40 @@ func (m *platformconfig) UnmarshalPolymorphicJSON(data []byte) (interface{}, err
 		mm := AmdMilanBmPlatformConfig{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "AMD_ROME_BM":
+		mm := AmdRomeBmPlatformConfig{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "INTEL_SKYLAKE_BM":
+		mm := IntelSkylakeBmPlatformConfig{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "AMD_VM":
+		mm := AmdVmPlatformConfig{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "INTEL_VM":
+		mm := IntelVmPlatformConfig{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	default:
 		return *m, nil
 	}
+}
+
+//GetIsSecureBootEnabled returns IsSecureBootEnabled
+func (m platformconfig) GetIsSecureBootEnabled() *bool {
+	return m.IsSecureBootEnabled
+}
+
+//GetIsTrustedPlatformModuleEnabled returns IsTrustedPlatformModuleEnabled
+func (m platformconfig) GetIsTrustedPlatformModuleEnabled() *bool {
+	return m.IsTrustedPlatformModuleEnabled
+}
+
+//GetIsMeasuredBootEnabled returns IsMeasuredBootEnabled
+func (m platformconfig) GetIsMeasuredBootEnabled() *bool {
+	return m.IsMeasuredBootEnabled
 }
 
 func (m platformconfig) String() string {
@@ -72,11 +118,19 @@ type PlatformConfigTypeEnum string
 
 // Set of constants representing the allowable values for PlatformConfigTypeEnum
 const (
-	PlatformConfigTypeAmdMilanBm PlatformConfigTypeEnum = "AMD_MILAN_BM"
+	PlatformConfigTypeAmdMilanBm     PlatformConfigTypeEnum = "AMD_MILAN_BM"
+	PlatformConfigTypeAmdRomeBm      PlatformConfigTypeEnum = "AMD_ROME_BM"
+	PlatformConfigTypeIntelSkylakeBm PlatformConfigTypeEnum = "INTEL_SKYLAKE_BM"
+	PlatformConfigTypeAmdVm          PlatformConfigTypeEnum = "AMD_VM"
+	PlatformConfigTypeIntelVm        PlatformConfigTypeEnum = "INTEL_VM"
 )
 
 var mappingPlatformConfigType = map[string]PlatformConfigTypeEnum{
-	"AMD_MILAN_BM": PlatformConfigTypeAmdMilanBm,
+	"AMD_MILAN_BM":     PlatformConfigTypeAmdMilanBm,
+	"AMD_ROME_BM":      PlatformConfigTypeAmdRomeBm,
+	"INTEL_SKYLAKE_BM": PlatformConfigTypeIntelSkylakeBm,
+	"AMD_VM":           PlatformConfigTypeAmdVm,
+	"INTEL_VM":         PlatformConfigTypeIntelVm,
 }
 
 // GetPlatformConfigTypeEnumValues Enumerates the set of values for PlatformConfigTypeEnum

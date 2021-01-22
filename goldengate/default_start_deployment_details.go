@@ -26,7 +26,7 @@ func (m DefaultStartDeploymentDetails) String() string {
 func (m DefaultStartDeploymentDetails) MarshalJSON() (buff []byte, e error) {
 	type MarshalTypeDefaultStartDeploymentDetails DefaultStartDeploymentDetails
 	s := struct {
-		DiscriminatorParam string `json:"startDeploymentType"`
+		DiscriminatorParam string `json:"type"`
 		MarshalTypeDefaultStartDeploymentDetails
 	}{
 		"DEFAULT",

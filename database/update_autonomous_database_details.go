@@ -131,6 +131,18 @@ type UpdateAutonomousDatabaseDetails struct {
 	// **NsgIds restrictions:**
 	// - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.
 	NsgIds []string `mandatory:"false" json:"nsgIds"`
+
+	// The auto-refresh policy for the Autonomous Database refreshable clone. You can specify continuous refreshing or a custom refresh schedule.
+	AutoRefreshPolicy UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum `mandatory:"false" json:"autoRefreshPolicy,omitempty"`
+
+	// The frequency at which the data is refreshed for a refreshable clone after auto-refresh is enabled. The minimum is 1 minute. The maximum is 1 day. The date and time that auto-refresh is enabled is controlled by the `timeOfAutoRefreshStart` parameter.
+	AutoRefreshFrequencyInSeconds *int `mandatory:"false" json:"autoRefreshFrequencyInSeconds"`
+
+	// The amount of time, in seconds, that the data of the refreshable clone lags the data of the primary database at the point of refresh. The minimum is 1 minute. The maximum is 7 days. The lag time increases after refreshing until the next data refresh happens.
+	AutoRefreshPointInSeconds *int `mandatory:"false" json:"autoRefreshPointInSeconds"`
+
+	// The the date and time that auto-refreshing will begin for an Autonomous Database refreshable clone. This value controls only the start time for the first refresh operation. Subsequent (ongoing) refresh operations have start times controlled by the value of the `autoRefreshFrequencyInSeconds` parameter.
+	TimeOfAutoRefreshStart *common.SDKTime `mandatory:"false" json:"timeOfAutoRefreshStart"`
 }
 
 func (m UpdateAutonomousDatabaseDetails) String() string {
@@ -251,6 +263,29 @@ var mappingUpdateAutonomousDatabaseDetailsPermissionLevel = map[string]UpdateAut
 func GetUpdateAutonomousDatabaseDetailsPermissionLevelEnumValues() []UpdateAutonomousDatabaseDetailsPermissionLevelEnum {
 	values := make([]UpdateAutonomousDatabaseDetailsPermissionLevelEnum, 0)
 	for _, v := range mappingUpdateAutonomousDatabaseDetailsPermissionLevel {
+		values = append(values, v)
+	}
+	return values
+}
+
+// UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum Enum with underlying type: string
+type UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum string
+
+// Set of constants representing the allowable values for UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum
+const (
+	UpdateAutonomousDatabaseDetailsAutoRefreshPolicyContinuous UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum = "CONTINUOUS"
+	UpdateAutonomousDatabaseDetailsAutoRefreshPolicyCustom     UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum = "CUSTOM"
+)
+
+var mappingUpdateAutonomousDatabaseDetailsAutoRefreshPolicy = map[string]UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum{
+	"CONTINUOUS": UpdateAutonomousDatabaseDetailsAutoRefreshPolicyContinuous,
+	"CUSTOM":     UpdateAutonomousDatabaseDetailsAutoRefreshPolicyCustom,
+}
+
+// GetUpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnumValues Enumerates the set of values for UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum
+func GetUpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnumValues() []UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum {
+	values := make([]UpdateAutonomousDatabaseDetailsAutoRefreshPolicyEnum, 0)
+	for _, v := range mappingUpdateAutonomousDatabaseDetailsAutoRefreshPolicy {
 		values = append(values, v)
 	}
 	return values

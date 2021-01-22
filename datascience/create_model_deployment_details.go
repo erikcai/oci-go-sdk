@@ -29,6 +29,11 @@ type CreateModelDeploymentDetails struct {
 	// Example: `My ModelDeployment`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
+	// A short description of the model deployment.
+	Description *string `mandatory:"false" json:"description"`
+
+	CategoryLogDetails *CategoryLogDetails `mandatory:"false" json:"categoryLogDetails"`
+
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
@@ -46,6 +51,8 @@ func (m CreateModelDeploymentDetails) String() string {
 func (m *CreateModelDeploymentDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
 		DisplayName                         *string                             `json:"displayName"`
+		Description                         *string                             `json:"description"`
+		CategoryLogDetails                  *CategoryLogDetails                 `json:"categoryLogDetails"`
 		FreeformTags                        map[string]string                   `json:"freeformTags"`
 		DefinedTags                         map[string]map[string]interface{}   `json:"definedTags"`
 		ProjectId                           *string                             `json:"projectId"`
@@ -59,6 +66,10 @@ func (m *CreateModelDeploymentDetails) UnmarshalJSON(data []byte) (e error) {
 	}
 	var nn interface{}
 	m.DisplayName = model.DisplayName
+
+	m.Description = model.Description
+
+	m.CategoryLogDetails = model.CategoryLogDetails
 
 	m.FreeformTags = model.FreeformTags
 
