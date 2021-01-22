@@ -108,23 +108,25 @@ type ListModelDeploymentsLifecycleStateEnum string
 
 // Set of constants representing the allowable values for ListModelDeploymentsLifecycleStateEnum
 const (
-	ListModelDeploymentsLifecycleStateCreating ListModelDeploymentsLifecycleStateEnum = "CREATING"
-	ListModelDeploymentsLifecycleStateActive   ListModelDeploymentsLifecycleStateEnum = "ACTIVE"
-	ListModelDeploymentsLifecycleStateDeleting ListModelDeploymentsLifecycleStateEnum = "DELETING"
-	ListModelDeploymentsLifecycleStateFailed   ListModelDeploymentsLifecycleStateEnum = "FAILED"
-	ListModelDeploymentsLifecycleStateInactive ListModelDeploymentsLifecycleStateEnum = "INACTIVE"
-	ListModelDeploymentsLifecycleStateUpdating ListModelDeploymentsLifecycleStateEnum = "UPDATING"
-	ListModelDeploymentsLifecycleStateDeleted  ListModelDeploymentsLifecycleStateEnum = "DELETED"
+	ListModelDeploymentsLifecycleStateCreating       ListModelDeploymentsLifecycleStateEnum = "CREATING"
+	ListModelDeploymentsLifecycleStateActive         ListModelDeploymentsLifecycleStateEnum = "ACTIVE"
+	ListModelDeploymentsLifecycleStateDeleting       ListModelDeploymentsLifecycleStateEnum = "DELETING"
+	ListModelDeploymentsLifecycleStateFailed         ListModelDeploymentsLifecycleStateEnum = "FAILED"
+	ListModelDeploymentsLifecycleStateInactive       ListModelDeploymentsLifecycleStateEnum = "INACTIVE"
+	ListModelDeploymentsLifecycleStateUpdating       ListModelDeploymentsLifecycleStateEnum = "UPDATING"
+	ListModelDeploymentsLifecycleStateDeleted        ListModelDeploymentsLifecycleStateEnum = "DELETED"
+	ListModelDeploymentsLifecycleStateNeedsAttention ListModelDeploymentsLifecycleStateEnum = "NEEDS_ATTENTION"
 )
 
 var mappingListModelDeploymentsLifecycleState = map[string]ListModelDeploymentsLifecycleStateEnum{
-	"CREATING": ListModelDeploymentsLifecycleStateCreating,
-	"ACTIVE":   ListModelDeploymentsLifecycleStateActive,
-	"DELETING": ListModelDeploymentsLifecycleStateDeleting,
-	"FAILED":   ListModelDeploymentsLifecycleStateFailed,
-	"INACTIVE": ListModelDeploymentsLifecycleStateInactive,
-	"UPDATING": ListModelDeploymentsLifecycleStateUpdating,
-	"DELETED":  ListModelDeploymentsLifecycleStateDeleted,
+	"CREATING":        ListModelDeploymentsLifecycleStateCreating,
+	"ACTIVE":          ListModelDeploymentsLifecycleStateActive,
+	"DELETING":        ListModelDeploymentsLifecycleStateDeleting,
+	"FAILED":          ListModelDeploymentsLifecycleStateFailed,
+	"INACTIVE":        ListModelDeploymentsLifecycleStateInactive,
+	"UPDATING":        ListModelDeploymentsLifecycleStateUpdating,
+	"DELETED":         ListModelDeploymentsLifecycleStateDeleted,
+	"NEEDS_ATTENTION": ListModelDeploymentsLifecycleStateNeedsAttention,
 }
 
 // GetListModelDeploymentsLifecycleStateEnumValues Enumerates the set of values for ListModelDeploymentsLifecycleStateEnum

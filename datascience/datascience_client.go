@@ -1338,56 +1338,6 @@ func (client DataScienceClient) getModelDeployment(ctx context.Context, request 
 	return response, err
 }
 
-// GetModelDeploymentResourcePrincipalTokenAction Gets an intermediate resource principal token that contains mapping information between the instance principal and model deployment resource.
-func (client DataScienceClient) GetModelDeploymentResourcePrincipalTokenAction(ctx context.Context, request GetModelDeploymentResourcePrincipalTokenActionRequest) (response GetModelDeploymentResourcePrincipalTokenActionResponse, err error) {
-	var ociResponse common.OCIResponse
-	policy := common.NoRetryPolicy()
-	if client.RetryPolicy() != nil {
-		policy = *client.RetryPolicy()
-	}
-	if request.RetryPolicy() != nil {
-		policy = *request.RetryPolicy()
-	}
-	ociResponse, err = common.Retry(ctx, request, client.getModelDeploymentResourcePrincipalTokenAction, policy)
-	if err != nil {
-		if ociResponse != nil {
-			if httpResponse := ociResponse.HTTPResponse(); httpResponse != nil {
-				opcRequestId := httpResponse.Header.Get("opc-request-id")
-				response = GetModelDeploymentResourcePrincipalTokenActionResponse{RawResponse: httpResponse, OpcRequestId: &opcRequestId}
-			} else {
-				response = GetModelDeploymentResourcePrincipalTokenActionResponse{}
-			}
-		}
-		return
-	}
-	if convertedResponse, ok := ociResponse.(GetModelDeploymentResourcePrincipalTokenActionResponse); ok {
-		response = convertedResponse
-	} else {
-		err = fmt.Errorf("failed to convert OCIResponse into GetModelDeploymentResourcePrincipalTokenActionResponse")
-	}
-	return
-}
-
-// getModelDeploymentResourcePrincipalTokenAction implements the OCIOperation interface (enables retrying operations)
-func (client DataScienceClient) getModelDeploymentResourcePrincipalTokenAction(ctx context.Context, request common.OCIRequest) (common.OCIResponse, error) {
-	httpRequest, err := request.HTTPRequest(http.MethodGet, "/modelDeployments/{modelDeploymentId}/actions/getResourcePrincipalToken")
-	if err != nil {
-		return nil, err
-	}
-
-	var response GetModelDeploymentResourcePrincipalTokenActionResponse
-	var httpResponse *http.Response
-	httpResponse, err = client.Call(ctx, &httpRequest)
-	defer common.CloseBodyIfValid(httpResponse)
-	response.RawResponse = httpResponse
-	if err != nil {
-		return response, err
-	}
-
-	err = common.UnmarshalResponse(httpResponse, &response)
-	return response, err
-}
-
 // GetModelProvenance Gets provenance information for specified model.
 func (client DataScienceClient) GetModelProvenance(ctx context.Context, request GetModelProvenanceRequest) (response GetModelProvenanceResponse, err error) {
 	var ociResponse common.OCIResponse
@@ -2139,8 +2089,9 @@ func (client DataScienceClient) updateModel(ctx context.Context, request common.
 }
 
 // UpdateModelDeployment Updates the properties of a model deployment. You can update the `displayName`.
-// When the model deployment is in the INACTIVE lifecycle state, you can update `modelDeploymentConfigurationDetails` and change `instanceShapeName`, `instanceCount` and `modelId`.
-// Changes to the `modelDeploymentConfigurationDetails` will take effect the next time the `ActivateModelDeployment` action is invoked on the model deployment resource.
+// When the model deployment is in the ACTIVE lifecycle state, you can update `modelDeploymentConfigurationDetails` and  change `instanceShapeName` and `modelId`. Any update to
+// `bandwidthMbps` or `instanceCount` can be done when the model deployment is in the INACTIVE lifecycle state. Changes to the `bandwidthMbps` or `instanceCount` will take effect
+// the next time the `ActivateModelDeployment` action is invoked on the model deployment resource.
 func (client DataScienceClient) UpdateModelDeployment(ctx context.Context, request UpdateModelDeploymentRequest) (response UpdateModelDeploymentResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

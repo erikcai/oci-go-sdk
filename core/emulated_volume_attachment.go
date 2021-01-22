@@ -62,8 +62,15 @@ type EmulatedVolumeAttachment struct {
 	// Whether in-transit encryption for the data volume's paravirtualized attachment is enabled or not.
 	IsPvEncryptionInTransitEnabled *bool `mandatory:"false" json:"isPvEncryptionInTransitEnabled"`
 
+	// Whether the attachment is multipath or not.
+	IsMultipath *bool `mandatory:"false" json:"isMultipath"`
+
 	// The current state of the volume attachment.
 	LifecycleState VolumeAttachmentLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
+
+	// The iscsi login state of the volume attachment. For a multipath volume attachment,
+	// all iscsi sessions need to be all logged-in or logged-out to be in logged-in or logged-out state.
+	IscsiLoginState VolumeAttachmentIscsiLoginStateEnum `mandatory:"false" json:"iscsiLoginState,omitempty"`
 }
 
 //GetAvailabilityDomain returns AvailabilityDomain
@@ -124,6 +131,16 @@ func (m EmulatedVolumeAttachment) GetVolumeId() *string {
 //GetIsPvEncryptionInTransitEnabled returns IsPvEncryptionInTransitEnabled
 func (m EmulatedVolumeAttachment) GetIsPvEncryptionInTransitEnabled() *bool {
 	return m.IsPvEncryptionInTransitEnabled
+}
+
+//GetIsMultipath returns IsMultipath
+func (m EmulatedVolumeAttachment) GetIsMultipath() *bool {
+	return m.IsMultipath
+}
+
+//GetIscsiLoginState returns IscsiLoginState
+func (m EmulatedVolumeAttachment) GetIscsiLoginState() VolumeAttachmentIscsiLoginStateEnum {
+	return m.IscsiLoginState
 }
 
 func (m EmulatedVolumeAttachment) String() string {

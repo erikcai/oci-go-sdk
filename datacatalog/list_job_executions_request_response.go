@@ -136,21 +136,23 @@ type ListJobExecutionsLifecycleStateEnum string
 
 // Set of constants representing the allowable values for ListJobExecutionsLifecycleStateEnum
 const (
-	ListJobExecutionsLifecycleStateCreated    ListJobExecutionsLifecycleStateEnum = "CREATED"
-	ListJobExecutionsLifecycleStateInProgress ListJobExecutionsLifecycleStateEnum = "IN_PROGRESS"
-	ListJobExecutionsLifecycleStateInactive   ListJobExecutionsLifecycleStateEnum = "INACTIVE"
-	ListJobExecutionsLifecycleStateFailed     ListJobExecutionsLifecycleStateEnum = "FAILED"
-	ListJobExecutionsLifecycleStateSucceeded  ListJobExecutionsLifecycleStateEnum = "SUCCEEDED"
-	ListJobExecutionsLifecycleStateCanceled   ListJobExecutionsLifecycleStateEnum = "CANCELED"
+	ListJobExecutionsLifecycleStateCreated               ListJobExecutionsLifecycleStateEnum = "CREATED"
+	ListJobExecutionsLifecycleStateInProgress            ListJobExecutionsLifecycleStateEnum = "IN_PROGRESS"
+	ListJobExecutionsLifecycleStateInactive              ListJobExecutionsLifecycleStateEnum = "INACTIVE"
+	ListJobExecutionsLifecycleStateFailed                ListJobExecutionsLifecycleStateEnum = "FAILED"
+	ListJobExecutionsLifecycleStateSucceeded             ListJobExecutionsLifecycleStateEnum = "SUCCEEDED"
+	ListJobExecutionsLifecycleStateCanceled              ListJobExecutionsLifecycleStateEnum = "CANCELED"
+	ListJobExecutionsLifecycleStateSucceededWithWarnings ListJobExecutionsLifecycleStateEnum = "SUCCEEDED_WITH_WARNINGS"
 )
 
 var mappingListJobExecutionsLifecycleState = map[string]ListJobExecutionsLifecycleStateEnum{
-	"CREATED":     ListJobExecutionsLifecycleStateCreated,
-	"IN_PROGRESS": ListJobExecutionsLifecycleStateInProgress,
-	"INACTIVE":    ListJobExecutionsLifecycleStateInactive,
-	"FAILED":      ListJobExecutionsLifecycleStateFailed,
-	"SUCCEEDED":   ListJobExecutionsLifecycleStateSucceeded,
-	"CANCELED":    ListJobExecutionsLifecycleStateCanceled,
+	"CREATED":                 ListJobExecutionsLifecycleStateCreated,
+	"IN_PROGRESS":             ListJobExecutionsLifecycleStateInProgress,
+	"INACTIVE":                ListJobExecutionsLifecycleStateInactive,
+	"FAILED":                  ListJobExecutionsLifecycleStateFailed,
+	"SUCCEEDED":               ListJobExecutionsLifecycleStateSucceeded,
+	"CANCELED":                ListJobExecutionsLifecycleStateCanceled,
+	"SUCCEEDED_WITH_WARNINGS": ListJobExecutionsLifecycleStateSucceededWithWarnings,
 }
 
 // GetListJobExecutionsLifecycleStateEnumValues Enumerates the set of values for ListJobExecutionsLifecycleStateEnum
@@ -182,6 +184,7 @@ const (
 	ListJobExecutionsJobTypeImmediateExecution         ListJobExecutionsJobTypeEnum = "IMMEDIATE_EXECUTION"
 	ListJobExecutionsJobTypeScheduledExecution         ListJobExecutionsJobTypeEnum = "SCHEDULED_EXECUTION"
 	ListJobExecutionsJobTypeScheduledExecutionInstance ListJobExecutionsJobTypeEnum = "SCHEDULED_EXECUTION_INSTANCE"
+	ListJobExecutionsJobTypeAsyncDelete                ListJobExecutionsJobTypeEnum = "ASYNC_DELETE"
 )
 
 var mappingListJobExecutionsJobType = map[string]ListJobExecutionsJobTypeEnum{
@@ -200,6 +203,7 @@ var mappingListJobExecutionsJobType = map[string]ListJobExecutionsJobTypeEnum{
 	"IMMEDIATE_EXECUTION":          ListJobExecutionsJobTypeImmediateExecution,
 	"SCHEDULED_EXECUTION":          ListJobExecutionsJobTypeScheduledExecution,
 	"SCHEDULED_EXECUTION_INSTANCE": ListJobExecutionsJobTypeScheduledExecutionInstance,
+	"ASYNC_DELETE":                 ListJobExecutionsJobTypeAsyncDelete,
 }
 
 // GetListJobExecutionsJobTypeEnumValues Enumerates the set of values for ListJobExecutionsJobTypeEnum

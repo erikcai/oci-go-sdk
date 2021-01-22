@@ -158,6 +158,10 @@ func (m *operator) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 		mm := StartOperator{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
+	case "MERGE_OPERATOR":
+		mm := MergeOperator{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
 	case "MINUS_OPERATOR":
 		mm := Minus{}
 		err = json.Unmarshal(data, &mm)

@@ -92,6 +92,7 @@
     <deployment-service-spec-spec-file>source/api.cond.yaml</deployment-service-spec-spec-file>
     <dbmgmt-dbadmin-spec-spec-file>source/dbmgmt-dbadmin-api.cond.yaml</dbmgmt-dbadmin-spec-spec-file>
     <aj-control-plane-spec-spec-file>source/api.cond.yaml</aj-control-plane-spec-spec-file>
+    <apm-synapi-spec-spec-file>source/api.cond.yaml</apm-synapi-spec-spec-file>
   </properties>
   <build>
     <plugins>
@@ -1446,6 +1447,24 @@
                   <type>jar</type>
                   <includes>**/*</includes>
                   <outputDirectory>${spec-temp-dir}/aj-control-plane-spec</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-apm-synapi-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.oracle.apm.service.synapi</groupId>
+                  <artifactId>apm-synapi-spec</artifactId>
+                  <type>jar</type>
+                  <includes>**/*</includes>
+                  <outputDirectory>${spec-temp-dir}/apm-synapi-spec</outputDirectory>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -3455,6 +3474,33 @@
               <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
             </configuration>
           </execution>
+          <execution>
+            <id>spec-conditionals-prefer-apm-synapi-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>prefer</goal>
+            </goals>
+            <configuration>
+              <inputFiles>
+                <inputFile>${spec-temp-dir}/apm-synapi-spec/source/${apm-synapi-spec-spec-file}</inputFile>
+                <inputFile>${spec-temp-dir}/apm-synapi-spec/${apm-synapi-spec-spec-file}</inputFile>
+              </inputFiles>
+              <outputFile>${preferred-temp-dir}/apm-synapi-spec/${apm-synapi-spec-spec-file}</outputFile>
+            </configuration>
+          </execution>
+          <execution>
+            <id>spec-conditionals-preprocess-apm-synapi-spec</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>preprocess</goal>
+            </goals>
+            <configuration>
+              <inputFile>${preferred-temp-dir}/apm-synapi-spec/${apm-synapi-spec-spec-file}</inputFile>
+              <outputFile>${preprocessed-temp-dir}/apm-synapi-spec/${apm-synapi-spec-spec-file}</outputFile>
+              <groupFile>${enabled-groups-file}</groupFile>
+              <groupFileCollectionDir>${enabled-groups-dir}</groupFileCollectionDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -5062,6 +5108,26 @@
               <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
             </configuration>
           </execution>
+          <execution>
+            <id>go-public-sdk-apm-synapi-spec</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <language>oracle-go-sdk</language>
+              <specPath>${preprocessed-temp-dir}/apm-synapi-spec/${apm-synapi-spec-spec-file}</specPath>
+              <outputDir>${env.GOPATH}/src/${fullyQualifiedProjectName}</outputDir>
+              <basePackage>apmsynthetics</basePackage>
+              <specGenerationType>${generationType}</specGenerationType>
+              <additionalProperties>
+                <specName>apmsynthetics</specName>
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>
+              </additionalProperties>
+              <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
+              <featureIdConfigDir>${feature-id-dir}</featureIdConfigDir>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -5556,6 +5622,12 @@
                 <include>**/*</include>
               </includes>
             </fileset>
+            <fileset>
+              <directory>lib/oci/apmsynthetics</directory>
+              <includes>
+                <include>**/*</include>
+              </includes>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -5602,7 +5674,7 @@
       <dependency>
         <groupId>com.oracle.pic.commons</groupId>
         <artifactId>coreservices-api-spec</artifactId>
-        <version>1.0.125</version>
+        <version>1.0.139</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.identity</groupId>
@@ -5662,7 +5734,7 @@
       <dependency>
         <groupId>com.oracle.pic.clusters</groupId>
         <artifactId>clusters-api-spec</artifactId>
-        <version>1.1.31</version>
+        <version>1.1.32</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.telemetry.api</groupId>
@@ -5777,7 +5849,7 @@
       <dependency>
         <groupId>com.oracle.pic.dcat</groupId>
         <artifactId>datacatalog-api-spec</artifactId>
-        <version>1.4.0-2011252210</version>
+        <version>1.5.0-2101212137</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.cec.provisioning.controlplane</groupId>
@@ -5787,7 +5859,7 @@
       <dependency>
         <groupId>com.oracle.pic.odsc.pegasus</groupId>
         <artifactId>odsc-pegasus-control-plane-spec</artifactId>
-        <version>0.1.564</version>
+        <version>0.1.616</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.bds</groupId>
@@ -5812,7 +5884,7 @@
       <dependency>
         <groupId>com.oracle.osms.api</groupId>
         <artifactId>osms-spec</artifactId>
-        <version>0.1.0-0</version>
+        <version>0.2.0-9</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.pic.migration.application</groupId>
@@ -5822,7 +5894,7 @@
       <dependency>
         <groupId>oracle.dfcs.server</groupId>
         <artifactId>service_api_spec</artifactId>
-        <version>1.0.226-RELEASEPREVIEW</version>
+        <version>1.0.229-RELEASEPREVIEW</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.oci.mysql</groupId>
@@ -5857,7 +5929,7 @@
       <dependency>
         <groupId>com.oracle.dis</groupId>
         <artifactId>dis-sdk-spec</artifactId>
-        <version>1.0.0-153</version>
+        <version>1.0.0-156</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.hydra.controlplane</groupId>
@@ -5897,7 +5969,7 @@
       <dependency>
         <groupId>com.oracle.oci.optimizer</groupId>
         <artifactId>optimizer-spec</artifactId>
-        <version>0.1.238</version>
+        <version>0.1.350</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.macs</groupId>
@@ -5942,7 +6014,7 @@
       <dependency>
         <groupId>com.oracle.ggs</groupId>
         <artifactId>ggs-control-plane-spec</artifactId>
-        <version>0.1.8-PREVIEW</version>
+        <version>0.1.11-PREVIEW</version>
       </dependency>
       <dependency>
         <groupId>com.oracle.accmgmt.tenantmgr.controlplane</groupId>
@@ -5968,6 +6040,11 @@
         <groupId>com.oracle.aj</groupId>
         <artifactId>aj-control-plane-spec</artifactId>
         <version>0.4.6-PREVIEW</version>
+      </dependency>
+      <dependency>
+        <groupId>com.oracle.apm.service.synapi</groupId>
+        <artifactId>apm-synapi-spec</artifactId>
+        <version>0.1.961</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

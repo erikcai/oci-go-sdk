@@ -24,7 +24,7 @@ type ModelConfigurationDetails struct {
 
 	ScalingPolicy ScalingPolicy `mandatory:"false" json:"scalingPolicy"`
 
-	// The maximum network bandwidth for the model.
+	// The network bandwidth for the model.
 	BandwidthMbps *int `mandatory:"false" json:"bandwidthMbps"`
 }
 

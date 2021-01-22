@@ -19,8 +19,8 @@ type UpgradeDeploymentDetails interface {
 }
 
 type upgradedeploymentdetails struct {
-	JsonData              []byte
-	UpgradeDeploymentType string `json:"upgradeDeploymentType"`
+	JsonData []byte
+	Type     string `json:"type"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -34,7 +34,7 @@ func (m *upgradedeploymentdetails) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
-	m.UpgradeDeploymentType = s.Model.UpgradeDeploymentType
+	m.Type = s.Model.Type
 
 	return err
 }
@@ -47,7 +47,7 @@ func (m *upgradedeploymentdetails) UnmarshalPolymorphicJSON(data []byte) (interf
 	}
 
 	var err error
-	switch m.UpgradeDeploymentType {
+	switch m.Type {
 	case "CURRENT_RELEASE":
 		mm := UpgradeDeploymentCurrentReleaseDetails{}
 		err = json.Unmarshal(data, &mm)

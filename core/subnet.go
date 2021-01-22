@@ -94,10 +94,6 @@ type Subnet struct {
 	// Example: `2001:0db8:0123:1111::/64`
 	Ipv6CidrBlock *string `mandatory:"false" json:"ipv6CidrBlock"`
 
-	// For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.
-	// Example: `2001:0db8:0123:1111:89ab:cdef:1234:5678`
-	Ipv6VirtualRouterIp *string `mandatory:"false" json:"ipv6VirtualRouterIp"`
-
 	// Whether learning mode is enabled for this subnet. The default is `false`.
 	// **Note:** When a subnet has learning mode enabled, only certain types
 	// of resources can be launched in the subnet.

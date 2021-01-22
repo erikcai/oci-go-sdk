@@ -72,9 +72,12 @@ type CreateApplicationDetails struct {
 	// A user-friendly description. Avoid entering confidential information.
 	Description *string `mandatory:"false" json:"description"`
 
-	// The input option String used for spark-submit command, refer to https://spark.apache.org/docs/latest/submitting-applications.html#launching-applications-with-spark-submit for more details. Currently supported options include --class --file, --jars, --conf, --py-files, main file with arguments.
-	// In cases where this property is optional and users still set it, for example, in CreateApplicationDetails and UpdateApplicationDetails, Data Flow service will combine it with configuration property.
-	Exec *string `mandatory:"false" json:"exec"`
+	// The is the input option string used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-applications-with-spark-submit.
+	// Supported options include --class --file, --jars, --conf, --py-files, main file with arguments.
+	// For example, "--jars local:///path/to/examples.jar,oci:///path/to/examples.jar --files local:///path/to/examples.json,oci:///path/to/examples.csv --py-files local:///path/to/examples.py,oci:///path/to/examples.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/examples.jar 10"
+	// In cases where these supported spark-submit options are specified together with spark configuration with property names of spark.jars, spark.files, spark.submit.pyFiles, for example, in application create/update, and run create/submit,
+	// Data Flow service will combine values from both places.
+	Execute *string `mandatory:"false" json:"execute"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
 	// For more information, see Resource Tags (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).

@@ -31,7 +31,7 @@ type RunSummary struct {
 	// Example: `{"Department": "Finance"}`
 	FreeformTags map[string]string `mandatory:"true" json:"freeformTags"`
 
-	// The OCID of a run.
+	// The ID of a run.
 	Id *string `mandatory:"true" json:"id"`
 
 	// The Spark language.

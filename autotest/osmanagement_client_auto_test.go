@@ -1515,6 +1515,114 @@ func TestOsManagementClientListAvailableWindowsUpdatesForManagedInstance(t *test
 }
 
 // IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
+func TestOsManagementClientListErrata(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("osmanagement", "ListErrata")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListErrata is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("osmanagement", "OsManagement", "ListErrata", createOsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(osmanagement.OsManagementClient)
+
+	body, err := testClient.getRequests("osmanagement", "ListErrata")
+	assert.NoError(t, err)
+
+	type ListErrataRequestInfo struct {
+		ContainerId string
+		Request     osmanagement.ListErrataRequest
+	}
+
+	var requests []ListErrataRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*osmanagement.ListErrataRequest)
+				return c.ListErrata(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]osmanagement.ListErrataResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(osmanagement.ListErrataResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
+func TestOsManagementClientListManagedInstanceErrata(t *testing.T) {
+	defer failTestOnPanic(t)
+
+	enabled, err := testClient.isApiEnabled("osmanagement", "ListManagedInstanceErrata")
+	assert.NoError(t, err)
+	if !enabled {
+		t.Skip("ListManagedInstanceErrata is not enabled by the testing service")
+	}
+
+	cc, err := testClient.createClientForOperation("osmanagement", "OsManagement", "ListManagedInstanceErrata", createOsManagementClientWithProvider)
+	assert.NoError(t, err)
+	c := cc.(osmanagement.OsManagementClient)
+
+	body, err := testClient.getRequests("osmanagement", "ListManagedInstanceErrata")
+	assert.NoError(t, err)
+
+	type ListManagedInstanceErrataRequestInfo struct {
+		ContainerId string
+		Request     osmanagement.ListManagedInstanceErrataRequest
+	}
+
+	var requests []ListManagedInstanceErrataRequestInfo
+	var dataHolder []map[string]interface{}
+	err = json.Unmarshal([]byte(body), &dataHolder)
+	assert.NoError(t, err)
+	err = unmarshalRequestInfo(dataHolder, &requests, testClient.Log)
+	assert.NoError(t, err)
+
+	var retryPolicy *common.RetryPolicy
+	for i, request := range requests {
+		t.Run(fmt.Sprintf("request:%v", i), func(t *testing.T) {
+			if withRetry == true {
+				retryPolicy = retryPolicyForTests()
+			}
+			request.Request.RequestMetadata.RetryPolicy = retryPolicy
+			listFn := func(req common.OCIRequest) (common.OCIResponse, error) {
+				r := req.(*osmanagement.ListManagedInstanceErrataRequest)
+				return c.ListManagedInstanceErrata(context.Background(), *r)
+			}
+
+			listResponses, err := testClient.generateListResponses(&request.Request, listFn)
+			typedListResponses := make([]osmanagement.ListManagedInstanceErrataResponse, len(listResponses))
+			for i, lr := range listResponses {
+				typedListResponses[i] = lr.(osmanagement.ListManagedInstanceErrataResponse)
+			}
+
+			message, err := testClient.validateResult(request.ContainerId, request.Request, typedListResponses, err)
+			assert.NoError(t, err)
+			assert.Empty(t, message, message)
+		})
+	}
+}
+
+// IssueRoutingInfo tag="default" email="oci_osms_us_grp@oracle.com" jiraProject="OSMS" opsJiraProject="OSMS"
 func TestOsManagementClientListManagedInstanceGroups(t *testing.T) {
 	defer failTestOnPanic(t)
 
