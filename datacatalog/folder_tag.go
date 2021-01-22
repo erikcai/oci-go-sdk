@@ -10,7 +10,7 @@
 package datacatalog
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // FolderTag Represents an association of a folder to a term.

@@ -14,9 +14,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 
-	"github.com/oracle/oci-go-sdk/v33/dns"
+	"github.com/erikcai/oci-go-sdk/v33/dns"
 )
 
 // sanity test for dns service as the current plan is rely on Java test for other APIs

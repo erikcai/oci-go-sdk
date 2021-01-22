@@ -11,7 +11,7 @@ package dataintegration
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // Operator An operator defines some data integration semantics in a data flow. It may be reading/writing data or transforming the data.
@@ -156,6 +156,10 @@ func (m *operator) UnmarshalPolymorphicJSON(data []byte) (interface{}, error) {
 		return mm, err
 	case "START_OPERATOR":
 		mm := StartOperator{}
+		err = json.Unmarshal(data, &mm)
+		return mm, err
+	case "MERGE_OPERATOR":
+		mm := MergeOperator{}
 		err = json.Unmarshal(data, &mm)
 		return mm, err
 	case "MINUS_OPERATOR":

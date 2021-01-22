@@ -16,14 +16,38 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // AmdMilanBmPlatformConfig The platform configuration of a bare metal instance specific to the AMD Milan platform.
 type AmdMilanBmPlatformConfig struct {
 
+	// Whether the Secure Boot is to be enabled on the instance
+	IsSecureBootEnabled *bool `mandatory:"false" json:"isSecureBootEnabled"`
+
+	// Whether the Trusted Platform Module (TPM) is to be enabled on the instance
+	IsTrustedPlatformModuleEnabled *bool `mandatory:"false" json:"isTrustedPlatformModuleEnabled"`
+
+	// Whether the Measured Boot is to be enabled on the instance
+	IsMeasuredBootEnabled *bool `mandatory:"false" json:"isMeasuredBootEnabled"`
+
 	// The number of NUMA nodes per socket.
 	NumaNodesPerSocket AmdMilanBmPlatformConfigNumaNodesPerSocketEnum `mandatory:"false" json:"numaNodesPerSocket,omitempty"`
+}
+
+//GetIsSecureBootEnabled returns IsSecureBootEnabled
+func (m AmdMilanBmPlatformConfig) GetIsSecureBootEnabled() *bool {
+	return m.IsSecureBootEnabled
+}
+
+//GetIsTrustedPlatformModuleEnabled returns IsTrustedPlatformModuleEnabled
+func (m AmdMilanBmPlatformConfig) GetIsTrustedPlatformModuleEnabled() *bool {
+	return m.IsTrustedPlatformModuleEnabled
+}
+
+//GetIsMeasuredBootEnabled returns IsMeasuredBootEnabled
+func (m AmdMilanBmPlatformConfig) GetIsMeasuredBootEnabled() *bool {
+	return m.IsMeasuredBootEnabled
 }
 
 func (m AmdMilanBmPlatformConfig) String() string {

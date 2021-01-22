@@ -5,7 +5,7 @@
 package datascience
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 	"net/http"
 )
 
@@ -15,8 +15,9 @@ type UpdateModelDeploymentRequest struct {
 	// The OCID (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model deployment.
 	ModelDeploymentId *string `mandatory:"true" contributesTo:"path" name:"modelDeploymentId"`
 
-	// Details for updating a model deployment. `modelDeploymentConfigurationDetails` can only be updated while the model deployment is in the `INACTIVE` state.
-	// Changes to the `modelDeploymentConfigurationDetails` will take effect the next time the `ActivateModelDeployment` action is invoked on the model deployment resource.
+	// Details for updating a model deployment. You can update `modelDeploymentConfigurationDetails` and change `instanceShapeName` and `modelId` when the model deployment is in
+	// the ACTIVE lifecycle state. The `bandwidthMbps` or `instanceCount` can only be updated while the model deployment is in the `INACTIVE` state. Changes to the `bandwidthMbps`
+	// or `instanceCount` will take effect the next time the `ActivateModelDeployment` action is invoked on the model deployment resource.
 	UpdateModelDeploymentDetails `contributesTo:"body"`
 
 	// For optimistic concurrency control. In the PUT or DELETE call
@@ -54,15 +55,13 @@ type UpdateModelDeploymentResponse struct {
 	// The underlying http response
 	RawResponse *http.Response
 
-	// The ModelDeployment instance
-	ModelDeployment `presentIn:"body"`
-
-	// For optimistic concurrency control. See ETags for Optimistic Concurrency Control (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#eleven).
-	Etag *string `presentIn:"header" name:"etag"`
-
 	// Unique Oracle assigned identifier for the request. If you need to contact
 	// Oracle about a particular request, then provide the request ID.
 	OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
+
+	// The OCID (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the work request. Use GetWorkRequest (https://docs.cloud.oracle.com/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest)
+	// with this ID to track the status of the request.
+	OpcWorkRequestId *string `presentIn:"header" name:"opc-work-request-id"`
 }
 
 func (response UpdateModelDeploymentResponse) String() string {

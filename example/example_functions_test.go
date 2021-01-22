@@ -9,10 +9,10 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/oracle/oci-go-sdk/v33/common"
-	"github.com/oracle/oci-go-sdk/v33/core"
-	"github.com/oracle/oci-go-sdk/v33/example/helpers"
-	"github.com/oracle/oci-go-sdk/v33/functions"
+	"github.com/erikcai/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/core"
+	"github.com/erikcai/oci-go-sdk/v33/example/helpers"
+	"github.com/erikcai/oci-go-sdk/v33/functions"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -41,7 +41,7 @@ var (
 
 	RUN:
 	To run this test/example run:
-	go test github.com/oracle/oci-go-sdk/example -run ExampleFunctionInvoke
+	go test github.com/erikcai/oci-go-sdk/example -run ExampleFunctionInvoke
 
 */
 func ExampleFunctionInvoke() {

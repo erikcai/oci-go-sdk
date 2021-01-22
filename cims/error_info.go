@@ -3,24 +3,24 @@
 // Code generated. DO NOT EDIT.
 
 // CIMS API
-// 
+//
  // Cloud Incident Management Service
 //
 
 package cims
 
 import (
-    "github.com/oracle/oci-go-sdk/v33/common"
+    "github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 
-    
+
  // ErrorInfo The representation of ErrorInfo
 type ErrorInfo struct {
-    
+
  // Describes which exception has occurred
     ErrorCode ErrorCodeEnum `mandatory:"false" json:"errorCode,omitempty"`
-    
+
  // Details about the exceptions
     Message *string `mandatory:"false" json:"message"`
 }

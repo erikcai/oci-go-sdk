@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // MigrateDrgDetails The request to update a DrgAttachment and migrate the Drg to the destination Drg Type.

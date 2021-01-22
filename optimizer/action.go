@@ -10,11 +10,10 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // Action Details about the recommended action.
-// **Caution:** Avoid using any confidential information when you use the API to supply string values.
 type Action struct {
 
 	// The status of the resource action.

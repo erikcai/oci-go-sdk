@@ -11,7 +11,7 @@ package goldengate
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // DefaultStartDeploymentDetails Definiton of the additional attributes for default deployment start.
@@ -26,7 +26,7 @@ func (m DefaultStartDeploymentDetails) String() string {
 func (m DefaultStartDeploymentDetails) MarshalJSON() (buff []byte, e error) {
 	type MarshalTypeDefaultStartDeploymentDetails DefaultStartDeploymentDetails
 	s := struct {
-		DiscriminatorParam string `json:"startDeploymentType"`
+		DiscriminatorParam string `json:"type"`
 		MarshalTypeDefaultStartDeploymentDetails
 	}{
 		"DEFAULT",

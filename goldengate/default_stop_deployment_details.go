@@ -11,7 +11,7 @@ package goldengate
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // DefaultStopDeploymentDetails Definiton of the additional attributes for default deployment stop.
@@ -26,7 +26,7 @@ func (m DefaultStopDeploymentDetails) String() string {
 func (m DefaultStopDeploymentDetails) MarshalJSON() (buff []byte, e error) {
 	type MarshalTypeDefaultStopDeploymentDetails DefaultStopDeploymentDetails
 	s := struct {
-		DiscriminatorParam string `json:"stopDeploymentType"`
+		DiscriminatorParam string `json:"type"`
 		MarshalTypeDefaultStopDeploymentDetails
 	}{
 		"DEFAULT",

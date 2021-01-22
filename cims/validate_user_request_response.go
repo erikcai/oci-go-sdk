@@ -5,26 +5,26 @@
 package cims
 
 import (
-    "github.com/oracle/oci-go-sdk/v33/common"
+    "github.com/erikcai/oci-go-sdk/v33/common"
     "net/http"
 )
 
 // ValidateUserRequest wrapper for the ValidateUser operation
 type ValidateUserRequest struct {
-        
- // The Customer Support Identifier number for the support account. 
+
+ // The Customer Support Identifier number for the support account.
         Csi *string `mandatory:"true" contributesTo:"header" name:"csi"`
-        
- // User OCID for Oracle Identity Cloud Service (IDCS) users who also have a federated Oracle Cloud Infrastructure account. 
+
+ // User OCID for Oracle Identity Cloud Service (IDCS) users who also have a federated Oracle Cloud Infrastructure account.
         Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
-        
- // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID. 
+
+ // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
         OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
-        
- // The kind of support request. 
+
+ // The kind of support request.
         ProblemType *string `mandatory:"false" contributesTo:"query" name:"problemType"`
-        
- // The region of the tenancy. 
+
+ // The region of the tenancy.
         Homeregion *string `mandatory:"false" contributesTo:"header" name:"homeregion"`
 
 
@@ -52,11 +52,11 @@ type ValidateUserResponse struct {
 
     // The underlying http response
     RawResponse *http.Response
-    
+
  // The ValidationResponse instance
      ValidationResponse `presentIn:"body"`
 
-    
+
  // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
     OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
 

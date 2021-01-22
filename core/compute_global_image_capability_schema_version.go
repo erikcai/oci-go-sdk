@@ -16,7 +16,7 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ComputeGlobalImageCapabilitySchemaVersion Compute Global Image Capability Schema Version is a set of all possible capabilities for a collection of images.

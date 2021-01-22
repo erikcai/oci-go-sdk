@@ -7,7 +7,7 @@ import (
 	"context"
 	"crypto/rsa"
 	"fmt"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 
 	"net/http"
 	"net/url"
@@ -353,7 +353,7 @@ func resourcePrincipalConfigurationProviderForInstanceWithInterceptor(instancePr
 
 // ResourcePrincipalConfigurationProviderWithInterceptor creates a resource principal configuration provider with endpoints
 // a interceptor used to customize the call going to the resource principal token request to the target service
-// see https://godoc.org/github.com/oracle/oci-go-sdk/common#RequestInterceptor
+// see https://godoc.org/github.com/erikcai/oci-go-sdk/common#RequestInterceptor
 func ResourcePrincipalConfigurationProviderWithInterceptor(instancePrincipalProvider common.ConfigurationProvider,
 	resourcePrincipalTokenEndpoint, resourcePrincipalSessionTokenEndpoint string,
 	interceptor common.RequestInterceptor) (common.ConfigurationProvider, error) {

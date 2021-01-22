@@ -11,7 +11,7 @@ package goldengate
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // DefaultRestoreDeploymentDetails Definiton of the additional attributes for default deployment restore.
@@ -26,7 +26,7 @@ func (m DefaultRestoreDeploymentDetails) String() string {
 func (m DefaultRestoreDeploymentDetails) MarshalJSON() (buff []byte, e error) {
 	type MarshalTypeDefaultRestoreDeploymentDetails DefaultRestoreDeploymentDetails
 	s := struct {
-		DiscriminatorParam string `json:"restoreDeploymentType"`
+		DiscriminatorParam string `json:"type"`
 		MarshalTypeDefaultRestoreDeploymentDetails
 	}{
 		"DEFAULT",

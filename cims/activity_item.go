@@ -3,45 +3,45 @@
 // Code generated. DO NOT EDIT.
 
 // Support Management API
-// 
+//
  // Use the Support Management API to manage support requests. For more information, see Getting Help and Contacting Support (https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/contactingsupport.htm). **Note**: Before you can create service requests with this API, you need to have an Oracle Single Sign On (SSO) account, and you need to register your Customer Support Identifier (CSI) with My Oracle Support.
 //
 
 package cims
 
 import (
-    "github.com/oracle/oci-go-sdk/v33/common"
+    "github.com/erikcai/oci-go-sdk/v33/common"
         "encoding/json"
 )
 
-        
+
  // ActivityItem Details about the ActivityItem object.
 type ActivityItem struct {
-        
+
  // Unique identifier for the item.
         ItemKey *string `mandatory:"true" json:"itemKey"`
-        
+
  // The display name of the item.
         Name *string `mandatory:"false" json:"name"`
-        
+
         Category *Category `mandatory:"false" json:"category"`
-        
+
         SubCategory *SubCategory `mandatory:"false" json:"subCategory"`
-        
+
         IssueType *IssueType `mandatory:"false" json:"issueType"`
-        
+
  // Comments added with the activity on the support ticket.
         Comments *string `mandatory:"false" json:"comments"`
-        
+
  // The time when the activity was created, in milliseconds since epoch time.
         TimeCreated *int `mandatory:"false" json:"timeCreated"`
-        
+
  // The time when the activity was updated, in milliseconds since epoch time.
         TimeUpdated *int `mandatory:"false" json:"timeUpdated"`
-       
+
  // The type of activity occuring on the support ticket.
        ActivityType ActivityItemActivityTypeEnum `mandatory:"false" json:"activityType,omitempty"`
-       
+
  // The person who updates the activity on the support ticket.
        ActivityAuthor ActivityItemActivityAuthorEnum `mandatory:"false" json:"activityAuthor,omitempty"`
 }
@@ -97,7 +97,7 @@ const (
     ActivityItemActivityTypeClose ActivityItemActivityTypeEnum = "CLOSE"
 )
 
-var mappingActivityItemActivityType = map[string]ActivityItemActivityTypeEnum { 
+var mappingActivityItemActivityType = map[string]ActivityItemActivityTypeEnum {
     "NOTES": ActivityItemActivityTypeNotes,
     "PROBLEM_DESCRIPTION": ActivityItemActivityTypeProblemDescription,
     "UPDATE": ActivityItemActivityTypeUpdate,
@@ -121,7 +121,7 @@ const (
     ActivityItemActivityAuthorOracle ActivityItemActivityAuthorEnum = "ORACLE"
 )
 
-var mappingActivityItemActivityAuthor = map[string]ActivityItemActivityAuthorEnum { 
+var mappingActivityItemActivityAuthor = map[string]ActivityItemActivityAuthorEnum {
     "CUSTOMER": ActivityItemActivityAuthorCustomer,
     "ORACLE": ActivityItemActivityAuthorOracle,
 }

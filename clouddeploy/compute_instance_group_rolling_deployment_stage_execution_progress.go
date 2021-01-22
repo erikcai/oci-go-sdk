@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ComputeInstanceGroupRollingDeploymentStageExecutionProgress Specifies the execution details for Instance group rolling Deployment Stage.

@@ -10,7 +10,7 @@
 package jms
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ManagedInstanceView A view resource on the managed instance in the specified time period. Entities that emit usage events to the JMS are represented as managed instances. A Managed Instance has a unique identity which is used by the JMS in order to distinguish it from all other managed instances. A Managed Instance has a distinguishing tagging key-value pair(s) that associates it with its containing fleet. Currently, JMS supports only one kind of managed instance, a MACS Agent.

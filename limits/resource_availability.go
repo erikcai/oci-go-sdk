@@ -10,7 +10,7 @@
 package limits
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ResourceAvailability The availability of a given resource limit, based on the usage, tenant service limits and quotas set for the tenancy.

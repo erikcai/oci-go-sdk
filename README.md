@@ -1,23 +1,23 @@
 # Oracle Cloud Infrastructure Golang SDK
 [![wercker status](https://app.wercker.com/status/09bc4818e7b1d70b04285331a9bdbc41/s/master "wercker status")](https://app.wercker.com/project/byKey/09bc4818e7b1d70b04285331a9bdbc41)
 
-This is the Go SDK for Oracle Cloud Infrastructure. This project is open source and maintained by Oracle Corp. 
-The home page for the project is [here](https://godoc.org/github.com/oracle/oci-go-sdk/).
->***WARNING:***: To avoid automatically consuming breaking changes if we have to rev the major version of the Go SDK, 
-please consider using the  [Go dependency management tool](https://github.com/golang/dep), or vendoring the SDK. 
+This is the Go SDK for Oracle Cloud Infrastructure. This project is open source and maintained by Oracle Corp.
+The home page for the project is [here](https://godoc.org/github.com/erikcai/oci-go-sdk/).
+>***WARNING:***: To avoid automatically consuming breaking changes if we have to rev the major version of the Go SDK,
+please consider using the  [Go dependency management tool](https://github.com/golang/dep), or vendoring the SDK.
 This will allow you to pin to a specific version of the Go SDK in your project, letting you control how and when you move to the next major version.
 
 ## Dependencies
 - Install [Go programming language](https://golang.org/dl/).
 - Install [GNU Make](https://www.gnu.org/software/make/), using the package manager or binary distribution tool appropriate for your platform.
- 
+
 
 
 ## Installing
 Use the following command to install this SDK:
 
 ```
-go get -u github.com/oracle/oci-go-sdk
+go get -u github.com/erikcai/oci-go-sdk
 ```
 Alternatively you can git clone this repo.
 
@@ -26,29 +26,29 @@ We've applied Go Module after v25.0.0, for legacy user not using Go Module, you 
 If you're using Go Module to import OCI Go SDK and you want to use the latest or specific Go SDK version, you need to update your require in `go.mod`:
 
 ```go
-require github.com/oracle/oci-go-sdk/{major-version} {version}
+require github.com/erikcai/oci-go-sdk/{major-version} {version}
 ```
 
 And in the code, you also need to update the import following this pattern:
 
 ```go
 import (
- "github.com/oracle/oci-go-sdk/{major-version}/common"
+ "github.com/erikcai/oci-go-sdk/{major-version}/common"
 )
 ```
 
-If you don't update your import and use your import like this `github.com/oracle/oci-go-sdk/common`, your Go SDK version will remain at version: v24.2.0
+If you don't update your import and use your import like this `github.com/erikcai/oci-go-sdk/common`, your Go SDK version will remain at version: v24.2.0
 
 Everytime after a major version release (which means it will include some breaking changes), you'll need to update the version in require and import to get the latest changes.
 ```go
 import (
-    "github.com/oracle/oci-go-sdk/v25"
+    "github.com/erikcai/oci-go-sdk/v25"
 )
 ```
 in `go.mod` or run `go mod tidy` / `go build` after updating the import
 ```go
 require (
-    github.com/oracle/oci-go-sdk/{updated-major-version} {version}
+    github.com/erikcai/oci-go-sdk/{updated-major-version} {version}
 )
 ```
 The version will not be impacted without updating the import
@@ -56,7 +56,7 @@ The version will not be impacted without updating the import
 ## Working with the Go SDK
 To start working with the Go SDK, you import the service package, create a client, and then use that client to make calls.
 
-### Configuring 
+### Configuring
 Before using the SDK, set up a config file with the required credentials. See [SDK and Tool Configuration](https://docs.cloud.oracle.com/Content/API/Concepts/sdkconfig.htm) for instructions.
 
 Once a config file has been setup, call `common.DefaultConfigProvider()` function as follows:
@@ -64,12 +64,12 @@ Once a config file has been setup, call `common.DefaultConfigProvider()` functio
  ```go
  // Import necessary packages
  import (
-	"github.com/oracle/oci-go-sdk/common"
-	"github.com/oracle/oci-go-sdk/identity" // Identity or any other service you wish to make requests to
+	"github.com/erikcai/oci-go-sdk/common"
+	"github.com/erikcai/oci-go-sdk/identity" // Identity or any other service you wish to make requests to
 )
- 
+
  //...
- 
+
 configProvider := common.DefaultConfigProvider()
 ```
 
@@ -89,14 +89,14 @@ type ConfigurationProvider interface {
 To make a request to an OCI service, create a client for the service and then use the client to call a function from the service.
 
 - *Creating a client*: All packages provide a function to create clients, using the naming convention `New<ServiceName>ClientWithConfigurationProvider`,
-such as `NewVirtualNetworkClientWithConfigurationProvider` or `NewIdentityClientWithConfigurationProvider`. To create a new client, 
+such as `NewVirtualNetworkClientWithConfigurationProvider` or `NewIdentityClientWithConfigurationProvider`. To create a new client,
 pass a struct that conforms to the `ConfigurationProvider` interface, or use the `DefaultConfigProvider()` function in the common package.
 
-For example: 
+For example:
 ```go
 config := common.DefaultConfigProvider()
 client, err := identity.NewIdentityClientWithConfigurationProvider(config)
-if err != nil { 
+if err != nil {
      panic(err)
 }
 ```
@@ -119,9 +119,9 @@ fmt.Println("Group's name is:", response.Name)
 
 ## Organization of the SDK
 The `oci-go-sdk` contains the following:
-- **Service packages**: All packages except `common` and any other package found inside `cmd`. These packages represent 
-the Oracle Cloud Infrastructure services supported by the Go SDK. Each package represents a service. 
-These packages include methods to interact with the service, structs that model 
+- **Service packages**: All packages except `common` and any other package found inside `cmd`. These packages represent
+the Oracle Cloud Infrastructure services supported by the Go SDK. Each package represents a service.
+These packages include methods to interact with the service, structs that model
 input and output parameters, and a client struct that acts as receiver for the above methods.
 
 - **Common package**: Found in the `common` directory. The common package provides supporting functions and structs used by service packages.
@@ -131,13 +131,13 @@ in this package are meant to be used by the service packages.
 - **cmd**: Internal tools used by the `oci-go-sdk`.
 
 ## Examples
-Examples can be found [here](https://github.com/oracle/oci-go-sdk/tree/master/example)
+Examples can be found [here](https://github.com/erikcai/oci-go-sdk/tree/master/example)
 
 ## Documentation
-Full documentation can be found [on the godocs site](https://godoc.org/github.com/oracle/oci-go-sdk/).
+Full documentation can be found [on the godocs site](https://godoc.org/github.com/erikcai/oci-go-sdk/).
 
 ## Help
-* The [Issues](https://github.com/oracle/oci-go-sdk/issues) page of this GitHub repository.
+* The [Issues](https://github.com/erikcai/oci-go-sdk/issues) page of this GitHub repository.
 * [Stack Overflow](https://stackoverflow.com/), use the [oracle-cloud-infrastructure](https://stackoverflow.com/questions/tagged/oracle-cloud-infrastructure) and [oci-go-sdk](https://stackoverflow.com/questions/tagged/oci-go-sdk) tags in your post.
 * [Developer Tools](https://community.oracle.com/community/cloud_computing/bare-metal/content?filterID=contentstatus%5Bpublished%5D~category%5Bdeveloper-tools%5D&filterID=contentstatus%5Bpublished%5D~objecttype~objecttype%5Bthread%5D) of the Oracle Cloud forums.
 * [My Oracle Support](https://support.oracle.com).
@@ -160,7 +160,7 @@ See [LICENSE](/LICENSE.txt) for more details.
 See [CHANGELOG](/CHANGELOG.md).
 
 ## Known Issues
-You can find information on any known issues with the SDK here and under the [Issues](https://github.com/oracle/oci-go-sdk/issues) tab of this project's GitHub repository.
+You can find information on any known issues with the SDK here and under the [Issues](https://github.com/erikcai/oci-go-sdk/issues) tab of this project's GitHub repository.
 
 ## Building and testing
 ### Dev dependencies

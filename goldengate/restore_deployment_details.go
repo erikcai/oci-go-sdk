@@ -11,7 +11,7 @@ package goldengate
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // RestoreDeploymentDetails The information about the Restore for a Deployment.
@@ -19,8 +19,8 @@ type RestoreDeploymentDetails interface {
 }
 
 type restoredeploymentdetails struct {
-	JsonData              []byte
-	RestoreDeploymentType string `json:"restoreDeploymentType"`
+	JsonData []byte
+	Type     string `json:"type"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -34,7 +34,7 @@ func (m *restoredeploymentdetails) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
-	m.RestoreDeploymentType = s.Model.RestoreDeploymentType
+	m.Type = s.Model.Type
 
 	return err
 }
@@ -47,7 +47,7 @@ func (m *restoredeploymentdetails) UnmarshalPolymorphicJSON(data []byte) (interf
 	}
 
 	var err error
-	switch m.RestoreDeploymentType {
+	switch m.Type {
 	case "DEFAULT":
 		mm := DefaultRestoreDeploymentDetails{}
 		err = json.Unmarshal(data, &mm)

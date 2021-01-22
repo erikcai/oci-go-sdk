@@ -14,8 +14,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/oracle/oci-go-sdk/v33/common"
-	"github.com/oracle/oci-go-sdk/v33/email"
+	"github.com/erikcai/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/email"
 )
 
 // sanity test for email service

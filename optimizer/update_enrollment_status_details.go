@@ -10,11 +10,10 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // UpdateEnrollmentStatusDetails The request object for updating the enrollment status details.
-// **Caution:** Avoid using any confidential information when you use the API to supply string values.
 type UpdateEnrollmentStatusDetails struct {
 
 	// The Cloud Advisor enrollment status.

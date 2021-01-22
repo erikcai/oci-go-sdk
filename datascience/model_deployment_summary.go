@@ -11,7 +11,7 @@ package datascience
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ModelDeploymentSummary Summary information for a model deployment.
@@ -43,7 +43,12 @@ type ModelDeploymentSummary struct {
 	// The state of the model deployment.
 	LifecycleState ModelDeploymentLifecycleStateEnum `mandatory:"true" json:"lifecycleState"`
 
+	// A short description of the model deployment.
+	Description *string `mandatory:"false" json:"description"`
+
 	ModelDeploymentConfigurationDetails ModelDeploymentConfigurationDetails `mandatory:"false" json:"modelDeploymentConfigurationDetails"`
+
+	CategoryLogDetails *CategoryLogDetails `mandatory:"false" json:"categoryLogDetails"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -52,10 +57,6 @@ type ModelDeploymentSummary struct {
 	// Defined tags for this resource. Each key is predefined and scoped to a namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Operations": {"CostCenter": "42"}}`
 	DefinedTags map[string]map[string]interface{} `mandatory:"false" json:"definedTags"`
-
-	// Usage of system tag keys. These predefined keys are scoped to namespaces.
-	// Example: `{"orcl-cloud": {"free-tier-retained": "true"}}`
-	SystemTags map[string]map[string]interface{} `mandatory:"false" json:"systemTags"`
 }
 
 func (m ModelDeploymentSummary) String() string {
@@ -65,10 +66,11 @@ func (m ModelDeploymentSummary) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *ModelDeploymentSummary) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
+		Description                         *string                             `json:"description"`
 		ModelDeploymentConfigurationDetails modeldeploymentconfigurationdetails `json:"modelDeploymentConfigurationDetails"`
+		CategoryLogDetails                  *CategoryLogDetails                 `json:"categoryLogDetails"`
 		FreeformTags                        map[string]string                   `json:"freeformTags"`
 		DefinedTags                         map[string]map[string]interface{}   `json:"definedTags"`
-		SystemTags                          map[string]map[string]interface{}   `json:"systemTags"`
 		Id                                  *string                             `json:"id"`
 		TimeCreated                         *common.SDKTime                     `json:"timeCreated"`
 		DisplayName                         *string                             `json:"displayName"`
@@ -84,6 +86,8 @@ func (m *ModelDeploymentSummary) UnmarshalJSON(data []byte) (e error) {
 		return
 	}
 	var nn interface{}
+	m.Description = model.Description
+
 	nn, e = model.ModelDeploymentConfigurationDetails.UnmarshalPolymorphicJSON(model.ModelDeploymentConfigurationDetails.JsonData)
 	if e != nil {
 		return
@@ -94,11 +98,11 @@ func (m *ModelDeploymentSummary) UnmarshalJSON(data []byte) (e error) {
 		m.ModelDeploymentConfigurationDetails = nil
 	}
 
+	m.CategoryLogDetails = model.CategoryLogDetails
+
 	m.FreeformTags = model.FreeformTags
 
 	m.DefinedTags = model.DefinedTags
-
-	m.SystemTags = model.SystemTags
 
 	m.Id = model.Id
 

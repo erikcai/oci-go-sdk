@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ClusterNetworkPlacementConfigurationDetails The location for where the instance pools in a cluster network will place instances.

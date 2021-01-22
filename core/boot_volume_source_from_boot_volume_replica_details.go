@@ -16,7 +16,7 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // BootVolumeSourceFromBootVolumeReplicaDetails Specifies the source boot volume replica which the boot volume will be created from.

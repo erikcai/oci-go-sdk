@@ -11,7 +11,7 @@ package dataintegration
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // TaskOperator An operator for task
@@ -55,12 +55,14 @@ type TaskOperator struct {
 	RetryAttempts *int `mandatory:"false" json:"retryAttempts"`
 
 	// The retry delay, the unit for measurement is in the property retry delay unit.
-	RetryDelay *float32 `mandatory:"false" json:"retryDelay"`
+	RetryDelay *float64 `mandatory:"false" json:"retryDelay"`
 
 	// The expected duration for the task run.
-	ExpectedDuration *float32 `mandatory:"false" json:"expectedDuration"`
+	ExpectedDuration *float64 `mandatory:"false" json:"expectedDuration"`
 
 	Task Task `mandatory:"false" json:"task"`
+
+	ConfigProviderDelegate *ConfigProvider `mandatory:"false" json:"configProviderDelegate"`
 
 	// The unit for the retry delay.
 	RetryDelayUnit TaskOperatorRetryDelayUnitEnum `mandatory:"false" json:"retryDelayUnit,omitempty"`
@@ -159,26 +161,27 @@ func (m TaskOperator) MarshalJSON() (buff []byte, e error) {
 // UnmarshalJSON unmarshals from json
 func (m *TaskOperator) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		Key                  *string                              `json:"key"`
-		ModelVersion         *string                              `json:"modelVersion"`
-		ParentRef            *ParentReference                     `json:"parentRef"`
-		Name                 *string                              `json:"name"`
-		Description          *string                              `json:"description"`
-		ObjectVersion        *int                                 `json:"objectVersion"`
-		InputPorts           []InputPort                          `json:"inputPorts"`
-		OutputPorts          []OutputPort                         `json:"outputPorts"`
-		ObjectStatus         *int                                 `json:"objectStatus"`
-		Identifier           *string                              `json:"identifier"`
-		Parameters           []Parameter                          `json:"parameters"`
-		OpConfigValues       *ConfigValues                        `json:"opConfigValues"`
-		RetryAttempts        *int                                 `json:"retryAttempts"`
-		RetryDelayUnit       TaskOperatorRetryDelayUnitEnum       `json:"retryDelayUnit"`
-		RetryDelay           *float32                             `json:"retryDelay"`
-		ExpectedDuration     *float32                             `json:"expectedDuration"`
-		ExpectedDurationUnit TaskOperatorExpectedDurationUnitEnum `json:"expectedDurationUnit"`
-		TaskType             TaskOperatorTaskTypeEnum             `json:"taskType"`
-		Task                 task                                 `json:"task"`
-		TriggerRule          TaskOperatorTriggerRuleEnum          `json:"triggerRule"`
+		Key                    *string                              `json:"key"`
+		ModelVersion           *string                              `json:"modelVersion"`
+		ParentRef              *ParentReference                     `json:"parentRef"`
+		Name                   *string                              `json:"name"`
+		Description            *string                              `json:"description"`
+		ObjectVersion          *int                                 `json:"objectVersion"`
+		InputPorts             []InputPort                          `json:"inputPorts"`
+		OutputPorts            []OutputPort                         `json:"outputPorts"`
+		ObjectStatus           *int                                 `json:"objectStatus"`
+		Identifier             *string                              `json:"identifier"`
+		Parameters             []Parameter                          `json:"parameters"`
+		OpConfigValues         *ConfigValues                        `json:"opConfigValues"`
+		RetryAttempts          *int                                 `json:"retryAttempts"`
+		RetryDelayUnit         TaskOperatorRetryDelayUnitEnum       `json:"retryDelayUnit"`
+		RetryDelay             *float64                             `json:"retryDelay"`
+		ExpectedDuration       *float64                             `json:"expectedDuration"`
+		ExpectedDurationUnit   TaskOperatorExpectedDurationUnitEnum `json:"expectedDurationUnit"`
+		TaskType               TaskOperatorTaskTypeEnum             `json:"taskType"`
+		Task                   task                                 `json:"task"`
+		TriggerRule            TaskOperatorTriggerRuleEnum          `json:"triggerRule"`
+		ConfigProviderDelegate *ConfigProvider                      `json:"configProviderDelegate"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -242,6 +245,8 @@ func (m *TaskOperator) UnmarshalJSON(data []byte) (e error) {
 	}
 
 	m.TriggerRule = model.TriggerRule
+
+	m.ConfigProviderDelegate = model.ConfigProviderDelegate
 
 	return
 }

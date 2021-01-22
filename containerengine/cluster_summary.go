@@ -12,7 +12,7 @@
 package containerengine
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ClusterSummary The properties that define a cluster summary.
@@ -53,6 +53,9 @@ type ClusterSummary struct {
 
 	// Available Kubernetes versions to which the clusters masters may be upgraded.
 	AvailableKubernetesUpgrades []string `mandatory:"false" json:"availableKubernetesUpgrades"`
+
+	// The image verification policy for signature validation.
+	ImagePolicyConfig *ImagePolicyConfig `mandatory:"false" json:"imagePolicyConfig"`
 }
 
 func (m ClusterSummary) String() string {

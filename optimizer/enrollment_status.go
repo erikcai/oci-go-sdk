@@ -10,11 +10,10 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // EnrollmentStatus The metadata associated with the enrollment status.
-// **Caution:** Avoid using any confidential information when you use the API to supply string values.
 type EnrollmentStatus struct {
 
 	// The OCID of the enrollment status.

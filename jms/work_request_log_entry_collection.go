@@ -10,7 +10,7 @@
 package jms
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // WorkRequestLogEntryCollection Results of a work request log entry search. Contains WorkRequestLogEntry items

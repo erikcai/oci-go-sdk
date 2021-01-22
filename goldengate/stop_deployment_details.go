@@ -11,7 +11,7 @@ package goldengate
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // StopDeploymentDetails The information about the Stop for a Deployment.
@@ -19,8 +19,8 @@ type StopDeploymentDetails interface {
 }
 
 type stopdeploymentdetails struct {
-	JsonData           []byte
-	StopDeploymentType string `json:"stopDeploymentType"`
+	JsonData []byte
+	Type     string `json:"type"`
 }
 
 // UnmarshalJSON unmarshals json
@@ -34,7 +34,7 @@ func (m *stopdeploymentdetails) UnmarshalJSON(data []byte) error {
 	if err != nil {
 		return err
 	}
-	m.StopDeploymentType = s.Model.StopDeploymentType
+	m.Type = s.Model.Type
 
 	return err
 }
@@ -47,7 +47,7 @@ func (m *stopdeploymentdetails) UnmarshalPolymorphicJSON(data []byte) (interface
 	}
 
 	var err error
-	switch m.StopDeploymentType {
+	switch m.Type {
 	case "DEFAULT":
 		mm := DefaultStopDeploymentDetails{}
 		err = json.Unmarshal(data, &mm)

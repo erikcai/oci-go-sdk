@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/oracle/oci-go-sdk/v33/common"
-	"github.com/oracle/oci-go-sdk/v33/email"
-	"github.com/oracle/oci-go-sdk/v33/example/helpers"
+	"github.com/erikcai/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/email"
+	"github.com/erikcai/oci-go-sdk/v33/example/helpers"
 )
 
 const (

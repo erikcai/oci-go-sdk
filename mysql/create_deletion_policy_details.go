@@ -10,7 +10,7 @@
 package mysql
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // CreateDeletionPolicyDetails Policy for how the DBSystem and related resources should be handled at the time of its deletion.

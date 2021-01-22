@@ -11,18 +11,24 @@ package datascience
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
-// UpdateModelDeploymentDetails Details for updating a model deployment. `modelDeploymentConfigurationDetails` can only be updated while the model deployment is in the `INACTIVE` state.
-// Changes to the `modelDeploymentConfigurationDetails` will take effect the next time the `ActivateModelDeployment` action is invoked on the model deployment resource.
+// UpdateModelDeploymentDetails Details for updating a model deployment. You can update `modelDeploymentConfigurationDetails` and change `instanceShapeName` and `modelId` when the model deployment is in
+// the ACTIVE lifecycle state. The `bandwidthMbps` or `instanceCount` can only be updated while the model deployment is in the `INACTIVE` state. Changes to the `bandwidthMbps`
+// or `instanceCount` will take effect the next time the `ActivateModelDeployment` action is invoked on the model deployment resource.
 type UpdateModelDeploymentDetails struct {
 
 	// A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
 	// Example: `My ModelDeployment`
 	DisplayName *string `mandatory:"false" json:"displayName"`
 
-	ModelDeploymentConfigurationDetails ModelDeploymentConfigurationDetails `mandatory:"false" json:"modelDeploymentConfigurationDetails"`
+	// A short description of the model deployment.
+	Description *string `mandatory:"false" json:"description"`
+
+	ModelDeploymentConfigurationDetails UpdateModelDeploymentConfigurationDetails `mandatory:"false" json:"modelDeploymentConfigurationDetails"`
+
+	CategoryLogDetails *UpdateCategoryLogDetails `mandatory:"false" json:"categoryLogDetails"`
 
 	// Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See Resource Tags (https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
 	// Example: `{"Department": "Finance"}`
@@ -40,10 +46,12 @@ func (m UpdateModelDeploymentDetails) String() string {
 // UnmarshalJSON unmarshals from json
 func (m *UpdateModelDeploymentDetails) UnmarshalJSON(data []byte) (e error) {
 	model := struct {
-		DisplayName                         *string                             `json:"displayName"`
-		ModelDeploymentConfigurationDetails modeldeploymentconfigurationdetails `json:"modelDeploymentConfigurationDetails"`
-		FreeformTags                        map[string]string                   `json:"freeformTags"`
-		DefinedTags                         map[string]map[string]interface{}   `json:"definedTags"`
+		DisplayName                         *string                                   `json:"displayName"`
+		Description                         *string                                   `json:"description"`
+		ModelDeploymentConfigurationDetails updatemodeldeploymentconfigurationdetails `json:"modelDeploymentConfigurationDetails"`
+		CategoryLogDetails                  *UpdateCategoryLogDetails                 `json:"categoryLogDetails"`
+		FreeformTags                        map[string]string                         `json:"freeformTags"`
+		DefinedTags                         map[string]map[string]interface{}         `json:"definedTags"`
 	}{}
 
 	e = json.Unmarshal(data, &model)
@@ -53,15 +61,19 @@ func (m *UpdateModelDeploymentDetails) UnmarshalJSON(data []byte) (e error) {
 	var nn interface{}
 	m.DisplayName = model.DisplayName
 
+	m.Description = model.Description
+
 	nn, e = model.ModelDeploymentConfigurationDetails.UnmarshalPolymorphicJSON(model.ModelDeploymentConfigurationDetails.JsonData)
 	if e != nil {
 		return
 	}
 	if nn != nil {
-		m.ModelDeploymentConfigurationDetails = nn.(ModelDeploymentConfigurationDetails)
+		m.ModelDeploymentConfigurationDetails = nn.(UpdateModelDeploymentConfigurationDetails)
 	} else {
 		m.ModelDeploymentConfigurationDetails = nil
 	}
+
+	m.CategoryLogDetails = model.CategoryLogDetails
 
 	m.FreeformTags = model.FreeformTags
 

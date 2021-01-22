@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // DedicatedVmHostInstanceSummary Condensed instance data when listing instances on a dedicated VM host.

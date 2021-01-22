@@ -17,8 +17,8 @@ package core
 import (
 	"context"
 	"fmt"
-	"github.com/oracle/oci-go-sdk/v33/common"
-	"github.com/oracle/oci-go-sdk/v33/common/auth"
+	"github.com/erikcai/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common/auth"
 	"net/http"
 )
 
@@ -12774,7 +12774,10 @@ func (client VirtualNetworkClient) listDhcpOptions(ctx context.Context, request 
 }
 
 // ListDrgAttachments Lists the `DrgAttachment` objects for the specified compartment. You can filter the
-// results by VCN or DRG.
+// results by VCN, DRG, Attached Resource, Attachment Type, DRG Route Table or
+// VCN Route Table.
+// The LIST API lists DRG Attachment by attachment type. It will default to list VCN Attachments,
+// but you may request to list ALL attachments of ALL types.
 func (client VirtualNetworkClient) ListDrgAttachments(ctx context.Context, request ListDrgAttachmentsRequest) (response ListDrgAttachmentsResponse, err error) {
 	var ociResponse common.OCIResponse
 	policy := common.NoRetryPolicy()

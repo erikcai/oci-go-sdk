@@ -10,11 +10,10 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ResourceAction The metadata associated with the resource action.
-// **Caution:** Avoid using any confidential information when you use the API to supply string values.
 type ResourceAction struct {
 
 	// The unique OCID associated with the resource action.

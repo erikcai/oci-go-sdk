@@ -5,44 +5,44 @@
 package cims
 
 import (
-    "github.com/oracle/oci-go-sdk/v33/common"
+    "github.com/erikcai/oci-go-sdk/v33/common"
     "net/http"
 )
 
 // ListIncidentResourceTypesRequest wrapper for the ListIncidentResourceTypes operation
 type ListIncidentResourceTypesRequest struct {
-        
- // The kind of support request. 
+
+ // The kind of support request.
         ProblemType *string `mandatory:"true" contributesTo:"query" name:"problemType"`
-        
- // The OCID of the tenancy. 
+
+ // The OCID of the tenancy.
         CompartmentId *string `mandatory:"true" contributesTo:"query" name:"compartmentId"`
-        
- // The Customer Support Identifier associated with the support account. 
+
+ // The Customer Support Identifier associated with the support account.
         Csi *string `mandatory:"true" contributesTo:"header" name:"csi"`
-        
- // User OCID for Oracle Identity Cloud Service (IDCS) users who also have a federated Oracle Cloud Infrastructure account. 
+
+ // User OCID for Oracle Identity Cloud Service (IDCS) users who also have a federated Oracle Cloud Infrastructure account.
         Ocid *string `mandatory:"true" contributesTo:"header" name:"ocid"`
-        
- // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID. 
+
+ // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
         OpcRequestId *string `mandatory:"false" contributesTo:"header" name:"opc-request-id"`
-        
- // For list pagination. The maximum number of results per page, or items to return in a paginated "List" call. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine). 
+
+ // For list pagination. The maximum number of results per page, or items to return in a paginated "List" call. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
         Limit *int `mandatory:"false" contributesTo:"query" name:"limit"`
-        
- // For list pagination. The value of the `opc-next-page` response header from the previous "List" call. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine). 
+
+ // For list pagination. The value of the `opc-next-page` response header from the previous "List" call. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
         Page *string `mandatory:"false" contributesTo:"query" name:"page"`
-        
- // The key to use to sort the returned items. 
+
+ // The key to use to sort the returned items.
         SortBy ListIncidentResourceTypesSortByEnum `mandatory:"false" contributesTo:"query" name:"sortBy" omitEmpty:"true"`
-        
- // The order to sort the results in. 
+
+ // The order to sort the results in.
         SortOrder ListIncidentResourceTypesSortOrderEnum `mandatory:"false" contributesTo:"query" name:"sortOrder" omitEmpty:"true"`
-        
- // The user-friendly name of the incident type. 
+
+ // The user-friendly name of the incident type.
         Name *string `mandatory:"false" contributesTo:"query" name:"name"`
-        
- // The region of the tenancy. 
+
+ // The region of the tenancy.
         Homeregion *string `mandatory:"false" contributesTo:"header" name:"homeregion"`
 
 
@@ -70,14 +70,14 @@ type ListIncidentResourceTypesResponse struct {
 
     // The underlying http response
     RawResponse *http.Response
-    
+
  // A list of []IncidentResourceType instances
     Items []IncidentResourceType `presentIn:"body"`
 
-    
+
  // Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.
     OpcRequestId *string `presentIn:"header" name:"opc-request-id"`
-    
+
  // For list pagination. When this header appears in the response, additional pages of results remain. For important details about how pagination works, see List Pagination (https://docs.cloud.oracle.com/Content/API/Concepts/usingapi.htm#nine).
     OpcNextPage *string `presentIn:"header" name:"opc-next-page"`
 
@@ -102,7 +102,7 @@ const (
     ListIncidentResourceTypesSortBySeverity ListIncidentResourceTypesSortByEnum = "severity"
 )
 
-var mappingListIncidentResourceTypesSortBy = map[string]ListIncidentResourceTypesSortByEnum { 
+var mappingListIncidentResourceTypesSortBy = map[string]ListIncidentResourceTypesSortByEnum {
     "dateUpdated": ListIncidentResourceTypesSortByDateupdated,
     "severity": ListIncidentResourceTypesSortBySeverity,
 }
@@ -125,7 +125,7 @@ const (
     ListIncidentResourceTypesSortOrderDesc ListIncidentResourceTypesSortOrderEnum = "DESC"
 )
 
-var mappingListIncidentResourceTypesSortOrder = map[string]ListIncidentResourceTypesSortOrderEnum { 
+var mappingListIncidentResourceTypesSortOrder = map[string]ListIncidentResourceTypesSortOrderEnum {
     "ASC": ListIncidentResourceTypesSortOrderAsc,
     "DESC": ListIncidentResourceTypesSortOrderDesc,
 }

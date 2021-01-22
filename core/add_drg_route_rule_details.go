@@ -15,7 +15,7 @@
 package core
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // AddDrgRouteRuleDetails Details for adding a DRG Route Rule. You cannot add a static route rule

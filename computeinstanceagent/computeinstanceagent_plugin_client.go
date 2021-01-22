@@ -13,8 +13,8 @@ package computeinstanceagent
 import (
 	"context"
 	"fmt"
-	"github.com/oracle/oci-go-sdk/v33/common"
-	"github.com/oracle/oci-go-sdk/v33/common/auth"
+	"github.com/erikcai/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common/auth"
 	"net/http"
 )
 

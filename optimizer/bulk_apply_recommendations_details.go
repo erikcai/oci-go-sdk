@@ -10,17 +10,18 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // BulkApplyRecommendationsDetails Details about bulk recommendation actions.
 type BulkApplyRecommendationsDetails struct {
 
-	// The unique OCIDs of the resource actions that recommendations are applied to.
-	ResourceActionIds []string `mandatory:"true" json:"resourceActionIds"`
-
 	// The current status of the recommendation.
 	Status StatusEnum `mandatory:"true" json:"status"`
+
+	// The unique OCIDs of the resource actions that recommendations are applied to.
+	// This field is deprecated.
+	ResourceActionIds []string `mandatory:"false" json:"resourceActionIds"`
 
 	// The date and time the current status will change. The format is defined by RFC3339.
 	// For example, "The current `postponed` status of the resource action will end and change to `pending` on this

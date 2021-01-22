@@ -10,7 +10,7 @@
 package database
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // AutonomousDatabaseSummary An Oracle Autonomous Database.
@@ -255,6 +255,18 @@ type AutonomousDatabaseSummary struct {
 
 	// The wallet name for Oracle Key Vault.
 	KeyStoreWalletName *string `mandatory:"false" json:"keyStoreWalletName"`
+
+	// The auto-refresh policy for the Autonomous Database refreshable clone. You can specify continuous refreshing or a custom refresh schedule.
+	AutoRefreshPolicy AutonomousDatabaseSummaryAutoRefreshPolicyEnum `mandatory:"false" json:"autoRefreshPolicy,omitempty"`
+
+	// The frequency at which the data is refreshed for a refreshable clone after auto-refresh is enabled. The minimum is 1 minute. The maximum is 1 day. The date and time that auto-refresh is enabled is controlled by the `timeOfAutoRefreshStart` parameter.
+	AutoRefreshFrequencyInSeconds *int `mandatory:"false" json:"autoRefreshFrequencyInSeconds"`
+
+	// The amount of time, in seconds, that the data of the refreshable clone lags the data of the primary database at the point of refresh. The minimum is 1 minute. The maximum is 7 days. The lag time increases after refreshing until the next data refresh happens.
+	AutoRefreshPointInSeconds *int `mandatory:"false" json:"autoRefreshPointInSeconds"`
+
+	// The the date and time that auto-refreshing will begin for an Autonomous Database refreshable clone. This value controls only the start time for the first refresh operation. Subsequent (ongoing) refresh operations have start times controlled by the value of the `autoRefreshFrequencyInSeconds` parameter.
+	TimeOfAutoRefreshStart *common.SDKTime `mandatory:"false" json:"timeOfAutoRefreshStart"`
 }
 
 func (m AutonomousDatabaseSummary) String() string {
@@ -565,6 +577,29 @@ var mappingAutonomousDatabaseSummaryRole = map[string]AutonomousDatabaseSummaryR
 func GetAutonomousDatabaseSummaryRoleEnumValues() []AutonomousDatabaseSummaryRoleEnum {
 	values := make([]AutonomousDatabaseSummaryRoleEnum, 0)
 	for _, v := range mappingAutonomousDatabaseSummaryRole {
+		values = append(values, v)
+	}
+	return values
+}
+
+// AutonomousDatabaseSummaryAutoRefreshPolicyEnum Enum with underlying type: string
+type AutonomousDatabaseSummaryAutoRefreshPolicyEnum string
+
+// Set of constants representing the allowable values for AutonomousDatabaseSummaryAutoRefreshPolicyEnum
+const (
+	AutonomousDatabaseSummaryAutoRefreshPolicyContinuous AutonomousDatabaseSummaryAutoRefreshPolicyEnum = "CONTINUOUS"
+	AutonomousDatabaseSummaryAutoRefreshPolicyCustom     AutonomousDatabaseSummaryAutoRefreshPolicyEnum = "CUSTOM"
+)
+
+var mappingAutonomousDatabaseSummaryAutoRefreshPolicy = map[string]AutonomousDatabaseSummaryAutoRefreshPolicyEnum{
+	"CONTINUOUS": AutonomousDatabaseSummaryAutoRefreshPolicyContinuous,
+	"CUSTOM":     AutonomousDatabaseSummaryAutoRefreshPolicyCustom,
+}
+
+// GetAutonomousDatabaseSummaryAutoRefreshPolicyEnumValues Enumerates the set of values for AutonomousDatabaseSummaryAutoRefreshPolicyEnum
+func GetAutonomousDatabaseSummaryAutoRefreshPolicyEnumValues() []AutonomousDatabaseSummaryAutoRefreshPolicyEnum {
+	values := make([]AutonomousDatabaseSummaryAutoRefreshPolicyEnum, 0)
+	for _, v := range mappingAutonomousDatabaseSummaryAutoRefreshPolicy {
 		values = append(values, v)
 	}
 	return values

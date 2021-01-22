@@ -10,7 +10,7 @@
 package dataintegration
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // TaskRun The information about a task run.
@@ -58,6 +58,29 @@ type TaskRun struct {
 
 	// Contains an error message if status is `ERROR`.
 	ErrorMessage *string `mandatory:"false" json:"errorMessage"`
+
+	// The expected duration for the task run.
+	ExpectedDuration *float64 `mandatory:"false" json:"expectedDuration"`
+
+	// The expected duration unit of measure.
+	ExpectedDurationUnit TaskRunExpectedDurationUnitEnum `mandatory:"false" json:"expectedDurationUnit,omitempty"`
+
+	// Task Key of the task for which TaskRun is being created. If not specified, the AggregatorKey in RegistryMetadata will be assumed to be the TaskKey
+	TaskKey *string `mandatory:"false" json:"taskKey"`
+
+	// Holds the particular attempt number.
+	RetryAttempt *int `mandatory:"false" json:"retryAttempt"`
+
+	TaskSchedule *TaskSchedule `mandatory:"false" json:"taskSchedule"`
+
+	// A map of metrics for the run.
+	Metrics map[string]float32 `mandatory:"false" json:"metrics"`
+
+	// An array of execution errors from the run.
+	ExecutionErrors []string `mandatory:"false" json:"executionErrors"`
+
+	// An array of termination errors from the run.
+	TerminationErrors []string `mandatory:"false" json:"terminationErrors"`
 
 	// The OPC request ID of execution of the task run.
 	OpcRequestId *string `mandatory:"false" json:"opcRequestId"`
@@ -109,6 +132,33 @@ var mappingTaskRunStatus = map[string]TaskRunStatusEnum{
 func GetTaskRunStatusEnumValues() []TaskRunStatusEnum {
 	values := make([]TaskRunStatusEnum, 0)
 	for _, v := range mappingTaskRunStatus {
+		values = append(values, v)
+	}
+	return values
+}
+
+// TaskRunExpectedDurationUnitEnum Enum with underlying type: string
+type TaskRunExpectedDurationUnitEnum string
+
+// Set of constants representing the allowable values for TaskRunExpectedDurationUnitEnum
+const (
+	TaskRunExpectedDurationUnitSeconds TaskRunExpectedDurationUnitEnum = "SECONDS"
+	TaskRunExpectedDurationUnitMinutes TaskRunExpectedDurationUnitEnum = "MINUTES"
+	TaskRunExpectedDurationUnitHours   TaskRunExpectedDurationUnitEnum = "HOURS"
+	TaskRunExpectedDurationUnitDays    TaskRunExpectedDurationUnitEnum = "DAYS"
+)
+
+var mappingTaskRunExpectedDurationUnit = map[string]TaskRunExpectedDurationUnitEnum{
+	"SECONDS": TaskRunExpectedDurationUnitSeconds,
+	"MINUTES": TaskRunExpectedDurationUnitMinutes,
+	"HOURS":   TaskRunExpectedDurationUnitHours,
+	"DAYS":    TaskRunExpectedDurationUnitDays,
+}
+
+// GetTaskRunExpectedDurationUnitEnumValues Enumerates the set of values for TaskRunExpectedDurationUnitEnum
+func GetTaskRunExpectedDurationUnitEnumValues() []TaskRunExpectedDurationUnitEnum {
+	values := make([]TaskRunExpectedDurationUnitEnum, 0)
+	for _, v := range mappingTaskRunExpectedDurationUnit {
 		values = append(values, v)
 	}
 	return values

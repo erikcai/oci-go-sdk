@@ -11,7 +11,7 @@ package database
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // CreateVirtualAutonomousDatabaseCloneDetails Details to create an Oracle Autonomous Database virtual clone.

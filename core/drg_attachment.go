@@ -16,7 +16,7 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // DrgAttachment A link between a DRG and a network. A DRG can be attached to a VCN, IPSec Connection, Remote Peering Connection,

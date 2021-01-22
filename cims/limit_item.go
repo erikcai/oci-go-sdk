@@ -3,42 +3,42 @@
 // Code generated. DO NOT EDIT.
 
 // Support Management API
-// 
+//
  // Use the Support Management API to manage support requests. For more information, see Getting Help and Contacting Support (https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/contactingsupport.htm). **Note**: Before you can create service requests with this API, you need to have an Oracle Single Sign On (SSO) account, and you need to register your Customer Support Identifier (CSI) with My Oracle Support.
 //
 
 package cims
 
 import (
-    "github.com/oracle/oci-go-sdk/v33/common"
+    "github.com/erikcai/oci-go-sdk/v33/common"
         "encoding/json"
 )
 
-        
+
  // LimitItem Reserved for future use.
 type LimitItem struct {
-        
+
  // Unique identifier for the item.
         ItemKey *string `mandatory:"true" json:"itemKey"`
-        
+
  // The display name of the item.
         Name *string `mandatory:"false" json:"name"`
-        
+
         Category *Category `mandatory:"false" json:"category"`
-        
+
         SubCategory *SubCategory `mandatory:"false" json:"subCategory"`
-        
+
         IssueType *IssueType `mandatory:"false" json:"issueType"`
-        
+
  // The currently available limit of the resource.
         CurrentLimit *int `mandatory:"false" json:"currentLimit"`
-        
+
  // The current usage of the resource.
         CurrentUsage *int `mandatory:"false" json:"currentUsage"`
-        
+
  // The requested limit for the resource.
         RequestedLimit *int `mandatory:"false" json:"requestedLimit"`
-       
+
  // The status of the request.
        LimitStatus LimitItemLimitStatusEnum `mandatory:"false" json:"limitStatus,omitempty"`
 }
@@ -93,7 +93,7 @@ const (
     LimitItemLimitStatusNotApproved LimitItemLimitStatusEnum = "NOT_APPROVED"
 )
 
-var mappingLimitItemLimitStatus = map[string]LimitItemLimitStatusEnum { 
+var mappingLimitItemLimitStatus = map[string]LimitItemLimitStatusEnum {
     "APPROVED": LimitItemLimitStatusApproved,
     "PARTIALLY_APPROVED": LimitItemLimitStatusPartiallyApproved,
     "NOT_APPROVED": LimitItemLimitStatusNotApproved,

@@ -3,27 +3,27 @@
 // Code generated. DO NOT EDIT.
 
 // Support Management API
-// 
+//
  // Use the Support Management API to manage support requests. For more information, see Getting Help and Contacting Support (https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/contactingsupport.htm). **Note**: Before you can create service requests with this API, you need to have an Oracle Single Sign On (SSO) account, and you need to register your Customer Support Identifier (CSI) with My Oracle Support.
 //
 
 package cims
 
 import (
-    "github.com/oracle/oci-go-sdk/v33/common"
+    "github.com/erikcai/oci-go-sdk/v33/common"
         "encoding/json"
 )
 
 
-    
+
  // Resource Details about the ticket item object.
 type Resource struct {
-    
+
     Item Item `mandatory:"false" json:"item"`
-    
+
  // The list of available Oracle Cloud Infrastructure regions.
     Region RegionEnum `mandatory:"false" json:"region,omitempty"`
-    
+
  // The list of available Oracle Cloud Infrastructure availability domains.
     AvailabilityDomain AvailabilityDomainEnum `mandatory:"false" json:"availabilityDomain,omitempty"`
 }

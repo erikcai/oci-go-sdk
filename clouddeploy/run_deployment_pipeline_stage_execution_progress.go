@@ -11,7 +11,7 @@ package clouddeploy
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // RunDeploymentPipelineStageExecutionProgress Specifies Run Deployment Pipleline stage specific exeution details.

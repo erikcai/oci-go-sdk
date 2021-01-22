@@ -10,7 +10,7 @@
 package goldengate
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // OggDeployment Deployment Data for an OggDeployment
@@ -22,7 +22,7 @@ type OggDeployment struct {
 	// The GoldenGate deployment console username.
 	AdminUsername *string `mandatory:"true" json:"adminUsername"`
 
-	// PEM encoded SSL certificate.
+	// A PEM-encoded SSL certificate.
 	Certificate *string `mandatory:"false" json:"certificate"`
 }
 

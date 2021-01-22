@@ -3,7 +3,7 @@
 - Maven
 - Python (and tools, see below)
 - Go(make sure you set the GOPATH enviroment correctly)
-- Go tools see: https://github.com/oracle/oci-go-sdk#building-and-testing
+- Go tools see: https://github.com/erikcai/oci-go-sdk#building-and-testing
 - oci-go-sdk commons go package
   - You can install the lastest version by installing pulling the current version of the go sdk
 - Make
@@ -29,7 +29,7 @@ The build functionality is driven by 2 make files
 
 
 ## Layout
-The  organiztion of the public parts of  sdk is described here:  https://github.com/oracle/oci-go-sdk#organization-of-the-sdk .
+The  organiztion of the public parts of  sdk is described here:  https://github.com/erikcai/oci-go-sdk#organization-of-the-sdk .
 In addition in order to support generation, the following files are present:
 
 - featureId.yaml: legacy file where the different conditinal directives were getting saved, used by the generator to turn spec features on/off
@@ -45,7 +45,7 @@ In addition in order to support generation, the following files are present:
               <specGenerationType>${generationType}</specGenerationType>
               <additionalProperties>
                 <specName>announcementsservice</specName>
-                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>  <-- The name of the root packate usually github.com/oracle/oci-go-sdk
+                <fqProjectName>${fullyQualifiedProjectName}</fqProjectName>  <-- The name of the root packate usually github.com/erikcai/oci-go-sdk
                 <serviceHostName>announcements</serviceHostName>
               </additionalProperties>
               <featureIdConfigFile>${feature-id-file}</featureIdConfigFile>
@@ -64,7 +64,7 @@ You run the code generator by executing. This will generate the code as well as 
 
     make -f MakefileDevelopment.mk build
 
-After executing this command the source code will be placed under the canonical repository `$GOPATH/src/$PROJECT_NAME` where $PROJECT_NAME is the fully qualified project name: `github.com/oracle/oci-go-sdk`.
+After executing this command the source code will be placed under the canonical repository `$GOPATH/src/$PROJECT_NAME` where $PROJECT_NAME is the fully qualified project name: `github.com/erikcai/oci-go-sdk`.
 
 The above command executes the  `generation` and `build` target which generates the sdk. If you want to just build the sdk, issue:
 
@@ -113,8 +113,8 @@ Often when working on new feature of the sdk, you'll need to generate and build,
 
 - Targeting a specific package for generation, where `$1` is the execution `<id>` of the package you want to generate
 
-        PROJECT_NAME=github.com/oracle/oci-go-sdk mvn bmc-sdk-swagger:generate@$1
-        PROJECT_NAME=github.com/oracle/oci-go-sdk mvn bmc-sdk-swagger:generate@go-public-sdk-maestro-spec
+        PROJECT_NAME=github.com/erikcai/oci-go-sdk mvn bmc-sdk-swagger:generate@$1
+        PROJECT_NAME=github.com/erikcai/oci-go-sdk mvn bmc-sdk-swagger:generate@go-public-sdk-maestro-spec
 
 - Linting and rebuilding sdk and tests for a specific package
 

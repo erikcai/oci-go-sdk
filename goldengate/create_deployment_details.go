@@ -10,7 +10,7 @@
 package goldengate
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // CreateDeploymentDetails The information about a new Deployment.
@@ -18,6 +18,9 @@ type CreateDeploymentDetails struct {
 
 	// An object's Display Name.
 	DisplayName *string `mandatory:"true" json:"displayName"`
+
+	// The Oracle license model that applies to a Deployment.
+	LicenseModel LicenseModelEnum `mandatory:"true" json:"licenseModel"`
 
 	// The OCID (https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
 	CompartmentId *string `mandatory:"true" json:"compartmentId"`
@@ -33,9 +36,6 @@ type CreateDeploymentDetails struct {
 
 	// The deployment type.
 	DeploymentType DeploymentTypeEnum `mandatory:"true" json:"deploymentType"`
-
-	// The Oracle license model that applies to a Deployment.
-	LicenseModel LicenseModelEnum `mandatory:"false" json:"licenseModel,omitempty"`
 
 	// Metadata about this specific object.
 	Description *string `mandatory:"false" json:"description"`

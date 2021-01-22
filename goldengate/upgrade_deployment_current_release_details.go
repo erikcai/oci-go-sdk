@@ -11,7 +11,7 @@ package goldengate
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // UpgradeDeploymentCurrentReleaseDetails Definiton of the additional attributes for a Current Release upgrade.
@@ -26,7 +26,7 @@ func (m UpgradeDeploymentCurrentReleaseDetails) String() string {
 func (m UpgradeDeploymentCurrentReleaseDetails) MarshalJSON() (buff []byte, e error) {
 	type MarshalTypeUpgradeDeploymentCurrentReleaseDetails UpgradeDeploymentCurrentReleaseDetails
 	s := struct {
-		DiscriminatorParam string `json:"upgradeDeploymentType"`
+		DiscriminatorParam string `json:"type"`
 		MarshalTypeUpgradeDeploymentCurrentReleaseDetails
 	}{
 		"CURRENT_RELEASE",

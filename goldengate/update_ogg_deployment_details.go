@@ -10,7 +10,7 @@
 package goldengate
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // UpdateOggDeploymentDetails Deployment Details for updating an OggDeployment
@@ -22,10 +22,10 @@ type UpdateOggDeploymentDetails struct {
 	// The password associated with the GoldenGate deployment console username. The password must be 8 to 30 characters long and must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character. Special characters such as ‘$’, ‘^’, or ‘?’ are not allowed.
 	AdminPassword *string `mandatory:"false" json:"adminPassword"`
 
-	// PEM encoded SSL certificate.
+	// A PEM-encoded SSL certificate.
 	Certificate *string `mandatory:"false" json:"certificate"`
 
-	// PEM-encoded private key associated with the certificate.
+	// A PEM-encoded private key.
 	Key *string `mandatory:"false" json:"key"`
 }
 

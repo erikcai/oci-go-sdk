@@ -10,7 +10,7 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ProfileSummary The metadata associated with the profile summary.
@@ -48,6 +48,10 @@ type ProfileSummary struct {
 	FreeformTags map[string]string `mandatory:"false" json:"freeformTags"`
 
 	LevelsConfiguration *LevelsConfiguration `mandatory:"false" json:"levelsConfiguration"`
+
+	TargetCompartments *TargetCompartments `mandatory:"false" json:"targetCompartments"`
+
+	TargetTags *TargetTags `mandatory:"false" json:"targetTags"`
 }
 
 func (m ProfileSummary) String() string {

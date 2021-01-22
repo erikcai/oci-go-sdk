@@ -3,11 +3,11 @@ This is the official Go SDK for Oracle Cloud Infrastructure
 
 Installation
 
-Refer to https://github.com/oracle/oci-go-sdk/blob/master/README.md#installing for installation instructions.
+Refer to https://github.com/erikcai/oci-go-sdk/blob/master/README.md#installing for installation instructions.
 
 Configuration
 
-Refer to https://github.com/oracle/oci-go-sdk/blob/master/README.md#configuring for configuration instructions.
+Refer to https://github.com/erikcai/oci-go-sdk/blob/master/README.md#configuring for configuration instructions.
 
 Quickstart
 
@@ -19,8 +19,8 @@ them out to stdout
 		"context"
 		"fmt"
 
-		"github.com/oracle/oci-go-sdk/v33/common"
-		"github.com/oracle/oci-go-sdk/v33/identity"
+		"github.com/erikcai/oci-go-sdk/v33/common"
+		"github.com/erikcai/oci-go-sdk/v33/identity"
 	)
 
 	func main() {
@@ -51,7 +51,7 @@ them out to stdout
 		return
 	}
 
-More examples can be found in the SDK Github repo: https://github.com/oracle/oci-go-sdk/tree/master/example
+More examples can be found in the SDK Github repo: https://github.com/erikcai/oci-go-sdk/tree/master/example
 
 Optional fields in the SDK
 
@@ -108,7 +108,7 @@ signed and submitted to the service.
 Signing Custom Requests
 
 The SDK exposes a stand-alone signer that can be used to signing custom requests. Related code can be found here:
-https://github.com/oracle/oci-go-sdk/blob/master/common/http_signer.go.
+https://github.com/erikcai/oci-go-sdk/blob/master/common/http_signer.go.
 
 The example below shows how to create a default signer.
 
@@ -192,7 +192,7 @@ This allows you to add custom signed headers to the request. Following is an exa
 
 Bear in mind that some services have a white list of headers that it expects to be signed.
 Therefore, adding an arbitrary header can result in authentications errors.
-To see a runnable example, see https://github.com/oracle/oci-go-sdk/blob/master/example/example_identity_test.go
+To see a runnable example, see https://github.com/erikcai/oci-go-sdk/blob/master/example/example_identity_test.go
 
 
 For more information on the signing algorithm refer to: https://docs.cloud.oracle.com/Content/API/Concepts/signingrequests.htm
@@ -230,14 +230,14 @@ In the case of a polymorphic response you can type assert the interface to the e
 
 	provider := response.IdentityProvider.(identity.Saml2IdentityProvider)
 
-An example of polymorphic json request handling can be found here: https://github.com/oracle/oci-go-sdk/blob/master/example/example_core_test.go#L63
+An example of polymorphic json request handling can be found here: https://github.com/erikcai/oci-go-sdk/blob/master/example/example_core_test.go#L63
 
 
 Pagination
 
 When calling a list operation, the operation will retrieve a page of results. To retrieve more data, call the list operation again,
 passing in the value of the most recent response's OpcNextPage as the value of Page in the next list operation call.
-When there is no more data the OpcNextPage field will be nil. An example of pagination using this logic can be found here: https://github.com/oracle/oci-go-sdk/blob/master/example/example_core_pagination_test.go
+When there is no more data the OpcNextPage field will be nil. An example of pagination using this logic can be found here: https://github.com/erikcai/oci-go-sdk/blob/master/example/example_core_pagination_test.go
 
 Logging and Debugging
 
@@ -273,7 +273,7 @@ Retry
 Sometimes you may need to wait until an attribute of a resource, such as an instance or a VCN, reaches a certain state.
 An example of this would be launching an instance and then waiting for the instance to become available, or waiting until a subnet in a VCN has been terminated.
 You might also want to retry the same operation again if there's network issue etc...
-This can be accomplished by using the RequestMetadata.RetryPolicy. You can find the examples here: https://github.com/oracle/oci-go-sdk/blob/master/example/example_retry_test.go
+This can be accomplished by using the RequestMetadata.RetryPolicy. You can find the examples here: https://github.com/erikcai/oci-go-sdk/blob/master/example/example_retry_test.go
 
 Using the SDK with a proxy server
 
@@ -311,19 +311,19 @@ the interface modeling the polymorphic json response.
 Contributions
 
 Got a fix for a bug, or a new feature you'd like to contribute? The SDK is open source and accepting pull requests on GitHub
-https://github.com/oracle/oci-go-sdk
+https://github.com/erikcai/oci-go-sdk
 
 License
 
-Licensing information available at: https://github.com/oracle/oci-go-sdk/blob/master/LICENSE.txt
+Licensing information available at: https://github.com/erikcai/oci-go-sdk/blob/master/LICENSE.txt
 
 Notifications
 
-To be notified when a new version of the Go SDK is released, subscribe to the following feed: https://github.com/oracle/oci-go-sdk/releases.atom
+To be notified when a new version of the Go SDK is released, subscribe to the following feed: https://github.com/erikcai/oci-go-sdk/releases.atom
 
 Questions or Feedback
 
-Please refer to this link: https://github.com/oracle/oci-go-sdk#help
+Please refer to this link: https://github.com/erikcai/oci-go-sdk#help
 
 
 

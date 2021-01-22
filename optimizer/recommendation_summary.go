@@ -10,11 +10,10 @@
 package optimizer
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // RecommendationSummary The metadata associated with the recommendation summary.
-// **Caution:** Avoid using any confidential information when you supply string values using the API.
 type RecommendationSummary struct {
 
 	// The unique OCID associated with the recommendation.

@@ -10,7 +10,7 @@
 package jms
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // InstallationView A view resource on an installation in the specified time period. An installation is a collection of deployed instances of a sepcific JRE that share the same install path.

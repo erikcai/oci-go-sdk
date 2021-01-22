@@ -11,7 +11,7 @@ package database
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // CreateRefreshableAutonomousDatabaseCloneDetails Details to create an Oracle Autonomous Database refreshable clone.
@@ -125,8 +125,23 @@ type CreateRefreshableAutonomousDatabaseCloneDetails struct {
 	// A valid Oracle Database version for Autonomous Database.
 	DbVersion *string `mandatory:"false" json:"dbVersion"`
 
+	// The frequency at which the data is refreshed for a refreshable clone after auto-refresh is enabled. The minimum is 1 minute. The maximum is 1 day. The date and time that auto-refresh is enabled is controlled by the `timeOfAutoRefreshStart` parameter.
+	AutoRefreshFrequencyInSeconds *int `mandatory:"false" json:"autoRefreshFrequencyInSeconds"`
+
+	// The amount of time, in seconds, that the data of the refreshable clone lags the data of the primary database at the point of refresh. The minimum is 1 minute. The maximum is 7 days. The lag time increases after refreshing until the next data refresh happens.
+	AutoRefreshPointInSeconds *int `mandatory:"false" json:"autoRefreshPointInSeconds"`
+
+	// The the date and time that auto-refreshing will begin for an Autonomous Database refreshable clone. This value controls only the start time for the first refresh operation. Subsequent (ongoing) refresh operations have start times controlled by the value of the `autoRefreshFrequencyInSeconds` parameter.
+	TimeOfAutoRefreshStart *common.SDKTime `mandatory:"false" json:"timeOfAutoRefreshStart"`
+
 	// The refresh mode of the clone. AUTOMATIC indicates that the clone is automatically being refreshed with data from the source Autonomous Database.
 	RefreshableMode CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum `mandatory:"false" json:"refreshableMode,omitempty"`
+
+	// The auto-refresh policy for the Autonomous Database refreshable clone. You can specify continuous refreshing or a custom refresh schedule.
+	AutoRefreshPolicy CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum `mandatory:"false" json:"autoRefreshPolicy,omitempty"`
+
+	// The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
+	OpenMode CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum `mandatory:"false" json:"openMode,omitempty"`
 
 	// The Autonomous Database workload type. The following values are valid:
 	// - OLTP - indicates an Autonomous Transaction Processing database
@@ -308,6 +323,52 @@ var mappingCreateRefreshableAutonomousDatabaseCloneDetailsRefreshableMode = map[
 func GetCreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnumValues() []CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum {
 	values := make([]CreateRefreshableAutonomousDatabaseCloneDetailsRefreshableModeEnum, 0)
 	for _, v := range mappingCreateRefreshableAutonomousDatabaseCloneDetailsRefreshableMode {
+		values = append(values, v)
+	}
+	return values
+}
+
+// CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum Enum with underlying type: string
+type CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum string
+
+// Set of constants representing the allowable values for CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum
+const (
+	CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyContinuous CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum = "CONTINUOUS"
+	CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyCustom     CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum = "CUSTOM"
+)
+
+var mappingCreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicy = map[string]CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum{
+	"CONTINUOUS": CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyContinuous,
+	"CUSTOM":     CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyCustom,
+}
+
+// GetCreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnumValues Enumerates the set of values for CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum
+func GetCreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnumValues() []CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum {
+	values := make([]CreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicyEnum, 0)
+	for _, v := range mappingCreateRefreshableAutonomousDatabaseCloneDetailsAutoRefreshPolicy {
+		values = append(values, v)
+	}
+	return values
+}
+
+// CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum Enum with underlying type: string
+type CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum string
+
+// Set of constants representing the allowable values for CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum
+const (
+	CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeOnly  CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum = "READ_ONLY"
+	CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeWrite CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum = "READ_WRITE"
+)
+
+var mappingCreateRefreshableAutonomousDatabaseCloneDetailsOpenMode = map[string]CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum{
+	"READ_ONLY":  CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeOnly,
+	"READ_WRITE": CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeWrite,
+}
+
+// GetCreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnumValues Enumerates the set of values for CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum
+func GetCreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnumValues() []CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum {
+	values := make([]CreateRefreshableAutonomousDatabaseCloneDetailsOpenModeEnum, 0)
+	for _, v := range mappingCreateRefreshableAutonomousDatabaseCloneDetailsOpenMode {
 		values = append(values, v)
 	}
 	return values

@@ -1,5 +1,5 @@
 #### Project generation setup
-PROJECT_NAME=github.com/oracle/oci-go-sdk
+PROJECT_NAME=github.com/erikcai/oci-go-sdk
 PROJECT_PATH=$(GOPATH)/src/$(PROJECT_NAME)
 REMOVE_AFTER_GENERATE=audit/audit_waiters.go objectstorage/objectstorage_waiters.go
 DOC_SERVER_URL_DEV=https:\/\/docs.cloud.oracle.com
@@ -42,7 +42,7 @@ test-all: build-sdk build-autotest test-sdk-only test-integ-test
 autotest-all: build-sdk test-sdk-only $(AUTOTEST_TARGETS)
 
 autotest: build-autotest
-	go test -v -run $(TEST_NAME) -count 1 -timeout 3h github.com/oracle/oci-go-sdk/autotest
+	go test -v -run $(TEST_NAME) -count 1 -timeout 3h github.com/erikcai/oci-go-sdk/autotest
 
 $(AUTOTEST_TARGETS): autotest-%:%
 	@echo Testing $(AUTOTEST_DIR)/$<_client_auto_test.go

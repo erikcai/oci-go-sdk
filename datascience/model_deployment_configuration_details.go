@@ -11,7 +11,7 @@ package datascience
 
 import (
 	"encoding/json"
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 )
 
 // ModelDeploymentConfigurationDetails The model deployment configuration details.
@@ -59,25 +59,4 @@ func (m *modeldeploymentconfigurationdetails) UnmarshalPolymorphicJSON(data []by
 
 func (m modeldeploymentconfigurationdetails) String() string {
 	return common.PointerString(m)
-}
-
-// ModelDeploymentConfigurationDetailsDeploymentTypeEnum Enum with underlying type: string
-type ModelDeploymentConfigurationDetailsDeploymentTypeEnum string
-
-// Set of constants representing the allowable values for ModelDeploymentConfigurationDetailsDeploymentTypeEnum
-const (
-	ModelDeploymentConfigurationDetailsDeploymentTypeSingleModel ModelDeploymentConfigurationDetailsDeploymentTypeEnum = "SINGLE_MODEL"
-)
-
-var mappingModelDeploymentConfigurationDetailsDeploymentType = map[string]ModelDeploymentConfigurationDetailsDeploymentTypeEnum{
-	"SINGLE_MODEL": ModelDeploymentConfigurationDetailsDeploymentTypeSingleModel,
-}
-
-// GetModelDeploymentConfigurationDetailsDeploymentTypeEnumValues Enumerates the set of values for ModelDeploymentConfigurationDetailsDeploymentTypeEnum
-func GetModelDeploymentConfigurationDetailsDeploymentTypeEnumValues() []ModelDeploymentConfigurationDetailsDeploymentTypeEnum {
-	values := make([]ModelDeploymentConfigurationDetailsDeploymentTypeEnum, 0)
-	for _, v := range mappingModelDeploymentConfigurationDetailsDeploymentType {
-		values = append(values, v)
-	}
-	return values
 }

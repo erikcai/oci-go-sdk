@@ -5,7 +5,7 @@
 package datascience
 
 import (
-	"github.com/oracle/oci-go-sdk/v33/common"
+	"github.com/erikcai/oci-go-sdk/v33/common"
 	"net/http"
 )
 
@@ -106,6 +106,7 @@ const (
 	ListWorkRequestsOperationTypeModelDeploymentDelete     ListWorkRequestsOperationTypeEnum = "MODEL_DEPLOYMENT_DELETE"
 	ListWorkRequestsOperationTypeModelDeploymentActivate   ListWorkRequestsOperationTypeEnum = "MODEL_DEPLOYMENT_ACTIVATE"
 	ListWorkRequestsOperationTypeModelDeploymentDeactivate ListWorkRequestsOperationTypeEnum = "MODEL_DEPLOYMENT_DEACTIVATE"
+	ListWorkRequestsOperationTypeModelDeploymentUpdate     ListWorkRequestsOperationTypeEnum = "MODEL_DEPLOYMENT_UPDATE"
 	ListWorkRequestsOperationTypeProjectDelete             ListWorkRequestsOperationTypeEnum = "PROJECT_DELETE"
 	ListWorkRequestsOperationTypeWorkrequestCancel         ListWorkRequestsOperationTypeEnum = "WORKREQUEST_CANCEL"
 )
@@ -119,6 +120,7 @@ var mappingListWorkRequestsOperationType = map[string]ListWorkRequestsOperationT
 	"MODEL_DEPLOYMENT_DELETE":     ListWorkRequestsOperationTypeModelDeploymentDelete,
 	"MODEL_DEPLOYMENT_ACTIVATE":   ListWorkRequestsOperationTypeModelDeploymentActivate,
 	"MODEL_DEPLOYMENT_DEACTIVATE": ListWorkRequestsOperationTypeModelDeploymentDeactivate,
+	"MODEL_DEPLOYMENT_UPDATE":     ListWorkRequestsOperationTypeModelDeploymentUpdate,
 	"PROJECT_DELETE":              ListWorkRequestsOperationTypeProjectDelete,
 	"WORKREQUEST_CANCEL":          ListWorkRequestsOperationTypeWorkrequestCancel,
 }

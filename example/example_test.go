@@ -9,15 +9,15 @@ import (
 	"os"
 	"testing"
 
-	"github.com/oracle/oci-go-sdk/v33/example/helpers"
+	"github.com/erikcai/oci-go-sdk/v33/example/helpers"
 )
 
 // Before run the samples, update the environment variables with your tenancy info.
 //
 // To run individual sample:
-//   go test github.com/oracle/oci-go-sdk/example -run ^ExampleLaunchInstance$
+//   go test github.com/erikcai/oci-go-sdk/example -run ^ExampleLaunchInstance$
 // To run all samples:
-//   go test github.com/oracle/oci-go-sdk/example
+//   go test github.com/erikcai/oci-go-sdk/example
 func TestMain(m *testing.M) {
 	// ParseEnvironmentVariables assumes that you have configured your environment variables with following configs
 	// Required configs are:
